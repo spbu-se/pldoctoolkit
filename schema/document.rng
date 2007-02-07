@@ -18,7 +18,9 @@
 					<zeroOrMore>
 						<element name="replace">
 							<attribute name="nest"/>
-							<text/>
+							<optional>
+								<text/>
+							</optional>
 						</element>
 						<element name="insert-before">
 							<attribute name="nest"/>
@@ -27,9 +29,6 @@
 						<element name="insert-after">
 							<attribute name="nest"/>
 							<text/>
-						</element>
-						<element name="replace">
-							<attribute name="nest"/>
 						</element>
 					</zeroOrMore>
 				</element>
