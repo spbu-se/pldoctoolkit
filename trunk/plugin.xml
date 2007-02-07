@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="pldoctoolkit"
+            name="Product-Line Documentation Toolkit Wizards"/>
+      <wizard
+            category="pldoctoolkit"
+            class="org.spbu.pldoctoolkit.wizards.NewFamilyWizard"
+            icon="icons/sample.gif"
+            id="org.spbu.pldoctoolkit.wizards.NewFamilyWizard"
+            name="Product-Line Documentation Family"/>
+   </extension>
 
 </plugin>
