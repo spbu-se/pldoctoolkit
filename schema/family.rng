@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <grammar 
-  xmlns="http://relaxng.org/ns/structure/1.0"
-  xmlns:xsp="http://apache.org/xsp/core/v1"
-  xmlns:s="http://www.ascc.net/xml/schematron"
-  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
-  xmlns:f="http://axkit.org/NS/xsp/perform/v1"
-  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-    <start>
-    	<element name="inffamily">
-    		<text/>
-    	</element>
-    </start>
+	xmlns="http://relaxng.org/ns/structure/1.0"
+	xmlns:xsp="http://apache.org/xsp/core/v1"
+	xmlns:s="http://www.ascc.net/xml/schematron"
+	xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+	xmlns:f="http://axkit.org/NS/xsp/perform/v1"
+	datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+	
+	<start>
+		<element name="family">
+			<zeroOrMore>
+				<element name="variable">
+					<attribute name="name"/>
+					<attribute name="default"/>
+				</element>
+			</zeroOrMore>
+			<zeroOrMore>
+				<choice>
+					<element name="ref">
+						<attribute name="part"/>
+					</element>
+					<element name="if">
+						<attribute name="test"/>
+						<text/>
+					</element>
+				</choice>
+			</zeroOrMore>
+		</element>
+	</start>
 </grammar>
