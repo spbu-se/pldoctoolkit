@@ -9,6 +9,7 @@
 	
 	<start>
 		<element name="family">
+			<attribute name="id"/>
 			<zeroOrMore>
 				<element name="variable">
 					<attribute name="name"/>
