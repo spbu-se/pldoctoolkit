@@ -5,7 +5,7 @@
          point="org.eclipse.ui.newWizards">
       <category
             id="pldoctoolkit"
-            name="Product-Line Documentation Wizards"/>
+            name="Product-Line Documentation"/>
       <wizard
             category="pldoctoolkit"
             class="org.spbu.pldoctoolkit.wizards.NewFamilyWizard"
