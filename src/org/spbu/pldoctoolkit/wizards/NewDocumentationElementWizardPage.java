@@ -9,11 +9,12 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
 public class NewDocumentationElementWizardPage extends WizardNewFileCreationPage {
 	private final URL templateURL;
-	private String newFileLabel;
+	private final String newFileLabel;
 	
-	public NewDocumentationElementWizardPage(String pageName, IStructuredSelection selection, URL templateURL) {
+	public NewDocumentationElementWizardPage(String pageName, IStructuredSelection selection, URL templateURL, String newFileLabel) {
 		super(pageName, selection);
 		this.templateURL = templateURL;
+		this.newFileLabel = newFileLabel;
 	}
 
 	@Override
@@ -28,9 +29,5 @@ public class NewDocumentationElementWizardPage extends WizardNewFileCreationPage
 	@Override
 	protected String getNewFileLabel() {
 		return newFileLabel;
-	}
-	
-	public void setNewFileLabel(String newFileLabel) {
-		this.newFileLabel = newFileLabel;
 	}
 }

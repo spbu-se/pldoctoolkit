@@ -12,6 +12,18 @@
             icon="icons/sample.gif"
             id="org.spbu.pldoctoolkit.wizards.NewFamilyWizard"
             name="Documentation Family"/>
+      <wizard
+            category="pldoctoolkit"
+            class="org.spbu.pldoctoolkit.wizards.NewDocumentWizard"
+            icon="icons/sample.gif"
+            id="org.spbu.pldoctoolkit.wizards.NewDocumentWizard"
+            name="Final Document"/>
+      <wizard
+            category="pldoctoolkit"
+            class="org.spbu.pldoctoolkit.wizards.NewPartWizard"
+            icon="icons/sample.gif"
+            id="org.spbu.pldoctoolkit.wizards.NewPartWizard"
+            name="Part"/>
    </extension>
 
 </plugin>
