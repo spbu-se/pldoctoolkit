@@ -25,5 +25,15 @@
             id="org.spbu.pldoctoolkit.wizards.NewPartWizard"
             name="Part"/>
    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.spbu.pldoctoolkit.editors.DRLEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="xml"
+            icon="icons/sample.gif"
+            id="org.spbu.pldoctoolkit.editors.DRLEditor"
+            name="DRL Editor"/>
+   </extension>
 
 </plugin>
