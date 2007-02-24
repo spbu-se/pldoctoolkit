@@ -30,7 +30,7 @@
       <editor
             class="org.spbu.pldoctoolkit.editors.DRLEditor"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
-            extensions="xml"
+            extensions="drl"
             icon="icons/sample.gif"
             id="org.spbu.pldoctoolkit.editors.DRLEditor"
             name="DRL Editor"/>
