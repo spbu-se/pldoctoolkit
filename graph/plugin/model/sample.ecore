@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="vardoc"
+    nsURI="http://tepkom.ru/drl" nsPrefix="v">
+  <eClassifiers xsi:type="ecore:EEnum" name="NestPointType">
+    <eLiterals name="INSERT_BEFORE" value="1"/>
+    <eLiterals name="INSERT_AFTER" value="2"/>
+    <eLiterals name="REPLACE" value="3"/>
+    <eLiterals name="REMOVE" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentPart" eSuperTypes="#//ReusablePart">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestPoints" upperBound="-1"
+        eType="#//NestPoint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Family" eSuperTypes="#//ReusablePart"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adapters" upperBound="-1"
+        eType="#//Adapter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="family" lowerBound="1"
+        eType="#//Family"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variables" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" eType="#//DocumentPartRefSubstitute"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Adapter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestPointRefs" upperBound="-1"
+        eType="#//NestPointRef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" lowerBound="1" eType="#//DocumentPartRefSubstitute"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NestPoint" eSuperTypes="#//InnerElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InnerElement" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//InnerElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedParts" upperBound="-1"
+        eType="#//InnerElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NestPointRef">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//NestPointType"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestPoint" lowerBound="1"
+        eType="#//NestPoint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReusablePart" abstract="true" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//InnerElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentPartRefSubstitute">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="partRef" lowerBound="1"
+        eType="#//DocumentPartRef"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentPartRef" eSuperTypes="#//InnerElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="part" lowerBound="1" eType="#//DocumentPart"/>
+  </eClassifiers>
+</ecore:EPackage>
