@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   The Change notes.
+
+   1. title -> name. Теперь логика такая: name - имя элемента, по которому
+   на него можно ссылаться, а id - это id точки включения для дальнейшей
+   спецификации в finalinfproduct.
+   2. (note) finalinfproduct/@name == infproduct/@name
+   3. зачем нам insert-before для nest? Разве не хватит просто insert - если не
+   надо вставлять ничего, то просто пустое значение.
+   4. заменил <insert-before> в adapter на <nest id.../>
+   5. nest в месте определения заменил на nest-point
+   6. условия в conditional сейчас имеют вид @condition="var=val" - в непервой
+   версии мы будем развивать язык условий?
+   7. добавил 2 namespace def
+   8. вообще говоря, все элементы верхнего уровня (infproduct, finalinfproduct,
+   infelement) будут храниться в отдельных файлах, по файлу на штуку.
+   9. переменные - только глобальные? Т.е. если infelem включён более одного
+   раза, то он обречён выглядеть одинаково?
+   10. насчёт пути поиска файлов: для начала все файлы обязательно лежат в одной
+   папке, в более поздних версиях надо придумать какой-нибудь аналог classpath
+
+-->
+<sample
+    xmlns:d="http://docbook.org/ns/docbook"
+    xmlns="http://tepkom.ru/DRL">
+
+    <finalinfproduct name="User's manual">
+        <setvalue name="maintainable" value="no"/>
+        <adapter infelemrefid="server">
+            <nest id="Mount" type="replace">
+                mounted in 19" rack
+            </nest>
+            <nest id="last-note" type="remove"/>
+            <nest id="copyright" type="after">(c)</nest>
+        </adapter>
+        <adapter infelemrefid="copyright-user">
+            <nest id="blablabla" type="after">blabla</nest>
+        </adapter>
+    </finalinfproduct>
+
+    <infproduct name="User's manual">
+        <!-- text and docbook markup -->
+        <d:book>
+            <d:bookinfo>
+                <d:title>Booktitle goes here</d:title>
+            </d:bookinfo>
+        </d:book>
+        <infelemref id="Server subsystem" name="Server subsystem"/>
+        <conditional condition="maintainable=yes">
+            <infelemref id="maintenance" name="maintenance"/>
+        </conditional>
+        <nest-point id="copyright">Copyright SomeCompany 2001-2007</nest-point>
+    </infproduct>
+
+    <infelem name="Server subsystem">
+        Equipment mount type: <nest-point id="Mount"/>
+    </infelem>
+
+    <infelem name="copyright-user">
+        <!-- text and docbook markup -->
+        This copyright is valid for <dictentry dict="terms" name="ProductName"/>
+        (<dictentry dict="terms" name="ProductVersion"/>)
+    </infelem>
+
+    <infelem name="maintenance">
+        <!-- text and docbook markup -->
+    </infelem>
+</sample>
