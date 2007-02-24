@@ -28,6 +28,7 @@ public abstract class NewDocumentationElementWizard extends Wizard implements IN
 
 	@Override
 	public boolean performFinish() {
+		page.setFileName(page.getFileName());
 		IFile file = page.createNewFile();
 		if (file == null)
 			return false;

@@ -8,7 +8,7 @@ public class NewPartWizard extends NewDocumentationElementWizard {
 	@Override
 	protected NewDocumentationElementWizardPage createPage() {
 		URL templateURL = Activator.getDefault().getBundle().getEntry("/templates/part.xml");
-		NewDocumentationElementWizardPage page = new NewDocumentationElementWizardPage("newPart", selection, templateURL, "Part");
+		NewDocumentationElementWizardPage page = new NewDocumentationElementWizardPage("newPart", selection);
 		page.setTitle("Part");
 		page.setDescription("Create a new Part");
 		return page;
