@@ -13,19 +13,19 @@
       <genEnumLiterals ecoreEnumLiteral="sample.ecore#//NestPointType/REMOVE"/>
     </genEnums>
     <genClasses image="false" ecoreClass="sample.ecore#//Element"/>
-    <genClasses ecoreClass="sample.ecore#//DocumentPart">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//DocumentPart/nestPoints"/>
-    </genClasses>
+    <genClasses ecoreClass="sample.ecore#//DocumentPart"/>
     <genClasses ecoreClass="sample.ecore#//Family"/>
     <genClasses ecoreClass="sample.ecore#//Document">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Document/adapters"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//Document/family"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//Document/variables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Document/parts"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//Document/partRefs"/>
     </genClasses>
     <genClasses ecoreClass="sample.ecore#//Adapter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Adapter/nestPointRefs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Adapter/ref"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//Adapter/documentPartRef"/>
     </genClasses>
     <genClasses ecoreClass="sample.ecore#//NestPoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//NestPoint/id"/>
@@ -43,9 +43,6 @@
     <genClasses image="false" ecoreClass="sample.ecore#//ReusablePart">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//ReusablePart/id"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//ReusablePart/elements"/>
-    </genClasses>
-    <genClasses ecoreClass="sample.ecore#//DocumentPartRefSubstitute">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//DocumentPartRefSubstitute/partRef"/>
     </genClasses>
     <genClasses ecoreClass="sample.ecore#//DocumentPartRef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//DocumentPartRef/id"/>

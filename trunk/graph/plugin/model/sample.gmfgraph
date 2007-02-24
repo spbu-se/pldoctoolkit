@@ -7,10 +7,6 @@
       name="Default">
     <figures
         xsi:type="gmfgraph:Rectangle"
-        referencingElements="Adapter"
-        name="AdapterFigure"/>
-    <figures
-        xsi:type="gmfgraph:Rectangle"
         referencingElements="NestPoint"
         name="NestPointFigure">
       <children
@@ -21,36 +17,7 @@
     </figures>
     <figures
         xsi:type="gmfgraph:Rectangle"
-        referencingElements="Condition"
-        name="ConditionFigure">
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="ConditionCondition"
-          name="ConditionConditionFigure"
-          text="&lt;...>"/>
-    </figures>
-    <figures
-        xsi:type="gmfgraph:PolylineConnection"
-        referencingElements="NestPointRef"
-        name="NestPointRefFigure">
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="NestPointRefType"
-          name="NestPointRefTypeFigure"
-          text="&lt;...>"/>
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="NestPointRefText"
-          name="NestPointRefTextFigure"
-          text="&lt;...>"/>
-    </figures>
-    <figures
-        xsi:type="gmfgraph:PolylineConnection"
-        referencingElements="DocumentPartRefSubstitute"
-        name="DocumentPartRefSubstituteFigure"/>
-    <figures
-        xsi:type="gmfgraph:PolylineConnection"
-        referencingElements="DocumentPartRef"
+        referencingElements="DocumentPartRef DocumentPartRefLink"
         name="DocumentPartRefFigure">
       <children
           xsi:type="gmfgraph:Label"
@@ -58,24 +25,31 @@
           name="DocumentPartRefIdFigure"
           text="&lt;...>"/>
     </figures>
+    <figures
+        xsi:type="gmfgraph:Rectangle"
+        referencingElements="Condition ConditionLink"
+        name="ConditionFigure">
+      <children
+          xsi:type="gmfgraph:Label"
+          referencingElements="ConditionCondition"
+          name="ConditionConditionFigure"
+          text="&lt;...>"/>
+    </figures>
   </figures>
-  <nodes
-      name="Adapter"
-      figure="AdapterFigure"/>
   <nodes
       name="NestPoint"
       figure="NestPointFigure"/>
   <nodes
+      name="DocumentPartRef"
+      figure="DocumentPartRefFigure"/>
+  <nodes
       name="Condition"
       figure="ConditionFigure"/>
   <connections
-      name="NestPointRef"
-      figure="NestPointRefFigure"/>
+      name="ConditionLink"
+      figure="ConditionFigure"/>
   <connections
-      name="DocumentPartRefSubstitute"
-      figure="DocumentPartRefSubstituteFigure"/>
-  <connections
-      name="DocumentPartRef"
+      name="DocumentPartRefLink"
       figure="DocumentPartRefFigure"/>
   <labels
       name="NestPointId"
@@ -83,12 +57,6 @@
   <labels
       name="ConditionCondition"
       figure="ConditionConditionFigure"/>
-  <labels
-      name="NestPointRefType"
-      figure="NestPointRefTypeFigure"/>
-  <labels
-      name="NestPointRefText"
-      figure="NestPointRefTextFigure"/>
   <labels
       name="DocumentPartRefId"
       figure="DocumentPartRefIdFigure"/>
