@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- This scheme was copypasted from DRLSpec.doc -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="ProductLine">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="PLScheme" type="drl:PLScheme"/>
+            <xs:element name="PLDocumentation" type="drl:PLDocumentation"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="PLScheme">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Product" type="drl:Product"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Product">
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="PLDocumentation">
+        <xs:sequence>
+            <xs:element name="DocumentationCore" type="drl:DocumentationCore"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="ProductDocumentation" type="drl:ProductDocumentation"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DocumentationCore">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="infproduct" type="drl:infproduct"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="infelement" type="drl:infelement"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="dictionary"/>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="drl:directorygroup"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:group name="directorygroup">
+        <xs:sequence>
+            <xs:element name="directory"/>
+            <xs:element maxOccurs="unbounded" name="dirtemplate"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="ProductDocumentation">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="finalinfproduct"/>
+        </xs:sequence>
+        <xs:attribute name="productid" type="xs:string"/>
+    </xs:complexType>
+    <xs:complexType name="infproduct">
+        <xs:complexContent>
+            <xs:extension base="drl:infelement">
+                <xs:sequence>
+                    <xs:element name="processinghint"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType mixed="true" name="infelement">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="infelemref" type="drl:infelemref"/>
+            <xs:element name="infelemrefgroup" type="drl:infelemrefgroup"/>
+            <xs:element name="dictref" type="drl:dictref"/>
+            <xs:element name="dirref" type="drl:dirref"/>
+        </xs:choice>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="infelemrefgroup">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="name" type="xs:string" use="optional"/>
+        <xs:attribute name="modifier" type="drl:groupmodifier" use="required"/>
+    </xs:complexType>
+    <xs:simpleType name="groupmodifier">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OR"/>
+            <xs:enumeration value="XOR"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="infelemref">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="infelem" type="xs:string" use="required"/>
+        <xs:attribute name="group" type="xs:string" use="optional"/>
+        <xs:attribute default="true" name="optional" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+</xs:schema>
