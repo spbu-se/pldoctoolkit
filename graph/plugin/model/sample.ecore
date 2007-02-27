@@ -10,7 +10,9 @@
     <eLiterals name="REMOVE" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DocumentPart" eSuperTypes="#//ReusablePart"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentPart" eSuperTypes="#//ReusablePart">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Family" eSuperTypes="#//ReusablePart"/>
   <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="adapters" upperBound="-1"
@@ -32,9 +34,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InnerElement" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InnerElement" abstract="true" eSuperTypes="#//Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//InnerElement">
-    <eAnnotations/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedParts" upperBound="-1"
         eType="#//InnerElement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" lowerBound="1"
@@ -49,7 +50,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReusablePart" abstract="true" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        iD="true"/>
+        derived="true" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//InnerElement" containment="true"/>
   </eClassifiers>
@@ -57,5 +58,17 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" lowerBound="1" eType="#//DocumentPart"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentPartRefGroup" eSuperTypes="#//InnerElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifier" lowerBound="1"
+        eType="#//GroupType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentPartRefs" upperBound="-1"
+        eType="#//DocumentPartRef" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GroupType">
+    <eLiterals name="OR" value="1"/>
+    <eLiterals name="XOR" value="2"/>
   </eClassifiers>
 </ecore:EPackage>
