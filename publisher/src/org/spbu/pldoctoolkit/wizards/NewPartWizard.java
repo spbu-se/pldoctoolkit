@@ -6,14 +6,14 @@ import java.io.InputStream;
 import org.eclipse.ui.INewWizard;
 import org.spbu.pldoctoolkit.Activator;
 
-public class NewFamilyWizard extends NewWizard implements INewWizard {
-	private static final String TEMPLATE = "templates/family.xml";
+public class NewPartWizard extends NewWizard implements INewWizard {
+	private static final String TEMPLATE = "templates/part.xml";
 	
 	@Override
 	public NewWizardPage createPage() {
-		NewWizardPage page = new NewWizardPage("newFamily", "Family name:", selection);
-		page.setTitle("New Family");
-		page.setDescription("Create a new Documentation Family");
+		NewWizardPage page = new NewWizardPage("newPart", "Part name:", selection);
+		page.setTitle("New Part");
+		page.setDescription("Create a new Document Part");
 		return page;
 	}
 

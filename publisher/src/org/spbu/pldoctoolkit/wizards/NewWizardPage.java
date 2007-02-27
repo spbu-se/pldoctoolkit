@@ -26,7 +26,7 @@ public class NewWizardPage extends WizardPage {
 	private Text containerText;
 	private Text nameText;
 	
-	protected NewWizardPage(String pageName, IStructuredSelection selection, String nameLabel) {
+	protected NewWizardPage(String pageName, String nameLabel, IStructuredSelection selection) {
 		super(pageName);
 		this.selection = selection;
 		this.nameLabel = nameLabel;
@@ -133,5 +133,13 @@ public class NewWizardPage extends WizardPage {
 			if (result.length == 1)
 				containerText.setText(((Path)result[0]).toString());
 		}
+	}
+	
+	public String getNameString() {
+		return nameText.toString();
+	}
+	
+	public String getContainerString() {
+		return containerText.toString();
 	}
 }
