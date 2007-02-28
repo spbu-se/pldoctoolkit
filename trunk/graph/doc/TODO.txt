@@ -21,3 +21,27 @@ http://sourceforge.net/projects/fmp/
 - валидация диаграмм
 - automatic layout диаграмм
 - реализация отображения элементов мелкозернистого форматирования
+
+Вопросы по DRLSpec:
+- как быть с PLDocumentation, DocumentationCore, ProductDocumentation?
+
+	PLDocumentation ::= DocumentationCore + ProductDocumentation*
+	DocumentationCore ::= {infproduct*, infelement*, dictionary*, directory*} -
+		иначе говоря, все созданные для документации ресурсы
+	ProductDocumentation ::= {finalinfproduct*} + description
+
+	Надо это реализовывать на спец диаграммах?
+
+	Сейчас всё то же достижимо, но на 1 уровень меньше. Можно считать, что
+	DocumentationCore - это infproduct и всё, к чему он линкуется.
+	ProductDocumentation тогда - finalinfproduct. Те части, которые хотят
+	описывать в infproduct (собственно, файлы документации), переезжают в
+	infelement.
+
+	Тут тёмны 2 момента:
+	- а можно ли будет генерировать действительно многодокументную документацию
+		продукта
+	- действительно хочется как-то выделять те infelement, которые соответствуют
+		документу
+
+	TODO: оценить усилия для реализации по спецификации.
