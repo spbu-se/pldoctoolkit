@@ -29,7 +29,7 @@
          point="org.eclipse.ui.editors">
       <editor
             class="org.spbu.pldoctoolkit.editors.DRLEditor"
-            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            contributorClass="org.spbu.pldoctoolkit.editors.DrlEditorActionContributor"
             extensions="drl"
             icon="icons/sample.gif"
             id="org.spbu.pldoctoolkit.editors.DRLEditor"

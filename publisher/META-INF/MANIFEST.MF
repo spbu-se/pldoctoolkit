@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Product Line Documentation Toolkit Plug-in
-Bundle-SymbolicName: pldoctoolkit;singleton:=true
+Bundle-SymbolicName: org.spbu.pldoctoolkit;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: org.spbu.pldoctoolkit.Activator
 Bundle-Vendor: SPbSU
@@ -14,3 +14,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.editors,
  org.eclipse.ui.workbench.texteditor
 Eclipse-LazyStart: true
+Bundle-ClassPath: lib/saxon8.jar,
+ .
