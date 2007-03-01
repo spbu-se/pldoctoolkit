@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<d:document family="fam" xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+	<d:adapter part="part">
+		<d:insert-before id="nest1">
+			<literal>
+				before nest1
+			</literal>
+		</d:insert-before>
+		<d:replace id="nest2">
+			<literal>replace nest2</literal>
+		</d:replace>
+		<d:insert-after id="nest3">
+			<literal>after nest3</literal>
+		</d:insert-after>
+	</d:adapter>
+	<d:adapter part="part1">
+		<d:replace id="nest1">replace@email.com</d:replace>
+	</d:adapter>
+</d:document>

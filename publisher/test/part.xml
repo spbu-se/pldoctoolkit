@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<d:part id="part" xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+	<para>
+		<d:nest id="nest1">
+			nest1
+		</d:nest>
+	</para>
+	
+	<para>
+		<d:nest id="nest2">
+			nest2
+		</d:nest>
+	</para>
+	
+	<para>
+		<d:nest id="nest3">
+			nest3
+		</d:nest>
+	</para>
+</d:part>
