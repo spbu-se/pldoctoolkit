@@ -3,6 +3,7 @@ package org.spbu.pldoctoolkit.editors;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
@@ -16,7 +17,7 @@ import org.spbu.pldoctoolkit.actions.PdfExportAction;
 public class DrlEditorActionContributor extends BasicTextEditorActionContributor {
 	private final List<AbstractExportAction> actions = new ArrayList<AbstractExportAction>();
 	
-	public DrlEditorActionContributor() {
+	public DrlEditorActionContributor() throws CoreException {
 		actions.add(new BasicExportAction("html"));
 		actions.add(new PdfExportAction());
 	}
