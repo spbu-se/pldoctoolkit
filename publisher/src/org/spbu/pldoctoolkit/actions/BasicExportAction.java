@@ -10,6 +10,8 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import net.sf.saxon.Controller;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
@@ -63,12 +65,13 @@ public class BasicExportAction extends AbstractExportAction {
 			if (returnCode == ProgressMonitorDialog.OK) {
 				MessageDialog.openInformation(shell, "Information", "Export successfull");
 			} else if (returnCode == ProgressMonitorDialog.CANCEL) {
-				MessageDialog.openInformation(shell, "Information", "Operation cancelled");
+				MessageDialog.openWarning(shell, "Information", "Operation cancelled");
 			}
 		} catch (Throwable e) {
 			while (e.getCause() != null)
 				e = e.getCause();
 			MessageDialog.openError(shell, "Export error!", e.getMessage());
+			System.out.println(e.getClass());
 			throw new Error(e);
 		}
 	}
@@ -92,6 +95,7 @@ public class BasicExportAction extends AbstractExportAction {
 			
 			monitor.subTask("Transforming DRL -> DocBook...");
 			drlTransformer.reset();
+			((Controller)drlTransformer).clearDocumentPool();
 			drlTransformer.transform(source, temp);
 			monitor.worked(1);
 			if (monitor.isCanceled())

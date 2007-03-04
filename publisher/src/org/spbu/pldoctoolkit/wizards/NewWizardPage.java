@@ -41,7 +41,7 @@ public class NewWizardPage extends WizardPage {
 		
 		// === container group ===
 		new Label(topLevel, SWT.NONE).setText("Parent folder:");
-		containerText = new Text(parent, SWT.BORDER | SWT.SINGLE);
+		containerText = new Text(topLevel, SWT.BORDER | SWT.SINGLE);
 		containerText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		containerText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
@@ -59,7 +59,7 @@ public class NewWizardPage extends WizardPage {
 		
 		// === name group ===
 		new Label(topLevel, SWT.NONE).setText(nameLabel);
-		nameText = new Text(parent, SWT.BORDER | SWT.SINGLE);
+		nameText = new Text(topLevel, SWT.BORDER | SWT.SINGLE);
 		nameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		nameText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
@@ -97,6 +97,7 @@ public class NewWizardPage extends WizardPage {
 			setPageComplete(false);
 			return;
 		}
+		setErrorMessage(null);
 		setPageComplete(true);
 	}
 	
