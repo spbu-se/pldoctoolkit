@@ -32,12 +32,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InnerElement" eSuperTypes="#//Element"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//InnerElement">
+  <eClassifiers xsi:type="ecore:EClass" name="InnerElement" abstract="true" interface="true"
+      eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connection" eType="#//Connection"
+        eOpposite="#//Connection/target"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//InnerElement #//SubelementedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//InnerElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NestPointRef">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//NestPointType"
@@ -46,18 +48,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestPoint" lowerBound="1"
         eType="#//NestPoint"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReusablePart" eSuperTypes="#//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="ReusablePart" abstract="true" eSuperTypes="#//Element #//SubelementedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         derived="true" iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//InnerElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DocumentPartRef" eSuperTypes="#//InnerElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" lowerBound="1" eType="#//DocumentPart"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="group" lowerBound="1" eType="#//DocumentPartRefGroup"
-        eOpposite="#//DocumentPartRefGroup/documentPartRefs"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connection" eType="#//GroupConnection"
+        eOpposite="#//GroupConnection/target"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DocumentPartRefGroup" eSuperTypes="#//InnerElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -65,7 +65,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifier" lowerBound="1"
         eType="#//GroupType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="documentPartRefs" upperBound="-1"
-        eType="#//DocumentPartRef" containment="true" eOpposite="#//DocumentPartRef/group"/>
+        eType="#//GroupConnection" containment="true" eOpposite="#//GroupConnection/source"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="GroupType">
     <eLiterals name="OR" value="1"/>
@@ -74,5 +74,27 @@
   <eClassifiers xsi:type="ecore:EClass" name="Schema">
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" eType="#//ReusablePart"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Connection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ConnectionType"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//SubelementedElement" eOpposite="#//SubelementedElement/elements"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//InnerElement" eOpposite="#//InnerElement/connection"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ConnectionType">
+    <eLiterals name="MANDATORY"/>
+    <eLiterals name="OPTIONAL" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubelementedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//Connection" containment="true" eOpposite="#//Connection/source"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GroupConnection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//DocumentPartRef" eOpposite="#//DocumentPartRef/connection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//DocumentPartRefGroup" eOpposite="#//DocumentPartRefGroup/documentPartRefs"/>
   </eClassifiers>
 </ecore:EPackage>
