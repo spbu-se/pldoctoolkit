@@ -14,10 +14,11 @@
 	</xsl:template>
 	
 	<xsl:template match="d:nest">
-		<xsl:variable name="part" select="ancestor::d:part/@id"/>
-		<xsl:variable name="replace" select="$document/d:adapter[@part = $part]/d:replace[current()/@id = @id]"/>
+		<xsl:variable name="id" select="@id"/>
+		<xsl:variable name="part" select="ancestor::d:part"/>
+		<xsl:variable name="replace" select="$document/d:adapter[@part = $part/@id]/d:replace[$id = @nest]"/>
 
-		<xsl:apply-templates select="$document/d:adapter[@part = $part]/d:insert-before[current()/@id = @id]/node()"/>
+		<xsl:apply-templates select="$document/d:adapter[@part = $part]/d:insert-before[$id = @nest]/node()"/>
 		<xsl:choose>
 			<xsl:when test="$replace">
 				<xsl:apply-templates select="$replace/node()"/>
@@ -26,7 +27,7 @@
 				<xsl:apply-templates select="node()"/>
 			</xsl:otherwise>
 		</xsl:choose>
-		<xsl:apply-templates select="$document/d:adapter[@part = $part]/d:insert-after[current()/@id = @id]/node()"/>
+		<xsl:apply-templates select="$document/d:adapter[@part = $part]/d:insert-after[$id = @nest]/node()"/>
 	</xsl:template>
 	
 	<xsl:template match="d:if">
