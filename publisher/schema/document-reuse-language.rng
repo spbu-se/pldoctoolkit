@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar 
+  xmlns="http://relaxng.org/ns/structure/1.0"
+  xmlns:xsp="http://apache.org/xsp/core/v1"
+  xmlns:s="http://www.ascc.net/xml/schematron"
+  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+  xmlns:f="http://axkit.org/NS/xsp/perform/v1"
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  
+  <start>
+    <choice>
+      <ref name="dictionary"/>
+      <ref name="document"/>
+      <ref name="family"/>
+      <ref name="part"/>
+    </choice>
+  </start>
+  
+  <define name="dictionary">
+    <element name="dictionary">
+      <attribute name="id"/>
+      <oneOrMore>
+        <element name="entry">
+          <attribute name="name"/>
+          <text/>
+        </element>
+      </oneOrMore>
+    </element>
+  </define>
+  
+  <define name="document">
+    <element name="document">
+      <attribute name="id"/>
+      <attribute name="family"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="assign"/>
+          <element name="adapter">
+            <attribute name="part"/>
+            <zeroOrMore>
+              <choice>
+                <ref name="assign"/>
+                <element name="replace">
+                  <attribute name="nest"/>
+                  <optional>
+                    <text/>
+                  </optional>
+                </element>
+                <element name="insert-before">
+                  <attribute name="nest"/>
+                  <text/>
+                </element>
+                <element name="insert-after">
+                  <attribute name="nest"/>
+                  <text/>
+                </element>
+              </choice>
+            </zeroOrMore>
+          </element>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  
+  <define name="assign">
+    <element name="assign">
+      <attribute name="variable"/>
+      <attribute name="value"/>
+      <empty/>
+    </element>
+  </define>
+  
+  <define name="family">
+    <element name="family">
+      <attribute name="id"/>
+      <zeroOrMore>
+        <element name="variable">
+          <attribute name="name"/>
+          <attribute name="default"/>
+        </element>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <element name="ref">
+            <attribute name="part"/>
+          </element>
+          <element name="if">
+            <attribute name="test"/>
+            <text/>
+          </element>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  
+  <define name="part">
+    <element name="part">
+      <attribute name="id"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <element name="nest">
+            <attribute name="id"/>
+            <optional>
+              <text/>
+            </optional>
+          </element>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>  
+</grammar>
