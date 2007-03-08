@@ -1,6 +1,10 @@
 package org.spbu.pldoctoolkit;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -57,5 +61,17 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+	
+	public static String getResourceURL(String relativePath) {
+		try {
+			return new URL(Activator.getDefault().getBundle().getEntry("/"), relativePath).toString();
+		} catch (MalformedURLException e) {
+			return null;
+		}
+	}
+
+	public static Shell getShell() {
+		return getDefault().getWorkbench().getActiveWorkbenchWindow().getShell();
 	}
 }
