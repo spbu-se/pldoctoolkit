@@ -15,4 +15,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.workbench.texteditor
 Eclipse-LazyStart: true
 Bundle-ClassPath: lib/saxon8.jar,
+ lib/jing.jar,
  .
