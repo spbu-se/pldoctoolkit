@@ -1,48 +1,40 @@
-package org.spbu.pldoctoolkit.editors;
+package org.spbu.pldoctoolkit.editors;	
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.texteditor.BasicTextEditorActionContributor;
-import org.spbu.pldoctoolkit.actions.BasicExportAction;
-import org.spbu.pldoctoolkit.actions.EditorAction;
-import org.spbu.pldoctoolkit.actions.PdfExportAction;
-import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
+import org.eclipse.ui.editors.text.TextEditorActionContributor;
+import org.eclipse.ui.texteditor.ITextEditor;
+import org.eclipse.ui.texteditor.RetargetTextEditorAction;
 
-public class DrlEditorActionContributor extends BasicTextEditorActionContributor {
-	private final List<EditorAction> actions = new ArrayList<EditorAction>();
+public class DrlEditorActionContributor extends TextEditorActionContributor {
+	public static final String VALIDATE_DRL_ACTION_ID = "validate_drl";
+	private final RetargetTextEditorAction exportToHtml = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ExportToHtml.");
+//	private final RetargetTextEditorAction validateDrl = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ValidateDrl.");
 	
-	public DrlEditorActionContributor() throws CoreException {
-		actions.add(new BasicExportAction("html"));
-		actions.add(new PdfExportAction());
-		actions.add(new ValidateDrlAction());
-	}
-
 	public void contributeToMenu(IMenuManager menu) {
 		super.contributeToMenu(menu);
 		MenuManager docbookMenu = new MenuManager("DRL");
 		menu.insertAfter("additions", docbookMenu);
-		for (Action action : actions)
-			docbookMenu.add(action);
+		docbookMenu.add(exportToHtml);
+//		docbookMenu.add(validateDrl);
 	}
 
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
 		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("DocbookEditor"));
-		for (EditorAction action : actions)
-			toolBarManager.add(action);
+		toolBarManager.add(exportToHtml);
+//		toolBarManager.add(validateDrl);
 	}
 
-	public void setActiveEditor(IEditorPart editor) {
-		super.setActiveEditor(editor);
-		for (EditorAction action : actions)
-			action.setActiveEditor(editor);
+	public void setActiveEditor(IEditorPart part) {
+		super.setActiveEditor(part);
+		ITextEditor editor = null;
+		if (part instanceof ITextEditor)
+			editor = (ITextEditor) part;
+		exportToHtml.setAction(getAction(editor, DRLEditor.EXPORT_TO_HTML));
+//		validateDrl.setAction(getAction(editor, DRLEditor.VALIDATE_DRL));
 	}
 }

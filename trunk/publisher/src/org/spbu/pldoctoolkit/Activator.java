@@ -63,9 +63,9 @@ public class Activator extends AbstractUIPlugin {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 	
-	public static String getResourceURL(String relativePath) {
+	public static URL getBundleResourceURL(String relativePath) {
 		try {
-			return new URL(Activator.getDefault().getBundle().getEntry("/"), relativePath).toString();
+			return new URL(Activator.getDefault().getBundle().getEntry("/"), relativePath);
 		} catch (MalformedURLException e) {
 			return null;
 		}

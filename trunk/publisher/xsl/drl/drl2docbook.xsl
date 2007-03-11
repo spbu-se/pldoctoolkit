@@ -6,7 +6,7 @@
 	<xsl:variable name="document" select="/d:document"/>
 	
 	<xsl:template match="d:document">
-		<xsl:apply-templates select="document(concat(/d:document/@family, '.xml'), $document)/d:family/node()"/>
+		<xsl:apply-templates select="document(concat(@family, '.xml'), $document)/d:family/node()"/>
 	</xsl:template>
 	
 	<xsl:template match="d:ref">
@@ -17,8 +17,8 @@
 		<xsl:variable name="id" select="@id"/>
 		<xsl:variable name="part" select="ancestor::d:part"/>
 		<xsl:variable name="replace" select="$document/d:adapter[@part = $part/@id]/d:replace[$id = @nest]"/>
-
-		<xsl:apply-templates select="$document/d:adapter[@part = $part]/d:insert-before[$id = @nest]/node()"/>
+		
+		<xsl:apply-templates select="$document/d:adapter[@part = $part/@id]/d:insert-before[$id = @nest]/node()"/>
 		<xsl:choose>
 			<xsl:when test="$replace">
 				<xsl:apply-templates select="$replace/node()"/>
@@ -27,21 +27,32 @@
 				<xsl:apply-templates select="node()"/>
 			</xsl:otherwise>
 		</xsl:choose>
-		<xsl:apply-templates select="$document/d:adapter[@part = $part]/d:insert-after[$id = @nest]/node()"/>
+		<xsl:apply-templates select="$document/d:adapter[@part = $part/@id]/d:insert-after[$id = @nest]/node()"/>
 	</xsl:template>
 	
 	<xsl:template match="d:if">
 		<xsl:variable name="varname" select="substring-before(@test, '=')"/>
 		<xsl:variable name="varvalue" select="substring-after(@test, '=')"/>
+		<xsl:variable name="vardefinition" select="/node()/d:variable[@name = $varname]"/>
 		<xsl:if test="$varname = '' or $varvalue = ''">
-			<xsl:value-of select="error(QName('', 'ifsyntax'), 'syntax error in &lt;if&gt; expression', .)"/>
+			<xsl:value-of select="error(QName('http://math.spbu.ru/drl', 'bad_if_syntax'), 'syntax error in ''if'' expression', .)"/>
 		</xsl:if>
-		<xsl:if test="not($document/d:variable[@name = $varname])">
-			<xsl:value-of select="error(QName('', 'ifvarundefined'), concat('Variable &lt;', $varname,'&gt; undefined'), .)"/>
+		<xsl:if test="not($vardefinition)">
+			<xsl:value-of select="error(QName('http://math.spbu.ru/drl', 'var_undefined'), concat('Variable ''', $varname,''' undefined'), .)"/>
 		</xsl:if>
-		<xsl:if test="$document/d:variable[@name = $varname][@value = $varvalue]">
-			<xsl:apply-templates select="node()"/>
-		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="/d:family and $document/d:variable[@name = $varname][@value = $varvalue]">
+				<xsl:apply-templates select="node()"/>
+			</xsl:when>
+			<xsl:when test="/d:part and $document/d:adapter[@part = /d:part/@id]/d:variable[@name = $varname][@value = $varvalue]">
+				<xsl:apply-templates select="node()"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:if test="$varvalue = $vardefinition/@default">
+					<xsl:apply-templates select="node()"/>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 	
 	<xsl:template match="d:dictentry">
@@ -51,7 +62,7 @@
 				<xsl:apply-templates select="$entry/node()"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:value-of select="error(QName('', 'dictentryundefined'), 'dictionary entry undefined', .)"/>
+				<xsl:value-of select="error(QName('http://math.spbu.ru/drl', 'entry_undefined'), concat('entry ''', @entry, ''' for dictionary ''', @dict, ''' undefined'), .)"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
