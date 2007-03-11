@@ -1,9 +1,9 @@
 package org.spbu.pldoctoolkit.actions;
 
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.ui.IEditorPart;
 
 public class PdfExportAction extends BasicExportAction {
-	public PdfExportAction() throws CoreException {
-		super("pdf");
+	public PdfExportAction(IEditorPart editor) throws Exception {
+		super(editor, "PDF" ,"pdf");
 	}
 }

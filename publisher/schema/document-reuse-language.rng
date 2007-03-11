@@ -5,7 +5,8 @@
   xmlns:s="http://www.ascc.net/xml/schematron"
   xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
   xmlns:f="http://axkit.org/NS/xsp/perform/v1"
-  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+  ns="http://math.spbu.ru/drl">
   
   <start>
     <choice>
@@ -42,17 +43,21 @@
                 <ref name="assign"/>
                 <element name="replace">
                   <attribute name="nest"/>
-                  <optional>
-                    <text/>
-                  </optional>
+                  <zeroOrMore>
+                    <ref name="common"/>
+                  </zeroOrMore>
                 </element>
                 <element name="insert-before">
                   <attribute name="nest"/>
-                  <text/>
+                  <oneOrMore>
+                    <ref name="common"/>
+                  </oneOrMore>
                 </element>
                 <element name="insert-after">
                   <attribute name="nest"/>
-                  <text/>
+                  <oneOrMore>
+                    <ref name="common"/>
+                  </oneOrMore>
                 </element>
               </choice>
             </zeroOrMore>
@@ -73,23 +78,9 @@
   <define name="family">
     <element name="family">
       <attribute name="id"/>
+      <ref name="variable-definitions"/>
       <zeroOrMore>
-        <element name="variable">
-          <attribute name="name"/>
-          <attribute name="default"/>
-        </element>
-      </zeroOrMore>
-      <zeroOrMore>
-        <choice>
-          <text/>
-          <element name="ref">
-            <attribute name="part"/>
-          </element>
-          <element name="if">
-            <attribute name="test"/>
-            <text/>
-          </element>
-        </choice>
+        <ref name="common"/>
       </zeroOrMore>
     </element>
   </define>
@@ -97,17 +88,44 @@
   <define name="part">
     <element name="part">
       <attribute name="id"/>
+      <ref name="variable-definitions"/>
       <zeroOrMore>
         <choice>
-          <text/>
+          <ref name="common"/>
           <element name="nest">
             <attribute name="id"/>
-            <optional>
-              <text/>
-            </optional>
+            <zeroOrMore>
+              <ref name="common"/>
+            </zeroOrMore>
           </element>
         </choice>
       </zeroOrMore>
     </element>
   </define>  
+  
+  <define name="variable-definitions">
+    <zeroOrMore>
+      <element name="variable">
+        <attribute name="name"/>
+        <attribute name="default"/>
+      </element>
+    </zeroOrMore>
+  </define>
+  
+  <define name="common">
+    <choice>
+      <text/>
+      <element name="ref">
+        <attribute name="part"/>
+      </element>
+      <element name="if">
+        <attribute name="test"/>
+        <text/>
+      </element>
+      <element name="dictentry">
+        <attribute name="dict"/>
+        <attribute name="entry"/>
+      </element>
+    </choice>
+  </define>
 </grammar>
