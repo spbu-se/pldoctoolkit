@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?oxygen RNGSchema="../schema/document-reuse-language.rng" type="xml"?>
-<document id="qw" family="qwe" xmlns="http://math.spbu.ru/drl">
-	
-</document>
-
-<!--<d:document id="doc" family="fam" xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+<d:document id="doc" family="fam" xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
 	<d:adapter part="part">
 		<d:insert-before nest="nest1">
 		</d:insert-before>
@@ -17,4 +13,4 @@
 	<d:adapter part="part1">
 		<d:replace nest="nest1">replace@email.com</d:replace>
 	</d:adapter>
-</d:document>-->
+</d:document>
