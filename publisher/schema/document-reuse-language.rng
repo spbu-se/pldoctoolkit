@@ -35,12 +35,12 @@
       <attribute name="family"/>
       <zeroOrMore>
         <choice>
-          <ref name="assign"/>
+          <ref name="variable"/>
           <element name="adapter">
             <attribute name="part"/>
             <zeroOrMore>
               <choice>
-                <ref name="assign"/>
+                <ref name="variable"/>
                 <element name="replace">
                   <attribute name="nest"/>
                   <zeroOrMore>
@@ -67,9 +67,9 @@
     </element>
   </define>
   
-  <define name="assign">
-    <element name="assign">
-      <attribute name="variable"/>
+  <define name="variable">
+    <element name="variable">
+      <attribute name="name"/>
       <attribute name="value"/>
       <empty/>
     </element>
@@ -78,7 +78,6 @@
   <define name="family">
     <element name="family">
       <attribute name="id"/>
-      <ref name="variable-definitions"/>
       <zeroOrMore>
         <ref name="common"/>
       </zeroOrMore>
@@ -88,7 +87,6 @@
   <define name="part">
     <element name="part">
       <attribute name="id"/>
-      <ref name="variable-definitions"/>
       <zeroOrMore>
         <choice>
           <ref name="common"/>
@@ -102,15 +100,6 @@
       </zeroOrMore>
     </element>
   </define>  
-  
-  <define name="variable-definitions">
-    <zeroOrMore>
-      <element name="variable">
-        <attribute name="name"/>
-        <attribute name="default"/>
-      </element>
-    </zeroOrMore>
-  </define>
   
   <define name="common">
     <choice>
