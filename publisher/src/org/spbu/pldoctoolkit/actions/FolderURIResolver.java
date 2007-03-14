@@ -1,5 +1,8 @@
 package org.spbu.pldoctoolkit.actions;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
@@ -8,7 +11,9 @@ import net.sf.saxon.StandardURIResolver;
 import net.sf.saxon.trans.XPathException;
 
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 
 public class FolderURIResolver extends StandardURIResolver {
@@ -33,7 +38,16 @@ public class FolderURIResolver extends StandardURIResolver {
 	}
 	
 	public IResource getResource(String href) {
-		String name = href.substring(DRLRESOLVE_PREFIX.length());
-		return folder.getFile(new Path(name + ".xml"));
+		if (href.startsWith(DRLRESOLVE_PREFIX)) {
+			String name = href.substring(DRLRESOLVE_PREFIX.length());
+			return folder.getFile(new Path(name + ".xml"));
+		}
+		try {
+			IFile[] files = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(new URI(href));
+			if (files.length > 0)
+				return files[0];
+		} catch (URISyntaxException e) {
+		}
+		return null;	
 	}
 }
