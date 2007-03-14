@@ -5,10 +5,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 
 import javax.xml.transform.ErrorListener;
-import javax.xml.transform.Source;
+import javax.xml.transform.SourceLocator;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
@@ -24,7 +23,6 @@ import net.sf.saxon.value.SequenceExtent;
 import net.sf.saxon.value.SingletonNode;
 import net.sf.saxon.value.Value;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -53,45 +51,61 @@ public class BasicExportAction extends Action {
 	
 	protected final ErrorListener el = new ErrorListener() {
 		public void error(TransformerException exception) throws TransformerException {
-			if (exception instanceof DynamicError)
+			if (exception instanceof DynamicError) {
 				processDynamicError((DynamicError) exception);
-			else
-				System.out.println(exception); // TODO
+			} else {
+				SourceLocator locator = exception.getLocator();
+				createMarker(locator.getSystemId(), locator.getLineNumber(), exception.getCause().getMessage());
+				exception.printStackTrace();
+			}
 		}
 
 		public void fatalError(TransformerException exception) throws TransformerException {
-			if (exception instanceof DynamicError)
+			if (exception instanceof DynamicError) {
 				processDynamicError((DynamicError) exception);
-			else
-				System.out.println(exception); // TODO
+			} else {
+				SourceLocator locator = exception.getLocator();
+				createMarker(locator.getSystemId(), locator.getLineNumber(), exception.getCause().getMessage());
+				exception.printStackTrace();
+			}
 		}
 
 		private void processDynamicError(DynamicError dynamicError) throws XPathException {
 			Value errorObject = dynamicError.getErrorObject();
 			if (errorObject instanceof SingletonNode) {
-				SingletonNode node = (SingletonNode) errorObject;
-				createMarker(dynamicError.getMessage(), node.getNode());
+				NodeInfo node = ((SingletonNode) errorObject).getNode();
+				createMarker(node.getSystemId(), node.getLineNumber(), dynamicError.getMessage());
 			} else if (errorObject instanceof SequenceExtent) {
 				SequenceExtent seq = (SequenceExtent) errorObject;
 				SequenceIterator it = seq.iterate(dynamicError.getXPathContext());
 				Item item;
 				while ((item = it.next()) != null)
-					if (item instanceof NodeInfo)
-						createMarker(dynamicError.getMessage(), (NodeInfo) item);
+					if (item instanceof NodeInfo) {
+						NodeInfo node = (NodeInfo) item;
+						createMarker(node.getSystemId(), node.getLineNumber(), dynamicError.getMessage());
+					}
+			} else {
+				String file = dynamicError.getLocator().getSystemId();
+				int line = dynamicError.getLocator().getLineNumber();
+				createMarker(file, line, dynamicError.getMessage());
 			}
 		}
 
-		private void createMarker(String message, NodeInfo node) {
-			IResource resource = uri_resolver.getResource(node.getSystemId());
+		private void createMarker(String systemId, int lineNumber, String message) {
+			IResource resource = uri_resolver.getResource(systemId);
+			if (resource == null) {
+				System.out.println("Resource not found: " + systemId + " message: " + message + " on line " + lineNumber);
+				return;
+			}
 			try {
 				IMarker marker = resource.createMarker(IMarker.PROBLEM);
-				marker.setAttribute(IMarker.LINE_NUMBER, node.getLineNumber());
+				marker.setAttribute(IMarker.LINE_NUMBER, lineNumber);
 				marker.setAttribute(IMarker.MESSAGE, message);
 				marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
 			} catch (CoreException e) {
 				e.printStackTrace();
 			}
-			System.out.println(message + " at " + node.getSystemId() + " line: " + node.getLineNumber());
+			System.out.println("*** Marker: " + message + " @ " + systemId + " line " + lineNumber);
 		}
 
 		public void warning(TransformerException exception) throws TransformerException {
@@ -129,9 +143,11 @@ public class BasicExportAction extends Action {
 			String destinationFilename = dialogResult.contains(".") ? dialogResult : dialogResult + "." + extension;
 			FileEditorInput editorInput = (FileEditorInput)editor.getEditorInput();
 			uri_resolver.setFolder(editorInput.getFile().getParent());
-			final String source = "drlresolve://" + editorInput.getFile().getName();
+			final String source = editorInput.getFile().getLocationURI().toString();
 			final String destination = new File(destinationFilename).toURI().toString();
 
+			editorInput.getFile().getParent().deleteMarkers(IMarker.MARKER, true, IResource.DEPTH_INFINITE);
+			
 			IRunnableWithProgress op = new IRunnableWithProgress() {
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					doTransform(monitor, source, destination);
@@ -175,6 +191,7 @@ public class BasicExportAction extends Action {
 		transformer.reset();
 		transformer.clearDocumentPool();
 		transformer.setErrorListener(el);
+		transformer.setURIResolver(uri_resolver);
 		transformer.transform(new StreamSource(source), new StreamResult(destination));
 	}
 }

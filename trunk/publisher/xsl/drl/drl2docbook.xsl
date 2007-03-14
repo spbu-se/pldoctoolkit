@@ -6,11 +6,11 @@
 	<xsl:variable name="document" select="/d:document"/>
 	
 	<xsl:template match="d:document">
-		<xsl:apply-templates select="document(concat('drlresolve//', @family), $document)/d:family/node()"/>
+		<xsl:apply-templates select="document(concat('drlresolve://', @family), $document)/d:family/node()"/>
 	</xsl:template>
 	
 	<xsl:template match="d:ref">
-		<xsl:apply-templates select="document(concat('drlresolve//', @part), $document)/d:part/node()"/>
+		<xsl:apply-templates select="document(concat('drlresolve://', @part), $document)/d:part/node()"/>
 	</xsl:template>
 	
 	<xsl:template match="d:nest">
@@ -74,7 +74,7 @@
 	</xsl:template>
 	
 	<xsl:template match="d:dictentry">
-		<xsl:variable name="entry" select="document(concat('drlresolve//', @dict), $document)/d:dictionary/d:entry[@name = current()/@entry]"/>
+		<xsl:variable name="entry" select="document(concat('drlresolve://', @dict), $document)/d:dictionary/d:entry[@name = current()/@entry]"/>
 		<xsl:choose>
 			<xsl:when test="$entry">
 				<xsl:apply-templates select="$entry/node()"/>
