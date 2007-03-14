@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="vardoc"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="elements"
     nsURI="http://tepkom.ru/drl" nsPrefix="v">
   <eClassifiers xsi:type="ecore:EEnum" name="NestPointType">
     <eLiterals name="INSERT_BEFORE" value="1"/>
@@ -56,16 +56,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" lowerBound="1" eType="#//DocumentPart"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="connection" eType="#//GroupConnection"
-        eOpposite="#//GroupConnection/target"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DocumentPartRefGroup" eSuperTypes="#//InnerElement">
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentPartRefGroup" eSuperTypes="#//InnerElement #//SubelementedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifier" lowerBound="1"
         eType="#//GroupType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="documentPartRefs" upperBound="-1"
-        eType="#//GroupConnection" containment="true" eOpposite="#//GroupConnection/source"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="GroupType">
     <eLiterals name="OR" value="1"/>
@@ -74,6 +70,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Schema">
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" eType="#//ReusablePart"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="innerElements" upperBound="-1"
+        eType="#//InnerElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
+        eType="#//Connection" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connection">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ConnectionType"
@@ -87,14 +87,9 @@
     <eLiterals name="MANDATORY"/>
     <eLiterals name="OPTIONAL" value="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubelementedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="SubelementedElement" abstract="true"
+      interface="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//Connection" containment="true" eOpposite="#//Connection/source"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GroupConnection">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//DocumentPartRef" eOpposite="#//DocumentPartRef/connection"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="#//DocumentPartRefGroup" eOpposite="#//DocumentPartRefGroup/documentPartRefs"/>
+        eType="#//Connection" defaultValueLiteral="" eOpposite="#//Connection/source"/>
   </eClassifiers>
 </ecore:EPackage>
