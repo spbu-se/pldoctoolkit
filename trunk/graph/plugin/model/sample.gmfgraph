@@ -2,9 +2,70 @@
 <gmfgraph:Canvas xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgraph="http://www.eclipse.org/gmf/2005/GraphicalDefinition" name="vardoc">
+    xmlns:gmfgraph="http://www.eclipse.org/gmf/2005/GraphicalDefinition" name="elements">
   <figures
       name="Default">
+    <figures
+        xsi:type="gmfgraph:Rectangle"
+        referencingElements="DocumentPart"
+        name="DocumentPartFigure">
+      <children
+          xsi:type="gmfgraph:Label"
+          referencingElements="DocumentPartId"
+          name="DocumentPartIdFigure"
+          text="&lt;...>"/>
+    </figures>
+    <figures
+        xsi:type="gmfgraph:PolylineConnection"
+        referencingElements="SubelementedElementElements"
+        name="SubelementedElementElementsFigure"
+        targetDecoration="SubelementedElementElementsTargetDecoration"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="SubelementedElementElementsTargetDecoration"/>
+    <figures
+        xsi:type="gmfgraph:Rectangle"
+        referencingElements="Family"
+        name="FamilyFigure"
+        lineWidth="3">
+      <children
+          xsi:type="gmfgraph:Label"
+          referencingElements="FamilyId"
+          name="FamilyIdFigure"
+          text="&lt;...>"/>
+    </figures>
+    <figures
+        xsi:type="gmfgraph:Rectangle"
+        referencingElements="Condition"
+        name="ConditionFigure">
+      <children
+          xsi:type="gmfgraph:Label"
+          referencingElements="ConditionCondition"
+          name="ConditionConditionFigure"
+          text="&lt;...>"/>
+    </figures>
+    <figures
+        xsi:type="gmfgraph:PolylineConnection"
+        name="InnerElementParentFigure"
+        targetDecoration="InnerElementParentTargetDecoration"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="InnerElementParentTargetDecoration"/>
+    <figures
+        xsi:type="gmfgraph:Rectangle"
+        referencingElements="DocumentPartRefGroup"
+        name="DocumentPartRefGroupFigure">
+      <children
+          xsi:type="gmfgraph:Label"
+          referencingElements="DocumentPartRefGroupId"
+          name="DocumentPartRefGroupIdFigure"
+          text="&lt;...>"/>
+      <children
+          xsi:type="gmfgraph:Label"
+          referencingElements="DocumentPartRefGroupModifier"
+          name="DocumentPartRefGroupModifierFigure"
+          text="&lt;...>"/>
+    </figures>
     <figures
         xsi:type="gmfgraph:Rectangle"
         referencingElements="NestPoint"
@@ -17,7 +78,7 @@
     </figures>
     <figures
         xsi:type="gmfgraph:Rectangle"
-        referencingElements="DocumentPartRef DocumentPartRefLink"
+        referencingElements="DocumentPartRef"
         name="DocumentPartRefFigure">
       <children
           xsi:type="gmfgraph:Label"
@@ -25,39 +86,47 @@
           name="DocumentPartRefIdFigure"
           text="&lt;...>"/>
     </figures>
-    <figures
-        xsi:type="gmfgraph:Rectangle"
-        referencingElements="Condition ConditionLink"
-        name="ConditionFigure">
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="ConditionCondition"
-          name="ConditionConditionFigure"
-          text="&lt;...>"/>
-    </figures>
   </figures>
   <nodes
       name="NestPoint"
       figure="NestPointFigure"/>
   <nodes
-      name="DocumentPartRef"
-      figure="DocumentPartRefFigure"/>
+      name="DocumentPart"
+      figure="DocumentPartFigure"/>
+  <nodes
+      name="Family"
+      figure="FamilyFigure"/>
   <nodes
       name="Condition"
       figure="ConditionFigure"/>
-  <connections
-      name="ConditionLink"
-      figure="ConditionFigure"/>
-  <connections
-      name="DocumentPartRefLink"
+  <nodes
+      name="DocumentPartRefGroup"
+      figure="DocumentPartRefGroupFigure"/>
+  <nodes
+      name="DocumentPartRef"
       figure="DocumentPartRefFigure"/>
+  <connections
+      name="SubelementedElementElements"
+      figure="SubelementedElementElementsFigure"/>
   <labels
-      name="NestPointId"
-      figure="NestPointIdFigure"/>
+      name="DocumentPartRefId"
+      figure="DocumentPartRefIdFigure"/>
+  <labels
+      name="DocumentPartId"
+      figure="DocumentPartIdFigure"/>
+  <labels
+      name="FamilyId"
+      figure="FamilyIdFigure"/>
   <labels
       name="ConditionCondition"
       figure="ConditionConditionFigure"/>
   <labels
-      name="DocumentPartRefId"
-      figure="DocumentPartRefIdFigure"/>
+      name="DocumentPartRefGroupId"
+      figure="DocumentPartRefGroupIdFigure"/>
+  <labels
+      name="DocumentPartRefGroupModifier"
+      figure="DocumentPartRefGroupModifierFigure"/>
+  <labels
+      name="NestPointId"
+      figure="NestPointIdFigure"/>
 </gmfgraph:Canvas>

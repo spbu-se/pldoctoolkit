@@ -32,11 +32,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InnerElement" abstract="true" interface="true"
-      eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="connection" eType="#//Connection"
-        eOpposite="#//Connection/target"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InnerElement" abstract="true" eSuperTypes="#//Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//InnerElement #//SubelementedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -70,26 +66,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Schema">
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" eType="#//ReusablePart"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="innerElements" upperBound="-1"
-        eType="#//InnerElement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
-        eType="#//Connection" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Connection">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ConnectionType"
-        defaultValueLiteral=""/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="#//SubelementedElement" eOpposite="#//SubelementedElement/elements"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//InnerElement" eOpposite="#//InnerElement/connection"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ConnectionType">
-    <eLiterals name="MANDATORY"/>
-    <eLiterals name="OPTIONAL" value="1"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubelementedElement" abstract="true"
-      interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="SubelementedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//Connection" defaultValueLiteral="" eOpposite="#//Connection/source"/>
+        eType="#//InnerElement" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>
