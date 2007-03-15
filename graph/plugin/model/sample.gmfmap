@@ -34,7 +34,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="sample.gmftool#//@palette/@tools.0/@tools.4"/>
+          href="sample.gmftool#//@palette/@tools.0/@tools.5"/>
       <diagramNode
           href="sample.gmfgraph#NestPoint"/>
     </ownedChild>
