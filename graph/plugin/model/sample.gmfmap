@@ -6,27 +6,6 @@
     xmlns:gmfmap="http://www.eclipse.org/gmf/2005/mappings"
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
-    <containmentFeature
-        href="sample.ecore#//ReusablePart/elements"/>
-    <ownedChild>
-      <domainMetaElement
-          href="sample.ecore#//DocumentPartRef"/>
-      <labelMappings>
-        <diagramLabel
-            href="sample.gmfgraph#DocumentPartRefId"/>
-        <features
-            href="sample.ecore#//DocumentPartRef/id"/>
-      </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="sample.gmftool#//@palette/@tools.0/@tools.2"/>
-      <diagramNode
-          href="sample.gmfgraph#DocumentPartRef"/>
-    </ownedChild>
-  </nodes>
-  <nodes>
-    <containmentFeature
-        href="sample.ecore#//ReusablePart/elements"/>
     <ownedChild>
       <domainMetaElement
           href="sample.ecore#//Condition"/>
@@ -38,14 +17,12 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="sample.gmftool#//@palette/@tools.0/@tools.1"/>
+          href="sample.gmftool#//@palette/@tools.0/@tools.2"/>
       <diagramNode
           href="sample.gmfgraph#Condition"/>
     </ownedChild>
   </nodes>
   <nodes>
-    <containmentFeature
-        href="sample.ecore#//ReusablePart/elements"/>
     <ownedChild>
       <domainMetaElement
           href="sample.ecore#//NestPoint"/>
@@ -57,89 +34,102 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="sample.gmftool#//@palette/@tools.0/@tools.0"/>
+          href="sample.gmftool#//@palette/@tools.0/@tools.4"/>
       <diagramNode
           href="sample.gmfgraph#NestPoint"/>
     </ownedChild>
   </nodes>
-  <links>
-    <domainMetaElement
-        href="sample.ecore#//DocumentPartRef"/>
-    <labelMappings
-        editPattern="">
-      <diagramLabel
-          href="sample.gmfgraph#DocumentPartRefId"/>
-      <features
-          href="sample.ecore#//DocumentPartRef/id"/>
-    </labelMappings>
+  <nodes>
+    <ownedChild>
+      <domainMetaElement
+          href="sample.ecore#//DocumentPartRef"/>
+      <labelMappings
+          editPattern="">
+        <diagramLabel
+            href="sample.gmfgraph#DocumentPartRefId"/>
+        <features
+            href="sample.ecore#//DocumentPartRef/id"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="sample.gmftool#//@palette/@tools.0/@tools.3"/>
+      <diagramNode
+          href="sample.gmfgraph#DocumentPartRef"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
     <containmentFeature
-        href="sample.ecore#//Condition/nestedParts"/>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="sample.gmftool#//@palette/@tools.0/@tools.2"/>
-    <diagramLink
-        href="sample.gmfgraph#ConditionLink"/>
-    <linkMetaFeature
-        xsi:type="ecore:EAttribute"
-        href="sample.ecore#//DocumentPartRef/id"/>
-  </links>
-  <links>
-    <domainMetaElement
-        href="sample.ecore#//Condition"/>
-    <labelMappings>
-      <diagramLabel
-          href="sample.gmfgraph#ConditionCondition"/>
-      <features
-          href="sample.ecore#//Condition/condition"/>
-    </labelMappings>
+        href="sample.ecore#//Schema/part"/>
+    <ownedChild>
+      <domainMetaElement
+          href="sample.ecore#//Family"/>
+      <labelMappings
+          editPattern="">
+        <diagramLabel
+            href="sample.gmfgraph#FamilyId"/>
+        <features
+            href="sample.ecore#//ReusablePart/id"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="sample.gmftool#//@palette/@tools.0/@tools.1"/>
+      <diagramNode
+          href="sample.gmfgraph#Family"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <ownedChild>
+      <domainMetaElement
+          href="sample.ecore#//DocumentPartRefGroup"/>
+      <labelMappings>
+        <diagramLabel
+            href="sample.gmfgraph#DocumentPartRefGroupId"/>
+        <features
+            href="sample.ecore#//DocumentPartRefGroup/id"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="sample.gmftool#//@palette/@tools.0/@tools.4"/>
+      <diagramNode
+          href="sample.gmfgraph#DocumentPartRefGroup"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
     <containmentFeature
-        href="sample.ecore#//Condition/nestedParts"/>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="sample.gmftool#//@palette/@tools.0/@tools.1"/>
-    <diagramLink
-        href="sample.gmfgraph#ConditionLink"/>
-    <linkMetaFeature
-        xsi:type="ecore:EAttribute"
-        href="sample.ecore#//Condition/condition"/>
-  </links>
-  <links>
-    <domainMetaElement
-        href="sample.ecore#//NestPoint"/>
-    <labelMappings>
-      <diagramLabel
-          href="sample.gmfgraph#NestPointId"/>
-      <features
-          href="sample.ecore#//NestPoint/id"/>
-    </labelMappings>
-    <containmentFeature
-        href="sample.ecore#//Condition/nestedParts"/>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="sample.gmftool#//@palette/@tools.0/@tools.0"/>
-    <diagramLink
-        href="sample.gmfgraph#ConditionLink"/>
-    <linkMetaFeature
-        xsi:type="ecore:EAttribute"
-        href="sample.ecore#//NestPoint/id"/>
-  </links>
+        href="sample.ecore#//Schema/part"/>
+    <ownedChild>
+      <domainMetaElement
+          href="sample.ecore#//DocumentPart"/>
+      <labelMappings>
+        <diagramLabel
+            href="sample.gmfgraph#DocumentPartId"/>
+        <features
+            href="sample.ecore#//ReusablePart/id"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="sample.gmftool#//@palette/@tools.0/@tools.0"/>
+      <diagramNode
+          href="sample.gmfgraph#DocumentPart"/>
+    </ownedChild>
+  </nodes>
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="sample.gmftool#//@palette/@tools.0/@tools.0"/>
+        href="sample.gmftool#//@palette/@tools.0/@tools.6"/>
     <diagramLink
-        href="sample.gmfgraph#DocumentPartRefLink"/>
+        href="sample.gmfgraph#SubelementedElementElements"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="sample.ecore#//DocumentPartRef/part"/>
+        href="sample.ecore#//SubelementedElement/elements"/>
   </links>
   <diagram>
     <diagramCanvas
-        href="sample.gmfgraph#vardoc"/>
+        href="sample.gmfgraph#elements"/>
     <domainModel
         href="sample.ecore#/"/>
     <domainMetaElement
-        href="sample.ecore#//Family"/>
+        href="sample.ecore#//Schema"/>
     <palette
         href="sample.gmftool#//@palette"/>
   </diagram>

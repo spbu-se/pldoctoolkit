@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/vardoc/src"
-    modelPluginID="vardoc" modelName="Sample" importerID="org.eclipse.emf.importer.ecore">
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="copyleft 2007"
+    modelDirectory="/vardoc/src" modelPluginID="vardoc" redirection="" modelName="Sample"
+    importerID="org.eclipse.emf.importer.ecore">
   <foreignModel>sample.ecore</foreignModel>
-  <genPackages prefix="Vardoc" basePackage="ru.asemenov" disposableProviderFactory="true"
+  <genPackages prefix="Vardoc" basePackage="ru.asemenov" resource="XML" disposableProviderFactory="true"
       ecorePackage="sample.ecore#/">
     <genEnums ecoreEnum="sample.ecore#//NestPointType">
       <genEnumLiterals ecoreEnumLiteral="sample.ecore#//NestPointType/INSERT_BEFORE"/>
       <genEnumLiterals ecoreEnumLiteral="sample.ecore#//NestPointType/INSERT_AFTER"/>
       <genEnumLiterals ecoreEnumLiteral="sample.ecore#//NestPointType/REPLACE"/>
       <genEnumLiterals ecoreEnumLiteral="sample.ecore#//NestPointType/REMOVE"/>
+    </genEnums>
+    <genEnums ecoreEnum="sample.ecore#//GroupType">
+      <genEnumLiterals ecoreEnumLiteral="sample.ecore#//GroupType/OR"/>
+      <genEnumLiterals ecoreEnumLiteral="sample.ecore#//GroupType/XOR"/>
     </genEnums>
     <genClasses image="false" ecoreClass="sample.ecore#//Element"/>
     <genClasses ecoreClass="sample.ecore#//DocumentPart"/>
@@ -19,12 +24,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Document/adapters"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//Document/family"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//Document/variables"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Document/parts"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//Document/partRefs"/>
     </genClasses>
     <genClasses ecoreClass="sample.ecore#//Adapter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Adapter/nestPointRefs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Adapter/ref"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//Adapter/documentPartRef"/>
     </genClasses>
     <genClasses ecoreClass="sample.ecore#//NestPoint">
@@ -32,7 +35,6 @@
     </genClasses>
     <genClasses image="false" ecoreClass="sample.ecore#//InnerElement"/>
     <genClasses ecoreClass="sample.ecore#//Condition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Condition/nestedParts"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//Condition/condition"/>
     </genClasses>
     <genClasses ecoreClass="sample.ecore#//NestPointRef">
@@ -42,11 +44,20 @@
     </genClasses>
     <genClasses image="false" ecoreClass="sample.ecore#//ReusablePart">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//ReusablePart/id"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//ReusablePart/elements"/>
     </genClasses>
     <genClasses ecoreClass="sample.ecore#//DocumentPartRef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//DocumentPartRef/id"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//DocumentPartRef/part"/>
+    </genClasses>
+    <genClasses ecoreClass="sample.ecore#//DocumentPartRefGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//DocumentPartRefGroup/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//DocumentPartRefGroup/modifier"/>
+    </genClasses>
+    <genClasses ecoreClass="sample.ecore#//Schema">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Schema/part"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sample.ecore#//SubelementedElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//SubelementedElement/elements"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

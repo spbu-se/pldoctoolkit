@@ -3,16 +3,23 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
-  <palette
-      title="vardoc palette">
+  <palette>
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="vardoc"
-        collapsible="true">
+        title="elements">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="NestPoint"
-          description="Create new NestPoint">
+          title="DocumentPart"
+          description="Create new DocumentPart">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Family"
+          description="Create new Family">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -31,6 +38,33 @@
           xsi:type="gmftool:CreationTool"
           title="DocumentPartRef"
           description="Create new DocumentPartRef">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="DocumentPartRefGroup"
+          description="Create new DocumentPartRefGroup">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="NestPoint"
+          description="Create new NestPoint">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="SubelementedElementElements"
+          description="Create new SubelementedElementElements">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
