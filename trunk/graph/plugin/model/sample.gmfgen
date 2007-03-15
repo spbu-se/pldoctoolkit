@@ -332,11 +332,12 @@
             xsi:type="gmfgen:ToolEntry"
             title="DocumentPartRefGroup"
             description="Create new DocumentPartRefGroup"
-            genNodes="//@diagram/@topLevelNodes.1 //@diagram/@topLevelNodes.4"/>
+            genNodes="//@diagram/@topLevelNodes.4"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="NestPoint"
-            description="Create new NestPoint"/>
+            description="Create new NestPoint"
+            genNodes="//@diagram/@topLevelNodes.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="SubelementedElementElements"
