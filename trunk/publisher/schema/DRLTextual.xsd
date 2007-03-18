@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Egis (CORE) -->
+<xs:schema targetNamespace="drl" xmlns:drl="drl" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:complexType name="ProductLine">
+    <xs:sequence>
+      <xs:element name="PLScheme" type="drl:PLScheme" minOccurs="0"/>
+      <xs:element name="PLDocumentation" type="drl:PLDocumentation"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="PLScheme">
+    <xs:sequence>
+      <xs:element name="Product" type="drl:Product" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PLDocumentation">
+    <xs:sequence>
+      <xs:element name="DocumentationCore" type="drl:DocumentationCore"/>
+      <xs:element name="ProductDocumentation" type="drl:ProductDocumentation" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductDocumentation">
+    <xs:sequence>
+      <xs:element name="finalinfproduct" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="productid" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Product">
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:group name="directorygroup">
+    <xs:sequence>
+      <xs:element name="directory" type="drl:directory"/>
+      <xs:element name="dirtemplate" type="drl:dirtemplate" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:complexType name="DocumentationCore">
+    <xs:sequence>
+      <xs:element name="infproduct" type="drl:infproduct" maxOccurs="unbounded"/>
+      <xs:element name="infelement" type="drl:infelement" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="dictionary" type="drl:dictionary" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:group ref="drl:directorygroup" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="infelement" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="nest" type="drl:nest"/>
+      <xs:element name="infelemref" type="drl:infelemref"/>
+      <xs:element name="infelemrefgroup" type="drl:infelemrefgroup"/>
+      <xs:element name="dictref" type="drl:dictref"/>
+      <xs:element name="dirref" type="drl:dirref"/>
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="infproduct">
+    <xs:complexContent>
+      <xs:extension base="drl:infelement">
+        <xs:sequence>
+          <xs:element name="processinghint"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="nest" mixed="true">
+    <xs:sequence>
+      <xs:any/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="descr" type="xs:string" use="optional"/>
+  </xs:complexType>
+  <xs:simpleType name="groupmodifier">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OR"/>
+      <xs:enumeration value="XOR"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="infelemref">
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attribute name="infelem" type="xs:string" use="required"/>
+    <xs:attribute name="group" type="xs:string" use="optional"/>
+    <xs:attribute name="optional" type="xs:boolean" use="optional" default="true"/>
+  </xs:complexType>
+  <xs:complexType name="infelemrefgroup">
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attribute name="name" type="xs:string" use="optional"/>
+    <xs:attribute name="modifier" type="drl:groupmodifier" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="dictionary">
+    <xs:sequence>
+      <xs:element name="entry" type="drl:dictentry" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="dictentry">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="id" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="direntry">
+    <xs:sequence>
+      <xs:element name="attr" type="drl:dirattr"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="dirattr" mixed="true">
+    <xs:sequence>
+      <xs:any/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="dictref">
+    <xs:attribute name="dict" type="xs:string"/>
+    <xs:attribute name="entry" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="dirref">
+    <xs:attribute name="templ" type="xs:string"/>
+    <xs:attribute name="entry" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="directory">
+    <xs:sequence>
+      <xs:element name="entry" type="drl:direntry" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="dirtemplate" mixed="true">
+    <xs:sequence>
+      <xs:element name="attrref" type="drl:dirattrref"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="directory" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="dirattrref">
+    <xs:attribute name="attr" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="finalinfproduct">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="setvalue" type="drl:setvalue"/>
+      <xs:element name="adapter" type="drl:adapter"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="product" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="adapter">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="insert-before" type="drl:insert-before"/>
+      <xs:element name="insert-after" type="drl:insert-after"/>
+      <xs:element name="delete-nest" type="drl:delete-nest"/>
+    </xs:choice>
+    <xs:attribute name="infelemrefid" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="insert-before" mixed="true">
+    <xs:sequence>
+      <xs:any/>
+    </xs:sequence>
+    <xs:attribute name="nestid" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="insert-after" mixed="true">
+    <xs:sequence>
+      <xs:any/>
+    </xs:sequence>
+    <xs:attribute name="nestid" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="delete-nest">
+    <xs:attribute name="nestid" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="setvalue" mixed="true">
+    <xs:sequence>
+      <xs:any/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="usevalue">
+    <xs:attribute name="name" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="conditional" mixed="true">
+    <xs:sequence>
+      <xs:any/>
+    </xs:sequence>
+    <xs:attribute name="condition" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="ProductLine" type="drl:ProductLine"/>
+  <xs:element name="infproduct" type="drl:infproduct"/>
+  <xs:element name="infelement" type="drl:infelement"/>
+  <xs:element name="dictionary" type="drl:dictionary"/>
+  <xs:element name="directory" type="drl:directory"/>
+</xs:schema>
