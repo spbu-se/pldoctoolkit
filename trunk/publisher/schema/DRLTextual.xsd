@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Egis (CORE) -->
+<!-- The DRL Schema -->
+<!-- $Id$ -->
 <xs:schema targetNamespace="drl" xmlns:drl="drl" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xs:complexType name="ProductLine">
     <xs:sequence>
