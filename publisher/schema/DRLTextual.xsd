@@ -38,6 +38,7 @@
   </xs:group>
   <xs:complexType name="DocumentationCore">
     <xs:sequence>
+      <!-- XXX why no 'minoccurs="0"' for infproduct? -->
       <xs:element name="infproduct" type="drl:infproduct" maxOccurs="unbounded"/>
       <xs:element name="infelement" type="drl:infelement" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="dictionary" type="drl:dictionary" minOccurs="0" maxOccurs="unbounded"/>
@@ -68,6 +69,7 @@
     <xs:sequence>
       <xs:any/>
     </xs:sequence>
+    <!-- XXX why 'name' instead of 'id'? we have a nestid reference in insert-after -->
     <xs:attribute name="name" type="xs:string" use="required"/>
     <xs:attribute name="descr" type="xs:string" use="optional"/>
   </xs:complexType>
@@ -147,6 +149,7 @@
   </xs:complexType>
   <xs:complexType name="adapter">
     <xs:choice maxOccurs="unbounded">
+      <!-- XXX why don't we create a generic type 'nest' and derive from these  from it? -->
       <xs:element name="insert-before" type="drl:insert-before"/>
       <xs:element name="insert-after" type="drl:insert-after"/>
       <xs:element name="delete-nest" type="drl:delete-nest"/>
@@ -174,6 +177,7 @@
     </xs:sequence>
     <xs:attribute name="name" type="xs:string"/>
   </xs:complexType>
+  <!-- XXX shouldn't we exclude this from the schema? -->
   <xs:complexType name="usevalue">
     <xs:attribute name="name" type="xs:string"/>
   </xs:complexType>
@@ -183,6 +187,8 @@
     </xs:sequence>
     <xs:attribute name="condition" type="xs:string"/>
   </xs:complexType>
+
+  <!-- The list of possible root elements: -->
   <xs:element name="ProductLine" type="drl:ProductLine"/>
   <xs:element name="infproduct" type="drl:infproduct"/>
   <xs:element name="infelement" type="drl:infelement"/>
