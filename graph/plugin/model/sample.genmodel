@@ -17,21 +17,23 @@
       <genEnumLiterals ecoreEnumLiteral="sample.ecore#//GroupType/OR"/>
       <genEnumLiterals ecoreEnumLiteral="sample.ecore#//GroupType/XOR"/>
     </genEnums>
-    <genClasses image="false" ecoreClass="sample.ecore#//Element"/>
-    <genClasses ecoreClass="sample.ecore#//DocumentPart"/>
-    <genClasses ecoreClass="sample.ecore#//Family"/>
-    <genClasses ecoreClass="sample.ecore#//Document">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Document/adapters"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//Document/family"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//Document/variables"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//Document/partRefs"/>
+    <genClasses image="false" ecoreClass="sample.ecore#//DrlElement"/>
+    <genClasses ecoreClass="sample.ecore#//InfElement"/>
+    <genClasses ecoreClass="sample.ecore#//InfProduct"/>
+    <genClasses ecoreClass="sample.ecore#//FinalInfProduct">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//FinalInfProduct/adapters"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//FinalInfProduct/product"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//FinalInfProduct/partRefs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//FinalInfProduct/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//FinalInfProduct/variables"/>
     </genClasses>
     <genClasses ecoreClass="sample.ecore#//Adapter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Adapter/nestPointRefs"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//Adapter/documentPartRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//Adapter/infElemRef"/>
     </genClasses>
     <genClasses ecoreClass="sample.ecore#//NestPoint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//NestPoint/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//NestPoint/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//NestPoint/descr"/>
     </genClasses>
     <genClasses image="false" ecoreClass="sample.ecore#//InnerElement"/>
     <genClasses ecoreClass="sample.ecore#//Condition">
@@ -42,22 +44,48 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//NestPointRef/text"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//NestPointRef/nestPoint"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="sample.ecore#//ReusablePart">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//ReusablePart/id"/>
+    <genClasses image="false" ecoreClass="sample.ecore#//GenericDocumentPart">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//GenericDocumentPart/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//GenericDocumentPart/name"/>
     </genClasses>
-    <genClasses ecoreClass="sample.ecore#//DocumentPartRef">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//DocumentPartRef/id"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//DocumentPartRef/part"/>
+    <genClasses ecoreClass="sample.ecore#//InfElemRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//InfElemRef/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//InfElemRef/infelem"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//InfElemRef/optional"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//InfElemRef/group"/>
     </genClasses>
-    <genClasses ecoreClass="sample.ecore#//DocumentPartRefGroup">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//DocumentPartRefGroup/id"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//DocumentPartRefGroup/modifier"/>
-    </genClasses>
-    <genClasses ecoreClass="sample.ecore#//Schema">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//Schema/part"/>
+    <genClasses ecoreClass="sample.ecore#//InfElemRefGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//InfElemRefGroup/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//InfElemRefGroup/modifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//InfElemRefGroup/name"/>
     </genClasses>
     <genClasses image="false" ecoreClass="sample.ecore#//SubelementedElement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sample.ecore#//SubelementedElement/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="sample.ecore#//ProductLine">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//ProductLine/scheme"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//ProductLine/documentation"/>
+    </genClasses>
+    <genClasses ecoreClass="sample.ecore#//PLScheme">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//PLScheme/products"/>
+    </genClasses>
+    <genClasses ecoreClass="sample.ecore#//PLDocumentation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//PLDocumentation/documentationCore"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//PLDocumentation/productDocumentations"/>
+    </genClasses>
+    <genClasses ecoreClass="sample.ecore#//Product">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//Product/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//Product/id"/>
+    </genClasses>
+    <genClasses ecoreClass="sample.ecore#//DocumentationCore">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//DocumentationCore/parts"/>
+    </genClasses>
+    <genClasses ecoreClass="sample.ecore#//ProductDocumentation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//ProductDocumentation/productId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sample.ecore#//ProductDocumentation/finalInfProducts"/>
+    </genClasses>
+    <genClasses ecoreClass="sample.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sample.ecore#//Variable/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
