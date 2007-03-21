@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="elements"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="drlvisual"
     nsURI="http://tepkom.ru/drl" nsPrefix="v">
   <eClassifiers xsi:type="ecore:EEnum" name="NestPointType">
     <eLiterals name="INSERT_BEFORE" value="1"/>
@@ -17,8 +17,6 @@
         eType="#//Adapter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" lowerBound="1"
         eType="#//InfProduct"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="partRefs" upperBound="-1"
-        eType="#//InfElemRef"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" eType="#//Variable"
@@ -30,7 +28,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="infElemRef" lowerBound="1"
         eType="#//InfElemRef"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NestPoint" eSuperTypes="#//InnerElement">
+  <eClassifiers xsi:type="ecore:EClass" name="NestPoint" eSuperTypes="#//InnerElement #//SubelementedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="descr" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -58,9 +56,8 @@
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="infelem" lowerBound="1"
         eType="#//InfElement"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-        defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//InfElemRefGroup"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfElemRefGroup" eSuperTypes="#//InnerElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -82,6 +79,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="documentation" lowerBound="1"
         eType="#//PLDocumentation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PLScheme" eSuperTypes="#//DrlElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
@@ -111,5 +109,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Variable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Schema">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
+        eType="#//GenericDocumentPart" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>
