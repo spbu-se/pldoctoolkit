@@ -9,33 +9,40 @@
     </xs:sequence>
     <xs:attribute name="name" type="xs:string" use="required"/>
   </xs:complexType>
+
+  <!-- There's a diagram title on the product family diagram. We need a name here? -->
   <xs:complexType name="PLScheme">
     <xs:sequence>
       <xs:element name="Product" type="drl:Product" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="PLDocumentation">
     <xs:sequence>
       <xs:element name="DocumentationCore" type="drl:DocumentationCore"/>
       <xs:element name="ProductDocumentation" type="drl:ProductDocumentation" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="ProductDocumentation">
     <xs:sequence>
       <xs:element name="finalinfproduct" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="productid" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="Product">
     <xs:attribute name="name" type="xs:string" use="required"/>
     <xs:attribute name="id" type="xs:string" use="required"/>
   </xs:complexType>
+
   <xs:group name="directorygroup">
     <xs:sequence>
       <xs:element name="directory" type="drl:directory"/>
       <xs:element name="dirtemplate" type="drl:dirtemplate" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:group>
+
   <xs:complexType name="DocumentationCore">
     <xs:sequence>
       <!-- XXX why no 'minoccurs="0"' for infproduct? -->
@@ -44,7 +51,9 @@
       <xs:element name="dictionary" type="drl:dictionary" minOccurs="0" maxOccurs="unbounded"/>
       <xs:group ref="drl:directorygroup" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
+    <!-- XXX does not contain "name" attribute! -->
   </xs:complexType>
+
   <xs:complexType name="infelement" mixed="true">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
       <xs:element name="nest" type="drl:nest"/>
@@ -56,6 +65,10 @@
     <xs:attribute name="name" type="xs:string" use="required"/>
     <xs:attribute name="id" type="xs:string" use="required"/>
   </xs:complexType>
+
+  <!-- XXX when deriving infproduct from infelement we get also infelemrefgroup,
+    which is useless here -->
+  <!-- XXX consider nest usage in infproduct -->
   <xs:complexType name="infproduct">
     <xs:complexContent>
       <xs:extension base="drl:infelement">
@@ -65,6 +78,7 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+
   <xs:complexType name="nest" mixed="true">
     <xs:sequence>
       <xs:any/>
@@ -73,29 +87,34 @@
     <xs:attribute name="name" type="xs:string" use="required"/>
     <xs:attribute name="descr" type="xs:string" use="optional"/>
   </xs:complexType>
+
   <xs:simpleType name="groupmodifier">
     <xs:restriction base="xs:string">
       <xs:enumeration value="OR"/>
       <xs:enumeration value="XOR"/>
     </xs:restriction>
   </xs:simpleType>
+
   <xs:complexType name="infelemref">
     <xs:attribute name="id" type="xs:string" use="required"/>
     <xs:attribute name="infelem" type="xs:string" use="required"/>
     <xs:attribute name="group" type="xs:string" use="optional"/>
     <xs:attribute name="optional" type="xs:boolean" use="optional" default="true"/>
   </xs:complexType>
+
   <xs:complexType name="infelemrefgroup">
     <xs:attribute name="id" type="xs:string" use="required"/>
     <xs:attribute name="name" type="xs:string" use="optional"/>
     <xs:attribute name="modifier" type="drl:groupmodifier" use="required"/>
   </xs:complexType>
+
   <xs:complexType name="dictionary">
     <xs:sequence>
       <xs:element name="entry" type="drl:dictentry" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="dictentry">
     <xs:simpleContent>
       <xs:extension base="xs:string">
@@ -103,12 +122,14 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
+
   <xs:complexType name="direntry">
     <xs:sequence>
       <xs:element name="attr" type="drl:dirattr"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="dirattr" mixed="true">
     <xs:sequence>
       <xs:any/>
@@ -119,16 +140,19 @@
     <xs:attribute name="dict" type="xs:string"/>
     <xs:attribute name="entry" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="dirref">
     <xs:attribute name="templ" type="xs:string"/>
     <xs:attribute name="entry" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="directory">
     <xs:sequence>
       <xs:element name="entry" type="drl:direntry" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="dirtemplate" mixed="true">
     <xs:sequence>
       <xs:element name="attrref" type="drl:dirattrref"/>
@@ -136,6 +160,7 @@
     <xs:attribute name="id" type="xs:string"/>
     <xs:attribute name="directory" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="dirattrref">
     <xs:attribute name="attr" type="xs:string"/>
   </xs:complexType>
@@ -147,6 +172,7 @@
     <xs:attribute name="id" type="xs:string"/>
     <xs:attribute name="product" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="adapter">
     <xs:choice maxOccurs="unbounded">
       <!-- XXX why don't we create a generic type 'nest' and derive from these  from it? -->
@@ -156,12 +182,14 @@
     </xs:choice>
     <xs:attribute name="infelemrefid" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="insert-before" mixed="true">
     <xs:sequence>
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="nestid" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="insert-after" mixed="true">
     <xs:sequence>
       <xs:any/>
@@ -171,16 +199,19 @@
   <xs:complexType name="delete-nest">
     <xs:attribute name="nestid" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="setvalue" mixed="true">
     <xs:sequence>
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="name" type="xs:string"/>
   </xs:complexType>
+
   <!-- XXX shouldn't we exclude this from the schema? -->
   <xs:complexType name="usevalue">
     <xs:attribute name="name" type="xs:string"/>
   </xs:complexType>
+
   <xs:complexType name="conditional" mixed="true">
     <xs:sequence>
       <xs:any/>
