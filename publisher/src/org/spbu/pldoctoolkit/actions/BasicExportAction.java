@@ -170,12 +170,15 @@ public class BasicExportAction extends Action {
 			monitor.beginTask("Exporting to " + type + "...", 3);
 			tempFile = File.createTempFile("docbookgen", null);
 			String temp = tempFile.toURI().toString();
-			monitor.worked(1);
-
+			
 			monitor.subTask("Transforming DRL -> DocBook...");
 			transform(drl2docbook, source, temp);
 			monitor.worked(1);
 
+			monitor.subTask("Validating DocBook...");
+			
+			monitor.worked(1);
+			
 			monitor.subTask("Transforming DocBook -> " + type + "...");
 			transform(docbook2type, temp, destination);
 			monitor.done();

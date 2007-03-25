@@ -8,6 +8,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import net.sf.saxon.Configuration;
 import net.sf.saxon.StandardURIResolver;
+import net.sf.saxon.trans.DynamicError;
 import net.sf.saxon.trans.XPathException;
 
 import org.eclipse.core.resources.IContainer;
@@ -32,6 +33,9 @@ public class FolderURIResolver extends StandardURIResolver {
 	@Override
 	public Source resolve(String href, String base) throws XPathException {
 		if (folder != null && href.startsWith(DRLRESOLVE_PREFIX)) {
+			IResource resource = getResource(href);
+			if (resource == null || !resource.exists())
+				throw new DynamicError("Not found: '" + href.substring(DRLRESOLVE_PREFIX.length()) + "'");
 			return new StreamSource(getResource(href).getLocationURI().toString());
 		}
 		return super.resolve(href, base);

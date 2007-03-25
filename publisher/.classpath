@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry path="src" kind="src"/>
-	<classpathentry sourcepath="D:/dev/jing-20030619/src.zip" path="lib/jing.jar" exported="true" kind="lib"/>
-	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"/>
-	<classpathentry path="org.eclipse.pde.core.requiredPlugins" kind="con"/>
-	<classpathentry path="lib/saxon8.jar" kind="lib"/>
-	<classpathentry path="bin" kind="output"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="lib/jing.jar" sourcepath="D:/dev/jing-20030619/src.zip"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="lib" path="lib/saxon8.jar" sourcepath="D:/dev/saxon-resources8-9/source.zip"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>
