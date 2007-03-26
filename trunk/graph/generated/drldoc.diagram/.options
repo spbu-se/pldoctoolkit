@@ -1,7 +1,0 @@
-# Debugging options for the drldoc.diagram plug-in
-
-# Turn on general debugging for the drldoc.diagram plug-in
-drldoc.diagram/debug=false
-
-# Turn on debugging of visualID processing
-drldoc.diagram/debug/visualID=true
