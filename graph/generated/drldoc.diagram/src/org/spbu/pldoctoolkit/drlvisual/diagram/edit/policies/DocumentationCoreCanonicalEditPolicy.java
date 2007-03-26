@@ -48,25 +48,24 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.spbu.pldoctoolkit.drlvisual.DocumentationCore;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.InfElemRef;
-import org.spbu.pldoctoolkit.drlvisual.Schema;
 import org.spbu.pldoctoolkit.drlvisual.SubelementedElement;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.InfElemRef2EditPart;
+import org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.DocumentationCoreEditPart;
 import org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.InfElemRefEditPart;
 import org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.InfElemRefGroupEditPart;
 import org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.InfElementEditPart;
 import org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.InfProductEditPart;
-import org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.SchemaEditPart;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelVisualIDRegistry;
-
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
+import org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelVisualIDRegistry;
 
 /**
  * @generated
  */
-public class SchemaCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
+public class DocumentationCoreCanonicalEditPolicy extends
+		CanonicalConnectionEditPolicy {
 
 	/**
 	 * @generated
@@ -77,10 +76,10 @@ public class SchemaCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 		View viewObject = (View) getHost().getModel();
 		EObject nextValue;
 		int nodeVID;
-		for (Iterator values = ((Schema) modelObject).getParts().iterator(); values
-				.hasNext();) {
+		for (Iterator values = ((DocumentationCore) modelObject).getParts()
+				.iterator(); values.hasNext();) {
 			nextValue = (EObject) values.next();
-			nodeVID = DRLModelVisualIDRegistry.getNodeVisualID(viewObject,
+			nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(viewObject,
 					nextValue);
 			switch (nodeVID) {
 			case InfElementEditPart.VISUAL_ID: {
@@ -175,7 +174,7 @@ public class SchemaCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			if (nextResourceObject == diagramModelObject) {
 				continue;
 			}
-			int nodeVID = DRLModelVisualIDRegistry.getNodeVisualID(diagram,
+			int nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(diagram,
 					nextResourceObject);
 			switch (nodeVID) {
 			case InfElemRefGroupEditPart.VISUAL_ID: {
@@ -274,7 +273,7 @@ public class SchemaCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 						.getElement();
 				EObject diagramLinkDst = nextDiagramLink.getTarget()
 						.getElement();
-				int diagramLinkVisualID = DRLModelVisualIDRegistry
+				int diagramLinkVisualID = DrlModelVisualIDRegistry
 						.getVisualID(nextDiagramLink);
 				for (Iterator modelLinkDescriptors = myLinkDescriptors
 						.iterator(); modelLinkDescriptors.hasNext();) {
@@ -305,12 +304,12 @@ public class SchemaCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	 */
 	private void collectAllLinks(View view) {
 		EObject modelElement = view.getElement();
-		int diagramElementVisualID = DRLModelVisualIDRegistry.getVisualID(view);
+		int diagramElementVisualID = DrlModelVisualIDRegistry.getVisualID(view);
 		switch (diagramElementVisualID) {
 		case InfElementEditPart.VISUAL_ID:
 		case InfProductEditPart.VISUAL_ID:
 		case InfElemRefGroupEditPart.VISUAL_ID:
-		case SchemaEditPart.VISUAL_ID: {
+		case DocumentationCoreEditPart.VISUAL_ID: {
 			myEObject2ViewMap.put(modelElement, view);
 			storeLinks(modelElement, getDiagram());
 		}
@@ -392,33 +391,14 @@ public class SchemaCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	 */
 	private void storeTypeModelFacetLinks(EObject container,
 			EClass containerMetaclass) {
-		if (drlPackage.eINSTANCE.getSubelementedElement().isSuperTypeOf(
+		if (DrlPackage.eINSTANCE.getSubelementedElement().isSuperTypeOf(
 				containerMetaclass)) {
 			for (Iterator values = ((SubelementedElement) container)
 					.getElements().iterator(); values.hasNext();) {
 				EObject nextValue = ((EObject) values.next());
-				int linkVID = DRLModelVisualIDRegistry
+				int linkVID = DrlModelVisualIDRegistry
 						.getLinkWithClassVisualID(nextValue);
 				if (InfElemRefEditPart.VISUAL_ID == linkVID) {
-					Object structuralFeatureResult = ((InfElemRef) nextValue)
-							.getInfelem();
-					if (structuralFeatureResult instanceof EObject) {
-						EObject dst = (EObject) structuralFeatureResult;
-						EObject src = container;
-						myLinkDescriptors.add(new LinkDescriptor(src, dst,
-								nextValue, linkVID));
-					}
-				}
-			}
-		}
-		if (drlPackage.eINSTANCE.getSubelementedElement().isSuperTypeOf(
-				containerMetaclass)) {
-			for (Iterator values = ((SubelementedElement) container)
-					.getElements().iterator(); values.hasNext();) {
-				EObject nextValue = ((EObject) values.next());
-				int linkVID = DRLModelVisualIDRegistry
-						.getLinkWithClassVisualID(nextValue);
-				if (InfElemRef2EditPart.VISUAL_ID == linkVID) {
 					Object structuralFeatureResult = ((InfElemRef) nextValue)
 							.getInfelem();
 					if (structuralFeatureResult instanceof EObject) {

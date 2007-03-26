@@ -17,35 +17,35 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import org.eclipse.gmf.runtime.notation.View;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.providers.DRLModelElementTypes;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
+import org.spbu.pldoctoolkit.drlvisual.diagram.providers.DrlModelElementTypes;
 
 /**
  * @generated
  */
-public class SchemaItemSemanticEditPolicy extends
-		DRLModelBaseItemSemanticEditPolicy {
+public class DocumentationCoreItemSemanticEditPolicy extends
+		DrlModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (DRLModelElementTypes.InfElement_1001 == req.getElementType()) {
+		if (DrlModelElementTypes.InfElement_1001 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(drlPackage.eINSTANCE
-						.getSchema_Parts());
+				req.setContainmentFeature(DrlPackage.eINSTANCE
+						.getDocumentationCore_Parts());
 			}
 			return getMSLWrapper(new CreateInfElement_1001Command(req));
 		}
-		if (DRLModelElementTypes.InfProduct_1002 == req.getElementType()) {
+		if (DrlModelElementTypes.InfProduct_1002 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(drlPackage.eINSTANCE
-						.getSchema_Parts());
+				req.setContainmentFeature(DrlPackage.eINSTANCE
+						.getDocumentationCore_Parts());
 			}
 			return getMSLWrapper(new CreateInfProduct_1002Command(req));
 		}
-		if (DRLModelElementTypes.InfElemRefGroup_1003 == req.getElementType()) {
+		if (DrlModelElementTypes.InfElemRefGroup_1003 == req.getElementType()) {
 			return getMSLWrapper(new CreateInfElemRefGroup_1003Command(req));
 		}
 		return super.getCreateCommand(req);
@@ -68,7 +68,7 @@ public class SchemaItemSemanticEditPolicy extends
 		 * @generated
 		 */
 		protected EClass getEClassToEdit() {
-			return drlPackage.eINSTANCE.getSchema();
+			return DrlPackage.eINSTANCE.getDocumentationCore();
 		};
 
 		/**
@@ -101,7 +101,7 @@ public class SchemaItemSemanticEditPolicy extends
 		 * @generated
 		 */
 		protected EClass getEClassToEdit() {
-			return drlPackage.eINSTANCE.getSchema();
+			return DrlPackage.eINSTANCE.getDocumentationCore();
 		};
 
 		/**
@@ -134,7 +134,7 @@ public class SchemaItemSemanticEditPolicy extends
 		 * @generated
 		 */
 		protected EClass getEClassToEdit() {
-			return drlPackage.eINSTANCE.getSchema();
+			return DrlPackage.eINSTANCE.getDocumentationCore();
 		};
 
 		/**

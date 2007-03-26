@@ -29,7 +29,7 @@ import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.InfElemRefGroupCano
 import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.InfElemRefGroupGraphicalNodeEditPolicy;
 import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.InfElemRefGroupItemSemanticEditPolicy;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelVisualIDRegistry;
+import org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelVisualIDRegistry;
 
 /**
  * @generated
@@ -187,7 +187,7 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(DRLModelVisualIDRegistry
+		return getChildBySemanticHint(DrlModelVisualIDRegistry
 				.getType(InfElemRefGroupNameEditPart.VISUAL_ID));
 	}
 

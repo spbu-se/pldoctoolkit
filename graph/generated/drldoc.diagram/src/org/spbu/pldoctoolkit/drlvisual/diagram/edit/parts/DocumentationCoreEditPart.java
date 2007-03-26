@@ -4,18 +4,18 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.SchemaCanonicalEditPolicy;
-import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.SchemaItemSemanticEditPolicy;
+import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.DocumentationCoreCanonicalEditPolicy;
+import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.DocumentationCoreItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class SchemaEditPart extends DiagramEditPart {
+public class DocumentationCoreEditPart extends DiagramEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static String MODEL_ID = "DRL Model"; //$NON-NLS-1$
+	public static String MODEL_ID = "DrlModel"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -25,7 +25,7 @@ public class SchemaEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public SchemaEditPart(View view) {
+	public DocumentationCoreEditPart(View view) {
 		super(view);
 	}
 
@@ -35,8 +35,8 @@ public class SchemaEditPart extends DiagramEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new SchemaItemSemanticEditPolicy());
+				new DocumentationCoreItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-				new SchemaCanonicalEditPolicy());
+				new DocumentationCoreCanonicalEditPolicy());
 	}
 }

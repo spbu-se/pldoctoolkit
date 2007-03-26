@@ -14,7 +14,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class SchemaViewFactory extends DiagramViewFactory {
+public class DocumentationCoreViewFactory extends DiagramViewFactory {
 
 	/**
 	 * @generated 

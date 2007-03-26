@@ -13,9 +13,9 @@ import org.eclipse.gmf.runtime.diagram.ui.view.factories.ConnectionViewFactory;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.SchemaEditPart;
+import org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.DocumentationCoreEditPart;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelVisualIDRegistry;
+import org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelVisualIDRegistry;
 
 /**
  * @generated
@@ -41,19 +41,19 @@ public class SubelementedElementElementsViewFactory extends
 			IAdaptable semanticAdapter, String semanticHint, int index,
 			boolean persisted) {
 		if (semanticHint == null) {
-			semanticHint = DRLModelVisualIDRegistry
+			semanticHint = DrlModelVisualIDRegistry
 					.getType(org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.SubelementedElementElementsEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,
 				index, persisted);
-		if (!SchemaEditPart.MODEL_ID.equals(DRLModelVisualIDRegistry
+		if (!DocumentationCoreEditPart.MODEL_ID.equals(DrlModelVisualIDRegistry
 				.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
 					.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
 			shortcutAnnotation.getDetails().put(
-					"modelID", SchemaEditPart.MODEL_ID); //$NON-NLS-1$
+					"modelID", DocumentationCoreEditPart.MODEL_ID); //$NON-NLS-1$
 			view.getEAnnotations().add(shortcutAnnotation);
 		}
 	}

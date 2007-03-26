@@ -22,17 +22,16 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.SubelementedElement;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.providers.DRLModelElementTypes;
-
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
+import org.spbu.pldoctoolkit.drlvisual.diagram.providers.DrlModelElementTypes;
 
 /**
  * @generated
  */
 public class InfElemRefGroupItemSemanticEditPolicy extends
-		DRLModelBaseItemSemanticEditPolicy {
+		DrlModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -69,10 +68,10 @@ public class InfElemRefGroupItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (DRLModelElementTypes.SubelementedElementElements_3003 == req
+		if (DrlModelElementTypes.SubelementedElementElements_3002 == req
 				.getElementType()) {
 			return req.getTarget() == null ? null
-					: getCreateCompleteIncomingSubelementedElement_Elements3003Command(req);
+					: getCreateCompleteIncomingSubelementedElement_Elements3002Command(req);
 		}
 		return super.getCreateRelationshipCommand(req);
 	}
@@ -80,7 +79,7 @@ public class InfElemRefGroupItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCreateCompleteIncomingSubelementedElement_Elements3003Command(
+	protected Command getCreateCompleteIncomingSubelementedElement_Elements3002Command(
 			CreateRelationshipRequest req) {
 		if (!(req.getSource() instanceof SubelementedElement)) {
 			return UnexecutableCommand.INSTANCE;
@@ -90,7 +89,7 @@ public class InfElemRefGroupItemSemanticEditPolicy extends
 			return UnexecutableCommand.INSTANCE;
 		}
 		SetRequest setReq = new SetRequest(req.getSource(),
-				drlPackage.eINSTANCE.getSubelementedElement_Elements(), req
+				DrlPackage.eINSTANCE.getSubelementedElement_Elements(), req
 						.getTarget());
 		return getMSLWrapper(new SetValueCommand(setReq));
 	}
