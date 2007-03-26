@@ -13,10 +13,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.InfElemRef;
 import org.spbu.pldoctoolkit.drlvisual.InfElemRefGroup;
 import org.spbu.pldoctoolkit.drlvisual.InfElement;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -117,7 +117,7 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.INF_ELEM_REF;
+		return DrlPackage.Literals.INF_ELEM_REF;
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.INF_ELEM_REF__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__ID, oldId, id));
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 			infelem = (InfElement)eResolveProxy(oldInfelem);
 			if (infelem != oldInfelem) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, drlPackage.INF_ELEM_REF__INFELEM, oldInfelem, infelem));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DrlPackage.INF_ELEM_REF__INFELEM, oldInfelem, infelem));
 			}
 		}
 		return infelem;
@@ -176,7 +176,7 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 		InfElement oldInfelem = infelem;
 		infelem = newInfelem;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.INF_ELEM_REF__INFELEM, oldInfelem, infelem));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__INFELEM, oldInfelem, infelem));
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 			group = (InfElemRefGroup)eResolveProxy(oldGroup);
 			if (group != oldGroup) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, drlPackage.INF_ELEM_REF__GROUP, oldGroup, group));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DrlPackage.INF_ELEM_REF__GROUP, oldGroup, group));
 			}
 		}
 		return group;
@@ -214,7 +214,7 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 		InfElemRefGroup oldGroup = group;
 		group = newGroup;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.INF_ELEM_REF__GROUP, oldGroup, group));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__GROUP, oldGroup, group));
 	}
 
 	/**
@@ -235,7 +235,7 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 		boolean oldOptional = optional;
 		optional = newOptional;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.INF_ELEM_REF__OPTIONAL, oldOptional, optional));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__OPTIONAL, oldOptional, optional));
 	}
 
 	/**
@@ -245,15 +245,15 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.INF_ELEM_REF__ID:
+			case DrlPackage.INF_ELEM_REF__ID:
 				return getId();
-			case drlPackage.INF_ELEM_REF__INFELEM:
+			case DrlPackage.INF_ELEM_REF__INFELEM:
 				if (resolve) return getInfelem();
 				return basicGetInfelem();
-			case drlPackage.INF_ELEM_REF__GROUP:
+			case DrlPackage.INF_ELEM_REF__GROUP:
 				if (resolve) return getGroup();
 				return basicGetGroup();
-			case drlPackage.INF_ELEM_REF__OPTIONAL:
+			case DrlPackage.INF_ELEM_REF__OPTIONAL:
 				return isOptional() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -266,16 +266,16 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.INF_ELEM_REF__ID:
+			case DrlPackage.INF_ELEM_REF__ID:
 				setId((String)newValue);
 				return;
-			case drlPackage.INF_ELEM_REF__INFELEM:
+			case DrlPackage.INF_ELEM_REF__INFELEM:
 				setInfelem((InfElement)newValue);
 				return;
-			case drlPackage.INF_ELEM_REF__GROUP:
+			case DrlPackage.INF_ELEM_REF__GROUP:
 				setGroup((InfElemRefGroup)newValue);
 				return;
-			case drlPackage.INF_ELEM_REF__OPTIONAL:
+			case DrlPackage.INF_ELEM_REF__OPTIONAL:
 				setOptional(((Boolean)newValue).booleanValue());
 				return;
 		}
@@ -289,16 +289,16 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.INF_ELEM_REF__ID:
+			case DrlPackage.INF_ELEM_REF__ID:
 				setId(ID_EDEFAULT);
 				return;
-			case drlPackage.INF_ELEM_REF__INFELEM:
+			case DrlPackage.INF_ELEM_REF__INFELEM:
 				setInfelem((InfElement)null);
 				return;
-			case drlPackage.INF_ELEM_REF__GROUP:
+			case DrlPackage.INF_ELEM_REF__GROUP:
 				setGroup((InfElemRefGroup)null);
 				return;
-			case drlPackage.INF_ELEM_REF__OPTIONAL:
+			case DrlPackage.INF_ELEM_REF__OPTIONAL:
 				setOptional(OPTIONAL_EDEFAULT);
 				return;
 		}
@@ -312,13 +312,13 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.INF_ELEM_REF__ID:
+			case DrlPackage.INF_ELEM_REF__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case drlPackage.INF_ELEM_REF__INFELEM:
+			case DrlPackage.INF_ELEM_REF__INFELEM:
 				return infelem != null;
-			case drlPackage.INF_ELEM_REF__GROUP:
+			case DrlPackage.INF_ELEM_REF__GROUP:
 				return group != null;
-			case drlPackage.INF_ELEM_REF__OPTIONAL:
+			case DrlPackage.INF_ELEM_REF__OPTIONAL:
 				return optional != OPTIONAL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

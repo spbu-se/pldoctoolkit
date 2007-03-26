@@ -21,7 +21,7 @@ package org.spbu.pldoctoolkit.drlvisual;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getInfElemRefGroup()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getInfElemRefGroup()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface InfElemRefGroup extends InnerElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getInfElemRefGroup_Id()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getInfElemRefGroup_Id()
 	 * @model id="true" required="true"
 	 * @generated
 	 */
@@ -71,7 +71,7 @@ public interface InfElemRefGroup extends InnerElement {
 	 * @return the value of the '<em>Modifier</em>' attribute.
 	 * @see org.spbu.pldoctoolkit.drlvisual.GroupType
 	 * @see #setModifier(GroupType)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getInfElemRefGroup_Modifier()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getInfElemRefGroup_Modifier()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -98,7 +98,7 @@ public interface InfElemRefGroup extends InnerElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getInfElemRefGroup_Name()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getInfElemRefGroup_Name()
 	 * @model
 	 * @generated
 	 */

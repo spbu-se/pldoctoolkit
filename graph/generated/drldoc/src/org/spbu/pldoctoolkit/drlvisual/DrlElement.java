@@ -10,11 +10,11 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Drl Element</b></em>'.
+ * A representation of the model object '<em><b>Element</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getDrlElement()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getDrlElement()
  * @model abstract="true"
  * @generated
  */

@@ -22,9 +22,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.spbu.pldoctoolkit.drlvisual.DocumentationCore;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.PLDocumentation;
 import org.spbu.pldoctoolkit.drlvisual.ProductDocumentation;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -83,7 +83,7 @@ public class PLDocumentationImpl extends DrlElementImpl implements PLDocumentati
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.PL_DOCUMENTATION;
+		return DrlPackage.Literals.PL_DOCUMENTATION;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class PLDocumentationImpl extends DrlElementImpl implements PLDocumentati
 		DocumentationCore oldDocumentationCore = documentationCore;
 		documentationCore = newDocumentationCore;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, drlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE, oldDocumentationCore, newDocumentationCore);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE, oldDocumentationCore, newDocumentationCore);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -119,14 +119,14 @@ public class PLDocumentationImpl extends DrlElementImpl implements PLDocumentati
 		if (newDocumentationCore != documentationCore) {
 			NotificationChain msgs = null;
 			if (documentationCore != null)
-				msgs = ((InternalEObject)documentationCore).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - drlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE, null, msgs);
+				msgs = ((InternalEObject)documentationCore).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DrlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE, null, msgs);
 			if (newDocumentationCore != null)
-				msgs = ((InternalEObject)newDocumentationCore).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - drlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE, null, msgs);
+				msgs = ((InternalEObject)newDocumentationCore).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DrlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE, null, msgs);
 			msgs = basicSetDocumentationCore(newDocumentationCore, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE, newDocumentationCore, newDocumentationCore));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE, newDocumentationCore, newDocumentationCore));
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class PLDocumentationImpl extends DrlElementImpl implements PLDocumentati
 	 */
 	public EList getProductDocumentations() {
 		if (productDocumentations == null) {
-			productDocumentations = new EObjectContainmentEList(ProductDocumentation.class, this, drlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS);
+			productDocumentations = new EObjectContainmentEList(ProductDocumentation.class, this, DrlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS);
 		}
 		return productDocumentations;
 	}
@@ -148,9 +148,9 @@ public class PLDocumentationImpl extends DrlElementImpl implements PLDocumentati
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case drlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
+			case DrlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
 				return basicSetDocumentationCore(null, msgs);
-			case drlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
+			case DrlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
 				return ((InternalEList)getProductDocumentations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -163,9 +163,9 @@ public class PLDocumentationImpl extends DrlElementImpl implements PLDocumentati
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
+			case DrlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
 				return getDocumentationCore();
-			case drlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
+			case DrlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
 				return getProductDocumentations();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -178,10 +178,10 @@ public class PLDocumentationImpl extends DrlElementImpl implements PLDocumentati
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
+			case DrlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
 				setDocumentationCore((DocumentationCore)newValue);
 				return;
-			case drlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
+			case DrlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
 				getProductDocumentations().clear();
 				getProductDocumentations().addAll((Collection)newValue);
 				return;
@@ -196,10 +196,10 @@ public class PLDocumentationImpl extends DrlElementImpl implements PLDocumentati
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
+			case DrlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
 				setDocumentationCore((DocumentationCore)null);
 				return;
-			case drlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
+			case DrlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
 				getProductDocumentations().clear();
 				return;
 		}
@@ -213,9 +213,9 @@ public class PLDocumentationImpl extends DrlElementImpl implements PLDocumentati
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
+			case DrlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
 				return documentationCore != null;
-			case drlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
+			case DrlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
 				return productDocumentations != null && !productDocumentations.isEmpty();
 		}
 		return super.eIsSet(featureID);

@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.PLDocumentation;
 import org.spbu.pldoctoolkit.drlvisual.PLScheme;
 import org.spbu.pldoctoolkit.drlvisual.ProductLine;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -97,7 +97,7 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.PRODUCT_LINE;
+		return DrlPackage.Literals.PRODUCT_LINE;
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 		PLScheme oldScheme = scheme;
 		scheme = newScheme;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, drlPackage.PRODUCT_LINE__SCHEME, oldScheme, newScheme);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__SCHEME, oldScheme, newScheme);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -133,14 +133,14 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 		if (newScheme != scheme) {
 			NotificationChain msgs = null;
 			if (scheme != null)
-				msgs = ((InternalEObject)scheme).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - drlPackage.PRODUCT_LINE__SCHEME, null, msgs);
+				msgs = ((InternalEObject)scheme).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DrlPackage.PRODUCT_LINE__SCHEME, null, msgs);
 			if (newScheme != null)
-				msgs = ((InternalEObject)newScheme).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - drlPackage.PRODUCT_LINE__SCHEME, null, msgs);
+				msgs = ((InternalEObject)newScheme).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DrlPackage.PRODUCT_LINE__SCHEME, null, msgs);
 			msgs = basicSetScheme(newScheme, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.PRODUCT_LINE__SCHEME, newScheme, newScheme));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__SCHEME, newScheme, newScheme));
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 		PLDocumentation oldDocumentation = documentation;
 		documentation = newDocumentation;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, drlPackage.PRODUCT_LINE__DOCUMENTATION, oldDocumentation, newDocumentation);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__DOCUMENTATION, oldDocumentation, newDocumentation);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -176,14 +176,14 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 		if (newDocumentation != documentation) {
 			NotificationChain msgs = null;
 			if (documentation != null)
-				msgs = ((InternalEObject)documentation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - drlPackage.PRODUCT_LINE__DOCUMENTATION, null, msgs);
+				msgs = ((InternalEObject)documentation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DrlPackage.PRODUCT_LINE__DOCUMENTATION, null, msgs);
 			if (newDocumentation != null)
-				msgs = ((InternalEObject)newDocumentation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - drlPackage.PRODUCT_LINE__DOCUMENTATION, null, msgs);
+				msgs = ((InternalEObject)newDocumentation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DrlPackage.PRODUCT_LINE__DOCUMENTATION, null, msgs);
 			msgs = basicSetDocumentation(newDocumentation, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.PRODUCT_LINE__DOCUMENTATION, newDocumentation, newDocumentation));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__DOCUMENTATION, newDocumentation, newDocumentation));
 	}
 
 	/**
@@ -204,7 +204,7 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.PRODUCT_LINE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__NAME, oldName, name));
 	}
 
 	/**
@@ -214,9 +214,9 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case drlPackage.PRODUCT_LINE__SCHEME:
+			case DrlPackage.PRODUCT_LINE__SCHEME:
 				return basicSetScheme(null, msgs);
-			case drlPackage.PRODUCT_LINE__DOCUMENTATION:
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
 				return basicSetDocumentation(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -229,11 +229,11 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.PRODUCT_LINE__SCHEME:
+			case DrlPackage.PRODUCT_LINE__SCHEME:
 				return getScheme();
-			case drlPackage.PRODUCT_LINE__DOCUMENTATION:
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
 				return getDocumentation();
-			case drlPackage.PRODUCT_LINE__NAME:
+			case DrlPackage.PRODUCT_LINE__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -246,13 +246,13 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.PRODUCT_LINE__SCHEME:
+			case DrlPackage.PRODUCT_LINE__SCHEME:
 				setScheme((PLScheme)newValue);
 				return;
-			case drlPackage.PRODUCT_LINE__DOCUMENTATION:
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
 				setDocumentation((PLDocumentation)newValue);
 				return;
-			case drlPackage.PRODUCT_LINE__NAME:
+			case DrlPackage.PRODUCT_LINE__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -266,13 +266,13 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.PRODUCT_LINE__SCHEME:
+			case DrlPackage.PRODUCT_LINE__SCHEME:
 				setScheme((PLScheme)null);
 				return;
-			case drlPackage.PRODUCT_LINE__DOCUMENTATION:
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
 				setDocumentation((PLDocumentation)null);
 				return;
-			case drlPackage.PRODUCT_LINE__NAME:
+			case DrlPackage.PRODUCT_LINE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -286,11 +286,11 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.PRODUCT_LINE__SCHEME:
+			case DrlPackage.PRODUCT_LINE__SCHEME:
 				return scheme != null;
-			case drlPackage.PRODUCT_LINE__DOCUMENTATION:
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
 				return documentation != null;
-			case drlPackage.PRODUCT_LINE__NAME:
+			case DrlPackage.PRODUCT_LINE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);

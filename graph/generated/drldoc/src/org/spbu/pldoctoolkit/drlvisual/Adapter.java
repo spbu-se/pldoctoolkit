@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getAdapter()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getAdapter()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface Adapter extends DrlElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nest Point Refs</em>' containment reference list.
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getAdapter_NestPointRefs()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getAdapter_NestPointRefs()
 	 * @model type="org.spbu.pldoctoolkit.drlvisual.NestPointRef" containment="true"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface Adapter extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inf Elem Ref</em>' reference.
 	 * @see #setInfElemRef(InfElemRef)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getAdapter_InfElemRef()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getAdapter_InfElemRef()
 	 * @model required="true"
 	 * @generated
 	 */

@@ -20,7 +20,7 @@ package org.spbu.pldoctoolkit.drlvisual;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getGenericDocumentPart()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getGenericDocumentPart()
  * @model abstract="true"
  * @generated
  */
@@ -42,7 +42,7 @@ public interface GenericDocumentPart extends DrlElement, SubelementedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getGenericDocumentPart_Id()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getGenericDocumentPart_Id()
 	 * @model id="true" required="true" derived="true"
 	 * @generated
 	 */
@@ -68,7 +68,7 @@ public interface GenericDocumentPart extends DrlElement, SubelementedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getGenericDocumentPart_Name()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getGenericDocumentPart_Name()
 	 * @model required="true"
 	 * @generated
 	 */

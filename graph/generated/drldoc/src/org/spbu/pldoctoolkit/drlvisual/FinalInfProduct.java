@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getFinalInfProduct()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getFinalInfProduct()
  * @model
  * @generated
  */
@@ -45,7 +45,7 @@ public interface FinalInfProduct extends DrlElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Adapters</em>' containment reference list.
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getFinalInfProduct_Adapters()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getFinalInfProduct_Adapters()
 	 * @model type="org.spbu.pldoctoolkit.drlvisual.Adapter" containment="true"
 	 * @generated
 	 */
@@ -61,7 +61,7 @@ public interface FinalInfProduct extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Product</em>' reference.
 	 * @see #setProduct(InfProduct)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getFinalInfProduct_Product()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getFinalInfProduct_Product()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -87,7 +87,7 @@ public interface FinalInfProduct extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getFinalInfProduct_Id()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getFinalInfProduct_Id()
 	 * @model id="true" required="true"
 	 * @generated
 	 */
@@ -113,7 +113,7 @@ public interface FinalInfProduct extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variables</em>' containment reference.
 	 * @see #setVariables(Variable)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getFinalInfProduct_Variables()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getFinalInfProduct_Variables()
 	 * @model containment="true"
 	 * @generated
 	 */

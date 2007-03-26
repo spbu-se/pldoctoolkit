@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.spbu.pldoctoolkit.drlvisual.DrlElement;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Drl Element</b></em>'.
+ * An implementation of the model object '<em><b>Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
@@ -45,7 +45,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.DRL_ELEMENT;
+		return DrlPackage.Literals.DRL_ELEMENT;
 	}
 
 } //DrlElementImpl

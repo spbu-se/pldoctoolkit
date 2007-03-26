@@ -8,8 +8,8 @@ package org.spbu.pldoctoolkit.drlvisual.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.InnerElement;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +43,7 @@ public abstract class InnerElementImpl extends DrlElementImpl implements InnerEl
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.INNER_ELEMENT;
+		return DrlPackage.Literals.INNER_ELEMENT;
 	}
 
 } //InnerElementImpl

@@ -11,15 +11,15 @@
 <plugin>
 
   <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://tepkom.ru/drl" 
-       class = "org.spbu.pldoctoolkit.drlvisual.drlPackage" />
+    <package
+       uri = "http://tepkom.ru/drl"
+       class = "org.spbu.pldoctoolkit.drlvisual.DrlPackage" />
   </extension>
 
   <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="drl" 
-       class="org.spbu.pldoctoolkit.drlvisual.util.drlResourceFactoryImpl" />
+    <parser
+       type="drl"
+       class="org.spbu.pldoctoolkit.drlvisual.util.DrlResourceFactoryImpl" />
   </extension>
 
 </plugin>

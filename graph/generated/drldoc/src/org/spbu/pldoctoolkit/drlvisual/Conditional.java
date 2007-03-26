@@ -9,21 +9,21 @@ package org.spbu.pldoctoolkit.drlvisual;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Condition</b></em>'.
+ * A representation of the model object '<em><b>Conditional</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.spbu.pldoctoolkit.drlvisual.Condition#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.drlvisual.Conditional#getCondition <em>Condition</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getCondition()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getConditional()
  * @model
  * @generated
  */
-public interface Condition extends InnerElement, SubelementedElement {
+public interface Conditional extends InnerElement, SubelementedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41,14 +41,14 @@ public interface Condition extends InnerElement, SubelementedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition</em>' attribute.
 	 * @see #setCondition(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getCondition_Condition()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getConditional_Condition()
 	 * @model required="true"
 	 * @generated
 	 */
 	String getCondition();
 
 	/**
-	 * Sets the value of the '{@link org.spbu.pldoctoolkit.drlvisual.Condition#getCondition <em>Condition</em>}' attribute.
+	 * Sets the value of the '{@link org.spbu.pldoctoolkit.drlvisual.Conditional#getCondition <em>Condition</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition</em>' attribute.
@@ -57,4 +57,4 @@ public interface Condition extends InnerElement, SubelementedElement {
 	 */
 	void setCondition(String value);
 
-} // Condition
+} // Conditional

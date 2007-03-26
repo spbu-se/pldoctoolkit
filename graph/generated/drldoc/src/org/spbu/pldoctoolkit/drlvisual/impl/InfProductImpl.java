@@ -8,8 +8,8 @@ package org.spbu.pldoctoolkit.drlvisual.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.InfProduct;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +43,7 @@ public class InfProductImpl extends GenericDocumentPartImpl implements InfProduc
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.INF_PRODUCT;
+		return DrlPackage.Literals.INF_PRODUCT;
 	}
 
 } //InfProductImpl

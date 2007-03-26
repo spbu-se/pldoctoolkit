@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * A representation of the literals of the enumeration '<em><b>Group Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getGroupType()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getGroupType()
  * @model
  * @generated
  */

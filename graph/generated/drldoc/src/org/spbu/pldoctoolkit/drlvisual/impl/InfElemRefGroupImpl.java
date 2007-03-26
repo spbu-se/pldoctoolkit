@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.GroupType;
 import org.spbu.pldoctoolkit.drlvisual.InfElemRefGroup;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -114,7 +114,7 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.INF_ELEM_REF_GROUP;
+		return DrlPackage.Literals.INF_ELEM_REF_GROUP;
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.INF_ELEM_REF_GROUP__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF_GROUP__ID, oldId, id));
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 		GroupType oldModifier = modifier;
 		modifier = newModifier == null ? MODIFIER_EDEFAULT : newModifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.INF_ELEM_REF_GROUP__MODIFIER, oldModifier, modifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF_GROUP__MODIFIER, oldModifier, modifier));
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.INF_ELEM_REF_GROUP__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF_GROUP__NAME, oldName, name));
 	}
 
 	/**
@@ -187,11 +187,11 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.INF_ELEM_REF_GROUP__ID:
+			case DrlPackage.INF_ELEM_REF_GROUP__ID:
 				return getId();
-			case drlPackage.INF_ELEM_REF_GROUP__MODIFIER:
+			case DrlPackage.INF_ELEM_REF_GROUP__MODIFIER:
 				return getModifier();
-			case drlPackage.INF_ELEM_REF_GROUP__NAME:
+			case DrlPackage.INF_ELEM_REF_GROUP__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -204,13 +204,13 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.INF_ELEM_REF_GROUP__ID:
+			case DrlPackage.INF_ELEM_REF_GROUP__ID:
 				setId((String)newValue);
 				return;
-			case drlPackage.INF_ELEM_REF_GROUP__MODIFIER:
+			case DrlPackage.INF_ELEM_REF_GROUP__MODIFIER:
 				setModifier((GroupType)newValue);
 				return;
-			case drlPackage.INF_ELEM_REF_GROUP__NAME:
+			case DrlPackage.INF_ELEM_REF_GROUP__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -224,13 +224,13 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.INF_ELEM_REF_GROUP__ID:
+			case DrlPackage.INF_ELEM_REF_GROUP__ID:
 				setId(ID_EDEFAULT);
 				return;
-			case drlPackage.INF_ELEM_REF_GROUP__MODIFIER:
+			case DrlPackage.INF_ELEM_REF_GROUP__MODIFIER:
 				setModifier(MODIFIER_EDEFAULT);
 				return;
-			case drlPackage.INF_ELEM_REF_GROUP__NAME:
+			case DrlPackage.INF_ELEM_REF_GROUP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -244,11 +244,11 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.INF_ELEM_REF_GROUP__ID:
+			case DrlPackage.INF_ELEM_REF_GROUP__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case drlPackage.INF_ELEM_REF_GROUP__MODIFIER:
+			case DrlPackage.INF_ELEM_REF_GROUP__MODIFIER:
 				return modifier != MODIFIER_EDEFAULT;
-			case drlPackage.INF_ELEM_REF_GROUP__NAME:
+			case DrlPackage.INF_ELEM_REF_GROUP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);

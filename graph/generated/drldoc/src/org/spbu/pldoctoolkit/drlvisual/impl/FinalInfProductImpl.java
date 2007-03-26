@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.spbu.pldoctoolkit.drlvisual.Adapter;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.FinalInfProduct;
 import org.spbu.pldoctoolkit.drlvisual.InfProduct;
 import org.spbu.pldoctoolkit.drlvisual.Variable;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -116,7 +116,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.FINAL_INF_PRODUCT;
+		return DrlPackage.Literals.FINAL_INF_PRODUCT;
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 */
 	public EList getAdapters() {
 		if (adapters == null) {
-			adapters = new EObjectContainmentEList(Adapter.class, this, drlPackage.FINAL_INF_PRODUCT__ADAPTERS);
+			adapters = new EObjectContainmentEList(Adapter.class, this, DrlPackage.FINAL_INF_PRODUCT__ADAPTERS);
 		}
 		return adapters;
 	}
@@ -142,7 +142,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 			product = (InfProduct)eResolveProxy(oldProduct);
 			if (product != oldProduct) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, drlPackage.FINAL_INF_PRODUCT__PRODUCT, oldProduct, product));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DrlPackage.FINAL_INF_PRODUCT__PRODUCT, oldProduct, product));
 			}
 		}
 		return product;
@@ -166,7 +166,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 		InfProduct oldProduct = product;
 		product = newProduct;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.FINAL_INF_PRODUCT__PRODUCT, oldProduct, product));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.FINAL_INF_PRODUCT__PRODUCT, oldProduct, product));
 	}
 
 	/**
@@ -187,7 +187,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.FINAL_INF_PRODUCT__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.FINAL_INF_PRODUCT__ID, oldId, id));
 	}
 
 	/**
@@ -208,7 +208,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 		Variable oldVariables = variables;
 		variables = newVariables;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, drlPackage.FINAL_INF_PRODUCT__VARIABLES, oldVariables, newVariables);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.FINAL_INF_PRODUCT__VARIABLES, oldVariables, newVariables);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -223,14 +223,14 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 		if (newVariables != variables) {
 			NotificationChain msgs = null;
 			if (variables != null)
-				msgs = ((InternalEObject)variables).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - drlPackage.FINAL_INF_PRODUCT__VARIABLES, null, msgs);
+				msgs = ((InternalEObject)variables).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DrlPackage.FINAL_INF_PRODUCT__VARIABLES, null, msgs);
 			if (newVariables != null)
-				msgs = ((InternalEObject)newVariables).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - drlPackage.FINAL_INF_PRODUCT__VARIABLES, null, msgs);
+				msgs = ((InternalEObject)newVariables).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DrlPackage.FINAL_INF_PRODUCT__VARIABLES, null, msgs);
 			msgs = basicSetVariables(newVariables, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.FINAL_INF_PRODUCT__VARIABLES, newVariables, newVariables));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.FINAL_INF_PRODUCT__VARIABLES, newVariables, newVariables));
 	}
 
 	/**
@@ -240,9 +240,9 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case drlPackage.FINAL_INF_PRODUCT__ADAPTERS:
+			case DrlPackage.FINAL_INF_PRODUCT__ADAPTERS:
 				return ((InternalEList)getAdapters()).basicRemove(otherEnd, msgs);
-			case drlPackage.FINAL_INF_PRODUCT__VARIABLES:
+			case DrlPackage.FINAL_INF_PRODUCT__VARIABLES:
 				return basicSetVariables(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -255,14 +255,14 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.FINAL_INF_PRODUCT__ADAPTERS:
+			case DrlPackage.FINAL_INF_PRODUCT__ADAPTERS:
 				return getAdapters();
-			case drlPackage.FINAL_INF_PRODUCT__PRODUCT:
+			case DrlPackage.FINAL_INF_PRODUCT__PRODUCT:
 				if (resolve) return getProduct();
 				return basicGetProduct();
-			case drlPackage.FINAL_INF_PRODUCT__ID:
+			case DrlPackage.FINAL_INF_PRODUCT__ID:
 				return getId();
-			case drlPackage.FINAL_INF_PRODUCT__VARIABLES:
+			case DrlPackage.FINAL_INF_PRODUCT__VARIABLES:
 				return getVariables();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -275,17 +275,17 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.FINAL_INF_PRODUCT__ADAPTERS:
+			case DrlPackage.FINAL_INF_PRODUCT__ADAPTERS:
 				getAdapters().clear();
 				getAdapters().addAll((Collection)newValue);
 				return;
-			case drlPackage.FINAL_INF_PRODUCT__PRODUCT:
+			case DrlPackage.FINAL_INF_PRODUCT__PRODUCT:
 				setProduct((InfProduct)newValue);
 				return;
-			case drlPackage.FINAL_INF_PRODUCT__ID:
+			case DrlPackage.FINAL_INF_PRODUCT__ID:
 				setId((String)newValue);
 				return;
-			case drlPackage.FINAL_INF_PRODUCT__VARIABLES:
+			case DrlPackage.FINAL_INF_PRODUCT__VARIABLES:
 				setVariables((Variable)newValue);
 				return;
 		}
@@ -299,16 +299,16 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.FINAL_INF_PRODUCT__ADAPTERS:
+			case DrlPackage.FINAL_INF_PRODUCT__ADAPTERS:
 				getAdapters().clear();
 				return;
-			case drlPackage.FINAL_INF_PRODUCT__PRODUCT:
+			case DrlPackage.FINAL_INF_PRODUCT__PRODUCT:
 				setProduct((InfProduct)null);
 				return;
-			case drlPackage.FINAL_INF_PRODUCT__ID:
+			case DrlPackage.FINAL_INF_PRODUCT__ID:
 				setId(ID_EDEFAULT);
 				return;
-			case drlPackage.FINAL_INF_PRODUCT__VARIABLES:
+			case DrlPackage.FINAL_INF_PRODUCT__VARIABLES:
 				setVariables((Variable)null);
 				return;
 		}
@@ -322,13 +322,13 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.FINAL_INF_PRODUCT__ADAPTERS:
+			case DrlPackage.FINAL_INF_PRODUCT__ADAPTERS:
 				return adapters != null && !adapters.isEmpty();
-			case drlPackage.FINAL_INF_PRODUCT__PRODUCT:
+			case DrlPackage.FINAL_INF_PRODUCT__PRODUCT:
 				return product != null;
-			case drlPackage.FINAL_INF_PRODUCT__ID:
+			case DrlPackage.FINAL_INF_PRODUCT__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case drlPackage.FINAL_INF_PRODUCT__VARIABLES:
+			case DrlPackage.FINAL_INF_PRODUCT__VARIABLES:
 				return variables != null;
 		}
 		return super.eIsSet(featureID);

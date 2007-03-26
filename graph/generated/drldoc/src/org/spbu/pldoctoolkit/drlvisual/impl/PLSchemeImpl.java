@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.PLScheme;
 import org.spbu.pldoctoolkit.drlvisual.Product;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,7 +68,7 @@ public class PLSchemeImpl extends DrlElementImpl implements PLScheme {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.PL_SCHEME;
+		return DrlPackage.Literals.PL_SCHEME;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class PLSchemeImpl extends DrlElementImpl implements PLScheme {
 	 */
 	public EList getProducts() {
 		if (products == null) {
-			products = new EObjectContainmentEList(Product.class, this, drlPackage.PL_SCHEME__PRODUCTS);
+			products = new EObjectContainmentEList(Product.class, this, DrlPackage.PL_SCHEME__PRODUCTS);
 		}
 		return products;
 	}
@@ -90,7 +90,7 @@ public class PLSchemeImpl extends DrlElementImpl implements PLScheme {
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case drlPackage.PL_SCHEME__PRODUCTS:
+			case DrlPackage.PL_SCHEME__PRODUCTS:
 				return ((InternalEList)getProducts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -103,7 +103,7 @@ public class PLSchemeImpl extends DrlElementImpl implements PLScheme {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.PL_SCHEME__PRODUCTS:
+			case DrlPackage.PL_SCHEME__PRODUCTS:
 				return getProducts();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -116,7 +116,7 @@ public class PLSchemeImpl extends DrlElementImpl implements PLScheme {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.PL_SCHEME__PRODUCTS:
+			case DrlPackage.PL_SCHEME__PRODUCTS:
 				getProducts().clear();
 				getProducts().addAll((Collection)newValue);
 				return;
@@ -131,7 +131,7 @@ public class PLSchemeImpl extends DrlElementImpl implements PLScheme {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.PL_SCHEME__PRODUCTS:
+			case DrlPackage.PL_SCHEME__PRODUCTS:
 				getProducts().clear();
 				return;
 		}
@@ -145,7 +145,7 @@ public class PLSchemeImpl extends DrlElementImpl implements PLScheme {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.PL_SCHEME__PRODUCTS:
+			case DrlPackage.PL_SCHEME__PRODUCTS:
 				return products != null && !products.isEmpty();
 		}
 		return super.eIsSet(featureID);

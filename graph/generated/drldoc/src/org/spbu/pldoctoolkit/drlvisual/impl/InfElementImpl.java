@@ -8,8 +8,8 @@ package org.spbu.pldoctoolkit.drlvisual.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.InfElement;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +43,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.INF_ELEMENT;
+		return DrlPackage.Literals.INF_ELEMENT;
 	}
 
 } //InfElementImpl

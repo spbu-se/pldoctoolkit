@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.InnerElement;
 import org.spbu.pldoctoolkit.drlvisual.SubelementedElement;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,7 +70,7 @@ public abstract class SubelementedElementImpl extends EObjectImpl implements Sub
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.SUBELEMENTED_ELEMENT;
+		return DrlPackage.Literals.SUBELEMENTED_ELEMENT;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public abstract class SubelementedElementImpl extends EObjectImpl implements Sub
 	 */
 	public EList getElements() {
 		if (elements == null) {
-			elements = new EObjectContainmentEList(InnerElement.class, this, drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS);
+			elements = new EObjectContainmentEList(InnerElement.class, this, DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS);
 		}
 		return elements;
 	}
@@ -92,7 +92,7 @@ public abstract class SubelementedElementImpl extends EObjectImpl implements Sub
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS:
+			case DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS:
 				return ((InternalEList)getElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -105,7 +105,7 @@ public abstract class SubelementedElementImpl extends EObjectImpl implements Sub
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS:
+			case DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS:
 				return getElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -118,7 +118,7 @@ public abstract class SubelementedElementImpl extends EObjectImpl implements Sub
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS:
+			case DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS:
 				getElements().clear();
 				getElements().addAll((Collection)newValue);
 				return;
@@ -133,7 +133,7 @@ public abstract class SubelementedElementImpl extends EObjectImpl implements Sub
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS:
+			case DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS:
 				getElements().clear();
 				return;
 		}
@@ -147,7 +147,7 @@ public abstract class SubelementedElementImpl extends EObjectImpl implements Sub
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS:
+			case DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS:
 				return elements != null && !elements.isEmpty();
 		}
 		return super.eIsSet(featureID);

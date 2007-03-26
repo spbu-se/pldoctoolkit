@@ -15,12 +15,12 @@ package org.spbu.pldoctoolkit.drlvisual;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.spbu.pldoctoolkit.drlvisual.NestPoint#getName <em>Name</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.drlvisual.NestPoint#getId <em>Id</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.drlvisual.NestPoint#getDescr <em>Descr</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getNestPoint()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getNestPoint()
  * @model
  * @generated
  */
@@ -33,30 +33,30 @@ public interface NestPoint extends InnerElement, SubelementedElement {
 	String copyright = "copyleft 2007";
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getNestPoint_Name()
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(String)
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getNestPoint_Id()
 	 * @model id="true" required="true"
 	 * @generated
 	 */
-	String getName();
+	String getId();
 
 	/**
-	 * Sets the value of the '{@link org.spbu.pldoctoolkit.drlvisual.NestPoint#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.spbu.pldoctoolkit.drlvisual.NestPoint#getId <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
 	 * @generated
 	 */
-	void setName(String value);
+	void setId(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Descr</b></em>' attribute.
@@ -68,7 +68,7 @@ public interface NestPoint extends InnerElement, SubelementedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Descr</em>' attribute.
 	 * @see #setDescr(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getNestPoint_Descr()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getNestPoint_Descr()
 	 * @model
 	 * @generated
 	 */

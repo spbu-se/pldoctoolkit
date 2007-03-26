@@ -13,7 +13,7 @@ package org.spbu.pldoctoolkit.drlvisual;
  * <!-- end-user-doc -->
  *
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getInnerElement()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getInnerElement()
  * @model abstract="true"
  * @generated
  */

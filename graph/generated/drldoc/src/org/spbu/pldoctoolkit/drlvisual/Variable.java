@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getVariable()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getVariable()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface Variable extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getVariable_Name()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getVariable_Name()
 	 * @model id="true" required="true"
 	 * @generated
 	 */

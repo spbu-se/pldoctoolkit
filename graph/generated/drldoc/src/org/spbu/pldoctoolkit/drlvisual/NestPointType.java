@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * A representation of the literals of the enumeration '<em><b>Nest Point Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getNestPointType()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getNestPointType()
  * @model
  * @generated
  */
@@ -75,19 +75,19 @@ public final class NestPointType extends AbstractEnumerator {
 	public static final int REPLACE = 3;
 
 	/**
-	 * The '<em><b>REMOVE</b></em>' literal value.
+	 * The '<em><b>DELETE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>REMOVE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DELETE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REMOVE_LITERAL
+	 * @see #DELETE_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REMOVE = 4;
+	public static final int DELETE = 4;
 
 	/**
 	 * The '<em><b>INSERT BEFORE</b></em>' literal object.
@@ -120,14 +120,14 @@ public final class NestPointType extends AbstractEnumerator {
 	public static final NestPointType REPLACE_LITERAL = new NestPointType(REPLACE, "REPLACE", "REPLACE");
 
 	/**
-	 * The '<em><b>REMOVE</b></em>' literal object.
+	 * The '<em><b>DELETE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #REMOVE
+	 * @see #DELETE
 	 * @generated
 	 * @ordered
 	 */
-	public static final NestPointType REMOVE_LITERAL = new NestPointType(REMOVE, "REMOVE", "REMOVE");
+	public static final NestPointType DELETE_LITERAL = new NestPointType(DELETE, "DELETE", "DELETE");
 
 	/**
 	 * An array of all the '<em><b>Nest Point Type</b></em>' enumerators.
@@ -140,7 +140,7 @@ public final class NestPointType extends AbstractEnumerator {
 			INSERT_BEFORE_LITERAL,
 			INSERT_AFTER_LITERAL,
 			REPLACE_LITERAL,
-			REMOVE_LITERAL,
+			DELETE_LITERAL,
 		};
 
 	/**
@@ -194,7 +194,7 @@ public final class NestPointType extends AbstractEnumerator {
 			case INSERT_BEFORE: return INSERT_BEFORE_LITERAL;
 			case INSERT_AFTER: return INSERT_AFTER_LITERAL;
 			case REPLACE: return REPLACE_LITERAL;
-			case REMOVE: return REMOVE_LITERAL;
+			case DELETE: return DELETE_LITERAL;
 		}
 		return null;	
 	}

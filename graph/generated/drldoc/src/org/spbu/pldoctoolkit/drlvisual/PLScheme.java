@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getPLScheme()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getPLScheme()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface PLScheme extends DrlElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Products</em>' containment reference list.
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getPLScheme_Products()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getPLScheme_Products()
 	 * @model type="org.spbu.pldoctoolkit.drlvisual.Product" containment="true"
 	 * @generated
 	 */

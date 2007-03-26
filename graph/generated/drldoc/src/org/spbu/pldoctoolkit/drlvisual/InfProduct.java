@@ -13,7 +13,7 @@ package org.spbu.pldoctoolkit.drlvisual;
  * <!-- end-user-doc -->
  *
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getInfProduct()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getInfProduct()
  * @model
  * @generated
  */

@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getSubelementedElement()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getSubelementedElement()
  * @model abstract="true"
  * @generated
  */
@@ -44,7 +44,7 @@ public interface SubelementedElement extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Elements</em>' containment reference list.
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getSubelementedElement_Elements()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getSubelementedElement_Elements()
 	 * @model type="org.spbu.pldoctoolkit.drlvisual.InnerElement" containment="true"
 	 * @generated
 	 */

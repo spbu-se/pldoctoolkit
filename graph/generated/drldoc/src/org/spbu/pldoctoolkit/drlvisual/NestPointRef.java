@@ -21,7 +21,7 @@ package org.spbu.pldoctoolkit.drlvisual;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getNestPointRef()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getNestPointRef()
  * @model
  * @generated
  */
@@ -46,7 +46,7 @@ public interface NestPointRef extends DrlElement {
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see org.spbu.pldoctoolkit.drlvisual.NestPointType
 	 * @see #setType(NestPointType)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getNestPointRef_Type()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getNestPointRef_Type()
 	 * @model default="" required="true"
 	 * @generated
 	 */
@@ -73,7 +73,7 @@ public interface NestPointRef extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Text</em>' attribute.
 	 * @see #setText(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getNestPointRef_Text()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getNestPointRef_Text()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -99,7 +99,7 @@ public interface NestPointRef extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nest Point</em>' reference.
 	 * @see #setNestPoint(NestPoint)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getNestPointRef_NestPoint()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getNestPointRef_NestPoint()
 	 * @model required="true"
 	 * @generated
 	 */
