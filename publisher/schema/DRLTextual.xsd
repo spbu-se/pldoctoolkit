@@ -1,64 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by any (Ru-Board) -->
 <!-- The DRL Schema -->
 <!-- $Id$ -->
-<xs:schema xmlns:drl="drl" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="drl">
+<xs:schema xmlns:drl="drl" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="drl" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xs:complexType name="ProductLine">
     <xs:sequence>
-      <xs:element minOccurs="0" name="PLScheme" type="drl:PLScheme"/>
+      <xs:element name="PLScheme" type="drl:PLScheme" minOccurs="0"/>
       <xs:element name="PLDocumentation" type="drl:PLDocumentation"/>
     </xs:sequence>
     <xs:attribute name="name" type="xs:string" use="required"/>
   </xs:complexType>
-
   <!-- There's a diagram title on the product family diagram. We need a name here? -->
   <!-- A: see ProductLine/@name -->
   <xs:complexType name="PLScheme">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="Product" type="drl:Product"/>
+      <xs:element name="Product" type="drl:Product" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="PLDocumentation">
     <xs:sequence>
       <xs:element name="DocumentationCore" type="drl:DocumentationCore"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="ProductDocumentation" type="drl:ProductDocumentation"/>
+      <xs:element name="ProductDocumentation" type="drl:ProductDocumentation" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="ProductDocumentation">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="FinalInfProduct"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="Dictionary" type="drl:Dictionary"/>
-      <xs:group maxOccurs="unbounded" minOccurs="0" ref="drl:_DirectoryGroup"/>
+      <xs:element name="FinalInfProduct" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="Dictionary" type="drl:Dictionary" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:group ref="drl:_DirectoryGroup" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="productid" type="xs:string"/>
   </xs:complexType>
-
   <xs:complexType name="Product">
     <xs:attribute name="name" type="xs:string" use="required"/>
     <xs:attribute name="id" type="xs:string" use="required"/>
   </xs:complexType>
-
   <xs:group name="_DirectoryGroup">
     <xs:sequence>
       <xs:element name="Directory" type="drl:Directory"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="DirTemplate" type="drl:DirTemplate"/>
+      <xs:element name="DirTemplate" type="drl:DirTemplate" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:group>
-
   <xs:complexType name="DocumentationCore">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="InfProduct" type="drl:InfProduct"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="InfElement" type="drl:InfElement"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="Dictionary" type="drl:Dictionary"/>
-      <xs:group maxOccurs="unbounded" minOccurs="0" ref="drl:_DirectoryGroup"/>
+      <xs:element name="InfProduct" type="drl:InfProduct" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="InfElement" type="drl:InfElement" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="Dictionary" type="drl:Dictionary" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:group ref="drl:_DirectoryGroup" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
     <!-- XXX does not contain "name" attribute! -->
     <!-- A: We don't need name here since Documentation core belongs to productline and is never referenced -->
   </xs:complexType>
-
-  <xs:complexType mixed="true" name="InfElement">
-    <xs:choice maxOccurs="unbounded" minOccurs="0">
+  <xs:complexType name="InfElement" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
       <xs:element name="Nest" type="drl:Nest"/>
       <xs:element name="InfElemRef" type="drl:InfElemRef"/>
       <xs:element name="InfElemRefGroup" type="drl:InfElemRefGroup"/>
@@ -68,9 +62,8 @@
     <xs:attribute name="name" type="xs:string" use="required"/>
     <xs:attribute name="id" type="xs:string" use="required"/>
   </xs:complexType>
-
-  <xs:complexType mixed="true" name="InfProduct">
-    <xs:choice maxOccurs="unbounded" minOccurs="0">
+  <xs:complexType name="InfProduct" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
       <xs:element name="InfElemRef" type="drl:InfElemRef"/>
       <xs:element name="InfElemRefGroup" type="drl:InfElemRefGroup"/>
       <xs:element name="DictRef" type="drl:DictRef"/>
@@ -79,42 +72,36 @@
     <xs:attribute name="name" type="xs:string" use="required"/>
     <xs:attribute name="id" type="xs:string" use="required"/>
   </xs:complexType>
-
-  <xs:complexType mixed="true" name="Nest">
+  <xs:complexType name="Nest" mixed="true">
     <xs:sequence>
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string" use="required"/>
     <xs:attribute name="descr" type="xs:string" use="optional"/>
   </xs:complexType>
-
   <xs:simpleType name="groupmodifier">
     <xs:restriction base="xs:string">
       <xs:enumeration value="OR"/>
       <xs:enumeration value="XOR"/>
     </xs:restriction>
   </xs:simpleType>
-
   <xs:complexType name="InfElemRef">
     <xs:attribute name="id" type="xs:string" use="required"/>
-    <xs:attribute name="infelem" type="xs:string" use="required"/>
-    <xs:attribute name="group" type="xs:string" use="optional"/>
-    <xs:attribute default="true" name="optional" type="xs:boolean" use="optional"/>
+    <xs:attribute name="infelemid" type="xs:string" use="required"/>
+    <xs:attribute name="groupid" type="xs:string" use="optional"/>
+    <xs:attribute name="optional" type="xs:boolean" use="optional" default="true"/>
   </xs:complexType>
-
   <xs:complexType name="InfElemRefGroup">
     <xs:attribute name="id" type="xs:string" use="required"/>
     <xs:attribute name="name" type="xs:string" use="optional"/>
     <xs:attribute name="modifier" type="drl:groupmodifier" use="required"/>
   </xs:complexType>
-
   <xs:complexType name="Dictionary">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" name="Entry" type="drl:DictEntry"/>
+      <xs:element name="Entry" type="drl:DictEntry" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
   </xs:complexType>
-
   <xs:complexType name="DictEntry">
     <xs:simpleContent>
       <xs:extension base="xs:string">
@@ -122,59 +109,50 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
-
   <xs:complexType name="DirEntry">
     <xs:sequence>
       <xs:element name="Attr" type="drl:DirAttr"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
   </xs:complexType>
-
-  <xs:complexType mixed="true" name="DirAttr">
+  <xs:complexType name="DirAttr" mixed="true">
     <xs:sequence>
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
   </xs:complexType>
-
   <xs:complexType name="DictRef">
     <xs:attribute name="dictid" type="xs:string"/>
     <xs:attribute name="entryid" type="xs:string"/>
   </xs:complexType>
-
   <xs:complexType name="DirRef">
     <xs:attribute name="templid" type="xs:string"/>
     <xs:attribute name="entryid" type="xs:string"/>
   </xs:complexType>
-
   <xs:complexType name="Directory">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" name="Entry" type="drl:DirEntry"/>
+      <xs:element name="Entry" type="drl:DirEntry" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
   </xs:complexType>
-
-  <xs:complexType mixed="true" name="DirTemplate">
+  <xs:complexType name="DirTemplate" mixed="true">
     <xs:sequence>
       <xs:element name="AttrRef" type="drl:DirAttrRef"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
     <xs:attribute name="directoryid" type="xs:string"/>
   </xs:complexType>
-
   <xs:complexType name="DirAttrRef">
     <xs:attribute name="attrid" type="xs:string"/>
   </xs:complexType>
-
   <xs:complexType name="FinalInfProduct">
-    <xs:choice maxOccurs="unbounded" minOccurs="0">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
       <xs:element name="SetValue" type="drl:SetValue"/>
       <xs:element name="Adapter" type="drl:Adapter"/>
     </xs:choice>
     <xs:attribute name="id" type="xs:string"/>
     <xs:attribute name="productid" type="xs:string"/>
   </xs:complexType>
-
   <xs:complexType name="Adapter">
     <xs:choice maxOccurs="unbounded">
       <!-- XXX why don't we create a generic type 'nest' and derive from these  from it? -->
@@ -186,52 +164,44 @@
     </xs:choice>
     <xs:attribute name="infelemrefid" type="xs:string"/>
   </xs:complexType>
-
-  <xs:complexType mixed="true" name="Insert-Before">
+  <xs:complexType name="Insert-Before" mixed="true">
     <xs:sequence>
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="nestid" type="xs:string"/>
   </xs:complexType>
-
-  <xs:complexType mixed="true" name="Insert-After">
+  <xs:complexType name="Insert-After" mixed="true">
     <xs:sequence>
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="nestid" type="xs:string"/>
   </xs:complexType>
-
   <xs:complexType name="Delete-Nest">
     <xs:attribute name="nestid" type="xs:string"/>
   </xs:complexType>
-
-  <xs:complexType mixed="true" name="Replace-Nest">
+  <xs:complexType name="Replace-Nest" mixed="true">
     <xs:sequence>
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="nestid" type="xs:string"/>
   </xs:complexType>
-
-  <xs:complexType mixed="true" name="SetValue">
+  <xs:complexType name="SetValue" mixed="true">
     <xs:sequence>
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
   </xs:complexType>
-
   <!-- XXX shouldn't we exclude this from the schema? -->
   <!-- A: Why? -->
   <xs:complexType name="UseValue">
     <xs:attribute name="valueid" type="xs:string"/>
   </xs:complexType>
-
-  <xs:complexType mixed="true" name="Conditional">
+  <xs:complexType name="Conditional" mixed="true">
     <xs:sequence>
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="condition" type="xs:string"/>
   </xs:complexType>
-
   <!-- The list of possible root elements: -->
   <xs:element name="ProductLine" type="drl:ProductLine"/>
   <xs:element name="DocumentationCore" type="drl:DocumentationCore"/>
