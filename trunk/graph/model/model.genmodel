@@ -2,16 +2,16 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="copyleft 2007"
-    modelDirectory="/drldoc/src" modelPluginID="drldoc" redirection="" modelName="DRL Model"
+    modelDirectory="/drldoc/src" modelPluginID="drldoc" redirection="" modelName="DrlModel"
     importerID="org.eclipse.emf.importer.ecore">
   <foreignModel>model.ecore</foreignModel>
-  <genPackages prefix="drl" basePackage="org.spbu.pldoctoolkit" resource="XML" disposableProviderFactory="true"
+  <genPackages prefix="Drl" basePackage="org.spbu.pldoctoolkit" resource="XML" disposableProviderFactory="true"
       ecorePackage="model.ecore#/">
     <genEnums ecoreEnum="model.ecore#//NestPointType">
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestPointType/INSERT_BEFORE"/>
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestPointType/INSERT_AFTER"/>
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestPointType/REPLACE"/>
-      <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestPointType/REMOVE"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestPointType/DELETE"/>
     </genEnums>
     <genEnums ecoreEnum="model.ecore#//GroupType">
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//GroupType/OR"/>
@@ -31,12 +31,12 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Adapter/infElemRef"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//NestPoint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//NestPoint/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//NestPoint/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//NestPoint/descr"/>
     </genClasses>
     <genClasses image="false" ecoreClass="model.ecore#//InnerElement"/>
-    <genClasses ecoreClass="model.ecore#//Condition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Condition/condition"/>
+    <genClasses ecoreClass="model.ecore#//Conditional">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Conditional/condition"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//NestPointRef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//NestPointRef/type"/>
@@ -81,14 +81,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//DocumentationCore/parts"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//ProductDocumentation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ProductDocumentation/productId"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ProductDocumentation/finalInfProducts"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ProductDocumentation/product"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Variable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Variable/name"/>
-    </genClasses>
-    <genClasses ecoreClass="model.ecore#//Schema">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Schema/parts"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

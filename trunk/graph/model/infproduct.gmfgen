@@ -5,21 +5,21 @@
     xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel">
   <diagram
       visualID="79"
-      editPartClassName="SchemaEditPart"
-      itemSemanticEditPolicyClassName="SchemaItemSemanticEditPolicy"
-      notationViewFactoryClassName="SchemaViewFactory"
+      editPartClassName="DocumentationCoreEditPart"
+      itemSemanticEditPolicyClassName="DocumentationCoreItemSemanticEditPolicy"
+      notationViewFactoryClassName="DocumentationCoreViewFactory"
       iconProviderPriority="Low"
-      canonicalEditPolicyClassName="SchemaCanonicalEditPolicy">
+      canonicalEditPolicyClassName="DocumentationCoreCanonicalEditPolicy">
     <diagramRunTimeClass
-        href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
+        href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType
         xsi:type="gmfgen:MetamodelType"
-        editHelperClassName="SchemaEditHelper"/>
+        editHelperClassName="DocumentationCoreEditHelper"/>
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
     <domainDiagramElement
-        href="model.genmodel#//drlvisual/Schema"/>
+        href="model.genmodel#//drlvisual/DocumentationCore"/>
     <topLevelNodes
         visualID="1001"
         editPartClassName="InfElementEditPart"
@@ -28,7 +28,7 @@
         canonicalEditPolicyClassName="InfElementCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="InfElementGraphicalNodeEditPolicy">
       <diagramRunTimeClass
-          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="InfElementEditHelper"/>
@@ -43,9 +43,9 @@
         <metaClass
             href="model.genmodel#//drlvisual/InfElement"/>
         <containmentMetaFeature
-            href="model.genmodel#//drlvisual/Schema/parts"/>
+            href="model.genmodel#//drlvisual/DocumentationCore/parts"/>
         <childMetaFeature
-            href="model.genmodel#//drlvisual/Schema/parts"/>
+            href="model.genmodel#//drlvisual/DocumentationCore/parts"/>
       </modelFacet>
       <labels
           visualID="4001"
@@ -53,7 +53,7 @@
           itemSemanticEditPolicyClassName="InfElementNameIdItemSemanticEditPolicy"
           notationViewFactoryClassName="InfElementNameIdViewFactory">
         <diagramRunTimeClass
-            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getFigureInfElementCaptionFigure"
@@ -77,7 +77,7 @@
         canonicalEditPolicyClassName="InfProductCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="InfProductGraphicalNodeEditPolicy">
       <diagramRunTimeClass
-          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="InfProductEditHelper"/>
@@ -92,9 +92,9 @@
         <metaClass
             href="model.genmodel#//drlvisual/InfProduct"/>
         <containmentMetaFeature
-            href="model.genmodel#//drlvisual/Schema/parts"/>
+            href="model.genmodel#//drlvisual/DocumentationCore/parts"/>
         <childMetaFeature
-            href="model.genmodel#//drlvisual/Schema/parts"/>
+            href="model.genmodel#//drlvisual/DocumentationCore/parts"/>
       </modelFacet>
       <labels
           visualID="4002"
@@ -102,7 +102,7 @@
           itemSemanticEditPolicyClassName="InfProductNameIdItemSemanticEditPolicy"
           notationViewFactoryClassName="InfProductNameIdViewFactory">
         <diagramRunTimeClass
-            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getFigureInfProductCaptionFigure"
@@ -126,7 +126,7 @@
         canonicalEditPolicyClassName="InfElemRefGroupCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="InfElemRefGroupGraphicalNodeEditPolicy">
       <diagramRunTimeClass
-          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="InfElemRefGroupEditHelper"/>
@@ -147,7 +147,7 @@
           itemSemanticEditPolicyClassName="InfElemRefGroupNameItemSemanticEditPolicy"
           notationViewFactoryClassName="InfElemRefGroupNameViewFactory">
         <diagramRunTimeClass
-            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getFigureInfElemRefGroupNameFigure"
@@ -165,7 +165,7 @@
         itemSemanticEditPolicyClassName="InfElemRefItemSemanticEditPolicy"
         notationViewFactoryClassName="InfElemRefViewFactory">
       <diagramRunTimeClass
-          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="InfElemRefEditHelper"/>
@@ -203,7 +203,7 @@
           itemSemanticEditPolicyClassName="InfElemRefIdItemSemanticEditPolicy"
           notationViewFactoryClassName="InfElemRefIdViewFactory">
         <diagramRunTimeClass
-            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="InfElemRefIdFigure"
@@ -223,74 +223,11 @@
     </links>
     <links
         visualID="3002"
-        editPartClassName="InfElemRef2EditPart"
-        itemSemanticEditPolicyClassName="InfElemRef2ItemSemanticEditPolicy"
-        notationViewFactoryClassName="InfElemRef2ViewFactory">
-      <diagramRunTimeClass
-          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-      <elementType
-          xsi:type="gmfgen:SpecializationType"
-          metamodelType="//@diagram/@links.0/@elementType"
-          editHelperAdviceClassName="InfElemRefEditHelperAdvice"/>
-      <viewmap
-          xsi:type="gmfgen:InnerClassViewmap"
-          className="InfElemRefFigure"
-          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class InfElemRefFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public InfElemRefFigure() {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolygonDecoration createTargetDecoration() {&#xD;&#xA;org.eclipse.draw2d.PolygonDecoration df = new org.eclipse.draw2d.PolygonDecoration();&#xD;&#xA;// dispatchNext?&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;org.eclipse.draw2d.geometry.PointList pl = new org.eclipse.draw2d.geometry.PointList();&#xD;&#xA;&#x9;&#x9;pl.addPoint(1, 4);&#xD;&#xA;&#x9;&#x9;pl.addPoint(3, 3);&#xD;&#xA;&#x9;&#x9;pl.addPoint(4, 1);&#xD;&#xA;&#x9;&#x9;pl.addPoint(4, -1);&#xD;&#xA;&#x9;&#x9;pl.addPoint(3, -3);&#xD;&#xA;&#x9;&#x9;pl.addPoint(1, -4);&#xD;&#xA;&#x9;&#x9;pl.addPoint(-1, -4);&#xD;&#xA;&#x9;&#x9;pl.addPoint(-3, -3);&#xD;&#xA;&#x9;&#x9;pl.addPoint(-4, -1);&#xD;&#xA;&#x9;&#x9;pl.addPoint(-4, 1);&#xD;&#xA;&#x9;&#x9;pl.addPoint(-3, 3);&#xD;&#xA;&#x9;&#x9;pl.addPoint(-1, 4);&#xD;&#xA;&#x9;&#x9;pl.addPoint(1, 4);&#xD;&#xA;&#x9;&#x9;df.setTemplate(pl);&#xD;&#xA;&#x9;&#x9;df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return df;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
-        <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-      </viewmap>
-      <modelFacet
-          xsi:type="gmfgen:TypeLinkModelFacet">
-        <metaClass
-            href="model.genmodel#//drlvisual/InfElemRef"/>
-        <containmentMetaFeature
-            href="model.genmodel#//drlvisual/SubelementedElement/elements"/>
-        <childMetaFeature
-            href="model.genmodel#//drlvisual/SubelementedElement/elements"/>
-        <modelElementSelector
-            body="self.optional = false"/>
-        <modelElementInitializer
-            xsi:type="gmfgen:GenFeatureSeqInitializer">
-          <initializers
-              body="false">
-            <feature
-                href="model.genmodel#//drlvisual/InfElemRef/optional"/>
-          </initializers>
-        </modelElementInitializer>
-        <targetMetaFeature
-            href="model.genmodel#//drlvisual/InfElemRef/infelem"/>
-      </modelFacet>
-      <labels
-          visualID="4005"
-          editPartClassName="InfElemRefId2EditPart"
-          itemSemanticEditPolicyClassName="InfElemRefId2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="InfElemRefId2ViewFactory">
-        <diagramRunTimeClass
-            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="InfElemRefIdFigure"
-            classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class InfElemRefIdFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public InfElemRefIdFigure() {&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:LabelOffsetAttributes"
-              y="40"/>
-          <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
-        <modelFacet
-            xsi:type="gmfgen:FeatureLabelModelFacet">
-          <metaFeature
-              href="model.genmodel#//drlvisual/InfElemRef/id"/>
-        </modelFacet>
-      </labels>
-    </links>
-    <links
-        visualID="3003"
         editPartClassName="SubelementedElementElementsEditPart"
         itemSemanticEditPolicyClassName="SubelementedElementElementsItemSemanticEditPolicy"
         notationViewFactoryClassName="SubelementedElementElementsViewFactory">
       <diagramRunTimeClass
-          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"
           editHelperAdviceClassName="SubelementedElementElementsEditHelperAdvice"/>
@@ -311,34 +248,29 @@
           title="elements">
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="InfElement"
-            description="Create new InfElement"
-            genNodes="//@diagram/@topLevelNodes.0"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
             title="InfProduct"
             description="Create new InfProduct"
             genNodes="//@diagram/@topLevelNodes.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="InfElemRefOptional"
+            title="InfElement"
+            description="Create new InfElement"
+            genNodes="//@diagram/@topLevelNodes.0"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="InfElemRef"
             description="Create new InfElemRefOptional"
             genLinks="//@diagram/@links.0"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="InfElemRefMandatory"
-            description="Create new InfElemRefMandatory"
-            genLinks="//@diagram/@links.1"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
             title="InfElemRefGroup"
-            description="Create new InfElemRefGroup"
-            genNodes="//@diagram/@topLevelNodes.2"/>
+            description="Create new InfElemRefGroup"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="SubelementedElementElements"
             description="Create new SubelementedElementElements"
-            genLinks="//@diagram/@links.2"/>
+            genNodes="//@diagram/@topLevelNodes.2"
+            genLinks="//@diagram/@links.1"/>
       </groups>
     </palette>
   </diagram>
@@ -349,7 +281,7 @@
   <expressionProviders>
     <providers
         xsi:type="gmfgen:GenExpressionInterpreter"
-        expressions="//@diagram/@links.0/@modelFacet/@modelElementSelector //@diagram/@links.0/@modelFacet/@modelElementInitializer/@initializers.0 //@diagram/@links.1/@modelFacet/@modelElementSelector //@diagram/@links.1/@modelFacet/@modelElementInitializer/@initializers.0">
+        expressions="//@diagram/@links.0/@modelFacet/@modelElementSelector //@diagram/@links.0/@modelFacet/@modelElementInitializer/@initializers.0">
       <requiredPluginIDs>org.eclipse.emf.ocl</requiredPluginIDs>
       <requiredPluginIDs>org.eclipse.emf.query.ocl</requiredPluginIDs>
     </providers>

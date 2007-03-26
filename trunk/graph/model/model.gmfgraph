@@ -111,10 +111,21 @@
         xsi:type="gmfgraph:PolylineConnection"
         referencingElements="SubelementedElementElements"
         name="SubelementedElementElementsFigure"/>
+    <figures
+        xsi:type="gmfgraph:Rectangle"
+        referencingElements="DocumentationCore"
+        name="DocumentationCoreFigure"
+        fill="false">
+      <layout
+          xsi:type="gmfgraph:FlowLayout"/>
+    </figures>
   </figures>
   <nodes
       name="InfElement"
       figure="InfElementFigure"/>
+  <nodes
+      name="DocumentationCore"
+      figure="DocumentationCoreFigure"/>
   <nodes
       name="InfProduct"
       figure="InfProductFigure"/>

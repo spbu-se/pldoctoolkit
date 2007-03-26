@@ -45,17 +45,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="InfElemRefOptional"
+          title="InfElemRef"
           description="Create new InfElemRefOptional">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="InfElemRefMandatory"
-          description="Create new InfElemRefMandatory">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
