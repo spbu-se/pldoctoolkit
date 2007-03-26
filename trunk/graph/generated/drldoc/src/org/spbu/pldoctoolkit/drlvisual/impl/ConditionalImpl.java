@@ -21,26 +21,26 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.spbu.pldoctoolkit.drlvisual.Condition;
+import org.spbu.pldoctoolkit.drlvisual.Conditional;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.InnerElement;
 import org.spbu.pldoctoolkit.drlvisual.SubelementedElement;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Condition</b></em>'.
+ * An implementation of the model object '<em><b>Conditional</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.spbu.pldoctoolkit.drlvisual.impl.ConditionImpl#getElements <em>Elements</em>}</li>
- *   <li>{@link org.spbu.pldoctoolkit.drlvisual.impl.ConditionImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.drlvisual.impl.ConditionalImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.drlvisual.impl.ConditionalImpl#getCondition <em>Condition</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ConditionImpl extends InnerElementImpl implements Condition {
+public class ConditionalImpl extends InnerElementImpl implements Conditional {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,7 +83,7 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConditionImpl() {
+	protected ConditionalImpl() {
 		super();
 	}
 
@@ -93,7 +93,7 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.CONDITION;
+		return DrlPackage.Literals.CONDITIONAL;
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 	 */
 	public EList getElements() {
 		if (elements == null) {
-			elements = new EObjectContainmentEList(InnerElement.class, this, drlPackage.CONDITION__ELEMENTS);
+			elements = new EObjectContainmentEList(InnerElement.class, this, DrlPackage.CONDITIONAL__ELEMENTS);
 		}
 		return elements;
 	}
@@ -126,7 +126,7 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 		String oldCondition = condition;
 		condition = newCondition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.CONDITION__CONDITION, oldCondition, condition));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.CONDITIONAL__CONDITION, oldCondition, condition));
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case drlPackage.CONDITION__ELEMENTS:
+			case DrlPackage.CONDITIONAL__ELEMENTS:
 				return ((InternalEList)getElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -149,9 +149,9 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.CONDITION__ELEMENTS:
+			case DrlPackage.CONDITIONAL__ELEMENTS:
 				return getElements();
-			case drlPackage.CONDITION__CONDITION:
+			case DrlPackage.CONDITIONAL__CONDITION:
 				return getCondition();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -164,11 +164,11 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.CONDITION__ELEMENTS:
+			case DrlPackage.CONDITIONAL__ELEMENTS:
 				getElements().clear();
 				getElements().addAll((Collection)newValue);
 				return;
-			case drlPackage.CONDITION__CONDITION:
+			case DrlPackage.CONDITIONAL__CONDITION:
 				setCondition((String)newValue);
 				return;
 		}
@@ -182,10 +182,10 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.CONDITION__ELEMENTS:
+			case DrlPackage.CONDITIONAL__ELEMENTS:
 				getElements().clear();
 				return;
-			case drlPackage.CONDITION__CONDITION:
+			case DrlPackage.CONDITIONAL__CONDITION:
 				setCondition(CONDITION_EDEFAULT);
 				return;
 		}
@@ -199,9 +199,9 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.CONDITION__ELEMENTS:
+			case DrlPackage.CONDITIONAL__ELEMENTS:
 				return elements != null && !elements.isEmpty();
-			case drlPackage.CONDITION__CONDITION:
+			case DrlPackage.CONDITIONAL__CONDITION:
 				return CONDITION_EDEFAULT == null ? condition != null : !CONDITION_EDEFAULT.equals(condition);
 		}
 		return super.eIsSet(featureID);
@@ -215,7 +215,7 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
 		if (baseClass == SubelementedElement.class) {
 			switch (derivedFeatureID) {
-				case drlPackage.CONDITION__ELEMENTS: return drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS;
+				case DrlPackage.CONDITIONAL__ELEMENTS: return DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -230,7 +230,7 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
 		if (baseClass == SubelementedElement.class) {
 			switch (baseFeatureID) {
-				case drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS: return drlPackage.CONDITION__ELEMENTS;
+				case DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS: return DrlPackage.CONDITIONAL__ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -252,4 +252,4 @@ public class ConditionImpl extends InnerElementImpl implements Condition {
 		return result.toString();
 	}
 
-} //ConditionImpl
+} //ConditionalImpl

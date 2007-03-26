@@ -20,7 +20,7 @@ package org.spbu.pldoctoolkit.drlvisual;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getProduct()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getProduct()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface Product extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getProduct_Name()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getProduct_Name()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -68,7 +68,7 @@ public interface Product extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getProduct_Id()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getProduct_Id()
 	 * @model id="true" required="true"
 	 * @generated
 	 */

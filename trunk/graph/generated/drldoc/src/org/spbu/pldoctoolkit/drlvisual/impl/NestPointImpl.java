@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.InnerElement;
 import org.spbu.pldoctoolkit.drlvisual.NestPoint;
 import org.spbu.pldoctoolkit.drlvisual.SubelementedElement;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +34,7 @@ import org.spbu.pldoctoolkit.drlvisual.drlPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.spbu.pldoctoolkit.drlvisual.impl.NestPointImpl#getElements <em>Elements</em>}</li>
- *   <li>{@link org.spbu.pldoctoolkit.drlvisual.impl.NestPointImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.drlvisual.impl.NestPointImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.drlvisual.impl.NestPointImpl#getDescr <em>Descr</em>}</li>
  * </ul>
  * </p>
@@ -60,24 +60,24 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	protected EList elements = null;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getId()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getId()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected String id = ID_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDescr() <em>Descr</em>}' attribute.
@@ -114,7 +114,7 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.NEST_POINT;
+		return DrlPackage.Literals.NEST_POINT;
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	 */
 	public EList getElements() {
 		if (elements == null) {
-			elements = new EObjectContainmentEList(InnerElement.class, this, drlPackage.NEST_POINT__ELEMENTS);
+			elements = new EObjectContainmentEList(InnerElement.class, this, DrlPackage.NEST_POINT__ELEMENTS);
 		}
 		return elements;
 	}
@@ -134,8 +134,8 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
+	public String getId() {
+		return id;
 	}
 
 	/**
@@ -143,11 +143,11 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+	public void setId(String newId) {
+		String oldId = id;
+		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.NEST_POINT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.NEST_POINT__ID, oldId, id));
 	}
 
 	/**
@@ -168,7 +168,7 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 		String oldDescr = descr;
 		descr = newDescr;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.NEST_POINT__DESCR, oldDescr, descr));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.NEST_POINT__DESCR, oldDescr, descr));
 	}
 
 	/**
@@ -178,7 +178,7 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case drlPackage.NEST_POINT__ELEMENTS:
+			case DrlPackage.NEST_POINT__ELEMENTS:
 				return ((InternalEList)getElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -191,11 +191,11 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.NEST_POINT__ELEMENTS:
+			case DrlPackage.NEST_POINT__ELEMENTS:
 				return getElements();
-			case drlPackage.NEST_POINT__NAME:
-				return getName();
-			case drlPackage.NEST_POINT__DESCR:
+			case DrlPackage.NEST_POINT__ID:
+				return getId();
+			case DrlPackage.NEST_POINT__DESCR:
 				return getDescr();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -208,14 +208,14 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.NEST_POINT__ELEMENTS:
+			case DrlPackage.NEST_POINT__ELEMENTS:
 				getElements().clear();
 				getElements().addAll((Collection)newValue);
 				return;
-			case drlPackage.NEST_POINT__NAME:
-				setName((String)newValue);
+			case DrlPackage.NEST_POINT__ID:
+				setId((String)newValue);
 				return;
-			case drlPackage.NEST_POINT__DESCR:
+			case DrlPackage.NEST_POINT__DESCR:
 				setDescr((String)newValue);
 				return;
 		}
@@ -229,13 +229,13 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.NEST_POINT__ELEMENTS:
+			case DrlPackage.NEST_POINT__ELEMENTS:
 				getElements().clear();
 				return;
-			case drlPackage.NEST_POINT__NAME:
-				setName(NAME_EDEFAULT);
+			case DrlPackage.NEST_POINT__ID:
+				setId(ID_EDEFAULT);
 				return;
-			case drlPackage.NEST_POINT__DESCR:
+			case DrlPackage.NEST_POINT__DESCR:
 				setDescr(DESCR_EDEFAULT);
 				return;
 		}
@@ -249,11 +249,11 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.NEST_POINT__ELEMENTS:
+			case DrlPackage.NEST_POINT__ELEMENTS:
 				return elements != null && !elements.isEmpty();
-			case drlPackage.NEST_POINT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case drlPackage.NEST_POINT__DESCR:
+			case DrlPackage.NEST_POINT__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case DrlPackage.NEST_POINT__DESCR:
 				return DESCR_EDEFAULT == null ? descr != null : !DESCR_EDEFAULT.equals(descr);
 		}
 		return super.eIsSet(featureID);
@@ -267,7 +267,7 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
 		if (baseClass == SubelementedElement.class) {
 			switch (derivedFeatureID) {
-				case drlPackage.NEST_POINT__ELEMENTS: return drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS;
+				case DrlPackage.NEST_POINT__ELEMENTS: return DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -282,7 +282,7 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
 		if (baseClass == SubelementedElement.class) {
 			switch (baseFeatureID) {
-				case drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS: return drlPackage.NEST_POINT__ELEMENTS;
+				case DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS: return DrlPackage.NEST_POINT__ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -298,8 +298,8 @@ public class NestPointImpl extends InnerElementImpl implements NestPoint {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
+		result.append(" (id: ");
+		result.append(id);
 		result.append(", descr: ");
 		result.append(descr);
 		result.append(')');

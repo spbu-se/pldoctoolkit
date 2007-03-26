@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getDocumentationCore()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getDocumentationCore()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface DocumentationCore extends DrlElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parts</em>' containment reference list.
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getDocumentationCore_Parts()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getDocumentationCore_Parts()
 	 * @model type="org.spbu.pldoctoolkit.drlvisual.GenericDocumentPart" containment="true"
 	 * @generated
 	 */

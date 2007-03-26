@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.spbu.pldoctoolkit.drlvisual.DocumentationCore;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.GenericDocumentPart;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,7 +68,7 @@ public class DocumentationCoreImpl extends DrlElementImpl implements Documentati
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.DOCUMENTATION_CORE;
+		return DrlPackage.Literals.DOCUMENTATION_CORE;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class DocumentationCoreImpl extends DrlElementImpl implements Documentati
 	 */
 	public EList getParts() {
 		if (parts == null) {
-			parts = new EObjectContainmentEList(GenericDocumentPart.class, this, drlPackage.DOCUMENTATION_CORE__PARTS);
+			parts = new EObjectContainmentEList(GenericDocumentPart.class, this, DrlPackage.DOCUMENTATION_CORE__PARTS);
 		}
 		return parts;
 	}
@@ -90,7 +90,7 @@ public class DocumentationCoreImpl extends DrlElementImpl implements Documentati
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case drlPackage.DOCUMENTATION_CORE__PARTS:
+			case DrlPackage.DOCUMENTATION_CORE__PARTS:
 				return ((InternalEList)getParts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -103,7 +103,7 @@ public class DocumentationCoreImpl extends DrlElementImpl implements Documentati
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.DOCUMENTATION_CORE__PARTS:
+			case DrlPackage.DOCUMENTATION_CORE__PARTS:
 				return getParts();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -116,7 +116,7 @@ public class DocumentationCoreImpl extends DrlElementImpl implements Documentati
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.DOCUMENTATION_CORE__PARTS:
+			case DrlPackage.DOCUMENTATION_CORE__PARTS:
 				getParts().clear();
 				getParts().addAll((Collection)newValue);
 				return;
@@ -131,7 +131,7 @@ public class DocumentationCoreImpl extends DrlElementImpl implements Documentati
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.DOCUMENTATION_CORE__PARTS:
+			case DrlPackage.DOCUMENTATION_CORE__PARTS:
 				getParts().clear();
 				return;
 		}
@@ -145,7 +145,7 @@ public class DocumentationCoreImpl extends DrlElementImpl implements Documentati
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.DOCUMENTATION_CORE__PARTS:
+			case DrlPackage.DOCUMENTATION_CORE__PARTS:
 				return parts != null && !parts.isEmpty();
 		}
 		return super.eIsSet(featureID);

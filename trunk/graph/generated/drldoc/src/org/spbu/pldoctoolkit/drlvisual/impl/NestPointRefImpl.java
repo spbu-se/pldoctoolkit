@@ -13,10 +13,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.NestPoint;
 import org.spbu.pldoctoolkit.drlvisual.NestPointRef;
 import org.spbu.pldoctoolkit.drlvisual.NestPointType;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,7 +106,7 @@ public class NestPointRefImpl extends DrlElementImpl implements NestPointRef {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.NEST_POINT_REF;
+		return DrlPackage.Literals.NEST_POINT_REF;
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class NestPointRefImpl extends DrlElementImpl implements NestPointRef {
 		NestPointType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.NEST_POINT_REF__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.NEST_POINT_REF__TYPE, oldType, type));
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class NestPointRefImpl extends DrlElementImpl implements NestPointRef {
 		String oldText = text;
 		text = newText;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.NEST_POINT_REF__TEXT, oldText, text));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.NEST_POINT_REF__TEXT, oldText, text));
 	}
 
 	/**
@@ -162,7 +162,7 @@ public class NestPointRefImpl extends DrlElementImpl implements NestPointRef {
 			nestPoint = (NestPoint)eResolveProxy(oldNestPoint);
 			if (nestPoint != oldNestPoint) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, drlPackage.NEST_POINT_REF__NEST_POINT, oldNestPoint, nestPoint));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DrlPackage.NEST_POINT_REF__NEST_POINT, oldNestPoint, nestPoint));
 			}
 		}
 		return nestPoint;
@@ -186,7 +186,7 @@ public class NestPointRefImpl extends DrlElementImpl implements NestPointRef {
 		NestPoint oldNestPoint = nestPoint;
 		nestPoint = newNestPoint;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.NEST_POINT_REF__NEST_POINT, oldNestPoint, nestPoint));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.NEST_POINT_REF__NEST_POINT, oldNestPoint, nestPoint));
 	}
 
 	/**
@@ -196,11 +196,11 @@ public class NestPointRefImpl extends DrlElementImpl implements NestPointRef {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.NEST_POINT_REF__TYPE:
+			case DrlPackage.NEST_POINT_REF__TYPE:
 				return getType();
-			case drlPackage.NEST_POINT_REF__TEXT:
+			case DrlPackage.NEST_POINT_REF__TEXT:
 				return getText();
-			case drlPackage.NEST_POINT_REF__NEST_POINT:
+			case DrlPackage.NEST_POINT_REF__NEST_POINT:
 				if (resolve) return getNestPoint();
 				return basicGetNestPoint();
 		}
@@ -214,13 +214,13 @@ public class NestPointRefImpl extends DrlElementImpl implements NestPointRef {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.NEST_POINT_REF__TYPE:
+			case DrlPackage.NEST_POINT_REF__TYPE:
 				setType((NestPointType)newValue);
 				return;
-			case drlPackage.NEST_POINT_REF__TEXT:
+			case DrlPackage.NEST_POINT_REF__TEXT:
 				setText((String)newValue);
 				return;
-			case drlPackage.NEST_POINT_REF__NEST_POINT:
+			case DrlPackage.NEST_POINT_REF__NEST_POINT:
 				setNestPoint((NestPoint)newValue);
 				return;
 		}
@@ -234,13 +234,13 @@ public class NestPointRefImpl extends DrlElementImpl implements NestPointRef {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.NEST_POINT_REF__TYPE:
+			case DrlPackage.NEST_POINT_REF__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case drlPackage.NEST_POINT_REF__TEXT:
+			case DrlPackage.NEST_POINT_REF__TEXT:
 				setText(TEXT_EDEFAULT);
 				return;
-			case drlPackage.NEST_POINT_REF__NEST_POINT:
+			case DrlPackage.NEST_POINT_REF__NEST_POINT:
 				setNestPoint((NestPoint)null);
 				return;
 		}
@@ -254,11 +254,11 @@ public class NestPointRefImpl extends DrlElementImpl implements NestPointRef {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.NEST_POINT_REF__TYPE:
+			case DrlPackage.NEST_POINT_REF__TYPE:
 				return type != TYPE_EDEFAULT;
-			case drlPackage.NEST_POINT_REF__TEXT:
+			case DrlPackage.NEST_POINT_REF__TEXT:
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
-			case drlPackage.NEST_POINT_REF__NEST_POINT:
+			case DrlPackage.NEST_POINT_REF__NEST_POINT:
 				return nestPoint != null;
 		}
 		return super.eIsSet(featureID);

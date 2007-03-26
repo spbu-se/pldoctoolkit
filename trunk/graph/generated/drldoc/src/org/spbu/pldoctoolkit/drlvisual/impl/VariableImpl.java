@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.Variable;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public class VariableImpl extends EObjectImpl implements Variable {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.VARIABLE;
+		return DrlPackage.Literals.VARIABLE;
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class VariableImpl extends EObjectImpl implements Variable {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.VARIABLE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.VARIABLE__NAME, oldName, name));
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class VariableImpl extends EObjectImpl implements Variable {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.VARIABLE__NAME:
+			case DrlPackage.VARIABLE__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -116,7 +116,7 @@ public class VariableImpl extends EObjectImpl implements Variable {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.VARIABLE__NAME:
+			case DrlPackage.VARIABLE__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -130,7 +130,7 @@ public class VariableImpl extends EObjectImpl implements Variable {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.VARIABLE__NAME:
+			case DrlPackage.VARIABLE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -144,7 +144,7 @@ public class VariableImpl extends EObjectImpl implements Variable {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.VARIABLE__NAME:
+			case DrlPackage.VARIABLE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);

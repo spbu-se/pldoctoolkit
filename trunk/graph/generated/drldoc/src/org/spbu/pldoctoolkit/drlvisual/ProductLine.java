@@ -21,7 +21,7 @@ package org.spbu.pldoctoolkit.drlvisual;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getProductLine()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getProductLine()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface ProductLine extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Scheme</em>' containment reference.
 	 * @see #setScheme(PLScheme)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getProductLine_Scheme()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getProductLine_Scheme()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -69,7 +69,7 @@ public interface ProductLine extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Documentation</em>' containment reference.
 	 * @see #setDocumentation(PLDocumentation)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getProductLine_Documentation()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getProductLine_Documentation()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -95,7 +95,7 @@ public interface ProductLine extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getProductLine_Name()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getProductLine_Name()
 	 * @model required="true"
 	 * @generated
 	 */

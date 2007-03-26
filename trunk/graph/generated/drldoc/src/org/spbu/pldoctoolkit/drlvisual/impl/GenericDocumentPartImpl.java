@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.GenericDocumentPart;
 import org.spbu.pldoctoolkit.drlvisual.InnerElement;
 import org.spbu.pldoctoolkit.drlvisual.SubelementedElement;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -114,7 +114,7 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return drlPackage.Literals.GENERIC_DOCUMENT_PART;
+		return DrlPackage.Literals.GENERIC_DOCUMENT_PART;
 	}
 
 	/**
@@ -124,7 +124,7 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 */
 	public EList getElements() {
 		if (elements == null) {
-			elements = new EObjectContainmentEList(InnerElement.class, this, drlPackage.GENERIC_DOCUMENT_PART__ELEMENTS);
+			elements = new EObjectContainmentEList(InnerElement.class, this, DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS);
 		}
 		return elements;
 	}
@@ -147,7 +147,7 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.GENERIC_DOCUMENT_PART__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.GENERIC_DOCUMENT_PART__ID, oldId, id));
 	}
 
 	/**
@@ -168,7 +168,7 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, drlPackage.GENERIC_DOCUMENT_PART__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.GENERIC_DOCUMENT_PART__NAME, oldName, name));
 	}
 
 	/**
@@ -178,7 +178,7 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case drlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
+			case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
 				return ((InternalEList)getElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -191,11 +191,11 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case drlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
+			case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
 				return getElements();
-			case drlPackage.GENERIC_DOCUMENT_PART__ID:
+			case DrlPackage.GENERIC_DOCUMENT_PART__ID:
 				return getId();
-			case drlPackage.GENERIC_DOCUMENT_PART__NAME:
+			case DrlPackage.GENERIC_DOCUMENT_PART__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -208,14 +208,14 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case drlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
+			case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
 				getElements().clear();
 				getElements().addAll((Collection)newValue);
 				return;
-			case drlPackage.GENERIC_DOCUMENT_PART__ID:
+			case DrlPackage.GENERIC_DOCUMENT_PART__ID:
 				setId((String)newValue);
 				return;
-			case drlPackage.GENERIC_DOCUMENT_PART__NAME:
+			case DrlPackage.GENERIC_DOCUMENT_PART__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -229,13 +229,13 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case drlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
+			case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
 				getElements().clear();
 				return;
-			case drlPackage.GENERIC_DOCUMENT_PART__ID:
+			case DrlPackage.GENERIC_DOCUMENT_PART__ID:
 				setId(ID_EDEFAULT);
 				return;
-			case drlPackage.GENERIC_DOCUMENT_PART__NAME:
+			case DrlPackage.GENERIC_DOCUMENT_PART__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -249,11 +249,11 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case drlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
+			case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
 				return elements != null && !elements.isEmpty();
-			case drlPackage.GENERIC_DOCUMENT_PART__ID:
+			case DrlPackage.GENERIC_DOCUMENT_PART__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case drlPackage.GENERIC_DOCUMENT_PART__NAME:
+			case DrlPackage.GENERIC_DOCUMENT_PART__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
@@ -267,7 +267,7 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
 		if (baseClass == SubelementedElement.class) {
 			switch (derivedFeatureID) {
-				case drlPackage.GENERIC_DOCUMENT_PART__ELEMENTS: return drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS;
+				case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS: return DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -282,7 +282,7 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
 		if (baseClass == SubelementedElement.class) {
 			switch (baseFeatureID) {
-				case drlPackage.SUBELEMENTED_ELEMENT__ELEMENTS: return drlPackage.GENERIC_DOCUMENT_PART__ELEMENTS;
+				case DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS: return DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS;
 				default: return -1;
 			}
 		}

@@ -22,7 +22,7 @@ package org.spbu.pldoctoolkit.drlvisual;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getInfElemRef()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getInfElemRef()
  * @model
  * @generated
  */
@@ -44,7 +44,7 @@ public interface InfElemRef extends InnerElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getInfElemRef_Id()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getInfElemRef_Id()
 	 * @model id="true" required="true"
 	 * @generated
 	 */
@@ -70,7 +70,7 @@ public interface InfElemRef extends InnerElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Infelem</em>' reference.
 	 * @see #setInfelem(InfElement)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getInfElemRef_Infelem()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getInfElemRef_Infelem()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -96,7 +96,7 @@ public interface InfElemRef extends InnerElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Group</em>' reference.
 	 * @see #setGroup(InfElemRefGroup)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getInfElemRef_Group()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getInfElemRef_Group()
 	 * @model
 	 * @generated
 	 */
@@ -122,7 +122,7 @@ public interface InfElemRef extends InnerElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Optional</em>' attribute.
 	 * @see #setOptional(boolean)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getInfElemRef_Optional()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getInfElemRef_Optional()
 	 * @model
 	 * @generated
 	 */

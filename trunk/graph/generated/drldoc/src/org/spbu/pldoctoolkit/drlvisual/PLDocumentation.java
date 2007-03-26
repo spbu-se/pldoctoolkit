@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getPLDocumentation()
+ * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getPLDocumentation()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface PLDocumentation extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Documentation Core</em>' containment reference.
 	 * @see #setDocumentationCore(DocumentationCore)
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getPLDocumentation_DocumentationCore()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getPLDocumentation_DocumentationCore()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -69,7 +69,7 @@ public interface PLDocumentation extends DrlElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Product Documentations</em>' containment reference list.
-	 * @see org.spbu.pldoctoolkit.drlvisual.drlPackage#getPLDocumentation_ProductDocumentations()
+	 * @see org.spbu.pldoctoolkit.drlvisual.DrlPackage#getPLDocumentation_ProductDocumentations()
 	 * @model type="org.spbu.pldoctoolkit.drlvisual.ProductDocumentation" containment="true"
 	 * @generated
 	 */
