@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by any (Ru-Board) -->
 <!-- The DRL Schema -->
 <!-- $Id$ -->
 <xs:schema xmlns:drl="drl" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="drl" elementFormDefault="qualified" attributeFormDefault="unqualified">
@@ -25,11 +24,11 @@
   </xs:complexType>
   <xs:complexType name="ProductDocumentation">
     <xs:sequence>
-      <xs:element name="FinalInfProduct" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="FinalInfProduct" type="drl:FinalInfProduct" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="Dictionary" type="drl:Dictionary" minOccurs="0" maxOccurs="unbounded"/>
       <xs:group ref="drl:_DirectoryGroup" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
-    <xs:attribute name="productid" type="xs:string"/>
+    <xs:attribute name="productid" type="xs:string" use="required"/>
   </xs:complexType>
   <xs:complexType name="Product">
     <xs:attribute name="name" type="xs:string" use="required"/>
@@ -42,12 +41,12 @@
     </xs:sequence>
   </xs:group>
   <xs:complexType name="DocumentationCore">
-    <xs:sequence>
-      <xs:element name="InfProduct" type="drl:InfProduct" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="InfElement" type="drl:InfElement" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="Dictionary" type="drl:Dictionary" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:group ref="drl:_DirectoryGroup" minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="InfProduct" type="drl:InfProduct"/>
+      <xs:element name="InfElement" type="drl:InfElement"/>
+      <xs:element name="Dictionary" type="drl:Dictionary"/>
+      <xs:group ref="drl:_DirectoryGroup"/>
+    </xs:choice>
     <!-- XXX does not contain "name" attribute! -->
     <!-- A: We don't need name here since Documentation core belongs to productline and is never referenced -->
   </xs:complexType>
@@ -73,7 +72,7 @@
     <xs:attribute name="id" type="xs:string" use="required"/>
   </xs:complexType>
   <xs:complexType name="Nest" mixed="true">
-    <xs:sequence>
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string" use="required"/>
@@ -111,12 +110,12 @@
   </xs:complexType>
   <xs:complexType name="DirEntry">
     <xs:sequence>
-      <xs:element name="Attr" type="drl:DirAttr"/>
+      <xs:element name="Attr" type="drl:DirAttr" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
   </xs:complexType>
   <xs:complexType name="DirAttr" mixed="true">
-    <xs:sequence>
+    <xs:sequence minOccurs="0">
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
@@ -137,7 +136,7 @@
   </xs:complexType>
   <xs:complexType name="DirTemplate" mixed="true">
     <xs:sequence>
-      <xs:element name="AttrRef" type="drl:DirAttrRef"/>
+      <xs:element name="AttrRef" type="drl:DirAttrRef" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
     <xs:attribute name="directoryid" type="xs:string"/>
@@ -150,11 +149,11 @@
       <xs:element name="SetValue" type="drl:SetValue"/>
       <xs:element name="Adapter" type="drl:Adapter"/>
     </xs:choice>
-    <xs:attribute name="id" type="xs:string"/>
-    <xs:attribute name="productid" type="xs:string"/>
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="infproductid" type="xs:string" use="required"/>
   </xs:complexType>
   <xs:complexType name="Adapter">
-    <xs:choice maxOccurs="unbounded">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
       <!-- XXX why don't we create a generic type 'nest' and derive from these  from it? -->
       <!-- A: you are welcom to propose such variant - please send me an example by e-mail -->
       <xs:element name="Insert-Before" type="drl:Insert-Before"/>
@@ -165,13 +164,13 @@
     <xs:attribute name="infelemrefid" type="xs:string"/>
   </xs:complexType>
   <xs:complexType name="Insert-Before" mixed="true">
-    <xs:sequence>
+    <xs:sequence minOccurs="0">
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="nestid" type="xs:string"/>
   </xs:complexType>
   <xs:complexType name="Insert-After" mixed="true">
-    <xs:sequence>
+    <xs:sequence minOccurs="0">
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="nestid" type="xs:string"/>
@@ -180,13 +179,13 @@
     <xs:attribute name="nestid" type="xs:string"/>
   </xs:complexType>
   <xs:complexType name="Replace-Nest" mixed="true">
-    <xs:sequence>
+    <xs:sequence minOccurs="0">
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="nestid" type="xs:string"/>
   </xs:complexType>
   <xs:complexType name="SetValue" mixed="true">
-    <xs:sequence>
+    <xs:sequence minOccurs="0">
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
@@ -197,7 +196,7 @@
     <xs:attribute name="valueid" type="xs:string"/>
   </xs:complexType>
   <xs:complexType name="Conditional" mixed="true">
-    <xs:sequence>
+    <xs:sequence minOccurs="0">
       <xs:any/>
     </xs:sequence>
     <xs:attribute name="condition" type="xs:string"/>
