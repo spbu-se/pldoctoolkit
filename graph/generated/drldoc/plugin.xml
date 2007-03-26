@@ -21,6 +21,13 @@
        type="drl"
        class="org.spbu.pldoctoolkit.drlvisual.util.DrlResourceFactoryImpl" />
   </extension>
+  <extension
+        point="org.eclipse.ui.perspectives">
+     <perspective
+           class="org.spbu.pldoctoolkit.perspectives.PerspectiveFactory"
+           id="org.spbu.pldoctoolkit.perspectives.PerspectiveFactory"
+           name="Drl documentation"/>
+  </extension>
 
 </plugin>
 
