@@ -29,7 +29,7 @@ import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.InfElementCanonical
 import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.InfElementGraphicalNodeEditPolicy;
 import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.InfElementItemSemanticEditPolicy;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelVisualIDRegistry;
+import org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelVisualIDRegistry;
 
 /**
  * @generated
@@ -187,7 +187,7 @@ public class InfElementEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(DRLModelVisualIDRegistry
+		return getChildBySemanticHint(DrlModelVisualIDRegistry
 				.getType(InfElementNameIdEditPart.VISUAL_ID));
 	}
 

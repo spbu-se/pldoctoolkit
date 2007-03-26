@@ -69,9 +69,9 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.DRLModelTextSelectionEditPolicy;
+import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.DrlModelTextSelectionEditPolicy;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.providers.DRLModelElementTypes;
+import org.spbu.pldoctoolkit.drlvisual.diagram.providers.DrlModelElementTypes;
 
 /**
  * @generated
@@ -244,8 +244,8 @@ public class InfElementNameIdEditPart extends CompartmentEditPart implements
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof DRLModelTextSelectionEditPolicy) {
-			((DRLModelTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
+		if (pdEditPolicy instanceof DrlModelTextSelectionEditPolicy) {
+			((DrlModelTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
 		}
 	}
 
@@ -330,7 +330,7 @@ public class InfElementNameIdEditPart extends CompartmentEditPart implements
 
 				public Object getAdapter(Class adapter) {
 					if (IElementType.class.equals(adapter)) {
-						return DRLModelElementTypes.InfElement_1001;
+						return DrlModelElementTypes.InfElement_1001;
 					}
 					return super.getAdapter(adapter);
 				}
@@ -346,7 +346,7 @@ public class InfElementNameIdEditPart extends CompartmentEditPart implements
 	protected DirectEditManager getManager() {
 		if (manager == null) {
 			setManager(new TextDirectEditManager(this, TextDirectEditManager
-					.getTextCellEditorClass(this), DRLModelEditPartFactory
+					.getTextCellEditorClass(this), DrlModelEditPartFactory
 					.getTextCellEditorLocator(this)));
 		}
 		return manager;
@@ -440,8 +440,8 @@ public class InfElementNameIdEditPart extends CompartmentEditPart implements
 		setLabelTextHelper(getFigure(), getLabelText());
 		setLabelIconHelper(getFigure(), getLabelIcon());
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof DRLModelTextSelectionEditPolicy) {
-			((DRLModelTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
+		if (pdEditPolicy instanceof DrlModelTextSelectionEditPolicy) {
+			((DrlModelTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
 		}
 	}
 

@@ -10,7 +10,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
  * @generated
  */
 public class InfElemRefItemSemanticEditPolicy extends
-		DRLModelBaseItemSemanticEditPolicy {
+		DrlModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

@@ -10,7 +10,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 
-import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.DRLModelReferenceConnectionEditPolicy;
+import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.DrlModelReferenceConnectionEditPolicy;
 import org.spbu.pldoctoolkit.drlvisual.diagram.edit.policies.SubelementedElementElementsItemSemanticEditPolicy;
 
 /**
@@ -21,7 +21,7 @@ public class SubelementedElementElementsEditPart extends ConnectionNodeEditPart 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3003;
+	public static final int VISUAL_ID = 3002;
 
 	/**
 	 * @generated
@@ -36,7 +36,7 @@ public class SubelementedElementElementsEditPart extends ConnectionNodeEditPart 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.CONNECTION_ROLE,
-				new DRLModelReferenceConnectionEditPolicy());
+				new DrlModelReferenceConnectionEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new SubelementedElementElementsItemSemanticEditPolicy());
 	}

@@ -7,13 +7,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gmf.runtime.notation.View;
-import org.spbu.pldoctoolkit.drlvisual.diagram.providers.DRLModelElementTypes;
+import org.spbu.pldoctoolkit.drlvisual.diagram.providers.DrlModelElementTypes;
 
 /**
  * @generated
  */
 public class InfProductItemSemanticEditPolicy extends
-		DRLModelBaseItemSemanticEditPolicy {
+		DrlModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -37,17 +37,13 @@ public class InfProductItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (DRLModelElementTypes.InfElemRef_3001 == req.getElementType()) {
+		if (DrlModelElementTypes.InfElemRef_3001 == req.getElementType()) {
 			return req.getTarget() == null ? getCreateStartOutgoingInfElemRef3001Command(req)
 					: null;
 		}
-		if (DRLModelElementTypes.InfElemRef_3002 == req.getElementType()) {
-			return req.getTarget() == null ? getCreateStartOutgoingInfElemRef3002Command(req)
-					: null;
-		}
-		if (DRLModelElementTypes.SubelementedElementElements_3003 == req
+		if (DrlModelElementTypes.SubelementedElementElements_3002 == req
 				.getElementType()) {
-			return req.getTarget() == null ? getCreateStartOutgoingSubelementedElement_Elements3003Command(req)
+			return req.getTarget() == null ? getCreateStartOutgoingSubelementedElement_Elements3002Command(req)
 					: null;
 		}
 		return super.getCreateRelationshipCommand(req);
@@ -65,16 +61,7 @@ public class InfProductItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCreateStartOutgoingInfElemRef3002Command(
-			CreateRelationshipRequest req) {
-		return new Command() {
-		};
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getCreateStartOutgoingSubelementedElement_Elements3003Command(
+	protected Command getCreateStartOutgoingSubelementedElement_Elements3002Command(
 			CreateRelationshipRequest req) {
 
 		return new Command() {

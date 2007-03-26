@@ -4,7 +4,7 @@
 <plugin>
 
    <extension point="org.eclipse.core.runtime.preferences">
-      <initializer class="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelDiagramPreferenceInitializer"/>
+      <initializer class="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelDiagramPreferenceInitializer"/>
    </extension>
 
   <extension point="org.eclipse.team.core.fileTypes">
@@ -23,26 +23,26 @@
 
    <extension point="org.eclipse.ui.editors">
      <editor
-        id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelDiagramEditorID"
-        name="DRL Model Diagram Editor"
-        icon="icons/obj16/drlDiagramFile.gif"
+        id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelDiagramEditorID"
+        name="DrlModel Diagram Editor"
+        icon="icons/obj16/DrlDiagramFile.gif"
         extensions="drl_diagram"
         default="true"
-        class="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelDiagramEditor"
-        matchingStrategy="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelMatchingStrategy"
-        contributorClass="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelDiagramActionBarContributor">
+        class="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelDiagramEditor"
+        matchingStrategy="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelMatchingStrategy"
+        contributorClass="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelDiagramActionBarContributor">
      </editor>
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
   	  <wizard
-  	     name="DRL Model Diagram"
-  	     icon="icons/obj16/drlDiagramFile.gif"
+  	     name="DrlModel Diagram"
+  	     icon="icons/obj16/DrlDiagramFile.gif"
   	     category="org.eclipse.ui.Examples"
-  	     class="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelCreationWizard"
-  	     id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelCreationWizardID">
+  	     class="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelCreationWizard"
+  	     id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelCreationWizardID">
   	  	 <description>
-  	  		Creates DRL Model diagram.
+  	  		Creates DrlModel diagram.
   	  	 </description>  
       </wizard>
    </extension>
@@ -54,20 +54,20 @@
             objectClass="org.eclipse.core.resources.IFile">
          <action
                label="Initialize drl_diagram diagram file"
-               class="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelInitDiagramFileAction"
+               class="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelInitDiagramFileAction"
                menubarPath="additions"
                enablesFor="1"
-               id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelInitDiagramFileActionID">
+               id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelInitDiagramFileActionID">
          </action>
       </objectContribution>  
       <objectContribution
             adaptable="false"
-            id="drldoc.diagram.ui.objectContribution.SchemaEditPart2"
-            objectClass="org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.SchemaEditPart">
+            id="drldoc.diagram.ui.objectContribution.DocumentationCoreEditPart2"
+            objectClass="org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.DocumentationCoreEditPart">
          <action
-               class="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelLoadResourceAction"
+               class="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelLoadResourceAction"
                enablesFor="1"
-               id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelLoadResourceActionID"
+               id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelLoadResourceActionID"
                label="Load Resource..."
                menubarPath="additions">
          </action>
@@ -113,15 +113,6 @@
             <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.InfElemRef2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.InfElemRefId2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts.SubelementedElementElementsEditPart"/>
             <popupAction path="/editGroup" id="deleteFromModelAction"/>
             <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
@@ -132,9 +123,9 @@
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
-         id="DRL ModelPresentation">
+         id="DrlModelPresentation">
          <Priority name="Lowest"/>
-         <ViewId id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelDiagramEditorID">
+         <ViewId id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="delete"/>
             </ElementType>
@@ -145,9 +136,9 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
-         id="DRL ModelPresentationIDE">
+         id="DrlModelPresentationIDE">
          <Priority name="Lowest"/>
-         <ViewId id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelDiagramEditorID">
+         <ViewId id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="bookmark"/>
             </ElementType>
@@ -155,9 +146,9 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
             class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
-            id="DRL ModelRender">
+            id="DrlModelRender">
          <Priority name="Lowest"/>
-         <ViewId id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelDiagramEditorID">
+         <ViewId id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="cut"/>
                <GlobalActionId actionId="copy"/>
@@ -168,29 +159,29 @@
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
-      <viewProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DRLModelViewProvider">
+      <viewProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DrlModelViewProvider">
          <Priority name="Lowest"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="DRL Model"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="DrlModel"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints=""/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints=""/>
       </viewProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-      <editpartProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DRLModelEditPartProvider">
+      <editpartProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DrlModelEditPartProvider">
          <Priority name="Lowest"/>
       </editpartProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
-      <paletteProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DRLModelPaletteProvider">
+      <paletteProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DrlModelPaletteProvider">
          <Priority name="Lowest"/>
-         <editor id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelDiagramEditorID"/>
+         <editor id="org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelDiagramEditorID"/>
       </paletteProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
-      <modelingAssistantProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DRLModelModelingAssistantProvider">
+      <modelingAssistantProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DrlModelModelingAssistantProvider">
          <Priority name="Lowest"/>
       </modelingAssistantProvider>
    </extension>
@@ -198,19 +189,19 @@
    <extension point="org.eclipse.gmf.runtime.common.ui.services.properties.propertiesProviders">
       <PropertiesProvider
             verifyPluginLoaded="false"
-            class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DRLModelPropertyProvider">
+            class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DrlModelPropertyProvider">
          <Priority name="Lowest"/>
       </PropertiesProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders">
-      <IconProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DRLModelIconProvider">
+      <IconProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DrlModelIconProvider">
          <Priority name="Low"/>
       </IconProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
-      <ParserProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DRLModelParserProvider">
+      <ParserProvider class="org.spbu.pldoctoolkit.drlvisual.diagram.providers.DrlModelParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
@@ -219,10 +210,10 @@
 
       <metamodel nsURI="http://tepkom.ru/drl">
          <metamodelType
-               id="drldoc.diagram.Schema_79"
+               id="drldoc.diagram.DocumentationCore_79"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Schema"
-               edithelper="org.spbu.pldoctoolkit.drlvisual.diagram.edit.helpers.SchemaEditHelper">
+               eclass="DocumentationCore"
+               edithelper="org.spbu.pldoctoolkit.drlvisual.diagram.edit.helpers.DocumentationCoreEditHelper">
             <param name="semanticHint" value="79"/>
          </metamodelType>
       </metamodel>
@@ -252,7 +243,7 @@
       <metamodel nsURI="http://tepkom.ru/drl">
          <metamodelType
                id="drldoc.diagram.InfElemRefGroup_1003"
-               name="InfElemRefGroup"
+               name="SubelementedElementElements"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InfElemRefGroup"
                edithelper="org.spbu.pldoctoolkit.drlvisual.diagram.edit.helpers.InfElemRefGroupEditHelper">
@@ -263,7 +254,7 @@
       <metamodel nsURI="http://tepkom.ru/drl">
          <metamodelType
                id="drldoc.diagram.InfElemRef_3001"
-               name="InfElemRefOptional"
+               name="InfElemRef"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InfElemRef"
                edithelper="org.spbu.pldoctoolkit.drlvisual.diagram.edit.helpers.InfElemRefEditHelper">
@@ -273,43 +264,30 @@
 
       <metamodel nsURI="http://tepkom.ru/drl">
          <specializationType
-               id="drldoc.diagram.InfElemRef_3002"
-               name="InfElemRefMandatory"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               edithelperadvice="org.spbu.pldoctoolkit.drlvisual.diagram.edit.helpers.InfElemRefEditHelperAdvice">
-            <specializes id="drldoc.diagram.InfElemRef_3001"/>
-            <param name="semanticHint" value="3002"/>
-         </specializationType>
-      </metamodel>
-
-      <metamodel nsURI="http://tepkom.ru/drl">
-         <specializationType
-               id="drldoc.diagram.SubelementedElementElements_3003"
-               name="SubelementedElementElements"
+               id="drldoc.diagram.SubelementedElementElements_3002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.spbu.pldoctoolkit.drlvisual.diagram.edit.helpers.SubelementedElementElementsEditHelperAdvice">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3003"/>
+            <param name="semanticHint" value="3002"/>
          </specializationType>
       </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-      <clientContext id="DRL ModelClientContext">
+      <clientContext id="DrlModelClientContext">
          <enablement>
             <test
                property="org.eclipse.gmf.runtime.emf.core.editingDomain"
                value="drldoc.diagram.EditingDomain"/>
          </enablement>
       </clientContext> 
-      <binding context="DRL ModelClientContext">
-         <elementType ref="drldoc.diagram.Schema_79"/>
+      <binding context="DrlModelClientContext">
+         <elementType ref="drldoc.diagram.DocumentationCore_79"/>
          <elementType ref="drldoc.diagram.InfElement_1001"/>
          <elementType ref="drldoc.diagram.InfProduct_1002"/>
          <elementType ref="drldoc.diagram.InfElemRefGroup_1003"/>
          <elementType ref="drldoc.diagram.InfElemRef_3001"/>
-         <elementType ref="drldoc.diagram.InfElemRef_3002"/>
-         <elementType ref="drldoc.diagram.SubelementedElementElements_3003"/>
+         <elementType ref="drldoc.diagram.SubelementedElementElements_3002"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

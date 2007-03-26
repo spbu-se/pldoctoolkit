@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: drldoc.diagram; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.spbu.pldoctoolkit.drlvisual.diagram.part.DRLModelDiagramEditorPlugin
+Bundle-Activator: org.spbu.pldoctoolkit.drlvisual.diagram.part.DrlModelDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.spbu.pldoctoolkit.drlvisual.diagram.edit.parts, 
