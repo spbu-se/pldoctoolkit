@@ -22,9 +22,9 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlFactory;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.PLScheme;
-import org.spbu.pldoctoolkit.drlvisual.drlFactory;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.PLScheme} object.
@@ -82,7 +82,7 @@ public class PLSchemeItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(drlPackage.Literals.PL_SCHEME__PRODUCTS);
+			childrenFeatures.add(DrlPackage.Literals.PL_SCHEME__PRODUCTS);
 		}
 		return childrenFeatures;
 	}
@@ -118,7 +118,7 @@ public class PLSchemeItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PLScheme.class)) {
-			case drlPackage.PL_SCHEME__PRODUCTS:
+			case DrlPackage.PL_SCHEME__PRODUCTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -137,8 +137,8 @@ public class PLSchemeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(drlPackage.Literals.PL_SCHEME__PRODUCTS,
-				 drlFactory.eINSTANCE.createProduct()));
+				(DrlPackage.Literals.PL_SCHEME__PRODUCTS,
+				 DrlFactory.eINSTANCE.createProduct()));
 	}
 
 	/**

@@ -24,8 +24,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.Product;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.Product} object.
@@ -87,7 +87,7 @@ public class ProductItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Product_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Product_name_feature", "_UI_Product_type"),
-				 drlPackage.Literals.PRODUCT__NAME,
+				 DrlPackage.Literals.PRODUCT__NAME,
 				 true,
 				 false,
 				 false,
@@ -109,7 +109,7 @@ public class ProductItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Product_id_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Product_id_feature", "_UI_Product_type"),
-				 drlPackage.Literals.PRODUCT__ID,
+				 DrlPackage.Literals.PRODUCT__ID,
 				 true,
 				 false,
 				 false,
@@ -152,8 +152,8 @@ public class ProductItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Product.class)) {
-			case drlPackage.PRODUCT__NAME:
-			case drlPackage.PRODUCT__ID:
+			case DrlPackage.PRODUCT__NAME:
+			case DrlPackage.PRODUCT__ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

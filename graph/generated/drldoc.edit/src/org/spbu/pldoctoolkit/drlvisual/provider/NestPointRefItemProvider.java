@@ -24,9 +24,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.NestPointRef;
 import org.spbu.pldoctoolkit.drlvisual.NestPointType;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.NestPointRef} object.
@@ -89,7 +89,7 @@ public class NestPointRefItemProvider
 				 getResourceLocator(),
 				 getString("_UI_NestPointRef_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NestPointRef_type_feature", "_UI_NestPointRef_type"),
-				 drlPackage.Literals.NEST_POINT_REF__TYPE,
+				 DrlPackage.Literals.NEST_POINT_REF__TYPE,
 				 true,
 				 false,
 				 false,
@@ -111,7 +111,7 @@ public class NestPointRefItemProvider
 				 getResourceLocator(),
 				 getString("_UI_NestPointRef_text_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NestPointRef_text_feature", "_UI_NestPointRef_type"),
-				 drlPackage.Literals.NEST_POINT_REF__TEXT,
+				 DrlPackage.Literals.NEST_POINT_REF__TEXT,
 				 true,
 				 false,
 				 false,
@@ -133,7 +133,7 @@ public class NestPointRefItemProvider
 				 getResourceLocator(),
 				 getString("_UI_NestPointRef_nestPoint_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NestPointRef_nestPoint_feature", "_UI_NestPointRef_type"),
-				 drlPackage.Literals.NEST_POINT_REF__NEST_POINT,
+				 DrlPackage.Literals.NEST_POINT_REF__NEST_POINT,
 				 true,
 				 false,
 				 true,
@@ -177,8 +177,8 @@ public class NestPointRefItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NestPointRef.class)) {
-			case drlPackage.NEST_POINT_REF__TYPE:
-			case drlPackage.NEST_POINT_REF__TEXT:
+			case DrlPackage.NEST_POINT_REF__TYPE:
+			case DrlPackage.NEST_POINT_REF__TEXT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

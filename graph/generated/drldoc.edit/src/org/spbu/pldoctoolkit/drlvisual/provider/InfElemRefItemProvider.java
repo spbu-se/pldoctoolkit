@@ -24,8 +24,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.InfElemRef;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.InfElemRef} object.
@@ -89,7 +89,7 @@ public class InfElemRefItemProvider
 				 getResourceLocator(),
 				 getString("_UI_InfElemRef_id_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InfElemRef_id_feature", "_UI_InfElemRef_type"),
-				 drlPackage.Literals.INF_ELEM_REF__ID,
+				 DrlPackage.Literals.INF_ELEM_REF__ID,
 				 true,
 				 false,
 				 false,
@@ -111,7 +111,7 @@ public class InfElemRefItemProvider
 				 getResourceLocator(),
 				 getString("_UI_InfElemRef_infelem_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InfElemRef_infelem_feature", "_UI_InfElemRef_type"),
-				 drlPackage.Literals.INF_ELEM_REF__INFELEM,
+				 DrlPackage.Literals.INF_ELEM_REF__INFELEM,
 				 true,
 				 false,
 				 true,
@@ -133,7 +133,7 @@ public class InfElemRefItemProvider
 				 getResourceLocator(),
 				 getString("_UI_InfElemRef_group_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InfElemRef_group_feature", "_UI_InfElemRef_type"),
-				 drlPackage.Literals.INF_ELEM_REF__GROUP,
+				 DrlPackage.Literals.INF_ELEM_REF__GROUP,
 				 true,
 				 false,
 				 true,
@@ -155,7 +155,7 @@ public class InfElemRefItemProvider
 				 getResourceLocator(),
 				 getString("_UI_InfElemRef_optional_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InfElemRef_optional_feature", "_UI_InfElemRef_type"),
-				 drlPackage.Literals.INF_ELEM_REF__OPTIONAL,
+				 DrlPackage.Literals.INF_ELEM_REF__OPTIONAL,
 				 true,
 				 false,
 				 false,
@@ -198,8 +198,8 @@ public class InfElemRefItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(InfElemRef.class)) {
-			case drlPackage.INF_ELEM_REF__ID:
-			case drlPackage.INF_ELEM_REF__OPTIONAL:
+			case DrlPackage.INF_ELEM_REF__ID:
+			case DrlPackage.INF_ELEM_REF__OPTIONAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

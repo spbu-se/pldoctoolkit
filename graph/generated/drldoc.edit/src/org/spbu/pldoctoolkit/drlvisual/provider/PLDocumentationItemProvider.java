@@ -24,9 +24,9 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlFactory;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.PLDocumentation;
-import org.spbu.pldoctoolkit.drlvisual.drlFactory;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.PLDocumentation} object.
@@ -84,8 +84,8 @@ public class PLDocumentationItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(drlPackage.Literals.PL_DOCUMENTATION__DOCUMENTATION_CORE);
-			childrenFeatures.add(drlPackage.Literals.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS);
+			childrenFeatures.add(DrlPackage.Literals.PL_DOCUMENTATION__DOCUMENTATION_CORE);
+			childrenFeatures.add(DrlPackage.Literals.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -133,8 +133,8 @@ public class PLDocumentationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PLDocumentation.class)) {
-			case drlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
-			case drlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
+			case DrlPackage.PL_DOCUMENTATION__DOCUMENTATION_CORE:
+			case DrlPackage.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -153,13 +153,13 @@ public class PLDocumentationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(drlPackage.Literals.PL_DOCUMENTATION__DOCUMENTATION_CORE,
-				 drlFactory.eINSTANCE.createDocumentationCore()));
+				(DrlPackage.Literals.PL_DOCUMENTATION__DOCUMENTATION_CORE,
+				 DrlFactory.eINSTANCE.createDocumentationCore()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(drlPackage.Literals.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS,
-				 drlFactory.eINSTANCE.createProductDocumentation()));
+				(DrlPackage.Literals.PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS,
+				 DrlFactory.eINSTANCE.createProductDocumentation()));
 	}
 
 	/**

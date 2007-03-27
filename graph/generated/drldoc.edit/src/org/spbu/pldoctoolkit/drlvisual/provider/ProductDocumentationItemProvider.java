@@ -21,12 +21,11 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlFactory;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.ProductDocumentation;
-import org.spbu.pldoctoolkit.drlvisual.drlFactory;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.ProductDocumentation} object.
@@ -69,29 +68,29 @@ public class ProductDocumentationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addProductIdPropertyDescriptor(object);
+			addProductPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Product Id feature.
+	 * This adds a property descriptor for the Product feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProductIdPropertyDescriptor(Object object) {
+	protected void addProductPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ProductDocumentation_productId_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProductDocumentation_productId_feature", "_UI_ProductDocumentation_type"),
-				 drlPackage.Literals.PRODUCT_DOCUMENTATION__PRODUCT_ID,
+				 getString("_UI_ProductDocumentation_product_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProductDocumentation_product_feature", "_UI_ProductDocumentation_type"),
+				 DrlPackage.Literals.PRODUCT_DOCUMENTATION__PRODUCT,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -107,7 +106,7 @@ public class ProductDocumentationItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(drlPackage.Literals.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS);
+			childrenFeatures.add(DrlPackage.Literals.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS);
 		}
 		return childrenFeatures;
 	}
@@ -129,10 +128,7 @@ public class ProductDocumentationItemProvider
 	 * @generated
 	 */
 	public String getText(Object object) {
-		String label = ((ProductDocumentation)object).getProductId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ProductDocumentation_type") :
-			getString("_UI_ProductDocumentation_type") + " " + label;
+		return getString("_UI_ProductDocumentation_type");
 	}
 
 	/**
@@ -146,10 +142,7 @@ public class ProductDocumentationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ProductDocumentation.class)) {
-			case drlPackage.PRODUCT_DOCUMENTATION__PRODUCT_ID:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case drlPackage.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS:
+			case DrlPackage.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -168,8 +161,8 @@ public class ProductDocumentationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(drlPackage.Literals.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS,
-				 drlFactory.eINSTANCE.createFinalInfProduct()));
+				(DrlPackage.Literals.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS,
+				 DrlFactory.eINSTANCE.createFinalInfProduct()));
 	}
 
 	/**
