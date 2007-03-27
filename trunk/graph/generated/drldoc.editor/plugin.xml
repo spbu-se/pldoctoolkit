@@ -18,11 +18,11 @@
       name="%_UI_Wizard_category">
     </category>
     <wizard
-      id = "org.spbu.pldoctoolkit.drlvisual.presentation.drlModelWizardID"
+      id = "org.spbu.pldoctoolkit.drlvisual.presentation.DrlModelWizardID"
       name = "%_UI_drlModelWizard_label"
-      class = "org.spbu.pldoctoolkit.drlvisual.presentation.drlModelWizard"
+      class = "org.spbu.pldoctoolkit.drlvisual.presentation.DrlModelWizard"
       category = "org.eclipse.emf.ecore.Wizard.category.ID"
-      icon = "icons/full/obj16/drlModelFile.gif">
+      icon = "icons/full/obj16/DrlModelFile.gif">
       <description>%_UI_drlModelWizard_description</description>
       <selection class = "org.eclipse.core.resources.IResource" />
     </wizard>
@@ -30,12 +30,12 @@
 
   <extension point = "org.eclipse.ui.editors">
     <editor
-        id = "org.spbu.pldoctoolkit.drlvisual.presentation.drlEditorID"
+        id = "org.spbu.pldoctoolkit.drlvisual.presentation.DrlEditorID"
         name = "%_UI_drlEditor_label"
-        icon = "icons/full/obj16/drlModelFile.gif"
+        icon = "icons/full/obj16/DrlModelFile.gif"
         extensions = "drl"
-        class = "org.spbu.pldoctoolkit.drlvisual.presentation.drlEditor" 
-        contributorClass="org.spbu.pldoctoolkit.drlvisual.presentation.drlActionBarContributor" >
+        class = "org.spbu.pldoctoolkit.drlvisual.presentation.DrlEditor"
+        contributorClass="org.spbu.pldoctoolkit.drlvisual.presentation.DrlActionBarContributor" >
     </editor>
-  </extension>    
+  </extension>
 </plugin>
