@@ -11,12 +11,12 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
- * This is the central singleton for the DRL Model edit plugin.
+ * This is the central singleton for the DrlModel edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class DRLModelEditPlugin extends EMFPlugin {
+public final class DrlModelEditPlugin extends EMFPlugin {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -30,7 +30,7 @@ public final class DRLModelEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final DRLModelEditPlugin INSTANCE = new DRLModelEditPlugin();
+	public static final DrlModelEditPlugin INSTANCE = new DrlModelEditPlugin();
 
 	/**
 	 * Keep track of the singleton.
@@ -46,7 +46,7 @@ public final class DRLModelEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DRLModelEditPlugin() {
+	public DrlModelEditPlugin() {
 		super
 		  (new ResourceLocator [] {
 		   });
