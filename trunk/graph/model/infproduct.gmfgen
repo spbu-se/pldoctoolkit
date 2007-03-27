@@ -19,7 +19,7 @@
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
     <domainDiagramElement
-        href="model.genmodel#//drlvisual/DocumentationCore"/>
+        href="model.genmodel#//graph/DocumentationCore"/>
     <topLevelNodes
         visualID="1001"
         editPartClassName="InfElementEditPart"
@@ -41,11 +41,11 @@
       </viewmap>
       <modelFacet>
         <metaClass
-            href="model.genmodel#//drlvisual/InfElement"/>
+            href="model.genmodel#//graph/InfElement"/>
         <containmentMetaFeature
-            href="model.genmodel#//drlvisual/DocumentationCore/parts"/>
+            href="model.genmodel#//graph/DocumentationCore/parts"/>
         <childMetaFeature
-            href="model.genmodel#//drlvisual/DocumentationCore/parts"/>
+            href="model.genmodel#//graph/DocumentationCore/parts"/>
       </modelFacet>
       <labels
           visualID="4001"
@@ -63,9 +63,9 @@
             viewPattern="{1}:{0}"
             editPattern="{1}:{0}">
           <metaFeatures
-              href="model.genmodel#//drlvisual/GenericDocumentPart/name"/>
+              href="model.genmodel#//graph/GenericDocumentPart/name"/>
           <metaFeatures
-              href="model.genmodel#//drlvisual/GenericDocumentPart/id"/>
+              href="model.genmodel#//graph/GenericDocumentPart/id"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -90,11 +90,11 @@
       </viewmap>
       <modelFacet>
         <metaClass
-            href="model.genmodel#//drlvisual/InfProduct"/>
+            href="model.genmodel#//graph/InfProduct"/>
         <containmentMetaFeature
-            href="model.genmodel#//drlvisual/DocumentationCore/parts"/>
+            href="model.genmodel#//graph/DocumentationCore/parts"/>
         <childMetaFeature
-            href="model.genmodel#//drlvisual/DocumentationCore/parts"/>
+            href="model.genmodel#//graph/DocumentationCore/parts"/>
       </modelFacet>
       <labels
           visualID="4002"
@@ -112,9 +112,9 @@
             viewPattern="{1}:{0}"
             editPattern="{1}:{0}">
           <metaFeatures
-              href="model.genmodel#//drlvisual/GenericDocumentPart/name"/>
+              href="model.genmodel#//graph/GenericDocumentPart/name"/>
           <metaFeatures
-              href="model.genmodel#//drlvisual/GenericDocumentPart/id"/>
+              href="model.genmodel#//graph/GenericDocumentPart/id"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -139,7 +139,7 @@
       </viewmap>
       <modelFacet>
         <metaClass
-            href="model.genmodel#//drlvisual/InfElemRefGroup"/>
+            href="model.genmodel#//graph/InfElemRefGroup"/>
       </modelFacet>
       <labels
           visualID="4003"
@@ -155,7 +155,7 @@
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet">
           <metaFeature
-              href="model.genmodel#//drlvisual/InfElemRefGroup/name"/>
+              href="model.genmodel#//graph/InfElemRefGroup/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -179,11 +179,11 @@
       <modelFacet
           xsi:type="gmfgen:TypeLinkModelFacet">
         <metaClass
-            href="model.genmodel#//drlvisual/InfElemRef"/>
+            href="model.genmodel#//graph/InfElemRef"/>
         <containmentMetaFeature
-            href="model.genmodel#//drlvisual/SubelementedElement/elements"/>
+            href="model.genmodel#//graph/SubelementedElement/elements"/>
         <childMetaFeature
-            href="model.genmodel#//drlvisual/SubelementedElement/elements"/>
+            href="model.genmodel#//graph/SubelementedElement/elements"/>
         <modelElementSelector
             body="self.optional = true"/>
         <modelElementInitializer
@@ -191,11 +191,11 @@
           <initializers
               body="true">
             <feature
-                href="model.genmodel#//drlvisual/InfElemRef/optional"/>
+                href="model.genmodel#//graph/InfElemRef/optional"/>
           </initializers>
         </modelElementInitializer>
         <targetMetaFeature
-            href="model.genmodel#//drlvisual/InfElemRef/infelem"/>
+            href="model.genmodel#//graph/InfElemRef/infelem"/>
       </modelFacet>
       <labels
           visualID="4004"
@@ -217,7 +217,7 @@
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet">
           <metaFeature
-              href="model.genmodel#//drlvisual/InfElemRef/id"/>
+              href="model.genmodel#//graph/InfElemRef/id"/>
         </modelFacet>
       </labels>
     </links>
@@ -240,7 +240,7 @@
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
-            href="model.genmodel#//drlvisual/SubelementedElement/elements"/>
+            href="model.genmodel#//graph/SubelementedElement/elements"/>
       </modelFacet>
     </links>
     <palette>
@@ -274,7 +274,8 @@
       </groups>
     </palette>
   </diagram>
-  <plugin/>
+  <plugin
+      version="1.0.0.0"/>
   <editor/>
   <domainGenModel
       href="model.genmodel#/"/>
