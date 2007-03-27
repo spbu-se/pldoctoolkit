@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.SubelementedElement} object.
@@ -84,7 +84,7 @@ public class SubelementedElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SubelementedElement_elements_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SubelementedElement_elements_feature", "_UI_SubelementedElement_type"),
-				 drlPackage.Literals.SUBELEMENTED_ELEMENT__ELEMENTS,
+				 DrlPackage.Literals.SUBELEMENTED_ELEMENT__ELEMENTS,
 				 true,
 				 false,
 				 true,

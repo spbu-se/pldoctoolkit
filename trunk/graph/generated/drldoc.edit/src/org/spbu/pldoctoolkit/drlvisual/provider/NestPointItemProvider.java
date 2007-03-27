@@ -24,8 +24,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.NestPoint;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.NestPoint} object.
@@ -69,7 +69,7 @@ public class NestPointItemProvider
 			super.getPropertyDescriptors(object);
 
 			addElementsPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
+			addIdPropertyDescriptor(object);
 			addDescrPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -88,7 +88,7 @@ public class NestPointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SubelementedElement_elements_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SubelementedElement_elements_feature", "_UI_SubelementedElement_type"),
-				 drlPackage.Literals.SUBELEMENTED_ELEMENT__ELEMENTS,
+				 DrlPackage.Literals.SUBELEMENTED_ELEMENT__ELEMENTS,
 				 true,
 				 false,
 				 true,
@@ -98,19 +98,19 @@ public class NestPointItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_NestPoint_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NestPoint_name_feature", "_UI_NestPoint_type"),
-				 drlPackage.Literals.NEST_POINT__NAME,
+				 getString("_UI_NestPoint_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NestPoint_id_feature", "_UI_NestPoint_type"),
+				 DrlPackage.Literals.NEST_POINT__ID,
 				 true,
 				 false,
 				 false,
@@ -132,7 +132,7 @@ public class NestPointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_NestPoint_descr_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NestPoint_descr_feature", "_UI_NestPoint_type"),
-				 drlPackage.Literals.NEST_POINT__DESCR,
+				 DrlPackage.Literals.NEST_POINT__DESCR,
 				 true,
 				 false,
 				 false,
@@ -158,7 +158,7 @@ public class NestPointItemProvider
 	 * @generated
 	 */
 	public String getText(Object object) {
-		String label = ((NestPoint)object).getName();
+		String label = ((NestPoint)object).getId();
 		return label == null || label.length() == 0 ?
 			getString("_UI_NestPoint_type") :
 			getString("_UI_NestPoint_type") + " " + label;
@@ -175,8 +175,8 @@ public class NestPointItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NestPoint.class)) {
-			case drlPackage.NEST_POINT__NAME:
-			case drlPackage.NEST_POINT__DESCR:
+			case DrlPackage.NEST_POINT__ID:
+			case DrlPackage.NEST_POINT__DESCR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

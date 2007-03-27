@@ -15,26 +15,26 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.spbu.pldoctoolkit.drlvisual.Schema;
-import org.spbu.pldoctoolkit.drlvisual.drlFactory;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
+import org.spbu.pldoctoolkit.drlvisual.Conditional;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 
 /**
- * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.Schema} object.
+ * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.Conditional} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SchemaItemProvider
-	extends ItemProviderAdapter
+public class ConditionalItemProvider
+	extends InnerElementItemProvider
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	
@@ -54,7 +54,7 @@ public class SchemaItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SchemaItemProvider(AdapterFactory adapterFactory) {
+	public ConditionalItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,34 +68,64 @@ public class SchemaItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addElementsPropertyDescriptor(object);
+			addConditionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Elements feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(drlPackage.Literals.SCHEMA__PARTS);
-		}
-		return childrenFeatures;
+	protected void addElementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SubelementedElement_elements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubelementedElement_elements_feature", "_UI_SubelementedElement_type"),
+				 DrlPackage.Literals.SUBELEMENTED_ELEMENT__ELEMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns Schema.gif.
+	 * This adds a property descriptor for the Condition feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConditionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Conditional_condition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Conditional_condition_feature", "_UI_Conditional_type"),
+				 DrlPackage.Literals.CONDITIONAL__CONDITION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns Conditional.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Schema"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Conditional"));
 	}
 
 	/**
@@ -105,7 +135,10 @@ public class SchemaItemProvider
 	 * @generated
 	 */
 	public String getText(Object object) {
-		return getString("_UI_Schema_type");
+		String label = ((Conditional)object).getCondition();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Conditional_type") :
+			getString("_UI_Conditional_type") + " " + label;
 	}
 
 	/**
@@ -118,9 +151,9 @@ public class SchemaItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Schema.class)) {
-			case drlPackage.SCHEMA__PARTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+		switch (notification.getFeatureID(Conditional.class)) {
+			case DrlPackage.CONDITIONAL__CONDITION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -135,16 +168,6 @@ public class SchemaItemProvider
 	 */
 	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(drlPackage.Literals.SCHEMA__PARTS,
-				 drlFactory.eINSTANCE.createInfElement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(drlPackage.Literals.SCHEMA__PARTS,
-				 drlFactory.eINSTANCE.createInfProduct()));
 	}
 
 	/**

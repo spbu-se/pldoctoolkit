@@ -24,8 +24,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.GenericDocumentPart;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.GenericDocumentPart} object.
@@ -88,7 +88,7 @@ public class GenericDocumentPartItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SubelementedElement_elements_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SubelementedElement_elements_feature", "_UI_SubelementedElement_type"),
-				 drlPackage.Literals.SUBELEMENTED_ELEMENT__ELEMENTS,
+				 DrlPackage.Literals.SUBELEMENTED_ELEMENT__ELEMENTS,
 				 true,
 				 false,
 				 true,
@@ -110,7 +110,7 @@ public class GenericDocumentPartItemProvider
 				 getResourceLocator(),
 				 getString("_UI_GenericDocumentPart_id_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_GenericDocumentPart_id_feature", "_UI_GenericDocumentPart_type"),
-				 drlPackage.Literals.GENERIC_DOCUMENT_PART__ID,
+				 DrlPackage.Literals.GENERIC_DOCUMENT_PART__ID,
 				 true,
 				 false,
 				 false,
@@ -132,7 +132,7 @@ public class GenericDocumentPartItemProvider
 				 getResourceLocator(),
 				 getString("_UI_GenericDocumentPart_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_GenericDocumentPart_name_feature", "_UI_GenericDocumentPart_type"),
-				 drlPackage.Literals.GENERIC_DOCUMENT_PART__NAME,
+				 DrlPackage.Literals.GENERIC_DOCUMENT_PART__NAME,
 				 true,
 				 false,
 				 false,
@@ -165,8 +165,8 @@ public class GenericDocumentPartItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(GenericDocumentPart.class)) {
-			case drlPackage.GENERIC_DOCUMENT_PART__ID:
-			case drlPackage.GENERIC_DOCUMENT_PART__NAME:
+			case DrlPackage.GENERIC_DOCUMENT_PART__ID:
+			case DrlPackage.GENERIC_DOCUMENT_PART__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

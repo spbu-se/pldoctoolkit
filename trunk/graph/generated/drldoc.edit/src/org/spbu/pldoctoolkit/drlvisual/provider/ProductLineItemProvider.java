@@ -26,9 +26,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlFactory;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.ProductLine;
-import org.spbu.pldoctoolkit.drlvisual.drlFactory;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.ProductLine} object.
@@ -89,7 +89,7 @@ public class ProductLineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ProductLine_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_name_feature", "_UI_ProductLine_type"),
-				 drlPackage.Literals.PRODUCT_LINE__NAME,
+				 DrlPackage.Literals.PRODUCT_LINE__NAME,
 				 true,
 				 false,
 				 false,
@@ -109,8 +109,8 @@ public class ProductLineItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(drlPackage.Literals.PRODUCT_LINE__SCHEME);
-			childrenFeatures.add(drlPackage.Literals.PRODUCT_LINE__DOCUMENTATION);
+			childrenFeatures.add(DrlPackage.Literals.PRODUCT_LINE__SCHEME);
+			childrenFeatures.add(DrlPackage.Literals.PRODUCT_LINE__DOCUMENTATION);
 		}
 		return childrenFeatures;
 	}
@@ -161,11 +161,11 @@ public class ProductLineItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ProductLine.class)) {
-			case drlPackage.PRODUCT_LINE__NAME:
+			case DrlPackage.PRODUCT_LINE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case drlPackage.PRODUCT_LINE__SCHEME:
-			case drlPackage.PRODUCT_LINE__DOCUMENTATION:
+			case DrlPackage.PRODUCT_LINE__SCHEME:
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -184,13 +184,13 @@ public class ProductLineItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(drlPackage.Literals.PRODUCT_LINE__SCHEME,
-				 drlFactory.eINSTANCE.createPLScheme()));
+				(DrlPackage.Literals.PRODUCT_LINE__SCHEME,
+				 DrlFactory.eINSTANCE.createPLScheme()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(drlPackage.Literals.PRODUCT_LINE__DOCUMENTATION,
-				 drlFactory.eINSTANCE.createPLDocumentation()));
+				(DrlPackage.Literals.PRODUCT_LINE__DOCUMENTATION,
+				 DrlFactory.eINSTANCE.createPLDocumentation()));
 	}
 
 	/**

@@ -23,8 +23,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.spbu.pldoctoolkit.drlvisual.DocumentationCore;
-import org.spbu.pldoctoolkit.drlvisual.drlFactory;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
+import org.spbu.pldoctoolkit.drlvisual.DrlFactory;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.DocumentationCore} object.
@@ -82,7 +82,7 @@ public class DocumentationCoreItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(drlPackage.Literals.DOCUMENTATION_CORE__PARTS);
+			childrenFeatures.add(DrlPackage.Literals.DOCUMENTATION_CORE__PARTS);
 		}
 		return childrenFeatures;
 	}
@@ -118,7 +118,7 @@ public class DocumentationCoreItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DocumentationCore.class)) {
-			case drlPackage.DOCUMENTATION_CORE__PARTS:
+			case DrlPackage.DOCUMENTATION_CORE__PARTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -137,13 +137,13 @@ public class DocumentationCoreItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(drlPackage.Literals.DOCUMENTATION_CORE__PARTS,
-				 drlFactory.eINSTANCE.createInfElement()));
+				(DrlPackage.Literals.DOCUMENTATION_CORE__PARTS,
+				 DrlFactory.eINSTANCE.createInfElement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(drlPackage.Literals.DOCUMENTATION_CORE__PARTS,
-				 drlFactory.eINSTANCE.createInfProduct()));
+				(DrlPackage.Literals.DOCUMENTATION_CORE__PARTS,
+				 DrlFactory.eINSTANCE.createInfProduct()));
 	}
 
 	/**

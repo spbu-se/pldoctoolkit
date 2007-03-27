@@ -24,8 +24,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.InfElemRefGroup;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.InfElemRefGroup} object.
@@ -88,7 +88,7 @@ public class InfElemRefGroupItemProvider
 				 getResourceLocator(),
 				 getString("_UI_InfElemRefGroup_id_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InfElemRefGroup_id_feature", "_UI_InfElemRefGroup_type"),
-				 drlPackage.Literals.INF_ELEM_REF_GROUP__ID,
+				 DrlPackage.Literals.INF_ELEM_REF_GROUP__ID,
 				 true,
 				 false,
 				 false,
@@ -110,7 +110,7 @@ public class InfElemRefGroupItemProvider
 				 getResourceLocator(),
 				 getString("_UI_InfElemRefGroup_modifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InfElemRefGroup_modifier_feature", "_UI_InfElemRefGroup_type"),
-				 drlPackage.Literals.INF_ELEM_REF_GROUP__MODIFIER,
+				 DrlPackage.Literals.INF_ELEM_REF_GROUP__MODIFIER,
 				 true,
 				 false,
 				 false,
@@ -132,7 +132,7 @@ public class InfElemRefGroupItemProvider
 				 getResourceLocator(),
 				 getString("_UI_InfElemRefGroup_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InfElemRefGroup_name_feature", "_UI_InfElemRefGroup_type"),
-				 drlPackage.Literals.INF_ELEM_REF_GROUP__NAME,
+				 DrlPackage.Literals.INF_ELEM_REF_GROUP__NAME,
 				 true,
 				 false,
 				 false,
@@ -175,9 +175,9 @@ public class InfElemRefGroupItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(InfElemRefGroup.class)) {
-			case drlPackage.INF_ELEM_REF_GROUP__ID:
-			case drlPackage.INF_ELEM_REF_GROUP__MODIFIER:
-			case drlPackage.INF_ELEM_REF_GROUP__NAME:
+			case DrlPackage.INF_ELEM_REF_GROUP__ID:
+			case DrlPackage.INF_ELEM_REF_GROUP__MODIFIER:
+			case DrlPackage.INF_ELEM_REF_GROUP__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

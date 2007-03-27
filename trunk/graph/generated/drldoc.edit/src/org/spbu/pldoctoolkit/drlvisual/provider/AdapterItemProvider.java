@@ -24,8 +24,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.spbu.pldoctoolkit.drlvisual.Adapter;
-import org.spbu.pldoctoolkit.drlvisual.drlFactory;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
+import org.spbu.pldoctoolkit.drlvisual.DrlFactory;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.Adapter} object.
@@ -86,7 +86,7 @@ public class AdapterItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Adapter_infElemRef_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Adapter_infElemRef_feature", "_UI_Adapter_type"),
-				 drlPackage.Literals.ADAPTER__INF_ELEM_REF,
+				 DrlPackage.Literals.ADAPTER__INF_ELEM_REF,
 				 true,
 				 false,
 				 true,
@@ -106,7 +106,7 @@ public class AdapterItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(drlPackage.Literals.ADAPTER__NEST_POINT_REFS);
+			childrenFeatures.add(DrlPackage.Literals.ADAPTER__NEST_POINT_REFS);
 		}
 		return childrenFeatures;
 	}
@@ -142,7 +142,7 @@ public class AdapterItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Adapter.class)) {
-			case drlPackage.ADAPTER__NEST_POINT_REFS:
+			case DrlPackage.ADAPTER__NEST_POINT_REFS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -161,8 +161,8 @@ public class AdapterItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(drlPackage.Literals.ADAPTER__NEST_POINT_REFS,
-				 drlFactory.eINSTANCE.createNestPointRef()));
+				(DrlPackage.Literals.ADAPTER__NEST_POINT_REFS,
+				 DrlFactory.eINSTANCE.createNestPointRef()));
 	}
 
 	/**

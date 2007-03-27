@@ -25,8 +25,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.Variable;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.Variable} object.
@@ -87,7 +87,7 @@ public class VariableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Variable_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Variable_name_feature", "_UI_Variable_type"),
-				 drlPackage.Literals.VARIABLE__NAME,
+				 DrlPackage.Literals.VARIABLE__NAME,
 				 true,
 				 false,
 				 false,
@@ -130,7 +130,7 @@ public class VariableItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Variable.class)) {
-			case drlPackage.VARIABLE__NAME:
+			case DrlPackage.VARIABLE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -26,9 +26,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.spbu.pldoctoolkit.drlvisual.DrlFactory;
+import org.spbu.pldoctoolkit.drlvisual.DrlPackage;
 import org.spbu.pldoctoolkit.drlvisual.FinalInfProduct;
-import org.spbu.pldoctoolkit.drlvisual.drlFactory;
-import org.spbu.pldoctoolkit.drlvisual.drlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.drlvisual.FinalInfProduct} object.
@@ -90,7 +90,7 @@ public class FinalInfProductItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FinalInfProduct_product_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FinalInfProduct_product_feature", "_UI_FinalInfProduct_type"),
-				 drlPackage.Literals.FINAL_INF_PRODUCT__PRODUCT,
+				 DrlPackage.Literals.FINAL_INF_PRODUCT__PRODUCT,
 				 true,
 				 false,
 				 true,
@@ -112,7 +112,7 @@ public class FinalInfProductItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FinalInfProduct_id_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FinalInfProduct_id_feature", "_UI_FinalInfProduct_type"),
-				 drlPackage.Literals.FINAL_INF_PRODUCT__ID,
+				 DrlPackage.Literals.FINAL_INF_PRODUCT__ID,
 				 true,
 				 false,
 				 false,
@@ -132,8 +132,8 @@ public class FinalInfProductItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(drlPackage.Literals.FINAL_INF_PRODUCT__ADAPTERS);
-			childrenFeatures.add(drlPackage.Literals.FINAL_INF_PRODUCT__VARIABLES);
+			childrenFeatures.add(DrlPackage.Literals.FINAL_INF_PRODUCT__ADAPTERS);
+			childrenFeatures.add(DrlPackage.Literals.FINAL_INF_PRODUCT__VARIABLES);
 		}
 		return childrenFeatures;
 	}
@@ -184,11 +184,11 @@ public class FinalInfProductItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FinalInfProduct.class)) {
-			case drlPackage.FINAL_INF_PRODUCT__ID:
+			case DrlPackage.FINAL_INF_PRODUCT__ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case drlPackage.FINAL_INF_PRODUCT__ADAPTERS:
-			case drlPackage.FINAL_INF_PRODUCT__VARIABLES:
+			case DrlPackage.FINAL_INF_PRODUCT__ADAPTERS:
+			case DrlPackage.FINAL_INF_PRODUCT__VARIABLES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -207,13 +207,13 @@ public class FinalInfProductItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(drlPackage.Literals.FINAL_INF_PRODUCT__ADAPTERS,
-				 drlFactory.eINSTANCE.createAdapter()));
+				(DrlPackage.Literals.FINAL_INF_PRODUCT__ADAPTERS,
+				 DrlFactory.eINSTANCE.createAdapter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(drlPackage.Literals.FINAL_INF_PRODUCT__VARIABLES,
-				 drlFactory.eINSTANCE.createVariable()));
+				(DrlPackage.Literals.FINAL_INF_PRODUCT__VARIABLES,
+				 DrlFactory.eINSTANCE.createVariable()));
 	}
 
 	/**
