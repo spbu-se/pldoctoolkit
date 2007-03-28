@@ -10,48 +10,33 @@
     <eLiterals name="DELETE" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DrlElement" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="InfElement" eSuperTypes="#//GenericDocumentPart"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InfElement" eSuperTypes="#//GenericDocumentPart">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestPoints" eType="#//NestPoint"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfProduct" eSuperTypes="#//GenericDocumentPart"/>
   <eClassifiers xsi:type="ecore:EClass" name="FinalInfProduct" eSuperTypes="#//DrlElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="adapters" upperBound="-1"
-        eType="#//Adapter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" lowerBound="1"
         eType="#//InfProduct"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" eType="#//Variable"
-        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Adapter" eSuperTypes="#//DrlElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nestPointRefs" upperBound="-1"
-        eType="#//NestPointRef" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="infElemRef" lowerBound="1"
-        eType="#//InfElemRef"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NestPoint" eSuperTypes="#//InnerElement #//SubelementedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="NestPoint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="descr" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InnerElement" abstract="true" eSuperTypes="#//DrlElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Conditional" eSuperTypes="#//InnerElement #//SubelementedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NestPointRef" eSuperTypes="#//DrlElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//NestPointType"
-        defaultValueLiteral=""/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nestPoint" lowerBound="1"
-        eType="#//NestPoint"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenericDocumentPart" abstract="true"
-      eSuperTypes="#//DrlElement #//SubelementedElement">
+      eSuperTypes="#//DrlElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         derived="true" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="infElemRefs" upperBound="-1"
+        eType="#//InfElemRef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
+        eType="#//InfElemRefGroup" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InfElemRef" eSuperTypes="#//InnerElement">
+  <eClassifiers xsi:type="ecore:EClass" name="InfElemRef" eSuperTypes="#//DrlElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="infelem" lowerBound="1"
@@ -59,7 +44,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//InfElemRefGroup"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InfElemRefGroup" eSuperTypes="#//InnerElement">
+  <eClassifiers xsi:type="ecore:EClass" name="InfElemRefGroup" eSuperTypes="#//DrlElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifier" lowerBound="1"
@@ -70,26 +55,17 @@
     <eLiterals name="OR" value="1"/>
     <eLiterals name="XOR" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubelementedElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//InnerElement" containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProductLine" eSuperTypes="#//DrlElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="scheme" eType="#//PLScheme"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="documentation" lowerBound="1"
         eType="#//PLDocumentation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PLScheme" eSuperTypes="#//DrlElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
         eType="#//Product" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PLDocumentation" eSuperTypes="#//DrlElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="documentationCore" lowerBound="1"
-        eType="#//DocumentationCore" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentationCore" eType="#//DocumentationCore"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="productDocumentations"
-        upperBound="-1" eType="#//ProductDocumentation" containment="true"/>
+        upperBound="-1" eType="#//ProductDocumentation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//DrlElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -104,9 +80,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="finalInfProducts" upperBound="-1"
         eType="#//FinalInfProduct" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" eType="#//Product"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Variable">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        iD="true"/>
   </eClassifiers>
 </ecore:EPackage>
