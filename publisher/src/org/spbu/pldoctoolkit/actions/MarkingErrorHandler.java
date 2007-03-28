@@ -15,10 +15,6 @@ public class MarkingErrorHandler implements ErrorHandler {
 	}
 	
 	public void error(SAXParseException exception) throws SAXException {
-		if (resource == null) {
-			System.out.println(exception);
-			return;
-		}
 		try {
 			IMarker marker = resource.createMarker(IMarker.PROBLEM);
 			marker.setAttribute(IMarker.LINE_NUMBER, exception.getLineNumber());
@@ -31,10 +27,6 @@ public class MarkingErrorHandler implements ErrorHandler {
 	}
 
 	public void fatalError(SAXParseException exception) throws SAXException {
-		if (resource == null) {
-			System.out.println(exception);
-			return;
-		}
 		try {
 			IMarker marker = resource.createMarker(IMarker.PROBLEM);
 			marker.setAttribute(IMarker.LINE_NUMBER, exception.getLineNumber());
@@ -47,10 +39,6 @@ public class MarkingErrorHandler implements ErrorHandler {
 	}
 
 	public void warning(SAXParseException exception) throws SAXException {
-		if (resource == null) {
-			System.out.println(exception);
-			return;
-		}
 		try {
 			IMarker marker = resource.createMarker(IMarker.PROBLEM);
 			marker.setAttribute(IMarker.LINE_NUMBER, exception.getLineNumber());

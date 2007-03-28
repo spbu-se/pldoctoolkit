@@ -113,7 +113,7 @@
 		</xsl:copy>
 	</xsl:template>
 	
-	<xsl:template match="text()">
+	<xsl:template match="text()" priority="1">
 		<xsl:copy-of select="."/>
 	</xsl:template>
 	
