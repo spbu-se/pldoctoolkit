@@ -122,7 +122,6 @@ public class BasicExportAction extends Action {
 		// transformers
 		TRANSFORMER_FACTORY.setAttribute(FeatureKeys.LINE_NUMBERING, true);
 		TRANSFORMER_FACTORY.setURIResolver(uriResolver);
-		System.out.println(TRANSFORMER_FACTORY.getURIResolver());
 		drl2docbook = (Controller)TRANSFORMER_FACTORY.newTransformer(new StreamSource(DRL2DOCBOOK_URL.toString()));
 		String url = Activator.getBundleResourceURL("xsl/docbook/" + type + "/docbook.xsl").toString();
 		docbook2type = (Controller)TRANSFORMER_FACTORY.newTransformer(new StreamSource(url));
@@ -181,8 +180,6 @@ public class BasicExportAction extends Action {
 			monitor.beginTask("Exporting to " + type + "...", 3);
 			tempFile = File.createTempFile("docbookgen", null);
 			String temp = tempFile.toURI().toString();
-			
-			System.out.println(temp);
 			
 			monitor.subTask("Transforming DRL -> DocBook...");
 			transform(drl2docbook, source, temp);
