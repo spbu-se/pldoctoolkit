@@ -39,18 +39,6 @@ class DocbookContentHandler extends ContentHandlerAdapter {
 		super.startElement(uri, localName, qName, attributes);
 	}
 
-	@Override
-	public void endPrefixMapping(String prefix) throws SAXException {
-		super.endPrefixMapping(prefix);
-		System.out.println("end " + prefix);
-	}
-
-	@Override
-	public void startPrefixMapping(String prefix, String uri) throws SAXException {
-		super.startPrefixMapping(prefix, uri);
-		System.out.println("start " + prefix + " -> " + uri);
-	}
-
 	public int getLineNumber() {
 		return lineNumber;
 	}
