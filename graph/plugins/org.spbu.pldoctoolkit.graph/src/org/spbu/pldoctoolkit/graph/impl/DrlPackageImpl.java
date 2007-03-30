@@ -14,10 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.spbu.pldoctoolkit.graph.Adapter;
-import org.spbu.pldoctoolkit.graph.Conditional;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
-import org.spbu.pldoctoolkit.graph.DrlElement;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.FinalInfProduct;
@@ -27,17 +24,12 @@ import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.InfProduct;
-import org.spbu.pldoctoolkit.graph.InnerElement;
 import org.spbu.pldoctoolkit.graph.NestPoint;
-import org.spbu.pldoctoolkit.graph.NestPointRef;
 import org.spbu.pldoctoolkit.graph.NestPointType;
-import org.spbu.pldoctoolkit.graph.PLDocumentation;
 import org.spbu.pldoctoolkit.graph.PLScheme;
 import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.ProductDocumentation;
 import org.spbu.pldoctoolkit.graph.ProductLine;
-import org.spbu.pldoctoolkit.graph.SubelementedElement;
-import org.spbu.pldoctoolkit.graph.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,13 +44,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * @generated
 	 */
 	public static final String copyright = "copyleft 2007";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass drlElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -86,35 +71,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass adapterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass nestPointEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass innerElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass conditionalEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass nestPointRefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,28 +99,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass subelementedElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass productLineEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass plSchemeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass plDocumentationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -191,7 +127,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass variableEClass = null;
+	private EClass plSchemeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -280,8 +216,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDrlElement() {
-		return drlElementEClass;
+	public EClass getInfElement() {
+		return infElementEClass;
 	}
 
 	/**
@@ -289,8 +225,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInfElement() {
-		return infElementEClass;
+	public EReference getInfElement_NestPoints() {
+		return (EReference)infElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -316,7 +252,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFinalInfProduct_Adapters() {
+	public EReference getFinalInfProduct_Product() {
 		return (EReference)finalInfProductEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -325,53 +261,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFinalInfProduct_Product() {
-		return (EReference)finalInfProductEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getFinalInfProduct_Id() {
-		return (EAttribute)finalInfProductEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFinalInfProduct_Variables() {
-		return (EReference)finalInfProductEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAdapter() {
-		return adapterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAdapter_NestPointRefs() {
-		return (EReference)adapterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAdapter_InfElemRef() {
-		return (EReference)adapterEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)finalInfProductEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -406,69 +297,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInnerElement() {
-		return innerElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getConditional() {
-		return conditionalEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getConditional_Condition() {
-		return (EAttribute)conditionalEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getNestPointRef() {
-		return nestPointRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getNestPointRef_Type() {
-		return (EAttribute)nestPointRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getNestPointRef_Text() {
-		return (EAttribute)nestPointRefEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNestPointRef_NestPoint() {
-		return (EReference)nestPointRefEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getGenericDocumentPart() {
 		return genericDocumentPartEClass;
 	}
@@ -489,6 +317,24 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 */
 	public EAttribute getGenericDocumentPart_Name() {
 		return (EAttribute)genericDocumentPartEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGenericDocumentPart_InfElemRefs() {
+		return (EReference)genericDocumentPartEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGenericDocumentPart_Groups() {
+		return (EReference)genericDocumentPartEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -577,17 +423,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSubelementedElement() {
-		return subelementedElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSubelementedElement_Elements() {
-		return (EReference)subelementedElementEClass.getEStructuralFeatures().get(0);
+	public EReference getInfElemRefGroup_InfElemRefsGroup() {
+		return (EReference)infElemRefGroupEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -604,8 +441,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProductLine_Scheme() {
-		return (EReference)productLineEClass.getEStructuralFeatures().get(0);
+	public EAttribute getProductLine_Name() {
+		return (EAttribute)productLineEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -613,7 +450,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProductLine_Documentation() {
+	public EReference getProductLine_ProductDocumentations() {
 		return (EReference)productLineEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -622,8 +459,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProductLine_Name() {
-		return (EAttribute)productLineEClass.getEStructuralFeatures().get(2);
+	public EReference getProductLine_DocumentationCore() {
+		return (EReference)productLineEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -631,44 +468,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPLScheme() {
-		return plSchemeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPLScheme_Products() {
-		return (EReference)plSchemeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPLDocumentation() {
-		return plDocumentationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPLDocumentation_DocumentationCore() {
-		return (EReference)plDocumentationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPLDocumentation_ProductDocumentations() {
-		return (EReference)plDocumentationEClass.getEStructuralFeatures().get(1);
+	public EReference getProductLine_Scheme() {
+		return (EReference)productLineEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -748,8 +549,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVariable() {
-		return variableEClass;
+	public EClass getPLScheme() {
+		return plSchemeEClass;
 	}
 
 	/**
@@ -757,8 +558,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getVariable_Name() {
-		return (EAttribute)variableEClass.getEStructuralFeatures().get(0);
+	public EReference getPLScheme_Products() {
+		return (EReference)plSchemeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -807,39 +608,24 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		drlElementEClass = createEClass(DRL_ELEMENT);
-
 		infElementEClass = createEClass(INF_ELEMENT);
+		createEReference(infElementEClass, INF_ELEMENT__NEST_POINTS);
 
 		infProductEClass = createEClass(INF_PRODUCT);
 
 		finalInfProductEClass = createEClass(FINAL_INF_PRODUCT);
-		createEReference(finalInfProductEClass, FINAL_INF_PRODUCT__ADAPTERS);
 		createEReference(finalInfProductEClass, FINAL_INF_PRODUCT__PRODUCT);
 		createEAttribute(finalInfProductEClass, FINAL_INF_PRODUCT__ID);
-		createEReference(finalInfProductEClass, FINAL_INF_PRODUCT__VARIABLES);
-
-		adapterEClass = createEClass(ADAPTER);
-		createEReference(adapterEClass, ADAPTER__NEST_POINT_REFS);
-		createEReference(adapterEClass, ADAPTER__INF_ELEM_REF);
 
 		nestPointEClass = createEClass(NEST_POINT);
 		createEAttribute(nestPointEClass, NEST_POINT__ID);
 		createEAttribute(nestPointEClass, NEST_POINT__DESCR);
 
-		innerElementEClass = createEClass(INNER_ELEMENT);
-
-		conditionalEClass = createEClass(CONDITIONAL);
-		createEAttribute(conditionalEClass, CONDITIONAL__CONDITION);
-
-		nestPointRefEClass = createEClass(NEST_POINT_REF);
-		createEAttribute(nestPointRefEClass, NEST_POINT_REF__TYPE);
-		createEAttribute(nestPointRefEClass, NEST_POINT_REF__TEXT);
-		createEReference(nestPointRefEClass, NEST_POINT_REF__NEST_POINT);
-
 		genericDocumentPartEClass = createEClass(GENERIC_DOCUMENT_PART);
 		createEAttribute(genericDocumentPartEClass, GENERIC_DOCUMENT_PART__ID);
 		createEAttribute(genericDocumentPartEClass, GENERIC_DOCUMENT_PART__NAME);
+		createEReference(genericDocumentPartEClass, GENERIC_DOCUMENT_PART__INF_ELEM_REFS);
+		createEReference(genericDocumentPartEClass, GENERIC_DOCUMENT_PART__GROUPS);
 
 		infElemRefEClass = createEClass(INF_ELEM_REF);
 		createEAttribute(infElemRefEClass, INF_ELEM_REF__ID);
@@ -851,21 +637,13 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		createEAttribute(infElemRefGroupEClass, INF_ELEM_REF_GROUP__ID);
 		createEAttribute(infElemRefGroupEClass, INF_ELEM_REF_GROUP__MODIFIER);
 		createEAttribute(infElemRefGroupEClass, INF_ELEM_REF_GROUP__NAME);
-
-		subelementedElementEClass = createEClass(SUBELEMENTED_ELEMENT);
-		createEReference(subelementedElementEClass, SUBELEMENTED_ELEMENT__ELEMENTS);
+		createEReference(infElemRefGroupEClass, INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP);
 
 		productLineEClass = createEClass(PRODUCT_LINE);
-		createEReference(productLineEClass, PRODUCT_LINE__SCHEME);
-		createEReference(productLineEClass, PRODUCT_LINE__DOCUMENTATION);
 		createEAttribute(productLineEClass, PRODUCT_LINE__NAME);
-
-		plSchemeEClass = createEClass(PL_SCHEME);
-		createEReference(plSchemeEClass, PL_SCHEME__PRODUCTS);
-
-		plDocumentationEClass = createEClass(PL_DOCUMENTATION);
-		createEReference(plDocumentationEClass, PL_DOCUMENTATION__DOCUMENTATION_CORE);
-		createEReference(plDocumentationEClass, PL_DOCUMENTATION__PRODUCT_DOCUMENTATIONS);
+		createEReference(productLineEClass, PRODUCT_LINE__PRODUCT_DOCUMENTATIONS);
+		createEReference(productLineEClass, PRODUCT_LINE__DOCUMENTATION_CORE);
+		createEReference(productLineEClass, PRODUCT_LINE__SCHEME);
 
 		productEClass = createEClass(PRODUCT);
 		createEAttribute(productEClass, PRODUCT__NAME);
@@ -878,8 +656,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		createEReference(productDocumentationEClass, PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS);
 		createEReference(productDocumentationEClass, PRODUCT_DOCUMENTATION__PRODUCT);
 
-		variableEClass = createEClass(VARIABLE);
-		createEAttribute(variableEClass, VARIABLE__NAME);
+		plSchemeEClass = createEClass(PL_SCHEME);
+		createEReference(plSchemeEClass, PL_SCHEME__PRODUCTS);
 
 		// Create enums
 		nestPointTypeEEnum = createEEnum(NEST_POINT_TYPE);
@@ -912,85 +690,44 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		// Add supertypes to classes
 		infElementEClass.getESuperTypes().add(this.getGenericDocumentPart());
 		infProductEClass.getESuperTypes().add(this.getGenericDocumentPart());
-		finalInfProductEClass.getESuperTypes().add(this.getDrlElement());
-		adapterEClass.getESuperTypes().add(this.getDrlElement());
-		nestPointEClass.getESuperTypes().add(this.getInnerElement());
-		nestPointEClass.getESuperTypes().add(this.getSubelementedElement());
-		innerElementEClass.getESuperTypes().add(this.getDrlElement());
-		conditionalEClass.getESuperTypes().add(this.getInnerElement());
-		conditionalEClass.getESuperTypes().add(this.getSubelementedElement());
-		nestPointRefEClass.getESuperTypes().add(this.getDrlElement());
-		genericDocumentPartEClass.getESuperTypes().add(this.getDrlElement());
-		genericDocumentPartEClass.getESuperTypes().add(this.getSubelementedElement());
-		infElemRefEClass.getESuperTypes().add(this.getInnerElement());
-		infElemRefGroupEClass.getESuperTypes().add(this.getInnerElement());
-		productLineEClass.getESuperTypes().add(this.getDrlElement());
-		plSchemeEClass.getESuperTypes().add(this.getDrlElement());
-		plDocumentationEClass.getESuperTypes().add(this.getDrlElement());
-		productEClass.getESuperTypes().add(this.getDrlElement());
-		documentationCoreEClass.getESuperTypes().add(this.getDrlElement());
-		productDocumentationEClass.getESuperTypes().add(this.getDrlElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(drlElementEClass, DrlElement.class, "DrlElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(infElementEClass, InfElement.class, "InfElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInfElement_NestPoints(), this.getNestPoint(), null, "nestPoints", null, 0, 1, InfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(infProductEClass, InfProduct.class, "InfProduct", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(finalInfProductEClass, FinalInfProduct.class, "FinalInfProduct", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFinalInfProduct_Adapters(), this.getAdapter(), null, "adapters", null, 0, -1, FinalInfProduct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFinalInfProduct_Product(), this.getInfProduct(), null, "product", null, 1, 1, FinalInfProduct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFinalInfProduct_Id(), ecorePackage.getEString(), "id", null, 1, 1, FinalInfProduct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFinalInfProduct_Variables(), this.getVariable(), null, "variables", null, 0, 1, FinalInfProduct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(adapterEClass, Adapter.class, "Adapter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAdapter_NestPointRefs(), this.getNestPointRef(), null, "nestPointRefs", null, 0, -1, Adapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAdapter_InfElemRef(), this.getInfElemRef(), null, "infElemRef", null, 1, 1, Adapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nestPointEClass, NestPoint.class, "NestPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNestPoint_Id(), ecorePackage.getEString(), "id", null, 1, 1, NestPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNestPoint_Descr(), ecorePackage.getEString(), "descr", null, 0, 1, NestPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(innerElementEClass, InnerElement.class, "InnerElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(conditionalEClass, Conditional.class, "Conditional", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConditional_Condition(), ecorePackage.getEString(), "condition", null, 1, 1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(nestPointRefEClass, NestPointRef.class, "NestPointRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNestPointRef_Type(), this.getNestPointType(), "type", "", 1, 1, NestPointRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNestPointRef_Text(), ecorePackage.getEString(), "text", null, 1, 1, NestPointRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNestPointRef_NestPoint(), this.getNestPoint(), null, "nestPoint", null, 1, 1, NestPointRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(genericDocumentPartEClass, GenericDocumentPart.class, "GenericDocumentPart", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGenericDocumentPart_Id(), ecorePackage.getEString(), "id", null, 1, 1, GenericDocumentPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGenericDocumentPart_Name(), ecorePackage.getEString(), "name", null, 1, 1, GenericDocumentPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenericDocumentPart_InfElemRefs(), this.getInfElemRef(), null, "infElemRefs", null, 0, -1, GenericDocumentPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenericDocumentPart_Groups(), this.getInfElemRefGroup(), null, "groups", null, 0, -1, GenericDocumentPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(infElemRefEClass, InfElemRef.class, "InfElemRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInfElemRef_Id(), ecorePackage.getEString(), "id", null, 1, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInfElemRef_Infelem(), this.getInfElement(), null, "infelem", null, 1, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInfElemRef_Group(), this.getInfElemRefGroup(), null, "group", null, 0, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInfElemRef_Group(), this.getInfElemRefGroup(), this.getInfElemRefGroup_InfElemRefsGroup(), "group", null, 0, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInfElemRef_Optional(), ecorePackage.getEBoolean(), "optional", null, 0, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(infElemRefGroupEClass, InfElemRefGroup.class, "InfElemRefGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInfElemRefGroup_Id(), ecorePackage.getEString(), "id", null, 1, 1, InfElemRefGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInfElemRefGroup_Modifier(), this.getGroupType(), "modifier", null, 1, 1, InfElemRefGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInfElemRefGroup_Name(), ecorePackage.getEString(), "name", null, 0, 1, InfElemRefGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(subelementedElementEClass, SubelementedElement.class, "SubelementedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSubelementedElement_Elements(), this.getInnerElement(), null, "elements", null, 0, -1, SubelementedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInfElemRefGroup_InfElemRefsGroup(), this.getInfElemRef(), this.getInfElemRef_Group(), "infElemRefsGroup", null, 0, -1, InfElemRefGroup.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(productLineEClass, ProductLine.class, "ProductLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProductLine_Scheme(), this.getPLScheme(), null, "scheme", null, 0, 1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProductLine_Documentation(), this.getPLDocumentation(), null, "documentation", null, 1, 1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProductLine_Name(), ecorePackage.getEString(), "name", null, 1, 1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(plSchemeEClass, PLScheme.class, "PLScheme", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPLScheme_Products(), this.getProduct(), null, "products", null, 0, -1, PLScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(plDocumentationEClass, PLDocumentation.class, "PLDocumentation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPLDocumentation_DocumentationCore(), this.getDocumentationCore(), null, "documentationCore", null, 1, 1, PLDocumentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPLDocumentation_ProductDocumentations(), this.getProductDocumentation(), null, "productDocumentations", null, 0, -1, PLDocumentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProductLine_ProductDocumentations(), this.getProductDocumentation(), null, "productDocumentations", null, 0, 1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProductLine_DocumentationCore(), this.getDocumentationCore(), null, "documentationCore", null, 0, 1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProductLine_Scheme(), this.getPLScheme(), null, "scheme", null, 1, 1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(productEClass, Product.class, "Product", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProduct_Name(), ecorePackage.getEString(), "name", null, 1, 1, Product.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1003,8 +740,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		initEReference(getProductDocumentation_FinalInfProducts(), this.getFinalInfProduct(), null, "finalInfProducts", null, 0, -1, ProductDocumentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProductDocumentation_Product(), this.getProduct(), null, "product", null, 0, 1, ProductDocumentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVariable_Name(), ecorePackage.getEString(), "name", null, 1, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(plSchemeEClass, PLScheme.class, "PLScheme", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPLScheme_Products(), this.getProduct(), null, "products", null, 0, -1, PLScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(nestPointTypeEEnum, NestPointType.class, "NestPointType");

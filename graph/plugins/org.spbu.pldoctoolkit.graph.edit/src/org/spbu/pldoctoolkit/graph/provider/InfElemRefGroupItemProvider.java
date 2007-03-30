@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.spbu.pldoctoolkit.graph.DrlPackage;
@@ -34,7 +35,7 @@ import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
  * @generated
  */
 public class InfElemRefGroupItemProvider
-	extends InnerElementItemProvider
+	extends ItemProviderAdapter
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	
@@ -71,6 +72,7 @@ public class InfElemRefGroupItemProvider
 			addIdPropertyDescriptor(object);
 			addModifierPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addInfElemRefsGroupPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -137,6 +139,28 @@ public class InfElemRefGroupItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Inf Elem Refs Group feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInfElemRefsGroupPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_InfElemRefGroup_infElemRefsGroup_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InfElemRefGroup_infElemRefsGroup_feature", "_UI_InfElemRefGroup_type"),
+				 DrlPackage.Literals.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

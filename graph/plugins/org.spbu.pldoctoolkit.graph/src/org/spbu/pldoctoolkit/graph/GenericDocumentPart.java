@@ -6,6 +6,9 @@
  */
 package org.spbu.pldoctoolkit.graph;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,6 +20,8 @@ package org.spbu.pldoctoolkit.graph;
  * <ul>
  *   <li>{@link org.spbu.pldoctoolkit.graph.GenericDocumentPart#getId <em>Id</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.GenericDocumentPart#getName <em>Name</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.GenericDocumentPart#getInfElemRefs <em>Inf Elem Refs</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.GenericDocumentPart#getGroups <em>Groups</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,7 +29,7 @@ package org.spbu.pldoctoolkit.graph;
  * @model abstract="true"
  * @generated
  */
-public interface GenericDocumentPart extends DrlElement, SubelementedElement {
+public interface GenericDocumentPart extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,5 +88,37 @@ public interface GenericDocumentPart extends DrlElement, SubelementedElement {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Inf Elem Refs</b></em>' containment reference list.
+	 * The list contents are of type {@link org.spbu.pldoctoolkit.graph.InfElemRef}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Inf Elem Refs</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Inf Elem Refs</em>' containment reference list.
+	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getGenericDocumentPart_InfElemRefs()
+	 * @model type="org.spbu.pldoctoolkit.graph.InfElemRef" containment="true"
+	 * @generated
+	 */
+	EList getInfElemRefs();
+
+	/**
+	 * Returns the value of the '<em><b>Groups</b></em>' containment reference list.
+	 * The list contents are of type {@link org.spbu.pldoctoolkit.graph.InfElemRefGroup}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Groups</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Groups</em>' containment reference list.
+	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getGenericDocumentPart_Groups()
+	 * @model type="org.spbu.pldoctoolkit.graph.InfElemRefGroup" containment="true"
+	 * @generated
+	 */
+	EList getGroups();
 
 } // GenericDocumentPart

@@ -6,6 +6,9 @@
  */
 package org.spbu.pldoctoolkit.graph;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,6 +21,7 @@ package org.spbu.pldoctoolkit.graph;
  *   <li>{@link org.spbu.pldoctoolkit.graph.InfElemRefGroup#getId <em>Id</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.InfElemRefGroup#getModifier <em>Modifier</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.InfElemRefGroup#getName <em>Name</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.InfElemRefGroup#getInfElemRefsGroup <em>Inf Elem Refs Group</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,7 +29,7 @@ package org.spbu.pldoctoolkit.graph;
  * @model
  * @generated
  */
-public interface InfElemRefGroup extends InnerElement {
+public interface InfElemRefGroup extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,5 +117,23 @@ public interface InfElemRefGroup extends InnerElement {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Inf Elem Refs Group</b></em>' reference list.
+	 * The list contents are of type {@link org.spbu.pldoctoolkit.graph.InfElemRef}.
+	 * It is bidirectional and its opposite is '{@link org.spbu.pldoctoolkit.graph.InfElemRef#getGroup <em>Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Inf Elem Refs Group</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Inf Elem Refs Group</em>' reference list.
+	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getInfElemRefGroup_InfElemRefsGroup()
+	 * @see org.spbu.pldoctoolkit.graph.InfElemRef#getGroup
+	 * @model type="org.spbu.pldoctoolkit.graph.InfElemRef" opposite="group" transient="true" derived="true"
+	 * @generated
+	 */
+	EList getInfElemRefsGroup();
 
 } // InfElemRefGroup

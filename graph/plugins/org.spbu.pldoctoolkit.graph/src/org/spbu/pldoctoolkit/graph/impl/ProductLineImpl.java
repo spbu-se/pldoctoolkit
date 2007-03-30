@@ -13,10 +13,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
-import org.spbu.pldoctoolkit.graph.PLDocumentation;
 import org.spbu.pldoctoolkit.graph.PLScheme;
+import org.spbu.pldoctoolkit.graph.ProductDocumentation;
 import org.spbu.pldoctoolkit.graph.ProductLine;
 
 /**
@@ -26,41 +28,22 @@ import org.spbu.pldoctoolkit.graph.ProductLine;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getScheme <em>Scheme</em>}</li>
- *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getDocumentation <em>Documentation</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getProductDocumentations <em>Product Documentations</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getDocumentationCore <em>Documentation Core</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getScheme <em>Scheme</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ProductLineImpl extends DrlElementImpl implements ProductLine {
+public class ProductLineImpl extends EObjectImpl implements ProductLine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final String copyright = "copyleft 2007";
-
-	/**
-	 * The cached value of the '{@link #getScheme() <em>Scheme</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getScheme()
-	 * @generated
-	 * @ordered
-	 */
-	protected PLScheme scheme = null;
-
-	/**
-	 * The cached value of the '{@link #getDocumentation() <em>Documentation</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDocumentation()
-	 * @generated
-	 * @ordered
-	 */
-	protected PLDocumentation documentation = null;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -83,6 +66,36 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	protected String name = NAME_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getProductDocumentations() <em>Product Documentations</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProductDocumentations()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProductDocumentation productDocumentations = null;
+
+	/**
+	 * The cached value of the '{@link #getDocumentationCore() <em>Documentation Core</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentationCore()
+	 * @generated
+	 * @ordered
+	 */
+	protected DocumentationCore documentationCore = null;
+
+	/**
+	 * The cached value of the '{@link #getScheme() <em>Scheme</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getScheme()
+	 * @generated
+	 * @ordered
+	 */
+	protected PLScheme scheme = null;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -98,6 +111,103 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 */
 	protected EClass eStaticClass() {
 		return DrlPackage.Literals.PRODUCT_LINE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProductDocumentation getProductDocumentations() {
+		if (productDocumentations != null && productDocumentations.eIsProxy()) {
+			InternalEObject oldProductDocumentations = (InternalEObject)productDocumentations;
+			productDocumentations = (ProductDocumentation)eResolveProxy(oldProductDocumentations);
+			if (productDocumentations != oldProductDocumentations) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS, oldProductDocumentations, productDocumentations));
+			}
+		}
+		return productDocumentations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProductDocumentation basicGetProductDocumentations() {
+		return productDocumentations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProductDocumentations(ProductDocumentation newProductDocumentations) {
+		ProductDocumentation oldProductDocumentations = productDocumentations;
+		productDocumentations = newProductDocumentations;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS, oldProductDocumentations, productDocumentations));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DocumentationCore getDocumentationCore() {
+		if (documentationCore != null && documentationCore.eIsProxy()) {
+			InternalEObject oldDocumentationCore = (InternalEObject)documentationCore;
+			documentationCore = (DocumentationCore)eResolveProxy(oldDocumentationCore);
+			if (documentationCore != oldDocumentationCore) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE, oldDocumentationCore, documentationCore));
+			}
+		}
+		return documentationCore;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DocumentationCore basicGetDocumentationCore() {
+		return documentationCore;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDocumentationCore(DocumentationCore newDocumentationCore) {
+		DocumentationCore oldDocumentationCore = documentationCore;
+		documentationCore = newDocumentationCore;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE, oldDocumentationCore, documentationCore));
 	}
 
 	/**
@@ -148,76 +258,10 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PLDocumentation getDocumentation() {
-		return documentation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDocumentation(PLDocumentation newDocumentation, NotificationChain msgs) {
-		PLDocumentation oldDocumentation = documentation;
-		documentation = newDocumentation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__DOCUMENTATION, oldDocumentation, newDocumentation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDocumentation(PLDocumentation newDocumentation) {
-		if (newDocumentation != documentation) {
-			NotificationChain msgs = null;
-			if (documentation != null)
-				msgs = ((InternalEObject)documentation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DrlPackage.PRODUCT_LINE__DOCUMENTATION, null, msgs);
-			if (newDocumentation != null)
-				msgs = ((InternalEObject)newDocumentation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DrlPackage.PRODUCT_LINE__DOCUMENTATION, null, msgs);
-			msgs = basicSetDocumentation(newDocumentation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__DOCUMENTATION, newDocumentation, newDocumentation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_LINE__SCHEME:
 				return basicSetScheme(null, msgs);
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
-				return basicSetDocumentation(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -229,12 +273,16 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DrlPackage.PRODUCT_LINE__SCHEME:
-				return getScheme();
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
-				return getDocumentation();
 			case DrlPackage.PRODUCT_LINE__NAME:
 				return getName();
+			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
+				if (resolve) return getProductDocumentations();
+				return basicGetProductDocumentations();
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE:
+				if (resolve) return getDocumentationCore();
+				return basicGetDocumentationCore();
+			case DrlPackage.PRODUCT_LINE__SCHEME:
+				return getScheme();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -246,14 +294,17 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DrlPackage.PRODUCT_LINE__SCHEME:
-				setScheme((PLScheme)newValue);
-				return;
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
-				setDocumentation((PLDocumentation)newValue);
-				return;
 			case DrlPackage.PRODUCT_LINE__NAME:
 				setName((String)newValue);
+				return;
+			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
+				setProductDocumentations((ProductDocumentation)newValue);
+				return;
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE:
+				setDocumentationCore((DocumentationCore)newValue);
+				return;
+			case DrlPackage.PRODUCT_LINE__SCHEME:
+				setScheme((PLScheme)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -266,14 +317,17 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DrlPackage.PRODUCT_LINE__SCHEME:
-				setScheme((PLScheme)null);
-				return;
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
-				setDocumentation((PLDocumentation)null);
-				return;
 			case DrlPackage.PRODUCT_LINE__NAME:
 				setName(NAME_EDEFAULT);
+				return;
+			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
+				setProductDocumentations((ProductDocumentation)null);
+				return;
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE:
+				setDocumentationCore((DocumentationCore)null);
+				return;
+			case DrlPackage.PRODUCT_LINE__SCHEME:
+				setScheme((PLScheme)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -286,12 +340,14 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DrlPackage.PRODUCT_LINE__SCHEME:
-				return scheme != null;
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
-				return documentation != null;
 			case DrlPackage.PRODUCT_LINE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
+				return productDocumentations != null;
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE:
+				return documentationCore != null;
+			case DrlPackage.PRODUCT_LINE__SCHEME:
+				return scheme != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -40,7 +41,7 @@ import org.spbu.pldoctoolkit.graph.ProductDocumentation;
  *
  * @generated
  */
-public class ProductDocumentationImpl extends DrlElementImpl implements ProductDocumentation {
+public class ProductDocumentationImpl extends EObjectImpl implements ProductDocumentation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

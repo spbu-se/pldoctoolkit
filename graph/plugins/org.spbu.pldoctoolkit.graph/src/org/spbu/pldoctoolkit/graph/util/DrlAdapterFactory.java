@@ -77,9 +77,6 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected DrlSwitch modelSwitch =
 		new DrlSwitch() {
-			public Object caseDrlElement(DrlElement object) {
-				return createDrlElementAdapter();
-			}
 			public Object caseInfElement(InfElement object) {
 				return createInfElementAdapter();
 			}
@@ -89,20 +86,8 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 			public Object caseFinalInfProduct(FinalInfProduct object) {
 				return createFinalInfProductAdapter();
 			}
-			public Object caseAdapter(org.spbu.pldoctoolkit.graph.Adapter object) {
-				return createAdapterAdapter();
-			}
 			public Object caseNestPoint(NestPoint object) {
 				return createNestPointAdapter();
-			}
-			public Object caseInnerElement(InnerElement object) {
-				return createInnerElementAdapter();
-			}
-			public Object caseConditional(Conditional object) {
-				return createConditionalAdapter();
-			}
-			public Object caseNestPointRef(NestPointRef object) {
-				return createNestPointRefAdapter();
 			}
 			public Object caseGenericDocumentPart(GenericDocumentPart object) {
 				return createGenericDocumentPartAdapter();
@@ -113,17 +98,8 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 			public Object caseInfElemRefGroup(InfElemRefGroup object) {
 				return createInfElemRefGroupAdapter();
 			}
-			public Object caseSubelementedElement(SubelementedElement object) {
-				return createSubelementedElementAdapter();
-			}
 			public Object caseProductLine(ProductLine object) {
 				return createProductLineAdapter();
-			}
-			public Object casePLScheme(PLScheme object) {
-				return createPLSchemeAdapter();
-			}
-			public Object casePLDocumentation(PLDocumentation object) {
-				return createPLDocumentationAdapter();
 			}
 			public Object caseProduct(Product object) {
 				return createProductAdapter();
@@ -134,8 +110,8 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 			public Object caseProductDocumentation(ProductDocumentation object) {
 				return createProductDocumentationAdapter();
 			}
-			public Object caseVariable(Variable object) {
-				return createVariableAdapter();
+			public Object casePLScheme(PLScheme object) {
+				return createPLSchemeAdapter();
 			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
@@ -154,20 +130,6 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.DrlElement <em>Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.spbu.pldoctoolkit.graph.DrlElement
-	 * @generated
-	 */
-	public Adapter createDrlElementAdapter() {
-		return null;
-	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.InfElement <em>Inf Element</em>}'.
@@ -212,20 +174,6 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.Adapter <em>Adapter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.spbu.pldoctoolkit.graph.Adapter
-	 * @generated
-	 */
-	public Adapter createAdapterAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.NestPoint <em>Nest Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -236,48 +184,6 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNestPointAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.InnerElement <em>Inner Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.spbu.pldoctoolkit.graph.InnerElement
-	 * @generated
-	 */
-	public Adapter createInnerElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.Conditional <em>Conditional</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.spbu.pldoctoolkit.graph.Conditional
-	 * @generated
-	 */
-	public Adapter createConditionalAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.NestPointRef <em>Nest Point Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.spbu.pldoctoolkit.graph.NestPointRef
-	 * @generated
-	 */
-	public Adapter createNestPointRefAdapter() {
 		return null;
 	}
 
@@ -324,20 +230,6 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.SubelementedElement <em>Subelemented Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.spbu.pldoctoolkit.graph.SubelementedElement
-	 * @generated
-	 */
-	public Adapter createSubelementedElementAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.ProductLine <em>Product Line</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -348,34 +240,6 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createProductLineAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.PLScheme <em>PL Scheme</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.spbu.pldoctoolkit.graph.PLScheme
-	 * @generated
-	 */
-	public Adapter createPLSchemeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.PLDocumentation <em>PL Documentation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.spbu.pldoctoolkit.graph.PLDocumentation
-	 * @generated
-	 */
-	public Adapter createPLDocumentationAdapter() {
 		return null;
 	}
 
@@ -422,16 +286,16 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.Variable <em>Variable</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.PLScheme <em>PL Scheme</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.spbu.pldoctoolkit.graph.Variable
+	 * @see org.spbu.pldoctoolkit.graph.PLScheme
 	 * @generated
 	 */
-	public Adapter createVariableAdapter() {
+	public Adapter createPLSchemeAdapter() {
 		return null;
 	}
 

@@ -6,14 +6,27 @@
  */
 package org.spbu.pldoctoolkit.graph.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GroupType;
+import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 
 /**
@@ -26,12 +39,13 @@ import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.InfElemRefGroupImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.InfElemRefGroupImpl#getModifier <em>Modifier</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.InfElemRefGroupImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.impl.InfElemRefGroupImpl#getInfElemRefsGroup <em>Inf Elem Refs Group</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefGroup {
+public class InfElemRefGroupImpl extends EObjectImpl implements InfElemRefGroup {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,6 +112,16 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getInfElemRefsGroup() <em>Inf Elem Refs Group</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInfElemRefsGroup()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList infElemRefsGroup = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -185,6 +209,44 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getInfElemRefsGroup() {
+		if (infElemRefsGroup == null) {
+			infElemRefsGroup = new EObjectWithInverseResolvingEList(InfElemRef.class, this, DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP, DrlPackage.INF_ELEM_REF__GROUP);
+		}
+		return infElemRefsGroup;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP:
+				return ((InternalEList)getInfElemRefsGroup()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP:
+				return ((InternalEList)getInfElemRefsGroup()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF_GROUP__ID:
@@ -193,6 +255,8 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 				return getModifier();
 			case DrlPackage.INF_ELEM_REF_GROUP__NAME:
 				return getName();
+			case DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP:
+				return getInfElemRefsGroup();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -212,6 +276,10 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 				return;
 			case DrlPackage.INF_ELEM_REF_GROUP__NAME:
 				setName((String)newValue);
+				return;
+			case DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP:
+				getInfElemRefsGroup().clear();
+				getInfElemRefsGroup().addAll((Collection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -233,6 +301,9 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 			case DrlPackage.INF_ELEM_REF_GROUP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP:
+				getInfElemRefsGroup().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -250,6 +321,8 @@ public class InfElemRefGroupImpl extends InnerElementImpl implements InfElemRefG
 				return modifier != MODIFIER_EDEFAULT;
 			case DrlPackage.INF_ELEM_REF_GROUP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP:
+				return infElemRefsGroup != null && !infElemRefsGroup.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

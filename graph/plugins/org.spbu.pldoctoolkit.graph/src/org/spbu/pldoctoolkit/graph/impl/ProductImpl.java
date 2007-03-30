@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.Product;
@@ -29,7 +30,7 @@ import org.spbu.pldoctoolkit.graph.Product;
  *
  * @generated
  */
-public class ProductImpl extends DrlElementImpl implements Product {
+public class ProductImpl extends EObjectImpl implements Product {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

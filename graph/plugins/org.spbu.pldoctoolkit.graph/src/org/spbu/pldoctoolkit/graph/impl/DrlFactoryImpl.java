@@ -70,19 +70,14 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 			case DrlPackage.INF_ELEMENT: return createInfElement();
 			case DrlPackage.INF_PRODUCT: return createInfProduct();
 			case DrlPackage.FINAL_INF_PRODUCT: return createFinalInfProduct();
-			case DrlPackage.ADAPTER: return createAdapter();
 			case DrlPackage.NEST_POINT: return createNestPoint();
-			case DrlPackage.CONDITIONAL: return createConditional();
-			case DrlPackage.NEST_POINT_REF: return createNestPointRef();
 			case DrlPackage.INF_ELEM_REF: return createInfElemRef();
 			case DrlPackage.INF_ELEM_REF_GROUP: return createInfElemRefGroup();
 			case DrlPackage.PRODUCT_LINE: return createProductLine();
-			case DrlPackage.PL_SCHEME: return createPLScheme();
-			case DrlPackage.PL_DOCUMENTATION: return createPLDocumentation();
 			case DrlPackage.PRODUCT: return createProduct();
 			case DrlPackage.DOCUMENTATION_CORE: return createDocumentationCore();
 			case DrlPackage.PRODUCT_DOCUMENTATION: return createProductDocumentation();
-			case DrlPackage.VARIABLE: return createVariable();
+			case DrlPackage.PL_SCHEME: return createPLScheme();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -155,39 +150,9 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createAdapter() {
-		AdapterImpl adapter = new AdapterImpl();
-		return adapter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public NestPoint createNestPoint() {
 		NestPointImpl nestPoint = new NestPointImpl();
 		return nestPoint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Conditional createConditional() {
-		ConditionalImpl conditional = new ConditionalImpl();
-		return conditional;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NestPointRef createNestPointRef() {
-		NestPointRefImpl nestPointRef = new NestPointRefImpl();
-		return nestPointRef;
 	}
 
 	/**
@@ -225,26 +190,6 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PLScheme createPLScheme() {
-		PLSchemeImpl plScheme = new PLSchemeImpl();
-		return plScheme;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PLDocumentation createPLDocumentation() {
-		PLDocumentationImpl plDocumentation = new PLDocumentationImpl();
-		return plDocumentation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Product createProduct() {
 		ProductImpl product = new ProductImpl();
 		return product;
@@ -275,9 +220,9 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable createVariable() {
-		VariableImpl variable = new VariableImpl();
-		return variable;
+	public PLScheme createPLScheme() {
+		PLSchemeImpl plScheme = new PLSchemeImpl();
+		return plScheme;
 	}
 
 	/**

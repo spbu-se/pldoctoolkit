@@ -8,6 +8,8 @@ package org.spbu.pldoctoolkit.graph;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Product Documentation</b></em>'.
@@ -25,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ProductDocumentation extends DrlElement {
+public interface ProductDocumentation extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

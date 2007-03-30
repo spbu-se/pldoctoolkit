@@ -149,28 +149,6 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.Adapter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AdapterItemProvider adapterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.spbu.pldoctoolkit.graph.Adapter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createAdapterAdapter() {
-		if (adapterItemProvider == null) {
-			adapterItemProvider = new AdapterItemProvider(this);
-		}
-
-		return adapterItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.NestPoint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -190,50 +168,6 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 		}
 
 		return nestPointItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.Conditional} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConditionalItemProvider conditionalItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.spbu.pldoctoolkit.graph.Conditional}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createConditionalAdapter() {
-		if (conditionalItemProvider == null) {
-			conditionalItemProvider = new ConditionalItemProvider(this);
-		}
-
-		return conditionalItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.NestPointRef} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NestPointRefItemProvider nestPointRefItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.spbu.pldoctoolkit.graph.NestPointRef}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createNestPointRefAdapter() {
-		if (nestPointRefItemProvider == null) {
-			nestPointRefItemProvider = new NestPointRefItemProvider(this);
-		}
-
-		return nestPointRefItemProvider;
 	}
 
 	/**
@@ -303,50 +237,6 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.PLScheme} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PLSchemeItemProvider plSchemeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.spbu.pldoctoolkit.graph.PLScheme}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createPLSchemeAdapter() {
-		if (plSchemeItemProvider == null) {
-			plSchemeItemProvider = new PLSchemeItemProvider(this);
-		}
-
-		return plSchemeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.PLDocumentation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PLDocumentationItemProvider plDocumentationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.spbu.pldoctoolkit.graph.PLDocumentation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createPLDocumentationAdapter() {
-		if (plDocumentationItemProvider == null) {
-			plDocumentationItemProvider = new PLDocumentationItemProvider(this);
-		}
-
-		return plDocumentationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.Product} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -413,25 +303,25 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.Variable} instances.
+	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.PLScheme} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VariableItemProvider variableItemProvider;
+	protected PLSchemeItemProvider plSchemeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.spbu.pldoctoolkit.graph.Variable}.
+	 * This creates an adapter for a {@link org.spbu.pldoctoolkit.graph.PLScheme}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createVariableAdapter() {
-		if (variableItemProvider == null) {
-			variableItemProvider = new VariableItemProvider(this);
+	public Adapter createPLSchemeAdapter() {
+		if (plSchemeItemProvider == null) {
+			plSchemeItemProvider = new PLSchemeItemProvider(this);
 		}
 
-		return variableItemProvider;
+		return plSchemeItemProvider;
 	}
 
 	/**
@@ -533,19 +423,14 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 		if (infElementItemProvider != null) infElementItemProvider.dispose();
 		if (infProductItemProvider != null) infProductItemProvider.dispose();
 		if (finalInfProductItemProvider != null) finalInfProductItemProvider.dispose();
-		if (adapterItemProvider != null) adapterItemProvider.dispose();
 		if (nestPointItemProvider != null) nestPointItemProvider.dispose();
-		if (conditionalItemProvider != null) conditionalItemProvider.dispose();
-		if (nestPointRefItemProvider != null) nestPointRefItemProvider.dispose();
 		if (infElemRefItemProvider != null) infElemRefItemProvider.dispose();
 		if (infElemRefGroupItemProvider != null) infElemRefGroupItemProvider.dispose();
 		if (productLineItemProvider != null) productLineItemProvider.dispose();
-		if (plSchemeItemProvider != null) plSchemeItemProvider.dispose();
-		if (plDocumentationItemProvider != null) plDocumentationItemProvider.dispose();
 		if (productItemProvider != null) productItemProvider.dispose();
 		if (documentationCoreItemProvider != null) documentationCoreItemProvider.dispose();
 		if (productDocumentationItemProvider != null) productDocumentationItemProvider.dispose();
-		if (variableItemProvider != null) variableItemProvider.dispose();
+		if (plSchemeItemProvider != null) plSchemeItemProvider.dispose();
 	}
 
 }

@@ -17,14 +17,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
-import org.spbu.pldoctoolkit.graph.InnerElement;
-import org.spbu.pldoctoolkit.graph.SubelementedElement;
+import org.spbu.pldoctoolkit.graph.InfElemRef;
+import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,31 +34,22 @@ import org.spbu.pldoctoolkit.graph.SubelementedElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.spbu.pldoctoolkit.graph.impl.GenericDocumentPartImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.GenericDocumentPartImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.GenericDocumentPartImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.impl.GenericDocumentPartImpl#getInfElemRefs <em>Inf Elem Refs</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.impl.GenericDocumentPartImpl#getGroups <em>Groups</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class GenericDocumentPartImpl extends DrlElementImpl implements GenericDocumentPart {
+public abstract class GenericDocumentPartImpl extends EObjectImpl implements GenericDocumentPart {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final String copyright = "copyleft 2007";
-
-	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList elements = null;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -100,6 +92,26 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	protected String name = NAME_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getInfElemRefs() <em>Inf Elem Refs</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInfElemRefs()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList infElemRefs = null;
+
+	/**
+	 * The cached value of the '{@link #getGroups() <em>Groups</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGroups()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList groups = null;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -115,18 +127,6 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 */
 	protected EClass eStaticClass() {
 		return DrlPackage.Literals.GENERIC_DOCUMENT_PART;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList getElements() {
-		if (elements == null) {
-			elements = new EObjectContainmentEList(InnerElement.class, this, DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS);
-		}
-		return elements;
 	}
 
 	/**
@@ -176,10 +176,36 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getInfElemRefs() {
+		if (infElemRefs == null) {
+			infElemRefs = new EObjectContainmentEList(InfElemRef.class, this, DrlPackage.GENERIC_DOCUMENT_PART__INF_ELEM_REFS);
+		}
+		return infElemRefs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getGroups() {
+		if (groups == null) {
+			groups = new EObjectContainmentEList(InfElemRefGroup.class, this, DrlPackage.GENERIC_DOCUMENT_PART__GROUPS);
+		}
+		return groups;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
-				return ((InternalEList)getElements()).basicRemove(otherEnd, msgs);
+			case DrlPackage.GENERIC_DOCUMENT_PART__INF_ELEM_REFS:
+				return ((InternalEList)getInfElemRefs()).basicRemove(otherEnd, msgs);
+			case DrlPackage.GENERIC_DOCUMENT_PART__GROUPS:
+				return ((InternalEList)getGroups()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -191,12 +217,14 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
-				return getElements();
 			case DrlPackage.GENERIC_DOCUMENT_PART__ID:
 				return getId();
 			case DrlPackage.GENERIC_DOCUMENT_PART__NAME:
 				return getName();
+			case DrlPackage.GENERIC_DOCUMENT_PART__INF_ELEM_REFS:
+				return getInfElemRefs();
+			case DrlPackage.GENERIC_DOCUMENT_PART__GROUPS:
+				return getGroups();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -208,15 +236,19 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
-				getElements().clear();
-				getElements().addAll((Collection)newValue);
-				return;
 			case DrlPackage.GENERIC_DOCUMENT_PART__ID:
 				setId((String)newValue);
 				return;
 			case DrlPackage.GENERIC_DOCUMENT_PART__NAME:
 				setName((String)newValue);
+				return;
+			case DrlPackage.GENERIC_DOCUMENT_PART__INF_ELEM_REFS:
+				getInfElemRefs().clear();
+				getInfElemRefs().addAll((Collection)newValue);
+				return;
+			case DrlPackage.GENERIC_DOCUMENT_PART__GROUPS:
+				getGroups().clear();
+				getGroups().addAll((Collection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -229,14 +261,17 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
-				getElements().clear();
-				return;
 			case DrlPackage.GENERIC_DOCUMENT_PART__ID:
 				setId(ID_EDEFAULT);
 				return;
 			case DrlPackage.GENERIC_DOCUMENT_PART__NAME:
 				setName(NAME_EDEFAULT);
+				return;
+			case DrlPackage.GENERIC_DOCUMENT_PART__INF_ELEM_REFS:
+				getInfElemRefs().clear();
+				return;
+			case DrlPackage.GENERIC_DOCUMENT_PART__GROUPS:
+				getGroups().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -249,44 +284,16 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS:
-				return elements != null && !elements.isEmpty();
 			case DrlPackage.GENERIC_DOCUMENT_PART__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case DrlPackage.GENERIC_DOCUMENT_PART__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case DrlPackage.GENERIC_DOCUMENT_PART__INF_ELEM_REFS:
+				return infElemRefs != null && !infElemRefs.isEmpty();
+			case DrlPackage.GENERIC_DOCUMENT_PART__GROUPS:
+				return groups != null && !groups.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
-		if (baseClass == SubelementedElement.class) {
-			switch (derivedFeatureID) {
-				case DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS: return DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
-		if (baseClass == SubelementedElement.class) {
-			switch (baseFeatureID) {
-				case DrlPackage.SUBELEMENTED_ELEMENT__ELEMENTS: return DrlPackage.GENERIC_DOCUMENT_PART__ELEMENTS;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
