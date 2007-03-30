@@ -12,18 +12,24 @@
       <domainMetaElement
           href="model.ecore#//InfElement"/>
       <labelMappings
-          viewPattern="{1}:{0}"
-          editPattern="{1}:{0}">
+          viewPattern=""
+          editPattern="">
         <diagramLabel
-            href="model.gmfgraph#InfElementCaption"/>
+            href="model.gmfgraph#InfElementName"/>
         <features
             href="model.ecore#//GenericDocumentPart/name"/>
+      </labelMappings>
+      <labelMappings
+          viewPattern="id: {0}"
+          editPattern="">
+        <diagramLabel
+            href="model.gmfgraph#InfElementId"/>
         <features
             href="model.ecore#//GenericDocumentPart/id"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="model.gmftool#//@palette/@tools.0/@tools.0"/>
+          href="model.gmftool#//@palette/@tools.0/@tools.1"/>
       <diagramNode
           href="model.gmfgraph#InfElement"/>
     </ownedChild>
@@ -35,18 +41,24 @@
       <domainMetaElement
           href="model.ecore#//InfProduct"/>
       <labelMappings
-          viewPattern="{1}:{0}"
-          editPattern="{1}:{0}">
+          viewPattern=""
+          editPattern="">
         <diagramLabel
-            href="model.gmfgraph#InfProductCaption"/>
+            href="model.gmfgraph#InfProductName"/>
         <features
             href="model.ecore#//GenericDocumentPart/name"/>
+      </labelMappings>
+      <labelMappings
+          viewPattern="id: {0}"
+          editPattern="">
+        <diagramLabel
+            href="model.gmfgraph#InfProductId"/>
         <features
             href="model.ecore#//GenericDocumentPart/id"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="model.gmftool#//@palette/@tools.0/@tools.1"/>
+          href="model.gmftool#//@palette/@tools.0/@tools.0"/>
       <diagramNode
           href="model.gmfgraph#InfProduct"/>
     </ownedChild>
@@ -55,15 +67,19 @@
     <ownedChild>
       <domainMetaElement
           href="model.ecore#//InfElemRefGroup"/>
-      <labelMappings>
+      <labelMappings
+          viewPattern="{0}"
+          editPattern="id:{1}">
         <diagramLabel
-            href="model.gmfgraph#InfElemRefGroupName"/>
+            href="model.gmfgraph#InfElemRefGroupModifier"/>
         <features
-            href="model.ecore#//InfElemRefGroup/name"/>
+            href="model.ecore#//InfElemRefGroup/modifier"/>
+        <features
+            href="model.ecore#//InfElemRefGroup/id"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="model.gmftool#//@palette/@tools.0/@tools.6"/>
+          href="model.gmftool#//@palette/@tools.0/@tools.2"/>
       <diagramNode
           href="model.gmfgraph#InfElemRefGroup"/>
     </ownedChild>
@@ -89,12 +105,12 @@
           href="model.ecore#//InfElemRef/id"/>
     </labelMappings>
     <containmentFeature
-        href="model.ecore#//SubelementedElement/elements"/>
+        href="model.ecore#//GenericDocumentPart/infElemRefs"/>
     <tool
         xsi:type="gmftool:CreationTool"
         href="model.gmftool#//@palette/@tools.0/@tools.4"/>
     <diagramLink
-        href="model.gmfgraph#InfElemRef"/>
+        href="model.gmfgraph#InfElemRefConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="model.ecore#//InfElemRef/infelem"/>
@@ -102,12 +118,22 @@
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="model.gmftool#//@palette/@tools.0/@tools.6"/>
+        href="model.gmftool#//@palette/@tools.0/@tools.5"/>
     <diagramLink
-        href="model.gmfgraph#SubelementedElementElements"/>
+        href="model.gmfgraph#InfElemRefGroupConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="model.ecore#//SubelementedElement/elements"/>
+        href="model.ecore#//GenericDocumentPart/groups"/>
+  </links>
+  <links>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="model.gmftool#//@palette/@tools.0/@tools.4"/>
+    <diagramLink
+        href="model.gmfgraph#InfElemRefGroupConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="model.ecore#//InfElemRef/group"/>
   </links>
   <diagram>
     <diagramCanvas

@@ -9,15 +9,6 @@
         title="elements">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="InfElement"
-          description="Create new InfElement">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
           title="InfProduct"
           description="Create new InfProduct">
         <smallIcon
@@ -27,26 +18,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="NestPoint"
-          description="Create new NestPoint">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="Condition"
-          description="Create new Condition">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="InfElemRef"
-          description="Create new InfElemRefOptional">
+          title="InfElement"
+          description="Create new InfElement">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -63,8 +36,26 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="SubelementedElementElements"
-          description="Create new SubelementedElementElements">
+          title="Product"
+          description="Create new Product">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="InfElemRef"
+          description="Create new InfElemRef">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="InfElemRefGroup connection"
+          description="Create new InfElemRefGroupConnection">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon

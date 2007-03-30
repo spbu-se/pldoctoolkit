@@ -9,13 +9,12 @@
     <eLiterals name="REPLACE" value="3"/>
     <eLiterals name="DELETE" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DrlElement" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="InfElement" eSuperTypes="#//GenericDocumentPart">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestPoints" eType="#//NestPoint"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfProduct" eSuperTypes="#//GenericDocumentPart"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FinalInfProduct" eSuperTypes="#//DrlElement">
+  <eClassifiers xsi:type="ecore:EClass" name="FinalInfProduct">
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" lowerBound="1"
         eType="#//InfProduct"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -26,8 +25,7 @@
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="descr" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GenericDocumentPart" abstract="true"
-      eSuperTypes="#//DrlElement">
+  <eClassifiers xsi:type="ecore:EClass" name="GenericDocumentPart" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         derived="true" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -36,45 +34,52 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
         eType="#//InfElemRefGroup" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InfElemRef" eSuperTypes="#//DrlElement">
+  <eClassifiers xsi:type="ecore:EClass" name="InfElemRef">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="infelem" lowerBound="1"
         eType="#//InfElement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//InfElemRefGroup"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//InfElemRefGroup"
+        eOpposite="#//InfElemRefGroup/infElemRefsGroup"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InfElemRefGroup" eSuperTypes="#//DrlElement">
+  <eClassifiers xsi:type="ecore:EClass" name="InfElemRefGroup">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifier" lowerBound="1"
         eType="#//GroupType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="infElemRefsGroup" upperBound="-1"
+        eType="#//InfElemRef" transient="true" derived="true" eOpposite="#//InfElemRef/group"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="GroupType">
     <eLiterals name="OR" value="1"/>
     <eLiterals name="XOR" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductLine" eSuperTypes="#//DrlElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ProductLine">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
-        eType="#//Product" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="productDocumentations"
         eType="#//ProductDocumentation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="documentationCore" eType="#//DocumentationCore"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scheme" lowerBound="1"
+        eType="#//PLScheme" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//DrlElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Product">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DocumentationCore" eSuperTypes="#//DrlElement">
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentationCore">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
         eType="#//GenericDocumentPart" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductDocumentation" eSuperTypes="#//DrlElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ProductDocumentation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="finalInfProducts" upperBound="-1"
         eType="#//FinalInfProduct" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" eType="#//Product"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PLScheme">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
+        eType="#//Product" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>
