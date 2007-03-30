@@ -2,7 +2,7 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel">
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.infproduct">
   <diagram
       visualID="79"
       editPartClassName="DocumentationCoreEditPart"
@@ -35,7 +35,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="InfElementFigure"
-          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class InfElementFigure extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public InfElementFigure() {&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#x9;&#x9;org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_0 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();&#xD;&#xA;fig_0.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;setFigureInfElementCaptionFigure(fig_0);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Object layData0 = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.add(fig_0, layData0);&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fInfElementCaptionFigure; &#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureInfElementCaptionFigure() {&#xD;&#xA;&#x9;&#x9;return fInfElementCaptionFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void setFigureInfElementCaptionFigure(org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig){&#xD;&#xA;&#x9;&#x9;fInfElementCaptionFigure = fig;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
+          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class InfElementFigure extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public InfElementFigure() {&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#x9;&#x9;org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_0 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();&#xD;&#xA;fig_0.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;setFigureInfElementNameFigure(fig_0);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Object layData0 = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.add(fig_0, layData0);&#xD;&#xA;&#x9;&#x9;org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_1 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();&#xD;&#xA;fig_1.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;setFigureInfElementIdFigure(fig_1);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Object layData1 = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.add(fig_1, layData1);&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fInfElementNameFigure; &#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureInfElementNameFigure() {&#xD;&#xA;&#x9;&#x9;return fInfElementNameFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void setFigureInfElementNameFigure(org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig){&#xD;&#xA;&#x9;&#x9;fInfElementNameFigure = fig;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fInfElementIdFigure; &#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureInfElementIdFigure() {&#xD;&#xA;&#x9;&#x9;return fInfElementIdFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void setFigureInfElementIdFigure(org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig){&#xD;&#xA;&#x9;&#x9;fInfElementIdFigure = fig;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
         <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
@@ -49,22 +49,39 @@
       </modelFacet>
       <labels
           visualID="4001"
-          editPartClassName="InfElementNameIdEditPart"
-          itemSemanticEditPolicyClassName="InfElementNameIdItemSemanticEditPolicy"
-          notationViewFactoryClassName="InfElementNameIdViewFactory">
+          editPartClassName="InfElementNameEditPart"
+          itemSemanticEditPolicyClassName="InfElementNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="InfElementNameViewFactory">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getFigureInfElementCaptionFigure"
+            getterName="getFigureInfElementNameFigure"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel"/>
         <modelFacet
-            xsi:type="gmfgen:CompositeFeatureLabelModelFacet"
-            viewPattern="{1}:{0}"
-            editPattern="{1}:{0}">
-          <metaFeatures
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            viewPattern=""
+            editPattern="">
+          <metaFeature
               href="model.genmodel#//graph/GenericDocumentPart/name"/>
-          <metaFeatures
+        </modelFacet>
+      </labels>
+      <labels
+          visualID="4002"
+          editPartClassName="InfElementIdEditPart"
+          itemSemanticEditPolicyClassName="InfElementIdItemSemanticEditPolicy"
+          notationViewFactoryClassName="InfElementIdViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureInfElementIdFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            viewPattern="id: {0}"
+            editPattern="">
+          <metaFeature
               href="model.genmodel#//graph/GenericDocumentPart/id"/>
         </modelFacet>
       </labels>
@@ -84,7 +101,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="InfProductFigure"
-          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class InfProductFigure extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public InfProductFigure() {&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;this.setLineWidth(3);&#xD;&#xA;&#x9;&#x9;this.setBorder(&#x9;&#xD;&#xA;new org.eclipse.draw2d.CompoundBorder(&#xD;&#xA;&#x9;&#xD;&#xA;new org.eclipse.draw2d.LineBorder()&#xD;&#xA;, &#xD;&#xA;&#x9;&#xD;&#xA;new org.eclipse.draw2d.LineBorder()&#xD;&#xA;&#xD;&#xA;)&#xD;&#xA;);&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#x9;&#x9;org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_0 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();&#xD;&#xA;fig_0.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;setFigureInfProductCaptionFigure(fig_0);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Object layData0 = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.add(fig_0, layData0);&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fInfProductCaptionFigure; &#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureInfProductCaptionFigure() {&#xD;&#xA;&#x9;&#x9;return fInfProductCaptionFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void setFigureInfProductCaptionFigure(org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig){&#xD;&#xA;&#x9;&#x9;fInfProductCaptionFigure = fig;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
+          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class InfProductFigure extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public InfProductFigure() {&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;this.setLineWidth(3);&#xD;&#xA;&#x9;&#x9;this.setBorder(&#x9;&#xD;&#xA;new org.eclipse.draw2d.CompoundBorder(&#xD;&#xA;&#x9;&#xD;&#xA;new org.eclipse.draw2d.LineBorder()&#xD;&#xA;, &#xD;&#xA;&#x9;&#xD;&#xA;new org.eclipse.draw2d.LineBorder()&#xD;&#xA;&#xD;&#xA;)&#xD;&#xA;);&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#x9;&#x9;org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_0 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();&#xD;&#xA;fig_0.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;setFigureInfProductNameFigure(fig_0);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Object layData0 = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.add(fig_0, layData0);&#xD;&#xA;&#x9;&#x9;org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_1 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();&#xD;&#xA;fig_1.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;setFigureInfProductIdFigure(fig_1);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Object layData1 = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.add(fig_1, layData1);&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fInfProductNameFigure; &#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureInfProductNameFigure() {&#xD;&#xA;&#x9;&#x9;return fInfProductNameFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void setFigureInfProductNameFigure(org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig){&#xD;&#xA;&#x9;&#x9;fInfProductNameFigure = fig;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fInfProductIdFigure; &#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureInfProductIdFigure() {&#xD;&#xA;&#x9;&#x9;return fInfProductIdFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void setFigureInfProductIdFigure(org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig){&#xD;&#xA;&#x9;&#x9;fInfProductIdFigure = fig;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
         <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
@@ -97,23 +114,40 @@
             href="model.genmodel#//graph/DocumentationCore/parts"/>
       </modelFacet>
       <labels
-          visualID="4002"
-          editPartClassName="InfProductNameIdEditPart"
-          itemSemanticEditPolicyClassName="InfProductNameIdItemSemanticEditPolicy"
-          notationViewFactoryClassName="InfProductNameIdViewFactory">
+          visualID="4003"
+          editPartClassName="InfProductNameEditPart"
+          itemSemanticEditPolicyClassName="InfProductNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="InfProductNameViewFactory">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getFigureInfProductCaptionFigure"
+            getterName="getFigureInfProductNameFigure"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel"/>
         <modelFacet
-            xsi:type="gmfgen:CompositeFeatureLabelModelFacet"
-            viewPattern="{1}:{0}"
-            editPattern="{1}:{0}">
-          <metaFeatures
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            viewPattern=""
+            editPattern="">
+          <metaFeature
               href="model.genmodel#//graph/GenericDocumentPart/name"/>
-          <metaFeatures
+        </modelFacet>
+      </labels>
+      <labels
+          visualID="4004"
+          editPartClassName="InfProductIdEditPart"
+          itemSemanticEditPolicyClassName="InfProductIdItemSemanticEditPolicy"
+          notationViewFactoryClassName="InfProductIdViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureInfProductIdFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            viewPattern="id: {0}"
+            editPattern="">
+          <metaFeature
               href="model.genmodel#//graph/GenericDocumentPart/id"/>
         </modelFacet>
       </labels>
@@ -133,7 +167,12 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="InfElemRefGroupFigure"
-          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class InfElemRefGroupFigure extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public InfElemRefGroupFigure() {&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#x9;&#x9;org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_0 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();&#xD;&#xA;fig_0.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;setFigureInfElemRefGroupIdFigure(fig_0);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Object layData0 = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.add(fig_0, layData0);&#xD;&#xA;&#x9;&#x9;org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_1 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();&#xD;&#xA;fig_1.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;setFigureInfElemRefGroupModifierFigure(fig_1);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Object layData1 = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.add(fig_1, layData1);&#xD;&#xA;&#x9;&#x9;org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_2 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();&#xD;&#xA;fig_2.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;setFigureInfElemRefGroupNameFigure(fig_2);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Object layData2 = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.add(fig_2, layData2);&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fInfElemRefGroupIdFigure; &#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureInfElemRefGroupIdFigure() {&#xD;&#xA;&#x9;&#x9;return fInfElemRefGroupIdFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void setFigureInfElemRefGroupIdFigure(org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig){&#xD;&#xA;&#x9;&#x9;fInfElemRefGroupIdFigure = fig;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fInfElemRefGroupModifierFigure; &#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureInfElemRefGroupModifierFigure() {&#xD;&#xA;&#x9;&#x9;return fInfElemRefGroupModifierFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void setFigureInfElemRefGroupModifierFigure(org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig){&#xD;&#xA;&#x9;&#x9;fInfElemRefGroupModifierFigure = fig;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fInfElemRefGroupNameFigure; &#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureInfElemRefGroupNameFigure() {&#xD;&#xA;&#x9;&#x9;return fInfElemRefGroupNameFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void setFigureInfElemRefGroupNameFigure(org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig){&#xD;&#xA;&#x9;&#x9;fInfElemRefGroupNameFigure = fig;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
+          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class InfElemRefGroupFigure extends org.eclipse.draw2d.Ellipse {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public InfElemRefGroupFigure() {&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.lightGray&#xD;&#xA;&#xD;&#xA;);&#xD;&#xA;&#x9;&#x9;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10)));&#xD;&#xA;&#x9;&#x9;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10)));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedBackground="true"/>
+        <attributes
+            xsi:type="gmfgen:ResizeConstraints"/>
         <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
@@ -142,20 +181,28 @@
             href="model.genmodel#//graph/InfElemRefGroup"/>
       </modelFacet>
       <labels
-          visualID="4003"
-          editPartClassName="InfElemRefGroupNameEditPart"
-          itemSemanticEditPolicyClassName="InfElemRefGroupNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="InfElemRefGroupNameViewFactory">
+          xsi:type="gmfgen:GenExternalNodeLabel"
+          visualID="4005"
+          editPartClassName="InfElemRefGroupModifierIdEditPart"
+          itemSemanticEditPolicyClassName="InfElemRefGroupModifierIdItemSemanticEditPolicy"
+          notationViewFactoryClassName="InfElemRefGroupModifierIdViewFactory">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
-            xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getFigureInfElemRefGroupNameFigure"
-            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel"/>
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="InfElemRefGroupModifierFigure"
+            classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class InfElemRefGroupModifierFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public InfElemRefGroupModifierFigure() {&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
+          <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
         <modelFacet
-            xsi:type="gmfgen:FeatureLabelModelFacet">
-          <metaFeature
-              href="model.genmodel#//graph/InfElemRefGroup/name"/>
+            xsi:type="gmfgen:CompositeFeatureLabelModelFacet"
+            viewPattern="{0}"
+            editPattern="id:{1}">
+          <metaFeatures
+              href="model.genmodel#//graph/InfElemRefGroup/modifier"/>
+          <metaFeatures
+              href="model.genmodel#//graph/InfElemRefGroup/id"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -181,9 +228,9 @@
         <metaClass
             href="model.genmodel#//graph/InfElemRef"/>
         <containmentMetaFeature
-            href="model.genmodel#//graph/SubelementedElement/elements"/>
+            href="model.genmodel#//graph/GenericDocumentPart/infElemRefs"/>
         <childMetaFeature
-            href="model.genmodel#//graph/SubelementedElement/elements"/>
+            href="model.genmodel#//graph/GenericDocumentPart/infElemRefs"/>
         <modelElementSelector
             body="self.optional = true"/>
         <modelElementInitializer
@@ -198,7 +245,7 @@
             href="model.genmodel#//graph/InfElemRef/infelem"/>
       </modelFacet>
       <labels
-          visualID="4004"
+          visualID="4006"
           editPartClassName="InfElemRefIdEditPart"
           itemSemanticEditPolicyClassName="InfElemRefIdItemSemanticEditPolicy"
           notationViewFactoryClassName="InfElemRefIdViewFactory">
@@ -223,24 +270,48 @@
     </links>
     <links
         visualID="3002"
-        editPartClassName="SubelementedElementElementsEditPart"
-        itemSemanticEditPolicyClassName="SubelementedElementElementsItemSemanticEditPolicy"
-        notationViewFactoryClassName="SubelementedElementElementsViewFactory">
+        editPartClassName="GenericDocumentPartGroupsEditPart"
+        itemSemanticEditPolicyClassName="GenericDocumentPartGroupsItemSemanticEditPolicy"
+        notationViewFactoryClassName="GenericDocumentPartGroupsViewFactory">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"
-          editHelperAdviceClassName="SubelementedElementElementsEditHelperAdvice"/>
+          editHelperAdviceClassName="GenericDocumentPartGroupsEditHelperAdvice"/>
       <viewmap
-          xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx">
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="InfElemRefGroupConnectionFigure"
+          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class InfElemRefGroupConnectionFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public InfElemRefGroupConnectionFigure() {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
         <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
-            href="model.genmodel#//graph/SubelementedElement/elements"/>
+            href="model.genmodel#//graph/GenericDocumentPart/groups"/>
+      </modelFacet>
+    </links>
+    <links
+        visualID="3003"
+        editPartClassName="InfElemRefGroup2EditPart"
+        itemSemanticEditPolicyClassName="InfElemRefGroup2ItemSemanticEditPolicy"
+        notationViewFactoryClassName="InfElemRefGroup2ViewFactory">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"
+          editHelperAdviceClassName="InfElemRefGroupEditHelperAdvice"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="InfElemRefGroupConnectionFigure"
+          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class InfElemRefGroupConnectionFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public InfElemRefGroupConnectionFigure() {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
+        <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="model.genmodel#//graph/InfElemRef/group"/>
       </modelFacet>
     </links>
     <palette>
@@ -258,24 +329,31 @@
             genNodes="//@diagram/@topLevelNodes.0"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="InfElemRef"
-            description="Create new InfElemRefOptional"
-            genLinks="//@diagram/@links.0"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
             title="InfElemRefGroup"
-            description="Create new InfElemRefGroup"/>
+            description="Create new InfElemRefGroup"
+            genNodes="//@diagram/@topLevelNodes.2"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="SubelementedElementElements"
-            description="Create new SubelementedElementElements"
-            genNodes="//@diagram/@topLevelNodes.2"
+            title="Product"
+            description="Create new Product"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="InfElemRef"
+            description="Create new InfElemRef"
+            genLinks="//@diagram/@links.0 //@diagram/@links.2"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="InfElemRefGroup connection"
+            description="Create new InfElemRefGroupConnection"
             genLinks="//@diagram/@links.1"/>
       </groups>
     </palette>
   </diagram>
   <plugin
-      version="1.0.0.0"/>
+      iD="org.spbu.pldoctoolkit.graph.diagram.infproduct"
+      provider="Spbu Plugin Provider, Inc"
+      version="1.0.0.0"
+      printingEnabled="true"/>
   <editor/>
   <domainGenModel
       href="model.genmodel#/"/>

@@ -11,8 +11,13 @@
         name="InfElementFigure">
       <children
           xsi:type="gmfgraph:Label"
-          referencingElements="InfElementCaption"
-          name="InfElementCaptionFigure"
+          referencingElements="InfElementName"
+          name="InfElementNameFigure"
+          text="&lt;...>"/>
+      <children
+          xsi:type="gmfgraph:Label"
+          referencingElements="InfElementId"
+          name="InfElementIdFigure"
           text="&lt;...>"/>
     </figures>
     <figures
@@ -22,8 +27,13 @@
         lineWidth="3">
       <children
           xsi:type="gmfgraph:Label"
-          referencingElements="InfProductCaption"
-          name="InfProductCaptionFigure"
+          referencingElements="InfProductName"
+          name="InfProductNameFigure"
+          text="&lt;...>"/>
+      <children
+          xsi:type="gmfgraph:Label"
+          referencingElements="InfProductId"
+          name="InfProductIdFigure"
           text="&lt;...>"/>
       <border
           xsi:type="gmfgraph:CompoundBorder">
@@ -32,26 +42,6 @@
         <inner
             xsi:type="gmfgraph:LineBorder"/>
       </border>
-    </figures>
-    <figures
-        xsi:type="gmfgraph:Rectangle"
-        referencingElements="InfElemRefGroup"
-        name="InfElemRefGroupFigure">
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="InfElemRefGroupId"
-          name="InfElemRefGroupIdFigure"
-          text="&lt;...>"/>
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="InfElemRefGroupModifier"
-          name="InfElemRefGroupModifierFigure"
-          text="&lt;...>"/>
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="InfElemRefGroupName"
-          name="InfElemRefGroupNameFigure"
-          text="&lt;...>"/>
     </figures>
     <figures
         xsi:type="gmfgraph:PolygonDecoration"
@@ -99,18 +89,19 @@
     </figures>
     <figures
         xsi:type="gmfgraph:PolylineConnection"
-        referencingElements="InfElemRef"
+        referencingElements="InfElemRefConnection"
         name="InfElemRefFigure"
         targetDecoration="CircleDecoration"/>
+    <figures
+        xsi:type="gmfgraph:PolylineConnection"
+        referencingElements="InfElemRefGroupConnection"
+        name="InfElemRefGroupConnectionFigure"
+        lineKind="LINE_DASH"/>
     <figures
         xsi:type="gmfgraph:Label"
         referencingElements="InfElemRefId"
         name="InfElemRefIdFigure"
         text="&lt;...>"/>
-    <figures
-        xsi:type="gmfgraph:PolylineConnection"
-        referencingElements="SubelementedElementElements"
-        name="SubelementedElementElementsFigure"/>
     <figures
         xsi:type="gmfgraph:Rectangle"
         referencingElements="DocumentationCore"
@@ -118,6 +109,58 @@
         fill="false">
       <layout
           xsi:type="gmfgraph:FlowLayout"/>
+    </figures>
+    <figures
+        xsi:type="gmfgraph:Rectangle"
+        referencingElements="ProductLine ProductsCompartment InfProductsCompartment"
+        name="ProductLineFigure">
+      <children
+          xsi:type="gmfgraph:Label"
+          referencingElements="ProductLineName"
+          name="ProductLineNameFigure"
+          text="&lt;...>"/>
+    </figures>
+    <figures
+        xsi:type="gmfgraph:Rectangle"
+        referencingElements="Product"
+        name="ProductFigure">
+      <children
+          xsi:type="gmfgraph:Label"
+          name="ProductIdFigure"
+          text="&lt;...>"/>
+    </figures>
+    <figures
+        xsi:type="gmfgraph:LabeledContainer"
+        referencingElements="PLSchema"
+        name="PLSchemaFigure"/>
+    <figures
+        xsi:type="gmfgraph:Label"
+        referencingElements="InfElemRefGroupId"
+        name="InfElemRefGroupIdFigure"
+        text="&lt;...>"/>
+    <figures
+        xsi:type="gmfgraph:Label"
+        referencingElements="InfElemRefGroupName"
+        name="InfElemRefGroupNameFigure"
+        text="&lt;...>"/>
+    <figures
+        xsi:type="gmfgraph:Label"
+        referencingElements="InfElemRefGroupModifier"
+        name="InfElemRefGroupModifierFigure"
+        text="&lt;...>"/>
+    <figures
+        xsi:type="gmfgraph:Ellipse"
+        referencingElements="InfElemRefGroup"
+        name="InfElemRefGroupFigure">
+      <backgroundColor
+          xsi:type="gmfgraph:ConstantColor"
+          value="lightGray"/>
+      <maximumSize
+          dx="10"
+          dy="10"/>
+      <minimumSize
+          dx="10"
+          dy="10"/>
     </figures>
   </figures>
   <nodes
@@ -131,20 +174,59 @@
       figure="InfProductFigure"/>
   <nodes
       name="InfElemRefGroup"
-      figure="InfElemRefGroupFigure"/>
+      figure="InfElemRefGroupFigure"
+      resizeConstraint="NONE"/>
+  <nodes
+      name="ProductLine"
+      figure="ProductLineFigure"/>
+  <nodes
+      name="Product"
+      figure="ProductFigure"/>
+  <nodes
+      name="PLSchema"
+      figure="PLSchemaFigure"/>
+  <nodes
+      xsi:type="gmfgraph:DiagramLabel"
+      name="InfElementId"
+      figure="InfElementIdFigure"
+      elementIcon="false"/>
   <connections
-      name="SubelementedElementElements"
-      figure="SubelementedElementElementsFigure"/>
-  <connections
-      name="InfElemRef"
+      name="InfElemRefConnection"
       figure="InfElemRefFigure"/>
+  <connections
+      name="InfElemRefGroupConnection"
+      figure="InfElemRefGroupConnectionFigure"/>
+  <compartments
+      name="ProductsCompartment"
+      figure="ProductLineFigure"
+      needsTitle="true">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="FILL"/>
+  </compartments>
+  <compartments
+      name="InfProductsCompartment"
+      figure="ProductLineFigure"
+      needsTitle="true">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="FILL"/>
+  </compartments>
   <labels
-      name="InfElementCaption"
-      figure="InfElementCaptionFigure"
+      name="ProductLineName"
+      figure="ProductLineNameFigure"
       elementIcon="false"/>
   <labels
-      name="InfProductCaption"
-      figure="InfProductCaptionFigure"
+      name="InfElementName"
+      figure="InfElementNameFigure"
+      elementIcon="false"/>
+  <labels
+      name="InfProductName"
+      figure="InfProductNameFigure"
+      elementIcon="false"/>
+  <labels
+      name="InfProductId"
+      figure="InfProductIdFigure"
       elementIcon="false"/>
   <labels
       name="InfElemRefId"
