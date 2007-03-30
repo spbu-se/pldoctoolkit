@@ -60,15 +60,6 @@ public interface DrlFactory extends EFactory {
 	FinalInfProduct createFinalInfProduct();
 
 	/**
-	 * Returns a new object of class '<em>Adapter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Adapter</em>'.
-	 * @generated
-	 */
-	Adapter createAdapter();
-
-	/**
 	 * Returns a new object of class '<em>Nest Point</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,24 +67,6 @@ public interface DrlFactory extends EFactory {
 	 * @generated
 	 */
 	NestPoint createNestPoint();
-
-	/**
-	 * Returns a new object of class '<em>Conditional</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conditional</em>'.
-	 * @generated
-	 */
-	Conditional createConditional();
-
-	/**
-	 * Returns a new object of class '<em>Nest Point Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Nest Point Ref</em>'.
-	 * @generated
-	 */
-	NestPointRef createNestPointRef();
 
 	/**
 	 * Returns a new object of class '<em>Inf Elem Ref</em>'.
@@ -123,24 +96,6 @@ public interface DrlFactory extends EFactory {
 	ProductLine createProductLine();
 
 	/**
-	 * Returns a new object of class '<em>PL Scheme</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>PL Scheme</em>'.
-	 * @generated
-	 */
-	PLScheme createPLScheme();
-
-	/**
-	 * Returns a new object of class '<em>PL Documentation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>PL Documentation</em>'.
-	 * @generated
-	 */
-	PLDocumentation createPLDocumentation();
-
-	/**
 	 * Returns a new object of class '<em>Product</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -168,13 +123,13 @@ public interface DrlFactory extends EFactory {
 	ProductDocumentation createProductDocumentation();
 
 	/**
-	 * Returns a new object of class '<em>Variable</em>'.
+	 * Returns a new object of class '<em>PL Scheme</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable</em>'.
+	 * @return a new object of class '<em>PL Scheme</em>'.
 	 * @generated
 	 */
-	Variable createVariable();
+	PLScheme createPLScheme();
 
 	/**
 	 * Returns the package supported by this factory.

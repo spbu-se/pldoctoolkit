@@ -15,6 +15,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -35,7 +37,7 @@ import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
  *
  * @generated
  */
-public class DocumentationCoreImpl extends DrlElementImpl implements DocumentationCore {
+public class DocumentationCoreImpl extends EObjectImpl implements DocumentationCore {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

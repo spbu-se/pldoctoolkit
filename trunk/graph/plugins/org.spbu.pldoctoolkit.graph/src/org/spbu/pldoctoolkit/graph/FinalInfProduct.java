@@ -6,7 +6,7 @@
  */
 package org.spbu.pldoctoolkit.graph;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,10 +16,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.spbu.pldoctoolkit.graph.FinalInfProduct#getAdapters <em>Adapters</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.FinalInfProduct#getProduct <em>Product</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.FinalInfProduct#getId <em>Id</em>}</li>
- *   <li>{@link org.spbu.pldoctoolkit.graph.FinalInfProduct#getVariables <em>Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,29 +25,13 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface FinalInfProduct extends DrlElement {
+public interface FinalInfProduct extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String copyright = "copyleft 2007";
-
-	/**
-	 * Returns the value of the '<em><b>Adapters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.spbu.pldoctoolkit.graph.Adapter}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Adapters</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Adapters</em>' containment reference list.
-	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getFinalInfProduct_Adapters()
-	 * @model type="org.spbu.pldoctoolkit.graph.Adapter" containment="true"
-	 * @generated
-	 */
-	EList getAdapters();
 
 	/**
 	 * Returns the value of the '<em><b>Product</b></em>' reference.
@@ -102,31 +84,5 @@ public interface FinalInfProduct extends DrlElement {
 	 * @generated
 	 */
 	void setId(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Variables</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Variables</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variables</em>' containment reference.
-	 * @see #setVariables(Variable)
-	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getFinalInfProduct_Variables()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Variable getVariables();
-
-	/**
-	 * Sets the value of the '{@link org.spbu.pldoctoolkit.graph.FinalInfProduct#getVariables <em>Variables</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Variables</em>' containment reference.
-	 * @see #getVariables()
-	 * @generated
-	 */
-	void setVariables(Variable value);
 
 } // FinalInfProduct

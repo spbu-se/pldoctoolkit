@@ -94,18 +94,10 @@ public class DrlSwitch {
 	 */
 	protected Object doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case DrlPackage.DRL_ELEMENT: {
-				DrlElement drlElement = (DrlElement)theEObject;
-				Object result = caseDrlElement(drlElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case DrlPackage.INF_ELEMENT: {
 				InfElement infElement = (InfElement)theEObject;
 				Object result = caseInfElement(infElement);
 				if (result == null) result = caseGenericDocumentPart(infElement);
-				if (result == null) result = caseDrlElement(infElement);
-				if (result == null) result = caseSubelementedElement(infElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -113,152 +105,71 @@ public class DrlSwitch {
 				InfProduct infProduct = (InfProduct)theEObject;
 				Object result = caseInfProduct(infProduct);
 				if (result == null) result = caseGenericDocumentPart(infProduct);
-				if (result == null) result = caseDrlElement(infProduct);
-				if (result == null) result = caseSubelementedElement(infProduct);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.FINAL_INF_PRODUCT: {
 				FinalInfProduct finalInfProduct = (FinalInfProduct)theEObject;
 				Object result = caseFinalInfProduct(finalInfProduct);
-				if (result == null) result = caseDrlElement(finalInfProduct);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DrlPackage.ADAPTER: {
-				Adapter adapter = (Adapter)theEObject;
-				Object result = caseAdapter(adapter);
-				if (result == null) result = caseDrlElement(adapter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.NEST_POINT: {
 				NestPoint nestPoint = (NestPoint)theEObject;
 				Object result = caseNestPoint(nestPoint);
-				if (result == null) result = caseInnerElement(nestPoint);
-				if (result == null) result = caseSubelementedElement(nestPoint);
-				if (result == null) result = caseDrlElement(nestPoint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DrlPackage.INNER_ELEMENT: {
-				InnerElement innerElement = (InnerElement)theEObject;
-				Object result = caseInnerElement(innerElement);
-				if (result == null) result = caseDrlElement(innerElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DrlPackage.CONDITIONAL: {
-				Conditional conditional = (Conditional)theEObject;
-				Object result = caseConditional(conditional);
-				if (result == null) result = caseInnerElement(conditional);
-				if (result == null) result = caseSubelementedElement(conditional);
-				if (result == null) result = caseDrlElement(conditional);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DrlPackage.NEST_POINT_REF: {
-				NestPointRef nestPointRef = (NestPointRef)theEObject;
-				Object result = caseNestPointRef(nestPointRef);
-				if (result == null) result = caseDrlElement(nestPointRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.GENERIC_DOCUMENT_PART: {
 				GenericDocumentPart genericDocumentPart = (GenericDocumentPart)theEObject;
 				Object result = caseGenericDocumentPart(genericDocumentPart);
-				if (result == null) result = caseDrlElement(genericDocumentPart);
-				if (result == null) result = caseSubelementedElement(genericDocumentPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.INF_ELEM_REF: {
 				InfElemRef infElemRef = (InfElemRef)theEObject;
 				Object result = caseInfElemRef(infElemRef);
-				if (result == null) result = caseInnerElement(infElemRef);
-				if (result == null) result = caseDrlElement(infElemRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.INF_ELEM_REF_GROUP: {
 				InfElemRefGroup infElemRefGroup = (InfElemRefGroup)theEObject;
 				Object result = caseInfElemRefGroup(infElemRefGroup);
-				if (result == null) result = caseInnerElement(infElemRefGroup);
-				if (result == null) result = caseDrlElement(infElemRefGroup);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DrlPackage.SUBELEMENTED_ELEMENT: {
-				SubelementedElement subelementedElement = (SubelementedElement)theEObject;
-				Object result = caseSubelementedElement(subelementedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.PRODUCT_LINE: {
 				ProductLine productLine = (ProductLine)theEObject;
 				Object result = caseProductLine(productLine);
-				if (result == null) result = caseDrlElement(productLine);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DrlPackage.PL_SCHEME: {
-				PLScheme plScheme = (PLScheme)theEObject;
-				Object result = casePLScheme(plScheme);
-				if (result == null) result = caseDrlElement(plScheme);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DrlPackage.PL_DOCUMENTATION: {
-				PLDocumentation plDocumentation = (PLDocumentation)theEObject;
-				Object result = casePLDocumentation(plDocumentation);
-				if (result == null) result = caseDrlElement(plDocumentation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.PRODUCT: {
 				Product product = (Product)theEObject;
 				Object result = caseProduct(product);
-				if (result == null) result = caseDrlElement(product);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.DOCUMENTATION_CORE: {
 				DocumentationCore documentationCore = (DocumentationCore)theEObject;
 				Object result = caseDocumentationCore(documentationCore);
-				if (result == null) result = caseDrlElement(documentationCore);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.PRODUCT_DOCUMENTATION: {
 				ProductDocumentation productDocumentation = (ProductDocumentation)theEObject;
 				Object result = caseProductDocumentation(productDocumentation);
-				if (result == null) result = caseDrlElement(productDocumentation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DrlPackage.VARIABLE: {
-				Variable variable = (Variable)theEObject;
-				Object result = caseVariable(variable);
+			case DrlPackage.PL_SCHEME: {
+				PLScheme plScheme = (PLScheme)theEObject;
+				Object result = casePLScheme(plScheme);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseDrlElement(DrlElement object) {
-		return null;
 	}
 
 	/**
@@ -307,21 +218,6 @@ public class DrlSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Adapter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Adapter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseAdapter(Adapter object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Nest Point</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -333,51 +229,6 @@ public class DrlSwitch {
 	 * @generated
 	 */
 	public Object caseNestPoint(NestPoint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Inner Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Inner Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseInnerElement(InnerElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Conditional</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Conditional</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseConditional(Conditional object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Nest Point Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Nest Point Ref</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseNestPointRef(NestPointRef object) {
 		return null;
 	}
 
@@ -427,21 +278,6 @@ public class DrlSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Subelemented Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Subelemented Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseSubelementedElement(SubelementedElement object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Product Line</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -453,36 +289,6 @@ public class DrlSwitch {
 	 * @generated
 	 */
 	public Object caseProductLine(ProductLine object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>PL Scheme</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>PL Scheme</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object casePLScheme(PLScheme object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>PL Documentation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>PL Documentation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object casePLDocumentation(PLDocumentation object) {
 		return null;
 	}
 
@@ -532,17 +338,17 @@ public class DrlSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Variable</em>'.
+	 * Returns the result of interpretting the object as an instance of '<em>PL Scheme</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Variable</em>'.
+	 * @return the result of interpretting the object as an instance of '<em>PL Scheme</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseVariable(Variable object) {
+	public Object casePLScheme(PLScheme object) {
 		return null;
 	}
 

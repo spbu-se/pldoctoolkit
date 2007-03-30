@@ -6,6 +6,7 @@
  */
 package org.spbu.pldoctoolkit.graph;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ package org.spbu.pldoctoolkit.graph;
  * @model
  * @generated
  */
-public interface InfElemRef extends InnerElement {
+public interface InfElemRef extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,6 +89,7 @@ public interface InfElemRef extends InnerElement {
 
 	/**
 	 * Returns the value of the '<em><b>Group</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.spbu.pldoctoolkit.graph.InfElemRefGroup#getInfElemRefsGroup <em>Inf Elem Refs Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Group</em>' reference isn't clear,
@@ -97,7 +99,8 @@ public interface InfElemRef extends InnerElement {
 	 * @return the value of the '<em>Group</em>' reference.
 	 * @see #setGroup(InfElemRefGroup)
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getInfElemRef_Group()
-	 * @model
+	 * @see org.spbu.pldoctoolkit.graph.InfElemRefGroup#getInfElemRefsGroup
+	 * @model opposite="infElemRefsGroup"
 	 * @generated
 	 */
 	InfElemRefGroup getGroup();

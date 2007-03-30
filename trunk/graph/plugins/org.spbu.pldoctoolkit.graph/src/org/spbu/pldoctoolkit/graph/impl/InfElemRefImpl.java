@@ -8,10 +8,13 @@ package org.spbu.pldoctoolkit.graph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
@@ -34,7 +37,7 @@ import org.spbu.pldoctoolkit.graph.InfElement;
  *
  * @generated
  */
-public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
+public class InfElemRefImpl extends EObjectImpl implements InfElemRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,11 +213,33 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGroup(InfElemRefGroup newGroup) {
+	public NotificationChain basicSetGroup(InfElemRefGroup newGroup, NotificationChain msgs) {
 		InfElemRefGroup oldGroup = group;
 		group = newGroup;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__GROUP, oldGroup, group));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__GROUP, oldGroup, newGroup);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGroup(InfElemRefGroup newGroup) {
+		if (newGroup != group) {
+			NotificationChain msgs = null;
+			if (group != null)
+				msgs = ((InternalEObject)group).eInverseRemove(this, DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP, InfElemRefGroup.class, msgs);
+			if (newGroup != null)
+				msgs = ((InternalEObject)newGroup).eInverseAdd(this, DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP, InfElemRefGroup.class, msgs);
+			msgs = basicSetGroup(newGroup, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__GROUP, newGroup, newGroup));
 	}
 
 	/**
@@ -236,6 +261,34 @@ public class InfElemRefImpl extends InnerElementImpl implements InfElemRef {
 		optional = newOptional;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__OPTIONAL, oldOptional, optional));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DrlPackage.INF_ELEM_REF__GROUP:
+				if (group != null)
+					msgs = ((InternalEObject)group).eInverseRemove(this, DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP, InfElemRefGroup.class, msgs);
+				return basicSetGroup((InfElemRefGroup)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DrlPackage.INF_ELEM_REF__GROUP:
+				return basicSetGroup(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

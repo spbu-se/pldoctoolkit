@@ -6,6 +6,7 @@
  */
 package org.spbu.pldoctoolkit.graph;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +25,7 @@ package org.spbu.pldoctoolkit.graph;
  * @model
  * @generated
  */
-public interface NestPoint extends InnerElement, SubelementedElement {
+public interface NestPoint extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

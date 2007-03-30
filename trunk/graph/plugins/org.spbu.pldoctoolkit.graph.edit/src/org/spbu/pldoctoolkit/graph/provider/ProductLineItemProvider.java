@@ -15,8 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,6 +22,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.spbu.pldoctoolkit.graph.DrlFactory;
@@ -37,7 +36,7 @@ import org.spbu.pldoctoolkit.graph.ProductLine;
  * @generated
  */
 public class ProductLineItemProvider
-	extends DrlElementItemProvider
+	extends ItemProviderAdapter
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	
@@ -72,6 +71,8 @@ public class ProductLineItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addProductDocumentationsPropertyDescriptor(object);
+			addDocumentationCorePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -99,6 +100,50 @@ public class ProductLineItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Product Documentations feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProductDocumentationsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProductLine_productDocumentations_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_productDocumentations_feature", "_UI_ProductLine_type"),
+				 DrlPackage.Literals.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Documentation Core feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDocumentationCorePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProductLine_documentationCore_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_documentationCore_feature", "_UI_ProductLine_type"),
+				 DrlPackage.Literals.PRODUCT_LINE__DOCUMENTATION_CORE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -110,21 +155,8 @@ public class ProductLineItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DrlPackage.Literals.PRODUCT_LINE__SCHEME);
-			childrenFeatures.add(DrlPackage.Literals.PRODUCT_LINE__DOCUMENTATION);
 		}
 		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -165,7 +197,6 @@ public class ProductLineItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case DrlPackage.PRODUCT_LINE__SCHEME:
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -186,11 +217,6 @@ public class ProductLineItemProvider
 			(createChildParameter
 				(DrlPackage.Literals.PRODUCT_LINE__SCHEME,
 				 DrlFactory.eINSTANCE.createPLScheme()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DrlPackage.Literals.PRODUCT_LINE__DOCUMENTATION,
-				 DrlFactory.eINSTANCE.createPLDocumentation()));
 	}
 
 	/**
