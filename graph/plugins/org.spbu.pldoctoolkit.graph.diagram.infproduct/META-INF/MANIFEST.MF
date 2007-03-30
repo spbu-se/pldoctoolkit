@@ -4,12 +4,12 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.spbu.pldoctoolkit.graph.diagram; singleton:=true
 Bundle-Version: 1.0.0.0
 Bundle-ClassPath: .
-Bundle-Activator: org.spbu.pldoctoolkit.graph.diagram.part.DrlModelDiagramEditorPlugin
+Bundle-Activator: org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.spbu.pldoctoolkit.graph.diagram.edit.parts, 
- org.spbu.pldoctoolkit.graph.diagram.part,
- org.spbu.pldoctoolkit.graph.diagram.providers
+Export-Package: org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts,
+ org.spbu.pldoctoolkit.graph.diagram.infproduct.part,
+ org.spbu.pldoctoolkit.graph.diagram.infproduct.providers
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.jface,
@@ -36,5 +36,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ocl;visibility:=reexport,
  org.eclipse.emf.query.ocl;visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
- org.eclipse.draw2d;visibility:=reexport
+ org.eclipse.draw2d;visibility:=reexport,
+ org.eclipse.gmf.runtime.diagram.ui.printing,
+ org.eclipse.gmf.runtime.diagram.ui.printing.render
 Eclipse-LazyStart: true
