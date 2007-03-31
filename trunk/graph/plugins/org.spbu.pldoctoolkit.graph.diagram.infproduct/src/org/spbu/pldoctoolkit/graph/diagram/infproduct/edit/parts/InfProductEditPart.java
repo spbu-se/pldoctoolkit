@@ -122,11 +122,6 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 					.getFigureInfProductNameFigure());
 			return true;
 		}
-		if (childEditPart instanceof InfProductIdEditPart) {
-			((InfProductIdEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureInfProductIdFigure());
-			return true;
-		}
 		return false;
 	}
 
@@ -248,14 +243,6 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 			Object layData0 = null;
 
 			this.add(fig_0, layData0);
-			org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_1 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();
-			fig_1.setText("<...>");
-
-			setFigureInfProductIdFigure(fig_1);
-
-			Object layData1 = null;
-
-			this.add(fig_1, layData1);
 		}
 
 		/**
@@ -276,26 +263,6 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 		private void setFigureInfProductNameFigure(
 				org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig) {
 			fInfProductNameFigure = fig;
-		}
-
-		/**
-		 * @generated
-		 */
-		private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fInfProductIdFigure;
-
-		/**
-		 * @generated
-		 */
-		public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureInfProductIdFigure() {
-			return fInfProductIdFigure;
-		}
-
-		/**
-		 * @generated
-		 */
-		private void setFigureInfProductIdFigure(
-				org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig) {
-			fInfProductIdFigure = fig;
 		}
 
 		/**

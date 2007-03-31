@@ -52,12 +52,13 @@ import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
+import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroup2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupInfElemRefsGroupEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductEditPart;
 
@@ -440,14 +441,19 @@ public class DocumentationCoreCanonicalEditPolicy extends
 			}
 		}
 
-		if (DrlPackage.eINSTANCE.getInfElemRef().isSuperTypeOf(
+		if (DrlPackage.eINSTANCE.getInfElemRefGroup().isSuperTypeOf(
 				containerMetaclass)) {
-			EObject nextDestination = (EObject) ((InfElemRef) container)
-					.getGroup();
-			myLinkDescriptors.add(new LinkDescriptor(container,
-					nextDestination, DrlModelElementTypes.InfElemRefGroup_3003,
-					InfElemRefGroup2EditPart.VISUAL_ID));
+			for (Iterator destinations = ((InfElemRefGroup) container)
+					.getInfElemRefsGroup().iterator(); destinations.hasNext();) {
+				EObject nextDestination = (EObject) destinations.next();
+				myLinkDescriptors
+						.add(new LinkDescriptor(
+								container,
+								nextDestination,
+								DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003,
+								InfElemRefGroupInfElemRefsGroupEditPart.VISUAL_ID));
 
+			}
 		}
 	}
 

@@ -38,18 +38,12 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 				return new InfElementEditPart(view);
 			case InfElementNameEditPart.VISUAL_ID:
 				return new InfElementNameEditPart(view);
-			case InfElementIdEditPart.VISUAL_ID:
-				return new InfElementIdEditPart(view);
 			case InfProductEditPart.VISUAL_ID:
 				return new InfProductEditPart(view);
 			case InfProductNameEditPart.VISUAL_ID:
 				return new InfProductNameEditPart(view);
-			case InfProductIdEditPart.VISUAL_ID:
-				return new InfProductIdEditPart(view);
 			case InfElemRefGroupEditPart.VISUAL_ID:
 				return new InfElemRefGroupEditPart(view);
-			case InfElemRefGroupModifierIdEditPart.VISUAL_ID:
-				return new InfElemRefGroupModifierIdEditPart(view);
 			case DocumentationCoreEditPart.VISUAL_ID:
 				return new DocumentationCoreEditPart(view);
 			case InfElemRefEditPart.VISUAL_ID:
@@ -58,8 +52,8 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 				return new InfElemRefIdEditPart(view);
 			case GenericDocumentPartGroupsEditPart.VISUAL_ID:
 				return new GenericDocumentPartGroupsEditPart(view);
-			case InfElemRefGroup2EditPart.VISUAL_ID:
-				return new InfElemRefGroup2EditPart(view);
+			case InfElemRefGroupInfElemRefsGroupEditPart.VISUAL_ID:
+				return new InfElemRefGroupInfElemRefsGroupEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

@@ -2,9 +2,14 @@ package org.spbu.pldoctoolkit.graph.diagram.infproduct.part;
 
 import java.io.IOException;
 
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
+import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 
@@ -21,6 +26,7 @@ import org.eclipse.core.runtime.Path;
 
 import org.eclipse.emf.common.util.URI;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -41,11 +47,19 @@ import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation;
 
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+
 import org.eclipse.gmf.runtime.notation.Diagram;
+
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.View;
 
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -71,7 +85,22 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
 import org.eclipse.ui.ide.IDE;
 
+import org.spbu.pldoctoolkit.graph.DocumentationCore;
+import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
+import org.spbu.pldoctoolkit.graph.InfElemRef;
+import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
+
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
+
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupInfElemRefsGroupEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductEditPart;
+
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
 
 /**
  * @generated

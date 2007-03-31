@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
-import org.spbu.pldoctoolkit.graph.InfElemRef;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
 
@@ -74,21 +73,28 @@ public class InfElemRefGroupItemSemanticEditPolicy extends
 			return req.getTarget() == null ? null
 					: getCreateCompleteIncomingGenericDocumentPart_Groups3002Command(req);
 		}
-		if (DrlModelElementTypes.InfElemRefGroup_3003 == req.getElementType()) {
-			return req.getTarget() == null ? null
-					: getCreateCompleteIncomingInfElemRef_Group3003Command(req);
+		if (DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003 == req
+				.getElementType()) {
+			return req.getTarget() == null ? getCreateStartOutgoingInfElemRefGroup_InfElemRefsGroup3003Command(req)
+					: null;
 		}
 		return super.getCreateRelationshipCommand(req);
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getCreateCompleteIncomingGenericDocumentPart_Groups3002Command(
 			CreateRelationshipRequest req) {
 		if (!(req.getSource() instanceof GenericDocumentPart)) {
 			return UnexecutableCommand.INSTANCE;
 		}
+
+		// a manual single owner restriction
+		if (req.getTarget().eContainer() != null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
 		GenericDocumentPart element = (GenericDocumentPart) req.getSource();
 		if (element.getGroups().contains(req.getTarget())) {
 			return UnexecutableCommand.INSTANCE;
@@ -102,17 +108,10 @@ public class InfElemRefGroupItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCreateCompleteIncomingInfElemRef_Group3003Command(
+	protected Command getCreateStartOutgoingInfElemRefGroup_InfElemRefsGroup3003Command(
 			CreateRelationshipRequest req) {
-		if (!(req.getSource() instanceof InfElemRef)) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		InfElemRef element = (InfElemRef) req.getSource();
-		if (element.getGroup() != null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		SetRequest setReq = new SetRequest(req.getSource(),
-				DrlPackage.eINSTANCE.getInfElemRef_Group(), req.getTarget());
-		return getMSLWrapper(new SetValueCommand(setReq));
+
+		return new Command() {
+		};
 	}
 }
