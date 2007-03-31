@@ -12,6 +12,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="InfElement" eSuperTypes="#//GenericDocumentPart">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestPoints" eType="#//NestPoint"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerInfElemRef" eType="#//InfElemRef"
+        transient="true" derived="true" eOpposite="#//InfElemRef/infelem"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfProduct" eSuperTypes="#//GenericDocumentPart"/>
   <eClassifiers xsi:type="ecore:EClass" name="FinalInfProduct">
@@ -38,7 +40,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="infelem" lowerBound="1"
-        eType="#//InfElement"/>
+        eType="#//InfElement" eOpposite="#//InfElement/ownerInfElemRef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//InfElemRefGroup"
         eOpposite="#//InfElemRefGroup/infElemRefsGroup"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

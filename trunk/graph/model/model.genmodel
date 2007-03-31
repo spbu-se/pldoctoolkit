@@ -20,6 +20,7 @@
     </genEnums>
     <genClasses ecoreClass="model.ecore#//InfElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//InfElement/nestPoints"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//InfElement/ownerInfElemRef"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//InfProduct"/>
     <genClasses ecoreClass="model.ecore#//FinalInfProduct">

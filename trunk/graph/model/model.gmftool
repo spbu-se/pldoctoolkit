@@ -6,7 +6,7 @@
   <palette>
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="elements">
+        title="Drl Tools">
       <tools
           xsi:type="gmftool:CreationTool"
           title="InfProduct"
@@ -45,8 +45,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="InfElemRef"
-          description="Create new InfElemRef">
+          title="InfElemRef Connection"
+          description="Create new InfElement reference">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -54,8 +54,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="InfElemRefGroup connection"
-          description="Create new InfElemRefGroupConnection">
+          title="InfElemRefGroup Connection"
+          description="Assign InfElemRefGroup to an element">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
