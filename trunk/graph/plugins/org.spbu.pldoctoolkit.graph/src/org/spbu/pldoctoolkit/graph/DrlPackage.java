@@ -178,13 +178,22 @@ public interface DrlPackage extends EPackage {
 	int INF_ELEMENT__NEST_POINTS = GENERIC_DOCUMENT_PART_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owner Inf Elem Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INF_ELEMENT__OWNER_INF_ELEM_REF = GENERIC_DOCUMENT_PART_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Inf Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEMENT_FEATURE_COUNT = GENERIC_DOCUMENT_PART_FEATURE_COUNT + 1;
+	int INF_ELEMENT_FEATURE_COUNT = GENERIC_DOCUMENT_PART_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.InfProductImpl <em>Inf Product</em>}' class.
@@ -653,6 +662,17 @@ public interface DrlPackage extends EPackage {
 	EReference getInfElement_NestPoints();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.spbu.pldoctoolkit.graph.InfElement#getOwnerInfElemRef <em>Owner Inf Elem Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owner Inf Elem Ref</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.InfElement#getOwnerInfElemRef()
+	 * @see #getInfElement()
+	 * @generated
+	 */
+	EReference getInfElement_OwnerInfElemRef();
+
+	/**
 	 * Returns the meta object for class '{@link org.spbu.pldoctoolkit.graph.InfProduct <em>Inf Product</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1107,6 +1127,14 @@ public interface DrlPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INF_ELEMENT__NEST_POINTS = eINSTANCE.getInfElement_NestPoints();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner Inf Elem Ref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INF_ELEMENT__OWNER_INF_ELEM_REF = eINSTANCE.getInfElement_OwnerInfElemRef();
 
 		/**
 		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.impl.InfProductImpl <em>Inf Product</em>}' class.

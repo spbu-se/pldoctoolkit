@@ -175,11 +175,33 @@ public class InfElemRefImpl extends EObjectImpl implements InfElemRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInfelem(InfElement newInfelem) {
+	public NotificationChain basicSetInfelem(InfElement newInfelem, NotificationChain msgs) {
 		InfElement oldInfelem = infelem;
 		infelem = newInfelem;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__INFELEM, oldInfelem, infelem));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__INFELEM, oldInfelem, newInfelem);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInfelem(InfElement newInfelem) {
+		if (newInfelem != infelem) {
+			NotificationChain msgs = null;
+			if (infelem != null)
+				msgs = ((InternalEObject)infelem).eInverseRemove(this, DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF, InfElement.class, msgs);
+			if (newInfelem != null)
+				msgs = ((InternalEObject)newInfelem).eInverseAdd(this, DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF, InfElement.class, msgs);
+			msgs = basicSetInfelem(newInfelem, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__INFELEM, newInfelem, newInfelem));
 	}
 
 	/**
@@ -270,6 +292,10 @@ public class InfElemRefImpl extends EObjectImpl implements InfElemRef {
 	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DrlPackage.INF_ELEM_REF__INFELEM:
+				if (infelem != null)
+					msgs = ((InternalEObject)infelem).eInverseRemove(this, DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF, InfElement.class, msgs);
+				return basicSetInfelem((InfElement)otherEnd, msgs);
 			case DrlPackage.INF_ELEM_REF__GROUP:
 				if (group != null)
 					msgs = ((InternalEObject)group).eInverseRemove(this, DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP, InfElemRefGroup.class, msgs);
@@ -285,6 +311,8 @@ public class InfElemRefImpl extends EObjectImpl implements InfElemRef {
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DrlPackage.INF_ELEM_REF__INFELEM:
+				return basicSetInfelem(null, msgs);
 			case DrlPackage.INF_ELEM_REF__GROUP:
 				return basicSetGroup(null, msgs);
 		}
