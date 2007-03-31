@@ -14,11 +14,6 @@
           referencingElements="InfElementName"
           name="InfElementNameFigure"
           text="&lt;...>"/>
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="InfElementId"
-          name="InfElementIdFigure"
-          text="&lt;...>"/>
     </figures>
     <figures
         xsi:type="gmfgraph:Rectangle"
@@ -29,11 +24,6 @@
           xsi:type="gmfgraph:Label"
           referencingElements="InfProductName"
           name="InfProductNameFigure"
-          text="&lt;...>"/>
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="InfProductId"
-          name="InfProductIdFigure"
           text="&lt;...>"/>
       <border
           xsi:type="gmfgraph:CompoundBorder">
@@ -188,7 +178,6 @@
   <nodes
       xsi:type="gmfgraph:DiagramLabel"
       name="InfElementId"
-      figure="InfElementIdFigure"
       elementIcon="false"/>
   <connections
       name="InfElemRefConnection"
@@ -226,7 +215,6 @@
       elementIcon="false"/>
   <labels
       name="InfProductId"
-      figure="InfProductIdFigure"
       elementIcon="false"/>
   <labels
       name="InfElemRefId"

@@ -579,4 +579,16 @@
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vnOtF92REduxDuYHhzI1YA" id="(0.26126125,0.08791209)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vnOtGN2REduxDuYHhzI1YA" id="(0.16666667,0.85333335)"/>
   </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_Z9jEMN8YEduA6P4-dh4hYg" type="4002" source="_dghzbcInEduO2cIg4lidbA" target="_dgrkjsInEduO2cIg4lidbA">
+    <children xmi:type="notation:Node" xmi:id="_Z9jENd8YEduA6P4-dh4hYg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Z9jENt8YEduA6P4-dh4hYg" x="5" y="10"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_Z9jEMd8YEduA6P4-dh4hYg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Z9jEMt8YEduA6P4-dh4hYg"/>
+    <styles xmi:type="notation:LineStyle" xmi:id="_Z9jEM98YEduA6P4-dh4hYg"/>
+    <element xmi:type="ecore:EReference" href="model.ecore#//InfElement/ownerInfElemRef"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z9jENN8YEduA6P4-dh4hYg" points="[16, 4, -113, 0]$[100, 4, -29, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z9sOIN8YEduA6P4-dh4hYg" id="(0.7721519,0.78846157)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z9sOId8YEduA6P4-dh4hYg" id="(0.41025642,0.76)"/>
+  </edges>
 </notation:Diagram>
