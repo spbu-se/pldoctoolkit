@@ -63,6 +63,7 @@ public interface InfElemRef extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Infelem</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.spbu.pldoctoolkit.graph.InfElement#getOwnerInfElemRef <em>Owner Inf Elem Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Infelem</em>' reference isn't clear,
@@ -72,7 +73,8 @@ public interface InfElemRef extends EObject {
 	 * @return the value of the '<em>Infelem</em>' reference.
 	 * @see #setInfelem(InfElement)
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getInfElemRef_Infelem()
-	 * @model required="true"
+	 * @see org.spbu.pldoctoolkit.graph.InfElement#getOwnerInfElemRef
+	 * @model opposite="ownerInfElemRef" required="true"
 	 * @generated
 	 */
 	InfElement getInfelem();
