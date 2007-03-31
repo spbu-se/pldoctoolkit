@@ -16,7 +16,6 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductNameEditPart;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
@@ -65,12 +64,6 @@ public class InfProductViewFactory extends AbstractShapeViewFactory {
 				view,
 				DrlModelVisualIDRegistry
 						.getType(InfProductNameEditPart.VISUAL_ID),
-				ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService().createNode(
-				semanticAdapter,
-				view,
-				DrlModelVisualIDRegistry
-						.getType(InfProductIdEditPart.VISUAL_ID),
 				ViewUtil.APPEND, true, getPreferencesHint());
 	}
 

@@ -71,36 +71,9 @@ public class InfElemRefEditPart extends ConnectionNodeEditPart {
 		 * @generated NOT
 		 */
 		public InfElemRefFigure() {
-			circleDecoration = createTargetCircleDecoration();
+			circleDecoration = createTargetDecoration();
 
 			updateTargetDecoration();
-		}
-
-		/**
-		 * @generated
-		 */
-		private org.eclipse.draw2d.PolygonDecoration createTargetDecoration() {
-			org.eclipse.draw2d.PolygonDecoration df = new org.eclipse.draw2d.PolygonDecoration();
-			// dispatchNext?
-
-			org.eclipse.draw2d.geometry.PointList pl = new org.eclipse.draw2d.geometry.PointList();
-			pl.addPoint(1, 4);
-			pl.addPoint(3, 3);
-			pl.addPoint(4, 1);
-			pl.addPoint(4, -1);
-			pl.addPoint(3, -3);
-			pl.addPoint(1, -4);
-			pl.addPoint(-1, -4);
-			pl.addPoint(-3, -3);
-			pl.addPoint(-4, -1);
-			pl.addPoint(-4, 1);
-			pl.addPoint(-3, 3);
-			pl.addPoint(-1, 4);
-			pl.addPoint(1, 4);
-			df.setTemplate(pl);
-			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
-
-			return df;
 		}
 
 		public void updateTargetDecoration() {
@@ -121,7 +94,7 @@ public class InfElemRefEditPart extends ConnectionNodeEditPart {
 		/**
 		 * @generated NOT
 		 */
-		private PolygonDecoration createTargetCircleDecoration() {
+		private PolygonDecoration createTargetDecoration() {
 			PolygonDecoration df = new PolygonDecoration();
 			// dispatchNext?
 

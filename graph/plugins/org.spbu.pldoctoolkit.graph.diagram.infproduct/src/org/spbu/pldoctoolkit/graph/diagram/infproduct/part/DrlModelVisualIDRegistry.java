@@ -19,13 +19,10 @@ import org.spbu.pldoctoolkit.graph.InfProduct;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupModifierIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductNameEditPart;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.expressions.DrlModelAbstractExpression;
@@ -163,24 +160,15 @@ public class DrlModelVisualIDRegistry {
 			if (InfElementNameEditPart.VISUAL_ID == nodeVisualID) {
 				return InfElementNameEditPart.VISUAL_ID;
 			}
-			if (InfElementIdEditPart.VISUAL_ID == nodeVisualID) {
-				return InfElementIdEditPart.VISUAL_ID;
-			}
 			return getUnrecognizedInfElement_1001ChildNodeID(domainElement,
 					semanticHint);
 		case InfProductEditPart.VISUAL_ID:
 			if (InfProductNameEditPart.VISUAL_ID == nodeVisualID) {
 				return InfProductNameEditPart.VISUAL_ID;
 			}
-			if (InfProductIdEditPart.VISUAL_ID == nodeVisualID) {
-				return InfProductIdEditPart.VISUAL_ID;
-			}
 			return getUnrecognizedInfProduct_1002ChildNodeID(domainElement,
 					semanticHint);
 		case InfElemRefGroupEditPart.VISUAL_ID:
-			if (InfElemRefGroupModifierIdEditPart.VISUAL_ID == nodeVisualID) {
-				return InfElemRefGroupModifierIdEditPart.VISUAL_ID;
-			}
 			return getUnrecognizedInfElemRefGroup_1003ChildNodeID(
 					domainElement, semanticHint);
 		case DocumentationCoreEditPart.VISUAL_ID:

@@ -82,13 +82,6 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-			protected void decorateChild(EditPart child) {
-				if (isExternalLabel(child)) {
-					return;
-				}
-				super.decorateChild(child);
-			}
-
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child
 						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -106,14 +99,7 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 				return null;
 			}
 		};
-		DrlModelExtNodeLabelHostLayoutEditPolicy xlep = new DrlModelExtNodeLabelHostLayoutEditPolicy() {
-
-			protected boolean isExternalLabel(EditPart editPart) {
-				return InfElemRefGroupEditPart.this.isExternalLabel(editPart);
-			}
-		};
-		xlep.setRealLayoutEditPolicy(lep);
-		return xlep;
+		return lep;
 	}
 
 	/**
@@ -191,74 +177,6 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 			return contentPane;
 		}
 		return super.getContentPane();
-	}
-
-	/**
-	 * @generated
-	 */
-	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(DrlModelVisualIDRegistry
-				.getType(InfElemRefGroupModifierIdEditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean isExternalLabel(EditPart childEditPart) {
-		if (childEditPart instanceof InfElemRefGroupModifierIdEditPart) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure getExternalLabelsContainer() {
-		LayerManager root = (LayerManager) getRoot();
-		return root
-				.getLayer(DrlModelEditPartFactory.EXTERNAL_NODE_LABELS_LAYER);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (isExternalLabel(childEditPart)) {
-			IFigure labelFigure = ((GraphicalEditPart) childEditPart)
-					.getFigure();
-			getExternalLabelsContainer().add(labelFigure);
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeChildVisual(EditPart childEditPart) {
-		if (isExternalLabel(childEditPart)) {
-			IFigure labelFigure = ((GraphicalEditPart) childEditPart)
-					.getFigure();
-			getExternalLabelsContainer().remove(labelFigure);
-			return;
-		}
-		super.removeChildVisual(childEditPart);
-	}
-
-	/**
-	 * @generated
-	 */
-	public void removeNotify() {
-		for (Iterator it = getChildren().iterator(); it.hasNext();) {
-			EditPart childEditPart = (EditPart) it.next();
-			if (isExternalLabel(childEditPart)) {
-				IFigure labelFigure = ((GraphicalEditPart) childEditPart)
-						.getFigure();
-				getExternalLabelsContainer().remove(labelFigure);
-			}
-		}
-		super.removeNotify();
 	}
 
 	/* (non-Javadoc)

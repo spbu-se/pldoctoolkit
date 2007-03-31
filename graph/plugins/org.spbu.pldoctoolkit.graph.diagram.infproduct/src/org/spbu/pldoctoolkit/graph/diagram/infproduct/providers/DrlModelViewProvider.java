@@ -9,28 +9,22 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupModifierIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductNameEditPart;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.DocumentationCoreViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.GenericDocumentPartGroupsViewFactory;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRefGroup2ViewFactory;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRefGroupModifierIdViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRefGroupInfElemRefsGroupViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRefGroupViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRefIdViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRefViewFactory;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElementIdViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElementNameViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElementViewFactory;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfProductIdViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfProductNameViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfProductViewFactory;
 
@@ -74,18 +68,12 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 			return InfElementViewFactory.class;
 		case InfElementNameEditPart.VISUAL_ID:
 			return InfElementNameViewFactory.class;
-		case InfElementIdEditPart.VISUAL_ID:
-			return InfElementIdViewFactory.class;
 		case InfProductEditPart.VISUAL_ID:
 			return InfProductViewFactory.class;
 		case InfProductNameEditPart.VISUAL_ID:
 			return InfProductNameViewFactory.class;
-		case InfProductIdEditPart.VISUAL_ID:
-			return InfProductIdViewFactory.class;
 		case InfElemRefGroupEditPart.VISUAL_ID:
 			return InfElemRefGroupViewFactory.class;
-		case InfElemRefGroupModifierIdEditPart.VISUAL_ID:
-			return InfElemRefGroupModifierIdViewFactory.class;
 		case InfElemRefIdEditPart.VISUAL_ID:
 			return InfElemRefIdViewFactory.class;
 		}
@@ -106,8 +94,9 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 				.equals(elementType)) {
 			return GenericDocumentPartGroupsViewFactory.class;
 		}
-		if (DrlModelElementTypes.InfElemRefGroup_3003.equals(elementType)) {
-			return InfElemRefGroup2ViewFactory.class;
+		if (DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003
+				.equals(elementType)) {
+			return InfElemRefGroupInfElemRefsGroupViewFactory.class;
 		}
 		EClass semanticType = getSemanticEClass(semanticAdapter);
 		if (semanticType == null) {

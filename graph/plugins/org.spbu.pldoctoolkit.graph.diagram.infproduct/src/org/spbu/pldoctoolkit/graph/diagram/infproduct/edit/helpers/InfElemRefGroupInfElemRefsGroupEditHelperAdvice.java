@@ -5,5 +5,7 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 /**
  * @generated
  */
-public class InfElemRefGroupEditHelperAdvice extends AbstractEditHelperAdvice {
+public class InfElemRefGroupInfElemRefsGroupEditHelperAdvice extends
+		AbstractEditHelperAdvice {
+
 }

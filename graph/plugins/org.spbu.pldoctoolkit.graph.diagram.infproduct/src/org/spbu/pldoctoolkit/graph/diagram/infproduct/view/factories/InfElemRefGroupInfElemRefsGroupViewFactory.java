@@ -20,7 +20,8 @@ import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegis
 /**
  * @generated
  */
-public class InfElemRefGroup2ViewFactory extends ConnectionViewFactory {
+public class InfElemRefGroupInfElemRefsGroupViewFactory extends
+		ConnectionViewFactory {
 
 	/**
 	 * @generated 
@@ -41,7 +42,7 @@ public class InfElemRefGroup2ViewFactory extends ConnectionViewFactory {
 			boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = DrlModelVisualIDRegistry
-					.getType(org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroup2EditPart.VISUAL_ID);
+					.getType(org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupInfElemRefsGroupEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,

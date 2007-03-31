@@ -24,20 +24,19 @@ public class DrlModelPaletteFactory {
 	 * @generated
 	 */
 	public void fillPalette(PaletteRoot paletteRoot) {
-		paletteRoot.add(createelements1Group());
+		paletteRoot.add(createDrlTools1Group());
 	}
 
 	/**
 	 * @generated
 	 */
-	private PaletteContainer createelements1Group() {
-		PaletteContainer paletteContainer = new PaletteGroup("elements");
+	private PaletteContainer createDrlTools1Group() {
+		PaletteContainer paletteContainer = new PaletteGroup("Drl Tools");
 		paletteContainer.add(createInfProduct1CreationTool());
 		paletteContainer.add(createInfElement2CreationTool());
 		paletteContainer.add(createInfElemRefGroup3CreationTool());
-		paletteContainer.add(createProduct4CreationTool());
-		paletteContainer.add(createInfElemRef5CreationTool());
-		paletteContainer.add(createInfElemRefGroupconnection6CreationTool());
+		paletteContainer.add(createInfElemRefConnection4CreationTool());
+		paletteContainer.add(createInfElemRefGroupConnection5CreationTool());
 		return paletteContainer;
 	}
 
@@ -105,25 +104,7 @@ public class DrlModelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createProduct4CreationTool() {
-		ImageDescriptor smallImage;
-		ImageDescriptor largeImage;
-
-		smallImage = null;
-
-		largeImage = smallImage;
-
-		ToolEntry result = new ToolEntry("Product", "Create new Product",
-				smallImage, largeImage) {
-		};
-
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createInfElemRef5CreationTool() {
+	private ToolEntry createInfElemRefConnection4CreationTool() {
 		ImageDescriptor smallImage;
 		ImageDescriptor largeImage;
 
@@ -134,9 +115,10 @@ public class DrlModelPaletteFactory {
 
 		final List relationshipTypes = new ArrayList();
 		relationshipTypes.add(DrlModelElementTypes.InfElemRef_3001);
-		relationshipTypes.add(DrlModelElementTypes.InfElemRefGroup_3003);
-		ToolEntry result = new LinkToolEntry("InfElemRef",
-				"Create new InfElemRef", smallImage, largeImage,
+		relationshipTypes
+				.add(DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003);
+		ToolEntry result = new LinkToolEntry("InfElemRef Connection",
+				"Create new InfElement reference", smallImage, largeImage,
 				relationshipTypes);
 
 		return result;
@@ -145,7 +127,7 @@ public class DrlModelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createInfElemRefGroupconnection6CreationTool() {
+	private ToolEntry createInfElemRefGroupConnection5CreationTool() {
 		ImageDescriptor smallImage;
 		ImageDescriptor largeImage;
 
@@ -157,8 +139,8 @@ public class DrlModelPaletteFactory {
 		final List relationshipTypes = new ArrayList();
 		relationshipTypes
 				.add(DrlModelElementTypes.GenericDocumentPartGroups_3002);
-		ToolEntry result = new LinkToolEntry("InfElemRefGroup connection",
-				"Create new InfElemRefGroupConnection", smallImage, largeImage,
+		ToolEntry result = new LinkToolEntry("InfElemRefGroup Connection",
+				"Assign InfElemRefGroup to an element", smallImage, largeImage,
 				relationshipTypes);
 
 		return result;

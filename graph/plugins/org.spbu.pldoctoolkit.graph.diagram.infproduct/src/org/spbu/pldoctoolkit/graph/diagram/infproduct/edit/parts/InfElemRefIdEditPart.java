@@ -79,7 +79,7 @@ public class InfElemRefIdEditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4006;
+	public static final int VISUAL_ID = 4003;
 
 	/**
 	 * @generated

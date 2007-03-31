@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.spbu.pldoctoolkit.graph.diagram; singleton:=true
+Bundle-SymbolicName: org.spbu.pldoctoolkit.graph.diagram.infproduct; singleton:=true
 Bundle-Version: 1.0.0.0
 Bundle-ClassPath: .
 Bundle-Activator: org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts,
+Export-Package: org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts, 
  org.spbu.pldoctoolkit.graph.diagram.infproduct.part,
  org.spbu.pldoctoolkit.graph.diagram.infproduct.providers
 Require-Bundle: org.eclipse.core.runtime,
@@ -25,6 +25,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.emf.commands.core,
  org.eclipse.gmf.runtime.emf.ui.properties,
  org.eclipse.gmf.runtime.diagram.ui,
+ org.eclipse.gmf.runtime.diagram.ui.printing.render,
+ org.eclipse.gmf.runtime.diagram.ui.printing,
  org.eclipse.gmf.runtime.diagram.ui.providers,
  org.eclipse.gmf.runtime.diagram.ui.providers.ide,
  org.eclipse.gmf.runtime.diagram.ui.render,
@@ -36,7 +38,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ocl;visibility:=reexport,
  org.eclipse.emf.query.ocl;visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
- org.eclipse.draw2d;visibility:=reexport,
- org.eclipse.gmf.runtime.diagram.ui.printing,
- org.eclipse.gmf.runtime.diagram.ui.printing.render
+ org.eclipse.draw2d;visibility:=reexport
 Eclipse-LazyStart: true

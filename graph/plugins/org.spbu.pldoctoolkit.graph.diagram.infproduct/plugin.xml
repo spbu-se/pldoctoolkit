@@ -96,10 +96,6 @@
             <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementIdEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductEditPart"/>
             <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
          </popupContribution>
@@ -108,17 +104,8 @@
             <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductIdEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart"/>
             <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupModifierIdEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart"/>
@@ -135,7 +122,7 @@
             <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroup2EditPart"/>
+            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupInfElemRefsGroupEditPart"/>
             <popupAction path="/editGroup" id="deleteFromModelAction"/>
             <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
          </popupContribution>
@@ -286,7 +273,7 @@
       <metamodel nsURI="http://tepkom.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRef_3001"
-               name="InfElemRef"
+               name="InfElemRef Connection"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InfElemRef"
                edithelper="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.InfElemRefEditHelper">
@@ -297,7 +284,7 @@
       <metamodel nsURI="http://tepkom.ru/drl">
          <specializationType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.GenericDocumentPartGroups_3002"
-               name="InfElemRefGroup connection"
+               name="InfElemRefGroup Connection"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.GenericDocumentPartGroupsEditHelperAdvice">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
@@ -307,11 +294,11 @@
 
       <metamodel nsURI="http://tepkom.ru/drl">
          <specializationType
-               id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroup_3003"
-               name="InfElemRef"
+               id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroupInfElemRefsGroup_3003"
+               name="InfElemRef Connection"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               edithelperadvice="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.InfElemRefGroupEditHelperAdvice">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+               edithelperadvice="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.InfElemRefGroupInfElemRefsGroupEditHelperAdvice">
+            <specializes id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRef_3001"/>
             <param name="semanticHint" value="3003"/>
          </specializationType>
       </metamodel>
@@ -332,7 +319,7 @@
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroup_1003"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRef_3001"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.infproduct.GenericDocumentPartGroups_3002"/>
-         <elementType ref="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroup_3003"/>
+         <elementType ref="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroupInfElemRefsGroup_3003"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
