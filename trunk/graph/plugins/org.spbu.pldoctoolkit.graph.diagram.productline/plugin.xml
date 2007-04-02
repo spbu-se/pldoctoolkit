@@ -38,7 +38,7 @@
   	  <wizard
   	     name="DrlModel Diagram"
   	     icon="icons/obj16/DrlDiagramFile.gif"
-  	     category="org.eclipse.ui.Examples"
+  	     category="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreationWizardID"
   	     class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreationWizard"
   	     id="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreationWizardID">
   	  	 <description>
@@ -62,6 +62,18 @@
       </objectContribution>  
       <objectContribution
             adaptable="false"
+            id="org.spbu.pldoctoolkit.graph.diagram.productline.ui.objectContribution.ProductLineEditPart1"
+            objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart">
+         <action
+               class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreateShortcutAction"
+               enablesFor="1"
+               id="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreateShortcutActionID"
+               label="Create Shortcut..."
+               menubarPath="additions">
+         </action>
+      </objectContribution>                      
+      <objectContribution
+            adaptable="false"
             id="org.spbu.pldoctoolkit.graph.diagram.productline.ui.objectContribution.ProductLineEditPart2"
             objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart">
          <action
@@ -75,6 +87,14 @@
   </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <contributionItemProvider class="org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelContributionItemProvider">
+         <Priority name="Low">
+         </Priority>
+         <partContribution id="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorID">
+            <partAction menubarPath="/file/print" id="printPreviewAction">
+            </partAction>
+         </partContribution>
+      </contributionItemProvider>
       <contributionItemProvider
             class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider"
             checkPluginLoaded="false">
@@ -113,6 +133,16 @@
             </ElementType>
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
                <GlobalActionId actionId="save"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         id="DrlModelPresentationPrint">
+         <Priority name="Lowest"/>
+         <ViewId id="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="print"/>
             </ElementType>
          </ViewId>
       </GlobalActionHandlerProvider>
@@ -186,6 +216,12 @@
       <ParserProvider class="org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <decoratorProvider class="org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+      </decoratorProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">

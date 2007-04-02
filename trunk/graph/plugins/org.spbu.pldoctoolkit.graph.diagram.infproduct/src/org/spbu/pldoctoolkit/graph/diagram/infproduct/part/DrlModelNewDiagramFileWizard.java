@@ -170,7 +170,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 				String originalFileName = mySelectedModelFile
 						.getProjectRelativePath().removeFileExtension()
 						.lastSegment();
-				String fileExtension = ".drl_diagram"; //$NON-NLS-1$
+				String fileExtension = ".infproduct_diagram"; //$NON-NLS-1$
 				String fileName = originalFileName + fileExtension;
 				for (int i = 1; parentContainer.getFile(new Path(fileName))
 						.exists(); i++) {

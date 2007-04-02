@@ -28,7 +28,7 @@ public class DrlModelDiagramFileCreator extends IDEEditorFileCreator {
 	 * @generated
 	 */
 	public String getExtension() {
-		return ".drl_diagram"; //$NON-NLS-1$
+		return ".infproduct_diagram"; //$NON-NLS-1$
 	}
 
 	/**

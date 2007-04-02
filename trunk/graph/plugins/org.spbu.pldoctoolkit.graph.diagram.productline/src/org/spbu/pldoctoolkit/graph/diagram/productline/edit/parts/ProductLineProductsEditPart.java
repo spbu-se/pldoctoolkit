@@ -77,7 +77,8 @@ public class ProductLineProductsEditPart extends ListCompartmentEditPart {
 	public IFigure createFigure() {
 		IFigure result = super.createFigure();
 
-		ConstrainedToolbarLayout layout = (ConstrainedToolbarLayout) result.getLayoutManager();
+		ConstrainedToolbarLayout layout = (ConstrainedToolbarLayout) result
+				.getLayoutManager();
 		layout.setSpacing(3);
 		layout.setStretchMajorAxis(true);
 

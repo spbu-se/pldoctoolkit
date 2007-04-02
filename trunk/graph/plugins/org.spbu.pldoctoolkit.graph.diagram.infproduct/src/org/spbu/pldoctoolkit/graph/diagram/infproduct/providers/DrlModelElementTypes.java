@@ -138,7 +138,7 @@ public class DrlModelElementTypes {
 
 	/**
 	 * Returns 'type' of the ecore object associated with the hint.
-	 * 
+	 *
 	 * @generated
 	 */
 	public static ENamedElement getElement(IAdaptable hint) {
@@ -238,29 +238,29 @@ public class DrlModelElementTypes {
 								DrlPackage.eINSTANCE.getInfElemRef()),
 						DrlPackage.eINSTANCE.getInfElemRef_Optional()) });
 
-		/** 
+		/**
 		 * @generated
 		 */
 		private Initializers() {
 		}
 
-		/** 
+		/**
 		 * @generated
 		 */
 		public static class ObjectInitializer {
-			/** 
+			/**
 			 * @generated
 			 */
 			private FeatureInitializer[] initExpressions;
 
-			/** 
+			/**
 			 * @generated
 			 */
 			ObjectInitializer(FeatureInitializer[] initExpressions) {
 				this.initExpressions = initExpressions;
 			}
 
-			/** 
+			/**
 			 * @generated
 			 */
 			public void init(EObject instance) {
@@ -276,17 +276,17 @@ public class DrlModelElementTypes {
 			}
 		} // end of ObjectInitializer
 
-		/** 
+		/**
 		 * @generated
 		 */
 		static class FeatureInitializer {
 
-			/** 
+			/**
 			 * @generated
 			 */
 			private EStructuralFeature sFeature;
 
-			/** 
+			/**
 			 * @generated
 			 */
 			private DrlModelAbstractExpression expression;
@@ -300,7 +300,7 @@ public class DrlModelElementTypes {
 				this.expression = expression;
 			}
 
-			/** 
+			/**
 			 * @generated
 			 */
 			void init(EObject contextInstance) {
