@@ -10,13 +10,13 @@
   <extension point="org.eclipse.team.core.fileTypes">
       <fileTypes
          type="text"
-         extension="drl_diagram">
+         extension="infproduct_diagram">
       </fileTypes>
   </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
-         type="drl_diagram"
+         type="infproduct_diagram"
          class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
       </parser>
    </extension>
@@ -26,7 +26,7 @@
         id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorID"
         name="DrlModel Diagram Editor"
         icon="icons/obj16/DrlDiagramFile.gif"
-        extensions="drl_diagram"
+        extensions="infproduct_diagram"
         default="true"
         class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditor"
         matchingStrategy="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelMatchingStrategy"
@@ -38,7 +38,7 @@
   	  <wizard
   	     name="DrlModel Diagram"
   	     icon="icons/obj16/DrlDiagramFile.gif"
-  	     category="org.eclipse.ui.Examples"
+  	     category="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreationWizardID"
   	     class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreationWizard"
   	     id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreationWizardID">
   	  	 <description>
@@ -53,13 +53,25 @@
             nameFilter="*.drl"
             objectClass="org.eclipse.core.resources.IFile">
          <action
-               label="Initialize drl_diagram diagram file"
+               label="Initialize infproduct_diagram diagram file"
                class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelInitDiagramFileAction"
                menubarPath="additions"
                enablesFor="1"
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelInitDiagramFileActionID">
          </action>
       </objectContribution>  
+      <objectContribution
+            adaptable="false"
+            id="org.spbu.pldoctoolkit.graph.diagram.infproduct.ui.objectContribution.DocumentationCoreEditPart1"
+            objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart">
+         <action
+               class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreateShortcutAction"
+               enablesFor="1"
+               id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreateShortcutActionID"
+               label="Create Shortcut..."
+               menubarPath="additions">
+         </action>
+      </objectContribution>                      
       <objectContribution
             adaptable="false"
             id="org.spbu.pldoctoolkit.graph.diagram.infproduct.ui.objectContribution.DocumentationCoreEditPart2"
@@ -225,6 +237,12 @@
       </ParserProvider>
    </extension>
 
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <decoratorProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+      </decoratorProvider>
+   </extension>
+
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
       <metamodel nsURI="http://tepkom.ru/drl">
@@ -298,7 +316,7 @@
                name="InfElemRef Connection"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.InfElemRefGroupInfElemRefsGroupEditHelperAdvice">
-            <specializes id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRef_3001"/>
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="3003"/>
          </specializationType>
       </metamodel>

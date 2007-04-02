@@ -47,7 +47,7 @@ public class PLSchemeProductsCompartmentEditPart extends
 	 * @generated NOT
 	 */
 	public String getCompartmentName() {
-//		return "ProductsCompartment";
+		//		return "ProductsCompartment";
 		return null;
 	}
 

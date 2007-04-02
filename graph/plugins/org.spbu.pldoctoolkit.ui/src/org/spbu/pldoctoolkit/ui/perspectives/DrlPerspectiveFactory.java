@@ -16,6 +16,7 @@ public class DrlPerspectiveFactory implements IPerspectiveFactory {
 		layout.addNewWizardShortcut("org.eclipse.ui.wizards.new.file");
 		layout.addNewWizardShortcut("org.spbu.pldoctoolkit.graph.presentation.DrlModelWizardID");
 		layout.addNewWizardShortcut("org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreationWizardID");
+		layout.addNewWizardShortcut("org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreationWizardID");
 
 		// Add "show views".
 		layout.addShowViewShortcut(IPageLayout.ID_RES_NAV);

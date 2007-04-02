@@ -2,6 +2,7 @@ package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -29,6 +30,7 @@ import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElementCa
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElementGraphicalNodeEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElementItemSemanticEditPolicy;
 
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorPlugin;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
 
 /**
@@ -142,10 +144,10 @@ public class InfElementEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
 	protected NodeFigure createNodeFigure() {

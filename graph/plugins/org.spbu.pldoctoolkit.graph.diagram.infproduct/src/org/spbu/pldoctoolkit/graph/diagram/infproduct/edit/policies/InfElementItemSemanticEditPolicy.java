@@ -164,6 +164,14 @@ public class InfElementItemSemanticEditPolicy extends
 				}
 			}
 
+			protected EObject doDefaultElementCreation() {
+				InfElemRef newElement = (InfElemRef) super
+						.doDefaultElementCreation();
+				if (newElement != null) {
+					newElement.setGroup(sourceElement);
+				}
+				return newElement;
+			}
 		});
 
 	}
