@@ -100,6 +100,12 @@
         href="model.ecore#//GenericDocumentPart/groups"/>
   </links>
   <links>
+    <labelMappings>
+      <diagramLabel
+          href="model.gmfgraph#InfElemRefId"/>
+      <features
+          href="model.ecore#//InfElemRef/id"/>
+    </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
         href="model.gmftool#//@palette/@tools.0/@tools.4"/>

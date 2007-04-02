@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gmfmap:Mapping xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:gmfmap="http://www.eclipse.org/gmf/2005/mappings">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfmap="http://www.eclipse.org/gmf/2005/mappings"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
-    <containmentFeature
-        href="model.ecore#//Schema/pline"/>
     <ownedChild>
       <domainMetaElement
           href="model.ecore#//ProductLine"/>
@@ -20,19 +20,42 @@
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
             href="model.ecore#//ProductLine/scheme"/>
-        <childrenFeature
-            href="model.ecore#//ProductLine/products"/>
         <ownedChild>
           <domainMetaElement
-              href="model.ecore#//Product"/>
+              href="model.ecore#//PLScheme"/>
           <diagramNode
-              href="model.gmfgraph#Product"/>
+              href="model.gmfgraph#PLScheme"/>
+          <children
+              compartment="//@nodes.0/@ownedChild/@children.0/@ownedChild/@compartments.0">
+            <containmentFeature
+                href="model.ecore#//PLScheme/products"/>
+            <ownedChild>
+              <domainMetaElement
+                  href="model.ecore#//Product"/>
+              <labelMappings>
+                <diagramLabel
+                    href="model.gmfgraph#ProductName"/>
+                <features
+                    href="model.ecore#//Product/name"/>
+              </labelMappings>
+              <tool
+                  xsi:type="gmftool:CreationTool"
+                  href="model.gmftool#//@palette/@tools.0/@tools.3"/>
+              <diagramNode
+                  href="model.gmfgraph#Product"/>
+            </ownedChild>
+          </children>
+          <compartments
+              children="//@nodes.0/@ownedChild/@children.0/@ownedChild/@children.0">
+            <compartment
+                href="model.gmfgraph#ProductsCompartment"/>
+          </compartments>
         </ownedChild>
       </children>
       <compartments
           children="//@nodes.0/@ownedChild/@children.0">
         <compartment
-            href="model.gmfgraph#ProductsCompartment"/>
+            href="model.gmfgraph#Products"/>
       </compartments>
     </ownedChild>
   </nodes>
@@ -42,7 +65,7 @@
     <domainModel
         href="model.ecore#/"/>
     <domainMetaElement
-        href="model.ecore#//Schema"/>
+        href="model.ecore#//ProductLine"/>
     <palette
         href="model.gmftool#//@palette"/>
   </diagram>
