@@ -10,7 +10,8 @@
       itemSemanticEditPolicyClassName="ProductLineItemSemanticEditPolicy"
       notationViewFactoryClassName="ProductLineViewFactory"
       iconProviderPriority="Low"
-      canonicalEditPolicyClassName="ProductLineCanonicalEditPolicy">
+      canonicalEditPolicyClassName="ProductLineCanonicalEditPolicy"
+      creationWizardCategoryID="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreationWizardID">
     <diagramRunTimeClass
         href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType
@@ -19,6 +20,8 @@
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+    <containsShortcutsTo>drl</containsShortcutsTo>
+    <shortcutsProvidedFor>DrlModel</shortcutsProvidedFor>
     <domainDiagramElement
         href="model.genmodel#//graph/ProductLine"/>
     <childNodes
@@ -200,7 +203,8 @@
   <plugin
       iD="org.spbu.pldoctoolkit.graph.diagram.productline"
       provider="Drl Plugin Provider, Inc"
-      version="1.0.0.0"/>
+      version="1.0.0.0"
+      printingEnabled="true"/>
   <editor/>
   <domainGenModel
       href="model.genmodel#/"/>
