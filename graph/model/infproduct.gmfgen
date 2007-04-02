@@ -2,7 +2,8 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.infproduct">
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.infproduct"
+    diagramFileExtension="infproduct_diagram">
   <diagram
       visualID="79"
       editPartClassName="DocumentationCoreEditPart"

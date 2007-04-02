@@ -61,8 +61,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="ProductLine">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="productDocumentations"
-        eType="#//ProductDocumentation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="documentationCore" eType="#//DocumentationCore"/>
+        eType="#//ProductDocumentation" transient="true" defaultValueLiteral="" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentationCore" eType="#//DocumentationCore"
+        transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="scheme" lowerBound="1"
         eType="#//PLScheme" containment="true"/>
   </eClassifiers>

@@ -3,30 +3,31 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.productline"
-    domainFileExtension="drle">
+    diagramFileExtension="productline_diagram">
   <diagram
       visualID="79"
-      editPartClassName="SchemaEditPart"
-      itemSemanticEditPolicyClassName="SchemaItemSemanticEditPolicy"
-      notationViewFactoryClassName="SchemaViewFactory"
+      editPartClassName="ProductLineEditPart"
+      itemSemanticEditPolicyClassName="ProductLineItemSemanticEditPolicy"
+      notationViewFactoryClassName="ProductLineViewFactory"
       iconProviderPriority="Low"
-      canonicalEditPolicyClassName="SchemaCanonicalEditPolicy">
+      canonicalEditPolicyClassName="ProductLineCanonicalEditPolicy">
     <diagramRunTimeClass
         href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType
         xsi:type="gmfgen:MetamodelType"
-        editHelperClassName="SchemaEditHelper"/>
+        editHelperClassName="ProductLineEditHelper"/>
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
     <domainDiagramElement
-        href="model.genmodel#//graph/Schema"/>
+        href="model.genmodel#//graph/ProductLine"/>
     <childNodes
         visualID="2001"
         editPartClassName="PLSchemeEditPart"
         itemSemanticEditPolicyClassName="PLSchemeItemSemanticEditPolicy"
         notationViewFactoryClassName="PLSchemeViewFactory"
         canonicalEditPolicyClassName="PLSchemeCanonicalEditPolicy"
+        compartments="//@diagram/@compartments.1"
         graphicalNodeEditPolicyClassName="PLSchemeGraphicalNodeEditPolicy"
         containers="//@diagram/@compartments.0">
       <diagramRunTimeClass
@@ -35,8 +36,11 @@
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="PLSchemeEditHelper"/>
       <viewmap
-          xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="org.eclipse.draw2d.LabeledContainer">
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="PLSchemeFigure"
+          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PLSchemeFigure extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PLSchemeFigure() {&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setFill(false);&#xD;&#xA;&#x9;&#x9;this.setOutline(false);&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
+        <attributes
+            xsi:type="gmfgen:ResizeConstraints"/>
         <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
@@ -49,19 +53,67 @@
             href="model.genmodel#//graph/ProductLine/scheme"/>
       </modelFacet>
     </childNodes>
+    <childNodes
+        visualID="2002"
+        editPartClassName="ProductEditPart"
+        itemSemanticEditPolicyClassName="ProductItemSemanticEditPolicy"
+        notationViewFactoryClassName="ProductViewFactory"
+        canonicalEditPolicyClassName="ProductCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="ProductGraphicalNodeEditPolicy"
+        containers="//@diagram/@compartments.1">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="ProductEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="ProductFigure"
+          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class ProductFigure extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public ProductFigure() {&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;this.setBorder(&#x9;&#xD;&#xA;new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(3), getMapMode().DPtoLP(3), getMapMode().DPtoLP(3), getMapMode().DPtoLP(3))&#xD;&#xA;);&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#x9;&#x9;org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_0 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();&#xD;&#xA;fig_0.setText(&quot;&lt;...>&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;setFigureProductNameFigure(fig_0);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Object layData0 = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.add(fig_0, layData0);&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fProductNameFigure; &#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureProductNameFigure() {&#xD;&#xA;&#x9;&#x9;return fProductNameFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void setFigureProductNameFigure(org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig){&#xD;&#xA;&#x9;&#x9;fProductNameFigure = fig;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
+        <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+      <modelFacet>
+        <metaClass
+            href="model.genmodel#//graph/Product"/>
+        <containmentMetaFeature
+            href="model.genmodel#//graph/PLScheme/products"/>
+        <childMetaFeature
+            href="model.genmodel#//graph/PLScheme/products"/>
+      </modelFacet>
+      <labels
+          visualID="4001"
+          editPartClassName="ProductNameEditPart"
+          itemSemanticEditPolicyClassName="ProductNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="ProductNameViewFactory"
+          elementIcon="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureProductNameFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet">
+          <metaFeature
+              href="model.genmodel#//graph/Product/name"/>
+        </modelFacet>
+      </labels>
+    </childNodes>
     <topLevelNodes
         visualID="1001"
-        editPartClassName="ProductLineEditPart"
-        itemSemanticEditPolicyClassName="ProductLineItemSemanticEditPolicy"
-        notationViewFactoryClassName="ProductLineViewFactory"
-        canonicalEditPolicyClassName="ProductLineCanonicalEditPolicy"
+        editPartClassName="ProductLine2EditPart"
+        itemSemanticEditPolicyClassName="ProductLine2ItemSemanticEditPolicy"
+        notationViewFactoryClassName="ProductLine2ViewFactory"
+        canonicalEditPolicyClassName="ProductLine2CanonicalEditPolicy"
         compartments="//@diagram/@compartments.0"
         graphicalNodeEditPolicyClassName="ProductLineGraphicalNodeEditPolicy">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
-          xsi:type="gmfgen:MetamodelType"
-          editHelperClassName="ProductLineEditHelper"/>
+          xsi:type="gmfgen:SpecializationType"
+          metamodelType="//@diagram/@elementType"
+          editHelperAdviceClassName="ProductLineEditHelperAdvice"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="ProductLineFigure"
@@ -72,13 +124,9 @@
       <modelFacet>
         <metaClass
             href="model.genmodel#//graph/ProductLine"/>
-        <containmentMetaFeature
-            href="model.genmodel#//graph/Schema/pline"/>
-        <childMetaFeature
-            href="model.genmodel#//graph/Schema/pline"/>
       </modelFacet>
       <labels
-          visualID="4001"
+          visualID="4002"
           editPartClassName="ProductLineNameEditPart"
           itemSemanticEditPolicyClassName="ProductLineNameItemSemanticEditPolicy"
           notationViewFactoryClassName="ProductLineNameViewFactory">
@@ -87,7 +135,6 @@
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getFigureProductLineNameFigure"
-            setterName=""
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet">
@@ -98,12 +145,12 @@
     </topLevelNodes>
     <compartments
         visualID="5001"
-        editPartClassName="ProductLineProductsCompartmentEditPart"
-        itemSemanticEditPolicyClassName="ProductLineProductsCompartmentItemSemanticEditPolicy"
-        notationViewFactoryClassName="ProductLineProductsCompartmentViewFactory"
+        editPartClassName="ProductLineProductsEditPart"
+        itemSemanticEditPolicyClassName="ProductLineProductsItemSemanticEditPolicy"
+        notationViewFactoryClassName="ProductLineProductsViewFactory"
         childNodes="//@diagram/@childNodes.0"
-        canonicalEditPolicyClassName="ProductLineProductsCompartmentCanonicalEditPolicy"
-        title="ProductsCompartment"
+        canonicalEditPolicyClassName="ProductLineProductsCanonicalEditPolicy"
+        title="Products"
         canCollapse="false"
         hideIfEmpty="false"
         node="//@diagram/@topLevelNodes.0">
@@ -117,46 +164,43 @@
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
     </compartments>
+    <compartments
+        visualID="5002"
+        editPartClassName="PLSchemeProductsCompartmentEditPart"
+        itemSemanticEditPolicyClassName="PLSchemeProductsCompartmentItemSemanticEditPolicy"
+        notationViewFactoryClassName="PLSchemeProductsCompartmentViewFactory"
+        childNodes="//@diagram/@childNodes.1"
+        canonicalEditPolicyClassName="PLSchemeProductsCompartmentCanonicalEditPolicy"
+        title="ProductsCompartment"
+        canCollapse="false"
+        hideIfEmpty="false"
+        needsTitle="false"
+        node="//@diagram/@childNodes.0">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="PLSchemeFigure"
+          classBody="&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PLSchemeFigure extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PLSchemeFigure() {&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setFill(false);&#xD;&#xA;&#x9;&#x9;this.setOutline(false);&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;">
+        <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+    </compartments>
     <palette>
       <groups
-          title="elements">
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="InfElement"
-            description="Create new InfElement"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="InfProduct"
-            description="Create new InfProduct"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="NestPoint"
-            description="Create new NestPoint"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="Condition"
-            description="Create new Condition"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="InfElemRef"
-            description="Create new InfElemRefOptional"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="InfElemRefGroup"
-            description="Create new InfElemRefGroup"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="SubelementedElementElements"
-            description="Create new SubelementedElementElements"/>
+          title="Drl Tools">
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Product"
-            description="Create new Product"/>
+            description="Create new Product"
+            genNodes="//@diagram/@childNodes.1"/>
       </groups>
     </palette>
   </diagram>
   <plugin
-      iD="org.spbu.pldoctoolkit.graph.diagram.productline"/>
+      iD="org.spbu.pldoctoolkit.graph.diagram.productline"
+      provider="Drl Plugin Provider, Inc"
+      version="1.0.0.0"/>
   <editor/>
   <domainGenModel
       href="model.genmodel#/"/>
