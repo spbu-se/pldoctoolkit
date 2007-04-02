@@ -52,10 +52,27 @@
           </compartments>
         </ownedChild>
       </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.1">
+        <childrenFeature
+            href="model.ecore#//ProductLine/documentationCore"/>
+        <ownedChild>
+          <domainMetaElement
+              href="model.ecore#//DocumentationCore"/>
+          <diagramNode
+              href="model.gmfgraph#DocumentationCore"/>
+          <children/>
+        </ownedChild>
+      </children>
       <compartments
           children="//@nodes.0/@ownedChild/@children.0">
         <compartment
             href="model.gmfgraph#Products"/>
+      </compartments>
+      <compartments
+          children="//@nodes.0/@ownedChild/@children.1">
+        <compartment
+            href="model.gmfgraph#DocumentationCoreCompartment"/>
       </compartments>
     </ownedChild>
   </nodes>
