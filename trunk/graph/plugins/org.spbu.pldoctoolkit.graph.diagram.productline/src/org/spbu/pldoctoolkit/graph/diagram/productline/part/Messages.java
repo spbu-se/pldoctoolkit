@@ -47,7 +47,12 @@ public class Messages extends org.eclipse.osgi.util.NLS {
 	/**
 	 * @generated
 	 */
-	public static String ProductLineProductsEditPart_title;
+	public static String ProductLinePLSchemeCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ProductLineDocumentationCoreCompartmentEditPart_title;
 
 	/**
 	 * @generated

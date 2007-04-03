@@ -1,4 +1,3 @@
-
 package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
 import org.eclipse.emf.edit.ui.action.LoadResourceAction.LoadResourceDialog;
@@ -19,7 +18,7 @@ public class DrlModelLoadResourceAction implements IObjectActionDelegate {
 	 * @generated
 	 */
 	private ProductLineEditPart mySelectedElement;
-	
+
 	/**
 	 * @generated
 	 */
@@ -36,7 +35,8 @@ public class DrlModelLoadResourceAction implements IObjectActionDelegate {
 	 * @generated
 	 */
 	public void run(IAction action) {
-		LoadResourceDialog loadResourceDialog = new LoadResourceDialog(myShell, mySelectedElement.getEditingDomain());
+		LoadResourceDialog loadResourceDialog = new LoadResourceDialog(myShell,
+				mySelectedElement.getEditingDomain());
 		loadResourceDialog.open();
 	}
 
@@ -47,13 +47,15 @@ public class DrlModelLoadResourceAction implements IObjectActionDelegate {
 		mySelectedElement = null;
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			if (structuredSelection.size() == 1 && structuredSelection.getFirstElement() instanceof ProductLineEditPart) {
-				mySelectedElement = (ProductLineEditPart) structuredSelection.getFirstElement();
+			if (structuredSelection.size() == 1
+					&& structuredSelection.getFirstElement() instanceof ProductLineEditPart) {
+				mySelectedElement = (ProductLineEditPart) structuredSelection
+						.getFirstElement();
 			}
 		}
 		action.setEnabled(isEnabled());
 	}
-	
+
 	/**
 	 * @generated
 	 */

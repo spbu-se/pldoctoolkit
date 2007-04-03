@@ -4,22 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EcoreFactory;
+
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.ListCompartmentViewFactory;
+
 import org.eclipse.gmf.runtime.notation.DrawerStyle;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineProductsEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLinePLSchemeCompartmentEditPart;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**
  * @generated
  */
-public class ProductLineProductsViewFactory extends ListCompartmentViewFactory {
+public class ProductLinePLSchemeCompartmentViewFactory extends
+		ListCompartmentViewFactory {
 
 	/**
 	 * @generated 
@@ -40,7 +46,7 @@ public class ProductLineProductsViewFactory extends ListCompartmentViewFactory {
 			boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = DrlModelVisualIDRegistry
-					.getType(ProductLineProductsEditPart.VISUAL_ID);
+					.getType(ProductLinePLSchemeCompartmentEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,

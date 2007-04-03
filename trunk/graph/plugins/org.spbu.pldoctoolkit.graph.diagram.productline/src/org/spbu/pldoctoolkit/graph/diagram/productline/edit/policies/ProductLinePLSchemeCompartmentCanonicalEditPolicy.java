@@ -1,19 +1,23 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies;
 
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.notation.View;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
-import org.eclipse.gmf.runtime.notation.View;
+
 import org.spbu.pldoctoolkit.graph.ProductLine;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**
  * @generated
  */
-public class ProductLineProductsCanonicalEditPolicy extends CanonicalEditPolicy {
+public class ProductLinePLSchemeCompartmentCanonicalEditPolicy extends
+		CanonicalEditPolicy {
 
 	/**
 	 * @generated

@@ -1,3 +1,4 @@
+
 package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
 import java.lang.reflect.InvocationTargetException;
@@ -23,22 +24,27 @@ public class DrlModelCreationWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	private IWorkbench workbench;
+
 	/**
 	 * @generated
 	 */
-	protected IStructuredSelection selection;
+    protected IStructuredSelection selection;
+
 	/**
 	 * @generated
 	 */
 	protected DrlModelCreationWizardPage diagramModelFilePage;
+
 	/**
 	 * @generated
 	 */
 	protected DrlModelCreationWizardPage domainModelFilePage;
+
 	/**
 	 * @generated
 	 */
 	protected Resource diagram;
+
 	/**
 	 * @generated
 	 */
@@ -47,16 +53,16 @@ public class DrlModelCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
-	public IWorkbench getWorkbench() {
-		return workbench;
-	}
+    public IWorkbench getWorkbench() {
+        return workbench;
+    }
 
 	/**
 	 * @generated
 	 */
 	public IStructuredSelection getSelection() {
-		return selection;
-	}
+        return selection;
+    }
 
 	/**
 	 * @generated
@@ -75,27 +81,33 @@ public class DrlModelCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
-	public void setOpenNewlyCreatedDiagramEditor(
-			boolean openNewlyCreatedDiagramEditor) {
+	public void setOpenNewlyCreatedDiagramEditor(boolean openNewlyCreatedDiagramEditor) {
 		this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
 	}
 
 	/**
 	 * @generated
 	 */
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
+        this.workbench = workbench;
+        this.selection = selection;
+		setWindowTitle("New DrlModel Diagram");
+		setDefaultPageImageDescriptor(DrlModelDiagramEditorPlugin.getBundledImageDescriptor("icons/wizban/NewDrlWizard.gif")); //$NON-NLS-1$
+		setNeedsProgressMonitor(true);
+	}
+
+	/**
+	 * @generated
+	 */
 	public void addPages() {
-		diagramModelFilePage = new DrlModelCreationWizardPage(
-				"DiagramModelFile", getSelection(), "productline_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+		diagramModelFilePage = new DrlModelCreationWizardPage("DiagramModelFile", getSelection(), "productline_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage.setTitle("Create DrlModel Diagram");
-		diagramModelFilePage
-				.setDescription("Select file that will contain diagram model.");
+		diagramModelFilePage.setDescription("Select file that will contain diagram model.");
 		addPage(diagramModelFilePage);
 
-		domainModelFilePage = new DrlModelCreationWizardPage(
-				"DomainModelFile", getSelection(), "drl"); //$NON-NLS-1$ //$NON-NLS-2$
+		domainModelFilePage = new DrlModelCreationWizardPage("DomainModelFile", getSelection(), "drl"); //$NON-NLS-1$ //$NON-NLS-2$
 		domainModelFilePage.setTitle("Create DrlModel Diagram");
-		domainModelFilePage
-				.setDescription("Select file that will contain domain model.");
+		domainModelFilePage.setDescription("Select file that will contain domain model.");
 		addPage(domainModelFilePage);
 	}
 
@@ -103,20 +115,18 @@ public class DrlModelCreationWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public boolean performFinish() {
-		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
+		IRunnableWithProgress op =
+				new WorkspaceModifyOperation(null) {
 
-			protected void execute(IProgressMonitor monitor)
-					throws CoreException, InterruptedException {
-				diagram = DrlModelDiagramEditorUtil.createDiagram(
-						diagramModelFilePage.getURI(), domainModelFilePage
-								.getURI(), monitor);
+			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
+				diagram = DrlModelDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(),
+						domainModelFilePage.getURI(),
+						monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						DrlModelDiagramEditorUtil.openDiagram(diagram);
 					} catch (PartInitException e) {
-						ErrorDialog.openError(getContainer().getShell(),
-								"Error opening diagram editor", null, e
-										.getStatus());
+						ErrorDialog.openError(getContainer().getShell(), "Error opening diagram editor", null, e.getStatus());
 					}
 				}
 			}
@@ -127,27 +137,12 @@ public class DrlModelCreationWizard extends Wizard implements INewWizard {
 			return false;
 		} catch (InvocationTargetException e) {
 			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog.openError(getContainer().getShell(),
-						"Creation Problems", null, ((CoreException) e
-								.getTargetException()).getStatus());
+				ErrorDialog.openError(getContainer().getShell(), "Creation Problems", null, ((CoreException) e.getTargetException()).getStatus());
 			} else {
-				DrlModelDiagramEditorPlugin.getInstance().logError(
-						"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
+				DrlModelDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}
 			return false;
 		}
 		return diagram != null;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		this.workbench = workbench;
-		this.selection = selection;
-		setWindowTitle("New DrlModel Diagram");
-		setDefaultPageImageDescriptor(DrlModelDiagramEditorPlugin
-				.getBundledImageDescriptor("icons/wizban/NewDrlWizard.gif")); //$NON-NLS-1$
-		setNeedsProgressMonitor(true);
 	}
 }

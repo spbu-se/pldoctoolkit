@@ -1,4 +1,4 @@
-package org.spbu.pldoctoolkit.graph.diagram.productline.part;
+	package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,29 +38,33 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.ui.PartInitException;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.ProductLine;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
-/**
+	/**
  * @generated
  */
 public class DrlModelDiagramEditorUtil {
-
-	/**
-	 * @generated
-	 */
-	public static boolean openDiagram(Resource diagram)
-			throws PartInitException {
+		/**
+ * @generated
+ */
+	public static boolean openDiagram(Resource diagram) throws PartInitException {
 		return EditUIUtil.openEditor((EObject) diagram.getContents().get(0));
 	}
 
-	/**
-	 * @generated
-	 */
+
+
+	
+		/**
+ * @generated
+ */
 	private static void setCharset(org.eclipse.emf.common.util.URI uri) {
 		IFile file = getFile(uri);
 		if (file == null) {
@@ -69,20 +73,18 @@ public class DrlModelDiagramEditorUtil {
 		try {
 			file.setCharset("UTF-8", new NullProgressMonitor()); //$NON-NLS-1$
 		} catch (CoreException e) {
-			DrlModelDiagramEditorPlugin.getInstance().logError(
-					"Unable to set charset for file " + file.getFullPath(), e); //$NON-NLS-1$
+			DrlModelDiagramEditorPlugin.getInstance().logError("Unable to set charset for file " + file.getFullPath(), e); //$NON-NLS-1$
 		}
 	}
 
-	/**
-	 * @generated
-	 */
+	
+		/**
+ * @generated
+ */
 	public static IFile getFile(org.eclipse.emf.common.util.URI uri) {
 		if (uri.toString().startsWith("platform:/resource")) { //$NON-NLS-1$
-			String path = uri.toString().substring(
-					"platform:/resource".length()); //$NON-NLS-1$
-			IResource workspaceResource = ResourcesPlugin.getWorkspace()
-					.getRoot().findMember(new Path(path));
+			String path = uri.toString().substring("platform:/resource".length()); //$NON-NLS-1$
+			IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
 			if (workspaceResource instanceof IFile) {
 				return (IFile) workspaceResource;
 			}
@@ -90,183 +92,83 @@ public class DrlModelDiagramEditorUtil {
 		return null;
 	}
 
-	/**
-	 * @generated
-	 */
+
+
+
+		/**
+ * @generated
+ */
 	public static boolean exists(IPath path) {
 		return ResourcesPlugin.getWorkspace().getRoot().exists(path);
 	}
 
+
+
 	/**
-	 * This method should be called within a workspace modify operation since it creates resources.
-	 * @generated
-	 */
-	public static Resource createDiagram(
-			org.eclipse.emf.common.util.URI diagramURI,
-			org.eclipse.emf.common.util.URI modelURI,
-			IProgressMonitor progressMonitor) {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
-				.createEditingDomain();
+ * This method should be called within a workspace modify operation since it creates resources.
+ * @generated NOT
+ */
+	public static Resource createDiagram(org.eclipse.emf.common.util.URI diagramURI, org.eclipse.emf.common.util.URI modelURI, IProgressMonitor progressMonitor) {
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		progressMonitor.beginTask("Creating diagram and model files", 3);
-		final Resource diagramResource = editingDomain.getResourceSet()
-				.createResource(diagramURI);
-		final Resource modelResource = editingDomain.getResourceSet()
-				.createResource(modelURI);
+		final Resource diagramResource = editingDomain.getResourceSet().createResource(diagramURI);
+		final Resource modelResource = editingDomain.getResourceSet().createResource(modelURI);
 		final String diagramName = diagramURI.lastSegment();
-		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
-				editingDomain,
-				"Creating diagram and model", Collections.EMPTY_LIST) { //$NON-NLS-1$
-			protected CommandResult doExecuteWithResult(
-					IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, "Creating diagram and model", Collections.EMPTY_LIST) { //$NON-NLS-1$
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				ProductLine model = createInitialModel();
 				attachModelToResource(model, modelResource);
 
-				Diagram diagram = ViewService.createDiagram(model,
-						ProductLineEditPart.MODEL_ID,
-						DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				Diagram diagram = ViewService.createDiagram(
+					model, 
+					ProductLineEditPart.MODEL_ID,	
+					DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
 					diagram.setName(diagramName);
-					diagram.setElement(model);
-				}
+					
+					// my custom code
+					diagram.setElement(null);
+					Node rootNode = ViewService.createNode(diagram, model,
+							((IHintedType) DrlModelElementTypes.ProductLine_1001)
+									.getSemanticHint(),
+							DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+					rootNode.setElement(model);
+					// end of my custom code
 
+				}
+				
 				try {
 					Map options = new HashMap();
 					options.put(XMIResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
 					modelResource.save(options);
 					diagramResource.save(options);
 				} catch (IOException e) {
-
-					DrlModelDiagramEditorPlugin.getInstance().logError(
-							"Unable to store model and diagram resources", e); //$NON-NLS-1$
+					
+					DrlModelDiagramEditorPlugin.getInstance().logError("Unable to store model and diagram resources", e); //$NON-NLS-1$
 				}
 				return CommandResult.newOKCommandResult();
 			}
 		};
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(command,
-					new SubProgressMonitor(progressMonitor, 1), null);
+			OperationHistoryFactory.getOperationHistory().execute(command, new SubProgressMonitor(progressMonitor, 1), null);
 		} catch (ExecutionException e) {
-			DrlModelDiagramEditorPlugin.getInstance().logError(
-					"Unable to create model and diagram", e); //$NON-NLS-1$
+			DrlModelDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
 		}
 		setCharset(modelURI);
 		setCharset(diagramURI);
 		return diagramResource;
 	}
 
+
+	
 	/**
-	 * <p>
-	 * This method should be called within a workspace modify operation since it creates resources.
-	 * </p>
-	 * @generated NOT
-	 * @return the created file resource, or <code>null</code> if the file was not created
-	 */
-	/*	
-	 public static final IFile createNewDiagramFile(
-	 DiagramFileCreator diagramFileCreator, IPath containerFullPath,
-	 String fileName, InputStream initialContents, String kind,
-	 Shell shell, IProgressMonitor progressMonitor) {
-	 TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
-	 .createEditingDomain();
-	 ResourceSet resourceSet = editingDomain.getResourceSet();
-	 progressMonitor.beginTask("Creating diagram and model files", 4); //$NON-NLS-1$
-	 final IProgressMonitor subProgressMonitor = new SubProgressMonitor(
-	 progressMonitor, 1);
-	 final IFile diagramFile = diagramFileCreator.createNewFile(
-	 containerFullPath, fileName, initialContents, shell,
-	 new IRunnableContext() {
-	 public void run(boolean fork, boolean cancelable,
-	 IRunnableWithProgress runnable)
-	 throws InvocationTargetException,
-	 InterruptedException {
-	 runnable.run(subProgressMonitor);
-	 }
-	 });
-	 final Resource diagramResource = resourceSet
-	 .createResource(URI.createPlatformResourceURI(diagramFile
-	 .getFullPath().toString()));
-	 List affectedFiles = new ArrayList();
-	 affectedFiles.add(diagramFile);
-
-	 IPath modelFileRelativePath = diagramFile.getFullPath()
-	 .removeFileExtension().addFileExtension("drl"); //$NON-NLS-1$
-	 IFile modelFile = diagramFile.getParent().getFile(
-	 new Path(modelFileRelativePath.lastSegment()));
-	 final Resource modelResource = resourceSet.createResource(URI
-	 .createPlatformResourceURI(modelFile.getFullPath().toString()));
-	 affectedFiles.add(modelFile);
-
-	 final String kindParam = kind;
-	 AbstractTransactionalCommand command = new AbstractTransactionalCommand(
-	 editingDomain, "Creating diagram and model", affectedFiles) { //$NON-NLS-1$
-	 protected CommandResult doExecuteWithResult(
-	 IProgressMonitor monitor, IAdaptable info)
-	 throws ExecutionException {
-	 ProductLine model = createInitialModel();
-	 modelResource.getContents().add(createInitialRoot(model));
-	 Diagram diagram = ViewService.createDiagram(model, kindParam,
-	 DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-	 if (diagram != null) {
-	 diagramResource.getContents().add(diagram);
-	 diagram.setName(diagramFile.getName());
-	 diagram.setElement(null);
-	 Node rootNode = ViewService
-	 .createNode(
-	 diagram,
-	 model,
-	 ((IHintedType) DrlModelElementTypes.ProductLine_1001)
-	 .getSemanticHint(),
-	 DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-	 rootNode.setElement(model);
-	 }
-	 try {
-	 Map options = new HashMap();
-	 options.put(XMIResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
-	 modelResource.save(options);
-	 diagramResource.save(Collections.EMPTY_MAP);
-	 } catch (IOException e) {
-
-	 DrlModelDiagramEditorPlugin.getInstance().logError(
-	 "Unable to store model and diagram resources", e); //$NON-NLS-1$
-	 }
-	 return CommandResult.newOKCommandResult();
-	 }
-	 };
-
-	 try {
-	 OperationHistoryFactory.getOperationHistory().execute(command,
-	 new SubProgressMonitor(progressMonitor, 1), null);
-	 } catch (ExecutionException e) {
-	 DrlModelDiagramEditorPlugin.getInstance().logError(
-	 "Unable to create model and diagram", e); //$NON-NLS-1$
-	 }
-
-	 try {
-	 modelFile.setCharset(
-	 "UTF-8", new SubProgressMonitor(progressMonitor, 1)); //$NON-NLS-1$
-	 } catch (CoreException e) {
-	 DrlModelDiagramEditorPlugin.getInstance().logError(
-	 "Unable to set charset for model file", e); //$NON-NLS-1$
-	 }
-	 try {
-	 diagramFile.setCharset(
-	 "UTF-8", new SubProgressMonitor(progressMonitor, 1)); //$NON-NLS-1$
-	 } catch (CoreException e) {
-	 DrlModelDiagramEditorPlugin.getInstance().logError(
-	 "Unable to set charset for diagram file", e); //$NON-NLS-1$
-	 }
-
-	 return diagramFile;
-	 }
-	 */
-	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
+ * Create a new instance of domain element associated with canvas.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
+ * @generated NOT
+ */
 	private static ProductLine createInitialModel() {
 		ProductLine pline = DrlFactory.eINSTANCE.createProductLine();
 		pline.setScheme(DrlFactory.eINSTANCE.createPLScheme());
@@ -274,52 +176,51 @@ public class DrlModelDiagramEditorUtil {
 		return pline;
 	}
 
+	
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static void attachModelToResource(ProductLine model,
-			Resource resource) {
+ * Store model element in the resource.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
+ * @generated
+ */
+	private static void attachModelToResource(ProductLine model, Resource resource) {
 		resource.getContents().add(model);
 	}
 
-	/**
-	 * @generated
-	 */
-	public static void selectElementsInDiagram(
-			IDiagramWorkbenchPart diagramPart, List/*EditPart*/editParts) {
+	
+
+
+
+		/**
+ * @generated
+ */
+	public static void selectElementsInDiagram(IDiagramWorkbenchPart diagramPart, List/*EditPart*/ editParts) {
 		diagramPart.getDiagramGraphicalViewer().deselectAll();
 
 		EditPart firstPrimary = null;
 		for (Iterator it = editParts.iterator(); it.hasNext();) {
 			EditPart nextPart = (EditPart) it.next();
 			diagramPart.getDiagramGraphicalViewer().appendSelection(nextPart);
-			if (firstPrimary == null && nextPart instanceof IPrimaryEditPart) {
+			if(firstPrimary == null && nextPart instanceof IPrimaryEditPart) {
 				firstPrimary = nextPart;
 			}
 		}
 
-		if (!editParts.isEmpty()) {
-			diagramPart.getDiagramGraphicalViewer().reveal(
-					firstPrimary != null ? firstPrimary : (EditPart) editParts
-							.get(0));
+		if(!editParts.isEmpty()) {
+			diagramPart.getDiagramGraphicalViewer().reveal(firstPrimary != null ? firstPrimary : (EditPart)editParts.get(0));
 		}
 	}
 
-	/**
-	 * @generated
-	 */
-	private static int findElementsInDiagramByID(DiagramEditPart diagramPart,
-			EObject element, List editPartCollector) {
-		IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer) diagramPart
-				.getViewer();
-		final int intialNumOfEditParts = editPartCollector.size();
 
+		/**
+ * @generated
+ */
+	private static int findElementsInDiagramByID(DiagramEditPart diagramPart, EObject element, List editPartCollector) {
+		IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer) diagramPart.getViewer();
+		final int intialNumOfEditParts = editPartCollector.size();
+		
 		if (element instanceof View) { // support notation element lookup
-			EditPart editPart = (EditPart) viewer.getEditPartRegistry().get(
-					element);
+			EditPart editPart = (EditPart) viewer.getEditPartRegistry().get(element);
 			if (editPart != null) {
 				editPartCollector.add(editPart);
 				return 1;
@@ -327,11 +228,9 @@ public class DrlModelDiagramEditorUtil {
 		}
 
 		String elementID = EMFCoreUtil.getProxyID(element);
-		List associatedParts = viewer.findEditPartsForElement(elementID,
-				IGraphicalEditPart.class);
+		List associatedParts = viewer.findEditPartsForElement(elementID, IGraphicalEditPart.class);
 		// perform the possible hierarchy disjoint -> take the top-most parts only
-		for (Iterator editPartIt = associatedParts.iterator(); editPartIt
-				.hasNext();) {
+		for (Iterator editPartIt = associatedParts.iterator(); editPartIt.hasNext();) {
 			EditPart nextPart = (EditPart) editPartIt.next();
 			EditPart parentPart = nextPart.getParent();
 			while (parentPart != null && !associatedParts.contains(parentPart)) {
@@ -347,134 +246,115 @@ public class DrlModelDiagramEditorUtil {
 				editPartCollector.add(associatedParts.iterator().next());
 			} else {
 				if (element.eContainer() != null) {
-					return findElementsInDiagramByID(diagramPart, element
-							.eContainer(), editPartCollector);
+					return findElementsInDiagramByID(diagramPart, element.eContainer(), editPartCollector);
 				}
 			}
 		}
 		return editPartCollector.size() - intialNumOfEditParts;
 	}
 
-	/**
-	 * @generated
-	 */
-	public static View findView(DiagramEditPart diagramEditPart,
-			EObject targetElement, LazyElement2ViewMap lazyElement2ViewMap) {
-		boolean hasStructuralURI = false;
-		if (targetElement.eResource() instanceof XMLResource) {
-			hasStructuralURI = ((XMLResource) targetElement.eResource())
-					.getID(targetElement) == null;
-		}
 
+		/**
+ * @generated
+ */
+	public static View findView(DiagramEditPart diagramEditPart, EObject targetElement, LazyElement2ViewMap lazyElement2ViewMap) {
+		boolean hasStructuralURI = false;						
+		if(targetElement.eResource() instanceof XMLResource) {
+			hasStructuralURI = ((XMLResource)targetElement.eResource()).getID(targetElement) == null;
+		}
+		
 		View view = null;
-		if (hasStructuralURI
-				&& !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
-			view = (View) lazyElement2ViewMap.getElement2ViewMap().get(
-					targetElement);
-		} else if (findElementsInDiagramByID(diagramEditPart, targetElement,
-				lazyElement2ViewMap.editPartTmpHolder) > 0) {
-			EditPart editPart = (EditPart) lazyElement2ViewMap.editPartTmpHolder
-					.get(0);
+		if(hasStructuralURI && !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
+			view = (View)lazyElement2ViewMap.getElement2ViewMap().get(targetElement);
+		} else if (findElementsInDiagramByID(diagramEditPart, targetElement, lazyElement2ViewMap.editPartTmpHolder) > 0) {
+			EditPart editPart = (EditPart) lazyElement2ViewMap.editPartTmpHolder.get(0);
 			lazyElement2ViewMap.editPartTmpHolder.clear();
-			view = editPart.getModel() instanceof View ? (View) editPart
-					.getModel() : null;
+			view = editPart.getModel() instanceof View ? (View) editPart.getModel() : null;
 		}
-
+	
 		return (view == null) ? diagramEditPart.getDiagramView() : view;
 	}
 
-	/**
-	 * @generated
-	 */
-	public static class LazyElement2ViewMap {
 		/**
-		 * @generated
-		 */
+ * @generated
+ */
+	public static class LazyElement2ViewMap {
+			/**
+ * @generated
+ */
 		private Map element2ViewMap;
 
-		/**
-		 * @generated
-		 */
+			/**
+ * @generated
+ */
 		private View scope;
 
-		/**
-		 * @generated
-		 */
+			/**
+ * @generated
+ */
 		private Set elementSet;
 
-		/**
-		 * @generated
-		 */
+			/**
+ * @generated
+ */
 		public final List editPartTmpHolder = new ArrayList();
 
-		/**
-		 * @generated
-		 */
+			/**
+ * @generated
+ */
 		public LazyElement2ViewMap(View scope, Set elements) {
 			this.scope = scope;
 			this.elementSet = elements;
 		}
 
-		/**
-		 * @generated
-		 */
+			/**
+ * @generated
+ */
 		public final Map getElement2ViewMap() {
-			if (element2ViewMap == null) {
+			if(element2ViewMap == null) {
 				element2ViewMap = new HashMap();
 				// map possible notation elements to itself as these can't be found by view.getElement()
 				for (Iterator it = elementSet.iterator(); it.hasNext();) {
 					EObject element = (EObject) it.next();
-					if (element instanceof View) {
+					if(element instanceof View) {
 						View view = (View) element;
-						if (view.getDiagram() == scope.getDiagram()) {
+						if(view.getDiagram() == scope.getDiagram()) {
 							element2ViewMap.put(element, element); // take only those that part of our diagram
 						}
 					}
 				}
-
-				buildElement2ViewMap(scope, element2ViewMap, elementSet);
+				
+				buildElement2ViewMap(scope, element2ViewMap, elementSet);					
 			}
 			return element2ViewMap;
 		}
+			/**
+ * @generated
+ */
+		static Map buildElement2ViewMap(View parentView, Map element2ViewMap, Set elements) {
+			if(elements.size() == element2ViewMap.size()) return element2ViewMap;
 
-		/**
-		 * @generated
-		 */
-		static Map buildElement2ViewMap(View parentView, Map element2ViewMap,
-				Set elements) {
-			if (elements.size() == element2ViewMap.size())
-				return element2ViewMap;
-
-			if (parentView.isSetElement()
-					&& !element2ViewMap.containsKey(parentView.getElement())
-					&& elements.contains(parentView.getElement())) {
+			if(parentView.isSetElement() && !element2ViewMap.containsKey(parentView.getElement()) && elements.contains(parentView.getElement())) {
 				element2ViewMap.put(parentView.getElement(), parentView);
-				if (elements.size() == element2ViewMap.size())
-					return element2ViewMap;
+				if(elements.size() == element2ViewMap.size()) return element2ViewMap;
 			}
-
-			for (Iterator it = parentView.getChildren().iterator(); it
-					.hasNext();) {
-				buildElement2ViewMap((View) it.next(), element2ViewMap,
-						elements);
-				if (elements.size() == element2ViewMap.size())
-					return element2ViewMap;
+			
+			for (Iterator it = parentView.getChildren().iterator(); it.hasNext();) {
+				buildElement2ViewMap((View) it.next(), element2ViewMap, elements);			
+				if(elements.size() == element2ViewMap.size()) return element2ViewMap;
 			}
-			for (Iterator it = parentView.getSourceEdges().iterator(); it
-					.hasNext();) {
-				buildElement2ViewMap((View) it.next(), element2ViewMap,
-						elements);
-				if (elements.size() == element2ViewMap.size())
-					return element2ViewMap;
+			for (Iterator it = parentView.getSourceEdges().iterator(); it.hasNext();) {
+				buildElement2ViewMap((View) it.next(), element2ViewMap, elements);			
+				if(elements.size() == element2ViewMap.size()) return element2ViewMap;
 			}
-			for (Iterator it = parentView.getSourceEdges().iterator(); it
-					.hasNext();) {
-				buildElement2ViewMap((View) it.next(), element2ViewMap,
-						elements);
-				if (elements.size() == element2ViewMap.size())
-					return element2ViewMap;
-			}
+			for (Iterator it = parentView.getSourceEdges().iterator(); it.hasNext();) {
+				buildElement2ViewMap((View) it.next(), element2ViewMap, elements);			
+				if(elements.size() == element2ViewMap.size()) return element2ViewMap;
+			}	
 			return element2ViewMap;
 		}
 	} //LazyElement2ViewMap	
+
+
+
 }
