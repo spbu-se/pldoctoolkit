@@ -48,6 +48,11 @@ public abstract class DrlModelAbstractExpression {
 	/**
 	 * @generated
 	 */
+	private Map env;
+
+	/**
+	 * @generated
+	 */
 	private IStatus status = Status.OK_STATUS;
 
 	/**
@@ -64,6 +69,7 @@ public abstract class DrlModelAbstractExpression {
 			Map env) {
 		this.body = body;
 		this.context = context;
+		this.env = env;
 	}
 
 	/**
@@ -132,6 +138,13 @@ public abstract class DrlModelAbstractExpression {
 	 */
 	public EClassifier context() {
 		return context;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Map environment() {
+		return env;
 	}
 
 	/**

@@ -2,10 +2,14 @@ package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
 import java.util.Iterator;
 
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
@@ -66,11 +70,10 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
+
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new InfElemRefGroupItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new InfElemRefGroupGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new InfElemRefGroupCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
@@ -121,20 +124,21 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		return new DefaultSizeNodeFigure(getMapMode().DPtoLP(40), getMapMode()
-				.DPtoLP(40));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
+				.DPtoLP(40), getMapMode().DPtoLP(40));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public EditPolicy getPrimaryDragEditPolicy() {
-		ResizableEditPolicy ep = (ResizableEditPolicy) super
-				.getPrimaryDragEditPolicy();
-
-		ep.setResizeDirections(PositionConstants.NONE);
-
-		return ep;
+		EditPolicy result = super.getPrimaryDragEditPolicy();
+		if (result instanceof ResizableEditPolicy) {
+			ResizableEditPolicy ep = (ResizableEditPolicy) result;
+			ep.setResizeDirections(PositionConstants.NONE);
+		}
+		return result;
 	}
 
 	/**
@@ -194,7 +198,7 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class InfElemRefGroupFigure extends org.eclipse.draw2d.Ellipse {
+	public class InfElemRefGroupFigure extends Ellipse {
 
 		/**
 		 * @generated NOT

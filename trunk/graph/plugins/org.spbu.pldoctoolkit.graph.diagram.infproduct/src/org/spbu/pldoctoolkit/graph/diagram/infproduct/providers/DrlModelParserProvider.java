@@ -41,8 +41,7 @@ public class DrlModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser createInfElementInfElementName_4001Parser() {
 		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
-				DrlPackage.eINSTANCE.getGenericDocumentPart()
-						.getEStructuralFeature("name")); //$NON-NLS-1$
+				DrlPackage.eINSTANCE.getGenericDocumentPart_Name());
 		return parser;
 	}
 
@@ -66,8 +65,7 @@ public class DrlModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser createInfProductInfProductName_4002Parser() {
 		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
-				DrlPackage.eINSTANCE.getGenericDocumentPart()
-						.getEStructuralFeature("name")); //$NON-NLS-1$
+				DrlPackage.eINSTANCE.getGenericDocumentPart_Name());
 		return parser;
 	}
 
@@ -91,8 +89,7 @@ public class DrlModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser createInfElemRefInfElemRefId_4003Parser() {
 		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
-				DrlPackage.eINSTANCE.getInfElemRef()
-						.getEStructuralFeature("id")); //$NON-NLS-1$
+				DrlPackage.eINSTANCE.getInfElemRef_Id());
 		return parser;
 	}
 

@@ -38,7 +38,7 @@ public class DrlModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser createProductProductName_4001Parser() {
 		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
-				DrlPackage.eINSTANCE.getProduct().getEStructuralFeature("name")); //$NON-NLS-1$
+				DrlPackage.eINSTANCE.getProduct_Name());
 		return parser;
 	}
 
@@ -62,8 +62,7 @@ public class DrlModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser createProductLineProductLineName_4002Parser() {
 		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
-				DrlPackage.eINSTANCE.getProductLine().getEStructuralFeature(
-						"name")); //$NON-NLS-1$
+				DrlPackage.eINSTANCE.getProductLine_Name());
 		return parser;
 	}
 

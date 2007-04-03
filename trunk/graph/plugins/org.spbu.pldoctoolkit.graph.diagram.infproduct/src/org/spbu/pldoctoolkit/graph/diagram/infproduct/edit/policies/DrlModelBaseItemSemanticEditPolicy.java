@@ -30,6 +30,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
+import org.spbu.pldoctoolkit.graph.InfElemRef;
+import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
+import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.DrlModelBaseEditHelper;
 
 /**
@@ -238,6 +242,51 @@ public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected static class LinkConstraints {
+		/**
+		 * @generated
+		 */
+		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateInfElemRef_3001(
+				GenericDocumentPart source, InfElement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateGenericDocumentPartGroups_3002(
+				GenericDocumentPart source, InfElemRefGroup target) {
+			if (source != null) {
+				if (source.getGroups().contains(target)) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateInfElemRefGroupInfElemRefsGroup_3003(
+				InfElemRefGroup source, InfElemRef target) {
+			if (source != null) {
+				if (source.getInfElemRefsGroup().contains(target)) {
+					return false;
+				}
+			}
+			return true;
+		}
+
 	}
 
 }

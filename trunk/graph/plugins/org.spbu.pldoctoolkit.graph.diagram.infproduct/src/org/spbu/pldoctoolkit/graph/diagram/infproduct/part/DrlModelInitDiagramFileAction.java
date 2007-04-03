@@ -86,7 +86,7 @@ public class DrlModelInitDiagramFileAction implements IObjectActionDelegate {
 		try {
 			Resource resource = resourceSet.getResource(URI
 					.createPlatformResourceURI(mySelectedModelFile
-							.getFullPath().toString()), true);
+							.getFullPath().toString(), true), true);
 			diagramRoot = (EObject) resource.getContents().get(0);
 		} catch (WrappedException ex) {
 			DrlModelDiagramEditorPlugin

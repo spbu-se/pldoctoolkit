@@ -171,9 +171,9 @@ public class DrlModelElementChooserDialog extends Dialog {
 				IPath resourcePath = modelFile.getFullPath();
 				ResourceSet resourceSet = myEditingDomain.getResourceSet();
 				try {
-					Resource modelResource = resourceSet.getResource(
-							URI.createPlatformResourceURI(resourcePath
-									.toString()), true);
+					Resource modelResource = resourceSet.getResource(URI
+							.createPlatformResourceURI(resourcePath.toString(),
+									true), true);
 					return myAdapterFctoryContentProvier
 							.getChildren(modelResource);
 				} catch (WrappedException e) {

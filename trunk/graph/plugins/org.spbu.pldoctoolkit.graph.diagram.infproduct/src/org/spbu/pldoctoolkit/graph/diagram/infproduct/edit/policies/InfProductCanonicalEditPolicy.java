@@ -49,8 +49,7 @@ public class InfProductCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		List result = new LinkedList();
-		return result;
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
