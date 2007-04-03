@@ -2,15 +2,15 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.productline"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel/2.0" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.productline"
     diagramFileExtension="productline_diagram">
   <diagram
       visualID="79"
       editPartClassName="ProductLineEditPart"
       itemSemanticEditPolicyClassName="ProductLineItemSemanticEditPolicy"
       notationViewFactoryClassName="ProductLineViewFactory"
-      iconProviderPriority="Low"
       canonicalEditPolicyClassName="ProductLineCanonicalEditPolicy"
+      iconProviderPriority="Low"
       creationWizardCategoryID="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreationWizardID">
     <diagramRunTimeClass
         href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
@@ -98,7 +98,7 @@
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet">
-          <metaFeature
+          <metaFeatures
               href="model.genmodel#//graph/Product/name"/>
         </modelFacet>
       </labels>
@@ -141,7 +141,7 @@
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet">
-          <metaFeature
+          <metaFeatures
               href="model.genmodel#//graph/ProductLine/name"/>
         </modelFacet>
       </labels>
@@ -151,8 +151,8 @@
         editPartClassName="ProductLineProductsEditPart"
         itemSemanticEditPolicyClassName="ProductLineProductsItemSemanticEditPolicy"
         notationViewFactoryClassName="ProductLineProductsViewFactory"
-        childNodes="//@diagram/@childNodes.0"
         canonicalEditPolicyClassName="ProductLineProductsCanonicalEditPolicy"
+        childNodes="//@diagram/@childNodes.0"
         title="Products"
         canCollapse="false"
         hideIfEmpty="false"
@@ -172,8 +172,8 @@
         editPartClassName="PLSchemeProductsCompartmentEditPart"
         itemSemanticEditPolicyClassName="PLSchemeProductsCompartmentItemSemanticEditPolicy"
         notationViewFactoryClassName="PLSchemeProductsCompartmentViewFactory"
-        childNodes="//@diagram/@childNodes.1"
         canonicalEditPolicyClassName="PLSchemeProductsCompartmentCanonicalEditPolicy"
+        childNodes="//@diagram/@childNodes.1"
         title="ProductsCompartment"
         canCollapse="false"
         hideIfEmpty="false"
@@ -203,8 +203,7 @@
   <plugin
       iD="org.spbu.pldoctoolkit.graph.diagram.productline"
       provider="Drl Plugin Provider, Inc"
-      version="1.0.0.0"
-      printingEnabled="true"/>
+      version="1.0.0.0"/>
   <editor/>
   <domainGenModel
       href="model.genmodel#/"/>

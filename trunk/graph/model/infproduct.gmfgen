@@ -2,15 +2,15 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.infproduct"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel/2.0" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.infproduct"
     diagramFileExtension="infproduct_diagram">
   <diagram
       visualID="79"
       editPartClassName="DocumentationCoreEditPart"
       itemSemanticEditPolicyClassName="DocumentationCoreItemSemanticEditPolicy"
       notationViewFactoryClassName="DocumentationCoreViewFactory"
-      iconProviderPriority="Low"
       canonicalEditPolicyClassName="DocumentationCoreCanonicalEditPolicy"
+      iconProviderPriority="Low"
       creationWizardCategoryID="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreationWizardID">
     <diagramRunTimeClass
         href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
@@ -66,7 +66,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             viewPattern=""
             editPattern="">
-          <metaFeature
+          <metaFeatures
               href="model.genmodel#//graph/GenericDocumentPart/name"/>
         </modelFacet>
       </labels>
@@ -113,7 +113,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             viewPattern=""
             editPattern="">
-          <metaFeature
+          <metaFeatures
               href="model.genmodel#//graph/GenericDocumentPart/name"/>
         </modelFacet>
       </labels>
@@ -177,6 +177,7 @@
         <modelElementInitializer
             xsi:type="gmfgen:GenFeatureSeqInitializer">
           <initializers
+              xsi:type="gmfgen:GenFeatureValueSpec"
               body="true">
             <feature
                 href="model.genmodel#//graph/InfElemRef/optional"/>
@@ -204,7 +205,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet">
-          <metaFeature
+          <metaFeatures
               href="model.genmodel#//graph/InfElemRef/id"/>
         </modelFacet>
       </labels>
@@ -289,8 +290,7 @@
   <plugin
       iD="org.spbu.pldoctoolkit.graph.diagram.infproduct"
       provider="Spbu Plugin Provider, Inc"
-      version="1.0.0.0"
-      printingEnabled="true"/>
+      version="1.0.0.0"/>
   <editor/>
   <domainGenModel
       href="model.genmodel#/"/>
