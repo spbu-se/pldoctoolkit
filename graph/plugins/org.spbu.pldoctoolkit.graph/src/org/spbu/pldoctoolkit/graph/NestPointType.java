@@ -196,7 +196,7 @@ public final class NestPointType extends AbstractEnumerator {
 			case REPLACE: return REPLACE_LITERAL;
 			case DELETE: return DELETE_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

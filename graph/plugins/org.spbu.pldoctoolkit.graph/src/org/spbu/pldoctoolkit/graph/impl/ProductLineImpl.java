@@ -73,7 +73,7 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 	 * @generated
 	 * @ordered
 	 */
-	protected ProductDocumentation productDocumentations = null;
+	protected ProductDocumentation productDocumentations;
 
 	/**
 	 * The cached value of the '{@link #getDocumentationCore() <em>Documentation Core</em>}' reference.
@@ -83,7 +83,7 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 	 * @generated
 	 * @ordered
 	 */
-	protected DocumentationCore documentationCore = null;
+	protected DocumentationCore documentationCore;
 
 	/**
 	 * The cached value of the '{@link #getScheme() <em>Scheme</em>}' containment reference.
@@ -93,7 +93,7 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 	 * @generated
 	 * @ordered
 	 */
-	protected PLScheme scheme = null;
+	protected PLScheme scheme;
 
 	/**
 	 * <!-- begin-user-doc -->

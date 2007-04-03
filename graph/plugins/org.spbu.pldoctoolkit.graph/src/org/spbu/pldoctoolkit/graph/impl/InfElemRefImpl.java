@@ -73,7 +73,7 @@ public class InfElemRefImpl extends EObjectImpl implements InfElemRef {
 	 * @generated
 	 * @ordered
 	 */
-	protected InfElement infelem = null;
+	protected InfElement infelem;
 
 	/**
 	 * The cached value of the '{@link #getGroup() <em>Group</em>}' reference.
@@ -83,7 +83,7 @@ public class InfElemRefImpl extends EObjectImpl implements InfElemRef {
 	 * @generated
 	 * @ordered
 	 */
-	protected InfElemRefGroup group = null;
+	protected InfElemRefGroup group;
 
 	/**
 	 * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.

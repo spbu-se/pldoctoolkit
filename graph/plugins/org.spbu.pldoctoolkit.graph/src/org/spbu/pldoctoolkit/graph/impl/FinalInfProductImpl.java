@@ -48,7 +48,7 @@ public class FinalInfProductImpl extends EObjectImpl implements FinalInfProduct 
 	 * @generated
 	 * @ordered
 	 */
-	protected InfProduct product = null;
+	protected InfProduct product;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.

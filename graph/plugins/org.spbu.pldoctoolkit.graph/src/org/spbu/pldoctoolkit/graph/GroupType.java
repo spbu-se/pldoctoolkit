@@ -142,7 +142,7 @@ public final class GroupType extends AbstractEnumerator {
 			case OR: return OR_LITERAL;
 			case XOR: return XOR_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

@@ -71,7 +71,7 @@ public interface InfElement extends GenericDocumentPart {
 	 * @see #setOwnerInfElemRef(InfElemRef)
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getInfElement_OwnerInfElemRef()
 	 * @see org.spbu.pldoctoolkit.graph.InfElemRef#getInfelem
-	 * @model opposite="infelem" transient="true" derived="true"
+	 * @model opposite="infelem" resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	InfElemRef getOwnerInfElemRef();

@@ -50,8 +50,8 @@ public final class DrlModelEditorPlugin extends EMFPlugin {
 	 */
 	public DrlModelEditorPlugin() {
 		super
-		  (new ResourceLocator [] {
-		   });
+			(new ResourceLocator [] {
+			});
 	}
 
 	/**
@@ -91,7 +91,7 @@ public final class DrlModelEditorPlugin extends EMFPlugin {
 		 */
 		public Implementation() {
 			super();
-
+	
 			// Remember the static instance.
 			//
 			plugin = this;

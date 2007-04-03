@@ -53,7 +53,7 @@ public class PLSchemeImpl extends EObjectImpl implements PLScheme {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList products = null;
+	protected EList products;
 
 	/**
 	 * <!-- begin-user-doc -->
