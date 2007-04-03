@@ -1,3 +1,4 @@
+
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
@@ -17,43 +18,39 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegi
 /**
  * @generated
  */
-public class PLSchemeProductsCompartmentCanonicalEditPolicy extends
-		CanonicalEditPolicy {
+public class PLSchemeProductsCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
-	/**
-	 * @generated
-	 */
-	protected List getSemanticChildrenList() {
-		List result = new LinkedList();
-		EObject modelObject = ((View) getHost().getModel()).getElement();
-		View viewObject = (View) getHost().getModel();
-		EObject nextValue;
-		int nodeVID;
-		for (Iterator values = ((PLScheme) modelObject).getProducts()
-				.iterator(); values.hasNext();) {
-			nextValue = (EObject) values.next();
-			nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(viewObject,
-					nextValue);
-			if (ProductEditPart.VISUAL_ID == nodeVID) {
-				result.add(nextValue);
-			}
-		}
-		return result;
+/**
+ * @generated
+ */
+protected List getSemanticChildrenList() {
+	List result = new LinkedList();
+	EObject modelObject = ((View) getHost().getModel()).getElement();
+	View viewObject = (View) getHost().getModel();
+	EObject nextValue;
+	int nodeVID;	for (Iterator values = ((PLScheme)modelObject).getProducts().iterator(); values.hasNext();) {
+		nextValue = (EObject) values.next();
+	nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(viewObject, nextValue);
+	if (ProductEditPart.VISUAL_ID == nodeVID) {
+		result.add(nextValue);
 	}
+	}
+	return result;
+}
 
-	/**
-	 * @generated
-	 */
-	protected boolean shouldDeleteView(View view) {
-		return view.isSetElement() && view.getElement() != null
-				&& view.getElement().eIsProxy();
-	}
+/**
+ * @generated
+ */
+protected boolean shouldDeleteView(View view) {
+	return view.isSetElement() && view.getElement() != null && view.getElement().eIsProxy();
+}
 
-	/**
-	 * @generated
-	 */
-	protected String getDefaultFactoryHint() {
-		return null;
-	}
+/**
+ * @generated
+ */
+protected String getDefaultFactoryHint() {
+	return null;
+}
+	
 
 }

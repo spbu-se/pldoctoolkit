@@ -14,7 +14,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -38,7 +37,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -46,7 +44,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.eclipse.ui.ide.IDE;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
@@ -134,7 +131,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean performFinish() {
 		IFile diagramFile = myFileCreationPage.createNewFile();
@@ -201,77 +198,6 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 		return true;
 	}
 
-	/**
-	 * @generated NOT
-	 */
-	/*	
-	 public boolean performFinish() {
-	 IFile diagramFile = myFileCreationPage.createNewFile();
-	 try {
-	 diagramFile.setCharset("UTF-8", new NullProgressMonitor()); //$NON-NLS-1$
-	 } catch (CoreException e) {
-	 DrlModelDiagramEditorPlugin.getInstance().logError(
-	 "Unable to set charset for diagram file", e); //$NON-NLS-1$
-	 }
-
-	 ResourceSet resourceSet = myEditingDomain.getResourceSet();
-	 final Resource diagramResource = resourceSet
-	 .createResource(URI.createPlatformResourceURI(diagramFile
-	 .getFullPath().toString()));
-
-	 List affectedFiles = new LinkedList();
-	 affectedFiles.add(mySelectedModelFile);
-	 affectedFiles.add(diagramFile);
-
-	 AbstractTransactionalCommand command = new AbstractTransactionalCommand(
-	 myEditingDomain, "Initializing diagram contents", affectedFiles) { //$NON-NLS-1$
-	 protected CommandResult doExecuteWithResult(
-	 IProgressMonitor monitor, IAdaptable info)
-	 throws ExecutionException {
-	 int diagramVID = DrlModelVisualIDRegistry
-	 .getDiagramVisualID(myDiagramRoot);
-	 if (diagramVID != ProductLineEditPart.VISUAL_ID) {
-	 return CommandResult
-	 .newErrorCommandResult("Incorrect model object stored as a root resource object"); //$NON-NLS-1$
-	 }
-	 Diagram diagram = ViewService.createDiagram((EObject) null,
-	 ProductLineEditPart.MODEL_ID,
-	 DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-	 diagramResource.getContents().add(diagram);
-
-	 // my custom code
-	 diagram.setElement(null);
-	 Node rootNode = ViewService.createNode(diagram, myDiagramRoot,
-	 ((IHintedType) DrlModelElementTypes.ProductLine_1001)
-	 .getSemanticHint(),
-	 DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-	 rootNode.setElement(myDiagramRoot);
-	 // end of my custom code
-
-	 return CommandResult.newOKCommandResult();
-	 }
-	 };
-
-	 try {
-	 OperationHistoryFactory.getOperationHistory().execute(command,
-	 new NullProgressMonitor(), null);
-	 diagramResource.save(Collections.EMPTY_MAP);
-	 IDE.openEditor(myWorkbenchPage, diagramFile);
-	 } catch (ExecutionException e) {
-	 DrlModelDiagramEditorPlugin.getInstance().logError(
-	 "Unable to create model and diagram", e); //$NON-NLS-1$
-	 } catch (IOException ex) {
-	 DrlModelDiagramEditorPlugin
-	 .getInstance()
-	 .logError(
-	 "Save operation failed for: " + diagramFile.getFullPath().toString(), ex); //$NON-NLS-1$
-	 } catch (PartInitException ex) {
-	 DrlModelDiagramEditorPlugin.getInstance().logError(
-	 "Unable to open editor", ex); //$NON-NLS-1$
-	 }
-	 return true;
-	 }
-	 */
 	/**
 	 * @generated
 	 */
@@ -381,6 +307,5 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 					: "Invalid diagram root element was selected");
 			return result;
 		}
-
 	}
 }

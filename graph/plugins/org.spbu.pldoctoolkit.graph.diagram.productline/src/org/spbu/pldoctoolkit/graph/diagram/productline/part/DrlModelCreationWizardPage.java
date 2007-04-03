@@ -1,24 +1,12 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
-import java.io.InputStream;
-
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.wizards.EditorWizardPage;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.util.DiagramFileCreator;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchWindow;
-
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.eclipse.core.resources.ResourcesPlugin;
-
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 
 /**
  * @generated

@@ -1,4 +1,3 @@
-
 package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
 import org.eclipse.core.resources.IFile;
@@ -41,70 +40,87 @@ public class DrlModelInitDiagramFileAction implements IObjectActionDelegate {
 	 * @generated
 	 */
 	private IWorkbenchPart myPart;
-	
+
 	/**
 	 * @generated
 	 */
 	private IFile mySelectedModelFile;
-	
+
 	/**
 	 * @generated
 	 */
 	private IStructuredSelection mySelection;
-    
-    /**
-     * @generated
-     */
+
+	/**
+	 * @generated
+	 */
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		myPart = targetPart;
 	}
-	
-    /**
-     * @generated
-     */
+
+	/**
+	 * @generated
+	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		mySelectedModelFile = null;
 		mySelection = StructuredSelection.EMPTY;
 		action.setEnabled(false);
-		if (selection instanceof IStructuredSelection == false || selection.isEmpty()) {
+		if (selection instanceof IStructuredSelection == false
+				|| selection.isEmpty()) {
 			return;
 		}
 		mySelection = (IStructuredSelection) selection;
-		mySelectedModelFile = (IFile) ((IStructuredSelection) selection).getFirstElement();
+		mySelectedModelFile = (IFile) ((IStructuredSelection) selection)
+				.getFirstElement();
 		action.setEnabled(true);
 	}
-	
-    /**
-     * @generated
-     */
+
+	/**
+	 * @generated
+	 */
 	public void run(IAction action) {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
+				.createEditingDomain();
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		EObject diagramRoot = null;
 		try {
-			Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(mySelectedModelFile.getFullPath().toString(), true), true);
+			Resource resource = resourceSet.getResource(URI
+					.createPlatformResourceURI(mySelectedModelFile
+							.getFullPath().toString(), true), true);
 			diagramRoot = (EObject) resource.getContents().get(0);
 		} catch (WrappedException ex) {
-			DrlModelDiagramEditorPlugin.getInstance().logError("Unable to load resource: " + mySelectedModelFile.getFullPath().toString(), ex); //$NON-NLS-1$
+			DrlModelDiagramEditorPlugin
+					.getInstance()
+					.logError(
+							"Unable to load resource: " + mySelectedModelFile.getFullPath().toString(), ex); //$NON-NLS-1$
 		}
 		if (diagramRoot == null) {
-			MessageDialog.openError(myPart.getSite().getShell(), "Error", "Model file loading failed");
+			MessageDialog.openError(myPart.getSite().getShell(), "Error",
+					"Model file loading failed");
 			return;
 		}
-		Wizard wizard = new DrlModelNewDiagramFileWizard(mySelectedModelFile, myPart.getSite().getPage(), mySelection, diagramRoot, editingDomain);
-        IDialogSettings pluginDialogSettings = DrlModelDiagramEditorPlugin.getInstance().getDialogSettings();
-        IDialogSettings initDiagramFileSettings = pluginDialogSettings.getSection("InisDiagramFile"); //$NON-NLS-1$
-        if (initDiagramFileSettings == null) {
-        	initDiagramFileSettings = pluginDialogSettings.addNewSection("InisDiagramFile"); //$NON-NLS-1$
-        }
-        wizard.setDialogSettings(initDiagramFileSettings);
+		Wizard wizard = new DrlModelNewDiagramFileWizard(mySelectedModelFile,
+				myPart.getSite().getPage(), mySelection, diagramRoot,
+				editingDomain);
+		IDialogSettings pluginDialogSettings = DrlModelDiagramEditorPlugin
+				.getInstance().getDialogSettings();
+		IDialogSettings initDiagramFileSettings = pluginDialogSettings
+				.getSection("InisDiagramFile"); //$NON-NLS-1$
+		if (initDiagramFileSettings == null) {
+			initDiagramFileSettings = pluginDialogSettings
+					.addNewSection("InisDiagramFile"); //$NON-NLS-1$
+		}
+		wizard.setDialogSettings(initDiagramFileSettings);
 		wizard.setForcePreviousAndNextButtons(false);
-		wizard.setWindowTitle("Initialize new " + ProductLineEditPart.MODEL_ID + " diagram file");
+		wizard.setWindowTitle("Initialize new " + ProductLineEditPart.MODEL_ID
+				+ " diagram file");
 
-        WizardDialog dialog = new WizardDialog(myPart.getSite().getShell(), wizard);
-        dialog.create();
-        dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x), 500);
-        dialog.open();
+		WizardDialog dialog = new WizardDialog(myPart.getSite().getShell(),
+				wizard);
+		dialog.create();
+		dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x),
+				500);
+		dialog.open();
 	}
 
 }

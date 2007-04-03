@@ -20,9 +20,9 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLinePLSchemeCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin;
 
 /**
@@ -37,12 +37,12 @@ public class DrlModelModelingAssistantProvider extends
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
-		if (editPart instanceof ProductLine2EditPart) {
+		if (editPart instanceof ProductLinePLSchemeCompartmentEditPart) {
 			List types = new ArrayList();
 			types.add(DrlModelElementTypes.PLScheme_2001);
 			return types;
 		}
-		if (editPart instanceof PLSchemeEditPart) {
+		if (editPart instanceof PLSchemeProductsCompartmentEditPart) {
 			List types = new ArrayList();
 			types.add(DrlModelElementTypes.Product_2002);
 			return types;

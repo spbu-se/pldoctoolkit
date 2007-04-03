@@ -1,20 +1,13 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.draw2d.IFigure;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
-
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
-
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
-
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-
+import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.PLSchemeProductsCompartmentCanonicalEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.PLSchemeProductsCompartmentItemSemanticEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.Messages;
@@ -23,12 +16,12 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.part.Messages;
  * @generated
  */
 public class PLSchemeProductsCompartmentEditPart extends
-		ListCompartmentEditPart {
+		ShapeCompartmentEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5002;
+	public static final int VISUAL_ID = 5003;
 
 	/**
 	 * @generated
@@ -40,16 +33,8 @@ public class PLSchemeProductsCompartmentEditPart extends
 	/**
 	 * @generated
 	 */
-	protected boolean hasModelChildrenChanged(Notification evt) {
-		return false;
-	}
-
-	/**
-	 * @generated NOT
-	 */
 	public String getCompartmentName() {
-		//		return "ProductsCompartment";
-		return null;
+		return Messages.PLSchemeProductsCompartmentEditPart_title;
 	}
 
 	/**
@@ -85,4 +70,5 @@ public class PLSchemeProductsCompartmentEditPart extends
 			super.setRatio(ratio);
 		}
 	}
+
 }

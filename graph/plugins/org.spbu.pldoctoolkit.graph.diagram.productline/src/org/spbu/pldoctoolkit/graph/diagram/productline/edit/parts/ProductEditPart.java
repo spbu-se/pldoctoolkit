@@ -1,38 +1,26 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
-
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
-
 import org.eclipse.gef.commands.Command;
-
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-
 import org.eclipse.gef.requests.CreateRequest;
-
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-
 import org.eclipse.gmf.runtime.notation.View;
-
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductCanonicalEditPolicy;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductGraphicalNodeEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductItemSemanticEditPolicy;
-
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**
@@ -230,7 +218,12 @@ public class ProductEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public ProductFigure() {
-
+			this.setFill(true);
+			this.setFillXOR(false);
+			this.setOutline(true);
+			this.setOutlineXOR(false);
+			this.setLineWidth(1);
+			this.setLineStyle(Graphics.LINE_SOLID);
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(3),
 					getMapMode().DPtoLP(3), getMapMode().DPtoLP(3),
 					getMapMode().DPtoLP(3)));
@@ -241,14 +234,13 @@ public class ProductEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-			WrapLabel fig_0 = new WrapLabel();
-			fig_0.setText("<...>");
 
-			setFigureProductNameFigure(fig_0);
+			WrapLabel productNameFigure0 = new WrapLabel();
+			productNameFigure0.setText("<...>");
 
-			Object layData0 = null;
+			this.add(productNameFigure0);
+			setFigureProductNameFigure(productNameFigure0);
 
-			this.add(fig_0, layData0);
 		}
 
 		/**

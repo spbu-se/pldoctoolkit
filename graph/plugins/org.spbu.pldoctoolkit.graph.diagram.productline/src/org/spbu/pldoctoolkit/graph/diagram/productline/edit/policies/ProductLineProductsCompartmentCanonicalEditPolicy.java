@@ -13,7 +13,8 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegi
 /**
  * @generated
  */
-public class ProductLineProductsCanonicalEditPolicy extends CanonicalEditPolicy {
+public class ProductLineProductsCompartmentCanonicalEditPolicy extends
+		CanonicalEditPolicy {
 
 	/**
 	 * @generated

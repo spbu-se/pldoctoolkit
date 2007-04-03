@@ -10,16 +10,18 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPa
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDocumentationCoreCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineNameEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineProductsEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLinePLSchemeCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeProductsCompartmentViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLine2ViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineDocumentationCoreCompartmentViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineNameViewFactory;
-import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineProductsViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLinePLSchemeCompartmentViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductNameViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductViewFactory;
@@ -70,8 +72,10 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 			return ProductViewFactory.class;
 		case ProductNameEditPart.VISUAL_ID:
 			return ProductNameViewFactory.class;
-		case ProductLineProductsEditPart.VISUAL_ID:
-			return ProductLineProductsViewFactory.class;
+		case ProductLinePLSchemeCompartmentEditPart.VISUAL_ID:
+			return ProductLinePLSchemeCompartmentViewFactory.class;
+		case ProductLineDocumentationCoreCompartmentEditPart.VISUAL_ID:
+			return ProductLineDocumentationCoreCompartmentViewFactory.class;
 		case PLSchemeProductsCompartmentEditPart.VISUAL_ID:
 			return PLSchemeProductsCompartmentViewFactory.class;
 		}

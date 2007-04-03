@@ -1,11 +1,8 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
 import org.eclipse.core.expressions.PropertyTester;
-
 import org.eclipse.emf.ecore.EAnnotation;
-
 import org.eclipse.gmf.runtime.notation.View;
-
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 
 /**
