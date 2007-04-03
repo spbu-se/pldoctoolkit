@@ -1,9 +1,11 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.draw2d.Connection;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.gef.EditPolicy;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
@@ -33,8 +35,6 @@ public class GenericDocumentPartGroupsEditPart extends ConnectionNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.CONNECTION_ROLE,
-				new DrlModelReferenceConnectionEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new GenericDocumentPartGroupsItemSemanticEditPolicy());
 	}
@@ -48,21 +48,21 @@ public class GenericDocumentPartGroupsEditPart extends ConnectionNodeEditPart {
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
+
 		return new InfElemRefGroupConnectionFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class InfElemRefGroupConnectionFigure extends
-			org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {
+	public class InfElemRefGroupConnectionFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
 		public InfElemRefGroupConnectionFigure() {
 
-			this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);
+			this.setLineStyle(Graphics.LINE_DASH);
 		}
 
 	}

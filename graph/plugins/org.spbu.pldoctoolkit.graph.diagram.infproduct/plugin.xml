@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-
 <plugin>
 
-   <extension point="org.eclipse.core.runtime.preferences">
-      <initializer class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramPreferenceInitializer"/>
-   </extension>
-
-  <extension point="org.eclipse.team.core.fileTypes">
+   <extension point="org.eclipse.team.core.fileTypes">
+      <?gmfgen generated="true"?>
       <fileTypes
          type="text"
          extension="infproduct_diagram">
       </fileTypes>
-  </extension>
+   </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
+      <?gmfgen generated="true"?>
       <parser
          type="infproduct_diagram"
          class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
@@ -22,44 +19,45 @@
    </extension>
 
    <extension point="org.eclipse.ui.editors">
-     <editor
-        id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorID"
-        name="DrlModel Diagram Editor"
-        icon="icons/obj16/DrlDiagramFile.gif"
-        extensions="infproduct_diagram"
-        default="true"
-        class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditor"
-        matchingStrategy="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelMatchingStrategy"
-        contributorClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramActionBarContributor">
-     </editor>
+      <?gmfgen generated="true"?>
+      <editor
+         id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/DrlDiagramFile.gif"
+         extensions="infproduct_diagram"
+         default="true"
+         class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditor"
+         matchingStrategy="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelMatchingStrategy"
+         contributorClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramActionBarContributor">
+      </editor>
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
+      <?gmfgen generated="true"?>
   	  <wizard
-  	     name="DrlModel Diagram"
+  	     name="%newWizardName"
   	     icon="icons/obj16/DrlDiagramFile.gif"
   	     category="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreationWizardID"
   	     class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreationWizard"
   	     id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreationWizardID">
-  	  	 <description>
-  	  		Creates DrlModel diagram.
-  	  	 </description>  
+  	  	 <description>%newWizardDesc</description>  
       </wizard>
    </extension>
 
    <extension point="org.eclipse.ui.popupMenus">
+      <?gmfgen generated="true"?>
       <objectContribution
             id="org.spbu.pldoctoolkit.graph.diagram.infproduct.ui.objectContribution.IFile1"
             nameFilter="*.drl"
             objectClass="org.eclipse.core.resources.IFile">
          <action
-               label="Initialize infproduct_diagram diagram file"
+               label="%initDiagramActionLabel"
                class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelInitDiagramFileAction"
                menubarPath="additions"
                enablesFor="1"
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelInitDiagramFileActionID">
          </action>
-      </objectContribution>  
+      </objectContribution>
       <objectContribution
             adaptable="false"
             id="org.spbu.pldoctoolkit.graph.diagram.infproduct.ui.objectContribution.DocumentationCoreEditPart1"
@@ -68,7 +66,7 @@
                class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreateShortcutAction"
                enablesFor="1"
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreateShortcutActionID"
-               label="Create Shortcut..."
+               label="%createShortcutActionLabel"
                menubarPath="additions">
          </action>
       </objectContribution>                      
@@ -80,68 +78,14 @@
                class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelLoadResourceAction"
                enablesFor="1"
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelLoadResourceActionID"
-               label="Load Resource..."
+               label="%loadResourceActionLabel"
                menubarPath="additions">
          </action>
-      </objectContribution>                      
-  </extension>
-
-   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-      <contributionItemProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelContributionItemProvider">
-         <Priority name="Low">
-         </Priority>
-         <partContribution id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorID">
-            <partAction menubarPath="/file/print" id="printPreviewAction">
-            </partAction>
-         </partContribution>
-      </contributionItemProvider>
-      <contributionItemProvider
-            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider"
-            checkPluginLoaded="false">
-         <Priority name="Low"/>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefIdEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart"/>
-            <popupAction path="/editGroup" id="deleteFromModelAction"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupInfElemRefsGroupEditPart"/>
-            <popupAction path="/editGroup" id="deleteFromModelAction"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-      </contributionItemProvider>
+      </objectContribution>           
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
+      <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
          id="DrlModelPresentation">
@@ -152,16 +96,6 @@
             </ElementType>
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
                <GlobalActionId actionId="save"/>
-            </ElementType>
-         </ViewId>
-      </GlobalActionHandlerProvider>
-      <GlobalActionHandlerProvider
-         class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
-         id="DrlModelPresentationPrint">
-         <Priority name="Lowest"/>
-         <ViewId id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorID">
-            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-               <GlobalActionId actionId="print"/>
             </ElementType>
          </ViewId>
       </GlobalActionHandlerProvider>
@@ -189,7 +123,38 @@
       </GlobalActionHandlerProvider>
    </extension>
 
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <?gmfgen generated="true"?>
+      <contributionItemProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider"
+            checkPluginLoaded="false">
+         <Priority name="Low"/>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefIdEditPart"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+         </popupContribution>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart"/>
+            <popupAction path="/editGroup" id="deleteFromModelAction"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+         </popupContribution>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupInfElemRefsGroupEditPart"/>
+            <popupAction path="/editGroup" id="deleteFromModelAction"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+         </popupContribution>
+      </contributionItemProvider>
+   </extension>
+
+   <extension point="org.eclipse.core.runtime.preferences">
+      <?gmfgen generated="true"?>
+      <initializer class="org.spbu.pldoctoolkit.graph.diagram.infproduct.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+      <?gmfgen generated="true"?>
       <viewProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="DrlModel"/>
@@ -199,121 +164,106 @@
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+      <?gmfgen generated="true"?>
       <editpartProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelEditPartProvider">
          <Priority name="Lowest"/>
       </editpartProvider>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
-      <paletteProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelPaletteProvider">
-         <Priority name="Lowest"/>
-         <editor id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorID"/>
-      </paletteProvider>
-   </extension>
-
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
+      <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelModelingAssistantProvider">
          <Priority name="Lowest"/>
       </modelingAssistantProvider>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.common.ui.services.properties.propertiesProviders">
-      <PropertiesProvider
-            verifyPluginLoaded="false"
-            class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelPropertyProvider">
-         <Priority name="Lowest"/>
-      </PropertiesProvider>
-   </extension>
-
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders">
+      <?gmfgen generated="true"?>
       <IconProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelIconProvider">
          <Priority name="Low"/>
       </IconProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
+      <?gmfgen generated="true"?>
       <ParserProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
       <decoratorProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelShortcutsDecoratorProvider">
          <Priority name="Lowest"/>
       </decoratorProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-
+      <?gmfgen generated="true"?>
       <metamodel nsURI="http://tepkom.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.DocumentationCore_79"
+               name="%metatype.name.DocumentationCore_79"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DocumentationCore"
                edithelper="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.DocumentationCoreEditHelper">
             <param name="semanticHint" value="79"/>
          </metamodelType>
       </metamodel>
-
       <metamodel nsURI="http://tepkom.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElement_1001"
-               name="InfElement"
+               name="%metatype.name.InfElement_1001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InfElement"
                edithelper="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.InfElementEditHelper">
             <param name="semanticHint" value="1001"/>
          </metamodelType>
       </metamodel>
-
       <metamodel nsURI="http://tepkom.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfProduct_1002"
-               name="InfProduct"
+               name="%metatype.name.InfProduct_1002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InfProduct"
                edithelper="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.InfProductEditHelper">
             <param name="semanticHint" value="1002"/>
          </metamodelType>
       </metamodel>
-
       <metamodel nsURI="http://tepkom.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroup_1003"
-               name="InfElemRefGroup"
+               name="%metatype.name.InfElemRefGroup_1003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InfElemRefGroup"
                edithelper="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.InfElemRefGroupEditHelper">
             <param name="semanticHint" value="1003"/>
          </metamodelType>
       </metamodel>
-
       <metamodel nsURI="http://tepkom.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRef_3001"
-               name="InfElemRef Connection"
+               name="%metatype.name.InfElemRef_3001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InfElemRef"
                edithelper="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.InfElemRefEditHelper">
             <param name="semanticHint" value="3001"/>
          </metamodelType>
       </metamodel>
-
       <metamodel nsURI="http://tepkom.ru/drl">
          <specializationType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.GenericDocumentPartGroups_3002"
-               name="InfElemRefGroup Connection"
+               name="%metatype.name.GenericDocumentPartGroups_3002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.GenericDocumentPartGroupsEditHelperAdvice">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="3002"/>
          </specializationType>
       </metamodel>
-
       <metamodel nsURI="http://tepkom.ru/drl">
          <specializationType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroupInfElemRefsGroup_3003"
-               name="InfElemRef Connection"
+               name="%metatype.name.InfElemRefGroupInfElemRefsGroup_3003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.InfElemRefGroupInfElemRefsGroupEditHelperAdvice">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
@@ -323,6 +273,7 @@
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <?gmfgen generated="true"?>
       <clientContext id="DrlModelClientContext">
          <enablement>
             <test
@@ -341,5 +292,4 @@
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
-
 </plugin>

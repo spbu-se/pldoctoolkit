@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.PLSchemeProductsCompartmentCanonicalEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.PLSchemeProductsCompartmentItemSemanticEditPolicy;
+import org.spbu.pldoctoolkit.graph.diagram.productline.part.Messages;
 
 /**
  * @generated

@@ -15,6 +15,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
 
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
 
 /**
@@ -41,7 +42,7 @@ public class GenericDocumentPartGroupsViewFactory extends ConnectionViewFactory 
 			boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = DrlModelVisualIDRegistry
-					.getType(org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart.VISUAL_ID);
+					.getType(GenericDocumentPartGroupsEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,

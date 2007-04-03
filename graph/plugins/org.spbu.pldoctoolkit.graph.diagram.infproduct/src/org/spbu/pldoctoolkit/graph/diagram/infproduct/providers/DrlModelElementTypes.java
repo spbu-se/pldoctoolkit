@@ -4,8 +4,10 @@ import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Set;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
@@ -13,19 +15,13 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.emf.ecore.EObject;
-
 import org.spbu.pldoctoolkit.graph.DrlPackage;
-
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.expressions.DrlModelAbstractExpression;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.expressions.DrlModelOCLFactory;
-
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorPlugin;
 
 /**
  * @generated
  */
-public class DrlModelElementTypes {
+public class DrlModelElementTypes extends ElementInitializers {
 
 	/**
 	 * @generated
@@ -42,6 +38,40 @@ public class DrlModelElementTypes {
 	 * @generated
 	 */
 	private static ImageRegistry imageRegistry;
+
+	/**
+	 * @generated
+	 */
+	private static Set KNOWN_ELEMENT_TYPES;
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DocumentationCore_79 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.DocumentationCore_79"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType InfElement_1001 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElement_1001"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType InfProduct_1002 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfProduct_1002"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType InfElemRefGroup_1003 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroup_1003"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType InfElemRef_3001 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRef_3001"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType GenericDocumentPartGroups_3002 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.GenericDocumentPartGroups_3002"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType InfElemRefGroupInfElemRefsGroup_3003 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroupInfElemRefsGroup_3003"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -66,7 +96,15 @@ public class DrlModelElementTypes {
 	private static ImageDescriptor getProvidedImageDescriptor(
 			ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
-			element = ((EStructuralFeature) element).getEContainingClass();
+			EStructuralFeature feature = ((EStructuralFeature) element);
+			EClass eContainingClass = feature.getEContainingClass();
+			EClassifier eType = feature.getEType();
+			if (eContainingClass != null && !eContainingClass.isAbstract()) {
+				element = eContainingClass;
+			} else if (eType instanceof EClass
+					&& !((EClass) eType).isAbstract()) {
+				element = eType;
+			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
@@ -138,22 +176,29 @@ public class DrlModelElementTypes {
 
 	/**
 	 * Returns 'type' of the ecore object associated with the hint.
-	 *
+	 * 
 	 * @generated
 	 */
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap();
+
 			elements.put(DocumentationCore_79, DrlPackage.eINSTANCE
 					.getDocumentationCore());
+
 			elements.put(InfElement_1001, DrlPackage.eINSTANCE.getInfElement());
+
 			elements.put(InfProduct_1002, DrlPackage.eINSTANCE.getInfProduct());
+
 			elements.put(InfElemRefGroup_1003, DrlPackage.eINSTANCE
 					.getInfElemRefGroup());
+
 			elements.put(InfElemRef_3001, DrlPackage.eINSTANCE.getInfElemRef());
+
 			elements.put(GenericDocumentPartGroups_3002, DrlPackage.eINSTANCE
 					.getGenericDocumentPart_Groups());
+
 			elements.put(InfElemRefGroupInfElemRefsGroup_3003,
 					DrlPackage.eINSTANCE.getInfElemRefGroup_InfElemRefsGroup());
 		}
@@ -163,49 +208,9 @@ public class DrlModelElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType DocumentationCore_79 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.DocumentationCore_79"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType InfElement_1001 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElement_1001"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType InfProduct_1002 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfProduct_1002"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType InfElemRefGroup_1003 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroup_1003"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType InfElemRef_3001 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRef_3001"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType GenericDocumentPartGroups_3002 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.GenericDocumentPartGroups_3002"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType InfElemRefGroupInfElemRefsGroup_3003 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroupInfElemRefsGroup_3003"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	private static IElementType getElementType(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}
-
-	/**
-	 * @generated
-	 */
-	private static Set KNOWN_ELEMENT_TYPES;
 
 	/**
 	 * @generated
@@ -224,88 +229,4 @@ public class DrlModelElementTypes {
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
 
-	/**
-	 * @generated
-	 */
-	public static class Initializers {
-
-		/**
-		 * @generated
-		 */
-		public static final ObjectInitializer InfElemRef_3001 = new ObjectInitializer(
-				new FeatureInitializer[] { new FeatureInitializer(
-						DrlModelOCLFactory.getExpression("true", //$NON-NLS-1$
-								DrlPackage.eINSTANCE.getInfElemRef()),
-						DrlPackage.eINSTANCE.getInfElemRef_Optional()) });
-
-		/**
-		 * @generated
-		 */
-		private Initializers() {
-		}
-
-		/**
-		 * @generated
-		 */
-		public static class ObjectInitializer {
-			/**
-			 * @generated
-			 */
-			private FeatureInitializer[] initExpressions;
-
-			/**
-			 * @generated
-			 */
-			ObjectInitializer(FeatureInitializer[] initExpressions) {
-				this.initExpressions = initExpressions;
-			}
-
-			/**
-			 * @generated
-			 */
-			public void init(EObject instance) {
-				for (int i = 0; i < initExpressions.length; i++) {
-					FeatureInitializer nextExpr = initExpressions[i];
-					try {
-						nextExpr.init(instance);
-					} catch (RuntimeException e) {
-						DrlModelDiagramEditorPlugin.getInstance().logError(
-								"Feature initialization failed", e); //$NON-NLS-1$						
-					}
-				}
-			}
-		} // end of ObjectInitializer
-
-		/**
-		 * @generated
-		 */
-		static class FeatureInitializer {
-
-			/**
-			 * @generated
-			 */
-			private EStructuralFeature sFeature;
-
-			/**
-			 * @generated
-			 */
-			private DrlModelAbstractExpression expression;
-
-			/**
-			 * @generated
-			 */
-			FeatureInitializer(DrlModelAbstractExpression expression,
-					EStructuralFeature sFeature) {
-				this.sFeature = sFeature;
-				this.expression = expression;
-			}
-
-			/**
-			 * @generated
-			 */
-			void init(EObject contextInstance) {
-				expression.assignTo(sFeature, contextInstance);
-			}
-		} // end of FeatureInitializer
-	} // end of Initializers
 }

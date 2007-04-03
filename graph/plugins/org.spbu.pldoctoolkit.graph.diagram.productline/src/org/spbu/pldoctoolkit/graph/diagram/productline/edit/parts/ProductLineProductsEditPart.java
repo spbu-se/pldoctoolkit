@@ -14,6 +14,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLineProductsCanonicalEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLineProductsItemSemanticEditPolicy;
+import org.spbu.pldoctoolkit.graph.diagram.productline.part.Messages;
 
 /**
  * @generated
@@ -43,7 +44,7 @@ public class ProductLineProductsEditPart extends ListCompartmentEditPart {
 	 * @generated
 	 */
 	public String getCompartmentName() {
-		return "Products";
+		return Messages.ProductLineProductsEditPart_title;
 	}
 
 	/**

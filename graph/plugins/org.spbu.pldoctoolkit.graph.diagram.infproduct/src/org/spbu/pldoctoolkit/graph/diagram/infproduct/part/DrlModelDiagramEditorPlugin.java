@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -46,6 +47,11 @@ public class DrlModelDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	private ComposedAdapterFactory adapterFactory;
+
+	/**
+	 * @generated
+	 */
+	private DrlModelDocumentProvider myDocumentProvider;
 
 	/**
 	 * @generated
@@ -151,6 +157,14 @@ public class DrlModelDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
+	 * Returns string from plug-in's resource bundle
+	 * @generated
+	 */
+	public static String getString(String key) {
+		return Platform.getResourceString(getInstance().getBundle(), "%" + key); //$NON-NLS-1$
+	}
+
+	/**
 	 * Returns an image for the image file at the given plug-in relative path.
 	 * Client do not need to dispose this image. Images will be disposed automatically.
 	 *
@@ -165,6 +179,16 @@ public class DrlModelDiagramEditorPlugin extends AbstractUIPlugin {
 			image = getImageRegistry().get(path);
 		}
 		return image;
+	}
+
+	/**
+	 * @generated
+	 */
+	public DrlModelDocumentProvider getDocumentProvider() {
+		if (myDocumentProvider == null) {
+			myDocumentProvider = new DrlModelDocumentProvider();
+		}
+		return myDocumentProvider;
 	}
 
 	/**
@@ -200,7 +224,7 @@ public class DrlModelDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public void logInfo(String message, Throwable throwable) {
-		if (message == null && message != null) {
+		if (message == null && throwable != null) {
 			message = throwable.getMessage();
 		}
 		getLog().log(

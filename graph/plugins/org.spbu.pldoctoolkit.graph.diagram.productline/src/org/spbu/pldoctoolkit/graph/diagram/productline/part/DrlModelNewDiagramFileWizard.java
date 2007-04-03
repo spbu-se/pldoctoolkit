@@ -113,7 +113,6 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 
 			public void createControl(Composite parent) {
 				super.createControl(parent);
-
 				IContainer parentContainer = mySelectedModelFile.getParent();
 				String originalFileName = mySelectedModelFile
 						.getProjectRelativePath().removeFileExtension()
@@ -126,7 +125,6 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 				}
 				setFileName(fileName);
 			}
-
 		};
 		myFileCreationPage.setTitle("Diagram file");
 		myFileCreationPage.setDescription("Create new diagram based on "
@@ -136,7 +134,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean performFinish() {
 		IFile diagramFile = myFileCreationPage.createNewFile();
@@ -146,18 +144,17 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
 					"Unable to set charset for diagram file", e); //$NON-NLS-1$
 		}
-
 		ResourceSet resourceSet = myEditingDomain.getResourceSet();
 		final Resource diagramResource = resourceSet
-				.createResource(URI.createPlatformResourceURI(diagramFile
-						.getFullPath().toString()));
-
+				.createResource(org.eclipse.emf.common.util.URI
+						.createPlatformResourceURI(diagramFile.getFullPath()
+								.toString(), true));
 		List affectedFiles = new LinkedList();
 		affectedFiles.add(mySelectedModelFile);
 		affectedFiles.add(diagramFile);
-
 		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
 				myEditingDomain, "Initializing diagram contents", affectedFiles) { //$NON-NLS-1$
+
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
@@ -167,12 +164,12 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 					return CommandResult
 							.newErrorCommandResult("Incorrect model object stored as a root resource object"); //$NON-NLS-1$
 				}
-				Diagram diagram = ViewService.createDiagram((EObject) null,
+				Diagram diagram = ViewService.createDiagram(myDiagramRoot,
 						ProductLineEditPart.MODEL_ID,
 						DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
 
-				// my custom code
+				 // my custom code
 				diagram.setElement(null);
 				Node rootNode = ViewService.createNode(diagram, myDiagramRoot,
 						((IHintedType) DrlModelElementTypes.ProductLine_1001)
@@ -180,16 +177,15 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 						DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				rootNode.setElement(myDiagramRoot);
 				// end of my custom code
-
+				 
 				return CommandResult.newOKCommandResult();
 			}
 		};
-
 		try {
 			OperationHistoryFactory.getOperationHistory().execute(command,
 					new NullProgressMonitor(), null);
 			diagramResource.save(Collections.EMPTY_MAP);
-			IDE.openEditor(myWorkbenchPage, diagramFile);
+			DrlModelDiagramEditorUtil.openDiagram(diagramResource);
 		} catch (ExecutionException e) {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
 					"Unable to create model and diagram", e); //$NON-NLS-1$
@@ -205,6 +201,77 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 		return true;
 	}
 
+	/**
+	 * @generated NOT
+	 */
+	/*	
+	 public boolean performFinish() {
+	 IFile diagramFile = myFileCreationPage.createNewFile();
+	 try {
+	 diagramFile.setCharset("UTF-8", new NullProgressMonitor()); //$NON-NLS-1$
+	 } catch (CoreException e) {
+	 DrlModelDiagramEditorPlugin.getInstance().logError(
+	 "Unable to set charset for diagram file", e); //$NON-NLS-1$
+	 }
+
+	 ResourceSet resourceSet = myEditingDomain.getResourceSet();
+	 final Resource diagramResource = resourceSet
+	 .createResource(URI.createPlatformResourceURI(diagramFile
+	 .getFullPath().toString()));
+
+	 List affectedFiles = new LinkedList();
+	 affectedFiles.add(mySelectedModelFile);
+	 affectedFiles.add(diagramFile);
+
+	 AbstractTransactionalCommand command = new AbstractTransactionalCommand(
+	 myEditingDomain, "Initializing diagram contents", affectedFiles) { //$NON-NLS-1$
+	 protected CommandResult doExecuteWithResult(
+	 IProgressMonitor monitor, IAdaptable info)
+	 throws ExecutionException {
+	 int diagramVID = DrlModelVisualIDRegistry
+	 .getDiagramVisualID(myDiagramRoot);
+	 if (diagramVID != ProductLineEditPart.VISUAL_ID) {
+	 return CommandResult
+	 .newErrorCommandResult("Incorrect model object stored as a root resource object"); //$NON-NLS-1$
+	 }
+	 Diagram diagram = ViewService.createDiagram((EObject) null,
+	 ProductLineEditPart.MODEL_ID,
+	 DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+	 diagramResource.getContents().add(diagram);
+
+	 // my custom code
+	 diagram.setElement(null);
+	 Node rootNode = ViewService.createNode(diagram, myDiagramRoot,
+	 ((IHintedType) DrlModelElementTypes.ProductLine_1001)
+	 .getSemanticHint(),
+	 DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+	 rootNode.setElement(myDiagramRoot);
+	 // end of my custom code
+
+	 return CommandResult.newOKCommandResult();
+	 }
+	 };
+
+	 try {
+	 OperationHistoryFactory.getOperationHistory().execute(command,
+	 new NullProgressMonitor(), null);
+	 diagramResource.save(Collections.EMPTY_MAP);
+	 IDE.openEditor(myWorkbenchPage, diagramFile);
+	 } catch (ExecutionException e) {
+	 DrlModelDiagramEditorPlugin.getInstance().logError(
+	 "Unable to create model and diagram", e); //$NON-NLS-1$
+	 } catch (IOException ex) {
+	 DrlModelDiagramEditorPlugin
+	 .getInstance()
+	 .logError(
+	 "Save operation failed for: " + diagramFile.getFullPath().toString(), ex); //$NON-NLS-1$
+	 } catch (PartInitException ex) {
+	 DrlModelDiagramEditorPlugin.getInstance().logError(
+	 "Unable to open editor", ex); //$NON-NLS-1$
+	 }
+	 return true;
+	 }
+	 */
 	/**
 	 * @generated
 	 */
@@ -225,7 +292,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 		 */
 		public void createControl(Composite parent) {
 			initializeDialogUnits(parent);
-			Composite topLevel = new Composite(parent, SWT.NONE);
+			Composite topLevel = new Composite(parent, org.eclipse.swt.SWT.NONE);
 			topLevel.setLayout(new GridLayout());
 			topLevel.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL
 					| GridData.HORIZONTAL_ALIGN_FILL));
@@ -239,19 +306,21 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 		 * @generated
 		 */
 		private void createModelBrowser(Composite parent) {
-			Composite panel = new Composite(parent, SWT.NONE);
+			Composite panel = new Composite(parent, org.eclipse.swt.SWT.NONE);
 			panel.setLayoutData(new GridData(GridData.FILL_BOTH));
 			GridLayout layout = new GridLayout();
 			layout.marginWidth = 0;
 			panel.setLayout(layout);
 
-			Label label = new Label(panel, SWT.NONE);
+			Label label = new Label(panel, org.eclipse.swt.SWT.NONE);
 			label.setText("Select diagram root element:");
 			label.setLayoutData(new GridData(
 					GridData.HORIZONTAL_ALIGN_BEGINNING));
 
-			TreeViewer treeViewer = new TreeViewer(panel, SWT.SINGLE
-					| SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+			TreeViewer treeViewer = new TreeViewer(panel,
+					org.eclipse.swt.SWT.SINGLE | org.eclipse.swt.SWT.H_SCROLL
+							| org.eclipse.swt.SWT.V_SCROLL
+							| org.eclipse.swt.SWT.BORDER);
 			GridData layoutData = new GridData(GridData.FILL_BOTH);
 			layoutData.heightHint = 300;
 			layoutData.widthHint = 300;
@@ -298,7 +367,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 		 */
 		private boolean validatePage() {
 			if (myDiagramRoot == null) {
-				setErrorMessage("No diagram root element selected");
+				setErrorMessage("Diagram root element is not selected");
 				return false;
 			}
 			boolean result = ViewService

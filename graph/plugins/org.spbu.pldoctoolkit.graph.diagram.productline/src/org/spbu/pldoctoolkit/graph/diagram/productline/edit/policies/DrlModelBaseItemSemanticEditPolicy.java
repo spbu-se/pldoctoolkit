@@ -240,4 +240,11 @@ public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
+	protected static class LinkConstraints {
+
+	}
+
 }

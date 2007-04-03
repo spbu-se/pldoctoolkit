@@ -396,6 +396,14 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	 */
 	private void storeTypeModelFacetLinks(EObject container,
 			EClass containerMetaclass) {
+		storeTypeModelFacetLinks_InfElemRef_3001(container, containerMetaclass);
+	}
+
+	/**
+	 * @generated
+	 */
+	private void storeTypeModelFacetLinks_InfElemRef_3001(EObject container,
+			EClass containerMetaclass) {
 		if (DrlPackage.eINSTANCE.getGenericDocumentPart().isSuperTypeOf(
 				containerMetaclass)) {
 			for (Iterator values = ((GenericDocumentPart) container)
@@ -410,7 +418,8 @@ public class DocumentationCoreCanonicalEditPolicy extends
 						EObject dst = (EObject) structuralFeatureResult;
 						EObject src = container;
 						myLinkDescriptors.add(new LinkDescriptor(src, dst,
-								nextValue, linkVID));
+								nextValue,
+								DrlModelElementTypes.InfElemRef_3001, linkVID));
 					}
 				}
 			}
@@ -498,10 +507,18 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		 * @generated
 		 */
 		protected LinkDescriptor(EObject source, EObject destination,
-				EObject linkElement, int linkVID) {
+				EObject linkElement, IElementType elementType, int linkVID) {
 			this(source, destination, linkVID);
 			myLinkElement = linkElement;
-			mySemanticAdapter = new EObjectAdapter(linkElement);
+			final IElementType elementTypeCopy = elementType;
+			mySemanticAdapter = new EObjectAdapter(linkElement) {
+				public Object getAdapter(Class adapter) {
+					if (IElementType.class.equals(adapter)) {
+						return elementTypeCopy;
+					}
+					return super.getAdapter(adapter);
+				}
+			};
 		}
 
 		/**

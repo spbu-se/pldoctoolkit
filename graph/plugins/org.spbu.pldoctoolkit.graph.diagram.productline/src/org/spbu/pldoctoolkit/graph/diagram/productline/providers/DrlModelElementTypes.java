@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
@@ -20,7 +21,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEdito
 /**
  * @generated
  */
-public class DrlModelElementTypes {
+public class DrlModelElementTypes extends ElementInitializers {
 
 	/**
 	 * @generated
@@ -61,7 +62,15 @@ public class DrlModelElementTypes {
 	private static ImageDescriptor getProvidedImageDescriptor(
 			ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
-			element = ((EStructuralFeature) element).getEContainingClass();
+			EStructuralFeature feature = ((EStructuralFeature) element);
+			EClass eContainingClass = feature.getEContainingClass();
+			EClassifier eType = feature.getEType();
+			if (eContainingClass != null && !eContainingClass.isAbstract()) {
+				element = eContainingClass;
+			} else if (eType instanceof EClass
+					&& !((EClass) eType).isAbstract()) {
+				element = eType;
+			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
@@ -140,11 +149,15 @@ public class DrlModelElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap();
+
 			elements.put(ProductLine_79, DrlPackage.eINSTANCE.getProductLine());
-			elements.put(PLScheme_2001, DrlPackage.eINSTANCE.getPLScheme());
-			elements.put(Product_2002, DrlPackage.eINSTANCE.getProduct());
+
 			elements.put(ProductLine_1001, DrlPackage.eINSTANCE
 					.getProductLine());
+
+			elements.put(PLScheme_2001, DrlPackage.eINSTANCE.getPLScheme());
+
+			elements.put(Product_2002, DrlPackage.eINSTANCE.getProduct());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -188,9 +201,9 @@ public class DrlModelElementTypes {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
 			KNOWN_ELEMENT_TYPES.add(ProductLine_79);
+			KNOWN_ELEMENT_TYPES.add(ProductLine_1001);
 			KNOWN_ELEMENT_TYPES.add(PLScheme_2001);
 			KNOWN_ELEMENT_TYPES.add(Product_2002);
-			KNOWN_ELEMENT_TYPES.add(ProductLine_1001);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}

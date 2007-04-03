@@ -31,7 +31,8 @@ public class DrlModelPaletteFactory {
 	 * @generated
 	 */
 	private PaletteContainer createDrlTools1Group() {
-		PaletteContainer paletteContainer = new PaletteGroup("Drl Tools");
+		PaletteGroup paletteContainer = new PaletteGroup(
+				Messages.DrlTools1Group_title);
 		paletteContainer.add(createInfProduct1CreationTool());
 		paletteContainer.add(createInfElement2CreationTool());
 		paletteContainer.add(createInfElemRefGroup3CreationTool());
@@ -44,106 +45,77 @@ public class DrlModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createInfProduct1CreationTool() {
-		ImageDescriptor smallImage;
-		ImageDescriptor largeImage;
-
-		smallImage = DrlModelElementTypes
-				.getImageDescriptor(DrlModelElementTypes.InfProduct_1002);
-
-		largeImage = smallImage;
-
-		final List elementTypes = new ArrayList();
-		elementTypes.add(DrlModelElementTypes.InfProduct_1002);
-		ToolEntry result = new NodeToolEntry("InfProduct",
-				"Create new InfProduct", smallImage, largeImage, elementTypes);
-
-		return result;
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(DrlModelElementTypes.InfProduct_1002);
+		NodeToolEntry entry = new NodeToolEntry(
+				Messages.InfProduct1CreationTool_title,
+				Messages.InfProduct1CreationTool_desc, types);
+		entry.setSmallIcon(DrlModelElementTypes
+				.getImageDescriptor(DrlModelElementTypes.InfProduct_1002));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
 	}
 
 	/**
 	 * @generated
 	 */
 	private ToolEntry createInfElement2CreationTool() {
-		ImageDescriptor smallImage;
-		ImageDescriptor largeImage;
-
-		smallImage = DrlModelElementTypes
-				.getImageDescriptor(DrlModelElementTypes.InfElement_1001);
-
-		largeImage = smallImage;
-
-		final List elementTypes = new ArrayList();
-		elementTypes.add(DrlModelElementTypes.InfElement_1001);
-		ToolEntry result = new NodeToolEntry("InfElement",
-				"Create new InfElement", smallImage, largeImage, elementTypes);
-
-		return result;
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(DrlModelElementTypes.InfElement_1001);
+		NodeToolEntry entry = new NodeToolEntry(
+				Messages.InfElement2CreationTool_title,
+				Messages.InfElement2CreationTool_desc, types);
+		entry.setSmallIcon(DrlModelElementTypes
+				.getImageDescriptor(DrlModelElementTypes.InfElement_1001));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
 	}
 
 	/**
 	 * @generated
 	 */
 	private ToolEntry createInfElemRefGroup3CreationTool() {
-		ImageDescriptor smallImage;
-		ImageDescriptor largeImage;
-
-		smallImage = DrlModelElementTypes
-				.getImageDescriptor(DrlModelElementTypes.InfElemRefGroup_1003);
-
-		largeImage = smallImage;
-
-		final List elementTypes = new ArrayList();
-		elementTypes.add(DrlModelElementTypes.InfElemRefGroup_1003);
-		ToolEntry result = new NodeToolEntry("InfElemRefGroup",
-				"Create new InfElemRefGroup", smallImage, largeImage,
-				elementTypes);
-
-		return result;
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(DrlModelElementTypes.InfElemRefGroup_1003);
+		NodeToolEntry entry = new NodeToolEntry(
+				Messages.InfElemRefGroup3CreationTool_title,
+				Messages.InfElemRefGroup3CreationTool_desc, types);
+		entry.setSmallIcon(DrlModelElementTypes
+				.getImageDescriptor(DrlModelElementTypes.InfElemRefGroup_1003));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
 	}
 
 	/**
 	 * @generated
 	 */
 	private ToolEntry createInfElemRefConnection4CreationTool() {
-		ImageDescriptor smallImage;
-		ImageDescriptor largeImage;
-
-		smallImage = DrlModelElementTypes
-				.getImageDescriptor(DrlModelElementTypes.InfElemRef_3001);
-
-		largeImage = smallImage;
-
-		final List relationshipTypes = new ArrayList();
-		relationshipTypes.add(DrlModelElementTypes.InfElemRef_3001);
-		relationshipTypes
-				.add(DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003);
-		ToolEntry result = new LinkToolEntry("InfElemRef Connection",
-				"Create new InfElement reference", smallImage, largeImage,
-				relationshipTypes);
-
-		return result;
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(2);
+		types.add(DrlModelElementTypes.InfElemRef_3001);
+		types.add(DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003);
+		LinkToolEntry entry = new LinkToolEntry(
+				Messages.InfElemRefConnection4CreationTool_title,
+				Messages.InfElemRefConnection4CreationTool_desc, types);
+		entry.setSmallIcon(DrlModelElementTypes
+				.getImageDescriptor(DrlModelElementTypes.InfElemRef_3001));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
 	}
 
 	/**
 	 * @generated
 	 */
 	private ToolEntry createInfElemRefGroupConnection5CreationTool() {
-		ImageDescriptor smallImage;
-		ImageDescriptor largeImage;
-
-		smallImage = DrlModelElementTypes
-				.getImageDescriptor(DrlModelElementTypes.GenericDocumentPartGroups_3002);
-
-		largeImage = smallImage;
-
-		final List relationshipTypes = new ArrayList();
-		relationshipTypes
-				.add(DrlModelElementTypes.GenericDocumentPartGroups_3002);
-		ToolEntry result = new LinkToolEntry("InfElemRefGroup Connection",
-				"Assign InfElemRefGroup to an element", smallImage, largeImage,
-				relationshipTypes);
-
-		return result;
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(DrlModelElementTypes.GenericDocumentPartGroups_3002);
+		LinkToolEntry entry = new LinkToolEntry(
+				Messages.InfElemRefGroupConnection5CreationTool_title,
+				Messages.InfElemRefGroupConnection5CreationTool_desc, types);
+		entry
+				.setSmallIcon(DrlModelElementTypes
+						.getImageDescriptor(DrlModelElementTypes.GenericDocumentPartGroups_3002));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
 	}
 
 	/**
@@ -160,9 +132,8 @@ public class DrlModelPaletteFactory {
 		 * @generated
 		 */
 		private NodeToolEntry(String title, String description,
-				ImageDescriptor smallIcon, ImageDescriptor largeIcon,
 				List elementTypes) {
-			super(title, description, smallIcon, largeIcon);
+			super(title, description, null, null);
 			this.elementTypes = elementTypes;
 		}
 
@@ -190,9 +161,8 @@ public class DrlModelPaletteFactory {
 		 * @generated
 		 */
 		private LinkToolEntry(String title, String description,
-				ImageDescriptor smallIcon, ImageDescriptor largeIcon,
 				List relationshipTypes) {
-			super(title, description, smallIcon, largeIcon);
+			super(title, description, null, null);
 			this.relationshipTypes = relationshipTypes;
 		}
 

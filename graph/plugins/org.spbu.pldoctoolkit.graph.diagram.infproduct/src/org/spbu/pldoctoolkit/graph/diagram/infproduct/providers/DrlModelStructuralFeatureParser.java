@@ -25,7 +25,7 @@ public class DrlModelStructuralFeatureParser extends DrlModelAbstractParser {
 	/**
 	 * @generated
 	 */
-	private static final MessageFormat DEFAULT_PROCESSOR = new MessageFormat(
+	public static final MessageFormat DEFAULT_PROCESSOR = new MessageFormat(
 			"{0}"); //$NON-NLS-1$
 
 	/**
@@ -59,10 +59,26 @@ public class DrlModelStructuralFeatureParser extends DrlModelAbstractParser {
 	/**
 	 * @generated
 	 */
+	protected EObject getDomainElement(EObject element) {
+		return element;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected String getStringByPattern(IAdaptable adapter, int flags,
 			String pattern, MessageFormat processor) {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		Object value = element.eGet(feature);
+		element = getDomainElement(element);
+		return getStringByPattern(element, feature, processor);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected String getStringByPattern(EObject element,
+			EStructuralFeature feature, MessageFormat processor) {
+		Object value = element == null ? null : element.eGet(feature);
 		value = getValidValue(feature, value);
 		return processor.format(new Object[] { value }, new StringBuffer(),
 				new FieldPosition(0)).toString();
@@ -89,6 +105,7 @@ public class DrlModelStructuralFeatureParser extends DrlModelAbstractParser {
 	 */
 	public ICommand getParseCommand(IAdaptable adapter, Object[] values) {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
+		element = getDomainElement(element);
 		if (element == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -108,10 +125,15 @@ public class DrlModelStructuralFeatureParser extends DrlModelAbstractParser {
 	 */
 	public boolean isAffectingEvent(Object event, int flags) {
 		if (event instanceof Notification) {
-			if (feature == ((Notification) event).getFeature()) {
-				return true;
-			}
+			return isAffectingFeature(((Notification) event).getFeature());
 		}
 		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean isAffectingFeature(Object eventFeature) {
+		return feature == eventFeature;
 	}
 }

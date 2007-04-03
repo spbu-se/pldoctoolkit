@@ -7,6 +7,7 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElemRefItemSemanticEditPolicy;
@@ -62,8 +63,7 @@ public class InfElemRefEditPart extends ConnectionNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class InfElemRefFigure extends
-			org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {
+	public class InfElemRefFigure extends PolylineConnectionEx {
 
 		PolygonDecoration circleDecoration;
 

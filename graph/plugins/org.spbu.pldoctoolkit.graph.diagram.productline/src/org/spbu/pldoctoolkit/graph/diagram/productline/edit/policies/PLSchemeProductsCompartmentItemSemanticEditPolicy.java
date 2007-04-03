@@ -13,6 +13,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.commands.ProductCreateCommand;
 import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
 /**
@@ -30,41 +31,9 @@ public class PLSchemeProductsCompartmentItemSemanticEditPolicy extends
 				req.setContainmentFeature(DrlPackage.eINSTANCE
 						.getPLScheme_Products());
 			}
-			return getMSLWrapper(new CreateProduct_2002Command(req));
+			return getMSLWrapper(new ProductCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class CreateProduct_2002Command extends CreateElementCommand {
-
-		/**
-		 * @generated
-		 */
-		public CreateProduct_2002Command(CreateElementRequest req) {
-			super(req);
-		}
-
-		/**
-		 * @generated
-		 */
-		protected EClass getEClassToEdit() {
-			return DrlPackage.eINSTANCE.getPLScheme();
-		};
-
-		/**
-		 * @generated
-		 */
-		protected EObject getElementToEdit() {
-			EObject container = ((CreateElementRequest) getRequest())
-					.getContainer();
-			if (container instanceof View) {
-				container = ((View) container).getElement();
-			}
-			return container;
-		}
 	}
 
 }

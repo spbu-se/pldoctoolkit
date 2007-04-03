@@ -24,32 +24,34 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public static final String EXTERNAL_NODE_LABELS_LAYER = "External Node Labels"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
-			int viewVisualID = DrlModelVisualIDRegistry.getVisualID(view);
-			switch (viewVisualID) {
-			case ProductLine2EditPart.VISUAL_ID:
-				return new ProductLine2EditPart(view);
-			case ProductLineNameEditPart.VISUAL_ID:
-				return new ProductLineNameEditPart(view);
-			case PLSchemeEditPart.VISUAL_ID:
-				return new PLSchemeEditPart(view);
-			case ProductEditPart.VISUAL_ID:
-				return new ProductEditPart(view);
-			case ProductNameEditPart.VISUAL_ID:
-				return new ProductNameEditPart(view);
-			case ProductLineProductsEditPart.VISUAL_ID:
-				return new ProductLineProductsEditPart(view);
-			case PLSchemeProductsCompartmentEditPart.VISUAL_ID:
-				return new PLSchemeProductsCompartmentEditPart(view);
+			switch (DrlModelVisualIDRegistry.getVisualID(view)) {
+
 			case ProductLineEditPart.VISUAL_ID:
 				return new ProductLineEditPart(view);
+
+			case ProductLine2EditPart.VISUAL_ID:
+				return new ProductLine2EditPart(view);
+
+			case ProductLineNameEditPart.VISUAL_ID:
+				return new ProductLineNameEditPart(view);
+
+			case PLSchemeEditPart.VISUAL_ID:
+				return new PLSchemeEditPart(view);
+
+			case ProductEditPart.VISUAL_ID:
+				return new ProductEditPart(view);
+
+			case ProductNameEditPart.VISUAL_ID:
+				return new ProductNameEditPart(view);
+
+			case ProductLineProductsEditPart.VISUAL_ID:
+				return new ProductLineProductsEditPart(view);
+
+			case PLSchemeProductsCompartmentEditPart.VISUAL_ID:
+				return new PLSchemeProductsCompartmentEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);
@@ -71,8 +73,7 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 		if (source.getFigure() instanceof WrapLabel)
 			return new TextCellEditorLocator((WrapLabel) source.getFigure());
 		else {
-			IFigure figure = source.getFigure();
-			return new LabelCellEditorLocator((Label) figure);
+			return new LabelCellEditorLocator((Label) source.getFigure());
 		}
 	}
 
@@ -90,7 +91,6 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 		 * @generated
 		 */
 		public TextCellEditorLocator(WrapLabel wrapLabel) {
-			super();
 			this.wrapLabel = wrapLabel;
 		}
 
@@ -108,20 +108,20 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-
 			if (getWrapLabel().isTextWrapped()
-					&& getWrapLabel().getText().length() > 0)
+					&& getWrapLabel().getText().length() > 0) {
 				rect.setSize(new Dimension(text.computeSize(rect.width,
-						SWT.DEFAULT)));
-			else {
+						org.eclipse.swt.SWT.DEFAULT)));
+			} else {
 				int avr = FigureUtilities.getFontMetrics(text.getFont())
 						.getAverageCharWidth();
-				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-						SWT.DEFAULT)).expand(avr * 2, 0));
+				rect.setSize(new Dimension(text.computeSize(
+						org.eclipse.swt.SWT.DEFAULT,
+						org.eclipse.swt.SWT.DEFAULT)).expand(avr * 2, 0));
 			}
-
-			if (!rect.equals(new Rectangle(text.getBounds())))
+			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
+			}
 		}
 
 	}
@@ -157,14 +157,14 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
-
 			int avr = FigureUtilities.getFontMetrics(text.getFont())
 					.getAverageCharWidth();
-			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-					SWT.DEFAULT)).expand(avr * 2, 0));
-
-			if (!rect.equals(new Rectangle(text.getBounds())))
+			rect.setSize(new Dimension(text.computeSize(
+					org.eclipse.swt.SWT.DEFAULT, org.eclipse.swt.SWT.DEFAULT))
+					.expand(avr * 2, 0));
+			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
+			}
 		}
 	}
 }

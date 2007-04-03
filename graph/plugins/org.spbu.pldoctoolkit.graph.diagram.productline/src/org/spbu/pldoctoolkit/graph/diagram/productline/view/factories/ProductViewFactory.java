@@ -10,6 +10,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.AbstractShapeViewFactory;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
@@ -39,7 +40,7 @@ public class ProductViewFactory extends AbstractShapeViewFactory {
 			boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = DrlModelVisualIDRegistry
-					.getType(org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart.VISUAL_ID);
+					.getType(ProductEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,

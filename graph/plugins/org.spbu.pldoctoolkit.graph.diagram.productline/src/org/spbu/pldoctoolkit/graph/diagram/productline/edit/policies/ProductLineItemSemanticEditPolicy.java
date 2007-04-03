@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.commands.ProductLineCreateCommand;
 import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
 /**
@@ -32,76 +33,9 @@ public class ProductLineItemSemanticEditPolicy extends
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if (DrlModelElementTypes.ProductLine_1001 == req.getElementType()) {
-			return getMSLWrapper(new CreateProductLine_1001Command(req));
+			return getMSLWrapper(new ProductLineCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class CreateProductLine_1001Command extends
-			CreateElementCommand {
-
-		/**
-		 * @generated
-		 */
-		public CreateProductLine_1001Command(CreateElementRequest req) {
-			super(req);
-		}
-
-		/**
-		 * @generated
-		 */
-		protected EClass getEClassToEdit() {
-			return DrlPackage.eINSTANCE.getProductLine();
-		};
-
-		/**
-		 * @generated
-		 */
-		protected EObject getElementToEdit() {
-			EObject container = ((CreateElementRequest) getRequest())
-					.getContainer();
-			if (container instanceof View) {
-				container = ((View) container).getElement();
-			}
-			return container;
-		}
-
-		/**
-		 * @generated
-		 */
-		public boolean canExecute() {
-			if (getEClass() != null) {
-				return getEClass().isSuperTypeOf(getEClassToEdit());
-			}
-			return true;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected EReference getContainmentFeature() {
-			return null;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected EObject doDefaultElementCreation() {
-			// Uncomment to put "phantom" objects into the diagram file.		
-			//Resource resource = ((CreateElementRequest) getRequest()).getContainer().eResource();
-			//if (resource == null) {
-			//	return null;
-			//}
-			Resource resource = getElementToEdit().eResource();
-			EClass eClass = getElementType().getEClass();
-			EObject eObject = eClass.getEPackage().getEFactoryInstance()
-					.create(eClass);
-			resource.getContents().add(eObject);
-			return eObject;
-		}
 	}
 
 	/**

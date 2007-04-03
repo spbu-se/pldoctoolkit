@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
@@ -38,6 +39,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.DrlModelCreateShortcutDecorationsCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
 
 /**
@@ -93,27 +95,10 @@ public class DrlModelCreateShortcutAction implements IObjectActionDelegate {
 		CreateViewRequest.ViewDescriptor viewDescriptor = new CreateViewRequest.ViewDescriptor(
 				new EObjectAdapter(selectedElement), Node.class, null,
 				DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-		CreateCommand command = new CreateCommand(mySelectedElement
-				.getEditingDomain(), viewDescriptor, view) {
-
-			protected CommandResult doExecuteWithResult(
-					IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
-				CommandResult result = super.doExecuteWithResult(monitor, info);
-				View view = (View) ((IAdaptable) result.getReturnValue())
-						.getAdapter(View.class);
-				if (view != null && view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-					EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
-							.createEAnnotation();
-					shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-					shortcutAnnotation.getDetails().put(
-							"modelID", DocumentationCoreEditPart.MODEL_ID); //$NON-NLS-1$
-					view.getEAnnotations().add(shortcutAnnotation);
-				}
-				return result;
-			}
-
-		};
+		ICommand command = new CreateCommand(mySelectedElement
+				.getEditingDomain(), viewDescriptor, view);
+		command = command.compose(new DrlModelCreateShortcutDecorationsCommand(
+				mySelectedElement.getEditingDomain(), view, viewDescriptor));
 		try {
 			OperationHistoryFactory.getOperationHistory().execute(command,
 					new NullProgressMonitor(), null);

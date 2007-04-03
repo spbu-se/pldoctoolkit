@@ -1,6 +1,8 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.MarginBorder;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
 
 import org.eclipse.gef.EditPart;
@@ -14,12 +16,14 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 
 import org.eclipse.gef.requests.CreateRequest;
 
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 
@@ -62,13 +66,10 @@ public class ProductEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
+
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new ProductItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new ProductGraphicalNodeEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-				new ProductCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 	}
 
@@ -129,6 +130,7 @@ public class ProductEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
+
 		return false;
 	}
 
@@ -136,8 +138,9 @@ public class ProductEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		return new DefaultSizeNodeFigure(getMapMode().DPtoLP(40), getMapMode()
-				.DPtoLP(40));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
+				.DPtoLP(40), getMapMode().DPtoLP(40));
+		return result;
 	}
 
 	/**
@@ -213,15 +216,23 @@ public class ProductEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class ProductFigure extends org.eclipse.draw2d.RectangleFigure {
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+
+		return super.getContentPaneFor(editPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	public class ProductFigure extends RectangleFigure {
 
 		/**
 		 * @generated
 		 */
 		public ProductFigure() {
 
-			this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode()
-					.DPtoLP(3), getMapMode().DPtoLP(3), getMapMode().DPtoLP(3),
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(3),
+					getMapMode().DPtoLP(3), getMapMode().DPtoLP(3),
 					getMapMode().DPtoLP(3)));
 			createContents();
 		}
@@ -230,7 +241,7 @@ public class ProductEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-			org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_0 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();
+			WrapLabel fig_0 = new WrapLabel();
 			fig_0.setText("<...>");
 
 			setFigureProductNameFigure(fig_0);
@@ -243,20 +254,19 @@ public class ProductEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fProductNameFigure;
+		private WrapLabel fProductNameFigure;
 
 		/**
 		 * @generated
 		 */
-		public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureProductNameFigure() {
+		public WrapLabel getFigureProductNameFigure() {
 			return fProductNameFigure;
 		}
 
 		/**
 		 * @generated
 		 */
-		private void setFigureProductNameFigure(
-				org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig) {
+		private void setFigureProductNameFigure(WrapLabel fig) {
 			fProductNameFigure = fig;
 		}
 

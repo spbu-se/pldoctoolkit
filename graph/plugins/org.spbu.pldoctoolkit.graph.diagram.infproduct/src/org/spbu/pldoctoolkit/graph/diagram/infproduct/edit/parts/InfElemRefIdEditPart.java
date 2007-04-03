@@ -259,7 +259,7 @@ public class InfElemRefIdEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getEditText() != null;
+		return getParser() != null;
 	}
 
 	/**
@@ -470,8 +470,11 @@ public class InfElemRefIdEditPart extends LabelEditPart implements
 				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
 			FontData fontData = new FontData(style.getFontName(), style
-					.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL)
-					| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+					.getFontHeight(),
+					(style.isBold() ? org.eclipse.swt.SWT.BOLD
+							: org.eclipse.swt.SWT.NORMAL)
+							| (style.isItalic() ? org.eclipse.swt.SWT.ITALIC
+									: org.eclipse.swt.SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -597,8 +600,7 @@ public class InfElemRefIdEditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public class InfElemRefIdFigure extends
-			org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel {
+	public class InfElemRefIdFigure extends WrapLabel {
 
 		/**
 		 * @generated

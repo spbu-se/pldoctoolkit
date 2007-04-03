@@ -16,6 +16,7 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementNameEditPart;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
@@ -45,7 +46,7 @@ public class InfElementViewFactory extends AbstractShapeViewFactory {
 			boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = DrlModelVisualIDRegistry
-					.getType(org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart.VISUAL_ID);
+					.getType(InfElementEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,

@@ -2,6 +2,7 @@ package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
 
 import org.eclipse.gef.EditPart;
@@ -75,7 +76,6 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicy() {
-
 					public Command getCommand(Request request) {
 						if (understandsRequest(request)) {
 							if (request instanceof CreateViewAndElementRequest) {
@@ -97,13 +97,10 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 						return null;
 					}
 				});
+
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new PLSchemeItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new PLSchemeGraphicalNodeEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-				new PLSchemeCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 	}
 
@@ -152,20 +149,21 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		return new DefaultSizeNodeFigure(getMapMode().DPtoLP(40), getMapMode()
-				.DPtoLP(40));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
+				.DPtoLP(40), getMapMode().DPtoLP(40));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public EditPolicy getPrimaryDragEditPolicy() {
-		ResizableEditPolicy ep = (ResizableEditPolicy) super
-				.getPrimaryDragEditPolicy();
-
-		ep.setResizeDirections(PositionConstants.NONE);
-
-		return ep;
+		EditPolicy result = super.getPrimaryDragEditPolicy();
+		if (result instanceof ResizableEditPolicy) {
+			ResizableEditPolicy ep = (ResizableEditPolicy) result;
+			ep.setResizeDirections(PositionConstants.NONE);
+		}
+		return result;
 	}
 
 	/**
@@ -213,7 +211,7 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class PLSchemeFigure extends org.eclipse.draw2d.RectangleFigure {
+	public class PLSchemeFigure extends RectangleFigure {
 
 		/**
 		 * @generated

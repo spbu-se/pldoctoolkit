@@ -1,8 +1,11 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -16,6 +19,7 @@ import org.eclipse.gef.requests.CreateRequest;
 
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
@@ -25,6 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
@@ -73,7 +78,6 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicy() {
-
 					public Command getCommand(Request request) {
 						if (understandsRequest(request)) {
 							if (request instanceof CreateViewAndElementRequest) {
@@ -95,13 +99,10 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 						return null;
 					}
 				});
+
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new ProductLine2ItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new ProductLineGraphicalNodeEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-				new ProductLine2CanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 	}
 
@@ -163,6 +164,7 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
+
 		return false;
 	}
 
@@ -170,8 +172,9 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		return new DefaultSizeNodeFigure(getMapMode().DPtoLP(40), getMapMode()
-				.DPtoLP(40));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
+				.DPtoLP(40), getMapMode().DPtoLP(40));
+		return result;
 	}
 
 	/**
@@ -227,6 +230,19 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	protected void handleNotificationEvent(Notification event) {
+		if (event.getNotifier() == getModel()
+				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations()
+						.equals(event.getFeature())) {
+			handleMajorSemanticChange();
+		} else {
+			super.handleNotificationEvent(event);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -247,7 +263,15 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class ProductLineFigure extends org.eclipse.draw2d.RectangleFigure {
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+
+		return super.getContentPaneFor(editPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	public class ProductLineFigure extends RectangleFigure {
 
 		/**
 		 * @generated
@@ -261,7 +285,7 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-			org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig_0 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();
+			WrapLabel fig_0 = new WrapLabel();
 			fig_0.setText("<...>");
 
 			setFigureProductLineNameFigure(fig_0);
@@ -274,20 +298,19 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fProductLineNameFigure;
+		private WrapLabel fProductLineNameFigure;
 
 		/**
 		 * @generated
 		 */
-		public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureProductLineNameFigure() {
+		public WrapLabel getFigureProductLineNameFigure() {
 			return fProductLineNameFigure;
 		}
 
 		/**
 		 * @generated
 		 */
-		private void setFigureProductLineNameFigure(
-				org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig) {
+		private void setFigureProductLineNameFigure(WrapLabel fig) {
 			fProductLineNameFigure = fig;
 		}
 

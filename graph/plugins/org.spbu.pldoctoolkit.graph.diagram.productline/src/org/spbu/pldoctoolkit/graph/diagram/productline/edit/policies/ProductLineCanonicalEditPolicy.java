@@ -68,6 +68,7 @@ public class ProductLineCanonicalEditPolicy extends
 		List result = new LinkedList();
 		EObject modelObject = ((View) getHost().getModel()).getElement();
 		View viewObject = (View) getHost().getModel();
+
 		return result;
 	}
 
@@ -417,10 +418,18 @@ public class ProductLineCanonicalEditPolicy extends
 		 * @generated
 		 */
 		protected LinkDescriptor(EObject source, EObject destination,
-				EObject linkElement, int linkVID) {
+				EObject linkElement, IElementType elementType, int linkVID) {
 			this(source, destination, linkVID);
 			myLinkElement = linkElement;
-			mySemanticAdapter = new EObjectAdapter(linkElement);
+			final IElementType elementTypeCopy = elementType;
+			mySemanticAdapter = new EObjectAdapter(linkElement) {
+				public Object getAdapter(Class adapter) {
+					if (IElementType.class.equals(adapter)) {
+						return elementTypeCopy;
+					}
+					return super.getAdapter(adapter);
+				}
+			};
 		}
 
 		/**
