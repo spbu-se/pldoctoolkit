@@ -47,7 +47,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//InfElemRefGroup/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//InfElemRefGroup/modifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//InfElemRefGroup/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//InfElemRefGroup/infElemRefsGroup"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="" propertyDescription=""
+          propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//InfElemRefGroup/infElemRefsGroup"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//ProductLine">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ProductLine/name"/>
