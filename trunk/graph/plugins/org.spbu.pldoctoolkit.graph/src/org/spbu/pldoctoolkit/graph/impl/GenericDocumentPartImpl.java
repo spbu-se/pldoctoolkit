@@ -100,7 +100,7 @@ public abstract class GenericDocumentPartImpl extends EObjectImpl implements Gen
 	 * @generated
 	 * @ordered
 	 */
-	protected EList infElemRefs = null;
+	protected EList infElemRefs;
 
 	/**
 	 * The cached value of the '{@link #getGroups() <em>Groups</em>}' containment reference list.
@@ -110,7 +110,7 @@ public abstract class GenericDocumentPartImpl extends EObjectImpl implements Gen
 	 * @generated
 	 * @ordered
 	 */
-	protected EList groups = null;
+	protected EList groups;
 
 	/**
 	 * <!-- begin-user-doc -->

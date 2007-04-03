@@ -63,6 +63,7 @@ public interface ProductLine extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Product Documentations</b></em>' reference.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Product Documentations</em>' reference isn't clear,
@@ -72,7 +73,7 @@ public interface ProductLine extends EObject {
 	 * @return the value of the '<em>Product Documentations</em>' reference.
 	 * @see #setProductDocumentations(ProductDocumentation)
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getProductLine_ProductDocumentations()
-	 * @model
+	 * @model transient="true" derived="true"
 	 * @generated
 	 */
 	ProductDocumentation getProductDocumentations();
@@ -98,7 +99,7 @@ public interface ProductLine extends EObject {
 	 * @return the value of the '<em>Documentation Core</em>' reference.
 	 * @see #setDocumentationCore(DocumentationCore)
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getProductLine_DocumentationCore()
-	 * @model
+	 * @model transient="true" derived="true"
 	 * @generated
 	 */
 	DocumentationCore getDocumentationCore();

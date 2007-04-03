@@ -49,7 +49,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * @generated
 	 * @ordered
 	 */
-	protected NestPoint nestPoints = null;
+	protected NestPoint nestPoints;
 
 	/**
 	 * The cached value of the '{@link #getOwnerInfElemRef() <em>Owner Inf Elem Ref</em>}' reference.
@@ -59,7 +59,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * @generated
 	 * @ordered
 	 */
-	protected InfElemRef ownerInfElemRef = null;
+	protected InfElemRef ownerInfElemRef;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,23 +128,6 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * @generated
 	 */
 	public InfElemRef getOwnerInfElemRef() {
-		if (ownerInfElemRef != null && ownerInfElemRef.eIsProxy()) {
-			InternalEObject oldOwnerInfElemRef = (InternalEObject)ownerInfElemRef;
-			ownerInfElemRef = (InfElemRef)eResolveProxy(oldOwnerInfElemRef);
-			if (ownerInfElemRef != oldOwnerInfElemRef) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF, oldOwnerInfElemRef, ownerInfElemRef));
-			}
-		}
-		return ownerInfElemRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InfElemRef basicGetOwnerInfElemRef() {
 		return ownerInfElemRef;
 	}
 
@@ -222,8 +205,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 			case DrlPackage.INF_ELEMENT__NEST_POINTS:
 				return getNestPoints();
 			case DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF:
-				if (resolve) return getOwnerInfElemRef();
-				return basicGetOwnerInfElemRef();
+				return getOwnerInfElemRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

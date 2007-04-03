@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -123,7 +124,7 @@ public class InfElemRefGroupImpl extends EObjectImpl implements InfElemRefGroup 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList infElemRefsGroup = null;
+	protected EList infElemRefsGroup;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -213,7 +214,7 @@ public class InfElemRefGroupImpl extends EObjectImpl implements InfElemRefGroup 
 	 */
 	public EList getInfElemRefsGroup() {
 		if (infElemRefsGroup == null) {
-			infElemRefsGroup = new EObjectWithInverseResolvingEList(InfElemRef.class, this, DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP, DrlPackage.INF_ELEM_REF__GROUP);
+			infElemRefsGroup = new EObjectWithInverseEList(InfElemRef.class, this, DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP, DrlPackage.INF_ELEM_REF__GROUP);
 		}
 		return infElemRefsGroup;
 	}

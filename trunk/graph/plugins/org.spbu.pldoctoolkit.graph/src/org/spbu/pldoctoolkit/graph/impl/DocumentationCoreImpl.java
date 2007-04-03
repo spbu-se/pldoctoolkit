@@ -53,7 +53,7 @@ public class DocumentationCoreImpl extends EObjectImpl implements DocumentationC
 	 * @generated
 	 * @ordered
 	 */
-	protected EList parts = null;
+	protected EList parts;
 
 	/**
 	 * <!-- begin-user-doc -->

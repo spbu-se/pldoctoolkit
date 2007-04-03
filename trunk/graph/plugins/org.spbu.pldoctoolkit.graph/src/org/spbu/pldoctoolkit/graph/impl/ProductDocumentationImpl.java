@@ -57,7 +57,7 @@ public class ProductDocumentationImpl extends EObjectImpl implements ProductDocu
 	 * @generated
 	 * @ordered
 	 */
-	protected EList finalInfProducts = null;
+	protected EList finalInfProducts;
 
 	/**
 	 * The cached value of the '{@link #getProduct() <em>Product</em>}' reference.
@@ -67,7 +67,7 @@ public class ProductDocumentationImpl extends EObjectImpl implements ProductDocu
 	 * @generated
 	 * @ordered
 	 */
-	protected Product product = null;
+	protected Product product;
 
 	/**
 	 * <!-- begin-user-doc -->
