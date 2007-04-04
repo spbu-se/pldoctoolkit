@@ -1,7 +1,9 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
+import org.eclipse.draw2d.LayoutManager;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -16,7 +18,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.part.Messages;
  * @generated
  */
 public class PLSchemeProductsCompartmentEditPart extends
-		ShapeCompartmentEditPart {
+		ListCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -33,17 +35,25 @@ public class PLSchemeProductsCompartmentEditPart extends
 	/**
 	 * @generated
 	 */
-	public String getCompartmentName() {
-		return Messages.PLSchemeProductsCompartmentEditPart_title;
+	protected boolean hasModelChildrenChanged(Notification evt) {
+		return false;
 	}
 
 	/**
 	 * @generated
 	 */
+	public String getCompartmentName() {
+		return Messages.PLSchemeProductsCompartmentEditPart_title;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
 				.createFigure();
 		result.setTitleVisibility(false);
+		
 		return result;
 	}
 

@@ -1,4 +1,4 @@
-	package org.spbu.pldoctoolkit.graph.diagram.productline.navigator;
+package org.spbu.pldoctoolkit.graph.diagram.productline.navigator;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,283 +27,306 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEdi
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLinePLSchemeCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
-	/**
+/**
  * @generated
  */
 public class DrlModelNavigatorContentProvider implements ICommonContentProvider {
 
-		/**
- * @generated
- */
-private static final Object[] EMPTY_ARRAY = new Object[0];
-
-		/**
- * @generated
- */
-   public void dispose() {
-   }
+	/**
+	 * @generated
+	 */
+	private static final Object[] EMPTY_ARRAY = new Object[0];
 
 	/**
- * @generated
- */
-   public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-   }
-	
-		/**
- * @generated
- */
-public Object[] getElements(Object inputElement) {
-	return getChildren(inputElement);
-}
-	
-		/**
- * @generated
- */
-public void restoreState(IMemento aMemento) {
-}
+	 * @generated
+	 */
+	public void dispose() {
+	}
 
 	/**
- * @generated
- */
-public void saveState(IMemento aMemento) {
-}
-    
-    	/**
- * @generated
- */
-public void init(ICommonContentExtensionSite aConfig) {
-}
-    
-    		/**
- * @generated
- */
-public Object[] getChildren(Object parentElement) {
-	if (parentElement instanceof IFile) {
-	IFile file = (IFile) parentElement;
-AdapterFactoryEditingDomain editingDomain = (AdapterFactoryEditingDomain) GMFEditingDomainFactory.INSTANCE.createEditingDomain();
-editingDomain.setResourceToReadOnlyMap(new HashMap() {
-	public Object get(Object key) {
-		if (!containsKey(key)) {
-			put(key, Boolean.TRUE);
+	 * @generated
+	 */
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+	}
+
+	/**
+	 * @generated
+	 */
+	public Object[] getElements(Object inputElement) {
+		return getChildren(inputElement);
+	}
+
+	/**
+	 * @generated
+	 */
+	public void restoreState(IMemento aMemento) {
+	}
+
+	/**
+	 * @generated
+	 */
+	public void saveState(IMemento aMemento) {
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init(ICommonContentExtensionSite aConfig) {
+	}
+
+	/**
+	 * @generated
+	 */
+	public Object[] getChildren(Object parentElement) {
+		if (parentElement instanceof IFile) {
+			IFile file = (IFile) parentElement;
+			AdapterFactoryEditingDomain editingDomain = (AdapterFactoryEditingDomain) GMFEditingDomainFactory.INSTANCE
+					.createEditingDomain();
+			editingDomain.setResourceToReadOnlyMap(new HashMap() {
+				public Object get(Object key) {
+					if (!containsKey(key)) {
+						put(key, Boolean.TRUE);
+					}
+					return super.get(key);
+				}
+			});
+			ResourceSet resourceSet = editingDomain.getResourceSet();
+
+			org.eclipse.emf.common.util.URI fileURI = org.eclipse.emf.common.util.URI
+					.createPlatformResourceURI(file.getFullPath().toString(),
+							true);
+			Resource resource = resourceSet.getResource(fileURI, true);
+			Collection result = new ArrayList();
+			result
+					.addAll(createNavigatorItems(selectViewsByType(resource
+							.getContents(), ProductLineEditPart.MODEL_ID),
+							file, false));
+			return result.toArray();
 		}
-		return super.get(key);
-	}
-});
-ResourceSet resourceSet = editingDomain.getResourceSet();
-			
-org.eclipse.emf.common.util.URI fileURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(file.getFullPath().toString(), true);
-Resource resource = resourceSet.getResource(fileURI, true);
-Collection result = new ArrayList();
-								result.addAll(createNavigatorItems(selectViewsByType(resource.getContents(), ProductLineEditPart.MODEL_ID), file, false));
-					return result.toArray();
-   	} 
-    	
-   	if (parentElement instanceof DrlModelNavigatorGroup) {
-	DrlModelNavigatorGroup group = (DrlModelNavigatorGroup) parentElement;
-return group.getChildren();
-	} 
-		
-	if (parentElement instanceof DrlModelNavigatorItem) {
-	DrlModelNavigatorItem navigatorItem = (DrlModelNavigatorItem) parentElement;
-if (navigatorItem.isLeaf() || !isOwnView(navigatorItem.getView())) {
-	return EMPTY_ARRAY;
-}
-return getViewChildren(navigatorItem.getView(), parentElement);
-	}
-		
-			/*
- * Due to plugin.xml restrictions this code will be called only for views representing
- * shortcuts to this diagram elements created on other diagrams. 
-*/ 
-if (parentElement instanceof IAdaptable) {
-	View view = (View) ((IAdaptable) parentElement).getAdapter(View.class);
-	if (view != null) {
-		return getViewChildren(view, parentElement);
-	}
-}
+
+		if (parentElement instanceof DrlModelNavigatorGroup) {
+			DrlModelNavigatorGroup group = (DrlModelNavigatorGroup) parentElement;
+			return group.getChildren();
+		}
+
+		if (parentElement instanceof DrlModelNavigatorItem) {
+			DrlModelNavigatorItem navigatorItem = (DrlModelNavigatorItem) parentElement;
+			if (navigatorItem.isLeaf() || !isOwnView(navigatorItem.getView())) {
+				return EMPTY_ARRAY;
+			}
+			return getViewChildren(navigatorItem.getView(), parentElement);
+		}
+
+		/*
+		 * Due to plugin.xml restrictions this code will be called only for views representing
+		 * shortcuts to this diagram elements created on other diagrams. 
+		 */
+		if (parentElement instanceof IAdaptable) {
+			View view = (View) ((IAdaptable) parentElement)
+					.getAdapter(View.class);
+			if (view != null) {
+				return getViewChildren(view, parentElement);
+			}
+		}
 
 		return EMPTY_ARRAY;
-}
-    
-		/**
- * @generated
- */
-private Object[] getViewChildren(View view, Object parentElement) {
-   	switch (DrlModelVisualIDRegistry.getVisualID(view)) {
-	
-case ProductLineEditPart.VISUAL_ID: {
-	Collection result = new ArrayList();
-		result.addAll(getForeignShortcuts((Diagram) view, parentElement));
-																		Collection 					connectedViews = 						getChildrenByType						(Collections.singleton(view)					, ProductLine2EditPart.VISUAL_ID);
-								result.addAll(createNavigatorItems(connectedViews, parentElement, false));
-									return result.toArray();
-}
-
-case ProductLine2EditPart.VISUAL_ID: {
-	Collection result = new ArrayList();
-																		Collection 					connectedViews = 						getChildrenByType						(Collections.singleton(view)					, ProductLinePLSchemeCompartmentEditPart.VISUAL_ID);
-														connectedViews = 						getChildrenByType						(connectedViews					, PLSchemeEditPart.VISUAL_ID);
-								result.addAll(createNavigatorItems(connectedViews, parentElement, false));
-									return result.toArray();
-}
-
-case PLSchemeEditPart.VISUAL_ID: {
-	Collection result = new ArrayList();
-																		Collection 					connectedViews = 						getChildrenByType						(Collections.singleton(view)					, PLSchemeProductsCompartmentEditPart.VISUAL_ID);
-														connectedViews = 						getChildrenByType						(connectedViews					, ProductEditPart.VISUAL_ID);
-								result.addAll(createNavigatorItems(connectedViews, parentElement, false));
-									return result.toArray();
-}
 	}
-	return EMPTY_ARRAY;
-}
-    
-    	/**
- * @generated
- */
-private Collection getLinksSourceByType(Collection edges, int visualID) {
-	Collection result = new ArrayList();
-	String type = DrlModelVisualIDRegistry.getType(visualID);
- 	for (Iterator it = edges.iterator(); it.hasNext();) {
- 		Edge nextEdge = (Edge) it.next();
- 		View nextEdgeSource = nextEdge.getSource();
- 		if (type.equals(nextEdgeSource.getType()) && isOwnView(nextEdgeSource)) {
- 			result.add(nextEdgeSource);
- 		}
- 	}
- 	return result;
-}
-	
-	/**
- * @generated
- */
- private Collection getLinksTargetByType(Collection edges, int visualID) {
-	Collection result = new ArrayList();
-	String type = DrlModelVisualIDRegistry.getType(visualID);
- 	for (Iterator it = edges.iterator(); it.hasNext();) {
- 		Edge nextEdge = (Edge) it.next();
- 		View nextEdgeTarget = nextEdge.getTarget();
- 		if (type.equals(nextEdgeTarget.getType()) && isOwnView(nextEdgeTarget)) {
- 			result.add(nextEdgeTarget);
- 		}
- 	}
- 	return result;
-}
 
 	/**
- * @generated
- */
- private Collection getOutgoingLinksByType(Collection nodes, int visualID) {
-	Collection result = new ArrayList();
-	String type = DrlModelVisualIDRegistry.getType(visualID);
- 	for (Iterator it = nodes.iterator(); it.hasNext();) {
- 		View nextNode = (View) it.next();
-		result.addAll(selectViewsByType(nextNode.getSourceEdges(), type));
- 	}
- 	return result;
-}
-	
-	/**
- * @generated
- */
-private Collection getIncomingLinksByType(Collection nodes, int visualID) {
-	Collection result = new ArrayList();
-	String type = DrlModelVisualIDRegistry.getType(visualID);
- 	for (Iterator it = nodes.iterator(); it.hasNext();) {
- 		View nextNode = (View) it.next();
-		result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
- 	}
- 	return result;
-}
-	
-	/**
- * @generated
- */
-private Collection getChildrenByType(Collection nodes, int visualID) {
-	Collection result = new ArrayList();
-	String type = DrlModelVisualIDRegistry.getType(visualID);
-	for (Iterator it = nodes.iterator(); it.hasNext();) {
-		View nextNode = (View) it.next();
-		result.addAll(selectViewsByType(nextNode.getChildren(), type));
-	}
-	return result;
-}
-	
-	/**
- * @generated
- */
-private Collection getDiagramLinksByType(Collection diagrams, int visualID) {
-	Collection result = new ArrayList();
-	String type = DrlModelVisualIDRegistry.getType(visualID);
-	for (Iterator it = diagrams.iterator(); it.hasNext();) {
-		Diagram nextDiagram = (Diagram) it.next();
-		result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
-	}
-	return result;
-}
+	 * @generated
+	 */
+	private Object[] getViewChildren(View view, Object parentElement) {
+		switch (DrlModelVisualIDRegistry.getVisualID(view)) {
 
-	/**
- * @generated
- */
-private Collection selectViewsByType(Collection views, String type) {
-	Collection result = new ArrayList();
-	for (Iterator it = views.iterator(); it.hasNext();) {
-		View nextView = (View) it.next();
-		if (type.equals(nextView.getType()) && isOwnView(nextView)) {
-			result.add(nextView);
+		case ProductLineEditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			result.addAll(getForeignShortcuts((Diagram) view, parentElement));
+			Collection connectedViews = getChildrenByType(Collections
+					.singleton(view), ProductLine2EditPart.VISUAL_ID);
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			return result.toArray();
 		}
-	}
-	return result;
-}
-	
-	/**
- * @generated
- */
-private boolean isOwnView(View view) {
-	return ProductLineEditPart.MODEL_ID.equals(DrlModelVisualIDRegistry.getModelID(view));
-}
-	
-	/**
- * @generated
- */
-private Collection createNavigatorItems(Collection views, Object parent, boolean isLeafs) {
-	Collection result = new ArrayList();
-	for (Iterator it = views.iterator(); it.hasNext();) {
-		result.add(new DrlModelNavigatorItem((View) it.next(), parent, isLeafs));
-	}
-	return result;
-}
-		
-	/**
- * @generated
- */
-private Collection getForeignShortcuts(Diagram diagram, Object parent) {
-	Collection result = new ArrayList();
-	for (Iterator it = diagram.getChildren().iterator(); it.hasNext();) {
-		View nextView = (View) it.next();
-		if (!isOwnView(nextView) && nextView.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
-			result.add(nextView);
+
+		case ProductLine2EditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			Collection connectedViews = getChildrenByType(Collections
+					.singleton(view),
+					ProductLinePLSchemeCompartmentEditPart.VISUAL_ID);
+			connectedViews = getChildrenByType(connectedViews,
+					PLSchemeEditPart.VISUAL_ID);
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			return result.toArray();
 		}
+
+		case PLSchemeEditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			Collection connectedViews = getChildrenByType(Collections
+					.singleton(view),
+					PLSchemeProductsCompartmentEditPart.VISUAL_ID);
+			connectedViews = getChildrenByType(connectedViews,
+					ProductEditPart.VISUAL_ID);
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			return result.toArray();
+		}
+		}
+		return EMPTY_ARRAY;
 	}
-	return createNavigatorItems(result, parent, false);
-}
-		
-		/**
- * @generated
- */
-public Object getParent(Object element) {
-	if (element instanceof DrlModelAbstractNavigatorItem) {
-    	DrlModelAbstractNavigatorItem abstractNavigatorItem = (DrlModelAbstractNavigatorItem) element;
-		return abstractNavigatorItem.getParent();
+
+	/**
+	 * @generated
+	 */
+	private Collection getLinksSourceByType(Collection edges, int visualID) {
+		Collection result = new ArrayList();
+		String type = DrlModelVisualIDRegistry.getType(visualID);
+		for (Iterator it = edges.iterator(); it.hasNext();) {
+			Edge nextEdge = (Edge) it.next();
+			View nextEdgeSource = nextEdge.getSource();
+			if (type.equals(nextEdgeSource.getType())
+					&& isOwnView(nextEdgeSource)) {
+				result.add(nextEdgeSource);
+			}
+		}
+		return result;
 	}
-	return null;
+
+	/**
+	 * @generated
+	 */
+	private Collection getLinksTargetByType(Collection edges, int visualID) {
+		Collection result = new ArrayList();
+		String type = DrlModelVisualIDRegistry.getType(visualID);
+		for (Iterator it = edges.iterator(); it.hasNext();) {
+			Edge nextEdge = (Edge) it.next();
+			View nextEdgeTarget = nextEdge.getTarget();
+			if (type.equals(nextEdgeTarget.getType())
+					&& isOwnView(nextEdgeTarget)) {
+				result.add(nextEdgeTarget);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection getOutgoingLinksByType(Collection nodes, int visualID) {
+		Collection result = new ArrayList();
+		String type = DrlModelVisualIDRegistry.getType(visualID);
+		for (Iterator it = nodes.iterator(); it.hasNext();) {
+			View nextNode = (View) it.next();
+			result.addAll(selectViewsByType(nextNode.getSourceEdges(), type));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection getIncomingLinksByType(Collection nodes, int visualID) {
+		Collection result = new ArrayList();
+		String type = DrlModelVisualIDRegistry.getType(visualID);
+		for (Iterator it = nodes.iterator(); it.hasNext();) {
+			View nextNode = (View) it.next();
+			result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection getChildrenByType(Collection nodes, int visualID) {
+		Collection result = new ArrayList();
+		String type = DrlModelVisualIDRegistry.getType(visualID);
+		for (Iterator it = nodes.iterator(); it.hasNext();) {
+			View nextNode = (View) it.next();
+			result.addAll(selectViewsByType(nextNode.getChildren(), type));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection getDiagramLinksByType(Collection diagrams, int visualID) {
+		Collection result = new ArrayList();
+		String type = DrlModelVisualIDRegistry.getType(visualID);
+		for (Iterator it = diagrams.iterator(); it.hasNext();) {
+			Diagram nextDiagram = (Diagram) it.next();
+			result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection selectViewsByType(Collection views, String type) {
+		Collection result = new ArrayList();
+		for (Iterator it = views.iterator(); it.hasNext();) {
+			View nextView = (View) it.next();
+			if (type.equals(nextView.getType()) && isOwnView(nextView)) {
+				result.add(nextView);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private boolean isOwnView(View view) {
+		return ProductLineEditPart.MODEL_ID.equals(DrlModelVisualIDRegistry
+				.getModelID(view));
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection createNavigatorItems(Collection views, Object parent,
+			boolean isLeafs) {
+		Collection result = new ArrayList();
+		for (Iterator it = views.iterator(); it.hasNext();) {
+			result.add(new DrlModelNavigatorItem((View) it.next(), parent,
+					isLeafs));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection getForeignShortcuts(Diagram diagram, Object parent) {
+		Collection result = new ArrayList();
+		for (Iterator it = diagram.getChildren().iterator(); it.hasNext();) {
+			View nextView = (View) it.next();
+			if (!isOwnView(nextView)
+					&& nextView.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+				result.add(nextView);
+			}
+		}
+		return createNavigatorItems(result, parent, false);
+	}
+
+	/**
+	 * @generated
+	 */
+	public Object getParent(Object element) {
+		if (element instanceof DrlModelAbstractNavigatorItem) {
+			DrlModelAbstractNavigatorItem abstractNavigatorItem = (DrlModelAbstractNavigatorItem) element;
+			return abstractNavigatorItem.getParent();
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public boolean hasChildren(Object element) {
+		return element instanceof IFile || getChildren(element).length > 0;
+	}
+
 }
-	
-		/**
- * @generated
- */
-public boolean hasChildren(Object element) {
-	return element instanceof IFile || getChildren(element).length > 0;
-}
-    
-    }

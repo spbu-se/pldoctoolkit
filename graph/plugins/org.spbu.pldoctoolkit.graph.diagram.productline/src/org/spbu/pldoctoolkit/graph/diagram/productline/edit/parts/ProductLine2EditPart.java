@@ -13,16 +13,22 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLine2ItemSemanticEditPolicy;
+import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
+import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
 /**
  * @generated
@@ -55,6 +61,29 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicy() {
+					public Command getCommand(Request request) {
+						if (understandsRequest(request)) {
+							if (request instanceof CreateViewAndElementRequest) {
+								CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request)
+										.getViewAndElementDescriptor()
+										.getCreateElementRequestAdapter();
+								IElementType type = (IElementType) adapter
+										.getAdapter(IElementType.class);
+								if (type == DrlModelElementTypes.PLScheme_2001) {
+									EditPart compartmentEditPart = getChildBySemanticHint(DrlModelVisualIDRegistry
+											.getType(ProductLinePLSchemeCompartmentEditPart.VISUAL_ID));
+									return compartmentEditPart == null ? null
+											: compartmentEditPart
+													.getCommand(request);
+								}
+							}
+							return super.getCommand(request);
+						}
+						return null;
+					}
+				});
 
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
@@ -154,11 +183,12 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
 	 * @param nodeShape instance of generated figure class
+	 * 
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
-			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout(true);
 			layout.setSpacing(getMapMode().DPtoLP(5));
 			nodeShape.setLayoutManager(layout);
 		}
