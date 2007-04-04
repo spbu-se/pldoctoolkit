@@ -1,4 +1,3 @@
-
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies;
 
 import org.eclipse.gef.commands.Command;
@@ -14,15 +13,17 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElement
 /**
  * @generated
  */
-public class PLSchemeProductsCompartmentItemSemanticEditPolicy extends DrlModelBaseItemSemanticEditPolicy {
+public class PLSchemeProductsCompartmentItemSemanticEditPolicy extends
+		DrlModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (DrlModelElementTypes.Product_2002 == req.getElementType()) {		
+		if (DrlModelElementTypes.Product_2002 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(DrlPackage.eINSTANCE.getPLScheme_Products());
+				req.setContainmentFeature(DrlPackage.eINSTANCE
+						.getPLScheme_Products());
 			}
 			return getMSLWrapper(new ProductCreateCommand(req));
 		}

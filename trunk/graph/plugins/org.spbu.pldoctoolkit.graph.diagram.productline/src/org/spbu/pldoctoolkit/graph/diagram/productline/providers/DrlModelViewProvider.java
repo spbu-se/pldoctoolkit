@@ -4,8 +4,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
@@ -15,7 +15,9 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEdi
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLinePLSchemeCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductNameEditPart;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeProductsCompartmentViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLine2ViewFactory;

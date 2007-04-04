@@ -1,4 +1,3 @@
-
 package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
 import org.eclipse.core.runtime.Platform;
@@ -37,7 +36,9 @@ public class DrlModelVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static final String DEBUG_KEY = DrlModelDiagramEditorPlugin.getInstance().getBundle().getSymbolicName() + "/debug/visualID"; //$NON-NLS-1$
+	private static final String DEBUG_KEY = DrlModelDiagramEditorPlugin
+			.getInstance().getBundle().getSymbolicName()
+			+ "/debug/visualID"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -52,7 +53,7 @@ public class DrlModelVisualIDRegistry {
 		}
 		return getVisualID(view.getType());
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -75,20 +76,23 @@ public class DrlModelVisualIDRegistry {
 		try {
 			return Integer.parseInt(type);
 		} catch (NumberFormatException e) {
-			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				DrlModelDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
+			if (Boolean.TRUE.toString().equalsIgnoreCase(
+					Platform.getDebugOption(DEBUG_KEY))) {
+				DrlModelDiagramEditorPlugin.getInstance().logError(
+						"Unable to parse view type as a visualID number: "
+								+ type);
 			}
 		}
 		return -1;
 	}
-	
+
 	/**
 	 * @generated
 	 */
 	public static String getType(int visualID) {
 		return String.valueOf(visualID);
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -103,8 +107,11 @@ public class DrlModelVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static int getDiagramVisualID(EObject domainElement, EClass domainElementMetaclass) {
-		if (DrlPackage.eINSTANCE.getProductLine().isSuperTypeOf(domainElementMetaclass) && isDiagramProductLine_79((ProductLine) domainElement)) {
+	private static int getDiagramVisualID(EObject domainElement,
+			EClass domainElementMetaclass) {
+		if (DrlPackage.eINSTANCE.getProductLine().isSuperTypeOf(
+				domainElementMetaclass)
+				&& isDiagramProductLine_79((ProductLine) domainElement)) {
 			return ProductLineEditPart.VISUAL_ID;
 		}
 		return getUnrecognizedDiagramID(domainElement);
@@ -118,16 +125,18 @@ public class DrlModelVisualIDRegistry {
 			return -1;
 		}
 		EClass domainElementMetaclass = domainElement.eClass();
-		return getNodeVisualID(containerView, domainElement, domainElementMetaclass, null);
+		return getNodeVisualID(containerView, domainElement,
+				domainElementMetaclass, null);
 	}
-	
+
 	/**
 	 * @generated
 	 */
-	public static int getNodeVisualID(View containerView, EObject domainElement, EClass domainElementMetaclass, String semanticHint) {
+	public static int getNodeVisualID(View containerView,
+			EObject domainElement, EClass domainElementMetaclass,
+			String semanticHint) {
 		String containerModelID = getModelID(containerView);
-		if (!ProductLineEditPart.MODEL_ID.equals(containerModelID)
-		) {
+		if (!ProductLineEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
@@ -135,12 +144,13 @@ public class DrlModelVisualIDRegistry {
 			containerVisualID = getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
-				containerVisualID = ProductLineEditPart.VISUAL_ID;		
+				containerVisualID = ProductLineEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
 		}
-		int nodeVisualID = semanticHint != null ? getVisualID(semanticHint) : -1;
+		int nodeVisualID = semanticHint != null ? getVisualID(semanticHint)
+				: -1;
 		switch (containerVisualID) {
 		case ProductLine2EditPart.VISUAL_ID:
 			if (ProductLineNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -148,51 +158,58 @@ public class DrlModelVisualIDRegistry {
 			}
 			if (ProductLinePLSchemeCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return ProductLinePLSchemeCompartmentEditPart.VISUAL_ID;
-			} 
+			}
 			if (ProductLineDocumentationCoreCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return ProductLineDocumentationCoreCompartmentEditPart.VISUAL_ID;
-			} 
-			return getUnrecognizedProductLine_1001ChildNodeID(domainElement, semanticHint);
+			}
+			return getUnrecognizedProductLine_1001ChildNodeID(domainElement,
+					semanticHint);
 		case PLSchemeEditPart.VISUAL_ID:
 			if (PLSchemeProductsCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return PLSchemeProductsCompartmentEditPart.VISUAL_ID;
-			} 
-			return getUnrecognizedPLScheme_2001ChildNodeID(domainElement, semanticHint);
+			}
+			return getUnrecognizedPLScheme_2001ChildNodeID(domainElement,
+					semanticHint);
 		case ProductEditPart.VISUAL_ID:
 			if (ProductNameEditPart.VISUAL_ID == nodeVisualID) {
 				return ProductNameEditPart.VISUAL_ID;
 			}
-			return getUnrecognizedProduct_2002ChildNodeID(domainElement, semanticHint);
+			return getUnrecognizedProduct_2002ChildNodeID(domainElement,
+					semanticHint);
 		case ProductLinePLSchemeCompartmentEditPart.VISUAL_ID:
 			if ((semanticHint == null || PLSchemeEditPart.VISUAL_ID == nodeVisualID)
-					&& DrlPackage.eINSTANCE.getPLScheme().isSuperTypeOf(domainElementMetaclass)
-					&& (domainElement == null || isNodePLScheme_2001((PLScheme) domainElement))
-				) {
+					&& DrlPackage.eINSTANCE.getPLScheme().isSuperTypeOf(
+							domainElementMetaclass)
+					&& (domainElement == null || isNodePLScheme_2001((PLScheme) domainElement))) {
 				return PLSchemeEditPart.VISUAL_ID;
 			}
-			return getUnrecognizedProductLinePLSchemeCompartment_5001ChildNodeID(domainElement, semanticHint);
+			return getUnrecognizedProductLinePLSchemeCompartment_5001ChildNodeID(
+					domainElement, semanticHint);
 		case ProductLineDocumentationCoreCompartmentEditPart.VISUAL_ID:
-			return getUnrecognizedProductLineDocumentationCoreCompartment_5002ChildNodeID(domainElement, semanticHint);
+			return getUnrecognizedProductLineDocumentationCoreCompartment_5002ChildNodeID(
+					domainElement, semanticHint);
 		case PLSchemeProductsCompartmentEditPart.VISUAL_ID:
 			if ((semanticHint == null || ProductEditPart.VISUAL_ID == nodeVisualID)
-					&& DrlPackage.eINSTANCE.getProduct().isSuperTypeOf(domainElementMetaclass)
-					&& (domainElement == null || isNodeProduct_2002((Product) domainElement))
-				) {
+					&& DrlPackage.eINSTANCE.getProduct().isSuperTypeOf(
+							domainElementMetaclass)
+					&& (domainElement == null || isNodeProduct_2002((Product) domainElement))) {
 				return ProductEditPart.VISUAL_ID;
 			}
-			return getUnrecognizedPLSchemeProductsCompartment_5003ChildNodeID(domainElement, semanticHint);
+			return getUnrecognizedPLSchemeProductsCompartment_5003ChildNodeID(
+					domainElement, semanticHint);
 		case ProductLineEditPart.VISUAL_ID:
 			if ((semanticHint == null || ProductLine2EditPart.VISUAL_ID == nodeVisualID)
-					&& DrlPackage.eINSTANCE.getProductLine().isSuperTypeOf(domainElementMetaclass)
-					&& (domainElement == null || isNodeProductLine_1001((ProductLine) domainElement))
-				) {
+					&& DrlPackage.eINSTANCE.getProductLine().isSuperTypeOf(
+							domainElementMetaclass)
+					&& (domainElement == null || isNodeProductLine_1001((ProductLine) domainElement))) {
 				return ProductLine2EditPart.VISUAL_ID;
 			}
-			return getUnrecognizedProductLine_79ChildNodeID(domainElement, semanticHint);
+			return getUnrecognizedProductLine_79ChildNodeID(domainElement,
+					semanticHint);
 		}
 		return -1;
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -203,15 +220,16 @@ public class DrlModelVisualIDRegistry {
 		EClass domainElementMetaclass = domainElement.eClass();
 		return getLinkWithClassVisualID(domainElement, domainElementMetaclass);
 	}
-		
+
 	/**
 	 * @generated
 	 */
-	public static int getLinkWithClassVisualID(EObject domainElement, EClass domainElementMetaclass) {
+	public static int getLinkWithClassVisualID(EObject domainElement,
+			EClass domainElementMetaclass) {
 		{
 			return getUnrecognizedLinkWithClassID(domainElement);
 		}
-	}	
+	}
 
 	/**
 	 * User can change implementation of this method to check some additional 
@@ -241,7 +259,7 @@ public class DrlModelVisualIDRegistry {
 	 */
 	private static boolean isNodeProductLine_1001(ProductLine element) {
 		return true;
-	}	
+	}
 
 	/**
 	 * User can change implementation of this method to check some additional 
@@ -251,7 +269,7 @@ public class DrlModelVisualIDRegistry {
 	 */
 	private static boolean isNodePLScheme_2001(PLScheme element) {
 		return true;
-	}	
+	}
 
 	/**
 	 * User can change implementation of this method to check some additional 
@@ -261,15 +279,16 @@ public class DrlModelVisualIDRegistry {
 	 */
 	private static boolean isNodeProduct_2002(Product element) {
 		return true;
-	}	
+	}
 
 	/**
 	 * User can change implementation of this method to handle some specific
 	 * situations not covered by default logic.
 	 *
 	 * @generated
-	 */	
-	private static int getUnrecognizedProductLine_1001ChildNodeID(EObject domainElement, String semanticHint) {
+	 */
+	private static int getUnrecognizedProductLine_1001ChildNodeID(
+			EObject domainElement, String semanticHint) {
 		return -1;
 	}
 
@@ -278,8 +297,9 @@ public class DrlModelVisualIDRegistry {
 	 * situations not covered by default logic.
 	 *
 	 * @generated
-	 */	
-	private static int getUnrecognizedPLScheme_2001ChildNodeID(EObject domainElement, String semanticHint) {
+	 */
+	private static int getUnrecognizedPLScheme_2001ChildNodeID(
+			EObject domainElement, String semanticHint) {
 		return -1;
 	}
 
@@ -288,8 +308,9 @@ public class DrlModelVisualIDRegistry {
 	 * situations not covered by default logic.
 	 *
 	 * @generated
-	 */	
-	private static int getUnrecognizedProduct_2002ChildNodeID(EObject domainElement, String semanticHint) {
+	 */
+	private static int getUnrecognizedProduct_2002ChildNodeID(
+			EObject domainElement, String semanticHint) {
 		return -1;
 	}
 
@@ -298,8 +319,9 @@ public class DrlModelVisualIDRegistry {
 	 * situations not covered by default logic.
 	 *
 	 * @generated
-	 */	
-	private static int getUnrecognizedProductLinePLSchemeCompartment_5001ChildNodeID(EObject domainElement, String semanticHint) {
+	 */
+	private static int getUnrecognizedProductLinePLSchemeCompartment_5001ChildNodeID(
+			EObject domainElement, String semanticHint) {
 		return -1;
 	}
 
@@ -308,8 +330,9 @@ public class DrlModelVisualIDRegistry {
 	 * situations not covered by default logic.
 	 *
 	 * @generated
-	 */	
-	private static int getUnrecognizedProductLineDocumentationCoreCompartment_5002ChildNodeID(EObject domainElement, String semanticHint) {
+	 */
+	private static int getUnrecognizedProductLineDocumentationCoreCompartment_5002ChildNodeID(
+			EObject domainElement, String semanticHint) {
 		return -1;
 	}
 
@@ -318,8 +341,9 @@ public class DrlModelVisualIDRegistry {
 	 * situations not covered by default logic.
 	 *
 	 * @generated
-	 */	
-	private static int getUnrecognizedPLSchemeProductsCompartment_5003ChildNodeID(EObject domainElement, String semanticHint) {
+	 */
+	private static int getUnrecognizedPLSchemeProductsCompartment_5003ChildNodeID(
+			EObject domainElement, String semanticHint) {
 		return -1;
 	}
 
@@ -328,8 +352,9 @@ public class DrlModelVisualIDRegistry {
 	 * situations not covered by default logic.
 	 *
 	 * @generated
-	 */	
-	private static int getUnrecognizedProductLine_79ChildNodeID(EObject domainElement, String semanticHint) {
+	 */
+	private static int getUnrecognizedProductLine_79ChildNodeID(
+			EObject domainElement, String semanticHint) {
 		return -1;
 	}
 
@@ -343,4 +368,3 @@ public class DrlModelVisualIDRegistry {
 		return -1;
 	}
 }
-	

@@ -1,5 +1,6 @@
 package org.spbu.pldoctoolkit.ui.perspectives;
 
+import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
@@ -35,6 +36,8 @@ public class DrlPerspectiveFactory implements IPerspectiveFactory {
 		layout.addView(IPageLayout.ID_OUTLINE, IPageLayout.BOTTOM,
 				IPageLayout.DEFAULT_VIEW_RATIO, IPageLayout.ID_RES_NAV);
 
-		layout.addView(IPageLayout.ID_PROP_SHEET, IPageLayout.BOTTOM, 0.66f, editorArea);
+		IFolderLayout bottomFolder = layout.createFolder("bottom", IPageLayout.BOTTOM, 0.66f, editorArea);
+		bottomFolder.addView(IPageLayout.ID_PROP_SHEET);
+		bottomFolder.addView("org.eclipse.pde.runtime.LogView");
 	}
 }
