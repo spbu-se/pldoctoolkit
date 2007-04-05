@@ -1,21 +1,14 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
-import java.util.Iterator;
-
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editparts.LayerManager;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
@@ -29,11 +22,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 import org.spbu.pldoctoolkit.graph.GroupType;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DrlModelExtNodeLabelHostLayoutEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElemRefGroupCanonicalEditPolicy;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElemRefGroupGraphicalNodeEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElemRefGroupItemSemanticEditPolicy;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
 
 /**
  * @generated
