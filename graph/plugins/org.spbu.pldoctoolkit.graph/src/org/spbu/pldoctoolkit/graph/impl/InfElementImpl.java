@@ -6,16 +6,15 @@
  */
 package org.spbu.pldoctoolkit.graph.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
+import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
-import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.NestPoint;
 
@@ -27,7 +26,6 @@ import org.spbu.pldoctoolkit.graph.NestPoint;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.InfElementImpl#getNestPoints <em>Nest Points</em>}</li>
- *   <li>{@link org.spbu.pldoctoolkit.graph.impl.InfElementImpl#getOwnerInfElemRef <em>Owner Inf Elem Ref</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,24 +40,14 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	public static final String copyright = "copyleft 2007";
 
 	/**
-	 * The cached value of the '{@link #getNestPoints() <em>Nest Points</em>}' containment reference.
+	 * The cached value of the '{@link #getNestPoints() <em>Nest Points</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getNestPoints()
 	 * @generated
 	 * @ordered
 	 */
-	protected NestPoint nestPoints;
-
-	/**
-	 * The cached value of the '{@link #getOwnerInfElemRef() <em>Owner Inf Elem Ref</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnerInfElemRef()
-	 * @generated
-	 * @ordered
-	 */
-	protected InfElemRef ownerInfElemRef;
+	protected EList nestPoints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,100 +72,11 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NestPoint getNestPoints() {
+	public EList getNestPoints() {
+		if (nestPoints == null) {
+			nestPoints = new EObjectContainmentEList(NestPoint.class, this, DrlPackage.INF_ELEMENT__NEST_POINTS);
+		}
 		return nestPoints;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetNestPoints(NestPoint newNestPoints, NotificationChain msgs) {
-		NestPoint oldNestPoints = nestPoints;
-		nestPoints = newNestPoints;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEMENT__NEST_POINTS, oldNestPoints, newNestPoints);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNestPoints(NestPoint newNestPoints) {
-		if (newNestPoints != nestPoints) {
-			NotificationChain msgs = null;
-			if (nestPoints != null)
-				msgs = ((InternalEObject)nestPoints).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DrlPackage.INF_ELEMENT__NEST_POINTS, null, msgs);
-			if (newNestPoints != null)
-				msgs = ((InternalEObject)newNestPoints).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DrlPackage.INF_ELEMENT__NEST_POINTS, null, msgs);
-			msgs = basicSetNestPoints(newNestPoints, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEMENT__NEST_POINTS, newNestPoints, newNestPoints));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InfElemRef getOwnerInfElemRef() {
-		return ownerInfElemRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnerInfElemRef(InfElemRef newOwnerInfElemRef, NotificationChain msgs) {
-		InfElemRef oldOwnerInfElemRef = ownerInfElemRef;
-		ownerInfElemRef = newOwnerInfElemRef;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF, oldOwnerInfElemRef, newOwnerInfElemRef);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnerInfElemRef(InfElemRef newOwnerInfElemRef) {
-		if (newOwnerInfElemRef != ownerInfElemRef) {
-			NotificationChain msgs = null;
-			if (ownerInfElemRef != null)
-				msgs = ((InternalEObject)ownerInfElemRef).eInverseRemove(this, DrlPackage.INF_ELEM_REF__INFELEM, InfElemRef.class, msgs);
-			if (newOwnerInfElemRef != null)
-				msgs = ((InternalEObject)newOwnerInfElemRef).eInverseAdd(this, DrlPackage.INF_ELEM_REF__INFELEM, InfElemRef.class, msgs);
-			msgs = basicSetOwnerInfElemRef(newOwnerInfElemRef, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF, newOwnerInfElemRef, newOwnerInfElemRef));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF:
-				if (ownerInfElemRef != null)
-					msgs = ((InternalEObject)ownerInfElemRef).eInverseRemove(this, DrlPackage.INF_ELEM_REF__INFELEM, InfElemRef.class, msgs);
-				return basicSetOwnerInfElemRef((InfElemRef)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -188,9 +87,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEMENT__NEST_POINTS:
-				return basicSetNestPoints(null, msgs);
-			case DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF:
-				return basicSetOwnerInfElemRef(null, msgs);
+				return ((InternalEList)getNestPoints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -204,8 +101,6 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 		switch (featureID) {
 			case DrlPackage.INF_ELEMENT__NEST_POINTS:
 				return getNestPoints();
-			case DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF:
-				return getOwnerInfElemRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -218,10 +113,8 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEMENT__NEST_POINTS:
-				setNestPoints((NestPoint)newValue);
-				return;
-			case DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF:
-				setOwnerInfElemRef((InfElemRef)newValue);
+				getNestPoints().clear();
+				getNestPoints().addAll((Collection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -235,10 +128,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEMENT__NEST_POINTS:
-				setNestPoints((NestPoint)null);
-				return;
-			case DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF:
-				setOwnerInfElemRef((InfElemRef)null);
+				getNestPoints().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -252,9 +142,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEMENT__NEST_POINTS:
-				return nestPoints != null;
-			case DrlPackage.INF_ELEMENT__OWNER_INF_ELEM_REF:
-				return ownerInfElemRef != null;
+				return nestPoints != null && !nestPoints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

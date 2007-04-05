@@ -6,6 +6,7 @@
  */
 package org.spbu.pldoctoolkit.graph.validation;
 
+import org.eclipse.emf.common.util.EList;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.NestPoint;
 
@@ -17,6 +18,8 @@ import org.spbu.pldoctoolkit.graph.NestPoint;
  */
 public interface InfElementValidator {
 	boolean validate();
+
+	boolean validateNestPoints(EList value);
 
 	boolean validateNestPoints(NestPoint value);
 	boolean validateOwnerInfElemRef(InfElemRef value);

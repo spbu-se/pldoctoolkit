@@ -90,8 +90,6 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 */
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case DrlPackage.NEST_POINT_TYPE:
-				return createNestPointTypeFromString(eDataType, initialValue);
 			case DrlPackage.GROUP_TYPE:
 				return createGroupTypeFromString(eDataType, initialValue);
 			default:
@@ -106,8 +104,6 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 */
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case DrlPackage.NEST_POINT_TYPE:
-				return convertNestPointTypeToString(eDataType, instanceValue);
 			case DrlPackage.GROUP_TYPE:
 				return convertGroupTypeToString(eDataType, instanceValue);
 			default:
@@ -223,26 +219,6 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	public PLScheme createPLScheme() {
 		PLSchemeImpl plScheme = new PLSchemeImpl();
 		return plScheme;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NestPointType createNestPointTypeFromString(EDataType eDataType, String initialValue) {
-		NestPointType result = NestPointType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertNestPointTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

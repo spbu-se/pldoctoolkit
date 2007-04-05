@@ -69,31 +69,8 @@ public class InfElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOwnerInfElemRefPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Owner Inf Elem Ref feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addOwnerInfElemRefPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_InfElement_ownerInfElemRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_InfElement_ownerInfElemRef_feature", "_UI_InfElement_type"),
-				 DrlPackage.Literals.INF_ELEMENT__OWNER_INF_ELEM_REF,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
