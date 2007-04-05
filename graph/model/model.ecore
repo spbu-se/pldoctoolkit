@@ -3,17 +3,9 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="graph"
     nsURI="http://tepkom.ru/drl" nsPrefix="v">
-  <eClassifiers xsi:type="ecore:EEnum" name="NestPointType">
-    <eLiterals name="INSERT_BEFORE" value="1"/>
-    <eLiterals name="INSERT_AFTER" value="2"/>
-    <eLiterals name="REPLACE" value="3"/>
-    <eLiterals name="DELETE" value="4"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfElement" eSuperTypes="#//GenericDocumentPart">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nestPoints" eType="#//NestPoint"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerInfElemRef" eType="#//InfElemRef"
-        derived="true" resolveProxies="false" eOpposite="#//InfElemRef/infelem"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestPoints" upperBound="-1"
+        eType="#//NestPoint" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfProduct" eSuperTypes="#//GenericDocumentPart"/>
   <eClassifiers xsi:type="ecore:EClass" name="FinalInfProduct">
@@ -40,7 +32,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="infelem" lowerBound="1"
-        eType="#//InfElement" eOpposite="#//InfElement/ownerInfElemRef"/>
+        eType="#//InfElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//InfElemRefGroup"
         eOpposite="#//InfElemRefGroup/infElemRefsGroup"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

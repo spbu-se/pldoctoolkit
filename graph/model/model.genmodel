@@ -8,19 +8,12 @@
   <foreignModel>model.ecore</foreignModel>
   <genPackages prefix="Drl" basePackage="org.spbu.pldoctoolkit" resource="XML" disposableProviderFactory="true"
       ecorePackage="model.ecore#/">
-    <genEnums ecoreEnum="model.ecore#//NestPointType">
-      <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestPointType/INSERT_BEFORE"/>
-      <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestPointType/INSERT_AFTER"/>
-      <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestPointType/REPLACE"/>
-      <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestPointType/DELETE"/>
-    </genEnums>
     <genEnums ecoreEnum="model.ecore#//GroupType">
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//GroupType/OR"/>
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//GroupType/XOR"/>
     </genEnums>
     <genClasses ecoreClass="model.ecore#//InfElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//InfElement/nestPoints"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//InfElement/ownerInfElemRef"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//InfProduct"/>
     <genClasses ecoreClass="model.ecore#//FinalInfProduct">
