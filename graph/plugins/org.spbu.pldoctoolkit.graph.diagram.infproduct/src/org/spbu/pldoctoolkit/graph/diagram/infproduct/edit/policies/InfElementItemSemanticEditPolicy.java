@@ -126,7 +126,6 @@ public class InfElementItemSemanticEditPolicy extends
 			req.setContainmentFeature(DrlPackage.eINSTANCE
 					.getGenericDocumentPart_InfElemRefs());
 		}
-		
 		return getMSLWrapper(new InfElemRefTypeLinkCreateCommand(req, source,
 				target));
 	}

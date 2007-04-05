@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -43,6 +44,8 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.emf.ecore.util.FeatureMap;
 
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
+import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.spbu.pldoctoolkit.graph.InfProduct;
 
 /**
  * @generated
@@ -339,7 +342,7 @@ public class DrlModelElementChooserDialog extends Dialog {
 	private class OkButtonEnabler implements ISelectionChangedListener {
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		public void selectionChanged(SelectionChangedEvent event) {
 			if (event.getSelection() instanceof IStructuredSelection) {
@@ -357,17 +360,21 @@ public class DrlModelElementChooserDialog extends Dialog {
 					}
 					if (selectedElement instanceof EObject) {
 						mySelectedModelElement = (EObject) selectedElement;
-						setOkButtonEnabled(ViewService
-								.getInstance()
-								.provides(
-										Node.class,
-										new EObjectAdapter(
-												mySelectedModelElement),
-										myView,
-										null,
-										ViewUtil.APPEND,
-										true,
-										DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+						// HAND
+						boolean doEnable = mySelectedModelElement.eClass().getClassifierID() != DrlPackage.INF_PRODUCT
+								&& ViewService
+										.getInstance()
+										.provides(
+												Node.class,
+												new EObjectAdapter(
+														mySelectedModelElement),
+												myView,
+												null,
+												ViewUtil.APPEND,
+												true,
+												DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+
+						setOkButtonEnabled(doEnable);
 						return;
 					}
 				}
