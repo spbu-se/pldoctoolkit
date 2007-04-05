@@ -1,7 +1,6 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
 import org.eclipse.draw2d.FigureUtilities;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -12,7 +11,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
 

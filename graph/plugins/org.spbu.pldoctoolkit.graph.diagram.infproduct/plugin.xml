@@ -191,10 +191,12 @@
       </ParserProvider>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+   <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <?gmfgen generated="true"?>
-      <decoratorProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelShortcutsDecoratorProvider">
+      <decoratorProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelValidationDecoratorProvider">
          <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
       </decoratorProvider>
    </extension>
 
@@ -291,5 +293,37 @@
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroupInfElemRefsGroup_3003"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
+   </extension><extension id="ValidationContributionItemProvider" name="Validation"
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <?gmfgen generated="true"?>
+      <contributionItemProvider checkPluginLoaded="true"
+         class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelValidationProvider">
+         <Priority name="Lowest"/>
+         <partContribution id="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorID">
+            <partMenuGroup menubarPath="/diagramMenu/" id="validationGroup"/>
+            <partAction id="validateAction" menubarPath="/diagramMenu/validationGroup"/>
+         </partContribution>
+      </contributionItemProvider>
    </extension>
+<extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelMarkerNavigationProvider">
+         <MarkerType name="org.spbu.pldoctoolkit.graph.diagram.infproduct.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+<extension id="diagnostic" name="InfProduct Diagram Plugin problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension>
+   <!--
+<extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+      </decoratorProvider>
+   </extension>
+	-->
 </plugin>
