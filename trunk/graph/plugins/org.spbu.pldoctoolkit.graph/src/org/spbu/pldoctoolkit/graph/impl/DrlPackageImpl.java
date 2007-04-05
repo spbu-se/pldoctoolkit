@@ -134,13 +134,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum nestPointTypeEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EEnum groupTypeEEnum = null;
 
 	/**
@@ -227,15 +220,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 */
 	public EReference getInfElement_NestPoints() {
 		return (EReference)infElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInfElement_OwnerInfElemRef() {
-		return (EReference)infElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -576,15 +560,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getNestPointType() {
-		return nestPointTypeEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getGroupType() {
 		return groupTypeEEnum;
 	}
@@ -619,7 +594,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		// Create classes and their features
 		infElementEClass = createEClass(INF_ELEMENT);
 		createEReference(infElementEClass, INF_ELEMENT__NEST_POINTS);
-		createEReference(infElementEClass, INF_ELEMENT__OWNER_INF_ELEM_REF);
 
 		infProductEClass = createEClass(INF_PRODUCT);
 
@@ -670,7 +644,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		createEReference(plSchemeEClass, PL_SCHEME__PRODUCTS);
 
 		// Create enums
-		nestPointTypeEEnum = createEEnum(NEST_POINT_TYPE);
 		groupTypeEEnum = createEEnum(GROUP_TYPE);
 	}
 
@@ -703,8 +676,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(infElementEClass, InfElement.class, "InfElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInfElement_NestPoints(), this.getNestPoint(), null, "nestPoints", null, 0, 1, InfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInfElement_OwnerInfElemRef(), this.getInfElemRef(), this.getInfElemRef_Infelem(), "ownerInfElemRef", null, 0, 1, InfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getInfElement_NestPoints(), this.getNestPoint(), null, "nestPoints", null, 0, -1, InfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(infProductEClass, InfProduct.class, "InfProduct", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -724,7 +696,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 
 		initEClass(infElemRefEClass, InfElemRef.class, "InfElemRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInfElemRef_Id(), ecorePackage.getEString(), "id", null, 1, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInfElemRef_Infelem(), this.getInfElement(), this.getInfElement_OwnerInfElemRef(), "infelem", null, 1, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInfElemRef_Infelem(), this.getInfElement(), null, "infelem", null, 1, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInfElemRef_Group(), this.getInfElemRefGroup(), this.getInfElemRefGroup_InfElemRefsGroup(), "group", null, 0, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInfElemRef_Optional(), ecorePackage.getEBoolean(), "optional", null, 0, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -755,12 +727,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		initEReference(getPLScheme_Products(), this.getProduct(), null, "products", null, 0, -1, PLScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
-		initEEnum(nestPointTypeEEnum, NestPointType.class, "NestPointType");
-		addEEnumLiteral(nestPointTypeEEnum, NestPointType.INSERT_BEFORE_LITERAL);
-		addEEnumLiteral(nestPointTypeEEnum, NestPointType.INSERT_AFTER_LITERAL);
-		addEEnumLiteral(nestPointTypeEEnum, NestPointType.REPLACE_LITERAL);
-		addEEnumLiteral(nestPointTypeEEnum, NestPointType.DELETE_LITERAL);
-
 		initEEnum(groupTypeEEnum, GroupType.class, "GroupType");
 		addEEnumLiteral(groupTypeEEnum, GroupType.OR_LITERAL);
 		addEEnumLiteral(groupTypeEEnum, GroupType.XOR_LITERAL);

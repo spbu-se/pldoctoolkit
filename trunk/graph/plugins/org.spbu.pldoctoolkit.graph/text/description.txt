@@ -8,8 +8,7 @@ This can be disabled with -vmargs -Dorg.eclipse.emf.examples.generator.validator
 Package graph <http://tepkom.ru/drl>
 
   Class InfElement -> GenericDocumentPart
-    Reference nestPoints : NestPoint
-    Reference /ownerInfElemRef : InfElemRef
+    Reference nestPoints : NestPoint<<0..*>>
 
   Class InfProduct -> GenericDocumentPart
 
@@ -58,12 +57,6 @@ Package graph <http://tepkom.ru/drl>
 
   Class PLScheme
     Reference products : Product<<0..*>>
-
-  Enum NestPointType
-    Literal INSERT_BEFORE = 1
-    Literal INSERT_AFTER = 2
-    Literal REPLACE = 3
-    Literal DELETE = 4
 
   Enum GroupType
     Literal OR = 1

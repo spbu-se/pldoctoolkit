@@ -169,7 +169,7 @@ public interface DrlPackage extends EPackage {
 	int INF_ELEMENT__GROUPS = GENERIC_DOCUMENT_PART__GROUPS;
 
 	/**
-	 * The feature id for the '<em><b>Nest Points</b></em>' containment reference.
+	 * The feature id for the '<em><b>Nest Points</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -178,22 +178,13 @@ public interface DrlPackage extends EPackage {
 	int INF_ELEMENT__NEST_POINTS = GENERIC_DOCUMENT_PART_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owner Inf Elem Ref</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INF_ELEMENT__OWNER_INF_ELEM_REF = GENERIC_DOCUMENT_PART_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Inf Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEMENT_FEATURE_COUNT = GENERIC_DOCUMENT_PART_FEATURE_COUNT + 2;
+	int INF_ELEMENT_FEATURE_COUNT = GENERIC_DOCUMENT_PART_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.InfProductImpl <em>Inf Product</em>}' class.
@@ -620,16 +611,6 @@ public interface DrlPackage extends EPackage {
 	int PL_SCHEME_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.NestPointType <em>Nest Point Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.spbu.pldoctoolkit.graph.NestPointType
-	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNestPointType()
-	 * @generated
-	 */
-	int NEST_POINT_TYPE = 12;
-
-	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.GroupType <em>Group Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -637,7 +618,7 @@ public interface DrlPackage extends EPackage {
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getGroupType()
 	 * @generated
 	 */
-	int GROUP_TYPE = 13;
+	int GROUP_TYPE = 12;
 
 
 	/**
@@ -651,26 +632,15 @@ public interface DrlPackage extends EPackage {
 	EClass getInfElement();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.spbu.pldoctoolkit.graph.InfElement#getNestPoints <em>Nest Points</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.spbu.pldoctoolkit.graph.InfElement#getNestPoints <em>Nest Points</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Nest Points</em>'.
+	 * @return the meta object for the containment reference list '<em>Nest Points</em>'.
 	 * @see org.spbu.pldoctoolkit.graph.InfElement#getNestPoints()
 	 * @see #getInfElement()
 	 * @generated
 	 */
 	EReference getInfElement_NestPoints();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.spbu.pldoctoolkit.graph.InfElement#getOwnerInfElemRef <em>Owner Inf Elem Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Owner Inf Elem Ref</em>'.
-	 * @see org.spbu.pldoctoolkit.graph.InfElement#getOwnerInfElemRef()
-	 * @see #getInfElement()
-	 * @generated
-	 */
-	EReference getInfElement_OwnerInfElemRef();
 
 	/**
 	 * Returns the meta object for class '{@link org.spbu.pldoctoolkit.graph.InfProduct <em>Inf Product</em>}'.
@@ -1069,16 +1039,6 @@ public interface DrlPackage extends EPackage {
 	EReference getPLScheme_Products();
 
 	/**
-	 * Returns the meta object for enum '{@link org.spbu.pldoctoolkit.graph.NestPointType <em>Nest Point Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Nest Point Type</em>'.
-	 * @see org.spbu.pldoctoolkit.graph.NestPointType
-	 * @generated
-	 */
-	EEnum getNestPointType();
-
-	/**
 	 * Returns the meta object for enum '{@link org.spbu.pldoctoolkit.graph.GroupType <em>Group Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1121,20 +1081,12 @@ public interface DrlPackage extends EPackage {
 		EClass INF_ELEMENT = eINSTANCE.getInfElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Nest Points</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Nest Points</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference INF_ELEMENT__NEST_POINTS = eINSTANCE.getInfElement_NestPoints();
-
-		/**
-		 * The meta object literal for the '<em><b>Owner Inf Elem Ref</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INF_ELEMENT__OWNER_INF_ELEM_REF = eINSTANCE.getInfElement_OwnerInfElemRef();
 
 		/**
 		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.impl.InfProductImpl <em>Inf Product</em>}' class.
@@ -1453,16 +1405,6 @@ public interface DrlPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PL_SCHEME__PRODUCTS = eINSTANCE.getPLScheme_Products();
-
-		/**
-		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.NestPointType <em>Nest Point Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.spbu.pldoctoolkit.graph.NestPointType
-		 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNestPointType()
-		 * @generated
-		 */
-		EEnum NEST_POINT_TYPE = eINSTANCE.getNestPointType();
 
 		/**
 		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.GroupType <em>Group Type</em>}' enum.
