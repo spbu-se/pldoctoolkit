@@ -94,7 +94,7 @@
         text="&lt;...>"/>
     <figures
         xsi:type="gmfgraph:Rectangle"
-        referencingElements="ProductLine InfProductsCompartment Products DocumentationCoreCompartment"
+        referencingElements="ProductLine InfProductsCompartment ProductLineDataCompartment"
         name="ProductLineFigure">
       <children
           xsi:type="gmfgraph:Label"
@@ -159,6 +159,10 @@
         xsi:type="gmfgraph:Rectangle"
         referencingElements="InfProductCompartment DocumentationCore"
         name="DocumentationCoreFigure"/>
+    <figures
+        xsi:type="gmfgraph:Rectangle"
+        referencingElements="DocumentationCoreCompartment PLSchemeCompartment ProductLineData"
+        name="ProductLineDataFigure"/>
   </figures>
   <nodes
       name="InfElement"
@@ -191,6 +195,10 @@
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="FILL"/>
   </nodes>
+  <nodes
+      name="ProductLineData"
+      figure="ProductLineDataFigure"
+      resizeConstraint="NONE"/>
   <connections
       name="InfElemRefConnection"
       figure="InfElemRefFigure"/>
@@ -213,8 +221,8 @@
         alignment="FILL"/>
   </compartments>
   <compartments
-      name="Products"
-      figure="ProductLineFigure"
+      name="PLSchemeCompartment"
+      figure="ProductLineDataFigure"
       needsTitle="true">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
@@ -222,7 +230,7 @@
   </compartments>
   <compartments
       name="DocumentationCoreCompartment"
-      figure="ProductLineFigure"
+      figure="ProductLineDataFigure"
       needsTitle="true">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
@@ -231,6 +239,13 @@
   <compartments
       name="InfProductCompartment"
       figure="DocumentationCoreFigure">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="FILL"/>
+  </compartments>
+  <compartments
+      name="ProductLineDataCompartment"
+      figure="ProductLineFigure">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="FILL"/>

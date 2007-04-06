@@ -18,63 +18,63 @@
       <diagramNode
           href="model.gmfgraph#ProductLine"/>
       <children
-          compartment="//@nodes.0/@ownedChild/@compartments.0">
-        <containmentFeature
-            href="model.ecore#//ProductLine/scheme"/>
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.0/@ownedChild/@children.0/@ownedChild">
         <ownedChild>
-          <domainMetaElement
-              href="model.ecore#//PLScheme"/>
           <diagramNode
-              href="model.gmfgraph#PLScheme"/>
+              href="model.gmfgraph#ProductLineData"/>
           <children
               compartment="//@nodes.0/@ownedChild/@children.0/@ownedChild/@compartments.0">
             <containmentFeature
-                href="model.ecore#//PLScheme/products"/>
+                href="model.ecore#//ProductLine/scheme"/>
             <ownedChild>
               <domainMetaElement
-                  href="model.ecore#//Product"/>
-              <labelMappings
-                  xsi:type="gmfmap:FeatureLabelMapping">
-                <diagramLabel
-                    href="model.gmfgraph#ProductName"/>
-                <features
-                    href="model.ecore#//Product/name"/>
-              </labelMappings>
-              <tool
-                  xsi:type="gmftool:CreationTool"
-                  href="model.gmftool#//@palette/@tools.0/@tools.3"/>
+                  href="model.ecore#//PLScheme"/>
               <diagramNode
-                  href="model.gmfgraph#Product"/>
+                  href="model.gmfgraph#PLScheme"/>
+              <children
+                  compartment="//@nodes.0/@ownedChild/@children.0/@ownedChild/@children.0/@ownedChild/@compartments.0">
+                <containmentFeature
+                    href="model.ecore#//PLScheme/products"/>
+                <ownedChild>
+                  <domainMetaElement
+                      href="model.ecore#//Product"/>
+                  <labelMappings
+                      xsi:type="gmfmap:FeatureLabelMapping">
+                    <diagramLabel
+                        href="model.gmfgraph#ProductName"/>
+                    <features
+                        href="model.ecore#//Product/name"/>
+                  </labelMappings>
+                  <tool
+                      xsi:type="gmftool:CreationTool"
+                      href="model.gmftool#//@palette/@tools.0/@tools.3"/>
+                  <diagramNode
+                      href="model.gmfgraph#Product"/>
+                </ownedChild>
+              </children>
+              <compartments
+                  children="//@nodes.0/@ownedChild/@children.0/@ownedChild/@children.0/@ownedChild/@children.0">
+                <compartment
+                    href="model.gmfgraph#ProductsCompartment"/>
+              </compartments>
             </ownedChild>
           </children>
           <compartments
               children="//@nodes.0/@ownedChild/@children.0/@ownedChild/@children.0">
             <compartment
-                href="model.gmfgraph#ProductsCompartment"/>
+                href="model.gmfgraph#PLSchemeCompartment"/>
           </compartments>
-        </ownedChild>
-      </children>
-      <children
-          compartment="//@nodes.0/@ownedChild/@compartments.1">
-        <childrenFeature
-            href="model.ecore#//ProductLine/documentationCore"/>
-        <ownedChild>
-          <domainMetaElement
-              href="model.ecore#//DocumentationCore"/>
-          <diagramNode
-              href="model.gmfgraph#DocumentationCore"/>
-          <children/>
+          <compartments>
+            <compartment
+                href="model.gmfgraph#DocumentationCoreCompartment"/>
+          </compartments>
         </ownedChild>
       </children>
       <compartments
           children="//@nodes.0/@ownedChild/@children.0">
         <compartment
-            href="model.gmfgraph#Products"/>
-      </compartments>
-      <compartments
-          children="//@nodes.0/@ownedChild/@children.1">
-        <compartment
-            href="model.gmfgraph#DocumentationCoreCompartment"/>
+            href="model.gmfgraph#ProductLineDataCompartment"/>
       </compartments>
     </ownedChild>
   </nodes>
