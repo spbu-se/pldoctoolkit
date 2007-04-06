@@ -20,7 +20,7 @@ public class PLSchemeProductsCompartmentItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (DrlModelElementTypes.Product_2002 == req.getElementType()) {
+		if (DrlModelElementTypes.Product_2003 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(DrlPackage.eINSTANCE
 						.getPLScheme_Products());

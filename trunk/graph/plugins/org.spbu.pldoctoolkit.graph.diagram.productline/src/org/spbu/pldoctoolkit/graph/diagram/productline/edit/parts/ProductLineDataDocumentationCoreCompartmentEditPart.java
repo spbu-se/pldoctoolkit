@@ -5,24 +5,23 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLineDocumentationCoreCompartmentItemSemanticEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.Messages;
 
 /**
  * @generated
  */
-public class ProductLineDocumentationCoreCompartmentEditPart extends
+public class ProductLineDataDocumentationCoreCompartmentEditPart extends
 		ListCompartmentEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5002;
+	public static final int VISUAL_ID = 5003;
 
 	/**
 	 * @generated
 	 */
-	public ProductLineDocumentationCoreCompartmentEditPart(View view) {
+	public ProductLineDataDocumentationCoreCompartmentEditPart(View view) {
 		super(view);
 	}
 
@@ -37,7 +36,7 @@ public class ProductLineDocumentationCoreCompartmentEditPart extends
 	 * @generated
 	 */
 	public String getCompartmentName() {
-		return Messages.ProductLineDocumentationCoreCompartmentEditPart_title;
+		return Messages.ProductLineDataDocumentationCoreCompartmentEditPart_title;
 	}
 
 	/**
@@ -45,9 +44,7 @@ public class ProductLineDocumentationCoreCompartmentEditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new ProductLineDocumentationCoreCompartmentItemSemanticEditPolicy());
+		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 	}
 
 	/**

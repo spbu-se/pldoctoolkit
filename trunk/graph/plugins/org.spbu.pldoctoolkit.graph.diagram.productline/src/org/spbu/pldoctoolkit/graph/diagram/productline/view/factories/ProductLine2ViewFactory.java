@@ -4,17 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EcoreFactory;
+
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.AbstractShapeViewFactory;
+
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDocumentationCoreCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineNameEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLinePLSchemeCompartmentEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineProductLineDataCompartmentEditPart;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**
@@ -23,7 +28,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegi
 public class ProductLine2ViewFactory extends AbstractShapeViewFactory {
 
 	/**
-	 * @generated
+	 * @generated 
 	 */
 	protected List createStyles(View view) {
 		List styles = new ArrayList();
@@ -35,7 +40,7 @@ public class ProductLine2ViewFactory extends AbstractShapeViewFactory {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void decorateView(View containerView, View view,
 			IAdaptable semanticAdapter, String semanticHint, int index,
@@ -67,14 +72,7 @@ public class ProductLine2ViewFactory extends AbstractShapeViewFactory {
 						semanticAdapter,
 						view,
 						DrlModelVisualIDRegistry
-								.getType(ProductLinePLSchemeCompartmentEditPart.VISUAL_ID),
-						ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService()
-				.createNode(
-						semanticAdapter,
-						view,
-						DrlModelVisualIDRegistry
-								.getType(ProductLineDocumentationCoreCompartmentEditPart.VISUAL_ID),
+								.getType(ProductLineProductLineDataCompartmentEditPart.VISUAL_ID),
 						ViewUtil.APPEND, true, getPreferencesHint());
 	}
 

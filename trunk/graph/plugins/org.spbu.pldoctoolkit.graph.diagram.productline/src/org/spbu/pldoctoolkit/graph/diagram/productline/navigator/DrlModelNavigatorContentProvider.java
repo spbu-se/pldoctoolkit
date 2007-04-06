@@ -23,8 +23,10 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPa
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataPLSchemeCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLinePLSchemeCompartmentEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineProductLineDataCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**
@@ -152,7 +154,19 @@ public class DrlModelNavigatorContentProvider implements ICommonContentProvider 
 			Collection result = new ArrayList();
 			Collection connectedViews = getChildrenByType(Collections
 					.singleton(view),
-					ProductLinePLSchemeCompartmentEditPart.VISUAL_ID);
+					ProductLineProductLineDataCompartmentEditPart.VISUAL_ID);
+			connectedViews = getChildrenByType(connectedViews,
+					ProductLineDataEditPart.VISUAL_ID);
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			return result.toArray();
+		}
+
+		case ProductLineDataEditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			Collection connectedViews = getChildrenByType(Collections
+					.singleton(view),
+					ProductLineDataPLSchemeCompartmentEditPart.VISUAL_ID);
 			connectedViews = getChildrenByType(connectedViews,
 					PLSchemeEditPart.VISUAL_ID);
 			result.addAll(createNavigatorItems(connectedViews, parentElement,

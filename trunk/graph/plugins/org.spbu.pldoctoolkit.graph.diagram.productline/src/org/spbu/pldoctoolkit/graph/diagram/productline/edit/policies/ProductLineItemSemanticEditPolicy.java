@@ -4,9 +4,11 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.commands.ProductLineCreateCommand;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
 /**

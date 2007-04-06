@@ -25,22 +25,23 @@ public class PLSchemeItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		CompoundCommand cc = new CompoundCommand();
-		Collection allEdges = new ArrayList();
-		View view = (View) getHost().getModel();
-		allEdges.addAll(view.getSourceEdges());
-		allEdges.addAll(view.getTargetEdges());
-		for (Iterator it = allEdges.iterator(); it.hasNext();) {
-			Edge nextEdge = (Edge) it.next();
-			EditPart nextEditPart = (EditPart) getHost().getViewer()
-					.getEditPartRegistry().get(nextEdge);
-			EditCommandRequestWrapper editCommandRequest = new EditCommandRequestWrapper(
-					new DestroyElementRequest(((PLSchemeEditPart) getHost())
-							.getEditingDomain(), req.isConfirmationRequired()),
-					Collections.EMPTY_MAP);
-			cc.add(nextEditPart.getCommand(editCommandRequest));
-		}
-		cc.add(getMSLWrapper(new DestroyElementCommand(req)));
-		return cc;
+		return null;
+//		CompoundCommand cc = new CompoundCommand();
+//		Collection allEdges = new ArrayList();
+//		View view = (View) getHost().getModel();
+//		allEdges.addAll(view.getSourceEdges());
+//		allEdges.addAll(view.getTargetEdges());
+//		for (Iterator it = allEdges.iterator(); it.hasNext();) {
+//			Edge nextEdge = (Edge) it.next();
+//			EditPart nextEditPart = (EditPart) getHost().getViewer()
+//					.getEditPartRegistry().get(nextEdge);
+//			EditCommandRequestWrapper editCommandRequest = new EditCommandRequestWrapper(
+//					new DestroyElementRequest(((PLSchemeEditPart) getHost())
+//							.getEditingDomain(), req.isConfirmationRequired()),
+//					Collections.EMPTY_MAP);
+//			cc.add(nextEditPart.getCommand(editCommandRequest));
+//		}
+//		cc.add(getMSLWrapper(new DestroyElementCommand(req)));
+//		return cc;
 	}
 }

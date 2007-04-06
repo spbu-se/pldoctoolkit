@@ -24,6 +24,7 @@ public class DrlModelPaletteFactory {
 	}
 
 	/**
+	 * Creates "Drl Tools" palette tool group
 	 * @generated
 	 */
 	private PaletteContainer createDrlTools1Group() {
@@ -38,12 +39,12 @@ public class DrlModelPaletteFactory {
 	 */
 	private ToolEntry createProduct1CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(DrlModelElementTypes.Product_2002);
+		types.add(DrlModelElementTypes.Product_2003);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Product1CreationTool_title,
 				Messages.Product1CreationTool_desc, types);
 		entry.setSmallIcon(DrlModelElementTypes
-				.getImageDescriptor(DrlModelElementTypes.Product_2002));
+				.getImageDescriptor(DrlModelElementTypes.Product_2003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

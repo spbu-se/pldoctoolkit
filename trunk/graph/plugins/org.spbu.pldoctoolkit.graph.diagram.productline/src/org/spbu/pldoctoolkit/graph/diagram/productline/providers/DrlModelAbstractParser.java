@@ -376,12 +376,21 @@ public abstract class DrlModelAbstractParser implements IParser {
 	 */
 	protected class InvalidValue {
 
+		/**
+		 * @generated
+		 */
 		private String description;
 
+		/**
+		 * @generated
+		 */
 		public InvalidValue(String description) {
 			this.description = description;
 		}
 
+		/**
+		 * @generated
+		 */
 		public String toString() {
 			return description;
 		}

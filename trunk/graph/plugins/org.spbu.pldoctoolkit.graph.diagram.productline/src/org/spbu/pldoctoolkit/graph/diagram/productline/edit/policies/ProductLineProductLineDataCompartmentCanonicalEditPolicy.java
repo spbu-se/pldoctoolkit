@@ -9,14 +9,14 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ProductCanonicalEditPolicy extends CanonicalEditPolicy {
+public class ProductLineProductLineDataCompartmentCanonicalEditPolicy extends
+		CanonicalEditPolicy {
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected List getSemanticChildrenList() {
-		List result = new LinkedList();
-		return result;
+		return new LinkedList();
 	}
 
 	/**

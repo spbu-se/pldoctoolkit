@@ -112,5 +112,4 @@ public class DrlModelCreationWizardPage extends WizardNewFileCreationPage {
 		}
 		return true;
 	}
-
 }

@@ -1,32 +1,47 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.navigator;
 
 import org.eclipse.core.runtime.IAdaptable;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
+
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+
 import org.eclipse.gmf.runtime.notation.View;
+
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+
 import org.eclipse.jface.viewers.ITreePathLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerLabel;
+
 import org.eclipse.swt.graphics.Image;
+
 import org.eclipse.ui.IMemento;
+
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
+
 import org.spbu.pldoctoolkit.graph.ProductLine;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductNameEditPart;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
 /**
@@ -100,12 +115,16 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 			return getImage(
 					"Navigator?TopLevelNode?http://tepkom.ru/drl?ProductLine",
 					DrlModelElementTypes.ProductLine_1001);
+		case ProductLineDataEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?org.eclipse.draw2d.RectangleFigure",
+					DrlModelElementTypes.Node_2001);
 		case PLSchemeEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://tepkom.ru/drl?PLScheme",
-					DrlModelElementTypes.PLScheme_2001);
+					DrlModelElementTypes.PLScheme_2002);
 		case ProductEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://tepkom.ru/drl?Product",
-					DrlModelElementTypes.Product_2002);
+					DrlModelElementTypes.Product_2003);
 		case ProductLineEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://tepkom.ru/drl?ProductLine",
@@ -169,10 +188,12 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 		switch (DrlModelVisualIDRegistry.getVisualID(view)) {
 		case ProductLine2EditPart.VISUAL_ID:
 			return getProductLine_1001Text(view);
+		case ProductLineDataEditPart.VISUAL_ID:
+			return getNode_2001Text(view);
 		case PLSchemeEditPart.VISUAL_ID:
-			return getPLScheme_2001Text(view);
+			return getPLScheme_2002Text(view);
 		case ProductEditPart.VISUAL_ID:
-			return getProduct_2002Text(view);
+			return getProduct_2003Text(view);
 		case ProductLineEditPart.VISUAL_ID:
 			return getProductLine_79Text(view);
 		default:
@@ -211,14 +232,21 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getPLScheme_2001Text(View view) {
+	private String getNode_2001Text(View view) {
 		return "";
 	}
 
 	/**
 	 * @generated
 	 */
-	private String getProduct_2002Text(View view) {
+	private String getPLScheme_2002Text(View view) {
+		return "";
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getProduct_2003Text(View view) {
 		IParser parser = ParserService.getInstance().getParser(
 				new IAdaptable() {
 					public Object getAdapter(Class adapter) {
@@ -227,7 +255,7 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 									.getType(ProductNameEditPart.VISUAL_ID);
 						}
 						if (IElementType.class.equals(adapter)) {
-							return DrlModelElementTypes.Product_2002;
+							return DrlModelElementTypes.Product_2003;
 						}
 						return null;
 					}

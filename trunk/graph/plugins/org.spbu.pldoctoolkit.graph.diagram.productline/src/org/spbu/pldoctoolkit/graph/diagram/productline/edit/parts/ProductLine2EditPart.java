@@ -1,39 +1,12 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RectangleFigure;
-import org.eclipse.draw2d.StackLayout;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.LayoutEditPolicy;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.View;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLine2ItemSemanticEditPolicy;
-import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin;
-import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
-import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
 /**
  * @generated
  */
-public class ProductLine2EditPart extends ShapeNodeEditPart {
+public class ProductLine2EditPart extends
+		org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -43,37 +16,39 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected IFigure contentPane;
+	protected org.eclipse.draw2d.IFigure contentPane;
 
 	/**
 	 * @generated
 	 */
-	protected IFigure primaryShape;
+	protected org.eclipse.draw2d.IFigure primaryShape;
 
 	/**
 	 * @generated
 	 */
-	public ProductLine2EditPart(View view) {
+	public ProductLine2EditPart(org.eclipse.gmf.runtime.notation.View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CreationEditPolicy() {
-					public Command getCommand(Request request) {
+		installEditPolicy(
+				org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE,
+				new org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy() {
+					public org.eclipse.gef.commands.Command getCommand(
+							org.eclipse.gef.Request request) {
 						if (understandsRequest(request)) {
-							if (request instanceof CreateViewAndElementRequest) {
-								CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request)
+							if (request instanceof org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest) {
+								org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter adapter = ((org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest) request)
 										.getViewAndElementDescriptor()
 										.getCreateElementRequestAdapter();
-								IElementType type = (IElementType) adapter
-										.getAdapter(IElementType.class);
-								if (type == DrlModelElementTypes.PLScheme_2001) {
-									EditPart compartmentEditPart = getChildBySemanticHint(DrlModelVisualIDRegistry
-											.getType(ProductLinePLSchemeCompartmentEditPart.VISUAL_ID));
+								org.eclipse.gmf.runtime.emf.type.core.IElementType type = (org.eclipse.gmf.runtime.emf.type.core.IElementType) adapter
+										.getAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType.class);
+								if (type == org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes.Node_2001) {
+									org.eclipse.gef.EditPart compartmentEditPart = getChildBySemanticHint(org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry
+											.getType(org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineProductLineDataCompartmentEditPart.VISUAL_ID));
 									return compartmentEditPart == null ? null
 											: compartmentEditPart
 													.getCommand(request);
@@ -86,31 +61,39 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 				});
 
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ProductLine2ItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(
+				org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
+				new org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLine2ItemSemanticEditPolicy());
+		installEditPolicy(org.eclipse.gef.EditPolicy.LAYOUT_ROLE,
+				createLayoutEditPolicy());
+		
+		//HAND
+		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+	protected org.eclipse.gef.editpolicies.LayoutEditPolicy createLayoutEditPolicy() {
+		org.eclipse.gef.editpolicies.LayoutEditPolicy lep = new org.eclipse.gef.editpolicies.LayoutEditPolicy() {
 
-			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+			protected org.eclipse.gef.EditPolicy createChildEditPolicy(
+					org.eclipse.gef.EditPart child) {
+				org.eclipse.gef.EditPolicy result = child
+						.getEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
-					result = new NonResizableEditPolicy();
+					result = new org.eclipse.gef.editpolicies.NonResizableEditPolicy();
 				}
 				return result;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected org.eclipse.gef.commands.Command getMoveChildrenCommand(
+					org.eclipse.gef.Request request) {
 				return null;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected org.eclipse.gef.commands.Command getCreateCommand(
+					org.eclipse.gef.requests.CreateRequest request) {
 				return null;
 			}
 		};
@@ -120,7 +103,7 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected IFigure createNodeShape() {
+	protected org.eclipse.draw2d.IFigure createNodeShape() {
 		ProductLineFigure figure = new ProductLineFigure();
 		return primaryShape = figure;
 	}
@@ -135,9 +118,9 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ProductLineNameEditPart) {
-			((ProductLineNameEditPart) childEditPart)
+	protected boolean addFixedChild(org.eclipse.gef.EditPart childEditPart) {
+		if (childEditPart instanceof org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineNameEditPart) {
+			((org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineNameEditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureProductLineNameFigure());
 			return true;
@@ -148,7 +131,7 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
+	protected boolean removeFixedChild(org.eclipse.gef.EditPart childEditPart) {
 
 		return false;
 	}
@@ -156,80 +139,8 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-				.DPtoLP(40), getMapMode().DPtoLP(40));
-		return result;
-	}
-
-	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
-	protected NodeFigure createNodeFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
-	}
-
-	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
-	 * 
-	 * @generated
-	 */
-	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
-			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout(true);
-			layout.setSpacing(getMapMode().DPtoLP(5));
-			nodeShape.setLayoutManager(layout);
-		}
-		return nodeShape; // use nodeShape itself as contentPane
-	}
-
-	/**
-	 * @generated
-	 */
-	public IFigure getContentPane() {
-		if (contentPane != null) {
-			return contentPane;
-		}
-		return super.getContentPane();
-	}
-
-	/**
-	 * @generated
-	 */
-	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(DrlModelVisualIDRegistry
-				.getType(ProductLineNameEditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void handleNotificationEvent(Notification event) {
-		if (event.getNotifier() == getModel()
-				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations()
-						.equals(event.getFeature())) {
-			handleMajorSemanticChange();
-		} else {
-			super.handleNotificationEvent(event);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
+	protected void addChildVisual(org.eclipse.gef.EditPart childEditPart,
+			int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
@@ -239,7 +150,7 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected void removeChildVisual(EditPart childEditPart) {
+	protected void removeChildVisual(org.eclipse.gef.EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
 		}
@@ -249,7 +160,8 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+	protected org.eclipse.draw2d.IFigure getContentPaneFor(
+			org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart editPart) {
 
 		return super.getContentPaneFor(editPart);
 	}
@@ -257,8 +169,91 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class ProductLineFigure extends RectangleFigure {
+	protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
+		org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure result = new org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure(
+				getMapMode().DPtoLP(40), getMapMode().DPtoLP(40));
+		return result;
+	}
 
+	/**
+	 * @generated
+	 */
+//	public org.eclipse.gef.EditPolicy getPrimaryDragEditPolicy() {
+//		return new Object();
+//	}
+
+	/**
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
+	 * 
+	 * @generated
+	 */
+	protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodeFigure() {
+		org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure figure = createNodePlate();
+		figure.setLayoutManager(new org.eclipse.draw2d.StackLayout());
+		org.eclipse.draw2d.IFigure shape = createNodeShape();
+		figure.add(shape);
+		contentPane = setupContentPane(shape);
+		return figure;
+	}
+
+	/**
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
+	 * @generated
+	 */
+	protected org.eclipse.draw2d.IFigure setupContentPane(
+			org.eclipse.draw2d.IFigure nodeShape) {
+		if (nodeShape.getLayoutManager() == null) {
+			org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout layout = new org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout();
+			layout.setSpacing(getMapMode().DPtoLP(5));
+			nodeShape.setLayoutManager(layout);
+		}
+		return nodeShape; // use nodeShape itself as contentPane
+	}
+
+	/**
+	 * @generated
+	 */
+	public org.eclipse.draw2d.IFigure getContentPane() {
+		if (contentPane != null) {
+			return contentPane;
+		}
+		return super.getContentPane();
+	}
+
+	/**
+	 * @generated
+	 */
+	public org.eclipse.gef.EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry
+				.getType(org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void handleNotificationEvent(
+			org.eclipse.emf.common.notify.Notification event) {
+		if (event.getNotifier() == getModel()
+				&& org.eclipse.emf.ecore.EcorePackage.eINSTANCE
+						.getEModelElement_EAnnotations().equals(
+								event.getFeature())) {
+			handleMajorSemanticChange();
+		} else {
+			super.handleNotificationEvent(event);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public class ProductLineFigure extends org.eclipse.draw2d.RectangleFigure {
 		/**
 		 * @generated
 		 */
@@ -268,7 +263,7 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 			this.setOutline(true);
 			this.setOutlineXOR(false);
 			this.setLineWidth(1);
-			this.setLineStyle(Graphics.LINE_SOLID);
+			this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_SOLID);
 			createContents();
 		}
 
@@ -277,7 +272,7 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			WrapLabel productLineNameFigure0 = new WrapLabel();
+			org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel productLineNameFigure0 = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel();
 			productLineNameFigure0.setText("<...>");
 
 			this.add(productLineNameFigure0);
@@ -288,19 +283,20 @@ public class ProductLine2EditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private WrapLabel fProductLineNameFigure;
+		private org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fProductLineNameFigure;
 
 		/**
 		 * @generated
 		 */
-		public WrapLabel getFigureProductLineNameFigure() {
+		public org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel getFigureProductLineNameFigure() {
 			return fProductLineNameFigure;
 		}
 
 		/**
 		 * @generated
 		 */
-		private void setFigureProductLineNameFigure(WrapLabel fig) {
+		private void setFigureProductLineNameFigure(
+				org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel fig) {
 			fProductLineNameFigure = fig;
 		}
 

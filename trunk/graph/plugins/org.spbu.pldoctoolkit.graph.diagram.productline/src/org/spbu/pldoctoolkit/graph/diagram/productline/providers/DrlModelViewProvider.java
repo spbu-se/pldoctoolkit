@@ -10,10 +10,12 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPa
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDocumentationCoreCompartmentEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataDocumentationCoreCompartmentEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataPLSchemeCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineNameEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLinePLSchemeCompartmentEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineProductLineDataCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductNameEditPart;
 
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
@@ -21,9 +23,11 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegi
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeProductsCompartmentViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLine2ViewFactory;
-import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineDocumentationCoreCompartmentViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineDataDocumentationCoreCompartmentViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineDataPLSchemeCompartmentViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineDataViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineNameViewFactory;
-import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLinePLSchemeCompartmentViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineProductLineDataCompartmentViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductNameViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductViewFactory;
@@ -68,16 +72,20 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 			return ProductLine2ViewFactory.class;
 		case ProductLineNameEditPart.VISUAL_ID:
 			return ProductLineNameViewFactory.class;
+		case ProductLineDataEditPart.VISUAL_ID:
+			return ProductLineDataViewFactory.class;
 		case PLSchemeEditPart.VISUAL_ID:
 			return PLSchemeViewFactory.class;
 		case ProductEditPart.VISUAL_ID:
 			return ProductViewFactory.class;
 		case ProductNameEditPart.VISUAL_ID:
 			return ProductNameViewFactory.class;
-		case ProductLinePLSchemeCompartmentEditPart.VISUAL_ID:
-			return ProductLinePLSchemeCompartmentViewFactory.class;
-		case ProductLineDocumentationCoreCompartmentEditPart.VISUAL_ID:
-			return ProductLineDocumentationCoreCompartmentViewFactory.class;
+		case ProductLineProductLineDataCompartmentEditPart.VISUAL_ID:
+			return ProductLineProductLineDataCompartmentViewFactory.class;
+		case ProductLineDataPLSchemeCompartmentEditPart.VISUAL_ID:
+			return ProductLineDataPLSchemeCompartmentViewFactory.class;
+		case ProductLineDataDocumentationCoreCompartmentEditPart.VISUAL_ID:
+			return ProductLineDataDocumentationCoreCompartmentViewFactory.class;
 		case PLSchemeProductsCompartmentEditPart.VISUAL_ID:
 			return PLSchemeProductsCompartmentViewFactory.class;
 		}
