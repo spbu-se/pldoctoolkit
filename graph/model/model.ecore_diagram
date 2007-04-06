@@ -501,12 +501,12 @@
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_ir748N1dEduC-YnC9Wo9pg" type="4002" source="_GVpB0NcHEduCbIyUsvsVew" target="_-5IXgNcHEduCbIyUsvsVew">
     <children xmi:type="notation:Node" xmi:id="_ir749d1dEduC-YnC9Wo9pg" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_ir749t1dEduC-YnC9Wo9pg" x="20" y="58"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ir749t1dEduC-YnC9Wo9pg" x="-6" y="64"/>
     </children>
     <styles xmi:type="notation:RoutingStyle" xmi:id="_ir748d1dEduC-YnC9Wo9pg"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_ir748t1dEduC-YnC9Wo9pg"/>
     <styles xmi:type="notation:LineStyle" xmi:id="_ir74891dEduC-YnC9Wo9pg"/>
-    <element xmi:type="ecore:EReference" href="model.ecore#//ProductLine/documentationCore"/>
+    <element xmi:type="ecore:EReference" href="model.ecore#//ProductLine/documentationCores"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ir749N1dEduC-YnC9Wo9pg" points="[6, -12, -117, 243]$[115, -254, -8, 1]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ir74991dEduC-YnC9Wo9pg" id="(0.52380955,0.118644066)"/>
   </edges>

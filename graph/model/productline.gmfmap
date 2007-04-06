@@ -60,12 +60,41 @@
               </compartments>
             </ownedChild>
           </children>
+          <children
+              compartment="//@nodes.0/@ownedChild/@children.0/@ownedChild/@compartments.1">
+            <ownedChild>
+              <diagramNode
+                  href="model.gmfgraph#DocumentationCore"/>
+              <children
+                  compartment="//@nodes.0/@ownedChild/@children.0/@ownedChild/@children.1/@ownedChild/@compartments.0">
+                <ownedChild>
+                  <domainMetaElement
+                      href="model.ecore#//InfProduct"/>
+                  <labelMappings
+                      xsi:type="gmfmap:FeatureLabelMapping">
+                    <diagramLabel
+                        href="model.gmfgraph#InfProductName"/>
+                    <features
+                        href="model.ecore#//GenericDocumentPart/name"/>
+                  </labelMappings>
+                  <diagramNode
+                      href="model.gmfgraph#InfProduct"/>
+                </ownedChild>
+              </children>
+              <compartments
+                  children="//@nodes.0/@ownedChild/@children.0/@ownedChild/@children.1/@ownedChild/@children.0">
+                <compartment
+                    href="model.gmfgraph#InfProductsCompartment"/>
+              </compartments>
+            </ownedChild>
+          </children>
           <compartments
               children="//@nodes.0/@ownedChild/@children.0/@ownedChild/@children.0">
             <compartment
                 href="model.gmfgraph#PLSchemeCompartment"/>
           </compartments>
-          <compartments>
+          <compartments
+              children="//@nodes.0/@ownedChild/@children.0/@ownedChild/@children.1">
             <compartment
                 href="model.gmfgraph#DocumentationCoreCompartment"/>
           </compartments>
