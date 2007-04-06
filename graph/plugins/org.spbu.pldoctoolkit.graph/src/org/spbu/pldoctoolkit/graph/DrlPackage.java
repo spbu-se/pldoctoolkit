@@ -445,7 +445,7 @@ public interface DrlPackage extends EPackage {
 	int PRODUCT_LINE__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Product Documentations</b></em>' reference.
+	 * The feature id for the '<em><b>Product Documentations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -454,13 +454,13 @@ public interface DrlPackage extends EPackage {
 	int PRODUCT_LINE__PRODUCT_DOCUMENTATIONS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Documentation Core</b></em>' reference.
+	 * The feature id for the '<em><b>Documentation Cores</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE__DOCUMENTATION_CORE = 2;
+	int PRODUCT_LINE__DOCUMENTATION_CORES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Scheme</b></em>' containment reference.
@@ -900,10 +900,10 @@ public interface DrlPackage extends EPackage {
 	EAttribute getProductLine_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.spbu.pldoctoolkit.graph.ProductLine#getProductDocumentations <em>Product Documentations</em>}'.
+	 * Returns the meta object for the reference list '{@link org.spbu.pldoctoolkit.graph.ProductLine#getProductDocumentations <em>Product Documentations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Product Documentations</em>'.
+	 * @return the meta object for the reference list '<em>Product Documentations</em>'.
 	 * @see org.spbu.pldoctoolkit.graph.ProductLine#getProductDocumentations()
 	 * @see #getProductLine()
 	 * @generated
@@ -911,15 +911,15 @@ public interface DrlPackage extends EPackage {
 	EReference getProductLine_ProductDocumentations();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.spbu.pldoctoolkit.graph.ProductLine#getDocumentationCore <em>Documentation Core</em>}'.
+	 * Returns the meta object for the reference list '{@link org.spbu.pldoctoolkit.graph.ProductLine#getDocumentationCores <em>Documentation Cores</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Documentation Core</em>'.
-	 * @see org.spbu.pldoctoolkit.graph.ProductLine#getDocumentationCore()
+	 * @return the meta object for the reference list '<em>Documentation Cores</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.ProductLine#getDocumentationCores()
 	 * @see #getProductLine()
 	 * @generated
 	 */
-	EReference getProductLine_DocumentationCore();
+	EReference getProductLine_DocumentationCores();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.spbu.pldoctoolkit.graph.ProductLine#getScheme <em>Scheme</em>}'.
@@ -1295,7 +1295,7 @@ public interface DrlPackage extends EPackage {
 		EAttribute PRODUCT_LINE__NAME = eINSTANCE.getProductLine_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Product Documentations</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Product Documentations</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1303,12 +1303,12 @@ public interface DrlPackage extends EPackage {
 		EReference PRODUCT_LINE__PRODUCT_DOCUMENTATIONS = eINSTANCE.getProductLine_ProductDocumentations();
 
 		/**
-		 * The meta object literal for the '<em><b>Documentation Core</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Documentation Cores</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PRODUCT_LINE__DOCUMENTATION_CORE = eINSTANCE.getProductLine_DocumentationCore();
+		EReference PRODUCT_LINE__DOCUMENTATION_CORES = eINSTANCE.getProductLine_DocumentationCores();
 
 		/**
 		 * The meta object literal for the '<em><b>Scheme</b></em>' containment reference feature.

@@ -73,7 +73,7 @@ public class ProductLineItemProvider
 
 			addNamePropertyDescriptor(object);
 			addProductDocumentationsPropertyDescriptor(object);
-			addDocumentationCorePropertyDescriptor(object);
+			addDocumentationCoresPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -123,19 +123,19 @@ public class ProductLineItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Documentation Core feature.
+	 * This adds a property descriptor for the Documentation Cores feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDocumentationCorePropertyDescriptor(Object object) {
+	protected void addDocumentationCoresPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ProductLine_documentationCore_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_documentationCore_feature", "_UI_ProductLine_type"),
-				 DrlPackage.Literals.PRODUCT_LINE__DOCUMENTATION_CORE,
+				 getString("_UI_ProductLine_documentationCores_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_documentationCores_feature", "_UI_ProductLine_type"),
+				 DrlPackage.Literals.PRODUCT_LINE__DOCUMENTATION_CORES,
 				 true,
 				 false,
 				 true,

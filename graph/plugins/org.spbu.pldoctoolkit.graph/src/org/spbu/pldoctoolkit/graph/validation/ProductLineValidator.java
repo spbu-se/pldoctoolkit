@@ -6,6 +6,7 @@
  */
 package org.spbu.pldoctoolkit.graph.validation;
 
+import org.eclipse.emf.common.util.EList;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.PLScheme;
 import org.spbu.pldoctoolkit.graph.ProductDocumentation;
@@ -20,6 +21,10 @@ public interface ProductLineValidator {
 	boolean validate();
 
 	boolean validateName(String value);
+	boolean validateProductDocumentations(EList value);
+
+	boolean validateDocumentationCores(EList value);
+
 	boolean validateProductDocumentations(ProductDocumentation value);
 	boolean validateDocumentationCore(DocumentationCore value);
 	boolean validateScheme(PLScheme value);

@@ -6,6 +6,7 @@
  */
 package org.spbu.pldoctoolkit.graph;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -18,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getName <em>Name</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getProductDocumentations <em>Product Documentations</em>}</li>
- *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getDocumentationCore <em>Documentation Core</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getDocumentationCores <em>Documentation Cores</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getScheme <em>Scheme</em>}</li>
  * </ul>
  * </p>
@@ -62,57 +63,36 @@ public interface ProductLine extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Product Documentations</b></em>' reference.
-	 * The default value is <code>""</code>.
+	 * Returns the value of the '<em><b>Product Documentations</b></em>' reference list.
+	 * The list contents are of type {@link org.spbu.pldoctoolkit.graph.ProductDocumentation}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Product Documentations</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Product Documentations</em>' reference.
-	 * @see #setProductDocumentations(ProductDocumentation)
+	 * @return the value of the '<em>Product Documentations</em>' reference list.
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getProductLine_ProductDocumentations()
-	 * @model transient="true" derived="true"
+	 * @model type="org.spbu.pldoctoolkit.graph.ProductDocumentation" transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
-	ProductDocumentation getProductDocumentations();
+	EList getProductDocumentations();
 
 	/**
-	 * Sets the value of the '{@link org.spbu.pldoctoolkit.graph.ProductLine#getProductDocumentations <em>Product Documentations</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Product Documentations</em>' reference.
-	 * @see #getProductDocumentations()
-	 * @generated
-	 */
-	void setProductDocumentations(ProductDocumentation value);
-
-	/**
-	 * Returns the value of the '<em><b>Documentation Core</b></em>' reference.
+	 * Returns the value of the '<em><b>Documentation Cores</b></em>' reference list.
+	 * The list contents are of type {@link org.spbu.pldoctoolkit.graph.DocumentationCore}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Documentation Core</em>' reference isn't clear,
+	 * If the meaning of the '<em>Documentation Cores</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Documentation Core</em>' reference.
-	 * @see #setDocumentationCore(DocumentationCore)
-	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getProductLine_DocumentationCore()
-	 * @model transient="true" derived="true"
+	 * @return the value of the '<em>Documentation Cores</em>' reference list.
+	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getProductLine_DocumentationCores()
+	 * @model type="org.spbu.pldoctoolkit.graph.DocumentationCore" transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
-	DocumentationCore getDocumentationCore();
-
-	/**
-	 * Sets the value of the '{@link org.spbu.pldoctoolkit.graph.ProductLine#getDocumentationCore <em>Documentation Core</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Documentation Core</em>' reference.
-	 * @see #getDocumentationCore()
-	 * @generated
-	 */
-	void setDocumentationCore(DocumentationCore value);
+	EList getDocumentationCores();
 
 	/**
 	 * Returns the value of the '<em><b>Scheme</b></em>' containment reference.
