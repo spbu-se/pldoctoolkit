@@ -309,7 +309,7 @@ public class ProductNameEditPart extends CompartmentEditPart implements
 
 				public Object getAdapter(Class adapter) {
 					if (IElementType.class.equals(adapter)) {
-						return DrlModelElementTypes.Product_2002;
+						return DrlModelElementTypes.Product_2003;
 					}
 					return super.getAdapter(adapter);
 				}

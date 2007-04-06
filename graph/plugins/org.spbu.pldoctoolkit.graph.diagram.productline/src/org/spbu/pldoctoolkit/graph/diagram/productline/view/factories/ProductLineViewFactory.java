@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.DiagramViewFactory;
+
 import org.eclipse.gmf.runtime.notation.MeasurementUnit;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
@@ -15,7 +17,7 @@ import org.eclipse.gmf.runtime.notation.View;
 public class ProductLineViewFactory extends DiagramViewFactory {
 
 	/**
-	 * @generated
+	 * @generated 
 	 */
 	protected List createStyles(View view) {
 		List styles = new ArrayList();

@@ -1,9 +1,13 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.resource.Resource;
+
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorInput;
+
 import org.eclipse.gmf.runtime.notation.Diagram;
+
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorMatchingStrategy;
 import org.eclipse.ui.IEditorPart;
@@ -66,4 +70,5 @@ public class DrlModelMatchingStrategy implements IEditorMatchingStrategy {
 		}
 		return false;
 	}
+
 }

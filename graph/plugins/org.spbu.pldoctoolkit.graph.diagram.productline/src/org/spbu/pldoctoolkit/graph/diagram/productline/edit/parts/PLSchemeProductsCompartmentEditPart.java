@@ -1,11 +1,16 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LayoutManager;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -23,7 +28,7 @@ public class PLSchemeProductsCompartmentEditPart extends
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5003;
+	public static final int VISUAL_ID = 5004;
 
 	/**
 	 * @generated
@@ -54,11 +59,18 @@ public class PLSchemeProductsCompartmentEditPart extends
 				.createFigure();
 		result.setTitleVisibility(false);
 		
+		//HAND
+		ConstrainedToolbarLayout layout = 
+			(ConstrainedToolbarLayout) result.getContentPane().getLayoutManager();
+		layout.setSpacing(3);
+		layout.setStretchMinorAxis(true);
+		layout.setStretchMajorAxis(false);
+		
 		return result;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -66,12 +78,45 @@ public class PLSchemeProductsCompartmentEditPart extends
 				new PLSchemeProductsCompartmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DragDropEditPolicy());
+		//HAND
+//		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+//				new DragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new PLSchemeProductsCompartmentCanonicalEditPolicy());
+		
+		//HAND
+		installEditPolicy(EditPolicy.LAYOUT_ROLE,
+				createLayoutEditPolicy());
 	}
+	
+	/**
+	 * HAND
+	 */
+	protected LayoutEditPolicy createLayoutEditPolicy() {
+		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			protected EditPolicy createChildEditPolicy(EditPart child) {
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if (result == null) {
+					//HAND
+					result = new NonResizableEditPolicy();
+//					result = new UnmovableShapeEditPolicy();
+				}
+				return result;
+			}
+
+			protected Command getMoveChildrenCommand(Request request) {
+				return null;
+			}
+
+			protected Command getCreateCommand(CreateRequest request) {
+				return null;
+			}
+		};
+		return lep;
+	}
+	
 	/**
 	 * @generated
 	 */

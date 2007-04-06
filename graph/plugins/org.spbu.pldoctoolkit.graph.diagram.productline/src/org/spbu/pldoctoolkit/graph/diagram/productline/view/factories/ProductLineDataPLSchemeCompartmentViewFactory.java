@@ -16,7 +16,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeProductsCompartmentEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataPLSchemeCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
@@ -24,7 +24,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegi
 /**
  * @generated
  */
-public class PLSchemeProductsCompartmentViewFactory extends
+public class ProductLineDataPLSchemeCompartmentViewFactory extends
 		ListCompartmentViewFactory {
 
 	/**
@@ -32,6 +32,7 @@ public class PLSchemeProductsCompartmentViewFactory extends
 	 */
 	protected List createStyles(View view) {
 		List styles = new ArrayList();
+		styles.add(NotationFactory.eINSTANCE.createTitleStyle());
 		styles.add(NotationFactory.eINSTANCE.createSortingStyle());
 		styles.add(NotationFactory.eINSTANCE.createFilteringStyle());
 		return styles;
@@ -45,7 +46,7 @@ public class PLSchemeProductsCompartmentViewFactory extends
 			boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = DrlModelVisualIDRegistry
-					.getType(PLSchemeProductsCompartmentEditPart.VISUAL_ID);
+					.getType(ProductLineDataPLSchemeCompartmentEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,

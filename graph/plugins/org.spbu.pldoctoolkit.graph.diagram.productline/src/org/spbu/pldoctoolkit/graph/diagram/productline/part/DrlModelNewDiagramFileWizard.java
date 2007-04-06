@@ -131,7 +131,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean performFinish() {
 		IFile diagramFile = myFileCreationPage.createNewFile();
@@ -166,6 +166,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 						DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
 
+				//HAND
 				// my custom code
 				diagram.setElement(null);
 				Node rootNode = ViewService.createNode(diagram, myDiagramRoot,

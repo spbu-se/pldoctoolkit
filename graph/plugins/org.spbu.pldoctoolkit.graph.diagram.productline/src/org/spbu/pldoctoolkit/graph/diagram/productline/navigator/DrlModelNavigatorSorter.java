@@ -1,6 +1,7 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.navigator;
 
 import org.eclipse.jface.viewers.ViewerSorter;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**
@@ -11,12 +12,12 @@ public class DrlModelNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
-	private static final int GROUP_CATEGORY = 5005;
+	private static final int GROUP_CATEGORY = 5006;
 
 	/**
 	 * @generated
 	 */
-	private static final int SHORTCUTS_CATEGORY = 5003;
+	private static final int SHORTCUTS_CATEGORY = 5004;
 
 	/**
 	 * @generated

@@ -1,6 +1,5 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
@@ -9,15 +8,12 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -26,25 +22,18 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.PLSchemeItemSemanticEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
 /**
  * @generated
  */
-/**
- * Class PLSchemeEditPart.
- *
- * @author Alexey Semenov
- * @version 1.0
- */
-public class PLSchemeEditPart extends ShapeNodeEditPart {
+public class ProductLineDataEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2002;
+	public static final int VISUAL_ID = 2001;
 
 	/**
 	 * @generated
@@ -59,12 +48,12 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public PLSchemeEditPart(View view) {
+	public ProductLineDataEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
@@ -77,9 +66,9 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 										.getCreateElementRequestAdapter();
 								IElementType type = (IElementType) adapter
 										.getAdapter(IElementType.class);
-								if (type == DrlModelElementTypes.Product_2003) {
+								if (type == DrlModelElementTypes.PLScheme_2002) {
 									EditPart compartmentEditPart = getChildBySemanticHint(DrlModelVisualIDRegistry
-											.getType(PLSchemeProductsCompartmentEditPart.VISUAL_ID));
+											.getType(ProductLineDataPLSchemeCompartmentEditPart.VISUAL_ID));
 									return compartmentEditPart == null ? null
 											: compartmentEditPart
 													.getCommand(request);
@@ -92,34 +81,8 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 				});
 
 		super.createDefaultEditPolicies();
-
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new PLSchemeItemSemanticEditPolicy());
-//		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
-		//HAND
+		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, createComponentEditPolicy());
-	}
-
-	
-	/**
-	 * HAND
-	 * 
-	 * Blocks deleting the element from keyboard.
-	 */
-	private EditPolicy createComponentEditPolicy() {
-		return new ComponentEditPolicy() {
-			@Override
-			protected Command createDeleteSemanticCommand(
-					GroupRequest deleteRequest) {
-				return UnexecutableCommand.INSTANCE;
-			}
-
-			@Override
-			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
-				return UnexecutableCommand.INSTANCE;
-			}
-		};
 	}
 
 	/**
@@ -149,18 +112,21 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IFigure createNodeShape() {
-		PLSchemeFigure figure = new PLSchemeFigure();
-		return primaryShape = figure;
+		RectangleFigure shape = new RectangleFigure(); 
+		shape.setOutline(false);
+
+		primaryShape = shape;
+		return primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
-	public PLSchemeFigure getPrimaryShape() {
-		return (PLSchemeFigure) primaryShape;
+	public RectangleFigure getPrimaryShape() {
+		return (RectangleFigure) primaryShape;
 	}
 
 	/**
@@ -209,7 +175,7 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
-			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout(true);
 			layout.setSpacing(getMapMode().DPtoLP(5));
 			nodeShape.setLayoutManager(layout);
 		}
@@ -224,43 +190,6 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 			return contentPane;
 		}
 		return super.getContentPane();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class PLSchemeFigure extends RectangleFigure {
-		/**
-		 * @generated
-		 */
-		public PLSchemeFigure() {
-			this.setFill(false);
-			this.setFillXOR(false);
-			this.setOutline(false);
-			this.setOutlineXOR(false);
-			this.setLineWidth(1);
-			this.setLineStyle(Graphics.LINE_SOLID);
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
 	}
 
 }

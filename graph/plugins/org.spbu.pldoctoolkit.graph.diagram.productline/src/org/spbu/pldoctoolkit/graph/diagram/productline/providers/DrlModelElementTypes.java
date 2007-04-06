@@ -42,6 +42,32 @@ public class DrlModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private static Set KNOWN_ELEMENT_TYPES;
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ProductLine_79 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.ProductLine_79"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType ProductLine_1001 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.ProductLine_1001"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType Node_2001 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.Node_2001"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType PLScheme_2002 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.PLScheme_2002"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType Product_2003 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.Product_2003"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if (imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -155,32 +181,12 @@ public class DrlModelElementTypes extends ElementInitializers {
 			elements.put(ProductLine_1001, DrlPackage.eINSTANCE
 					.getProductLine());
 
-			elements.put(PLScheme_2001, DrlPackage.eINSTANCE.getPLScheme());
+			elements.put(PLScheme_2002, DrlPackage.eINSTANCE.getPLScheme());
 
-			elements.put(Product_2002, DrlPackage.eINSTANCE.getProduct());
+			elements.put(Product_2003, DrlPackage.eINSTANCE.getProduct());
 		}
 		return (ENamedElement) elements.get(type);
 	}
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ProductLine_79 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.ProductLine_79"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType PLScheme_2001 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.PLScheme_2001"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Product_2002 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.Product_2002"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ProductLine_1001 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.ProductLine_1001"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -192,19 +198,16 @@ public class DrlModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static Set KNOWN_ELEMENT_TYPES;
-
-	/**
-	 * @generated
-	 */
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
 			KNOWN_ELEMENT_TYPES.add(ProductLine_79);
 			KNOWN_ELEMENT_TYPES.add(ProductLine_1001);
-			KNOWN_ELEMENT_TYPES.add(PLScheme_2001);
-			KNOWN_ELEMENT_TYPES.add(Product_2002);
+			KNOWN_ELEMENT_TYPES.add(Node_2001);
+			KNOWN_ELEMENT_TYPES.add(PLScheme_2002);
+			KNOWN_ELEMENT_TYPES.add(Product_2003);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
+
 }

@@ -42,7 +42,7 @@ public class ProductLineEditPart extends DiagramEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -82,5 +82,8 @@ public class ProductLineEditPart extends DiagramEditPart {
 						return null;
 					}
 				});
+		
+		//HAND
+		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 	}
 }
