@@ -6,9 +6,11 @@
  */
 package org.spbu.pldoctoolkit.graph.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -30,7 +32,7 @@ import org.spbu.pldoctoolkit.graph.ProductLine;
  * <ul>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getProductDocumentations <em>Product Documentations</em>}</li>
- *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getDocumentationCore <em>Documentation Core</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getDocumentationCores <em>Documentation Cores</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getScheme <em>Scheme</em>}</li>
  * </ul>
  * </p>
@@ -64,26 +66,6 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getProductDocumentations() <em>Product Documentations</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProductDocumentations()
-	 * @generated
-	 * @ordered
-	 */
-	protected ProductDocumentation productDocumentations;
-
-	/**
-	 * The cached value of the '{@link #getDocumentationCore() <em>Documentation Core</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDocumentationCore()
-	 * @generated
-	 * @ordered
-	 */
-	protected DocumentationCore documentationCore;
 
 	/**
 	 * The cached value of the '{@link #getScheme() <em>Scheme</em>}' containment reference.
@@ -139,16 +121,12 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProductDocumentation getProductDocumentations() {
-		if (productDocumentations != null && productDocumentations.eIsProxy()) {
-			InternalEObject oldProductDocumentations = (InternalEObject)productDocumentations;
-			productDocumentations = (ProductDocumentation)eResolveProxy(oldProductDocumentations);
-			if (productDocumentations != oldProductDocumentations) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS, oldProductDocumentations, productDocumentations));
-			}
-		}
-		return productDocumentations;
+	public EList getProductDocumentations() {
+		// TODO: implement this method to return the 'Product Documentations' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
+		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -156,58 +134,12 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProductDocumentation basicGetProductDocumentations() {
-		return productDocumentations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setProductDocumentations(ProductDocumentation newProductDocumentations) {
-		ProductDocumentation oldProductDocumentations = productDocumentations;
-		productDocumentations = newProductDocumentations;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS, oldProductDocumentations, productDocumentations));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DocumentationCore getDocumentationCore() {
-		if (documentationCore != null && documentationCore.eIsProxy()) {
-			InternalEObject oldDocumentationCore = (InternalEObject)documentationCore;
-			documentationCore = (DocumentationCore)eResolveProxy(oldDocumentationCore);
-			if (documentationCore != oldDocumentationCore) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE, oldDocumentationCore, documentationCore));
-			}
-		}
-		return documentationCore;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DocumentationCore basicGetDocumentationCore() {
-		return documentationCore;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDocumentationCore(DocumentationCore newDocumentationCore) {
-		DocumentationCore oldDocumentationCore = documentationCore;
-		documentationCore = newDocumentationCore;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE, oldDocumentationCore, documentationCore));
+	public EList getDocumentationCores() {
+		// TODO: implement this method to return the 'Documentation Cores' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
+		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -276,11 +208,9 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 			case DrlPackage.PRODUCT_LINE__NAME:
 				return getName();
 			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
-				if (resolve) return getProductDocumentations();
-				return basicGetProductDocumentations();
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE:
-				if (resolve) return getDocumentationCore();
-				return basicGetDocumentationCore();
+				return getProductDocumentations();
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
+				return getDocumentationCores();
 			case DrlPackage.PRODUCT_LINE__SCHEME:
 				return getScheme();
 		}
@@ -298,10 +228,12 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 				setName((String)newValue);
 				return;
 			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
-				setProductDocumentations((ProductDocumentation)newValue);
+				getProductDocumentations().clear();
+				getProductDocumentations().addAll((Collection)newValue);
 				return;
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE:
-				setDocumentationCore((DocumentationCore)newValue);
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
+				getDocumentationCores().clear();
+				getDocumentationCores().addAll((Collection)newValue);
 				return;
 			case DrlPackage.PRODUCT_LINE__SCHEME:
 				setScheme((PLScheme)newValue);
@@ -321,10 +253,10 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 				setName(NAME_EDEFAULT);
 				return;
 			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
-				setProductDocumentations((ProductDocumentation)null);
+				getProductDocumentations().clear();
 				return;
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE:
-				setDocumentationCore((DocumentationCore)null);
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
+				getDocumentationCores().clear();
 				return;
 			case DrlPackage.PRODUCT_LINE__SCHEME:
 				setScheme((PLScheme)null);
@@ -343,9 +275,9 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 			case DrlPackage.PRODUCT_LINE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
-				return productDocumentations != null;
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORE:
-				return documentationCore != null;
+				return !getProductDocumentations().isEmpty();
+			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
+				return !getDocumentationCores().isEmpty();
 			case DrlPackage.PRODUCT_LINE__SCHEME:
 				return scheme != null;
 		}
