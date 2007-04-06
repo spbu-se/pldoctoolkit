@@ -54,7 +54,7 @@ public class ProductLineDataPLSchemeCompartmentEditPart extends
 				new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new DragDropEditPolicy());
-		
+
 		//HAND
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new ProductLineDataPLSchemeCompartmentCanonicalEditPolicy());
@@ -68,16 +68,17 @@ public class ProductLineDataPLSchemeCompartmentEditPart extends
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
 				.createFigure();
 		result.setTitleVisibility(false);
-		
+
 		//HAND
-		ConstrainedToolbarLayout layout = 
-			(ConstrainedToolbarLayout) result.getContentPane().getLayoutManager();
+		ConstrainedToolbarLayout layout = (ConstrainedToolbarLayout) result
+				.getContentPane().getLayoutManager();
 		layout.setSpacing(3);
 		layout.setStretchMinorAxis(true);
 		layout.setStretchMajorAxis(true);
-		
+
 		return result;
 	}
+
 	/**
 	 * @generated
 	 */

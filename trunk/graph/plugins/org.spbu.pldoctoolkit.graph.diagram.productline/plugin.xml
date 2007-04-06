@@ -331,6 +331,23 @@
             <param name="semanticHint" value="2003"/>
          </metamodelType>
       </metamodel>
+      <specializationType
+            id="org.spbu.pldoctoolkit.graph.diagram.productline.Node_2004"
+            name="%metatype.name.Node_2004"
+            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
+         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+         <param name="semanticHint" value="2004"/>
+      </specializationType>
+      <metamodel nsURI="http://tepkom.ru/drl">
+         <metamodelType
+               id="org.spbu.pldoctoolkit.graph.diagram.productline.InfProduct_2005"
+               name="%metatype.name.InfProduct_2005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="InfProduct"
+               edithelper="org.spbu.pldoctoolkit.graph.diagram.productline.edit.helpers.InfProductEditHelper">
+            <param name="semanticHint" value="2005"/>
+         </metamodelType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
@@ -348,6 +365,8 @@
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.Node_2001"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.PLScheme_2002"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.Product_2003"/>
+         <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.Node_2004"/>
+         <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.InfProduct_2005"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

@@ -13,12 +13,12 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductEditPart;
 
 /**
  * @generated
  */
-public class PLSchemeItemSemanticEditPolicy extends
+public class InfProductItemSemanticEditPolicy extends
 		DrlModelBaseItemSemanticEditPolicy {
 
 	/**
@@ -35,7 +35,7 @@ public class PLSchemeItemSemanticEditPolicy extends
 			EditPart nextEditPart = (EditPart) getHost().getViewer()
 					.getEditPartRegistry().get(nextEdge);
 			EditCommandRequestWrapper editCommandRequest = new EditCommandRequestWrapper(
-					new DestroyElementRequest(((PLSchemeEditPart) getHost())
+					new DestroyElementRequest(((InfProductEditPart) getHost())
 							.getEditingDomain(), req.isConfirmationRequired()),
 					Collections.EMPTY_MAP);
 			cc.add(nextEditPart.getCommand(editCommandRequest));

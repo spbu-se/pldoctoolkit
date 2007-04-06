@@ -1,6 +1,8 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLine2ItemSemanticEditPolicy;
 
 /**
  * @generated
@@ -61,11 +63,8 @@ public class ProductLine2EditPart extends
 				});
 
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
-				new org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLine2ItemSemanticEditPolicy());
-		installEditPolicy(org.eclipse.gef.EditPolicy.LAYOUT_ROLE,
-				createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ProductLine2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		
 		//HAND
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
@@ -179,7 +178,7 @@ public class ProductLine2EditPart extends
 	 * @generated
 	 */
 //	public org.eclipse.gef.EditPolicy getPrimaryDragEditPolicy() {
-//		return new Object();
+//		 return new ();
 //	}
 
 	/**

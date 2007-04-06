@@ -20,11 +20,15 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataDocumentationCoreCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataPLSchemeCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineProductLineDataCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin;
 
 /**
@@ -47,11 +51,17 @@ public class DrlModelModelingAssistantProvider extends
 		if (editPart instanceof ProductLineDataEditPart) {
 			List types = new ArrayList();
 			types.add(DrlModelElementTypes.PLScheme_2002);
+			types.add(DrlModelElementTypes.Node_2004);
 			return types;
 		}
 		if (editPart instanceof PLSchemeEditPart) {
 			List types = new ArrayList();
 			types.add(DrlModelElementTypes.Product_2003);
+			return types;
+		}
+		if (editPart instanceof DocumentationCoreEditPart) {
+			List types = new ArrayList();
+			types.add(DrlModelElementTypes.InfProduct_2005);
 			return types;
 		}
 		if (editPart instanceof ProductLineEditPart) {

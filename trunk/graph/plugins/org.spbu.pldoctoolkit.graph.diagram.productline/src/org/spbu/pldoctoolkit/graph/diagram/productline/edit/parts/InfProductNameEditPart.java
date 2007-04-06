@@ -51,13 +51,13 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElement
 /**
  * @generated
  */
-public class ProductLineNameEditPart extends CompartmentEditPart implements
+public class InfProductNameEditPart extends CompartmentEditPart implements
 		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4003;
+	public static final int VISUAL_ID = 4002;
 
 	/**
 	 * @generated
@@ -82,7 +82,7 @@ public class ProductLineNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public ProductLineNameEditPart(View view) {
+	public InfProductNameEditPart(View view) {
 		super(view);
 	}
 
@@ -305,7 +305,7 @@ public class ProductLineNameEditPart extends CompartmentEditPart implements
 
 				public Object getAdapter(Class adapter) {
 					if (IElementType.class.equals(adapter)) {
-						return DrlModelElementTypes.ProductLine_1001;
+						return DrlModelElementTypes.InfProduct_2005;
 					}
 					return super.getAdapter(adapter);
 				}

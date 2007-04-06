@@ -172,6 +172,7 @@ public class ProductEditPart extends ShapeNodeEditPart {
 		}
 		return result;
 	}
+
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -236,10 +237,9 @@ public class ProductEditPart extends ShapeNodeEditPart {
 			this.setOutlineXOR(false);
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_SOLID);
-			//HAND 3 -> 5
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(5),
-					getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
-					getMapMode().DPtoLP(5)));
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(3),
+					getMapMode().DPtoLP(3), getMapMode().DPtoLP(3),
+					getMapMode().DPtoLP(3)));
 			createContents();
 		}
 

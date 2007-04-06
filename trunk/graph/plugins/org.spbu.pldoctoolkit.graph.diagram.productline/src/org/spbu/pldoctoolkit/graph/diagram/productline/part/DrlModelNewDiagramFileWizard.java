@@ -131,7 +131,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean performFinish() {
 		IFile diagramFile = myFileCreationPage.createNewFile();

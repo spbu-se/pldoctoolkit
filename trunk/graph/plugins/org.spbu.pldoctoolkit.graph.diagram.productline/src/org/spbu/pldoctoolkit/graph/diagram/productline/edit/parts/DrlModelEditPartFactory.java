@@ -48,6 +48,15 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 			case ProductNameEditPart.VISUAL_ID:
 				return new ProductNameEditPart(view);
 
+			case DocumentationCoreEditPart.VISUAL_ID:
+				return new DocumentationCoreEditPart(view);
+
+			case InfProductEditPart.VISUAL_ID:
+				return new InfProductEditPart(view);
+
+			case InfProductNameEditPart.VISUAL_ID:
+				return new InfProductNameEditPart(view);
+
 			case ProductLineProductLineDataCompartmentEditPart.VISUAL_ID:
 				return new ProductLineProductLineDataCompartmentEditPart(view);
 
@@ -60,6 +69,9 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 
 			case PLSchemeProductsCompartmentEditPart.VISUAL_ID:
 				return new PLSchemeProductsCompartmentEditPart(view);
+
+			case DocumentationCoreInfProductsCompartmentEditPart.VISUAL_ID:
+				return new DocumentationCoreInfProductsCompartmentEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

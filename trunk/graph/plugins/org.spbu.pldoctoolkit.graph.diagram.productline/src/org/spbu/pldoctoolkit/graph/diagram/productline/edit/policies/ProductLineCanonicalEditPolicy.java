@@ -48,6 +48,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart;
@@ -286,6 +287,7 @@ public class ProductLineCanonicalEditPolicy extends
 		case ProductLine2EditPart.VISUAL_ID:
 		case PLSchemeEditPart.VISUAL_ID:
 		case ProductEditPart.VISUAL_ID:
+		case InfProductEditPart.VISUAL_ID:
 		case ProductLineEditPart.VISUAL_ID: {
 			myEObject2ViewMap.put(modelElement, view);
 			storeLinks(modelElement, getDiagram());

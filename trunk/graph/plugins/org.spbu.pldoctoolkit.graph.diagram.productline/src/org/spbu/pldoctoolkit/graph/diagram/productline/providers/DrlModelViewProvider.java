@@ -6,6 +6,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreInfProductsCompartmentEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
@@ -20,6 +24,10 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductNameEdi
 
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.DocumentationCoreInfProductsCompartmentViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.DocumentationCoreViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.InfProductNameViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.InfProductViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeProductsCompartmentViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLine2ViewFactory;
@@ -80,6 +88,12 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 			return ProductViewFactory.class;
 		case ProductNameEditPart.VISUAL_ID:
 			return ProductNameViewFactory.class;
+		case DocumentationCoreEditPart.VISUAL_ID:
+			return DocumentationCoreViewFactory.class;
+		case InfProductEditPart.VISUAL_ID:
+			return InfProductViewFactory.class;
+		case InfProductNameEditPart.VISUAL_ID:
+			return InfProductNameViewFactory.class;
 		case ProductLineProductLineDataCompartmentEditPart.VISUAL_ID:
 			return ProductLineProductLineDataCompartmentViewFactory.class;
 		case ProductLineDataPLSchemeCompartmentEditPart.VISUAL_ID:
@@ -88,6 +102,8 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 			return ProductLineDataDocumentationCoreCompartmentViewFactory.class;
 		case PLSchemeProductsCompartmentEditPart.VISUAL_ID:
 			return PLSchemeProductsCompartmentViewFactory.class;
+		case DocumentationCoreInfProductsCompartmentEditPart.VISUAL_ID:
+			return DocumentationCoreInfProductsCompartmentViewFactory.class;
 		}
 		return null;
 	}

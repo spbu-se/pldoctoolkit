@@ -4,24 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.ListCompartmentViewFactory;
+
 import org.eclipse.gmf.runtime.notation.DrawerStyle;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart;
+
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreInfProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineProductLineDataCompartmentEditPart;
+
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**
  * @generated
  */
-public class ProductLineProductLineDataCompartmentViewFactory extends
+public class DocumentationCoreInfProductsCompartmentViewFactory extends
 		ListCompartmentViewFactory {
 
 	/**
@@ -35,14 +38,14 @@ public class ProductLineProductLineDataCompartmentViewFactory extends
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void decorateView(View containerView, View view,
 			IAdaptable semanticAdapter, String semanticHint, int index,
 			boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = DrlModelVisualIDRegistry
-					.getType(ProductLineProductLineDataCompartmentEditPart.VISUAL_ID);
+					.getType(DocumentationCoreInfProductsCompartmentEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,
@@ -58,14 +61,6 @@ public class ProductLineProductLineDataCompartmentViewFactory extends
 					"modelID", ProductLineEditPart.MODEL_ID); //$NON-NLS-1$
 			view.getEAnnotations().add(shortcutAnnotation);
 		}
-
-		//HAND
-		getViewService().createNode(
-				semanticAdapter,
-				view,
-				DrlModelVisualIDRegistry
-						.getType(ProductLineDataEditPart.VISUAL_ID),
-				ViewUtil.APPEND, true, getPreferencesHint());
 	}
 
 	/**
