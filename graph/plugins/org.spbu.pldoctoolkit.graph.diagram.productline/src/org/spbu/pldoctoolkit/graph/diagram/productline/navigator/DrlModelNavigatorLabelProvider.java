@@ -31,6 +31,9 @@ import org.eclipse.ui.navigator.ICommonLabelProvider;
 
 import org.spbu.pldoctoolkit.graph.ProductLine;
 
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart;
@@ -125,6 +128,13 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 		case ProductEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://tepkom.ru/drl?Product",
 					DrlModelElementTypes.Product_2003);
+		case DocumentationCoreEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?org.eclipse.draw2d.RectangleFigure",
+					DrlModelElementTypes.Node_2004);
+		case InfProductEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://tepkom.ru/drl?InfProduct",
+					DrlModelElementTypes.InfProduct_2005);
 		case ProductLineEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://tepkom.ru/drl?ProductLine",
@@ -194,6 +204,10 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 			return getPLScheme_2002Text(view);
 		case ProductEditPart.VISUAL_ID:
 			return getProduct_2003Text(view);
+		case DocumentationCoreEditPart.VISUAL_ID:
+			return getNode_2004Text(view);
+		case InfProductEditPart.VISUAL_ID:
+			return getInfProduct_2005Text(view);
 		case ProductLineEditPart.VISUAL_ID:
 			return getProductLine_79Text(view);
 		default:
@@ -224,7 +238,7 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 					ParserOptions.NONE.intValue());
 		} else {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4002);
+					"Parser was not found for label " + 4003);
 			return "";
 		}
 	}
@@ -267,6 +281,41 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 		} else {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 4001);
+			return "";
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getNode_2004Text(View view) {
+		return "";
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getInfProduct_2005Text(View view) {
+		IParser parser = ParserService.getInstance().getParser(
+				new IAdaptable() {
+					public Object getAdapter(Class adapter) {
+						if (String.class.equals(adapter)) {
+							return DrlModelVisualIDRegistry
+									.getType(InfProductNameEditPart.VISUAL_ID);
+						}
+						if (IElementType.class.equals(adapter)) {
+							return DrlModelElementTypes.InfProduct_2005;
+						}
+						return null;
+					}
+				});
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			DrlModelDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 4002);
 			return "";
 		}
 	}

@@ -101,7 +101,7 @@ public class DrlModelDiagramEditorUtil {
 
 	/**
 	 * This method should be called within a workspace modify operation since it creates resources.
-	 * @generated
+	 * @generated NOT
 	 */
 	public static Resource createDiagram(
 			org.eclipse.emf.common.util.URI diagramURI,
@@ -130,14 +130,17 @@ public class DrlModelDiagramEditorUtil {
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
 					diagram.setName(diagramName);
-					
+
 					//HAND
 					// my custom code
 					diagram.setElement(null);
-					Node rootNode = ViewService.createNode(diagram, model,
-							((IHintedType) DrlModelElementTypes.ProductLine_1001)
-									.getSemanticHint(),
-							DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+					Node rootNode = ViewService
+							.createNode(
+									diagram,
+									model,
+									((IHintedType) DrlModelElementTypes.ProductLine_1001)
+											.getSemanticHint(),
+									DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 					rootNode.setElement(model);
 					// end of my custom code
 				}
@@ -177,7 +180,7 @@ public class DrlModelDiagramEditorUtil {
 		ProductLine productLine = DrlFactory.eINSTANCE.createProductLine();
 		//HAND
 		productLine.setScheme(DrlFactory.eINSTANCE.createPLScheme());
-		
+
 		return productLine;
 	}
 

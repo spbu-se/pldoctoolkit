@@ -47,7 +47,7 @@ public class Messages extends org.eclipse.osgi.util.NLS {
 	/**
 	 * @generated
 	 */
-	public static String ProductLineProductLineNameCompartmentEditPart_title;
+	public static String ProductLineProductLineDataCompartmentEditPart_title;
 
 	/**
 	 * @generated
@@ -63,6 +63,11 @@ public class Messages extends org.eclipse.osgi.util.NLS {
 	 * @generated
 	 */
 	public static String PLSchemeProductsCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DocumentationCoreInfProductsCompartmentEditPart_title;
 
 	/**
 	 * @generated

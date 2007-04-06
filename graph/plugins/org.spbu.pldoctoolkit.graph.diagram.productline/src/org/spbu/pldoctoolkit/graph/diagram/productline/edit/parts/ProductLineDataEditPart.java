@@ -73,6 +73,13 @@ public class ProductLineDataEditPart extends ShapeNodeEditPart {
 											: compartmentEditPart
 													.getCommand(request);
 								}
+								if (type == DrlModelElementTypes.Node_2004) {
+									EditPart compartmentEditPart = getChildBySemanticHint(DrlModelVisualIDRegistry
+											.getType(ProductLineDataDocumentationCoreCompartmentEditPart.VISUAL_ID));
+									return compartmentEditPart == null ? null
+											: compartmentEditPart
+													.getCommand(request);
+								}
 							}
 							return super.getCommand(request);
 						}
@@ -115,7 +122,7 @@ public class ProductLineDataEditPart extends ShapeNodeEditPart {
 	 * @generated NOT
 	 */
 	protected IFigure createNodeShape() {
-		RectangleFigure shape = new RectangleFigure(); 
+		RectangleFigure shape = new RectangleFigure();
 		shape.setOutline(false);
 
 		primaryShape = shape;
@@ -171,11 +178,11 @@ public class ProductLineDataEditPart extends ShapeNodeEditPart {
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
 	 * @param nodeShape instance of generated figure class
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
-			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout(true);
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout(true); //HAND true
 			layout.setSpacing(getMapMode().DPtoLP(5));
 			nodeShape.setLayoutManager(layout);
 		}

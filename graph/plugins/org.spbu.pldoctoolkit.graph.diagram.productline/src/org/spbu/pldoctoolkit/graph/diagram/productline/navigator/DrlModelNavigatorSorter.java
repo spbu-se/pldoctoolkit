@@ -12,12 +12,12 @@ public class DrlModelNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
-	private static final int GROUP_CATEGORY = 5006;
+	private static final int GROUP_CATEGORY = 5007;
 
 	/**
 	 * @generated
 	 */
-	private static final int SHORTCUTS_CATEGORY = 5004;
+	private static final int SHORTCUTS_CATEGORY = 5005;
 
 	/**
 	 * @generated

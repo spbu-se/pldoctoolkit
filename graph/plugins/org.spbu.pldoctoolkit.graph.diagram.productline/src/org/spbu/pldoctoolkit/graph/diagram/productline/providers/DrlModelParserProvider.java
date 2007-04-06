@@ -9,6 +9,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductNameEditPart;
 
@@ -47,22 +48,46 @@ public class DrlModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser productLineProductLineName_4002Parser;
+	private IParser infProductInfProductName_4002Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getProductLineProductLineName_4002Parser() {
-		if (productLineProductLineName_4002Parser == null) {
-			productLineProductLineName_4002Parser = createProductLineProductLineName_4002Parser();
+	private IParser getInfProductInfProductName_4002Parser() {
+		if (infProductInfProductName_4002Parser == null) {
+			infProductInfProductName_4002Parser = createInfProductInfProductName_4002Parser();
 		}
-		return productLineProductLineName_4002Parser;
+		return infProductInfProductName_4002Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IParser createProductLineProductLineName_4002Parser() {
+	protected IParser createInfProductInfProductName_4002Parser() {
+		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
+				DrlPackage.eINSTANCE.getGenericDocumentPart_Name());
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser productLineProductLineName_4003Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getProductLineProductLineName_4003Parser() {
+		if (productLineProductLineName_4003Parser == null) {
+			productLineProductLineName_4003Parser = createProductLineProductLineName_4003Parser();
+		}
+		return productLineProductLineName_4003Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createProductLineProductLineName_4003Parser() {
 		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
 				DrlPackage.eINSTANCE.getProductLine_Name());
 		return parser;
@@ -75,8 +100,10 @@ public class DrlModelParserProvider extends AbstractProvider implements
 		switch (visualID) {
 		case ProductNameEditPart.VISUAL_ID:
 			return getProductProductName_4001Parser();
+		case InfProductNameEditPart.VISUAL_ID:
+			return getInfProductInfProductName_4002Parser();
 		case ProductLineNameEditPart.VISUAL_ID:
-			return getProductLineProductLineName_4002Parser();
+			return getProductLineProductLineName_4003Parser();
 		}
 		return null;
 	}

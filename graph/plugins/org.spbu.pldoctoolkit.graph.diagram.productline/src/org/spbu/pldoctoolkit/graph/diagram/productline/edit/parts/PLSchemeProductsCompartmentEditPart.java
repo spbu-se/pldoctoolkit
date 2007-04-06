@@ -11,6 +11,7 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -58,14 +59,14 @@ public class PLSchemeProductsCompartmentEditPart extends
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
 				.createFigure();
 		result.setTitleVisibility(false);
-		
+
 		//HAND
-		ConstrainedToolbarLayout layout = 
-			(ConstrainedToolbarLayout) result.getContentPane().getLayoutManager();
+		ConstrainedToolbarLayout layout = (ConstrainedToolbarLayout) result
+				.getContentPane().getLayoutManager();
 		layout.setSpacing(3);
 		layout.setStretchMinorAxis(true);
 		layout.setStretchMajorAxis(false);
-		
+
 		return result;
 	}
 
@@ -79,16 +80,12 @@ public class PLSchemeProductsCompartmentEditPart extends
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicy());
 		//HAND
-//		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-//				new DragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new PLSchemeProductsCompartmentCanonicalEditPolicy());
-		
-		//HAND
-		installEditPolicy(EditPolicy.LAYOUT_ROLE,
-				createLayoutEditPolicy());
+
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 	}
-	
+
 	/**
 	 * HAND
 	 */
@@ -99,9 +96,7 @@ public class PLSchemeProductsCompartmentEditPart extends
 				EditPolicy result = child
 						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
-					//HAND
 					result = new NonResizableEditPolicy();
-//					result = new UnmovableShapeEditPolicy();
 				}
 				return result;
 			}
@@ -116,7 +111,7 @@ public class PLSchemeProductsCompartmentEditPart extends
 		};
 		return lep;
 	}
-	
+
 	/**
 	 * @generated
 	 */

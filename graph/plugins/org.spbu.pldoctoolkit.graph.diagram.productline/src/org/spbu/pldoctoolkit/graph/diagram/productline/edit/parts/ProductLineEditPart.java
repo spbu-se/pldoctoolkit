@@ -82,7 +82,7 @@ public class ProductLineEditPart extends DiagramEditPart {
 						return null;
 					}
 				});
-		
+
 		//HAND
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 	}
