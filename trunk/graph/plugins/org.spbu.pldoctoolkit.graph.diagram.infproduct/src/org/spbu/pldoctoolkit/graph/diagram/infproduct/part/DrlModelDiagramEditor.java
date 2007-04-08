@@ -13,6 +13,7 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocu
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.editor.FileDiagramEditor;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -44,6 +45,7 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -59,6 +61,7 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.document.StorageDiagramDocumentProvider;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DrlModelEditPartFactory;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.navigator.DrlModelNavigatorItem;
 
 /**
  * @generated
@@ -251,6 +254,16 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 				IStructuredSelection selection = (IStructuredSelection) transferedObject;
 				for (Iterator it = selection.iterator(); it.hasNext();) {
 					Object nextSelectedObject = it.next();
+					if (nextSelectedObject instanceof DrlModelNavigatorItem) {
+						View view = ((DrlModelNavigatorItem) nextSelectedObject)
+								.getView();
+						nextSelectedObject = view.getElement();
+					} else if (nextSelectedObject instanceof IAdaptable) {
+						IAdaptable adaptable = (IAdaptable) nextSelectedObject;
+						nextSelectedObject = adaptable
+								.getAdapter(EObject.class);
+					}
+
 					if (nextSelectedObject instanceof EObject) {
 						EObject modelElement = (EObject) nextSelectedObject;
 						Resource modelElementResource = modelElement
@@ -289,11 +302,8 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
-	public Object getAdapter(Class type) {
-		if (type == IPropertySheetPage.class) {
-			return null;
-		}
-		return super.getAdapter(type);
+	public String getContributorId() {
+		return DrlModelDiagramEditorPlugin.ID;
 	}
 
 	/**

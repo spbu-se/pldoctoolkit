@@ -39,6 +39,7 @@ public class GenericDocumentPartGroupsItemSemanticEditPolicy extends
 				resource.getContents().add(referencedObject);
 				return result;
 			}
+
 		});
 	}
 }

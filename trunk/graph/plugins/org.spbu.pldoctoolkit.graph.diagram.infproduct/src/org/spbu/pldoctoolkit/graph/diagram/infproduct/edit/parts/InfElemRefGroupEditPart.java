@@ -2,6 +2,7 @@ package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Ellipse;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
@@ -181,8 +182,6 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
 
-		IFigure figure = getFigure();
-
 		getPrimaryShape().updateDecoration();
 	}
 
@@ -192,16 +191,20 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 	public class InfElemRefGroupFigure extends Ellipse {
 
 		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		public InfElemRefGroupFigure() {
-			updateDecoration();
-
-			this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(
-					getMapMode().DPtoLP(10), getMapMode().DPtoLP(10)));
-			this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(
-					getMapMode().DPtoLP(10), getMapMode().DPtoLP(10)));
-			createContents();
+			this.setFill(true);
+			this.setFillXOR(false);
+			this.setOutline(true);
+			this.setOutlineXOR(false);
+			this.setLineWidth(1);
+			this.setLineStyle(Graphics.LINE_SOLID);
+			this.setBackgroundColor(ColorConstants.lightGray);
+			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(10),
+					getMapMode().DPtoLP(10)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(10),
+					getMapMode().DPtoLP(10)));
 		}
 
 		public void updateDecoration() {
@@ -213,12 +216,6 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 			final Color backgroundColor = isTypeOr ? OR_COLOR : XOR_COLOR;
 
 			this.setBackgroundColor(backgroundColor);
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
 		}
 
 		/**

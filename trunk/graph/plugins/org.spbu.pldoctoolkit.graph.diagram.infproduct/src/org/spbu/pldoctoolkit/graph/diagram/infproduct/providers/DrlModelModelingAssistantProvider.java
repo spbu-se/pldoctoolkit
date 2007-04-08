@@ -56,8 +56,7 @@ public class DrlModelModelingAssistantProvider extends
 				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof InfElemRefGroupEditPart) {
 			List types = new ArrayList();
-			types
-					.add(DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003);
+			types.add(DrlModelElementTypes.InfElemRef_3003);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -72,6 +71,7 @@ public class DrlModelModelingAssistantProvider extends
 		if (targetEditPart instanceof InfElementEditPart) {
 			List types = new ArrayList();
 			types.add(DrlModelElementTypes.InfElemRef_3001);
+			types.add(DrlModelElementTypes.InfElemRef_3003);
 			return types;
 		}
 		if (targetEditPart instanceof InfElemRefGroupEditPart) {
@@ -93,6 +93,9 @@ public class DrlModelModelingAssistantProvider extends
 				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof InfElemRefGroupEditPart) {
 			List types = new ArrayList();
+			if (targetEditPart instanceof InfElementEditPart) {
+				types.add(DrlModelElementTypes.InfElemRef_3003);
+			}
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -107,6 +110,9 @@ public class DrlModelModelingAssistantProvider extends
 				.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof InfElementEditPart) {
 			List types = new ArrayList();
+			if (relationshipType == DrlModelElementTypes.InfElemRef_3003) {
+				types.add(DrlModelElementTypes.InfElemRefGroup_1003);
+			}
 			return types;
 		}
 		if (targetEditPart instanceof InfElemRefGroupEditPart) {
@@ -125,6 +131,9 @@ public class DrlModelModelingAssistantProvider extends
 				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof InfElemRefGroupEditPart) {
 			List types = new ArrayList();
+			if (relationshipType == DrlModelElementTypes.InfElemRef_3003) {
+				types.add(DrlModelElementTypes.InfElement_1001);
+			}
 			return types;
 		}
 		return Collections.EMPTY_LIST;

@@ -92,7 +92,7 @@ public class DrlModelPaletteFactory {
 	private ToolEntry createInfElemRefConnection4CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(2);
 		types.add(DrlModelElementTypes.InfElemRef_3001);
-		types.add(DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003);
+		types.add(DrlModelElementTypes.InfElemRef_3003);
 		LinkToolEntry entry = new LinkToolEntry(
 				Messages.InfElemRefConnection4CreationTool_title,
 				Messages.InfElemRefConnection4CreationTool_desc, types);

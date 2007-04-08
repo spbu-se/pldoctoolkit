@@ -41,9 +41,12 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
+import java.util.Iterator;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMap;
 
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.InfProduct;
 
@@ -60,7 +63,7 @@ public class DrlModelElementChooserDialog extends Dialog {
 	/**
 	 * @generated
 	 */
-	private EObject mySelectedModelElement;
+	private URI mySelectedModelElementURI;
 
 	/**
 	 * @generated
@@ -70,7 +73,7 @@ public class DrlModelElementChooserDialog extends Dialog {
 	/**
 	 * @generated
 	 */
-	private EditingDomain myEditingDomain = GMFEditingDomainFactory.INSTANCE
+	private TransactionalEditingDomain myEditingDomain = GMFEditingDomainFactory.INSTANCE
 			.createEditingDomain();
 
 	/**
@@ -137,9 +140,21 @@ public class DrlModelElementChooserDialog extends Dialog {
 	 * @generated
 	 */
 	public URI getSelectedModelElementURI() {
-		Resource resource = mySelectedModelElement.eResource();
-		return resource.getURI().appendFragment(
-				resource.getURIFragment(mySelectedModelElement));
+		return mySelectedModelElementURI;
+	}
+
+	/**
+	 * @generated
+	 */
+	public int open() {
+		int result = super.open();
+		for (Iterator it = myEditingDomain.getResourceSet().getResources()
+				.iterator(); it.hasNext();) {
+			Resource resource = (Resource) it.next();
+			resource.unload();
+		}
+		myEditingDomain.dispose();
+		return result;
 	}
 
 	/**
@@ -359,15 +374,17 @@ public class DrlModelElementChooserDialog extends Dialog {
 								.getValue();
 					}
 					if (selectedElement instanceof EObject) {
-						mySelectedModelElement = (EObject) selectedElement;
+						EObject selectedModelElement = (EObject) selectedElement;
+						
 						// HAND
-						boolean doEnable = mySelectedModelElement.eClass().getClassifierID() != DrlPackage.INF_PRODUCT
+						boolean doEnable = 
+							selectedModelElement.eClass().getClassifierID() != DrlPackage.INF_PRODUCT
 								&& ViewService
 										.getInstance()
 										.provides(
 												Node.class,
 												new EObjectAdapter(
-														mySelectedModelElement),
+														selectedModelElement),
 												myView,
 												null,
 												ViewUtil.APPEND,
@@ -375,11 +392,13 @@ public class DrlModelElementChooserDialog extends Dialog {
 												DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 
 						setOkButtonEnabled(doEnable);
+						mySelectedModelElementURI = EcoreUtil
+								.getURI(selectedModelElement);
 						return;
 					}
 				}
 			}
-			mySelectedModelElement = null;
+			mySelectedModelElementURI = null;
 			setOkButtonEnabled(false);
 		}
 

@@ -17,8 +17,10 @@ import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.InfProduct;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRef2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefId2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementNameEditPart;
@@ -197,6 +199,11 @@ public class DrlModelVisualIDRegistry {
 				return InfElemRefIdEditPart.VISUAL_ID;
 			}
 			return getUnrecognizedInfElemRef_3001LinkLabelID(semanticHint);
+		case InfElemRef2EditPart.VISUAL_ID:
+			if (InfElemRefId2EditPart.VISUAL_ID == nodeVisualID) {
+				return InfElemRefId2EditPart.VISUAL_ID;
+			}
+			return getUnrecognizedInfElemRef_3003LinkLabelID(semanticHint);
 		}
 		return -1;
 	}
@@ -221,6 +228,10 @@ public class DrlModelVisualIDRegistry {
 				domainElementMetaclass)
 				&& (domainElement == null || isLinkWithClassInfElemRef_3001((InfElemRef) domainElement))) {
 			return InfElemRefEditPart.VISUAL_ID;
+		} else if (DrlPackage.eINSTANCE.getInfElemRef().isSuperTypeOf(
+				domainElementMetaclass)
+				&& (domainElement == null || isLinkWithClassInfElemRef_3003((InfElemRef) domainElement))) {
+			return InfElemRef2EditPart.VISUAL_ID;
 		} else {
 			return getUnrecognizedLinkWithClassID(domainElement);
 		}
@@ -338,6 +349,17 @@ public class DrlModelVisualIDRegistry {
 	 *
 	 * @generated
 	 */
+	private static int getUnrecognizedInfElemRef_3003LinkLabelID(
+			String semanticHint) {
+		return -1;
+	}
+
+	/**
+	 * User can change implementation of this method to handle some specific
+	 * situations not covered by default logic.
+	 *
+	 * @generated
+	 */
 	private static int getUnrecognizedLinkWithClassID(EObject domainElement) {
 		return -1;
 	}
@@ -353,9 +375,26 @@ public class DrlModelVisualIDRegistry {
 	}
 
 	/**
+	 * User can change implementation of this method to check some additional 
+	 * conditions here.
+	 *
+	 * @generated
+	 */
+	private static boolean isLinkWithClassInfElemRef_3003(InfElemRef element) {
+		return InfElemRef_3003.matches(element);
+	}
+
+	/**
 	 * @generated
 	 */
 	private static final Matcher InfElemRef_3001 = new Matcher(
+			DrlModelOCLFactory.getExpression("self.optional = true", //$NON-NLS-1$
+					DrlPackage.eINSTANCE.getInfElemRef()));
+
+	/**
+	 * @generated
+	 */
+	private static final Matcher InfElemRef_3003 = new Matcher(
 			DrlModelOCLFactory.getExpression("self.optional = true", //$NON-NLS-1$
 					DrlPackage.eINSTANCE.getInfElemRef()));
 

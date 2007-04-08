@@ -32,6 +32,7 @@ import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRef2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupInfElemRefsGroupEditPart;
@@ -161,6 +162,7 @@ public class DiagramContentsInitializer {
 	private void storeTypeModelFacetLinks(EObject container,
 			EClass containerMetaclass) {
 		storeTypeModelFacetLinks_InfElemRef_3001(container, containerMetaclass);
+		storeTypeModelFacetLinks_InfElemRef_3003(container, containerMetaclass);
 	}
 
 	/**
@@ -184,6 +186,38 @@ public class DiagramContentsInitializer {
 						myLinkDescriptors.add(new LinkDescriptor(src, dst,
 								nextValue,
 								DrlModelElementTypes.InfElemRef_3001, linkVID));
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private void storeTypeModelFacetLinks_InfElemRef_3003(EObject container,
+			EClass containerMetaclass) {
+		if (DrlPackage.eINSTANCE.getGenericDocumentPart().isSuperTypeOf(
+				containerMetaclass)) {
+			for (Iterator values = ((GenericDocumentPart) container)
+					.getInfElemRefs().iterator(); values.hasNext();) {
+				EObject nextValue = ((EObject) values.next());
+				int linkVID = DrlModelVisualIDRegistry
+						.getLinkWithClassVisualID(nextValue);
+				if (InfElemRef2EditPart.VISUAL_ID == linkVID) {
+					Object structuralFeatureResult = ((InfElemRef) nextValue)
+							.getInfelem();
+					if (structuralFeatureResult instanceof EObject) {
+						EObject dst = (EObject) structuralFeatureResult;
+						structuralFeatureResult = ((InfElemRef) nextValue)
+								.getGroup();
+						if (structuralFeatureResult instanceof EObject) {
+							EObject src = (EObject) structuralFeatureResult;
+							myLinkDescriptors.add(new LinkDescriptor(src, dst,
+									nextValue,
+									DrlModelElementTypes.InfElemRef_3003,
+									linkVID));
+						}
 					}
 				}
 			}
@@ -224,20 +258,6 @@ public class DiagramContentsInitializer {
 			}
 		}
 
-		if (DrlPackage.eINSTANCE.getInfElemRefGroup().isSuperTypeOf(
-				containerMetaclass)) {
-			for (Iterator destinations = ((InfElemRefGroup) container)
-					.getInfElemRefsGroup().iterator(); destinations.hasNext();) {
-				EObject nextDestination = (EObject) destinations.next();
-				myLinkDescriptors
-						.add(new LinkDescriptor(
-								container,
-								nextDestination,
-								DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003,
-								InfElemRefGroupInfElemRefsGroupEditPart.VISUAL_ID));
-
-			}
-		}
 	}
 
 	/**

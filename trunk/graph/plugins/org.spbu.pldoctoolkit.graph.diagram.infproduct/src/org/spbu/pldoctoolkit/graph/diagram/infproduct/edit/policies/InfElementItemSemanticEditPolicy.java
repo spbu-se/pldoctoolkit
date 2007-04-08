@@ -15,12 +15,22 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
+import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.GenericDocumentPartGroupsReorientCommand;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRef2ReorientCommand;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRef2TypeLinkCreateCommand;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRefReorientCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRefTypeLinkCreateCommand;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRef2EditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
 
@@ -65,7 +75,7 @@ public class InfElementItemSemanticEditPolicy extends
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (DrlModelElementTypes.InfElemRef_3001 == req.getElementType()) {
@@ -77,16 +87,35 @@ public class InfElementItemSemanticEditPolicy extends
 			return req.getTarget() == null ? getCreateStartOutgoingGenericDocumentPartGroups_3002Command(req)
 					: null;
 		}
-
-		if (DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003 == req
-				.getElementType()) {
+		if (DrlModelElementTypes.InfElemRef_3003 == req.getElementType()) {
 			return req.getTarget() == null ? null
-					: getCreateCompleteIncomingInfElemRefGroup_InfElemRefsGroup3003Command(req);
+					: getCreateCompleteIncomingInfElemRef_3003Command(req);
 		}
-
 		return super.getCreateRelationshipCommand(req);
 	}
 
+	/**
+	 * @generated
+	 */
+	//	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+	//		if (DrlModelElementTypes.InfElemRef_3001 == req.getElementType()) {
+	//			return req.getTarget() == null ? getCreateStartOutgoingInfElemRef_3001Command(req)
+	//					: getCreateCompleteIncomingInfElemRef_3001Command(req);
+	//		}
+	//		if (DrlModelElementTypes.GenericDocumentPartGroups_3002 == req
+	//				.getElementType()) {
+	//			return req.getTarget() == null ? getCreateStartOutgoingGenericDocumentPartGroups_3002Command(req)
+	//					: null;
+	//		}
+	//
+	//		if (DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003 == req
+	//				.getElementType()) {
+	//			return req.getTarget() == null ? null
+	//					: getCreateCompleteIncomingInfElemRefGroup_InfElemRefsGroup3003Command(req);
+	//		}
+	//
+	//		return super.getCreateRelationshipCommand(req);
+	//	}
 	/**
 	 * @generated
 	 */
@@ -146,6 +175,70 @@ public class InfElementItemSemanticEditPolicy extends
 		}
 		return new Command() {
 		};
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCreateCompleteIncomingInfElemRef_3003Command(
+			CreateRelationshipRequest req) {
+		EObject sourceEObject = req.getSource();
+		EObject targetEObject = req.getTarget();
+		if (false == sourceEObject instanceof InfElemRefGroup
+				|| false == targetEObject instanceof InfElement) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		InfElemRefGroup source = (InfElemRefGroup) sourceEObject;
+		InfElement target = (InfElement) targetEObject;
+		GenericDocumentPart container = (GenericDocumentPart) getRelationshipContainer(
+				source, DrlPackage.eINSTANCE.getGenericDocumentPart(), req
+						.getElementType());
+		if (container == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		if (!DrlModelBaseItemSemanticEditPolicy.LinkConstraints
+				.canCreateInfElemRef_3003(container, source, target)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		if (req.getContainmentFeature() == null) {
+			req.setContainmentFeature(DrlPackage.eINSTANCE
+					.getGenericDocumentPart_InfElemRefs());
+		}
+		return getMSLWrapper(new InfElemRef2TypeLinkCreateCommand(req,
+				container, source, target));
+	}
+
+	/**
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case InfElemRefEditPart.VISUAL_ID:
+			return getMSLWrapper(new InfElemRefReorientCommand(req));
+		case InfElemRef2EditPart.VISUAL_ID:
+			return getMSLWrapper(new InfElemRef2ReorientCommand(req));
+		}
+		return super.getReorientRelationshipCommand(req);
+	}
+
+	/**
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case GenericDocumentPartGroupsEditPart.VISUAL_ID:
+			return getMSLWrapper(new GenericDocumentPartGroupsReorientCommand(
+					req));
+		}
+		return super.getReorientReferenceRelationshipCommand(req);
 	}
 
 	protected Command getCreateCompleteIncomingInfElemRefGroup_InfElemRefsGroup3003Command(
