@@ -7,8 +7,10 @@ import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRef2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefId2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementNameEditPart;
@@ -19,8 +21,10 @@ import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegis
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.DocumentationCoreViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.GenericDocumentPartGroupsViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRef2ViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRefGroupInfElemRefsGroupViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRefGroupViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRefId2ViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRefIdViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElemRefViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.view.factories.InfElementNameViewFactory;
@@ -76,6 +80,8 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 			return InfElemRefGroupViewFactory.class;
 		case InfElemRefIdEditPart.VISUAL_ID:
 			return InfElemRefIdViewFactory.class;
+		case InfElemRefId2EditPart.VISUAL_ID:
+			return InfElemRefId2ViewFactory.class;
 		}
 		return null;
 	}
@@ -94,10 +100,6 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 				.equals(elementType)) {
 			return GenericDocumentPartGroupsViewFactory.class;
 		}
-		if (DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003
-				.equals(elementType)) {
-			return InfElemRefGroupInfElemRefsGroupViewFactory.class;
-		}
 		EClass semanticType = getSemanticEClass(semanticAdapter);
 		if (semanticType == null) {
 			return null;
@@ -108,6 +110,8 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 		switch (linkVID) {
 		case InfElemRefEditPart.VISUAL_ID:
 			return InfElemRefViewFactory.class;
+		case InfElemRef2EditPart.VISUAL_ID:
+			return InfElemRef2ViewFactory.class;
 		}
 		return getUnrecognizedConnectorViewClass(semanticAdapter,
 				containerView, semanticHint);

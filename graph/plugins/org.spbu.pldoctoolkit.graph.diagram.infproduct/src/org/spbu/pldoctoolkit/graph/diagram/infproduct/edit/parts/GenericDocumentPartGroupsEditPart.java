@@ -56,8 +56,13 @@ public class GenericDocumentPartGroupsEditPart extends ConnectionNodeEditPart {
 		 * @generated
 		 */
 		public InfElemRefGroupConnectionFigure() {
-
+			this.setFill(true);
+			this.setFillXOR(false);
+			this.setOutline(true);
+			this.setOutlineXOR(false);
+			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
+
 		}
 
 	}

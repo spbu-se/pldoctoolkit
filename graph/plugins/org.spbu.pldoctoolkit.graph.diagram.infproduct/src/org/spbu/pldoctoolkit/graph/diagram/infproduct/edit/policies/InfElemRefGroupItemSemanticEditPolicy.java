@@ -9,6 +9,8 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gmf.runtime.notation.View;
@@ -34,6 +36,10 @@ import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.GenericDocumentPartGroupsReorientCommand;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRef2ReorientCommand;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRef2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
 
@@ -102,9 +108,8 @@ public class InfElemRefGroupItemSemanticEditPolicy extends
 			return req.getTarget() == null ? null
 					: getCreateCompleteIncomingGenericDocumentPartGroups_3002Command(req);
 		}
-		if (DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003 == req
-				.getElementType()) {
-			return req.getTarget() == null ? getCreateStartOutgoingInfElemRefGroupInfElemRefsGroup_3003Command(req)
+		if (DrlModelElementTypes.InfElemRef_3003 == req.getElementType()) {
+			return req.getTarget() == null ? getCreateStartOutgoingInfElemRef_3003Command(req)
 					: null;
 		}
 		return super.getCreateRelationshipCommand(req);
@@ -135,19 +140,56 @@ public class InfElemRefGroupItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCreateStartOutgoingInfElemRefGroupInfElemRefsGroup_3003Command(
+	protected Command getCreateStartOutgoingInfElemRef_3003Command(
 			CreateRelationshipRequest req) {
 		EObject sourceEObject = req.getSource();
 		if (false == sourceEObject instanceof InfElemRefGroup) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		InfElemRefGroup source = (InfElemRefGroup) sourceEObject;
+		GenericDocumentPart container = (GenericDocumentPart) getRelationshipContainer(
+				source, DrlPackage.eINSTANCE.getGenericDocumentPart(), req
+						.getElementType());
+		if (container == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
 		if (!DrlModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateInfElemRefGroupInfElemRefsGroup_3003(source, null)) {
+				.canCreateInfElemRef_3003(container, source, null)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return new Command() {
 		};
+	}
+
+	/**
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case InfElemRef2EditPart.VISUAL_ID:
+			return getMSLWrapper(new InfElemRef2ReorientCommand(req));
+		}
+		return super.getReorientRelationshipCommand(req);
+	}
+
+	/**
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case GenericDocumentPartGroupsEditPart.VISUAL_ID:
+			return getMSLWrapper(new GenericDocumentPartGroupsReorientCommand(
+					req));
+		}
+		return super.getReorientReferenceRelationshipCommand(req);
 	}
 
 	/**

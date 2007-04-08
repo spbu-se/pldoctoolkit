@@ -1,6 +1,7 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;

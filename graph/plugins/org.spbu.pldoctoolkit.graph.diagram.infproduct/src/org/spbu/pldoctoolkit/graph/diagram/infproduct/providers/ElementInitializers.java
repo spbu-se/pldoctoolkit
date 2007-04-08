@@ -38,6 +38,19 @@ public class ElementInitializers {
 			}
 		}; // InfElemRef_3001 ObjectInitializer
 
+		/**
+		 * @generated
+		 */
+		public static final IObjectInitializer InfElemRef_3003 = new ObjectInitializer(
+				DrlPackage.eINSTANCE.getInfElemRef()) {
+			protected void init() {
+				add(createExpressionFeatureInitializer(DrlPackage.eINSTANCE
+						.getInfElemRef_Optional(), DrlModelOCLFactory
+						.getExpression("true", //$NON-NLS-1$
+								DrlPackage.eINSTANCE.getInfElemRef())));
+			}
+		}; // InfElemRef_3003 ObjectInitializer
+
 		/** 
 		 * @generated
 		 */

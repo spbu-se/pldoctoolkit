@@ -1,6 +1,7 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
 import org.eclipse.draw2d.CompoundBorder;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.RectangleFigure;
@@ -234,15 +235,14 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public InfProductFigure() {
-
+			this.setFill(true);
+			this.setFillXOR(false);
+			this.setOutline(true);
+			this.setOutlineXOR(false);
 			this.setLineWidth(3);
-			this.setBorder(new CompoundBorder(
-
-			new LineBorder(),
-
-			new LineBorder()
-
-			));
+			this.setLineStyle(Graphics.LINE_SOLID);
+			this.setBorder(new CompoundBorder(new LineBorder(null, getMapMode()
+					.DPtoLP(1)), new LineBorder(null, getMapMode().DPtoLP(1))));
 			createContents();
 		}
 
@@ -250,14 +250,13 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-			WrapLabel fig_0 = new WrapLabel();
-			fig_0.setText("<...>");
 
-			setFigureInfProductNameFigure(fig_0);
+			WrapLabel infProductNameFigure0 = new WrapLabel();
+			infProductNameFigure0.setText("<...>");
 
-			Object layData0 = null;
+			this.add(infProductNameFigure0);
+			setFigureInfProductNameFigure(infProductNameFigure0);
 
-			this.add(fig_0, layData0);
 		}
 
 		/**

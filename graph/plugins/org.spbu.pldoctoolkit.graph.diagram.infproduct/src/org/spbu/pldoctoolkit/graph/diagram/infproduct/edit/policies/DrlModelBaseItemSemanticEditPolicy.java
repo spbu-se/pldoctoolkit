@@ -3,8 +3,10 @@ package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -35,11 +37,50 @@ import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers.DrlModelBaseEditHelper;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
 
 /**
  * @generated
  */
 public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
+
+	/**
+	 * Extended request data key to hold editpart visual id.
+	 * 
+	 * @generated
+	 */
+	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
+
+	/**
+	 * Add visual id of edited editpart to extended data of the request
+	 * so command switch can decide what kind of diagram element is being edited.
+	 * It is done in those cases when it's not possible to deduce diagram
+	 * element kind from domain element.
+	 * 
+	 * @generated
+	 */
+	public Command getCommand(Request request) {
+		if (request instanceof ReconnectRequest) {
+			Object view = ((ReconnectRequest) request).getConnectionEditPart()
+					.getModel();
+			if (view instanceof View) {
+				Integer id = new Integer(DrlModelVisualIDRegistry
+						.getVisualID((View) view));
+				request.getExtendedData().put(VISUAL_ID_KEY, id);
+			}
+		}
+		return super.getCommand(request);
+	}
+
+	/**
+	 * Returns visual id from request parameters.
+	 * 
+	 * @generated
+	 */
+	protected int getVisualID(IEditCommandRequest request) {
+		Object id = request.getParameter(VISUAL_ID_KEY);
+		return id instanceof Integer ? ((Integer) id).intValue() : -1;
+	}
 
 	/**
 	 * @generated
@@ -234,11 +275,14 @@ public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
-	protected EObject getRelationshipContainer(EObject element,
+	protected EObject getRelationshipContainer(Object uelement,
 			EClass containerClass, IElementType relationshipType) {
-		for (; element != null; element = element.eContainer()) {
-			if (containerClass.isSuperTypeOf(element.eClass())) {
-				return element;
+		if (uelement instanceof EObject) {
+			EObject element = (EObject) uelement;
+			for (; element != null; element = element.eContainer()) {
+				if (containerClass.isSuperTypeOf(element.eClass())) {
+					return element;
+				}
 			}
 		}
 		return null;
@@ -247,7 +291,7 @@ public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected static class LinkConstraints {
+	public static class LinkConstraints {
 		/**
 		 * @generated
 		 */
@@ -258,7 +302,7 @@ public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canCreateInfElemRef_3001(
 				GenericDocumentPart source, InfElement target) {
-			return true;
+			return canExistInfElemRef_3001(source, target);
 		}
 
 		/**
@@ -271,19 +315,40 @@ public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
+			return canExistGenericDocumentPartGroups_3002(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateInfElemRef_3003(
+				GenericDocumentPart container, InfElemRefGroup source,
+				InfElement target) {
+			return canExistInfElemRef_3003(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistInfElemRef_3001(
+				GenericDocumentPart source, InfElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateInfElemRefGroupInfElemRefsGroup_3003(
-				InfElemRefGroup source, InfElemRef target) {
-			if (source != null) {
-				if (source.getInfElemRefsGroup().contains(target)) {
-					return false;
-				}
-			}
+		public static boolean canExistGenericDocumentPartGroups_3002(
+				GenericDocumentPart source, InfElemRefGroup target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistInfElemRef_3003(
+				GenericDocumentPart container, InfElemRefGroup source,
+				InfElement target) {
 			return true;
 		}
 

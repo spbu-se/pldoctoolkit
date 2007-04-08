@@ -71,7 +71,7 @@ public class DrlModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType InfElemRefGroupInfElemRefsGroup_3003 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroupInfElemRefsGroup_3003"); //$NON-NLS-1$
+	public static final IElementType InfElemRef_3003 = getElementType("org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRef_3003"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -199,8 +199,7 @@ public class DrlModelElementTypes extends ElementInitializers {
 			elements.put(GenericDocumentPartGroups_3002, DrlPackage.eINSTANCE
 					.getGenericDocumentPart_Groups());
 
-			elements.put(InfElemRefGroupInfElemRefsGroup_3003,
-					DrlPackage.eINSTANCE.getInfElemRefGroup_InfElemRefsGroup());
+			elements.put(InfElemRef_3003, DrlPackage.eINSTANCE.getInfElemRef());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -224,7 +223,7 @@ public class DrlModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(InfElemRefGroup_1003);
 			KNOWN_ELEMENT_TYPES.add(InfElemRef_3001);
 			KNOWN_ELEMENT_TYPES.add(GenericDocumentPartGroups_3002);
-			KNOWN_ELEMENT_TYPES.add(InfElemRefGroupInfElemRefsGroup_3003);
+			KNOWN_ELEMENT_TYPES.add(InfElemRef_3003);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}

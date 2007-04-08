@@ -1,5 +1,6 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
@@ -232,7 +233,12 @@ public class InfElementEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public InfElementFigure() {
-
+			this.setFill(true);
+			this.setFillXOR(false);
+			this.setOutline(true);
+			this.setOutlineXOR(false);
+			this.setLineWidth(1);
+			this.setLineStyle(Graphics.LINE_SOLID);
 			createContents();
 		}
 
@@ -240,14 +246,13 @@ public class InfElementEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-			WrapLabel fig_0 = new WrapLabel();
-			fig_0.setText("<...>");
 
-			setFigureInfElementNameFigure(fig_0);
+			WrapLabel infElementNameFigure0 = new WrapLabel();
+			infElementNameFigure0.setText("<...>");
 
-			Object layData0 = null;
+			this.add(infElementNameFigure0);
+			setFigureInfElementNameFigure(infElementNameFigure0);
 
-			this.add(fig_0, layData0);
 		}
 
 		/**

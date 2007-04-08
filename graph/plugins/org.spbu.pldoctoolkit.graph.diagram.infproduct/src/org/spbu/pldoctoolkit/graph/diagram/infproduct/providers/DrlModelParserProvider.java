@@ -9,6 +9,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefId2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductNameEditPart;
@@ -42,6 +43,8 @@ public class DrlModelParserProvider extends AbstractProvider implements
 	protected IParser createInfElementInfElementName_4001Parser() {
 		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
 				DrlPackage.eINSTANCE.getGenericDocumentPart_Name());
+		parser.setViewPattern("{0}");
+		parser.setEditPattern("{0}");
 		return parser;
 	}
 
@@ -66,6 +69,8 @@ public class DrlModelParserProvider extends AbstractProvider implements
 	protected IParser createInfProductInfProductName_4002Parser() {
 		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
 				DrlPackage.eINSTANCE.getGenericDocumentPart_Name());
+		parser.setViewPattern("{0}");
+		parser.setEditPattern("{0}");
 		return parser;
 	}
 
@@ -90,6 +95,34 @@ public class DrlModelParserProvider extends AbstractProvider implements
 	protected IParser createInfElemRefInfElemRefId_4003Parser() {
 		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
 				DrlPackage.eINSTANCE.getInfElemRef_Id());
+		parser.setViewPattern("{0}");
+		parser.setEditPattern("{0}");
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser infElemRefInfElemRefId_4004Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInfElemRefInfElemRefId_4004Parser() {
+		if (infElemRefInfElemRefId_4004Parser == null) {
+			infElemRefInfElemRefId_4004Parser = createInfElemRefInfElemRefId_4004Parser();
+		}
+		return infElemRefInfElemRefId_4004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createInfElemRefInfElemRefId_4004Parser() {
+		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
+				DrlPackage.eINSTANCE.getInfElemRef_Id());
+		parser.setViewPattern("{0}");
+		parser.setEditPattern("{0}");
 		return parser;
 	}
 
@@ -104,6 +137,8 @@ public class DrlModelParserProvider extends AbstractProvider implements
 			return getInfProductInfProductName_4002Parser();
 		case InfElemRefIdEditPart.VISUAL_ID:
 			return getInfElemRefInfElemRefId_4003Parser();
+		case InfElemRefId2EditPart.VISUAL_ID:
+			return getInfElemRefInfElemRefId_4004Parser();
 		}
 		return null;
 	}
