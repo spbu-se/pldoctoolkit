@@ -1,5 +1,6 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
+import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -34,39 +35,10 @@ public class DrlModelMatchingStrategy implements IEditorMatchingStrategy {
 		if (editorInput.equals(input)) {
 			return true;
 		}
-
-		if (editorInput instanceof IFileEditorInput
-				&& input instanceof IFileEditorInput) {
-			return ((IFileEditorInput) editorInput).getFile().equals(
-					((IFileEditorInput) input).getFile());
-		}
-
-		IEditorPart editor = editorRef.getEditor(false);
-		if (input instanceof DiagramEditorInput
-				&& editor instanceof DrlModelDiagramEditor) {
-			Diagram editorDiagram = ((DrlModelDiagramEditor) editor)
-					.getDiagram();
-			Diagram otherDiagram = ((DiagramEditorInput) input).getDiagram();
-			return equals(editorDiagram, otherDiagram);
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	private boolean equals(Diagram editorDiagram, Diagram otherDiagram) {
-		Resource editorResource = editorDiagram.eResource();
-		Resource otherResource = otherDiagram.eResource();
-		if (editorResource != null && otherResource != null) {
-			URI editorURI = editorResource.getURI();
-			URI otherURI = otherResource.getURI();
-			String editorURIFragment = editorResource
-					.getURIFragment(editorDiagram);
-			String otherURIFragment = otherResource
-					.getURIFragment(otherDiagram);
-			return editorURI.equals(otherURI)
-					&& editorURIFragment.equals(otherURIFragment);
+		if (editorInput instanceof URIEditorInput
+				&& input instanceof URIEditorInput) {
+			return ((URIEditorInput) editorInput).getURI().equals(
+					((URIEditorInput) input).getURI());
 		}
 		return false;
 	}

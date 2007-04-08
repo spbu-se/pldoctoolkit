@@ -5,6 +5,7 @@ import org.eclipse.core.runtime.Platform;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
@@ -17,20 +18,24 @@ public class DrlModelNavigatorItem extends DrlModelAbstractNavigatorItem {
 	 */
 	static {
 		final Class[] supportedTypes = new Class[] { View.class, EObject.class };
-		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
+		Platform.getAdapterManager().registerAdapters(
+				new IAdapterFactory() {
 
-			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof DrlModelNavigatorItem
-						&& (adapterType == View.class || adapterType == EObject.class)) {
-					return ((DrlModelNavigatorItem) adaptableObject).getView();
-				}
-				return null;
-			}
+					public Object getAdapter(Object adaptableObject,
+							Class adapterType) {
+						if (adaptableObject instanceof org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelNavigatorItem
+								&& (adapterType == View.class || adapterType == EObject.class)) {
+							return ((org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelNavigatorItem) adaptableObject)
+									.getView();
+						}
+						return null;
+					}
 
-			public Class[] getAdapterList() {
-				return supportedTypes;
-			}
-		}, DrlModelNavigatorItem.class);
+					public Class[] getAdapterList() {
+						return supportedTypes;
+					}
+				},
+				org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelNavigatorItem.class);
 	}
 
 	/**
@@ -70,22 +75,22 @@ public class DrlModelNavigatorItem extends DrlModelAbstractNavigatorItem {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof DrlModelNavigatorItem) {
-			EObject eObject = getView().getElement();
-			EObject anotherEObject = ((DrlModelNavigatorItem) obj).getView()
-					.getElement();
-			if (eObject == null) {
-				return anotherEObject == null;
-			} else if (anotherEObject == null) {
-				return false;
-			}
-			if (eObject.eResource() != null) {
-				return eObject.eResource().getURIFragment(eObject).equals(
-						anotherEObject.eResource().getURIFragment(
-								anotherEObject));
-			}
+		if (obj instanceof org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelNavigatorItem) {
+			return EcoreUtil
+					.getURI(getView())
+					.equals(
+							EcoreUtil
+									.getURI(((org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelNavigatorItem) obj)
+											.getView()));
 		}
 		return super.equals(obj);
+	}
+
+	/**
+	 * @generated
+	 */
+	public int hashCode() {
+		return EcoreUtil.getURI(getView()).hashCode();
 	}
 
 }

@@ -47,37 +47,25 @@
    <extension point="org.eclipse.ui.popupMenus">
       <?gmfgen generated="true"?>
       <objectContribution
-            id="org.spbu.pldoctoolkit.graph.diagram.productline.ui.objectContribution.IFile1"
-            nameFilter="*.drl"
-            objectClass="org.eclipse.core.resources.IFile">
-         <action
-               label="%initDiagramActionLabel"
-               class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelInitDiagramFileAction"
-               menubarPath="additions"
-               enablesFor="1"
-               id="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelInitDiagramFileActionID">
-         </action>
-      </objectContribution>
-      <objectContribution
             adaptable="false"
-            id="org.spbu.pldoctoolkit.graph.diagram.productline.ui.objectContribution.ProductLineEditPart1"
+            id="org.spbu.pldoctoolkit.graph.diagram.productline.CreateShortcut"
             objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart">
          <action
                class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreateShortcutAction"
                enablesFor="1"
-               id="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreateShortcutActionID"
+               id="org.spbu.pldoctoolkit.graph.diagram.productline.CreateShortcutAction"
                label="%createShortcutActionLabel"
                menubarPath="additions">
          </action>
       </objectContribution>                      
       <objectContribution
             adaptable="false"
-            id="org.spbu.pldoctoolkit.graph.diagram.productline.ui.objectContribution.ProductLineEditPart2"
+            id="org.spbu.pldoctoolkit.graph.diagram.productline.LoadResource"
             objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart">
          <action
                class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelLoadResourceAction"
                enablesFor="1"
-               id="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelLoadResourceActionID"
+               id="org.spbu.pldoctoolkit.graph.diagram.productline.LoadResourceAction"
                label="%loadResourceActionLabel"
                menubarPath="additions">
          </action>
@@ -374,11 +362,11 @@
    <extension point="org.eclipse.core.expressions.propertyTesters">
       <?gmfgen generated="true"?>
        <propertyTester
-           id="org.spbu.pldoctoolkit.graph.diagram.productline.ShortcutPropertyTester"
-           type="org.eclipse.gmf.runtime.notation.View"
+           id="org.spbu.pldoctoolkit.graph.diagram.productline.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
            namespace="org.spbu.pldoctoolkit.graph.diagram.productline"
-           properties="isShortcut"
-           class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelShortcutPropertyTester">
+           properties="isURIEditorInput"
+           class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelUriEditorInputTester">
        </propertyTester>
    </extension>
 
@@ -387,6 +375,7 @@
       <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
          <includes>
             <contentExtension pattern="org.spbu.pldoctoolkit.graph.diagram.productline.resourceContent"/>
+			<contentExtension pattern="org.spbu.pldoctoolkit.graph.diagram.productline.domainResourceContent"/>
             <contentExtension pattern="org.spbu.pldoctoolkit.graph.diagram.productline.navigatorLinkHelper"/>
          </includes>
       </viewerContentBinding>
@@ -441,6 +430,33 @@
             </parentExpression>
          </commonSorter>
       </navigatorContent>
+      <navigatorContent
+            id="org.spbu.pldoctoolkit.graph.diagram.productline.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelDomainNavigatorContentProvider" 
+            labelProvider="org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelDomainNavigatorLabelProvider"
+            icon="icons/obj16/DrlDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="drl"/>
+               </and>
+               <and>
+                  <instanceof value="org.eclipse.emf.ecore.EObject"/>
+                  <test property="org.spbu.pldoctoolkit.graph.diagram.productline.isDomainModelElement"/>
+               </and>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <and>
+       	       <instanceof value="org.eclipse.emf.ecore.EObject"/>
+       	       <test property="org.spbu.pldoctoolkit.graph.diagram.productline.isDomainModelElement"/>
+       	    </and>
+         </possibleChildren>
+      </navigatorContent>
       <actionProvider
             id="org.spbu.pldoctoolkit.graph.diagram.productline.navigatorActionProvider"
             class="org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelNavigatorActionProvider">
@@ -461,11 +477,49 @@
             id="org.spbu.pldoctoolkit.graph.diagram.productline.navigatorLinkHelper"
             class="org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelNavigatorLinkHelper">
          <editorInputEnablement>
-            <instanceof value="org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.document.FileEditorInputProxy"/>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="org.spbu.pldoctoolkit.graph.diagram.productline.isURIEditorInput"/>
+            </and>
          </editorInputEnablement>
          <selectionEnablement>
             <instanceof value="org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelAbstractNavigatorItem"/>
          </selectionEnablement>
       </linkHelper>
+   </extension><extension point="org.eclipse.ui.popupMenus">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="org.spbu.pldoctoolkit.graph.diagram.productline.InitDiagram"
+            nameFilter="*.drl"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="org.spbu.pldoctoolkit.graph.diagram.productline.InitDiagramAction">
+         </action>
+      </objectContribution>
    </extension>
+<extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.spbu.pldoctoolkit.graph.diagram.productline.ShortcutPropertyTester"
+           type="org.eclipse.gmf.runtime.notation.View"
+           namespace="org.spbu.pldoctoolkit.graph.diagram.productline"
+           properties="isShortcut"
+           class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelShortcutPropertyTester">
+       </propertyTester>
+   </extension>
+<extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.spbu.pldoctoolkit.graph.diagram.productline.DomainModelElementPropertyTester"
+           type="org.eclipse.emf.ecore.EObject"
+           namespace="org.spbu.pldoctoolkit.graph.diagram.productline"
+           properties="isDomainModelElement"
+           class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDomainModelElementTester">
+       </propertyTester>
+   </extension>
+
 </plugin>

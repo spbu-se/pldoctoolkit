@@ -68,7 +68,6 @@ public class ProductLineDataDocumentationCoreCompartmentEditPart extends
 		return result;
 	}
 
-
 	/**
 	 * @generated NOT
 	 */
@@ -79,7 +78,7 @@ public class ProductLineDataDocumentationCoreCompartmentEditPart extends
 				new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new DragDropEditPolicy());
-		
+
 		//HAND
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 	}

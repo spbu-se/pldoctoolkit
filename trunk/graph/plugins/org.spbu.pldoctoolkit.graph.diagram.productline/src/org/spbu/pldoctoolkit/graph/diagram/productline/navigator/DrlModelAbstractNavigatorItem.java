@@ -4,12 +4,13 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.Platform;
 
+import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 
 /**
  * @generated
  */
-public abstract class DrlModelAbstractNavigatorItem implements IAdaptable {
+public abstract class DrlModelAbstractNavigatorItem extends PlatformObject {
 
 	/**
 	 * @generated
@@ -21,20 +22,23 @@ public abstract class DrlModelAbstractNavigatorItem implements IAdaptable {
 				return "org.spbu.pldoctoolkit.graph.diagram.productline"; //$NON-NLS-1$
 			}
 		};
-		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
+		Platform.getAdapterManager().registerAdapters(
+				new IAdapterFactory() {
 
-			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof DrlModelAbstractNavigatorItem
-						&& adapterType == ITabbedPropertySheetPageContributor.class) {
-					return propertySheetPageContributor;
-				}
-				return null;
-			}
+					public Object getAdapter(Object adaptableObject,
+							Class adapterType) {
+						if (adaptableObject instanceof org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelAbstractNavigatorItem
+								&& adapterType == ITabbedPropertySheetPageContributor.class) {
+							return propertySheetPageContributor;
+						}
+						return null;
+					}
 
-			public Class[] getAdapterList() {
-				return supportedTypes;
-			}
-		}, DrlModelAbstractNavigatorItem.class);
+					public Class[] getAdapterList() {
+						return supportedTypes;
+					}
+				},
+				org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelAbstractNavigatorItem.class);
 	}
 
 	/**
@@ -54,13 +58,6 @@ public abstract class DrlModelAbstractNavigatorItem implements IAdaptable {
 	 */
 	public Object getParent() {
 		return myParent;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Object getAdapter(Class adapter) {
-		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}
 
 }
