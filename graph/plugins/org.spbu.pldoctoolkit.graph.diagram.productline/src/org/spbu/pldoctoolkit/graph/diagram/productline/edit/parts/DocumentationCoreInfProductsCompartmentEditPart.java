@@ -58,13 +58,13 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
 				.createFigure();
 		result.setTitleVisibility(false);
-		
+
 		ConstrainedToolbarLayout layout = (ConstrainedToolbarLayout) result
 				.getContentPane().getLayoutManager();
 		layout.setSpacing(3);
 		layout.setStretchMinorAxis(true);
 		layout.setStretchMajorAxis(true);
-		
+
 		return result;
 	}
 
@@ -78,11 +78,12 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 				new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new DragDropEditPolicy());
-		
+
 		//HAND
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+		installEditPolicy(
+				EditPolicyRoles.CANONICAL_ROLE,
 				new DocumentationCoreInfProductsCompartmentCanonicalEditPolicy());
-		
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 	}
 

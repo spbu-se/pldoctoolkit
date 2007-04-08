@@ -964,7 +964,8 @@ public class DrlModelDocumentProvider extends AbstractDocumentProvider
 			if (notification.getNotifier() instanceof ResourceSet) {
 				super.notifyChanged(notification);
 			}
-			if (myModifiedFilter.matches(notification)) {
+			if (!notification.isTouch()
+					&& myModifiedFilter.matches(notification)) {
 				if (notification.getNotifier() instanceof Resource) {
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.isLoaded()) {

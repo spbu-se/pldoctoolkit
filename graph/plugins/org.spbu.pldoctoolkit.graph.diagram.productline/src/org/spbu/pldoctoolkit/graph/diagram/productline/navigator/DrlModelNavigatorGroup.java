@@ -78,13 +78,20 @@ public class DrlModelNavigatorGroup extends DrlModelAbstractNavigatorItem {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof DrlModelNavigatorGroup) {
-			DrlModelNavigatorGroup anotherGroup = (DrlModelNavigatorGroup) obj;
+		if (obj instanceof org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelNavigatorGroup) {
+			org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelNavigatorGroup anotherGroup = (org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelNavigatorGroup) obj;
 			if (getGroupName().equals(anotherGroup.getGroupName())) {
 				return getParent().equals(anotherGroup.getParent());
 			}
 		}
 		return super.equals(obj);
+	}
+
+	/**
+	 * @generated
+	 */
+	public int hashCode() {
+		return getGroupName().hashCode();
 	}
 
 }

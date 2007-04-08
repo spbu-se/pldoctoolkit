@@ -65,7 +65,7 @@ public class ProductLineDataDocumentationCoreCompartmentViewFactory extends
 					"modelID", ProductLineEditPart.MODEL_ID); //$NON-NLS-1$
 			view.getEAnnotations().add(shortcutAnnotation);
 		}
-		
+
 		//HAND
 		getViewService().createNode(
 				semanticAdapter,

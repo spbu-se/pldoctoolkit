@@ -195,6 +195,9 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	public String getText(View view) {
+		if (view.getElement() != null && view.getElement().eIsProxy()) {
+			return getUnresolvedDomainElementProxyText(view);
+		}
 		switch (DrlModelVisualIDRegistry.getVisualID(view)) {
 		case ProductLine2EditPart.VISUAL_ID:
 			return getProductLine_1001Text(view);
@@ -339,6 +342,13 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private String getUnknownElementText(View view) {
 		return "<UnknownElement Visual_ID = " + view.getType() + ">";
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getUnresolvedDomainElementProxyText(View view) {
+		return "<Unresolved domain element Visual_ID = " + view.getType() + ">";
 	}
 
 	/**

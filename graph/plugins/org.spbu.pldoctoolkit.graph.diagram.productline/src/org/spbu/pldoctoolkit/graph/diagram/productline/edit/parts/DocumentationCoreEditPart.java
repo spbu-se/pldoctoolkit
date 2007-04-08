@@ -110,12 +110,13 @@ public class DocumentationCoreEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IFigure createNodeShape() {
+		//HAND
 		RectangleFigure shape = new RectangleFigure();
 		shape.setOutline(false);
-		
+
 		return primaryShape = shape;
 	}
 
