@@ -1,120 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <grammar 
-  xmlns="http://relaxng.org/ns/structure/1.0"
-  xmlns:xsp="http://apache.org/xsp/core/v1"
-  xmlns:s="http://www.ascc.net/xml/schematron"
-  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
-  xmlns:f="http://axkit.org/NS/xsp/perform/v1"
-  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
-  ns="http://math.spbu.ru/drl">
-  
-  <start>
-    <choice>
-      <ref name="dictionary"/>
-      <ref name="document"/>
-      <ref name="family"/>
-      <ref name="part"/>
-    </choice>
-  </start>
-  
-  <define name="dictionary">
-    <element name="dictionary">
-      <attribute name="id"/>
-      <oneOrMore>
-        <element name="entry">
-          <attribute name="name"/>
-          <text/>
-        </element>
-      </oneOrMore>
-    </element>
-  </define>
-  
-  <define name="document">
-    <element name="document">
-      <attribute name="id"/>
-      <attribute name="family"/>
-      <zeroOrMore>
-        <choice>
-          <ref name="variable"/>
-          <element name="adapter">
-            <attribute name="part"/>
-            <zeroOrMore>
-              <choice>
-                <ref name="variable"/>
-                <element name="replace">
-                  <attribute name="nest"/>
-                  <zeroOrMore>
-                    <ref name="common"/>
-                  </zeroOrMore>
-                </element>
-                <element name="insert-before">
-                  <attribute name="nest"/>
-                  <oneOrMore>
-                    <ref name="common"/>
-                  </oneOrMore>
-                </element>
-                <element name="insert-after">
-                  <attribute name="nest"/>
-                  <oneOrMore>
-                    <ref name="common"/>
-                  </oneOrMore>
-                </element>
-              </choice>
-            </zeroOrMore>
-          </element>
-        </choice>
-      </zeroOrMore>
-    </element>
-  </define>
-  
-  <define name="variable">
-    <element name="variable">
-      <attribute name="name"/>
-      <attribute name="value"/>
-      <empty/>
-    </element>
-  </define>
-  
-  <define name="family">
-    <element name="family">
-      <attribute name="id"/>
-      <zeroOrMore>
-        <ref name="common"/>
-      </zeroOrMore>
-    </element>
-  </define>
-  
-  <define name="part">
-    <element name="part">
-      <attribute name="id"/>
-      <zeroOrMore>
-        <choice>
-          <ref name="common"/>
-          <element name="nest">
-            <attribute name="id"/>
-            <zeroOrMore>
-              <ref name="common"/>
-            </zeroOrMore>
-          </element>
-        </choice>
-      </zeroOrMore>
-    </element>
-  </define>  
-  
-  <define name="common">
-    <choice>
-      <text/>
-      <element name="ref">
-        <attribute name="part"/>
-      </element>
-      <element name="if">
-        <attribute name="test"/>
-        <text/>
-      </element>
-      <element name="dictentry">
-        <attribute name="dict"/>
-        <attribute name="entry"/>
-      </element>
-    </choice>
-  </define>
+	xmlns="http://relaxng.org/ns/structure/1.0"
+	xmlns:xsp="http://apache.org/xsp/core/v1"
+	xmlns:s="http://www.ascc.net/xml/schematron"
+	xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+	xmlns:f="http://axkit.org/NS/xsp/perform/v1"
+	datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+	ns="http://math.spbu.ru/drl">
+	
+	<start>
+		<choice>
+			<ref name="PLScheme"/>
+			<ref name="InfProduct"/>
+			<ref name="InfElement"/>
+			<ref name="Dictionary"/>
+			<ref name="FinalInfProduct"/>
+		</choice>
+	</start>
+	
+	<define name="PLScheme">
+		<element name="PLScheme">
+			<oneOrMore>
+				<element name="Product">
+					<attribute name="id"/>
+					<attribute name="name"/>
+				</element>
+			</oneOrMore>
+		</element>
+	</define>
+	
+	<define name="InfProduct">
+		<element name="InfProduct">
+			<attribute name="id"/>
+			<attribute name="name"/>
+			<ref name="infElemRefGroups"/>
+			<ref name="docbookOrCommonDrl"/>
+		</element>
+	</define>
+	
+	<define name="InfElement">
+		<element name="InfElement">
+			<attribute name="id"/>
+			<attribute name="name"/>
+			<ref name="infElemRefGroups"/>
+			<ref name="docbookOrCommonDrl"/>
+		</element>
+	</define>
+	
+	<define name="infElemRefGroups">
+		<zeroOrMore>
+			<element name="InfElemRefGroup">
+				<attribute name="id"/>
+				<attribute name="name"/>
+				<attribute name="modifier">
+					<choice>
+						<value>ONE</value>
+						<value>SET</value>
+					</choice>
+				</attribute>
+			</element>
+		</zeroOrMore>
+	</define>
+	
+	<define name="Dictionary">
+		<element name="Dictionary">
+			<attribute name="id"/>
+			<oneOrMore>
+				<element name="Entry">
+					<attribute name="id"/>
+					<text/>
+				</element>
+			</oneOrMore>
+		</element>
+	</define>
+	
+	<define name="FinalInfProduct">
+		<element name="FinalInfProduct">
+			<attribute name="id"/>
+			<attribute name="infproductid"/>
+			<zeroOrMore>
+				<choice>
+					<element name="SetValue">
+						<attribute name="id"/>
+						<attribute name="value"/>
+						<empty/>
+					</element>
+					<element name="Adapter">
+						<attribute name="infelemrefid"/>
+						<zeroOrMore>
+							<choice>
+								<element name="Replace-Nest">
+									<attribute name="nestid"/>
+									<ref name="justDocbook"/>
+								</element>
+								<element name="Insert-Before">
+									<attribute name="nestid"/>
+									<ref name="justDocbook"/>
+								</element>
+								<element name="Insert-After">
+									<attribute name="nestid"/>
+									<ref name="justDocbook"/>
+								</element>
+							</choice>
+						</zeroOrMore>
+					</element>
+				</choice>
+			</zeroOrMore>
+		</element>
+	</define>
+	
+	<define name="docbookOrCommonDrl">
+		<zeroOrMore>
+			<choice>
+				<text/>
+				<element name="InfElemRef">
+					<attribute name="id"/>
+					<attribute name="infelemid"/>
+					<attribute name="groupid"/>
+					<attribute name="optional"/>
+				</element>
+				<element name="DictRef">
+					<attribute name="dictid"/>
+					<attribute name="entryid"/>
+				</element>
+				<element name="Conditional">
+					<attribute name="condition"/>
+					<ref name="docbookOrCommonDrl"/>
+				</element>
+				<element name="Nest">
+					<attribute name="id"/>
+					<optional>
+						<attribute name="descr"/>
+					</optional>
+					<ref name="justDocbook"/>
+				</element>
+				<!-- docbook element that may contain the 'common' pattern recursively -->
+				<element>
+					<nsName ns="http://docbook.org/ns/docbook"/>
+					<zeroOrMore>
+						<attribute>
+							<anyName/>
+						</attribute>
+					</zeroOrMore>
+					<ref name="docbookOrCommonDrl"/>
+				</element>
+			</choice>
+		</zeroOrMore>
+	</define>
+	
+	<define name="justDocbook">
+		<zeroOrMore>
+			<choice>
+				<text/>
+				<element>
+					<nsName ns="http://docbook.org/ns/docbook"/>
+					<zeroOrMore>
+						<attribute>
+							<anyName/>
+						</attribute>
+					</zeroOrMore>
+					<ref name="justDocbook"/>
+				</element>
+			</choice>
+		</zeroOrMore>
+	</define>
 </grammar>
