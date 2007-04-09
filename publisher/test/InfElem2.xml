@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="../schema/document-reuse-language.rng" type="xml"?>
+<d:InfElement id="InfElem2" name="Inf Element 1" 
+	xmlns:d="http://math.spbu.ru/drl" 
+	xmlns="http://docbook.org/ns/docbook">
+	<author>
+		<firstname>Foo</firstname>
+		<surname>Barovich</surname>
+		<affiliation>
+			<address><email><d:Nest id="nest1">foo@example.com</d:Nest></email></address>
+		</affiliation>
+	</author>
+</d:InfElement>

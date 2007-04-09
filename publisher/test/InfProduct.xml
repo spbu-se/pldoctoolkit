@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="../schema/document-reuse-language.rng" type="xml"?>
+<d:InfProduct id="InfProduct" name="Inf Product" 
+	xmlns:d="http://math.spbu.ru/drl" 
+	xmlns="http://docbook.org/ns/docbook">
+	<book>
+		<bookinfo>
+			<title>User's Manual</title>
+			<d:InfElemRef id="ref1" infelemid="InfElem1"/>
+		</bookinfo>
+		
+		<preface>
+			<title>Preface</title>
+			<para>
+				Thank you for buying a product from our great FooBar company.
+				We promise you that you'll be satisfyed with the outstanding quality of this product.
+			</para>
+		</preface>
+		
+		<chapter>
+			<title>Overview</title>
+			<d:InfElemRef id="ref2" infelemid="InfElem2"/>
+		</chapter>
+	</book>
+</d:InfProduct>
