@@ -116,8 +116,10 @@
 				<element name="InfElemRef">
 					<attribute name="id"/>
 					<attribute name="infelemid"/>
-					<attribute name="groupid"/>
-					<attribute name="optional"/>
+					<optional>
+						<attribute name="groupid"/>
+						<attribute name="optional"/>
+					</optional>
 				</element>
 				<element name="DictRef">
 					<attribute name="dictid"/>

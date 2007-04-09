@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Product Line Documentation Toolkit Plug-in
 Bundle-SymbolicName: org.spbu.pldoctoolkit;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Activator: org.spbu.pldoctoolkit.Activator
+Bundle-Activator: org.spbu.pldoctoolkit.DrlPublisherPlugin
 Bundle-Vendor: SPbSU
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
