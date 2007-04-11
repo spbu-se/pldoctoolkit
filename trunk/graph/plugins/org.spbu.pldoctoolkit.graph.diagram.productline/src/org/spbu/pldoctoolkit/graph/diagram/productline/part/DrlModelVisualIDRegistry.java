@@ -143,7 +143,8 @@ public class DrlModelVisualIDRegistry {
 			EObject domainElement, EClass domainElementMetaclass,
 			String semanticHint) {
 		String containerModelID = getModelID(containerView);
-		if (!ProductLineEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!ProductLineEditPart.MODEL_ID.equals(containerModelID)
+				&& !"DrlModel".equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;

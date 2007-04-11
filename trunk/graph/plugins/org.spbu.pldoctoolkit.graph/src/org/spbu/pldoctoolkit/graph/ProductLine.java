@@ -89,7 +89,7 @@ public interface ProductLine extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Documentation Cores</em>' reference list.
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getProductLine_DocumentationCores()
-	 * @model type="org.spbu.pldoctoolkit.graph.DocumentationCore" transient="true" volatile="true" derived="true"
+	 * @model type="org.spbu.pldoctoolkit.graph.DocumentationCore"
 	 * @generated
 	 */
 	EList getDocumentationCores();

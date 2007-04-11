@@ -137,9 +137,12 @@ public class DrlModelDocumentProvider extends AbstractDocumentProvider
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private TransactionalEditingDomain createEditingDomain() {
+		DrlModelDiagramEditorPlugin.getInstance().logInfo(
+				"in createEditingDomain");
+
 		TransactionalEditingDomain editingDomain = DiagramEditingDomainFactory
 				.getInstance().createEditingDomain();
 		editingDomain
@@ -177,6 +180,10 @@ public class DrlModelDocumentProvider extends AbstractDocumentProvider
 			}
 
 		});
+
+		//HAND
+		//		editingDomain.getResourceSet().eAdapters().add(
+		//				new DrlModelDiagramEditor.LoadResourcesAdapter(diagramResourceModifiedFilter));
 
 		return editingDomain;
 	}

@@ -76,7 +76,7 @@
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
-         id="DrlModelPresentation">
+         id="ProductLinePresentation">
          <Priority name="Lowest"/>
          <ViewId id="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -89,7 +89,7 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
-         id="DrlModelPresentationIDE">
+         id="ProductLinePresentationIDE">
          <Priority name="Lowest"/>
          <ViewId id="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -99,7 +99,7 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
             class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
-            id="DrlModelRender">
+            id="ProductLineRender">
          <Priority name="Lowest"/>
          <ViewId id="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -229,7 +229,7 @@
       <?gmfgen generated="true"?>
       <viewProvider class="org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelViewProvider">
          <Priority name="Lowest"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="DrlModel"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="ProductLine"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints=""/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints=""/>
       </viewProvider>
@@ -340,14 +340,14 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
       <?gmfgen generated="true"?>
-      <clientContext id="DrlModelClientContext">
+      <clientContext id="ProductLineClientContext">
          <enablement>
             <test
                property="org.eclipse.gmf.runtime.emf.core.editingDomain"
                value="org.spbu.pldoctoolkit.graph.diagram.productline.EditingDomain"/>
          </enablement>
       </clientContext> 
-      <binding context="DrlModelClientContext">
+      <binding context="ProductLineClientContext">
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.ProductLine_79"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.ProductLine_1001"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.Node_2001"/>

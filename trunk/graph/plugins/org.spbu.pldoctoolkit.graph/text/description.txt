@@ -41,7 +41,7 @@ Package graph <http://tepkom.ru/drl>
   Class ProductLine
     Attribute name : EString<<1..1>>
     Reference /productDocumentations : ProductDocumentation<<0..*>>
-    Reference /documentationCores : DocumentationCore<<0..*>>
+    Reference documentationCores : DocumentationCore<<0..*>>
     Reference scheme : PLScheme<<1..1>>
 
   Class Product

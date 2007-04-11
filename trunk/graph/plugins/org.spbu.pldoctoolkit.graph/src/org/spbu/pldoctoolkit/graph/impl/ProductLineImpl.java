@@ -7,20 +7,18 @@
 package org.spbu.pldoctoolkit.graph.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.PLScheme;
-import org.spbu.pldoctoolkit.graph.ProductDocumentation;
 import org.spbu.pldoctoolkit.graph.ProductLine;
 
 /**
@@ -66,6 +64,16 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getDocumentationCores() <em>Documentation Cores</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentationCores()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList documentationCores;
 
 	/**
 	 * The cached value of the '{@link #getScheme() <em>Scheme</em>}' containment reference.
@@ -135,11 +143,10 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 	 * @generated
 	 */
 	public EList getDocumentationCores() {
-		// TODO: implement this method to return the 'Documentation Cores' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
-		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
-		throw new UnsupportedOperationException();
+		if (documentationCores == null) {
+			documentationCores = new EObjectResolvingEList(DocumentationCore.class, this, DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES);
+		}
+		return documentationCores;
 	}
 
 	/**
@@ -277,7 +284,7 @@ public class ProductLineImpl extends EObjectImpl implements ProductLine {
 			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
 				return !getProductDocumentations().isEmpty();
 			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
-				return !getDocumentationCores().isEmpty();
+				return documentationCores != null && !documentationCores.isEmpty();
 			case DrlPackage.PRODUCT_LINE__SCHEME:
 				return scheme != null;
 		}
