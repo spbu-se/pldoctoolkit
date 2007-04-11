@@ -69,7 +69,47 @@
                label="%loadResourceActionLabel"
                menubarPath="additions">
          </action>
-      </objectContribution>           
+      </objectContribution>     
+      
+		<objectContribution
+            adaptable="false"
+            id="org.spbu.pldoctoolkit.graph.diagram.infproduct.OpenElementFile.InfProduct"
+            objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductEditPart">
+			
+			<action
+				class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlOpenElementFileAction" 
+				enablesFor="1"
+				id="org.spbu.pldoctoolkit.graph.diagram.infproduct.OpenElementFileAction"
+				label="%openElementFileActionLabel"
+				menubarPath="additions">
+			</action>
+		</objectContribution>   
+		<objectContribution
+            adaptable="false"
+            id="org.spbu.pldoctoolkit.graph.diagram.infproduct.OpenElementFile.InfElement"
+            objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart">
+			
+			<action
+				class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlOpenElementFileAction" 
+				enablesFor="1"
+				id="org.spbu.pldoctoolkit.graph.diagram.infproduct.OpenElementFileAction"
+				label="%openElementFileActionLabel"
+				menubarPath="additions">
+			</action>
+		</objectContribution>  	
+		<objectContribution
+            adaptable="false"
+            id="org.spbu.pldoctoolkit.graph.diagram.infproduct.OpenElementFile.DocumentationCore"
+            objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart">
+			
+			<action
+				class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlOpenElementFileAction" 
+				enablesFor="1"
+				id="org.spbu.pldoctoolkit.graph.diagram.infproduct.OpenElementFileAction"
+				label="%openElementFileActionLabel"
+				menubarPath="additions">
+			</action>
+		</objectContribution>  			         
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
