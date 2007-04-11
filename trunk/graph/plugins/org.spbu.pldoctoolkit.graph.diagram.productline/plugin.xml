@@ -117,6 +117,26 @@
             class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider"
             checkPluginLoaded="false">
          <Priority name="Low"/>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+         </popupContribution>
+		<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+         </popupContribution>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+         </popupContribution>   
+                  <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+         </popupContribution>        
       </contributionItemProvider>
    </extension>
 

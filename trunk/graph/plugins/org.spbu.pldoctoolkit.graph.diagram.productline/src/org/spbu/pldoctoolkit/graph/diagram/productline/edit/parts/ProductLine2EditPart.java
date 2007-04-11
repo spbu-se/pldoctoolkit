@@ -1,6 +1,10 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLine2ItemSemanticEditPolicy;
 
@@ -37,8 +41,8 @@ public class ProductLine2EditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(
-				org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE,
-				new org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy() {
+				EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicy() {
 					public org.eclipse.gef.commands.Command getCommand(
 							org.eclipse.gef.Request request) {
 						if (understandsRequest(request)) {
@@ -68,6 +72,18 @@ public class ProductLine2EditPart extends
 		
 		//HAND
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ComponentEditPolicy(){
+
+			protected Command createDeleteSemanticCommand(
+					GroupRequest deleteRequest) {
+				return null;
+			}
+
+			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
+				return null;
+			}
+			
+		});
 	}
 
 	/**

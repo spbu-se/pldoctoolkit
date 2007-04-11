@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLineDataItemSemanticEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
@@ -88,7 +89,7 @@ public class ProductLineDataEditPart extends ShapeNodeEditPart {
 				});
 
 		super.createDefaultEditPolicies();
-		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ProductLineDataItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 	}
 
