@@ -18,57 +18,66 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.DrlModelCreateShortcutDecorationsCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DocumentationCoreItemSemanticEditPolicy;
 
-	/**
+/**
  * @generated
  */
 public class DocumentationCoreEditPart extends DiagramEditPart {
 
-		/**
- * @generated
- */
-	public final static String MODEL_ID = "DrlModel"; //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public final static String MODEL_ID = "InfProduct"; //$NON-NLS-1$
 
-			/**
- * @generated
- */
+	/**
+	 * @generated
+	 */
 	public static final int VISUAL_ID = 79;
 
-		/**
- * @generated
- */
+	/**
+	 * @generated
+	 */
 	public DocumentationCoreEditPart(View view) {
 		super(view);
 	}
 
-		/**
- * @generated
- */
+	/**
+	 * @generated
+	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-			installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DocumentationCoreItemSemanticEditPolicy());
-								installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new DocumentationCoreItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new DiagramDragDropEditPolicy() {
-			public Command getDropObjectsCommand(
-					DropObjectsRequest dropRequest) {
-				List viewDescriptors = new ArrayList();
-				for (Iterator it = dropRequest.getObjects().iterator(); it.hasNext();) {
-					viewDescriptors.add(new CreateViewRequest.ViewDescriptor(
-						new EObjectAdapter((EObject) it.next()),
-							Node.class, null, getDiagramPreferencesHint()));
-				}
-				return createShortcutsCommand(dropRequest, viewDescriptors);
-			}
-
-			private Command createShortcutsCommand(
-					DropObjectsRequest dropRequest, List viewDescriptors) {
-				Command command = createViewsAndArrangeCommand(dropRequest, viewDescriptors);
-				if (command != null) {
-					return command.chain(new ICommandProxy(
-						new DrlModelCreateShortcutDecorationsCommand(getEditingDomain(),
-							(View) getModel(), viewDescriptors)));
-				}
-				return null;
-			}
-		});
+					public Command getDropObjectsCommand(
+							DropObjectsRequest dropRequest) {
+						List viewDescriptors = new ArrayList();
+						for (Iterator it = dropRequest.getObjects().iterator(); it
+								.hasNext();) {
+							viewDescriptors
+									.add(new CreateViewRequest.ViewDescriptor(
+											new EObjectAdapter((EObject) it
+													.next()), Node.class, null,
+											getDiagramPreferencesHint()));
 						}
+						return createShortcutsCommand(dropRequest,
+								viewDescriptors);
+					}
+
+					private Command createShortcutsCommand(
+							DropObjectsRequest dropRequest, List viewDescriptors) {
+						Command command = createViewsAndArrangeCommand(
+								dropRequest, viewDescriptors);
+						if (command != null) {
+							return command
+									.chain(new ICommandProxy(
+											new DrlModelCreateShortcutDecorationsCommand(
+													getEditingDomain(),
+													(View) getModel(),
+													viewDescriptors)));
+						}
+						return null;
+					}
+				});
+	}
 }

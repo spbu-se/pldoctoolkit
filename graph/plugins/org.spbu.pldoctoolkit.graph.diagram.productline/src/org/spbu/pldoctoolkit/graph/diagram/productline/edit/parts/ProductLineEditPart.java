@@ -27,7 +27,7 @@ public class ProductLineEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public final static String MODEL_ID = "DrlModel"; //$NON-NLS-1$
+	public final static String MODEL_ID = "ProductLine"; //$NON-NLS-1$
 
 	/**
 	 * @generated

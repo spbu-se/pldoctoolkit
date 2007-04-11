@@ -104,14 +104,40 @@
         href="model.ecore#//GenericDocumentPart/groups"/>
   </links>
   <links>
+    <domainMetaElement
+        href="model.ecore#//InfElemRef"/>
+    <domainSpecialization
+        body="self.optional = true"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec"
+          body="true">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="model.ecore#//InfElemRef/optional"/>
+      </initializers>
+    </domainInitializer>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="model.gmfgraph#InfElemRefId"/>
+      <features
+          href="model.ecore#//InfElemRef/id"/>
+    </labelMappings>
+    <containmentFeature
+        href="model.ecore#//GenericDocumentPart/infElemRefs"/>
     <tool
         xsi:type="gmftool:CreationTool"
         href="model.gmftool#//@palette/@tools.0/@tools.4"/>
     <diagramLink
         href="model.gmfgraph#InfElemRefConnection"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="model.ecore#//InfElemRef/group"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="model.ecore#//InfElemRefGroup/infElemRefsGroup"/>
+        href="model.ecore#//InfElemRef/infelem"/>
   </links>
   <diagram>
     <diagramCanvas

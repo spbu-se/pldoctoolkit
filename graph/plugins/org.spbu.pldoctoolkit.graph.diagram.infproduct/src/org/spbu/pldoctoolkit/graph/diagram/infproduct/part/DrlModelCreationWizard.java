@@ -86,14 +86,14 @@ public class DrlModelCreationWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		diagramModelFilePage = new DrlModelCreationWizardPage(
 				"DiagramModelFile", getSelection(), "infproduct_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
-		diagramModelFilePage.setTitle("Create DrlModel Diagram");
+		diagramModelFilePage.setTitle("Create InfProduct Diagram");
 		diagramModelFilePage
 				.setDescription("Select file that will contain diagram model.");
 		addPage(diagramModelFilePage);
 
 		domainModelFilePage = new DrlModelCreationWizardPage(
 				"DomainModelFile", getSelection(), "drl"); //$NON-NLS-1$ //$NON-NLS-2$
-		domainModelFilePage.setTitle("Create DrlModel Diagram");
+		domainModelFilePage.setTitle("Create InfProduct Diagram");
 		domainModelFilePage
 				.setDescription("Select file that will contain domain model.");
 		addPage(domainModelFilePage);
@@ -145,7 +145,7 @@ public class DrlModelCreationWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle("New DrlModel Diagram");
+		setWindowTitle("New InfProduct Diagram");
 		setDefaultPageImageDescriptor(DrlModelDiagramEditorPlugin
 				.getBundledImageDescriptor("icons/wizban/NewDrlWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);

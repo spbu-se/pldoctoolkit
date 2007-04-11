@@ -32,11 +32,16 @@ public class DrlModelDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	public static final String ID = "org.spbu.pldoctoolkit.graph.diagram.productline"; //$NON-NLS-1$
 
+	public static final String RESOURCESET_PREFERENCE_ID = ID + "/resources";
+
 	/**
 	 * @generated
 	 */
 	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(
 			ID);
+
+	public static final PreferencesHint DIAGRAM_RESOURCESET_PREFERENCES_HINT = new PreferencesHint(
+			RESOURCESET_PREFERENCE_ID);
 
 	/**
 	 * @generated

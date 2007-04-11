@@ -1,7 +1,6 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.navigator;
 
 import org.eclipse.jface.viewers.ViewerSorter;
-
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**

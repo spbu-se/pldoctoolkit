@@ -3,6 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel/2.0" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.infproduct"
+    modelID="InfProduct"
     diagramFileExtension="infproduct_diagram">
   <diagram
       visualID="79"
@@ -26,7 +27,7 @@
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
     <containsShortcutsTo>drl</containsShortcutsTo>
-    <shortcutsProvidedFor>DrlModel</shortcutsProvidedFor>
+    <shortcutsProvidedFor>InfProduct</shortcutsProvidedFor>
     <domainDiagramElement
         href="model.genmodel#//graph/DocumentationCore"/>
     <topLevelNodes
@@ -70,7 +71,7 @@
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            viewPattern=""
+            viewPattern="{0}"
             editPattern="">
           <metaFeatures
               href="model.genmodel#//graph/GenericDocumentPart/name"/>
@@ -118,7 +119,7 @@
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            viewPattern=""
+            viewPattern="{0}"
             editPattern="">
           <metaFeatures
               href="model.genmodel#//graph/GenericDocumentPart/name"/>
@@ -159,7 +160,8 @@
         visualID="3001"
         editPartClassName="InfElemRefEditPart"
         itemSemanticEditPolicyClassName="InfElemRefItemSemanticEditPolicy"
-        notationViewFactoryClassName="InfElemRefViewFactory">
+        notationViewFactoryClassName="InfElemRefViewFactory"
+        reorientCommandClassName="InfElemRefReorientCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
@@ -223,7 +225,8 @@
         visualID="3002"
         editPartClassName="GenericDocumentPartGroupsEditPart"
         itemSemanticEditPolicyClassName="GenericDocumentPartGroupsItemSemanticEditPolicy"
-        notationViewFactoryClassName="GenericDocumentPartGroupsViewFactory">
+        notationViewFactoryClassName="GenericDocumentPartGroupsViewFactory"
+        reorientCommandClassName="GenericDocumentPartGroupsReorientCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
@@ -244,14 +247,16 @@
     </links>
     <links
         visualID="3003"
-        editPartClassName="InfElemRefGroupInfElemRefsGroupEditPart"
-        itemSemanticEditPolicyClassName="InfElemRefGroupInfElemRefsGroupItemSemanticEditPolicy"
-        notationViewFactoryClassName="InfElemRefGroupInfElemRefsGroupViewFactory">
+        editPartClassName="InfElemRef2EditPart"
+        itemSemanticEditPolicyClassName="InfElemRef2ItemSemanticEditPolicy"
+        notationViewFactoryClassName="InfElemRef2ViewFactory"
+        reorientCommandClassName="InfElemRef2ReorientCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"
-          editHelperAdviceClassName="InfElemRefGroupInfElemRefsGroupEditHelperAdvice"/>
+          metamodelType="//@diagram/@links.0/@elementType"
+          editHelperAdviceClassName="InfElemRefEditHelperAdvice"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="InfElemRefFigure"
@@ -260,10 +265,53 @@
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
-          xsi:type="gmfgen:FeatureLinkModelFacet">
-        <metaFeature
-            href="model.genmodel#//graph/InfElemRefGroup/infElemRefsGroup"/>
+          xsi:type="gmfgen:TypeLinkModelFacet"
+          createCommandClassName="InfElemRef2TypeLinkCreateCommand">
+        <metaClass
+            href="model.genmodel#//graph/InfElemRef"/>
+        <containmentMetaFeature
+            href="model.genmodel#//graph/GenericDocumentPart/infElemRefs"/>
+        <childMetaFeature
+            href="model.genmodel#//graph/GenericDocumentPart/infElemRefs"/>
+        <modelElementSelector
+            body="self.optional = true"/>
+        <modelElementInitializer
+            xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers
+              xsi:type="gmfgen:GenFeatureValueSpec"
+              body="true">
+            <feature
+                href="model.genmodel#//graph/InfElemRef/optional"/>
+          </initializers>
+        </modelElementInitializer>
+        <sourceMetaFeature
+            href="model.genmodel#//graph/InfElemRef/group"/>
+        <targetMetaFeature
+            href="model.genmodel#//graph/InfElemRef/infelem"/>
       </modelFacet>
+      <labels
+          visualID="4004"
+          editPartClassName="InfElemRefId2EditPart"
+          itemSemanticEditPolicyClassName="InfElemRefId2ItemSemanticEditPolicy"
+          notationViewFactoryClassName="InfElemRefId2ViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="InfElemRefIdFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InfElemRefIdFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel {&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InfElemRefIdFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&lt;...>&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="40"/>
+          <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet">
+          <metaFeatures
+              href="model.genmodel#//graph/InfElemRef/id"/>
+        </modelFacet>
+      </labels>
     </links>
     <palette>
       <groups
@@ -283,10 +331,6 @@
             title="InfElemRefGroup"
             description="Create new InfElemRefGroup"
             genNodes="//@diagram/@topLevelNodes.2"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="Product"
-            description="Create new Product"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="InfElemRef Connection"
@@ -356,7 +400,7 @@
     <childReferences
         parent="//@diagram/@links.0"
         child="//@diagram/@topLevelNodes.0"
-        referenceType="out_taget"
+        referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
@@ -374,7 +418,7 @@
     <childReferences
         parent="//@diagram/@topLevelNodes.0"
         child="//@diagram/@links.0"
-        referenceType="out_taget"
+        referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences
@@ -386,7 +430,7 @@
     <childReferences
         parent="//@diagram/@topLevelNodes.1"
         child="//@diagram/@links.0"
-        referenceType="out_taget"
+        referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences
@@ -397,7 +441,7 @@
     <childReferences
         parent="//@diagram/@links.1"
         child="//@diagram/@topLevelNodes.2"
-        referenceType="out_taget"
+        referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
@@ -415,7 +459,7 @@
     <childReferences
         parent="//@diagram/@topLevelNodes.0"
         child="//@diagram/@links.1"
-        referenceType="out_taget"
+        referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences
@@ -427,7 +471,7 @@
     <childReferences
         parent="//@diagram/@topLevelNodes.1"
         child="//@diagram/@links.1"
-        referenceType="out_taget"
+        referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences
@@ -437,6 +481,18 @@
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.2"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.2"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.2"
         child="//@diagram/@topLevelNodes.2"
         referenceType="in_source"
         groupName="source"
@@ -444,7 +500,7 @@
     <childReferences
         parent="//@diagram/@topLevelNodes.2"
         child="//@diagram/@links.2"
-        referenceType="out_taget"
+        referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
   </navigator>
@@ -454,8 +510,7 @@
         iD="appearance"/>
     <tabs
         xsi:type="gmfgen:GenStandardPropertyTab"
-        iD="diagram"
-        label="Rulers &amp; Grid"/>
+        iD="diagram"/>
     <tabs
         xsi:type="gmfgen:GenCustomPropertyTab"
         iD="domain"
@@ -473,7 +528,7 @@
   <expressionProviders>
     <providers
         xsi:type="gmfgen:GenExpressionInterpreter"
-        expressions="//@diagram/@links.0/@modelFacet/@modelElementSelector //@diagram/@links.0/@modelFacet/@modelElementInitializer/@initializers.0">
+        expressions="//@diagram/@links.0/@modelFacet/@modelElementSelector //@diagram/@links.0/@modelFacet/@modelElementInitializer/@initializers.0 //@diagram/@links.2/@modelFacet/@modelElementSelector //@diagram/@links.2/@modelFacet/@modelElementInitializer/@initializers.0">
       <requiredPluginIDs>org.eclipse.emf.ocl</requiredPluginIDs>
       <requiredPluginIDs>org.eclipse.emf.query.ocl</requiredPluginIDs>
     </providers>

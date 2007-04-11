@@ -66,4 +66,5 @@ public class DrlModelBaseEditHelper extends AbstractEditHelper {
 	protected ICommand getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return null;
 	}
+
 }

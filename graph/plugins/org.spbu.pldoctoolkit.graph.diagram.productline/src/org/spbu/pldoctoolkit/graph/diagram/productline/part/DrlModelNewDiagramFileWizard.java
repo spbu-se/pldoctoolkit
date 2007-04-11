@@ -154,17 +154,6 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 						ProductLineEditPart.MODEL_ID,
 						DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
-
-				//HAND
-				// my custom code
-				diagram.setElement(null);
-				Node rootNode = ViewService.createNode(diagram, diagramRootElementSelectionPage.getModelElement(),
-						((IHintedType) DrlModelElementTypes.ProductLine_1001)
-								.getSemanticHint(),
-						DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-				rootNode.setElement(diagramRootElementSelectionPage.getModelElement());
-				// end of my custom code
-
 				return CommandResult.newOKCommandResult();
 			}
 		};

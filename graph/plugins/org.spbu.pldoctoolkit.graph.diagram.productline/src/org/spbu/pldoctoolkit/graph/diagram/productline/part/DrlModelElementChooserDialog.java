@@ -1,6 +1,7 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
 import java.util.Collections;
+import java.util.Iterator;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -12,11 +13,14 @@ import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.edit.provider.IWrapperItemProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -38,15 +42,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.model.WorkbenchLabelProvider;
-import java.util.Iterator;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.FeatureMap;
-
-import org.eclipse.emf.edit.provider.IWrapperItemProvider;
-
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.model.WorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
+import org.spbu.pldoctoolkit.graph.DrlPackage;
 
 /**
  * @generated
@@ -68,6 +66,9 @@ public class DrlModelElementChooserDialog extends Dialog {
 	 */
 	private View myView;
 
+	//TODO make it lazy - something like Class<? extends ISelectionChangedListener> okButtonEnabler
+	private ISelectionChangedListener okButtonEnabler = new OkButtonEnabler();
+
 	/**
 	 * @generated
 	 */
@@ -81,6 +82,15 @@ public class DrlModelElementChooserDialog extends Dialog {
 		super(parentShell);
 		setShellStyle(getShellStyle() | SWT.RESIZE);
 		myView = view;
+	}
+
+	/*
+	 * HAND
+	 */
+	public DrlModelElementChooserDialog(Shell parentShell, View view,
+			ISelectionChangedListener okButtonEnabler) {
+		this(parentShell, view);
+		this.okButtonEnabler = okButtonEnabler;
 	}
 
 	/**
@@ -103,7 +113,7 @@ public class DrlModelElementChooserDialog extends Dialog {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private void createModelBrowser(Composite composite) {
 		myTreeViewer = new TreeViewer(composite, SWT.SINGLE | SWT.H_SCROLL
@@ -116,7 +126,8 @@ public class DrlModelElementChooserDialog extends Dialog {
 		myTreeViewer.setLabelProvider(new ModelElementsTreeLabelProvider());
 		myTreeViewer.setInput(ResourcesPlugin.getWorkspace().getRoot());
 		myTreeViewer.addFilter(new ModelFilesFilter());
-		myTreeViewer.addSelectionChangedListener(new OkButtonEnabler());
+		//HAND
+		myTreeViewer.addSelectionChangedListener(okButtonEnabler);
 	}
 
 	/**
@@ -361,7 +372,7 @@ public class DrlModelElementChooserDialog extends Dialog {
 	private class OkButtonEnabler implements ISelectionChangedListener {
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		public void selectionChanged(SelectionChangedEvent event) {
 			if (event.getSelection() instanceof IStructuredSelection) {
@@ -379,16 +390,9 @@ public class DrlModelElementChooserDialog extends Dialog {
 					}
 					if (selectedElement instanceof EObject) {
 						EObject selectedModelElement = (EObject) selectedElement;
-						setOkButtonEnabled(ViewService
-								.getInstance()
-								.provides(
-										Node.class,
-										new EObjectAdapter(selectedModelElement),
-										myView,
-										null,
-										ViewUtil.APPEND,
-										true,
-										DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+						boolean doEnableOkButton = DrlPackage.DOCUMENTATION_CORE == selectedModelElement
+								.eClass().getClassifierID();
+						setOkButtonEnabled(doEnableOkButton);
 						mySelectedModelElementURI = EcoreUtil
 								.getURI(selectedModelElement);
 						return;

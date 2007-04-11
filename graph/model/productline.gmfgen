@@ -3,6 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel/2.0" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.productline"
+    modelID="ProductLine"
     diagramFileExtension="productline_diagram">
   <diagram
       visualID="79"
@@ -21,8 +22,6 @@
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
-    <containsShortcutsTo>drl</containsShortcutsTo>
-    <shortcutsProvidedFor>DrlModel</shortcutsProvidedFor>
     <domainDiagramElement
         href="model.genmodel#//graph/ProductLine"/>
     <childNodes
@@ -387,8 +386,10 @@
   </diagram>
   <plugin
       iD="org.spbu.pldoctoolkit.graph.diagram.productline"
-      provider="Drl Plugin Provider, Inc"
-      version="1.0.0.0"/>
+      name="ProductLine Diagram Plugin"
+      provider="Spbu Plugin Provider, Inc"
+      version="1.0.0.0"
+      activatorClassName="DrlModelDiagramEditorPlugin"/>
   <editor/>
   <navigator>
     <childReferences

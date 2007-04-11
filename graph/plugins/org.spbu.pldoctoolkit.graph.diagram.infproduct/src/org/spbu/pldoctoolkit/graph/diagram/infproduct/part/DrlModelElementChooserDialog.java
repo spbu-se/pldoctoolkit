@@ -375,10 +375,10 @@ public class DrlModelElementChooserDialog extends Dialog {
 					}
 					if (selectedElement instanceof EObject) {
 						EObject selectedModelElement = (EObject) selectedElement;
-						
+
 						// HAND
-						boolean doEnable = 
-							selectedModelElement.eClass().getClassifierID() != DrlPackage.INF_PRODUCT
+						boolean doEnable = selectedModelElement.eClass()
+								.getClassifierID() != DrlPackage.INF_PRODUCT
 								&& ViewService
 										.getInstance()
 										.provides(

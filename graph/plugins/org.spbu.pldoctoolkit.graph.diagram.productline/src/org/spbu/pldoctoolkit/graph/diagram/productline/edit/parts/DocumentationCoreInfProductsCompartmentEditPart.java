@@ -63,7 +63,7 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 				.getContentPane().getLayoutManager();
 		layout.setSpacing(3);
 		layout.setStretchMinorAxis(true);
-		layout.setStretchMajorAxis(true);
+		layout.setStretchMajorAxis(false);
 
 		return result;
 	}
