@@ -2,10 +2,8 @@
 <!-- $Id$ -->
 <grammar 
 	xmlns="http://relaxng.org/ns/structure/1.0"
-	xmlns:xsp="http://apache.org/xsp/core/v1"
 	xmlns:s="http://www.ascc.net/xml/schematron"
 	xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
-	xmlns:f="http://axkit.org/NS/xsp/perform/v1"
 	datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
 	ns="http://math.spbu.ru/drl">
 	
@@ -28,7 +26,15 @@
 				<ref name="InfElemRefGroups"/>
 				<ref name="DocbookOrCommonDrl"/>
 			</element>
-		(См объявление InfElemRefGroup в sample-DocumentationCore.xml.)	
+		(См объявление InfElemRefGroup в sample-DocumentationCore.xml.)
+		
+		yakovlev: Вообще то, так и было задумано :) Ну, наверное это и вправду не очень хорошо,
+		так что теперь паттерн "InfElemRefGroups" убран, а элемент InfElemRefGroup матчится
+		непосредственно внутри паттерна DocbookOrCommonDrl.
+		
+		По поводу начальных маленьких и больших буков - это было тоже специально сделано,
+		все ради того чтобы различать паттерны которые матчат непосредсвенно элемент и все остальные.
+		Но, вообще, пофиг, пусть так будет.
 	-->
 	
 	<start>
@@ -41,6 +47,7 @@
 	
 	<define name="ProductLine">
 		<element name="ProductLine">
+			<attribute name="name"/>
 			<zeroOrMore>
 				<element name="Product">
 					<attribute name="id"/>
@@ -53,8 +60,10 @@
 	<define name="ProductDocumentation">
 		<element name="ProductDocumentation">
 			<zeroOrMore>
-				<ref name="FinalInfProduct"/>
-				<ref name="Dictionary"/>
+				<choice>
+					<ref name="FinalInfProduct"/>
+					<ref name="Dictionary"/>
+				</choice>
 			</zeroOrMore>
 		</element>
 	</define>
@@ -75,7 +84,6 @@
 		<element name="InfProduct">
 			<attribute name="id"/>
 			<attribute name="name"/>
-			<ref name="InfElemRefGroups"/>
 			<ref name="DocbookOrCommonDrl"/>
 		</element>
 	</define>
@@ -84,24 +92,8 @@
 		<element name="InfElement">
 			<attribute name="id"/>
 			<attribute name="name"/>
-			<ref name="InfElemRefGroups"/>
 			<ref name="DocbookOrCommonDrl"/>
 		</element>
-	</define>
-	
-	<define name="InfElemRefGroups">
-		<zeroOrMore>
-			<element name="InfElemRefGroup">
-				<attribute name="id"/>
-				<attribute name="name"/>
-				<attribute name="modifier">
-					<choice>
-						<value>ONE</value>
-						<value>SET</value>
-					</choice>
-				</attribute>
-			</element>
-		</zeroOrMore>
 	</define>
 	
 	<define name="Dictionary">
@@ -162,6 +154,16 @@
 						<attribute name="groupid"/>
 						<attribute name="optional"/>
 					</optional>
+				</element>
+				<element name="InfElemRefGroup">
+					<attribute name="id"/>
+					<attribute name="name"/>
+					<attribute name="modifier">
+						<choice>
+							<value>ONE</value>
+							<value>SET</value>
+						</choice>
+					</attribute>
 				</element>
 				<element name="DictRef">
 					<attribute name="dictid"/>
