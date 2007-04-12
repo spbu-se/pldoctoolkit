@@ -68,6 +68,7 @@ public class ProductLineDataPLSchemeCompartmentEditPart extends
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
 				.createFigure();
 		result.setTitleVisibility(false);
+		result.setBorder(null);
 
 		//HAND
 		ConstrainedToolbarLayout layout = (ConstrainedToolbarLayout) result

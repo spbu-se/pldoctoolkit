@@ -58,6 +58,7 @@ public class ProductLineDataDocumentationCoreCompartmentEditPart extends
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
 				.createFigure();
 		result.setTitleVisibility(false);
+		result.setBorder(null);
 
 		ConstrainedToolbarLayout layout = (ConstrainedToolbarLayout) result
 				.getContentPane().getLayoutManager();

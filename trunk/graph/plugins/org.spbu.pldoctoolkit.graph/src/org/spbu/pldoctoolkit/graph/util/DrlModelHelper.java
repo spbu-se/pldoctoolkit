@@ -8,11 +8,8 @@
 package org.spbu.pldoctoolkit.graph.util;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -31,11 +28,23 @@ public class DrlModelHelper {
 	
 	public static void openDrlEditor(EObject drlObject) {
 		
-		Resource elementResource = drlObject.eResource(); 
-		IPath path = new Path(elementResource.getURI().toPlatformString(true));
-		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+		IFile file = WorkspaceSynchronizer.getFile(drlObject.eResource());
 		IEditorInput myEditorInput = new FileEditorInput(file);
-
+		
+		/*
+		 * When markers will be available: 
+		 * 
+		 * IFile file = <choose the file to open>; 
+		 * IWorkbenchPage page = <the page to open the editor in>;
+		 * HashMap map = new HashMap(); 
+		 * map.put(IMarker.LINE_NUMBER, new Integer(5)); 
+		 * map.put(IWorkbenchPage.EDITOR_ID_ATTR, "org.eclipse.ui.DefaultTextEditor"); 
+		 * IMarker marker = file.createMarker(IMarker.TEXT); 
+		 * marker.setAttributes(map);
+		 * IDE.openEditor(marker);
+		 * API marker.delete();
+		 */
+		
 		try {
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			if(page != null) {

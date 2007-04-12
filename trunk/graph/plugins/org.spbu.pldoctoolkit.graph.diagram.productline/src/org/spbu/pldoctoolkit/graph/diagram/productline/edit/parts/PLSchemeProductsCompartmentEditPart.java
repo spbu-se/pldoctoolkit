@@ -12,6 +12,7 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
@@ -58,6 +59,7 @@ public class PLSchemeProductsCompartmentEditPart extends
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
 				.createFigure();
 		result.setTitleVisibility(false);
+		result.setBorder(null);
 
 		//HAND
 		ConstrainedToolbarLayout layout = (ConstrainedToolbarLayout) result
@@ -95,7 +97,7 @@ public class PLSchemeProductsCompartmentEditPart extends
 				EditPolicy result = child
 						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
-					result = new NonResizableEditPolicy();
+					result = new ResizableShapeEditPolicy();
 				}
 				return result;
 			}
