@@ -11,18 +11,18 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class DrlPublisherPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.spbu.pldoctoolkit";
 
 	// The shared instance
-	private static Activator plugin;
+	private static DrlPublisherPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public Activator() {
+	public DrlPublisherPlugin() {
 		plugin = this;
 	}
 
@@ -48,7 +48,7 @@ public class Activator extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static Activator getDefault() {
+	public static DrlPublisherPlugin getDefault() {
 		return plugin;
 	}
 
@@ -65,7 +65,7 @@ public class Activator extends AbstractUIPlugin {
 	
 	public static URL getBundleResourceURL(String relativePath) {
 		try {
-			return new URL(Activator.getDefault().getBundle().getEntry("/"), relativePath);
+			return new URL(DrlPublisherPlugin.getDefault().getBundle().getEntry("/"), relativePath);
 		} catch (MalformedURLException e) {
 			return null;
 		}

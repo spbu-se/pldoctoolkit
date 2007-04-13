@@ -2,18 +2,23 @@ package org.spbu.pldoctoolkit.actions;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import javax.xml.transform.ErrorListener;
+import javax.xml.transform.Source;
 import javax.xml.transform.SourceLocator;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import net.sf.saxon.Configuration;
 import net.sf.saxon.Controller;
 import net.sf.saxon.FeatureKeys;
+import net.sf.saxon.StandardURIResolver;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.om.SequenceIterator;
@@ -23,8 +28,10 @@ import net.sf.saxon.value.SequenceExtent;
 import net.sf.saxon.value.SingletonNode;
 import net.sf.saxon.value.Value;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.Action;
@@ -35,7 +42,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.FileEditorInput;
-import org.spbu.pldoctoolkit.Activator;
+import org.spbu.pldoctoolkit.DrlPublisherPlugin;
+import org.spbu.pldoctoolkit.registry.ResourceRegistry;
 import org.xml.sax.DTDHandler;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
@@ -54,9 +62,9 @@ import com.thaiopensource.xml.sax.XMLReaderCreator;
 
 public class BasicExportAction extends Action {
 	protected static final TransformerFactory TRANSFORMER_FACTORY = TransformerFactory.newInstance();
-	protected static final URL DRL2DOCBOOK_URL = Activator.getBundleResourceURL("xsl/drl/drl2docbook.xsl");
-	protected static final URL DOCBOOK_SCHEMA_URL = Activator.getBundleResourceURL("schema/docbook/docbook.rng");
-	
+	protected static final URL DRL2DOCBOOK_URL = DrlPublisherPlugin.getBundleResourceURL("xsl/drl/drl2docbook.xsl");
+	protected static final URL DOCBOOK_SCHEMA_URL = DrlPublisherPlugin.getBundleResourceURL("schema/docbook/docbook.rng");
+
 	protected final Controller drl2docbook;
 	protected final Controller docbook2type;
 	protected final String type;
@@ -65,50 +73,48 @@ public class BasicExportAction extends Action {
 
 	protected final XMLReader xmlReader;
 	protected final Validator validator;
-	
-	protected final FolderURIResolver uriResolver = new FolderURIResolver(new Configuration());
-	
+
+	protected final URIResolver uriResolver = new StandardURIResolver(new Configuration()) {
+		private static final long serialVersionUID = -7919352677909462305L;
+		public Source resolve(String href, String base) throws XPathException {
+			IResource resource = ResourceRegistry.getInstance().getResource(href);
+			if (resource != null)
+				return new StreamSource(resource.getLocationURI().toString());
+			return super.resolve(href, base);
+		}
+	};
+
 	protected final ErrorHandler errorHandler = new ErrorHandler() {
 		public void error(SAXParseException exception) throws SAXException {
 			createMarker(contentHandler.getSystemId(), contentHandler.getLineNumber(), 
-					exception.getMessage() + "(" + exception.getLineNumber() + ")", IMarker.SEVERITY_ERROR);
+					exception.getMessage() + " (" + exception.getLineNumber() + ")", IMarker.SEVERITY_ERROR);
 		}
 
 		public void fatalError(SAXParseException exception) throws SAXException {
 			createMarker(contentHandler.getSystemId(), contentHandler.getLineNumber(), 
-					exception.getMessage() + "(" + exception.getLineNumber() + ")", IMarker.SEVERITY_ERROR);
+					exception.getMessage() + " (" + exception.getLineNumber() + ")", IMarker.SEVERITY_ERROR);
 		}
 
 		public void warning(SAXParseException exception) throws SAXException {
 			createMarker(contentHandler.getSystemId(), contentHandler.getLineNumber(), 
-					exception.getMessage() + "(" + exception.getLineNumber() + ")", IMarker.SEVERITY_WARNING);
+					exception.getMessage() + " (" + exception.getLineNumber() + ")", IMarker.SEVERITY_WARNING);
 		}
 	};
-	
+
 	protected final ErrorListener errorListener = new ErrorListener() {
-		private void processException(TransformerException e, int severity) throws TransformerException {
-			if (e instanceof DynamicError) {
-				processDynamicError((DynamicError)e, severity);
-			} else {
-				SourceLocator l = e.getLocator();
-				createMarker(l.getSystemId(), l.getLineNumber(), e.getCause().getMessage(), severity);
-				e.printStackTrace();
-			}
-		}
-		
 		public void error(TransformerException exception) throws TransformerException {
-			processException(exception, IMarker.SEVERITY_ERROR);
+			processTransformerException(exception, IMarker.SEVERITY_ERROR);
 		}
 
 		public void fatalError(TransformerException exception) throws TransformerException {
-			processException(exception, IMarker.SEVERITY_ERROR);
+			processTransformerException(exception, IMarker.SEVERITY_ERROR);
 		}
 
 		public void warning(TransformerException exception) throws TransformerException {
-			processException(exception, IMarker.SEVERITY_WARNING);
+			processTransformerException(exception, IMarker.SEVERITY_WARNING);
 		}
 	};
-	
+
 	protected DocbookContentHandler contentHandler;
 
 	public BasicExportAction(IEditorPart editor, String type, String extension) throws Exception {
@@ -118,14 +124,14 @@ public class BasicExportAction extends Action {
 		this.editor = editor;
 		this.type = type;
 		this.extension = extension;
-		
+
 		// transformers
 		TRANSFORMER_FACTORY.setAttribute(FeatureKeys.LINE_NUMBERING, true);
 		TRANSFORMER_FACTORY.setURIResolver(uriResolver);
 		drl2docbook = (Controller)TRANSFORMER_FACTORY.newTransformer(new StreamSource(DRL2DOCBOOK_URL.toString()));
-		String url = Activator.getBundleResourceURL("xsl/docbook/" + type + "/docbook.xsl").toString();
+		String url = DrlPublisherPlugin.getBundleResourceURL("xsl/docbook/" + type + "/docbook.xsl").toString();
 		docbook2type = (Controller)TRANSFORMER_FACTORY.newTransformer(new StreamSource(url));
-		
+
 		// validator
 		PropertyMapBuilder builder = new PropertyMapBuilder();
 		XMLReaderCreator xmlReaderCreator = new Jaxp11XMLReaderCreator();
@@ -143,7 +149,7 @@ public class BasicExportAction extends Action {
 		try {
 			if (editor == null)
 				return;
-			FileDialog fileDialog = new FileDialog(Activator.getShell(), SWT.SAVE);
+			FileDialog fileDialog = new FileDialog(DrlPublisherPlugin.getShell(), SWT.SAVE);
 			fileDialog.setText(getText());
 			fileDialog.setFilterExtensions(new String[] {"*." + extension});
 			String dialogResult = fileDialog.open();
@@ -152,22 +158,21 @@ public class BasicExportAction extends Action {
 
 			String destinationFilename = dialogResult.contains(".") ? dialogResult : dialogResult + "." + extension;
 			FileEditorInput editorInput = (FileEditorInput)editor.getEditorInput();
-			uriResolver.setFolder(editorInput.getFile().getParent());
 			final String source = editorInput.getFile().getLocationURI().toString();
 			final String destination = new File(destinationFilename).toURI().toString();
 
 			editorInput.getFile().getParent().deleteMarkers(IMarker.MARKER, true, IResource.DEPTH_INFINITE);
-			
+
 			IRunnableWithProgress op = new IRunnableWithProgress() {
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					doTransform(monitor, source, destination);
 				}
 			};
-			ProgressMonitorDialog pmDialog = new ProgressMonitorDialog(Activator.getShell());
+			ProgressMonitorDialog pmDialog = new ProgressMonitorDialog(DrlPublisherPlugin.getShell());
 			pmDialog.run(true, false, op);
 			int returnCode = pmDialog.getReturnCode();
 			if (returnCode == ProgressMonitorDialog.OK) {
-				MessageDialog.openInformation(Activator.getShell(), "Information", "Export successfull");
+				MessageDialog.openInformation(DrlPublisherPlugin.getShell(), "Information", "Export successfull");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -180,7 +185,7 @@ public class BasicExportAction extends Action {
 			monitor.beginTask("Exporting to " + type + "...", 3);
 			tempFile = File.createTempFile("docbookgen", null);
 			String temp = tempFile.toURI().toString();
-			
+
 			monitor.subTask("Transforming DRL -> DocBook...");
 			transform(drl2docbook, source, temp);
 			monitor.worked(1);
@@ -193,7 +198,7 @@ public class BasicExportAction extends Action {
 				xmlReader.setDTDHandler(dtdHandler);
 			xmlReader.parse(temp);
 			monitor.worked(1);
-			
+
 			monitor.subTask("Transforming DocBook -> " + type + "...");
 			transform(docbook2type, temp, destination);
 			monitor.done();
@@ -212,6 +217,16 @@ public class BasicExportAction extends Action {
 		transformer.setErrorListener(errorListener);
 		transformer.setURIResolver(uriResolver);
 		transformer.transform(new StreamSource(source), new StreamResult(destination));
+	}
+
+	private void processTransformerException(TransformerException e, int severity) throws XPathException {
+		if (e instanceof DynamicError) {
+			processDynamicError((DynamicError)e, severity);
+		} else {
+			SourceLocator loc = e.getLocator();
+			createMarker(loc.getSystemId(), loc.getLineNumber(), e.getMessage(), severity);
+			e.printStackTrace();
+		}
 	}
 	
 	private void processDynamicError(DynamicError dynamicError, int severity) throws XPathException {
@@ -236,7 +251,7 @@ public class BasicExportAction extends Action {
 	}
 
 	private void createMarker(String systemId, int lineNumber, String message, int severity) {
-		IResource resource = uriResolver.getResource(systemId);
+		IResource resource = getResource(systemId);
 		if (resource == null) {
 			System.out.println("Resource not found: " + systemId + " message: " + message + " on line " + lineNumber);
 			return;
@@ -250,5 +265,18 @@ public class BasicExportAction extends Action {
 			e.printStackTrace();
 		}
 		System.out.println("*** Marker: " + message + " @ " + systemId + " line " + lineNumber);
+	}
+	
+	private IResource getResource(String systemId) {
+		IResource resource = ResourceRegistry.getInstance().getResource(systemId);
+		if (resource != null)
+			return resource;
+		try {
+			IFile[] files = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(new URI(systemId));
+			if (files.length > 0)
+				return files[0];
+		} catch (URISyntaxException e) {
+		}
+		return null;	
 	}
 }

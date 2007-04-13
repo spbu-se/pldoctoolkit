@@ -59,6 +59,7 @@
 	
 	<define name="ProductDocumentation">
 		<element name="ProductDocumentation">
+			<attribute name="productid"/>
 			<zeroOrMore>
 				<choice>
 					<ref name="FinalInfProduct"/>

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?oxygen RNGSchema="file:/C:/projects/org.spbu.pldoctoolkit/schema/document-reuse-language.rng" type="xml"?>
+<?oxygen RNGSchema="../document-reuse-language.rng" type="xml"?>
 
-<ProductLine 
-    xmlns="http://math.spbu.ru/drl">
-    
-    <Product id="1" name="product1"/>
-    <Product id="2" name="product2"/>
+<ProductLine name="Product line name" xmlns="http://math.spbu.ru/drl">
+	<Product id="1" name="product1"/>
+	<Product id="2" name="product2"/>
 </ProductLine>

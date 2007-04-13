@@ -19,12 +19,14 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 	public XMLConfiguration(ColorManager colorManager) {
 		this.colorManager = colorManager;
 	}
+	
 	public String[] getConfiguredContentTypes(ISourceViewer sourceViewer) {
 		return new String[] {
 			IDocument.DEFAULT_CONTENT_TYPE,
 			XMLPartitionScanner.XML_COMMENT,
 			XMLPartitionScanner.XML_TAG };
 	}
+	
 	public ITextDoubleClickStrategy getDoubleClickStrategy(
 		ISourceViewer sourceViewer,
 		String contentType) {
@@ -43,6 +45,7 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 		}
 		return scanner;
 	}
+	
 	protected XMLTagScanner getXMLTagScanner() {
 		if (tagScanner == null) {
 			tagScanner = new XMLTagScanner(colorManager);
@@ -57,8 +60,7 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 	public IPresentationReconciler getPresentationReconciler(ISourceViewer sourceViewer) {
 		PresentationReconciler reconciler = new PresentationReconciler();
 
-		DefaultDamagerRepairer dr =
-			new DefaultDamagerRepairer(getXMLTagScanner());
+		DefaultDamagerRepairer dr = new DefaultDamagerRepairer(getXMLTagScanner());
 		reconciler.setDamager(dr, XMLPartitionScanner.XML_TAG);
 		reconciler.setRepairer(dr, XMLPartitionScanner.XML_TAG);
 
@@ -75,5 +77,4 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 
 		return reconciler;
 	}
-
 }
