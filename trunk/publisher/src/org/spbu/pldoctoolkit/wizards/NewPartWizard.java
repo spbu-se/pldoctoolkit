@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.eclipse.ui.INewWizard;
-import org.spbu.pldoctoolkit.Activator;
+import org.spbu.pldoctoolkit.DrlPublisherPlugin;
 
 public class NewPartWizard extends NewWizard implements INewWizard {
 	private static final String TEMPLATE = "templates/part.xml";
@@ -19,6 +19,6 @@ public class NewPartWizard extends NewWizard implements INewWizard {
 
 	@Override
 	public InputStream openContentStream() throws IOException {
-		return Activator.getDefault().getBundle().getResource(TEMPLATE).openStream();
+		return DrlPublisherPlugin.getDefault().getBundle().getResource(TEMPLATE).openStream();
 	}
 }

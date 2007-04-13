@@ -8,7 +8,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.action.Action;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
-import org.spbu.pldoctoolkit.Activator;
+import org.spbu.pldoctoolkit.DrlPublisherPlugin;
 import org.spbu.pldoctoolkit.xmlutil.ContentHandlerAdapter;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
@@ -27,7 +27,7 @@ import com.thaiopensource.xml.sax.Jaxp11XMLReaderCreator;
 import com.thaiopensource.xml.sax.XMLReaderCreator;
 
 public class ValidateDrlAction extends Action {
-	private static final URL SCHEMA_URL = Activator.getBundleResourceURL("schema/document-reuse-language.rng");
+	private static final URL SCHEMA_URL = DrlPublisherPlugin.getBundleResourceURL("schema/document-reuse-language.rng");
 
 	private final MarkingErrorHandler errorHandler = new MarkingErrorHandler();
 	private final XMLReader xmlReader;

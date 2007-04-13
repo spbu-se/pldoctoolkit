@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?oxygen RNGSchema="file:/C:/projects/org.spbu.pldoctoolkit/schema/document-reuse-language.rng" type="xml"?>
+<?oxygen RNGSchema="../document-reuse-language.rng" type="xml"?>
 
-<ProductDocumentation 
+<ProductDocumentation productid="product1" 
     xmlns="http://math.spbu.ru/drl"
     xmlns:db="http://docbook.org/ns/docbook">
     

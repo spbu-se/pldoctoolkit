@@ -5,6 +5,8 @@ import org.spbu.pldoctoolkit.actions.BasicExportAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
 
 public class DRLEditor extends TextEditor {
+	public static final String XML_PARTITIONING = "__drl_partitioning";
+	
 	public static final String VALIDATE_DRL = "validate_action";
 	public static final String EXPORT_TO_HTML = "export_to_html";
 	private ColorManager colorManager;
@@ -16,6 +18,12 @@ public class DRLEditor extends TextEditor {
 		setDocumentProvider(new XMLDocumentProvider());
 	}
 	
+	@Override
+	protected void initializeEditor() {
+		super.initializeEditor();
+		setSourceViewerConfiguration(new DRLSourceViewerConfiguration());
+	}
+
 	public void dispose() {
 		colorManager.dispose();
 		super.dispose();
@@ -30,7 +38,6 @@ public class DRLEditor extends TextEditor {
 	@Override
 	protected void createActions() {
 		super.createActions();
-		
 		try {
 			setAction(VALIDATE_DRL, new ValidateDrlAction(this));
 		} catch (Exception e) {
