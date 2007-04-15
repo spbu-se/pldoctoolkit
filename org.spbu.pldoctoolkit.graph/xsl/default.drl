@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><v:DocumentationCore xmlns:v="http://tepkom.ru/drl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <parts name="infinf" xsi:type="v:InfElement">
+    <infElemRefs id="ssd" infelem="//@parts.2" optional="true"/>
+  </parts>
+  <parts id="sfsd" name="sdfsd" xsi:type="v:InfElement"/>
+  <parts name="infinf" xsi:type="v:InfElement"/>
+</v:DocumentationCore>

@@ -3,7 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.spbu.pldoctoolkit.graph; singleton:=true
 Bundle-Version: 1.0.0
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ lib/saxon8.jar,
+ lib/saxon8-dom.jar
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.spbu.pldoctoolkit.graph,
