@@ -4,6 +4,8 @@
     xmlns:v="http://tepkom.ru/drl" 
     version="2.0">
     
+    <xsl:output indent="yes"/>
+    
     <xsl:template match="/">
         <xsl:copy>
             <xsl:apply-templates select="node()"/>
@@ -12,11 +14,8 @@
     
     <xsl:template match="v:ProductLine">
         <xsl:copy>
-            <xsl:copy-of select="@*"/>
-            <scheme>
-                <xsl:apply-templates select="text() | comment() | node()"/>
-            </scheme>
-        </xsl:copy>
+            <xsl:copy-of select="@*"/><scheme>
+                <xsl:apply-templates select="text() | comment() | node()"/></scheme></xsl:copy>
     </xsl:template>
     
     <xsl:template match="v:Product">

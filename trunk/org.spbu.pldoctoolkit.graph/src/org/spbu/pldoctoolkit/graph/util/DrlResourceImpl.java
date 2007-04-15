@@ -26,6 +26,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.xmi.XMLLoad;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.spbu.pldoctoolkit.graph.Plugin;
 import org.w3c.dom.Document;
@@ -160,6 +161,11 @@ public class DrlResourceImpl extends XMLResourceImpl {
 		} catch (TransformerException e) {
 			throw new IOException(e);
 		}
+	}
+
+	@Override
+	protected XMLLoad createXMLLoad() {
+		return new DrlXMLLoadImpl(createXMLHelper());
 	}
 	
 } // DrlResourceImpl
