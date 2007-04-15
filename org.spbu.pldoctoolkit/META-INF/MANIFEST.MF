@@ -8,4 +8,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.eclipse.ui.ide,
  org.eclipse.core.runtime
+Bundle-Activator: org.spbu.pldoctoolkit.PLDocToolkitPlugin
 Export-Package: org.spbu.pldoctoolkit.registry
