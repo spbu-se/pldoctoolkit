@@ -1,10 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Ui Plug-in
-Bundle-SymbolicName: org.spbu.pldoctoolkit.ui;singleton:=true
+Bundle-Name: DRL base plugin
+Bundle-SymbolicName: org.spbu.pldoctoolkit;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.eclipse.ui.ide,
  org.eclipse.core.runtime
+Export-Package: org.spbu.pldoctoolkit.registry
