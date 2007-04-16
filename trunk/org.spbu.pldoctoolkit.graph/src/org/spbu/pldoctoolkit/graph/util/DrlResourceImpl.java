@@ -28,7 +28,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.XMLLoad;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
-import org.spbu.pldoctoolkit.graph.Plugin;
+import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -83,7 +83,7 @@ public class DrlResourceImpl extends XMLResourceImpl {
 			throws IOException {
 		
 		try {
-			InputStream stylesheetStream = Plugin.getResourceURL(DRL2XMI_FILE).openStream();
+			InputStream stylesheetStream = DrlGraphPlugin.getResourceURL(DRL2XMI_FILE).openStream();
 			StreamSource styleSource = new StreamSource(stylesheetStream);
 			
 			StreamSource fileSource = new StreamSource(inputStream);
@@ -92,7 +92,7 @@ public class DrlResourceImpl extends XMLResourceImpl {
 			StreamResult xslResult = new StreamResult(xslResultStream);
 			
 			TransformerFactory transFactory = TransformerFactory.newInstance(
-					Plugin.JAXP_PROPERTIES.getProperty(Plugin.JAXP_PROPERTY_TRANSFORMER_FACTORY),
+					DrlGraphPlugin.JAXP_PROPERTIES.getProperty(DrlGraphPlugin.JAXP_PROPERTY_TRANSFORMER_FACTORY),
 					this.getClass().getClassLoader());
 			Transformer transformer = transFactory.newTransformer(styleSource);
 
@@ -101,9 +101,10 @@ public class DrlResourceImpl extends XMLResourceImpl {
 			ByteArrayInputStream xslResultAsInput = new ByteArrayInputStream(xslResultStream.toByteArray());
 			
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(
-					Plugin.JAXP_PROPERTIES.getProperty(Plugin.JAXP_PROPERTY_DOCUMENT_BUILDER_FACTORY),
+					DrlGraphPlugin.JAXP_PROPERTIES.getProperty(DrlGraphPlugin.JAXP_PROPERTY_DOCUMENT_BUILDER_FACTORY),
 					this.getClass().getClassLoader());
 			factory.setValidating(false);
+			factory.setNamespaceAware(true);
 			DocumentBuilder builder = factory.newDocumentBuilder();
 
 			drlDocument = builder.parse(xslResultAsInput); 
@@ -138,11 +139,11 @@ public class DrlResourceImpl extends XMLResourceImpl {
 			DOMSource source = new DOMSource(drlDocument);
 			StreamResult result = new StreamResult(outputStream);
 
-			InputStream stylesheetStream = Plugin.getResourceURL(XMI2DRL_FILE).openStream();
+			InputStream stylesheetStream = DrlGraphPlugin.getResourceURL(XMI2DRL_FILE).openStream();
 			StreamSource stylesource = new StreamSource(stylesheetStream); 
 			
 			TransformerFactory transFactory = TransformerFactory.newInstance(
-					Plugin.JAXP_PROPERTIES.getProperty(Plugin.JAXP_PROPERTY_TRANSFORMER_FACTORY),
+					DrlGraphPlugin.JAXP_PROPERTIES.getProperty(DrlGraphPlugin.JAXP_PROPERTY_TRANSFORMER_FACTORY),
 					this.getClass().getClassLoader());
 			Transformer docSerializer = transFactory.newTransformer(); // stylesource
 

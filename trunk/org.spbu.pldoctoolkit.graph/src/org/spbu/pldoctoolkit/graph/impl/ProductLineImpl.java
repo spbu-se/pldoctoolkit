@@ -17,9 +17,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
+import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.PLScheme;
 import org.spbu.pldoctoolkit.graph.ProductLine;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
@@ -305,6 +307,20 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl#initializeAttributeNodes(org.w3c.dom.Element)
+	 */
+	@Override
+	protected void initializeAttributeNodes(Element elem) {
+		super.initializeAttributeNodes(elem);
+		
+		// name
+		String nameAttrName = 
+			DrlFactory.eINSTANCE.getDrlPackage().getProductLine_Name().getName();
+		
+		elem.setAttribute(nameAttrName, getName());
 	}
 
 } //ProductLineImpl

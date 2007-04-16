@@ -14,8 +14,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.spbu.pldoctoolkit.graph.DrlElement;
+import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.spbu.pldoctoolkit.graph.util.DrlResourceImpl;
 
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
@@ -66,6 +71,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 */
 	protected DrlElementImpl() {
 		super();
+		initializeNode();
 	}
 
 	/**
@@ -167,4 +173,33 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 		return result.toString();
 	}
 
+	/*
+	 * TODO is it correct to return getClass().getName() ?
+	 */
+	protected String getTagName() {
+//		DrlFactory factory = DrlFactory.eINSTANCE.getDrlPackage().blablabla
+		return getClass().getName();
+	}
+	
+	protected final Document getDocument() {
+		DrlResourceImpl resource = (DrlResourceImpl) this.eResource();
+		if(resource != null) {
+			return resource.getDrlDocument();
+		}
+		return null;
+	}
+	
+	protected void initializeNode() {
+		Document drlDocument = getDocument();
+		if(drlDocument != null) {
+			Element elem = drlDocument.createElementNS(DrlPackage.eNS_URI, getTagName());
+			setNode(elem);
+			initializeAttributeNodes(elem);
+		}
+	}
+	
+	protected void initializeAttributeNodes(Element elem) {
+		//TODO to be overriden
+	}
+	
 } //DrlElementImpl

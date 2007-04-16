@@ -16,10 +16,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
+import org.w3c.dom.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -392,6 +394,26 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 		result.append(optional);
 		result.append(')');
 		return result.toString();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl#initializeAttributeNodes(org.w3c.dom.Element)
+	 */
+	@Override
+	protected void initializeAttributeNodes(Element elem) {
+		super.initializeAttributeNodes(elem);
+		
+		// id
+		String idAttrName = 
+			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Id().getName();
+		
+		elem.setAttribute(idAttrName, getId());
+
+		// optional
+		String optionalAttrName = 
+			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Optional().getName();
+		
+		elem.setAttribute(optionalAttrName, Boolean.toString(isOptional()));
 	}
 
 } //InfElemRefImpl

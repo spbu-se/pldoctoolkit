@@ -13,8 +13,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.Product;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
@@ -218,6 +220,26 @@ public class ProductImpl extends DrlElementImpl implements Product {
 		result.append(id);
 		result.append(')');
 		return result.toString();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl#initializeAttributeNodes(org.w3c.dom.Element)
+	 */
+	@Override
+	protected void initializeAttributeNodes(Element elem) {
+		super.initializeAttributeNodes(elem);
+		
+		// id
+		String idAttrName = 
+			DrlFactory.eINSTANCE.getDrlPackage().getProduct_Id().getName();
+		
+		elem.setAttribute(idAttrName, getId());
+
+		// name
+		String nameAttrName = 
+			DrlFactory.eINSTANCE.getDrlPackage().getProduct_Name().getName();
+		
+		elem.setAttribute(nameAttrName, getName());
 	}
 
 } //ProductImpl

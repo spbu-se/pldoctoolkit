@@ -21,7 +21,7 @@ import org.osgi.framework.BundleContext;
  * @author Alexey Semenov
  * @version 1.0
  */
-public class Plugin extends AbstractUIPlugin {
+public class DrlGraphPlugin extends AbstractUIPlugin {
 
 	public static final String JAXP_PROPERTIES_FILE = "/jaxp.properties";
 	public static final Properties JAXP_PROPERTIES = new Properties();
@@ -29,12 +29,12 @@ public class Plugin extends AbstractUIPlugin {
 	public static final String JAXP_PROPERTY_TRANSFORMER_FACTORY = "javax.xml.transform.TransformerFactory";
 	public static final String JAXP_PROPERTY_DOCUMENT_BUILDER_FACTORY = "javax.xml.parsers.DocumentBuilderFactory";
 	
-	private static Plugin instance;
+	private static DrlGraphPlugin instance;
 	
-	public Plugin() {
+	public DrlGraphPlugin() {
 	}
 	
-	public static Plugin getInstance() {
+	public static DrlGraphPlugin getInstance() {
 		return instance;
 	}
 
@@ -59,7 +59,7 @@ public class Plugin extends AbstractUIPlugin {
 	
 	private void setJaxpProps() {
 		try {
-			InputStream jaxpPropsInputStream = Plugin.getInstance().getBundle()
+			InputStream jaxpPropsInputStream = DrlGraphPlugin.getInstance().getBundle()
 				.getEntry(JAXP_PROPERTIES_FILE).openStream();
 			
 			JAXP_PROPERTIES.load(jaxpPropsInputStream);
