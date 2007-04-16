@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface GenericDocumentPart extends EObject {
+public interface GenericDocumentPart extends DrlElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

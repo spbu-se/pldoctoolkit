@@ -32,7 +32,7 @@ import org.spbu.pldoctoolkit.graph.InfProduct;
  *
  * @generated
  */
-public class FinalInfProductImpl extends EObjectImpl implements FinalInfProduct {
+public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProduct {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

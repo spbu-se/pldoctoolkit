@@ -37,7 +37,7 @@ import org.spbu.pldoctoolkit.graph.InfElement;
  *
  * @generated
  */
-public class InfElemRefImpl extends EObjectImpl implements InfElemRef {
+public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

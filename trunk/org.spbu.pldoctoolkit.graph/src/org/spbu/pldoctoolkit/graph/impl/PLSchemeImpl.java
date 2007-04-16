@@ -8,6 +8,7 @@ package org.spbu.pldoctoolkit.graph.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -15,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -23,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.PLScheme;
 import org.spbu.pldoctoolkit.graph.Product;
+import org.w3c.dom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +40,7 @@ import org.spbu.pldoctoolkit.graph.Product;
  *
  * @generated
  */
-public class PLSchemeImpl extends EObjectImpl implements PLScheme {
+public class PLSchemeImpl extends DrlElementImpl implements PLScheme {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

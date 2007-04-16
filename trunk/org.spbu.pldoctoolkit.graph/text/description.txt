@@ -12,52 +12,57 @@ Package graph <http://tepkom.ru/drl>
 
   Class InfProduct -> GenericDocumentPart
 
-  Class FinalInfProduct
+  Class FinalInfProduct -> DrlElement
     Reference product : InfProduct<<1..1>>
     Attribute id : EString<<1..1>>
 
-  Class NestPoint
+  Class NestPoint -> DrlElement
     Attribute id : EString<<1..1>>
     Attribute descr : EString
 
-  Class GenericDocumentPart
+  Class GenericDocumentPart -> DrlElement
     Attribute /id : EString<<1..1>>
     Attribute name : EString<<1..1>>
     Reference infElemRefs : InfElemRef<<0..*>>
     Reference groups : InfElemRefGroup<<0..*>>
 
-  Class InfElemRef
+  Class InfElemRef -> DrlElement
     Attribute id : EString<<1..1>>
     Reference infelem : InfElement<<1..1>>
     Reference group : InfElemRefGroup
     Attribute optional : EBoolean
 
-  Class InfElemRefGroup
+  Class InfElemRefGroup -> DrlElement
     Attribute id : EString<<1..1>>
     Attribute modifier : GroupType<<1..1>>
     Attribute name : EString
     Reference /infElemRefsGroup : InfElemRef<<0..*>>
 
-  Class ProductLine
+  Class ProductLine -> DrlElement
     Attribute name : EString<<1..1>>
     Reference /productDocumentations : ProductDocumentation<<0..*>>
     Reference documentationCores : DocumentationCore<<0..*>>
     Reference scheme : PLScheme<<1..1>>
 
-  Class Product
+  Class Product -> DrlElement
     Attribute name : EString<<1..1>>
     Attribute id : EString<<1..1>>
 
-  Class DocumentationCore
+  Class DocumentationCore -> DrlElement
     Reference parts : GenericDocumentPart<<0..*>>
 
-  Class ProductDocumentation
+  Class ProductDocumentation -> DrlElement
     Reference finalInfProducts : FinalInfProduct<<0..*>>
     Reference product : Product
 
-  Class PLScheme
+  Class PLScheme -> DrlElement
     Reference products : Product<<0..*>>
+
+  Class DrlElement
+    Attribute node : NodeType
 
   Enum GroupType
     Literal OR = 1
     Literal XOR = 2
+
+  DataType NodeType <org.w3c.dom.Node>

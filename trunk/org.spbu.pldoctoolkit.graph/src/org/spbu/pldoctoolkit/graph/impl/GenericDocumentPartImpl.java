@@ -44,7 +44,7 @@ import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
  *
  * @generated
  */
-public abstract class GenericDocumentPartImpl extends EObjectImpl implements GenericDocumentPart {
+public abstract class GenericDocumentPartImpl extends DrlElementImpl implements GenericDocumentPart {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

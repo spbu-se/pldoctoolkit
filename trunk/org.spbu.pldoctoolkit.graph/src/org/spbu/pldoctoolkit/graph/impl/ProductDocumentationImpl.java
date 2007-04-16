@@ -41,7 +41,7 @@ import org.spbu.pldoctoolkit.graph.ProductDocumentation;
  *
  * @generated
  */
-public class ProductDocumentationImpl extends EObjectImpl implements ProductDocumentation {
+public class ProductDocumentationImpl extends DrlElementImpl implements ProductDocumentation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
