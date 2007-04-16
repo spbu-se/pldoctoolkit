@@ -15,28 +15,29 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.spbu.pldoctoolkit.graph.DrlFactory;
+import org.spbu.pldoctoolkit.graph.DrlElement;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
-import org.spbu.pldoctoolkit.graph.ProductDocumentation;
+
 import org.w3c.dom.Node;
 
 /**
- * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.graph.ProductDocumentation} object.
+ * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.graph.DrlElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProductDocumentationItemProvider
-	extends DrlElementItemProvider
+public class DrlElementItemProvider
+	extends ItemProviderAdapter
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	
@@ -56,7 +57,7 @@ public class ProductDocumentationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProductDocumentationItemProvider(AdapterFactory adapterFactory) {
+	public DrlElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -64,75 +65,38 @@ public class ProductDocumentationItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public List getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addProductPropertyDescriptor(object);
+			//HAND hiding node property from the properties view
+//			addNodePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Product feature.
+	 * This adds a property descriptor for the Node feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProductPropertyDescriptor(Object object) {
+	protected void addNodePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ProductDocumentation_product_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProductDocumentation_product_feature", "_UI_ProductDocumentation_type"),
-				 DrlPackage.Literals.PRODUCT_DOCUMENTATION__PRODUCT,
+				 getString("_UI_DrlElement_node_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DrlElement_node_feature", "_UI_DrlElement_type"),
+				 DrlPackage.Literals.DRL_ELEMENT__NODE,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(DrlPackage.Literals.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns ProductDocumentation.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProductDocumentation"));
 	}
 
 	/**
@@ -140,10 +104,13 @@ public class ProductDocumentationItemProvider
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * HAND hidden Node prop
 	 */
 	public String getText(Object object) {
-		return getString("_UI_ProductDocumentation_type");
+		Node labelValue = ((DrlElement)object).getNode();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DrlElement_type") :
+			getString("_UI_DrlElement_type") + " " + label;
 	}
 
 	/**
@@ -156,9 +123,9 @@ public class ProductDocumentationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProductDocumentation.class)) {
-			case DrlPackage.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+		switch (notification.getFeatureID(DrlElement.class)) {
+			case DrlPackage.DRL_ELEMENT__NODE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -173,11 +140,6 @@ public class ProductDocumentationItemProvider
 	 */
 	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DrlPackage.Literals.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS,
-				 DrlFactory.eINSTANCE.createFinalInfProduct()));
 	}
 
 	/**

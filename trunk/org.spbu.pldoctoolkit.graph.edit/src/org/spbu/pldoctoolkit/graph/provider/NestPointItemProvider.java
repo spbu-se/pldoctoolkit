@@ -35,7 +35,7 @@ import org.spbu.pldoctoolkit.graph.NestPoint;
  * @generated
  */
 public class NestPointItemProvider
-	extends ItemProviderAdapter
+	extends DrlElementItemProvider
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	

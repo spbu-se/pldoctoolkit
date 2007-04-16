@@ -35,7 +35,7 @@ import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
  * @generated
  */
 public class InfElemRefGroupItemProvider
-	extends ItemProviderAdapter
+	extends DrlElementItemProvider
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	

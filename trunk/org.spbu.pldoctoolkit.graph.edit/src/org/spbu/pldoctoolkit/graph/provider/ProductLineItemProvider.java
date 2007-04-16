@@ -37,7 +37,7 @@ import org.spbu.pldoctoolkit.graph.ProductLine;
  * @generated
  */
 public class ProductLineItemProvider
-	extends ItemProviderAdapter
+	extends DrlElementItemProvider
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	
