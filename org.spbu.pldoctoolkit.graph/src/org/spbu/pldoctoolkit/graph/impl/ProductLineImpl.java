@@ -20,6 +20,7 @@ import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.PLScheme;
 import org.spbu.pldoctoolkit.graph.ProductLine;
+import org.w3c.dom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +38,7 @@ import org.spbu.pldoctoolkit.graph.ProductLine;
  *
  * @generated
  */
-public class ProductLineImpl extends EObjectImpl implements ProductLine {
+public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

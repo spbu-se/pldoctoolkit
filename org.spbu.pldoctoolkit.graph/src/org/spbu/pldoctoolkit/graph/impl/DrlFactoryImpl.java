@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.spbu.pldoctoolkit.graph.*;
+import org.w3c.dom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,6 +93,8 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 		switch (eDataType.getClassifierID()) {
 			case DrlPackage.GROUP_TYPE:
 				return createGroupTypeFromString(eDataType, initialValue);
+			case DrlPackage.NODE_TYPE:
+				return createNodeTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -106,6 +109,8 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 		switch (eDataType.getClassifierID()) {
 			case DrlPackage.GROUP_TYPE:
 				return convertGroupTypeToString(eDataType, instanceValue);
+			case DrlPackage.NODE_TYPE:
+				return convertNodeTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -239,6 +244,24 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 */
 	public String convertGroupTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Node createNodeTypeFromString(EDataType eDataType, String initialValue) {
+		return (Node)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertNodeTypeToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

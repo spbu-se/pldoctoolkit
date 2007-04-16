@@ -8,6 +8,7 @@ package org.spbu.pldoctoolkit.graph;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -78,51 +79,6 @@ public interface DrlPackage extends EPackage {
 	int GENERIC_DOCUMENT_PART = 4;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_DOCUMENT_PART__ID = 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_DOCUMENT_PART__NAME = 1;
-
-	/**
-	 * The feature id for the '<em><b>Inf Elem Refs</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_DOCUMENT_PART__INF_ELEM_REFS = 2;
-
-	/**
-	 * The feature id for the '<em><b>Groups</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_DOCUMENT_PART__GROUPS = 3;
-
-	/**
-	 * The number of structural features of the '<em>Generic Document Part</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_DOCUMENT_PART_FEATURE_COUNT = 4;
-
-	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.InfElementImpl <em>Inf Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -131,6 +87,147 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 */
 	int INF_ELEMENT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.InfProductImpl <em>Inf Product</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.spbu.pldoctoolkit.graph.impl.InfProductImpl
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getInfProduct()
+	 * @generated
+	 */
+	int INF_PRODUCT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.FinalInfProductImpl <em>Final Inf Product</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.spbu.pldoctoolkit.graph.impl.FinalInfProductImpl
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getFinalInfProduct()
+	 * @generated
+	 */
+	int FINAL_INF_PRODUCT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.NestPointImpl <em>Nest Point</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.spbu.pldoctoolkit.graph.impl.NestPointImpl
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNestPoint()
+	 * @generated
+	 */
+	int NEST_POINT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.InfElemRefImpl <em>Inf Elem Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.spbu.pldoctoolkit.graph.impl.InfElemRefImpl
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getInfElemRef()
+	 * @generated
+	 */
+	int INF_ELEM_REF = 5;
+
+	/**
+	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.InfElemRefGroupImpl <em>Inf Elem Ref Group</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.spbu.pldoctoolkit.graph.impl.InfElemRefGroupImpl
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getInfElemRefGroup()
+	 * @generated
+	 */
+	int INF_ELEM_REF_GROUP = 6;
+
+	/**
+	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.DrlElementImpl <em>Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getDrlElement()
+	 * @generated
+	 */
+	int DRL_ELEMENT = 12;
+
+	/**
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRL_ELEMENT__NODE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRL_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DOCUMENT_PART__NODE = DRL_ELEMENT__NODE;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DOCUMENT_PART__ID = DRL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DOCUMENT_PART__NAME = DRL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Inf Elem Refs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DOCUMENT_PART__INF_ELEM_REFS = DRL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Groups</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DOCUMENT_PART__GROUPS = DRL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Generic Document Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DOCUMENT_PART_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INF_ELEMENT__NODE = GENERIC_DOCUMENT_PART__NODE;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -187,14 +284,13 @@ public interface DrlPackage extends EPackage {
 	int INF_ELEMENT_FEATURE_COUNT = GENERIC_DOCUMENT_PART_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.InfProductImpl <em>Inf Product</em>}' class.
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.spbu.pldoctoolkit.graph.impl.InfProductImpl
-	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getInfProduct()
 	 * @generated
+	 * @ordered
 	 */
-	int INF_PRODUCT = 1;
+	int INF_PRODUCT__NODE = GENERIC_DOCUMENT_PART__NODE;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -242,14 +338,13 @@ public interface DrlPackage extends EPackage {
 	int INF_PRODUCT_FEATURE_COUNT = GENERIC_DOCUMENT_PART_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.FinalInfProductImpl <em>Final Inf Product</em>}' class.
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.spbu.pldoctoolkit.graph.impl.FinalInfProductImpl
-	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getFinalInfProduct()
 	 * @generated
+	 * @ordered
 	 */
-	int FINAL_INF_PRODUCT = 2;
+	int FINAL_INF_PRODUCT__NODE = DRL_ELEMENT__NODE;
 
 	/**
 	 * The feature id for the '<em><b>Product</b></em>' reference.
@@ -258,7 +353,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FINAL_INF_PRODUCT__PRODUCT = 0;
+	int FINAL_INF_PRODUCT__PRODUCT = DRL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -267,7 +362,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FINAL_INF_PRODUCT__ID = 1;
+	int FINAL_INF_PRODUCT__ID = DRL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Final Inf Product</em>' class.
@@ -276,17 +371,16 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FINAL_INF_PRODUCT_FEATURE_COUNT = 2;
+	int FINAL_INF_PRODUCT_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.NestPointImpl <em>Nest Point</em>}' class.
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.spbu.pldoctoolkit.graph.impl.NestPointImpl
-	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNestPoint()
 	 * @generated
+	 * @ordered
 	 */
-	int NEST_POINT = 3;
+	int NEST_POINT__NODE = DRL_ELEMENT__NODE;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -295,7 +389,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEST_POINT__ID = 0;
+	int NEST_POINT__ID = DRL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Descr</b></em>' attribute.
@@ -304,7 +398,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEST_POINT__DESCR = 1;
+	int NEST_POINT__DESCR = DRL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Nest Point</em>' class.
@@ -313,17 +407,16 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEST_POINT_FEATURE_COUNT = 2;
+	int NEST_POINT_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.InfElemRefImpl <em>Inf Elem Ref</em>}' class.
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.spbu.pldoctoolkit.graph.impl.InfElemRefImpl
-	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getInfElemRef()
 	 * @generated
+	 * @ordered
 	 */
-	int INF_ELEM_REF = 5;
+	int INF_ELEM_REF__NODE = DRL_ELEMENT__NODE;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -332,7 +425,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEM_REF__ID = 0;
+	int INF_ELEM_REF__ID = DRL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Infelem</b></em>' reference.
@@ -341,7 +434,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEM_REF__INFELEM = 1;
+	int INF_ELEM_REF__INFELEM = DRL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Group</b></em>' reference.
@@ -350,7 +443,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEM_REF__GROUP = 2;
+	int INF_ELEM_REF__GROUP = DRL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Optional</b></em>' attribute.
@@ -359,7 +452,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEM_REF__OPTIONAL = 3;
+	int INF_ELEM_REF__OPTIONAL = DRL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Inf Elem Ref</em>' class.
@@ -368,17 +461,16 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEM_REF_FEATURE_COUNT = 4;
+	int INF_ELEM_REF_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.InfElemRefGroupImpl <em>Inf Elem Ref Group</em>}' class.
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.spbu.pldoctoolkit.graph.impl.InfElemRefGroupImpl
-	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getInfElemRefGroup()
 	 * @generated
+	 * @ordered
 	 */
-	int INF_ELEM_REF_GROUP = 6;
+	int INF_ELEM_REF_GROUP__NODE = DRL_ELEMENT__NODE;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -387,7 +479,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEM_REF_GROUP__ID = 0;
+	int INF_ELEM_REF_GROUP__ID = DRL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' attribute.
@@ -396,7 +488,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEM_REF_GROUP__MODIFIER = 1;
+	int INF_ELEM_REF_GROUP__MODIFIER = DRL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -405,7 +497,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEM_REF_GROUP__NAME = 2;
+	int INF_ELEM_REF_GROUP__NAME = DRL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Inf Elem Refs Group</b></em>' reference list.
@@ -414,7 +506,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP = 3;
+	int INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP = DRL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Inf Elem Ref Group</em>' class.
@@ -423,7 +515,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INF_ELEM_REF_GROUP_FEATURE_COUNT = 4;
+	int INF_ELEM_REF_GROUP_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl <em>Product Line</em>}' class.
@@ -436,13 +528,22 @@ public interface DrlPackage extends EPackage {
 	int PRODUCT_LINE = 7;
 
 	/**
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_LINE__NODE = DRL_ELEMENT__NODE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE__NAME = 0;
+	int PRODUCT_LINE__NAME = DRL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Product Documentations</b></em>' reference list.
@@ -451,7 +552,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE__PRODUCT_DOCUMENTATIONS = 1;
+	int PRODUCT_LINE__PRODUCT_DOCUMENTATIONS = DRL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Documentation Cores</b></em>' reference list.
@@ -460,7 +561,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE__DOCUMENTATION_CORES = 2;
+	int PRODUCT_LINE__DOCUMENTATION_CORES = DRL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Scheme</b></em>' containment reference.
@@ -469,7 +570,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE__SCHEME = 3;
+	int PRODUCT_LINE__SCHEME = DRL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Product Line</em>' class.
@@ -478,7 +579,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE_FEATURE_COUNT = 4;
+	int PRODUCT_LINE_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.ProductImpl <em>Product</em>}' class.
@@ -491,13 +592,22 @@ public interface DrlPackage extends EPackage {
 	int PRODUCT = 8;
 
 	/**
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT__NODE = DRL_ELEMENT__NODE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT__NAME = 0;
+	int PRODUCT__NAME = DRL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -506,7 +616,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT__ID = 1;
+	int PRODUCT__ID = DRL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Product</em>' class.
@@ -515,7 +625,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_FEATURE_COUNT = 2;
+	int PRODUCT_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.DocumentationCoreImpl <em>Documentation Core</em>}' class.
@@ -528,13 +638,22 @@ public interface DrlPackage extends EPackage {
 	int DOCUMENTATION_CORE = 9;
 
 	/**
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTATION_CORE__NODE = DRL_ELEMENT__NODE;
+
+	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION_CORE__PARTS = 0;
+	int DOCUMENTATION_CORE__PARTS = DRL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Documentation Core</em>' class.
@@ -543,7 +662,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION_CORE_FEATURE_COUNT = 1;
+	int DOCUMENTATION_CORE_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.ProductDocumentationImpl <em>Product Documentation</em>}' class.
@@ -556,13 +675,22 @@ public interface DrlPackage extends EPackage {
 	int PRODUCT_DOCUMENTATION = 10;
 
 	/**
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_DOCUMENTATION__NODE = DRL_ELEMENT__NODE;
+
+	/**
 	 * The feature id for the '<em><b>Final Inf Products</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS = 0;
+	int PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS = DRL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Product</b></em>' reference.
@@ -571,7 +699,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_DOCUMENTATION__PRODUCT = 1;
+	int PRODUCT_DOCUMENTATION__PRODUCT = DRL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Product Documentation</em>' class.
@@ -580,7 +708,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_DOCUMENTATION_FEATURE_COUNT = 2;
+	int PRODUCT_DOCUMENTATION_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.PLSchemeImpl <em>PL Scheme</em>}' class.
@@ -593,13 +721,22 @@ public interface DrlPackage extends EPackage {
 	int PL_SCHEME = 11;
 
 	/**
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PL_SCHEME__NODE = DRL_ELEMENT__NODE;
+
+	/**
 	 * The feature id for the '<em><b>Products</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PL_SCHEME__PRODUCTS = 0;
+	int PL_SCHEME__PRODUCTS = DRL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>PL Scheme</em>' class.
@@ -608,7 +745,7 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PL_SCHEME_FEATURE_COUNT = 1;
+	int PL_SCHEME_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.GroupType <em>Group Type</em>}' enum.
@@ -618,7 +755,18 @@ public interface DrlPackage extends EPackage {
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getGroupType()
 	 * @generated
 	 */
-	int GROUP_TYPE = 12;
+	int GROUP_TYPE = 13;
+
+
+	/**
+	 * The meta object id for the '<em>Node Type</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.w3c.dom.Node
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNodeType()
+	 * @generated
+	 */
+	int NODE_TYPE = 14;
 
 
 	/**
@@ -1039,6 +1187,27 @@ public interface DrlPackage extends EPackage {
 	EReference getPLScheme_Products();
 
 	/**
+	 * Returns the meta object for class '{@link org.spbu.pldoctoolkit.graph.DrlElement <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Element</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.DrlElement
+	 * @generated
+	 */
+	EClass getDrlElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.spbu.pldoctoolkit.graph.DrlElement#getNode <em>Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Node</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.DrlElement#getNode()
+	 * @see #getDrlElement()
+	 * @generated
+	 */
+	EAttribute getDrlElement_Node();
+
+	/**
 	 * Returns the meta object for enum '{@link org.spbu.pldoctoolkit.graph.GroupType <em>Group Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1047,6 +1216,17 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getGroupType();
+
+	/**
+	 * Returns the meta object for data type '{@link org.w3c.dom.Node <em>Node Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Node Type</em>'.
+	 * @see org.w3c.dom.Node
+	 * @model instanceClass="org.w3c.dom.Node"
+	 * @generated
+	 */
+	EDataType getNodeType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1407,6 +1587,24 @@ public interface DrlPackage extends EPackage {
 		EReference PL_SCHEME__PRODUCTS = eINSTANCE.getPLScheme_Products();
 
 		/**
+		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.impl.DrlElementImpl <em>Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl
+		 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getDrlElement()
+		 * @generated
+		 */
+		EClass DRL_ELEMENT = eINSTANCE.getDrlElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Node</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DRL_ELEMENT__NODE = eINSTANCE.getDrlElement_Node();
+
+		/**
 		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.GroupType <em>Group Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1415,6 +1613,16 @@ public interface DrlPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum GROUP_TYPE = eINSTANCE.getGroupType();
+
+		/**
+		 * The meta object literal for the '<em>Node Type</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.w3c.dom.Node
+		 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNodeType()
+		 * @generated
+		 */
+		EDataType NODE_TYPE = eINSTANCE.getNodeType();
 
 	}
 

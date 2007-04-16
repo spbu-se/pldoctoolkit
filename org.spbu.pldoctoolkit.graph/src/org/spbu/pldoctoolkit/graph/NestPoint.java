@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface NestPoint extends EObject {
+public interface NestPoint extends DrlElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

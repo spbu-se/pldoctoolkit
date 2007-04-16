@@ -30,7 +30,7 @@ import org.spbu.pldoctoolkit.graph.NestPoint;
  *
  * @generated
  */
-public class NestPointImpl extends EObjectImpl implements NestPoint {
+public class NestPointImpl extends DrlElementImpl implements NestPoint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

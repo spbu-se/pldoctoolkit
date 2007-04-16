@@ -8,6 +8,7 @@ package org.spbu.pldoctoolkit.graph.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
+import org.spbu.pldoctoolkit.graph.DrlElement;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.FinalInfProduct;
@@ -30,6 +32,7 @@ import org.spbu.pldoctoolkit.graph.PLScheme;
 import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.ProductDocumentation;
 import org.spbu.pldoctoolkit.graph.ProductLine;
+import org.w3c.dom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -134,7 +137,21 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass drlElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum groupTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType nodeTypeEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -560,8 +577,35 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDrlElement() {
+		return drlElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDrlElement_Node() {
+		return (EAttribute)drlElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getGroupType() {
 		return groupTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getNodeType() {
+		return nodeTypeEDataType;
 	}
 
 	/**
@@ -643,8 +687,14 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		plSchemeEClass = createEClass(PL_SCHEME);
 		createEReference(plSchemeEClass, PL_SCHEME__PRODUCTS);
 
+		drlElementEClass = createEClass(DRL_ELEMENT);
+		createEAttribute(drlElementEClass, DRL_ELEMENT__NODE);
+
 		// Create enums
 		groupTypeEEnum = createEEnum(GROUP_TYPE);
+
+		// Create data types
+		nodeTypeEDataType = createEDataType(NODE_TYPE);
 	}
 
 	/**
@@ -673,6 +723,16 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		// Add supertypes to classes
 		infElementEClass.getESuperTypes().add(this.getGenericDocumentPart());
 		infProductEClass.getESuperTypes().add(this.getGenericDocumentPart());
+		finalInfProductEClass.getESuperTypes().add(this.getDrlElement());
+		nestPointEClass.getESuperTypes().add(this.getDrlElement());
+		genericDocumentPartEClass.getESuperTypes().add(this.getDrlElement());
+		infElemRefEClass.getESuperTypes().add(this.getDrlElement());
+		infElemRefGroupEClass.getESuperTypes().add(this.getDrlElement());
+		productLineEClass.getESuperTypes().add(this.getDrlElement());
+		productEClass.getESuperTypes().add(this.getDrlElement());
+		documentationCoreEClass.getESuperTypes().add(this.getDrlElement());
+		productDocumentationEClass.getESuperTypes().add(this.getDrlElement());
+		plSchemeEClass.getESuperTypes().add(this.getDrlElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(infElementEClass, InfElement.class, "InfElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -726,10 +786,16 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		initEClass(plSchemeEClass, PLScheme.class, "PLScheme", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPLScheme_Products(), this.getProduct(), null, "products", null, 0, -1, PLScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(drlElementEClass, DrlElement.class, "DrlElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDrlElement_Node(), this.getNodeType(), "node", null, 0, 1, DrlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(groupTypeEEnum, GroupType.class, "GroupType");
 		addEEnumLiteral(groupTypeEEnum, GroupType.OR_LITERAL);
 		addEEnumLiteral(groupTypeEEnum, GroupType.XOR_LITERAL);
+
+		// Initialize data types
+		initEDataType(nodeTypeEDataType, Node.class, "NodeType", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

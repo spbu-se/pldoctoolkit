@@ -6,7 +6,6 @@
  */
 package org.spbu.pldoctoolkit.graph;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Product extends EObject {
+public interface Product extends DrlElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -113,6 +113,9 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 			public Object casePLScheme(PLScheme object) {
 				return createPLSchemeAdapter();
 			}
+			public Object caseDrlElement(DrlElement object) {
+				return createDrlElementAdapter();
+			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -296,6 +299,20 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPLSchemeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.DrlElement <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.spbu.pldoctoolkit.graph.DrlElement
+	 * @generated
+	 */
+	public Adapter createDrlElementAdapter() {
 		return null;
 	}
 

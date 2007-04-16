@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface PLScheme extends EObject {
+public interface PLScheme extends DrlElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

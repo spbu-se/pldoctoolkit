@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.Product;
+import org.w3c.dom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +31,7 @@ import org.spbu.pldoctoolkit.graph.Product;
  *
  * @generated
  */
-public class ProductImpl extends EObjectImpl implements Product {
+public class ProductImpl extends DrlElementImpl implements Product {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
