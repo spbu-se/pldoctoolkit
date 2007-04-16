@@ -376,6 +376,48 @@
     <element xmi:type="ecore:EClass" href="model.ecore#//PLScheme"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_c5dnNd1hEduBmuYfKc-SAg" x="-168" y="600"/>
   </children>
+  <children xmi:type="notation:Node" xmi:id="_-u-H4OvtEduFFMTIiLrxqA" type="2004">
+    <children xmi:type="notation:Node" xmi:id="_-u-H5uvtEduFFMTIiLrxqA" type="5004"/>
+    <children xmi:type="notation:Node" xmi:id="_-u-H5-vtEduFFMTIiLrxqA" type="7010">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_-u-H6OvtEduFFMTIiLrxqA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_-u-H6evtEduFFMTIiLrxqA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_-u-H6uvtEduFFMTIiLrxqA"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_-u-H4evtEduFFMTIiLrxqA"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_-u-H4uvtEduFFMTIiLrxqA"/>
+    <styles xmi:type="notation:FillStyle" xmi:id="_-u-H4-vtEduFFMTIiLrxqA"/>
+    <styles xmi:type="notation:LineStyle" xmi:id="_-u-H5OvtEduFFMTIiLrxqA"/>
+    <element xmi:type="ecore:EDataType" href="model.ecore#//NodeType"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-u-H5evtEduFFMTIiLrxqA" x="511" y="580"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_4p7m0OvuEduFFMTIiLrxqA" type="2001">
+    <children xmi:type="notation:Node" xmi:id="_4p7m1uvuEduFFMTIiLrxqA" type="5001"/>
+    <children xmi:type="notation:Node" xmi:id="_4qFX0OvuEduFFMTIiLrxqA" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_99rYYOvuEduFFMTIiLrxqA" type="3001">
+        <element xmi:type="ecore:EAttribute" href="model.ecore#//DrlElement/node"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_99rYYevuEduFFMTIiLrxqA"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_4qFX0evuEduFFMTIiLrxqA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_4qFX0uvuEduFFMTIiLrxqA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_4qFX0-vuEduFFMTIiLrxqA"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_4qFX1OvuEduFFMTIiLrxqA" type="7002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_4qFX1evuEduFFMTIiLrxqA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_4qFX1uvuEduFFMTIiLrxqA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_4qFX1-vuEduFFMTIiLrxqA"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_4qOhwOvuEduFFMTIiLrxqA" type="7003">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_4qOhwevuEduFFMTIiLrxqA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_4qOhwuvuEduFFMTIiLrxqA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_4qOhw-vuEduFFMTIiLrxqA"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_4p7m0evuEduFFMTIiLrxqA"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_4p7m0uvuEduFFMTIiLrxqA"/>
+    <styles xmi:type="notation:FillStyle" xmi:id="_4p7m0-vuEduFFMTIiLrxqA"/>
+    <styles xmi:type="notation:LineStyle" xmi:id="_4p7m1OvuEduFFMTIiLrxqA"/>
+    <element xmi:type="ecore:EClass" href="model.ecore#//DrlElement"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4p7m1evuEduFFMTIiLrxqA" x="336" y="481"/>
+  </children>
   <styles xmi:type="notation:PageStyle" xmi:id="_eacPkbZCEduraprwuh9RDw"/>
   <styles xmi:type="notation:GuideStyle" xmi:id="_eacPkrZCEduraprwuh9RDw"/>
   <styles xmi:type="notation:DescriptionStyle" xmi:id="_eacPk7ZCEduraprwuh9RDw"/>

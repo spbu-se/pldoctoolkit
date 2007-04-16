@@ -12,6 +12,7 @@
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//GroupType/OR"/>
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//GroupType/XOR"/>
     </genEnums>
+    <genDataTypes ecoreDataType="model.ecore#//NodeType"/>
     <genClasses ecoreClass="model.ecore#//InfElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//InfElement/nestPoints"/>
     </genClasses>
@@ -62,6 +63,9 @@
     </genClasses>
     <genClasses ecoreClass="model.ecore#//PLScheme">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//PLScheme/products"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="model.ecore#//DrlElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//DrlElement/node"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
