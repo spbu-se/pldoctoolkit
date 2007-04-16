@@ -14,9 +14,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.FinalInfProduct;
 import org.spbu.pldoctoolkit.graph.InfProduct;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -138,11 +142,17 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
+		
+		//HAND
+		getNode().getAttributes().getNamedItem(
+				DrlFactory.eINSTANCE.getDrlPackage().getFinalInfProduct_Id().getName()
+				).setNodeValue(newId);
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.FINAL_INF_PRODUCT__ID, oldId, id));
 	}
@@ -227,4 +237,19 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 		return result.toString();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl#initializeAttributeNodes(org.w3c.dom.Document, org.w3c.dom.Element)
+	 */
+	@Override
+	protected void initializeAttributeNodes(Element elem) {
+		super.initializeAttributeNodes(elem);
+
+		// id
+		String idAttrName = 
+			DrlFactory.eINSTANCE.getDrlPackage().getFinalInfProduct_Id().getName();
+		
+		elem.setAttribute(idAttrName, getId());
+	}
+
+	
 } //FinalInfProductImpl

@@ -23,10 +23,14 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -142,11 +146,24 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
+		
+		//HAND
+		Node node = getNode();
+		//TODO create node if it does not exist
+		if(node != null) {
+			Node nameNode = node.getAttributes().getNamedItem(
+					DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Id().getName()
+					);
+			nameNode.setNodeValue(newId);
+		} else {
+			System.out.println("node is null");
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.GENERIC_DOCUMENT_PART__ID, oldId, id));
 	}
@@ -163,11 +180,20 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
+		
+		//HAND
+		Node node = getNode();
+		if(node != null) {
+			node.getAttributes().getNamedItem(
+					DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Name().getName()
+					).setNodeValue(newName);
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.GENERIC_DOCUMENT_PART__NAME, oldName, name));
 	}
@@ -314,4 +340,24 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 		return result.toString();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl#initializeAttributeNodes(org.w3c.dom.Document, org.w3c.dom.Element)
+	 */
+	@Override
+	protected void initializeAttributeNodes(Element elem) {
+		super.initializeAttributeNodes(elem);
+		
+		String idAttrName = 
+			DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Id().getName();
+		
+		elem.setAttribute(idAttrName, getId());
+
+		String nameAttrName = 
+			DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Name().getName();
+		
+		elem.setAttribute(nameAttrName, getName());
+	}
+
+	
+	
 } //GenericDocumentPartImpl

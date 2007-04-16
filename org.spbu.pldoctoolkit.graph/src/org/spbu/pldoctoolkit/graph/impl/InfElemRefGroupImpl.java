@@ -9,28 +9,19 @@ package org.spbu.pldoctoolkit.graph.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
-import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 import org.spbu.pldoctoolkit.graph.GroupType;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
+import org.w3c.dom.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -347,6 +338,32 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl#initializeAttributeNodes(org.w3c.dom.Element)
+	 */
+	@Override
+	protected void initializeAttributeNodes(Element elem) {
+		super.initializeAttributeNodes(elem);
+
+		// id
+		String idAttrName = 
+			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRefGroup_Id().getName();
+		
+		elem.setAttribute(idAttrName, getId());
+
+		// name
+		String nameAttrName = 
+			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRefGroup_Name().getName();
+		
+		elem.setAttribute(nameAttrName, getName());
+		
+		// modifier
+		String modifierAttrName = 
+			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRefGroup_Modifier().getName();
+		
+		elem.setAttribute(modifierAttrName, getModifier().getName());
 	}
 
 } //InfElemRefGroupImpl
