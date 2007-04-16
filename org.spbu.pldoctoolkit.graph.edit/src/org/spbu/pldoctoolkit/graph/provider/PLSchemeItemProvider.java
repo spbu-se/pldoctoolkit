@@ -27,6 +27,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.PLScheme;
+import org.w3c.dom.Node;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.graph.PLScheme} object.
@@ -35,7 +36,7 @@ import org.spbu.pldoctoolkit.graph.PLScheme;
  * @generated
  */
 public class PLSchemeItemProvider
-	extends ItemProviderAdapter
+	extends DrlElementItemProvider
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	
@@ -115,7 +116,8 @@ public class PLSchemeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
+	 * HAND hidden Node prop
 	 */
 	public String getText(Object object) {
 		return getString("_UI_PLScheme_type");

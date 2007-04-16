@@ -27,6 +27,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.w3c.dom.Node;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.graph.DocumentationCore} object.
@@ -35,7 +36,7 @@ import org.spbu.pldoctoolkit.graph.DrlPackage;
  * @generated
  */
 public class DocumentationCoreItemProvider
-	extends ItemProviderAdapter
+	extends DrlElementItemProvider
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	
@@ -115,7 +116,8 @@ public class DocumentationCoreItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
+	 * HAND hidden Node prop
 	 */
 	public String getText(Object object) {
 		return getString("_UI_DocumentationCore_type");

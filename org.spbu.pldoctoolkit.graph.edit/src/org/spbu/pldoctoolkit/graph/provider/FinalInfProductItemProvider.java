@@ -35,7 +35,7 @@ import org.spbu.pldoctoolkit.graph.FinalInfProduct;
  * @generated
  */
 public class FinalInfProductItemProvider
-	extends ItemProviderAdapter
+	extends DrlElementItemProvider
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	

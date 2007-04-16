@@ -38,7 +38,7 @@ import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
  * @generated
  */
 public class GenericDocumentPartItemProvider
-	extends ItemProviderAdapter
+	extends DrlElementItemProvider
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	
