@@ -139,8 +139,8 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 						ProductLineEditPart.MODEL_ID,
 						DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
-				
-				 // HAND
+
+				// HAND
 				// my custom code
 				diagram.setElement(null);
 				Node rootNode = ViewService.createNode(diagram,
@@ -151,7 +151,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 				rootNode.setElement(diagramRootElementSelectionPage
 						.getModelElement());
 				// end of my custom code
-				 
+
 				return CommandResult.newOKCommandResult();
 			}
 		};

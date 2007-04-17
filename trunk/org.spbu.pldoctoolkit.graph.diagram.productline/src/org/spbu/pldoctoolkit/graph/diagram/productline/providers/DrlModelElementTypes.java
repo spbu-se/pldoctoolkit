@@ -59,7 +59,8 @@ public class DrlModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType PLScheme_2002 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.PLScheme_2002"); //$NON-NLS-1$
+	public static final IElementType Node_2002 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.Node_2002"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -191,8 +192,6 @@ public class DrlModelElementTypes extends ElementInitializers {
 			elements.put(ProductLine_1001, DrlPackage.eINSTANCE
 					.getProductLine());
 
-			elements.put(PLScheme_2002, DrlPackage.eINSTANCE.getPLScheme());
-
 			elements.put(Product_2003, DrlPackage.eINSTANCE.getProduct());
 
 			elements.put(InfProduct_2005, DrlPackage.eINSTANCE.getInfProduct());
@@ -216,7 +215,7 @@ public class DrlModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(ProductLine_79);
 			KNOWN_ELEMENT_TYPES.add(ProductLine_1001);
 			KNOWN_ELEMENT_TYPES.add(Node_2001);
-			KNOWN_ELEMENT_TYPES.add(PLScheme_2002);
+			KNOWN_ELEMENT_TYPES.add(Node_2002);
 			KNOWN_ELEMENT_TYPES.add(Product_2003);
 			KNOWN_ELEMENT_TYPES.add(Node_2004);
 			KNOWN_ELEMENT_TYPES.add(InfProduct_2005);

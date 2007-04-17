@@ -91,9 +91,6 @@ public class DrlModelNavigatorLinkHelper implements ILinkHelper {
 			if (navigatorGroup.getParent() instanceof DrlModelNavigatorItem) {
 				navigatorView = ((DrlModelNavigatorItem) navigatorGroup
 						.getParent()).getView();
-			} else if (navigatorGroup.getParent() instanceof IAdaptable) {
-				navigatorView = (View) ((IAdaptable) navigatorGroup.getParent())
-						.getAdapter(View.class);
 			}
 		}
 		if (navigatorView == null) {

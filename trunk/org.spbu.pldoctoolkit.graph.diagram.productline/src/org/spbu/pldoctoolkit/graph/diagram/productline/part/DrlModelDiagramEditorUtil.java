@@ -148,7 +148,7 @@ public class DrlModelDiagramEditorUtil {
 
 	/**
 	 * This method should be called within a workspace modify operation since it creates resources.
-	 * @generated NOT
+	 * @generated
 	 */
 	public static Resource createDiagram(
 			org.eclipse.emf.common.util.URI diagramURI,
@@ -177,19 +177,7 @@ public class DrlModelDiagramEditorUtil {
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
 					diagram.setName(diagramName);
-
-					//HAND
-					// my custom code
-					diagram.setElement(null);
-					Node rootNode = ViewService
-							.createNode(
-									diagram,
-									model,
-									((IHintedType) DrlModelElementTypes.ProductLine_1001)
-											.getSemanticHint(),
-									DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-					rootNode.setElement(model);
-					// end of my custom code
+					diagram.setElement(model);
 				}
 
 				try {
@@ -221,14 +209,10 @@ public class DrlModelDiagramEditorUtil {
 	 * Create a new instance of domain element associated with canvas.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	private static ProductLine createInitialModel() {
-		ProductLine productLine = DrlFactory.eINSTANCE.createProductLine();
-		//HAND
-		productLine.setScheme(DrlFactory.eINSTANCE.createPLScheme());
-
-		return productLine;
+		return DrlFactory.eINSTANCE.createProductLine();
 	}
 
 	/**

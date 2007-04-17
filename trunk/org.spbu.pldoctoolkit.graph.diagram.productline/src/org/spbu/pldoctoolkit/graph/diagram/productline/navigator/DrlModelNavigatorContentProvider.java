@@ -210,18 +210,6 @@ public class DrlModelNavigatorContentProvider implements ICommonContentProvider 
 			return getViewChildren(navigatorItem.getView(), parentElement);
 		}
 
-		/*
-		 * Due to plugin.xml restrictions this code will be called only for views representing
-		 * shortcuts to this diagram elements created on other diagrams. 
-		 */
-		if (parentElement instanceof IAdaptable) {
-			View view = (View) ((IAdaptable) parentElement)
-					.getAdapter(View.class);
-			if (view != null) {
-				return getViewChildren(view, parentElement);
-			}
-		}
-
 		return EMPTY_ARRAY;
 	}
 
@@ -233,7 +221,6 @@ public class DrlModelNavigatorContentProvider implements ICommonContentProvider 
 
 		case ProductLineEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
-			result.addAll(getForeignShortcuts((Diagram) view, parentElement));
 			Collection connectedViews = getChildrenByType(Collections
 					.singleton(view), ProductLine2EditPart.VISUAL_ID);
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
@@ -418,21 +405,6 @@ public class DrlModelNavigatorContentProvider implements ICommonContentProvider 
 					isLeafs));
 		}
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Collection getForeignShortcuts(Diagram diagram, Object parent) {
-		Collection result = new ArrayList();
-		for (Iterator it = diagram.getChildren().iterator(); it.hasNext();) {
-			View nextView = (View) it.next();
-			if (!isOwnView(nextView)
-					&& nextView.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
-				result.add(nextView);
-			}
-		}
-		return createNavigatorItems(result, parent, false);
 	}
 
 	/**

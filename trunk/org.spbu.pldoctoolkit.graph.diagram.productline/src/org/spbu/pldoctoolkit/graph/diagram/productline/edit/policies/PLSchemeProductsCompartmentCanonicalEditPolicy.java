@@ -1,18 +1,15 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies;
 
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
-import org.eclipse.gmf.runtime.notation.View;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.spbu.pldoctoolkit.graph.PLScheme;
-
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
-
-import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.Product;
+import org.spbu.pldoctoolkit.graph.ProductLine;
+import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin;
 
 /**
  * @generated
@@ -21,22 +18,23 @@ public class PLSchemeProductsCompartmentCanonicalEditPolicy extends
 		CanonicalEditPolicy {
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected List getSemanticChildrenList() {
+		//HAND
+		
+		DrlModelDiagramEditorPlugin.getInstance().logInfo("refreshing");
+		
 		List result = new LinkedList();
-		EObject modelObject = ((View) getHost().getModel()).getElement();
+		EObject modelObject = ((View) getHost().getParent().getModel()).getElement();
 		View viewObject = (View) getHost().getModel();
-		EObject nextValue;
+		
 		int nodeVID;
-		for (Iterator values = ((PLScheme) modelObject).getProducts()
-				.iterator(); values.hasNext();) {
-			nextValue = (EObject) values.next();
-			nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(viewObject,
-					nextValue);
-			if (ProductEditPart.VISUAL_ID == nodeVID) {
-				result.add(nextValue);
-			}
+		for (Iterator productsIter = ((ProductLine) modelObject)
+				.getProducts().iterator(); productsIter.hasNext();) {
+
+			Product nextProduct = (Product) productsIter.next();
+			result.add(nextProduct);
 		}
 		return result;
 	}
@@ -45,17 +43,8 @@ public class PLSchemeProductsCompartmentCanonicalEditPolicy extends
 	 * @generated
 	 */
 	protected boolean shouldDeleteView(View view) {
-		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
-			return view.isSetElement()
-					&& (view.getElement() == null || view.getElement()
-							.eIsProxy());
-		}
-		int nodeVID = DrlModelVisualIDRegistry.getVisualID(view);
-		switch (nodeVID) {
-		case ProductEditPart.VISUAL_ID:
-			return true;
-		}
-		return false;
+		return view.isSetElement() && view.getElement() != null
+				&& view.getElement().eIsProxy();
 	}
 
 	/**

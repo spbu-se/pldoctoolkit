@@ -34,59 +34,9 @@ public class ProductLine2ItemSemanticEditPolicy extends
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
-	
+
 	@Override
 	protected boolean shouldProceed(DestroyRequest destroyRequest) {
 		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getDestroyElementCommand1(DestroyElementRequest req) {
-		CompoundCommand cc = new CompoundCommand();
-		Collection allEdges = new ArrayList();
-		View view = (View) getHost().getModel();
-		allEdges.addAll(view.getSourceEdges());
-		allEdges.addAll(view.getTargetEdges());
-		for (Iterator it = allEdges.iterator(); it.hasNext();) {
-			Edge nextEdge = (Edge) it.next();
-			EditPart nextEditPart = (EditPart) getHost().getViewer()
-					.getEditPartRegistry().get(nextEdge);
-			EditCommandRequestWrapper editCommandRequest = new EditCommandRequestWrapper(
-					new DestroyElementRequest(
-							((ProductLine2EditPart) getHost())
-									.getEditingDomain(), req
-									.isConfirmationRequired()),
-					Collections.EMPTY_MAP);
-			cc.add(nextEditPart.getCommand(editCommandRequest));
-		}
-		cc.add(getMSLWrapper(new DestroyElementCommand(req) {
-
-			protected EObject getElementToDestroy() {
-				View view = (View) getHost().getModel();
-				EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-				if (annotation != null) {
-					return view;
-				}
-				return super.getElementToDestroy();
-			}
-
-			protected CommandResult doExecuteWithResult(
-					IProgressMonitor progressMonitor, IAdaptable info)
-					throws ExecutionException {
-				EObject eObject = getElementToDestroy();
-				boolean removeFromResource = eObject.eContainer() == null;
-				CommandResult result = super.doExecuteWithResult(
-						progressMonitor, info);
-				Resource resource = eObject.eResource();
-				if (removeFromResource && resource != null) {
-					resource.getContents().remove(eObject);
-				}
-				return result;
-			}
-
-		}));
-		return cc;
 	}
 }

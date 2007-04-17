@@ -46,7 +46,7 @@ public class DrlModelModelingAssistantProvider extends
 		}
 		if (editPart instanceof ProductLineDataEditPart) {
 			List types = new ArrayList();
-			types.add(DrlModelElementTypes.PLScheme_2002);
+			types.add(DrlModelElementTypes.Node_2002);
 			types.add(DrlModelElementTypes.Node_2004);
 			return types;
 		}

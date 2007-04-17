@@ -253,21 +253,6 @@ public class ProductLine2EditPart extends
 	/**
 	 * @generated
 	 */
-	protected void handleNotificationEvent(
-			org.eclipse.emf.common.notify.Notification event) {
-		if (event.getNotifier() == getModel()
-				&& org.eclipse.emf.ecore.EcorePackage.eINSTANCE
-						.getEModelElement_EAnnotations().equals(
-								event.getFeature())) {
-			handleMajorSemanticChange();
-		} else {
-			super.handleNotificationEvent(event);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	public class ProductLineFigure extends org.eclipse.draw2d.RectangleFigure {
 		/**
 		 * @generated

@@ -53,7 +53,7 @@ public class DrlModelDomainModelElementTester extends PropertyTester {
 		if (eClass == DrlPackage.eINSTANCE.getProductDocumentation()) {
 			return true;
 		}
-		if (eClass == DrlPackage.eINSTANCE.getPLScheme()) {
+		if (eClass == DrlPackage.eINSTANCE.getDrlElement()) {
 			return true;
 		}
 		return false;

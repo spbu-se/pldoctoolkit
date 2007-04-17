@@ -25,6 +25,5 @@ public class ProductLineProductLineDataCompartmentItemSemanticEditPolicy extends
 	protected boolean shouldProceed(DestroyRequest destroyRequest) {
 		return false;
 	}
-	
-	
+
 }
