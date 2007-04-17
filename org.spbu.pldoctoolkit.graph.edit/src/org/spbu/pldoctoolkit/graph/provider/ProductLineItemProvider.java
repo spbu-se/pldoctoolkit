@@ -151,7 +151,7 @@ public class ProductLineItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DrlPackage.Literals.PRODUCT_LINE__SCHEME);
+			childrenFeatures.add(DrlPackage.Literals.PRODUCT_LINE__PRODUCTS);
 		}
 		return childrenFeatures;
 	}
@@ -205,7 +205,7 @@ public class ProductLineItemProvider
 			case DrlPackage.PRODUCT_LINE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case DrlPackage.PRODUCT_LINE__SCHEME:
+			case DrlPackage.PRODUCT_LINE__PRODUCTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -224,8 +224,8 @@ public class ProductLineItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DrlPackage.Literals.PRODUCT_LINE__SCHEME,
-				 DrlFactory.eINSTANCE.createPLScheme()));
+				(DrlPackage.Literals.PRODUCT_LINE__PRODUCTS,
+				 DrlFactory.eINSTANCE.createProduct()));
 	}
 
 	/**
