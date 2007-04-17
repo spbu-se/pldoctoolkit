@@ -14,11 +14,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
-import org.spbu.pldoctoolkit.graph.PLScheme;
+import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.ProductLine;
 import org.w3c.dom.Element;
 
@@ -32,7 +34,7 @@ import org.w3c.dom.Element;
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getProductDocumentations <em>Product Documentations</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getDocumentationCores <em>Documentation Cores</em>}</li>
- *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getScheme <em>Scheme</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getProducts <em>Products</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,14 +79,14 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	protected EList documentationCores;
 
 	/**
-	 * The cached value of the '{@link #getScheme() <em>Scheme</em>}' containment reference.
+	 * The cached value of the '{@link #getProducts() <em>Products</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getScheme()
+	 * @see #getProducts()
 	 * @generated
 	 * @ordered
 	 */
-	protected PLScheme scheme;
+	protected EList products;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,15 +123,6 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		
-		//HAND
-		Element node = getNode();
-		if(node != null) {
-			node.setAttribute(
-					DrlFactory.eINSTANCE.getDrlPackage().getProductLine_Name().getName(),
-					name);
-		}
-		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__NAME, oldName, name));
 	}
@@ -164,42 +157,11 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PLScheme getScheme() {
-		return scheme;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetScheme(PLScheme newScheme, NotificationChain msgs) {
-		PLScheme oldScheme = scheme;
-		scheme = newScheme;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__SCHEME, oldScheme, newScheme);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList getProducts() {
+		if (products == null) {
+			products = new EObjectContainmentEList(Product.class, this, DrlPackage.PRODUCT_LINE__PRODUCTS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setScheme(PLScheme newScheme) {
-		if (newScheme != scheme) {
-			NotificationChain msgs = null;
-			if (scheme != null)
-				msgs = ((InternalEObject)scheme).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DrlPackage.PRODUCT_LINE__SCHEME, null, msgs);
-			if (newScheme != null)
-				msgs = ((InternalEObject)newScheme).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DrlPackage.PRODUCT_LINE__SCHEME, null, msgs);
-			msgs = basicSetScheme(newScheme, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__SCHEME, newScheme, newScheme));
+		return products;
 	}
 
 	/**
@@ -209,8 +171,8 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DrlPackage.PRODUCT_LINE__SCHEME:
-				return basicSetScheme(null, msgs);
+			case DrlPackage.PRODUCT_LINE__PRODUCTS:
+				return ((InternalEList)getProducts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -228,8 +190,8 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 				return getProductDocumentations();
 			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
 				return getDocumentationCores();
-			case DrlPackage.PRODUCT_LINE__SCHEME:
-				return getScheme();
+			case DrlPackage.PRODUCT_LINE__PRODUCTS:
+				return getProducts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -252,8 +214,9 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 				getDocumentationCores().clear();
 				getDocumentationCores().addAll((Collection)newValue);
 				return;
-			case DrlPackage.PRODUCT_LINE__SCHEME:
-				setScheme((PLScheme)newValue);
+			case DrlPackage.PRODUCT_LINE__PRODUCTS:
+				getProducts().clear();
+				getProducts().addAll((Collection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -275,8 +238,8 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
 				getDocumentationCores().clear();
 				return;
-			case DrlPackage.PRODUCT_LINE__SCHEME:
-				setScheme((PLScheme)null);
+			case DrlPackage.PRODUCT_LINE__PRODUCTS:
+				getProducts().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -295,8 +258,8 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 				return !getProductDocumentations().isEmpty();
 			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
 				return documentationCores != null && !documentationCores.isEmpty();
-			case DrlPackage.PRODUCT_LINE__SCHEME:
-				return scheme != null;
+			case DrlPackage.PRODUCT_LINE__PRODUCTS:
+				return products != null && !products.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

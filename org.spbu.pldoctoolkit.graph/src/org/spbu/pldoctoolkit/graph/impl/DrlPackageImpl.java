@@ -25,7 +25,6 @@ import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.InfProduct;
 import org.spbu.pldoctoolkit.graph.NestPoint;
-import org.spbu.pldoctoolkit.graph.PLScheme;
 import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.ProductDocumentation;
 import org.spbu.pldoctoolkit.graph.ProductLine;
@@ -121,13 +120,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * @generated
 	 */
 	private EClass productDocumentationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass plSchemeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -475,7 +467,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProductLine_Scheme() {
+	public EReference getProductLine_Products() {
 		return (EReference)productLineEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -549,24 +541,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 */
 	public EReference getProductDocumentation_Product() {
 		return (EReference)productDocumentationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPLScheme() {
-		return plSchemeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPLScheme_Products() {
-		return (EReference)plSchemeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -668,7 +642,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		createEAttribute(productLineEClass, PRODUCT_LINE__NAME);
 		createEReference(productLineEClass, PRODUCT_LINE__PRODUCT_DOCUMENTATIONS);
 		createEReference(productLineEClass, PRODUCT_LINE__DOCUMENTATION_CORES);
-		createEReference(productLineEClass, PRODUCT_LINE__SCHEME);
+		createEReference(productLineEClass, PRODUCT_LINE__PRODUCTS);
 
 		productEClass = createEClass(PRODUCT);
 		createEAttribute(productEClass, PRODUCT__NAME);
@@ -680,9 +654,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		productDocumentationEClass = createEClass(PRODUCT_DOCUMENTATION);
 		createEReference(productDocumentationEClass, PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS);
 		createEReference(productDocumentationEClass, PRODUCT_DOCUMENTATION__PRODUCT);
-
-		plSchemeEClass = createEClass(PL_SCHEME);
-		createEReference(plSchemeEClass, PL_SCHEME__PRODUCTS);
 
 		drlElementEClass = createEClass(DRL_ELEMENT);
 		createEAttribute(drlElementEClass, DRL_ELEMENT__NODE);
@@ -729,7 +700,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		productEClass.getESuperTypes().add(this.getDrlElement());
 		documentationCoreEClass.getESuperTypes().add(this.getDrlElement());
 		productDocumentationEClass.getESuperTypes().add(this.getDrlElement());
-		plSchemeEClass.getESuperTypes().add(this.getDrlElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(infElementEClass, InfElement.class, "InfElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -767,7 +737,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		initEAttribute(getProductLine_Name(), ecorePackage.getEString(), "name", null, 1, 1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProductLine_ProductDocumentations(), this.getProductDocumentation(), null, "productDocumentations", "", 0, -1, ProductLine.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getProductLine_DocumentationCores(), this.getDocumentationCore(), null, "documentationCores", null, 0, -1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProductLine_Scheme(), this.getPLScheme(), null, "scheme", null, 1, 1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProductLine_Products(), this.getProduct(), null, "products", null, 0, -1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(productEClass, Product.class, "Product", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProduct_Name(), ecorePackage.getEString(), "name", null, 1, 1, Product.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -779,9 +749,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		initEClass(productDocumentationEClass, ProductDocumentation.class, "ProductDocumentation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProductDocumentation_FinalInfProducts(), this.getFinalInfProduct(), null, "finalInfProducts", null, 0, -1, ProductDocumentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProductDocumentation_Product(), this.getProduct(), null, "product", null, 0, 1, ProductDocumentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(plSchemeEClass, PLScheme.class, "PLScheme", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPLScheme_Products(), this.getProduct(), null, "products", null, 0, -1, PLScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(drlElementEClass, DrlElement.class, "DrlElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDrlElement_Node(), this.getNodeType(), "node", null, 0, 1, DrlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

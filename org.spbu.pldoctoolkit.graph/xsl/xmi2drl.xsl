@@ -12,8 +12,6 @@
         </xsl:copy>
     </xsl:template>
 
-    <xsl:template match="scheme"><xsl:apply-templates select="@* | text() | comment() | node()"/></xsl:template>
-            
     <xsl:template match="products">
         <xsl:element 
             name="v:Product">

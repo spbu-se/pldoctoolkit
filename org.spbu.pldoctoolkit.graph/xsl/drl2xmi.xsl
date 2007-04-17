@@ -14,8 +14,9 @@
     
     <xsl:template match="v:ProductLine">
         <xsl:copy>
-            <xsl:copy-of select="@*"/><scheme>
-                <xsl:apply-templates select="text() | comment() | node()"/></scheme></xsl:copy>
+            <xsl:copy-of select="@*"/>
+            <xsl:apply-templates select="text() | comment() | node()"/>
+        </xsl:copy>
     </xsl:template>
     
     <xsl:template match="v:Product">

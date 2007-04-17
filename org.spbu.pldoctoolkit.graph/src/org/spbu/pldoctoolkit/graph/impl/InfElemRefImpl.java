@@ -222,7 +222,6 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	public NotificationChain basicSetGroup(InfElemRefGroup newGroup, NotificationChain msgs) {
 		InfElemRefGroup oldGroup = group;
 		group = newGroup;
-		
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__GROUP, oldGroup, newGroup);
 			if (msgs == null) msgs = notification; else msgs.add(notification);

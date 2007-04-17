@@ -146,7 +146,7 @@ public interface DrlPackage extends EPackage {
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getDrlElement()
 	 * @generated
 	 */
-	int DRL_ELEMENT = 12;
+	int DRL_ELEMENT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Node</b></em>' attribute.
@@ -564,13 +564,13 @@ public interface DrlPackage extends EPackage {
 	int PRODUCT_LINE__DOCUMENTATION_CORES = DRL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Scheme</b></em>' containment reference.
+	 * The feature id for the '<em><b>Products</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE__SCHEME = DRL_ELEMENT_FEATURE_COUNT + 3;
+	int PRODUCT_LINE__PRODUCTS = DRL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Product Line</em>' class.
@@ -711,43 +711,6 @@ public interface DrlPackage extends EPackage {
 	int PRODUCT_DOCUMENTATION_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.PLSchemeImpl <em>PL Scheme</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.spbu.pldoctoolkit.graph.impl.PLSchemeImpl
-	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getPLScheme()
-	 * @generated
-	 */
-	int PL_SCHEME = 11;
-
-	/**
-	 * The feature id for the '<em><b>Node</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PL_SCHEME__NODE = DRL_ELEMENT__NODE;
-
-	/**
-	 * The feature id for the '<em><b>Products</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PL_SCHEME__PRODUCTS = DRL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>PL Scheme</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PL_SCHEME_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.GroupType <em>Group Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -755,7 +718,7 @@ public interface DrlPackage extends EPackage {
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getGroupType()
 	 * @generated
 	 */
-	int GROUP_TYPE = 13;
+	int GROUP_TYPE = 12;
 
 
 	/**
@@ -766,7 +729,7 @@ public interface DrlPackage extends EPackage {
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNodeType()
 	 * @generated
 	 */
-	int NODE_TYPE = 14;
+	int NODE_TYPE = 13;
 
 
 	/**
@@ -1070,15 +1033,15 @@ public interface DrlPackage extends EPackage {
 	EReference getProductLine_DocumentationCores();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.spbu.pldoctoolkit.graph.ProductLine#getScheme <em>Scheme</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.spbu.pldoctoolkit.graph.ProductLine#getProducts <em>Products</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Scheme</em>'.
-	 * @see org.spbu.pldoctoolkit.graph.ProductLine#getScheme()
+	 * @return the meta object for the containment reference list '<em>Products</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.ProductLine#getProducts()
 	 * @see #getProductLine()
 	 * @generated
 	 */
-	EReference getProductLine_Scheme();
+	EReference getProductLine_Products();
 
 	/**
 	 * Returns the meta object for class '{@link org.spbu.pldoctoolkit.graph.Product <em>Product</em>}'.
@@ -1164,27 +1127,6 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProductDocumentation_Product();
-
-	/**
-	 * Returns the meta object for class '{@link org.spbu.pldoctoolkit.graph.PLScheme <em>PL Scheme</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>PL Scheme</em>'.
-	 * @see org.spbu.pldoctoolkit.graph.PLScheme
-	 * @generated
-	 */
-	EClass getPLScheme();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.spbu.pldoctoolkit.graph.PLScheme#getProducts <em>Products</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Products</em>'.
-	 * @see org.spbu.pldoctoolkit.graph.PLScheme#getProducts()
-	 * @see #getPLScheme()
-	 * @generated
-	 */
-	EReference getPLScheme_Products();
 
 	/**
 	 * Returns the meta object for class '{@link org.spbu.pldoctoolkit.graph.DrlElement <em>Element</em>}'.
@@ -1491,12 +1433,12 @@ public interface DrlPackage extends EPackage {
 		EReference PRODUCT_LINE__DOCUMENTATION_CORES = eINSTANCE.getProductLine_DocumentationCores();
 
 		/**
-		 * The meta object literal for the '<em><b>Scheme</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Products</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PRODUCT_LINE__SCHEME = eINSTANCE.getProductLine_Scheme();
+		EReference PRODUCT_LINE__PRODUCTS = eINSTANCE.getProductLine_Products();
 
 		/**
 		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.impl.ProductImpl <em>Product</em>}' class.
@@ -1567,24 +1509,6 @@ public interface DrlPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PRODUCT_DOCUMENTATION__PRODUCT = eINSTANCE.getProductDocumentation_Product();
-
-		/**
-		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.impl.PLSchemeImpl <em>PL Scheme</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.spbu.pldoctoolkit.graph.impl.PLSchemeImpl
-		 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getPLScheme()
-		 * @generated
-		 */
-		EClass PL_SCHEME = eINSTANCE.getPLScheme();
-
-		/**
-		 * The meta object literal for the '<em><b>Products</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PL_SCHEME__PRODUCTS = eINSTANCE.getPLScheme_Products();
 
 		/**
 		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.impl.DrlElementImpl <em>Element</em>}' class.
