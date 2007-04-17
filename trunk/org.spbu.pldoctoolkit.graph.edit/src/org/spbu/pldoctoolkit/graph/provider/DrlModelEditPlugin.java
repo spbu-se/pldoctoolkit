@@ -7,7 +7,6 @@
 package org.spbu.pldoctoolkit.graph.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
