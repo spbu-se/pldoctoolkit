@@ -65,4 +65,4 @@ Package graph <http://tepkom.ru/drl>
     Literal OR = 1
     Literal XOR = 2
 
-  DataType NodeType <org.w3c.dom.Node>
+  DataType NodeType <org.w3c.dom.Element>

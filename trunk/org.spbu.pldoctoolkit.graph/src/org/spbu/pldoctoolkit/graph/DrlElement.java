@@ -8,6 +8,7 @@ package org.spbu.pldoctoolkit.graph;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
@@ -43,12 +44,12 @@ public interface DrlElement extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Node</em>' attribute.
-	 * @see #setNode(Node)
+	 * @see #setNode(Element)
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getDrlElement_Node()
 	 * @model dataType="org.spbu.pldoctoolkit.graph.NodeType"
 	 * @generated
 	 */
-	Node getNode();
+	Element getNode();
 
 	/**
 	 * Sets the value of the '{@link org.spbu.pldoctoolkit.graph.DrlElement#getNode <em>Node</em>}' attribute.
@@ -58,6 +59,11 @@ public interface DrlElement extends EObject {
 	 * @see #getNode()
 	 * @generated
 	 */
-	void setNode(Node value);
+	void setNode(Element value);
+	
+	/*
+	 * In case the corresponding DOM node has not been initialized, does this.
+	 */
+	void initializeNode();
 
 } // DrlElement

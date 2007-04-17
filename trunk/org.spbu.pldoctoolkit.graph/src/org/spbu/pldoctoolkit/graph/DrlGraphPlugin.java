@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -22,6 +24,10 @@ import org.osgi.framework.BundleContext;
  * @version 1.0
  */
 public class DrlGraphPlugin extends AbstractUIPlugin {
+
+	private static final boolean DEBUG = true;
+	
+	public static final String ID = "org.spbu.pldoctoolkit.graph";
 
 	public static final String JAXP_PROPERTIES_FILE = "/jaxp.properties";
 	public static final Properties JAXP_PROPERTIES = new Properties();
@@ -46,6 +52,7 @@ public class DrlGraphPlugin extends AbstractUIPlugin {
 		super.start(context);
 		instance = this;
 		setJaxpProps();
+		setDebugging(DEBUG);
 	}
 
 	/* (non-Javadoc)
@@ -79,5 +86,58 @@ public class DrlGraphPlugin extends AbstractUIPlugin {
 	 */
 	public static URL getResourceURL(String pathInPlugin) {
 		return instance.getBundle().getEntry(pathInPlugin);
+	}
+	
+	public static void logError(String error) {
+		logError(error, null);
+	}
+
+	/**
+	 * @param throwable actual error or null could be passed
+	 */
+	public static void logError(String error, Throwable throwable) {
+		if (error == null && throwable != null) {
+			error = throwable.getMessage();
+		}
+		getInstance().getLog().log(
+				new Status(IStatus.ERROR, DrlGraphPlugin.ID,
+						IStatus.OK, error, throwable));
+		debug(error, throwable);
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void logInfo(String message) {
+		logInfo(message, null);
+	}
+
+	/**
+	 * @param throwable actual error or null could be passed
+	 * @generated
+	 */
+	public static void logInfo(String message, Throwable throwable) {
+		if (message == null && throwable != null) {
+			message = throwable.getMessage();
+		}
+		getInstance().getLog().log(
+				new Status(IStatus.INFO, DrlGraphPlugin.ID,
+						IStatus.OK, message, throwable));
+		debug(message, throwable);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static void debug(String message, Throwable throwable) {
+		if (!getInstance().isDebugging()) {
+			return;
+		}
+		if (message != null) {
+			System.err.println(message);
+		}
+		if (throwable != null) {
+			throwable.printStackTrace();
+		}
 	}
 }

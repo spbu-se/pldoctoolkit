@@ -7,19 +7,13 @@
 package org.spbu.pldoctoolkit.graph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.FinalInfProduct;
 import org.spbu.pldoctoolkit.graph.InfProduct;
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
@@ -149,9 +143,12 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 		id = newId;
 		
 		//HAND
-		getNode().getAttributes().getNamedItem(
-				DrlFactory.eINSTANCE.getDrlPackage().getFinalInfProduct_Id().getName()
-				).setNodeValue(newId);
+		Element node = getNode();
+		if(node != null) {
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getFinalInfProduct_Id().getName(), 
+					newId);
+		}
 		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.FINAL_INF_PRODUCT__ID, oldId, id));

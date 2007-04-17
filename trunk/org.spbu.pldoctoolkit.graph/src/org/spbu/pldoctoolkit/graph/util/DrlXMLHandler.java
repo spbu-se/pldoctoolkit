@@ -10,6 +10,8 @@ import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.SAXXMIHandler;
 import org.spbu.pldoctoolkit.graph.DrlElement;
+import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class DrlXMLHandler extends SAXXMIHandler {
@@ -72,14 +74,15 @@ public class DrlXMLHandler extends SAXXMIHandler {
 	 * 
 	 * TODO override also the new method replacing this deprecated one
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	protected EObject createObjectFromFactory(EFactory factory, String typeName) {
-		System.out.println("creating object from factory: " + factory + ", type name: " + typeName);
+		DrlGraphPlugin.logInfo("creating object from factory: " + factory + ", type name: " + typeName);
 		EObject result = super.createObjectFromFactory(factory, typeName);
 		
 		if(result instanceof DrlElement) {
 			DrlElement drlNode = (DrlElement) result;
-			drlNode.setNode(getCurrentNode());
+			drlNode.setNode((Element) getCurrentNode());
 		}
 		
 		return result;

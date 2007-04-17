@@ -7,17 +7,12 @@
 package org.spbu.pldoctoolkit.graph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.Product;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -116,6 +111,15 @@ public class ProductImpl extends DrlElementImpl implements Product {
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
+		
+		//HAND
+		Element node = getNode();
+		if(node != null) {
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getProduct_Name().getName(),
+					name);
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT__NAME, oldName, name));
 	}
@@ -132,11 +136,20 @@ public class ProductImpl extends DrlElementImpl implements Product {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
+		
+		//HAND
+		Element node = getNode();
+		if(node != null) {
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getProduct_Id().getName(),
+					id);
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT__ID, oldId, id));
 	}

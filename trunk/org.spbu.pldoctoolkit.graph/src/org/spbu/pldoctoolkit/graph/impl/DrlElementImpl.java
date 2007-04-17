@@ -7,21 +7,14 @@
 package org.spbu.pldoctoolkit.graph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.spbu.pldoctoolkit.graph.DrlElement;
-import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.util.DrlResourceImpl;
-
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,7 +45,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Node NODE_EDEFAULT = null;
+	protected static final Element NODE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getNode() <em>Node</em>}' attribute.
@@ -62,7 +55,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 * @generated
 	 * @ordered
 	 */
-	protected Node node = NODE_EDEFAULT;
+	protected Element node = NODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,7 +81,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Node getNode() {
+	public Element getNode() {
 		return node;
 	}
 
@@ -97,9 +90,10 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNode(Node newNode) {
-		Node oldNode = node;
+	public void setNode(Element newNode) {
+		Element oldNode = node;
 		node = newNode;
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.DRL_ELEMENT__NODE, oldNode, node));
 	}
@@ -125,7 +119,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DrlPackage.DRL_ELEMENT__NODE:
-				setNode((Node)newValue);
+				setNode((Element)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -189,7 +183,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 		return null;
 	}
 	
-	protected void initializeNode() {
+	public void initializeNode() {
 		Document drlDocument = getDocument();
 		if(drlDocument != null) {
 			Element elem = drlDocument.createElementNS(DrlPackage.eNS_URI, getTagName());
@@ -199,7 +193,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	}
 	
 	protected void initializeAttributeNodes(Element elem) {
-		//TODO to be overriden
+		// default implementation is empty
 	}
 	
 } //DrlElementImpl
