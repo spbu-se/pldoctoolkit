@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -23,11 +21,10 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.ProductDocumentation;
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.graph.ProductDocumentation} object.
@@ -140,10 +137,13 @@ public class ProductDocumentationItemProvider
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * HAND hidden Node prop
 	 */
 	public String getText(Object object) {
-		return getString("_UI_ProductDocumentation_type");
+		Element labelValue = ((ProductDocumentation)object).getNode();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ProductDocumentation_type") :
+			getString("_UI_ProductDocumentation_type") + " " + label;
 	}
 
 	/**
