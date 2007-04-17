@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.w3c.dom.Element;
 
 /**
  * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.graph.DocumentationCore} object.

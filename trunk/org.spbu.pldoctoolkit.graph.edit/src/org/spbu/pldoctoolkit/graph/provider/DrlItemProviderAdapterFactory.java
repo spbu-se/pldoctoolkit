@@ -301,28 +301,6 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.PLScheme} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PLSchemeItemProvider plSchemeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.spbu.pldoctoolkit.graph.PLScheme}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createPLSchemeAdapter() {
-		if (plSchemeItemProvider == null) {
-			plSchemeItemProvider = new PLSchemeItemProvider(this);
-		}
-
-		return plSchemeItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -428,7 +406,6 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 		if (productItemProvider != null) productItemProvider.dispose();
 		if (documentationCoreItemProvider != null) documentationCoreItemProvider.dispose();
 		if (productDocumentationItemProvider != null) productDocumentationItemProvider.dispose();
-		if (plSchemeItemProvider != null) plSchemeItemProvider.dispose();
 	}
 
 }
