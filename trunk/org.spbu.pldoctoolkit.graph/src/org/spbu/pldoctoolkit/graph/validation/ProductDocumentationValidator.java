@@ -7,7 +7,6 @@
 package org.spbu.pldoctoolkit.graph.validation;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.spbu.pldoctoolkit.graph.Product;
 
 /**

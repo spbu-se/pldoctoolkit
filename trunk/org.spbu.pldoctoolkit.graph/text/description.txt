@@ -42,7 +42,7 @@ Package graph <http://tepkom.ru/drl>
     Attribute name : EString<<1..1>>
     Reference /productDocumentations : ProductDocumentation<<0..*>>
     Reference documentationCores : DocumentationCore<<0..*>>
-    Reference scheme : PLScheme<<1..1>>
+    Reference products : Product<<0..*>>
 
   Class Product -> DrlElement
     Attribute name : EString<<1..1>>
@@ -54,9 +54,6 @@ Package graph <http://tepkom.ru/drl>
   Class ProductDocumentation -> DrlElement
     Reference finalInfProducts : FinalInfProduct<<0..*>>
     Reference product : Product
-
-  Class PLScheme -> DrlElement
-    Reference products : Product<<0..*>>
 
   Class DrlElement
     Attribute node : NodeType

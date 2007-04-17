@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getName <em>Name</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getProductDocumentations <em>Product Documentations</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getDocumentationCores <em>Documentation Cores</em>}</li>
- *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getScheme <em>Scheme</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getProducts <em>Products</em>}</li>
  * </ul>
  * </p>
  *
@@ -95,29 +95,19 @@ public interface ProductLine extends DrlElement {
 	EList getDocumentationCores();
 
 	/**
-	 * Returns the value of the '<em><b>Scheme</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Products</b></em>' containment reference list.
+	 * The list contents are of type {@link org.spbu.pldoctoolkit.graph.Product}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Scheme</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Products</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Scheme</em>' containment reference.
-	 * @see #setScheme(PLScheme)
-	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getProductLine_Scheme()
-	 * @model containment="true" required="true"
+	 * @return the value of the '<em>Products</em>' containment reference list.
+	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getProductLine_Products()
+	 * @model type="org.spbu.pldoctoolkit.graph.Product" containment="true"
 	 * @generated
 	 */
-	PLScheme getScheme();
-
-	/**
-	 * Sets the value of the '{@link org.spbu.pldoctoolkit.graph.ProductLine#getScheme <em>Scheme</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Scheme</em>' containment reference.
-	 * @see #getScheme()
-	 * @generated
-	 */
-	void setScheme(PLScheme value);
+	EList getProducts();
 
 } // ProductLine

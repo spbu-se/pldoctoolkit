@@ -182,15 +182,6 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	public void setModifier(GroupType newModifier) {
 		GroupType oldModifier = modifier;
 		modifier = newModifier == null ? MODIFIER_EDEFAULT : newModifier;
-		
-		//HAND
-		Element node = getNode();
-		if(node != null) {
-			node.setAttribute(
-					DrlFactory.eINSTANCE.getDrlPackage().getInfElemRefGroup_Modifier().getName(),
-					modifier.getName());
-		}		
-		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF_GROUP__MODIFIER, oldModifier, modifier));
 	}

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.spbu.pldoctoolkit.graph.*;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
@@ -22,7 +23,6 @@ import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.InfProduct;
 import org.spbu.pldoctoolkit.graph.NestPoint;
-import org.spbu.pldoctoolkit.graph.PLScheme;
 import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.ProductDocumentation;
 import org.spbu.pldoctoolkit.graph.ProductLine;
@@ -88,7 +88,6 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 			case DrlPackage.PRODUCT: return createProduct();
 			case DrlPackage.DOCUMENTATION_CORE: return createDocumentationCore();
 			case DrlPackage.PRODUCT_DOCUMENTATION: return createProductDocumentation();
-			case DrlPackage.PL_SCHEME: return createPLScheme();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -224,16 +223,6 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	public ProductDocumentation createProductDocumentation() {
 		ProductDocumentationImpl productDocumentation = new ProductDocumentationImpl();
 		return productDocumentation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PLScheme createPLScheme() {
-		PLSchemeImpl plScheme = new PLSchemeImpl();
-		return plScheme;
 	}
 
 	/**

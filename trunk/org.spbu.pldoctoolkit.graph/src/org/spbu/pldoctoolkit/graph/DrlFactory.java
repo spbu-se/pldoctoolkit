@@ -123,15 +123,6 @@ public interface DrlFactory extends EFactory {
 	ProductDocumentation createProductDocumentation();
 
 	/**
-	 * Returns a new object of class '<em>PL Scheme</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>PL Scheme</em>'.
-	 * @generated
-	 */
-	PLScheme createPLScheme();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

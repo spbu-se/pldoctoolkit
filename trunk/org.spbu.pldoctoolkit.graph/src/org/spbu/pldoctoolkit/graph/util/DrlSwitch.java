@@ -173,13 +173,6 @@ public class DrlSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DrlPackage.PL_SCHEME: {
-				PLScheme plScheme = (PLScheme)theEObject;
-				Object result = casePLScheme(plScheme);
-				if (result == null) result = caseDrlElement(plScheme);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case DrlPackage.DRL_ELEMENT: {
 				DrlElement drlElement = (DrlElement)theEObject;
 				Object result = caseDrlElement(drlElement);
@@ -352,21 +345,6 @@ public class DrlSwitch {
 	 * @generated
 	 */
 	public Object caseProductDocumentation(ProductDocumentation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>PL Scheme</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>PL Scheme</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object casePLScheme(PLScheme object) {
 		return null;
 	}
 

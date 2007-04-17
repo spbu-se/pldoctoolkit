@@ -64,7 +64,6 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 */
 	protected DrlElementImpl() {
 		super();
-		initializeNode();
 	}
 
 	/**
@@ -93,7 +92,6 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	public void setNode(Element newNode) {
 		Element oldNode = node;
 		node = newNode;
-		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.DRL_ELEMENT__NODE, oldNode, node));
 	}
