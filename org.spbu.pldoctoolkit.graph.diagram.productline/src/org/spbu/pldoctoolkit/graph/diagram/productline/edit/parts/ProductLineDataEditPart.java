@@ -67,7 +67,7 @@ public class ProductLineDataEditPart extends ShapeNodeEditPart {
 										.getCreateElementRequestAdapter();
 								IElementType type = (IElementType) adapter
 										.getAdapter(IElementType.class);
-								if (type == DrlModelElementTypes.PLScheme_2002) {
+								if (type == DrlModelElementTypes.Node_2002) {
 									EditPart compartmentEditPart = getChildBySemanticHint(DrlModelVisualIDRegistry
 											.getType(ProductLineDataPLSchemeCompartmentEditPart.VISUAL_ID));
 									return compartmentEditPart == null ? null
@@ -89,7 +89,7 @@ public class ProductLineDataEditPart extends ShapeNodeEditPart {
 				});
 
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ProductLineDataItemSemanticEditPolicy());
+		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 	}
 

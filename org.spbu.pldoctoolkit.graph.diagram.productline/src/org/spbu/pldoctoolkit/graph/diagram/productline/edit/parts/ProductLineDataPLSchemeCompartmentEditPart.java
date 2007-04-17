@@ -9,7 +9,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLineDataPLSchemeCompartmentCanonicalEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.Messages;
 
 /**
@@ -45,7 +44,7 @@ public class ProductLineDataPLSchemeCompartmentEditPart extends
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -56,8 +55,6 @@ public class ProductLineDataPLSchemeCompartmentEditPart extends
 				new DragDropEditPolicy());
 
 		//HAND
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-				new ProductLineDataPLSchemeCompartmentCanonicalEditPolicy());
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

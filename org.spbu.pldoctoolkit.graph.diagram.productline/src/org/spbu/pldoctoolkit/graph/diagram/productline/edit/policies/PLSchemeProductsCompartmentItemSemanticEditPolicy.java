@@ -24,7 +24,7 @@ public class PLSchemeProductsCompartmentItemSemanticEditPolicy extends
 		if (DrlModelElementTypes.Product_2003 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(DrlPackage.eINSTANCE
-						.getPLScheme_Products());
+						.getProductLine_Products());
 			}
 			return getMSLWrapper(new ProductCreateCommand(req));
 		}

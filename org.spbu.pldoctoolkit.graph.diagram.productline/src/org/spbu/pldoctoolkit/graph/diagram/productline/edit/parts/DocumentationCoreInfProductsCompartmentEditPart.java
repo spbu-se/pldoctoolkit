@@ -76,7 +76,7 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicy());
-		
+
 		removeEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE);
 
 		//HAND

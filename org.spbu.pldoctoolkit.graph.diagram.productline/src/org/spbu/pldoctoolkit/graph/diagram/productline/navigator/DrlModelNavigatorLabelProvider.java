@@ -85,13 +85,6 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 			return getImage(navigatorItem.getView());
 		}
 
-		// Due to plugin.xml content will be called only for "own" views
-		if (element instanceof IAdaptable) {
-			View view = (View) ((IAdaptable) element).getAdapter(View.class);
-			if (view != null && isOwnView(view)) {
-				return getImage(view);
-			}
-		}
 		return super.getImage(element);
 	}
 
@@ -109,8 +102,8 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 					"Navigator?Node?org.eclipse.draw2d.RectangleFigure",
 					DrlModelElementTypes.Node_2001);
 		case PLSchemeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://tepkom.ru/drl?PLScheme",
-					DrlModelElementTypes.PLScheme_2002);
+			return getImage("Navigator?Node?PLSchemeFigure",
+					DrlModelElementTypes.Node_2002);
 		case ProductEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://tepkom.ru/drl?Product",
 					DrlModelElementTypes.Product_2003);
@@ -167,13 +160,6 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 			return getText(navigatorItem.getView());
 		}
 
-		// Due to plugin.xml content will be called only for "own" views
-		if (element instanceof IAdaptable) {
-			View view = (View) ((IAdaptable) element).getAdapter(View.class);
-			if (view != null && isOwnView(view)) {
-				return getText(view);
-			}
-		}
 		return super.getText(element);
 	}
 
@@ -190,7 +176,7 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 		case ProductLineDataEditPart.VISUAL_ID:
 			return getNode_2001Text(view);
 		case PLSchemeEditPart.VISUAL_ID:
-			return getPLScheme_2002Text(view);
+			return getNode_2002Text(view);
 		case ProductEditPart.VISUAL_ID:
 			return getProduct_2003Text(view);
 		case DocumentationCoreEditPart.VISUAL_ID:
@@ -242,7 +228,7 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getPLScheme_2002Text(View view) {
+	private String getNode_2002Text(View view) {
 		return "";
 	}
 

@@ -173,26 +173,6 @@
             class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider"
             checkPluginLoaded="false">
          <Priority name="Low"/>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-		<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>
-         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>   
-                  <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-         </popupContribution>        
       </contributionItemProvider>
    </extension>
 
@@ -339,12 +319,7 @@
       </ParserProvider>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
-      <?gmfgen generated="true"?>
-      <decoratorProvider class="org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelShortcutsDecoratorProvider">
-         <Priority name="Lowest"/>
-      </decoratorProvider>
-   </extension>
+   
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <?gmfgen generated="true"?>
@@ -375,16 +350,13 @@
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
          <param name="semanticHint" value="2001"/>
       </specializationType>
-      <metamodel nsURI="http://tepkom.ru/drl">
-         <metamodelType
-               id="org.spbu.pldoctoolkit.graph.diagram.productline.PLScheme_2002"
-               name="%metatype.name.PLScheme_2002"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="PLScheme"
-               edithelper="org.spbu.pldoctoolkit.graph.diagram.productline.edit.helpers.PLSchemeEditHelper">
-            <param name="semanticHint" value="2002"/>
-         </metamodelType>
-      </metamodel>
+      <specializationType
+            id="org.spbu.pldoctoolkit.graph.diagram.productline.Node_2002"
+            name="%metatype.name.Node_2002"
+            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
+         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+         <param name="semanticHint" value="2002"/>
+      </specializationType>
       <metamodel nsURI="http://tepkom.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.productline.Product_2003"
@@ -427,7 +399,7 @@
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.ProductLine_79"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.ProductLine_1001"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.Node_2001"/>
-         <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.PLScheme_2002"/>
+         <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.Node_2002"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.Product_2003"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.Node_2004"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.InfProduct_2005"/>
@@ -479,17 +451,11 @@
         	      <test property="org.eclipse.core.resources.extension" value="productline_diagram"/>
                </and>
                <instanceof value="org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelAbstractNavigatorItem"/>
-           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
-           	      <test property="org.spbu.pldoctoolkit.graph.diagram.productline.isShortcut"/>
-           	   </adapt>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
          	   <instanceof value="org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelAbstractNavigatorItem"/>
-           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
-           	      <test property="org.spbu.pldoctoolkit.graph.diagram.productline.isShortcut"/>
-           	   </adapt>
             </or>
          </possibleChildren>
          <commonSorter 
@@ -539,9 +505,6 @@
          <enablement>
             <or>
                <instanceof value="org.spbu.pldoctoolkit.graph.diagram.productline.navigator.DrlModelAbstractNavigatorItem"/>
-           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
-           	      <test property="org.spbu.pldoctoolkit.graph.diagram.productline.isShortcut"/>
-           	   </adapt>
             </or>
          </enablement>
       </actionProvider>
@@ -566,27 +529,17 @@
    <extension point="org.eclipse.ui.popupMenus">
       <?gmfgen generated="true"?>
       <objectContribution
-            id="org.spbu.pldoctoolkit.graph.diagram.productline.InitDiagram"
-            nameFilter="*.drl"
-            objectClass="org.eclipse.core.resources.IFile">
+            adaptable="false"
+            id="org.spbu.pldoctoolkit.graph.diagram.productline.LoadResource"
+            objectClass="org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart">
          <action
-               label="%initDiagramActionLabel"
-               class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelInitDiagramFileAction"
-               menubarPath="additions"
+               class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelLoadResourceAction"
                enablesFor="1"
-               id="org.spbu.pldoctoolkit.graph.diagram.productline.InitDiagramAction">
+               id="org.spbu.pldoctoolkit.graph.diagram.productline.LoadResourceAction"
+               label="%loadResourceActionLabel"
+               menubarPath="additions">
          </action>
-      </objectContribution>
-	</extension>
-	<extension point="org.eclipse.core.expressions.propertyTesters">
-      <?gmfgen generated="true"?>
-       <propertyTester
-           id="org.spbu.pldoctoolkit.graph.diagram.productline.ShortcutPropertyTester"
-           type="org.eclipse.gmf.runtime.notation.View"
-           namespace="org.spbu.pldoctoolkit.graph.diagram.productline"
-           properties="isShortcut"
-           class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelShortcutPropertyTester">
-       </propertyTester>
+      </objectContribution>           
    </extension>
 	<extension point="org.eclipse.core.expressions.propertyTesters">
       <?gmfgen generated="true"?>
@@ -598,5 +551,21 @@
            class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDomainModelElementTester">
        </propertyTester>
    </extension>
+	<extension point="org.eclipse.ui.popupMenus">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="org.spbu.pldoctoolkit.graph.diagram.productline.InitDiagram"
+            nameFilter="*.drl"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="org.spbu.pldoctoolkit.graph.diagram.productline.InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+
 
 </plugin>

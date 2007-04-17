@@ -93,34 +93,15 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 
 		super.createDefaultEditPolicies();
 
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new PLSchemeItemSemanticEditPolicy());
-		//		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
+//		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+//				new PLSchemeItemSemanticEditPolicy());
+		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 		//HAND
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				createComponentEditPolicy());
+//		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+//				createComponentEditPolicy());
 	}
 
-	/**
-	 * HAND
-	 * 
-	 * Blocks deleting the element from keyboard.
-	 */
-	private EditPolicy createComponentEditPolicy() {
-		return new ComponentEditPolicy() {
-			@Override
-			protected Command createDeleteSemanticCommand(
-					GroupRequest deleteRequest) {
-				return UnexecutableCommand.INSTANCE;
-			}
-
-			@Override
-			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
-				return UnexecutableCommand.INSTANCE;
-			}
-		};
-	}
 
 	/**
 	 * @generated

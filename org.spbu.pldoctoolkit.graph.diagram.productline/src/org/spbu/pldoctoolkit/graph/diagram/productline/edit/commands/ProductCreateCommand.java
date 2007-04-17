@@ -27,7 +27,7 @@ public class ProductCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected EClass getEClassToEdit() {
-		return DrlPackage.eINSTANCE.getPLScheme();
+		return DrlPackage.eINSTANCE.getProductLine();
 	}
 
 	/**
