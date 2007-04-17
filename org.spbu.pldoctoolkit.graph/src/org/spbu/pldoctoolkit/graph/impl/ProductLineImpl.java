@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
@@ -22,7 +21,6 @@ import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.PLScheme;
 import org.spbu.pldoctoolkit.graph.ProductLine;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -123,6 +121,15 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
+		
+		//HAND
+		Element node = getNode();
+		if(node != null) {
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getProductLine_Name().getName(),
+					name);
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.PRODUCT_LINE__NAME, oldName, name));
 	}

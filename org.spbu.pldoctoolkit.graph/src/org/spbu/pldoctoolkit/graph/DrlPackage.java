@@ -762,7 +762,7 @@ public interface DrlPackage extends EPackage {
 	 * The meta object id for the '<em>Node Type</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.w3c.dom.Node
+	 * @see org.w3c.dom.Element
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNodeType()
 	 * @generated
 	 */
@@ -1218,12 +1218,12 @@ public interface DrlPackage extends EPackage {
 	EEnum getGroupType();
 
 	/**
-	 * Returns the meta object for data type '{@link org.w3c.dom.Node <em>Node Type</em>}'.
+	 * Returns the meta object for data type '{@link org.w3c.dom.Element <em>Node Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Node Type</em>'.
-	 * @see org.w3c.dom.Node
-	 * @model instanceClass="org.w3c.dom.Node"
+	 * @see org.w3c.dom.Element
+	 * @model instanceClass="org.w3c.dom.Element"
 	 * @generated
 	 */
 	EDataType getNodeType();
@@ -1618,7 +1618,7 @@ public interface DrlPackage extends EPackage {
 		 * The meta object literal for the '<em>Node Type</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.w3c.dom.Node
+		 * @see org.w3c.dom.Element
 		 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNodeType()
 		 * @generated
 		 */

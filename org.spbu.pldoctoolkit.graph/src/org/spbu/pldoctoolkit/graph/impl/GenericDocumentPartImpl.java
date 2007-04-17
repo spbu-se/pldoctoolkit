@@ -10,27 +10,19 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.spbu.pldoctoolkit.graph.DrlFactory;
+import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -153,15 +145,13 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 		id = newId;
 		
 		//HAND
-		Node node = getNode();
-		//TODO create node if it does not exist
+		Element node = getNode();
 		if(node != null) {
-			Node nameNode = node.getAttributes().getNamedItem(
-					DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Id().getName()
-					);
-			nameNode.setNodeValue(newId);
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Id().getName(), 
+					newId);
 		} else {
-			System.out.println("node is null");
+			DrlGraphPlugin.logInfo("node is null");
 		}
 		
 		if (eNotificationRequired())
@@ -187,11 +177,11 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 		name = newName;
 		
 		//HAND
-		Node node = getNode();
+		Element node = getNode();
 		if(node != null) {
-			node.getAttributes().getNamedItem(
-					DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Name().getName()
-					).setNodeValue(newName);
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Name().getName(),
+					newName);
 		}
 		
 		if (eNotificationRequired())
@@ -347,11 +337,13 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	protected void initializeAttributeNodes(Element elem) {
 		super.initializeAttributeNodes(elem);
 		
+		// id
 		String idAttrName = 
 			DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Id().getName();
 		
 		elem.setAttribute(idAttrName, getId());
 
+		// name
 		String nameAttrName = 
 			DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Name().getName();
 		

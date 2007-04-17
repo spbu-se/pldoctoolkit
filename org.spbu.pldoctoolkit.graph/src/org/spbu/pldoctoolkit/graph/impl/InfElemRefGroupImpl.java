@@ -147,11 +147,20 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
+		
+		//HAND
+		Element node = getNode();
+		if(node != null) {
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getInfElemRefGroup_Id().getName(),
+					modifier.getName());
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF_GROUP__ID, oldId, id));
 	}
@@ -173,6 +182,15 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	public void setModifier(GroupType newModifier) {
 		GroupType oldModifier = modifier;
 		modifier = newModifier == null ? MODIFIER_EDEFAULT : newModifier;
+		
+		//HAND
+		Element node = getNode();
+		if(node != null) {
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getInfElemRefGroup_Modifier().getName(),
+					modifier.getName());
+		}		
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF_GROUP__MODIFIER, oldModifier, modifier));
 	}
@@ -189,11 +207,20 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
+		
+		//HAND
+		Element node = getNode();
+		if(node != null) {
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getInfElemRefGroup_Id().getName(),
+					newName);
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF_GROUP__NAME, oldName, name));
 	}

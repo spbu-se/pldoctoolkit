@@ -12,9 +12,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlElement;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
@@ -27,12 +25,11 @@ import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.InfProduct;
 import org.spbu.pldoctoolkit.graph.NestPoint;
-import org.spbu.pldoctoolkit.graph.NestPointType;
 import org.spbu.pldoctoolkit.graph.PLScheme;
 import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.ProductDocumentation;
 import org.spbu.pldoctoolkit.graph.ProductLine;
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -795,7 +792,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		addEEnumLiteral(groupTypeEEnum, GroupType.XOR_LITERAL);
 
 		// Initialize data types
-		initEDataType(nodeTypeEDataType, Node.class, "NodeType", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(nodeTypeEDataType, Element.class, "NodeType", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

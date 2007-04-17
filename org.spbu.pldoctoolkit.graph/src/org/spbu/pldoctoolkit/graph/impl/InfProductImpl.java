@@ -7,7 +7,6 @@
 package org.spbu.pldoctoolkit.graph.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.InfProduct;
 

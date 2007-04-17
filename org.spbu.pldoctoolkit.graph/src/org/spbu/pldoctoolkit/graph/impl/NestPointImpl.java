@@ -7,12 +7,8 @@
 package org.spbu.pldoctoolkit.graph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.NestPoint;
@@ -110,11 +106,20 @@ public class NestPointImpl extends DrlElementImpl implements NestPoint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
+		
+		//HAND
+		Element node = getNode();
+		if(node != null) {
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getNestPoint_Id().getName(),
+					id);
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.NEST_POINT__ID, oldId, id));
 	}
@@ -131,11 +136,20 @@ public class NestPointImpl extends DrlElementImpl implements NestPoint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setDescr(String newDescr) {
 		String oldDescr = descr;
 		descr = newDescr;
+		
+		//HAND
+		Element node = getNode();
+		if(node != null) {
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getNestPoint_Descr().getName(),
+					descr);
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.NEST_POINT__DESCR, oldDescr, descr));
 	}

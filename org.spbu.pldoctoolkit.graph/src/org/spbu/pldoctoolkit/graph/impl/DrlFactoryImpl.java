@@ -10,13 +10,23 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.spbu.pldoctoolkit.graph.*;
-import org.w3c.dom.Node;
+import org.spbu.pldoctoolkit.graph.DocumentationCore;
+import org.spbu.pldoctoolkit.graph.DrlFactory;
+import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.spbu.pldoctoolkit.graph.FinalInfProduct;
+import org.spbu.pldoctoolkit.graph.GroupType;
+import org.spbu.pldoctoolkit.graph.InfElemRef;
+import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
+import org.spbu.pldoctoolkit.graph.InfElement;
+import org.spbu.pldoctoolkit.graph.InfProduct;
+import org.spbu.pldoctoolkit.graph.NestPoint;
+import org.spbu.pldoctoolkit.graph.PLScheme;
+import org.spbu.pldoctoolkit.graph.Product;
+import org.spbu.pldoctoolkit.graph.ProductDocumentation;
+import org.spbu.pldoctoolkit.graph.ProductLine;
+import org.w3c.dom.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -251,8 +261,8 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Node createNodeTypeFromString(EDataType eDataType, String initialValue) {
-		return (Node)super.createFromString(eDataType, initialValue);
+	public Element createNodeTypeFromString(EDataType eDataType, String initialValue) {
+		return (Element)super.createFromString(eDataType, initialValue);
 	}
 
 	/**

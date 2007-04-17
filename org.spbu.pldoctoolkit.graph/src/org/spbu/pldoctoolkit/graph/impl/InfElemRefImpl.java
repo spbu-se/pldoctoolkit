@@ -7,15 +7,10 @@
 package org.spbu.pldoctoolkit.graph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
@@ -137,11 +132,20 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
+		
+		//HAND
+		Element node = getNode();
+		if(node != null) {
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Id().getName(),
+					id);
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__ID, oldId, id));
 	}
@@ -218,6 +222,7 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	public NotificationChain basicSetGroup(InfElemRefGroup newGroup, NotificationChain msgs) {
 		InfElemRefGroup oldGroup = group;
 		group = newGroup;
+		
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__GROUP, oldGroup, newGroup);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
@@ -256,11 +261,20 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setOptional(boolean newOptional) {
 		boolean oldOptional = optional;
 		optional = newOptional;
+		
+		//HAND
+		Element node = getNode();
+		if(node != null) {
+			node.setAttribute(
+					DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Optional().getName(),
+					Boolean.toString(optional));
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__OPTIONAL, oldOptional, optional));
 	}
