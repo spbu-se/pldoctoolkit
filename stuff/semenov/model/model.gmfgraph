@@ -143,11 +143,11 @@
           xsi:type="gmfgraph:ConstantColor"
           value="lightGray"/>
       <maximumSize
-          dx="10"
-          dy="10"/>
+          dx="5"
+          dy="5"/>
       <minimumSize
-          dx="10"
-          dy="10"/>
+          dx="5"
+          dy="5"/>
     </figures>
     <figures
         xsi:type="gmfgraph:Rectangle"

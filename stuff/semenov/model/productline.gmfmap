@@ -25,17 +25,11 @@
               href="model.gmfgraph#ProductLineData"/>
           <children
               compartment="//@nodes.0/@ownedChild/@children.0/@ownedChild/@compartments.0">
-            <containmentFeature
-                href="model.ecore#//ProductLine/scheme"/>
             <ownedChild>
-              <domainMetaElement
-                  href="model.ecore#//PLScheme"/>
               <diagramNode
                   href="model.gmfgraph#PLScheme"/>
               <children
                   compartment="//@nodes.0/@ownedChild/@children.0/@ownedChild/@children.0/@ownedChild/@compartments.0">
-                <containmentFeature
-                    href="model.ecore#//PLScheme/products"/>
                 <ownedChild>
                   <domainMetaElement
                       href="model.ecore#//Product"/>

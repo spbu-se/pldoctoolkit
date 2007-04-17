@@ -60,8 +60,7 @@
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
-          xsi:type="gmfgen:MetamodelType"
-          editHelperClassName="PLSchemeEditHelper"/>
+          xsi:type="gmfgen:NotationType"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="PLSchemeFigure"
@@ -71,14 +70,6 @@
         <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
-      <modelFacet>
-        <metaClass
-            href="model.genmodel#//graph/PLScheme"/>
-        <containmentMetaFeature
-            href="model.genmodel#//graph/ProductLine/scheme"/>
-        <childMetaFeature
-            href="model.genmodel#//graph/ProductLine/scheme"/>
-      </modelFacet>
     </childNodes>
     <childNodes
         visualID="2003"
@@ -104,10 +95,6 @@
       <modelFacet>
         <metaClass
             href="model.genmodel#//graph/Product"/>
-        <containmentMetaFeature
-            href="model.genmodel#//graph/PLScheme/products"/>
-        <childMetaFeature
-            href="model.genmodel#//graph/PLScheme/products"/>
       </modelFacet>
       <labels
           visualID="4001"

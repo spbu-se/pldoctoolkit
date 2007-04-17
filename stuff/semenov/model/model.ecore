@@ -58,8 +58,8 @@
         defaultValueLiteral="" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="documentationCores" upperBound="-1"
         eType="#//DocumentationCore"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="scheme" lowerBound="1"
-        eType="#//PLScheme" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
+        eType="#//Product" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//DrlElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -75,11 +75,7 @@
         eType="#//FinalInfProduct" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" eType="#//Product"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PLScheme" eSuperTypes="#//DrlElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
-        eType="#//Product" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="NodeType" instanceClassName="org.w3c.dom.Node"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="NodeType" instanceClassName="org.w3c.dom.Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="DrlElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="node" eType="#//NodeType"/>
   </eClassifiers>
