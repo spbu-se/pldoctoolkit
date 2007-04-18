@@ -9,4 +9,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide,
  org.eclipse.core.runtime
 Bundle-Activator: org.spbu.pldoctoolkit.PLDocToolkitPlugin
-Export-Package: org.spbu.pldoctoolkit.registry
+Export-Package: org.spbu.pldoctoolkit,
+ org.spbu.pldoctoolkit.registry
