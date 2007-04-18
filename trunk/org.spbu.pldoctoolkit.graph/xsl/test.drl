@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<v:ProductLine xmlns:v="http://tepkom.ru/drl" name="PL name"><scheme>
+<v:ProductLine xmlns:v="http://math.spbu.ru/drl" name="PL name">
   <products name="prod1"/>
   <products name="prod2"/>
   <products name="prod3"/>
-</scheme></v:ProductLine>
+</v:ProductLine>

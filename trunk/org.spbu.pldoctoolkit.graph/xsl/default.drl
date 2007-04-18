@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><v:DocumentationCore xmlns:v="http://tepkom.ru/drl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<v:DocumentationCore 
+  xmlns:v="http://math.spbu.ru/drl" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:db="http://docbook.org/ns/docbook">
   <parts name="infinf" xsi:type="v:InfElement">
     <infElemRefs id="ssd" infelem="//@parts.2" optional="true"/>
   </parts>
   <parts id="sfsd" name="sdfsd" xsi:type="v:InfElement"/>
   <parts name="infinf" xsi:type="v:InfElement"/>
+  <db:test>sdfs</db:test>
 </v:DocumentationCore>

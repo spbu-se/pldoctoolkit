@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<v:ProductLine xmlns:v="http://tepkom.ru/drl" name="PL name">
+<v:ProductLine xmlns:v="http://math.spbu.ru/drl" name="PL name">
   <v:Product name="prod1"/>
   <v:Product name="prod2"/>
   <v:Product name="prod3"/>
+  <v:Conditional condition="expr">
+    <v:Product name="blablabla"/>
+  </v:Conditional>
 </v:ProductLine>

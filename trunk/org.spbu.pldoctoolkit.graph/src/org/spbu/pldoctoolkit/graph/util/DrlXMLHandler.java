@@ -2,10 +2,8 @@ package org.spbu.pldoctoolkit.graph.util;
 
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.SAXXMIHandler;
@@ -16,8 +14,6 @@ import org.w3c.dom.Node;
 
 public class DrlXMLHandler extends SAXXMIHandler {
 
-	public static final String DOCBOOK_URI = "http://test.com"; //TODO 
-	
 	private Node currentNode;
 	
 	public DrlXMLHandler(XMLResource xmiResource, XMLHelper helper,
@@ -33,7 +29,7 @@ public class DrlXMLHandler extends SAXXMIHandler {
 	 */
 	@Override
 	public void startElement(String uri, String localName, String name) {
-		if(DOCBOOK_URI.equals(uri)) {
+		if(DrlResourceImpl.DOCBOOK_URI.equals(uri)) {
 			return;
 		}
 		
@@ -47,7 +43,7 @@ public class DrlXMLHandler extends SAXXMIHandler {
 	 */
 	@Override
 	public void endElement(String uri, String localName, String name) {
-		if(DOCBOOK_URI.equals(uri)) {
+		if(DrlResourceImpl.DOCBOOK_URI.equals(uri)) {
 			return;
 		}
 		
