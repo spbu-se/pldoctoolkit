@@ -14,7 +14,7 @@ import org.osgi.framework.BundleContext;
 public class DrlPublisherPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.spbu.pldoctoolkit";
+	public static final String PLUGIN_ID = "org.spbu.pldoctoolkit.text";
 
 	// The shared instance
 	private static DrlPublisherPlugin plugin;
@@ -65,7 +65,7 @@ public class DrlPublisherPlugin extends AbstractUIPlugin {
 	
 	public static URL getBundleResourceURL(String relativePath) {
 		try {
-			return new URL(DrlPublisherPlugin.getDefault().getBundle().getEntry("/"), relativePath);
+			return new URL(getDefault().getBundle().getEntry("/"), relativePath);
 		} catch (MalformedURLException e) {
 			return null;
 		}

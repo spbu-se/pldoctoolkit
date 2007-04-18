@@ -43,7 +43,9 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.DrlPublisherPlugin;
-import org.spbu.pldoctoolkit.registry.ResourceRegistry;
+import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
+import org.spbu.pldoctoolkit.registry.ProjectRegistry;
+import org.spbu.pldoctoolkit.registry.RegisteredLocation;
 import org.xml.sax.DTDHandler;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
@@ -77,9 +79,9 @@ public class BasicExportAction extends Action {
 	protected final URIResolver uriResolver = new StandardURIResolver(new Configuration()) {
 		private static final long serialVersionUID = -7919352677909462305L;
 		public Source resolve(String href, String base) throws XPathException {
-			IResource resource = ResourceRegistry.getInstance().getResource(href);
-			if (resource != null)
-				return new StreamSource(resource.getLocationURI().toString());
+			RegisteredLocation loc = registry.getRegisteredLocation(href);
+			if (loc != null)
+				return new StreamSource(loc.getFile().getLocationURI().toString());
 			return super.resolve(href, base);
 		}
 	};
@@ -116,7 +118,8 @@ public class BasicExportAction extends Action {
 	};
 
 	protected DocbookContentHandler contentHandler;
-
+	protected ProjectRegistry registry;
+	
 	public BasicExportAction(IEditorPart editor, String type, String extension) throws Exception {
 		super("Export to " + type);
 		if (editor == null)
@@ -158,6 +161,7 @@ public class BasicExportAction extends Action {
 
 			String destinationFilename = dialogResult.contains(".") ? dialogResult : dialogResult + "." + extension;
 			FileEditorInput editorInput = (FileEditorInput)editor.getEditorInput();
+			registry = PLDocToolkitPlugin.getRegistry(editorInput.getFile().getProject().getName());
 			final String source = editorInput.getFile().getLocationURI().toString();
 			final String destination = new File(destinationFilename).toURI().toString();
 
@@ -251,7 +255,7 @@ public class BasicExportAction extends Action {
 	}
 
 	private void createMarker(String systemId, int lineNumber, String message, int severity) {
-		IResource resource = getResource(systemId);
+		IResource resource = getFile(systemId);
 		if (resource == null) {
 			System.out.println("Resource not found: " + systemId + " message: " + message + " on line " + lineNumber);
 			return;
@@ -267,10 +271,10 @@ public class BasicExportAction extends Action {
 		System.out.println("*** Marker: " + message + " @ " + systemId + " line " + lineNumber);
 	}
 	
-	private IResource getResource(String systemId) {
-		IResource resource = ResourceRegistry.getInstance().getResource(systemId);
-		if (resource != null)
-			return resource;
+	private IFile getFile(String systemId) {
+		RegisteredLocation loc = registry.getRegisteredLocation(systemId);
+		if (loc != null)
+			return loc.getFile();
 		try {
 			IFile[] files = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(new URI(systemId));
 			if (files.length > 0)
