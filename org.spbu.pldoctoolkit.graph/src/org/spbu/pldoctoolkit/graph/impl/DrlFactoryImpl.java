@@ -50,7 +50,7 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 */
 	public static DrlFactory init() {
 		try {
-			DrlFactory theDrlFactory = (DrlFactory)EPackage.Registry.INSTANCE.getEFactory("http://tepkom.ru/drl"); 
+			DrlFactory theDrlFactory = (DrlFactory)EPackage.Registry.INSTANCE.getEFactory("http://math.spbu.ru/drl"); 
 			if (theDrlFactory != null) {
 				return theDrlFactory;
 			}

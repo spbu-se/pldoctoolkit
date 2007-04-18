@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -27,6 +28,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.XMLLoad;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
 import org.w3c.dom.Document;
@@ -42,7 +44,9 @@ import org.xml.sax.SAXException;
 public class DrlResourceImpl extends XMLResourceImpl {
 	public static String XMI2DRL_FILE = "/xsl/xmi2drl.xsl";
 	public static String DRL2XMI_FILE = "/xsl/drl2xmi.xsl";
-	
+
+	public static final String DOCBOOK_URI = "http://docbook.org/ns/docbook";
+
 	private Document drlDocument;
 	
 	/**

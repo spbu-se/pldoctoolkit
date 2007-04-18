@@ -50,7 +50,7 @@ public interface DrlPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://tepkom.ru/drl";
+	String eNS_URI = "http://math.spbu.ru/drl";
 
 	/**
 	 * The package namespace name.

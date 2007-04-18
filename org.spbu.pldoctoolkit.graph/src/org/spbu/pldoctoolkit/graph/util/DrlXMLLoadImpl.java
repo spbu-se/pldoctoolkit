@@ -1,6 +1,7 @@
 package org.spbu.pldoctoolkit.graph.util;
 
 import org.eclipse.emf.ecore.xmi.XMLHelper;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLLoadImpl;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
