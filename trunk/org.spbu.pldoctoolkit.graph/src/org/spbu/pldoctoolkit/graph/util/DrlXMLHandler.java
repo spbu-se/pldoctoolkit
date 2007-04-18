@@ -9,12 +9,23 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.SAXXMIHandler;
 import org.spbu.pldoctoolkit.graph.DrlElement;
 import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
+import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class DrlXMLHandler extends SAXXMIHandler {
 
 	private Node currentNode;
+	
+	/*
+	 * Marks whether this is the first element being processed.
+	 * @see #startElement(String, String, String)
+	 */
+	private boolean isTopNode = true;
+	
+	private String topNodeUri;
+	private String topNodeLocalName;
+	private String topNodeName;
 	
 	public DrlXMLHandler(XMLResource xmiResource, XMLHelper helper,
 			Map<?, ?> options) {
@@ -23,21 +34,38 @@ public class DrlXMLHandler extends SAXXMIHandler {
 
 	
 	/* 
-	 * Ignore docbook tags
+	 * Ignore docbook tags and DRL tags except for the top level one.
+	 * 
+	 * All the supported DRL tags should have been converted to according features during the
+	 * DRL -> XMI step.
 	 * 
 	 * @see org.eclipse.emf.ecore.xmi.impl.XMLHandler#startElement(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public void startElement(String uri, String localName, String name) {
+		DrlGraphPlugin.logInfo("starting element: " + uri + ", " + localName + ", " + name);
+		
 		if(DrlResourceImpl.DOCBOOK_URI.equals(uri)) {
 			return;
 		}
 		
+		if(!isTopNode && DrlPackage.eNS_URI.equals(uri)) {
+			return;
+		}
+		
 		super.startElement(uri, localName, name);
+		
+		if(isTopNode) {
+			topNodeUri = uri;
+			topNodeLocalName = localName;
+			topNodeName = name;
+			
+			isTopNode = false;
+		}
 	}
 
 	/* 
-	 * Ignore docbook tags
+	 * Ignore docbook tags and DRL tags except for the top level one.
 	 * 
 	 * @see org.eclipse.emf.ecore.xmi.impl.XMLHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -47,8 +75,26 @@ public class DrlXMLHandler extends SAXXMIHandler {
 			return;
 		}
 		
+		if(DrlPackage.eNS_URI.equals(uri)) {
+			boolean isTopNode = stringEquals(localName, topNodeLocalName) &&
+				stringEquals(name, topNodeName) &&
+				stringEquals(uri, topNodeUri);
+
+			if(!isTopNode) {
+				return;
+			}
+		}
 		super.endElement(uri, localName, name);
 	}
+
+	private boolean stringEquals(String s1, String s2) {
+		if(s1 == null) {
+			return s1 == s2;
+		}
+		
+		return s1.equals(s2);
+	}
+
 
 	/**
 	 * @return
