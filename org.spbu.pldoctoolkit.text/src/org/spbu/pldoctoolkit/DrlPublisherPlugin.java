@@ -63,7 +63,7 @@ public class DrlPublisherPlugin extends AbstractUIPlugin {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 	
-	public static URL getBundleResourceURL(String relativePath) {
+	public static URL getURL(String relativePath) {
 		try {
 			return new URL(getDefault().getBundle().getEntry("/"), relativePath);
 		} catch (MalformedURLException e) {

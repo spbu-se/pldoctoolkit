@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.spbu.pldoctoolkit.text;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: org.spbu.pldoctoolkit.DrlPublisherPlugin
 Bundle-Vendor: SPbSU
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,

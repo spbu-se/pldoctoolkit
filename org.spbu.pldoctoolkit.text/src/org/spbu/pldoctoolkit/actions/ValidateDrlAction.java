@@ -9,6 +9,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
+import org.spbu.pldoctoolkit.cache.SchemaCache;
 import org.spbu.pldoctoolkit.xmlutil.ContentHandlerAdapter;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
@@ -17,16 +18,11 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import com.thaiopensource.util.PropertyMap;
-import com.thaiopensource.util.PropertyMapBuilder;
-import com.thaiopensource.validate.Schema;
-import com.thaiopensource.validate.ValidateProperty;
 import com.thaiopensource.validate.Validator;
-import com.thaiopensource.validate.auto.AutoSchemaReader;
 import com.thaiopensource.xml.sax.Jaxp11XMLReaderCreator;
-import com.thaiopensource.xml.sax.XMLReaderCreator;
 
 public class ValidateDrlAction extends Action {
+	private static final SchemaCache SCHEMA_CACHE = new SchemaCache();
 	private static final URL SCHEMA_URL = PLDocToolkitPlugin.getBundleResourceURL("schema/document-reuse-language.rng");
 
 	private final MarkingErrorHandler errorHandler = new MarkingErrorHandler();
@@ -39,15 +35,8 @@ public class ValidateDrlAction extends Action {
 		if (editor == null)
 			throw new NullPointerException("editor cannot be null");
 		this.editor = editor;
-		PropertyMapBuilder builder = new PropertyMapBuilder();
-		XMLReaderCreator xmlReaderCreator = new Jaxp11XMLReaderCreator();
-		ValidateProperty.XML_READER_CREATOR.put(builder, xmlReaderCreator);
-		ValidateProperty.ERROR_HANDLER.put(builder, errorHandler);
-		PropertyMap properties = builder.toPropertyMap();
-		InputSource schemaSource = new InputSource(SCHEMA_URL.toString());
-		Schema schema = new AutoSchemaReader().createSchema(schemaSource, properties);
-		validator = schema.createValidator(properties);
-		xmlReader = xmlReaderCreator.createXMLReader();
+		validator = SCHEMA_CACHE.getValidator(SCHEMA_URL, errorHandler);
+		xmlReader = new Jaxp11XMLReaderCreator().createXMLReader();
 		xmlReader.setErrorHandler(errorHandler);
 	}
 
