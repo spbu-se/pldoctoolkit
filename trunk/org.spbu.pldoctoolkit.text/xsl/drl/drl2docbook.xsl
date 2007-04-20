@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0"
-	xmlns="http://math.spbu.ru/drl" 
+	xmlns:drl="http://math.spbu.ru/drl" 
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:saxon="http://saxon.sf.net/">
 	
 	<xsl:param name="finalinfproductid"/>
 	
-	<xsl:variable name="FinalInfProduct" select="/ProductDocumentation/FinalInfProduct[@id = $finalinfproductid or not($finalinfproductid)][1]"/>
-	<xsl:variable name="productid" select="/ProductDocumentation/@productid"/>
+	<xsl:variable name="FinalInfProduct" select="/drl:ProductDocumentation/drl:FinalInfProduct[@id = $finalinfproductid or not($finalinfproductid)][1]"/>
+	<xsl:variable name="productid" select="/drl:ProductDocumentation/@productid"/>
 	
 	<xsl:variable name="err" select="QName('http://math.spbu.ru/drl', 'error')"/>
 	
@@ -15,12 +15,12 @@
 		<xsl:apply-templates select="$FinalInfProduct"/>
 	</xsl:template>
 	
-	<xsl:template match="FinalInfProduct">
+	<xsl:template match="drl:FinalInfProduct">
 		<xsl:variable name="uri" select="concat('drlresolve://Core/InfProduct/', @infproductid)"/>
 		<xsl:variable name="root" select="document($uri)"/>
 		<xsl:choose>
 			<xsl:when test="$root">
-				<xsl:apply-templates select="$root/DocumentationCore/InfProduct[@id = current()/@infproductid]"/>
+				<xsl:apply-templates select="$root/drl:DocumentationCore/drl:InfProduct[@id = current()/@infproductid]"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:value-of select="error($err, concat('InfProduct with id ''', @infproductid, ''' unresolved'), .)"/>
@@ -28,16 +28,16 @@
 		</xsl:choose>
 	</xsl:template>
 	
-	<xsl:template match="InfProduct">
+	<xsl:template match="drl:InfProduct">
 		<xsl:apply-templates/>
 	</xsl:template>
 	
-	<xsl:template match="InfElemRef">
+	<xsl:template match="drl:InfElemRef">
 		<xsl:variable name="uri" select="concat('drlresolve://Core/InfElement/', @infelemid)"/>
 		<xsl:variable name="root" select="document($uri)"/>
 		<xsl:choose>
 			<xsl:when test="$root">
-				<xsl:apply-templates select="$root/DocumentationCore/InfElement[@id = current/@infelemid]">
+				<xsl:apply-templates select="$root/drl:DocumentationCore/drl:InfElement[@id = current()/@infelemid]">
 					<xsl:with-param name="refid" select="@id"/>
 				</xsl:apply-templates>
 			</xsl:when>
@@ -47,20 +47,20 @@
 		</xsl:choose>
 	</xsl:template>
 	
-	<xsl:template match="InfElement">
+	<xsl:template match="drl:InfElement">
 		<xsl:param name="refid"/>
 		<xsl:apply-templates>
 			<xsl:with-param name="refid" select="$refid"/>
 		</xsl:apply-templates>
 	</xsl:template>
 	
-	<xsl:template match="Nest">
+	<xsl:template match="drl:Nest">
 		<xsl:param name="refid"/>
 		<xsl:variable name="id" select="@id"/>
-		<xsl:variable name="InfElement" select="ancestor::InfElement"/>
-		<xsl:variable name="Replace-Nest" select="$FinalInfProduct/Adapter[@infelemrefid = $refid]/Replace-Nest[@nestid = $id]"/>
+		<xsl:variable name="InfElement" select="ancestor::drl:InfElement"/>
+		<xsl:variable name="Replace-Nest" select="$FinalInfProduct/drl:Adapter[@infelemrefid = $refid]/drl:Replace-Nest[@nestid = $id]"/>
 		
-		<xsl:apply-templates select="$FinalInfProduct/Adapter[@infelemrefid = $refid]/Insert-Before[@nestid = $id]/node()"/>
+		<xsl:apply-templates select="$FinalInfProduct/drl:Adapter[@infelemrefid = $refid]/drl:Insert-Before[@nestid = $id]/node()"/>
 		<xsl:choose>
 			<xsl:when test="$Replace-Nest">
 				<xsl:apply-templates select="$Replace-Nest/node()"/>
@@ -69,13 +69,13 @@
 				<xsl:apply-templates select="node()"/>
 			</xsl:otherwise>
 		</xsl:choose>
-		<xsl:apply-templates select="$FinalInfProduct/Adapter[@infelemrefid = $refid]/Insert-After[@nestid = $id]/node()"/>
+		<xsl:apply-templates select="$FinalInfProduct/drl:Adapter[@infelemrefid = $refid]/drl:Insert-After[@nestid = $id]/node()"/>
 	</xsl:template>
 	
-	<xsl:template match="Conditional">
+	<xsl:template match="drl:Conditional">
 		<xsl:variable name="varname" select="substring-before(@condition, '=')"/>
 		<xsl:variable name="varvalue" select="substring-after(@condition, '=')"/>
-		<xsl:variable name="varnode" select="$FinalInfProduct/SetValue[@id = $varname]"/>
+		<xsl:variable name="varnode" select="$FinalInfProduct/drl:SetValue[@id = $varname]"/>
 		
 		<xsl:if test="$varname = '' or $varvalue = ''">
 			<xsl:value-of select="error($err, 'syntax error in Conditional expression', .)"/>
@@ -94,11 +94,11 @@
 		</xsl:choose>
 	</xsl:template>
 	
-	<xsl:template match="DictRef">
-		<xsl:variable name="uri" select="concat('drlresolve://', $productid, '/Dictionary/', @dictid)"/>
+	<xsl:template match="drl:DictRef">
+		<xsl:variable name="uri" select="concat('drlresolve://Product', $productid, '/Dictionary/', @dictid)"/>
 		<xsl:variable name="root" select="document($uri)"/>
-		<xsl:variable name="Dictionary" select="$root//Dictionary[@id = current()/@dictid]"/>
-		<xsl:variable name="Entry" select="$Dictionary/Entry[@id = current()/@entryid]"/>
+		<xsl:variable name="Dictionary" select="$root//drl:Dictionary[@id = current()/@dictid]"/>
+		<xsl:variable name="Entry" select="$Dictionary/drl:Entry[@id = current()/@entryid]"/>
 		<xsl:choose>
 			<xsl:when test="not($Dictionary)">
 				<xsl:value-of select="error($err, concat('Dictionary with id ''', @dictid, ''' unresolved'), .)"/>
@@ -111,7 +111,9 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-				
+	
+	<xsl:template match="drl:InfElemRefGroup"/>
+	
 	<xsl:template match="text()">
 		<xsl:copy-of select="."/>
 	</xsl:template>
@@ -120,8 +122,8 @@
 		<xsl:param name="refid"/>
 		<xsl:copy>
 			<xsl:copy-of select="attribute::node()"/>
-			<xsl:attribute namespace="http://math.spbu.ru/drl" name="system-id" select="saxon:system-id()"/>
-			<xsl:attribute namespace="http://math.spbu.ru/drl" name="line-number" select="saxon:line-number()"/>
+			<xsl:attribute name="drl:system-id" select="saxon:system-id()"/>
+			<xsl:attribute name="drl:line-number" select="saxon:line-number()"/>
 			<xsl:apply-templates>
 				<xsl:with-param name="refid" select="$refid"/>
 			</xsl:apply-templates>

@@ -1,23 +1,24 @@
 package org.spbu.pldoctoolkit.actions;
 
+import static org.spbu.pldoctoolkit.registry.RegisteredLocation.CORE;
+
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 
 import javax.xml.transform.ErrorListener;
 import javax.xml.transform.Source;
 import javax.xml.transform.SourceLocator;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import net.sf.saxon.Configuration;
 import net.sf.saxon.Controller;
-import net.sf.saxon.FeatureKeys;
 import net.sf.saxon.StandardURIResolver;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.om.NodeInfo;
@@ -44,28 +45,25 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.DrlPublisherPlugin;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
+import org.spbu.pldoctoolkit.cache.ControllerCache;
+import org.spbu.pldoctoolkit.cache.SchemaCache;
 import org.spbu.pldoctoolkit.registry.ProjectRegistry;
 import org.spbu.pldoctoolkit.registry.RegisteredLocation;
 import org.xml.sax.DTDHandler;
 import org.xml.sax.ErrorHandler;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 
-import com.thaiopensource.util.PropertyMap;
-import com.thaiopensource.util.PropertyMapBuilder;
-import com.thaiopensource.validate.Schema;
-import com.thaiopensource.validate.ValidateProperty;
 import com.thaiopensource.validate.Validator;
-import com.thaiopensource.validate.auto.AutoSchemaReader;
 import com.thaiopensource.xml.sax.Jaxp11XMLReaderCreator;
-import com.thaiopensource.xml.sax.XMLReaderCreator;
 
 public class BasicExportAction extends Action {
-	protected static final TransformerFactory TRANSFORMER_FACTORY = TransformerFactory.newInstance();
-	protected static final URL DRL2DOCBOOK_URL = DrlPublisherPlugin.getBundleResourceURL("xsl/drl/drl2docbook.xsl");
-	protected static final URL DOCBOOK_SCHEMA_URL = DrlPublisherPlugin.getBundleResourceURL("schema/docbook/docbook.rng");
+	protected static final ControllerCache CONTROLLER_CACHE = new ControllerCache();
+	protected static final SchemaCache SCHEMA_CACHE = new SchemaCache();
+	
+	protected static final URL DRL2DOCBOOK_URL = DrlPublisherPlugin.getURL("xsl/drl/drl2docbook.xsl");
+	protected static final URL DOCBOOK_SCHEMA_URL = DrlPublisherPlugin.getURL("schema/docbook/docbook.rng");
 
 	protected final Controller drl2docbook;
 	protected final Controller docbook2type;
@@ -79,9 +77,11 @@ public class BasicExportAction extends Action {
 	protected final URIResolver uriResolver = new StandardURIResolver(new Configuration()) {
 		private static final long serialVersionUID = -7919352677909462305L;
 		public Source resolve(String href, String base) throws XPathException {
-			RegisteredLocation loc = registry.getRegisteredLocation(href);
-			if (loc != null)
-				return new StreamSource(loc.getFile().getLocationURI().toString());
+			if (registry != null) {
+				RegisteredLocation loc = registry.getRegisteredLocation(href);
+				if (loc != null)
+					return new StreamSource(loc.getFile().getLocationURI().toString());
+			}
 			return super.resolve(href, base);
 		}
 	};
@@ -129,22 +129,12 @@ public class BasicExportAction extends Action {
 		this.extension = extension;
 
 		// transformers
-		TRANSFORMER_FACTORY.setAttribute(FeatureKeys.LINE_NUMBERING, true);
-		TRANSFORMER_FACTORY.setURIResolver(uriResolver);
-		drl2docbook = (Controller)TRANSFORMER_FACTORY.newTransformer(new StreamSource(DRL2DOCBOOK_URL.toString()));
-		String url = DrlPublisherPlugin.getBundleResourceURL("xsl/docbook/" + type + "/docbook.xsl").toString();
-		docbook2type = (Controller)TRANSFORMER_FACTORY.newTransformer(new StreamSource(url));
-
+		drl2docbook = CONTROLLER_CACHE.getController(DRL2DOCBOOK_URL);
+		docbook2type = CONTROLLER_CACHE.getController(DrlPublisherPlugin.getURL("xsl/docbook/" + type + "/docbook.xsl"));
+		
 		// validator
-		PropertyMapBuilder builder = new PropertyMapBuilder();
-		XMLReaderCreator xmlReaderCreator = new Jaxp11XMLReaderCreator();
-		ValidateProperty.XML_READER_CREATOR.put(builder, xmlReaderCreator);
-		ValidateProperty.ERROR_HANDLER.put(builder, errorHandler);
-		PropertyMap properties = builder.toPropertyMap();
-		InputSource schemaSource = new InputSource(DOCBOOK_SCHEMA_URL.toString());
-		Schema schema = new AutoSchemaReader().createSchema(schemaSource, properties);
-		validator = schema.createValidator(properties);
-		xmlReader = xmlReaderCreator.createXMLReader();
+		validator = SCHEMA_CACHE.getValidator(DOCBOOK_SCHEMA_URL, errorHandler);
+		xmlReader = new Jaxp11XMLReaderCreator().createXMLReader();
 	}
 
 	@Override
@@ -158,11 +148,25 @@ public class BasicExportAction extends Action {
 			String dialogResult = fileDialog.open();
 			if (dialogResult == null)
 				return;
-
+			
 			String destinationFilename = dialogResult.contains(".") ? dialogResult : dialogResult + "." + extension;
 			FileEditorInput editorInput = (FileEditorInput)editor.getEditorInput();
 			registry = PLDocToolkitPlugin.getRegistry(editorInput.getFile().getProject().getName());
-			final String source = editorInput.getFile().getLocationURI().toString();
+			IFile file = editorInput.getFile();
+			String context = registry.getContext(file);
+			
+			////////////
+			List<RegisteredLocation> list = registry.findForFile(file);
+			System.out.println("Export action run. List of registered locations for this file: ");
+			for (RegisteredLocation loc: list)
+				System.out.println(loc);
+			System.out.println("---");
+			////////////
+			
+			if (context == null || CORE.equals(context))
+				return;
+			
+			final String source = file.getLocationURI().toString();
 			final String destination = new File(destinationFilename).toURI().toString();
 
 			editorInput.getFile().getParent().deleteMarkers(IMarker.MARKER, true, IResource.DEPTH_INFINITE);
@@ -189,7 +193,8 @@ public class BasicExportAction extends Action {
 			monitor.beginTask("Exporting to " + type + "...", 3);
 			tempFile = File.createTempFile("docbookgen", null);
 			String temp = tempFile.toURI().toString();
-
+			System.out.println("temp file location: " + temp);
+			
 			monitor.subTask("Transforming DRL -> DocBook...");
 			transform(drl2docbook, source, temp);
 			monitor.worked(1);
@@ -210,8 +215,8 @@ public class BasicExportAction extends Action {
 			throw new InvocationTargetException(e);
 		} finally {
 			validator.reset();
-			if (tempFile != null)
-				tempFile.delete();
+//			if (tempFile != null)
+//				tempFile.delete();
 		}
 	}
 

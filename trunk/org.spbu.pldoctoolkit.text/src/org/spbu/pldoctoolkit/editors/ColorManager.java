@@ -9,7 +9,6 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 
 public class ColorManager {
-
 	protected Map<RGB, Color> fColorTable = new HashMap<RGB, Color>(10);
 
 	public void dispose() {

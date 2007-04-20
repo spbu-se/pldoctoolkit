@@ -21,7 +21,6 @@ public class DRLEditor extends TextEditor {
 	@Override
 	protected void initializeEditor() {
 		super.initializeEditor();
-		setSourceViewerConfiguration(new DRLSourceViewerConfiguration());
 	}
 
 	public void dispose() {
