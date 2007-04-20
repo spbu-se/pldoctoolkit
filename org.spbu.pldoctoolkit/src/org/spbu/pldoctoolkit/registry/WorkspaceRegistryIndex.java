@@ -54,7 +54,7 @@ public class WorkspaceRegistryIndex {
 	
 	boolean processResourceDelta(IResourceDelta delta) throws CoreException {
 		IResource resource = delta.getResource();
-		System.out.println("processing " + resource.getLocationURI());
+		System.out.println("processing resource delta for " + resource.getLocationURI());
 		if (resource instanceof IContainer) {
 			if (resource instanceof IProject) {
 				IProject project = (IProject) resource;
