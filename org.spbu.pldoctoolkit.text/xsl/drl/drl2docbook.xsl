@@ -6,7 +6,8 @@
 	
 	<xsl:param name="finalinfproductid"/>
 	
-	<xsl:variable name="FinalInfProduct" select="/drl:ProductDocumentation/drl:FinalInfProduct[@id = $finalinfproductid or not($finalinfproductid)][1]"/>
+	<xsl:variable name="FinalInfProduct" 
+		select="/drl:ProductDocumentation/drl:FinalInfProduct[@id = $finalinfproductid or not($finalinfproductid)][1]"/>
 	<xsl:variable name="productid" select="/drl:ProductDocumentation/@productid"/>
 	
 	<xsl:variable name="err" select="QName('http://math.spbu.ru/drl', 'error')"/>
@@ -23,7 +24,7 @@
 				<xsl:apply-templates select="$root/drl:DocumentationCore/drl:InfProduct[@id = current()/@infproductid]"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:value-of select="error($err, concat('InfProduct with id ''', @infproductid, ''' unresolved'), .)"/>
+				<xsl:value-of select="error($err, concat('InfProduct with id ''', @infproductid, ''' unresolved.'), .)"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
@@ -35,6 +36,9 @@
 	<xsl:template match="drl:InfElemRef">
 		<xsl:variable name="uri" select="concat('drlresolve://Core/InfElement/', @infelemid)"/>
 		<xsl:variable name="root" select="document($uri)"/>
+		<xsl:if test="(not(@optional) or @optional = 'false') and not($FinalInfProduct/drl:Adapter[@infelemrefid = current()/@id])">
+			<xsl:value-of select="error($err, 'Reference is not optional, you must provide an adapter.', .)"/>
+		</xsl:if>
 		<xsl:choose>
 			<xsl:when test="$root">
 				<xsl:apply-templates select="$root/drl:DocumentationCore/drl:InfElement[@id = current()/@infelemid]">
@@ -42,7 +46,7 @@
 				</xsl:apply-templates>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:value-of select="error($err, concat('InfElement with id ''', @infelemid, ''' unresolved'), .)"/>
+				<xsl:value-of select="error($err, concat('InfElement with id ''', @infelemid, ''' unresolved.'), .)"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
@@ -101,10 +105,10 @@
 		<xsl:variable name="Entry" select="$Dictionary/drl:Entry[@id = current()/@entryid]"/>
 		<xsl:choose>
 			<xsl:when test="not($Dictionary)">
-				<xsl:value-of select="error($err, concat('Dictionary with id ''', @dictid, ''' unresolved'), .)"/>
+				<xsl:value-of select="error($err, concat('Dictionary with id ''', @dictid, ''' unresolved.'), .)"/>
 			</xsl:when>
 			<xsl:when test="not($Entry)">
-				<xsl:value-of select="error($err, concat('Dictionary with id ''', @dictid, ''' doesn''t contain an Entry with id ''', @entryid,''''), .)"/>
+				<xsl:value-of select="error($err, concat('Dictionary with id ''', @dictid, ''' doesn''t contain an Entry with id ''', @entryid,'''.'), .)"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:apply-templates select="$Entry/node()"/>
@@ -112,7 +116,9 @@
 		</xsl:choose>
 	</xsl:template>
 	
-	<xsl:template match="drl:InfElemRefGroup"/>
+	<xsl:template match="drl:InfElemRefGroup">
+		
+	</xsl:template>
 	
 	<xsl:template match="text()">
 		<xsl:copy-of select="."/>

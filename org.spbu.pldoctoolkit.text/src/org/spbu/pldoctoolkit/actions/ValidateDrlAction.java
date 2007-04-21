@@ -20,7 +20,7 @@ import com.thaiopensource.xml.sax.Jaxp11XMLReaderCreator;
 
 public class ValidateDrlAction extends Action {
 	private static final SchemaCache SCHEMA_CACHE = new SchemaCache();
-	private static final URL SCHEMA_URL = PLDocToolkitPlugin.getBundleResourceURL("schema/document-reuse-language.rng");
+	private static final URL SCHEMA_URL = PLDocToolkitPlugin.getURL("schema/document-reuse-language.rng");
 
 	private final MarkingErrorHandler errorHandler = new MarkingErrorHandler();
 	private final XMLReader xmlReader;

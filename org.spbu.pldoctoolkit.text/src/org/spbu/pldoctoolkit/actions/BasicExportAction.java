@@ -142,6 +142,31 @@ public class BasicExportAction extends Action {
 		try {
 			if (editor == null)
 				return;
+			
+			FileEditorInput editorInput = (FileEditorInput)editor.getEditorInput();
+			registry = PLDocToolkitPlugin.getRegistry(editorInput.getFile().getProject().getName());
+			IFile file = editorInput.getFile();
+			
+			String context = registry.getContext(file);
+			////////////
+			List<RegisteredLocation> list = registry.findForFile(file);
+			System.out.println("Export action run. List of registered locations for this file: ");
+			boolean hasFIP = false;
+			for (RegisteredLocation loc: list) {
+				if (!hasFIP && RegisteredLocation.FINAL_INF_PRODUCT.equals(loc.getType()))
+					hasFIP = true;
+				System.out.println(loc);
+			}
+			System.out.println("---");
+			////////////
+			
+			// TODO: Show user a dialog, allowing to choose from a list of final inf products, found in this file
+			if (!hasFIP || context == null || CORE.equals(context)) {
+				MessageDialog.openError(DrlPublisherPlugin.getShell(), "Error", "This file doesn't contain any FinalInfProducts");
+				return;
+			}
+
+			// TODO: replace with workspace-resource choosing dialog... meybe need to remember last export position somehow
 			FileDialog fileDialog = new FileDialog(DrlPublisherPlugin.getShell(), SWT.SAVE);
 			fileDialog.setText(getText());
 			fileDialog.setFilterExtensions(new String[] {"*." + extension});
@@ -150,21 +175,6 @@ public class BasicExportAction extends Action {
 				return;
 			
 			String destinationFilename = dialogResult.contains(".") ? dialogResult : dialogResult + "." + extension;
-			FileEditorInput editorInput = (FileEditorInput)editor.getEditorInput();
-			registry = PLDocToolkitPlugin.getRegistry(editorInput.getFile().getProject().getName());
-			IFile file = editorInput.getFile();
-			String context = registry.getContext(file);
-			
-			////////////
-			List<RegisteredLocation> list = registry.findForFile(file);
-			System.out.println("Export action run. List of registered locations for this file: ");
-			for (RegisteredLocation loc: list)
-				System.out.println(loc);
-			System.out.println("---");
-			////////////
-			
-			if (context == null || CORE.equals(context))
-				return;
 			
 			final String source = file.getLocationURI().toString();
 			final String destination = new File(destinationFilename).toURI().toString();

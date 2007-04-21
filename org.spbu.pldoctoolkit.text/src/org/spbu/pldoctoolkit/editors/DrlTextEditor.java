@@ -14,7 +14,7 @@ public class DrlTextEditor extends TextEditor {
 	public DrlTextEditor() {
 		super();
 		colorManager = new ColorManager();
-		setSourceViewerConfiguration(new XMLConfiguration(colorManager));
+		setSourceViewerConfiguration(new XMLConfiguration(colorManager, this));
 		setDocumentProvider(new XMLDocumentProvider());
 	}
 	

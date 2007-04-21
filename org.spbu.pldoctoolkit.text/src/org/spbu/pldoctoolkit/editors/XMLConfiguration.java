@@ -1,5 +1,6 @@
 package org.spbu.pldoctoolkit.editors;
 
+import org.eclipse.jface.text.DefaultIndentLineAutoEditStrategy;
 import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextDoubleClickStrategy;
@@ -12,15 +13,19 @@ import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
+import org.eclipse.ui.IEditorPart;
 
 public class XMLConfiguration extends SourceViewerConfiguration {
+	private final ColorManager colorManager;
+	private final IEditorPart editor;
+	
 	private XMLDoubleClickStrategy doubleClickStrategy;
 	private XMLTagScanner tagScanner;
 	private XMLScanner scanner;
-	private ColorManager colorManager;
 
-	public XMLConfiguration(ColorManager colorManager) {
+	public XMLConfiguration(ColorManager colorManager, IEditorPart editor) {
 		this.colorManager = colorManager;
+		this.editor = editor;
 	}
 	
 	public String[] getConfiguredContentTypes(ISourceViewer sourceViewer) {
@@ -34,8 +39,8 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 	public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {
 		ContentAssistant assistant = new ContentAssistant();
 		assistant.setDocumentPartitioning(getConfiguredDocumentPartitioning(sourceViewer));
-		assistant.setContentAssistProcessor(new DrlCompletionProcessor(), IDocument.DEFAULT_CONTENT_TYPE);
-		assistant.setContentAssistProcessor(new DrlCompletionProcessor(), XMLPartitionScanner.XML_TAG);
+		assistant.setContentAssistProcessor(new DrlCompletionProcessor(editor), IDocument.DEFAULT_CONTENT_TYPE);
+		assistant.setContentAssistProcessor(new DrlCompletionProcessor(editor), XMLPartitionScanner.XML_TAG);
 		
 		assistant.enableAutoActivation(true);
 		assistant.setAutoActivationDelay(100);
@@ -75,7 +80,7 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 	@Override
 	public IAutoEditStrategy[] getAutoEditStrategies(ISourceViewer sourceViewer, String contentType) {
 		if (!XMLPartitionScanner.XML_COMMENT.equals(contentType))
-			return new IAutoEditStrategy[] {new XMLAutoEditStrategy()};
+			return new IAutoEditStrategy[] {new XMLAutoEditStrategy(), new DefaultIndentLineAutoEditStrategy()};
 		return super.getAutoEditStrategies(sourceViewer, contentType);
 	}
 
