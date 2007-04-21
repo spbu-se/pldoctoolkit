@@ -215,8 +215,8 @@ public class BasicExportAction extends Action {
 			throw new InvocationTargetException(e);
 		} finally {
 			validator.reset();
-//			if (tempFile != null)
-//				tempFile.delete();
+			if (tempFile != null)
+				tempFile.delete();
 		}
 	}
 

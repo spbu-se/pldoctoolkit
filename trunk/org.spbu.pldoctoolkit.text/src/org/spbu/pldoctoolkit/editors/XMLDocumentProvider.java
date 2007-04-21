@@ -15,7 +15,7 @@ public class XMLDocumentProvider extends FileDocumentProvider {
 			IDocumentExtension3 ext3 = (IDocumentExtension3) document;
 			IDocumentPartitioner partitioner = new FastPartitioner(new XMLPartitionScanner(),
 				new String[] {XMLPartitionScanner.XML_TAG, XMLPartitionScanner.XML_COMMENT });
-			ext3.setDocumentPartitioner(DRLEditor.XML_PARTITIONING, partitioner);
+			ext3.setDocumentPartitioner(DrlTextEditor.XML_PARTITIONING, partitioner);
 			partitioner.connect(document);
 		}
 		return document;

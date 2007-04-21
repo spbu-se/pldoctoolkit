@@ -1,8 +1,11 @@
 package org.spbu.pldoctoolkit.editors;
 
+import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextDoubleClickStrategy;
 import org.eclipse.jface.text.TextAttribute;
+import org.eclipse.jface.text.contentassist.ContentAssistant;
+import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
@@ -27,9 +30,25 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 			XMLPartitionScanner.XML_TAG };
 	}
 	
-	public ITextDoubleClickStrategy getDoubleClickStrategy(
-		ISourceViewer sourceViewer,
-		String contentType) {
+	@Override
+	public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {
+		ContentAssistant assistant = new ContentAssistant();
+		assistant.setDocumentPartitioning(getConfiguredDocumentPartitioning(sourceViewer));
+		assistant.setContentAssistProcessor(new DrlCompletionProcessor(), IDocument.DEFAULT_CONTENT_TYPE);
+		assistant.setContentAssistProcessor(new DrlCompletionProcessor(), XMLPartitionScanner.XML_TAG);
+		
+		assistant.enableAutoActivation(true);
+		assistant.setAutoActivationDelay(100);
+		
+		return assistant;
+	}
+
+	@Override
+	public String getConfiguredDocumentPartitioning(ISourceViewer sourceViewer) {
+		return DrlTextEditor.XML_PARTITIONING;
+	}
+
+	public ITextDoubleClickStrategy getDoubleClickStrategy(ISourceViewer sourceViewer, String contentType) {
 		if (doubleClickStrategy == null)
 			doubleClickStrategy = new XMLDoubleClickStrategy();
 		return doubleClickStrategy;
@@ -39,9 +58,7 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 		if (scanner == null) {
 			scanner = new XMLScanner(colorManager);
 			scanner.setDefaultReturnToken(
-				new Token(
-					new TextAttribute(
-						colorManager.getColor(IXMLColorConstants.DEFAULT))));
+				new Token(new TextAttribute(colorManager.getColor(IXMLColorConstants.DEFAULT))));
 		}
 		return scanner;
 	}
@@ -50,16 +67,22 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 		if (tagScanner == null) {
 			tagScanner = new XMLTagScanner(colorManager);
 			tagScanner.setDefaultReturnToken(
-				new Token(
-					new TextAttribute(
-						colorManager.getColor(IXMLColorConstants.TAG))));
+				new Token(new TextAttribute(colorManager.getColor(IXMLColorConstants.TAG))));
 		}
 		return tagScanner;
 	}
 
+	@Override
+	public IAutoEditStrategy[] getAutoEditStrategies(ISourceViewer sourceViewer, String contentType) {
+		if (!XMLPartitionScanner.XML_COMMENT.equals(contentType))
+			return new IAutoEditStrategy[] {new XMLAutoEditStrategy()};
+		return super.getAutoEditStrategies(sourceViewer, contentType);
+	}
+
 	public IPresentationReconciler getPresentationReconciler(ISourceViewer sourceViewer) {
 		PresentationReconciler reconciler = new PresentationReconciler();
-
+		reconciler.setDocumentPartitioning(DrlTextEditor.XML_PARTITIONING);
+		
 		DefaultDamagerRepairer dr = new DefaultDamagerRepairer(getXMLTagScanner());
 		reconciler.setDamager(dr, XMLPartitionScanner.XML_TAG);
 		reconciler.setRepairer(dr, XMLPartitionScanner.XML_TAG);
@@ -68,10 +91,8 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 		reconciler.setDamager(dr, IDocument.DEFAULT_CONTENT_TYPE);
 		reconciler.setRepairer(dr, IDocument.DEFAULT_CONTENT_TYPE);
 
-		NonRuleBasedDamagerRepairer ndr =
-			new NonRuleBasedDamagerRepairer(
-				new TextAttribute(
-					colorManager.getColor(IXMLColorConstants.XML_COMMENT)));
+		NonRuleBasedDamagerRepairer ndr = 
+			new NonRuleBasedDamagerRepairer(new TextAttribute(colorManager.getColor(IXMLColorConstants.XML_COMMENT)));
 		reconciler.setDamager(ndr, XMLPartitionScanner.XML_COMMENT);
 		reconciler.setRepairer(ndr, XMLPartitionScanner.XML_COMMENT);
 

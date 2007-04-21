@@ -10,9 +10,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.cache.SchemaCache;
-import org.spbu.pldoctoolkit.xmlutil.ContentHandlerAdapter;
-import org.xml.sax.Attributes;
-import org.xml.sax.ContentHandler;
 import org.xml.sax.DTDHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -43,10 +40,11 @@ public class ValidateDrlAction extends Action {
 	@Override
 	public void run() {
 		try {
+			validator.reset();
 			IFileEditorInput editorInput = (IFileEditorInput) editor.getEditorInput();
 			final IFile editorFile = editorInput.getFile();
 			editorFile.deleteMarkers(IMarker.MARKER, true, IResource.DEPTH_ZERO);
-			xmlReader.setContentHandler(new DrlContentHandler(validator.getContentHandler()));
+			xmlReader.setContentHandler(validator.getContentHandler());
 			DTDHandler dtdHandler = validator.getDTDHandler();
 			if (dtdHandler != null)
 				xmlReader.setDTDHandler(dtdHandler);
@@ -56,26 +54,6 @@ public class ValidateDrlAction extends Action {
 			// ignored
 		} catch (Exception e) {
 			throw new RuntimeException(e);
-		} finally {
-			validator.reset();
-		}
-	}
-	
-	private static class DrlContentHandler extends ContentHandlerAdapter {
-		private static final String DRL_URI = "http://math.spbu.ru/drl";
-		
-		public DrlContentHandler(ContentHandler handler) {
-			super(handler);
-		}
-		
-		public void endElement(String uri, String localName, String qName) throws SAXException {
-			if (uri.equals(DRL_URI))
-				handler.endElement(uri, localName, qName);
-		}
-		
-		public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
-			if (uri.equals(DRL_URI))
-				handler.startElement(uri, localName, qName, atts);
 		}
 	}
 }
