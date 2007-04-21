@@ -33,6 +33,7 @@ class ProjectRegistryImpl implements ProjectRegistry {
 	private static final String PRODUCT_DOCUMENTATION = "ProductDocumentation";
 	
 	private static final String ID_ATTRIBUTE = "id";
+	private static final String NAME_ATTRIBUTE = "name";
 	private static final String PRODUCTID_ATTRIBUTE = "productid";
 
 	private final Map<String, RegisteredLocation> locationMap = new HashMap<String, RegisteredLocation>();
@@ -75,9 +76,9 @@ class ProjectRegistryImpl implements ProjectRegistry {
 	public List<RegisteredLocation> findForType(String type) {
 		// TODO: optimize?
 		List<RegisteredLocation> result = new ArrayList<RegisteredLocation>();
-		for (String key: locationMap.keySet())
-			if (key.contains("/" + type + "/"))
-				result.add(locationMap.get(key));
+		for (RegisteredLocation loc: locationMap.values())
+			if (loc.getType().equals(type))
+				result.add(loc);
 		return result;
 	}
 
@@ -98,13 +99,15 @@ class ProjectRegistryImpl implements ProjectRegistry {
 	
 	private void register(String context, Node node, IFile file) {
 		Node idAttribute = node.getAttributes().getNamedItem(ID_ATTRIBUTE);
+		Node nameAttribute = node.getAttributes().getNamedItem(NAME_ATTRIBUTE);
 		if (idAttribute == null)
 			return;
-		String name = node.getLocalName();
+		String type = node.getLocalName();
 		String id = idAttribute.getNodeValue();
+		String name = nameAttribute == null ? "" : nameAttribute.getNodeValue();
 		// TODO: set proper lineNumber
-		RegisteredLocation loc = new RegisteredLocation(context, name, id, file, 0); 
-		locationMap.put(context + "/" + name + "/" + id, loc);
+		RegisteredLocation loc = new RegisteredLocation(context, type, id, name, file, 0); 
+		locationMap.put(context + "/" + type + "/" + id, loc);
 	}
 	
 	void refreshFile(IFile file) throws CoreException {
