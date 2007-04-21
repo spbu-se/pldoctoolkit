@@ -31,7 +31,7 @@
             class="org.spbu.pldoctoolkit.editors.DrlTextEditor"
             contributorClass="org.spbu.pldoctoolkit.editors.DrlEditorActionContributor"
             extensions="drl"
-            icon="icons/sample.gif"
+            icon="icons/icon.gif"
             id="org.spbu.pldoctoolkit.editors.DRLEditor"
             name="DRL Editor"/>
    </extension>
