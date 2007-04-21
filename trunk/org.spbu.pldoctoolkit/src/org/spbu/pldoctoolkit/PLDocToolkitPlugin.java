@@ -51,7 +51,7 @@ public class PLDocToolkitPlugin extends AbstractUIPlugin {
 		return plugin;
 	}
 	
-	public static URL getBundleResourceURL(String relativePath) {
+	public static URL getURL(String relativePath) {
 		try {
 			return new URL(getDefault().getBundle().getEntry("/"), relativePath);
 		} catch (MalformedURLException e) {

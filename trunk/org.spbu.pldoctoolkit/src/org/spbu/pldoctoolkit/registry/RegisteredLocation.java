@@ -12,15 +12,17 @@ public class RegisteredLocation {
 	public static final String FINAL_INF_PRODUCT = "FinalInfProduct";
 	
 	private final String context;
-	private final String name;
+	private final String type;
 	private final String id;
+	private final String name;
 	private final IFile file;
 	private final int lineNumber;
 	
-	public RegisteredLocation(String context, String name, String id, IFile file, int lineNumber) {
+	public RegisteredLocation(String context, String type, String id, String name, IFile file, int lineNumber) {
 		this.context = context;
-		this.name = name;
+		this.type = type;
 		this.id = id;
+		this.name = name;
 		this.file = file;
 		this.lineNumber = lineNumber;
 	}
@@ -29,12 +31,16 @@ public class RegisteredLocation {
 		return context;
 	}
 
-	public String getName() {
-		return name;
+	public String getType() {
+		return type;
 	}
 
 	public String getId() {
 		return id;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	public IFile getFile() {
@@ -46,6 +52,6 @@ public class RegisteredLocation {
 	}
 	
 	public String toString() {
-		return context + "/" + name + "/" + id + " @ " + file + ":" + lineNumber;
+		return context + "/" + type + "/" + id + " @ " + file + ":" + lineNumber;
 	}
 }
