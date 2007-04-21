@@ -33,7 +33,7 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		ITextEditor editor = null;
 		if (part instanceof ITextEditor)
 			editor = (ITextEditor) part;
-		exportToHtml.setAction(getAction(editor, DRLEditor.EXPORT_TO_HTML));
+		exportToHtml.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_HTML));
 //		validateDrl.setAction(getAction(editor, DRLEditor.VALIDATE_DRL));
 	}
 }

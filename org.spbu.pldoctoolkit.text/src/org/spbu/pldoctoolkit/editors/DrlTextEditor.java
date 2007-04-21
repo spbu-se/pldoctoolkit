@@ -4,14 +4,14 @@ import org.eclipse.ui.editors.text.TextEditor;
 import org.spbu.pldoctoolkit.actions.BasicExportAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
 
-public class DRLEditor extends TextEditor {
+public class DrlTextEditor extends TextEditor {
 	public static final String XML_PARTITIONING = "__drl_partitioning";
 	
 	public static final String VALIDATE_DRL = "validate_action";
 	public static final String EXPORT_TO_HTML = "export_to_html";
 	private ColorManager colorManager;
 
-	public DRLEditor() {
+	public DrlTextEditor() {
 		super();
 		colorManager = new ColorManager();
 		setSourceViewerConfiguration(new XMLConfiguration(colorManager));
