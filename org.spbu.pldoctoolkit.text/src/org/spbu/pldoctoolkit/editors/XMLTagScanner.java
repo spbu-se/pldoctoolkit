@@ -27,25 +27,31 @@ public class XMLTagScanner extends RuleBasedScanner {
 	private class NameAndAttributeRule implements IRule {
 		public IToken evaluate(ICharacterScanner scanner) {
 			int ch = scanner.read();
-			if (ch == ICharacterScanner.EOF)
-				return Token.UNDEFINED;
 			if (ch == '<') {
-				while (XMLChar.isName(scanner.read()));
+				while (isName(ch = scanner.read()));
 				scanner.unread();
 				return new Token(new TextAttribute(manager.getColor(IXMLColorConstants.TAG)));
 			}
-			if (!XMLChar.isName(ch)) {
+			if (!isName(ch)) {
 				scanner.unread();
 				return Token.UNDEFINED;
 			}
-			while (XMLChar.isName(ch = scanner.read()));
-			if (XMLChar.isSpace(ch))
-				while (XMLChar.isSpace(ch = scanner.read()));
+			while (isName(ch = scanner.read()));
+			if (isSpace(ch))
+				while (isSpace(ch = scanner.read()));
 			if (ch == '=')
 				return new Token(new TextAttribute(manager.getColor(IXMLColorConstants.ATTRIBUTE)));
 			scanner.unread();
 			scanner.unread();
 			return Token.UNDEFINED;
+		}
+		
+		private boolean isName(int ch) {
+			return ch != ICharacterScanner.EOF && XMLChar.isName(ch);
+		}
+		
+		private boolean isSpace(int ch) {
+			return ch != ICharacterScanner.EOF && XMLChar.isSpace(ch);
 		}
 	}
 }
