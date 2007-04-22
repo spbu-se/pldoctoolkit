@@ -24,6 +24,13 @@
             icon="icons/sample.gif"
             id="org.spbu.pldoctoolkit.wizards.NewPartWizard"
             name="Part"/>
+      <wizard
+            category="org.spbu.pldoctoolkit"
+            class="org.spbu.pldoctoolkit.wizards.NewDrlFile"
+            hasPages="true"
+            icon="icons/icon.gif"
+            id="org.spbu.pldoctoolkit.text.wizards.NewDrlFile"
+            name="New DRL File Wizard"/>
    </extension>
    <extension
          point="org.eclipse.ui.editors">

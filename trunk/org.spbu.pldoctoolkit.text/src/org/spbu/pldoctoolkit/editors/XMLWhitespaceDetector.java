@@ -6,6 +6,6 @@ import org.eclipse.jface.text.rules.IWhitespaceDetector;
 
 public class XMLWhitespaceDetector implements IWhitespaceDetector {
 	public boolean isWhitespace(char c) {
-		return XMLChar.isSpace(c);
+		return c >= 0 && XMLChar.isSpace(c);
 	}
 }
