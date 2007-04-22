@@ -8,29 +8,11 @@
             name="Product-Line Documentation"/>
       <wizard
             category="org.spbu.pldoctoolkit"
-            class="org.spbu.pldoctoolkit.wizards.NewFamilyWizard"
-            icon="icons/sample.gif"
-            id="org.spbu.pldoctoolkit.wizards.NewFamilyWizard"
-            name="Documentation Family"/>
-      <wizard
-            category="org.spbu.pldoctoolkit"
-            class="org.spbu.pldoctoolkit.wizards.NewDocumentWizard"
-            icon="icons/sample.gif"
-            id="org.spbu.pldoctoolkit.wizards.NewDocumentWizard"
-            name="Final Document"/>
-      <wizard
-            category="org.spbu.pldoctoolkit"
-            class="org.spbu.pldoctoolkit.wizards.NewPartWizard"
-            icon="icons/sample.gif"
-            id="org.spbu.pldoctoolkit.wizards.NewPartWizard"
-            name="Part"/>
-      <wizard
-            category="org.spbu.pldoctoolkit"
             class="org.spbu.pldoctoolkit.wizards.NewDrlFile"
             hasPages="true"
             icon="icons/icon.gif"
-            id="org.spbu.pldoctoolkit.text.wizards.NewDrlFile"
-            name="New DRL File Wizard"/>
+            id="org.spbu.pldoctoolkit.text.wizards.new.drlfile"
+            name="DRL document"/>
    </extension>
    <extension
          point="org.eclipse.ui.editors">
