@@ -39,7 +39,7 @@ public class DrlPerspectiveFactory implements IPerspectiveFactory {
 //				IPageLayout.DEFAULT_VIEW_RATIO, IPageLayout.ID_RES_NAV);
 
 		IFolderLayout bottomFolder = layout.createFolder("bottom", IPageLayout.BOTTOM, 0.75f, editorArea);
-		bottomFolder.addView(IPageLayout.ID_PROP_SHEET);
+		bottomFolder.addView(IPageLayout.ID_PROBLEM_VIEW);
 		bottomFolder.addView("org.eclipse.pde.runtime.LogView");
 	}
 }
