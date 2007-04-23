@@ -11,6 +11,7 @@ import org.eclipse.ui.texteditor.RetargetTextEditorAction;
 
 public class DrlEditorActionContributor extends TextEditorActionContributor {
 	private final RetargetTextEditorAction exportToHtml = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ExportToHtml.");
+	private final RetargetTextEditorAction exportToPdf = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ExportToPdf.");
 //	private final RetargetTextEditorAction validateDrl = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ValidateDrl.");
 	
 	public void contributeToMenu(IMenuManager menu) {
@@ -18,6 +19,7 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		MenuManager docbookMenu = new MenuManager("DRL");
 		menu.insertAfter("additions", docbookMenu);
 		docbookMenu.add(exportToHtml);
+		docbookMenu.add(exportToPdf);
 //		docbookMenu.add(validateDrl);
 	}
 
@@ -25,6 +27,7 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("DocbookEditor"));
 		toolBarManager.add(exportToHtml);
+		toolBarManager.add(exportToPdf);
 //		toolBarManager.add(validateDrl);
 	}
 
@@ -34,6 +37,7 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		if (part instanceof ITextEditor)
 			editor = (ITextEditor) part;
 		exportToHtml.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_HTML));
+		exportToPdf.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_PDF));
 //		validateDrl.setAction(getAction(editor, DRLEditor.VALIDATE_DRL));
 	}
 }

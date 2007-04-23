@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.List;
 
 import javax.xml.transform.ErrorListener;
+import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.SourceLocator;
 import javax.xml.transform.TransformerException;
@@ -61,13 +62,13 @@ import com.thaiopensource.xml.sax.Jaxp11XMLReaderCreator;
 public class BasicExportAction extends Action {
 	protected static final ControllerCache CONTROLLER_CACHE = new ControllerCache();
 	protected static final SchemaCache SCHEMA_CACHE = new SchemaCache();
-	
+
 	protected static final URL DRL2DOCBOOK_URL = DrlPublisherPlugin.getURL("xsl/drl/drl2docbook.xsl");
 	protected static final URL DOCBOOK_SCHEMA_URL = DrlPublisherPlugin.getURL("schema/docbook/docbook.rng");
 
 	protected final Controller drl2docbook;
 	protected final Controller docbook2type;
-	protected final String type;
+	protected final String format;
 	protected final String extension;
 	protected final IEditorPart editor;
 
@@ -119,19 +120,19 @@ public class BasicExportAction extends Action {
 
 	protected DocbookContentHandler contentHandler;
 	protected ProjectRegistry registry;
-	
-	public BasicExportAction(IEditorPart editor, String type, String extension) throws Exception {
-		super("Export to " + type);
+
+	public BasicExportAction(IEditorPart editor, URL docbookTransformationURL, String format, String extension) throws Exception {
+		super("Export to " + format);
 		if (editor == null)
 			throw new NullPointerException("editor cannot be null");
 		this.editor = editor;
-		this.type = type;
+		this.format = format;
 		this.extension = extension;
 
 		// transformers
 		drl2docbook = CONTROLLER_CACHE.getController(DRL2DOCBOOK_URL);
-		docbook2type = CONTROLLER_CACHE.getController(DrlPublisherPlugin.getURL("xsl/docbook/" + type + "/docbook.xsl"));
-		
+		docbook2type = CONTROLLER_CACHE.getController(docbookTransformationURL);
+
 		// validator
 		validator = SCHEMA_CACHE.getValidator(DOCBOOK_SCHEMA_URL, errorHandler);
 		xmlReader = new Jaxp11XMLReaderCreator().createXMLReader();
@@ -142,11 +143,11 @@ public class BasicExportAction extends Action {
 		try {
 			if (editor == null)
 				return;
-			
+
 			FileEditorInput editorInput = (FileEditorInput)editor.getEditorInput();
 			registry = PLDocToolkitPlugin.getRegistry(editorInput.getFile().getProject().getName());
 			IFile file = editorInput.getFile();
-			
+
 			String context = registry.getContext(file);
 			////////////
 			List<RegisteredLocation> list = registry.findForFile(file);
@@ -159,7 +160,7 @@ public class BasicExportAction extends Action {
 			}
 			System.out.println("---");
 			////////////
-			
+
 			// TODO: Show user a dialog, allowing to choose from a list of final inf products, found in this file
 			if (!hasFIP || context == null || CORE.equals(context)) {
 				MessageDialog.openError(DrlPublisherPlugin.getShell(), "Error", "This file doesn't contain any FinalInfProducts");
@@ -173,17 +174,17 @@ public class BasicExportAction extends Action {
 			String dialogResult = fileDialog.open();
 			if (dialogResult == null)
 				return;
-			
+
 			String destinationFilename = dialogResult.contains(".") ? dialogResult : dialogResult + "." + extension;
-			
-			final String source = file.getLocationURI().toString();
-			final String destination = new File(destinationFilename).toURI().toString();
+
+			final File source = new File(file.getLocationURI());
+			final File result = new File(destinationFilename);
 
 			editorInput.getFile().getParent().deleteMarkers(IMarker.MARKER, true, IResource.DEPTH_INFINITE);
 
 			IRunnableWithProgress op = new IRunnableWithProgress() {
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-					doTransform(monitor, source, destination);
+					doTransform(monitor, source, result);
 				}
 			};
 			ProgressMonitorDialog pmDialog = new ProgressMonitorDialog(DrlPublisherPlugin.getShell());
@@ -194,19 +195,19 @@ public class BasicExportAction extends Action {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			MessageDialog.openError(DrlPublisherPlugin.getShell(), "Error", "Export failed: " + e.getCause().getMessage());
 		}
 	}
 
-	private void doTransform(IProgressMonitor monitor, String source, String destination) throws InvocationTargetException {
+	protected void doTransform(IProgressMonitor monitor, File source, File result) throws InvocationTargetException {
 		File tempFile = null;
 		try {
-			monitor.beginTask("Exporting to " + type + "...", 3);
+			monitor.beginTask("Exporting to " + format + "...", 3);
 			tempFile = File.createTempFile("docbookgen", null);
-			String temp = tempFile.toURI().toString();
-			System.out.println("temp file location: " + temp);
-			
+			System.out.println("temp file location: " + tempFile.getAbsolutePath());
+
 			monitor.subTask("Transforming DRL -> DocBook...");
-			transform(drl2docbook, source, temp);
+			transform(drl2docbook, new StreamSource(source), new StreamResult(tempFile));
 			monitor.worked(1);
 
 			monitor.subTask("Validating DocBook...");
@@ -215,11 +216,11 @@ public class BasicExportAction extends Action {
 			DTDHandler dtdHandler = validator.getDTDHandler();
 			if (dtdHandler != null)
 				xmlReader.setDTDHandler(dtdHandler);
-			xmlReader.parse(temp);
+			xmlReader.parse(tempFile.getAbsolutePath());
 			monitor.worked(1);
 
-			monitor.subTask("Transforming DocBook -> " + type + "...");
-			transform(docbook2type, temp, destination);
+			monitor.subTask("Transforming DocBook -> " + format + "...");
+			transform(docbook2type, new StreamSource(tempFile), new StreamResult(result));
 			monitor.done();
 		} catch (Exception e) {
 			throw new InvocationTargetException(e);
@@ -230,12 +231,12 @@ public class BasicExportAction extends Action {
 		}
 	}
 
-	protected void transform(Controller transformer, String source, String destination) throws TransformerException {
+	protected void transform(Controller transformer, Source source, Result result) throws TransformerException {
 		transformer.reset();
 		transformer.clearDocumentPool();
 		transformer.setErrorListener(errorListener);
 		transformer.setURIResolver(uriResolver);
-		transformer.transform(new StreamSource(source), new StreamResult(destination));
+		transformer.transform(source, result);
 	}
 
 	private void processTransformerException(TransformerException e, int severity) throws XPathException {
@@ -247,7 +248,7 @@ public class BasicExportAction extends Action {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void processDynamicError(DynamicError dynamicError, int severity) throws XPathException {
 		Value errorObject = dynamicError.getErrorObject();
 		if (errorObject instanceof SingletonNode) {
@@ -285,7 +286,7 @@ public class BasicExportAction extends Action {
 		}
 		System.out.println("*** Marker: " + message + " @ " + systemId + " line " + lineNumber);
 	}
-	
+
 	private IFile getFile(String systemId) {
 		RegisteredLocation loc = registry.getRegisteredLocation(systemId);
 		if (loc != null)

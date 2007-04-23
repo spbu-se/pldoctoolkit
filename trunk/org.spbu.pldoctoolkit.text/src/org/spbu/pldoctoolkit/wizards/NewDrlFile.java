@@ -66,7 +66,12 @@ public class NewDrlFile extends Wizard implements INewWizard {
 	}
 
 	private void createFile(final IFile file, IProgressMonitor monitor) throws IOException, CoreException {
-		InputStream is = null;
+		InputStream is = new InputStream() {
+			@Override
+			public int read() throws IOException {
+				return -1;
+			}
+		};
 		try {
 			monitor.beginTask("Creating file...", 1);
 			if (NewDrlFilePage.PRODUCT_LINE.equals(page.getType())) {
