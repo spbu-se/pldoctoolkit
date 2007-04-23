@@ -4,7 +4,7 @@ import org.eclipse.core.resources.IFile;
 
 public class RegisteredLocation {
 	public static final String CORE = "Core";
-	public static final String PRODUCT = "Product";
+	public static final String PRODUCT = "Product:";
 	
 	public static final String INF_ELEMENT = "InfElement";
 	public static final String INF_PRODUCT = "InfProduct";
