@@ -99,7 +99,7 @@
 	</xsl:template>
 	
 	<xsl:template match="drl:DictRef">
-		<xsl:variable name="uri" select="concat('drlresolve://Product', $productid, '/Dictionary/', @dictid)"/>
+		<xsl:variable name="uri" select="concat('drlresolve://Product:', $productid, '/Dictionary/', @dictid)"/>
 		<xsl:variable name="root" select="document($uri)"/>
 		<xsl:variable name="Dictionary" select="$root//drl:Dictionary[@id = current()/@dictid]"/>
 		<xsl:variable name="Entry" select="$Dictionary/drl:Entry[@id = current()/@entryid]"/>

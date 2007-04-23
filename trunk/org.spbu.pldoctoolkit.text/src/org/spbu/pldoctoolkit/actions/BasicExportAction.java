@@ -1,12 +1,11 @@
 package org.spbu.pldoctoolkit.actions;
 
-import static org.spbu.pldoctoolkit.registry.RegisteredLocation.CORE;
-
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.transform.ErrorListener;
@@ -37,6 +36,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -48,6 +48,7 @@ import org.spbu.pldoctoolkit.DrlPublisherPlugin;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.cache.ControllerCache;
 import org.spbu.pldoctoolkit.cache.SchemaCache;
+import org.spbu.pldoctoolkit.dialogs.FinalInfProductSelectionDialog;
 import org.spbu.pldoctoolkit.registry.ProjectRegistry;
 import org.spbu.pldoctoolkit.registry.RegisteredLocation;
 import org.xml.sax.DTDHandler;
@@ -120,7 +121,8 @@ public class BasicExportAction extends Action {
 
 	protected DocbookContentHandler contentHandler;
 	protected ProjectRegistry registry;
-
+	protected String fipId;
+	
 	public BasicExportAction(IEditorPart editor, URL docbookTransformationURL, String format, String extension) throws Exception {
 		super("Export to " + format);
 		if (editor == null)
@@ -148,25 +150,31 @@ public class BasicExportAction extends Action {
 			registry = PLDocToolkitPlugin.getRegistry(editorInput.getFile().getProject().getName());
 			IFile file = editorInput.getFile();
 
-			String context = registry.getContext(file);
-			////////////
 			List<RegisteredLocation> list = registry.findForFile(file);
-			System.out.println("Export action run. List of registered locations for this file: ");
-			boolean hasFIP = false;
+			List<RegisteredLocation> fipList = new ArrayList<RegisteredLocation>();
 			for (RegisteredLocation loc: list) {
-				if (!hasFIP && RegisteredLocation.FINAL_INF_PRODUCT.equals(loc.getType()))
-					hasFIP = true;
-				System.out.println(loc);
+				if (RegisteredLocation.FINAL_INF_PRODUCT.equals(loc.getType()))
+					fipList.add(loc);
 			}
-			System.out.println("---");
-			////////////
 
-			// TODO: Show user a dialog, allowing to choose from a list of final inf products, found in this file
-			if (!hasFIP || context == null || CORE.equals(context)) {
+			fipId = null;
+			if (fipList.isEmpty()) {
 				MessageDialog.openError(DrlPublisherPlugin.getShell(), "Error", "This file doesn't contain any FinalInfProducts");
 				return;
+			} else if (fipList.size() == 1) {
+				fipId = fipList.get(0).getId();
+			} else {
+				FinalInfProductSelectionDialog dialog = new FinalInfProductSelectionDialog(DrlPublisherPlugin.getShell());
+				dialog.setList(fipList);
+				int result = dialog.open();
+				if (result == Dialog.OK && dialog.getSelectionIndex() != -1) {
+					fipId = list.get(dialog.getSelectionIndex()).getId();
+				}
 			}
-
+			
+			if (fipId == null)
+				return;
+			
 			// TODO: replace with workspace-resource choosing dialog... meybe need to remember last export position somehow
 			FileDialog fileDialog = new FileDialog(DrlPublisherPlugin.getShell(), SWT.SAVE);
 			fileDialog.setText(getText());
@@ -193,9 +201,10 @@ public class BasicExportAction extends Action {
 			if (returnCode == ProgressMonitorDialog.OK) {
 				MessageDialog.openInformation(DrlPublisherPlugin.getShell(), "Information", "Export successfull");
 			}
+		} catch (InvocationTargetException e) {
+			MessageDialog.openError(DrlPublisherPlugin.getShell(), "Error", "Export failed: " + e.getCause().getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
-			MessageDialog.openError(DrlPublisherPlugin.getShell(), "Error", "Export failed: " + e.getCause().getMessage());
 		}
 	}
 
@@ -207,6 +216,7 @@ public class BasicExportAction extends Action {
 			System.out.println("temp file location: " + tempFile.getAbsolutePath());
 
 			monitor.subTask("Transforming DRL -> DocBook...");
+			drl2docbook.setParameter("finalinfproductid", fipId);
 			transform(drl2docbook, new StreamSource(source), new StreamResult(tempFile));
 			monitor.worked(1);
 
@@ -232,11 +242,11 @@ public class BasicExportAction extends Action {
 	}
 
 	protected void transform(Controller transformer, Source source, Result result) throws TransformerException {
-		transformer.reset();
-		transformer.clearDocumentPool();
 		transformer.setErrorListener(errorListener);
 		transformer.setURIResolver(uriResolver);
 		transformer.transform(source, result);
+		transformer.clearDocumentPool();
+		transformer.reset();
 	}
 
 	private void processTransformerException(TransformerException e, int severity) throws XPathException {

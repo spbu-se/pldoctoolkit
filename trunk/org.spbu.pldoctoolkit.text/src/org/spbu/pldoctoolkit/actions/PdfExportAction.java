@@ -38,6 +38,7 @@ public class PdfExportAction extends BasicExportAction {
 			System.out.println("temp file location: " + tempFile.getAbsolutePath());
 
 			monitor.subTask("Transforming DRL -> DocBook...");
+			drl2docbook.setParameter("finalinfproductid", fipId);
 			transform(drl2docbook, new StreamSource(source), new StreamResult(tempFile));
 			monitor.worked(1);
 
