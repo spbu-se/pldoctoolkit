@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="lib/avalon-framework-4.2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/batik-all-1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-io-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-logging-1.0.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/fop.jar" sourcepath="D:/dev/fop-0.93-src.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/xmlgraphics-commons-1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jing.jar" sourcepath="D:/dev/jing-20030619/src.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
