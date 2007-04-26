@@ -1,25 +1,35 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies;
 
+import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
+import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
+import org.spbu.pldoctoolkit.graph.InfProduct;
 import org.spbu.pldoctoolkit.graph.ProductLine;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreInfProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
+import org.spbu.pldoctoolkit.registry.ProjectRegistry;
+import org.spbu.pldoctoolkit.registry.RegisteredLocation;
+import org.spbu.pldoctoolkit.registry.WorkspaceRegistryIndex;
 
 /**
  * @generated
@@ -67,27 +77,45 @@ public class DocumentationCoreInfProductsCompartmentCanonicalEditPolicy extends
 		
 		DrlModelDiagramEditorPlugin.getInstance().logInfo("refreshing");
 		
-		List result = new LinkedList();
-		EObject modelObject = ((View) getHost().getParent().getModel()).getElement();
-		View viewObject = (View) getHost().getModel();
+//		List result = new LinkedList();
+//		EObject modelObject = ((View) getHost().getParent().getModel()).getElement();
+//		View viewObject = (View) getHost().getModel();
+//		
+//		int nodeVID;
+//		for (Iterator docCores = ((ProductLine) modelObject)
+//				.getDocumentationCores().iterator(); docCores.hasNext();) {
+//
+//			DocumentationCore nextDocCore = (DocumentationCore) docCores.next();
+//			for(Iterator partsIterator = nextDocCore.getParts().iterator();
+//				partsIterator.hasNext();) {
+//				
+//				GenericDocumentPart nextPart = (GenericDocumentPart) partsIterator.next();
+//				if(DrlPackage.INF_PRODUCT == nextPart.eClass().getClassifierID()) {
+//					nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(viewObject, nextPart);
+//					if(InfProductEditPart.VISUAL_ID == nodeVID) {
+//						result.add(nextPart);
+//					}
+//				}
+//			}
+//		}
 		
-		int nodeVID;
-		for (Iterator docCores = ((ProductLine) modelObject)
-				.getDocumentationCores().iterator(); docCores.hasNext();) {
+		URI diagramURI = ((View) getHost().getModel()).eResource().getURI();
+		String projectName = diagramURI.segment(1);
 
-			DocumentationCore nextDocCore = (DocumentationCore) docCores.next();
-			for(Iterator partsIterator = nextDocCore.getParts().iterator();
-				partsIterator.hasNext();) {
-				
-				GenericDocumentPart nextPart = (GenericDocumentPart) partsIterator.next();
-				if(DrlPackage.INF_PRODUCT == nextPart.eClass().getClassifierID()) {
-					nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(viewObject, nextPart);
-					if(InfProductEditPart.VISUAL_ID == nodeVID) {
-						result.add(nextPart);
-					}
-				}
-			}
+		DrlModelDiagramEditorPlugin.getInstance().logInfo(
+				"projectName: " + projectName);
+		
+		List<RegisteredLocation> infProducts = PLDocToolkitPlugin.getRegistry(projectName).findForType(RegisteredLocation.INF_PRODUCT);
+		
+		List result = new LinkedList();
+		for(RegisteredLocation infProd : infProducts) {
+			InfProduct resultProduct = DrlFactory.eINSTANCE.createInfProduct();
+			resultProduct.setId(infProd.getId());
+			resultProduct.setName(infProd.getName());
+			
+			result.add(resultProduct);
 		}
+		
 		return result;
 	}
 
