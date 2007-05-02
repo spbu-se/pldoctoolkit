@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:v="http://math.spbu.ru/drl"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:resolver="java:org.spbu.pldoctoolkit.graph.util.IdUtil"
     version="2.0"
+    extension-element-prefixes="resolver"
     exclude-result-prefixes="xsi">
 
     <xsl:output indent="yes"/>
@@ -34,6 +36,14 @@
         </v:InfElemRefGroup>
     </xsl:template>
 
+    <!-- infelem id reference -->
+    <xsl:template match="@infelem">
+        <xsl:variable name="uri"><xsl:value-of select="."/></xsl:variable>
+        <xsl:attribute name="infelem">
+            <xsl:value-of select="resolver:uriStringToId($uri)"/>
+        </xsl:attribute>
+    </xsl:template>
+    
     <xsl:template match="node() | attribute() | text() | comment()">
         <xsl:copy>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>

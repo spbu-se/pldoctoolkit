@@ -83,15 +83,19 @@ public class DrlResourceImpl extends XMLResourceImpl {
 	 * step 1: xslt-process the file, output - byte array buf
 	 * step 2: load the doc from the byte buf into DOM 
 	 * 
-	 * TODO: first load doc into DOM, then xslt (using DOMSource and DOMResult) 
-	 * 
 	 * @see org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#doLoad(java.io.InputStream,
 	 *      java.util.Map)
 	 */
 	public void doLoad(InputStream inputStream, Map<?, ?> options)
 			throws IOException {
+
+		//TODO how to determine project name from URI?
+		String projectName = this.getURI().segment(1);
+		
+		DrlGraphPlugin.logInfo("project name: " + projectName);
 		
 		try {
+			// create necessary sources and streams
 			InputStream stylesheetStream = DrlGraphPlugin.getResourceURL(DRL2XMI_FILE).openStream();
 			StreamSource styleSource = new StreamSource(stylesheetStream);
 			
@@ -100,22 +104,31 @@ public class DrlResourceImpl extends XMLResourceImpl {
 			ByteArrayOutputStream xslResultStream = new ByteArrayOutputStream();
 			StreamResult xslResult = new StreamResult(xslResultStream);
 			
+			// create factory
 			TransformerFactory transFactory = TransformerFactory.newInstance(
 					DrlGraphPlugin.JAXP_PROPERTIES.getProperty(DrlGraphPlugin.JAXP_PROPERTY_TRANSFORMER_FACTORY),
 					this.getClass().getClassLoader());
+			
+			// create transformer
 			Transformer transformer = transFactory.newTransformer(styleSource);
-
+			transformer.setParameter("project-name", projectName);
+			
+			// transform
 			transformer.transform(fileSource, xslResult);
 			
 			ByteArrayInputStream xslResultAsInput = new ByteArrayInputStream(xslResultStream.toByteArray());
 			
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(
+			// create builder factory
+			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance(
 					DrlGraphPlugin.JAXP_PROPERTIES.getProperty(DrlGraphPlugin.JAXP_PROPERTY_DOCUMENT_BUILDER_FACTORY),
 					this.getClass().getClassLoader());
-			factory.setValidating(false);
-			factory.setNamespaceAware(true);
-			DocumentBuilder builder = factory.newDocumentBuilder();
+			builderFactory.setValidating(false);
+			builderFactory.setNamespaceAware(true);
+			
+			// create builder
+			DocumentBuilder builder = builderFactory.newDocumentBuilder();
 
+			// parse
 			drlDocument = builder.parse(xslResultAsInput); 
 			
 			super.doLoad(drlDocument, options);
@@ -145,25 +158,35 @@ public class DrlResourceImpl extends XMLResourceImpl {
 			throws IOException {
 		
 		try {
+			// flush changes to the tree
 			updateDocumentNodes();
 			
+			// create sources and steams
 			DOMSource source = new DOMSource(drlDocument);
 			StreamResult result = new StreamResult(outputStream);
 
 			InputStream stylesheetStream = DrlGraphPlugin.getResourceURL(XMI2DRL_FILE).openStream();
 			StreamSource stylesource = new StreamSource(stylesheetStream); 
-			
-			TransformerFactory transFactory = TransformerFactory.newInstance(
-					DrlGraphPlugin.JAXP_PROPERTIES.getProperty(DrlGraphPlugin.JAXP_PROPERTY_TRANSFORMER_FACTORY),
-					this.getClass().getClassLoader());
-			Transformer docSerializer = transFactory.newTransformer(); // stylesource
 
 			ByteArrayOutputStream docOutStream = new ByteArrayOutputStream();
 			StreamResult docStreamResult = new StreamResult(docOutStream);
+
+			// create transformer factory
+			TransformerFactory transFactory = TransformerFactory.newInstance(
+					DrlGraphPlugin.JAXP_PROPERTIES.getProperty(DrlGraphPlugin.JAXP_PROPERTY_TRANSFORMER_FACTORY),
+					this.getClass().getClassLoader());
+			
+			// create transformer to serialize doc
+			Transformer docSerializer = transFactory.newTransformer();
+
+			// serialize
 			docSerializer.transform(source, docStreamResult);
 			
+			// create transformer xmi->drl
 			Transformer docTransformer = transFactory.newTransformer(stylesource);
 			StreamSource docInStream = new StreamSource(new ByteArrayInputStream(docOutStream.toByteArray()));
+			
+			// convert xmi->drl and save
 			docTransformer.transform(docInStream, result);
 			
 		} catch (TransformerConfigurationException e) {

@@ -441,20 +441,18 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Infelem().getName();
 		
 		InfElement infelem = getInfelem();
-//		String infelemHref = infelem == null? "" : infelem.getId();
 		String infelemHref = infelem == null? "" : helper.getHREF(infelem);
 		elem.setAttribute(infelemAttrName, infelemHref);
 		
 		DrlGraphPlugin.logInfo("infelem id = " + elem.getAttribute(infelemAttrName));
 		
 		// infelemRefGroup
-		String infelemReGroupAttrName =
-			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Infelem().getName();
+		String infelemRefGroupAttrName =
+			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Group().getName();
 		
 		InfElemRefGroup infelemRefGroup = getGroup();
-//		String groupId = infelemRefGroup == null? "" : infelemRefGroup.getId();
 		String groupHref = infelemRefGroup == null? "" : helper.getHREF(infelemRefGroup);
-		elem.setAttribute(infelemReGroupAttrName, groupHref);
+		elem.setAttribute(infelemRefGroupAttrName, groupHref);
 	}
 
 } //InfElemRefImpl
