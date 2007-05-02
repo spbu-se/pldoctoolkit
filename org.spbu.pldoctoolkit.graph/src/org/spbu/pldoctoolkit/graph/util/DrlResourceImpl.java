@@ -11,7 +11,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -26,10 +25,14 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLLoad;
-import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.XMLHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.spbu.pldoctoolkit.graph.DrlElement;
 import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -48,7 +51,9 @@ public class DrlResourceImpl extends XMLResourceImpl {
 	public static final String DOCBOOK_URI = "http://docbook.org/ns/docbook";
 
 	private Document drlDocument;
-	
+
+	private XMLHelper helper = createXMLHelper();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,6 +145,8 @@ public class DrlResourceImpl extends XMLResourceImpl {
 			throws IOException {
 		
 		try {
+			updateDocumentNodes();
+			
 			DOMSource source = new DOMSource(drlDocument);
 			StreamResult result = new StreamResult(outputStream);
 
@@ -167,10 +174,47 @@ public class DrlResourceImpl extends XMLResourceImpl {
 			throw new IOException(e);
 		}
 	}
+	
+	/*
+	 * This method calls updateAttributeNodes() method for every DrlElement in resource
+	 * in order to flush attributes and ids changes.
+	 */
+	private void updateDocumentNodes() {
+		TreeIterator<EObject> iter = this.getAllContents();
+		while(iter.hasNext()) {
+			EObject nextObj = iter.next();
+			if(!(nextObj instanceof DrlElement)) {
+				continue;
+			}
+			
+			DrlElement drlObj = (DrlElement) nextObj;
+			drlObj.updateAttributeNodes();
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#createXMLHelper()
+	 */
+	@Override
+	protected XMLHelper createXMLHelper() {
+		if(helper == null) {
+			helper = new XMLHelperImpl(this);
+		}
+		
+		return helper;
+	}
+
+	/**
+	 * @return the helper
+	 */
+	public XMLHelper getHelper() {
+		return helper;
+	}
+
 
 	@Override
 	protected XMLLoad createXMLLoad() {
 		return new DrlXMLLoadImpl(createXMLHelper());
 	}
-	
+
 } // DrlResourceImpl

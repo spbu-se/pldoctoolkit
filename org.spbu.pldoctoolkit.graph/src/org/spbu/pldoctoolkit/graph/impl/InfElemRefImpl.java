@@ -11,11 +11,14 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
+import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
+import org.spbu.pldoctoolkit.graph.util.DrlResourceImpl;
 import org.w3c.dom.Element;
 
 /**
@@ -413,8 +416,13 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl#initializeAttributeNodes(org.w3c.dom.Element)
 	 */
 	@Override
-	protected void initializeAttributeNodes(Element elem) {
-		super.initializeAttributeNodes(elem);
+	public void updateAttributeNodes() {
+		super.updateAttributeNodes();
+
+		DrlResourceImpl resource = (DrlResourceImpl) this.eResource();
+		XMLHelper helper = resource.getHelper();
+		
+		Element elem = getNode();
 		
 		// id
 		String idAttrName = 
@@ -427,6 +435,26 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Optional().getName();
 		
 		elem.setAttribute(optionalAttrName, Boolean.toString(isOptional()));
+		
+		// infelem
+		String infelemAttrName =
+			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Infelem().getName();
+		
+		InfElement infelem = getInfelem();
+//		String infelemHref = infelem == null? "" : infelem.getId();
+		String infelemHref = infelem == null? "" : helper.getHREF(infelem);
+		elem.setAttribute(infelemAttrName, infelemHref);
+		
+		DrlGraphPlugin.logInfo("infelem id = " + elem.getAttribute(infelemAttrName));
+		
+		// infelemRefGroup
+		String infelemReGroupAttrName =
+			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Infelem().getName();
+		
+		InfElemRefGroup infelemRefGroup = getGroup();
+//		String groupId = infelemRefGroup == null? "" : infelemRefGroup.getId();
+		String groupHref = infelemRefGroup == null? "" : helper.getHREF(infelemRefGroup);
+		elem.setAttribute(infelemReGroupAttrName, groupHref);
 	}
 
 } //InfElemRefImpl

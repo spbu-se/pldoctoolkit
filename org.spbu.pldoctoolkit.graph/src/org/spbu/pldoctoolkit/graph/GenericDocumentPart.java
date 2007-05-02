@@ -30,6 +30,9 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface GenericDocumentPart extends DrlElement {
+	//TODO move to the appropriate place
+	static final String XSI_NAMESPACE = "http://www.w3.org/2001/XMLSchema-instance";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

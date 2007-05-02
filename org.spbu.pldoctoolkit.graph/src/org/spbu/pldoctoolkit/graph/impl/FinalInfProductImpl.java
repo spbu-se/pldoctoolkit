@@ -238,9 +238,11 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl#initializeAttributeNodes(org.w3c.dom.Document, org.w3c.dom.Element)
 	 */
 	@Override
-	protected void initializeAttributeNodes(Element elem) {
-		super.initializeAttributeNodes(elem);
+	public void updateAttributeNodes() {
+		super.updateAttributeNodes();
 
+		Element elem = getNode();
+		
 		// id
 		String idAttrName = 
 			DrlFactory.eINSTANCE.getDrlPackage().getFinalInfProduct_Id().getName();

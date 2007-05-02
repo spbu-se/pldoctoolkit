@@ -334,8 +334,10 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl#initializeAttributeNodes(org.w3c.dom.Document, org.w3c.dom.Element)
 	 */
 	@Override
-	protected void initializeAttributeNodes(Element elem) {
-		super.initializeAttributeNodes(elem);
+	public void updateAttributeNodes() {
+		super.updateAttributeNodes();
+		
+		Element elem = getNode();
 		
 		// id
 		String idAttrName = 
@@ -350,6 +352,13 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 		elem.setAttribute(nameAttrName, getName());
 	}
 
+	/* (non-Javadoc)
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl#needTypeInfo()
+	 */
+	@Override
+	protected boolean needTypeInfo() {
+		return true;
+	}
 	
 	
 } //GenericDocumentPartImpl
