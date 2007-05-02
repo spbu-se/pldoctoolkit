@@ -10,9 +10,14 @@ package org.spbu.pldoctoolkit.graph.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,6 +29,9 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.spbu.pldoctoolkit.graph.DrlElement;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.spbu.pldoctoolkit.graph.command.AddCommandWrapper;
+import org.spbu.pldoctoolkit.graph.command.MoveCommandWrapper;
+import org.spbu.pldoctoolkit.graph.command.RemoveCommandWrapper;
 import org.w3c.dom.Element;
 
 /**
@@ -148,4 +156,62 @@ public class DrlElementItemProvider
 		return DrlModelEditPlugin.INSTANCE;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createAddCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EReference, java.util.Collection, int)
+	 */
+	@Override
+	protected Command createAddCommand(EditingDomain domain, EObject owner,
+			EReference feature, Collection<?> collection, int index) {
+		return new AddCommandWrapper(domain, owner, feature, collection, index);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createAddCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.util.Collection, int)
+	 */
+	@Override
+	protected Command createAddCommand(EditingDomain domain, EObject owner,
+			EStructuralFeature feature, Collection<?> collection, int index) {
+	    if (feature instanceof EReference)
+	    {
+	      return createAddCommand(domain, owner, (EReference)feature, collection, index);
+	    }
+	    return new AddCommandWrapper(domain, owner, feature, collection, index);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createMoveCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EReference, org.eclipse.emf.ecore.EObject, int)
+	 */
+	@Override
+	protected Command createMoveCommand(EditingDomain domain, EObject owner,
+			EReference feature, EObject value, int index) {
+		return new MoveCommandWrapper(domain, owner, feature, value, index);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createMoveCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object, int)
+	 */
+	@Override
+	protected Command createMoveCommand(EditingDomain domain, EObject owner,
+			EStructuralFeature feature, Object value, int index) {
+		return new MoveCommandWrapper(domain, owner, feature, value, index);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createRemoveCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EReference, java.util.Collection)
+	 */
+	@Override
+	protected Command createRemoveCommand(EditingDomain domain, EObject owner,
+			EReference feature, Collection<?> collection) {
+		return new RemoveCommandWrapper(domain, owner, feature, collection);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createRemoveCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.util.Collection)
+	 */
+	@Override
+	protected Command createRemoveCommand(EditingDomain domain, EObject owner,
+			EStructuralFeature feature, Collection<?> collection) {
+		return new RemoveCommandWrapper(domain, owner, feature, collection);
+	}
+	
 }
