@@ -4,10 +4,14 @@
     xmlns:v="http://math.spbu.ru/drl" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:resolver="java:org.spbu.pldoctoolkit.graph.util.IdUtil"
-    extension-element-prefixes="resolver"
+    xmlns:saxon="http://icl.com/saxon"
+    extension-element-prefixes="resolver saxon"
     version="2.0">
     
     <xsl:output indent="yes"/>
+    
+<!--    <xsl:variable name="project-name" select="resolver:parseProjectName(saxon:systemid())"/>-->
+    <xsl:param name="project-name"/>
     
     <xsl:template match="v:Product">
         <products>
@@ -40,7 +44,7 @@
     <xsl:template match="@infelem">
         <xsl:variable name="id"><xsl:value-of select="."/></xsl:variable>
         <xsl:attribute name="infelem">
-            <xsl:value-of select="resolver:idToUriString($id)"/>
+            <xsl:value-of select="resolver:idToUriString($project-name, $id)"/>
         </xsl:attribute>
     </xsl:template>
 
