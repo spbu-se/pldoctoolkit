@@ -28,6 +28,12 @@
         </v:InfElemRef>
     </xsl:template>
 
+    <xsl:template match="groups">
+        <v:InfElemRefGroup>
+            <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
+        </v:InfElemRefGroup>
+    </xsl:template>
+
     <xsl:template match="node() | attribute() | text() | comment()">
         <xsl:copy>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>

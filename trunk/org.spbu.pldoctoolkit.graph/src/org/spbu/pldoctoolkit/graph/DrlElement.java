@@ -7,6 +7,7 @@
 package org.spbu.pldoctoolkit.graph;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -64,6 +65,8 @@ public interface DrlElement extends EObject {
 	/*
 	 * In case the corresponding DOM node has not been initialized, does this.
 	 */
-	void initializeNode();
+	void initializeNode(EStructuralFeature feature);
+
+	void updateAttributeNodes();
 
 } // DrlElement

@@ -8,9 +8,17 @@ package org.spbu.pldoctoolkit.graph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.xmi.NameInfo;
+import org.eclipse.emf.ecore.xmi.XMLHelper;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.NameInfoImpl;
 import org.spbu.pldoctoolkit.graph.DrlElement;
+import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.util.DrlResourceImpl;
 import org.w3c.dom.Document;
@@ -30,6 +38,8 @@ import org.w3c.dom.Element;
  * @generated
  */
 public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
+	public static final String XSI_TYPE_NS = XMLResource.XSI_NS+":"+XMLResource.TYPE;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -170,7 +180,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 */
 	protected String getTagName() {
 //		DrlFactory factory = DrlFactory.eINSTANCE.getDrlPackage().blablabla
-		return getClass().getName();
+		return getClass().getSimpleName();
 	}
 	
 	protected final Document getDocument() {
@@ -181,17 +191,62 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 		return null;
 	}
 	
-	public void initializeNode() {
-		Document drlDocument = getDocument();
-		if(drlDocument != null) {
-			Element elem = drlDocument.createElementNS(DrlPackage.eNS_URI, getTagName());
-			setNode(elem);
-			initializeAttributeNodes(elem);
+	/**
+	 * Initialize the current node respecting the feature it is being assigned with.
+	 * 
+	 * @param feature
+	 */
+	public void initializeNode(EStructuralFeature feature) {
+		Resource resource = this.eResource();
+		if(resource instanceof DrlResourceImpl) {
+			DrlResourceImpl drlResource = (DrlResourceImpl) resource;
+			Document drlDocument = drlResource.getDrlDocument();
+			XMLHelper helper = drlResource.getHelper();
+			
+			if(drlDocument != null) {
+				NameInfo nameInfo = new NameInfoImpl();
+		        helper.populateNameInfo(nameInfo, feature);
+		        Element elem = drlDocument.createElementNS(nameInfo.getNamespaceURI(), nameInfo.getQualifiedName()); 
+		        
+				setNode(elem);
+				updateAttributeNodes();
+			} else {
+				DrlGraphPlugin.logInfo("drldoc empty");
+			}
 		}
 	}
 	
-	protected void initializeAttributeNodes(Element elem) {
+	/**
+	 * This method is needed to update the attributes values or create ones if necessary.
+	 * 
+	 * This method adds "xsi:type" attribute if needed.
+	 * 
+	 * Derived classes should override this method to update their specific attributes. 
+	 */
+	public void updateAttributeNodes() {
 		// default implementation is empty
+		if (needTypeInfo()) {
+			DrlResourceImpl resource = (DrlResourceImpl) this.eResource();
+			XMLHelper helper = resource.getHelper();
+			NameInfo nameInfo = new NameInfoImpl();
+			Element elem = getNode();
+			
+			helper.populateNameInfo(nameInfo, this.eClass());
+			elem.setAttributeNS(ExtendedMetaData.XSI_URI,
+					XSI_TYPE_NS, nameInfo.getQualifiedName());
+		}
+		
 	}
+	
+	protected boolean needTypeInfo() {
+		return false;
+	}
+	
+//	protected void updateAttributes(DrlResourceImpl resource) {
+//		assert resource != null;
+//		
+//		DrlSaveAdapter drlSave = resource.getDrlSave();
+//		drlSave.updateAttributes(this);
+//	}
 	
 } //DrlElementImpl

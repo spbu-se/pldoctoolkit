@@ -43,8 +43,6 @@ public class DrlXMLHandler extends SAXXMIHandler {
 	 */
 	@Override
 	public void startElement(String uri, String localName, String name) {
-		DrlGraphPlugin.logInfo("starting element: " + uri + ", " + localName + ", " + name);
-		
 		if(DrlResourceImpl.DOCBOOK_URI.equals(uri)) {
 			return;
 		}
@@ -119,7 +117,6 @@ public class DrlXMLHandler extends SAXXMIHandler {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected EObject createObjectFromFactory(EFactory factory, String typeName) {
-		DrlGraphPlugin.logInfo("creating object from factory: " + factory + ", type name: " + typeName);
 		EObject result = super.createObjectFromFactory(factory, typeName);
 		
 		if(result instanceof DrlElement) {

@@ -283,8 +283,10 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlElementImpl#initializeAttributeNodes(org.w3c.dom.Element)
 	 */
 	@Override
-	protected void initializeAttributeNodes(Element elem) {
-		super.initializeAttributeNodes(elem);
+	public void updateAttributeNodes() {
+		super.updateAttributeNodes();
+		
+		Element elem = getNode();
 		
 		// name
 		String nameAttrName = 
