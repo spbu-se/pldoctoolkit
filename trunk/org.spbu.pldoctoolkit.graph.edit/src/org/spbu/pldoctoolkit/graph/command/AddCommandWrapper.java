@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.CommandParameter;
@@ -117,6 +118,13 @@ public class AddCommandWrapper extends AddCommand {
 		
 		if(!(owner instanceof DrlElement)) {
 			DrlGraphPlugin.logInfo("not a drl at AddCommandWrapper.doExecute()");
+			super.doExecute();
+			return;
+		}
+		
+		boolean containment = feature instanceof EReference && ((EReference)feature).isContainment();
+		if(!containment) {
+			DrlGraphPlugin.logInfo("not a containment reference, skipping");
 			super.doExecute();
 			return;
 		}
