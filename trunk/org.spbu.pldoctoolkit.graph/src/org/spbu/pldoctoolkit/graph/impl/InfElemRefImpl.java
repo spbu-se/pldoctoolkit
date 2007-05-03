@@ -135,20 +135,11 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
-		
-		//HAND
-		Element node = getNode();
-		if(node != null) {
-			node.setAttribute(
-					DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Id().getName(),
-					id);
-		}
-		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__ID, oldId, id));
 	}
@@ -197,23 +188,6 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	 * @generated
 	 */
 	public InfElemRefGroup getGroup() {
-		if (group != null && group.eIsProxy()) {
-			InternalEObject oldGroup = (InternalEObject)group;
-			group = (InfElemRefGroup)eResolveProxy(oldGroup);
-			if (group != oldGroup) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DrlPackage.INF_ELEM_REF__GROUP, oldGroup, group));
-			}
-		}
-		return group;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InfElemRefGroup basicGetGroup() {
 		return group;
 	}
 
@@ -263,20 +237,11 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setOptional(boolean newOptional) {
 		boolean oldOptional = optional;
 		optional = newOptional;
-		
-		//HAND
-		Element node = getNode();
-		if(node != null) {
-			node.setAttribute(
-					DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Optional().getName(),
-					Boolean.toString(optional));
-		}
-		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.INF_ELEM_REF__OPTIONAL, oldOptional, optional));
 	}
@@ -322,8 +287,7 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 				if (resolve) return getInfelem();
 				return basicGetInfelem();
 			case DrlPackage.INF_ELEM_REF__GROUP:
-				if (resolve) return getGroup();
-				return basicGetGroup();
+				return getGroup();
 			case DrlPackage.INF_ELEM_REF__OPTIONAL:
 				return isOptional() ? Boolean.TRUE : Boolean.FALSE;
 		}
