@@ -31,6 +31,9 @@ public class IdUtil {
 			String filePath = file.getProjectRelativePath().toString();
 			
 			uriResult = filePath + ID_SEPARATOR_CHAR + id;
+		} else {
+			DrlGraphPlugin.logError("no element found in project '" + projectName
+					+ "' for id '" + id + "'");
 		}
 		
 		DrlGraphPlugin.logInfo("id " + id + " resolved as " + uriResult);
@@ -43,22 +46,20 @@ public class IdUtil {
 	 * 
 	 * @param uriString
 	 * @return
+	 * 
+	 * @throws IllegalArgumentException if the <code>uriString</code> is not empty and does not
+	 * contain ID part
 	 */
 	public static String uriStringToId(String uriString) {
 		int idIndex = uriString.indexOf(ID_SEPARATOR_CHAR) + 1;
-		String id = "";
-		if(idIndex != 0) {
-			id = uriString.substring(idIndex);
+
+		if(idIndex == 0 && !"".equals(uriString)) {
+			throw new IllegalArgumentException("could not parse uri '" + uriString + "': ID part not found");
 		}
+			
+		String id = uriString.substring(idIndex);
 		
 		return id;
 	}
 	
-	public static String parseProjectName(String xmlSystemId) {
-		//TODO
-		
-		DrlGraphPlugin.logInfo("got system id: " + xmlSystemId);
-		
-		return "test";
-	}
 }

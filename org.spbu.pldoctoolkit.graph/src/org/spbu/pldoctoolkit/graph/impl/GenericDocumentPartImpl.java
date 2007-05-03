@@ -150,8 +150,6 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 			node.setAttribute(
 					DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Id().getName(), 
 					newId);
-		} else {
-			DrlGraphPlugin.logInfo("node is null");
 		}
 		
 		if (eNotificationRequired())

@@ -43,6 +43,14 @@
             <xsl:value-of select="resolver:uriStringToId($uri)"/>
         </xsl:attribute>
     </xsl:template>
+
+    <!-- InfElemRef -> group reference -->
+    <xsl:template match="@group">
+        <xsl:variable name="uri"><xsl:value-of select="."/></xsl:variable>
+        <xsl:attribute name="group">
+            <xsl:value-of select="resolver:uriStringToId($uri)"/>
+        </xsl:attribute>
+    </xsl:template>
     
     <xsl:template match="node() | attribute() | text() | comment()">
         <xsl:copy>
