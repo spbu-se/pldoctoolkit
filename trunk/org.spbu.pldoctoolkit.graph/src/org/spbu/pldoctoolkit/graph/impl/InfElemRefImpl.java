@@ -444,8 +444,6 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 		String infelemHref = infelem == null? "" : helper.getHREF(infelem);
 		elem.setAttribute(infelemAttrName, infelemHref);
 		
-		DrlGraphPlugin.logInfo("infelem id = " + elem.getAttribute(infelemAttrName));
-		
 		// infelemRefGroup
 		String infelemRefGroupAttrName =
 			DrlFactory.eINSTANCE.getDrlPackage().getInfElemRef_Group().getName();

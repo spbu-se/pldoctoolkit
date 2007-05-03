@@ -15,14 +15,14 @@
     
     <xsl:template match="v:Product">
         <products>
-            <xsl:apply-templates select="node() | @* | text() | comment()"/>
+            <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
         </products>
     </xsl:template>
     
     <xsl:template match="v:InfElement | v:InfProduct">
         <xsl:variable name="type" select="name()"/>
         <xsl:element name="parts">
-            <xsl:apply-templates select="@*"/>
+            <xsl:apply-templates select="attribute()"/>
             <xsl:attribute name="xsi:type"><xsl:value-of select="$type"/></xsl:attribute>
             <xsl:apply-templates select="node() | text() | comment()"/>
         </xsl:element>
@@ -30,13 +30,13 @@
     
     <xsl:template match="v:InfElemRef">
         <infElemRefs>
-            <xsl:apply-templates select="node() | @* | text() | comment()"/>
+            <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
         </infElemRefs>
     </xsl:template>
     
     <xsl:template match="v:InfElemRefGroup">
         <groups>
-            <xsl:apply-templates select="node() | @* | text() | comment()"/>
+            <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
         </groups>
     </xsl:template>
     
@@ -48,9 +48,24 @@
         </xsl:attribute>
     </xsl:template>
 
-    <xsl:template match="node() | @* | text() | comment()">
+    <!-- InfElemRef -> group reference -->
+    <xsl:template match="@group">
+        <xsl:variable name="id"><xsl:value-of select="."/></xsl:variable>
+        <xsl:choose>
+            <xsl:when test="$id = ''">
+                <xsl:copy-of select="."/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:attribute name="group">
+                    <xsl:value-of select="concat('#', $id)"/>
+                </xsl:attribute>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="node() | attribute() | text() | comment()">
         <xsl:copy>
-            <xsl:apply-templates select="node() | @* | text() | comment()"/>            
+            <xsl:apply-templates select="node() | attribute() | text() | comment()"/>            
         </xsl:copy>
     </xsl:template>
 </xsl:stylesheet>

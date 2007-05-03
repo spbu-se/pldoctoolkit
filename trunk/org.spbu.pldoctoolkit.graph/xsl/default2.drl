@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <v:DocumentationCore xmlns:v="http://math.spbu.ru/drl" xmlns:d="http://docbook.org/ns/docbook">
   <v:InfElement id="11zz" name="infinf">
-      <v:InfElemRef id="ssd" infelem="//@parts.2" optional="true"/>
+      <v:InfElemRef id="ssd" infelem="as" optional="true"/>
   </v:InfElement>
   <d:yo test="test"/>
   <v:InfElement id="as" name="test namex">

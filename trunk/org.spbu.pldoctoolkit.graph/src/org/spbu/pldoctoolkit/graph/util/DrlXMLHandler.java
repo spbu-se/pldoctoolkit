@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.SAXXMIHandler;
 import org.spbu.pldoctoolkit.graph.DrlElement;
-import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
