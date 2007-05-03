@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="graph"
-    nsURI="http://tepkom.ru/drl" nsPrefix="v">
+    nsURI="http://math.spbu.ru/drl" nsPrefix="v">
   <eClassifiers xsi:type="ecore:EClass" name="InfElement" eSuperTypes="#//GenericDocumentPart">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestPoints" upperBound="-1"
         eType="#//NestPoint" containment="true"/>
@@ -35,7 +35,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="infelem" lowerBound="1"
         eType="#//InfElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//InfElemRefGroup"
-        eOpposite="#//InfElemRefGroup/infElemRefsGroup"/>
+        resolveProxies="false" eOpposite="#//InfElemRefGroup/infElemRefsGroup"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfElemRefGroup" eSuperTypes="#//DrlElement">
@@ -45,7 +45,8 @@
         eType="#//GroupType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="infElemRefsGroup" upperBound="-1"
-        eType="#//InfElemRef" derived="true" resolveProxies="false" eOpposite="#//InfElemRef/group"/>
+        eType="#//InfElemRef" transient="true" derived="true" resolveProxies="false"
+        eOpposite="#//InfElemRef/group"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="GroupType">
     <eLiterals name="OR" value="1"/>
