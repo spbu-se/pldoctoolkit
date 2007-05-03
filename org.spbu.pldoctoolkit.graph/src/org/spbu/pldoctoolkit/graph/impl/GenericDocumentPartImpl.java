@@ -138,20 +138,11 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
-		
-		//HAND
-		Element node = getNode();
-		if(node != null) {
-			node.setAttribute(
-					DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Id().getName(), 
-					newId);
-		}
-		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.GENERIC_DOCUMENT_PART__ID, oldId, id));
 	}
@@ -168,20 +159,11 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		
-		//HAND
-		Element node = getNode();
-		if(node != null) {
-			node.setAttribute(
-					DrlFactory.eINSTANCE.getDrlPackage().getGenericDocumentPart_Name().getName(),
-					newName);
-		}
-		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DrlPackage.GENERIC_DOCUMENT_PART__NAME, oldName, name));
 	}

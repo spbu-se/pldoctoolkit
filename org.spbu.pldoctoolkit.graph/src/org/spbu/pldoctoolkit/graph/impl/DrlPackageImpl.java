@@ -724,7 +724,7 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		initEClass(infElemRefEClass, InfElemRef.class, "InfElemRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInfElemRef_Id(), ecorePackage.getEString(), "id", null, 1, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInfElemRef_Infelem(), this.getInfElement(), null, "infelem", null, 1, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInfElemRef_Group(), this.getInfElemRefGroup(), this.getInfElemRefGroup_InfElemRefsGroup(), "group", null, 0, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInfElemRef_Group(), this.getInfElemRefGroup(), this.getInfElemRefGroup_InfElemRefsGroup(), "group", null, 0, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInfElemRef_Optional(), ecorePackage.getEBoolean(), "optional", null, 0, 1, InfElemRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(infElemRefGroupEClass, InfElemRefGroup.class, "InfElemRefGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

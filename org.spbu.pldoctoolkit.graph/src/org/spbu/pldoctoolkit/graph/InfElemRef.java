@@ -100,7 +100,7 @@ public interface InfElemRef extends DrlElement {
 	 * @see #setGroup(InfElemRefGroup)
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getInfElemRef_Group()
 	 * @see org.spbu.pldoctoolkit.graph.InfElemRefGroup#getInfElemRefsGroup
-	 * @model opposite="infElemRefsGroup"
+	 * @model opposite="infElemRefsGroup" resolveProxies="false"
 	 * @generated
 	 */
 	InfElemRefGroup getGroup();
