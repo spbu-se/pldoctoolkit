@@ -36,7 +36,16 @@ class DocbookContentHandler extends ContentHandlerAdapter {
 			else if (LINE_NUMBER.equals(attLocalName))
 				lineNumber = Integer.valueOf(attValue);
 		}
-		super.startElement(uri, localName, qName, attributes);
+		if (!DRL_URI.equals(uri))
+			super.startElement(uri, localName, qName, attributes);
+		else if (!"text".equals(localName))
+			throw new SAXException("Unexpected DRL element found in document: " + qName);
+	}
+	
+	@Override
+	public void endElement(String uri, String localName, String qName) throws SAXException {
+		if (!DRL_URI.equals(uri))
+			super.endElement(uri, localName, qName);
 	}
 
 	public int getLineNumber() {
