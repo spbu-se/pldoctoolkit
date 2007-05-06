@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -32,8 +33,6 @@ import org.w3c.dom.Element;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getProductDocumentations <em>Product Documentations</em>}</li>
- *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getDocumentationCores <em>Documentation Cores</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.ProductLineImpl#getProducts <em>Products</em>}</li>
  * </ul>
  * </p>
@@ -67,16 +66,6 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getDocumentationCores() <em>Documentation Cores</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDocumentationCores()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList documentationCores;
 
 	/**
 	 * The cached value of the '{@link #getProducts() <em>Products</em>}' containment reference list.
@@ -132,31 +121,6 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getProductDocumentations() {
-		// TODO: implement this method to return the 'Product Documentations' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
-		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList getDocumentationCores() {
-		if (documentationCores == null) {
-			documentationCores = new EObjectResolvingEList(DocumentationCore.class, this, DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES);
-		}
-		return documentationCores;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList getProducts() {
 		if (products == null) {
 			products = new EObjectContainmentEList(Product.class, this, DrlPackage.PRODUCT_LINE__PRODUCTS);
@@ -186,10 +150,6 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_LINE__NAME:
 				return getName();
-			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
-				return getProductDocumentations();
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
-				return getDocumentationCores();
 			case DrlPackage.PRODUCT_LINE__PRODUCTS:
 				return getProducts();
 		}
@@ -205,14 +165,6 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_LINE__NAME:
 				setName((String)newValue);
-				return;
-			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
-				getProductDocumentations().clear();
-				getProductDocumentations().addAll((Collection)newValue);
-				return;
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
-				getDocumentationCores().clear();
-				getDocumentationCores().addAll((Collection)newValue);
 				return;
 			case DrlPackage.PRODUCT_LINE__PRODUCTS:
 				getProducts().clear();
@@ -232,12 +184,6 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 			case DrlPackage.PRODUCT_LINE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
-				getProductDocumentations().clear();
-				return;
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
-				getDocumentationCores().clear();
-				return;
 			case DrlPackage.PRODUCT_LINE__PRODUCTS:
 				getProducts().clear();
 				return;
@@ -254,10 +200,6 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_LINE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case DrlPackage.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS:
-				return !getProductDocumentations().isEmpty();
-			case DrlPackage.PRODUCT_LINE__DOCUMENTATION_CORES:
-				return documentationCores != null && !documentationCores.isEmpty();
 			case DrlPackage.PRODUCT_LINE__PRODUCTS:
 				return products != null && !products.isEmpty();
 		}

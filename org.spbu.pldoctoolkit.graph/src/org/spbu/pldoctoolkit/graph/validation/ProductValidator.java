@@ -6,6 +6,7 @@
  */
 package org.spbu.pldoctoolkit.graph.validation;
 
+import org.spbu.pldoctoolkit.graph.ProductLine;
 import org.w3c.dom.Node;
 
 
@@ -20,6 +21,8 @@ public interface ProductValidator {
 
 	boolean validateName(String value);
 	boolean validateId(String value);
+
+	boolean validateProductLine(ProductLine value);
 
 	boolean validateNode(Node value);
 }
