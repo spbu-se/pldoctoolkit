@@ -7,8 +7,12 @@ Bundle-ClassPath: .
 Bundle-Activator: org.spbu.pldoctoolkit.graph.provider.DrlModelEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.spbu.pldoctoolkit.graph.provider
+Export-Package: org.spbu.pldoctoolkit.graph.command.diagram,
+ org.spbu.pldoctoolkit.graph.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.spbu.pldoctoolkit.graph;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.gmf.runtime.emf.commands.core,
+ org.eclipse.gmf.runtime.emf.core,
+ org.eclipse.gmf.runtime.emf.type.core
 Eclipse-LazyStart: true

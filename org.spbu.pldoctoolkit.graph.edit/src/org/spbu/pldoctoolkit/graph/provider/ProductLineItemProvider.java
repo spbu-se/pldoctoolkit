@@ -68,8 +68,6 @@ public class ProductLineItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addProductDocumentationsPropertyDescriptor(object);
-			addDocumentationCoresPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -92,50 +90,6 @@ public class ProductLineItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Product Documentations feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addProductDocumentationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProductLine_productDocumentations_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_productDocumentations_feature", "_UI_ProductLine_type"),
-				 DrlPackage.Literals.PRODUCT_LINE__PRODUCT_DOCUMENTATIONS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Documentation Cores feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDocumentationCoresPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProductLine_documentationCores_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_documentationCores_feature", "_UI_ProductLine_type"),
-				 DrlPackage.Literals.PRODUCT_LINE__DOCUMENTATION_CORES,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}
