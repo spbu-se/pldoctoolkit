@@ -104,7 +104,7 @@ class ProjectRegistryImpl implements ProjectRegistry {
 			return;
 		String type = node.getLocalName();
 		String id = idAttribute.getNodeValue();
-		String name = nameAttribute == null ? "" : nameAttribute.getNodeValue();
+		String name = nameAttribute == null ? id : nameAttribute.getNodeValue();
 		// TODO: set proper lineNumber
 		RegisteredLocation loc = new RegisteredLocation(context, type, id, name, file, 0); 
 		locationMap.put(context + "/" + type + "/" + id, loc);
@@ -142,7 +142,9 @@ class ProjectRegistryImpl implements ProjectRegistry {
 						String childName = child.getLocalName();
 						if (!INF_PRODUCT.equals(childName) && 
 							!INF_ELEMENT.equals(childName) && 
-							!DICTIONARY.equals(childName))
+							!DICTIONARY.equals(childName) &&
+							!DIRECTORY.equals(childName) &&
+							!DIRTEPLATE.equals(childName))
 							continue;
 						register(CORE, child, file);
 					}
@@ -158,10 +160,12 @@ class ProjectRegistryImpl implements ProjectRegistry {
 							continue;
 						String childName = child.getLocalName();
 						if (!DICTIONARY.equals(childName) && 
+							!DIRECTORY.equals(childName) &&
+							!DIRTEPLATE.equals(childName) &&
 							!FINAL_INF_PRODUCT.equals(childName))
 							continue;
 						// Adding a prefix to avoid conflicts in case of CORE.equals(id)
-						register(PRODUCT + id, child, file);
+						register(PRODUCT_PREFIX + id, child, file);
 					}
 				}
 			} catch (ParserConfigurationException e) {
