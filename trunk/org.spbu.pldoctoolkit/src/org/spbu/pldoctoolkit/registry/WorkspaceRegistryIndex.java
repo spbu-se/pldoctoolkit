@@ -61,7 +61,6 @@ public class WorkspaceRegistryIndex {
 					registryMap.remove(project.getName());
 					return false;
 				} else if (delta.getKind() == IResourceDelta.CHANGED && (delta.getFlags() & IResourceDelta.OPEN) != 0){
-					System.out.println("processing resource delta for " + resource.getLocationURI());
 					getRegistryImpl(project.getName()).refreshContainer(project);
 					return false;
 				}
@@ -69,7 +68,6 @@ public class WorkspaceRegistryIndex {
 			return true;
 		}
 		if (resource instanceof IFile) {
-			System.out.println("processing resource delta for " + resource.getLocationURI());
 			IFile file = (IFile) resource;
 			String ext = file.getFileExtension();
 			if (ext != null && ext.toLowerCase().equals(PLDocToolkitPlugin.DRL_FILE_EXTENSION)) {

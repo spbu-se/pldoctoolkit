@@ -13,19 +13,19 @@
 		- корневой элемент - один из 3х (см в <start>)
 		- соответственно, добавил описания DocumentationCore и ProductDocumentation
 		- в содержимое некоторых элементов oneOrMore я заменил на zeroOrMore - по-моему, это совсем необязательное ограничение
-
+		
 		Я не совсем уверен относительно положения словарей.
 		
 		Не очень хорошая идея объявлять InfelemRefGroups DocbookOrCommonDrl, и JustDocbook таким образом:
-			<define name="InfElemRefGroups">
-				<zeroOrMore>
-				...
+		<define name="InfElemRefGroups">
+		<zeroOrMore>
+		...
 		Из-за этого в InfProduct и InfElement объявления InfElemRefGroup обязаны располагаться до всего остального:
-			<element name="InfProduct">
-				...
-				<ref name="InfElemRefGroups"/>
-				<ref name="DocbookOrCommonDrl"/>
-			</element>
+		<element name="InfProduct">
+		...
+		<ref name="InfElemRefGroups"/>
+		<ref name="DocbookOrCommonDrl"/>
+		</element>
 		(См объявление InfElemRefGroup в sample-DocumentationCore.xml.)
 		
 		yakovlev: Вообще то, так и было задумано :) Ну, наверное это и вправду не очень хорошо,
@@ -64,6 +64,8 @@
 				<choice>
 					<ref name="FinalInfProduct"/>
 					<ref name="Dictionary"/>
+					<ref name="Directory"/>
+					<ref name="DirTemplate"/>
 				</choice>
 			</zeroOrMore>
 		</element>
@@ -76,6 +78,8 @@
 					<ref name="InfProduct"/>
 					<ref name="InfElement"/>
 					<ref name="Dictionary"/>
+					<ref name="Directory"/>
+					<ref name="DirTemplate"/>
 				</choice>			
 			</zeroOrMore>
 		</element>
@@ -145,10 +149,59 @@
 		</element>
 	</define>
 	
+	<define name="Directory">
+		<element name="Directory">
+			<attribute name="id"/>
+			<zeroOrMore>
+				<element name="Entry">
+					<attribute name="id"/>
+					<zeroOrMore>
+						<element name="Attr">
+							<attribute name="id"/>
+							<text/>
+						</element>
+					</zeroOrMore>
+				</element>
+			</zeroOrMore>
+		</element>
+	</define>
+	
+	<define name="DirTemplate">
+		<element name="DirTemplate">
+			<attribute name="id"/>
+			<attribute name="directoryid"/>
+			<ref name="DirTemplateContents"/>
+		</element>
+	</define>
+	
+	<define name="DirTemplateContents">
+		<zeroOrMore>
+			<choice>
+				<text/>
+				<element name="AttrRef">
+					<attribute name="attrid"/>
+				</element>
+				<element>
+					<nsName ns="http://docbook.org/ns/docbook"/>
+					<zeroOrMore>
+						<attribute>
+							<anyName/>
+						</attribute>
+					</zeroOrMore>
+					<ref name="DirTemplateContents"/>
+				</element>
+			</choice>
+		</zeroOrMore>
+	</define>
+		
 	<define name="DocbookOrCommonDrl">
 		<zeroOrMore>
 			<choice>
 				<text/>
+				<element name="DirRef">
+					<attribute name="templateid"/>
+					<attribute name="entryid"/>
+				</element>
 				<element name="InfElemRef">
 					<attribute name="id"/>
 					<attribute name="infelemid"/>
