@@ -83,7 +83,7 @@ public class DrlModelLoadDocumentationCoreAction implements IObjectActionDelegat
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
-				pline.getDocumentationCores().add(selectedElement);
+//				pline.getDocumentationCores().add(selectedElement);
 				return CommandResult.newOKCommandResult();
 			}
 			

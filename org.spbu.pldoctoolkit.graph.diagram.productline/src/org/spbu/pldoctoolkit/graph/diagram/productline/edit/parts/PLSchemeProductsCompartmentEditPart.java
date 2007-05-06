@@ -76,7 +76,6 @@ public class PLSchemeProductsCompartmentEditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-//		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,

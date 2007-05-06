@@ -10,11 +10,14 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
@@ -52,7 +55,7 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 
@@ -60,8 +63,28 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new InfProductItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		
+		//HAND
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, createComponentEditPolicy());
 	}
 
+	
+	protected ComponentEditPolicy createComponentEditPolicy() {
+		return new ComponentEditPolicy() {
+			   @Override
+			   protected Command createDeleteSemanticCommand(GroupRequest deleteRequest)
+			   {
+			      return UnexecutableCommand.INSTANCE;
+			   }
+			 
+			   @Override
+			   protected Command createDeleteViewCommand(GroupRequest deleteRequest)
+			   {
+			      return UnexecutableCommand.INSTANCE;
+			   }
+		};
+	}
+	
 	/**
 	 * @generated
 	 */

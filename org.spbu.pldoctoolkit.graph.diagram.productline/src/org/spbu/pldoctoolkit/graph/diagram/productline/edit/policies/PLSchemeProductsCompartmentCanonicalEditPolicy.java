@@ -23,13 +23,10 @@ public class PLSchemeProductsCompartmentCanonicalEditPolicy extends
 	protected List getSemanticChildrenList() {
 		//HAND
 		
-		DrlModelDiagramEditorPlugin.getInstance().logInfo("refreshing");
-		
 		List result = new LinkedList();
 		EObject modelObject = ((View) getHost().getParent().getModel()).getElement();
 		View viewObject = (View) getHost().getModel();
 		
-		int nodeVID;
 		for (Iterator productsIter = ((ProductLine) modelObject)
 				.getProducts().iterator(); productsIter.hasNext();) {
 

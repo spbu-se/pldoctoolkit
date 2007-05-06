@@ -367,7 +367,7 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 										.eClass().getClassifierID()) {
 							DrlModelDiagramEditorPlugin.getInstance().logInfo(
 									"adding " + newResRoot);
-							pline.getDocumentationCores().add(newResRoot);
+//							pline.getDocumentationCores().add(newResRoot);
 						}
 					}
 				}
@@ -411,10 +411,10 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 		String resourcesString = "";
 		boolean first = true;
 		EList<Resource> docCoreResources = new UniqueEList<Resource>();
-		for (Object doc : pline.getDocumentationCores()) {
-			Resource docResource = ((DocumentationCore) doc).eResource();
-			docCoreResources.add(docResource);
-		}
+//		for (Object doc : pline.getDocumentationCores()) {
+//			Resource docResource = ((DocumentationCore) doc).eResource();
+//			docCoreResources.add(docResource);
+//		}
 
 		for (Resource resource : docCoreResources) {
 			if (!first) {

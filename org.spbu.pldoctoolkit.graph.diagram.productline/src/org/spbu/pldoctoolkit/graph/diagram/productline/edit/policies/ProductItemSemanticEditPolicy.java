@@ -9,12 +9,15 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.spbu.pldoctoolkit.graph.command.diagram.DrlElementDestroyCommand;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.commands.ProductCreateCommand;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
 /**
  * @generated
@@ -22,16 +25,8 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPar
 public class ProductItemSemanticEditPolicy extends
 		DrlModelBaseItemSemanticEditPolicy {
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy#shouldProceed(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest)
-	 */
-	@Override
-	protected boolean shouldProceed(DestroyRequest destroyRequest) {
-		return false;
-	}
-
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompoundCommand cc = new CompoundCommand();
@@ -49,7 +44,19 @@ public class ProductItemSemanticEditPolicy extends
 					Collections.EMPTY_MAP);
 			cc.add(nextEditPart.getCommand(editCommandRequest));
 		}
-		cc.add(getMSLWrapper(new DestroyElementCommand(req)));
+		cc.add(getMSLWrapper(new DrlElementDestroyCommand(req)));
 		return cc;
+	}
+	
+	@Override
+	protected Command getCreateCommand(CreateElementRequest req) {
+		if (DrlModelElementTypes.Product_2003 == req.getElementType()) {
+			if (req.getContainmentFeature() == null) {
+				req.setContainmentFeature(DrlPackage.eINSTANCE
+						.getProductLine_Products());
+			}
+			return getMSLWrapper(new ProductCreateCommand(req));
+		}
+		return super.getCreateCommand(req);
 	}
 }
