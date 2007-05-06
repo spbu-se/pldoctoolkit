@@ -15,17 +15,17 @@ public class XMLAutoEditStrategy implements IAutoEditStrategy {
 					return;
 				if (doc.getChar(cmd.offset - 1) == '-' && doc.getChar(cmd.offset - 2) == '-')
 					return;
-				
 				int off = cmd.offset - 1;
-				while (off >= 0 && doc.getChar(off) != '<')
+				char c;
+				while (off >= 0 && (c = doc.getChar(off)) != '<') {
+					if (c == '/' || c == '>')
+						return;
 					off--;
+				}
 				if (off < 0)
 					return;
-				
-				off++;
-				if (doc.getChar(off) == '/')
+				if (doc.getChar(++off) == '/')
 					return;
-				
 				int elementNameOffset = off;
 				while (off < cmd.offset && (XMLChar.isName(doc.getChar(off))))
 					off++;
