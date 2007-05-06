@@ -40,8 +40,6 @@ Package graph <http://math.spbu.ru/drl>
 
   Class ProductLine -> DrlElement
     Attribute name : EString<<1..1>>
-    Reference /productDocumentations : ProductDocumentation<<0..*>>
-    Reference documentationCores : DocumentationCore<<0..*>>
     Reference products : Product<<0..*>>
 
   Class Product -> DrlElement

@@ -41,6 +41,7 @@
     </xsl:template>
     
     <!-- infelem id reference -->
+    <!-- TODO @infelemid -->
     <xsl:template match="@infelem">
         <xsl:variable name="id"><xsl:value-of select="."/></xsl:variable>
         <xsl:attribute name="infelem">
@@ -49,6 +50,7 @@
     </xsl:template>
 
     <!-- InfElemRef -> group reference -->
+    <!-- TODO @groupid -->
     <xsl:template match="@group">
         <xsl:variable name="id"><xsl:value-of select="."/></xsl:variable>
         <xsl:choose>

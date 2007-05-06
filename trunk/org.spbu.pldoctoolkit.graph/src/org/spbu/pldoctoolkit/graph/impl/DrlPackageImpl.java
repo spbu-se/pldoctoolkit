@@ -449,26 +449,8 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProductLine_ProductDocumentations() {
-		return (EReference)productLineEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProductLine_DocumentationCores() {
-		return (EReference)productLineEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getProductLine_Products() {
-		return (EReference)productLineEClass.getEStructuralFeatures().get(3);
+		return (EReference)productLineEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -640,8 +622,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 
 		productLineEClass = createEClass(PRODUCT_LINE);
 		createEAttribute(productLineEClass, PRODUCT_LINE__NAME);
-		createEReference(productLineEClass, PRODUCT_LINE__PRODUCT_DOCUMENTATIONS);
-		createEReference(productLineEClass, PRODUCT_LINE__DOCUMENTATION_CORES);
 		createEReference(productLineEClass, PRODUCT_LINE__PRODUCTS);
 
 		productEClass = createEClass(PRODUCT);
@@ -735,8 +715,6 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 
 		initEClass(productLineEClass, ProductLine.class, "ProductLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProductLine_Name(), ecorePackage.getEString(), "name", null, 1, 1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProductLine_ProductDocumentations(), this.getProductDocumentation(), null, "productDocumentations", "", 0, -1, ProductLine.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getProductLine_DocumentationCores(), this.getDocumentationCore(), null, "documentationCores", null, 0, -1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProductLine_Products(), this.getProduct(), null, "products", null, 0, -1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(productEClass, Product.class, "Product", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

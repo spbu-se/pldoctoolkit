@@ -7,8 +7,10 @@
 package org.spbu.pldoctoolkit.graph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -23,6 +25,8 @@ import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.util.DrlResourceImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * <!-- begin-user-doc -->
@@ -241,12 +245,77 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	protected boolean needTypeInfo() {
 		return false;
 	}
-	
-//	protected void updateAttributes(DrlResourceImpl resource) {
-//		assert resource != null;
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.impl.EObjectImpl#eBasicSetContainer(org.eclipse.emf.ecore.InternalEObject, int)
+	 */
+//	@Override
+//	protected void eBasicSetContainer(InternalEObject newContainer,
+//			int newContainerFeatureID) {
 //		
-//		DrlSaveAdapter drlSave = resource.getDrlSave();
-//		drlSave.updateAttributes(this);
+//		DrlElement oldContainer = (DrlElement) eContainer();
+//		
+//		super.eBasicSetContainer(newContainer, newContainerFeatureID);
+//
+//		if(getNode() == null) {
+//			EStructuralFeature feature = this.eContainingFeature();
+//			initializeNode(feature);
+//		}
+//		
+//		Element node = getNode();
+//		
+//		// remove from prev container if any and not equal to the new one
+//		if(oldContainer != null && !oldContainer.equals(newContainer)) {
+//			Node parent = node.getParentNode();
+//			if(parent != null) {
+//				parent.removeChild(node);
+//			}
+//		}
+//		
+//		if(newContainer != null) {
+//			Element plNode = ((DrlElement)newContainer).getNode();
+//
+//			if(!containsAsChild(plNode, node)) {
+//				//TODO respect index
+//				plNode.appendChild(getNode());
+//			}
+//		}
+//		
 //	}
+
+	private boolean containsAsChild(Element parent, Element node) {
+		if(node == null) {
+			return false;
+		}
+		
+		boolean result = false;
+		NodeList children = parent.getChildNodes();
+		for(int i = 0; i < children.getLength(); i++) {
+			if(node.isSameNode(children.item(i))) {
+				result = true;
+				break;
+			}
+		}
+		
+		return result;
+	}
 	
+//	/* (non-Javadoc)
+//	 * HAND fully
+//	 * 
+//	 * @see org.eclipse.emf.ecore.impl.BasicEObjectImpl#eBasicRemoveFromContainer(org.eclipse.emf.common.notify.NotificationChain)
+//	 */
+//	@Override
+//	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+//		Element node = getNode();
+//		if(node != null) {
+//			Node parent = node.getParentNode();
+//			if(parent != null) {
+//				parent.removeChild(node);
+//			}
+//		}
+//		
+//		return super.eBasicRemoveFromContainer(msgs);
+//	}
+
 } //DrlElementImpl
