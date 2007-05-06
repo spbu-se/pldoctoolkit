@@ -95,7 +95,7 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 		switch (DrlModelVisualIDRegistry.getVisualID(view)) {
 		case ProductLine2EditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://tepkom.ru/drl?ProductLine",
+					"Navigator?TopLevelNode?http://math.spbu.ru/drl?ProductLine",
 					DrlModelElementTypes.ProductLine_1001);
 		case ProductLineDataEditPart.VISUAL_ID:
 			return getImage(
@@ -105,18 +105,18 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 			return getImage("Navigator?Node?PLSchemeFigure",
 					DrlModelElementTypes.Node_2002);
 		case ProductEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://tepkom.ru/drl?Product",
+			return getImage("Navigator?Node?http://math.spbu.ru/drl?Product",
 					DrlModelElementTypes.Product_2003);
 		case DocumentationCoreEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?org.eclipse.draw2d.RectangleFigure",
 					DrlModelElementTypes.Node_2004);
 		case InfProductEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://tepkom.ru/drl?InfProduct",
+			return getImage("Navigator?Node?http://math.spbu.ru/drl?InfProduct",
 					DrlModelElementTypes.InfProduct_2005);
 		case ProductLineEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http://tepkom.ru/drl?ProductLine",
+					"Navigator?Diagram?http://math.spbu.ru/drl?ProductLine",
 					DrlModelElementTypes.ProductLine_79);
 		default:
 			return getImage("Navigator?UnknownElement", null);

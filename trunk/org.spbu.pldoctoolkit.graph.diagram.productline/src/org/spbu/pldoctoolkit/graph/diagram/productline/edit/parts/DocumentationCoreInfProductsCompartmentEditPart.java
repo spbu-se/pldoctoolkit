@@ -6,16 +6,20 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.DocumentationCoreInfProductsCompartmentCanonicalEditPolicy;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.PLSchemeProductsCompartmentItemSemanticEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.Messages;
 
 /**
@@ -73,7 +77,7 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
+//		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicy());
 
@@ -85,6 +89,9 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 				new DocumentationCoreInfProductsCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, createComponentEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, 
+				new PLSchemeProductsCompartmentItemSemanticEditPolicy());
 	}
 
 	/**
@@ -112,6 +119,25 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 		};
 		return lep;
 	}
+	
+	/**
+	 * @return
+	 */
+	protected ComponentEditPolicy createComponentEditPolicy() {
+		return new ComponentEditPolicy() {
+			   @Override
+			   protected Command createDeleteSemanticCommand(GroupRequest deleteRequest)
+			   {
+			      return UnexecutableCommand.INSTANCE;
+			   }
+			 
+			   @Override
+			   protected Command createDeleteViewCommand(GroupRequest deleteRequest)
+			   {
+			      return UnexecutableCommand.INSTANCE;
+			   }
+		};
+	}
 
 	/**
 	 * @generated
@@ -122,4 +148,5 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 		}
 	}
 
+	
 }
