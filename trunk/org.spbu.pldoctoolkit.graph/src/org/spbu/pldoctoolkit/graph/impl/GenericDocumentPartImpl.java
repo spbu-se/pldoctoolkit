@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
-import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
@@ -340,5 +339,8 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 		return true;
 	}
 	
+	public String getElementId() {
+		return getId();
+	}
 	
 } //GenericDocumentPartImpl
