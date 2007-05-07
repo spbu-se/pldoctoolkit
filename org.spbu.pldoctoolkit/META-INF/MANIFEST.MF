@@ -12,3 +12,6 @@ Bundle-Activator: org.spbu.pldoctoolkit.PLDocToolkitPlugin
 Export-Package: org.spbu.pldoctoolkit,
  org.spbu.pldoctoolkit.registry
 Eclipse-LazyStart: true
+Bundle-ClassPath: .,
+ lib/saxon8.jar,
+ lib/saxon8-dom.jar

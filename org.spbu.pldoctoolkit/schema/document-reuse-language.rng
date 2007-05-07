@@ -220,6 +220,7 @@
 					<attribute name="name"/>
 					<attribute name="modifier">
 						<choice>
+							<!-- TODO to upper case? -->
 							<value>one</value>
 							<value>set</value>
 						</choice>

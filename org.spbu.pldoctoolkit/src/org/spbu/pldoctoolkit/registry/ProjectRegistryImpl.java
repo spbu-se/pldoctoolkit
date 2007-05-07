@@ -1,5 +1,13 @@
 package org.spbu.pldoctoolkit.registry;
 
+import static org.spbu.pldoctoolkit.registry.RegisteredLocation.CORE_CONTEXT;
+import static org.spbu.pldoctoolkit.registry.RegisteredLocation.DICTIONARY;
+import static org.spbu.pldoctoolkit.registry.RegisteredLocation.PRODUCT;
+import static org.spbu.pldoctoolkit.registry.RegisteredLocation.FINAL_INF_PRODUCT;
+import static org.spbu.pldoctoolkit.registry.RegisteredLocation.INF_ELEMENT;
+import static org.spbu.pldoctoolkit.registry.RegisteredLocation.INF_PRODUCT;
+import static org.spbu.pldoctoolkit.registry.RegisteredLocation.PRODUCT_CONTEXT;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,9 +15,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import net.sf.saxon.Configuration;
+import net.sf.saxon.dom.DocumentBuilderImpl;
+import net.sf.saxon.dom.NodeOverNodeInfo;
+import net.sf.saxon.om.NodeInfo;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -31,20 +43,29 @@ class ProjectRegistryImpl implements ProjectRegistry {
 	
 	private static final String DOCUMENTATION_CORE = "DocumentationCore";
 	private static final String PRODUCT_DOCUMENTATION = "ProductDocumentation";
+	private static final String PRODUCT_LINE = "ProductLine";
 	
 	private static final String ID_ATTRIBUTE = "id";
 	private static final String NAME_ATTRIBUTE = "name";
 	private static final String PRODUCTID_ATTRIBUTE = "productid";
 
 	private final Map<String, RegisteredLocation> locationMap = new HashMap<String, RegisteredLocation>();
-	private DocumentBuilder documentBuilder;
+	private DocumentBuilderImpl documentBuilder;
 
 	private Document getXMLDocument(IFile file) throws ParserConfigurationException, SAXException, IOException {
+		final String SAXON_FACTORY_CLASS_NAME = "net.sf.saxon.dom.DocumentBuilderFactoryImpl"; 
+		
 		if (documentBuilder == null) {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(
+					SAXON_FACTORY_CLASS_NAME, this.getClass().getClassLoader());
 			factory.setNamespaceAware(true);
-			documentBuilder = factory.newDocumentBuilder();
+			documentBuilder = (DocumentBuilderImpl) factory.newDocumentBuilder();
 		}
+		
+		Configuration config = new Configuration();
+		config.setLineNumbering(true);
+		documentBuilder.setConfiguration(config);
+		
 		return documentBuilder.parse(file.getLocationURI().toString());
 	}
 
@@ -57,12 +78,12 @@ class ProjectRegistryImpl implements ProjectRegistry {
 		String[] elements = path.split("/");
 		if (elements.length != 3)
 			return null;
-		if (CORE.equals(elements[0]))
+		if (CORE_CONTEXT.equals(elements[0]))
 			return locationMap.get(path);
 		RegisteredLocation loc = locationMap.get(path);
 		if (loc != null)
 			return loc;
-		return locationMap.get(CORE + "/" + elements[1] + "/" + elements[2]);
+		return locationMap.get(CORE_CONTEXT + "/" + elements[1] + "/" + elements[2]);
 	}
 	
 	public String getContext(IFile file) {
@@ -98,6 +119,8 @@ class ProjectRegistryImpl implements ProjectRegistry {
 	// === End of public API ===
 	
 	private void register(String context, Node node, IFile file) {
+		final NodeInfo saxonNodeInfo = ((NodeOverNodeInfo) node).getUnderlyingNodeInfo();
+		
 		Node idAttribute = node.getAttributes().getNamedItem(ID_ATTRIBUTE);
 		Node nameAttribute = node.getAttributes().getNamedItem(NAME_ATTRIBUTE);
 		if (idAttribute == null)
@@ -105,8 +128,9 @@ class ProjectRegistryImpl implements ProjectRegistry {
 		String type = node.getLocalName();
 		String id = idAttribute.getNodeValue();
 		String name = nameAttribute == null ? id : nameAttribute.getNodeValue();
-		// TODO: set proper lineNumber
-		RegisteredLocation loc = new RegisteredLocation(context, type, id, name, file, 0); 
+		int lineNumber = saxonNodeInfo.getLineNumber();
+		
+		RegisteredLocation loc = new RegisteredLocation(context, type, id, name, file, lineNumber); 
 		locationMap.put(context + "/" + type + "/" + id, loc);
 	}
 	
@@ -133,7 +157,7 @@ class ProjectRegistryImpl implements ProjectRegistry {
 				if (rootNode == null)
 					return;
 				String nodeName = rootNode.getLocalName();
-				if (DOCUMENTATION_CORE.equals(nodeName)) {
+				if (DOCUMENTATION_CORE.equals(nodeName) || PRODUCT_LINE.equals(nodeName)) {
 					NodeList list = rootNode.getChildNodes();
 					for (int i = 0; i < list.getLength(); i++) {
 						Node child = list.item(i);
@@ -142,11 +166,12 @@ class ProjectRegistryImpl implements ProjectRegistry {
 						String childName = child.getLocalName();
 						if (!INF_PRODUCT.equals(childName) && 
 							!INF_ELEMENT.equals(childName) && 
-							!DICTIONARY.equals(childName) &&
-							!DIRECTORY.equals(childName) &&
+							!DICTIONARY.equals(childName)  &&
+							!PRODUCT.equals(childName)     &&
+							!DIRECTORY.equals(childName)   &&
 							!DIRTEPLATE.equals(childName))
 							continue;
-						register(CORE, child, file);
+						register(CORE_CONTEXT, child, file);
 					}
 				} else if (PRODUCT_DOCUMENTATION.equals(nodeName)) {
 					Node idAttribute = rootNode.getAttributes().getNamedItem(PRODUCTID_ATTRIBUTE);
@@ -165,7 +190,7 @@ class ProjectRegistryImpl implements ProjectRegistry {
 							!FINAL_INF_PRODUCT.equals(childName))
 							continue;
 						// Adding a prefix to avoid conflicts in case of CORE.equals(id)
-						register(PRODUCT_PREFIX + id, child, file);
+						register(PRODUCT_CONTEXT + id, child, file);
 					}
 				}
 			} catch (ParserConfigurationException e) {
