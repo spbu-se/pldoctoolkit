@@ -338,6 +338,11 @@
             title="Product"
             description="Create new Product"
             genNodes="//@diagram/@childNodes.2"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="InfProduct"
+            description="Create new InfProduct"
+            genNodes="//@diagram/@childNodes.4"/>
       </groups>
     </palette>
     <preferencePages

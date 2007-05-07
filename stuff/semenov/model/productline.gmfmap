@@ -71,6 +71,9 @@
                     <features
                         href="model.ecore#//GenericDocumentPart/name"/>
                   </labelMappings>
+                  <tool
+                      xsi:type="gmftool:CreationTool"
+                      href="model.gmftool#//@palette/@tools.0/@tools.0"/>
                   <diagramNode
                       href="model.gmfgraph#InfProduct"/>
                 </ownedChild>
