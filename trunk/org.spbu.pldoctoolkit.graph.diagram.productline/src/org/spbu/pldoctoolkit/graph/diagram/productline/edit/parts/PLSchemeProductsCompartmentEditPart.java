@@ -80,12 +80,12 @@ public class PLSchemeProductsCompartmentEditPart extends
 				new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new DragDropEditPolicy());
-		
+
 		//HAND
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new PLSchemeProductsCompartmentCanonicalEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, 
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new PLSchemeProductsCompartmentItemSemanticEditPolicy());
 	}
 

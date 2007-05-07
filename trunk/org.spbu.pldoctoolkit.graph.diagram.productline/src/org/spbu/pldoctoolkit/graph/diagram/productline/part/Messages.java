@@ -48,6 +48,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String InfProduct2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InfProduct2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String ProductLineProductLineDataCompartmentEditPart_title;
 
 	/**

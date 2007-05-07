@@ -112,7 +112,8 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 					"Navigator?Node?org.eclipse.draw2d.RectangleFigure",
 					DrlModelElementTypes.Node_2004);
 		case InfProductEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://math.spbu.ru/drl?InfProduct",
+			return getImage(
+					"Navigator?Node?http://math.spbu.ru/drl?InfProduct",
 					DrlModelElementTypes.InfProduct_2005);
 		case ProductLineEditPart.VISUAL_ID:
 			return getImage(
