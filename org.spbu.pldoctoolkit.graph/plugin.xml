@@ -12,7 +12,7 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://tepkom.ru/drl" 
+       uri = "http://math.spbu.ru/drl" 
        class = "org.spbu.pldoctoolkit.graph.DrlPackage" />
   </extension>
 

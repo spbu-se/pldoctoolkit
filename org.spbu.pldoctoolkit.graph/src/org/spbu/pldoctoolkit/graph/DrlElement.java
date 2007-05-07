@@ -68,5 +68,13 @@ public interface DrlElement extends EObject {
 	void initializeNode(EStructuralFeature feature);
 
 	void updateAttributeNodes();
+	
+	
+	/**
+	 * Returns element's Id attribute value, if any.
+	 * 
+	 * @return Id value if the element has id, null otherwise.
+	 */
+	String getElementId();
 
 } // DrlElement

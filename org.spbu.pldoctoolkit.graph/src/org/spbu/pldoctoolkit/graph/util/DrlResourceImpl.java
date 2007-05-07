@@ -239,5 +239,5 @@ public class DrlResourceImpl extends XMLResourceImpl {
 	protected XMLLoad createXMLLoad() {
 		return new DrlXMLLoadImpl(createXMLHelper());
 	}
-
+	
 } // DrlResourceImpl

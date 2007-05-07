@@ -7,18 +7,12 @@
 package org.spbu.pldoctoolkit.graph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.Product;
-import org.spbu.pldoctoolkit.graph.ProductLine;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  * <!-- begin-user-doc -->
@@ -243,6 +237,10 @@ public class ProductImpl extends DrlElementImpl implements Product {
 			DrlFactory.eINSTANCE.getDrlPackage().getProduct_Name().getName();
 		
 		elem.setAttribute(nameAttrName, getName());
+	}
+	
+	public String getElementId() {
+		return getId();
 	}
 
 } //ProductImpl

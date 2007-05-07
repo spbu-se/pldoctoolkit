@@ -368,4 +368,9 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 		elem.setAttribute(modifierAttrName, getModifier().getName());
 	}
 
+	
+	public String getElementId() {
+		return getId();
+	}
+	
 } //InfElemRefGroupImpl
