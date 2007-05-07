@@ -65,13 +65,10 @@ public class ProductLineDataPLSchemeCompartmentViewFactory extends
 					"modelID", ProductLineEditPart.MODEL_ID); //$NON-NLS-1$
 			view.getEAnnotations().add(shortcutAnnotation);
 		}
-		
+
 		//HAND
-		getViewService().createNode(
-				semanticAdapter,
-				view,
-				DrlModelVisualIDRegistry
-						.getType(PLSchemeEditPart.VISUAL_ID),
+		getViewService().createNode(semanticAdapter, view,
+				DrlModelVisualIDRegistry.getType(PLSchemeEditPart.VISUAL_ID),
 				ViewUtil.APPEND, true, getPreferencesHint());
 	}
 

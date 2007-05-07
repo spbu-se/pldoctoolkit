@@ -44,7 +44,7 @@ public class ProductLineDataPLSchemeCompartmentEditPart extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();

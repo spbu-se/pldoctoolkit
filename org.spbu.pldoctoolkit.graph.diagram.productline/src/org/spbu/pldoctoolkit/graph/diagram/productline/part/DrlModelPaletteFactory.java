@@ -31,6 +31,7 @@ public class DrlModelPaletteFactory {
 		PaletteGroup paletteContainer = new PaletteGroup(
 				Messages.DrlTools1Group_title);
 		paletteContainer.add(createProduct1CreationTool());
+		paletteContainer.add(createInfProduct2CreationTool());
 		return paletteContainer;
 	}
 
@@ -45,6 +46,21 @@ public class DrlModelPaletteFactory {
 				Messages.Product1CreationTool_desc, types);
 		entry.setSmallIcon(DrlModelElementTypes
 				.getImageDescriptor(DrlModelElementTypes.Product_2003));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createInfProduct2CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(DrlModelElementTypes.InfProduct_2005);
+		NodeToolEntry entry = new NodeToolEntry(
+				Messages.InfProduct2CreationTool_title,
+				Messages.InfProduct2CreationTool_desc, types);
+		entry.setSmallIcon(DrlModelElementTypes
+				.getImageDescriptor(DrlModelElementTypes.InfProduct_2005));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
