@@ -1,12 +1,8 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies;
 
-import java.net.URISyntaxException;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -17,19 +13,12 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
-import org.spbu.pldoctoolkit.graph.DocumentationCore;
-import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
-import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
-import org.spbu.pldoctoolkit.graph.InfProduct;
-import org.spbu.pldoctoolkit.graph.ProductLine;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreInfProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
-import org.spbu.pldoctoolkit.registry.ProjectRegistry;
 import org.spbu.pldoctoolkit.registry.RegisteredLocation;
-import org.spbu.pldoctoolkit.registry.WorkspaceRegistryIndex;
 
 /**
  * @generated
@@ -38,87 +27,61 @@ public class DocumentationCoreInfProductsCompartmentCanonicalEditPolicy extends
 		CanonicalEditPolicy {
 
 	/**
+	 * First all the resources containing inf products are loaded into the resource set.
+	 * Then InfProducts are searched in the resources from the resource set. 
+	 * 
 	 * @generated NOT
+	 * 
+	 * HAND
 	 */
 	protected List getSemanticChildrenList() {
-		//HAND
+		TransactionalEditingDomain domain = ((DocumentationCoreInfProductsCompartmentEditPart)getHost()).getEditingDomain();
 		
-//		List<EObject> result = new LinkedList<EObject>();
-//		
-//		TransactionalEditingDomain domain = ((DocumentationCoreInfProductsCompartmentEditPart)getHost()).getEditingDomain();
-//		EList<Resource> resourceList = domain.getResourceSet().getResources();
-//		for(Resource resource : resourceList) {
-//			DrlModelDiagramEditorPlugin.getInstance().logInfo("resource: " + resource.toString());
-//			
-//			//XXX
-//			for(EObject node : resource.getContents()) {
-//				DrlModelDiagramEditorPlugin.getInstance().logInfo("node: " + node.toString());
-//				TreeIterator<EObject> nodeContentsIterator = node.eAllContents();
-//				while(nodeContentsIterator.hasNext()) {
-//					EObject item = nodeContentsIterator.next();
-////					DrlModelDiagramEditorPlugin.getInstance().logInfo("next item: " + item);
-//				}
-//			}
-//			
-//			TreeIterator<EObject> nodeIter = resource.getAllContents();
-//			int nodeVID;
-//			View viewObject = (View) getHost().getModel();
-//			while(nodeIter.hasNext()) {
-//				EObject node = nodeIter.next();
-//				if(DrlPackage.INF_PRODUCT == node.eClass().getClassifierID()) {
-//					nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(viewObject, node);
-//					if(InfProductEditPart.VISUAL_ID == nodeVID) {
-//						result.add(node);
-//					}
-//				}
-//			}
-//		}
-		//TODO add 
+		loadResources(domain.getResourceSet());
 		
-		DrlModelDiagramEditorPlugin.getInstance().logInfo("refreshing");
-		
-//		List result = new LinkedList();
-//		EObject modelObject = ((View) getHost().getParent().getModel()).getElement();
-//		View viewObject = (View) getHost().getModel();
-//		
-//		int nodeVID;
-//		for (Iterator docCores = ((ProductLine) modelObject)
-//				.getDocumentationCores().iterator(); docCores.hasNext();) {
-//
-//			DocumentationCore nextDocCore = (DocumentationCore) docCores.next();
-//			for(Iterator partsIterator = nextDocCore.getParts().iterator();
-//				partsIterator.hasNext();) {
-//				
-//				GenericDocumentPart nextPart = (GenericDocumentPart) partsIterator.next();
-//				if(DrlPackage.INF_PRODUCT == nextPart.eClass().getClassifierID()) {
-//					nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(viewObject, nextPart);
-//					if(InfProductEditPart.VISUAL_ID == nodeVID) {
-//						result.add(nextPart);
-//					}
-//				}
-//			}
-//		}
-		
-		URI diagramURI = ((View) getHost().getModel()).eResource().getURI();
-		String projectName = diagramURI.segment(1);
+		EList<Resource> resourceList = domain.getResourceSet().getResources();
 
-		DrlModelDiagramEditorPlugin.getInstance().logInfo(
-				"projectName: " + projectName);
-		
-		List<RegisteredLocation> infProducts = PLDocToolkitPlugin.getRegistry(projectName).findForType(RegisteredLocation.INF_PRODUCT);
-		
-		List result = new LinkedList();
-		for(RegisteredLocation infProd : infProducts) {
-			InfProduct resultProduct = DrlFactory.eINSTANCE.createInfProduct();
-			resultProduct.setId(infProd.getId());
-			resultProduct.setName(infProd.getName());
+		List<EObject> result = new LinkedList<EObject>();
+
+		for(Resource resource : resourceList) {
+			DrlModelDiagramEditorPlugin.getInstance().logInfo("resource: " + resource.toString());
 			
-			result.add(resultProduct);
+			TreeIterator<EObject> nodeIter = resource.getAllContents();
+			int nodeVID;
+			View viewObject = (View) getHost().getModel();
+			while(nodeIter.hasNext()) {
+				EObject node = nodeIter.next();
+				if(DrlPackage.INF_PRODUCT == node.eClass().getClassifierID()) {
+					nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(viewObject, node);
+					if(InfProductEditPart.VISUAL_ID == nodeVID) {
+						result.add(node);
+					}
+				}
+			}
 		}
 		
 		return result;
 	}
 
+	/**
+	 * Checks Registry and loads into resource set all resources which contain InfProducts.
+	 * @param resourceSet 
+	 */
+	private void loadResources(ResourceSet resourceSet) {
+		//TODO how to determine project name from URI?
+		URI diagramURI = ((View) getHost().getModel()).eResource().getURI();
+		String projectName = diagramURI.segment(1);
+
+		List<RegisteredLocation> infProducts = 
+				PLDocToolkitPlugin.getRegistry(projectName)
+				.findForType(RegisteredLocation.INF_PRODUCT);
+		
+		for(RegisteredLocation infProd : infProducts) {
+			String pathname = infProd.getFile().getFullPath().toFile().toString();
+			resourceSet.getResource(URI.createPlatformResourceURI(pathname, true), true);
+		}
+	}
+	
 	/**
 	 * @generated NOT
 	 */
