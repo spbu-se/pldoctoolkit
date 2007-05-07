@@ -12,7 +12,7 @@
     
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory 
-       uri = "http://tepkom.ru/drl" 
+       uri = "http://math.spbu.ru/drl" 
        class = "org.spbu.pldoctoolkit.graph.provider.DrlItemProviderAdapterFactory" 
        supportedTypes = 
          "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
