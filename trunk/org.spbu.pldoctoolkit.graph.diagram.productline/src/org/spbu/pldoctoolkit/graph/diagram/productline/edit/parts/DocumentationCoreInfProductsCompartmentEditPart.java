@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.DocumentationCoreInfProductsCompartmentCanonicalEditPolicy;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.DocumentationCoreInfProductsCompartmentItemSemanticEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.PLSchemeProductsCompartmentItemSemanticEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.Messages;
 
@@ -77,7 +78,6 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-//		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicy());
 
@@ -92,6 +92,8 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, createComponentEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, 
 				new PLSchemeProductsCompartmentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new DocumentationCoreInfProductsCompartmentItemSemanticEditPolicy());
 	}
 
 	/**
