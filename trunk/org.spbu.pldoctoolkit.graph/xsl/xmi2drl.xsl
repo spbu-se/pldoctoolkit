@@ -39,7 +39,7 @@
     <!-- infelem id reference -->
     <xsl:template match="@infelem">
         <xsl:variable name="uri"><xsl:value-of select="."/></xsl:variable>
-        <xsl:attribute name="infelem">
+        <xsl:attribute name="infelemid">
             <xsl:value-of select="resolver:uriStringToId($uri)"/>
         </xsl:attribute>
     </xsl:template>
@@ -47,7 +47,7 @@
     <!-- InfElemRef -> group reference -->
     <xsl:template match="@group">
         <xsl:variable name="uri"><xsl:value-of select="."/></xsl:variable>
-        <xsl:attribute name="group">
+        <xsl:attribute name="groupid">
             <xsl:value-of select="resolver:uriStringToId($uri)"/>
         </xsl:attribute>
     </xsl:template>
