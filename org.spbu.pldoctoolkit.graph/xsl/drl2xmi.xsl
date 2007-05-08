@@ -10,7 +10,6 @@
     
     <xsl:output indent="yes"/>
     
-<!--    <xsl:variable name="project-name" select="resolver:parseProjectName(saxon:systemid())"/>-->
     <xsl:param name="project-name"/>
     
     <xsl:template match="v:Product">
@@ -41,8 +40,7 @@
     </xsl:template>
     
     <!-- infelem id reference -->
-    <!-- TODO @infelemid -->
-    <xsl:template match="@infelem">
+    <xsl:template match="@infelemid">
         <xsl:variable name="id"><xsl:value-of select="."/></xsl:variable>
         <xsl:attribute name="infelem">
             <xsl:value-of select="resolver:idToUriString($project-name, $id)"/>
@@ -50,12 +48,11 @@
     </xsl:template>
 
     <!-- InfElemRef -> group reference -->
-    <!-- TODO @groupid -->
-    <xsl:template match="@group">
+    <xsl:template match="@groupid">
         <xsl:variable name="id"><xsl:value-of select="."/></xsl:variable>
         <xsl:choose>
             <xsl:when test="$id = ''">
-                <xsl:copy-of select="."/>
+                <xsl:attribute name="group"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:attribute name="group">
