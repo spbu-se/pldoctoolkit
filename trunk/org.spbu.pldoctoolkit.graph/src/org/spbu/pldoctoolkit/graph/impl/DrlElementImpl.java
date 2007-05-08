@@ -234,8 +234,4 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 		return false;
 	}
 
-	public String getElementId() {
-		return null;
-	}
-	
 } //DrlElementImpl

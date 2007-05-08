@@ -3,7 +3,8 @@ package org.spbu.pldoctoolkit.graph.util;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
 import org.spbu.pldoctoolkit.registry.RegisteredLocation;
@@ -11,6 +12,8 @@ import org.spbu.pldoctoolkit.registry.RegisteredLocation;
 public class IdUtil {
 	
 	public static final char ID_SEPARATOR_CHAR = '#';
+	
+	private static int lastGeneratedId = 0;
 
 	public static String idToUriString(String projectName, String id) {
 		List<RegisteredLocation> knownLocations = 
@@ -61,5 +64,23 @@ public class IdUtil {
 		
 		return id;
 	}
-	
+
+	/**
+	 * If the object has an attribute marked as ID, initializes it with a value.<p>
+	 * 
+	 * TODO this value must be unique at least across the project.
+	 * 
+	 * @param obj The object whose ID to initialize
+	 */
+	public static void initializeId(EObject obj) {
+		EAttribute idAttr = obj.eClass().getEIDAttribute();
+		if(idAttr != null) {
+			String newId = generateId(obj);
+			obj.eSet(idAttr, newId);
+		}
+	}
+
+	private static String generateId(EObject obj) {
+		return "newId" + lastGeneratedId++;
+	}
 }
