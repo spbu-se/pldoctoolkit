@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.spbu.pldoctoolkit.graph.DrlElement;
+import org.spbu.pldoctoolkit.graph.util.IdUtil;
 import org.w3c.dom.Node;
 
 public class DrlElementCreateCommand extends CreateElementCommand {
@@ -22,6 +23,7 @@ public class DrlElementCreateCommand extends CreateElementCommand {
 		
 		if(newElement != null) {
 			newElement.initializeNode(getContainmentFeature());
+			IdUtil.initializeId(newElement);
 		}
 		
 		DrlElement container = (DrlElement) newElement.eContainer();
