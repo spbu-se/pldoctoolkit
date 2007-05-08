@@ -238,9 +238,5 @@ public class ProductImpl extends DrlElementImpl implements Product {
 		
 		elem.setAttribute(nameAttrName, getName());
 	}
-	
-	public String getElementId() {
-		return getId();
-	}
 
 } //ProductImpl

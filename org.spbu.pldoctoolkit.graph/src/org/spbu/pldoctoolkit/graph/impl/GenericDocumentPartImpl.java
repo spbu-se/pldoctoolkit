@@ -339,8 +339,4 @@ public abstract class GenericDocumentPartImpl extends DrlElementImpl implements 
 		return true;
 	}
 	
-	public String getElementId() {
-		return getId();
-	}
-	
 } //GenericDocumentPartImpl

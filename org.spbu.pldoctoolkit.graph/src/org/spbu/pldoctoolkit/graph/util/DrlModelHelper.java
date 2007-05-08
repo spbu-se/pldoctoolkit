@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.ui.IEditorInput;
@@ -22,7 +23,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
-import org.spbu.pldoctoolkit.graph.DrlElement;
 import org.spbu.pldoctoolkit.registry.RegisteredLocation;
 
 /**
@@ -90,9 +90,9 @@ public class DrlModelHelper {
 	private static String getId(EObject obj) {
 		String objId = null;
 
-		if(obj instanceof DrlElement) {
-			DrlElement drlObj = (DrlElement) obj;
-			objId = drlObj.getElementId();
+		EAttribute idAttr = obj.eClass().getEIDAttribute();
+		if(idAttr != null) {
+			objId = obj.eGet(idAttr).toString();
 		}
 		
 		return objId;
