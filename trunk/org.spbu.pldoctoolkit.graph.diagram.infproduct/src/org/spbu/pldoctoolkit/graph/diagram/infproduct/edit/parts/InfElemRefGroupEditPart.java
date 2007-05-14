@@ -8,7 +8,6 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -117,7 +116,7 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 	 */
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-				.DPtoLP(40), getMapMode().DPtoLP(40));
+				.DPtoLP(20), getMapMode().DPtoLP(20));
 		return result;
 	}
 
@@ -201,10 +200,10 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_SOLID);
 			this.setBackgroundColor(ColorConstants.lightGray);
-			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(10),
-					getMapMode().DPtoLP(10)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(10),
-					getMapMode().DPtoLP(10)));
+			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(5)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(5)));
 		}
 
 		public void updateDecoration() {

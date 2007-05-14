@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -15,35 +14,28 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.edit.provider.IWrapperItemProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
 
 /**
  * @generated
@@ -115,7 +107,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean performFinish() {
 		List affectedFiles = new LinkedList();
@@ -139,20 +131,51 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
+				EObject modelElement = diagramRootElementSelectionPage.getModelElement();
+				EObject documentCoreParentOfSelected = modelElement.eContainer();
+				
 				int diagramVID = DrlModelVisualIDRegistry
-						.getDiagramVisualID(diagramRootElementSelectionPage
-								.getModelElement());
+						.getDiagramVisualID(documentCoreParentOfSelected);
 				if (diagramVID != DocumentationCoreEditPart.VISUAL_ID) {
 					return CommandResult
 							.newErrorCommandResult("Incorrect model object stored as a root resource object"); //$NON-NLS-1$
 				}
+				
+				// HAND
+				// my custom code
+				IElementType elementType;
+				switch(modelElement.eClass().getClassifierID()) {
+				case DrlPackage.INF_ELEMENT:
+					elementType = DrlModelElementTypes.InfElement_1001;
+					break;
+				case DrlPackage.INF_PRODUCT:
+					elementType = DrlModelElementTypes.InfProduct_1002;
+					break;
+				default:
+					return CommandResult
+						.newErrorCommandResult("Incorrect model object selected"); //$NON-NLS-1$
+				}
+				
 				Diagram diagram = ViewService.createDiagram(
-						diagramRootElementSelectionPage.getModelElement(),
+						documentCoreParentOfSelected,
 						DocumentationCoreEditPart.MODEL_ID,
 						DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
-				new DiagramContentsInitializer().initDiagramContents(diagram,
-						diagramRootElementSelectionPage.getModelElement());
+
+				Node rootNode = ViewService.createNode(diagram,
+						modelElement,
+						((IHintedType) elementType).getSemanticHint(),
+						DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				rootNode.setElement(modelElement);
+				
+				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
+						.createEAnnotation();
+				shortcutAnnotation.setSource("root"); //$NON-NLS-1$
+//				shortcutAnnotation.getDetails().put(
+//						"modelID", DocumentationCoreEditPart.MODEL_ID); //$NON-NLS-1$
+				rootNode.getEAnnotations().add(shortcutAnnotation);
+				// end of my custom code
+
 				return CommandResult.newOKCommandResult();
 			}
 		};
@@ -206,7 +229,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 					.getInstance()
 					.provides(
 							new CreateDiagramViewOperation(
-									new EObjectAdapter(selectedModelElement),
+									new EObjectAdapter(selectedModelElement.eContainer()),
 									DocumentationCoreEditPart.MODEL_ID,
 									DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null

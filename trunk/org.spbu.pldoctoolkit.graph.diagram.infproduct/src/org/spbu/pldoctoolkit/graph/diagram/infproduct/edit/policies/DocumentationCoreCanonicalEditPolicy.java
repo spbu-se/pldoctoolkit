@@ -1,58 +1,57 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies;
 
-import java.util.List;
-import java.util.Collection;
-import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.emf.ecore.EObject;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
+import javax.swing.ProgressMonitor;
+
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
-
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
-
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
-
 import org.eclipse.gef.commands.Command;
-
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetViewMutabilityCommand;
-
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy;
-
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
-
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
-
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-
-import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
-
+import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRef2EditPart;
@@ -60,9 +59,7 @@ import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditP
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductEditPart;
-
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
-
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
 
 /**
@@ -75,43 +72,75 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		List result = new LinkedList();
-		EObject modelObject = ((View) getHost().getModel()).getElement();
-		View viewObject = (View) getHost().getModel();
-		EObject nextValue;
-		int nodeVID;
-		for (Iterator values = ((DocumentationCore) modelObject).getParts()
-				.iterator(); values.hasNext();) {
-			nextValue = (EObject) values.next();
-			nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(viewObject,
-					nextValue);
-			switch (nodeVID) {
-			case InfElementEditPart.VISUAL_ID: {
-				result.add(nextValue);
-				break;
-			}
-			case InfProductEditPart.VISUAL_ID: {
-				result.add(nextValue);
-				break;
-			}
-			}
-		}
+		List result = new UniqueEList<EObject>();
+
+		GenericDocumentPart rootElement = findRootObject();
+		result = new ArrayList();
+		findAccessibleElements(rootElement, result);
+		
 		return result;
 	}
 
 	/**
-	 * @generated
+	 * @return The GenericDocumentPart for the view marked with EAnnotation "root". 
+	 */
+	@SuppressWarnings("unchecked")
+	private GenericDocumentPart findRootObject() {
+		EObject result = null;
+		
+		Diagram diagram = ((View)getHost().getModel()).getDiagram();
+		EList<View> childrenViews = diagram.getVisibleChildren();
+		Iterator<View> viewIter = childrenViews.iterator();
+		View resultView = null;
+		while(viewIter.hasNext()) {
+			View nextView = viewIter.next();
+			if(nextView.getEAnnotation("root") != null) {
+				resultView = nextView;
+				break;
+			}
+		}
+		
+		if(resultView != null) {
+			result = resultView.getElement();
+		}
+		
+		return (GenericDocumentPart) result;
+	}
+
+	@SuppressWarnings("unchecked")
+	private void findAccessibleElements(GenericDocumentPart curElement, List currentResult) {
+//		if(curElement == null || currentResult.contains(curElement)) {
+		if(curElement == null) {
+			return;
+		}
+		
+		currentResult.add(curElement);
+		
+		EList<InfElemRef> infElemRefs = curElement.getInfElemRefs();
+		for(InfElemRef ref : infElemRefs) {
+			InfElement element = ref.getInfelem();
+			findAccessibleElements(element, currentResult);
+		}
+		
+		return;
+	}
+
+	/**
+	 * @generated NOT
 	 */
 	protected boolean shouldDeleteView(View view) {
-		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
-			return view.isSetElement()
-					&& (view.getElement() == null || view.getElement()
-							.eIsProxy());
-		}
+//		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+//			return view.isSetElement()
+//					&& (view.getElement() == null || view.getElement()
+//							.eIsProxy());
+//		}
 		int nodeVID = DrlModelVisualIDRegistry.getVisualID(view);
 		switch (nodeVID) {
 		case InfElementEditPart.VISUAL_ID:
 		case InfProductEditPart.VISUAL_ID:
+//			return view.isSetElement()
+//			&& (view.getElement() == null || view.getElement()
+//					.eIsProxy());
 			return true;
 		}
 		return false;
@@ -154,25 +183,28 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void refreshSemantic() {
 		List createdViews = new LinkedList();
 		createdViews.addAll(refreshSemanticChildren());
 		createdViews.addAll(refreshPhantoms());
+		
 		List createdConnectionViews = new LinkedList();
 		createdConnectionViews.addAll(refreshSemanticConnections());
 		createdConnectionViews.addAll(refreshConnections());
 
+		createdViews.addAll(createdConnectionViews);
+		makeViewsImmutable(createdViews);
+		
 		if (createdViews.size() > 1) {
 			// perform a layout of the container
 			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
 					.getEditingDomain(), createdViews, host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
-
-		createdViews.addAll(createdConnectionViews);
-		makeViewsImmutable(createdViews);
+		
+		markAllInitialized(getDiagram());
 	}
 
 	/**
@@ -271,9 +303,11 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	 * @generated
 	 */
 	private Map myEObject2ViewMap = new HashMap();
-
+	
+	private List<View> myNewViews = new LinkedList<View>();
+	
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Collection refreshConnections() {
 		try {
@@ -283,8 +317,8 @@ public class DocumentationCoreCanonicalEditPolicy extends
 					.hasNext();) {
 				Edge nextDiagramLink = (Edge) diagramLinks.next();
 				EObject diagramLinkObject = nextDiagramLink.getElement();
-				EObject diagramLinkSrc = nextDiagramLink.getSource()
-						.getElement();
+				View diagramLinkSrcView = nextDiagramLink.getSource();
+				EObject diagramLinkSrc = diagramLinkSrcView.getElement();
 				EObject diagramLinkDst = nextDiagramLink.getTarget()
 						.getElement();
 				int diagramLinkVisualID = DrlModelVisualIDRegistry
@@ -298,6 +332,8 @@ public class DocumentationCoreCanonicalEditPolicy extends
 							&& diagramLinkSrc == nextLinkDescriptor.getSource()
 							&& diagramLinkDst == nextLinkDescriptor
 									.getDestination()
+							//HAND
+							&& diagramLinkSrcView == nextLinkDescriptor.getSourceView()
 							&& diagramLinkVisualID == nextLinkDescriptor
 									.getVisualID()) {
 						diagramLinks.remove();
@@ -307,14 +343,18 @@ public class DocumentationCoreCanonicalEditPolicy extends
 			}
 			deleteViews(existingLinks.iterator());
 			return createConnections(myLinkDescriptors);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return Collections.EMPTY_LIST;
 		} finally {
 			myLinkDescriptors.clear();
 			myEObject2ViewMap.clear();
+			myNewViews.clear();
 		}
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private void collectAllLinks(View view) {
 		EObject modelElement = view.getElement();
@@ -324,8 +364,13 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		case InfProductEditPart.VISUAL_ID:
 		case InfElemRefGroupEditPart.VISUAL_ID:
 		case DocumentationCoreEditPart.VISUAL_ID: {
-			myEObject2ViewMap.put(modelElement, view);
-			storeLinks(modelElement, getDiagram());
+//			myEObject2ViewMap.put(modelElement, view); 
+			if(!isInitialized(view)) {
+				myNewViews.add(view);
+//				markInitialized(view);
+			}
+			
+			storeLinks(view, modelElement, getDiagram());
 		}
 		default: {
 		}
@@ -337,6 +382,60 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		}
 	}
 
+	//TODO extract Visitor and Acceptor
+	private void markAllInitialized(View view) {
+		EObject modelElement = view.getElement();
+		int diagramElementVisualID = DrlModelVisualIDRegistry.getVisualID(view);
+		switch (diagramElementVisualID) {
+		case InfElementEditPart.VISUAL_ID:
+		case InfProductEditPart.VISUAL_ID:
+		case InfElemRefGroupEditPart.VISUAL_ID:
+		case DocumentationCoreEditPart.VISUAL_ID: {
+			markInitialized(view);
+		}
+		default: {
+		}
+			for (Iterator children = view.getChildren().iterator(); children
+					.hasNext();) {
+				View childView = (View) children.next();
+				markAllInitialized(childView);
+			}
+		}
+	}
+	
+	private boolean isInitialized(View view) {
+		return view.getEAnnotation("initialized") != null;
+	}
+	
+	private void markInitialized(final View view) {
+		if(isInitialized(view)) {
+			return;
+		}
+		
+		final EAnnotation initializedAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		initializedAnnotation.setSource("initialized"); //$NON-NLS-1$
+		
+		AbstractTransactionalCommand setAnnotationCommand = new AbstractTransactionalCommand(
+				host().getEditingDomain(), "Mark initialized", Collections.EMPTY_LIST){
+			@Override
+			protected CommandResult doExecuteWithResult(
+					IProgressMonitor monitor, IAdaptable info)
+					throws ExecutionException {
+				
+				view.getEAnnotations().add(initializedAnnotation);
+				return CommandResult.newOKCommandResult();
+			}
+			
+		};
+		
+		try {
+//			OperationHistoryFactory.getOperationHistory().execute(setAnnotationCommand, null, null);
+			setAnnotationCommand.execute(new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * @generated
 	 */
@@ -349,9 +448,10 @@ public class DocumentationCoreCanonicalEditPolicy extends
 				.hasNext();) {
 			final LinkDescriptor nextLinkDescriptor = (LinkDescriptor) linkDescriptorsIterator
 					.next();
+			//HAND
 			EditPart sourceEditPart = getEditPartFor(nextLinkDescriptor
-					.getSource());
-			EditPart targetEditPart = getEditPartFor(nextLinkDescriptor
+					.getSourceView());
+			EditPart targetEditPart = getNewEditPartFor(nextLinkDescriptor
 					.getDestination());
 			if (sourceEditPart == null || targetEditPart == null) {
 				continue;
@@ -379,40 +479,60 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		return adapters;
 	}
 
+	private EditPart getNewEditPartFor(EObject modelElement) {
+		View modelElementView = null;
+		for(View view: myNewViews) {
+			EObject viewElement = view.getElement();
+			//XXX how to compare?
+			if(viewElement == modelElement) {
+				modelElementView = view;
+				myNewViews.remove(view);
+				break;
+			}
+		}
+		
+		return getEditPartFor(modelElementView);
+	}
+	
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	private EditPart getEditPartFor(EObject modelElement) {
-		View view = (View) myEObject2ViewMap.get(modelElement);
+//	private EditPart getEditPartFor(EObject modelElement) {
+//		View view = (View) myEObject2ViewMap.get(modelElement);
+//		return getEditPartFor(view);
+//	}
+	
+	private EditPart getEditPartFor(View view) {
 		if (view != null) {
 			return (EditPart) getHost().getViewer().getEditPartRegistry().get(
 					view);
 		}
-		return null;
+		return null;	
 	}
 
 	/**
 	 *@generated
 	 */
-	private void storeLinks(EObject container, Diagram diagram) {
+	private void storeLinks(View view, EObject container, Diagram diagram) {
 		EClass containerMetaclass = container.eClass();
-		storeFeatureModelFacetLinks(container, containerMetaclass, diagram);
-		storeTypeModelFacetLinks(container, containerMetaclass);
+		storeFeatureModelFacetLinks(view, container, containerMetaclass, diagram);
+		storeTypeModelFacetLinks(view, container, containerMetaclass);
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	private void storeTypeModelFacetLinks(EObject container,
+	private void storeTypeModelFacetLinks(View containerView, EObject container,
 			EClass containerMetaclass) {
-		storeTypeModelFacetLinks_InfElemRef_3001(container, containerMetaclass);
-		storeTypeModelFacetLinks_InfElemRef_3003(container, containerMetaclass);
+		storeTypeModelFacetLinks_InfElemRef_3001(containerView, container, containerMetaclass);
+		storeTypeModelFacetLinks_InfElemRef_3003(containerView, container, containerMetaclass);
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	private void storeTypeModelFacetLinks_InfElemRef_3001(EObject container,
+	private void storeTypeModelFacetLinks_InfElemRef_3001(
+			View containerView, EObject container,
 			EClass containerMetaclass) {
 		if (DrlPackage.eINSTANCE.getGenericDocumentPart().isSuperTypeOf(
 				containerMetaclass)) {
@@ -427,7 +547,10 @@ public class DocumentationCoreCanonicalEditPolicy extends
 					if (structuralFeatureResult instanceof EObject) {
 						EObject dst = (EObject) structuralFeatureResult;
 						EObject src = container;
-						myLinkDescriptors.add(new LinkDescriptor(src, dst,
+						myLinkDescriptors.add(new LinkDescriptor(
+								containerView,
+								src, 
+								dst,
 								nextValue,
 								DrlModelElementTypes.InfElemRef_3001, linkVID));
 					}
@@ -437,9 +560,11 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	private void storeTypeModelFacetLinks_InfElemRef_3003(EObject container,
+	private void storeTypeModelFacetLinks_InfElemRef_3003(
+			View containerView,
+			EObject container,
 			EClass containerMetaclass) {
 		if (DrlPackage.eINSTANCE.getGenericDocumentPart().isSuperTypeOf(
 				containerMetaclass)) {
@@ -457,7 +582,9 @@ public class DocumentationCoreCanonicalEditPolicy extends
 								.getGroup();
 						if (structuralFeatureResult instanceof EObject) {
 							EObject src = (EObject) structuralFeatureResult;
-							myLinkDescriptors.add(new LinkDescriptor(src, dst,
+							myLinkDescriptors.add(new LinkDescriptor(containerView, 
+									src, 
+									dst,
 									nextValue,
 									DrlModelElementTypes.InfElemRef_3003,
 									linkVID));
@@ -469,9 +596,9 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	}
 
 	/**
-	 *@generated
+	 *@generated NOT
 	 */
-	private void storeFeatureModelFacetLinks(EObject container,
+	private void storeFeatureModelFacetLinks(View containerView, EObject container,
 			EClass containerMetaclass, Diagram diagram) {
 
 		if (DrlPackage.eINSTANCE.getGenericDocumentPart().isSuperTypeOf(
@@ -483,6 +610,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 						.getNodeVisualID(diagram, nextDestination)) {
 					myLinkDescriptors
 							.add(new LinkDescriptor(
+									containerView,
 									container,
 									nextDestination,
 									DrlModelElementTypes.GenericDocumentPartGroups_3002,
@@ -531,12 +659,14 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		 */
 		private IAdaptable mySemanticAdapter;
 
+		private View mySourceView;
+
 		/**
 		 * @generated
 		 */
-		protected LinkDescriptor(EObject source, EObject destination,
+		protected LinkDescriptor(View sourceView, EObject source, EObject destination,
 				EObject linkElement, IElementType elementType, int linkVID) {
-			this(source, destination, linkVID);
+			this(sourceView, source, destination, linkVID);
 			myLinkElement = linkElement;
 			final IElementType elementTypeCopy = elementType;
 			mySemanticAdapter = new EObjectAdapter(linkElement) {
@@ -552,9 +682,9 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		/**
 		 * @generated
 		 */
-		protected LinkDescriptor(EObject source, EObject destination,
+		protected LinkDescriptor(View sourceView, EObject source, EObject destination,
 				IElementType elementType, int linkVID) {
-			this(source, destination, linkVID);
+			this(sourceView, source, destination, linkVID);
 			myLinkElement = null;
 			final IElementType elementTypeCopy = elementType;
 			mySemanticAdapter = new IAdaptable() {
@@ -568,9 +698,10 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
-		private LinkDescriptor(EObject source, EObject destination, int linkVID) {
+		private LinkDescriptor(View sourceView, EObject source, EObject destination, int linkVID) {
+			mySourceView = sourceView;
 			mySource = source;
 			myDestination = destination;
 			myVisualID = linkVID;
@@ -609,6 +740,13 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		 */
 		protected IAdaptable getSemanticAdapter() {
 			return mySemanticAdapter;
+		}
+
+		/**
+		 * @return the mySourceView
+		 */
+		protected View getSourceView() {
+			return mySourceView;
 		}
 	}
 

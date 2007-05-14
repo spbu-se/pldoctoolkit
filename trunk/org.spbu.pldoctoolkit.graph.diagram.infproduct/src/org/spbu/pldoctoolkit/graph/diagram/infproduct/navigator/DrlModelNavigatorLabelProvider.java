@@ -117,29 +117,29 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 		switch (DrlModelVisualIDRegistry.getVisualID(view)) {
 		case InfElementEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://tepkom.ru/drl?InfElement",
+					"Navigator?TopLevelNode?http://math.spbu.ru/drl?InfElement",
 					DrlModelElementTypes.InfElement_1001);
 		case InfProductEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://tepkom.ru/drl?InfProduct",
+					"Navigator?TopLevelNode?http://math.spbu.ru/drl?InfProduct",
 					DrlModelElementTypes.InfProduct_1002);
 		case InfElemRefGroupEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://tepkom.ru/drl?InfElemRefGroup",
+					"Navigator?TopLevelNode?http://math.spbu.ru/drl?InfElemRefGroup",
 					DrlModelElementTypes.InfElemRefGroup_1003);
 		case DocumentationCoreEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http://tepkom.ru/drl?DocumentationCore",
+					"Navigator?Diagram?http://math.spbu.ru/drl?DocumentationCore",
 					DrlModelElementTypes.DocumentationCore_79);
 		case InfElemRefEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://tepkom.ru/drl?InfElemRef",
+			return getImage("Navigator?Link?http://math.spbu.ru/drl?InfElemRef",
 					DrlModelElementTypes.InfElemRef_3001);
 		case GenericDocumentPartGroupsEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://tepkom.ru/drl?GenericDocumentPart?groups",
+					"Navigator?Link?http://math.spbu.ru/drl?GenericDocumentPart?groups",
 					DrlModelElementTypes.GenericDocumentPartGroups_3002);
 		case InfElemRef2EditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://tepkom.ru/drl?InfElemRef",
+			return getImage("Navigator?Link?http://math.spbu.ru/drl?InfElemRef",
 					DrlModelElementTypes.InfElemRef_3003);
 		default:
 			return getImage("Navigator?UnknownElement", null);

@@ -63,6 +63,10 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new InfProductItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		
+		//HAND
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, 
+			new InfProductCanonicalEditPolicy());
 	}
 
 	/**

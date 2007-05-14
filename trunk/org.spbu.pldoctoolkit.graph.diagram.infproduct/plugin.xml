@@ -259,7 +259,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <?gmfgen generated="true"?>
-      <metamodel nsURI="http://tepkom.ru/drl">
+      <metamodel nsURI="http://math.spbu.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.DocumentationCore_79"
                name="%metatype.name.DocumentationCore_79"
@@ -269,7 +269,7 @@
             <param name="semanticHint" value="79"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://tepkom.ru/drl">
+      <metamodel nsURI="http://math.spbu.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElement_1001"
                name="%metatype.name.InfElement_1001"
@@ -279,7 +279,7 @@
             <param name="semanticHint" value="1001"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://tepkom.ru/drl">
+      <metamodel nsURI="http://math.spbu.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfProduct_1002"
                name="%metatype.name.InfProduct_1002"
@@ -289,7 +289,7 @@
             <param name="semanticHint" value="1002"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://tepkom.ru/drl">
+      <metamodel nsURI="http://math.spbu.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRefGroup_1003"
                name="%metatype.name.InfElemRefGroup_1003"
@@ -299,7 +299,7 @@
             <param name="semanticHint" value="1003"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://tepkom.ru/drl">
+      <metamodel nsURI="http://math.spbu.ru/drl">
          <metamodelType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRef_3001"
                name="%metatype.name.InfElemRef_3001"
@@ -309,7 +309,7 @@
             <param name="semanticHint" value="3001"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://tepkom.ru/drl">
+      <metamodel nsURI="http://math.spbu.ru/drl">
          <specializationType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.GenericDocumentPartGroups_3002"
                name="%metatype.name.GenericDocumentPartGroups_3002"
@@ -319,7 +319,7 @@
             <param name="semanticHint" value="3002"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://tepkom.ru/drl">
+      <metamodel nsURI="http://math.spbu.ru/drl">
          <specializationType
                id="org.spbu.pldoctoolkit.graph.diagram.infproduct.InfElemRef_3003"
                name="%metatype.name.InfElemRef_3003"

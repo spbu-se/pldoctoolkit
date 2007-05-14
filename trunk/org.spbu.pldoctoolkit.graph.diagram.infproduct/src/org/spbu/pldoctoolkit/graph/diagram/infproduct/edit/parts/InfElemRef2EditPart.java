@@ -5,10 +5,13 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.InfElemRef;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart.InfElemRefFigure;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElemRef2ItemSemanticEditPolicy;
 
 /**
@@ -50,55 +53,74 @@ public class InfElemRef2EditPart extends ConnectionNodeEditPart {
 		return new InfElemRefFigure();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+
+		((InfElemRefFigure) getFigure()).updateTargetDecoration();
+	}
+	
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public class InfElemRefFigure extends PolylineConnectionEx {
 
+		PolygonDecoration circleDecoration;
+
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		public InfElemRefFigure() {
-			this.setFill(true);
-			this.setFillXOR(false);
-			this.setOutline(true);
-			this.setOutlineXOR(false);
-			this.setLineWidth(1);
-			this.setLineStyle(Graphics.LINE_SOLID);
+			circleDecoration = createTargetDecoration();
 
-			setTargetDecoration(createTargetDecoration());
+			updateTargetDecoration();
+		}
+
+		public void updateTargetDecoration() {
+			InfElemRef infElemRefInstance = (InfElemRef) ((View) getModel())
+					.getElement();
+			boolean isShowCircle = infElemRefInstance.isOptional();
+
+			RotatableDecoration decoration;
+			if (isShowCircle) {
+				decoration = circleDecoration;
+			} else {
+				decoration = null;
+			}
+
+			setTargetDecoration(decoration);
 		}
 
 		/**
 		 * @generated NOT
 		 */
-		private RotatableDecoration createTargetDecoration() {
+		private PolygonDecoration createTargetDecoration() {
 			PolygonDecoration df = new PolygonDecoration();
-			df.setFill(false);
-			df.setFillXOR(false);
-			df.setOutline(true);
-			df.setOutlineXOR(false);
-			df.setLineWidth(1);
-			df.setLineStyle(Graphics.LINE_SOLID);
+			// dispatchNext?
+
 			PointList pl = new PointList();
-			pl.addPoint(getMapMode().DPtoLP(1), getMapMode().DPtoLP(4));
-			pl.addPoint(getMapMode().DPtoLP(3), getMapMode().DPtoLP(3));
-			pl.addPoint(getMapMode().DPtoLP(4), getMapMode().DPtoLP(1));
-			pl.addPoint(getMapMode().DPtoLP(4), getMapMode().DPtoLP(-1));
-			pl.addPoint(getMapMode().DPtoLP(3), getMapMode().DPtoLP(-3));
-			pl.addPoint(getMapMode().DPtoLP(1), getMapMode().DPtoLP(-4));
-			pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(-4));
-			pl.addPoint(getMapMode().DPtoLP(-3), getMapMode().DPtoLP(-3));
-			pl.addPoint(getMapMode().DPtoLP(-4), getMapMode().DPtoLP(-1));
-			pl.addPoint(getMapMode().DPtoLP(-4), getMapMode().DPtoLP(1));
-			pl.addPoint(getMapMode().DPtoLP(-3), getMapMode().DPtoLP(3));
-			pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(4));
-			pl.addPoint(getMapMode().DPtoLP(1), getMapMode().DPtoLP(4));
+			pl.addPoint(1, 4);
+			pl.addPoint(3, 3);
+			pl.addPoint(4, 1);
+			pl.addPoint(4, -1);
+			pl.addPoint(3, -3);
+			pl.addPoint(1, -4);
+			pl.addPoint(-1, -4);
+			pl.addPoint(-3, -3);
+			pl.addPoint(-4, -1);
+			pl.addPoint(-4, 1);
+			pl.addPoint(-3, 3);
+			pl.addPoint(-1, 4);
+			pl.addPoint(1, 4);
 			df.setTemplate(pl);
 			df.setScale(getMapMode().DPtoLP(1), getMapMode().DPtoLP(1));
+			df.setFill(false);
+
 			return df;
 		}
 
 	}
-
 }
