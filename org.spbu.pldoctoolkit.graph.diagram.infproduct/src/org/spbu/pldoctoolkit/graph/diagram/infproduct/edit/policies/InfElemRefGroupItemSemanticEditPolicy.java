@@ -7,6 +7,7 @@ import java.util.Iterator;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -98,6 +99,17 @@ public class InfElemRefGroupItemSemanticEditPolicy extends
 		}));
 		return cc;
 	}
+
+	/* (non-Javadoc)
+	 * @see org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DrlModelBaseItemSemanticEditPolicy#getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest)
+	 */
+	@Override
+	protected Command getCreateCommand(CreateElementRequest req) {
+		// TODO Auto-generated method stub
+		return super.getCreateCommand(req);
+	}
+
+
 
 	/**
 	 * @generated

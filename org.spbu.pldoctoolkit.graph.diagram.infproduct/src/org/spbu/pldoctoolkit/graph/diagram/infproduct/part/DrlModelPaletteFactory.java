@@ -1,18 +1,15 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.part;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
+import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.jface.resource.ImageDescriptor;
-import java.util.ArrayList;
-
-import org.eclipse.gef.palette.PaletteGroup;
-
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
-
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
 
 /**
@@ -33,7 +30,8 @@ public class DrlModelPaletteFactory {
 	private PaletteContainer createDrlTools1Group() {
 		PaletteGroup paletteContainer = new PaletteGroup(
 				Messages.DrlTools1Group_title);
-		paletteContainer.add(createInfProduct1CreationTool());
+		//HAND
+//		paletteContainer.add(createInfProduct1CreationTool());
 		paletteContainer.add(createInfElement2CreationTool());
 		paletteContainer.add(createInfElemRefGroup3CreationTool());
 		paletteContainer.add(createInfElemRefConnection4CreationTool());

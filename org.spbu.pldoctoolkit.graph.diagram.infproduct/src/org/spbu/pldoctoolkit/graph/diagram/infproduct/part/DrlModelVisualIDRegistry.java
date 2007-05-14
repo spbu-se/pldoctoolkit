@@ -371,7 +371,8 @@ public class DrlModelVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isLinkWithClassInfElemRef_3001(InfElemRef element) {
-		return InfElemRef_3001.matches(element);
+//		return InfElemRef_3001.matches(element);
+		return true;
 	}
 
 	/**
@@ -381,7 +382,8 @@ public class DrlModelVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isLinkWithClassInfElemRef_3003(InfElemRef element) {
-		return InfElemRef_3003.matches(element);
+//		return InfElemRef_3003.matches(element);
+		return true;
 	}
 
 	/**

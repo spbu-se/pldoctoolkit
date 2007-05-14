@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
+import org.spbu.pldoctoolkit.graph.InfElemRef;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
 
@@ -82,20 +83,22 @@ public class InfElemRefGroupCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Collection refreshPhantoms() {
 		Collection phantomNodes = new LinkedList();
-		EObject container = ((View) getHost().getModel()).getElement();
+		EObject model = ((View) getHost().getModel()).getElement();
+		EObject container = model.eContainer();
 		EClass containerMetaclass = container.eClass();
 		Diagram diagram = getDiagram();
 		if (DrlPackage.eINSTANCE.getGenericDocumentPart().isSuperTypeOf(
 				containerMetaclass)) {
 			for (Iterator destinations = ((GenericDocumentPart) container)
-					.getGroups().iterator(); destinations.hasNext();) {
-				EObject nextDestination = (EObject) destinations.next();
-				if (InfElemRefGroupEditPart.VISUAL_ID == DrlModelVisualIDRegistry
-						.getNodeVisualID(diagram, nextDestination)) {
+					.getInfElemRefs().iterator(); destinations.hasNext();) {
+				InfElemRef nextDestination = (InfElemRef) destinations.next();
+				if(nextDestination.getGroup() == model) {
+//				if (InfElemRefGroupEditPart.VISUAL_ID == DrlModelVisualIDRegistry
+//						.getNodeVisualID(diagram, nextDestination)) {
 					phantomNodes.add(nextDestination);
 
 				}

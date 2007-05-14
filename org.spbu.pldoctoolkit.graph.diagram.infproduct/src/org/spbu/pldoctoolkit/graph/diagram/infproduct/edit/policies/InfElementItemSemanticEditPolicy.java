@@ -8,11 +8,13 @@ import java.util.Iterator;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -28,6 +30,7 @@ import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRef2R
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRef2TypeLinkCreateCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRefReorientCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRefTypeLinkCreateCommand;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElementCreateCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRef2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
@@ -39,6 +42,33 @@ import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementT
  */
 public class InfElementItemSemanticEditPolicy extends
 		DrlModelBaseItemSemanticEditPolicy {
+
+	
+	
+	
+	/* (non-Javadoc)
+	 * @see org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DrlModelBaseItemSemanticEditPolicy#getCommand(org.eclipse.gef.Request)
+	 */
+	@Override
+	public Command getCommand(Request request) {
+		// TODO Auto-generated method stub
+		return super.getCommand(request);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DrlModelBaseItemSemanticEditPolicy#getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest)
+	 */
+	@Override
+	protected Command getCreateCommand(CreateElementRequest req) {
+		if (DrlModelElementTypes.InfElement_1001 == req.getElementType()) {
+			if (req.getContainmentFeature() == null) {
+				req.setContainmentFeature(DrlPackage.eINSTANCE
+						.getDocumentationCore_Parts());
+			}
+			return getMSLWrapper(new InfElementCreateCommand(req));
+		}
+		return super.getCreateCommand(req);
+	}
 
 	/**
 	 * @generated
@@ -94,28 +124,6 @@ public class InfElementItemSemanticEditPolicy extends
 		return super.getCreateRelationshipCommand(req);
 	}
 
-	/**
-	 * @generated
-	 */
-	//	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-	//		if (DrlModelElementTypes.InfElemRef_3001 == req.getElementType()) {
-	//			return req.getTarget() == null ? getCreateStartOutgoingInfElemRef_3001Command(req)
-	//					: getCreateCompleteIncomingInfElemRef_3001Command(req);
-	//		}
-	//		if (DrlModelElementTypes.GenericDocumentPartGroups_3002 == req
-	//				.getElementType()) {
-	//			return req.getTarget() == null ? getCreateStartOutgoingGenericDocumentPartGroups_3002Command(req)
-	//					: null;
-	//		}
-	//
-	//		if (DrlModelElementTypes.InfElemRefGroupInfElemRefsGroup_3003 == req
-	//				.getElementType()) {
-	//			return req.getTarget() == null ? null
-	//					: getCreateCompleteIncomingInfElemRefGroup_InfElemRefsGroup3003Command(req);
-	//		}
-	//
-	//		return super.getCreateRelationshipCommand(req);
-	//	}
 	/**
 	 * @generated
 	 */
@@ -244,62 +252,5 @@ public class InfElementItemSemanticEditPolicy extends
 	protected Command getCreateCompleteIncomingInfElemRefGroup_InfElemRefsGroup3003Command(
 			CreateRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
-		/*		//		DrlModelDiagramEditorPlugin.getInstance().logInfo("source: " + req.getSource().toString());
-
-		 if (!(req.getSource() instanceof InfElemRefGroup)) {
-		 return UnexecutableCommand.INSTANCE;
-		 }
-
-		 final InfElemRefGroup sourceElement = (InfElemRefGroup) req.getSource();
-		 final InfElement targetElement = (InfElement) req.getTarget();
-
-		 // a manual restriction: single incoming InfElemRef
-		 if (targetElement.getOwnerInfElemRef() != null) {
-		 return UnexecutableCommand.INSTANCE;
-		 }
-
-		 if (req.getContainmentFeature() == null) {
-		 req.setContainmentFeature(DrlPackage.eINSTANCE
-		 .getGenericDocumentPart_InfElemRefs());
-		 }
-
-		 return getMSLWrapper(new CreateIncomingInfElemRef3001Command(req) {
-
-		 protected EObject getElementToEdit() {
-		 return sourceElement.eContainer();
-		 }
-
-		 //XXX remove this
-		 @Override
-		 public boolean canExecute() {
-		 if (getEClassToEdit() == null)
-		 return false;
-		 if (getContainmentFeature() != null) {
-		 org.eclipse.emf.ecore.EClassifier eClassifier = getContainmentFeature()
-		 .getEType();
-		 boolean result = true;
-		 if (eClassifier instanceof EClass)
-		 result = ((EClass) eClassifier)
-		 .isSuperTypeOf(getElementType().getEClass());
-		 result = result
-		 && PackageUtil.canContain(getEClassToEdit(),
-		 getContainmentFeature(), getElementType()
-		 .getEClass(), false);
-		 return result && super.canExecute();
-		 } else {
-		 return false;
-		 }
-		 }
-
-		 protected EObject doDefaultElementCreation() {
-		 InfElemRef newElement = (InfElemRef) super
-		 .doDefaultElementCreation();
-		 if (newElement != null) {
-		 newElement.setGroup(sourceElement);
-		 }
-		 return newElement;
-		 }
-		 });
-		 */
 	}
 }
