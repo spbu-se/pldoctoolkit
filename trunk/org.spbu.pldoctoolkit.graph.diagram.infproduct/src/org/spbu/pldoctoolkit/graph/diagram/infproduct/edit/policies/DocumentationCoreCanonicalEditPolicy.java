@@ -3,28 +3,21 @@ package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
-import javax.swing.ProgressMonitor;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -41,7 +34,6 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -51,6 +43,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
+import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart;
@@ -138,6 +131,8 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		switch (nodeVID) {
 		case InfElementEditPart.VISUAL_ID:
 		case InfProductEditPart.VISUAL_ID:
+		case InfElemRefEditPart.VISUAL_ID:
+		case InfElemRef2EditPart.VISUAL_ID:
 //			return view.isSetElement()
 //			&& (view.getElement() == null || view.getElement()
 //					.eIsProxy());
@@ -302,7 +297,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	/**
 	 * @generated
 	 */
-	private Map myEObject2ViewMap = new HashMap();
+//	private Map myEObject2ViewMap = new HashMap();
 	
 	private List<View> myNewViews = new LinkedList<View>();
 	
@@ -341,6 +336,14 @@ public class DocumentationCoreCanonicalEditPolicy extends
 					}
 				}
 			}
+			for(Iterator linksToDeleteIter = existingLinks.iterator();
+					linksToDeleteIter.hasNext();) {
+				Edge nextLink = (Edge) linksToDeleteIter.next();
+				View nextLinkTargetView = nextLink.getTarget();
+				markInitialized(nextLinkTargetView, false);
+				myNewViews.add(nextLinkTargetView);
+			}
+			
 			deleteViews(existingLinks.iterator());
 			return createConnections(myLinkDescriptors);
 		} catch(Exception e) {
@@ -348,7 +351,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 			return Collections.EMPTY_LIST;
 		} finally {
 			myLinkDescriptors.clear();
-			myEObject2ViewMap.clear();
+//			myEObject2ViewMap.clear();
 			myNewViews.clear();
 		}
 	}
@@ -367,7 +370,6 @@ public class DocumentationCoreCanonicalEditPolicy extends
 //			myEObject2ViewMap.put(modelElement, view); 
 			if(!isInitialized(view)) {
 				myNewViews.add(view);
-//				markInitialized(view);
 			}
 			
 			storeLinks(view, modelElement, getDiagram());
@@ -391,7 +393,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		case InfProductEditPart.VISUAL_ID:
 		case InfElemRefGroupEditPart.VISUAL_ID:
 		case DocumentationCoreEditPart.VISUAL_ID: {
-			markInitialized(view);
+			markInitialized(view, true);
 		}
 		default: {
 		}
@@ -407,13 +409,18 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		return view.getEAnnotation("initialized") != null;
 	}
 	
-	private void markInitialized(final View view) {
-		if(isInitialized(view)) {
+	private void markInitialized(final View view, final boolean initialize) {
+		if(isInitialized(view) ^ initialize) {
 			return;
 		}
 		
-		final EAnnotation initializedAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-		initializedAnnotation.setSource("initialized"); //$NON-NLS-1$
+		final EAnnotation initializedAnnotation;
+		if(initialize) {
+			initializedAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+			initializedAnnotation.setSource("initialized"); //$NON-NLS-1$
+		} else {
+			initializedAnnotation = view.getEAnnotation("initialized");
+		}
 		
 		AbstractTransactionalCommand setAnnotationCommand = new AbstractTransactionalCommand(
 				host().getEditingDomain(), "Mark initialized", Collections.EMPTY_LIST){
@@ -422,14 +429,18 @@ public class DocumentationCoreCanonicalEditPolicy extends
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
 				
-				view.getEAnnotations().add(initializedAnnotation);
+				EList<EAnnotation> annotations = view.getEAnnotations();
+				if(initialize) {
+					annotations.add(initializedAnnotation);
+				} else {
+					annotations.remove(initializedAnnotation);
+				}
 				return CommandResult.newOKCommandResult();
 			}
 			
 		};
 		
 		try {
-//			OperationHistoryFactory.getOperationHistory().execute(setAnnotationCommand, null, null);
 			setAnnotationCommand.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
 			e.printStackTrace();
@@ -452,7 +463,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 			EditPart sourceEditPart = getEditPartFor(nextLinkDescriptor
 					.getSourceView());
 			EditPart targetEditPart = getNewEditPartFor(nextLinkDescriptor
-					.getDestination());
+					.getDestination(), true);
 			if (sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
@@ -479,28 +490,26 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		return adapters;
 	}
 
-	private EditPart getNewEditPartFor(EObject modelElement) {
-		View modelElementView = null;
-		for(View view: myNewViews) {
-			EObject viewElement = view.getElement();
-			//XXX how to compare?
-			if(viewElement == modelElement) {
-				modelElementView = view;
-				myNewViews.remove(view);
-				break;
-			}
-		}
+	private EditPart getNewEditPartFor(EObject modelElement, boolean doMarkViewUsed) {
+		View modelElementView = getNewViewFor(modelElement, doMarkViewUsed);
 		
 		return getEditPartFor(modelElementView);
 	}
-	
-	/**
-	 * @generated NOT
-	 */
-//	private EditPart getEditPartFor(EObject modelElement) {
-//		View view = (View) myEObject2ViewMap.get(modelElement);
-//		return getEditPartFor(view);
-//	}
+
+	private View getNewViewFor(EObject modelElement, boolean doMarkViewUsed) {
+		View modelElementView = null;
+		for(View view: myNewViews) {
+			EObject viewElement = view.getElement();
+			if(viewElement == modelElement) {
+				modelElementView = view;
+				if(doMarkViewUsed) {
+					myNewViews.remove(view);
+				}
+				break;
+			}
+		}
+		return modelElementView;
+	}
 	
 	private EditPart getEditPartFor(View view) {
 		if (view != null) {
@@ -581,8 +590,12 @@ public class DocumentationCoreCanonicalEditPolicy extends
 						structuralFeatureResult = ((InfElemRef) nextValue)
 								.getGroup();
 						if (structuralFeatureResult instanceof EObject) {
-							EObject src = (EObject) structuralFeatureResult;
-							myLinkDescriptors.add(new LinkDescriptor(containerView, 
+							InfElemRefGroup src = (InfElemRefGroup) structuralFeatureResult;
+							View groupView = getInfelemRefGroupView(containerView, src);
+							if(groupView == null) {
+								groupView = getNewViewFor(src, false);
+							}
+							myLinkDescriptors.add(new LinkDescriptor(groupView, 
 									src, 
 									dst,
 									nextValue,
@@ -593,6 +606,22 @@ public class DocumentationCoreCanonicalEditPolicy extends
 				}
 			}
 		}
+	}
+
+	private View getInfelemRefGroupView(View containerView, InfElemRefGroup src) {
+		View result = null;
+		
+		for(Iterator edgesIter = containerView.getSourceEdges().iterator(); edgesIter.hasNext();) {
+			Edge nextEdge = (Edge) edgesIter.next();
+			View targetView = nextEdge.getTarget();
+			EObject targetObject = targetView .getElement();
+			if(targetObject == src) {
+				result = targetView;
+				break;
+			}
+		}
+		
+		return result;
 	}
 
 	/**

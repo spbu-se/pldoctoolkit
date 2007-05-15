@@ -43,9 +43,6 @@ import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementT
 public class InfElementItemSemanticEditPolicy extends
 		DrlModelBaseItemSemanticEditPolicy {
 
-	
-	
-	
 	/* (non-Javadoc)
 	 * @see org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DrlModelBaseItemSemanticEditPolicy#getCommand(org.eclipse.gef.Request)
 	 */

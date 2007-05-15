@@ -62,7 +62,7 @@ public class InfElemRef2EditPart extends ConnectionNodeEditPart {
 
 		((InfElemRefFigure) getFigure()).updateTargetDecoration();
 	}
-	
+
 	/**
 	 * @generated NOT
 	 */

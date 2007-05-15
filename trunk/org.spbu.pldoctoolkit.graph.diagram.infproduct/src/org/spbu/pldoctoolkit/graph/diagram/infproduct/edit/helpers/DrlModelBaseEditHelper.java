@@ -2,6 +2,7 @@ package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.helpers;
 
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -57,13 +58,16 @@ public class DrlModelBaseEditHelper extends AbstractEditHelper {
 	 * @generated
 	 */
 	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
-		return null;
+		System.out.println("destroying element" + req.getElementToDestroy());
+//		return null;
+		return new DestroyElementCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected ICommand getDestroyReferenceCommand(DestroyReferenceRequest req) {
+		System.out.println("destroying reference: " + req.getReferencedObject());
 		return null;
 	}
 }

@@ -1,51 +1,37 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.navigator;
 
 import org.eclipse.core.runtime.IAdaptable;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
-
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-
 import org.eclipse.gmf.runtime.notation.View;
-
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-
 import org.eclipse.jface.viewers.ITreePathLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerLabel;
-
 import org.eclipse.swt.graphics.Image;
-
 import org.eclipse.ui.IMemento;
-
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
-
+import org.spbu.pldoctoolkit.graph.DrlElement;
+import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
-
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRef2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefId2EditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductNameEditPart;
-
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramEditorPlugin;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
-
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
 
 /**
@@ -132,14 +118,16 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 					"Navigator?Diagram?http://math.spbu.ru/drl?DocumentationCore",
 					DrlModelElementTypes.DocumentationCore_79);
 		case InfElemRefEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://math.spbu.ru/drl?InfElemRef",
+			return getImage(
+					"Navigator?Link?http://math.spbu.ru/drl?InfElemRef",
 					DrlModelElementTypes.InfElemRef_3001);
 		case GenericDocumentPartGroupsEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://math.spbu.ru/drl?GenericDocumentPart?groups",
 					DrlModelElementTypes.GenericDocumentPartGroups_3002);
 		case InfElemRef2EditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://math.spbu.ru/drl?InfElemRef",
+			return getImage(
+					"Navigator?Link?http://math.spbu.ru/drl?InfElemRef",
 					DrlModelElementTypes.InfElemRef_3003);
 		default:
 			return getImage("Navigator?UnknownElement", null);
@@ -294,33 +282,26 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getDocumentationCore_79Text(View view) {
-		return "";
+		EObject domainModelElement = view.getElement();
+		if (domainModelElement != null) {
+			return String.valueOf(((DrlElement) domainModelElement).getNode());
+		} else {
+			DrlModelDiagramEditorPlugin.getInstance().logError(
+					"No domain element for view with visualID = " + 79);
+			return "";
+		}
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getInfElemRef_3001Text(View view) {
-		IParser parser = ParserService.getInstance().getParser(
-				new IAdaptable() {
-					public Object getAdapter(Class adapter) {
-						if (String.class.equals(adapter)) {
-							return DrlModelVisualIDRegistry
-									.getType(InfElemRefIdEditPart.VISUAL_ID);
-						}
-						if (IElementType.class.equals(adapter)) {
-							return DrlModelElementTypes.InfElemRef_3001;
-						}
-						return null;
-					}
-				});
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
+		EObject domainModelElement = view.getElement();
+		if (domainModelElement != null) {
+			return ((InfElemRef) domainModelElement).getId();
 		} else {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4003);
+					"No domain element for view with visualID = " + 3001);
 			return "";
 		}
 	}
@@ -336,26 +317,12 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getInfElemRef_3003Text(View view) {
-		IParser parser = ParserService.getInstance().getParser(
-				new IAdaptable() {
-					public Object getAdapter(Class adapter) {
-						if (String.class.equals(adapter)) {
-							return DrlModelVisualIDRegistry
-									.getType(InfElemRefId2EditPart.VISUAL_ID);
-						}
-						if (IElementType.class.equals(adapter)) {
-							return DrlModelElementTypes.InfElemRef_3003;
-						}
-						return null;
-					}
-				});
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
+		EObject domainModelElement = view.getElement();
+		if (domainModelElement != null) {
+			return ((InfElemRef) domainModelElement).getId();
 		} else {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4004);
+					"No domain element for view with visualID = " + 3003);
 			return "";
 		}
 	}

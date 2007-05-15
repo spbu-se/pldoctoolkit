@@ -1,6 +1,7 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,6 +10,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -102,14 +104,19 @@ public class InfProductCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 		}
 
-		for (Iterator diagramNodes = getDiagram().getChildren().iterator(); diagramNodes
-				.hasNext();) {
-			View nextView = (View) diagramNodes.next();
-			EObject nextViewElement = nextView.getElement();
-			if (phantomNodes.contains(nextViewElement)) {
-				phantomNodes.remove(nextViewElement);
+		//HAND
+		View view = (View)getHost().getModel();
+		EList sourceEdges = view.getSourceEdges();
+		
+		for(Iterator edgesIter = sourceEdges.iterator(); edgesIter.hasNext();) {
+			Edge nextEdge = (Edge) edgesIter.next();
+			View targetView = nextEdge.getTarget();
+			EObject targetViewElement = targetView.getElement();
+			if(targetView != null && phantomNodes.contains(targetViewElement)) {
+				phantomNodes.remove(targetViewElement);
 			}
 		}
+		
 		return createPhantomNodes(phantomNodes);
 	}
 

@@ -8,6 +8,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -101,6 +102,7 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 	 */
 	protected IFigure createNodeShape() {
 		InfElemRefGroupFigure figure = new InfElemRefGroupFigure();
+		figure.updateDecoration();
 		return primaryShape = figure;
 	}
 
@@ -112,7 +114,7 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()

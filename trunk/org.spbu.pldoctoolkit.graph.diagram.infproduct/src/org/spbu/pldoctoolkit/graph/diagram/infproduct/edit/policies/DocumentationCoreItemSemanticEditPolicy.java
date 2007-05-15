@@ -31,8 +31,6 @@ import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementT
 public class DocumentationCoreItemSemanticEditPolicy extends
 		DrlModelBaseItemSemanticEditPolicy {
 
-	
-	
 	/* (non-Javadoc)
 	 * @see org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DrlModelBaseItemSemanticEditPolicy#getCommand(org.eclipse.gef.Request)
 	 */
@@ -43,7 +41,7 @@ public class DocumentationCoreItemSemanticEditPolicy extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 //		if (DrlModelElementTypes.InfElement_1001 == req.getElementType()) {

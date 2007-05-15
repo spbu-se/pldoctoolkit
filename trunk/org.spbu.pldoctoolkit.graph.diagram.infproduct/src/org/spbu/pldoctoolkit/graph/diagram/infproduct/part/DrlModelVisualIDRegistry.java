@@ -1,34 +1,25 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.part;
 
 import org.eclipse.core.runtime.Platform;
-
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.InfProduct;
-
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRef2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefGroupEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefId2EditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductNameEditPart;
-
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.expressions.DrlModelAbstractExpression;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.expressions.DrlModelOCLFactory;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -194,16 +185,6 @@ public class DrlModelVisualIDRegistry {
 			}
 			return getUnrecognizedDocumentationCore_79ChildNodeID(
 					domainElement, semanticHint);
-		case InfElemRefEditPart.VISUAL_ID:
-			if (InfElemRefIdEditPart.VISUAL_ID == nodeVisualID) {
-				return InfElemRefIdEditPart.VISUAL_ID;
-			}
-			return getUnrecognizedInfElemRef_3001LinkLabelID(semanticHint);
-		case InfElemRef2EditPart.VISUAL_ID:
-			if (InfElemRefId2EditPart.VISUAL_ID == nodeVisualID) {
-				return InfElemRefId2EditPart.VISUAL_ID;
-			}
-			return getUnrecognizedInfElemRef_3003LinkLabelID(semanticHint);
 		}
 		return -1;
 	}
@@ -338,28 +319,6 @@ public class DrlModelVisualIDRegistry {
 	 *
 	 * @generated
 	 */
-	private static int getUnrecognizedInfElemRef_3001LinkLabelID(
-			String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedInfElemRef_3003LinkLabelID(
-			String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
 	private static int getUnrecognizedLinkWithClassID(EObject domainElement) {
 		return -1;
 	}
@@ -368,62 +327,19 @@ public class DrlModelVisualIDRegistry {
 	 * User can change implementation of this method to check some additional 
 	 * conditions here.
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	private static boolean isLinkWithClassInfElemRef_3001(InfElemRef element) {
-//		return InfElemRef_3001.matches(element);
-		return true;
+		return element.getGroup() == null;
 	}
 
 	/**
 	 * User can change implementation of this method to check some additional 
 	 * conditions here.
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	private static boolean isLinkWithClassInfElemRef_3003(InfElemRef element) {
-//		return InfElemRef_3003.matches(element);
-		return true;
+		return element.getGroup() != null;
 	}
-
-	/**
-	 * @generated
-	 */
-	private static final Matcher InfElemRef_3001 = new Matcher(
-			DrlModelOCLFactory.getExpression("self.optional = true", //$NON-NLS-1$
-					DrlPackage.eINSTANCE.getInfElemRef()));
-
-	/**
-	 * @generated
-	 */
-	private static final Matcher InfElemRef_3003 = new Matcher(
-			DrlModelOCLFactory.getExpression("self.optional = true", //$NON-NLS-1$
-					DrlPackage.eINSTANCE.getInfElemRef()));
-
-	/**
-	 * @generated	
-	 */
-	static class Matcher {
-
-		/**
-		 * @generated	
-		 */
-		private DrlModelAbstractExpression condition;
-
-		/**
-		 * @generated	
-		 */
-		Matcher(DrlModelAbstractExpression conditionExpression) {
-			this.condition = conditionExpression;
-		}
-
-		/**
-		 * @generated	
-		 */
-		boolean matches(EObject object) {
-			Object result = condition.evaluate(object);
-			return result instanceof Boolean
-					&& ((Boolean) result).booleanValue();
-		}
-	}// Matcher
 }

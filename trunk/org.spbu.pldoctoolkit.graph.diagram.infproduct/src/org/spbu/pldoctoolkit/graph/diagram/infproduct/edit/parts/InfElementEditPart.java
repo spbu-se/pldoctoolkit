@@ -61,7 +61,7 @@ public class InfElementEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new InfElementItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		
+
 		//HAND
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new InfElementCanonicalEditPolicy());
