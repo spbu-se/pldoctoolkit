@@ -63,8 +63,6 @@
   <links>
     <domainMetaElement
         href="model.ecore#//InfElemRef"/>
-    <domainSpecialization
-        body="self.optional = true"/>
     <domainInitializer
         xsi:type="gmfmap:FeatureSeqInitializer">
       <initializers
@@ -75,13 +73,6 @@
             href="model.ecore#//InfElemRef/optional"/>
       </initializers>
     </domainInitializer>
-    <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping">
-      <diagramLabel
-          href="model.gmfgraph#InfElemRefId"/>
-      <features
-          href="model.ecore#//InfElemRef/id"/>
-    </labelMappings>
     <containmentFeature
         href="model.ecore#//GenericDocumentPart/infElemRefs"/>
     <tool
@@ -106,8 +97,6 @@
   <links>
     <domainMetaElement
         href="model.ecore#//InfElemRef"/>
-    <domainSpecialization
-        body="self.optional = true"/>
     <domainInitializer
         xsi:type="gmfmap:FeatureSeqInitializer">
       <initializers
@@ -118,13 +107,6 @@
             href="model.ecore#//InfElemRef/optional"/>
       </initializers>
     </domainInitializer>
-    <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping">
-      <diagramLabel
-          href="model.gmfgraph#InfElemRefId"/>
-      <features
-          href="model.ecore#//InfElemRef/id"/>
-    </labelMappings>
     <containmentFeature
         href="model.ecore#//GenericDocumentPart/infElemRefs"/>
     <tool

@@ -142,7 +142,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="InfElemRefGroupFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InfElemRefGroupFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InfElemRefGroupFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setFill(true);&#xA;this.setFillXOR(false);&#xA;this.setOutline(true);&#xA;this.setOutlineXOR(false);&#xA;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_SOLID);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.lightGray);&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(10)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(10)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;}&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InfElemRefGroupFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InfElemRefGroupFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setFill(true);&#xA;this.setFillXOR(false);&#xA;this.setOutline(true);&#xA;this.setOutlineXOR(false);&#xA;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_SOLID);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.lightGray);&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;}&#xA;&#xA;">
         <attributes
             xsi:type="gmfgen:StyleAttributes"
             fixedBackground="true"/>
@@ -183,8 +183,6 @@
             href="model.genmodel#//graph/GenericDocumentPart/infElemRefs"/>
         <childMetaFeature
             href="model.genmodel#//graph/GenericDocumentPart/infElemRefs"/>
-        <modelElementSelector
-            body="self.optional = true"/>
         <modelElementInitializer
             xsi:type="gmfgen:GenFeatureSeqInitializer">
           <initializers
@@ -197,29 +195,6 @@
         <targetMetaFeature
             href="model.genmodel#//graph/InfElemRef/infelem"/>
       </modelFacet>
-      <labels
-          visualID="4003"
-          editPartClassName="InfElemRefIdEditPart"
-          itemSemanticEditPolicyClassName="InfElemRefIdItemSemanticEditPolicy"
-          notationViewFactoryClassName="InfElemRefIdViewFactory">
-        <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="InfElemRefIdFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InfElemRefIdFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel {&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InfElemRefIdFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&lt;...>&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:LabelOffsetAttributes"
-              y="40"/>
-          <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
-        <modelFacet
-            xsi:type="gmfgen:FeatureLabelModelFacet">
-          <metaFeatures
-              href="model.genmodel#//graph/InfElemRef/id"/>
-        </modelFacet>
-      </labels>
     </links>
     <links
         visualID="3002"
@@ -273,8 +248,6 @@
             href="model.genmodel#//graph/GenericDocumentPart/infElemRefs"/>
         <childMetaFeature
             href="model.genmodel#//graph/GenericDocumentPart/infElemRefs"/>
-        <modelElementSelector
-            body="self.optional = true"/>
         <modelElementInitializer
             xsi:type="gmfgen:GenFeatureSeqInitializer">
           <initializers
@@ -289,38 +262,10 @@
         <targetMetaFeature
             href="model.genmodel#//graph/InfElemRef/infelem"/>
       </modelFacet>
-      <labels
-          visualID="4004"
-          editPartClassName="InfElemRefId2EditPart"
-          itemSemanticEditPolicyClassName="InfElemRefId2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="InfElemRefId2ViewFactory">
-        <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="InfElemRefIdFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InfElemRefIdFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel {&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InfElemRefIdFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&lt;...>&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:LabelOffsetAttributes"
-              y="40"/>
-          <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
-        <modelFacet
-            xsi:type="gmfgen:FeatureLabelModelFacet">
-          <metaFeatures
-              href="model.genmodel#//graph/InfElemRef/id"/>
-        </modelFacet>
-      </labels>
     </links>
     <palette>
       <groups
           title="Drl Tools">
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="InfProduct"
-            description="Create new InfProduct"
-            genNodes="//@diagram/@topLevelNodes.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="InfElement"
@@ -528,7 +473,7 @@
   <expressionProviders>
     <providers
         xsi:type="gmfgen:GenExpressionInterpreter"
-        expressions="//@diagram/@links.0/@modelFacet/@modelElementSelector //@diagram/@links.0/@modelFacet/@modelElementInitializer/@initializers.0 //@diagram/@links.2/@modelFacet/@modelElementSelector //@diagram/@links.2/@modelFacet/@modelElementInitializer/@initializers.0">
+        expressions="//@diagram/@links.0/@modelFacet/@modelElementInitializer/@initializers.0 //@diagram/@links.2/@modelFacet/@modelElementInitializer/@initializers.0">
       <requiredPluginIDs>org.eclipse.emf.ocl</requiredPluginIDs>
       <requiredPluginIDs>org.eclipse.emf.query.ocl</requiredPluginIDs>
     </providers>
