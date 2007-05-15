@@ -38,52 +38,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String InfProduct1CreationTool_title;
+	public static String InfElement1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InfProduct1CreationTool_desc;
+	public static String InfElement1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String InfElement2CreationTool_title;
+	public static String InfElemRefGroup2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InfElement2CreationTool_desc;
+	public static String InfElemRefGroup2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String InfElemRefGroup3CreationTool_title;
+	public static String InfElemRefConnection3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InfElemRefGroup3CreationTool_desc;
+	public static String InfElemRefConnection3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String InfElemRefConnection4CreationTool_title;
+	public static String InfElemRefGroupConnection4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InfElemRefConnection4CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String InfElemRefGroupConnection5CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String InfElemRefGroupConnection5CreationTool_desc;
+	public static String InfElemRefGroupConnection4CreationTool_desc;
 
 	/**
 	 * @generated

@@ -8,12 +8,8 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
-
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefId2EditPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefIdEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementNameEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductNameEditPart;
-
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
 
 /**
@@ -77,68 +73,12 @@ public class DrlModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser infElemRefInfElemRefId_4003Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getInfElemRefInfElemRefId_4003Parser() {
-		if (infElemRefInfElemRefId_4003Parser == null) {
-			infElemRefInfElemRefId_4003Parser = createInfElemRefInfElemRefId_4003Parser();
-		}
-		return infElemRefInfElemRefId_4003Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParser createInfElemRefInfElemRefId_4003Parser() {
-		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
-				DrlPackage.eINSTANCE.getInfElemRef_Id());
-		parser.setViewPattern("{0}");
-		parser.setEditPattern("{0}");
-		return parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser infElemRefInfElemRefId_4004Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getInfElemRefInfElemRefId_4004Parser() {
-		if (infElemRefInfElemRefId_4004Parser == null) {
-			infElemRefInfElemRefId_4004Parser = createInfElemRefInfElemRefId_4004Parser();
-		}
-		return infElemRefInfElemRefId_4004Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParser createInfElemRefInfElemRefId_4004Parser() {
-		DrlModelStructuralFeatureParser parser = new DrlModelStructuralFeatureParser(
-				DrlPackage.eINSTANCE.getInfElemRef_Id());
-		parser.setViewPattern("{0}");
-		parser.setEditPattern("{0}");
-		return parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case InfElementNameEditPart.VISUAL_ID:
 			return getInfElementInfElementName_4001Parser();
 		case InfProductNameEditPart.VISUAL_ID:
 			return getInfProductInfProductName_4002Parser();
-		case InfElemRefIdEditPart.VISUAL_ID:
-			return getInfElemRefInfElemRefId_4003Parser();
-		case InfElemRefId2EditPart.VISUAL_ID:
-			return getInfElemRefInfElemRefId_4004Parser();
 		}
 		return null;
 	}

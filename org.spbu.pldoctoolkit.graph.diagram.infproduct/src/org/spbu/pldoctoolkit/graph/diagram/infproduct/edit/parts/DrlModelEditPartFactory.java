@@ -49,17 +49,11 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 			case InfElemRefEditPart.VISUAL_ID:
 				return new InfElemRefEditPart(view);
 
-			case InfElemRefIdEditPart.VISUAL_ID:
-				return new InfElemRefIdEditPart(view);
-
 			case GenericDocumentPartGroupsEditPart.VISUAL_ID:
 				return new GenericDocumentPartGroupsEditPart(view);
 
 			case InfElemRef2EditPart.VISUAL_ID:
 				return new InfElemRef2EditPart(view);
-
-			case InfElemRefId2EditPart.VISUAL_ID:
-				return new InfElemRefId2EditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

@@ -109,8 +109,6 @@ public class InfElemRefGroupItemSemanticEditPolicy extends
 		return super.getCreateCommand(req);
 	}
 
-
-
 	/**
 	 * @generated
 	 */

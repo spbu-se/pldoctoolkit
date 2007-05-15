@@ -30,39 +30,22 @@ public class DrlModelPaletteFactory {
 	private PaletteContainer createDrlTools1Group() {
 		PaletteGroup paletteContainer = new PaletteGroup(
 				Messages.DrlTools1Group_title);
-		//HAND
-//		paletteContainer.add(createInfProduct1CreationTool());
-		paletteContainer.add(createInfElement2CreationTool());
-		paletteContainer.add(createInfElemRefGroup3CreationTool());
-		paletteContainer.add(createInfElemRefConnection4CreationTool());
-		paletteContainer.add(createInfElemRefGroupConnection5CreationTool());
+		paletteContainer.add(createInfElement1CreationTool());
+		paletteContainer.add(createInfElemRefGroup2CreationTool());
+		paletteContainer.add(createInfElemRefConnection3CreationTool());
+		paletteContainer.add(createInfElemRefGroupConnection4CreationTool());
 		return paletteContainer;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createInfProduct1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(DrlModelElementTypes.InfProduct_1002);
-		NodeToolEntry entry = new NodeToolEntry(
-				Messages.InfProduct1CreationTool_title,
-				Messages.InfProduct1CreationTool_desc, types);
-		entry.setSmallIcon(DrlModelElementTypes
-				.getImageDescriptor(DrlModelElementTypes.InfProduct_1002));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createInfElement2CreationTool() {
+	private ToolEntry createInfElement1CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types.add(DrlModelElementTypes.InfElement_1001);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.InfElement2CreationTool_title,
-				Messages.InfElement2CreationTool_desc, types);
+				Messages.InfElement1CreationTool_title,
+				Messages.InfElement1CreationTool_desc, types);
 		entry.setSmallIcon(DrlModelElementTypes
 				.getImageDescriptor(DrlModelElementTypes.InfElement_1001));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -72,12 +55,12 @@ public class DrlModelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createInfElemRefGroup3CreationTool() {
+	private ToolEntry createInfElemRefGroup2CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types.add(DrlModelElementTypes.InfElemRefGroup_1003);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.InfElemRefGroup3CreationTool_title,
-				Messages.InfElemRefGroup3CreationTool_desc, types);
+				Messages.InfElemRefGroup2CreationTool_title,
+				Messages.InfElemRefGroup2CreationTool_desc, types);
 		entry.setSmallIcon(DrlModelElementTypes
 				.getImageDescriptor(DrlModelElementTypes.InfElemRefGroup_1003));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -87,13 +70,13 @@ public class DrlModelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createInfElemRefConnection4CreationTool() {
+	private ToolEntry createInfElemRefConnection3CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(2);
 		types.add(DrlModelElementTypes.InfElemRef_3001);
 		types.add(DrlModelElementTypes.InfElemRef_3003);
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.InfElemRefConnection4CreationTool_title,
-				Messages.InfElemRefConnection4CreationTool_desc, types);
+				Messages.InfElemRefConnection3CreationTool_title,
+				Messages.InfElemRefConnection3CreationTool_desc, types);
 		entry.setSmallIcon(DrlModelElementTypes
 				.getImageDescriptor(DrlModelElementTypes.InfElemRef_3001));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -103,12 +86,12 @@ public class DrlModelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createInfElemRefGroupConnection5CreationTool() {
+	private ToolEntry createInfElemRefGroupConnection4CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types.add(DrlModelElementTypes.GenericDocumentPartGroups_3002);
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.InfElemRefGroupConnection5CreationTool_title,
-				Messages.InfElemRefGroupConnection5CreationTool_desc, types);
+				Messages.InfElemRefGroupConnection4CreationTool_title,
+				Messages.InfElemRefGroupConnection4CreationTool_desc, types);
 		entry
 				.setSmallIcon(DrlModelElementTypes
 						.getImageDescriptor(DrlModelElementTypes.GenericDocumentPartGroups_3002));

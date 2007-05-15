@@ -131,20 +131,22 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
-				EObject modelElement = diagramRootElementSelectionPage.getModelElement();
-				EObject documentCoreParentOfSelected = modelElement.eContainer();
-				
+				EObject modelElement = diagramRootElementSelectionPage
+						.getModelElement();
+				EObject documentCoreParentOfSelected = modelElement
+						.eContainer();
+
 				int diagramVID = DrlModelVisualIDRegistry
 						.getDiagramVisualID(documentCoreParentOfSelected);
 				if (diagramVID != DocumentationCoreEditPart.VISUAL_ID) {
 					return CommandResult
 							.newErrorCommandResult("Incorrect model object stored as a root resource object"); //$NON-NLS-1$
 				}
-				
+
 				// HAND
 				// my custom code
 				IElementType elementType;
-				switch(modelElement.eClass().getClassifierID()) {
+				switch (modelElement.eClass().getClassifierID()) {
 				case DrlPackage.INF_ELEMENT:
 					elementType = DrlModelElementTypes.InfElement_1001;
 					break;
@@ -153,21 +155,20 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 					break;
 				default:
 					return CommandResult
-						.newErrorCommandResult("Incorrect model object selected"); //$NON-NLS-1$
+							.newErrorCommandResult("Incorrect model object selected"); //$NON-NLS-1$
 				}
-				
+
 				Diagram diagram = ViewService.createDiagram(
 						documentCoreParentOfSelected,
 						DocumentationCoreEditPart.MODEL_ID,
 						DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
 
-				Node rootNode = ViewService.createNode(diagram,
-						modelElement,
+				Node rootNode = ViewService.createNode(diagram, modelElement,
 						((IHintedType) elementType).getSemanticHint(),
 						DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				rootNode.setElement(modelElement);
-				
+
 				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
 						.createEAnnotation();
 				shortcutAnnotation.setSource("root"); //$NON-NLS-1$
@@ -218,7 +219,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		protected boolean validatePage() {
 			if (selectedModelElement == null) {
