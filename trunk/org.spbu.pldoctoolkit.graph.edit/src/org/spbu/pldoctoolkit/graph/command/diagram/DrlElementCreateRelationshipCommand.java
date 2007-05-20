@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package org.spbu.pldoctoolkit.graph.command.diagram;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -5,15 +8,23 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.spbu.pldoctoolkit.graph.DrlElement;
 
-public class DrlElementCreateCommand extends CreateElementCommand {
+/**
+ * @author Alexey Semenov
+ *
+ */
+public class DrlElementCreateRelationshipCommand extends
+		CreateRelationshipCommand {
 
 	private DrlElementCreateHelper helper;
 
-	public DrlElementCreateCommand(CreateElementRequest request) {
+	/**
+	 * @param request
+	 */
+	public DrlElementCreateRelationshipCommand(CreateRelationshipRequest request) {
 		super(request);
 		helper = new DrlElementCreateHelper();
 	}
@@ -44,5 +55,4 @@ public class DrlElementCreateCommand extends CreateElementCommand {
 		
 		return super.doUndo(monitor, info);
 	}
-
 }

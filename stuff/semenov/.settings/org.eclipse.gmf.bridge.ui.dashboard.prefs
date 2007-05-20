@@ -1,8 +1,8 @@
-#Wed Apr 11 13:38:06 MSD 2007
+#Mon May 14 23:55:36 MSD 2007
 eclipse.preferences.version=1
 gmf_dashboard/domainGenerationModel=platform\:/resource/pldoctoolkit-graph/model/model.genmodel
 gmf_dashboard/domainModel=platform\:/resource/pldoctoolkit-graph/model/model.ecore
-gmf_dashboard/generationModel=platform\:/resource/pldoctoolkit-graph/model/productline.gmfgen
+gmf_dashboard/generationModel=platform\:/resource/pldoctoolkit-graph/model/infproduct.gmfgen
 gmf_dashboard/graphicalDefinitionModel=platform\:/resource/pldoctoolkit-graph/model/model.gmfgraph
-gmf_dashboard/mappingModel=platform\:/resource/pldoctoolkit-graph/model/productline.gmfmap
+gmf_dashboard/mappingModel=platform\:/resource/pldoctoolkit-graph/model/infproduct.gmfmap
 gmf_dashboard/toolingDefinitionModel=platform\:/resource/pldoctoolkit-graph/model/model.gmftool

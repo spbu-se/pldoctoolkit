@@ -27,7 +27,6 @@ public class DrlElementDestroyCommand extends DestroyElementCommand {
 	 */
 	public DrlElementDestroyCommand(DestroyElementRequest request) {
 		super(request);
-		// TODO Auto-generated constructor stub
 	}
 
 	/* (non-Javadoc)

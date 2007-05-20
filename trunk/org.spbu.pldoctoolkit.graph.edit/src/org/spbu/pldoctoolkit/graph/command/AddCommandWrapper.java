@@ -135,9 +135,10 @@ public class AddCommandWrapper extends AddCommand {
 		DrlElement itemAtPosition = null;
 		Element itemAtPositionNode = null;
 		if (index != CommandParameter.NO_INDEX) {
-			itemAtPosition = (DrlElement) ownerList.get(index);
-			// we assume here that all items are DrlElements actually
-			itemAtPositionNode = itemAtPosition.getNode();
+			if(ownerList.size() > index) {
+				itemAtPosition = (DrlElement) ownerList.get(index);
+				itemAtPositionNode = itemAtPosition.getNode();
+			}
 		}
 
 		super.doExecute();

@@ -2,22 +2,24 @@ package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
-
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
 import org.spbu.pldoctoolkit.graph.InfElement;
-
+import org.spbu.pldoctoolkit.graph.command.diagram.DrlElementCreateRelationshipCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
 
 /**
  * @generated
+ * 
+ * Target is taken as request.getTarget and may not exist at the time of the command
+ * creation.
+ * 
+ * Source must exist.
+ * 
  */
-public class InfElemRefTypeLinkCreateCommand extends CreateRelationshipCommand {
+public class InfElemRefTypeLinkCreateCommand extends DrlElementCreateRelationshipCommand {
 
 	/**
 	 * @generated
@@ -25,19 +27,20 @@ public class InfElemRefTypeLinkCreateCommand extends CreateRelationshipCommand {
 	private GenericDocumentPart mySource;
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	private InfElement myTarget;
+//	private InfElement myTarget;
 
+	private CreateRelationshipRequest request;
+	
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	public InfElemRefTypeLinkCreateCommand(CreateRelationshipRequest req,
-			GenericDocumentPart source, InfElement target) {
+	public InfElemRefTypeLinkCreateCommand(CreateRelationshipRequest req) {
 		super(req);
-		super.setElementToEdit(source);
-		mySource = source;
-		myTarget = target;
+		super.setElementToEdit(req.getSource());
+		mySource = (GenericDocumentPart) req.getSource();
+//		myTarget = target;
 	}
 
 	/**
@@ -48,10 +51,10 @@ public class InfElemRefTypeLinkCreateCommand extends CreateRelationshipCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	public EObject getTarget() {
-		return myTarget;
+	public InfElement getTarget() {
+		return (InfElement) request.getTarget();
 	}
 
 	/**
@@ -69,15 +72,24 @@ public class InfElemRefTypeLinkCreateCommand extends CreateRelationshipCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected EObject doDefaultElementCreation() {
 		InfElemRef newElement = (InfElemRef) super.doDefaultElementCreation();
 		if (newElement != null) {
-			newElement.setInfelem(myTarget);
+			newElement.setInfelem(getTarget()); //HAND myTarget -> getTarget()
 			DrlModelElementTypes.Initializers.InfElemRef_3001.init(newElement);
 		}
 		return newElement;
 	}
+
+	@Override
+	public boolean canExecute() {
+		// TODO Auto-generated method stub
+//		return super.canExecute();
+		return true;
+	}
+	
+	
 
 }

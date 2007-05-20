@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
@@ -55,17 +56,43 @@ public class InfElementItemSemanticEditPolicy extends
 	/* (non-Javadoc)
 	 * @see org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DrlModelBaseItemSemanticEditPolicy#getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest)
 	 */
-	@Override
-	protected Command getCreateCommand(CreateElementRequest req) {
-		if (DrlModelElementTypes.InfElement_1001 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(DrlPackage.eINSTANCE
-						.getDocumentationCore_Parts());
-			}
-			return getMSLWrapper(new InfElementCreateCommand(req));
-		}
-		return super.getCreateCommand(req);
-	}
+//	@Override
+//	protected Command getCreateCommand(CreateElementRequest req) {
+//		if (DrlModelElementTypes.InfElement_1001 == req.getElementType()) {
+//			CompoundCommand cc = new CompoundCommand();
+//			CreateRelationshipRequest createRefRequest = null;
+//			
+//			if (req.getContainmentFeature() == null) {
+//				req.setContainmentFeature(DrlPackage.eINSTANCE
+//						.getDocumentationCore_Parts());
+//			}
+//			if(DrlFactory.eINSTANCE.getDrlPackage().getInfElement()
+//					.isSuperTypeOf(req.getContainer().eClass())) {
+//				InfElement container = (InfElement) req.getContainer();
+//				req.setContainer(container.eContainer());
+//
+//				createRefRequest = new CreateRelationshipRequest(
+//						req.getEditingDomain(), container, container, null, 
+//						DrlModelElementTypes.InfElemRef_3001, 
+//						DrlPackage.eINSTANCE.getGenericDocumentPart_InfElemRefs()) {
+//					
+//					public EObject getTarget() {
+//						return ((CreateElementRequest)getParameter("createRequest"))
+//							.getNewElement();
+//					}
+//				};
+//				
+//				createRefRequest.setParameter("createRequest", req);
+//			}
+//			cc.add(getMSLWrapper(new InfElementCreateCommand(req)));
+//			if(createRefRequest != null) {
+//				cc.add(getMSLWrapper(new InfElemRefTypeLinkCreateCommand(createRefRequest)));
+//			}
+//			
+//			return cc;
+//		}
+//		return super.getCreateCommand(req);
+//	}
 
 	/**
 	 * @generated
@@ -140,7 +167,7 @@ public class InfElementItemSemanticEditPolicy extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getCreateCompleteIncomingInfElemRef_3001Command(
 			CreateRelationshipRequest req) {
@@ -160,8 +187,7 @@ public class InfElementItemSemanticEditPolicy extends
 			req.setContainmentFeature(DrlPackage.eINSTANCE
 					.getGenericDocumentPart_InfElemRefs());
 		}
-		return getMSLWrapper(new InfElemRefTypeLinkCreateCommand(req, source,
-				target));
+		return getMSLWrapper(new InfElemRefTypeLinkCreateCommand(req));
 	}
 
 	/**

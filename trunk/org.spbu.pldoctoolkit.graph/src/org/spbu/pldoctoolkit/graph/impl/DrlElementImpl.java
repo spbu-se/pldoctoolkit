@@ -201,7 +201,6 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 		        Element elem = drlDocument.createElementNS(nameInfo.getNamespaceURI(), nameInfo.getQualifiedName()); 
 		        
 				setNode(elem);
-				updateAttributeNodes();
 			} else {
 				DrlGraphPlugin.logInfo("drldoc empty");
 			}
@@ -209,7 +208,9 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	}
 	
 	/**
-	 * This method is needed to update the attributes values or create ones if necessary.
+	 * This method is needed to update the attributes values or create ones if necessary. 
+	 * It is not called on node creation, so the user should call it manually when the node
+	 * initialization is complete - i.e. on resource save reuest.
 	 * 
 	 * This method adds "xsi:type" attribute if needed.
 	 * 
