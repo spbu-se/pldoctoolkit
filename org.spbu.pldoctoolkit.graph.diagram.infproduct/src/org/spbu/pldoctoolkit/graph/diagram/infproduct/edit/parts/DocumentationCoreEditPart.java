@@ -52,7 +52,7 @@ public class DocumentationCoreEditPart extends DiagramEditPart {
 		//HAND
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new DocumentationCoreCanonicalEditPolicy());
-		
+		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 		
 //		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 //				new DiagramDragDropEditPolicy() {
@@ -136,15 +136,4 @@ public class DocumentationCoreEditPart extends DiagramEditPart {
 		return lep;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getCommand(org.eclipse.gef.Request)
-	 */
-	@Override
-	public Command getCommand(Request _request) {
-		Command command = super.getCommand(_request);
-//		DrlModelDiagramEditorPlugin.getInstance().logInfo("request: " + _request);
-		
-		return command;
-	}
-	
 }

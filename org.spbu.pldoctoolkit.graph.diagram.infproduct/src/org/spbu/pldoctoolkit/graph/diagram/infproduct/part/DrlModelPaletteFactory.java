@@ -32,8 +32,8 @@ public class DrlModelPaletteFactory {
 				Messages.DrlTools1Group_title);
 		paletteContainer.add(createInfElement1CreationTool());
 		paletteContainer.add(createInfElemRefGroup2CreationTool());
-		paletteContainer.add(createInfElemRefConnection3CreationTool());
-		paletteContainer.add(createInfElemRefGroupConnection4CreationTool());
+//		paletteContainer.add(createInfElemRefConnection3CreationTool());
+//		paletteContainer.add(createInfElemRefGroupConnection4CreationTool());
 		return paletteContainer;
 	}
 

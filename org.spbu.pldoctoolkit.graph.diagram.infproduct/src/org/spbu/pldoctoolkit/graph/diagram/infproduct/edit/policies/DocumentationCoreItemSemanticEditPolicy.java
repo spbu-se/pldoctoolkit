@@ -3,8 +3,10 @@ package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -18,9 +20,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.spbu.pldoctoolkit.graph.DrlElement;
+import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.spbu.pldoctoolkit.graph.InfElement;
 
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRefGroupCreateCommand;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRefTypeLinkCreateCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElementCreateCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfProductCreateCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
@@ -44,23 +50,58 @@ public class DocumentationCoreItemSemanticEditPolicy extends
 	 * @generated NOT
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-//		if (DrlModelElementTypes.InfElement_1001 == req.getElementType()) {
-//			if (req.getContainmentFeature() == null) {
-//				req.setContainmentFeature(DrlPackage.eINSTANCE
-//						.getDocumentationCore_Parts());
-//			}
-//			return getMSLWrapper(new InfElementCreateCommand(req));
-//		}
-//		if (DrlModelElementTypes.InfProduct_1002 == req.getElementType()) {
-//			if (req.getContainmentFeature() == null) {
-//				req.setContainmentFeature(DrlPackage.eINSTANCE
-//						.getDocumentationCore_Parts());
-//			}
-//			return getMSLWrapper(new InfProductCreateCommand(req));
-//		}
-//		if (DrlModelElementTypes.InfElemRefGroup_1003 == req.getElementType()) {
-//			return getMSLWrapper(new InfElemRefGroupCreateCommand(req));
-//		}
+		DrlElement parent = (DrlElement) req.getParameter("element");
+		if(parent != null) {
+			if (DrlModelElementTypes.InfElement_1001 == req.getElementType()) {
+//				if (req.getContainmentFeature() == null) {
+//					req.setContainmentFeature(DrlPackage.eINSTANCE
+//							.getDocumentationCore_Parts());
+//				}
+//				return getMSLWrapper(new InfElementCreateCommand(req));
+				
+				CompoundCommand cc = new CompoundCommand();
+				CreateRelationshipRequest createRefRequest = null;
+				
+				if (req.getContainmentFeature() == null) {
+					req.setContainmentFeature(DrlPackage.eINSTANCE
+							.getDocumentationCore_Parts());
+				}
+				if(DrlFactory.eINSTANCE.getDrlPackage().getInfElement()
+						.isSuperTypeOf(parent.eClass())) {
+					InfElement container = (InfElement) parent;
+
+					createRefRequest = new CreateRelationshipRequest(
+							req.getEditingDomain(), container, container, null, 
+							DrlModelElementTypes.InfElemRef_3001, 
+							DrlPackage.eINSTANCE.getGenericDocumentPart_InfElemRefs()) {
+						
+						public EObject getTarget() {
+							return ((CreateElementRequest)getParameter("createRequest"))
+								.getNewElement();
+						}
+					};
+					
+					createRefRequest.setParameter("createRequest", req);
+				}
+				cc.add(getMSLWrapper(new InfElementCreateCommand(req)));
+				if(createRefRequest != null) {
+					cc.add(getMSLWrapper(new InfElemRefTypeLinkCreateCommand(createRefRequest)));
+				}
+				
+				return cc;
+			}
+			if (DrlModelElementTypes.InfProduct_1002 == req.getElementType()) {
+				if (req.getContainmentFeature() == null) {
+					req.setContainmentFeature(DrlPackage.eINSTANCE
+							.getDocumentationCore_Parts());
+				}
+				return getMSLWrapper(new InfProductCreateCommand(req));
+			}
+			if (DrlModelElementTypes.InfElemRefGroup_1003 == req.getElementType()) {
+				return getMSLWrapper(new InfElemRefGroupCreateCommand(req));
+			}
+		}
+		
 		return super.getCreateCommand(req);
 	}
 
