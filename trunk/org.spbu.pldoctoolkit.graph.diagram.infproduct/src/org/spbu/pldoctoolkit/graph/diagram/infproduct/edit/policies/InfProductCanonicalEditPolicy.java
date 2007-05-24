@@ -124,7 +124,8 @@ public class InfProductCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Collection createPhantomNodes(Collection nodes) {
-		if (nodes.isEmpty()) {
+		//XXX
+		if (true || nodes.isEmpty()) {
 			return Collections.EMPTY_LIST;
 		}
 		List descriptors = new ArrayList();

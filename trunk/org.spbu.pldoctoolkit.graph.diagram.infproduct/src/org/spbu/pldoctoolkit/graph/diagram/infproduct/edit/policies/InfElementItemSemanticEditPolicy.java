@@ -14,24 +14,22 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
+import org.spbu.pldoctoolkit.graph.command.diagram.DrlElementDestroyCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.GenericDocumentPartGroupsReorientCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRef2ReorientCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRef2TypeLinkCreateCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRefReorientCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRefTypeLinkCreateCommand;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElementCreateCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.GenericDocumentPartGroupsEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRef2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart;
@@ -53,57 +51,13 @@ public class InfElementItemSemanticEditPolicy extends
 		return super.getCommand(request);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DrlModelBaseItemSemanticEditPolicy#getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest)
-	 */
-//	@Override
-//	protected Command getCreateCommand(CreateElementRequest req) {
-//		if (DrlModelElementTypes.InfElement_1001 == req.getElementType()) {
-//			CompoundCommand cc = new CompoundCommand();
-//			CreateRelationshipRequest createRefRequest = null;
-//			
-//			if (req.getContainmentFeature() == null) {
-//				req.setContainmentFeature(DrlPackage.eINSTANCE
-//						.getDocumentationCore_Parts());
-//			}
-//			if(DrlFactory.eINSTANCE.getDrlPackage().getInfElement()
-//					.isSuperTypeOf(req.getContainer().eClass())) {
-//				InfElement container = (InfElement) req.getContainer();
-//				req.setContainer(container.eContainer());
-//
-//				createRefRequest = new CreateRelationshipRequest(
-//						req.getEditingDomain(), container, container, null, 
-//						DrlModelElementTypes.InfElemRef_3001, 
-//						DrlPackage.eINSTANCE.getGenericDocumentPart_InfElemRefs()) {
-//					
-//					public EObject getTarget() {
-//						return ((CreateElementRequest)getParameter("createRequest"))
-//							.getNewElement();
-//					}
-//				};
-//				
-//				createRefRequest.setParameter("createRequest", req);
-//			}
-//			cc.add(getMSLWrapper(new InfElementCreateCommand(req)));
-//			if(createRefRequest != null) {
-//				cc.add(getMSLWrapper(new InfElemRefTypeLinkCreateCommand(createRefRequest)));
-//			}
-//			
-//			return cc;
-//		}
-//		return super.getCreateCommand(req);
-//	}
-
 	/**
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompoundCommand cc = new CompoundCommand();
-		Collection allEdges = new ArrayList();
 		View view = (View) getHost().getModel();
-		allEdges.addAll(view.getSourceEdges());
-		allEdges.addAll(view.getTargetEdges());
-		for (Iterator it = allEdges.iterator(); it.hasNext();) {
+		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge nextEdge = (Edge) it.next();
 			EditPart nextEditPart = (EditPart) getHost().getViewer()
 					.getEditPartRegistry().get(nextEdge);
@@ -113,18 +67,7 @@ public class InfElementItemSemanticEditPolicy extends
 					Collections.EMPTY_MAP);
 			cc.add(nextEditPart.getCommand(editCommandRequest));
 		}
-		cc.add(getMSLWrapper(new DestroyElementCommand(req) {
 
-			protected EObject getElementToDestroy() {
-				View view = (View) getHost().getModel();
-				EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-				if (annotation != null) {
-					return view;
-				}
-				return super.getElementToDestroy();
-			}
-
-		}));
 		return cc;
 	}
 
@@ -236,7 +179,7 @@ public class InfElementItemSemanticEditPolicy extends
 					.getGenericDocumentPart_InfElemRefs());
 		}
 		return getMSLWrapper(new InfElemRef2TypeLinkCreateCommand(req,
-				container, source, target));
+				container));
 	}
 
 	/**

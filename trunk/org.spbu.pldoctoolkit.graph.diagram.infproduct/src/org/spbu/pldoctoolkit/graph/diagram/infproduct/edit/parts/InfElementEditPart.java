@@ -82,7 +82,8 @@ public class InfElementEditPart extends ShapeNodeEditPart {
 										.getCreateElementRequestAdapter();
 								IElementType type = (IElementType) adapter
 										.getAdapter(IElementType.class);
-								if (type == DrlModelElementTypes.InfElement_1001) {
+								if (type == DrlModelElementTypes.InfElement_1001 ||
+										type == DrlModelElementTypes.InfElemRefGroup_1003) {
 									EObject modelObject = ((View)getHost().getModel()).getElement();
 									request.getExtendedData().put("element", modelObject);
 									EditPart documentationCoreEditPart = getHost().getParent();
@@ -98,17 +99,6 @@ public class InfElementEditPart extends ShapeNodeEditPart {
 				});
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getCommand(org.eclipse.gef.Request)
-	 */
-	@Override
-	public Command getCommand(Request _request) {
-		Command command = super.getCommand(_request);
-		System.out.println("----- request: " + _request);
-		
-		return command;
-	}
-	
 	/**
 	 * @generated
 	 */

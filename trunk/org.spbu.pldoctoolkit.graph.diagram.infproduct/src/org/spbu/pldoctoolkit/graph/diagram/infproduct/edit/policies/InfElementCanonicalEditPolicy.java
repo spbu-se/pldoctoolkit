@@ -77,6 +77,7 @@ public class InfElementCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	protected void refreshSemantic() {
+		System.out.println("InfElementCanonicalEditPolicy.refreshSemantic()");
 		List createdViews = new LinkedList();
 		createdViews.addAll(refreshSemanticChildren());
 		createdViews.addAll(refreshPhantoms());
@@ -124,6 +125,7 @@ public class InfElementCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Collection createPhantomNodes(Collection nodes) {
+		//XXX
 		if (nodes.isEmpty()) {
 			return Collections.EMPTY_LIST;
 		}
@@ -161,6 +163,7 @@ public class InfElementCanonicalEditPolicy extends CanonicalEditPolicy {
 			executeCommand(cmd);
 			adapters = (List) request.getNewObject();
 		}
+		//XXX
 		diagramEditPart.refresh();
 		return adapters;
 	}

@@ -60,6 +60,8 @@ public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	public Command getCommand(Request request) {
+		System.out.println("request: " + request);
+
 		if (request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest) request).getConnectionEditPart()
 					.getModel();
@@ -192,6 +194,7 @@ public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
+		System.out.println("create req: " + req);
 		return null;
 	}
 
