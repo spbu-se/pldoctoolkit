@@ -18,7 +18,7 @@ public class DrlElementCreateHelper {
 	
 	private DrlElement newElement;
 
-	EObject doDefaultElementCreation(DrlElement newElement) {
+	public EObject doDefaultElementCreation(DrlElement newElement) {
 		this.newElement = newElement;
 		
 		if (newElement != null) {
@@ -32,12 +32,12 @@ public class DrlElementCreateHelper {
 		return newElement;
 	}
 
-	void doRedo(IProgressMonitor monitor, IAdaptable info) {
+	public void doRedo(IProgressMonitor monitor, IAdaptable info) {
 		DrlElement container = (DrlElement) newElement.eContainer();
 		container.getNode().appendChild(newElement.getNode());
 	}
 
-	void doUndo(IProgressMonitor monitor, IAdaptable info) {
+	public void doUndo(IProgressMonitor monitor, IAdaptable info) {
 		Node elementNode = newElement.getNode();
 		elementNode.getParentNode().removeChild(elementNode);
 	}

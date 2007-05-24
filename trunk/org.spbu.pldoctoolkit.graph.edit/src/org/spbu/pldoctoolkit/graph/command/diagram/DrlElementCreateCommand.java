@@ -11,7 +11,7 @@ import org.spbu.pldoctoolkit.graph.DrlElement;
 
 public class DrlElementCreateCommand extends CreateElementCommand {
 
-	private DrlElementCreateHelper helper;
+	protected DrlElementCreateHelper helper;
 
 	public DrlElementCreateCommand(CreateElementRequest request) {
 		super(request);
