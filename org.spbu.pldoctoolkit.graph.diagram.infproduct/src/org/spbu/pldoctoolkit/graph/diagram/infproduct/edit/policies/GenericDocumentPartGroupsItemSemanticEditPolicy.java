@@ -26,20 +26,20 @@ public class GenericDocumentPartGroupsItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
-		return getMSLWrapper(new DestroyReferenceCommand(req) {
-
-			protected CommandResult doExecuteWithResult(
-					IProgressMonitor progressMonitor, IAdaptable info)
-					throws ExecutionException {
-				EObject referencedObject = getReferencedObject();
-				Resource resource = referencedObject.eResource();
-				CommandResult result = super.doExecuteWithResult(
-						progressMonitor, info);
-				resource.getContents().add(referencedObject);
-				return result;
-			}
-
-		});
-	}
+//	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
+//		return getMSLWrapper(new DestroyReferenceCommand(req) {
+//
+//			protected CommandResult doExecuteWithResult(
+//					IProgressMonitor progressMonitor, IAdaptable info)
+//					throws ExecutionException {
+//				EObject referencedObject = getReferencedObject();
+//				Resource resource = referencedObject.eResource();
+//				CommandResult result = super.doExecuteWithResult(
+//						progressMonitor, info);
+//				resource.getContents().add(referencedObject);
+//				return result;
+//			}
+//
+//		});
+//	}
 }

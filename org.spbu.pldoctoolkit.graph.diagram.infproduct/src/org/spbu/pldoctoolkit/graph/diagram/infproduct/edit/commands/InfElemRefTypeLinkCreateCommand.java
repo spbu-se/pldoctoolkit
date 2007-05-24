@@ -26,11 +26,6 @@ public class InfElemRefTypeLinkCreateCommand extends DrlElementCreateRelationshi
 	 */
 	private GenericDocumentPart mySource;
 
-	/**
-	 * @generated NOT
-	 */
-//	private InfElement myTarget;
-
 	private CreateRelationshipRequest request;
 	
 	/**
@@ -39,8 +34,9 @@ public class InfElemRefTypeLinkCreateCommand extends DrlElementCreateRelationshi
 	public InfElemRefTypeLinkCreateCommand(CreateRelationshipRequest req) {
 		super(req);
 		super.setElementToEdit(req.getSource());
+		
+		request = req;
 		mySource = (GenericDocumentPart) req.getSource();
-//		myTarget = target;
 	}
 
 	/**
@@ -84,12 +80,8 @@ public class InfElemRefTypeLinkCreateCommand extends DrlElementCreateRelationshi
 	}
 
 	@Override
-	public boolean canExecute() {
-		// TODO Auto-generated method stub
-//		return super.canExecute();
-		return true;
+	protected boolean doCanExecute() {
+		return getSource() != null;
 	}
-	
-	
 
 }

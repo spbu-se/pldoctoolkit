@@ -102,12 +102,16 @@ public class DocumentationCoreCanonicalEditPolicy extends
 
 	@SuppressWarnings("unchecked")
 	private void findAccessibleElements(GenericDocumentPart curElement, List currentResult) {
-//		if(curElement == null || currentResult.contains(curElement)) {
 		if(curElement == null) {
 			return;
 		}
 		
 		currentResult.add(curElement);
+		
+		Iterator groupIter = curElement.getGroups().iterator();
+		while(groupIter.hasNext()) {
+			currentResult.add(groupIter.next());
+		}
 		
 		EList<InfElemRef> infElemRefs = curElement.getInfElemRefs();
 		for(InfElemRef ref : infElemRefs) {
@@ -133,6 +137,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		case InfProductEditPart.VISUAL_ID:
 		case InfElemRefEditPart.VISUAL_ID:
 		case InfElemRef2EditPart.VISUAL_ID:
+		case InfElemRefGroupEditPart.VISUAL_ID:
 //			return view.isSetElement()
 //			&& (view.getElement() == null || view.getElement()
 //					.eIsProxy());
@@ -206,34 +211,36 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	 * @generated
 	 */
 	private Collection refreshPhantoms() {
-		Collection phantomNodes = new LinkedList();
-		EObject diagramModelObject = ((View) getHost().getModel()).getElement();
-		Diagram diagram = getDiagram();
-		Resource resource = diagramModelObject.eResource();
-		for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
-			EObject nextResourceObject = (EObject) it.next();
-			if (nextResourceObject == diagramModelObject) {
-				continue;
-			}
-			int nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(diagram,
-					nextResourceObject);
-			switch (nodeVID) {
-			case InfElemRefGroupEditPart.VISUAL_ID: {
-				phantomNodes.add(nextResourceObject);
-				break;
-			}
-			}
-		}
-
-		for (Iterator diagramNodes = getDiagram().getChildren().iterator(); diagramNodes
-				.hasNext();) {
-			View nextView = (View) diagramNodes.next();
-			EObject nextViewElement = nextView.getElement();
-			if (phantomNodes.contains(nextViewElement)) {
-				phantomNodes.remove(nextViewElement);
-			}
-		}
-		return createPhantomNodes(phantomNodes);
+//		Collection phantomNodes = new LinkedList();
+//		EObject diagramModelObject = ((View) getHost().getModel()).getElement();
+//		Diagram diagram = getDiagram();
+//		Resource resource = diagramModelObject.eResource();
+//		for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
+//			EObject nextResourceObject = (EObject) it.next();
+//			if (nextResourceObject == diagramModelObject) {
+//				continue;
+//			}
+//			int nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(diagram,
+//					nextResourceObject);
+//			switch (nodeVID) {
+//			case InfElemRefGroupEditPart.VISUAL_ID: {
+//				phantomNodes.add(nextResourceObject);
+//				break;
+//			}
+//			}
+//		}
+//
+//		for (Iterator diagramNodes = getDiagram().getChildren().iterator(); diagramNodes
+//				.hasNext();) {
+//			View nextView = (View) diagramNodes.next();
+//			EObject nextViewElement = nextView.getElement();
+//			if (phantomNodes.contains(nextViewElement)) {
+//				phantomNodes.remove(nextViewElement);
+//			}
+//		}
+//		return createPhantomNodes(phantomNodes);
+		
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -307,6 +314,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	private Collection refreshConnections() {
 		try {
 			collectAllLinks(getDiagram());
+//			setMyLinkDescriptorsSourceView();
 			Collection existingLinks = new LinkedList(getDiagram().getEdges());
 			for (Iterator diagramLinks = existingLinks.iterator(); diagramLinks
 					.hasNext();) {
@@ -356,6 +364,23 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		}
 	}
 
+	private void setMyLinkDescriptorsSourceView() {
+		for (Iterator modelLinkDescriptors = myLinkDescriptors.iterator(); 
+			modelLinkDescriptors.hasNext();
+			) {
+			
+			LinkDescriptor nextLinkDescriptor = 
+				(LinkDescriptor) modelLinkDescriptors.next();
+			
+			// if source view has not been set, that must be because of
+			// lacking info 
+			if(nextLinkDescriptor.getSourceView() == null) {
+				nextLinkDescriptor.setMySourceView(
+						getNewViewFor(nextLinkDescriptor.getSource(), false));
+			}
+		}
+	}
+
 	/**
 	 * @generated NOT
 	 */
@@ -386,6 +411,8 @@ public class DocumentationCoreCanonicalEditPolicy extends
 
 	//TODO extract Visitor and Acceptor
 	private void markAllInitialized(View view) {
+		System.out.println("marking all initialized");
+		
 		EObject modelElement = view.getElement();
 		int diagramElementVisualID = DrlModelVisualIDRegistry.getVisualID(view);
 		switch (diagramElementVisualID) {
@@ -410,7 +437,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	}
 	
 	private void markInitialized(final View view, final boolean initialize) {
-		if(isInitialized(view) ^ initialize) {
+		if(!(isInitialized(view) ^ initialize)) {
 			return;
 		}
 		
@@ -575,10 +602,45 @@ public class DocumentationCoreCanonicalEditPolicy extends
 			View containerView,
 			EObject container,
 			EClass containerMetaclass) {
-		if (DrlPackage.eINSTANCE.getGenericDocumentPart().isSuperTypeOf(
+//		if (DrlPackage.eINSTANCE.getGenericDocumentPart().isSuperTypeOf(
+//				containerMetaclass)) {
+//			for (Iterator values = ((GenericDocumentPart) container)
+//					.getInfElemRefs().iterator(); values.hasNext();) {
+//				EObject nextValue = ((EObject) values.next());
+//				int linkVID = DrlModelVisualIDRegistry
+//						.getLinkWithClassVisualID(nextValue);
+//				if (InfElemRef2EditPart.VISUAL_ID == linkVID) {
+//					Object structuralFeatureResult = ((InfElemRef) nextValue)
+//							.getInfelem();
+//					if (structuralFeatureResult instanceof EObject) {
+//						EObject dst = (EObject) structuralFeatureResult;
+//						structuralFeatureResult = ((InfElemRef) nextValue)
+//								.getGroup();
+//						if (structuralFeatureResult instanceof EObject) {
+//							InfElemRefGroup src = (InfElemRefGroup) structuralFeatureResult;
+//							View groupView = getInfelemRefGroupView(containerView, src);
+////							if(groupView == null) {
+////								groupView = getNewViewFor(src, false);
+////							}
+//							// if groupView is null here, it will be set later
+//							myLinkDescriptors.add(new LinkDescriptor(groupView, 
+//									src, 
+//									dst,
+//									nextValue,
+//									DrlModelElementTypes.InfElemRef_3003,
+//									linkVID));
+//						}
+//					}
+//				}
+//			}
+//		}
+		
+		if (DrlPackage.eINSTANCE.getInfElemRefGroup().isSuperTypeOf(
 				containerMetaclass)) {
-			for (Iterator values = ((GenericDocumentPart) container)
-					.getInfElemRefs().iterator(); values.hasNext();) {
+			GenericDocumentPart groupOwner = (GenericDocumentPart) ((InfElemRefGroup) container)
+					.eContainer();
+			for (Iterator values = groupOwner.getInfElemRefs()
+					.iterator(); values.hasNext();) {
 				EObject nextValue = ((EObject) values.next());
 				int linkVID = DrlModelVisualIDRegistry
 						.getLinkWithClassVisualID(nextValue);
@@ -589,14 +651,10 @@ public class DocumentationCoreCanonicalEditPolicy extends
 						EObject dst = (EObject) structuralFeatureResult;
 						structuralFeatureResult = ((InfElemRef) nextValue)
 								.getGroup();
-						if (structuralFeatureResult instanceof EObject) {
-							InfElemRefGroup src = (InfElemRefGroup) structuralFeatureResult;
-							View groupView = getInfelemRefGroupView(containerView, src);
-							if(groupView == null) {
-								groupView = getNewViewFor(src, false);
-							}
-							myLinkDescriptors.add(new LinkDescriptor(groupView, 
-									src, 
+						if (structuralFeatureResult instanceof EObject 
+								&& structuralFeatureResult == container) {
+							myLinkDescriptors.add(new LinkDescriptor(containerView, 
+									container, 
 									dst,
 									nextValue,
 									DrlModelElementTypes.InfElemRef_3003,
@@ -776,6 +834,13 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		 */
 		protected View getSourceView() {
 			return mySourceView;
+		}
+
+		/**
+		 * @param mySourceView
+		 */
+		public void setMySourceView(View mySourceView) {
+			this.mySourceView = mySourceView;
 		}
 	}
 

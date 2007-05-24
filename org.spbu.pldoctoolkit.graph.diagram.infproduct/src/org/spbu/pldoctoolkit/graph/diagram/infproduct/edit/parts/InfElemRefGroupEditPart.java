@@ -8,7 +8,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -17,17 +17,21 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 import org.spbu.pldoctoolkit.graph.GroupType;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElemRefGroupCanonicalEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElemRefGroupItemSemanticEditPolicy;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
 
 /**
  * @generated
@@ -61,7 +65,7 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 
@@ -69,6 +73,32 @@ public class InfElemRefGroupEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new InfElemRefGroupItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		
+		//HAND
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicy() {
+					public Command getCommand(Request request) {
+						if (understandsRequest(request)) {
+							if (request instanceof CreateViewAndElementRequest) {
+								CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request)
+										.getViewAndElementDescriptor()
+										.getCreateElementRequestAdapter();
+								IElementType type = (IElementType) adapter
+										.getAdapter(IElementType.class);
+								if (type == DrlModelElementTypes.InfElement_1001) {
+									EObject modelObject = ((View)getHost().getModel()).getElement();
+									request.getExtendedData().put("element", modelObject);
+									EditPart documentationCoreEditPart = getHost().getParent();
+									return documentationCoreEditPart == null ? null
+											: documentationCoreEditPart
+													.getCommand(request);
+								}
+							}
+							return super.getCommand(request);
+						}
+						return null;
+					}
+				});
 	}
 
 	/**

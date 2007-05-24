@@ -1,7 +1,6 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
@@ -11,7 +10,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.InfElemRef;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElemRefEditPart.InfElemRefFigure;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElemRef2ItemSemanticEditPolicy;
 
 /**

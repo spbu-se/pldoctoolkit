@@ -2,20 +2,15 @@ package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.resource.Resource;
-
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
-
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.spbu.pldoctoolkit.graph.command.diagram.DrlElementCreateCommand;
 
 /**
  * @generated
  */
-public class InfElemRefGroupCreateCommand extends CreateElementCommand {
+public class InfElemRefGroupCreateCommand extends DrlElementCreateCommand {
 
 	/**
 	 * @generated
@@ -24,6 +19,10 @@ public class InfElemRefGroupCreateCommand extends CreateElementCommand {
 		super(req);
 	}
 
+	protected EClass getEClassToEdit() {
+		return DrlPackage.eINSTANCE.getGenericDocumentPart();
+	}
+	
 	/**
 	 * @generated
 	 */
@@ -49,25 +48,28 @@ public class InfElemRefGroupCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	protected EReference getContainmentFeature() {
-		return null;
-	}
+//	protected EReference getContainmentFeature() {
+//		return null;
+//	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	protected EObject doDefaultElementCreation() {
-		// Uncomment to put "phantom" objects into the diagram file.		
-		//Resource resource = ((CreateElementRequest) getRequest()).getContainer().eResource();
-		//if (resource == null) {
-		//	return null;
-		//}
-		Resource resource = getElementToEdit().eResource();
-		EClass eClass = getElementType().getEClass();
-		EObject eObject = eClass.getEPackage().getEFactoryInstance().create(
-				eClass);
-		resource.getContents().add(eObject);
-		return eObject;
-	}
+//	protected EObject doDefaultElementCreation() {
+//		// Uncomment to put "phantom" objects into the diagram file.		
+//		//Resource resource = ((CreateElementRequest) getRequest()).getContainer().eResource();
+//		//if (resource == null) {
+//		//	return null;
+//		//}
+//		Resource resource = getElementToEdit().eResource();
+//		EClass eClass = getElementType().getEClass();
+//		DrlElement drlObject = (DrlElement) eClass.getEPackage().getEFactoryInstance().create(
+//				eClass);
+//		resource.getContents().add(drlObject);
+//		
+//		helper.doDefaultElementCreation(drlObject);
+//		
+//		return drlObject;
+//	}
 
 }

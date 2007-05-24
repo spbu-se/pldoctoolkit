@@ -46,6 +46,7 @@
 
    <extension point="org.eclipse.ui.popupMenus">
       <?gmfgen generated="true"?>
+      <!--
       <objectContribution
             adaptable="false"
             id="org.spbu.pldoctoolkit.graph.diagram.infproduct.CreateShortcut"
@@ -57,7 +58,7 @@
                label="%createShortcutActionLabel"
                menubarPath="additions">
          </action>
-      </objectContribution>                      
+      </objectContribution>    
       <objectContribution
             adaptable="false"
             id="org.spbu.pldoctoolkit.graph.diagram.infproduct.LoadResource"
@@ -70,6 +71,7 @@
                menubarPath="additions">
          </action>
       </objectContribution>     
+      -->                  
       
 		<objectContribution
             adaptable="false"
@@ -96,6 +98,19 @@
 				label="%openElementFileActionLabel"
 				menubarPath="additions">
 			</action>
+		</objectContribution>  	
+		<objectContribution
+            adaptable="false"
+            id="org.spbu.pldoctoolkit.graph.diagram.infproduct.AddElement.InfElement"
+            objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart">
+			
+			<action
+               class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlAddInfElementAction"
+               enablesFor="1"
+               id="org.spbu.pldoctoolkit.graph.diagram.infproduct.AddInfElementAction"
+               label="%addInfElementActionLabel"
+               menubarPath="additions">
+            </action>
 		</objectContribution>  	
 		<objectContribution
             adaptable="false"
