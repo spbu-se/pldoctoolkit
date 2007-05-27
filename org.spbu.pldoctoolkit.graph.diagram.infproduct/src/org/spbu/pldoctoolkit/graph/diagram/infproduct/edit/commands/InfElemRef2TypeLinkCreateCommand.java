@@ -87,5 +87,10 @@ public class InfElemRef2TypeLinkCreateCommand extends DrlElementCreateRelationsh
 		}
 		return newElement;
 	}
-
+	
+	@Override
+	protected boolean doCanExecute() {
+		return getSource() != null;
+	}
+	
 }

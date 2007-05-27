@@ -26,7 +26,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElementCanonicalEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfElementItemSemanticEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
@@ -69,9 +68,6 @@ public class InfElementEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 
 		//HAND
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-				new InfElementCanonicalEditPolicy());
-		
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicy() {
 					public Command getCommand(Request request) {
