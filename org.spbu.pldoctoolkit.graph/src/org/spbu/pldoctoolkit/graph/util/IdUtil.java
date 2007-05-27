@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
+import org.spbu.pldoctoolkit.registry.ProjectRegistry;
 import org.spbu.pldoctoolkit.registry.RegisteredLocation;
 
 public class IdUtil {
@@ -81,6 +82,20 @@ public class IdUtil {
 	}
 
 	private static String generateId(EObject obj) {
+		//TODO how to determine project name from URI?
+		final String projectName = obj.eResource().getURI().segment(1);
+		ProjectRegistry registry = PLDocToolkitPlugin.getRegistry(projectName);
+		
+		// do-while could go here, but it is bad
+		String nextId = genNextId();
+		while(!registry.findForId(nextId).isEmpty()) {
+			nextId = genNextId();
+		}
+		
+		return nextId;
+	}
+	
+	private static String genNextId() {
 		return "newId" + lastGeneratedId++;
 	}
 }
