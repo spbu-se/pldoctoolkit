@@ -58,8 +58,6 @@ public class DrlModelBaseEditHelper extends AbstractEditHelper {
 	 * @generated
 	 */
 	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
-		System.out.println("destroying element" + req.getElementToDestroy());
-//		return null;
 		return new DestroyElementCommand(req);
 	}
 
@@ -67,7 +65,6 @@ public class DrlModelBaseEditHelper extends AbstractEditHelper {
 	 * @generated
 	 */
 	protected ICommand getDestroyReferenceCommand(DestroyReferenceRequest req) {
-		System.out.println("destroying reference: " + req.getReferencedObject());
 		return null;
 	}
 }

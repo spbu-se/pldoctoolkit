@@ -22,31 +22,16 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.DrlModelCreateShortcutDecorationsCommand;
 
-/**
- * @generated
- */
 public class DrlAddInfElementAction implements IObjectActionDelegate {
 
-	/**
-	 * @generated
-	 */
 	private GraphicalEditPart mySelectedElement;
 
-	/**
-	 * @generated
-	 */
 	private Shell myShell;
 
-	/**
-	 * @generated
-	 */
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		myShell = targetPart.getSite().getShell();
 	}
 
-	/**
-	 * @generated
-	 */
 	public void run(IAction action) {
 		final View view = (View) mySelectedElement.getModel();
 		DrlModelElementChooserDialog elementChooser = new DrlModelElementChooserDialog(
@@ -88,9 +73,6 @@ public class DrlAddInfElementAction implements IObjectActionDelegate {
 		}
 	}
 
-	/**
-	 * @generated
-	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		mySelectedElement = null;
 		if (selection instanceof IStructuredSelection) {
@@ -104,9 +86,6 @@ public class DrlAddInfElementAction implements IObjectActionDelegate {
 		action.setEnabled(isEnabled());
 	}
 
-	/**
-	 * @generated
-	 */
 	private boolean isEnabled() {
 		return mySelectedElement != null;
 	}

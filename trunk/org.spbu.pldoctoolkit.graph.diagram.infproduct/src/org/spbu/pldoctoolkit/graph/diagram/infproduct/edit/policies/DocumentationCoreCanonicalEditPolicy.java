@@ -188,7 +188,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	protected void refreshSemantic() {
 		List createdViews = new LinkedList();
 		createdViews.addAll(refreshSemanticChildren());
-		createdViews.addAll(refreshPhantoms());
+//		createdViews.addAll(refreshPhantoms());
 		
 		List createdConnectionViews = new LinkedList();
 		createdConnectionViews.addAll(refreshSemanticConnections());
@@ -205,87 +205,6 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		}
 		
 		markAllInitialized(getDiagram());
-	}
-
-	/**
-	 * @generated
-	 */
-	private Collection refreshPhantoms() {
-//		Collection phantomNodes = new LinkedList();
-//		EObject diagramModelObject = ((View) getHost().getModel()).getElement();
-//		Diagram diagram = getDiagram();
-//		Resource resource = diagramModelObject.eResource();
-//		for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
-//			EObject nextResourceObject = (EObject) it.next();
-//			if (nextResourceObject == diagramModelObject) {
-//				continue;
-//			}
-//			int nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(diagram,
-//					nextResourceObject);
-//			switch (nodeVID) {
-//			case InfElemRefGroupEditPart.VISUAL_ID: {
-//				phantomNodes.add(nextResourceObject);
-//				break;
-//			}
-//			}
-//		}
-//
-//		for (Iterator diagramNodes = getDiagram().getChildren().iterator(); diagramNodes
-//				.hasNext();) {
-//			View nextView = (View) diagramNodes.next();
-//			EObject nextViewElement = nextView.getElement();
-//			if (phantomNodes.contains(nextViewElement)) {
-//				phantomNodes.remove(nextViewElement);
-//			}
-//		}
-//		return createPhantomNodes(phantomNodes);
-		
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Collection createPhantomNodes(Collection nodes) {
-		if (nodes.isEmpty()) {
-			return Collections.EMPTY_LIST;
-		}
-		List descriptors = new ArrayList();
-		for (Iterator elements = nodes.iterator(); elements.hasNext();) {
-			EObject element = (EObject) elements.next();
-			CreateViewRequest.ViewDescriptor descriptor = getViewDescriptor(element);
-			descriptors.add(descriptor);
-		}
-		Diagram diagram = getDiagram();
-		EditPart diagramEditPart = getDiagramEditPart();
-
-		CreateViewRequest request = getCreateViewRequest(descriptors);
-		Command cmd = diagramEditPart.getCommand(request);
-		if (cmd == null) {
-			CompositeCommand cc = new CompositeCommand(
-					DiagramUIMessages.AddCommand_Label);
-			for (Iterator descriptorsIterator = descriptors.iterator(); descriptorsIterator
-					.hasNext();) {
-				CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor) descriptorsIterator
-						.next();
-				ICommand createCommand = new CreateCommand(
-						((IGraphicalEditPart) getHost()).getEditingDomain(),
-						descriptor, diagram);
-				cc.compose(createCommand);
-			}
-			cmd = new ICommandProxy(cc);
-		}
-
-		List adapters = Collections.EMPTY_LIST;
-		if (cmd != null && cmd.canExecute()) {
-			SetViewMutabilityCommand.makeMutable(
-					new EObjectAdapter(((IGraphicalEditPart) diagramEditPart)
-							.getNotationView())).execute();
-			executeCommand(cmd);
-			adapters = (List) request.getNewObject();
-		}
-		diagramEditPart.refresh();
-		return adapters;
 	}
 
 	/**
@@ -314,7 +233,6 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	private Collection refreshConnections() {
 		try {
 			collectAllLinks(getDiagram());
-//			setMyLinkDescriptorsSourceView();
 			Collection existingLinks = new LinkedList(getDiagram().getEdges());
 			for (Iterator diagramLinks = existingLinks.iterator(); diagramLinks
 					.hasNext();) {
@@ -364,23 +282,6 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		}
 	}
 
-	private void setMyLinkDescriptorsSourceView() {
-		for (Iterator modelLinkDescriptors = myLinkDescriptors.iterator(); 
-			modelLinkDescriptors.hasNext();
-			) {
-			
-			LinkDescriptor nextLinkDescriptor = 
-				(LinkDescriptor) modelLinkDescriptors.next();
-			
-			// if source view has not been set, that must be because of
-			// lacking info 
-			if(nextLinkDescriptor.getSourceView() == null) {
-				nextLinkDescriptor.setMySourceView(
-						getNewViewFor(nextLinkDescriptor.getSource(), false));
-			}
-		}
-	}
-
 	/**
 	 * @generated NOT
 	 */
@@ -411,8 +312,6 @@ public class DocumentationCoreCanonicalEditPolicy extends
 
 	//TODO extract Visitor and Acceptor
 	private void markAllInitialized(View view) {
-		System.out.println("marking all initialized");
-		
 		EObject modelElement = view.getElement();
 		int diagramElementVisualID = DrlModelVisualIDRegistry.getVisualID(view);
 		switch (diagramElementVisualID) {
@@ -602,39 +501,6 @@ public class DocumentationCoreCanonicalEditPolicy extends
 			View containerView,
 			EObject container,
 			EClass containerMetaclass) {
-//		if (DrlPackage.eINSTANCE.getGenericDocumentPart().isSuperTypeOf(
-//				containerMetaclass)) {
-//			for (Iterator values = ((GenericDocumentPart) container)
-//					.getInfElemRefs().iterator(); values.hasNext();) {
-//				EObject nextValue = ((EObject) values.next());
-//				int linkVID = DrlModelVisualIDRegistry
-//						.getLinkWithClassVisualID(nextValue);
-//				if (InfElemRef2EditPart.VISUAL_ID == linkVID) {
-//					Object structuralFeatureResult = ((InfElemRef) nextValue)
-//							.getInfelem();
-//					if (structuralFeatureResult instanceof EObject) {
-//						EObject dst = (EObject) structuralFeatureResult;
-//						structuralFeatureResult = ((InfElemRef) nextValue)
-//								.getGroup();
-//						if (structuralFeatureResult instanceof EObject) {
-//							InfElemRefGroup src = (InfElemRefGroup) structuralFeatureResult;
-//							View groupView = getInfelemRefGroupView(containerView, src);
-////							if(groupView == null) {
-////								groupView = getNewViewFor(src, false);
-////							}
-//							// if groupView is null here, it will be set later
-//							myLinkDescriptors.add(new LinkDescriptor(groupView, 
-//									src, 
-//									dst,
-//									nextValue,
-//									DrlModelElementTypes.InfElemRef_3003,
-//									linkVID));
-//						}
-//					}
-//				}
-//			}
-//		}
-		
 		if (DrlPackage.eINSTANCE.getInfElemRefGroup().isSuperTypeOf(
 				containerMetaclass)) {
 			GenericDocumentPart groupOwner = (GenericDocumentPart) ((InfElemRefGroup) container)

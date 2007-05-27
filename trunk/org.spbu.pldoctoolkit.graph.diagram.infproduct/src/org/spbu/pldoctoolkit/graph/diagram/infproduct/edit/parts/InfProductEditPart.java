@@ -13,12 +13,15 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -28,7 +31,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfProductCanonicalEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.InfProductItemSemanticEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelVisualIDRegistry;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
@@ -71,9 +73,6 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		
 		//HAND
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-				new InfProductCanonicalEditPolicy());
-		
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicy() {
 					public Command getCommand(Request request) {
@@ -99,6 +98,20 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 						return null;
 					}
 				});
+		
+		// disable delete from keyboard
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ComponentEditPolicy() {
+			@Override
+			protected Command createDeleteSemanticCommand(
+					GroupRequest deleteRequest) {
+				return UnexecutableCommand.INSTANCE;
+			}
+
+			@Override
+			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		});
 	}
 
 	/**

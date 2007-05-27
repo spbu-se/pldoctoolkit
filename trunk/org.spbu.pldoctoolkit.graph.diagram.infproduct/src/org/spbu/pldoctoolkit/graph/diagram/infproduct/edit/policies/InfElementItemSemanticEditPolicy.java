@@ -1,19 +1,14 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -24,7 +19,6 @@ import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
 import org.spbu.pldoctoolkit.graph.InfElement;
-import org.spbu.pldoctoolkit.graph.command.diagram.DrlElementDestroyCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.GenericDocumentPartGroupsReorientCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRef2ReorientCommand;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRef2TypeLinkCreateCommand;
@@ -41,15 +35,6 @@ import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementT
  */
 public class InfElementItemSemanticEditPolicy extends
 		DrlModelBaseItemSemanticEditPolicy {
-
-	/* (non-Javadoc)
-	 * @see org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DrlModelBaseItemSemanticEditPolicy#getCommand(org.eclipse.gef.Request)
-	 */
-	@Override
-	public Command getCommand(Request request) {
-		// TODO Auto-generated method stub
-		return super.getCommand(request);
-	}
 
 	/**
 	 * @generated

@@ -79,6 +79,7 @@ public class DocumentationCoreItemSemanticEditPolicy extends
 					req.getEditingDomain(), container, container, null, 
 					DrlModelElementTypes.InfElemRef_3001, 
 					DrlPackage.eINSTANCE.getGenericDocumentPart_InfElemRefs());
+			
 			createRefRequest.setParameter("createRequest", req);
 			createRefCommand = new InfElemRefTypeLinkCreateCommand(createRefRequest);
 		} else if(DrlFactory.eINSTANCE.getDrlPackage().getInfElemRefGroup()
