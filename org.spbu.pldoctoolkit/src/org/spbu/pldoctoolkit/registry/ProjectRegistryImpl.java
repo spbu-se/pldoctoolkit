@@ -93,6 +93,15 @@ class ProjectRegistryImpl implements ProjectRegistry {
 		}
 		return null;
 	}
+	
+	public List<RegisteredLocation> findForId(String id) {
+		// TODO: optimize?
+		List<RegisteredLocation> result = new ArrayList<RegisteredLocation>();
+		for (RegisteredLocation loc: locationMap.values())
+			if (loc.getId().equals(id))
+				result.add(loc);
+		return result;
+	}
 
 	public List<RegisteredLocation> findForType(String type) {
 		// TODO: optimize?
