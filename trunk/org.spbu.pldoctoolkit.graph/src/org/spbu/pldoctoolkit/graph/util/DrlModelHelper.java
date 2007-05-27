@@ -65,6 +65,7 @@ public class DrlModelHelper {
 	}
 	
 	private static int getLineNumber(EObject obj, IFile file) {
+		//TODO how to determine project name from URI?
 		final String projectName = obj.eResource().getURI().segment(1);
 		final String objId = getId(obj);
 		
@@ -73,15 +74,12 @@ public class DrlModelHelper {
 		if(objId == null || "".equals(objId)) {
 			return lineNumber;
 		}
+
+		List<RegisteredLocation> locationList = PLDocToolkitPlugin.getRegistry(projectName)
+			.findForId(objId);
 		
-		List<RegisteredLocation> locationList = 
-			PLDocToolkitPlugin.getRegistry(projectName).findAll(); //XXX findForFile(file) does not work!
-		
-		for(RegisteredLocation location : locationList) {
-			if(objId.equals(location.getId())) {
-				lineNumber = location.getLineNumber();
-				break;
-			}
+		if(!locationList.isEmpty()) {
+			lineNumber = locationList.get(0).getLineNumber();
 		}
 		
 		return lineNumber;
