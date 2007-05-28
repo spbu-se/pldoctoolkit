@@ -58,7 +58,7 @@ public class DrlModelBaseEditHelper extends AbstractEditHelper {
 	 * @generated
 	 */
 	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
-		return new DestroyElementCommand(req);
+		return null;
 	}
 
 	/**
