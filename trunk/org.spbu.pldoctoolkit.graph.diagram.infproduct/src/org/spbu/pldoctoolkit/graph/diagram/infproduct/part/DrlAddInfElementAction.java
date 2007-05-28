@@ -6,11 +6,14 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
@@ -20,7 +23,9 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
-import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.DrlModelCreateShortcutDecorationsCommand;
+import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.commands.InfElemRefTypeLinkCreateCommand;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.providers.DrlModelElementTypes;
 
 public class DrlAddInfElementAction implements IObjectActionDelegate {
 
@@ -33,9 +38,12 @@ public class DrlAddInfElementAction implements IObjectActionDelegate {
 	}
 
 	public void run(IAction action) {
-		final View view = (View) mySelectedElement.getModel();
+		final View mySelectedElementView = (View) mySelectedElement.getModel(); 
+		final View diagramView = mySelectedElementView.getDiagram();
+		final EObject mySelectedElementObject = mySelectedElementView.getElement();
+		
 		DrlModelElementChooserDialog elementChooser = new DrlModelElementChooserDialog(
-				myShell, view);
+				myShell, diagramView);
 		int result = elementChooser.open();
 		if (result != Window.OK) {
 			return;
@@ -57,13 +65,15 @@ public class DrlAddInfElementAction implements IObjectActionDelegate {
 		if (selectedElement == null) {
 			return;
 		}
-		CreateViewRequest.ViewDescriptor viewDescriptor = new CreateViewRequest.ViewDescriptor(
-				new EObjectAdapter(selectedElement), Node.class, null,
-				DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-		ICommand command = new CreateCommand(mySelectedElement
-				.getEditingDomain(), viewDescriptor, view);
-		command = command.compose(new DrlModelCreateShortcutDecorationsCommand(
-				mySelectedElement.getEditingDomain(), view, viewDescriptor));
+		
+		CreateRelationshipRequest createRefRequest = new CreateRelationshipRequest(
+				mySelectedElement.getEditingDomain(), 
+				mySelectedElementObject, mySelectedElementObject, selectedElement, 
+				DrlModelElementTypes.InfElemRef_3001, 
+				DrlPackage.eINSTANCE.getGenericDocumentPart_InfElemRefs());
+		
+		ICommand command = new InfElemRefTypeLinkCreateCommand(createRefRequest);
+		
 		try {
 			OperationHistoryFactory.getOperationHistory().execute(command,
 					new NullProgressMonitor(), null);
@@ -71,8 +81,12 @@ public class DrlAddInfElementAction implements IObjectActionDelegate {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
 					"Unable to create shortcut", e); //$NON-NLS-1$
 		}
+		
+		EditPart diagramEditPart = (EditPart) mySelectedElement.getViewer()
+			.getEditPartRegistry().get(diagramView);
+		diagramEditPart.refresh();
 	}
-
+	
 	public void selectionChanged(IAction action, ISelection selection) {
 		mySelectedElement = null;
 		if (selection instanceof IStructuredSelection) {
