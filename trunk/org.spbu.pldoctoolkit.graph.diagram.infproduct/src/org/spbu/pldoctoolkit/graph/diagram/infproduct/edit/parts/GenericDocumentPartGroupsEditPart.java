@@ -2,7 +2,12 @@ package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
@@ -26,12 +31,27 @@ public class GenericDocumentPartGroupsEditPart extends ConnectionNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new GenericDocumentPartGroupsItemSemanticEditPolicy());
+		
+		//HAND
+		// disable delete from keyboard
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ComponentEditPolicy() {
+			@Override
+			protected Command createDeleteSemanticCommand(
+					GroupRequest deleteRequest) {
+				return UnexecutableCommand.INSTANCE;
+			}
+
+			@Override
+			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		});
 	}
 
 	/**
