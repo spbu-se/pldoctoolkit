@@ -152,6 +152,7 @@
 	<define name="Directory">
 		<element name="Directory">
 			<attribute name="id"/>
+			<attribute name="name"/>
 			<zeroOrMore>
 				<element name="Entry">
 					<attribute name="id"/>
@@ -220,9 +221,8 @@
 					<attribute name="name"/>
 					<attribute name="modifier">
 						<choice>
-							<!-- TODO to upper case? -->
-							<value>one</value>
-							<value>set</value>
+							<value>XOR</value>
+							<value>OR</value>
 						</choice>
 					</attribute>
 				</element>
