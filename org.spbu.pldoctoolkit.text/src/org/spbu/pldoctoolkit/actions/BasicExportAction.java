@@ -76,6 +76,10 @@ public class BasicExportAction extends Action {
 	protected final XMLReader xmlReader;
 	protected final Validator validator;
 
+	protected DocbookContentHandler contentHandler;
+	protected ProjectRegistry registry;
+	protected String fipId;
+	
 	protected final URIResolver uriResolver = new StandardURIResolver(new Configuration()) {
 		private static final long serialVersionUID = -7919352677909462305L;
 		public Source resolve(String href, String base) throws XPathException {
@@ -119,10 +123,6 @@ public class BasicExportAction extends Action {
 		}
 	};
 
-	protected DocbookContentHandler contentHandler;
-	protected ProjectRegistry registry;
-	protected String fipId;
-	
 	public BasicExportAction(IEditorPart editor, URL docbookTransformationURL, String format, String extension) throws Exception {
 		super("Export to " + format);
 		if (editor == null)
@@ -236,8 +236,8 @@ public class BasicExportAction extends Action {
 			throw new InvocationTargetException(e);
 		} finally {
 			validator.reset();
-//			if (tempFile != null)
-//				tempFile.delete();
+			if (tempFile != null)
+				tempFile.delete();
 		}
 	}
 

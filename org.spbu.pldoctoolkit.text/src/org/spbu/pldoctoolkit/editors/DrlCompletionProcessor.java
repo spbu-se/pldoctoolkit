@@ -1,8 +1,6 @@
 package org.spbu.pldoctoolkit.editors;
 
-import static org.spbu.pldoctoolkit.registry.RegisteredLocation.DICTIONARY;
-import static org.spbu.pldoctoolkit.registry.RegisteredLocation.INF_ELEMENT;
-import static org.spbu.pldoctoolkit.registry.RegisteredLocation.INF_PRODUCT;
+import static org.spbu.pldoctoolkit.registry.RegisteredLocation.*;
 
 import java.util.List;
 
@@ -27,6 +25,8 @@ public class DrlCompletionProcessor implements IContentAssistProcessor {
 	private static final String INF_PRODUCT_ID = "infproductid";
 	private static final String INF_ELEM_ID = "infelemid";
 	private static final String DICT_ID = "dictid";
+	private static final String DIRECTORY_ID = "directoryid";
+	private static final String TEMPLATE_ID = "templateid";
 	
 	private final IEditorPart editor;
 
@@ -56,11 +56,15 @@ public class DrlCompletionProcessor implements IContentAssistProcessor {
 				String type = null;
 				if (INF_PRODUCT_ID.equals(attributeName))
 					type = INF_PRODUCT;
-				if (INF_ELEM_ID.equals(attributeName))
+				else if (INF_ELEM_ID.equals(attributeName))
 					type = INF_ELEMENT;
-				if (DICT_ID.equals(attributeName))
+				else if (DICT_ID.equals(attributeName))
 					type = DICTIONARY;
-				if (type == null)
+				else if (DIRECTORY_ID.equals(attributeName))
+					type = DIRECTORY;
+				else if (TEMPLATE_ID.equals(attributeName))
+					type = DIRTEPLATE;
+				else if (type == null)
 					return null;
 				List<RegisteredLocation> list = getRegistry().findForType(type);
 				if (list.isEmpty())
@@ -95,12 +99,10 @@ public class DrlCompletionProcessor implements IContentAssistProcessor {
 	}
 
 	public IContextInformationValidator getContextInformationValidator() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public String getErrorMessage() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
