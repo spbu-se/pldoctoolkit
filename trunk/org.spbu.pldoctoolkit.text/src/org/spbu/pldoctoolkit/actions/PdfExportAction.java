@@ -22,7 +22,7 @@ import org.xml.sax.DTDHandler;
 import org.xml.sax.SAXException;
 
 public class PdfExportAction extends BasicExportAction {
-	private static final FopFactory fopFactory = FopFactory.newInstance();
+	private static final FopFactory FOP_FACTORY = FopFactory.newInstance();
 	
 	public PdfExportAction(IEditorPart editor) throws Exception {
 		super(editor, DrlPublisherPlugin.getURL("xsl/docbook/fo/docbook.xsl"), "PDF", "pdf");
@@ -52,10 +52,13 @@ public class PdfExportAction extends BasicExportAction {
 			monitor.worked(1);
 
 			out = new FileOutputStream(result);
-			Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, out);
+			Fop fop = FOP_FACTORY.newFop(MimeConstants.MIME_PDF, out);
 			
 			monitor.subTask("Transforming DocBook -> " + format + "...");
 			ContentHandler ch = fop.getDefaultHandler();
+			
+			// that's a work-around for a saxon's (or FOP's?) bug - the startDocument is actually called twice on
+			// the content handler, which leads to FOP error (using a single fop instance two times is not allowed).
 			ch.startDocument();
 			transform(docbook2type, new StreamSource(tempFile), new SAXResult(new ContentHandlerAdapter(ch) {
 				@Override
