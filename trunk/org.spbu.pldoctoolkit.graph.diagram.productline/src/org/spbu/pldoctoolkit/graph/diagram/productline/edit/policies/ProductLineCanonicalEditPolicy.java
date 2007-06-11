@@ -58,39 +58,42 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegi
 /**
  * @generated
  */
-public class ProductLineCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
-	
-/**
- * @generated
- */
-protected List getSemanticChildrenList() {
-	List result = new LinkedList();
-	EObject modelObject = ((View) getHost().getModel()).getElement();
-	View viewObject = (View) getHost().getModel();
+public class ProductLineCanonicalEditPolicy extends
+		CanonicalConnectionEditPolicy {
 
-	return result;
-}
+	/**
+	 * @generated
+	 */
+	protected List getSemanticChildrenList() {
+		List result = new LinkedList();
+		EObject modelObject = ((View) getHost().getModel()).getElement();
+		View viewObject = (View) getHost().getModel();
 
-/**
- * @generated
- */
-protected boolean shouldDeleteView(View view) {
-	if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
-		return view.isSetElement() && (view.getElement() == null || view.getElement().eIsProxy());
+		return result;
 	}
-	int nodeVID = DrlModelVisualIDRegistry.getVisualID(view);
-//	switch (nodeVID) {	
-//		return true;
-//	}
-	return false;
-}
 
-/**
- * @generated
- */
-protected String getDefaultFactoryHint() {
-	return null;
-}
+	/**
+	 * @generated
+	 */
+	protected boolean shouldDeleteView(View view) {
+		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+			return view.isSetElement()
+					&& (view.getElement() == null || view.getElement()
+							.eIsProxy());
+		}
+		int nodeVID = DrlModelVisualIDRegistry.getVisualID(view);
+		// switch (nodeVID) {
+		// return true;
+		// }
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected String getDefaultFactoryHint() {
+		return null;
+	}
 
 	/**
 	 * @generated
@@ -116,10 +119,10 @@ protected String getDefaultFactoryHint() {
 	/**
 	 * @generated
 	 */
-	protected boolean shouldIncludeConnection(Edge connector, Collection children) {
+	protected boolean shouldIncludeConnection(Edge connector,
+			Collection children) {
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -134,14 +137,15 @@ protected String getDefaultFactoryHint() {
 
 		if (createdViews.size() > 1) {
 			// perform a layout of the container
-			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
+			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
+					.getEditingDomain(), createdViews, host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
 
 		createdViews.addAll(createdConnectionViews);
 		makeViewsImmutable(createdViews);
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -149,80 +153,91 @@ protected String getDefaultFactoryHint() {
 		Collection phantomNodes = new LinkedList();
 		EObject diagramModelObject = ((View) getHost().getModel()).getElement();
 		Diagram diagram = getDiagram();
-Resource resource = diagramModelObject.eResource();
-for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
-	EObject nextResourceObject = (EObject) it.next();
-	if (nextResourceObject == diagramModelObject) {
-		continue;
-	}
-	int nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(diagram, nextResourceObject);
-	switch (nodeVID) {
-	case ProductLine2EditPart.VISUAL_ID: {
-			phantomNodes.add(nextResourceObject);
-		break;
-	}	}
-}
+		Resource resource = diagramModelObject.eResource();
+		for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
+			EObject nextResourceObject = (EObject) it.next();
+			if (nextResourceObject == diagramModelObject) {
+				continue;
+			}
+			int nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(diagram,
+					nextResourceObject);
+			switch (nodeVID) {
+			case ProductLine2EditPart.VISUAL_ID: {
+				phantomNodes.add(nextResourceObject);
+				break;
+			}
+			}
+		}
 
-for (Iterator diagramNodes = getDiagram().getChildren().iterator(); diagramNodes.hasNext();) {
-	View nextView = (View) diagramNodes.next();
-	EObject nextViewElement = nextView.getElement();
-	if (phantomNodes.contains(nextViewElement)) {
-		phantomNodes.remove(nextViewElement);
-	}	
-}
+		for (Iterator diagramNodes = getDiagram().getChildren().iterator(); diagramNodes
+				.hasNext();) {
+			View nextView = (View) diagramNodes.next();
+			EObject nextViewElement = nextView.getElement();
+			if (phantomNodes.contains(nextViewElement)) {
+				phantomNodes.remove(nextViewElement);
+			}
+		}
 		return createPhantomNodes(phantomNodes);
 	}
 
-/**
- * @generated
- */
-private Collection createPhantomNodes(Collection nodes) {
-	if (nodes.isEmpty()) {
-		return Collections.EMPTY_LIST;
-	}
-	List descriptors = new ArrayList();
-	for (Iterator elements = nodes.iterator(); elements.hasNext();) {
-		EObject element = (EObject)elements.next();
-		CreateViewRequest.ViewDescriptor descriptor = getViewDescriptor(element);
-		descriptors.add(descriptor);
-	}
-	Diagram diagram = getDiagram();
-	EditPart diagramEditPart = getDiagramEditPart();
-	
-	CreateViewRequest request = getCreateViewRequest(descriptors);
-	Command cmd = diagramEditPart.getCommand(request);
-	if (cmd == null) {
-		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
-		for (Iterator descriptorsIterator = descriptors.iterator(); descriptorsIterator.hasNext();) {
-			CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor) descriptorsIterator.next();
-			ICommand createCommand = new CreateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), descriptor, diagram);
-			cc.compose(createCommand);
+	/**
+	 * @generated
+	 */
+	private Collection createPhantomNodes(Collection nodes) {
+		if (nodes.isEmpty()) {
+			return Collections.EMPTY_LIST;
 		}
-		cmd = new ICommandProxy(cc);
-	}	
-	
-	List adapters = Collections.EMPTY_LIST;
-	if ( cmd != null && cmd.canExecute() ) {
-		SetViewMutabilityCommand.makeMutable(new EObjectAdapter(((IGraphicalEditPart) diagramEditPart).getNotationView())).execute();
-		executeCommand(cmd);
-		adapters = (List) request.getNewObject();
-	}
-	diagramEditPart.refresh();
-	return adapters;
-}
+		List descriptors = new ArrayList();
+		for (Iterator elements = nodes.iterator(); elements.hasNext();) {
+			EObject element = (EObject) elements.next();
+			CreateViewRequest.ViewDescriptor descriptor = getViewDescriptor(element);
+			descriptors.add(descriptor);
+		}
+		Diagram diagram = getDiagram();
+		EditPart diagramEditPart = getDiagramEditPart();
 
-/**
- * @generated
- */
-private EditPart getDiagramEditPart() {
-	return (EditPart) getHost().getViewer().getEditPartRegistry().get(getDiagram());
-}
-	
+		CreateViewRequest request = getCreateViewRequest(descriptors);
+		Command cmd = diagramEditPart.getCommand(request);
+		if (cmd == null) {
+			CompositeCommand cc = new CompositeCommand(
+					DiagramUIMessages.AddCommand_Label);
+			for (Iterator descriptorsIterator = descriptors.iterator(); descriptorsIterator
+					.hasNext();) {
+				CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor) descriptorsIterator
+						.next();
+				ICommand createCommand = new CreateCommand(
+						((IGraphicalEditPart) getHost()).getEditingDomain(),
+						descriptor, diagram);
+				cc.compose(createCommand);
+			}
+			cmd = new ICommandProxy(cc);
+		}
+
+		List adapters = Collections.EMPTY_LIST;
+		if (cmd != null && cmd.canExecute()) {
+			SetViewMutabilityCommand.makeMutable(
+					new EObjectAdapter(((IGraphicalEditPart) diagramEditPart)
+							.getNotationView())).execute();
+			executeCommand(cmd);
+			adapters = (List) request.getNewObject();
+		}
+		diagramEditPart.refresh();
+		return adapters;
+	}
+
+	/**
+	 * @generated
+	 */
+	private EditPart getDiagramEditPart() {
+		return (EditPart) getHost().getViewer().getEditPartRegistry().get(
+				getDiagram());
+	}
+
 	/**
 	 * @generated
 	 */
 	private Collection myLinkDescriptors = new LinkedList();
-	
+
 	/**
 	 * @generated
 	 */
@@ -235,15 +250,27 @@ private EditPart getDiagramEditPart() {
 		try {
 			collectAllLinks(getDiagram());
 			Collection existingLinks = new LinkedList(getDiagram().getEdges());
-			for (Iterator diagramLinks = existingLinks.iterator(); diagramLinks.hasNext();) {
+			for (Iterator diagramLinks = existingLinks.iterator(); diagramLinks
+					.hasNext();) {
 				Edge nextDiagramLink = (Edge) diagramLinks.next();
 				EObject diagramLinkObject = nextDiagramLink.getElement();
-				EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
-				EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
-				int diagramLinkVisualID = DrlModelVisualIDRegistry.getVisualID(nextDiagramLink);
-				for (Iterator modelLinkDescriptors = myLinkDescriptors.iterator(); modelLinkDescriptors.hasNext();) {
-					LinkDescriptor nextLinkDescriptor = (LinkDescriptor) modelLinkDescriptors.next();
-					if (diagramLinkObject == nextLinkDescriptor.getLinkElement() && diagramLinkSrc == nextLinkDescriptor.getSource() && diagramLinkDst == nextLinkDescriptor.getDestination() && diagramLinkVisualID == nextLinkDescriptor.getVisualID()) {
+				EObject diagramLinkSrc = nextDiagramLink.getSource()
+						.getElement();
+				EObject diagramLinkDst = nextDiagramLink.getTarget()
+						.getElement();
+				int diagramLinkVisualID = DrlModelVisualIDRegistry
+						.getVisualID(nextDiagramLink);
+				for (Iterator modelLinkDescriptors = myLinkDescriptors
+						.iterator(); modelLinkDescriptors.hasNext();) {
+					LinkDescriptor nextLinkDescriptor = (LinkDescriptor) modelLinkDescriptors
+							.next();
+					if (diagramLinkObject == nextLinkDescriptor
+							.getLinkElement()
+							&& diagramLinkSrc == nextLinkDescriptor.getSource()
+							&& diagramLinkDst == nextLinkDescriptor
+									.getDestination()
+							&& diagramLinkVisualID == nextLinkDescriptor
+									.getVisualID()) {
 						diagramLinks.remove();
 						modelLinkDescriptors.remove();
 					}
@@ -256,7 +283,7 @@ private EditPart getDiagramEditPart() {
 			myEObject2ViewMap.clear();
 		}
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -267,15 +294,17 @@ private EditPart getDiagramEditPart() {
 		case ProductLine2EditPart.VISUAL_ID:
 		case ProductEditPart.VISUAL_ID:
 		case InfProductEditPart.VISUAL_ID:
-		case ProductLineEditPart.VISUAL_ID: { myEObject2ViewMap.put(modelElement, view);
+		case ProductLineEditPart.VISUAL_ID: {
+			myEObject2ViewMap.put(modelElement, view);
 			storeLinks(modelElement, getDiagram());
 		}
 		default: {
 		}
-		for (Iterator children = view.getChildren().iterator(); children.hasNext();) {
-			View childView = (View) children.next();
-			collectAllLinks(childView);
-		}
+			for (Iterator children = view.getChildren().iterator(); children
+					.hasNext();) {
+				View childView = (View) children.next();
+				collectAllLinks(childView);
+			}
 		}
 	}
 
@@ -287,15 +316,23 @@ private EditPart getDiagramEditPart() {
 			return Collections.EMPTY_LIST;
 		}
 		List adapters = new LinkedList();
-		for (Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator.hasNext();) {
-			final LinkDescriptor nextLinkDescriptor = (LinkDescriptor) linkDescriptorsIterator.next();
-			EditPart sourceEditPart = getEditPartFor(nextLinkDescriptor.getSource());
-			EditPart targetEditPart = getEditPartFor(nextLinkDescriptor.getDestination());
+		for (Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator
+				.hasNext();) {
+			final LinkDescriptor nextLinkDescriptor = (LinkDescriptor) linkDescriptorsIterator
+					.next();
+			EditPart sourceEditPart = getEditPartFor(nextLinkDescriptor
+					.getSource());
+			EditPart targetEditPart = getEditPartFor(nextLinkDescriptor
+					.getDestination());
 			if (sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
-			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(nextLinkDescriptor.getSemanticAdapter(), null, ViewUtil.APPEND, false, ((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
-			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(descriptor);
+			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
+					nextLinkDescriptor.getSemanticAdapter(), null,
+					ViewUtil.APPEND, false, ((IGraphicalEditPart) getHost())
+							.getDiagramPreferencesHint());
+			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(
+					descriptor);
 			ccr.setType(RequestConstants.REQ_CONNECTION_START);
 			ccr.setSourceEditPart(sourceEditPart);
 			sourceEditPart.getCommand(ccr);
@@ -312,154 +349,158 @@ private EditPart getDiagramEditPart() {
 		}
 		return adapters;
 	}
-	
+
 	/**
 	 * @generated
 	 */
 	private EditPart getEditPartFor(EObject modelElement) {
 		View view = (View) myEObject2ViewMap.get(modelElement);
 		if (view != null) {
-			return (EditPart) getHost().getViewer().getEditPartRegistry().get(view);
+			return (EditPart) getHost().getViewer().getEditPartRegistry().get(
+					view);
 		}
 		return null;
 	}
-	
-/**
- *@generated
- */
-private void storeLinks(EObject container, Diagram diagram) {
-	EClass containerMetaclass = container.eClass();
-	storeFeatureModelFacetLinks(container, containerMetaclass, diagram);
-	storeTypeModelFacetLinks(container, containerMetaclass);
-}
-	
-/**
- * @generated
- */
-private void storeTypeModelFacetLinks(EObject container, EClass containerMetaclass) {	
-}
 
+	/**
+	 * @generated
+	 */
+	private void storeLinks(EObject container, Diagram diagram) {
+		EClass containerMetaclass = container.eClass();
+		storeFeatureModelFacetLinks(container, containerMetaclass, diagram);
+		storeTypeModelFacetLinks(container, containerMetaclass);
+	}
 
-/**
- *@generated
- */
-private void storeFeatureModelFacetLinks(EObject container, EClass containerMetaclass, Diagram diagram) {
-}
-	
-/**
- * @generated
- */
-private Diagram getDiagram() {
-	return ((View) getHost().getModel()).getDiagram();
-}
+	/**
+	 * @generated
+	 */
+	private void storeTypeModelFacetLinks(EObject container,
+			EClass containerMetaclass) {
+	}
 
-/**
- * @generated
- */
-private class LinkDescriptor {
-	
 	/**
-   	 * @generated
-     */
-	private EObject mySource;
-		
+	 * @generated
+	 */
+	private void storeFeatureModelFacetLinks(EObject container,
+			EClass containerMetaclass, Diagram diagram) {
+	}
+
 	/**
-   	 * @generated
-     */
-	private EObject myDestination;
-	
+	 * @generated
+	 */
+	private Diagram getDiagram() {
+		return ((View) getHost().getModel()).getDiagram();
+	}
+
 	/**
-   	 * @generated
-     */
-	private EObject myLinkElement;
-	
-	/**
-   	 * @generated
-     */
-	private int myVisualID;
-		
-	/**
-   	 * @generated
-     */
-	private IAdaptable mySemanticAdapter;
-		
-	/**
-   	 * @generated
-     */
-	protected LinkDescriptor(EObject source, EObject destination, EObject linkElement, IElementType elementType, int linkVID) {
-		this(source, destination, linkVID);
-		myLinkElement = linkElement;
-		final IElementType elementTypeCopy = elementType;
-		mySemanticAdapter = new EObjectAdapter(linkElement) {
-			public Object getAdapter(Class adapter) {
-				if (IElementType.class.equals(adapter)) {
-					return elementTypeCopy;
+	 * @generated
+	 */
+	private class LinkDescriptor {
+
+		/**
+		 * @generated
+		 */
+		private EObject mySource;
+
+		/**
+		 * @generated
+		 */
+		private EObject myDestination;
+
+		/**
+		 * @generated
+		 */
+		private EObject myLinkElement;
+
+		/**
+		 * @generated
+		 */
+		private int myVisualID;
+
+		/**
+		 * @generated
+		 */
+		private IAdaptable mySemanticAdapter;
+
+		/**
+		 * @generated
+		 */
+		protected LinkDescriptor(EObject source, EObject destination,
+				EObject linkElement, IElementType elementType, int linkVID) {
+			this(source, destination, linkVID);
+			myLinkElement = linkElement;
+			final IElementType elementTypeCopy = elementType;
+			mySemanticAdapter = new EObjectAdapter(linkElement) {
+				public Object getAdapter(Class adapter) {
+					if (IElementType.class.equals(adapter)) {
+						return elementTypeCopy;
+					}
+					return super.getAdapter(adapter);
 				}
-				return super.getAdapter(adapter);
-			}
-		};
-	}
+			};
+		}
 
-	/**
-   	 * @generated
-     */
-	protected LinkDescriptor(EObject source, EObject destination, IElementType elementType, int linkVID) {
-		this(source, destination, linkVID);
-		myLinkElement = null;
-		final IElementType elementTypeCopy = elementType;
-		mySemanticAdapter = new IAdaptable() {
-			public Object getAdapter(Class adapter) {
-				if (IElementType.class.equals(adapter)) {
-					return elementTypeCopy;
+		/**
+		 * @generated
+		 */
+		protected LinkDescriptor(EObject source, EObject destination,
+				IElementType elementType, int linkVID) {
+			this(source, destination, linkVID);
+			myLinkElement = null;
+			final IElementType elementTypeCopy = elementType;
+			mySemanticAdapter = new IAdaptable() {
+				public Object getAdapter(Class adapter) {
+					if (IElementType.class.equals(adapter)) {
+						return elementTypeCopy;
+					}
+					return null;
 				}
-				return null;
-			}
-		};
+			};
+		}
+
+		/**
+		 * @generated
+		 */
+		private LinkDescriptor(EObject source, EObject destination, int linkVID) {
+			mySource = source;
+			myDestination = destination;
+			myVisualID = linkVID;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected EObject getSource() {
+			return mySource;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected EObject getDestination() {
+			return myDestination;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected EObject getLinkElement() {
+			return myLinkElement;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected int getVisualID() {
+			return myVisualID;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected IAdaptable getSemanticAdapter() {
+			return mySemanticAdapter;
+		}
 	}
-		
-	/**
-   	 * @generated
-     */
-	private LinkDescriptor(EObject source, EObject destination, int linkVID) {
-		mySource = source;
-		myDestination = destination;
-		myVisualID = linkVID;
-	}
-		
-	/**
-   	 * @generated
-     */
-	protected EObject getSource() {
-		return mySource;
-	}
-		
-	/**
-   	 * @generated
-     */
-	protected EObject getDestination() {
-		return myDestination;
-	}
-	
-	/**
-   	 * @generated
-     */
-	protected EObject getLinkElement() {
-		return myLinkElement;
-	}
-	
-	/**
-   	 * @generated
-     */
-	protected int getVisualID() {
-		return myVisualID;
-	}
-		
-	/**
-   	 * @generated
-     */
-	protected IAdaptable getSemanticAdapter() {
-		return mySemanticAdapter;
-	}
-}
 
 }
