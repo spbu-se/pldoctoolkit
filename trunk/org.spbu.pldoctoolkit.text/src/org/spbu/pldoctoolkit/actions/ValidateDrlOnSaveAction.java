@@ -18,7 +18,7 @@ import org.xml.sax.XMLReader;
 import com.thaiopensource.validate.Validator;
 import com.thaiopensource.xml.sax.Jaxp11XMLReaderCreator;
 
-public class ValidateDrlAction extends Action {
+public class ValidateDrlOnSaveAction extends Action {
 	private static final SchemaCache SCHEMA_CACHE = new SchemaCache();
 	private static final URL SCHEMA_URL = PLDocToolkitPlugin.getURL("schema/document-reuse-language.rng");
 
@@ -27,7 +27,7 @@ public class ValidateDrlAction extends Action {
 	private final Validator validator;
 	private final IEditorPart editor;
 	
-	public ValidateDrlAction(IEditorPart editor) throws Exception {
+	public ValidateDrlOnSaveAction(IEditorPart editor) throws Exception {
 		super("Validate DRL...");
 		if (editor == null)
 			throw new NullPointerException("editor cannot be null");

@@ -12,6 +12,7 @@ import javax.xml.transform.ErrorListener;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.SourceLocator;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamResult;
@@ -68,14 +69,14 @@ public class BasicExportAction extends Action {
 	protected static final URL DOCBOOK_SCHEMA_URL = DrlPublisherPlugin.getURL("schema/docbook/docbook.rng");
 
 	protected final Controller drl2docbook;
-	protected final Controller docbook2type;
 	protected final String format;
 	protected final String extension;
 	protected final IEditorPart editor;
-
 	protected final XMLReader xmlReader;
 	protected final Validator validator;
-
+	private final URL docbookTransformationURL;
+	
+	protected Controller docbook2type;
 	protected DocbookContentHandler contentHandler;
 	protected ProjectRegistry registry;
 	protected String fipId;
@@ -122,24 +123,30 @@ public class BasicExportAction extends Action {
 			processTransformerException(exception, IMarker.SEVERITY_WARNING);
 		}
 	};
-
-	public BasicExportAction(IEditorPart editor, URL docbookTransformationURL, String format, String extension) throws Exception {
-		super("Export to " + format);
+	
+	public BasicExportAction(IEditorPart editor, URL docbookTransformationURL, String name, String format, String extension) throws Exception {
+		super(name);
 		if (editor == null)
 			throw new NullPointerException("editor cannot be null");
 		this.editor = editor;
+		this.docbookTransformationURL = docbookTransformationURL;
 		this.format = format;
 		this.extension = extension;
 
 		// transformers
 		drl2docbook = CONTROLLER_CACHE.getController(DRL2DOCBOOK_URL);
-		docbook2type = CONTROLLER_CACHE.getController(docbookTransformationURL);
 
 		// validator
 		validator = SCHEMA_CACHE.getValidator(DOCBOOK_SCHEMA_URL, errorHandler);
 		xmlReader = new Jaxp11XMLReaderCreator().createXMLReader();
 	}
 
+	protected Controller getDocbookTransformer() throws TransformerConfigurationException {
+		if (docbook2type == null)
+			docbook2type = CONTROLLER_CACHE.getController(docbookTransformationURL);
+		return docbook2type;
+	}
+	
 	@Override
 	public void run() {
 		try {
@@ -175,18 +182,8 @@ public class BasicExportAction extends Action {
 			if (fipId == null)
 				return;
 			
-			// TODO: replace with workspace-resource choosing dialog... meybe need to remember last export position somehow
-			FileDialog fileDialog = new FileDialog(DrlPublisherPlugin.getShell(), SWT.SAVE);
-			fileDialog.setText(getText());
-			fileDialog.setFilterExtensions(new String[] {"*." + extension});
-			String dialogResult = fileDialog.open();
-			if (dialogResult == null)
-				return;
-
-			String destinationFilename = dialogResult.contains(".") ? dialogResult : dialogResult + "." + extension;
-
-			final File source = new File(file.getLocationURI());
-			final File result = new File(destinationFilename);
+			final IFile source = file;
+			final File result = getDestinationFile();
 
 			editorInput.getFile().getParent().deleteMarkers(IMarker.MARKER, true, IResource.DEPTH_INFINITE);
 
@@ -198,26 +195,44 @@ public class BasicExportAction extends Action {
 			ProgressMonitorDialog pmDialog = new ProgressMonitorDialog(DrlPublisherPlugin.getShell());
 			pmDialog.run(true, false, op);
 			int returnCode = pmDialog.getReturnCode();
-			if (returnCode == ProgressMonitorDialog.OK) {
-				MessageDialog.openInformation(DrlPublisherPlugin.getShell(), "Information", "Export successfull");
-			}
+			if (returnCode == ProgressMonitorDialog.OK)
+				showMessage(null);
 		} catch (InvocationTargetException e) {
-			MessageDialog.openError(DrlPublisherPlugin.getShell(), "Error", "Export failed: " + e.getCause().getMessage());
+			showMessage(e);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	protected void showMessage(InvocationTargetException e) {
+		if (e == null)
+			MessageDialog.openInformation(DrlPublisherPlugin.getShell(), "Information", "Export successfull");
+		else
+			MessageDialog.openError(DrlPublisherPlugin.getShell(), "Error", "Export failed: " + e.getCause().getMessage());
+	}
+	
+	protected File getDestinationFile() {
+//		TODO: replace with workspace-resource choosing dialog... meybe need to remember last export position somehow
+		FileDialog fileDialog = new FileDialog(DrlPublisherPlugin.getShell(), SWT.SAVE);
+		fileDialog.setText(getText());
+		fileDialog.setFilterExtensions(new String[] {"*." + extension});
+		String dialogResult = fileDialog.open();
+		if (dialogResult == null)
+			return null;
+		return new File(dialogResult.contains(".") ? dialogResult : dialogResult + "." + extension);
+	}
 
-	protected void doTransform(IProgressMonitor monitor, File source, File result) throws InvocationTargetException {
+	protected void doTransform(IProgressMonitor monitor, IFile source, File result) throws InvocationTargetException {
+		if (result == null)
+			return;
 		File tempFile = null;
 		try {
 			monitor.beginTask("Exporting to " + format + "...", 3);
 			tempFile = File.createTempFile("docbookgen", null);
-			System.out.println("temp file location: " + tempFile.getAbsolutePath());
 
 			monitor.subTask("Transforming DRL -> DocBook...");
 			drl2docbook.setParameter("finalinfproductid", fipId);
-			transform(drl2docbook, new StreamSource(source), new StreamResult(tempFile));
+			transform(drl2docbook, new StreamSource(source.getLocationURI().toString()), new StreamResult(tempFile));
 			monitor.worked(1);
 
 			monitor.subTask("Validating DocBook...");
@@ -230,7 +245,7 @@ public class BasicExportAction extends Action {
 			monitor.worked(1);
 
 			monitor.subTask("Transforming DocBook -> " + format + "...");
-			transform(docbook2type, new StreamSource(tempFile), new StreamResult(result));
+			transform(getDocbookTransformer(), new StreamSource(tempFile), new StreamResult(result));
 			monitor.done();
 		} catch (Exception e) {
 			throw new InvocationTargetException(e);
