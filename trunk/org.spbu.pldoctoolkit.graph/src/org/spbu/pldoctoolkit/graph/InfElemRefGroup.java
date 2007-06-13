@@ -134,6 +134,6 @@ public interface InfElemRefGroup extends DrlElement {
 	 * @model type="org.spbu.pldoctoolkit.graph.InfElemRef" opposite="group" resolveProxies="false" transient="true" derived="true"
 	 * @generated
 	 */
-	EList getInfElemRefsGroup();
+	EList<InfElemRef> getInfElemRefsGroup();
 
 } // InfElemRefGroup

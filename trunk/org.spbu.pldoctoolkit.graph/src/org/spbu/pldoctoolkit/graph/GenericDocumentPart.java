@@ -106,7 +106,7 @@ public interface GenericDocumentPart extends DrlElement {
 	 * @model type="org.spbu.pldoctoolkit.graph.InfElemRef" containment="true"
 	 * @generated
 	 */
-	EList getInfElemRefs();
+	EList<InfElemRef> getInfElemRefs();
 
 	/**
 	 * Returns the value of the '<em><b>Groups</b></em>' containment reference list.
@@ -122,6 +122,6 @@ public interface GenericDocumentPart extends DrlElement {
 	 * @model type="org.spbu.pldoctoolkit.graph.InfElemRefGroup" containment="true"
 	 * @generated
 	 */
-	EList getGroups();
+	EList<InfElemRefGroup> getGroups();
 
 } // GenericDocumentPart

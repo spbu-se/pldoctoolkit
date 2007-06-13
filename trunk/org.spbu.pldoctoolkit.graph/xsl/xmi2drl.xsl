@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:v="http://math.spbu.ru/drl"
+    xmlns:d="http://math.spbu.ru/drl"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:resolver="java:org.spbu.pldoctoolkit.graph.util.IdUtil"
     version="2.0"
@@ -11,9 +11,9 @@
     <xsl:output indent="yes"/>
 
     <xsl:template match="products">
-        <v:Product>
+        <d:Product>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
-        </v:Product>
+        </d:Product>
     </xsl:template>
 
     <xsl:template match="parts">
@@ -25,15 +25,15 @@
     </xsl:template>                      
 
     <xsl:template match="infElemRefs">
-        <v:InfElemRef>
+        <d:InfElemRef>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
-        </v:InfElemRef>
+        </d:InfElemRef>
     </xsl:template>
 
     <xsl:template match="groups">
-        <v:InfElemRefGroup>
+        <d:InfElemRefGroup>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
-        </v:InfElemRefGroup>
+        </d:InfElemRefGroup>
     </xsl:template>
 
     <!-- infelem id reference -->

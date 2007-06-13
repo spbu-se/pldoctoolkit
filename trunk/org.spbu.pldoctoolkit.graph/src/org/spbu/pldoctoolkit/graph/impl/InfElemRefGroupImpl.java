@@ -115,7 +115,7 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	 * @generated
 	 * @ordered
 	 */
-	protected EList infElemRefsGroup;
+	protected EList<InfElemRef> infElemRefsGroup;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -131,6 +131,7 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DrlPackage.Literals.INF_ELEM_REF_GROUP;
 	}
@@ -203,9 +204,9 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getInfElemRefsGroup() {
+	public EList<InfElemRef> getInfElemRefsGroup() {
 		if (infElemRefsGroup == null) {
-			infElemRefsGroup = new EObjectWithInverseEList(InfElemRef.class, this, DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP, DrlPackage.INF_ELEM_REF__GROUP);
+			infElemRefsGroup = new EObjectWithInverseEList<InfElemRef>(InfElemRef.class, this, DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP, DrlPackage.INF_ELEM_REF__GROUP);
 		}
 		return infElemRefsGroup;
 	}
@@ -215,10 +216,12 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+		@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP:
-				return ((InternalEList)getInfElemRefsGroup()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInfElemRefsGroup()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -228,10 +231,11 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP:
-				return ((InternalEList)getInfElemRefsGroup()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getInfElemRefsGroup()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -241,6 +245,7 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF_GROUP__ID:
@@ -260,6 +265,8 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+		@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF_GROUP__ID:
@@ -273,7 +280,7 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 				return;
 			case DrlPackage.INF_ELEM_REF_GROUP__INF_ELEM_REFS_GROUP:
 				getInfElemRefsGroup().clear();
-				getInfElemRefsGroup().addAll((Collection)newValue);
+				getInfElemRefsGroup().addAll((Collection<? extends InfElemRef>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -284,6 +291,7 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF_GROUP__ID:
@@ -307,6 +315,7 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF_GROUP__ID:
@@ -326,6 +335,7 @@ public class InfElemRefGroupImpl extends DrlElementImpl implements InfElemRefGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

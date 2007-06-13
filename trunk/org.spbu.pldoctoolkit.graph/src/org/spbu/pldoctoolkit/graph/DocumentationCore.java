@@ -48,6 +48,6 @@ public interface DocumentationCore extends DrlElement {
 	 * @model type="org.spbu.pldoctoolkit.graph.GenericDocumentPart" containment="true"
 	 * @generated
 	 */
-	EList getParts();
+	EList<GenericDocumentPart> getParts();
 
 } // DocumentationCore

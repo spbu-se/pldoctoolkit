@@ -26,7 +26,7 @@ import org.spbu.pldoctoolkit.graph.*;
  * @see org.spbu.pldoctoolkit.graph.DrlPackage
  * @generated
  */
-public class DrlSwitch {
+public class DrlSwitch<T> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +61,7 @@ public class DrlSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public Object doSwitch(EObject theEObject) {
+	public T doSwitch(EObject theEObject) {
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
@@ -72,16 +72,16 @@ public class DrlSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(EClass theEClass, EObject theEObject) {
+	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
 		else {
-			List eSuperTypes = theEClass.getESuperTypes();
+			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
 					defaultCase(theEObject) :
-					doSwitch((EClass)eSuperTypes.get(0), theEObject);
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -92,11 +92,11 @@ public class DrlSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(int classifierID, EObject theEObject) {
+	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case DrlPackage.INF_ELEMENT: {
 				InfElement infElement = (InfElement)theEObject;
-				Object result = caseInfElement(infElement);
+				T result = caseInfElement(infElement);
 				if (result == null) result = caseGenericDocumentPart(infElement);
 				if (result == null) result = caseDrlElement(infElement);
 				if (result == null) result = defaultCase(theEObject);
@@ -104,7 +104,7 @@ public class DrlSwitch {
 			}
 			case DrlPackage.INF_PRODUCT: {
 				InfProduct infProduct = (InfProduct)theEObject;
-				Object result = caseInfProduct(infProduct);
+				T result = caseInfProduct(infProduct);
 				if (result == null) result = caseGenericDocumentPart(infProduct);
 				if (result == null) result = caseDrlElement(infProduct);
 				if (result == null) result = defaultCase(theEObject);
@@ -112,70 +112,70 @@ public class DrlSwitch {
 			}
 			case DrlPackage.FINAL_INF_PRODUCT: {
 				FinalInfProduct finalInfProduct = (FinalInfProduct)theEObject;
-				Object result = caseFinalInfProduct(finalInfProduct);
+				T result = caseFinalInfProduct(finalInfProduct);
 				if (result == null) result = caseDrlElement(finalInfProduct);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.NEST_POINT: {
 				NestPoint nestPoint = (NestPoint)theEObject;
-				Object result = caseNestPoint(nestPoint);
+				T result = caseNestPoint(nestPoint);
 				if (result == null) result = caseDrlElement(nestPoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.GENERIC_DOCUMENT_PART: {
 				GenericDocumentPart genericDocumentPart = (GenericDocumentPart)theEObject;
-				Object result = caseGenericDocumentPart(genericDocumentPart);
+				T result = caseGenericDocumentPart(genericDocumentPart);
 				if (result == null) result = caseDrlElement(genericDocumentPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.INF_ELEM_REF: {
 				InfElemRef infElemRef = (InfElemRef)theEObject;
-				Object result = caseInfElemRef(infElemRef);
+				T result = caseInfElemRef(infElemRef);
 				if (result == null) result = caseDrlElement(infElemRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.INF_ELEM_REF_GROUP: {
 				InfElemRefGroup infElemRefGroup = (InfElemRefGroup)theEObject;
-				Object result = caseInfElemRefGroup(infElemRefGroup);
+				T result = caseInfElemRefGroup(infElemRefGroup);
 				if (result == null) result = caseDrlElement(infElemRefGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.PRODUCT_LINE: {
 				ProductLine productLine = (ProductLine)theEObject;
-				Object result = caseProductLine(productLine);
+				T result = caseProductLine(productLine);
 				if (result == null) result = caseDrlElement(productLine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.PRODUCT: {
 				Product product = (Product)theEObject;
-				Object result = caseProduct(product);
+				T result = caseProduct(product);
 				if (result == null) result = caseDrlElement(product);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.DOCUMENTATION_CORE: {
 				DocumentationCore documentationCore = (DocumentationCore)theEObject;
-				Object result = caseDocumentationCore(documentationCore);
+				T result = caseDocumentationCore(documentationCore);
 				if (result == null) result = caseDrlElement(documentationCore);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.PRODUCT_DOCUMENTATION: {
 				ProductDocumentation productDocumentation = (ProductDocumentation)theEObject;
-				Object result = caseProductDocumentation(productDocumentation);
+				T result = caseProductDocumentation(productDocumentation);
 				if (result == null) result = caseDrlElement(productDocumentation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DrlPackage.DRL_ELEMENT: {
 				DrlElement drlElement = (DrlElement)theEObject;
-				Object result = caseDrlElement(drlElement);
+				T result = caseDrlElement(drlElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -194,7 +194,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInfElement(InfElement object) {
+	public T caseInfElement(InfElement object) {
 		return null;
 	}
 
@@ -209,7 +209,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInfProduct(InfProduct object) {
+	public T caseInfProduct(InfProduct object) {
 		return null;
 	}
 
@@ -224,7 +224,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseFinalInfProduct(FinalInfProduct object) {
+	public T caseFinalInfProduct(FinalInfProduct object) {
 		return null;
 	}
 
@@ -239,7 +239,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseNestPoint(NestPoint object) {
+	public T caseNestPoint(NestPoint object) {
 		return null;
 	}
 
@@ -254,7 +254,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGenericDocumentPart(GenericDocumentPart object) {
+	public T caseGenericDocumentPart(GenericDocumentPart object) {
 		return null;
 	}
 
@@ -269,7 +269,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInfElemRef(InfElemRef object) {
+	public T caseInfElemRef(InfElemRef object) {
 		return null;
 	}
 
@@ -284,7 +284,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInfElemRefGroup(InfElemRefGroup object) {
+	public T caseInfElemRefGroup(InfElemRefGroup object) {
 		return null;
 	}
 
@@ -299,7 +299,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseProductLine(ProductLine object) {
+	public T caseProductLine(ProductLine object) {
 		return null;
 	}
 
@@ -314,7 +314,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseProduct(Product object) {
+	public T caseProduct(Product object) {
 		return null;
 	}
 
@@ -329,7 +329,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDocumentationCore(DocumentationCore object) {
+	public T caseDocumentationCore(DocumentationCore object) {
 		return null;
 	}
 
@@ -344,7 +344,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseProductDocumentation(ProductDocumentation object) {
+	public T caseProductDocumentation(ProductDocumentation object) {
 		return null;
 	}
 
@@ -359,7 +359,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDrlElement(DrlElement object) {
+	public T caseDrlElement(DrlElement object) {
 		return null;
 	}
 
@@ -374,7 +374,7 @@ public class DrlSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public Object defaultCase(EObject object) {
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

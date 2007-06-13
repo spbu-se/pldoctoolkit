@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:v="http://math.spbu.ru/drl" 
+    xmlns:d="http://math.spbu.ru/drl" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:resolver="java:org.spbu.pldoctoolkit.graph.util.IdUtil"
     xmlns:saxon="http://icl.com/saxon"
@@ -12,13 +12,13 @@
     
     <xsl:param name="project-name"/>
     
-    <xsl:template match="v:Product">
+    <xsl:template match="d:Product">
         <products>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
         </products>
     </xsl:template>
     
-    <xsl:template match="v:InfElement | v:InfProduct">
+    <xsl:template match="d:InfElement | d:InfProduct">
         <xsl:variable name="type" select="name()"/>
         <xsl:element name="parts">
             <xsl:apply-templates select="attribute()"/>
@@ -27,13 +27,13 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="v:InfElemRef">
+    <xsl:template match="d:InfElemRef">
         <infElemRefs>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
         </infElemRefs>
     </xsl:template>
     
-    <xsl:template match="v:InfElemRefGroup">
+    <xsl:template match="d:InfElemRefGroup">
         <groups>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
         </groups>

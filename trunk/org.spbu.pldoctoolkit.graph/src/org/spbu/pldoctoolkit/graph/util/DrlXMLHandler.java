@@ -92,7 +92,6 @@ public class DrlXMLHandler extends SAXXMIHandler {
 		return s1.equals(s2);
 	}
 
-
 	/**
 	 * @return
 	 */

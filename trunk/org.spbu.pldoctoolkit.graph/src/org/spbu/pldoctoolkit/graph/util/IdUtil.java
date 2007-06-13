@@ -10,6 +10,12 @@ import org.spbu.pldoctoolkit.graph.DrlGraphPlugin;
 import org.spbu.pldoctoolkit.registry.ProjectRegistry;
 import org.spbu.pldoctoolkit.registry.RegisteredLocation;
 
+/**
+ * Class IdUtil contains a number of utility methods for conversion between DRL element
+ * ID and URI and also some id-related stuff. 
+ * 
+ * @author Alexey Semenov
+ */
 public class IdUtil {
 	
 	public static final char ID_SEPARATOR_CHAR = '#';

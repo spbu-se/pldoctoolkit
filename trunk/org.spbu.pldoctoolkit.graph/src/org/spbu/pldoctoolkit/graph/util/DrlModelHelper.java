@@ -26,7 +26,7 @@ import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.registry.RegisteredLocation;
 
 /**
- * Class DrlModelHelper.
+ * Class DrlModelHelper contains several utility methods.
  *
  * @author Alexey Semenov
  * @version 1.0
@@ -35,6 +35,12 @@ public class DrlModelHelper {
 	
 	private static final String DRL_EDITOR_ID = "org.spbu.pldoctoolkit.editors.DRLEditor"; //$NON-NLS$
 	
+	/**
+	 * Opens the file with the EObject obj in the DRL editor
+	 * and places caret on the line of its declaration.
+	 * 
+	 * @param obj
+	 */
 	public static void openDrlEditor(EObject obj) {
 		
 		IFile file = WorkspaceSynchronizer.getFile(obj.eResource());

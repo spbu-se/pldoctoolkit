@@ -144,12 +144,9 @@ public class DrlResourceImpl extends XMLResourceImpl {
 	}
 
 	/**
-	 * 1 step: save the doc to a byte[] buffer 2 step: apply xslt to the buffer
-	 * and stream the result to the outputStream
-	 * 
-	 * The more obvious attempt to use a single Transformer to transform the
-	 * document right to the outputStream failed because it caused a strange
-	 * exception.
+	 * step 1: save the doc to a byte[] buffer
+	 * step 2: apply xslt to the buffer and stream the result 
+	 * to the outputStream
 	 * 
 	 * @see org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#doSave(java.io.OutputStream,
 	 *      java.util.Map)
@@ -200,7 +197,7 @@ public class DrlResourceImpl extends XMLResourceImpl {
 	
 	/*
 	 * This method calls updateAttributeNodes() method for every DrlElement in resource
-	 * in order to flush attributes and ids changes.
+	 * in order to flush attributes and ids' changes.
 	 */
 	private void updateDocumentNodes() {
 		TreeIterator<EObject> iter = this.getAllContents();

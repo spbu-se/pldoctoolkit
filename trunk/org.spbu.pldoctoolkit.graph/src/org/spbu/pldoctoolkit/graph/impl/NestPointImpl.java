@@ -90,6 +90,7 @@ public class NestPointImpl extends DrlElementImpl implements NestPoint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DrlPackage.Literals.NEST_POINT;
 	}
@@ -141,6 +142,7 @@ public class NestPointImpl extends DrlElementImpl implements NestPoint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DrlPackage.NEST_POINT__ID:
@@ -156,6 +158,7 @@ public class NestPointImpl extends DrlElementImpl implements NestPoint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DrlPackage.NEST_POINT__ID:
@@ -173,6 +176,7 @@ public class NestPointImpl extends DrlElementImpl implements NestPoint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DrlPackage.NEST_POINT__ID:
@@ -190,6 +194,7 @@ public class NestPointImpl extends DrlElementImpl implements NestPoint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DrlPackage.NEST_POINT__ID:
@@ -205,6 +210,7 @@ public class NestPointImpl extends DrlElementImpl implements NestPoint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

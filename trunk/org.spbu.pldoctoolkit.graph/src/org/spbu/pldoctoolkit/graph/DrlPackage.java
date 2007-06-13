@@ -58,7 +58,7 @@ public interface DrlPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "v";
+	String eNS_PREFIX = "d";
 
 	/**
 	 * The singleton instance of the package.

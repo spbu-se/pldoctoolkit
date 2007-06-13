@@ -8,6 +8,7 @@ package org.spbu.pldoctoolkit.graph.validation;
 
 import org.eclipse.emf.common.util.EList;
 import org.spbu.pldoctoolkit.graph.GroupType;
+import org.spbu.pldoctoolkit.graph.InfElemRef;
 
 /**
  * A sample validator interface for {@link org.spbu.pldoctoolkit.graph.InfElemRefGroup}.

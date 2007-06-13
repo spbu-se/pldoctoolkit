@@ -41,6 +41,7 @@ public class InfProductImpl extends GenericDocumentPartImpl implements InfProduc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DrlPackage.Literals.INF_PRODUCT;
 	}
