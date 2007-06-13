@@ -49,7 +49,7 @@ public interface ProductDocumentation extends DrlElement {
 	 * @model type="org.spbu.pldoctoolkit.graph.FinalInfProduct" containment="true"
 	 * @generated
 	 */
-	EList getFinalInfProducts();
+	EList<FinalInfProduct> getFinalInfProducts();
 
 	/**
 	 * Returns the value of the '<em><b>Product</b></em>' reference.

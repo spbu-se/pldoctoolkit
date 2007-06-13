@@ -47,7 +47,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * @generated
 	 * @ordered
 	 */
-	protected EList nestPoints;
+	protected EList<NestPoint> nestPoints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,6 +63,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DrlPackage.Literals.INF_ELEMENT;
 	}
@@ -72,9 +73,9 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getNestPoints() {
+	public EList<NestPoint> getNestPoints() {
 		if (nestPoints == null) {
-			nestPoints = new EObjectContainmentEList(NestPoint.class, this, DrlPackage.INF_ELEMENT__NEST_POINTS);
+			nestPoints = new EObjectContainmentEList<NestPoint>(NestPoint.class, this, DrlPackage.INF_ELEMENT__NEST_POINTS);
 		}
 		return nestPoints;
 	}
@@ -84,10 +85,11 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEMENT__NEST_POINTS:
-				return ((InternalEList)getNestPoints()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getNestPoints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -97,6 +99,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEMENT__NEST_POINTS:
@@ -110,11 +113,13 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+		@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEMENT__NEST_POINTS:
 				getNestPoints().clear();
-				getNestPoints().addAll((Collection)newValue);
+				getNestPoints().addAll((Collection<? extends NestPoint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -125,6 +130,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEMENT__NEST_POINTS:
@@ -139,6 +145,7 @@ public class InfElementImpl extends GenericDocumentPartImpl implements InfElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEMENT__NEST_POINTS:

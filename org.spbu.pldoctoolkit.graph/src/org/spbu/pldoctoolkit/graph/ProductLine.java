@@ -74,6 +74,6 @@ public interface ProductLine extends DrlElement {
 	 * @model type="org.spbu.pldoctoolkit.graph.Product" containment="true"
 	 * @generated
 	 */
-	EList getProducts();
+	EList<Product> getProducts();
 
 } // ProductLine

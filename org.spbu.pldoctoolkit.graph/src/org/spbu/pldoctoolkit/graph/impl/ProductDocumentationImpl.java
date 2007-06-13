@@ -51,7 +51,7 @@ public class ProductDocumentationImpl extends DrlElementImpl implements ProductD
 	 * @generated
 	 * @ordered
 	 */
-	protected EList finalInfProducts;
+	protected EList<FinalInfProduct> finalInfProducts;
 
 	/**
 	 * The cached value of the '{@link #getProduct() <em>Product</em>}' reference.
@@ -77,6 +77,7 @@ public class ProductDocumentationImpl extends DrlElementImpl implements ProductD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DrlPackage.Literals.PRODUCT_DOCUMENTATION;
 	}
@@ -86,9 +87,9 @@ public class ProductDocumentationImpl extends DrlElementImpl implements ProductD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getFinalInfProducts() {
+	public EList<FinalInfProduct> getFinalInfProducts() {
 		if (finalInfProducts == null) {
-			finalInfProducts = new EObjectContainmentEList(FinalInfProduct.class, this, DrlPackage.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS);
+			finalInfProducts = new EObjectContainmentEList<FinalInfProduct>(FinalInfProduct.class, this, DrlPackage.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS);
 		}
 		return finalInfProducts;
 	}
@@ -136,10 +137,11 @@ public class ProductDocumentationImpl extends DrlElementImpl implements ProductD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS:
-				return ((InternalEList)getFinalInfProducts()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getFinalInfProducts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -149,6 +151,7 @@ public class ProductDocumentationImpl extends DrlElementImpl implements ProductD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS:
@@ -165,11 +168,13 @@ public class ProductDocumentationImpl extends DrlElementImpl implements ProductD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+		@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS:
 				getFinalInfProducts().clear();
-				getFinalInfProducts().addAll((Collection)newValue);
+				getFinalInfProducts().addAll((Collection<? extends FinalInfProduct>)newValue);
 				return;
 			case DrlPackage.PRODUCT_DOCUMENTATION__PRODUCT:
 				setProduct((Product)newValue);
@@ -183,6 +188,7 @@ public class ProductDocumentationImpl extends DrlElementImpl implements ProductD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS:
@@ -200,6 +206,7 @@ public class ProductDocumentationImpl extends DrlElementImpl implements ProductD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_DOCUMENTATION__FINAL_INF_PRODUCTS:

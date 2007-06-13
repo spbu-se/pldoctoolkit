@@ -44,8 +44,6 @@ public class DrlResourceFactoryImpl extends ResourceFactoryImpl {
 	public Resource createResource(URI uri) {
 		DrlResourceImpl result = new DrlResourceImpl(uri);
 		
-//		result.getDefaultLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
-		
 		return result;
 	}
 

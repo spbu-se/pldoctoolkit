@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.AbstractEnumerator;
+import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +21,26 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * @model
  * @generated
  */
-public final class GroupType extends AbstractEnumerator {
+public enum GroupType implements Enumerator
+{
+	/**
+	 * The '<em><b>OR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #OR
+	 * @generated
+	 * @ordered
+	 */
+	OR_LITERAL(1, "OR", "OR"),
+	/**
+	 * The '<em><b>XOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #XOR
+	 * @generated
+	 * @ordered
+	 */
+	XOR_LITERAL(2, "XOR", "XOR");
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,26 +79,6 @@ public final class GroupType extends AbstractEnumerator {
 	public static final int XOR = 2;
 
 	/**
-	 * The '<em><b>OR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OR
-	 * @generated
-	 * @ordered
-	 */
-	public static final GroupType OR_LITERAL = new GroupType(OR, "OR", "OR");
-
-	/**
-	 * The '<em><b>XOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #XOR
-	 * @generated
-	 * @ordered
-	 */
-	public static final GroupType XOR_LITERAL = new GroupType(XOR, "XOR", "XOR");
-
-	/**
 	 * An array of all the '<em><b>Group Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,7 +96,7 @@ public final class GroupType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<GroupType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Group Type</b></em>' literal with the specified literal value.
@@ -146,13 +145,73 @@ public final class GroupType extends AbstractEnumerator {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final int value;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String name;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String literal;
+
+	/**
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private GroupType(int value, String name, String literal) {
-		super(value, name, literal);
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
 	}
 
-} //GroupType
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getValue() {
+	  return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+	  return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLiteral() {
+	  return literal;
+	}
+
+	/**
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		return literal;
+	}
+}

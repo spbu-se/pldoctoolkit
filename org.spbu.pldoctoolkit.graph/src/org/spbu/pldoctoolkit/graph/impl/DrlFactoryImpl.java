@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.spbu.pldoctoolkit.graph.*;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
@@ -75,6 +76,7 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case DrlPackage.INF_ELEMENT: return createInfElement();
@@ -97,6 +99,7 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case DrlPackage.GROUP_TYPE:
@@ -113,6 +116,7 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case DrlPackage.GROUP_TYPE:
@@ -277,6 +281,7 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static DrlPackage getPackage() {
 		return DrlPackage.eINSTANCE;
 	}

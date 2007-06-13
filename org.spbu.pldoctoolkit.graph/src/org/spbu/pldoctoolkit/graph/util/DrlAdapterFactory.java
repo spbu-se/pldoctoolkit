@@ -59,6 +59,7 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
@@ -75,45 +76,58 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DrlSwitch modelSwitch =
-		new DrlSwitch() {
-			public Object caseInfElement(InfElement object) {
+	protected DrlSwitch<Adapter> modelSwitch =
+		new DrlSwitch<Adapter>() {
+			@Override
+			public Adapter caseInfElement(InfElement object) {
 				return createInfElementAdapter();
 			}
-			public Object caseInfProduct(InfProduct object) {
+			@Override
+			public Adapter caseInfProduct(InfProduct object) {
 				return createInfProductAdapter();
 			}
-			public Object caseFinalInfProduct(FinalInfProduct object) {
+			@Override
+			public Adapter caseFinalInfProduct(FinalInfProduct object) {
 				return createFinalInfProductAdapter();
 			}
-			public Object caseNestPoint(NestPoint object) {
+			@Override
+			public Adapter caseNestPoint(NestPoint object) {
 				return createNestPointAdapter();
 			}
-			public Object caseGenericDocumentPart(GenericDocumentPart object) {
+			@Override
+			public Adapter caseGenericDocumentPart(GenericDocumentPart object) {
 				return createGenericDocumentPartAdapter();
 			}
-			public Object caseInfElemRef(InfElemRef object) {
+			@Override
+			public Adapter caseInfElemRef(InfElemRef object) {
 				return createInfElemRefAdapter();
 			}
-			public Object caseInfElemRefGroup(InfElemRefGroup object) {
+			@Override
+			public Adapter caseInfElemRefGroup(InfElemRefGroup object) {
 				return createInfElemRefGroupAdapter();
 			}
-			public Object caseProductLine(ProductLine object) {
+			@Override
+			public Adapter caseProductLine(ProductLine object) {
 				return createProductLineAdapter();
 			}
-			public Object caseProduct(Product object) {
+			@Override
+			public Adapter caseProduct(Product object) {
 				return createProductAdapter();
 			}
-			public Object caseDocumentationCore(DocumentationCore object) {
+			@Override
+			public Adapter caseDocumentationCore(DocumentationCore object) {
 				return createDocumentationCoreAdapter();
 			}
-			public Object caseProductDocumentation(ProductDocumentation object) {
+			@Override
+			public Adapter caseProductDocumentation(ProductDocumentation object) {
 				return createProductDocumentationAdapter();
 			}
-			public Object caseDrlElement(DrlElement object) {
+			@Override
+			public Adapter caseDrlElement(DrlElement object) {
 				return createDrlElementAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			@Override
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -126,8 +140,9 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
+	@Override
 	public Adapter createAdapter(Notifier target) {
-		return (Adapter)modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 

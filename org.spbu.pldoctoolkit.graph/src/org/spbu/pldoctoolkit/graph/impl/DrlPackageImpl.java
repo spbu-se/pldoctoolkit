@@ -668,6 +668,10 @@ public class DrlPackageImpl extends EPackageImpl implements DrlPackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Create type parameters
+
+		// Set bounds for type parameters
+
 		// Add supertypes to classes
 		infElementEClass.getESuperTypes().add(this.getGenericDocumentPart());
 		infProductEClass.getESuperTypes().add(this.getGenericDocumentPart());

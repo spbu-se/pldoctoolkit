@@ -1,7 +1,6 @@
 package org.spbu.pldoctoolkit.graph.util;
 
 import org.eclipse.emf.ecore.xmi.XMLHelper;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLLoadImpl;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -27,6 +26,7 @@ public class DrlXMLLoadImpl extends XMLLoadImpl {
 	protected void traverse(Node node, AttributesProxy attributesProxy,
 			DefaultHandler handler, LexicalHandler lexicalHandler)
 			throws SAXException {
+		
 		((DrlXMLHandler)handler).setCurrentNode(node);
 		super.traverse(node, attributesProxy, handler, lexicalHandler);
 	}
@@ -38,9 +38,9 @@ public class DrlXMLLoadImpl extends XMLLoadImpl {
 	protected void traverseElement(Element element,
 			AttributesProxy attributesProxy, DefaultHandler handler,
 			LexicalHandler lexicalHandler) throws SAXException {
+		
 		((DrlXMLHandler)handler).setCurrentNode(element);
 		super.traverseElement(element, attributesProxy, handler, lexicalHandler);
 	}
 
-	
 }

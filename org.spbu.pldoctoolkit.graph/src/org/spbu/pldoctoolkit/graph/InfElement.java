@@ -47,6 +47,6 @@ public interface InfElement extends GenericDocumentPart {
 	 * @model type="org.spbu.pldoctoolkit.graph.NestPoint" containment="true"
 	 * @generated
 	 */
-	EList getNestPoints();
+	EList<NestPoint> getNestPoints();
 
 } // InfElement

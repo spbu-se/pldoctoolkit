@@ -75,7 +75,7 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList products;
+	protected EList<Product> products;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,6 +91,7 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DrlPackage.Literals.PRODUCT_LINE;
 	}
@@ -121,9 +122,9 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getProducts() {
+	public EList<Product> getProducts() {
 		if (products == null) {
-			products = new EObjectContainmentEList(Product.class, this, DrlPackage.PRODUCT_LINE__PRODUCTS);
+			products = new EObjectContainmentEList<Product>(Product.class, this, DrlPackage.PRODUCT_LINE__PRODUCTS);
 		}
 		return products;
 	}
@@ -133,10 +134,11 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_LINE__PRODUCTS:
-				return ((InternalEList)getProducts()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getProducts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -146,6 +148,7 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_LINE__NAME:
@@ -161,6 +164,8 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+		@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_LINE__NAME:
@@ -168,7 +173,7 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 				return;
 			case DrlPackage.PRODUCT_LINE__PRODUCTS:
 				getProducts().clear();
-				getProducts().addAll((Collection)newValue);
+				getProducts().addAll((Collection<? extends Product>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -179,6 +184,7 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_LINE__NAME:
@@ -196,6 +202,7 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DrlPackage.PRODUCT_LINE__NAME:
@@ -211,6 +218,7 @@ public class ProductLineImpl extends DrlElementImpl implements ProductLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

@@ -81,6 +81,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DrlPackage.Literals.DRL_ELEMENT;
 	}
@@ -111,6 +112,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DrlPackage.DRL_ELEMENT__NODE:
@@ -124,6 +126,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DrlPackage.DRL_ELEMENT__NODE:
@@ -138,6 +141,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DrlPackage.DRL_ELEMENT__NODE:
@@ -152,6 +156,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DrlPackage.DRL_ELEMENT__NODE:
@@ -165,6 +170,7 @@ public abstract class DrlElementImpl extends EObjectImpl implements DrlElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

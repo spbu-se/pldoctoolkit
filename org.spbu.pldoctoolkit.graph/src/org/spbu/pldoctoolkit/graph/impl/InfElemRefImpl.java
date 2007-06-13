@@ -118,6 +118,7 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DrlPackage.Literals.INF_ELEM_REF;
 	}
@@ -250,6 +251,7 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF__GROUP:
@@ -265,6 +267,7 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF__GROUP:
@@ -278,6 +281,7 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF__ID:
@@ -298,6 +302,7 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF__ID:
@@ -321,6 +326,7 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF__ID:
@@ -344,6 +350,7 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DrlPackage.INF_ELEM_REF__ID:
@@ -363,6 +370,7 @@ public class InfElemRefImpl extends DrlElementImpl implements InfElemRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

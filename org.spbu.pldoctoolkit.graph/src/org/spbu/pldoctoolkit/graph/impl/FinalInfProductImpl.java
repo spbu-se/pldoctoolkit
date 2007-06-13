@@ -82,6 +82,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DrlPackage.Literals.FINAL_INF_PRODUCT;
 	}
@@ -159,6 +160,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DrlPackage.FINAL_INF_PRODUCT__PRODUCT:
@@ -175,6 +177,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DrlPackage.FINAL_INF_PRODUCT__PRODUCT:
@@ -192,6 +195,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DrlPackage.FINAL_INF_PRODUCT__PRODUCT:
@@ -209,6 +213,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DrlPackage.FINAL_INF_PRODUCT__PRODUCT:
@@ -224,6 +229,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

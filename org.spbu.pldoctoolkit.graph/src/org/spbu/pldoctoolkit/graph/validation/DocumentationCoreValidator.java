@@ -7,6 +7,7 @@
 package org.spbu.pldoctoolkit.graph.validation;
 
 import org.eclipse.emf.common.util.EList;
+import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
 
 /**
  * A sample validator interface for {@link org.spbu.pldoctoolkit.graph.DocumentationCore}.
