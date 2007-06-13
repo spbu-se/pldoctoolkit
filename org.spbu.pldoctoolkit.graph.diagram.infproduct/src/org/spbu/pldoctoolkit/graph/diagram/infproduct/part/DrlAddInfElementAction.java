@@ -1,5 +1,7 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.part;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -8,13 +10,9 @@ import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -84,7 +82,16 @@ public class DrlAddInfElementAction implements IObjectActionDelegate {
 		
 		EditPart diagramEditPart = (EditPart) mySelectedElement.getViewer()
 			.getEditPartRegistry().get(diagramView);
-		diagramEditPart.refresh();
+		View diagramEditPartModel = (View) diagramEditPart.getModel();
+		EObject diagramEObject = diagramEditPartModel.getElement();
+//		
+//		diagramEditPart.refresh();
+
+		List ceps = CanonicalEditPolicy.getRegisteredEditPolicies(diagramEObject);
+		for ( int i = 0; i < ceps.size(); i++ ) {
+			CanonicalEditPolicy cep = (CanonicalEditPolicy)ceps.get(i);
+			cep.refresh(); 
+		}
 	}
 	
 	public void selectionChanged(IAction action, ISelection selection) {

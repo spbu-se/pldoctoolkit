@@ -14,6 +14,8 @@ import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DrlModelBase
 
 /**
  * @generated
+ * 
+ * XXX this command's execution has been disabled until it is implemented.
  */
 public class GenericDocumentPartGroupsReorientCommand extends
 		EditElementCommand {
@@ -51,9 +53,12 @@ public class GenericDocumentPartGroupsReorientCommand extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean canExecute() {
+		//XXX a stub
+		if(true) return false;
+
 		if (!(referenceOwner instanceof GenericDocumentPart)) {
 			return false;
 		}
