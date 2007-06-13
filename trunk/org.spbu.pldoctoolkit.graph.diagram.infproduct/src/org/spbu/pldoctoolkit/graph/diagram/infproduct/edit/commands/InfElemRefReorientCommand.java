@@ -14,6 +14,8 @@ import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DrlModelBase
 
 /**
  * @generated
+ * 
+ * XXX this command's execution has been disabled until it is implemented.
  */
 public class InfElemRefReorientCommand extends EditElementCommand {
 
@@ -43,9 +45,12 @@ public class InfElemRefReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean canExecute() {
+		//XXX a stub
+		if(true) return false;
+		
 		if (!(getElementToEdit() instanceof InfElemRef)) {
 			return false;
 		}

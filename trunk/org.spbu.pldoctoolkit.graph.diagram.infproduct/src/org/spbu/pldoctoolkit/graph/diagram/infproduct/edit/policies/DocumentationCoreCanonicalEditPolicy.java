@@ -17,22 +17,15 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetViewMutabilityCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
@@ -105,6 +98,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		if(curElement == null) {
 			return;
 		}
+
 		
 		currentResult.add(curElement);
 		
@@ -126,11 +120,6 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	 * @generated NOT
 	 */
 	protected boolean shouldDeleteView(View view) {
-//		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
-//			return view.isSetElement()
-//					&& (view.getElement() == null || view.getElement()
-//							.eIsProxy());
-//		}
 		int nodeVID = DrlModelVisualIDRegistry.getVisualID(view);
 		switch (nodeVID) {
 		case InfElementEditPart.VISUAL_ID:
@@ -138,9 +127,6 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		case InfElemRefEditPart.VISUAL_ID:
 		case InfElemRef2EditPart.VISUAL_ID:
 		case InfElemRefGroupEditPart.VISUAL_ID:
-//			return view.isSetElement()
-//			&& (view.getElement() == null || view.getElement()
-//					.eIsProxy());
 			return true;
 		}
 		return false;
@@ -199,8 +185,10 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		
 		if (createdViews.size() > 1) {
 			// perform a layout of the container
+//			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
+//					.getEditingDomain(), createdViews, host());
 			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
-					.getEditingDomain(), createdViews, host());
+			.getEditingDomain(), getViewChildren(), host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
 		
@@ -374,7 +362,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	}
 	
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Collection createConnections(Collection linkDescriptors) {
 		if (linkDescriptors.isEmpty()) {
@@ -446,7 +434,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	}
 
 	/**
-	 *@generated
+	 *@generated NOT
 	 */
 	private void storeLinks(View view, EObject container, Diagram diagram) {
 		EClass containerMetaclass = container.eClass();
@@ -615,7 +603,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		private View mySourceView;
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		protected LinkDescriptor(View sourceView, EObject source, EObject destination,
 				EObject linkElement, IElementType elementType, int linkVID) {
@@ -633,7 +621,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		protected LinkDescriptor(View sourceView, EObject source, EObject destination,
 				IElementType elementType, int linkVID) {
