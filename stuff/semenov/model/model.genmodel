@@ -4,7 +4,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="copyleft 2007"
     modelDirectory="/org.spbu.pldoctoolkit.graph/src" editDirectory="/org.spbu.pldoctoolkit.graph.edit/src"
     modelPluginID="org.spbu.pldoctoolkit.graph" redirection="" modelName="DrlModel"
-    importerID="org.eclipse.emf.importer.ecore">
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0">
   <foreignModel>model.ecore</foreignModel>
   <genPackages prefix="Drl" basePackage="org.spbu.pldoctoolkit" resource="XML" disposableProviderFactory="true"
       ecorePackage="model.ecore#/">
