@@ -72,7 +72,7 @@ public class DrlCompletionProcessor implements IContentAssistProcessor {
 				ICompletionProposal[] result = new ICompletionProposal[list.size()];
 				for (int i = 0; i < list.size(); i++) {
 					RegisteredLocation loc = list.get(i);
-					result[i] = new CompletionProposal(loc.getId(), offset, 0, loc.getId().length(), null, loc.getName(), null, loc.getId());
+					result[i] = new CompletionProposal(loc.getId(), offset, 0, loc.getId().length(), null, loc.getId() + " // " + loc.getName(), null, loc.getId());
 				}
 				return result;
 			}
