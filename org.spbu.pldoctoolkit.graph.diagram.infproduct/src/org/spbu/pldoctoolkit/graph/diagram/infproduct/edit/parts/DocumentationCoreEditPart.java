@@ -1,22 +1,33 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ContainerEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ArrangeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DocumentationCoreCanonicalEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DocumentationCoreItemSemanticEditPolicy;
+import org.spbu.pldoctoolkit.graph.diagram.infproduct.layout.TopDownLayoutProvider;
 
 /**
  * @generated
@@ -40,6 +51,8 @@ public class DocumentationCoreEditPart extends DiagramEditPart {
 		super(view);
 	}
 
+	private TopDownLayoutProvider layoutProvider = new TopDownLayoutProvider();
+
 	/**
 	 * @generated NOT
 	 */
@@ -53,86 +66,40 @@ public class DocumentationCoreEditPart extends DiagramEditPart {
 				new DocumentationCoreCanonicalEditPolicy());
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 		
-//		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-//				new DiagramDragDropEditPolicy() {
-//					public Command getDropObjectsCommand(
-//							DropObjectsRequest dropRequest) {
-//						List viewDescriptors = new ArrayList();
-//						for (Iterator it = dropRequest.getObjects().iterator(); it
-//								.hasNext();) {
-//							viewDescriptors
-//									.add(new CreateViewRequest.ViewDescriptor(
-//											new EObjectAdapter((EObject) it
-//													.next()), Node.class, null,
-//											getDiagramPreferencesHint()));
-//						}
-//						return createShortcutsCommand(dropRequest,
-//								viewDescriptors);
-//					}
-//
-//					private Command createShortcutsCommand(
-//							DropObjectsRequest dropRequest, List viewDescriptors) {
-//						Command command = createViewsAndArrangeCommand(
-//								dropRequest, viewDescriptors);
-//						if (command != null) {
-//							return command
-//									.chain(new ICommandProxy(
-//											new DrlModelCreateShortcutDecorationsCommand(
-//													getEditingDomain(),
-//													(View) getModel(),
-//													viewDescriptors)));
-//						}
-//						return null;
-//					}
-//					
-//				});
-		
-//		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-	}
-
-	private EditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new XYLayoutEditPolicy() {
-
-//			protected EditPolicy createChildEditPolicy(EditPart child) {
-//				EditPolicy result = child
-//						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-//				if (result == null) {
-//					result = new XYLayoutEditPolicy();
-//				}
-//				return result;
-//			}
-
-//			protected Command getMoveChildrenCommand(Request request) {
-//
-//			}
-
-			protected Command getCreateCommand(CreateRequest request) {
-				Command command = super.getCreateCommand(request);
-				CompoundCommand cc = new CompoundCommand();
-				if(command != null && request.getNewObject() != null) {
-					cc.add(command);
-					
-					ArrangeRequest arrangeRequest = new ArrangeRequest(
-							RequestConstants.REQ_ARRANGE_DEFERRED);
-					List shapesList = new ArrayList(getHost().getChildren());
-//					shapesList.add(request.getNewObjectType());
-					shapesList.add(((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getElementAdapter());
-//					DrlModelDiagramEditorPlugin.getInstance().logInfo("new obj: " + request.getNewObject());
-					arrangeRequest.setViewAdaptersToArrange(shapesList);
-					// a list of adapters to all the shapes you will create,
-					// this list of adapters has to be created at command
-					// creation time,
-					// but they are only adaptable at command execution time);
-					Command arrangeCommand = getHost().getCommand(
-							arrangeRequest);
-					 
-					cc.add(arrangeCommand);
+		installEditPolicy(EditPolicy.CONTAINER_ROLE, new ContainerEditPolicy() {
+			protected Command getArrangeCommand(ArrangeRequest request) {
+				if (layoutProvider.isWorking()) {
+					return null;
 				}
-				
-				return cc;
+				return super.getArrangeCommand(request);
 			}
-		};
-		return lep;
+
+			public Runnable layoutNodes(List nodes, boolean offsetFromBoundingBox, IAdaptable layoutHint) {
+				return layoutProvider.layoutLayoutNodes(nodes, offsetFromBoundingBox, layoutHint);
+			}
+		});
 	}
+
+	/**
+	 * Performs relayout on create, move children or resize children request.<p>
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	public Command getCommand(Request request) {
+		Command command = super.getCommand(request);
+		if (request.getType().equals(REQ_CREATE) || request.getType().equals(REQ_MOVE_CHILDREN) || request.getType().equals(REQ_RESIZE_CHILDREN)) {
+			ArrangeRequest layoutRequest = new ArrangeRequest(RequestConstants.REQ_ARRANGE_DEFERRED);
+			List editParts = getChildren();
+			layoutRequest.setViewAdaptersToArrange(new ArrayList(editParts));
+			Command layoutCommand = super.getCommand(layoutRequest);
+			if (layoutCommand != null && command != null) {
+				command = command.chain(layoutCommand);
+			}
+		}
+		return command;
+	}
+	
 
 }

@@ -194,7 +194,6 @@ public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		System.out.println("create req: " + req);
 		return null;
 	}
 

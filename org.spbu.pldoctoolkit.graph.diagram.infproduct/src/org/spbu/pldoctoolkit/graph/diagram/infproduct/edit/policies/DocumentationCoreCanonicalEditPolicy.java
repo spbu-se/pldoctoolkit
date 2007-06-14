@@ -172,6 +172,8 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	 * @generated NOT
 	 */
 	protected void refreshSemantic() {
+		System.out.println("refreshing semantic");
+		
 		List createdViews = new LinkedList();
 		createdViews.addAll(refreshSemanticChildren());
 //		createdViews.addAll(refreshPhantoms());
@@ -182,19 +184,28 @@ public class DocumentationCoreCanonicalEditPolicy extends
 
 		createdViews.addAll(createdConnectionViews);
 		makeViewsImmutable(createdViews);
-		
-		if (createdViews.size() > 1) {
-			// perform a layout of the container
-//			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
-//					.getEditingDomain(), createdViews, host());
-			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
-			.getEditingDomain(), getViewChildren(), host());
-			executeCommand(new ICommandProxy(layoutCmd));
-		}
+
+		// perform relayout
+		List viewChildrenAdapters = getViewChildrenAdapters();
+		DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(
+				host().getEditingDomain(), viewChildrenAdapters, host());
+		executeCommand(new ICommandProxy(layoutCmd));
 		
 		markAllInitialized(getDiagram());
 	}
 
+	private List getViewChildrenAdapters() {
+		List viewsChildren = getViewChildren();
+		List result = new ArrayList(viewsChildren.size());
+		
+		Iterator iter = viewsChildren.iterator();
+		while(iter.hasNext()) {
+			result.add(new EObjectAdapter((EObject)iter.next()));
+		}
+		
+		return result;
+	}
+	
 	/**
 	 * @generated
 	 */
