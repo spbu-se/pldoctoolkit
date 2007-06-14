@@ -27,13 +27,16 @@ public class WorkspaceRegistryIndex {
 		workspace.addResourceChangeListener(new IResourceChangeListener() {
 			public void resourceChanged(IResourceChangeEvent event) {
 				try {
-					event.getDelta().accept(new IResourceDeltaVisitor() {
+					IResourceDelta delta = event.getDelta();
+					if (delta == null)
+						return;
+					delta.accept(new IResourceDeltaVisitor() {
 						public boolean visit(IResourceDelta delta) throws CoreException {
 							return processResourceDelta(delta);
 						}
 					});
 				} catch (CoreException e) {
-					throw new InternalError();
+					// ignore
 				}
 			}
 		});
