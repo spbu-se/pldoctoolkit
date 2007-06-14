@@ -208,6 +208,8 @@
 					<attribute name="infelemid"/>
 					<optional>
 						<attribute name="groupid"/>
+					</optional>
+					<optional>
 						<attribute name="optional">
 							<choice>
 								<value>true</value>

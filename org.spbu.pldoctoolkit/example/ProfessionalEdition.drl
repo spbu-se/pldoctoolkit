@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation productid="professional" xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+	<d:FinalInfProduct id="UserManual_prof" infproductid="UserManual">
+		<d:Adapter infelemrefid="preface"/>
+		<d:Adapter infelemrefid="controlcenter"/>
+		<d:Adapter infelemrefid="firewall"/>
+		<d:Adapter infelemrefid="antivirus"/>
+		<d:Adapter infelemrefid="antispam"/>
+	</d:FinalInfProduct>
+	
+	<d:Dictionary id="main" name="Главный Словарь">
+		<d:Entry id="productname">ИнтерБез Профессиональный</d:Entry>
+	</d:Dictionary>
+</d:ProductDocumentation>

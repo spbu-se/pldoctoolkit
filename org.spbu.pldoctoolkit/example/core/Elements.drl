@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+	<d:InfElement id="preface" name="Стандартное вступление">
+		<preface>
+			<title>...</title>
+			<para>
+				Благодарим за приобретение <d:DictRef dictid="main" entryid="productname"/>!
+			</para>
+			<!-- ... -->
+		</preface>
+	</d:InfElement>
+	
+	<d:InfElement id="firewall" name="Брандмауэр">
+		<chapter >
+			<title>...</title>
+			<para>
+				<!-- ... -->
+			</para>
+		</chapter>
+	</d:InfElement>
+	
+	<d:InfElement id="antivirus" name="Анти-вирус">
+		<chapter>
+			<title>...</title>
+			<para>
+				<!-- ... -->
+			</para>
+			<d:Nest id="advanced_features">
+				<!-- эти фичи только в профешнл эдишне -->				
+			</d:Nest>
+		</chapter>
+	</d:InfElement>
+	
+	<d:InfElement id="antispam" name="Анти-спам">
+		<chapter>
+			<title>...</title>
+			<para>
+				<!-- ... -->
+			</para>
+		</chapter>
+	</d:InfElement>
+	
+	<d:InfElement id="controlcenter" name="Центр управления">
+		<chapter>
+			<title>...</title>
+			<para>
+				<!-- общие слова про Ц.У. -->
+			</para>
+			<d:Nest id="av-update">
+				<!-- Тут про настройки обновления антивиря -->
+			</d:Nest>
+			<d:Nest id="as-update">
+				<!-- Тут про настройки обновления антиспама-->
+			</d:Nest>
+		</chapter>
+	</d:InfElement>
+</d:DocumentationCore>
