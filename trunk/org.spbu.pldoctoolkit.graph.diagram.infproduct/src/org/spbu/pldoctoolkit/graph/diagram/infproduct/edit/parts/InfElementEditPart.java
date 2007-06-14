@@ -1,5 +1,8 @@
 package org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
@@ -19,7 +22,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.ArrangeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -124,6 +130,40 @@ public class InfElementEditPart extends ShapeNodeEditPart {
 		return lep;
 	}
 
+	public EditPolicy getPrimaryDragEditPolicy() {
+		return new ResizableShapeEditPolicy() {
+
+			protected Command getAutoSizeCommand(Request request) {
+				Command command = super.getAutoSizeCommand(request);
+				ArrangeRequest layoutRequest = new ArrangeRequest(RequestConstants.REQ_ARRANGE_DEFERRED);
+				List editParts = new ArrayList(getParent().getChildren());
+				layoutRequest.setViewAdaptersToArrange(editParts);
+				Command layoutCommand = getParent().getCommand(layoutRequest);
+				if (layoutCommand != null && command != null) {
+					command = command.chain(layoutCommand);
+				}
+				return command;
+			}
+		};
+	}
+
+	public Command getCommand(Request request) {
+		Command command = super.getCommand(request);
+		if (request.getType().equals(REQ_DELETE)) {
+			System.out.println("destrying");
+			
+			ArrangeRequest layoutRequest = new ArrangeRequest(RequestConstants.REQ_ARRANGE_DEFERRED);
+			List editParts = new ArrayList(getParent().getChildren());
+			editParts.remove(this);
+			layoutRequest.setViewAdaptersToArrange(editParts);
+			Command layoutCommand = getParent().getCommand(layoutRequest);
+			if (layoutCommand != null && command != null) {
+				command = command.chain(layoutCommand);
+			}
+		}
+		return command;
+	}
+	
 	/**
 	 * @generated
 	 */
