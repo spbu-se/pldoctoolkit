@@ -97,7 +97,7 @@
 	</xsl:template>
 	
 	<xsl:template match="drl:DictRef">
-		<xsl:variable name="uri" select="concat('drlresolve://Product:', $productid, '/Dictionary/', @dictid)"/>
+		<xsl:variable name="uri" select="concat('drlresolve://Product', $productid, '/Dictionary/', @dictid)"/>
 		<xsl:variable name="root" select="document($uri)"/>
 		<xsl:variable name="Dictionary" select="$root/node()/drl:Dictionary[@id = current()/@dictid]"/>
 		<xsl:variable name="Entry" select="$Dictionary/drl:Entry[@id = current()/@entryid]"/>
@@ -115,7 +115,7 @@
 	<xsl:template match="drl:InfElemRefGroup"/>
 	
 	<xsl:template match="drl:DirRef">
-		<xsl:variable name="uri" select="concat('drlresolve://Product:', $productid, '/DirTemplate/', @templateid)"/>
+		<xsl:variable name="uri" select="concat('drlresolve://Product', $productid, '/DirTemplate/', @templateid)"/>
 		<xsl:variable name="root" select="document($uri)"/>
 		<xsl:if test="not($root)">
 			<xsl:value-of select="error($err, concat('Template with id ', @templateid, ' not resolved', .))"/>
@@ -130,7 +130,7 @@
 		<xsl:param name="entryid"/>
 		<xsl:param name="dirref"/>
 		
-		<xsl:variable name="uri" select="concat('drlresolve://Product:', $productid, '/Directory/', @directoryid)"/>
+		<xsl:variable name="uri" select="concat('drlresolve://Product', $productid, '/Directory/', @directoryid)"/>
 		<xsl:variable name="root" select="document($uri)"/>
 		
 		<xsl:if test="not($root)">
