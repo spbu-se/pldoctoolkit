@@ -5,10 +5,10 @@
 		<d:Adapter infelemrefid="controlcenter"/>
 		<d:Adapter infelemrefid="firewall"/>
 		<d:Adapter infelemrefid="antivirus"/>
-		<d:Adapter infelemrefid="antispam"/>
 	</d:FinalInfProduct>
 	
 	<d:Dictionary id="main" name="Главный Словарь">
 		<d:Entry id="productname">ИнтерБез Профессиональный</d:Entry>
+		<d:Entry id="company">ИнтерБез Солюшнз</d:Entry>
 	</d:Dictionary>
 </d:ProductDocumentation>
