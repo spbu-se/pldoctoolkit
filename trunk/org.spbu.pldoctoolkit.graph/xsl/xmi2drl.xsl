@@ -8,8 +8,6 @@
     extension-element-prefixes="resolver"
     exclude-result-prefixes="xsi">
 
-    <xsl:output indent="yes"/>
-
     <xsl:template match="products">
         <d:Product>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
@@ -20,7 +18,7 @@
         <xsl:variable name="type"><xsl:value-of select="@xsi:type"/></xsl:variable>
         <xsl:element name="{$type}">
             <xsl:copy-of select="@*[not(name()='xsi:type')]"/>
-            <xsl:apply-templates select="text() | comment() | node()"/>
+            <xsl:apply-templates select="text() | comment() | *"/>
         </xsl:element>
     </xsl:template>                      
 

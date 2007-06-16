@@ -158,7 +158,7 @@ public class DrlResourceImpl extends XMLResourceImpl {
 			// flush changes to the tree
 			updateDocumentNodes();
 			
-			// create sources and steams
+			// create sources and streams
 			DOMSource source = new DOMSource(drlDocument);
 			StreamResult result = new StreamResult(outputStream);
 
@@ -185,6 +185,8 @@ public class DrlResourceImpl extends XMLResourceImpl {
 			
 			// convert xmi->drl and save
 			docTransformer.transform(docInStream, result);
+			
+//			docSerializer.transform(source, result);
 			
 		} catch (TransformerConfigurationException e) {
 			throw new IOException(e);
