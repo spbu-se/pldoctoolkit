@@ -39,17 +39,17 @@ public class DrlModelModelingAssistantProvider extends
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
-		if (editPart instanceof ProductLine2EditPart) {
-			List types = new ArrayList();
-			types.add(DrlModelElementTypes.Node_2001);
-			return types;
-		}
-		if (editPart instanceof ProductLineDataEditPart) {
-			List types = new ArrayList();
-			types.add(DrlModelElementTypes.Node_2002);
-			types.add(DrlModelElementTypes.Node_2004);
-			return types;
-		}
+//		if (editPart instanceof ProductLine2EditPart) {
+//			List types = new ArrayList();
+//			types.add(DrlModelElementTypes.Node_2001);
+//			return types;
+//		}
+//		if (editPart instanceof ProductLineDataEditPart) {
+//			List types = new ArrayList();
+//			types.add(DrlModelElementTypes.Node_2002);
+//			types.add(DrlModelElementTypes.Node_2004);
+//			return types;
+//		}
 		if (editPart instanceof PLSchemeEditPart) {
 			List types = new ArrayList();
 			types.add(DrlModelElementTypes.Product_2003);
@@ -60,11 +60,11 @@ public class DrlModelModelingAssistantProvider extends
 			types.add(DrlModelElementTypes.InfProduct_2005);
 			return types;
 		}
-		if (editPart instanceof ProductLineEditPart) {
-			List types = new ArrayList();
-			types.add(DrlModelElementTypes.ProductLine_1001);
-			return types;
-		}
+//		if (editPart instanceof ProductLineEditPart) {
+//			List types = new ArrayList();
+//			types.add(DrlModelElementTypes.ProductLine_1001);
+//			return types;
+//		}
 		return Collections.EMPTY_LIST;
 	}
 

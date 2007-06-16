@@ -32,6 +32,7 @@
       </editor>
    </extension>
 
+<!--
    <extension point="org.eclipse.ui.newWizards">
       <?gmfgen generated="true"?>
   	  <wizard
@@ -43,6 +44,7 @@
   	  	 <description>%newWizardDesc</description>  
       </wizard>
    </extension>
+-->
 
    <extension point="org.eclipse.ui.popupMenus">
    <!--
@@ -408,6 +410,13 @@
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
          <param name="semanticHint" value="2001"/>
+      </specializationType>
+      <specializationType
+            id="org.spbu.pldoctoolkit.graph.diagram.productline.Node_2101"
+            name="%metatype.name.Node_2101"
+            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
+         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+         <param name="semanticHint" value="2101"/>
       </specializationType>
       <specializationType
             id="org.spbu.pldoctoolkit.graph.diagram.productline.Node_2002"

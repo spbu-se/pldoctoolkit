@@ -18,6 +18,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationC
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreInfProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductNameEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.LineSeparatorEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
@@ -136,7 +137,7 @@ public class DrlModelVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public static int getNodeVisualID(View containerView,
 			EObject domainElement, EClass domainElementMetaclass,
@@ -173,6 +174,10 @@ public class DrlModelVisualIDRegistry {
 			}
 			if (ProductLineDataDocumentationCoreCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return ProductLineDataDocumentationCoreCompartmentEditPart.VISUAL_ID;
+			}
+			//HAND
+			if (LineSeparatorEditPart.VISUAL_ID == nodeVisualID) {
+				return LineSeparatorEditPart.VISUAL_ID;
 			}
 			return getUnrecognizedNode_2001ChildNodeID(domainElement,
 					semanticHint);

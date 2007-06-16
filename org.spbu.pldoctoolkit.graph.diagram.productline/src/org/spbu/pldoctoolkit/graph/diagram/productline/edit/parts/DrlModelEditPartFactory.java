@@ -40,6 +40,9 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 			case ProductLineDataEditPart.VISUAL_ID:
 				return new ProductLineDataEditPart(view);
 
+			case LineSeparatorEditPart.VISUAL_ID:
+				return new LineSeparatorEditPart(view);
+				
 			case PLSchemeEditPart.VISUAL_ID:
 				return new PLSchemeEditPart(view);
 

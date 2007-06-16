@@ -4,22 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
-
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EcoreFactory;
-
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.AbstractShapeViewFactory;
-
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.LineSeparatorEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataDocumentationCoreCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataPLSchemeCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
-
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**
@@ -45,6 +40,7 @@ public class ProductLineDataViewFactory extends AbstractShapeViewFactory {
 	protected void decorateView(View containerView, View view,
 			IAdaptable semanticAdapter, String semanticHint, int index,
 			boolean persisted) {
+
 		if (semanticHint == null) {
 			semanticHint = DrlModelVisualIDRegistry
 					.getType(ProductLineDataEditPart.VISUAL_ID);
@@ -68,6 +64,15 @@ public class ProductLineDataViewFactory extends AbstractShapeViewFactory {
 						DrlModelVisualIDRegistry
 								.getType(ProductLineDataPLSchemeCompartmentEditPart.VISUAL_ID),
 						ViewUtil.APPEND, true, getPreferencesHint());
+		
+		getViewService()
+				.createNode(
+						semanticAdapter,
+						view,
+						DrlModelVisualIDRegistry
+								.getType(LineSeparatorEditPart.VISUAL_ID),
+						ViewUtil.APPEND, true, getPreferencesHint());
+		
 		getViewService()
 				.createNode(
 						semanticAdapter,
