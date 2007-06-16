@@ -1,96 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
-	  <d:InfElement id="about_company" name="О компании">
-		    <para xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<d:InfElement id="about_company" name="О компании">
+		<para xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 			Компания <d:DictRef dictid="main" entryid="companyname"/> занимается разработкой комплексных
 			средств защиты от сетевых угроз с 1990 года и на данный момент является безусловным лидером
 			в этой области.
 		</para>
-	  </d:InfElement>
-	  
-	  <d:InfElement id="preface" name="Вступление">
-		    <preface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-			      <title>Встепление</title>
-			      <para>
+	</d:InfElement>
+	
+	<d:InfElement id="preface" name="Вступление">
+		<preface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<title>Встепление</title>
+			<para>
 				Благодарим за приобретение <d:DictRef dictid="main" entryid="productname"/>!
 			</para>
-			      <d:InfElemRef groupid="" id="ref_about" infelemid="about_company" optional="false"/>	
-		    </preface>
-	  </d:InfElement>
-
-	
-	  <d:InfElement id="firewall" name="Брандмауэр">
-		    <chapter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-			      <title>Брандмауэр</title>
-			      <d:InfElemRef groupid="" id="ref_firewall_What_is_firewall" infelemid="what_is_firewall" optional="true"/>
-			      <d:InfElemRef groupid="" id="ref_config_firewall_Config_firewall" infelemid="configuring_firewall" optional="false"/>
-		    </chapter>
-	  </d:InfElement>
-
-	  <d:InfElement id="what_is_firewall" name="Что такое брандмауэр">
-		<!-- ... -->
+			<d:InfElemRef groupid="" id="ref_about" infelemid="about_company" optional="false"/>	
+		</preface>
 	</d:InfElement>
-
-	  <d:InfElement id="configuring_firewall" name="Конфигурирование брандмауэра">
+	
+	
+	<d:InfElement id="firewall" name="Брандмауэр">
+		<chapter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<title>Брандмауэр</title>
+			<d:InfElemRef groupid="" id="ref_firewall_What_is_firewall" infelemid="what_is_firewall" optional="true"/>
+			<d:InfElemRef groupid="" id="ref_config_firewall_Config_firewall" infelemid="configuring_firewall" optional="false"/>
+		</chapter>
+	</d:InfElement>
+	
+	<d:InfElement id="what_is_firewall" name="Что такое брандмауэр">
 		<!-- ... -->
 	</d:InfElement>
 	
-	  <d:InfElement id="antivirus" name="Анти-вирус">
-		    <chapter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-			      <title>Антивирус</title>
-			      <d:InfElemRef groupid="" id="ref_antivirus_What_is_antivirus" infelemid="what_is_antivirus" optional="true"/>
-			      <d:InfElemRef groupid="" id="ref_antivirus_Config_antivirus" infelemid="configuring_antivirus" optional="false"/>
-			      <para>
-			          Действия при обнаружении вируса или другой угрозы.
-			          	- доступны следующие виды действий: <d:Nest id="danger_actions_list"/>
-			          	- удаление
-						<d:Nest id="advanced_features">
-				          	- карантинной зоной
-						</d:Nest>
-						- просмотр журнала событий
-			      </para>
-		    </chapter>
-	  </d:InfElement>
+	<d:InfElement id="configuring_firewall" name="Конфигурирование брандмауэра">
+		<!-- ... -->
+	</d:InfElement>
 	
-	  <d:InfElement id="what_is_antivirus" name="Что такое анти-вирус">
+	<d:InfElement id="antivirus" name="Анти-вирус">
+		<chapter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<title>Антивирус</title>
+			<d:InfElemRef groupid="" id="ref_antivirus_What_is_antivirus" infelemid="what_is_antivirus" optional="true"/>
+			<d:InfElemRef groupid="" id="ref_antivirus_Config_antivirus" infelemid="configuring_antivirus" optional="false"/>
+			<para>
+				Действия при обнаружении вируса или другой угрозы.
+				- доступны следующие виды действий: <d:Nest id="danger_actions_list"/>
+				- удаление
+				<d:Nest id="advanced_features">
+					- карантинной зоной
+				</d:Nest>
+				- просмотр журнала событий
+			</para>
+		</chapter>
+	</d:InfElement>
+	
+	<d:InfElement id="what_is_antivirus" name="Что такое анти-вирус">
 		<!-- ... -->
 	</d:InfElement>
-
-	  <d:InfElement id="configuring_antivirus" name="Конфигурирование антивируса">
+	
+	<d:InfElement id="configuring_antivirus" name="Конфигурирование антивируса">
 		<!-- ... -->
 	</d:InfElement>
-
-	  <d:InfElement id="controlcenter" name="Центр управления">
-		    <chapter>
-			      <title>Центр управления</title>
-			      <para>
-					Центр управления предоставляет единый интерфейс для управления всеми компонентами системы безопасности
-					<d:DictRef dictid="main" entryid="productname"/>.
-				  </para>
-				     <d:InfElemRef groupid="" id="ref_components_update" infelemid="components_update" optional="false"/>
-		    </chapter>
-	  </d:InfElement>
-	  
-	  <d:InfElement id="components_update" name="Обновление компонент">
-		    <para>
-			      <d:InfElemRef groupid="update_methods" id="ref_components_update_common" infelemid="components_update_сommon" optional="false"/>
-			      <d:InfElemRef groupid="update_methods" id="ref_components_update_centralized" infelemid="components_update_centralized" optional="false"/>
-			      <d:InfElemRefGroup id="update_methods" modifier="XOR" name="способы обновления"/>
+	
+	<d:InfElement id="controlcenter" name="Центр управления">
+		<chapter>
+			<title>Центр управления</title>
+			<para>
+				Центр управления предоставляет единый интерфейс для управления всеми компонентами системы безопасности
+				<d:DictRef dictid="main" entryid="productname"/>.
+			</para>
+			<d:InfElemRef groupid="" id="ref_components_update" infelemid="components_update" optional="false"/>
+		</chapter>
+	</d:InfElement>
+	
+	<d:InfElement id="components_update" name="Обновление компонент">
+		<para>
+			<d:InfElemRef groupid="update_methods" id="ref_components_update_common" infelemid="components_update_сommon" optional="false"/>
+			<d:InfElemRef groupid="update_methods" id="ref_components_update_centralized" infelemid="components_update_centralized" optional="false"/>
+			<d:InfElemRefGroup id="update_methods" modifier="XOR" name="способы обновления"/>
 			
-			      <d:Nest id="av-update">
+			<d:Nest id="av-update">
 				<!-- Настройки обновления антивируса -->
 			</d:Nest>
-			      <d:Nest id="as-update">
+			<d:Nest id="as-update">
 				<!-- Настройки обновления антиспама-->
 			</d:Nest>
-		    </para>
-	  </d:InfElement>
+		</para>
+	</d:InfElement>
 	
-	  <d:InfElement id="components_update_centralized" name="Централизованные обновления">
+	<d:InfElement id="components_update_centralized" name="Централизованные обновления">
 		<!-- ... -->
 	</d:InfElement>
 	
-	  <d:InfElement id="components_update_сommon" name="Обновления с сервера компании">
+	<d:InfElement id="components_update_сommon" name="Обновления с сервера компании">
 		<!-- ... -->
 	</d:InfElement>
 </d:DocumentationCore>
