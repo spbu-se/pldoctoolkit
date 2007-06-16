@@ -86,8 +86,6 @@ public class DocumentationCoreInfProductsCompartmentCanonicalEditPolicy extends
 	 * @generated NOT
 	 */
 	protected boolean shouldDeleteView(View view) {
-//		return view.isSetElement() && view.getElement() != null
-//				&& view.getElement().eIsProxy();
 		return true;
 	}
 

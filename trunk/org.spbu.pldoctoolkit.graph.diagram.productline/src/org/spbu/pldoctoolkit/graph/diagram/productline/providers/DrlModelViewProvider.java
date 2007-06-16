@@ -10,6 +10,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationC
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreInfProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductNameEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.LineSeparatorEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
@@ -26,6 +27,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.Documentat
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.DocumentationCoreViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.InfProductNameViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.InfProductViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.LineSeparatorViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeProductsCompartmentViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLine2ViewFactory;
@@ -80,6 +82,8 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 			return ProductLineNameViewFactory.class;
 		case ProductLineDataEditPart.VISUAL_ID:
 			return ProductLineDataViewFactory.class;
+		case LineSeparatorEditPart.VISUAL_ID:
+			return LineSeparatorViewFactory.class;
 		case PLSchemeEditPart.VISUAL_ID:
 			return PLSchemeViewFactory.class;
 		case ProductEditPart.VISUAL_ID:
