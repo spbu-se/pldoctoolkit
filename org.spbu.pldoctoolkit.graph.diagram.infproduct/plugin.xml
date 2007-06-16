@@ -31,7 +31,7 @@
          contributorClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelDiagramActionBarContributor">
       </editor>
    </extension>
-
+<!--
    <extension point="org.eclipse.ui.newWizards">
       <?gmfgen generated="true"?>
   	  <wizard
@@ -43,36 +43,9 @@
   	  	 <description>%newWizardDesc</description>  
       </wizard>
    </extension>
-
+-->
    <extension point="org.eclipse.ui.popupMenus">
       <?gmfgen generated="true"?>
-      <!--
-      <objectContribution
-            adaptable="false"
-            id="org.spbu.pldoctoolkit.graph.diagram.infproduct.CreateShortcut"
-            objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart">
-         <action
-               class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelCreateShortcutAction"
-               enablesFor="1"
-               id="org.spbu.pldoctoolkit.graph.diagram.infproduct.CreateShortcutAction"
-               label="%createShortcutActionLabel"
-               menubarPath="additions">
-         </action>
-      </objectContribution>    
-      <objectContribution
-            adaptable="false"
-            id="org.spbu.pldoctoolkit.graph.diagram.infproduct.LoadResource"
-            objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart">
-         <action
-               class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlModelLoadResourceAction"
-               enablesFor="1"
-               id="org.spbu.pldoctoolkit.graph.diagram.infproduct.LoadResourceAction"
-               label="%loadResourceActionLabel"
-               menubarPath="additions">
-         </action>
-      </objectContribution>     
-      -->                  
-      
 		<objectContribution
             adaptable="false"
             id="org.spbu.pldoctoolkit.graph.diagram.infproduct.OpenElementFile.InfProduct"
@@ -101,6 +74,19 @@
 		</objectContribution>  	
 		<objectContribution
             adaptable="false"
+            id="org.spbu.pldoctoolkit.graph.diagram.infproduct.OpenElementFile.DocumentationCore"
+            objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart">
+			
+			<action
+				class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlOpenElementFileAction" 
+				enablesFor="1"
+				id="org.spbu.pldoctoolkit.graph.diagram.infproduct.OpenElementFileAction"
+				label="%openElementFileActionLabel"
+				menubarPath="additions">
+			</action>
+		</objectContribution>  			         
+		<objectContribution
+            adaptable="false"
             id="org.spbu.pldoctoolkit.graph.diagram.infproduct.AddElement.InfElement"
             objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfElementEditPart">
 			
@@ -114,17 +100,17 @@
 		</objectContribution>  	
 		<objectContribution
             adaptable="false"
-            id="org.spbu.pldoctoolkit.graph.diagram.infproduct.OpenElementFile.DocumentationCore"
-            objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.DocumentationCoreEditPart">
+            id="org.spbu.pldoctoolkit.graph.diagram.infproduct.AddElement.InfProduct"
+            objectClass="org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.parts.InfProductEditPart">
 			
 			<action
-				class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlOpenElementFileAction" 
-				enablesFor="1"
-				id="org.spbu.pldoctoolkit.graph.diagram.infproduct.OpenElementFileAction"
-				label="%openElementFileActionLabel"
-				menubarPath="additions">
-			</action>
-		</objectContribution>  			         
+               class="org.spbu.pldoctoolkit.graph.diagram.infproduct.part.DrlAddInfElementAction"
+               enablesFor="1"
+               id="org.spbu.pldoctoolkit.graph.diagram.infproduct.AddInfElementAction"
+               label="%addInfElementActionLabel"
+               menubarPath="additions">
+            </action>
+		</objectContribution>  	
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
