@@ -8,8 +8,6 @@
     extension-element-prefixes="resolver saxon"
     version="2.0">
     
-    <xsl:output indent="yes"/>
-    
     <xsl:param name="project-name"/>
     
     <xsl:template match="d:Product">
