@@ -77,15 +77,13 @@ public class DrlAddInfElementAction implements IObjectActionDelegate {
 					new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
-					"Unable to create shortcut", e); //$NON-NLS-1$
+					"Unable to add InfElement", e); //$NON-NLS-1$
 		}
 		
 		EditPart diagramEditPart = (EditPart) mySelectedElement.getViewer()
 			.getEditPartRegistry().get(diagramView);
 		View diagramEditPartModel = (View) diagramEditPart.getModel();
 		EObject diagramEObject = diagramEditPartModel.getElement();
-//		
-//		diagramEditPart.refresh();
 
 		List ceps = CanonicalEditPolicy.getRegisteredEditPolicies(diagramEObject);
 		for ( int i = 0; i < ceps.size(); i++ ) {
