@@ -5,7 +5,7 @@
          point="org.eclipse.ui.newWizards">
       <category
             id="org.spbu.pldoctoolkit"
-            name="Product-Line Documentation"/>
+            name="Product Line Documentation"/>
       <wizard
             category="org.spbu.pldoctoolkit"
             class="org.spbu.pldoctoolkit.wizards.NewDrlFile"

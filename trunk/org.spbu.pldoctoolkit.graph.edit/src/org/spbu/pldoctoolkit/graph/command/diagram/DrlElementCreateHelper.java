@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.spbu.pldoctoolkit.graph.DrlElement;
 import org.spbu.pldoctoolkit.graph.util.IdUtil;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
@@ -18,6 +19,15 @@ public class DrlElementCreateHelper {
 	
 	private DrlElement newElement;
 
+	/**
+	 * Initializes an element for the DrlElement and adds it as the last child to the
+	 * node of the element's parent, and adds line break after that.
+	 * 
+	 * The line break will neither be undone nor redone.
+	 * 
+	 * @param newElement
+	 * @return
+	 */
 	public EObject doDefaultElementCreation(DrlElement newElement) {
 		this.newElement = newElement;
 		
@@ -27,8 +37,13 @@ public class DrlElementCreateHelper {
 		}
 
 		DrlElement container = (DrlElement) newElement.eContainer();
-		container.getNode().appendChild(newElement.getNode());
-
+		Element containerElement = container.getNode();
+		// node
+		containerElement.appendChild(newElement.getNode());
+		// and line break
+		containerElement.appendChild(
+				containerElement.getOwnerDocument().createTextNode("\n"));
+		
 		return newElement;
 	}
 

@@ -21,9 +21,9 @@
 <booleanAttribute key="askclear" value="true"/>
 <stringAttribute key="product" value="org.eclipse.sdk.ide"/>
 <booleanAttribute key="includeOptional" value="true"/>
-<stringAttribute key="selected_workspace_plugins" value="org.spbu.pldoctoolkit,org.spbu.pldoctoolkit.graph.editor,org.spbu.pldoctoolkit.text,org.spbu.pldoctoolkit.graph,org.spbu.pldoctoolkit.graph.diagram.infproduct,org.spbu.pldoctoolkit.graph.diagram.productline,org.spbu.pldoctoolkit.graph.edit"/>
-<booleanAttribute key="useProduct" value="true"/>
+<stringAttribute key="selected_workspace_plugins" value="org.spbu.pldoctoolkit,org.spbu.pldoctoolkit.text,org.spbu.pldoctoolkit.graph.diagram.productline,org.spbu.pldoctoolkit.graph,org.spbu.pldoctoolkit.graph.diagram.infproduct,org.spbu.pldoctoolkit.graph.edit"/>
 <booleanAttribute key="default" value="false"/>
+<booleanAttribute key="useProduct" value="true"/>
 <booleanAttribute key="clearConfig" value="false"/>
 <stringAttribute key="checked" value="[NONE]"/>
 <booleanAttribute key="useDefaultConfigArea" value="true"/>
