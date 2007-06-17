@@ -40,6 +40,7 @@
 			<xsl:value-of select="error($err, 'Reference is not optional, you must provide an adapter.', .)"/>
 		</xsl:if>
 		<xsl:choose>
+			<xsl:when test="not($FinalInfProduct/drl:Adapter[@infelemrefid = current()/@id])"/>
 			<xsl:when test="$root">
 				<xsl:apply-templates select="$root/drl:DocumentationCore/drl:InfElement[@id = current()/@infelemid]">
 					<xsl:with-param name="refid" select="@id"/>

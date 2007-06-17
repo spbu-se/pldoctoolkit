@@ -252,16 +252,16 @@ public class BasicExportAction extends Action {
 		} finally {
 			validator.reset();
 			if (tempFile != null)
-				tempFile.delete();
+				tempFile.deleteOnExit();
 		}
 	}
 
 	protected void transform(Controller transformer, Source source, Result result) throws TransformerException {
+		transformer.reset();
+		transformer.clearDocumentPool();
 		transformer.setErrorListener(errorListener);
 		transformer.setURIResolver(uriResolver);
 		transformer.transform(source, result);
-		transformer.clearDocumentPool();
-		transformer.reset();
 	}
 
 	private void processTransformerException(TransformerException e, int severity) throws XPathException {
