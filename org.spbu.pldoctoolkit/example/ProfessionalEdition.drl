@@ -9,6 +9,6 @@
 	
 	<d:Dictionary id="main" name="Главный Словарь">
 		<d:Entry id="productname">ИнтерБез Профессиональный</d:Entry>
-		<d:Entry id="company">ИнтерБез Солюшнз</d:Entry>
+		<d:Entry id="companyname">ИнтерБез Солюшнз</d:Entry>
 	</d:Dictionary>
 </d:ProductDocumentation>
