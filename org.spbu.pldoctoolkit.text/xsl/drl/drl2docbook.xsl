@@ -36,11 +36,11 @@
 	<xsl:template match="drl:InfElemRef">
 		<xsl:variable name="uri" select="concat('drlresolve://Core/InfElement/', @infelemid)"/>
 		<xsl:variable name="root" select="document($uri)"/>
-		<xsl:if test="(not(@optional) or @optional = 'false') and not($FinalInfProduct/drl:Adapter[@infelemrefid = current()/@id])">
+		<!--<xsl:if test="(not(@optional) or @optional = 'false') and not($FinalInfProduct/drl:Adapter[@infelemrefid = current()/@id])">
 			<xsl:value-of select="error($err, 'Reference is not optional, you must provide an adapter.', .)"/>
-		</xsl:if>
+		</xsl:if>-->
 		<xsl:choose>
-			<xsl:when test="not($FinalInfProduct/drl:Adapter[@infelemrefid = current()/@id])"/>
+			<xsl:when test="(@optional = 'true') and not($FinalInfProduct/drl:Adapter[@infelemrefid = current()/@id])"/>
 			<xsl:when test="$root">
 				<xsl:apply-templates select="$root/drl:DocumentationCore/drl:InfElement[@id = current()/@infelemid]">
 					<xsl:with-param name="refid" select="@id"/>

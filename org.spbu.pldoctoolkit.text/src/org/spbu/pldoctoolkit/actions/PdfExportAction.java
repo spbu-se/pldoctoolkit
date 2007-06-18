@@ -23,7 +23,7 @@ import org.xml.sax.DTDHandler;
 import org.xml.sax.SAXException;
 
 public class PdfExportAction extends BasicExportAction {
-	private static final FopFactory FOP_FACTORY = FopFactory.newInstance();
+	private static FopFactory fopFactory;
 	
 	public PdfExportAction(IEditorPart editor) throws Exception {
 		super(editor, DrlPublisherPlugin.getURL("xsl/docbook/fo/docbook.xsl"), "Export to PDF", "PDF", "pdf");
@@ -51,9 +51,9 @@ public class PdfExportAction extends BasicExportAction {
 				xmlReader.setDTDHandler(dtdHandler);
 			xmlReader.parse(tempFile.getAbsolutePath());
 			monitor.worked(1);
-
+			System.out.println("-----------------------------------------------------");
 			out = new FileOutputStream(result);
-			Fop fop = FOP_FACTORY.newFop(MimeConstants.MIME_PDF, out);
+			Fop fop = getFopFactory().newFop(MimeConstants.MIME_PDF, out);
 			
 			monitor.subTask("Transforming DocBook -> " + format + "...");
 			ContentHandler ch = fop.getDefaultHandler();
@@ -67,7 +67,9 @@ public class PdfExportAction extends BasicExportAction {
 				}
 			}));
 			monitor.done();
+			System.out.println("-----------------------------------------------------");
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new InvocationTargetException(e);
 		} finally {
 			if (out != null)
@@ -80,5 +82,14 @@ public class PdfExportAction extends BasicExportAction {
 			if (tempFile != null)
 				tempFile.delete();
 		}
+	}
+	
+	private FopFactory getFopFactory() throws SAXException, IOException {
+		if (fopFactory == null) {
+			fopFactory = FopFactory.newInstance();
+			fopFactory.setUserConfig(DrlPublisherPlugin.getURL("fop/fop.xconf").toString());
+			fopFactory.setFontBaseURL(DrlPublisherPlugin.getURL("fop/").toString());
+		}
+		return fopFactory;
 	}
 }
