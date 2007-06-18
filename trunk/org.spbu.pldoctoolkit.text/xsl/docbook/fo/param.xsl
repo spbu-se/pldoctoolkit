@@ -78,7 +78,7 @@
 <xsl:attribute name="space-after.optimum">1em</xsl:attribute>
 <xsl:attribute name="space-after.maximum">2em</xsl:attribute>
 </xsl:attribute-set>
-<xsl:param name="body.font.family" select="'serif'"/>
+<xsl:param name="body.font.family" select="'Times'"/>
 <xsl:param name="body.font.master">10</xsl:param>
 <xsl:param name="body.font.size">
  <xsl:value-of select="$body.font.master"/><xsl:text>pt</xsl:text>
@@ -652,7 +652,7 @@ set       toc,title
 <xsl:param name="rootid" select="''"/>
 <xsl:param name="runinhead.default.title.end.punct" select="'.'"/>
 <xsl:param name="runinhead.title.end.punct" select="'.!?:'"/>
-<xsl:param name="sans.font.family" select="'sans-serif'"/>
+<xsl:param name="sans.font.family" select="'Times'"/>
 <xsl:param name="section.autolabel" select="0"/>
 <xsl:param name="section.autolabel.max.depth" select="8"/>
 <xsl:param name="section.label.includes.component.label" select="0"/>
@@ -794,7 +794,7 @@ set       toc,title
 <xsl:param name="tex.math.delims" select="'1'"/>
 <xsl:param name="tex.math.in.alt" select="''"/>
 <xsl:param name="textinsert.extension" select="'1'"/>
-<xsl:param name="title.font.family" select="'sans-serif'"/>
+<xsl:param name="title.font.family" select="'Times'"/>
 <xsl:param name="title.margin.left">
   <xsl:choose>
     <xsl:when test="$fop.extensions != 0">-4pc</xsl:when>
