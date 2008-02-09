@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="../../org.spbu.pldoctoolkit/schema/document-reuse-language.rng" type="xml"?>
+<d:ProductDocumentation productid="product1" 
+	xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+	<d:FinalInfProduct id="doc" infproductid="InfProduct">
+		<d:Adapter infelemrefid="ref1">
+			<d:Insert-Before nestid="nest1">
+				before nest1
+			</d:Insert-Before>
+			<d:Replace-Nest nestid="nest2">
+				replace nest2
+			</d:Replace-Nest>
+			<d:Insert-After nestid="nest3">
+				after nest3
+			</d:Insert-After>
+		</d:Adapter>
+		<d:Adapter infelemrefid="ref2">
+			<d:Replace-Nest nestid="nest1">replace@email.com</d:Replace-Nest>
+		</d:Adapter>
+	</d:FinalInfProduct>
+</d:ProductDocumentation>
