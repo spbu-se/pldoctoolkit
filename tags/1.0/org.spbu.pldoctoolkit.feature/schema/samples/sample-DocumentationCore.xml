@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="../document-reuse-language.rng" type="xml"?>
+<DocumentationCore 
+	xmlns="http://math.spbu.ru/drl"
+	xmlns:db="http://docbook.org/ns/docbook">
+	
+	<InfProduct id="manualDocument" name="Ноутбук: руководство пользователя">
+		<db:title>
+			<DictRef dictid="mainDict" entryid="title"/>
+		</db:title>
+		<InfElemRef id="manualRef" infelemid="manualMain"/>
+	</InfProduct>
+	
+	<InfElement id="manualMain" name="Руководство пользователя">
+		<db:subtitle>
+			<Nest id="subtitle" descr="подзаголовок"/>
+		</db:subtitle>
+		
+		<!-- this one fails -->
+		<InfElemRefGroup id="manualsRefGroup" name="ссылки на части руководства" modifier="SET"/>
+		<InfElemRef id="basicManualRef1" infelemid="basicManual"/>
+		<Conditional condition="advanced=true">
+			<InfElemRef id="advancedManualRef1" infelemid="advancedManual"/>
+		</Conditional>
+	</InfElement>
+	
+	<InfElement id="basicManual" name="Ноутбук: руководство пользователя, основы">
+		Ноутбук - это просто.
+		<InfElemRef id="basicManual_Part1Ref1" infelemid="basicManual_Part1"/>
+	</InfElement>
+	
+	<InfElement id="basicManual_Part1" name="Часть 1 простого руководства">
+		<db:some_tags/>
+	</InfElement>
+	
+	<InfElement id="advancedManual" name="Ноутбук: руководство пользователя, хакерство">
+		Ноутбук - это, на самом деле, довольно сложно.
+		
+		<InfElemRef id="advancedManual_Part1Ref1" infelemid="advancedManual_Part1"/>
+	</InfElement>
+	
+	<InfElement id="advancedManual_Part1" name="Часть 1 сложного руководства">
+		<db:some_tags/>
+	</InfElement>
+	
+	<Dictionary id="mainDict">
+		<Entry id="title">Статья о ноутбуках.</Entry>
+	</Dictionary>
+</DocumentationCore>
