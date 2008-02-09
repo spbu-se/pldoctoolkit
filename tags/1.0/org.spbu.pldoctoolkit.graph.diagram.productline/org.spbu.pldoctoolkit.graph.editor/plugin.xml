@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+
+  <extension
+    point = "org.eclipse.ui.newWizards">
+    <wizard
+      id = "org.spbu.pldoctoolkit.graph.presentation.DrlModelWizardID"
+      name = "%_UI_DrlModelWizard_label"
+      class = "org.spbu.pldoctoolkit.graph.presentation.DrlModelWizard"
+      category = "org.spbu.pldoctoolkit.ui.category.Wizard.ID"
+      icon = "icons/full/obj16/DrlModelFile.gif">
+      <description>%_UI_DrlModelWizard_description</description>
+      <selection class = "org.eclipse.core.resources.IResource" />
+    </wizard>
+  </extension>
+
+  <extension point = "org.eclipse.ui.editors">
+    <editor
+        id = "org.spbu.pldoctoolkit.graph.presentation.DrlEditorID"
+        name = "%_UI_DrlEditor_label"
+        icon = "icons/full/obj16/DrlModelFile.gif"
+        extensions = "drl"
+        class = "org.spbu.pldoctoolkit.graph.presentation.DrlEditor" 
+        contributorClass="org.spbu.pldoctoolkit.graph.presentation.DrlActionBarContributor" >
+    </editor>
+  </extension>    
+</plugin>
