@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.spbu.pldoctoolkit"
+            name="Product Line Documentation"/>
+      <wizard
+            category="org.spbu.pldoctoolkit"
+            class="org.spbu.pldoctoolkit.wizards.NewDrlFile"
+            hasPages="true"
+            icon="icons/icon.gif"
+            id="org.spbu.pldoctoolkit.text.wizards.new.drlfile"
+            name="DRL document"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.spbu.pldoctoolkit.editors.DrlTextEditor"
+            contributorClass="org.spbu.pldoctoolkit.editors.DrlEditorActionContributor"
+            extensions="drl"
+            icon="icons/icon.gif"
+            id="org.spbu.pldoctoolkit.editors.DRLEditor"
+            name="DRL Editor"/>
+   </extension>
+
+</plugin>
