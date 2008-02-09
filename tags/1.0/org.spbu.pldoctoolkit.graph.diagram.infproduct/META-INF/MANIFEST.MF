@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DRL base plugin
+Bundle-SymbolicName: org.spbu.pldoctoolkit;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.resources,
+ org.eclipse.ui.ide,
+ org.eclipse.core.runtime
+Bundle-Activator: org.spbu.pldoctoolkit.PLDocToolkitPlugin
+Export-Package: org.spbu.pldoctoolkit,
+ org.spbu.pldoctoolkit.registry
+Eclipse-LazyStart: true
+Bundle-ClassPath: .,
+ lib/saxon8.jar,
+ lib/saxon8-dom.jar
