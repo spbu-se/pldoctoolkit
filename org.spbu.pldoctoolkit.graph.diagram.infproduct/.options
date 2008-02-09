@@ -1,7 +1,0 @@
-# Debugging options for the org.spbu.pldoctoolkit.graph.diagram.infproduct plug-in
-
-# Turn on general debugging for the org.spbu.pldoctoolkit.graph.diagram.infproduct plug-in
-org.spbu.pldoctoolkit.graph.diagram.infproduct/debug=false
-
-# Turn on debugging of visualID processing
-org.spbu.pldoctoolkit.graph.diagram.infproduct/debug/visualID=true
