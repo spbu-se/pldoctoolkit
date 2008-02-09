@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="../document-reuse-language.rng" type="xml"?>
+
+<ProductDocumentation productid="product1" 
+    xmlns="http://math.spbu.ru/drl"
+    xmlns:db="http://docbook.org/ns/docbook">
+    
+    <FinalInfProduct id="FinalInfProduct1" infproductid="manualDocument">
+        <SetValue id="advanced" value="true"/>
+        <Adapter infelemrefid="manualMain">
+            <Replace-Nest nestid="subtitle">
+                Руководство пользователя для ноутбука OLPC. 
+            </Replace-Nest>
+        </Adapter>
+    </FinalInfProduct>
+</ProductDocumentation>

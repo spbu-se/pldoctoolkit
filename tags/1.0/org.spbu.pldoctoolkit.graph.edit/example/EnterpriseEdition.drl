@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation productid="enterprise" xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+  <d:FinalInfProduct id="UserManual_enterprise" infproductid="UserManual">
+    <d:Adapter infelemrefid="ref_antivirus">
+      <d:Replace-Nest nestid="extended_actions">
+        <listitem><para>помещение в карантин</para></listitem>
+        <listitem><para>запрос о помощи у представителя ИнтерБез в вашей фирме</para></listitem>
+      </d:Replace-Nest>
+    </d:Adapter>
+    <d:Adapter infelemrefid="ref_firewall_config"/>
+    <d:Adapter infelemrefid="ref_antivirus_config"/>
+    <d:Adapter infelemrefid="ref_update_local"/>
+    <d:Adapter infelemrefid="ref_components_update">
+      <d:Insert-After nestid="av-update">
+        <para>
+          Скорее всего все настройки уже произведены Вашим системным администратором.
+        </para>
+      </d:Insert-After>
+      <d:Insert-After nestid="as-update">
+        <para>
+          ИнтерБез Корпоративный использует центральный локальный сервер для обнаружения
+          спама. В настройках необходимо указать его адрес. Для получения адреса
+          обратитесь с системному администратору.
+        </para>
+      </d:Insert-After>
+    </d:Adapter>
+    <d:Adapter infelemrefid="ref_antispam"/>
+  </d:FinalInfProduct>
+  
+  <d:Dictionary id="main" name="Главный Словарь">
+    <d:Entry id="productname">ИнтерБез Корпоративный</d:Entry>
+  </d:Dictionary>
+</d:ProductDocumentation>
