@@ -1,11 +1,13 @@
 package org.spbu.pldoctoolkit.editors;
 
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.jface.action.IMenuManager;
 import org.spbu.pldoctoolkit.DrlPublisherPlugin;
 import org.spbu.pldoctoolkit.actions.BasicExportAction;
 import org.spbu.pldoctoolkit.actions.PdfExportAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlOnSaveAction;
+import org.spbu.pldoctoolkit.actions.MyAction;
 
 public class DrlTextEditor extends TextEditor {
 	public static final String XML_PARTITIONING = "__drl_partitioning";
@@ -66,5 +68,19 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			setAction("asd", new MyAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+	
+	/*
+	public void editorContextMenuAboutToShow(IMenuManager menu) {
+		super.editorContextMenuAboutToShow(menu);
+		addAction(menu, "asd");		 
+	}
+	*/
+
 }
