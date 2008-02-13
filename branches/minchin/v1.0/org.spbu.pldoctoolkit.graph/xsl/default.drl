@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<v:DocumentationCore 
+  xmlns:v="http://math.spbu.ru/drl" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <parts id="Element1" name="Inf Element 1" xsi:type="v:InfElement">
+    <infElemRefs id="ref1" infelem="#Element2" optional="true"/>
+  </parts>
+  <parts id="Element2" name="Inf Element 2" xsi:type="v:InfElement"/>
+</v:DocumentationCore>

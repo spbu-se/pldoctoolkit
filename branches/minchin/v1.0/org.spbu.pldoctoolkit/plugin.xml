@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         id="org.eclipse.pldoctoolkit.ui.perspectives"
+         name="DRL perspectives"
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.spbu.pldoctoolkit.ui.perspectives.DrlPerspectiveFactory"
+            id="org.spbu.pldoctoolkit.ui.drlPerspective"
+            name="Product Line Documentation"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.spbu.pldoctoolkit.ui.category.Wizard.ID"
+            name="%_UI_Wizard_category"/>
+   </extension>
+
+</plugin>
