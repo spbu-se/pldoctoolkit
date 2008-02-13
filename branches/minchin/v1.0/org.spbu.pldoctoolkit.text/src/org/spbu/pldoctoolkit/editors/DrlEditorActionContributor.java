@@ -13,6 +13,7 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 	private final RetargetTextEditorAction exportToHtml = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ExportToHtml.");
 	private final RetargetTextEditorAction exportToPdf = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ExportToPdf.");
 	private final RetargetTextEditorAction validateDrl = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ValidateDrl.");
+	private final RetargetTextEditorAction my = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "My.");
 	
 	public void contributeToMenu(IMenuManager menu) {
 		super.contributeToMenu(menu);
@@ -21,6 +22,7 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		docbookMenu.add(exportToHtml);
 		docbookMenu.add(exportToPdf);
 		docbookMenu.add(validateDrl);
+		docbookMenu.add(my);
 	}
 
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
@@ -39,5 +41,6 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		exportToHtml.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_HTML));
 		exportToPdf.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_PDF));
 		validateDrl.setAction(getAction(editor, DrlTextEditor.VALIDATE_DRL));
+		my.setAction(getAction(editor, "asd"));
 	}
 }
