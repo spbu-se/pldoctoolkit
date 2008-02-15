@@ -20,8 +20,7 @@ public class DRLDocument extends Element{
 		
 		return res;
 	}
-	
-	//TODO добавить поиск
+		
 	public PositionInDRL findByPosition(PositionInText posToFind) {
 		if (childs != null &&
 			childs.size() != 0) 

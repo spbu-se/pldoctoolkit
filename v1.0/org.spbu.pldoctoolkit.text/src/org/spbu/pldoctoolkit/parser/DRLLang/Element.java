@@ -102,30 +102,61 @@ public abstract class Element {
 	/////////////////////////////////////////////////////////////
 	
 	public PositionInDRL findByPosition(PositionInText posToFind) {
-		if (startPos.compare(posToFind) == 1 || endPos.compare(posToFind) <= 0)
-			return null;
+		//if (startPos.compare(posToFind) == 1 || endPos.compare(posToFind) <= 0)
+		//	return null;
+		PositionInText endTagStartPos;
+		if (childs == null)// TODO проверка, что не 0
+			endTagStartPos = startPos;
+		else
+			endTagStartPos = childs.get(childs.size()-1).endPos;
+		
+		if (startPos.compare(posToFind) == 1 || endTagStartPos.compare(posToFind) == -1)
+			return new PositionInDRL(false, true, this, null, null, parent);
 		
 		if (childs != null && 
 			childs.size() != 0) // на всякий случай
 		{
 			PositionInText prevPos = new PositionInText(startPos);
+			Element prevChild = null;
 			for (int i = 0; i < childs.size(); ++i) {
 				Element curChild = childs.get(i);
+				if (curChild.endPos.compare(posToFind) == 1)
+				{
+					if (curChild.tagStartPos.compare(posToFind) == 0)
+						return new PositionInDRL(false, false, null, prevChild, curChild, this);
+					else
+						return curChild.findByPosition(posToFind);
+				}
+/*				
 				PositionInDRL pos = curChild.findByPosition(posToFind);
 				if (pos != null)
 					return pos;//break;
 				else {
-					if (/* prevPos.compare(posToFind) == && */curChild.getStartPos().compare(posToFind) == 1) { // *<a><a/>
+					if (curChild.getStartPos().compare(posToFind) == 1) { // *<a><a/>
 						Element prev = i > 0 ? childs.get(i - 1) : null;
 						return new PositionInDRL(false, false, null, prev, curChild, this);
 					}
 				}
+*/			
+				prevChild = curChild;
 			}
-			return new PositionInDRL(false, false, null, childs.get(childs.size()), null, this);
+			return new PositionInDRL(false, false, null, childs.get(childs.size()-1), null, this);
 		}
-		else{
-			return new PositionInDRL(false, false, null, null, null, this);
-		}			
+		else
+			return new PositionInDRL(false, false, null, null, null, this);					
+	}
+	
+	public ArrayList<Element> removeChilds(int from, int to){
+		ArrayList<Element> res = new ArrayList<Element>();
+		for (int i = from; i <= to; ++i)
+			res.add(childs.remove(from));
+		
+		return res;
+	}	
+	
+	public void appendChilds(ArrayList<Element> childsToInsert) {
+		//for (int i = 0; i < childsToInsert.size(); ++i)
+		childs.addAll(childsToInsert);
 	}
 	
 	public abstract String getTextRepresentation();	

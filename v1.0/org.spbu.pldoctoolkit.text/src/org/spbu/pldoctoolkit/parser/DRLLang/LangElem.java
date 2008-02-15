@@ -43,5 +43,5 @@ public class LangElem extends Element{
 		}
 		
 		return res;
-	}
+	}	
 }

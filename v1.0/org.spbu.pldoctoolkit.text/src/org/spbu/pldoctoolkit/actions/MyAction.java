@@ -2,6 +2,7 @@ package org.spbu.pldoctoolkit.actions;
 
 import java.io.StringReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.text.BadLocationException;
@@ -31,6 +32,7 @@ import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
 //import org.spbu.pldoctoolkit.refactor.Util;
 import org.spbu.pldoctoolkit.parser.DRLParser;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
+import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.registry.ProjectRegistry;
@@ -76,15 +78,29 @@ public class MyAction extends Action{//SelectionProviderAction{
 		TextSelection ts = (TextSelection) sel;
 		try {
 			String selectedText = doc.get(ts.getOffset(), ts.getLength());
-			validate("<temp>" + selectedText + "</temp>");
-//			DRLDocument DRLdoc = DRLParser.parse(new InputSource(new StringReader(doc.get(0, doc.getLength()))));
-//			int line = ts.getStartLine();
-//			int column = ts.getOffset() - doc.getLineOffset(line);
-//			PositionInDRL pos = DRLdoc.findByPosition(new PositionInText(line + 1, column + 1));
-//			int i = 10;
-			//doc.set(DRLdoc.getTextRepresentation());
+//			validate("<temp>" + selectedText + "</temp>");
+			DRLDocument DRLdoc = DRLParser.parse(new InputSource(new StringReader(doc.get(0, doc.getLength()))));
+			int line1 = ts.getStartLine();
+			int column1 = ts.getOffset() - doc.getLineOffset(line1);
+			int line2 = ts.getEndLine();
+			int column2 = ts.getOffset() + ts.getLength() - doc.getLineOffset(line2);
+			PositionInDRL pos1 = DRLdoc.findByPosition(new PositionInText(line1 + 1, column1 + 1));
+			PositionInDRL pos2 = DRLdoc.findByPosition(new PositionInText(line2 + 1, column2 + 1));
 			
-		
+			if (pos1.parent == pos2.parent){
+				int from = pos1.parent.getChilds().indexOf(pos1.next);
+				int to = pos1.parent.getChilds().indexOf(pos2.prev);
+				
+				ArrayList<Element> childsToInsert = pos1.parent.removeChilds(from, to);
+				DRLdoc.getChilds().get(0).appendChilds(childsToInsert);
+				
+				doc.set(DRLdoc.getTextRepresentation());
+			}
+			
+			int i = 10;
+			
+			
+/*		
 		
 			if (!errorHandler.succeded())
 				return;
@@ -112,6 +128,7 @@ public class MyAction extends Action{//SelectionProviderAction{
 					System.out.print(text);
 				}
 			}
+			*/
 		}
 		catch (Exception e)
 		{
@@ -139,8 +156,8 @@ public class MyAction extends Action{//SelectionProviderAction{
 				xmlReader.setDTDHandler(dtdHandler);
 			//errorHandler.setResource(editorFile);
 			
-			//xmlReader.parse(new InputSource(new StringReader(what)));//editorFile.getLocationURI().toString()));
-			DRLParser.parse(new InputSource(new StringReader(what)));
+			xmlReader.parse(new InputSource(new StringReader(what)));//editorFile.getLocationURI().toString()));
+			//DRLParser.parse(new InputSource(new StringReader(what)));
 		//} catch (SAXException e) {
 			// ignored
 		} catch (Exception e) {

@@ -12,13 +12,14 @@ public class TextElement extends Element {
 		//this.startLine = startLine;
 		//this.startColumn = startColumn;
 		this.startPos = startPos;
+		this.tagStartPos = startPos;
 		this.length = length;
 		this.text = text;
 		this.parent = parent;
 		this.doc = doc;
 		HeightAndWidth hw = computeHeightAndWidth(text);
-		endPos = new PositionInText(startLine + hw.height,
-				hw.height == 0 ? ( startColumn + hw.width ) : hw.width);
+		endPos = new PositionInText(startPos.line + hw.height,
+				hw.height == 0 ? ( startPos.column + hw.width ) : hw.width);
 		
 		//this.endLine = startLine + hw.height;
 		//this.endColumn = hw.height == 0 ? ( startColumn + hw.width ) : hw.width;		
