@@ -28,9 +28,17 @@ public class DRLContentHandler implements ContentHandler {
 		}
 		
 		String text = new String(arg0, arg1, arg2);
-		parent.getChilds().add(new TextElement(new PositionInText(locator.getLineNumber(), locator.getColumnNumber()), 
-											   arg2, text,  
-											   parent, doc));
+		Element elem = new TextElement(new PositionInText(prevPos.line, prevPos.column), 
+				   									      arg2, text,  
+				   									      parent, doc); 
+		parent.getChilds().add(elem);
+		
+		
+		assert(elem.getEndPos().line == locator.getLineNumber());
+		assert(elem.getEndPos().column == locator.getColumnNumber());
+		
+		prevPos.line = elem.getEndPos().line;
+		prevPos.column = elem.getEndPos().column;
 	}
 
 	@Override
