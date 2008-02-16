@@ -2,7 +2,7 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel/2.0" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.productline"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2006/GenModel" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.productline"
     modelID="ProductLine"
     diagramFileExtension="productline_diagram">
   <diagram

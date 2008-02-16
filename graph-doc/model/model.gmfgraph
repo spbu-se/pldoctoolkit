@@ -2,37 +2,9 @@
 <gmfgraph:Canvas xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgraph="http://www.eclipse.org/gmf/2005/GraphicalDefinition" name="elements">
+    xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="elements">
   <figures
       name="Default">
-    <figures
-        xsi:type="gmfgraph:Rectangle"
-        referencingElements="InfElement"
-        name="InfElementFigure">
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="InfElementName"
-          name="InfElementNameFigure"
-          text="&lt;...>"/>
-    </figures>
-    <figures
-        xsi:type="gmfgraph:Rectangle"
-        referencingElements="InfProduct"
-        name="InfProductFigure"
-        lineWidth="3">
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="InfProductName InfProductId"
-          name="InfProductNameFigure"
-          text="&lt;...>"/>
-      <border
-          xsi:type="gmfgraph:CompoundBorder">
-        <outer
-            xsi:type="gmfgraph:LineBorder"/>
-        <inner
-            xsi:type="gmfgraph:LineBorder"/>
-      </border>
-    </figures>
     <figures
         xsi:type="gmfgraph:PolygonDecoration"
         name="CircleDecoration"
@@ -77,92 +49,152 @@
           x="1"
           y="4"/>
     </figures>
-    <figures
-        xsi:type="gmfgraph:PolylineConnection"
-        referencingElements="InfElemRefConnection"
-        name="InfElemRefFigure"
-        targetDecoration="CircleDecoration"/>
-    <figures
-        xsi:type="gmfgraph:PolylineConnection"
-        referencingElements="InfElemRefGroupConnection"
-        name="InfElemRefGroupConnectionFigure"
-        lineKind="LINE_DASH"/>
-    <figures
-        xsi:type="gmfgraph:Label"
-        referencingElements="InfElemRefId"
-        name="InfElemRefIdFigure"
-        text="&lt;...>"/>
-    <figures
-        xsi:type="gmfgraph:Rectangle"
-        referencingElements="ProductLine InfProductsCompartment ProductLineDataCompartment"
+    <descriptors
+        name="InfElementFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="InfElementFigure">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="InfElementNameFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="InfProductFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="InfProductFigure"
+          lineWidth="3">
+        <border
+            xsi:type="gmfgraph:CompoundBorder">
+          <outer
+              xsi:type="gmfgraph:LineBorder"/>
+          <inner
+              xsi:type="gmfgraph:LineBorder"/>
+        </border>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="InfProductNameFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="InfElemRefFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="InfElemRefFigure"
+          targetDecoration="//@figures.0/@figures.0"/>
+    </descriptors>
+    <descriptors
+        name="InfElemRefGroupConnectionFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="InfElemRefGroupConnectionFigure"
+          lineKind="LINE_DASH"/>
+    </descriptors>
+    <descriptors
+        name="InfElemRefIdFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="InfElemRefIdFigure"
+          text="&lt;...>"/>
+    </descriptors>
+    <descriptors
         name="ProductLineFigure">
-      <children
-          xsi:type="gmfgraph:Label"
-          referencingElements="ProductLineName"
-          name="ProductLineNameFigure"
-          text="&lt;...>"/>
-    </figures>
-    <figures
-        xsi:type="gmfgraph:Rectangle"
-        referencingElements="Product"
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ProductLineFigure">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ProductLineNameFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
         name="ProductFigure">
-      <children
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ProductFigure">
+        <border
+            xsi:type="gmfgraph:MarginBorder">
+          <insets
+              top="3"
+              left="3"
+              bottom="3"
+              right="3"/>
+        </border>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ProductNameFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="InfElemRefGroupIdFigure">
+      <actualFigure
           xsi:type="gmfgraph:Label"
-          referencingElements="ProductName"
-          name="ProductNameFigure"
+          name="InfElemRefGroupIdFigure"
           text="&lt;...>"/>
-      <border
-          xsi:type="gmfgraph:MarginBorder">
-        <insets
-            top="3"
-            left="3"
-            bottom="3"
-            right="3"/>
-      </border>
-    </figures>
-    <figures
-        xsi:type="gmfgraph:Label"
-        referencingElements="InfElemRefGroupId"
-        name="InfElemRefGroupIdFigure"
-        text="&lt;...>"/>
-    <figures
-        xsi:type="gmfgraph:Label"
-        referencingElements="InfElemRefGroupName"
-        name="InfElemRefGroupNameFigure"
-        text="&lt;...>"/>
-    <figures
-        xsi:type="gmfgraph:Label"
-        referencingElements="InfElemRefGroupModifier"
-        name="InfElemRefGroupModifierFigure"
-        text="&lt;...>"/>
-    <figures
-        xsi:type="gmfgraph:Ellipse"
-        referencingElements="InfElemRefGroup"
+    </descriptors>
+    <descriptors
+        name="InfElemRefGroupNameFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="InfElemRefGroupNameFigure"
+          text="&lt;...>"/>
+    </descriptors>
+    <descriptors
+        name="InfElemRefGroupModifierFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="InfElemRefGroupModifierFigure"
+          text="&lt;...>"/>
+    </descriptors>
+    <descriptors
         name="InfElemRefGroupFigure">
-      <backgroundColor
-          xsi:type="gmfgraph:ConstantColor"
-          value="lightGray"/>
-      <maximumSize
-          dx="5"
-          dy="5"/>
-      <minimumSize
-          dx="5"
-          dy="5"/>
-    </figures>
-    <figures
-        xsi:type="gmfgraph:Rectangle"
-        referencingElements="ProductsCompartment PLScheme"
-        name="PLSchemeFigure"
-        outline="false"
-        fill="false"/>
-    <figures
-        xsi:type="gmfgraph:Rectangle"
-        referencingElements="InfProductCompartment DocumentationCore"
-        name="DocumentationCoreFigure"/>
-    <figures
-        xsi:type="gmfgraph:Rectangle"
-        referencingElements="DocumentationCoreCompartment PLSchemeCompartment ProductLineData"
-        name="ProductLineDataFigure"/>
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="InfElemRefGroupFigure">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="lightGray"/>
+        <maximumSize
+            dx="5"
+            dy="5"/>
+        <minimumSize
+            dx="5"
+            dy="5"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="PLSchemeFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="PLSchemeFigure"
+          outline="false"
+          fill="false"/>
+    </descriptors>
+    <descriptors
+        name="DocumentationCoreFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="DocumentationCoreFigure"/>
+    </descriptors>
+    <descriptors
+        name="ProductLineDataFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ProductLineDataFigure"/>
+    </descriptors>
   </figures>
   <nodes
       name="InfElement"
@@ -252,20 +284,24 @@
   </compartments>
   <labels
       name="ProductLineName"
-      figure="ProductLineNameFigure"
-      elementIcon="false"/>
+      figure="ProductLineFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.5/@accessors.0"/>
   <labels
       name="InfElementName"
-      figure="InfElementNameFigure"
-      elementIcon="false"/>
+      figure="InfElementFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.0/@accessors.0"/>
   <labels
       name="InfProductName"
-      figure="InfProductNameFigure"
-      elementIcon="false"/>
+      figure="InfProductFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
       name="InfProductId"
-      figure="InfProductNameFigure"
-      elementIcon="false"/>
+      figure="InfProductFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
       name="InfElemRefId"
       figure="InfElemRefIdFigure"
@@ -284,5 +320,6 @@
       elementIcon="false"/>
   <labels
       name="ProductName"
-      figure="ProductNameFigure"/>
+      figure="ProductFigure"
+      accessor="//@figures.0/@descriptors.6/@accessors.0"/>
 </gmfgraph:Canvas>
