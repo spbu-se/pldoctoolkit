@@ -43,6 +43,8 @@ import org.xml.sax.SAXException;
  * <!-- end-user-doc -->
  * @see org.spbu.pldoctoolkit.graph.util.DrlResourceFactoryImpl
  * @generated NOT
+ * 
+ * TODO add unit tests for this class 
  */
 public class DrlResourceImpl extends XMLResourceImpl {
 	public static String XMI2DRL_FILE = "/xsl/xmi2drl.xsl";
