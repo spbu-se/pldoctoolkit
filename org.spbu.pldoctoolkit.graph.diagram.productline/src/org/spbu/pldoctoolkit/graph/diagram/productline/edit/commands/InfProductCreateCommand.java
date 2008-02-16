@@ -27,7 +27,7 @@ public class InfProductCreateCommand extends DrlElementCreateCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected EObject getElementToEdit() {
 		//XXX a hack - check the diagram structure
