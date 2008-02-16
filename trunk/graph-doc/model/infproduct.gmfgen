@@ -2,7 +2,7 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2005/GenModel/2.0" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.infproduct"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2006/GenModel" packageNamePrefix="org.spbu.pldoctoolkit.graph.diagram.infproduct"
     modelID="InfProduct"
     diagramFileExtension="infproduct_diagram">
   <diagram
@@ -175,8 +175,7 @@
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
-          xsi:type="gmfgen:TypeLinkModelFacet"
-          createCommandClassName="InfElemRefTypeLinkCreateCommand">
+          xsi:type="gmfgen:TypeLinkModelFacet">
         <metaClass
             href="model.genmodel#//graph/InfElemRef"/>
         <containmentMetaFeature
@@ -240,8 +239,7 @@
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
-          xsi:type="gmfgen:TypeLinkModelFacet"
-          createCommandClassName="InfElemRef2TypeLinkCreateCommand">
+          xsi:type="gmfgen:TypeLinkModelFacet">
         <metaClass
             href="model.genmodel#//graph/InfElemRef"/>
         <containmentMetaFeature
@@ -323,7 +321,10 @@
       iD="org.spbu.pldoctoolkit.graph.diagram.infproduct"
       name="InfProduct Diagram Plugin"
       provider="Spbu Plugin Provider, Inc"
-      version="1.0.0.0"/>
+      version="1.0.0.0">
+    <requiredPlugins>org.eclipse.emf.ocl</requiredPlugins>
+    <requiredPlugins>org.eclipse.emf.query.ocl</requiredPlugins>
+  </plugin>
   <editor/>
   <navigator>
     <childReferences
@@ -473,9 +474,6 @@
   <expressionProviders>
     <providers
         xsi:type="gmfgen:GenExpressionInterpreter"
-        expressions="//@diagram/@links.0/@modelFacet/@modelElementInitializer/@initializers.0 //@diagram/@links.2/@modelFacet/@modelElementInitializer/@initializers.0">
-      <requiredPluginIDs>org.eclipse.emf.ocl</requiredPluginIDs>
-      <requiredPluginIDs>org.eclipse.emf.query.ocl</requiredPluginIDs>
-    </providers>
+        expressions="//@diagram/@links.0/@modelFacet/@modelElementInitializer/@initializers.0 //@diagram/@links.2/@modelFacet/@modelElementInitializer/@initializers.0"/>
   </expressionProviders>
 </gmfgen:GenEditorGenerator>
