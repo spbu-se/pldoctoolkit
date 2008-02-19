@@ -7,6 +7,6 @@ import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 public class ProjectContent {
 	public ArrayList<DRLDocument> DRLDocs = new ArrayList<DRLDocument>();
 	
-	public ArrayList<LangElemt> Adapters;
+	public ArrayList<LangElem> Adapters;
 //	public String projectName;
 }
