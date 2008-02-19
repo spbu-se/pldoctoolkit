@@ -59,5 +59,34 @@ public class TextElement extends Element {
 		
 		return new PositionInDRL(true, false, this, null, null, null);				
 	}
+	
+	public boolean Split(PositionInText pos)
+	{
+		if (pos.compare(startPos) <= 0 || pos.compare(endPos) >= 0)
+			return false;
+		
+		PositionInText curPos = new PositionInText(startPos);
+		
+		int i = 0;
+		while (curPos.compare(pos) < 0) 
+		{
+			if (text.charAt(i) == '\n') {
+				curPos.line += 1;
+				curPos.column = 0;
+			}
+			else
+				curPos.column +=1;
+			
+			++i;
+		}
+		
+		int curIdx = parent.childs.indexOf(this);
+		text = text.substring(i);
+		TextElement newElem = new TextElement(null, 0, text.substring(0, i), parent, doc);
+		parent.childs.add(curIdx, newElem);
+		
+		
+		return true;
+	}
 
 }
