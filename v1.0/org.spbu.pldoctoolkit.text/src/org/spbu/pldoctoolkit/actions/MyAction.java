@@ -1,5 +1,6 @@
 package org.spbu.pldoctoolkit.actions;
 
+import java.io.InputStream;
 import java.io.StringReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -11,7 +12,10 @@ import net.sf.saxon.om.NodeInfo;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.text.FindReplaceDocumentAdapter;
@@ -35,6 +39,8 @@ import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
+import org.spbu.pldoctoolkit.refactor.ProjectContent;
+import org.spbu.pldoctoolkit.refactor.SelectIntoInfElem;
 import org.spbu.pldoctoolkit.registry.ProjectRegistry;
 import org.spbu.pldoctoolkit.registry.RegisteredLocation;
 import org.w3c.dom.Document;
@@ -64,7 +70,16 @@ public class MyAction extends Action{//SelectionProviderAction{
 //		ProjectRegistry registry = PLDocToolkitPlugin.getRegistry("qwe");
 		
 		FileEditorInput editorInput = (FileEditorInput) editor.getEditorInput();
+		IProject project = editorInput.getFile().getProject();
+		if (project == null)
+			return;
 		
+		
+		FileEditorInput f = new FileEditorInput(editorInput.getFile());
+		
+		
+		//editorInput.getFile().		
+		//project.g
 //		List<RegisteredLocation> list = registry.findForId("hahaha");//findForFilePath(editorInput.getFile().getFullPath());
 //		Document doc1 = list.get(0).getNode().getOwnerDocument();
 		//NodeInfo
@@ -76,17 +91,31 @@ public class MyAction extends Action{//SelectionProviderAction{
 		String text = doc.get();
 		ISelection sel = te.getSelectionProvider().getSelection();
 		TextSelection ts = (TextSelection) sel;
-		try {
+		try {			
+			
+			//IWorkspace workspace = ResourcesPlugin.getWorkspace();
+			//workspace.getRoot().getp
+			
 			String selectedText = doc.get(ts.getOffset(), ts.getLength());
 //			validate("<temp>" + selectedText + "</temp>");
-			DRLDocument DRLdoc = DRLParser.parse(new InputSource(new StringReader(doc.get(0, doc.getLength()))));
+			ProjectContent projectContent = new ProjectContent();
+			projectContent.parseAll(project);
+			
+			//DRLDocument DRLdoc = DRLParser.parse(new InputSource(new StringReader(doc.get(0, doc.getLength()))));
+			DRLDocument DRLdoc = projectContent.DRLDocs.get(editorInput.getFile());
 			int line1 = ts.getStartLine();
 			int column1 = ts.getOffset() - doc.getLineOffset(line1);
 			int line2 = ts.getEndLine();
 			int column2 = ts.getOffset() + ts.getLength() - doc.getLineOffset(line2);
 			PositionInDRL pos1 = DRLdoc.findByPosition(new PositionInText(line1 + 1, column1 + 1));
 			PositionInDRL pos2 = DRLdoc.findByPosition(new PositionInText(line2 + 1, column2 + 1));
+
+			SelectIntoInfElem refact = new SelectIntoInfElem();
+			refact.from = pos1; refact.to = pos2; refact.project = projectContent;
+			refact.perform();
 			
+			projectContent.saveAll();
+			/*			
 			if (pos1.parent == pos2.parent){
 				int from = pos1.parent.getChilds().indexOf(pos1.next);
 				int to = pos1.parent.getChilds().indexOf(pos2.prev);
@@ -96,7 +125,7 @@ public class MyAction extends Action{//SelectionProviderAction{
 				
 				doc.set(DRLdoc.getTextRepresentation());
 			}
-			
+*/			
 			int i = 10;
 			
 			

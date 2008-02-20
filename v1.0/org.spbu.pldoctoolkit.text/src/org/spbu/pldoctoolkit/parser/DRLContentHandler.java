@@ -8,6 +8,7 @@ import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
+import org.spbu.pldoctoolkit.refactor.ProjectContent;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
@@ -16,8 +17,14 @@ import org.xml.sax.SAXException;
 public class DRLContentHandler implements ContentHandler {
 	private Locator locator = null;	
 	private Stack<Element> elemStack = new Stack<Element>();
-	public DRLDocument doc = null;
+	private ProjectContent projectContent;
 	private PositionInText prevPos = null;
+	
+	public DRLDocument doc = null;
+	
+	public void setProject(ProjectContent project) {
+		projectContent = project;
+	}
 	
 	@Override
 	public void characters(char[] arg0, int arg1, int arg2) throws SAXException {
@@ -108,6 +115,11 @@ public class DRLContentHandler implements ContentHandler {
 		
 		prevPos.line = line;
 		prevPos.column = column;
+		
+		if (arg1.equals("Adapter"))
+			projectContent.Adapters.add( (LangElem)newElem );
+		else if (arg1.equals("InfElemRef"))
+			projectContent.InfElemRefs.add((LangElem)newElem);
 	}
 
 	@Override
