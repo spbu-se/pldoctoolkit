@@ -27,9 +27,12 @@ public class ProjectContent {
 			for (IResource resource : project.members()) {
 				if (resource instanceof IFile) {
 					IFile file = (IFile) resource;
-					//FileEditorInput input = new FileEditorInput(file);
-					DRLDocument doc = DRLParser.parse( new InputSource(file.getContents()), this );
-					DRLDocs.put(file, doc);
+					String ext = file.getFileExtension();
+					if (ext != null && ext.equals("drl"))
+					{
+						DRLDocument doc = DRLParser.parse( new InputSource(file.getContents()), this );
+						DRLDocs.put(file, doc);
+					}
 				}
 			}
 		}
