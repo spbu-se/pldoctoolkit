@@ -37,6 +37,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+/**
+ * @author Alexey
+ *
+ * TODO look how we can utilize EMF model here.
+ */
 class ProjectRegistryImpl implements ProjectRegistry {
 	private static final String DRLRESOLVE_PREFIX = "drlresolve://";
 	
