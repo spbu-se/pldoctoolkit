@@ -38,12 +38,12 @@ public class SelectIntoInfElem {
 			
 			Element infElem = searchInfElemiterator.next();
 			while (infElem != null) {				
-				infElem = searchInfElemiterator.next();
 				if (infElem instanceof LangElem) {
 					LangElem langElem = (LangElem)infElem; 
 					if ( langElem.tag.equals("InfElement") )
 						break;				
 				}
+				infElem = searchInfElemiterator.next();
 			}
 			
 			if (infElem == null)
@@ -61,19 +61,23 @@ public class SelectIntoInfElem {
 				if (infElemRef.attrs.getValue("infelemid").equals(idTofind)) {
 					String elemRefIdToFind = infElemRef.attrs.getValue("id");
 					for (LangElem adapter : project.Adapters) {
-						if (adapter.attrs.getValue("infElemRefId").equals(elemRefIdToFind)) {
+						if (adapter.attrs.getValue("infelemrefid").equals(elemRefIdToFind)) {
 							ArrayList<LangElem> nestsRefs = new ArrayList<LangElem>();							
 							for (Element elem : adapter.getChilds()) {
-								LangElem nestRef = (LangElem)elem;
-								String nestid = nestRef.attrs.getValue("nestid");
-								if (nestsInSelection.get(nestid) != null)
-									nestsRefs.add(nestRef);								
+								if (elem instanceof LangElem) {
+									LangElem nestRef = (LangElem)elem;
+									String nestid = nestRef.attrs.getValue("nestid");
+									if (nestsInSelection.get(nestid) != null)
+										nestsRefs.add(nestRef);		
+								}
 							}
 							
 							if (nestsRefs.size() != 0) {
 								adapter.getChilds().removeAll(nestsRefs);
 								LangElem newAdapter = createNewAdapter(adapter, refId);
 								adapter.getParent().getChilds().add(newAdapter);
+								newAdapter.setChilds(new ArrayList<Element>());								
+								newAdapter.getChilds().addAll(nestsRefs);
 							}
 						}
 					}
@@ -82,11 +86,17 @@ public class SelectIntoInfElem {
 			
 			
 			ArrayList<Element> childsToInsert = from.parent.removeChilds(fromIdx, toIdx);
+			LangElem newInfElem = createNewInfElem((LangElem)from.parent, elemId, elemName);
+			from.parent.getDRLDocument().getChilds().get(0).getChilds().add(newInfElem);
+			//newInfElem.appendChilds(childsToInsert);
+			newInfElem.setChilds(new ArrayList<Element>());
+			newInfElem.getChilds().addAll(childsToInsert);
+			
+			
 			LangElem newInfElemRef = createNewInfElemRef((LangElem)from.parent, "newRefId", elemId);
 			from.parent.getChilds().add(fromIdx, newInfElemRef);
 			
-			LangElem newInfElem = createNewInfElem((LangElem)from.parent, elemId, elemName);
-			from.parent.getDRLDocument().getChilds().get(0).getChilds().add(newInfElem);
+					
 			/*
 			ArrayList<Element> childsToInsert = pos1.parent.removeChilds(from, to);
 			DRLdoc.getChilds().get(0).appendChilds(childsToInsert);
@@ -108,7 +118,11 @@ public class SelectIntoInfElem {
 		for (int i = fromIdx; i <= toIdx; ++i) {
 			Element cur = from.parent.getChilds().get(i);
 			if (cur instanceof LangElem) {
-				//LangElem langElem = (LangElem) cur;
+				LangElem langElem = (LangElem) cur;
+				if (langElem.tag.equals("Nest")) {
+					String nestId = langElem.attrs.getValue("id");
+					nestsInSelection.put(nestId, langElem);
+				}
 				TreeIterator treeIterator = new TreeIterator(cur);
 				while (treeIterator.hasNext()) {
 					Element elem = treeIterator.next();
@@ -124,21 +138,21 @@ public class SelectIntoInfElem {
 		}
 	}
 	
-	private LangElem createNewAdapter(LangElem prevAdapter, String infElemRefId) {
+	private LangElem createNewAdapter(LangElem prevAdapter, String infElemRefId) {		
 		LangElem newAdapter	= new LangElem("Adapter", "Adapter", null, prevAdapter.getParent(), prevAdapter.getDRLDocument(), new AttributesImpl());
 		((AttributesImpl)newAdapter.attrs).addAttribute("infelemrefid", "infelemrefid", "infelemrefid", "", infElemRefId);
 		return newAdapter;
 	}
 	
 	private LangElem createNewInfElem(LangElem parent, String id, String name) {
-		LangElem newInfElem	= new LangElem("InfElement", "InfElement", null, parent, parent.getDRLDocument(), null);
+		LangElem newInfElem	= new LangElem("InfElement", "InfElement", null, parent, parent.getDRLDocument(), new AttributesImpl());
 		((AttributesImpl)newInfElem.attrs).addAttribute("id", "id", "id", "", id);
 		((AttributesImpl)newInfElem.attrs).addAttribute("name", "name", "name", "", name);
 		return newInfElem;
 	}
 	
 	private LangElem createNewInfElemRef(LangElem parent, String id, String infelemid) {
-		LangElem newInfElem	= new LangElem("InfElemRef", "InfElemRef", null, parent, parent.getDRLDocument(), null);
+		LangElem newInfElem	= new LangElem("InfElemRef", "InfElemRef", null, parent, parent.getDRLDocument(), new AttributesImpl());
 		((AttributesImpl)newInfElem.attrs).addAttribute("id", "id", "id", "", id);
 		((AttributesImpl)newInfElem.attrs).addAttribute("infelemid", "infelemid", "infelemid", "", infelemid);
 		return newInfElem;

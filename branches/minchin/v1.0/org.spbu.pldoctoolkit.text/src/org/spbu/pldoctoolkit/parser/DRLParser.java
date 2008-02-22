@@ -28,8 +28,8 @@ public class DRLParser {
 	
 	public static DRLDocument parse(InputSource input, ProjectContent project)
 	{		
-		try {			 
-						
+		try {
+			contetnHandler.setProject(project);
 			xmlReader.parse(input);			
 		}
 		catch (IOException e) {
@@ -42,8 +42,8 @@ public class DRLParser {
 		return ((DRLContentHandler)xmlReader.getContentHandler()).doc;
 		//xmlReader.setErrorHandler(errorHandler);
 	}	
-	
+/*	
 	public void setProject(ProjectContent project) {
 		contetnHandler.setProject(project);
-	}
+	}*/
 }
