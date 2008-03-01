@@ -47,6 +47,7 @@
     <genClasses ecoreClass="model.ecore#//ProductLine">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ProductLine/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ProductLine/products"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ProductLine/productDocumentations"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Product">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Product/name"/>

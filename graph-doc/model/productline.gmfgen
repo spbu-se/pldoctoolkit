@@ -224,6 +224,33 @@
         </modelFacet>
       </labels>
     </topLevelNodes>
+    <links
+        visualID="3001"
+        editPartClassName="ProductInfProductLinkEditPart"
+        itemSemanticEditPolicyClassName="ProductInfProductLinkItemSemanticEditPolicy"
+        notationViewFactoryClassName="ProductInfProductLinkViewFactory"
+        createCommandClassName="ProductInfProductLinkCreateCommand"
+        reorientCommandClassName="ProductInfProductLinkReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          uniqueIdentifier="org.spbu.pldoctoolkit.graph.diagram.productline.ProductInfProductLink_3001"
+          displayName="ProductInfProductLink"
+          editHelperClassName="ProductInfProductLinkEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="ProductInfProductLinkFigure"
+          classBody="...">
+        <requiredPluginIDs>ord.eclipse.draw2d</requiredPluginIDs>
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="model.genmodel#//graph/ProductDocumentation/finalInfProducts"/>
+      </modelFacet>
+    </links>
     <compartments
         visualID="5001"
         editPartClassName="ProductLineProductLineDataCompartmentEditPart"
@@ -380,7 +407,7 @@
       iD="org.spbu.pldoctoolkit.graph.diagram.productline"
       name="ProductLine Diagram Plugin"
       provider="Spbu Plugin Provider, Inc"
-      version="1.0.0.0"
+      version="1.0.1.0"
       activatorClassName="DrlModelDiagramEditorPlugin"/>
   <editor/>
   <navigator>
@@ -405,6 +432,7 @@
         parent="//@diagram"
         child="//@diagram/@topLevelNodes.0"/>
   </navigator>
+  <diagramUpdater/>
   <propertySheet>
     <tabs
         xsi:type="gmfgen:GenStandardPropertyTab"

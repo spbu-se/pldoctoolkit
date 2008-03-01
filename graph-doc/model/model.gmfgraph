@@ -195,6 +195,13 @@
           xsi:type="gmfgraph:Rectangle"
           name="ProductLineDataFigure"/>
     </descriptors>
+    <descriptors
+        name="ProductInfProductConnectionFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ProductInfProductConnectionFigure"
+          lineKind="LINE_DASH"/>
+    </descriptors>
   </figures>
   <nodes
       name="InfElement"
@@ -237,6 +244,9 @@
   <connections
       name="InfElemRefGroupConnection"
       figure="InfElemRefGroupConnectionFigure"/>
+  <connections
+      name="ProductInfProductConnection"
+      figure="ProductInfProductConnectionFigure"/>
   <compartments
       name="ProductsCompartment"
       figure="PLSchemeFigure">
