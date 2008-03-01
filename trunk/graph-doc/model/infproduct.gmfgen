@@ -450,6 +450,7 @@
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
   </navigator>
+  <diagramUpdater/>
   <propertySheet>
     <tabs
         xsi:type="gmfgen:GenStandardPropertyTab"
