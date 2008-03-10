@@ -79,7 +79,8 @@ public class DrlModelCreationWizardPage extends WizardNewFileCreationPage {
 		if (extension != null
 				&& !getFilePath().toString().endsWith("." + extension)) {
 			setErrorMessage(NLS.bind(
-					"File name should have ''{0}'' extension.", extension));
+					Messages.DrlModelCreationWizardPageExtensionError,
+					extension));
 			return false;
 		}
 		return true;

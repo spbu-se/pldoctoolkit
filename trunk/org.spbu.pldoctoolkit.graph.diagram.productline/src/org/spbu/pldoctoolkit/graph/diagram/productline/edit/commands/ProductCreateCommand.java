@@ -8,7 +8,7 @@ import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.command.diagram.DrlElementCreateCommand;
 
 /**
- * @generated
+ * @generated NOT
  */
 public class ProductCreateCommand extends DrlElementCreateCommand {
 
@@ -37,5 +37,5 @@ public class ProductCreateCommand extends DrlElementCreateCommand {
 		}
 		return container;
 	}
-	
+
 }

@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.view.factories.BasicNodeViewFactory;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.ListCompartmentViewFactory;
 import org.eclipse.gmf.runtime.notation.DrawerStyle;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
@@ -19,7 +20,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLinePro
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**
- * @generated
+ * @generated NOT
  */
 public class ProductLineProductLineDataCompartmentViewFactory extends
 		ListCompartmentViewFactory {

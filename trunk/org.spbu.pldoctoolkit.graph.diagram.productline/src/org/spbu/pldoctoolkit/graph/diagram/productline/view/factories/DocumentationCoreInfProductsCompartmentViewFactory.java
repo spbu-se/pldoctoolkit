@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EcoreFactory;
 
+import org.eclipse.gmf.runtime.diagram.ui.view.factories.BasicNodeViewFactory;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.ListCompartmentViewFactory;
 
 import org.eclipse.gmf.runtime.notation.DrawerStyle;
@@ -52,15 +53,6 @@ public class DocumentationCoreInfProductsCompartmentViewFactory extends
 				index, persisted);
 		setupCompartmentTitle(view);
 		setupCompartmentCollapsed(view);
-		if (!ProductLineEditPart.MODEL_ID.equals(DrlModelVisualIDRegistry
-				.getModelID(containerView))) {
-			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
-					.createEAnnotation();
-			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put(
-					"modelID", ProductLineEditPart.MODEL_ID); //$NON-NLS-1$
-			view.getEAnnotations().add(shortcutAnnotation);
-		}
 	}
 
 	/**

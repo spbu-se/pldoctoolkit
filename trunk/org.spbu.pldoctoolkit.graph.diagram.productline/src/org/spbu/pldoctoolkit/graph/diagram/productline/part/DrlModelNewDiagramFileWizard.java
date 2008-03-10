@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -28,6 +29,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
@@ -46,18 +48,20 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 	/**
 	 * @generated
 	 */
-	public DrlModelNewDiagramFileWizard(
-			org.eclipse.emf.common.util.URI domainModelURI,
+	public DrlModelNewDiagramFileWizard(URI domainModelURI,
 			EObject diagramRoot, TransactionalEditingDomain editingDomain) {
 		assert domainModelURI != null : "Domain model uri must be specified"; //$NON-NLS-1$
 		assert diagramRoot != null : "Doagram root element must be specified"; //$NON-NLS-1$
 		assert editingDomain != null : "Editing domain must be specified"; //$NON-NLS-1$
 
 		myFileCreationPage = new WizardNewFileCreationPage(
-				"Initialize new diagram file", StructuredSelection.EMPTY);
-		myFileCreationPage.setTitle("Diagram file");
-		myFileCreationPage.setDescription("Create new diagram based on "
-				+ ProductLineEditPart.MODEL_ID + " model content");
+				Messages.DrlModelNewDiagramFileWizard_CreationPageName,
+				StructuredSelection.EMPTY);
+		myFileCreationPage
+				.setTitle(Messages.DrlModelNewDiagramFileWizard_CreationPageTitle);
+		myFileCreationPage.setDescription(NLS.bind(
+				Messages.DrlModelNewDiagramFileWizard_CreationPageDescription,
+				ProductLineEditPart.MODEL_ID));
 		IPath filePath;
 		String fileName = domainModelURI.trimFileExtension().lastSegment();
 		if (domainModelURI.isPlatformResource()) {
@@ -67,18 +71,19 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 			filePath = new Path(domainModelURI.trimSegments(1).toFileString());
 		} else {
 			// TODO : use some default path
-			throw new IllegalArgumentException("Unsupported URI: "
-					+ domainModelURI);
+			throw new IllegalArgumentException(
+					"Unsupported URI: " + domainModelURI); //$NON-NLS-1$
 		}
 		myFileCreationPage.setContainerFullPath(filePath);
 		myFileCreationPage.setFileName(DrlModelDiagramEditorUtil
 				.getUniqueFileName(filePath, fileName, "productline_diagram")); //$NON-NLS-1$
 
 		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(
-				"Select diagram root element");
-		diagramRootElementSelectionPage.setTitle("Diagram root element");
+				Messages.DrlModelNewDiagramFileWizard_RootSelectionPageName);
 		diagramRootElementSelectionPage
-				.setDescription("Select semantic model element to be depicted on diagram");
+				.setTitle(Messages.DrlModelNewDiagramFileWizard_RootSelectionPageTitle);
+		diagramRootElementSelectionPage
+				.setDescription(Messages.DrlModelNewDiagramFileWizard_RootSelectionPageDescription);
 		diagramRootElementSelectionPage.setModelElement(diagramRoot);
 
 		myEditingDomain = editingDomain;
@@ -260,7 +265,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 		 * @generated
 		 */
 		protected String getSelectionTitle() {
-			return "Select diagram root element:";
+			return Messages.DrlModelNewDiagramFileWizard_RootSelectionPageSelectionTitle;
 		}
 
 		/**
@@ -268,7 +273,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 		 */
 		protected boolean validatePage() {
 			if (selectedModelElement == null) {
-				setErrorMessage("Diagram root element is not selected");
+				setErrorMessage(Messages.DrlModelNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
 				return false;
 			}
 			boolean result = ViewService
@@ -279,7 +284,7 @@ public class DrlModelNewDiagramFileWizard extends Wizard {
 									ProductLineEditPart.MODEL_ID,
 									DrlModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null
-					: "Invalid diagram root element is selected");
+					: Messages.DrlModelNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
 			return result;
 		}
 	}

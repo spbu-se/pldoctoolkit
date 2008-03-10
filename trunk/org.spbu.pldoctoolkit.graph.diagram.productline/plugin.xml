@@ -283,7 +283,9 @@
 
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <?gmfgen generated="true"?>
-      <propertyContributor contributorId="org.spbu.pldoctoolkit.graph.diagram.productline" labelProvider="org.spbu.pldoctoolkit.graph.diagram.productline.sheet.DrlModelSheetLabelProvider">
+      <propertyContributor
+            contributorId="org.spbu.pldoctoolkit.graph.diagram.productline"
+            labelProvider="org.spbu.pldoctoolkit.graph.diagram.productline.sheet.DrlModelSheetLabelProvider">
          <propertyCategory category="domain"/>
          <propertyCategory category="visual"/>
          <propertyCategory category="extra"/>
@@ -452,6 +454,17 @@
             <param name="semanticHint" value="2005"/>
          </metamodelType>
       </metamodel>
+      <metamodel nsURI="http://math.spbu.ru/drl">
+      	 <!-- HAND fully revamped -->
+         <specializationType
+               id="org.spbu.pldoctoolkit.graph.diagram.productline.ProductInfProductLink_3001"
+               name="%metatype.name.ProductDocumentationFinalInfProducts_3001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               edithelperadvice="org.spbu.pldoctoolkit.graph.diagram.productline.edit.helpers.ProductInfProductLinkEditHelperAdvice">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="3001"/>
+         </specializationType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
@@ -471,6 +484,7 @@
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.Product_2003"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.Node_2004"/>
          <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.InfProduct_2005"/>
+         <elementType ref="org.spbu.pldoctoolkit.graph.diagram.productline.ProductInfProductLink_3001"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -633,7 +647,44 @@
                id="org.spbu.pldoctoolkit.graph.diagram.productline.InitDiagramAction">
          </action>
       </objectContribution>
+   </extension><extension point="org.eclipse.ui.contexts">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="org.spbu.pldoctoolkit.graph.diagram.productline.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
    </extension>
+<extension point="org.eclipse.ui.newWizards">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/DrlDiagramFile.gif"
+  	     category="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreationWizardID"
+  	     class="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreationWizard"
+  	     id="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+<extension point="org.eclipse.ui.commands">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="org.spbu.pldoctoolkit.graph.diagram.productline.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+<extension point="org.eclipse.ui.bindings">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="org.spbu.pldoctoolkit.graph.diagram.productline.updateDiagram"
+         contextId="org.spbu.pldoctoolkit.graph.diagram.productline.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+
 
 
 </plugin>

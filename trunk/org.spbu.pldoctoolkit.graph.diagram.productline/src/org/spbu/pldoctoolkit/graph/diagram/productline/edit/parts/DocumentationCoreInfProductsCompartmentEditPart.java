@@ -14,6 +14,7 @@ import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -89,10 +90,12 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 				new DocumentationCoreInfProductsCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, createComponentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, 
-				new PLSchemeProductsCompartmentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				createComponentEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new PLSchemeProductsCompartmentItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
 				new DocumentationCoreInfProductsCompartmentItemSemanticEditPolicy());
 	}
 
@@ -121,23 +124,22 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 		};
 		return lep;
 	}
-	
+
 	/**
 	 * @return
 	 */
 	protected ComponentEditPolicy createComponentEditPolicy() {
 		return new ComponentEditPolicy() {
-			   @Override
-			   protected Command createDeleteSemanticCommand(GroupRequest deleteRequest)
-			   {
-			      return UnexecutableCommand.INSTANCE;
-			   }
-			 
-			   @Override
-			   protected Command createDeleteViewCommand(GroupRequest deleteRequest)
-			   {
-			      return UnexecutableCommand.INSTANCE;
-			   }
+			@Override
+			protected Command createDeleteSemanticCommand(
+					GroupRequest deleteRequest) {
+				return UnexecutableCommand.INSTANCE;
+			}
+
+			@Override
+			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
+				return UnexecutableCommand.INSTANCE;
+			}
 		};
 	}
 
@@ -150,5 +152,4 @@ public class DocumentationCoreInfProductsCompartmentEditPart extends
 		}
 	}
 
-	
 }

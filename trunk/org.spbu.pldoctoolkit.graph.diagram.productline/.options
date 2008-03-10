@@ -1,7 +1,7 @@
-# Debugging options for the org.spbu.pldoctoolkit.graph.diagram.productline plug-in
+# Tracing options for the org.spbu.pldoctoolkit.graph.diagram.productline plug-in
 
-# Turn on general debugging for the org.spbu.pldoctoolkit.graph.diagram.productline plug-in
-org.spbu.pldoctoolkit.graph.diagram.productline/debug=false
+# Common issues
+org.spbu.pldoctoolkit.graph.diagram.productline/debug=true
 
-# Turn on debugging of visualID processing
+# Visual IDs
 org.spbu.pldoctoolkit.graph.diagram.productline/debug/visualID=true

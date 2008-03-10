@@ -1,10 +1,14 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramUpdater;
+import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelNodeDescriptor;
 
 /**
  * @generated
@@ -22,9 +26,8 @@ public class ProductLineProductLineDataCompartmentCanonicalEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected boolean shouldDeleteView(View view) {
-		return view.isSetElement() && view.getElement() != null
-				&& view.getElement().eIsProxy();
+	protected boolean isOrphaned(Collection semanticChildren, final View view) {
+		return false;
 	}
 
 	/**

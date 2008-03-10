@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
@@ -37,13 +38,16 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocu
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.util.LocalSelectionTransfer;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.dnd.Transfer;
@@ -56,7 +60,10 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
+import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.part.IShowInTargetList;
+import org.eclipse.ui.part.ShowInContext;
 import org.spbu.pldoctoolkit.graph.DocumentationCore;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.ProductLine;
@@ -74,6 +81,11 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 	 */
 	public static final String ID = "org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorID"; //$NON-NLS-1$
 
+	/**
+	 * @generated
+	 */
+	public static final String CONTEXT_ID = "org.spbu.pldoctoolkit.graph.diagram.productline.ui.diagramContext"; //$NON-NLS-1$
+
 	public static final String RESOURCESET_PREFERENCE_ID = "resourceset";
 	public static final String RESOURCESET_ITEM_SEPARATOR = "::";
 
@@ -82,6 +94,13 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 	 */
 	public DrlModelDiagramEditor() {
 		super(true);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected String getContextID() {
+		return CONTEXT_ID;
 	}
 
 	/**
@@ -109,6 +128,20 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 	 */
 	public String getContributorId() {
 		return DrlModelDiagramEditorPlugin.ID;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Object getAdapter(Class type) {
+		if (type == IShowInTargetList.class) {
+			return new IShowInTargetList() {
+				public String[] getShowInTargetIds() {
+					return new String[] { ProjectExplorer.VIEW_ID };
+				}
+			};
+		}
+		return super.getAdapter(type);
 	}
 
 	/**
@@ -190,7 +223,7 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 		}
 		if (provider.isDeleted(input) && original != null) {
 			String message = NLS.bind(
-					"The original file ''{0}'' has been deleted.", original
+					Messages.DrlModelDiagramEditor_SavingDeletedFile, original
 							.getName());
 			dialog.setErrorMessage(null);
 			dialog.setMessage(message, IMessageProvider.WARNING);
@@ -219,9 +252,9 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 				.getEditorReferences();
 		for (int i = 0; i < editorRefs.length; i++) {
 			if (matchingStrategy.matches(editorRefs[i], newInput)) {
-				MessageDialog
-						.openWarning(shell, "Problem During Save As...",
-								"Save could not be completed. Target file is already open in another editor.");
+				MessageDialog.openWarning(shell,
+						Messages.DrlModelDiagramEditor_SaveAsErrorTitle,
+						Messages.DrlModelDiagramEditor_SaveAsErrorMessage);
 				return;
 			}
 		}
@@ -235,8 +268,10 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 		} catch (CoreException x) {
 			IStatus status = x.getStatus();
 			if (status == null || status.getSeverity() != IStatus.CANCEL) {
-				ErrorDialog.openError(shell, "Save Problems",
-						"Could not save file.", x.getStatus());
+				ErrorDialog.openError(shell,
+						Messages.DrlModelDiagramEditor_SaveErrorTitle,
+						Messages.DrlModelDiagramEditor_SaveErrorMessage, x
+								.getStatus());
 			}
 		} finally {
 			provider.changed(newInput);
@@ -247,6 +282,31 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 		if (progressMonitor != null) {
 			progressMonitor.setCanceled(!success);
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public ShowInContext getShowInContext() {
+		return new ShowInContext(getEditorInput(), getNavigatorSelection());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ISelection getNavigatorSelection() {
+		IDiagramDocument document = getDiagramDocument();
+		if (document == null) {
+			return StructuredSelection.EMPTY;
+		}
+		Diagram diagram = document.getDiagram();
+		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
+		if (file != null) {
+			DrlModelNavigatorItem item = new DrlModelNavigatorItem(diagram,
+					file, false);
+			return new StructuredSelection(item);
+		}
+		return StructuredSelection.EMPTY;
 	}
 
 	/* (non-Javadoc)
@@ -367,7 +427,7 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 										.eClass().getClassifierID()) {
 							DrlModelDiagramEditorPlugin.getInstance().logInfo(
 									"adding " + newResRoot);
-//							pline.getDocumentationCores().add(newResRoot);
+							//							pline.getDocumentationCores().add(newResRoot);
 						}
 					}
 				}
@@ -411,10 +471,10 @@ public class DrlModelDiagramEditor extends DiagramDocumentEditor implements
 		String resourcesString = "";
 		boolean first = true;
 		EList<Resource> docCoreResources = new UniqueEList<Resource>();
-//		for (Object doc : pline.getDocumentationCores()) {
-//			Resource docResource = ((DocumentationCore) doc).eResource();
-//			docCoreResources.add(docResource);
-//		}
+		//		for (Object doc : pline.getDocumentationCores()) {
+		//			Resource docResource = ((DocumentationCore) doc).eResource();
+		//			docCoreResources.add(docResource);
+		//		}
 
 		for (Resource resource : docCoreResources) {
 			if (!first) {

@@ -9,6 +9,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -47,7 +48,7 @@ public class ProductItemSemanticEditPolicy extends
 		cc.add(getMSLWrapper(new DrlElementDestroyCommand(req)));
 		return cc;
 	}
-	
+
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if (DrlModelElementTypes.Product_2003 == req.getElementType()) {

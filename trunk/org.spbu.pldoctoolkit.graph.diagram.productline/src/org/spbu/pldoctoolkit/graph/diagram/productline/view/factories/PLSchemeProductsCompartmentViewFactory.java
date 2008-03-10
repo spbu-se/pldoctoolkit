@@ -4,21 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
-
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EcoreFactory;
-
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.ListCompartmentViewFactory;
-
 import org.eclipse.gmf.runtime.notation.DrawerStyle;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
-
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeProductsCompartmentEditPart;
-import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
-
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**
@@ -52,15 +44,6 @@ public class PLSchemeProductsCompartmentViewFactory extends
 				index, persisted);
 		setupCompartmentTitle(view);
 		setupCompartmentCollapsed(view);
-		if (!ProductLineEditPart.MODEL_ID.equals(DrlModelVisualIDRegistry
-				.getModelID(containerView))) {
-			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
-					.createEAnnotation();
-			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put(
-					"modelID", ProductLineEditPart.MODEL_ID); //$NON-NLS-1$
-			view.getEAnnotations().add(shortcutAnnotation);
-		}
 	}
 
 	/**

@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.spbu.pldoctoolkit.graph.diagram.productline; singleton:=true
-Bundle-Version: 1.0.0.0
+Bundle-Version: 1.0.1.0
 Bundle-ClassPath: .
 Bundle-Activator: org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts, 
+Export-Package: org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts,
  org.spbu.pldoctoolkit.graph.diagram.productline.part,
  org.spbu.pldoctoolkit.graph.diagram.productline.providers
 Require-Bundle: org.eclipse.core.runtime,
@@ -35,6 +35,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.spbu.pldoctoolkit.graph;visibility:=reexport,
  org.spbu.pldoctoolkit.graph.edit;visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
- org.eclipse.draw2d;visibility:=reexport
+ org.eclipse.draw2d;visibility:=reexport,
+ org.eclipse.ui.navigator.resources
 Eclipse-LazyStart: true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

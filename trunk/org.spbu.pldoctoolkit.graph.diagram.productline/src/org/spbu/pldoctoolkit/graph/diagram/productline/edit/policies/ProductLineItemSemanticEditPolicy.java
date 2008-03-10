@@ -22,7 +22,7 @@ public class ProductLineItemSemanticEditPolicy extends
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if (DrlModelElementTypes.ProductLine_1001 == req.getElementType()) {
-			return getMSLWrapper(new ProductLineCreateCommand(req));
+			return getGEFWrapper(new ProductLineCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -33,7 +33,7 @@ public class ProductLineItemSemanticEditPolicy extends
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
 				.getEditingDomain();
-		return getMSLWrapper(new DuplicateAnythingCommand(editingDomain, req));
+		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req));
 	}
 
 	/**
