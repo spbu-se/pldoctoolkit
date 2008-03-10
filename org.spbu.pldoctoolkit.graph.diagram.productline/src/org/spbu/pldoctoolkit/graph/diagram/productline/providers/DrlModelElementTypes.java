@@ -48,14 +48,17 @@ public class DrlModelElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType ProductLine_79 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.ProductLine_79"); //$NON-NLS-1$
+	
 	/**
 	 * @generated
 	 */
 	public static final IElementType ProductLine_1001 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.ProductLine_1001"); //$NON-NLS-1$
+	
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_2001 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.Node_2001"); //$NON-NLS-1$
+	
 	/**
 	 * @generated
 	 */
@@ -75,6 +78,11 @@ public class DrlModelElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType InfProduct_2005 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.InfProduct_2005"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ProductDocumentationFinalInfProducts_3001 = getElementType("org.spbu.pldoctoolkit.graph.diagram.productline.ProductInfProductLink_3001"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -195,6 +203,10 @@ public class DrlModelElementTypes extends ElementInitializers {
 			elements.put(Product_2003, DrlPackage.eINSTANCE.getProduct());
 
 			elements.put(InfProduct_2005, DrlPackage.eINSTANCE.getInfProduct());
+
+			elements.put(ProductDocumentationFinalInfProducts_3001,
+					DrlPackage.eINSTANCE
+							.getProductDocumentation_FinalInfProducts());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -219,6 +231,7 @@ public class DrlModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Product_2003);
 			KNOWN_ELEMENT_TYPES.add(Node_2004);
 			KNOWN_ELEMENT_TYPES.add(InfProduct_2005);
+			KNOWN_ELEMENT_TYPES.add(ProductDocumentationFinalInfProducts_3001);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}

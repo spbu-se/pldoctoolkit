@@ -53,7 +53,8 @@ public class ProductEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 * canonical policy removed, for no special purpose in fact
 	 */
 	protected void createDefaultEditPolicies() {
 

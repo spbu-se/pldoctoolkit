@@ -26,6 +26,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2Ed
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin;
+import org.spbu.pldoctoolkit.graph.diagram.productline.part.Messages;
 
 /**
  * @generated
@@ -34,11 +35,12 @@ public class DrlModelModelingAssistantProvider extends
 		ModelingAssistantProvider {
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
+//HAND commented
 //		if (editPart instanceof ProductLine2EditPart) {
 //			List types = new ArrayList();
 //			types.add(DrlModelElementTypes.Node_2001);
@@ -60,6 +62,7 @@ public class DrlModelModelingAssistantProvider extends
 			types.add(DrlModelElementTypes.InfProduct_2005);
 			return types;
 		}
+//HAND commented
 //		if (editPart instanceof ProductLineEditPart) {
 //			List types = new ArrayList();
 //			types.add(DrlModelElementTypes.ProductLine_1001);
@@ -72,6 +75,8 @@ public class DrlModelModelingAssistantProvider extends
 	 * @generated
 	 */
 	public List getRelTypesOnSource(IAdaptable source) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
 		return Collections.EMPTY_LIST;
 	}
 
@@ -79,6 +84,8 @@ public class DrlModelModelingAssistantProvider extends
 	 * @generated
 	 */
 	public List getRelTypesOnTarget(IAdaptable target) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
 		return Collections.EMPTY_LIST;
 	}
 
@@ -87,6 +94,10 @@ public class DrlModelModelingAssistantProvider extends
 	 */
 	public List getRelTypesOnSourceAndTarget(IAdaptable source,
 			IAdaptable target) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
 		return Collections.EMPTY_LIST;
 	}
 
@@ -95,6 +106,8 @@ public class DrlModelModelingAssistantProvider extends
 	 */
 	public List getTypesForSource(IAdaptable target,
 			IElementType relationshipType) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
 		return Collections.EMPTY_LIST;
 	}
 
@@ -103,6 +116,8 @@ public class DrlModelModelingAssistantProvider extends
 	 */
 	public List getTypesForTarget(IAdaptable source,
 			IElementType relationshipType) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
 		return Collections.EMPTY_LIST;
 	}
 
@@ -170,8 +185,8 @@ public class DrlModelModelingAssistantProvider extends
 						.getItemProvidersAdapterFactory());
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
 				shell, labelProvider);
-		dialog.setMessage("Available domain model elements:");
-		dialog.setTitle("Select domain model element");
+		dialog.setMessage(Messages.DrlModelModelingAssistantProviderMessage);
+		dialog.setTitle(Messages.DrlModelModelingAssistantProviderTitle);
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements);
 		EObject selected = null;

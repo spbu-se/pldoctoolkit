@@ -8,7 +8,7 @@ import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.command.diagram.DrlElementCreateCommand;
 
 /**
- * @generated
+ * @generated NOT
  */
 public class InfProductCreateCommand extends DrlElementCreateCommand {
 
@@ -31,9 +31,9 @@ public class InfProductCreateCommand extends DrlElementCreateCommand {
 	 */
 	protected EObject getElementToEdit() {
 		//XXX a hack - check the diagram structure
-//		EObject container = ((CreateElementRequest) getRequest())
-//				.getContainer();
-		
+		//		EObject container = ((CreateElementRequest) getRequest())
+		//				.getContainer();
+		// HAND
 		EObject container = (EObject) ((CreateElementRequest) getRequest())
 				.getParameter("container");
 		if (container instanceof View) {

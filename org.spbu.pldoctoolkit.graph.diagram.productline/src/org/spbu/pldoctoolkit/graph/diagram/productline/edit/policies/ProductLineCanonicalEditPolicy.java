@@ -53,6 +53,9 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPar
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineEditPart;
 
+import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramUpdater;
+import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelLinkDescriptor;
+import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelNodeDescriptor;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
 /**
@@ -65,10 +68,13 @@ public class ProductLineCanonicalEditPolicy extends
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		List result = new LinkedList();
-		EObject modelObject = ((View) getHost().getModel()).getElement();
 		View viewObject = (View) getHost().getModel();
-
+		List result = new LinkedList();
+		for (Iterator it = DrlModelDiagramUpdater
+				.getProductLine_79SemanticChildren(viewObject).iterator(); it
+				.hasNext();) {
+			result.add(((DrlModelNodeDescriptor) it.next()).getModelElement());
+		}
 		return result;
 	}
 
@@ -76,15 +82,20 @@ public class ProductLineCanonicalEditPolicy extends
 	 * @generated
 	 */
 	protected boolean shouldDeleteView(View view) {
-		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
-			return view.isSetElement()
-					&& (view.getElement() == null || view.getElement()
-							.eIsProxy());
+		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean isOrphaned(Collection semanticChildren, final View view) {
+		int visualID = DrlModelVisualIDRegistry.getVisualID(view);
+		switch (visualID) {
+		case ProductLine2EditPart.VISUAL_ID:
+			return !semanticChildren.contains(view.getElement())
+					|| visualID != DrlModelVisualIDRegistry.getNodeVisualID(
+							(View) getHost().getModel(), view.getElement());
 		}
-		int nodeVID = DrlModelVisualIDRegistry.getVisualID(view);
-		// switch (nodeVID) {
-		// return true;
-		// }
 		return false;
 	}
 
@@ -130,7 +141,6 @@ public class ProductLineCanonicalEditPolicy extends
 	protected void refreshSemantic() {
 		List createdViews = new LinkedList();
 		createdViews.addAll(refreshSemanticChildren());
-		createdViews.addAll(refreshPhantoms());
 		List createdConnectionViews = new LinkedList();
 		createdConnectionViews.addAll(refreshSemanticConnections());
 		createdConnectionViews.addAll(refreshConnections());
@@ -149,181 +159,126 @@ public class ProductLineCanonicalEditPolicy extends
 	/**
 	 * @generated
 	 */
-	private Collection refreshPhantoms() {
-		Collection phantomNodes = new LinkedList();
-		EObject diagramModelObject = ((View) getHost().getModel()).getElement();
-		Diagram diagram = getDiagram();
-		Resource resource = diagramModelObject.eResource();
-		for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
-			EObject nextResourceObject = (EObject) it.next();
-			if (nextResourceObject == diagramModelObject) {
+	private Collection refreshConnections() {
+		Map domain2NotationMap = new HashMap();
+		Collection linkDescriptors = collectAllLinks(getDiagram(),
+				domain2NotationMap);
+		Collection existingLinks = new LinkedList(getDiagram().getEdges());
+		for (Iterator linksIterator = existingLinks.iterator(); linksIterator
+				.hasNext();) {
+			Edge nextDiagramLink = (Edge) linksIterator.next();
+			int diagramLinkVisualID = DrlModelVisualIDRegistry
+					.getVisualID(nextDiagramLink);
+			if (diagramLinkVisualID == -1) {
+				if (nextDiagramLink.getSource() != null
+						&& nextDiagramLink.getTarget() != null) {
+					linksIterator.remove();
+				}
 				continue;
 			}
-			int nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(diagram,
-					nextResourceObject);
-			switch (nodeVID) {
-			case ProductLine2EditPart.VISUAL_ID: {
-				phantomNodes.add(nextResourceObject);
-				break;
-			}
-			}
-		}
-
-		for (Iterator diagramNodes = getDiagram().getChildren().iterator(); diagramNodes
-				.hasNext();) {
-			View nextView = (View) diagramNodes.next();
-			EObject nextViewElement = nextView.getElement();
-			if (phantomNodes.contains(nextViewElement)) {
-				phantomNodes.remove(nextViewElement);
-			}
-		}
-		return createPhantomNodes(phantomNodes);
-	}
-
-	/**
-	 * @generated
-	 */
-	private Collection createPhantomNodes(Collection nodes) {
-		if (nodes.isEmpty()) {
-			return Collections.EMPTY_LIST;
-		}
-		List descriptors = new ArrayList();
-		for (Iterator elements = nodes.iterator(); elements.hasNext();) {
-			EObject element = (EObject) elements.next();
-			CreateViewRequest.ViewDescriptor descriptor = getViewDescriptor(element);
-			descriptors.add(descriptor);
-		}
-		Diagram diagram = getDiagram();
-		EditPart diagramEditPart = getDiagramEditPart();
-
-		CreateViewRequest request = getCreateViewRequest(descriptors);
-		Command cmd = diagramEditPart.getCommand(request);
-		if (cmd == null) {
-			CompositeCommand cc = new CompositeCommand(
-					DiagramUIMessages.AddCommand_Label);
-			for (Iterator descriptorsIterator = descriptors.iterator(); descriptorsIterator
+			EObject diagramLinkObject = nextDiagramLink.getElement();
+			EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
+			EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
+			for (Iterator LinkDescriptorsIterator = linkDescriptors.iterator(); LinkDescriptorsIterator
 					.hasNext();) {
-				CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor) descriptorsIterator
+				DrlModelLinkDescriptor nextLinkDescriptor = (DrlModelLinkDescriptor) LinkDescriptorsIterator
 						.next();
-				ICommand createCommand = new CreateCommand(
-						((IGraphicalEditPart) getHost()).getEditingDomain(),
-						descriptor, diagram);
-				cc.compose(createCommand);
-			}
-			cmd = new ICommandProxy(cc);
-		}
-
-		List adapters = Collections.EMPTY_LIST;
-		if (cmd != null && cmd.canExecute()) {
-			SetViewMutabilityCommand.makeMutable(
-					new EObjectAdapter(((IGraphicalEditPart) diagramEditPart)
-							.getNotationView())).execute();
-			executeCommand(cmd);
-			adapters = (List) request.getNewObject();
-		}
-		diagramEditPart.refresh();
-		return adapters;
-	}
-
-	/**
-	 * @generated
-	 */
-	private EditPart getDiagramEditPart() {
-		return (EditPart) getHost().getViewer().getEditPartRegistry().get(
-				getDiagram());
-	}
-
-	/**
-	 * @generated
-	 */
-	private Collection myLinkDescriptors = new LinkedList();
-
-	/**
-	 * @generated
-	 */
-	private Map myEObject2ViewMap = new HashMap();
-
-	/**
-	 * @generated
-	 */
-	private Collection refreshConnections() {
-		try {
-			collectAllLinks(getDiagram());
-			Collection existingLinks = new LinkedList(getDiagram().getEdges());
-			for (Iterator diagramLinks = existingLinks.iterator(); diagramLinks
-					.hasNext();) {
-				Edge nextDiagramLink = (Edge) diagramLinks.next();
-				EObject diagramLinkObject = nextDiagramLink.getElement();
-				EObject diagramLinkSrc = nextDiagramLink.getSource()
-						.getElement();
-				EObject diagramLinkDst = nextDiagramLink.getTarget()
-						.getElement();
-				int diagramLinkVisualID = DrlModelVisualIDRegistry
-						.getVisualID(nextDiagramLink);
-				for (Iterator modelLinkDescriptors = myLinkDescriptors
-						.iterator(); modelLinkDescriptors.hasNext();) {
-					LinkDescriptor nextLinkDescriptor = (LinkDescriptor) modelLinkDescriptors
-							.next();
-					if (diagramLinkObject == nextLinkDescriptor
-							.getLinkElement()
-							&& diagramLinkSrc == nextLinkDescriptor.getSource()
-							&& diagramLinkDst == nextLinkDescriptor
-									.getDestination()
-							&& diagramLinkVisualID == nextLinkDescriptor
-									.getVisualID()) {
-						diagramLinks.remove();
-						modelLinkDescriptors.remove();
-					}
+				if (diagramLinkObject == nextLinkDescriptor.getModelElement()
+						&& diagramLinkSrc == nextLinkDescriptor.getSource()
+						&& diagramLinkDst == nextLinkDescriptor
+								.getDestination()
+						&& diagramLinkVisualID == nextLinkDescriptor
+								.getVisualID()) {
+					linksIterator.remove();
+					LinkDescriptorsIterator.remove();
 				}
 			}
-			deleteViews(existingLinks.iterator());
-			return createConnections(myLinkDescriptors);
-		} finally {
-			myLinkDescriptors.clear();
-			myEObject2ViewMap.clear();
 		}
+		deleteViews(existingLinks.iterator());
+		return createConnections(linkDescriptors, domain2NotationMap);
 	}
 
 	/**
 	 * @generated
 	 */
-	private void collectAllLinks(View view) {
-		EObject modelElement = view.getElement();
-		int diagramElementVisualID = DrlModelVisualIDRegistry.getVisualID(view);
-		switch (diagramElementVisualID) {
-		case ProductLine2EditPart.VISUAL_ID:
-		case ProductEditPart.VISUAL_ID:
-		case InfProductEditPart.VISUAL_ID:
-		case ProductLineEditPart.VISUAL_ID: {
-			myEObject2ViewMap.put(modelElement, view);
-			storeLinks(modelElement, getDiagram());
-		}
-		default: {
-		}
-			for (Iterator children = view.getChildren().iterator(); children
-					.hasNext();) {
-				View childView = (View) children.next();
-				collectAllLinks(childView);
-			}
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private Collection createConnections(Collection linkDescriptors) {
-		if (linkDescriptors.isEmpty()) {
+	private Collection collectAllLinks(View view, Map domain2NotationMap) {
+		if (!ProductLineEditPart.MODEL_ID.equals(DrlModelVisualIDRegistry
+				.getModelID(view))) {
 			return Collections.EMPTY_LIST;
 		}
+		Collection result = new LinkedList();
+		switch (DrlModelVisualIDRegistry.getVisualID(view)) {
+		case ProductLineEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(DrlModelDiagramUpdater
+						.getProductLine_79ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ProductLine2EditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(DrlModelDiagramUpdater
+						.getProductLine_1001ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ProductEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(DrlModelDiagramUpdater
+						.getProduct_2003ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case InfProductEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(DrlModelDiagramUpdater
+						.getInfProduct_2005ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		}
+		for (Iterator children = view.getChildren().iterator(); children
+				.hasNext();) {
+			result.addAll(collectAllLinks((View) children.next(),
+					domain2NotationMap));
+		}
+		for (Iterator edges = view.getSourceEdges().iterator(); edges.hasNext();) {
+			result.addAll(collectAllLinks((View) edges.next(),
+					domain2NotationMap));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection createConnections(Collection linkDescriptors,
+			Map domain2NotationMap) {
 		List adapters = new LinkedList();
 		for (Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator
 				.hasNext();) {
-			final LinkDescriptor nextLinkDescriptor = (LinkDescriptor) linkDescriptorsIterator
+			final DrlModelLinkDescriptor nextLinkDescriptor = (DrlModelLinkDescriptor) linkDescriptorsIterator
 					.next();
-			EditPart sourceEditPart = getEditPartFor(nextLinkDescriptor
-					.getSource());
-			EditPart targetEditPart = getEditPartFor(nextLinkDescriptor
-					.getDestination());
+			EditPart sourceEditPart = getEditPart(nextLinkDescriptor
+					.getSource(), domain2NotationMap);
+			EditPart targetEditPart = getEditPart(nextLinkDescriptor
+					.getDestination(), domain2NotationMap);
 			if (sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
@@ -353,8 +308,9 @@ public class ProductLineCanonicalEditPolicy extends
 	/**
 	 * @generated
 	 */
-	private EditPart getEditPartFor(EObject modelElement) {
-		View view = (View) myEObject2ViewMap.get(modelElement);
+	private EditPart getEditPart(EObject domainModelElement,
+			Map domain2NotationMap) {
+		View view = (View) domain2NotationMap.get(domainModelElement);
 		if (view != null) {
 			return (EditPart) getHost().getViewer().getEditPartRegistry().get(
 					view);
@@ -365,142 +321,8 @@ public class ProductLineCanonicalEditPolicy extends
 	/**
 	 * @generated
 	 */
-	private void storeLinks(EObject container, Diagram diagram) {
-		EClass containerMetaclass = container.eClass();
-		storeFeatureModelFacetLinks(container, containerMetaclass, diagram);
-		storeTypeModelFacetLinks(container, containerMetaclass);
-	}
-
-	/**
-	 * @generated
-	 */
-	private void storeTypeModelFacetLinks(EObject container,
-			EClass containerMetaclass) {
-	}
-
-	/**
-	 * @generated
-	 */
-	private void storeFeatureModelFacetLinks(EObject container,
-			EClass containerMetaclass, Diagram diagram) {
-	}
-
-	/**
-	 * @generated
-	 */
 	private Diagram getDiagram() {
 		return ((View) getHost().getModel()).getDiagram();
-	}
-
-	/**
-	 * @generated
-	 */
-	private class LinkDescriptor {
-
-		/**
-		 * @generated
-		 */
-		private EObject mySource;
-
-		/**
-		 * @generated
-		 */
-		private EObject myDestination;
-
-		/**
-		 * @generated
-		 */
-		private EObject myLinkElement;
-
-		/**
-		 * @generated
-		 */
-		private int myVisualID;
-
-		/**
-		 * @generated
-		 */
-		private IAdaptable mySemanticAdapter;
-
-		/**
-		 * @generated
-		 */
-		protected LinkDescriptor(EObject source, EObject destination,
-				EObject linkElement, IElementType elementType, int linkVID) {
-			this(source, destination, linkVID);
-			myLinkElement = linkElement;
-			final IElementType elementTypeCopy = elementType;
-			mySemanticAdapter = new EObjectAdapter(linkElement) {
-				public Object getAdapter(Class adapter) {
-					if (IElementType.class.equals(adapter)) {
-						return elementTypeCopy;
-					}
-					return super.getAdapter(adapter);
-				}
-			};
-		}
-
-		/**
-		 * @generated
-		 */
-		protected LinkDescriptor(EObject source, EObject destination,
-				IElementType elementType, int linkVID) {
-			this(source, destination, linkVID);
-			myLinkElement = null;
-			final IElementType elementTypeCopy = elementType;
-			mySemanticAdapter = new IAdaptable() {
-				public Object getAdapter(Class adapter) {
-					if (IElementType.class.equals(adapter)) {
-						return elementTypeCopy;
-					}
-					return null;
-				}
-			};
-		}
-
-		/**
-		 * @generated
-		 */
-		private LinkDescriptor(EObject source, EObject destination, int linkVID) {
-			mySource = source;
-			myDestination = destination;
-			myVisualID = linkVID;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected EObject getSource() {
-			return mySource;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected EObject getDestination() {
-			return myDestination;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected EObject getLinkElement() {
-			return myLinkElement;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected int getVisualID() {
-			return myVisualID;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected IAdaptable getSemanticAdapter() {
-			return mySemanticAdapter;
-		}
 	}
 
 }

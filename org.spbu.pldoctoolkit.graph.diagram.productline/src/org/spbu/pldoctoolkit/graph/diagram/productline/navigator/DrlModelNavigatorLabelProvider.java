@@ -32,6 +32,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductNameEdi
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
+import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelParserProvider;
 
 /**
  * @generated
@@ -43,15 +44,16 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	static {
-		DrlModelDiagramEditorPlugin.getInstance().getImageRegistry().put(
-				"Navigator?InvalidElement",
-				ImageDescriptor.getMissingImageDescriptor());
-		DrlModelDiagramEditorPlugin.getInstance().getImageRegistry().put(
-				"Navigator?UnknownElement",
-				ImageDescriptor.getMissingImageDescriptor());
-		DrlModelDiagramEditorPlugin.getInstance().getImageRegistry().put(
-				"Navigator?ImageNotFound",
-				ImageDescriptor.getMissingImageDescriptor());
+		DrlModelDiagramEditorPlugin
+				.getInstance()
+				.getImageRegistry()
+				.put(
+						"Navigator?UnknownElement", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
+		DrlModelDiagramEditorPlugin
+				.getInstance()
+				.getImageRegistry()
+				.put(
+						"Navigator?ImageNotFound", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
 	}
 
 	/**
@@ -93,35 +95,29 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (DrlModelVisualIDRegistry.getVisualID(view)) {
-		case ProductLine2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://math.spbu.ru/drl?ProductLine",
-					DrlModelElementTypes.ProductLine_1001);
-		case ProductLineDataEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?org.eclipse.draw2d.RectangleFigure",
-					DrlModelElementTypes.Node_2001);
-		case PLSchemeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?PLSchemeFigure",
-					DrlModelElementTypes.Node_2002);
-		case ProductEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://math.spbu.ru/drl?Product",
-					DrlModelElementTypes.Product_2003);
-		case DocumentationCoreEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?org.eclipse.draw2d.RectangleFigure",
-					DrlModelElementTypes.Node_2004);
-		case InfProductEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://math.spbu.ru/drl?InfProduct",
-					DrlModelElementTypes.InfProduct_2005);
 		case ProductLineEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http://math.spbu.ru/drl?ProductLine",
-					DrlModelElementTypes.ProductLine_79);
-		default:
-			return getImage("Navigator?UnknownElement", null);
+					"Navigator?Diagram?http://math.spbu.ru/drl?ProductLine", DrlModelElementTypes.ProductLine_79); //$NON-NLS-1$
+		case ProductLine2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://math.spbu.ru/drl?ProductLine", DrlModelElementTypes.ProductLine_1001); //$NON-NLS-1$
+		case ProductLineDataEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?org.eclipse.draw2d.RectangleFigure", DrlModelElementTypes.Node_2001); //$NON-NLS-1$
+		case PLSchemeEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?PLSchemeFigure", DrlModelElementTypes.Node_2002); //$NON-NLS-1$
+		case ProductEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://math.spbu.ru/drl?Product", DrlModelElementTypes.Product_2003); //$NON-NLS-1$
+		case DocumentationCoreEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?org.eclipse.draw2d.RectangleFigure", DrlModelElementTypes.Node_2004); //$NON-NLS-1$
+		case InfProductEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://math.spbu.ru/drl?InfProduct", DrlModelElementTypes.InfProduct_2005); //$NON-NLS-1$
 		}
+		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
 
 	/**
@@ -138,7 +134,7 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 		}
 
 		if (image == null) {
-			image = imageRegistry.get("Navigator?ImageNotFound");
+			image = imageRegistry.get("Navigator?ImageNotFound"); //$NON-NLS-1$
 			imageRegistry.put(key, image);
 		}
 		return image;
@@ -172,6 +168,8 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (DrlModelVisualIDRegistry.getVisualID(view)) {
+		case ProductLineEditPart.VISUAL_ID:
+			return getProductLine_79Text(view);
 		case ProductLine2EditPart.VISUAL_ID:
 			return getProductLine_1001Text(view);
 		case ProductLineDataEditPart.VISUAL_ID:
@@ -184,129 +182,107 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 			return getNode_2004Text(view);
 		case InfProductEditPart.VISUAL_ID:
 			return getInfProduct_2005Text(view);
-		case ProductLineEditPart.VISUAL_ID:
-			return getProductLine_79Text(view);
-		default:
-			return getUnknownElementText(view);
 		}
+		return getUnknownElementText(view);
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getProductLine_1001Text(View view) {
-		IParser parser = ParserService.getInstance().getParser(
-				new IAdaptable() {
-					public Object getAdapter(Class adapter) {
-						if (String.class.equals(adapter)) {
-							return DrlModelVisualIDRegistry
-									.getType(ProductLineNameEditPart.VISUAL_ID);
-						}
-						if (IElementType.class.equals(adapter)) {
-							return DrlModelElementTypes.ProductLine_1001;
-						}
-						return null;
-					}
-				});
+		IAdaptable hintAdapter = new DrlModelParserProvider.HintAdapter(
+				DrlModelElementTypes.ProductLine_1001,
+				(view.getElement() != null ? view.getElement() : view),
+				DrlModelVisualIDRegistry
+						.getType(ProductLineNameEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
 		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
 		} else {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4003);
-			return "";
+					"Parser was not found for label " + 4003); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
 		}
+
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getNode_2001Text(View view) {
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getNode_2002Text(View view) {
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getProduct_2003Text(View view) {
-		IParser parser = ParserService.getInstance().getParser(
-				new IAdaptable() {
-					public Object getAdapter(Class adapter) {
-						if (String.class.equals(adapter)) {
-							return DrlModelVisualIDRegistry
-									.getType(ProductNameEditPart.VISUAL_ID);
-						}
-						if (IElementType.class.equals(adapter)) {
-							return DrlModelElementTypes.Product_2003;
-						}
-						return null;
-					}
-				});
+		IAdaptable hintAdapter = new DrlModelParserProvider.HintAdapter(
+				DrlModelElementTypes.Product_2003,
+				(view.getElement() != null ? view.getElement() : view),
+				DrlModelVisualIDRegistry.getType(ProductNameEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
 		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
 		} else {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4001);
-			return "";
+					"Parser was not found for label " + 4001); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
 		}
+
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getNode_2004Text(View view) {
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getInfProduct_2005Text(View view) {
-		IParser parser = ParserService.getInstance().getParser(
-				new IAdaptable() {
-					public Object getAdapter(Class adapter) {
-						if (String.class.equals(adapter)) {
-							return DrlModelVisualIDRegistry
-									.getType(InfProductNameEditPart.VISUAL_ID);
-						}
-						if (IElementType.class.equals(adapter)) {
-							return DrlModelElementTypes.InfProduct_2005;
-						}
-						return null;
-					}
-				});
+		IAdaptable hintAdapter = new DrlModelParserProvider.HintAdapter(
+				DrlModelElementTypes.InfProduct_2005,
+				(view.getElement() != null ? view.getElement() : view),
+				DrlModelVisualIDRegistry
+						.getType(InfProductNameEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
 		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
 		} else {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4002);
-			return "";
+					"Parser was not found for label " + 4002); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
 		}
+
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getProductLine_79Text(View view) {
-		EObject domainModelElement = view.getElement();
+		ProductLine domainModelElement = (ProductLine) view.getElement();
 		if (domainModelElement != null) {
-			return ((ProductLine) domainModelElement).getName();
+			return domainModelElement.getName();
 		} else {
 			DrlModelDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 79);
-			return "";
+					"No domain element for view with visualID = " + 79); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
 		}
 	}
 
@@ -314,14 +290,14 @@ public class DrlModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getUnknownElementText(View view) {
-		return "<UnknownElement Visual_ID = " + view.getType() + ">";
+		return "<UnknownElement Visual_ID = " + view.getType() + ">"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getUnresolvedDomainElementProxyText(View view) {
-		return "<Unresolved domain element Visual_ID = " + view.getType() + ">";
+		return "<Unresolved domain element Visual_ID = " + view.getType() + ">"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

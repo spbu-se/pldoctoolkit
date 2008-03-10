@@ -21,7 +21,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegi
 public class DrlModelEditPartFactory implements EditPartFactory {
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
@@ -40,9 +40,10 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 			case ProductLineDataEditPart.VISUAL_ID:
 				return new ProductLineDataEditPart(view);
 
+				//HAND
 			case LineSeparatorEditPart.VISUAL_ID:
 				return new LineSeparatorEditPart(view);
-				
+
 			case PLSchemeEditPart.VISUAL_ID:
 				return new PLSchemeEditPart(view);
 
@@ -76,6 +77,9 @@ public class DrlModelEditPartFactory implements EditPartFactory {
 
 			case DocumentationCoreInfProductsCompartmentEditPart.VISUAL_ID:
 				return new DocumentationCoreInfProductsCompartmentEditPart(view);
+
+			case ProductInfProductLinkEditPart.VISUAL_ID:
+				return new ProductInfProductLinkEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

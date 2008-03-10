@@ -56,7 +56,7 @@ public class DrlModelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	private DrlModelDocumentProvider myDocumentProvider;
+	private DrlModelDocumentProvider documentProvider;
 
 	/**
 	 * @generated
@@ -190,10 +190,10 @@ public class DrlModelDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public DrlModelDocumentProvider getDocumentProvider() {
-		if (myDocumentProvider == null) {
-			myDocumentProvider = new DrlModelDocumentProvider();
+		if (documentProvider == null) {
+			documentProvider = new DrlModelDocumentProvider();
 		}
-		return myDocumentProvider;
+		return documentProvider;
 	}
 
 	/**

@@ -1,19 +1,12 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
 import org.eclipse.core.runtime.Platform;
-
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-
 import org.spbu.pldoctoolkit.graph.DrlPackage;
-import org.spbu.pldoctoolkit.graph.InfProduct;
-import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.ProductLine;
-
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreInfProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductEditPart;
@@ -33,9 +26,9 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductNameEdi
 
 /**
  * This registry is used to determine which type of visual object should be
- * created for the corresponding Diagram, Node, ChildNode or Link represented 
+ * created for the corresponding Diagram, Node, ChildNode or Link represented
  * by a domain model object.
- *
+ * 
  * @generated
  */
 public class DrlModelVisualIDRegistry {
@@ -58,7 +51,8 @@ public class DrlModelVisualIDRegistry {
 				return -1;
 			}
 		}
-		return getVisualID(view.getType());
+		return org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry
+				.getVisualID(view.getType());
 	}
 
 	/**
@@ -107,21 +101,12 @@ public class DrlModelVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		EClass domainElementMetaclass = domainElement.eClass();
-		return getDiagramVisualID(domainElement, domainElementMetaclass);
-	}
-
-	/**
-	 * @generated
-	 */
-	private static int getDiagramVisualID(EObject domainElement,
-			EClass domainElementMetaclass) {
 		if (DrlPackage.eINSTANCE.getProductLine().isSuperTypeOf(
-				domainElementMetaclass)
-				&& isDiagramProductLine_79((ProductLine) domainElement)) {
+				domainElement.eClass())
+				&& isDiagram((ProductLine) domainElement)) {
 			return ProductLineEditPart.VISUAL_ID;
 		}
-		return getUnrecognizedDiagramID(domainElement);
+		return -1;
 	}
 
 	/**
@@ -131,24 +116,15 @@ public class DrlModelVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		EClass domainElementMetaclass = domainElement.eClass();
-		return getNodeVisualID(containerView, domainElement,
-				domainElementMetaclass, null);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public static int getNodeVisualID(View containerView,
-			EObject domainElement, EClass domainElementMetaclass,
-			String semanticHint) {
-		String containerModelID = getModelID(containerView);
+		String containerModelID = org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry
+				.getModelID(containerView);
 		if (!ProductLineEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
 		if (ProductLineEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = getVisualID(containerView);
+			containerVisualID = org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry
+					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = ProductLineEditPart.VISUAL_ID;
@@ -156,102 +132,122 @@ public class DrlModelVisualIDRegistry {
 				return -1;
 			}
 		}
-		int nodeVisualID = semanticHint != null ? getVisualID(semanticHint)
-				: -1;
+		switch (containerVisualID) {
+		case PLSchemeProductsCompartmentEditPart.VISUAL_ID:
+			if (DrlPackage.eINSTANCE.getProduct().isSuperTypeOf(
+					domainElement.eClass())) {
+				return ProductEditPart.VISUAL_ID;
+			}
+			break;
+		case DocumentationCoreInfProductsCompartmentEditPart.VISUAL_ID:
+			if (DrlPackage.eINSTANCE.getInfProduct().isSuperTypeOf(
+					domainElement.eClass())) {
+				return InfProductEditPart.VISUAL_ID;
+			}
+			break;
+		case ProductLineEditPart.VISUAL_ID:
+			if (DrlPackage.eINSTANCE.getProductLine().isSuperTypeOf(
+					domainElement.eClass())) {
+				return ProductLine2EditPart.VISUAL_ID;
+			}
+			break;
+		}
+		return -1;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public static boolean canCreateNode(View containerView, int nodeVisualID) {
+		String containerModelID = org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry
+				.getModelID(containerView);
+		if (!ProductLineEditPart.MODEL_ID.equals(containerModelID)) {
+			return false;
+		}
+		int containerVisualID;
+		if (ProductLineEditPart.MODEL_ID.equals(containerModelID)) {
+			containerVisualID = org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry
+					.getVisualID(containerView);
+		} else {
+			if (containerView instanceof Diagram) {
+				containerVisualID = ProductLineEditPart.VISUAL_ID;
+			} else {
+				return false;
+			}
+		}
 		switch (containerVisualID) {
 		case ProductLine2EditPart.VISUAL_ID:
 			if (ProductLineNameEditPart.VISUAL_ID == nodeVisualID) {
-				return ProductLineNameEditPart.VISUAL_ID;
+				return true;
 			}
 			if (ProductLineProductLineDataCompartmentEditPart.VISUAL_ID == nodeVisualID) {
-				return ProductLineProductLineDataCompartmentEditPart.VISUAL_ID;
+				return true;
 			}
-			return getUnrecognizedProductLine_1001ChildNodeID(domainElement,
-					semanticHint);
+			break;
 		case ProductLineDataEditPart.VISUAL_ID:
 			if (ProductLineDataPLSchemeCompartmentEditPart.VISUAL_ID == nodeVisualID) {
-				return ProductLineDataPLSchemeCompartmentEditPart.VISUAL_ID;
+				return true;
 			}
 			if (ProductLineDataDocumentationCoreCompartmentEditPart.VISUAL_ID == nodeVisualID) {
-				return ProductLineDataDocumentationCoreCompartmentEditPart.VISUAL_ID;
+				return true;
 			}
 			//HAND
 			if (LineSeparatorEditPart.VISUAL_ID == nodeVisualID) {
-				return LineSeparatorEditPart.VISUAL_ID;
+				return true;
 			}
-			return getUnrecognizedNode_2001ChildNodeID(domainElement,
-					semanticHint);
+			break;
 		case PLSchemeEditPart.VISUAL_ID:
 			if (PLSchemeProductsCompartmentEditPart.VISUAL_ID == nodeVisualID) {
-				return PLSchemeProductsCompartmentEditPart.VISUAL_ID;
+				return true;
 			}
-			return getUnrecognizedNode_2002ChildNodeID(domainElement,
-					semanticHint);
+			break;
 		case ProductEditPart.VISUAL_ID:
 			if (ProductNameEditPart.VISUAL_ID == nodeVisualID) {
-				return ProductNameEditPart.VISUAL_ID;
+				return true;
 			}
-			return getUnrecognizedProduct_2003ChildNodeID(domainElement,
-					semanticHint);
+			break;
 		case DocumentationCoreEditPart.VISUAL_ID:
 			if (DocumentationCoreInfProductsCompartmentEditPart.VISUAL_ID == nodeVisualID) {
-				return DocumentationCoreInfProductsCompartmentEditPart.VISUAL_ID;
+				return true;
 			}
-			return getUnrecognizedNode_2004ChildNodeID(domainElement,
-					semanticHint);
+			break;
 		case InfProductEditPart.VISUAL_ID:
 			if (InfProductNameEditPart.VISUAL_ID == nodeVisualID) {
-				return InfProductNameEditPart.VISUAL_ID;
+				return true;
 			}
-			return getUnrecognizedInfProduct_2005ChildNodeID(domainElement,
-					semanticHint);
+			break;
 		case ProductLineProductLineDataCompartmentEditPart.VISUAL_ID:
-			if ((semanticHint == null || ProductLineDataEditPart.VISUAL_ID == nodeVisualID)) {
-				return ProductLineDataEditPart.VISUAL_ID;
+			if (ProductLineDataEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
 			}
-			return getUnrecognizedProductLineProductLineDataCompartment_5001ChildNodeID(
-					domainElement, semanticHint);
+			break;
 		case ProductLineDataPLSchemeCompartmentEditPart.VISUAL_ID:
-			if ((semanticHint == null || PLSchemeEditPart.VISUAL_ID == nodeVisualID)) {
-				return PLSchemeEditPart.VISUAL_ID;
+			if (PLSchemeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
 			}
-			return getUnrecognizedNodePLSchemeCompartment_5002ChildNodeID(
-					domainElement, semanticHint);
+			break;
 		case ProductLineDataDocumentationCoreCompartmentEditPart.VISUAL_ID:
-			if ((semanticHint == null || DocumentationCoreEditPart.VISUAL_ID == nodeVisualID)) {
-				return DocumentationCoreEditPart.VISUAL_ID;
+			if (DocumentationCoreEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
 			}
-			return getUnrecognizedNodeDocumentationCoreCompartment_5003ChildNodeID(
-					domainElement, semanticHint);
+			break;
 		case PLSchemeProductsCompartmentEditPart.VISUAL_ID:
-			if ((semanticHint == null || ProductEditPart.VISUAL_ID == nodeVisualID)
-					&& DrlPackage.eINSTANCE.getProduct().isSuperTypeOf(
-							domainElementMetaclass)
-					&& (domainElement == null || isNodeProduct_2003((Product) domainElement))) {
-				return ProductEditPart.VISUAL_ID;
+			if (ProductEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
 			}
-			return getUnrecognizedNodeProductsCompartment_5004ChildNodeID(
-					domainElement, semanticHint);
+			break;
 		case DocumentationCoreInfProductsCompartmentEditPart.VISUAL_ID:
-			if ((semanticHint == null || InfProductEditPart.VISUAL_ID == nodeVisualID)
-					&& DrlPackage.eINSTANCE.getInfProduct().isSuperTypeOf(
-							domainElementMetaclass)
-					&& (domainElement == null || isNodeInfProduct_2005((InfProduct) domainElement))) {
-				return InfProductEditPart.VISUAL_ID;
+			if (InfProductEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
 			}
-			return getUnrecognizedNodeInfProductsCompartment_5005ChildNodeID(
-					domainElement, semanticHint);
+			break;
 		case ProductLineEditPart.VISUAL_ID:
-			if ((semanticHint == null || ProductLine2EditPart.VISUAL_ID == nodeVisualID)
-					&& DrlPackage.eINSTANCE.getProductLine().isSuperTypeOf(
-							domainElementMetaclass)
-					&& (domainElement == null || isNodeProductLine_1001((ProductLine) domainElement))) {
-				return ProductLine2EditPart.VISUAL_ID;
+			if (ProductLine2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
 			}
-			return getUnrecognizedProductLine_79ChildNodeID(domainElement,
-					semanticHint);
+			break;
 		}
-		return -1;
+		return false;
 	}
 
 	/**
@@ -261,209 +257,17 @@ public class DrlModelVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		EClass domainElementMetaclass = domainElement.eClass();
-		return getLinkWithClassVisualID(domainElement, domainElementMetaclass);
+		return -1;
 	}
 
 	/**
+	 * User can change implementation of this method to handle some specific
+	 * situations not covered by default logic.
+	 * 
 	 * @generated
 	 */
-	public static int getLinkWithClassVisualID(EObject domainElement,
-			EClass domainElementMetaclass) {
-		{
-			return getUnrecognizedLinkWithClassID(domainElement);
-		}
-	}
-
-	/**
-	 * User can change implementation of this method to check some additional 
-	 * conditions here.
-	 *
-	 * @generated
-	 */
-	private static boolean isDiagramProductLine_79(ProductLine element) {
+	private static boolean isDiagram(ProductLine element) {
 		return true;
 	}
 
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedDiagramID(EObject domainElement) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to check some additional 
-	 * conditions here.
-	 *
-	 * @generated
-	 */
-	private static boolean isNodeProductLine_1001(ProductLine element) {
-		return true;
-	}
-
-	/**
-	 * User can change implementation of this method to check some additional 
-	 * conditions here.
-	 *
-	 * @generated
-	 */
-	private static boolean isNodeProduct_2003(Product element) {
-		return true;
-	}
-
-	/**
-	 * User can change implementation of this method to check some additional 
-	 * conditions here.
-	 *
-	 * @generated
-	 */
-	private static boolean isNodeInfProduct_2005(InfProduct element) {
-		return true;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedProductLine_1001ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedNode_2001ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedNode_2002ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedProduct_2003ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedNode_2004ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedInfProduct_2005ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedProductLineProductLineDataCompartment_5001ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedNodePLSchemeCompartment_5002ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedNodeDocumentationCoreCompartment_5003ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedNodeProductsCompartment_5004ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedNodeInfProductsCompartment_5005ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedProductLine_79ChildNodeID(
-			EObject domainElement, String semanticHint) {
-		return -1;
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static int getUnrecognizedLinkWithClassID(EObject domainElement) {
-		return -1;
-	}
 }

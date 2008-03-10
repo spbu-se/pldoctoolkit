@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.DocumentationCoreInfProductsCompartmentEditPart;
@@ -14,6 +15,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.LineSeparatorE
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.PLSchemeProductsCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductInfProductLinkEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLine2EditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataDocumentationCoreCompartmentEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductLineDataEditPart;
@@ -30,6 +32,7 @@ import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.InfProduct
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.LineSeparatorViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeProductsCompartmentViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.PLSchemeViewFactory;
+import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductInfProductLinkViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLine2ViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineDataDocumentationCoreCompartmentViewFactory;
 import org.spbu.pldoctoolkit.graph.diagram.productline.view.factories.ProductLineDataPLSchemeCompartmentViewFactory;
@@ -67,15 +70,126 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 			return null;
 		}
 		IElementType elementType = getSemanticElementType(semanticAdapter);
-		if (elementType != null
-				&& !DrlModelElementTypes.isKnownElementType(elementType)) {
+		EObject domainElement = getSemanticElement(semanticAdapter);
+		int visualID;
+		if (semanticHint == null) {
+			// Semantic hint is not specified. Can be a result of call from CanonicalEditPolicy.
+			// In this situation there should be NO elementType, visualID will be determined
+			// by VisualIDRegistry.getNodeVisualID() for domainElement.
+			if (elementType != null || domainElement == null) {
+				return null;
+			}
+			visualID = DrlModelVisualIDRegistry.getNodeVisualID(containerView,
+					domainElement);
+		} else {
+			visualID = DrlModelVisualIDRegistry.getVisualID(semanticHint);
+			if (elementType != null) {
+				// Semantic hint is specified together with element type.
+				// Both parameters should describe exactly the same diagram element.
+				// In addition we check that visualID returned by VisualIDRegistry.getNodeVisualID() for
+				// domainElement (if specified) is the same as in element type.
+				if (!DrlModelElementTypes.isKnownElementType(elementType)
+						|| (!(elementType instanceof IHintedType))) {
+					return null; // foreign element type
+				}
+				String elementTypeHint = ((IHintedType) elementType)
+						.getSemanticHint();
+				if (!semanticHint.equals(elementTypeHint)) {
+					return null; // if semantic hint is specified it should be the same as in element type
+				}
+				if (domainElement != null
+						&& visualID != DrlModelVisualIDRegistry
+								.getNodeVisualID(containerView, domainElement)) {
+					return null; // visual id for node EClass should match visual id from element type
+				}
+			} else {
+				// Element type is not specified. Domain element should be present (except pure design elements).
+				// This method is called with EObjectAdapter as parameter from:
+				//   - ViewService.createNode(View container, EObject eObject, String type, PreferencesHint preferencesHint) 
+				//   - generated ViewFactory.decorateView() for parent element
+				if (!ProductLineEditPart.MODEL_ID
+						.equals(DrlModelVisualIDRegistry
+								.getModelID(containerView))) {
+					return null; // foreign diagram
+				}
+				switch (visualID) {
+				case ProductLineDataEditPart.VISUAL_ID:
+				case PLSchemeEditPart.VISUAL_ID:
+				case DocumentationCoreEditPart.VISUAL_ID:
+				case LineSeparatorEditPart.VISUAL_ID:
+					break; // pure design element
+				case ProductEditPart.VISUAL_ID:
+				case InfProductEditPart.VISUAL_ID:
+				case ProductLine2EditPart.VISUAL_ID:
+					if (domainElement == null
+							|| visualID != DrlModelVisualIDRegistry
+									.getNodeVisualID(containerView,
+											domainElement)) {
+						return null; // visual id in semantic hint should match visual id for domain element
+					}
+					break;
+				case ProductLineNameEditPart.VISUAL_ID:
+				case ProductLineProductLineDataCompartmentEditPart.VISUAL_ID:
+					if (ProductLine2EditPart.VISUAL_ID != DrlModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case ProductLineDataPLSchemeCompartmentEditPart.VISUAL_ID:
+				case ProductLineDataDocumentationCoreCompartmentEditPart.VISUAL_ID:
+					if (ProductLineDataEditPart.VISUAL_ID != DrlModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case PLSchemeProductsCompartmentEditPart.VISUAL_ID:
+					if (PLSchemeEditPart.VISUAL_ID != DrlModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case ProductNameEditPart.VISUAL_ID:
+					if (ProductEditPart.VISUAL_ID != DrlModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case DocumentationCoreInfProductsCompartmentEditPart.VISUAL_ID:
+					if (DocumentationCoreEditPart.VISUAL_ID != DrlModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case InfProductNameEditPart.VISUAL_ID:
+					if (InfProductEditPart.VISUAL_ID != DrlModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				default:
+					return null;
+				}
+			}
+		}
+		return getNodeViewClass(containerView, visualID);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Class getNodeViewClass(View containerView, int visualID) {
+		if (containerView == null
+				|| !DrlModelVisualIDRegistry.canCreateNode(containerView,
+						visualID)) {
 			return null;
 		}
-		EClass semanticType = getSemanticEClass(semanticAdapter);
-		EObject semanticElement = getSemanticElement(semanticAdapter);
-		int nodeVID = DrlModelVisualIDRegistry.getNodeVisualID(containerView,
-				semanticElement, semanticType, semanticHint);
-		switch (nodeVID) {
+		switch (visualID) {
 		case ProductLine2EditPart.VISUAL_ID:
 			return ProductLine2ViewFactory.class;
 		case ProductLineNameEditPart.VISUAL_ID:
@@ -107,6 +221,9 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 		case DocumentationCoreInfProductsCompartmentEditPart.VISUAL_ID:
 			return DocumentationCoreInfProductsCompartmentViewFactory.class;
 		}
+		
+		//XXX debug
+		System.out.println("Node for visual id " + visualID + " not found!");
 		return null;
 	}
 
@@ -116,21 +233,36 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 	protected Class getEdgeViewClass(IAdaptable semanticAdapter,
 			View containerView, String semanticHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
-		if (elementType != null
-				&& !DrlModelElementTypes.isKnownElementType(elementType)) {
-			return null;
+		if (!DrlModelElementTypes.isKnownElementType(elementType)
+				|| (!(elementType instanceof IHintedType))) {
+			return null; // foreign element type
 		}
-		EClass semanticType = getSemanticEClass(semanticAdapter);
-		if (semanticType == null) {
-			return null;
+		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
+		if (elementTypeHint == null) {
+			return null; // our hint is visual id and must be specified
 		}
-		EObject semanticElement = getSemanticElement(semanticAdapter);
-		int linkVID = DrlModelVisualIDRegistry.getLinkWithClassVisualID(
-				semanticElement, semanticType);
-		switch (linkVID) {
+		if (semanticHint != null && !semanticHint.equals(elementTypeHint)) {
+			return null; // if semantic hint is specified it should be the same as in element type
 		}
-		return getUnrecognizedConnectorViewClass(semanticAdapter,
-				containerView, semanticHint);
+		int visualID = DrlModelVisualIDRegistry.getVisualID(elementTypeHint);
+		EObject domainElement = getSemanticElement(semanticAdapter);
+		if (domainElement != null
+				&& visualID != DrlModelVisualIDRegistry
+						.getLinkWithClassVisualID(domainElement)) {
+			return null; // visual id for link EClass should match visual id from element type
+		}
+		return getEdgeViewClass(visualID);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Class getEdgeViewClass(int visualID) {
+		switch (visualID) {
+		case ProductInfProductLinkEditPart.VISUAL_ID:
+			return ProductInfProductLinkViewFactory.class;
+		}
+		return null;
 	}
 
 	/**
@@ -141,15 +273,6 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 			return null;
 		}
 		return (IElementType) semanticAdapter.getAdapter(IElementType.class);
-	}
-
-	/**
-	 * @generated
-	 */
-	private Class getUnrecognizedConnectorViewClass(IAdaptable semanticAdapter,
-			View containerView, String semanticHint) {
-		// Handle unrecognized child node classes here
-		return null;
 	}
 
 }

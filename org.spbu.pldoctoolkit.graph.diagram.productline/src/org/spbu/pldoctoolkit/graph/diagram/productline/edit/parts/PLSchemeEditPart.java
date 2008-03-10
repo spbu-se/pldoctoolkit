@@ -93,15 +93,14 @@ public class PLSchemeEditPart extends ShapeNodeEditPart {
 
 		super.createDefaultEditPolicies();
 
-//		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-//				new PLSchemeItemSemanticEditPolicy());
+		//		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+		//				new PLSchemeItemSemanticEditPolicy());
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 		//HAND
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-//		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-//				createComponentEditPolicy());
+		//		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+		//				createComponentEditPolicy());
 	}
-
 
 	/**
 	 * @generated
