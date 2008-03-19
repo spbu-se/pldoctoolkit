@@ -1,6 +1,9 @@
 package org.spbu.pldoctoolkit.parser;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
@@ -26,11 +29,14 @@ public class DRLParser {
 		}
 	}
 	
-	public static DRLDocument parse(InputSource input, ProjectContent project)
+	public static DRLDocument parse(InputStream input1, InputStream input2, ProjectContent project)
 	{		
 		try {
 			contetnHandler.setProject(project);
-			xmlReader.parse(input);			
+			contetnHandler.input = new InputSource(new InputStreamReader(input1));
+			char cbuf[] = new char[100];
+			contetnHandler.input.getCharacterStream().read(cbuf, 0, 100);
+			xmlReader.parse(new InputSource(new InputStreamReader(input2)));//input.getCharacterStream().));			
 		}
 		catch (IOException e) {
 			System.err.print(e.getMessage());

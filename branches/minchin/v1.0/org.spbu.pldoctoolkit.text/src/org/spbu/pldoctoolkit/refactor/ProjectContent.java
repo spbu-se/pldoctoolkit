@@ -1,6 +1,7 @@
 package org.spbu.pldoctoolkit.refactor;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,7 +31,7 @@ public class ProjectContent {
 					String ext = file.getFileExtension();
 					if (ext != null && ext.equals("drl"))
 					{
-						DRLDocument doc = DRLParser.parse( new InputSource(file.getContents()), this );
+						DRLDocument doc = DRLParser.parse( file.getContents(), file.getContents(), /*new InputSource(file.getContents())*/ this );
 						DRLDocs.put(file, doc);
 					}
 				}

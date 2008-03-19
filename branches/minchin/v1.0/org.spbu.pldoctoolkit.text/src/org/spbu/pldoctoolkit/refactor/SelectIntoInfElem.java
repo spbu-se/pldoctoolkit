@@ -3,8 +3,10 @@ package org.spbu.pldoctoolkit.refactor;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
+import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.AttributesImpl;
 
@@ -12,19 +14,28 @@ public class SelectIntoInfElem {
 	public String id, name, refId;
 	public ProjectContent project;
 	public PositionInDRL from, to;
+	public PositionInText fromText, toText;
+	public DRLDocument doc;
 	
 	private int fromIdx, toIdx;
 	private HashMap<String, LangElem> nestsInSelection = null; 
 	
-	public SelectIntoInfElem(String id, String name, String refId, ProjectContent project,
-						     PositionInDRL from, PositionInDRL to) 
+	public SelectIntoInfElem( String id, String name, String refId, 
+			                  ProjectContent project, DRLDocument doc,
+						      PositionInText fromText, PositionInText toText ) 
 	{	
 		this.id = id;
 		this.name = name;
 		this.refId = refId;
 		this.project = project;
-		this.from = from;
-		this.to = to;
+		this.fromText = fromText;
+		this.toText = toText;
+		
+		from = doc.findByPosition(fromText);
+		to = doc.findByPosition(toText);
+		
+		fromIdx = from.parent.getChilds().indexOf(from.next);
+		toIdx = from.parent.getChilds().indexOf(to.prev);
 	}
 	
 	public SelectIntoInfElem() {	
@@ -32,6 +43,7 @@ public class SelectIntoInfElem {
 	
 	public void perform() {
 		//if ()
+		splitIfNecessary();
 		
 		if (from.parent == to.parent){
 			UpwardIterator searchInfElemiterator = new UpwardIterator(from.next);			
@@ -47,10 +59,7 @@ public class SelectIntoInfElem {
 			}
 			
 			if (infElem == null)
-				return;			
-			
-			fromIdx = from.parent.getChilds().indexOf(from.next);
-			toIdx = from.parent.getChilds().indexOf(to.prev);
+				return;						
 			
 			prepareNests();
 			
@@ -113,6 +122,21 @@ public class SelectIntoInfElem {
 		return nestsInSelection;
 	}
 	
+	private void splitIfNecessary() {
+		if (from.isInText) {
+			((TextElement)from.elem).Split(fromText);
+			Element parent = from.elem.getParent(); 
+			from = new PositionInDRL(false, false, null, parent.getChilds().get(fromIdx), parent.getChilds().get(fromIdx+1), parent);
+			++fromIdx;
+		}
+		if (from.isInTag) {
+			((TextElement)to.elem).Split(toText);
+			Element parent = to.elem.getParent(); 
+			to = new PositionInDRL(false, false, null, parent.getChilds().get(toIdx), parent.getChilds().get(toIdx+1), parent);
+			++toIdx;
+		}
+	}
+	
 	private void prepareNests() {		
 		nestsInSelection = new HashMap<String, LangElem>();
 		for (int i = fromIdx; i <= toIdx; ++i) {
@@ -137,7 +161,7 @@ public class SelectIntoInfElem {
 			}
 		}
 	}
-	
+		
 	private LangElem createNewAdapter(LangElem prevAdapter, String infElemRefId) {		
 		LangElem newAdapter	= new LangElem("Adapter", "Adapter", null, prevAdapter.getParent(), prevAdapter.getDRLDocument(), new AttributesImpl());
 		((AttributesImpl)newAdapter.attrs).addAttribute("infelemrefid", "infelemrefid", "infelemrefid", "", infElemRefId);
