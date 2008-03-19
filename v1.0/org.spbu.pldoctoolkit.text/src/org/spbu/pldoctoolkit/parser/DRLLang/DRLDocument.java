@@ -4,6 +4,8 @@ import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 
 public class DRLDocument extends Element{
+	public String preface = null;
+	
 	public DRLDocument(int startLine, int startColumn) {
 		this.startLine = startLine;
 		this.startColumn = startColumn;		
@@ -13,7 +15,12 @@ public class DRLDocument extends Element{
 	
 	@Override
 	public String getTextRepresentation() {
-		String res = "";
+		String res;
+		if (preface != null)
+			res = preface;
+		else
+			res = "";
+		
 		for (Element elem: childs){
 			res += elem.getTextRepresentation();
 		}
