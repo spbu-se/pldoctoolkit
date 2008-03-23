@@ -50,6 +50,34 @@
         </xsl:attribute>
     </xsl:template>
     
+    <!-- ProductDocumentation -> Product reference -->
+    <!-- FinalInfProduct -> InfProduct reference -->
+    <xsl:template match="@product">
+        <xsl:param name="finalInfProduct" select="'false'"/>
+        <xsl:variable name="uri"><xsl:value-of select="."/></xsl:variable>
+        
+        <xsl:choose>
+            <xsl:when test="$finalInfProduct = 'true'">
+                <xsl:attribute name="infproductid">
+                    <xsl:value-of select="resolver:uriStringToId($uri)"/>
+                </xsl:attribute>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:attribute name="productid">
+                    <xsl:value-of select="resolver:uriStringToId($uri)"/>
+                </xsl:attribute>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="finalInfProducts">
+        <d:FinalInfProduct>
+            <xsl:apply-templates select="node() | attribute() | text() | comment()">
+                <xsl:with-param name="finalInfProduct">true</xsl:with-param>
+            </xsl:apply-templates>
+        </d:FinalInfProduct>
+    </xsl:template>
+    
     <xsl:template match="node() | attribute() | text() | comment()">
         <xsl:copy>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
