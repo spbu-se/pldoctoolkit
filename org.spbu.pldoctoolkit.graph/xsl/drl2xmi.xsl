@@ -5,7 +5,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:resolver="java:org.spbu.pldoctoolkit.graph.util.IdUtil"
     xmlns:saxon="http://icl.com/saxon"
-    extension-element-prefixes="resolver saxon"
+    extension-element-prefixes="resolver saxon xsi"
     version="2.0">
     
     <xsl:param name="project-name"/>
@@ -58,6 +58,28 @@
                 </xsl:attribute>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <!-- ProductDocumentation -> Product reference -->
+    <xsl:template match="@productid">
+        <xsl:variable name="productId"><xsl:value-of select="."/></xsl:variable>
+        <xsl:attribute name="product">
+            <xsl:value-of select="resolver:idToUriString($project-name, $productId)"/>
+        </xsl:attribute>
+    </xsl:template>
+    
+    <xsl:template match="d:FinalInfProduct">
+        <finalInfProducts>
+            <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
+        </finalInfProducts>
+    </xsl:template>
+    
+    <!-- FinalInfProduct -> InfProduct reference -->
+    <xsl:template match="@infproductid">
+        <xsl:variable name="id"><xsl:value-of select="."/></xsl:variable>
+        <xsl:attribute name="product">
+            <xsl:value-of select="resolver:idToUriString($project-name, $id)"/>
+        </xsl:attribute>
     </xsl:template>
     
     <xsl:template match="node() | attribute() | text() | comment()">

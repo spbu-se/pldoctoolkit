@@ -10,10 +10,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.FinalInfProduct;
 import org.spbu.pldoctoolkit.graph.InfProduct;
+import org.spbu.pldoctoolkit.graph.Product;
+import org.spbu.pldoctoolkit.graph.util.DrlResourceImpl;
 import org.w3c.dom.Element;
 
 /**
@@ -247,6 +250,9 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	public void updateAttributeNodes() {
 		super.updateAttributeNodes();
 
+		DrlResourceImpl resource = (DrlResourceImpl) this.eResource();
+		XMLHelper helper = resource.getHelper();
+		
 		Element elem = getNode();
 		
 		// id
@@ -254,6 +260,14 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 			DrlFactory.eINSTANCE.getDrlPackage().getFinalInfProduct_Id().getName();
 		
 		elem.setAttribute(idAttrName, getId());
+		
+		// product
+		String productAttrName =
+			DrlFactory.eINSTANCE.getDrlPackage().getFinalInfProduct_Product().getName();
+		
+		InfProduct product = getProduct();
+		String productHref = product == null? "" : helper.getHREF(product);
+		elem.setAttribute(productAttrName, productHref);
 	}
 
 	

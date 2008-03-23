@@ -16,10 +16,16 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.xmi.XMLHelper;
+import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.FinalInfProduct;
+import org.spbu.pldoctoolkit.graph.InfElemRefGroup;
+import org.spbu.pldoctoolkit.graph.InfElement;
 import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.ProductDocumentation;
+import org.spbu.pldoctoolkit.graph.util.DrlResourceImpl;
+import org.w3c.dom.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -217,4 +223,22 @@ public class ProductDocumentationImpl extends DrlElementImpl implements ProductD
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public void updateAttributeNodes() {
+		super.updateAttributeNodes();
+
+		DrlResourceImpl resource = (DrlResourceImpl) this.eResource();
+		XMLHelper helper = resource.getHelper();
+		
+		Element elem = getNode();
+		
+		// product
+		String productAttrName =
+			DrlFactory.eINSTANCE.getDrlPackage().getProductDocumentation_Product().getName();
+		
+		Product product = getProduct();
+		String productHref = product == null? "" : helper.getHREF(product);
+		elem.setAttribute(productAttrName, productHref);
+	}
+	
 } //ProductDocumentationImpl
