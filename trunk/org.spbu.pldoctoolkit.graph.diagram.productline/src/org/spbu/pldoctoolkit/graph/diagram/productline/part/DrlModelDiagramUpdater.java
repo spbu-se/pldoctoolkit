@@ -5,9 +5,11 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.ProductLine;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.InfProductEditPart;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;

@@ -6,7 +6,9 @@ import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLine2CanonicalEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLine2ItemSemanticEditPolicy;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductLineCanonicalEditPolicy;
 
 /**
  * @generated
@@ -70,6 +72,7 @@ public class ProductLine2EditPart extends
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ProductLine2ItemSemanticEditPolicy());
 		// HAND commented
 //		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ProductLine2CanonicalEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ProductLineCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that
 		// would let children add reasonable editpolicies
