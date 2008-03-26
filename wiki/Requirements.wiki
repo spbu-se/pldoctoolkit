@@ -1,4 +1,4 @@
-#summary Project requirements
+#summary Project software requirements
 
 == Version 1.0 ==
 
