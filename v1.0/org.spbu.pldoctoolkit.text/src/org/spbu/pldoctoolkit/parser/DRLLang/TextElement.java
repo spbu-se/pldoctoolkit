@@ -2,6 +2,9 @@ package org.spbu.pldoctoolkit.parser.DRLLang;
 
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
+import org.spbu.pldoctoolkit.refactor.Util;
+
+import sun.font.LayoutPathImpl.EndType;
 
 public class TextElement extends Element {
 	private int length;
@@ -57,7 +60,7 @@ public class TextElement extends Element {
 		if (startPos.compare(posToFind) == 1 || endPos.compare(posToFind) <= 0)
 			return null;
 		
-		return new PositionInDRL(true, false, this, null, null, null);				
+		return new PositionInDRL(true, false, this, null, null, parent);				
 	}
 	
 	public boolean Split(PositionInText pos)
@@ -66,7 +69,7 @@ public class TextElement extends Element {
 			return false;
 		
 		PositionInText curPos = new PositionInText(startPos);
-		
+		/*
 		int i = 0;
 		while (curPos.compare(pos) < 0) 
 		{
@@ -79,10 +82,24 @@ public class TextElement extends Element {
 			
 			++i;
 		}
-		
+		*/
+		int i = Util.getOffset(text, pos.line, pos.column, startPos.line, startPos.column, 0);
 		int curIdx = parent.childs.indexOf(this);
+		
+		TextElement newElem = new TextElement(tagStartPos, i, text.substring(0, i), parent, doc);
+		
 		text = text.substring(i);
-		TextElement newElem = new TextElement(null, 0, text.substring(0, i), parent, doc);
+		startPos = tagStartPos = new PositionInText(pos);
+		length -= i; 
+		/*		if (pos.column == 1) {
+			endPos.line = pos.line - 1;
+			endPos.column = Util.getColumn(text, i - 1);
+		}
+		else {
+			endPos.line = pos.line;
+			endPos.column = pos.column - 1;
+		}*/
+		
 		parent.childs.add(curIdx, newElem);
 		
 		

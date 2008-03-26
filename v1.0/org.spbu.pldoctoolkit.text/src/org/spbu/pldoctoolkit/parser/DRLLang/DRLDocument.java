@@ -5,6 +5,7 @@ import org.spbu.pldoctoolkit.refactor.PositionInText;
 
 public class DRLDocument extends Element{
 	public String preface = null;
+	public String DRLnsPrefix = "";
 	
 	public DRLDocument(int startLine, int startColumn) {
 		this.startLine = startLine;

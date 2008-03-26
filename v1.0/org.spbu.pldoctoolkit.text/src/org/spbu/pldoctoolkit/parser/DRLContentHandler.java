@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Stack;
 import org.xml.sax.InputSource;
 
+import org.spbu.pldoctoolkit.parser.DRLLang.Comment;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
@@ -25,12 +26,14 @@ public class DRLContentHandler implements ContentHandler {
 	private Stack<Element> elemStack = new Stack<Element>();
 	private ProjectContent projectContent;
 	private PositionInText prevPos = null;
+	private int prevOffset = 0;
 	private HashMap<String, String> prefex = new HashMap<String, String>();
 	private boolean isFirstTag = true;
 	
 	public DRLDocument doc = null;
 	
-	public InputSource input;
+//	public InputSource input;	
+	public StringBuffer inputText;
 /*	
 	public DRLContentHandler(InputSource input) {
 		this.input = input;
@@ -42,6 +45,25 @@ public class DRLContentHandler implements ContentHandler {
 	
 	@Override
 	public void characters(char[] arg0, int arg1, int arg2) throws SAXException {
+		int endLine = locator.getLineNumber();
+		int endCol = locator.getColumnNumber();
+		int endOffset = Util.getOffset(inputText, endLine, endCol, prevPos.line, prevPos.column, prevOffset);
+		while (true) {
+			if (inputText.charAt(endOffset) != '<') {
+				endCol -= 1;
+				endOffset -= 1;
+			}
+			else
+				break;
+		}
+		
+		if (prevOffset < endOffset - arg2) {
+			createComment(endOffset - arg2 - prevOffset);			
+		}
+		else if (prevOffset > endOffset - arg2) {
+			int a = 3;
+		}
+				
 		Element parent = elemStack.lastElement();
 		
 		if (parent.getChilds() == null) {
@@ -58,8 +80,7 @@ public class DRLContentHandler implements ContentHandler {
 		assert(elem.getEndPos().line == locator.getLineNumber());
 		assert(elem.getEndPos().column == locator.getColumnNumber());
 		
-		prevPos.line = elem.getEndPos().line;
-		prevPos.column = elem.getEndPos().column;
+		savePosition(elem.getEndPos().line, elem.getEndPos().column);		
 	}
 
 	@Override
@@ -70,18 +91,26 @@ public class DRLContentHandler implements ContentHandler {
 
 	@Override
 	public void endElement(String arg0, String arg1, String arg2) throws SAXException {
+		int line = locator.getLineNumber();
+		int column = locator.getColumnNumber();
+		
+		if (line != prevPos.line || column != prevPos.column) {
+			int endOffset = Util.getOffset(inputText, line, column, prevPos.line, prevPos.column, prevOffset);
+			int tagStartPos = Util.findtagStartPos(inputText, endOffset);		
+			if (tagStartPos != prevOffset) {
+				createComment(tagStartPos - prevOffset);			
+			}
+		}
+		
 		Element elem = elemStack.pop();
 		
 		assert( ((LangElem)elem).tagNS == arg2 );
 		
 //		elem.setEndLine(locator.getLineNumber());
-//		elem.setEndColumn(locator.getColumnNumber());
-		int line = locator.getLineNumber();
-		int column = locator.getColumnNumber();
+//		elem.setEndColumn(locator.getColumnNumber());		
 		elem.setEndPos(new PositionInText(line, column));
 		
-		prevPos.line = line;
-		prevPos.column = column;
+		savePosition(line, column);
 	}
 
 	@Override
@@ -109,6 +138,7 @@ public class DRLContentHandler implements ContentHandler {
 	public void startDocument() throws SAXException {
 		doc = new DRLDocument(locator.getLineNumber(), locator.getColumnNumber());
 		prevPos = new PositionInText(locator.getLineNumber(), locator.getColumnNumber());
+		prevOffset = Util.getOffset(inputText, prevPos.line, prevPos.column);
 		elemStack.push(doc);
 		
 		isFirstTag = true;
@@ -118,31 +148,31 @@ public class DRLContentHandler implements ContentHandler {
 	public void startElement(String arg0, String arg1, String arg2,	Attributes arg3) throws SAXException {		 
 		int line = locator.getLineNumber(); 
 		int column = locator.getColumnNumber();
-/*		
+		
 		if (isFirstTag) {
-			assert (input != null);
+			assert (inputText != null);
 			isFirstTag = false;			
 			
-			Reader reader = input.getCharacterStream();//.read(buf, off, len)
-			InputStream str = input.getByteStream();
-			//input.get
-			//str.
-			int off = Util.getOffset(reader, line, column);
-			int tagStartPos = Util.findtagStartPos(reader, off);
+			int off = Util.getOffset(inputText, line, column);
+			int tagStartPos = Util.findtagStartPos(inputText, off);
 			
-			char buf[] = new char[tagStartPos];
-			
-			try {
-				reader.read(buf, 0, tagStartPos);
-				doc.preface = String.valueOf(buf);
-			}
+			//try 
+			{
+				doc.preface = inputText.substring(0, tagStartPos);//.read(buf, 0, tagStartPos);
+				//doc.preface = String.valueOf(buf);
+			}/*
 			catch (IOException e){
 				e.printStackTrace();
-			}
-			
-			isFirstTag = false;
+			}*/			
 		}		
-	*/	
+		else {
+			int endOffset = Util.getOffset(inputText, line, column, prevPos.line, prevPos.column, prevOffset);
+			int tagStartPos = Util.findtagStartPos(inputText, endOffset);		
+			if (tagStartPos != prevOffset) {
+				createComment(tagStartPos - prevOffset);			
+			}
+		}
+		
 		Element parent = elemStack.lastElement();
 		
 		if (parent.getChilds() == null) {
@@ -158,8 +188,7 @@ public class DRLContentHandler implements ContentHandler {
 		elemStack.push(newElem);
 		parent.getChilds().add(newElem);
 		
-		prevPos.line = line;
-		prevPos.column = column;
+		savePosition(line, column);
 		
 		if (arg1.equals("Adapter"))
 			projectContent.Adapters.add( (LangElem)newElem );
@@ -170,5 +199,34 @@ public class DRLContentHandler implements ContentHandler {
 	@Override
 	public void startPrefixMapping(String arg0, String arg1) throws SAXException {
 		prefex.put(arg0, arg1);
+		if (arg1 == Constants.DRLns)
+			doc.DRLnsPrefix = arg0;
+	}
+	
+	private void savePosition(int line, int col) {
+		prevOffset = Util.getOffset(inputText, line, col, prevPos.line, prevPos.column, prevOffset);
+		prevPos.line = line;
+		prevPos.column = col;		
+	}
+	
+	private void createComment(int length) {
+		Element parent = elemStack.lastElement();
+		
+		if (parent.getChilds() == null) {
+			parent.setChilds(new ArrayList<Element>());
+		}
+		
+		char buf[] = new char[length];
+		inputText.getChars(prevOffset, prevOffset + length, buf, 0);
+		String text = String.valueOf(buf);
+		Element elem = new Comment(new PositionInText(prevPos.line, prevPos.column), 
+				   									      length, text,  
+				   									      parent, doc); 
+		parent.getChilds().add(elem);		
+		
+		//assert(elem.getEndPos().line == locator.getLineNumber());
+		//assert(elem.getEndPos().column == locator.getColumnNumber());
+		
+		savePosition(elem.getEndPos().line, elem.getEndPos().column);
 	}
 }
