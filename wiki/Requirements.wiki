@@ -1,13 +1,19 @@
-#summary One-sentence summary of this page.
+#summary Project requirements
 
-= Introduction =
+== Version 1.0 ==
 
-Add your content here.
+This is version created for the diploma party on 19.06.2007. Eclipse 3.2 Europa has just came out by that date, so software versions are the first releases.
 
+More preciously, software versions are as follows:
+  * Eclipse 3.2.0
+  * GMF 2.0
+  * EMF
+  * GEF
 
-= Details =
+_Probably these data can be obtained from the corresponding GMF download page._
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Version Trunk ==
+
+This is developed with the latest versions available.
+
+_More precious information again can be obtained from the latest GMF release's download page._
