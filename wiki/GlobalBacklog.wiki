@@ -1,0 +1,9 @@
+#summary Known global development directions list
+
+==InfProduct diagram==
+
+==ProductLine diagram==
+
+==FinalInfProduct diagram==
+
+==DRL Resource integration layer==
