@@ -8,7 +8,7 @@ import java.util.Stack;
 
 public class Util {
 	// Предполагается, что строка заканчивается концом тэга
-	public static int findtagStartPos(Reader text, int from) {
+	public static int findtagStartPos(CharSequence text, int from) {
 		Stack<Character> stack = new Stack<Character>();
 		int curPos = from;//text.length();
 		stack.push('>'); // кладём закр скобку
@@ -16,15 +16,15 @@ public class Util {
 		while (!stack.isEmpty() || curPos < 0) {			
 			char curTop = stack.peek();
 			char buf[] = new char[1];
-			
+			/*
 			try {
 				text.read(buf, 1, 1);
 			}
 			catch (IOException e){
 				e.printStackTrace();
 			}
-			
-			char curChar = buf[0];
+			*/
+			char curChar = text.charAt(curPos);
 			
 			if (curChar == '"') {
 				if (curTop == '"')
@@ -43,31 +43,59 @@ public class Util {
 		return ++curPos;
 	}
 	
-	public static int getOffset(Reader input, int line, int col) {
-		int offset = 0;
-		int curLine = 1;
-		int curCol = 1;		
-		try {
-			char buf[] = new char[1000];
-			input.read(buf, 0, 1000);
-			while (true) {				
-				if (buf[offset] == '\n') {
-					++curLine;
-					curCol = 0;
-				}
-				else
-					++curCol;		
-			
-				++offset;
+	public static int getOffset(CharSequence input, int line, int col) {		
+		int offset = getOffset(input, line, col, 1, 1, 0);
+		return offset;
+	}
+	
+	public static int getOffset(CharSequence input, int line, int col, int prevLine, int prevCol, int prevOffset) {
+		int offset = prevOffset;
+		int curLine = prevLine;
+		int curCol = prevCol;		
+		//try 
+		{
+			//char buf[] = new char[1000];
+			//input.read(buf, 0, 1000);
+			while (true) {
 				if (curLine == line && curCol == col)
-					break;			
+					break;		
+				try 
+				{
+					if (input.charAt(offset) == '\n') {
+						++curLine;
+						curCol = 1;
+					}
+					else
+						++curCol;		
+				}
+				catch (IndexOutOfBoundsException e) {
+					e.printStackTrace();
+					offset = -1;
+					return offset; 
+				}
+				++offset;					
 			}
 		}
-		catch (IOException e) {
+		/*catch (IndexOutOfBoundsException e) {
 			e.printStackTrace();
 			offset = -1;
-		}		
+		}	*/	
 		
 		return offset;
+	}
+	
+	public static int getColumn(CharSequence input, int offset) {
+		int col = 0;
+		if (input.charAt(offset) == '\n') {
+			--offset;
+			++col;
+		}
+		
+		while (offset >= 0 && input.charAt(offset) == '\n') {
+			--offset;
+			++col;
+		}
+			
+		return col;
 	}
 }

@@ -7,12 +7,20 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Label;
 
 public class SelectIntoInfElemDialog extends Dialog{
 	private String infElemId = "";
 	private String infElemName = "";
+	private String infElemRefId = "";
+	
 	private Text idText;
 	private Text nameText;
+	private Text refIdText;
+	
+	private Label idLabel;
+	private Label nameLabel;
+	private Label refIdLabel;
 	
 	public SelectIntoInfElemDialog(Shell parentShell) {
 		super(parentShell);
@@ -22,8 +30,17 @@ public class SelectIntoInfElemDialog extends Dialog{
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
 		//composite.setLayout(new GridLayout(1, false));
+		idLabel = new Label(composite, SWT.LEFT);
+		idLabel.setText("Id of new InfElement");
 		idText = new Text(composite, SWT.SINGLE);
-		nameText = new Text(composite, SWT.SINGLE);	
+		
+		nameLabel = new Label(composite, SWT.LEFT);
+		nameLabel.setText("Name of new InfElement");
+		nameText = new Text(composite, SWT.SINGLE);
+		
+		refIdLabel = new Label(composite, SWT.LEFT);
+		refIdLabel.setText("Id of new InfElementRef");
+		refIdText = new Text(composite, SWT.SINGLE);
 		
         return composite;
 	}
@@ -43,6 +60,7 @@ public class SelectIntoInfElemDialog extends Dialog{
 	{
 		infElemId = idText.getText();
 		infElemName = nameText.getText();
+		infElemRefId = refIdText.getText();
 		super.okPressed();
 	}
 	
@@ -54,5 +72,10 @@ public class SelectIntoInfElemDialog extends Dialog{
 	public String getInfElemName()
 	{
 		return infElemName;
+	}
+	
+	public String getInfElemRefId()
+	{
+		return infElemRefId;
 	}
 }

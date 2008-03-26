@@ -66,6 +66,11 @@ public class MyAction extends Action{//SelectionProviderAction{
 	}
 	
 	public void run() {
+		SelectIntoInfElemDialog dialog = new SelectIntoInfElemDialog(editor.getSite().getShell());
+		
+		int res = dialog.open();
+		if ( res != Window.OK)
+			return;
 		
 //		ProjectRegistry registry = PLDocToolkitPlugin.getRegistry("qwe");
 		
@@ -110,8 +115,10 @@ public class MyAction extends Action{//SelectionProviderAction{
 			PositionInDRL pos1 = DRLdoc.findByPosition(new PositionInText(line1 + 1, column1 + 1));
 			PositionInDRL pos2 = DRLdoc.findByPosition(new PositionInText(line2 + 1, column2 + 1));
 
-			SelectIntoInfElem refact = new SelectIntoInfElem();
-			refact.from = pos1; refact.to = pos2; refact.project = projectContent;
+			SelectIntoInfElem refact = new SelectIntoInfElem(dialog.getInfElemId(), dialog.getInfElemName(), dialog.getInfElemRefId(),
+															 projectContent, DRLdoc, 
+															 new PositionInText(line1 + 1, column1 + 1),
+															 new PositionInText(line2 + 1, column2 + 1));			
 			refact.perform();
 			
 			projectContent.saveAll();
