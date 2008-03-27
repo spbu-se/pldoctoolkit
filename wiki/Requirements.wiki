@@ -9,14 +9,13 @@ The exact versions and bundles themselves can be downloaded from [http://downloa
 More preciously, software versions are as follows:
   * GMF ver. 2.0
   * Eclipse build R-3.3-200706251500
-  * EMF ver. 2.3.0.v200706262000
-  * EMF Data Integrity Frameworks ver. 1.1.0.v200706071723-7A7_-DjfRA5XdgEd13OGOQBCXgKs
-  * OCL ver. 1.1.0.v200706071450-65-_-J8YPRYjZdugHR9mcnHmnBkB
-  * GEF ver. 3.3.0.v20070620
-  * Orbit Bundles build R200706192011
+  * EMF ver. 2.3.0
+  * EMF Data Integrity Frameworks ver. 1.1.0
+  * OCL ver. 1.1.0
+  * GEF ver. 3.3.0
+  * Orbit Bundles build 200706192011
 
 == Version Trunk ==
 
 This is developed with the latest release versions available. For now this is
 GMF ver. 2.0.2 and all others, obtained via Eclipse's Update Manager. Theoretically these can be downloaded from [http://download.eclipse.org/modeling/gmf/downloads/drops/R-2.0.2-200802250200/index.php GMF 2.0.2 download page]
-
