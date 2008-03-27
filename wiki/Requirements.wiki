@@ -2,18 +2,21 @@
 
 == Version 1.0 ==
 
-This is version created for the diploma party on 19.06.2007. Eclipse 3.2 Europa has just came out by that date, so software versions are the first releases.
+This is version created for the diploma party on 19.06.2007. Eclipse 3.3 Europa has just come out by that date, so software versions are the first releases.
+
+The exact versions and bundles themselves can be downloaded from [http://download.eclipse.org/modeling/gmf/downloads/drops/R-2.0-200706210000/index.php GMF 2.0 download page].
 
 More preciously, software versions are as follows:
-  * Eclipse 3.2.0
-  * GMF 2.0
-  * EMF
-  * GEF
-
-_Probably these data can be obtained from the corresponding GMF download page._
+  * GMF ver. 2.0
+  * Eclipse build R-3.3-200706251500
+  * EMF ver. 2.3.0.v200706262000
+  * EMF Data Integrity Frameworks ver. 1.1.0.v200706071723-7A7_-DjfRA5XdgEd13OGOQBCXgKs
+  * OCL ver. 1.1.0.v200706071450-65-_-J8YPRYjZdugHR9mcnHmnBkB
+  * GEF ver. 3.3.0.v20070620
+  * Orbit Bundles build R200706192011
 
 == Version Trunk ==
 
-This is developed with the latest versions available.
+This is developed with the latest release versions available. For now this is
+GMF ver. 2.0.2 and all others, obtained via Eclipse's Update Manager. Theoretically these can be downloaded from [http://download.eclipse.org/modeling/gmf/downloads/drops/R-2.0.2-200802250200/index.php GMF 2.0.2 download page]
 
-_More precious information again can be obtained from the latest GMF release's download page._
