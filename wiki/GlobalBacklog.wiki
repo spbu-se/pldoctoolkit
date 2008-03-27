@@ -1,9 +1,32 @@
 #summary Known global development directions list
 
+Issues are prioritized in each subsection.
+
+
 ==InfProduct diagram==
+
+  * layout manager improvements:
+    * elements folding
+    * effective nodes placement (see comapping)
+
+  * bugfix
 
 ==ProductLine diagram==
 
+  * go to DRL from connection
+
+  * product documentation generator wizard (+ adapters generation)
+
+  * connection cosmetic changes: fix positioning, highlight on node selection
+
+
 ==FinalInfProduct diagram==
+  
+  * viewer
+  
+  * editor
 
 ==DRL Resource integration layer==
+
+  * preserve attributes positions in xml
+  
