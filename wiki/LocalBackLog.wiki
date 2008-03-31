@@ -1,0 +1,4 @@
+#summary Tasks for the current run prioritized and detailed.
+
+ # ProductLine: go to DRL, cosmetic changes: fix positioning, highlight on node selection
+ # ProductLine: product documentation generator wizard (+ adapters generation)
