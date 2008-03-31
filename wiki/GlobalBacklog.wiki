@@ -8,8 +8,11 @@ Issues are prioritized in each subsection.
   * layout manager improvements:
     * elements folding
     * effective nodes placement (see comapping)
+    * Bugfix for new node creation mispositioning
 
   * update to GMF 2.0.2
+
+  * Revise placement of newly created inf elements in DRL files
 
   * bugfix
 
@@ -20,7 +23,6 @@ Issues are prioritized in each subsection.
   * product documentation generator wizard (+ adapters generation)
 
   * connection cosmetic changes: fix positioning, highlight on node selection
-
 
 ==FinalInfProduct diagram==
   
@@ -41,3 +43,22 @@ Issues are prioritized in each subsection.
   * introduce diagram indexing
 
 ==DRL text editor==
+
+  * Documentation refactoring
+ 
+  * Content assist
+
+  * Doc snippets
+
+  * Syntax check
+  
+==Eclipse integration==
+
+  * Automated openieng of DRL files in DRL editor (now they are opened in DRL model editor)
+
+==Usability testing==
+  
+  * Create new project and try to create new documentation starting from diagrams
+   
+
+
