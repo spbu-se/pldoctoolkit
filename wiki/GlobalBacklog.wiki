@@ -9,6 +9,8 @@ Issues are prioritized in each subsection.
     * elements folding
     * effective nodes placement (see comapping)
 
+  * update to GMF 2.0.2
+
   * bugfix
 
 ==ProductLine diagram==
@@ -30,3 +32,12 @@ Issues are prioritized in each subsection.
 
   * preserve attributes positions in xml
   
+==Model core==
+
+  * update to GMF 2.0.2
+
+==Resource indexer==
+
+  * introduce diagram indexing
+
+==DRL text editor==
