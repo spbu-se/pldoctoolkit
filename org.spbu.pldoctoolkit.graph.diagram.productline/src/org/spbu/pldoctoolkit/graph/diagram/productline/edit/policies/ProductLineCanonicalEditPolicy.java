@@ -197,9 +197,7 @@ public class ProductLineCanonicalEditPolicy extends
 	/**
 	 * HAND
 	 * 
-	 * First, loads all resources containing final inf products. Then for each
-	 * InfProduct on the diagram finds and displays the corresponding
-	 * FinalInfProduct.<p>
+	 * TODO description
 	 * 
 	 * @param domain2NotationMap
 	 * @return
@@ -212,8 +210,6 @@ public class ProductLineCanonicalEditPolicy extends
 		TransactionalEditingDomain domain = ((GraphicalEditPart)getHost()).getEditingDomain();
 		Set<Resource> resourceSet = loadResources(domain.getResourceSet());
 		
-//		EList<Resource> resourceList = domain.getResourceSet().getResources();
-
 		for(Resource resource : resourceSet) {
 			TreeIterator<EObject> nodeIter = resource.getAllContents();
 			while(nodeIter.hasNext()) {

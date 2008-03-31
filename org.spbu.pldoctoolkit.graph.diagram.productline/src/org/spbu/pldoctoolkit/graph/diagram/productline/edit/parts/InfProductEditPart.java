@@ -1,11 +1,14 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
+import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.CompoundBorder;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -302,6 +305,24 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(
+			ConnectionEditPart connEditPart) {
+		return new FixedConnectionAnchor(this.getFigure(), false);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(
+			ConnectionEditPart connEditPart) {
+		return new FixedConnectionAnchor(this.getFigure(), false);
 	}
 
 }
