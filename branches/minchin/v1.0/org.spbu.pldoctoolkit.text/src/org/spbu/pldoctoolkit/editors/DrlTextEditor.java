@@ -1,13 +1,17 @@
 package org.spbu.pldoctoolkit.editors;
 
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.spbu.pldoctoolkit.DrlPublisherPlugin;
+import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.actions.BasicExportAction;
+import org.spbu.pldoctoolkit.actions.DRLMenuListener;
 import org.spbu.pldoctoolkit.actions.PdfExportAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlOnSaveAction;
 import org.spbu.pldoctoolkit.actions.MyAction;
+import org.spbu.pldoctoolkit.refactor.ProjectContentCreator;
 
 public class DrlTextEditor extends TextEditor {
 	public static final String XML_PARTITIONING = "__drl_partitioning";
@@ -18,12 +22,16 @@ public class DrlTextEditor extends TextEditor {
 	public static final String EXPORT_TO_PDF = "export_to_pdf";
 	
 	private ColorManager colorManager;
+	
+	static {
+		PLDocToolkitPlugin.getRegistryIndex().setProjectContentCreator(new ProjectContentCreator());
+	}
 
 	public DrlTextEditor() {
 		super();
 		colorManager = new ColorManager();
 		setSourceViewerConfiguration(new XMLConfiguration(colorManager, this));
-		setDocumentProvider(new XMLDocumentProvider());
+		setDocumentProvider(new XMLDocumentProvider());				
 	}
 	
 	@Override
@@ -76,11 +84,12 @@ public class DrlTextEditor extends TextEditor {
 		}
 	}
 	
-	/*
+	
 	public void editorContextMenuAboutToShow(IMenuManager menu) {
 		super.editorContextMenuAboutToShow(menu);
-		addAction(menu, "asd");		 
+		addAction(menu, "asd");	
+		
+		DRLMenuListener.instance.editor = this;
+		DRLMenuListener.instance.menuAboutToShow(menu);
 	}
-	*/
-
 }

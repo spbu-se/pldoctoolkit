@@ -10,6 +10,7 @@ import static org.spbu.pldoctoolkit.registry.RegisteredLocation.INF_PRODUCT;
 import static org.spbu.pldoctoolkit.registry.RegisteredLocation.PRODUCT;
 import static org.spbu.pldoctoolkit.registry.RegisteredLocation.PRODUCT_CONTEXT;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ import net.sf.saxon.dom.NodeOverNodeInfo;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.runtime.CoreException;
@@ -37,7 +39,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-class ProjectRegistryImpl implements ProjectRegistry {
+public class ProjectRegistryImpl implements ProjectRegistry {
 	private static final String DRLRESOLVE_PREFIX = "drlresolve://";
 	
 	private static final String DOCUMENTATION_CORE = "DocumentationCore";
@@ -51,6 +53,9 @@ class ProjectRegistryImpl implements ProjectRegistry {
 	private static DocumentBuilderImpl documentBuilder;
 	
 	private final Map<String, RegisteredLocation> locationMap = new HashMap<String, RegisteredLocation>();
+	
+	public IProjectContent projectContent = null;
+	public IProject project;
 
 	private Document getXMLDocument(IFile file) throws ParserConfigurationException, SAXException, IOException {
 		if (documentBuilder == null) {
@@ -200,7 +205,7 @@ class ProjectRegistryImpl implements ProjectRegistry {
 			} catch (IOException e) {
 				// ignore
 			}
-		}
+		}	
 	}
 	
 	void refreshContainer(IContainer container) throws CoreException {

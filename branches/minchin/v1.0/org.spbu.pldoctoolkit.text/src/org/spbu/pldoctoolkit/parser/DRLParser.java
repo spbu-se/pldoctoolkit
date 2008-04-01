@@ -8,12 +8,14 @@ import java.nio.CharBuffer;
 
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
+import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import com.thaiopensource.xml.sax.Jaxp11XMLReaderCreator;
 import org.apache.xerces.parsers.SAXParser;
-import org.xml.sax.Parser;
+import org.xml.sax.helpers.XMLReaderFactory;
+//import org.xml.sax.Parser;
 //import org.apache.xerces.parsers.SAXParser;
 
 public class DRLParser {
@@ -26,7 +28,7 @@ public class DRLParser {
 		try 
 		{
 			xmlReader = new Jaxp11XMLReaderCreator().createXMLReader();
-//			XMLReader xmlReader = new SAXParser();
+			//xmlReader = new SAXParser();
 			contetnHandler = new DRLContentHandler();		
 			xmlReader.setContentHandler(contetnHandler);
 		}
@@ -37,7 +39,7 @@ public class DRLParser {
 	
 	public static DRLDocument parse(InputStream input1, InputStream input2, ProjectContent project)
 	{		
-		try {
+		try {			
 			contetnHandler.setProject(project);
 			//contetnHandler.input = new InputSource(new InputStreamReader(input1));
 			

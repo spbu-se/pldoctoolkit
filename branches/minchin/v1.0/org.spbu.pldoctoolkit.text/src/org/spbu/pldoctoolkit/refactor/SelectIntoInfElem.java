@@ -7,6 +7,7 @@ import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
+import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.AttributesImpl;
 
@@ -24,7 +25,7 @@ public class SelectIntoInfElem {
 	private boolean wasValidation = false;
 	private Element infElem = null;
 	private String prefex;
-	
+/*	
 	public SelectIntoInfElem( String id, String name, String refId, 
 			                  ProjectContent project, DRLDocument doc,
 						      PositionInText fromText, PositionInText toText ) 
@@ -35,16 +36,35 @@ public class SelectIntoInfElem {
 		this.project = project;
 		this.fromText = fromText;
 		this.toText = toText;
-		this.doc = doc;
-		/*
-		from = doc.findByPosition(fromText);
-		to = doc.findByPosition(toText);
-		
-		fromIdx = from.parent.getChilds().indexOf(from.next);
-		toIdx = from.parent.getChilds().indexOf(to.prev);*/
+		this.doc = doc;	
+	}
+*/	
+	public SelectIntoInfElem() {	
 	}
 	
-	public SelectIntoInfElem() {	
+	public void setPararams( String id, String name, String refId, 
+            				 ProjectContent project, DRLDocument doc,
+            				 PositionInText fromText, PositionInText toText ) {
+		this.elemId = id;
+		this.elemName = name;
+		this.refId = refId;
+		this.project = project;
+		this.fromText = fromText;
+		this.toText = toText;
+		this.doc = doc;
+	}
+	
+	public void setValidationPararams( ProjectContent project, DRLDocument doc,
+							 		   PositionInText fromText, PositionInText toText ) {		
+		this.project = project;
+		this.fromText = fromText;
+		this.toText = toText;
+		this.doc = doc;
+	}
+	
+	public void reset() {
+		wasValidation = false;
+		isValide = false;
 	}
 	
 	private void init() {

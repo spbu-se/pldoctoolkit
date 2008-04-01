@@ -1,5 +1,6 @@
 package org.spbu.pldoctoolkit.editors;	
 
+import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
@@ -8,6 +9,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.editors.text.TextEditorActionContributor;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.ui.texteditor.RetargetTextEditorAction;
+import org.spbu.pldoctoolkit.actions.DRLMenuListener;
 
 public class DrlEditorActionContributor extends TextEditorActionContributor {
 	private final RetargetTextEditorAction exportToHtml = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ExportToHtml.");
@@ -23,6 +25,7 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		docbookMenu.add(exportToPdf);
 		docbookMenu.add(validateDrl);
 		docbookMenu.add(my);
+		docbookMenu.addMenuListener(DRLMenuListener.instance);
 	}
 
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
@@ -42,5 +45,7 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		exportToPdf.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_PDF));
 		validateDrl.setAction(getAction(editor, DrlTextEditor.VALIDATE_DRL));
 		my.setAction(getAction(editor, "asd"));
+		
+		DRLMenuListener.instance.editor = editor;
 	}
 }
