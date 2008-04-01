@@ -36,7 +36,10 @@ public class ProductInfProductLinkEditPart extends ConnectionNodeEditPart 	 {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ProductInfProductLinkItemSemanticEditPolicy());
-
+		
+		installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, null);
+		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, null);
+		
 		//HAND
 		// disable delete from keyboard
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ComponentEditPolicy() {
