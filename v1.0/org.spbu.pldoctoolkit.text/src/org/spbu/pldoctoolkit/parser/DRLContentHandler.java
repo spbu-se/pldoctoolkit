@@ -16,6 +16,7 @@ import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
 import org.spbu.pldoctoolkit.refactor.Util;
+import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;

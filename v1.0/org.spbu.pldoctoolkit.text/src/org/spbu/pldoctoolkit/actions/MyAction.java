@@ -42,6 +42,7 @@ import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
 import org.spbu.pldoctoolkit.refactor.SelectIntoInfElem;
 import org.spbu.pldoctoolkit.registry.ProjectRegistry;
+import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 import org.spbu.pldoctoolkit.registry.RegisteredLocation;
 import org.w3c.dom.Document;
 import org.xml.sax.DTDHandler;
@@ -52,9 +53,14 @@ import org.xml.sax.XMLReader;
 import com.thaiopensource.validate.Validator;
 import com.thaiopensource.xml.sax.Jaxp11XMLReaderCreator;
 
-public class MyAction extends Action{//SelectionProviderAction{
+public class MyAction extends Action implements IValidateDRLSelection{//SelectionProviderAction{
 	IEditorPart editor;
 	TextEditor te;
+	IProject project;
+	
+	SelectIntoInfElem refact = new SelectIntoInfElem();
+	ProjectContent projectContent;// = new ProjectContent();
+	FileEditorInput editorInput;
 	
 	public MyAction(IEditorPart editor) throws Exception {
 		super("My action");
@@ -63,9 +69,50 @@ public class MyAction extends Action{//SelectionProviderAction{
 		validator = SCHEMA_CACHE.getValidator(SCHEMA_URL, errorHandler);
 		xmlReader = new Jaxp11XMLReaderCreator().createXMLReader();		
 		xmlReader.setErrorHandler(errorHandler);
+		
+		editorInput = (FileEditorInput) editor.getEditorInput();
+		project = editorInput.getFile().getProject();
+		projectContent = (ProjectContent)((ProjectRegistryImpl)PLDocToolkitPlugin.getRegistry(project.getName())).projectContent;
+		DRLMenuListener.instance.addListener(this);
+	}
+	
+	public void validateSelection(IEditorPart part) {
+		//projectContent.parseAll(project);
+		
+		ISelection sel = te.getSelectionProvider().getSelection();
+		TextSelection ts = (TextSelection) sel;
+		
+		IDocument doc = te.getDocumentProvider().getDocument(editorInput);
+		DRLDocument DRLdoc = projectContent.DRLDocs.get(editorInput.getFile());
+		try {
+			int line1 = ts.getStartLine();
+			int column1 = ts.getOffset() - doc.getLineOffset(line1);
+			int line2 = ts.getEndLine();
+			int column2 = ts.getOffset() + ts.getLength() - doc.getLineOffset(line2);
+			PositionInText pos1 = new PositionInText(line1 + 1, column1 + 1);
+			PositionInText pos2 = new PositionInText(line2 + 1, column2 + 1);
+			
+			if (pos1.compare(pos2) == 0) {
+				setEnabled(false);
+				return;
+			}
+				
+		
+			refact.reset();
+			refact.setValidationPararams( projectContent, DRLdoc, 
+										  pos1,
+						   			      pos2);			
+			
+			boolean res = refact.validate();
+			setEnabled(res);
+		} catch (Exception e) {
+			setEnabled(false);
+			e.printStackTrace();
+		}		
 	}
 	
 	public void run() {
+		setEnabled(false);
 		SelectIntoInfElemDialog dialog = new SelectIntoInfElemDialog(editor.getSite().getShell());
 		
 		int res = dialog.open();
@@ -73,7 +120,7 @@ public class MyAction extends Action{//SelectionProviderAction{
 			return;
 		
 //		ProjectRegistry registry = PLDocToolkitPlugin.getRegistry("qwe");
-		
+		/*
 		FileEditorInput editorInput = (FileEditorInput) editor.getEditorInput();
 		IProject project = editorInput.getFile().getProject();
 		if (project == null)
@@ -81,7 +128,7 @@ public class MyAction extends Action{//SelectionProviderAction{
 		
 		
 		FileEditorInput f = new FileEditorInput(editorInput.getFile());
-		
+		*/
 		
 		//editorInput.getFile().		
 		//project.g
@@ -101,70 +148,24 @@ public class MyAction extends Action{//SelectionProviderAction{
 			//IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			//workspace.getRoot().getp
 			
-			String selectedText = doc.get(ts.getOffset(), ts.getLength());
-//			validate("<temp>" + selectedText + "</temp>");
-			ProjectContent projectContent = new ProjectContent();
-			projectContent.parseAll(project);
-			
-			//DRLDocument DRLdoc = DRLParser.parse(new InputSource(new StringReader(doc.get(0, doc.getLength()))));
+			//String selectedText = doc.get(ts.getOffset(), ts.getLength());
+
+			//ProjectContent projectContent = new ProjectContent();
+			//projectContent.parseAll(project);			
+
 			DRLDocument DRLdoc = projectContent.DRLDocs.get(editorInput.getFile());
 			int line1 = ts.getStartLine();
 			int column1 = ts.getOffset() - doc.getLineOffset(line1);
 			int line2 = ts.getEndLine();
 			int column2 = ts.getOffset() + ts.getLength() - doc.getLineOffset(line2);
-			PositionInDRL pos1 = DRLdoc.findByPosition(new PositionInText(line1 + 1, column1 + 1));
-			PositionInDRL pos2 = DRLdoc.findByPosition(new PositionInText(line2 + 1, column2 + 1));
-
-			SelectIntoInfElem refact = new SelectIntoInfElem(dialog.getInfElemId(), dialog.getInfElemName(), dialog.getInfElemRefId(),
-															 projectContent, DRLdoc, 
-															 new PositionInText(line1 + 1, column1 + 1),
-															 new PositionInText(line2 + 1, column2 + 1));			
+			
+			refact.setPararams(dialog.getInfElemId(), dialog.getInfElemName(), dialog.getInfElemRefId(),
+							   projectContent, DRLdoc, 
+							   new PositionInText(line1 + 1, column1 + 1),
+							   new PositionInText(line2 + 1, column2 + 1));			
 			refact.perform();
 			
-			projectContent.saveAll();
-			/*			
-			if (pos1.parent == pos2.parent){
-				int from = pos1.parent.getChilds().indexOf(pos1.next);
-				int to = pos1.parent.getChilds().indexOf(pos2.prev);
-				
-				ArrayList<Element> childsToInsert = pos1.parent.removeChilds(from, to);
-				DRLdoc.getChilds().get(0).appendChilds(childsToInsert);
-				
-				doc.set(DRLdoc.getTextRepresentation());
-			}
-*/			
-			int i = 10;
-			
-			
-/*		
-		
-			if (!errorHandler.succeded())
-				return;
-		
-			SelectIntoInfElemDialog dialog = new SelectIntoInfElemDialog(editor.getSite().getShell());
-		
-			int res = dialog.open();
-			if ( res == Window.OK) {			
-				if (sel instanceof TextSelection) {				
-					try {				
-						String textToInsert = "<InfElem id = " + '"' + dialog.getInfElemId()+ '"' +
-								" name = "  + '"' + dialog.getInfElemName() + '"' +
-								">\n" +
-								selectedText +
-								"\n</InfElem>\n";
-					
-						doc.replace(ts.getOffset(), ts.getLength(),
-								"<InfElemRef elemid = " + '"' + dialog.getInfElemId() + '"' + "/>");					
-						FindReplaceDocumentAdapter findReplaceAdapter = new FindReplaceDocumentAdapter(doc);					
-						int insOffset = doc.search(doc.getLength() - 1, "<", false, true, false);
-						doc.replace(insOffset, 0, textToInsert);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					System.out.print(text);
-				}
-			}
-			*/
+			projectContent.saveAll();		
 		}
 		catch (Exception e)
 		{

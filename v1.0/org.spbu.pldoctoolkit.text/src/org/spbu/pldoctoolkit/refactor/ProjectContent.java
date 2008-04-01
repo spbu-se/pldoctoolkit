@@ -14,14 +14,15 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.parser.DRLParser;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
+import org.spbu.pldoctoolkit.registry.IProjectContent;
 import org.xml.sax.InputSource;
 
-public class ProjectContent {
+public class ProjectContent implements IProjectContent{
 	public HashMap<IFile , DRLDocument> DRLDocs = new HashMap<IFile, DRLDocument>();	
 	public ArrayList<LangElem> Adapters = new ArrayList<LangElem>();
 	public ArrayList<LangElem> InfElemRefs = new ArrayList<LangElem>();
 //	public String projectName;
-	
+/*	
 	public void parseAll(IProject project) {
 		DRLDocs.clear();
 		try {
@@ -31,8 +32,8 @@ public class ProjectContent {
 					String ext = file.getFileExtension();
 					if (ext != null && ext.equals("drl"))
 					{
-						DRLDocument doc = DRLParser.parse( file.getContents(), file.getContents(), /*new InputSource(file.getContents())*/ this );
-						DRLDocs.put(file, doc);
+						//DRLDocument doc = DRLParser.parse( file.getContents(), file.getContents(), this );
+						//DRLDocs.put(file, doc);
 					}
 				}
 			}
@@ -41,7 +42,7 @@ public class ProjectContent {
 			e.printStackTrace();
 		}
 	}
-	
+*/	
 	public void saveAll() {
 		for (IFile file : DRLDocs.keySet()) {			
 			String docText = DRLDocs.get(file).getTextRepresentation();
@@ -51,6 +52,30 @@ public class ProjectContent {
 			catch (CoreException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	public void add(IFile file) {
+		try {
+			DRLDocument doc = DRLParser.parse( file.getContents(), file.getContents(), this );
+			DRLDocs.put(file, doc);
+		}
+		catch (CoreException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void remove(IFile file) {
+		DRLDocs.remove(file);
+	}
+
+	public void change(IFile file) {		
+		try {
+			DRLDocument doc = DRLParser.parse( file.getContents(), file.getContents(), this );
+			DRLDocs.put(file, doc); // If the map previously contained a mapping for the key, the old value is replaced. 
+		}
+		catch (CoreException e){
+			e.printStackTrace();
 		}
 	}
 }
