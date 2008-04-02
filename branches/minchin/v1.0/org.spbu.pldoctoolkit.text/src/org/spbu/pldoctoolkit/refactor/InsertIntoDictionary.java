@@ -136,9 +136,14 @@ public class InsertIntoDictionary {
 				prefex += ":";
 			
 			ArrayList<Element> childsToInsert = from.parent.removeChilds(fromIdx, toIdx);			
-			LangElem entry = createNewEntry(entryId);
+			
+			LangElem entry = createNewEntry();
+			LangElem dictRef = createNewDictRef();
+			
 			dict.getChilds().add(entry);
 			entry.appendChilds(childsToInsert);
+			from.parent.getChilds().add(fromIdx, dictRef);
+			
 			
 			/*
 			String idTofind = ((LangElem)infElem).attrs.getValue("id");
@@ -251,9 +256,17 @@ public class InsertIntoDictionary {
 		return dicts;
 	}
 	
-	private LangElem createNewEntry(String id) {		
+	private LangElem createNewEntry() {		
 		LangElem entry = new LangElem("Entry", prefex + "Entry", null, dict, dict.getDRLDocument(), new AttributesImpl());
-		((AttributesImpl)entry.attrs).addAttribute("id", "id", "id", "", id);
+		((AttributesImpl)entry.attrs).addAttribute("id", "id", "id", "", entryId);
+		return entry;
+	}
+	
+	private LangElem createNewDictRef() {
+		String dictId = dict.attrs.getValue("id");
+		LangElem entry = new LangElem("DictRef", prefex + "DictRef", null, dict, dict.getDRLDocument(), new AttributesImpl());
+		((AttributesImpl)entry.attrs).addAttribute("entryid", "entryid", "entryid", "", entryId);
+		((AttributesImpl)entry.attrs).addAttribute("dictid", "dictid", "dictid", "", dictId);
 		return entry;
 	}
 }
