@@ -113,8 +113,7 @@ public class SelectIntoInfElementAction extends Action implements IValidateDRLSe
 		}		
 	}
 	
-	public void run() {
-		setEnabled(false);
+	public void run() {		
 		SelectIntoInfElemDialog dialog = new SelectIntoInfElemDialog(editor.getSite().getShell());
 		
 		int res = dialog.open();
