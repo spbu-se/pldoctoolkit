@@ -24,6 +24,8 @@ Issues are prioritized in each subsection.
 
   * connection cosmetic changes: fix positioning, highlight on node selection
 
+  * vertical line dividing products and infproducts
+
 ==FinalInfProduct diagram==
   
   * viewer
@@ -60,5 +62,11 @@ Issues are prioritized in each subsection.
   
   * Create new project and try to create new documentation starting from diagrams
    
+==Internationalization==
+  
+  * Prepare DocLine toolset for internationalization
+  * Create English localization
+  * Create Russian localization
 
 
+   
