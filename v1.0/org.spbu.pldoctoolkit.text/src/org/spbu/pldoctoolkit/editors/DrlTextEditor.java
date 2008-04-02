@@ -10,7 +10,7 @@ import org.spbu.pldoctoolkit.actions.DRLMenuListener;
 import org.spbu.pldoctoolkit.actions.PdfExportAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlOnSaveAction;
-import org.spbu.pldoctoolkit.actions.MyAction;
+import org.spbu.pldoctoolkit.actions.SelectIntoInfElementAction;
 import org.spbu.pldoctoolkit.refactor.ProjectContentCreator;
 
 public class DrlTextEditor extends TextEditor {
@@ -20,6 +20,7 @@ public class DrlTextEditor extends TextEditor {
 	public static final String VALIDATE_DRL = "validate_drl";
 	public static final String EXPORT_TO_HTML = "export_to_html";
 	public static final String EXPORT_TO_PDF = "export_to_pdf";
+	public static final String SELECT_INTO_INF_ELEMENT = "select_into_inf_element";
 	
 	private ColorManager colorManager;
 	
@@ -78,7 +79,7 @@ public class DrlTextEditor extends TextEditor {
 		}
 		
 		try {
-			setAction("asd", new MyAction(this));
+			setAction(SELECT_INTO_INF_ELEMENT, new SelectIntoInfElementAction(this));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -87,7 +88,7 @@ public class DrlTextEditor extends TextEditor {
 	
 	public void editorContextMenuAboutToShow(IMenuManager menu) {
 		super.editorContextMenuAboutToShow(menu);
-		addAction(menu, "asd");	
+		addAction(menu, SELECT_INTO_INF_ELEMENT);	
 		
 		DRLMenuListener.instance.editor = this;
 		DRLMenuListener.instance.menuAboutToShow(menu);
