@@ -7,10 +7,12 @@ import org.spbu.pldoctoolkit.DrlPublisherPlugin;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.actions.BasicExportAction;
 import org.spbu.pldoctoolkit.actions.DRLMenuListener;
+import org.spbu.pldoctoolkit.actions.InsertIntoDictionaryAction;
 import org.spbu.pldoctoolkit.actions.PdfExportAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlOnSaveAction;
 import org.spbu.pldoctoolkit.actions.SelectIntoInfElementAction;
+import org.spbu.pldoctoolkit.refactor.InsertIntoDictionary;
 import org.spbu.pldoctoolkit.refactor.ProjectContentCreator;
 
 public class DrlTextEditor extends TextEditor {
@@ -21,6 +23,7 @@ public class DrlTextEditor extends TextEditor {
 	public static final String EXPORT_TO_HTML = "export_to_html";
 	public static final String EXPORT_TO_PDF = "export_to_pdf";
 	public static final String SELECT_INTO_INF_ELEMENT = "select_into_inf_element";
+	public static final String INSERT_INTO_DICTIONARY = "Iinsert_into_dictionary";
 	
 	private ColorManager colorManager;
 	
@@ -83,12 +86,19 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			setAction(INSERT_INTO_DICTIONARY, new InsertIntoDictionaryAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
 	public void editorContextMenuAboutToShow(IMenuManager menu) {
 		super.editorContextMenuAboutToShow(menu);
-		addAction(menu, SELECT_INTO_INF_ELEMENT);	
+		addAction(menu, SELECT_INTO_INF_ELEMENT);
+		addAction(menu, INSERT_INTO_DICTIONARY);
 		
 		DRLMenuListener.instance.editor = this;
 		DRLMenuListener.instance.menuAboutToShow(menu);

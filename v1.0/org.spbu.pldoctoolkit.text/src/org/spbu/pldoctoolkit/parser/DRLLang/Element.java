@@ -8,7 +8,7 @@ import org.spbu.pldoctoolkit.refactor.PositionInText;
 public abstract class Element {
 	protected int startLine, startColumn, endLine, endColumn;
 	protected PositionInText startPos, endPos, tagStartPos;
-	protected ArrayList<Element> childs = null;
+	protected ArrayList<Element> childs = new ArrayList<Element>();
 	protected Element parent;
 	protected DRLDocument doc;	
 /*	
@@ -156,6 +156,8 @@ public abstract class Element {
 	
 	public void appendChilds(ArrayList<Element> childsToInsert) {
 		//for (int i = 0; i < childsToInsert.size(); ++i)
+		if (childs == null)
+			childs = new ArrayList<Element>();
 		childs.addAll(childsToInsert);
 	}
 	
