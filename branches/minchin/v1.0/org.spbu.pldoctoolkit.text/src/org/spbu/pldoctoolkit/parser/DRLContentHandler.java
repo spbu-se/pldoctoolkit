@@ -195,6 +195,8 @@ public class DRLContentHandler implements ContentHandler {
 			projectContent.Adapters.add( (LangElem)newElem );
 		else if (arg1.equals("InfElemRef"))
 			projectContent.InfElemRefs.add((LangElem)newElem);
+		else if (arg1.equals("Dictionary"))
+			projectContent.dictionarys.add((LangElem)newElem);
 	}
 
 	@Override

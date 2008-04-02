@@ -21,6 +21,7 @@ public class ProjectContent implements IProjectContent{
 	public HashMap<IFile , DRLDocument> DRLDocs = new HashMap<IFile, DRLDocument>();	
 	public ArrayList<LangElem> Adapters = new ArrayList<LangElem>();
 	public ArrayList<LangElem> InfElemRefs = new ArrayList<LangElem>();
+	public ArrayList<LangElem> dictionarys = new ArrayList<LangElem>();
 //	public String projectName;
 /*	
 	public void parseAll(IProject project) {
@@ -57,6 +58,7 @@ public class ProjectContent implements IProjectContent{
 	
 	public void add(IFile file) {
 		try {
+			removeInfoAboutFile(file);
 			DRLDocument doc = DRLParser.parse( file.getContents(), file.getContents(), this );
 			DRLDocs.put(file, doc);
 		}
@@ -71,6 +73,7 @@ public class ProjectContent implements IProjectContent{
 
 	public void change(IFile file) {		
 		try {
+			removeInfoAboutFile(file);
 			DRLDocument doc = DRLParser.parse( file.getContents(), file.getContents(), this );
 			DRLDocs.put(file, doc); // If the map previously contained a mapping for the key, the old value is replaced. 
 		}
@@ -78,4 +81,32 @@ public class ProjectContent implements IProjectContent{
 			e.printStackTrace();
 		}
 	}
+	
+	private void removeInfoAboutFile(IFile file) {
+		DRLDocument doc = DRLDocs.get(file);
+	
+		int i = 0;
+		while (i < Adapters.size()) {
+			if (Adapters.get(i).getDRLDocument() == doc)
+				Adapters.remove(i);
+			else
+				++i;
+		}
+		
+		i = 0;
+		while (i < InfElemRefs.size()) {
+			if (InfElemRefs.get(i).getDRLDocument() == doc)
+				InfElemRefs.remove(i);
+			else
+				++i;
+		}
+		
+		i = 0;
+		while (i < dictionarys.size()) {
+			if (dictionarys.get(i).getDRLDocument() == doc)
+				dictionarys.remove(i);
+			else
+				++i;
+		}
+	}	
 }

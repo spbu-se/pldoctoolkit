@@ -16,6 +16,8 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 	private final RetargetTextEditorAction exportToPdf = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ExportToPdf.");
 	private final RetargetTextEditorAction validateDrl = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ValidateDrl.");
 	private final RetargetTextEditorAction selectIntoInfElement = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "SelectIntoInfElement.");
+	private final RetargetTextEditorAction insertIntoDictionary = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "InsertIntoDictionary.");
+	
 	
 	public void contributeToMenu(IMenuManager menu) {
 		super.contributeToMenu(menu);
@@ -25,6 +27,7 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		docbookMenu.add(exportToPdf);
 		docbookMenu.add(validateDrl);
 		docbookMenu.add(selectIntoInfElement);
+		docbookMenu.add(insertIntoDictionary);
 		docbookMenu.addMenuListener(DRLMenuListener.instance);
 	}
 
@@ -45,6 +48,7 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		exportToPdf.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_PDF));
 		validateDrl.setAction(getAction(editor, DrlTextEditor.VALIDATE_DRL));
 		selectIntoInfElement.setAction(getAction(editor, DrlTextEditor.SELECT_INTO_INF_ELEMENT));
+		insertIntoDictionary.setAction(getAction(editor, DrlTextEditor.INSERT_INTO_DICTIONARY));
 		
 		DRLMenuListener.instance.editor = editor;
 	}
