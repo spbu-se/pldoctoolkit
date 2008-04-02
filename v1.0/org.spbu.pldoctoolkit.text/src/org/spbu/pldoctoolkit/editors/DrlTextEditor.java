@@ -1,7 +1,6 @@
 package org.spbu.pldoctoolkit.editors;
 
 import org.eclipse.ui.editors.text.TextEditor;
-import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.spbu.pldoctoolkit.DrlPublisherPlugin;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
@@ -12,7 +11,6 @@ import org.spbu.pldoctoolkit.actions.PdfExportAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlOnSaveAction;
 import org.spbu.pldoctoolkit.actions.SelectIntoInfElementAction;
-import org.spbu.pldoctoolkit.refactor.InsertIntoDictionary;
 import org.spbu.pldoctoolkit.refactor.ProjectContentCreator;
 
 public class DrlTextEditor extends TextEditor {
