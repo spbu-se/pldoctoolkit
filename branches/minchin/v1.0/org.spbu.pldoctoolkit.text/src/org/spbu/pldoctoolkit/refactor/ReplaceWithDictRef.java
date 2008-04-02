@@ -1,7 +1,6 @@
 package org.spbu.pldoctoolkit.refactor;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
@@ -9,12 +8,10 @@ import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
 import org.xml.sax.helpers.AttributesImpl;
 
-public class InsertIntoDictionary {
-	//public String elemId, elemName, refId;
+public class ReplaceWithDictRef {	
 	public String entryId;
 	public LangElem dict;
-	
-	public ProjectContent project;
+		
 	public PositionInDRL from, to;
 	public PositionInText fromText, toText;
 	public DRLDocument doc;
@@ -30,7 +27,7 @@ public class InsertIntoDictionary {
 	
 	private ArrayList<LangElem> dicts = new ArrayList<LangElem>();
 
-	public InsertIntoDictionary() {	
+	public ReplaceWithDictRef() {	
 	}
 	
 	public void setPararams( String entryId, LangElem dict ) {		
@@ -38,9 +35,8 @@ public class InsertIntoDictionary {
 		this.dict = dict;		
 	}
 	
-	public void setValidationPararams( ProjectContent project, DRLDocument doc,
+	public void setValidationPararams( DRLDocument doc,
 							 		   PositionInText fromText, PositionInText toText ) {		
-		this.project = project;
 		this.fromText = fromText;
 		this.toText = toText;
 		this.doc = doc;
@@ -133,15 +129,9 @@ public class InsertIntoDictionary {
 		
 			prefex = doc.DRLnsPrefix;
 			if (!prefex.equals(""))
-				prefex += ":";
-			
-			ArrayList<Element> childsToInsert = from.parent.removeChilds(fromIdx, toIdx);			
-			
-			LangElem entry = createNewEntry();
-			LangElem dictRef = createNewDictRef();
-			
-			dict.getChilds().add(entry);
-			entry.appendChilds(childsToInsert);
+				prefex += ":";					
+						
+			LangElem dictRef = createNewDictRef();			
 			from.parent.getChilds().add(fromIdx, dictRef);			
 		}		
 	}	
@@ -167,51 +157,7 @@ public class InsertIntoDictionary {
 			to = new PositionInDRL(false, false, null, parent.getChilds().get(toIdx), parent.getChilds().get(toIdx+1), parent);			
 		}
 	}
-	
-	public ArrayList<LangElem> getPossibleDicts() {
-		if (wasDictsPrepared)
-			return dicts;
-		/*		
-		DRLDocument document;
-		if (from.isInText)
-			document = from.elem.getDRLDocument();
-		else 
-			document = from.next.getDRLDocument();
-				
-		for (Element elem : document.getChilds().get(0).getChilds()) {
-			if (elem instanceof LangElem) {
-				LangElem le = (LangElem)elem;
-				if (le.tag == "Dictionary")
-					dicts.add(le);
-			}
-		}
-		
-		LangElem docTypeElem = (LangElem)document.getChilds().get(0);
-		if (docTypeElem.tag == "ProductDocumentation") {
-			for (Element elem : docTypeElem.getChilds()) {
-				if (elem instanceof LangElem) {
-					LangElem le = (LangElem)elem;
-					if (le.tag == "FinalInfProduct") {
-						for (LangElem posDict : project.dictionarys) {
-							if posDict
-						}
-					}
-				}
-			}
-		}
-		*/
-		dicts = project.dictionarys;
-		wasDictsPrepared = true;
-		
-		return dicts;
-	}
-	
-	private LangElem createNewEntry() {		
-		LangElem entry = new LangElem("Entry", prefex + "Entry", null, dict, dict.getDRLDocument(), new AttributesImpl());
-		((AttributesImpl)entry.attrs).addAttribute("id", "id", "id", "", entryId);
-		return entry;
-	}
-	
+
 	private LangElem createNewDictRef() {
 		String dictId = dict.attrs.getValue("id");
 		LangElem entry = new LangElem("DictRef", prefex + "DictRef", null, dict, dict.getDRLDocument(), new AttributesImpl());

@@ -1,7 +1,9 @@
 package org.spbu.pldoctoolkit.actions;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.text.IDocument;
@@ -9,6 +11,9 @@ import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
@@ -78,6 +83,16 @@ public class InsertIntoDictionaryAction extends Action implements IValidateDRLSe
 	}
 	
 	public void run() {		
+		IWorkbenchWindow w = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		Iterator<IFile> it = projectContent.DRLDocs.keySet().iterator();
+		IFile file = it.next();
+		FileEditorInput in = new FileEditorInput(file);
+		try {
+			w.getActivePage().openEditor(in, "org.spbu.pldoctoolkit.editors.DRLEditor");
+		} catch (PartInitException e) {
+			e.printStackTrace();
+		}
+		
 		InsertIntoDictionaryDialog dialog = new InsertIntoDictionaryDialog(editor.getSite().getShell());
 		ArrayList<LangElem> dicts = refact.getPossibleDicts();
 		for (int i = 0; i<dicts.size(); ++i) {
