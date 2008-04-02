@@ -71,11 +71,9 @@ public class WorkspaceRegistryIndex {
 			if (resource instanceof IProject) {
 				IProject project = (IProject) resource;
 				if (delta.getKind() == IResourceDelta.REMOVED) {
-					registryMap.remove(project.getName());
-					System.out.print("2");
+					registryMap.remove(project.getName());					
 					return false;
-				} else if (delta.getKind() == IResourceDelta.CHANGED && (delta.getFlags() & IResourceDelta.OPEN) != 0){
-					System.out.print("3");
+				} else if (delta.getKind() == IResourceDelta.CHANGED && (delta.getFlags() & IResourceDelta.OPEN) != 0){					
 					getRegistryImpl(project).refreshContainer(project);
 					return false;
 				}

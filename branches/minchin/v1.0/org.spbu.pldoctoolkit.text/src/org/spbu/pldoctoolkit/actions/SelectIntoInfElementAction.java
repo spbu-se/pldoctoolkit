@@ -53,7 +53,7 @@ import org.xml.sax.XMLReader;
 import com.thaiopensource.validate.Validator;
 import com.thaiopensource.xml.sax.Jaxp11XMLReaderCreator;
 
-public class MyAction extends Action implements IValidateDRLSelection{//SelectionProviderAction{
+public class SelectIntoInfElementAction extends Action implements IValidateDRLSelection{//SelectionProviderAction{
 	IEditorPart editor;
 	TextEditor te;
 	IProject project;
@@ -62,8 +62,10 @@ public class MyAction extends Action implements IValidateDRLSelection{//Selectio
 	ProjectContent projectContent;// = new ProjectContent();
 	FileEditorInput editorInput;
 	
-	public MyAction(IEditorPart editor) throws Exception {
-		super("My action");
+	public final static String refactName = "Select into InfElement"; 
+	
+	public SelectIntoInfElementAction(IEditorPart editor) throws Exception {
+		super(refactName);
 		this.editor = editor;
 		te = (TextEditor)editor;
 		validator = SCHEMA_CACHE.getValidator(SCHEMA_URL, errorHandler);
