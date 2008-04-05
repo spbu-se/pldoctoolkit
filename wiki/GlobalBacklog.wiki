@@ -10,6 +10,12 @@ Issues are prioritized in each subsection.
     * effective nodes placement (see comapping)
     * Bugfix for new node creation mispositioning
 
+  * elements ordering
+    * display order accordingly the order in DRL files
+    * allow to edit the order on diagrams
+
+  * enable connections reorientation
+
   * update to GMF 2.0.2
 
   * Revise placement of newly created inf elements in DRL files
