@@ -4,45 +4,45 @@ import java.util.ArrayList;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Label;
 
-public class SelectIntoInfElemDialog extends Dialog{
-	private String infElemId = "";
-	private String infElemName = "";
-	private String infElemRefId = "";
+public class CreateNewDictDialog extends Dialog {	
+	private String dictId = "";
+	private String dictName = "";	
 	
 	private Text idText;
-	private Text nameText;
-	private Text refIdText;
+	private Text nameText;	
 	
 	private Label idLabel;
-	private Label nameLabel;
-	private Label refIdLabel;
+	private Label nameLabel;	
 	
 	private Label errorMessage;
-	private boolean isValideElemId = false;
-	private boolean isValideElemRefId = false;
+	private boolean isValidDictId = false;
 	
-	private ArrayList<String> infElemIds = new ArrayList<String>();
-	private ArrayList<String> infElemRefIds = new ArrayList<String>();
+	int selectionIdx;
 	
-	public SelectIntoInfElemDialog(Shell parentShell) {
+	
+	private ArrayList<String> dictIds = new ArrayList<String>();
+	private ArrayList<String> fileNames = new ArrayList<String>();
+	
+	private Combo fileNamesCombo;
+	
+	public CreateNewDictDialog(Shell parentShell) {
 		super(parentShell);
 		setBlockOnOpen(true);
 	}
@@ -51,12 +51,11 @@ public class SelectIntoInfElemDialog extends Dialog{
 		Composite composite = (Composite) super.createDialogArea(parent);
 		//composite.setLayout(new GridLayout(1, false));
 		nameLabel = new Label(composite, SWT.LEFT);
-		nameLabel.setText("Name of new InfElement");
+		nameLabel.setText("Name of new Dictionary");
 		nameText = new Text(composite, SWT.SINGLE);
 				
 		KeyListener listener = new KeyAdapter() {
-			public void keyReleased(KeyEvent e) {
-				//errorMessage.setText(nameText.getText());
+			public void keyReleased(KeyEvent e) {	
 				setTexts();
 			}
 		};
@@ -64,26 +63,19 @@ public class SelectIntoInfElemDialog extends Dialog{
 			
 		
 		idLabel = new Label(composite, SWT.LEFT);
-		idLabel.setText("Id of new InfElement");
+		idLabel.setText("Id of new Dictionary");
 		idText = new Text(composite, SWT.SINGLE);		
-		
-		refIdLabel = new Label(composite, SWT.LEFT);
-		refIdLabel.setText("Id of new InfElementRef");
-		refIdText = new Text(composite, SWT.SINGLE);
-		
+			
 		errorMessage = new Label(composite, SWT.LEFT);
 		errorMessage.setText("                                                                         ");
 		//errorMessage.setSize(300, 40);
 		errorMessage.setForeground(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
+		
+		fileNamesCombo = new Combo(composite, SWT.READ_ONLY);
+		for (int i = 0; i<fileNames.size(); ++i)
+			fileNamesCombo.add(fileNames.get(i));
 						
         return composite;
-	}
-	
-	public int open() {
-//		getButton(IDialogConstants.OK_ID).setEnabled(false);
-		int res = super.open(); 		
-				
-		return res;
 	}
 
 	@Override
@@ -94,31 +86,40 @@ public class SelectIntoInfElemDialog extends Dialog{
 		Shell p = getParentShell();
 		newShell.setLocation(p.getLocation().x + p.getSize().x / 2 - size.x / 2, p.getLocation().y + p.getSize().y / 2 - size.y / 2);
 		
-		newShell.setText("Enter id and name of new InfElem...");		
+		newShell.setText("Enter id and name of new Dictionary...");		
 	}	
 
 	protected void okPressed()
 	{
-		infElemId = idText.getText();
-		infElemName = nameText.getText();
-		infElemRefId = refIdText.getText();
+		dictId = idText.getText();
+		dictName = nameText.getText();
+		
+		selectionIdx = fileNamesCombo.getSelectionIndex();
+		if (selectionIdx == -1) {
+			String buttonNames[] = new String[1];
+			buttonNames[0] = "Ok";
+			MessageDialog dialog = new MessageDialog(getShell(), "", null, "Select file, please", MessageDialog.ERROR, buttonNames, 0);
+			dialog.open();
+			return;
+		}
+		
 		super.okPressed();
 	}
 	
 	private void setTexts() {
 		String name = nameText.getText();
 		String id = name + "_id";
-		isValideElemId = true;
-		for (String otherId : infElemIds) {
+		isValidDictId = true;
+		for (String otherId : dictIds) {
 			if (id.equals(otherId)) {
-				isValideElemId = false;
+				isValidDictId = false;
 				break;
 			}
 		}
 		
 		idText.setText(id);
-		if (!isValideElemId) {
-			errorMessage.setText("Bad infElement id");
+		if (!isValidDictId) {
+			errorMessage.setText("Bad dict id");
 			getButton(IDialogConstants.OK_ID).setEnabled(false);			
 			return;
 		}
@@ -127,21 +128,14 @@ public class SelectIntoInfElemDialog extends Dialog{
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
 		}
 		
-////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////		
 		
-		String refId = name + "_refid";
-		isValideElemRefId = true;
-		for (String otherId : infElemRefIds) {
-			if (refId.equals(otherId)) {
-				isValideElemRefId = false;
-				break;
-			}
-		}
-		
-		refIdText.setText(refId);
-		if (!isValideElemRefId) {
-			errorMessage.setText("Bad infElementRef id");
-			getButton(IDialogConstants.OK_ID).setEnabled(false);;			
+	}
+	
+	private void validateSelection() {
+		if (fileNamesCombo.getSelectionIndex() == -1) {
+			errorMessage.setText("Select File");
+			getButton(IDialogConstants.OK_ID).setEnabled(false);			
 			return;
 		}
 		else {
@@ -150,26 +144,26 @@ public class SelectIntoInfElemDialog extends Dialog{
 		}
 	}
 	
-	public String getInfElemId()
+	public String getDictId()
 	{
-		return infElemId;
+		return dictId;
 	}
 	
-	public String getInfElemName()
+	public String getDictName()
 	{
-		return infElemName;
+		return dictName;
 	}
 	
-	public String getInfElemRefId()
+	public int getSelectionIdx()
 	{
-		return infElemRefId;
+		return selectionIdx;
+	}
+
+	public void addDictId(String id) {
+		dictIds.add(id);		
 	}
 	
-	public void addId(String id) {
-		infElemIds.add(id);		
-	}
-	
-	public void addRefId(String id) {
-		infElemRefIds.add(id);		
+	public void addFileName(String name) {
+		fileNames.add(name);
 	}
 }

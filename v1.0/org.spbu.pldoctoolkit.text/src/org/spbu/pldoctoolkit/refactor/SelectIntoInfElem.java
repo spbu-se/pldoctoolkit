@@ -19,10 +19,14 @@ public class SelectIntoInfElem {
 	public DRLDocument doc;
 	
 	private int fromIdx, toIdx;
+	
 	private HashMap<String, LangElem> nestsInSelection = null;
+	private ArrayList<LangElem> infElemRefs = null;
 	
 	private boolean isValide = false;
 	private boolean wasValidation = false;
+	private boolean wasInfElemRefsPrepared = false;
+	
 	private Element infElem = null;
 	private String prefex;
 /*	
@@ -65,6 +69,7 @@ public class SelectIntoInfElem {
 	public void reset() {
 		wasValidation = false;
 		isValide = false;
+		wasInfElemRefsPrepared = false;
 	}
 	
 	private void init() {
@@ -141,9 +146,12 @@ public class SelectIntoInfElem {
 			if (!prefex.equals(""))
 				prefex += ":";
 			
-			String idTofind = ((LangElem)infElem).attrs.getValue("id");
-			for (LangElem infElemRef : project.InfElemRefs) {
-				if (infElemRef.attrs.getValue("infelemid").equals(idTofind)) {
+//			String idTofind = ((LangElem)infElem).attrs.getValue("id");
+//			for (LangElem infElemRef : project.InfElemRefs) {
+//				if (infElemRef.attrs.getValue("infelemid").equals(idTofind))
+			getInfElemRefs();
+			for (LangElem infElemRef : infElemRefs)
+				{
 					String elemRefIdToFind = infElemRef.attrs.getValue("id");
 					for (LangElem adapter : project.Adapters) {
 						if (adapter.attrs.getValue("infelemrefid").equals(elemRefIdToFind)) {
@@ -167,7 +175,7 @@ public class SelectIntoInfElem {
 						}
 					}
 				}
-			}
+			
 			
 			
 			ArrayList<Element> childsToInsert = from.parent.removeChilds(fromIdx, toIdx);
@@ -218,6 +226,23 @@ public class SelectIntoInfElem {
 			Element parent = to.elem.getParent(); 
 			to = new PositionInDRL(false, false, null, parent.getChilds().get(toIdx), parent.getChilds().get(toIdx+1), parent);			
 		}
+	}
+	
+	public ArrayList<LangElem> getInfElemRefs() {
+		if (!isValide)
+			return null;
+		
+		if (wasInfElemRefsPrepared)
+			return infElemRefs;
+		
+		infElemRefs = new ArrayList<LangElem>();
+		String idTofind = ((LangElem)infElem).attrs.getValue("id");
+		for (LangElem infElemRef : project.InfElemRefs) {
+			if (infElemRef.attrs.getValue("infelemid").equals(idTofind))
+				infElemRefs.add(infElemRef);
+		}
+		
+		return infElemRefs;
 	}
 	
 	private void prepareNests() {		

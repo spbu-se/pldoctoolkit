@@ -1,6 +1,8 @@
 package org.spbu.pldoctoolkit.dialogs;
 
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IInputValidator;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -10,7 +12,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 
-public class SearchDictEntryDialog extends Dialog{	
+public class SearchDictEntryDialog extends Dialog {	
 	private Button next;
 	private Button replace;
 	
