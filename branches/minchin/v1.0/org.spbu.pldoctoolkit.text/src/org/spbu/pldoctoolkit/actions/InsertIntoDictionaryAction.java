@@ -18,6 +18,7 @@ import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.dialogs.InsertIntoDictionaryDialog;
+import org.spbu.pldoctoolkit.dialogs.SearchDictEntryDialog;
 import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
@@ -82,7 +83,12 @@ public class InsertIntoDictionaryAction extends Action implements IValidateDRLSe
 		}		
 	}
 	
-	public void run() {		
+	public void run() {	
+		//SearchDictEntryDialog ddd = new SearchDictEntryDialog(editor.getSite().getShell());
+		//ddd.open();
+		
+		//if (true)return;
+		/*
 		IWorkbenchWindow w = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		Iterator<IFile> it = projectContent.DRLDocs.keySet().iterator();
 		IFile file = it.next();
@@ -92,13 +98,10 @@ public class InsertIntoDictionaryAction extends Action implements IValidateDRLSe
 		} catch (PartInitException e) {
 			e.printStackTrace();
 		}
-		
-		InsertIntoDictionaryDialog dialog = new InsertIntoDictionaryDialog(editor.getSite().getShell());
+		*/
+		InsertIntoDictionaryDialog dialog = new InsertIntoDictionaryDialog(editor.getSite().getShell(), projectContent);
 		ArrayList<LangElem> dicts = refact.getPossibleDicts();
-		for (int i = 0; i<dicts.size(); ++i) {
-			dialog.add(dicts.get(i).attrs.getValue("id"));
-			int a = 30;
-		}		
+		//dialog.setDicts(dicts);
 		
 		int res = dialog.open();
 		if ( res != Window.OK)
@@ -114,6 +117,18 @@ public class InsertIntoDictionaryAction extends Action implements IValidateDRLSe
 			int column1 = ts.getOffset() - doc.getLineOffset(line1);
 			int line2 = ts.getEndLine();
 			int column2 = ts.getOffset() + ts.getLength() - doc.getLineOffset(line2);
+			
+			PositionInText pos1 = new PositionInText(line1 + 1, column1 + 1);
+			PositionInText pos2 = new PositionInText(line2 + 1, column2 + 1);
+			
+			if (pos1.compare(pos2) == 0) {				
+				return;
+			}				
+		
+			refact.reset();
+			refact.setValidationPararams( projectContent, DRLdoc, 
+										  pos1,
+						   			      pos2);		
 			
 			refact.setPararams(dialog.getEntryId(), dicts.get(dialog.getSelectionIdx()));			
 			refact.perform();

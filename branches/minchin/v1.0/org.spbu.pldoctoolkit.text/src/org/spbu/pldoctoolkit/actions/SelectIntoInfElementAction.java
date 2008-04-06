@@ -37,6 +37,7 @@ import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
 import org.spbu.pldoctoolkit.parser.DRLParser;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
+import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
@@ -115,6 +116,13 @@ public class SelectIntoInfElementAction extends Action implements IValidateDRLSe
 	
 	public void run() {		
 		SelectIntoInfElemDialog dialog = new SelectIntoInfElemDialog(editor.getSite().getShell());
+		
+		for (LangElem refs : projectContent.InfElemRefs) {
+			dialog.addRefId(refs.attrs.getValue("id"));
+		}
+		for (LangElem elems : projectContent.infElems) {
+			dialog.addId(elems.attrs.getValue("id"));
+		}
 		
 		int res = dialog.open();
 		if ( res != Window.OK)

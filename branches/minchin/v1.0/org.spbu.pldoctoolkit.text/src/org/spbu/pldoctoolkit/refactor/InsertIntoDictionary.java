@@ -142,6 +142,7 @@ public class InsertIntoDictionary {
 			
 			dict.getChilds().add(entry);
 			entry.appendChilds(childsToInsert);
+			
 			from.parent.getChilds().add(fromIdx, dictRef);			
 		}		
 	}	

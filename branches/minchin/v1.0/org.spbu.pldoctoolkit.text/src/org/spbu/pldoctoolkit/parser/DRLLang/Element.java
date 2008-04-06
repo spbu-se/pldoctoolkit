@@ -105,16 +105,19 @@ public abstract class Element {
 		//if (startPos.compare(posToFind) == 1 || endPos.compare(posToFind) <= 0)
 		//	return null;
 		PositionInText endTagStartPos;
-		if (childs == null)// TODO проверка, что не 0
-			endTagStartPos = startPos;
-		else
-			endTagStartPos = childs.get(childs.size()-1).endPos;
+		if (childs == null || childs.size() == 0) { 
+			//endTagStartPos = startPos;
+			//if (startPos.compare(posToFind) == 1 || endTagStartPos.compare(posToFind) == -1)
+				return new PositionInDRL(false, true, this, null, null, parent);
+		}
+		else {
+			endTagStartPos = childs.get(childs.size()-1).endPos;		
+			if (startPos.compare(posToFind) == 1 || endTagStartPos.compare(posToFind) == -1)
+				return new PositionInDRL(false, true, this, null, null, parent);
+		}
 		
-		if (startPos.compare(posToFind) == 1 || endTagStartPos.compare(posToFind) == -1)
-			return new PositionInDRL(false, true, this, null, null, parent);
-		
-		if (childs != null && 
-			childs.size() != 0) // на всякий случай
+	//	if (childs != null && 
+		//	childs.size() != 0) // на всякий случай
 		{
 			PositionInText prevPos = new PositionInText(startPos);
 			Element prevChild = null;
@@ -142,8 +145,8 @@ public abstract class Element {
 			}
 			return new PositionInDRL(false, false, null, childs.get(childs.size()-1), null, this);
 		}
-		else
-			return new PositionInDRL(false, false, null, null, null, this);					
+	//	else
+		//	return new PositionInDRL(false, false, null, null, null, this);					
 	}
 	
 	public ArrayList<Element> removeChilds(int from, int to){

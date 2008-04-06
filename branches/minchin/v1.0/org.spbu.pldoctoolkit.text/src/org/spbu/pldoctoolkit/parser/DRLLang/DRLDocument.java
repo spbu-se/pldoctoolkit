@@ -1,11 +1,14 @@
 package org.spbu.pldoctoolkit.parser.DRLLang;
 
+import org.eclipse.core.resources.IFile;
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 
 public class DRLDocument extends Element{
 	public String preface = null;
 	public String DRLnsPrefix = "";	
+	
+	public IFile file;
 	
 	public DRLDocument(int startLine, int startColumn) {
 		this.startLine = startLine;
