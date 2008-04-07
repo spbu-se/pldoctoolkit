@@ -20,6 +20,7 @@ import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.dialogs.InsertIntoDictionaryDialog;
 import org.spbu.pldoctoolkit.dialogs.SearchDictEntryDialog;
 import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
+import org.spbu.pldoctoolkit.editors.DrlTextEditor;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.InsertIntoDictionary;
@@ -53,7 +54,7 @@ public class InsertIntoDictionaryAction extends Action implements IValidateDRLSe
 	public void validateSelection(IEditorPart part) {		
 		ISelection sel = te.getSelectionProvider().getSelection();
 		TextSelection ts = (TextSelection) sel;
-		
+				
 		IDocument doc = te.getDocumentProvider().getDocument(editorInput);
 		DRLDocument DRLdoc = projectContent.DRLDocs.get(editorInput.getFile());
 		try {

@@ -2,12 +2,14 @@ package org.spbu.pldoctoolkit.editors;
 
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.text.TextSelection;
 import org.spbu.pldoctoolkit.DrlPublisherPlugin;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.actions.BasicExportAction;
 import org.spbu.pldoctoolkit.actions.DRLMenuListener;
 import org.spbu.pldoctoolkit.actions.InsertIntoDictionaryAction;
 import org.spbu.pldoctoolkit.actions.PdfExportAction;
+import org.spbu.pldoctoolkit.actions.SearchDictEntryAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlOnSaveAction;
 import org.spbu.pldoctoolkit.actions.SelectIntoInfElementAction;
@@ -22,11 +24,13 @@ public class DrlTextEditor extends TextEditor {
 	public static final String EXPORT_TO_PDF = "export_to_pdf";
 	public static final String SELECT_INTO_INF_ELEMENT = "select_into_inf_element";
 	public static final String INSERT_INTO_DICTIONARY = "Iinsert_into_dictionary";
+	public static final String SEARCH_DICT_ENTRY = "search_dict_entry";
 	
 	private ColorManager colorManager;
 	
 	static {
-		PLDocToolkitPlugin.getRegistryIndex().setProjectContentCreator(new ProjectContentCreator());
+		if (PLDocToolkitPlugin.getRegistryIndex().getProjectContentCreator() == null)
+			PLDocToolkitPlugin.getRegistryIndex().setProjectContentCreator(new ProjectContentCreator());
 	}
 
 	public DrlTextEditor() {
@@ -90,6 +94,12 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			setAction(SEARCH_DICT_ENTRY, new SearchDictEntryAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -97,8 +107,13 @@ public class DrlTextEditor extends TextEditor {
 		super.editorContextMenuAboutToShow(menu);
 		addAction(menu, SELECT_INTO_INF_ELEMENT);
 		addAction(menu, INSERT_INTO_DICTIONARY);
+		addAction(menu, SEARCH_DICT_ENTRY);
 		
 		DRLMenuListener.instance.editor = this;
 		DRLMenuListener.instance.menuAboutToShow(menu);
+	}
+	
+	public void setSelection(int offset, int length) {
+		doSetSelection(new TextSelection(offset, length));
 	}
 }

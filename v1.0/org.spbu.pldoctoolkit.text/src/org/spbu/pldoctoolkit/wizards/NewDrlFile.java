@@ -18,6 +18,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 import org.spbu.pldoctoolkit.DrlPublisherPlugin;
+import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
+import org.spbu.pldoctoolkit.refactor.ProjectContentCreator;
 
 public class NewDrlFile extends Wizard implements INewWizard {
 	private URL PRODUCT_LINE_TEMPLATE_URL = DrlPublisherPlugin.getURL("templates/ProductLine.xml");
@@ -27,12 +29,21 @@ public class NewDrlFile extends Wizard implements INewWizard {
 	private IWorkbench workbench;
 	private IStructuredSelection selection;
 	private NewDrlFilePage page;
+	
+	static {
+		if (PLDocToolkitPlugin.getRegistryIndex().getProjectContentCreator() == null)
+			PLDocToolkitPlugin.getRegistryIndex().setProjectContentCreator(new ProjectContentCreator());
+	}
 
 	@Override
 	public void addPages() {
 		page = new NewDrlFilePage("NewDrlFilePage", selection);
 		page.setTitle("Create a new DRL file");
 		addPage(page);
+	/*	
+		NewDrlFilePage page1 = new NewDrlFilePage("NewDrlFilePage22222", selection);
+		page1.setTitle("Create a new DRL file2222222");
+		addPage(page1);*/		
 	}
 
 	@Override
