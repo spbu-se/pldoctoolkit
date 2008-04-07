@@ -131,6 +131,7 @@ public class ReplaceWithDictRef {
 			if (!prefex.equals(""))
 				prefex += ":";					
 						
+			from.parent.getChilds().remove(fromIdx);
 			LangElem dictRef = createNewDictRef();			
 			from.parent.getChilds().add(fromIdx, dictRef);			
 		}		

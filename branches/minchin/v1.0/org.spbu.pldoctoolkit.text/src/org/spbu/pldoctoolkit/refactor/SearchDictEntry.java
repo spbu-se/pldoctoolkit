@@ -20,8 +20,8 @@ public class SearchDictEntry {
 	private LangElem dict;
 	private LangElem entry;
 	
-	public PositionInText fromText, toText;
-	//public DRLDocument
+	//public PositionInText fromText, toText;
+	//public DRLDocument docToInsertInto;
 		
 	//private int fromIdx, toIdx;	
 	
@@ -33,11 +33,11 @@ public class SearchDictEntry {
 	public SearchDictEntry() {	
 	}
 	
-	public void setPararams( PositionInText fromText, PositionInText toText ) {		
-		this.fromText = fromText;
-		this.toText = toText;
+	public void setPararams( PositionInText fromText, PositionInText toText, DRLDocument docToInsertInto ) {		
+		//this.fromText = fromText;
+		//this.toText = toText;
 		
-		replaceWithDictRef.setValidationPararams(doc, fromText, toText);
+		replaceWithDictRef.setValidationPararams(docToInsertInto, fromText, toText);
 		replaceWithDictRef.reset();		
 	}
 	
@@ -93,10 +93,28 @@ public class SearchDictEntry {
 	
 	public void perform() {
 		validate();
+		validateSelection();
 		
 		if (isValide && validateSelection()){
 			replaceWithDictRef.setPararams(entry.attrs.getValue("id"), dict);
 			replaceWithDictRef.perform();					
 		}		
+	}
+	
+	private String entryText = null;
+	public String getSearchText() {
+		if (!validate())
+			return null;
+		
+		if (entryText != null)
+			return entryText;
+				
+		String entryText = "";
+		
+		for (int i = 0; i < entry.getChilds().size(); ++i) {
+			entryText += entry.getChilds().get(i).getTextRepresentation();
+		}
+		
+		return entryText;
 	}
 }
