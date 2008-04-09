@@ -64,9 +64,9 @@ public class SelectIntoInfElemDialog extends Dialog{
 			
 		
 		idLabel = new Label(composite, SWT.LEFT);
-		idLabel.setText("Id of new InfElement");
-		idText = new Text(composite, SWT.SINGLE);		
-		
+		idLabel.setText("Id of new InfElement");		
+		idText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+				
 		refIdLabel = new Label(composite, SWT.LEFT);
 		refIdLabel.setText("Id of new InfElementRef");
 		refIdText = new Text(composite, SWT.SINGLE);

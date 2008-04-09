@@ -22,7 +22,9 @@ public class ProjectContent implements IProjectContent{
 	public ArrayList<LangElem> Adapters = new ArrayList<LangElem>();
 	public ArrayList<LangElem> InfElemRefs = new ArrayList<LangElem>();
 	public ArrayList<LangElem> dictionarys = new ArrayList<LangElem>();
+	public ArrayList<LangElem> directories = new ArrayList<LangElem>();
 	public ArrayList<LangElem> infElems = new ArrayList<LangElem>();
+	public ArrayList<LangElem> nests = new ArrayList<LangElem>();
 //	public String projectName;
 /*	
 	public void parseAll(IProject project) {
@@ -91,7 +93,9 @@ public class ProjectContent implements IProjectContent{
 		removeInfoAboutDocFromList(Adapters, doc);
 		removeInfoAboutDocFromList(InfElemRefs, doc);
 		removeInfoAboutDocFromList(dictionarys, doc);
+		removeInfoAboutDocFromList(directories, doc);
 		removeInfoAboutDocFromList(infElems, doc);
+		removeInfoAboutDocFromList(nests, doc);
 		/*
 		int i = 0;
 		while (i < Adapters.size()) {

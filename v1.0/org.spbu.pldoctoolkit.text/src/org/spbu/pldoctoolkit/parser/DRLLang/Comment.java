@@ -50,4 +50,10 @@ public class Comment extends Element{
 		
 		return new PositionInDRL(false, true, this, null, null, parent);				
 	}
+
+	@Override
+	public Element clone(Element parent) {
+		TextElement newComment = new TextElement(new PositionInText(startPos), length, new String(text), parent, parent.getDRLDocument());
+		return newComment;
+	}
 }

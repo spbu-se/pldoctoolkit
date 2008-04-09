@@ -74,6 +74,10 @@ public class ProjectRegistryImpl implements ProjectRegistry {
 
 	// === Public API ===
 	
+	public IProjectContent getProjectContent() {
+		return projectContent;
+	}
+	
 	public RegisteredLocation getRegisteredLocation(String uri) {
 		if (!uri.startsWith(DRLRESOLVE_PREFIX))
 			return null;

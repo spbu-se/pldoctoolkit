@@ -164,5 +164,7 @@ public abstract class Element {
 		childs.addAll(childsToInsert);
 	}
 	
-	public abstract String getTextRepresentation();	
+	public abstract String getTextRepresentation();
+	
+	public abstract Element clone(Element parent);
 }
