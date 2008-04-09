@@ -8,7 +8,9 @@ import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.actions.BasicExportAction;
 import org.spbu.pldoctoolkit.actions.DRLMenuListener;
 import org.spbu.pldoctoolkit.actions.InsertIntoDictionaryAction;
+import org.spbu.pldoctoolkit.actions.InsertIntoDirectoryAction;
 import org.spbu.pldoctoolkit.actions.PdfExportAction;
+import org.spbu.pldoctoolkit.actions.ReplaceWithNestAction;
 import org.spbu.pldoctoolkit.actions.SearchDictEntryAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlOnSaveAction;
@@ -25,6 +27,8 @@ public class DrlTextEditor extends TextEditor {
 	public static final String SELECT_INTO_INF_ELEMENT = "select_into_inf_element";
 	public static final String INSERT_INTO_DICTIONARY = "Iinsert_into_dictionary";
 	public static final String SEARCH_DICT_ENTRY = "search_dict_entry";
+	public static final String INSERT_INTO_DIRECTORY = "insert_into_directory";
+	public static final String REPLACE_WITH_NEST = "replace_with_nest";
 	
 	private ColorManager colorManager;
 	
@@ -100,6 +104,18 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			setAction(INSERT_INTO_DIRECTORY, new InsertIntoDirectoryAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			setAction(REPLACE_WITH_NEST, new ReplaceWithNestAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -108,6 +124,8 @@ public class DrlTextEditor extends TextEditor {
 		addAction(menu, SELECT_INTO_INF_ELEMENT);
 		addAction(menu, INSERT_INTO_DICTIONARY);
 		addAction(menu, SEARCH_DICT_ENTRY);
+		addAction(menu, INSERT_INTO_DIRECTORY);
+		addAction(menu, REPLACE_WITH_NEST);
 		
 		DRLMenuListener.instance.editor = this;
 		DRLMenuListener.instance.menuAboutToShow(menu);

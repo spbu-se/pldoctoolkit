@@ -415,6 +415,30 @@ public class NewDrlFilePage extends WizardPage {
 		return container.getFile(new Path(nameText.getText()));
 	}
 	
+	public String getContainerName() {
+		return containerText.getText();
+	}
+	
+	public String getFileName() {
+		return nameText.getText();
+	}
+	
+	public IFile getDocCoreFile() {
+//		if (validateContainer() != null || validateName() != null)
+	//		return null;
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IContainer container = (IContainer) root.findMember(new Path(containerText.getText()));
+		return container.getFile(new Path(docCoreText.getText()));
+	}
+	
+	public IFile getProductDocFile() {
+//		if (validateContainer() != null || validateName() != null)
+	//		return null;
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IContainer container = (IContainer) root.findMember(new Path(containerText.getText()));
+		return container.getFile(new Path(productDocText.getText()));
+	}
+	
 	public String getType() {
 		return type;
 	}

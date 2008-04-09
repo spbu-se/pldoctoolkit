@@ -199,6 +199,10 @@ public class DRLContentHandler implements ContentHandler {
 			projectContent.dictionarys.add((LangElem)newElem);
 		else if (arg1.equals("InfElement"))
 			projectContent.infElems.add((LangElem)newElem);
+		else if (arg1.equals(LangElem.DIRECTORY))
+			projectContent.directories.add((LangElem)newElem);
+		else if (arg1.equals(LangElem.NEST))
+			projectContent.nests.add((LangElem)newElem);
 	}
 
 	@Override

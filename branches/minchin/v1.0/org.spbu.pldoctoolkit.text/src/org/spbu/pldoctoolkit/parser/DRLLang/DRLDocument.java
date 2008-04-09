@@ -1,5 +1,7 @@
 package org.spbu.pldoctoolkit.parser.DRLLang;
 
+import java.util.ArrayList;
+
 import org.eclipse.core.resources.IFile;
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
@@ -14,7 +16,7 @@ public class DRLDocument extends Element{
 		this.startLine = startLine;
 		this.startColumn = startColumn;		
 		this.parent = null;
-		this.doc = null;		
+		this.doc = this;		
 	}	
 	
 	@Override
@@ -47,5 +49,18 @@ public class DRLDocument extends Element{
 		}
 		else
 			return null;
+	}
+
+	@Override
+	public Element clone(Element parent) {
+		DRLDocument newDoc = new DRLDocument(startLine, startColumn);
+		if (newDoc.getChilds() == null)
+			newDoc.childs = new ArrayList<Element>();
+		
+		for (Element elem: childs){
+			newDoc.childs.add(elem.clone(newDoc));
+		}
+		
+		return newDoc;
 	}
 }

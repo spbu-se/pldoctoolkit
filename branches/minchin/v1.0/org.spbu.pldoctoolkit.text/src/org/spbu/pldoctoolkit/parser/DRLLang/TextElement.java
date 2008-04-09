@@ -106,4 +106,10 @@ public class TextElement extends Element {
 		return true;
 	}
 
+	@Override
+	public Element clone(Element parent) {
+		TextElement newText = new TextElement(new PositionInText(startPos), length, new String(text), parent, parent.getDRLDocument());
+		return newText;
+	}
+
 }
