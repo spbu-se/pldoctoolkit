@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid = "">
+	<d:FinalInfProduct id = "" infproductid = "q">
+		<d:Adapter infelemrefid = "2">				
+			<d:Replace-Nest nestid = "3">ff</d:Replace-Nest>
+		</d:Adapter>		
+	</d:FinalInfProduct>
+	<d:Dictionary id = "sd3" name = ""><d:Entry id = "123">546</d:Entry></d:Dictionary>
+<d:Dictionary id = "dict1_id" name = "dict1"></d:Dictionary><d:Dictionary id = "dict2_id" name = "dict2"></d:Dictionary><d:Dictionary id = "qwe_id" name = "qwe"></d:Dictionary></d:ProductDocumentation>
