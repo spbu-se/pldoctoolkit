@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">	
+	<d:InfProduct id = "q" name = "a">
+		<d:InfElemRef groupid = "z" id = "2" infelemid = "q_id" optional = "false"></d:InfElemRef>		
+	</d:InfProduct>
+	<d:InfElement id = "wqe" name = "wewqe">xxcxcx</d:InfElement>
+	<d:InfElement id = "q_id" name = "1n">
+<d:Nest id = "newNestId"></d:Nest><f></f>fffff
+fff<d:Nest id = "newNestId2">f<d:Nest id = "newNestId1">f<a></a>f</d:Nest>f</d:Nest>ff
+ffffff<s></s>fff
+fffffff<s></s>f<d:Nest id = "nestId4">f</d:Nest>
+		<d:DictRef entryid = "entry_id0" dictid = "fggvb_id"></d:DictRef>d<d:DictRef entryid = "1" dictid = "fggvb_id"></d:DictRef><d:DictRef entryid = "entry_id0" dictid = "fggvb_id"></d:DictRef><d:DictRef entryid = "213" dictid = "dict3_id"></d:DictRef><d:DictRef entryid = "1a" dictid = "sd"></d:DictRef>
+		<d:Nest id = "3">nestcontent</d:Nest>				
+	</d:InfElement>	
+	<d:Dictionary id = "dict3_id" name = "dict3"><d:Entry id = "qwe">fa</d:Entry><d:Entry id = "213">fa</d:Entry><d:Entry id = "234">sd</d:Entry></d:Dictionary>
+	<d:Dictionary id = "dict4_id" name = "dict4"><d:Entry id = "457">sd</d:Entry></d:Dictionary>
+	<d:Dictionary id = "asd_id" name = "asd"></d:Dictionary>
+	<d:Dictionary id = "euu_id" name = "euu"><d:Entry id = "ty">sd</d:Entry></d:Dictionary>
+	<d:Dictionary id = "fggvb_id" name = "fggvb"><d:Entry id = "entry_id0">ff</d:Entry><d:Entry id = "1">a</d:Entry></d:Dictionary>
+	<d:Directory id = "asd" name = "sdf"></d:Directory>
+</d:DocumentationCore>
