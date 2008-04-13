@@ -62,6 +62,9 @@ public class LangElem extends Element{
 	public static final String NAME= "name";
 	public static final String ATTRID = "attrid";
 	public static final String DIRECTORYID = "directoryid";
+	public static final String INFPRODUCTID = "infproductid";
+	public static final String INFELEMREFID = "infelemrefid";
+	public static final String INFELEMID = "infelemid";
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////	
 

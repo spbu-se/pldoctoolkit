@@ -9,9 +9,15 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
@@ -31,7 +37,8 @@ public class CreateNewDictDialog extends Dialog {
 	private Label idLabel;
 	private Label nameLabel;	
 	
-	private Label errorMessage;
+	private Label errorMessageId;
+	private Label errorMessageFile;
 	private boolean isValidDictId = false;
 	
 	int selectionIdx;
@@ -47,12 +54,51 @@ public class CreateNewDictDialog extends Dialog {
 		setBlockOnOpen(true);
 	}
 	
+	protected Control createContents(Composite parent) {		
+		Control res = super.createContents(parent);
+		
+		idText.setEnabled(false);
+		nameText.setEnabled(false);
+		getButton(IDialogConstants.OK_ID).setEnabled(false);
+		
+		return res;
+	}
+	
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
-		//composite.setLayout(new GridLayout(1, false));
-		nameLabel = new Label(composite, SWT.LEFT);
-		nameLabel.setText("Name of new Dictionary");
-		nameText = new Text(composite, SWT.SINGLE);
+		
+		GridLayout layout = new GridLayout();
+		layout.numColumns = 3;
+		layout.verticalSpacing = 9;
+		composite.setLayout(layout);
+		
+////////////////////////////////////////////////////////////////////////////////////
+		
+		Label description = new Label(composite, SWT.LEFT);
+		description.setText("Create new Directory in selected file\n\n");
+		GridData gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 3;
+		description.setLayoutData(gd);
+		
+////////////////////////////////////////////////////////////////////////////////////
+		
+		nameLabel = new Label(composite, SWT.LEFT);		
+		nameLabel.setText("Name of new Dictionary:");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		nameLabel.setLayoutData(gd);
+		
+		nameText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		nameText.setLayoutData(gd);
 				
 		KeyListener listener = new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {	
@@ -60,20 +106,60 @@ public class CreateNewDictDialog extends Dialog {
 			}
 		};
 		nameText.addKeyListener(listener);
+		
+		new Label(composite, SWT.NONE);
 			
+////////////////////////////////////////////////////////////////////////////////////
 		
 		idLabel = new Label(composite, SWT.LEFT);
-		idLabel.setText("Id of new Dictionary");
-		idText = new Text(composite, SWT.SINGLE);		
-			
-		errorMessage = new Label(composite, SWT.LEFT);
-		errorMessage.setText("                                                                         ");
-		//errorMessage.setSize(300, 40);
-		errorMessage.setForeground(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
+		idLabel.setText("Id of new Dictionary:");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		idLabel.setLayoutData(gd);
 		
-		fileNamesCombo = new Combo(composite, SWT.READ_ONLY);
+		idText = new Text(composite, SWT.SINGLE | SWT.BORDER);	
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		idText.setLayoutData(gd);
+		idText.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				validate();
+			}
+		});
+			
+		errorMessageId = new Label(composite, SWT.NONE);
+		errorMessageId.setText("                        ");
+		//errorMessage.setSize(300, 40);
+		errorMessageId.setForeground(new Color(Display.getCurrent(), new RGB(255, 0, 0)));		
+		
+////////////////////////////////////////////////////////////////////////////////////
+		
+		new Label(composite, SWT.NONE).setText("File:");
+		
+		fileNamesCombo = new Combo(composite, SWT.READ_ONLY | SWT.FILL);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		fileNamesCombo.setLayoutData(gd);
+		
+		fileNamesCombo.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {				
+				fileSelected();
+			}			
+		});
+		
 		for (int i = 0; i<fileNames.size(); ++i)
-			fileNamesCombo.add(fileNames.get(i));
+			fileNamesCombo.add(fileNames.get(i));		
+		
+		errorMessageFile = new Label(composite, SWT.NONE);
+		errorMessageFile.setText("Select file           ");
+		//errorMessage.setSize(300, 40);
+		errorMessageFile.setForeground(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
 						
         return composite;
 	}
@@ -81,12 +167,12 @@ public class CreateNewDictDialog extends Dialog {
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		Point size = new Point(500, 500);
+		Point size = new Point(400, 200);
 		newShell.setSize(size);
 		Shell p = getParentShell();
 		newShell.setLocation(p.getLocation().x + p.getSize().x / 2 - size.x / 2, p.getLocation().y + p.getSize().y / 2 - size.y / 2);
 		
-		newShell.setText("Enter id and name of new Dictionary...");		
+		newShell.setText("Create new dictionary...");		
 	}	
 
 	protected void okPressed()
@@ -109,39 +195,36 @@ public class CreateNewDictDialog extends Dialog {
 	private void setTexts() {
 		String name = nameText.getText();
 		String id = name + "_id";
+		idText.setText(id);
+		
+		validate();
+	}
+	
+	private void validate() {		
 		isValidDictId = true;
 		for (String otherId : dictIds) {
-			if (id.equals(otherId)) {
+			if (idText.getText().equals(otherId)) {
 				isValidDictId = false;
 				break;
 			}
 		}
 		
-		idText.setText(id);
+		
 		if (!isValidDictId) {
-			errorMessage.setText("Bad dict id");
+			errorMessageId.setText("Bad dict id");
 			getButton(IDialogConstants.OK_ID).setEnabled(false);			
 			return;
 		}
 		else {
-			errorMessage.setText("");
+			errorMessageId.setText("");
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
 		}
-		
-////////////////////////////////////////////////////////////////////		
-		
 	}
 	
-	private void validateSelection() {
-		if (fileNamesCombo.getSelectionIndex() == -1) {
-			errorMessage.setText("Select File");
-			getButton(IDialogConstants.OK_ID).setEnabled(false);			
-			return;
-		}
-		else {
-			errorMessage.setText("");
-			getButton(IDialogConstants.OK_ID).setEnabled(true);
-		}
+	private void fileSelected() {
+		idText.setEnabled(true);
+		nameText.setEnabled(true);
+		getButton(IDialogConstants.OK_ID).setEnabled(true);
 	}
 	
 	public String getDictId()

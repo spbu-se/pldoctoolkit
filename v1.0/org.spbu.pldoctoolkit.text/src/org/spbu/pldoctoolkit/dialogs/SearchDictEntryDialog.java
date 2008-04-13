@@ -9,11 +9,15 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.text.FindReplaceDocumentAdapter;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.IRegion;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -37,7 +41,11 @@ import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 public class SearchDictEntryDialog extends Dialog {	
 	private Button nextButton;
 	private Button replaceButton;
-	private Button contextButton; 
+	private Button replaceAllButton;
+	private Button contextButton;
+	private Button wholeWordButton;
+	
+	private Text textTofindText;
 	
 	private Label contextLabel;
 	
@@ -61,6 +69,10 @@ public class SearchDictEntryDialog extends Dialog {
 	public IWorkbenchWindow w = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 	Iterator<IFile> it; //= projectContent.DRLDocs.keySet().iterator();	
 	
+	private boolean endReached = false;
+	
+	private static final char delimeters[] = { ' ', '<', '>', '\n', '\t', '(', ')', '{', '}', '"'}; 
+	
 	public SearchDictEntryDialog(Shell parentShell, TextEditor startTE, SearchDictEntry refact) {
 		super(parentShell);
 		setBlockOnOpen(true);
@@ -82,19 +94,70 @@ public class SearchDictEntryDialog extends Dialog {
 	
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
-		//composite.setLayout(new GridLayout(1, false));
-		nextButton = new Button(composite, SWT.LEFT);
-		nextButton.setText("next");
+		
+		GridLayout layout = new GridLayout();
+		layout.numColumns = 3;
+		layout.verticalSpacing = 9;
+		composite.setLayout(layout);
+		
+////////////////////////////////////////////////////////////////////////////////////
+/*		
+		Label description = new Label(composite, SWT.LEFT);
+		description.setText("\n\n");
+		GridData gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 3;
+		description.setLayoutData(gd);
+*/	
+////////////////////////////////////////////////////////////////////////////////////
+		
+		new Label(composite, SWT.NONE).setText("Find:");
+	
+		textTofindText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		textTofindText.setText(refact.getSearchText());
+		GridData gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		textTofindText.setLayoutData(gd);
+		
+		textTofindText.setEnabled(false);
+		
+		nextButton = new Button(composite, SWT.CENTER);
+		nextButton.setText("Next");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		nextButton.setLayoutData(gd);
 		nextButton.addSelectionListener(new SelectionAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent e) {				
-				//super.widgetSelected(e);
+			public void widgetSelected(SelectionEvent e) {			
 				nextButtonPressed();
 			}			
 		});
 		
-		replaceButton = new Button(composite, SWT.LEFT);
-		replaceButton.setText("replace");
+////////////////////////////////////////////////////////////////////////////////////////
+		
+		contextButton = new Button(composite, SWT.LEFT | SWT.CHECK);
+		contextButton.setText("Search in all documents");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 2;
+		contextButton.setLayoutData(gd);
+		
+		replaceButton = new Button(composite, SWT.CENTER);
+		replaceButton.setText("Replace");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		replaceButton.setLayoutData(gd);
+		
 		replaceButton.setEnabled(false);
 		replaceButton.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -103,12 +166,39 @@ public class SearchDictEntryDialog extends Dialog {
 				replaceButtonPressed();
 			}			
 		});
+		
+////////////////////////////////////////////////////////////////////////////////////////
+		wholeWordButton = new Button(composite, SWT.LEFT | SWT.CHECK);
+		wholeWordButton.setText("Whole word");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 2;
+		wholeWordButton.setLayoutData(gd);
+		
+		replaceAllButton = new Button(composite, SWT.CENTER);
+		replaceAllButton.setText("Replace all");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		replaceAllButton.setLayoutData(gd);
+		
+		//replaceAllButton.setEnabled(false);
+		replaceAllButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {				
+				//super.widgetSelected(e);
+				replaceAllButtonPressed();
+			}			
+		});
+		
 /*		
 		contextLabel = new Label(composite, SWT.LEFT);
 		contextLabel.setText("Search in all documents");
 */	
-		contextButton = new Button(composite, SWT.LEFT | SWT.CHECK);
-		contextButton.setText("Search in all documents");		
+
 	/*	replaceButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {				
@@ -138,38 +228,55 @@ public class SearchDictEntryDialog extends Dialog {
 	
 	private void nextButtonPressed() {
 		replaceButton.setEnabled(false);		
-		
+		FindReplaceDocumentAdapter findAdapter = new FindReplaceDocumentAdapter(currentDoc);
 		//int res = currentText.indexOf(refact.getSearchText(), curIdx);
 		try {
 			int res = curIdx + 1;  
 			boolean wasFound = false;
 			while (!wasFound) {				
-				res = currentDoc.search(res, refact.getSearchText(), true, true, false);
-				if (res == -1) {
+				//res = currentDoc.search(res, refact.getSearchText(), true, true, false);
+				
+				IRegion reg = findAdapter.find(res, refact.getSearchText(), true, true, false, false);
+				
+				if (reg == null) {
 					if (nextFile()) {
+						findAdapter = new FindReplaceDocumentAdapter(currentDoc);
 						res = -1;
 					}
 					else {
+						endReached = true;
 						nextButton.setEnabled(false);
 						return;						
 					}
 				}
 				else {
-					DRLDocument DRLdoc = projectContent.DRLDocs.get(currentFile);
-
-					int line1 = currentDoc.getLineOfOffset(res);
-					int column1 = res - currentDoc.getLineOffset(line1);
-					int line2 = currentDoc.getLineOfOffset(res + refact.getSearchText().length());
-					int column2 = res + refact.getSearchText().length() - currentDoc.getLineOffset(line2);
-
-					PositionInText pos1 = new PositionInText(line1 + 1, column1 + 1);
-					PositionInText pos2 = new PositionInText(line2 + 1, column2 + 1);
-
-					refact.setPararams(pos1, pos2, DRLdoc);
+					res = reg.getOffset();
+					boolean isGoodText = true;
+					if (wholeWordButton.getSelection()) {
+						if (res > 0)
+							isGoodText = isDelimeter(findAdapter.charAt(res-1));
+						int l = refact.getSearchText().length();
+						if (res + l <= findAdapter.length())
+							isGoodText &= isDelimeter(findAdapter.charAt(res + l));
+					}
 					
-					if (refact.validateSelection()) {
-						wasFound = true;
-						curIdx = res;
+					if (isGoodText) {
+						DRLDocument DRLdoc = projectContent.DRLDocs.get(currentFile);
+
+						int line1 = currentDoc.getLineOfOffset(res);
+						int column1 = res - currentDoc.getLineOffset(line1);
+						int line2 = currentDoc.getLineOfOffset(res + refact.getSearchText().length());
+						int column2 = res + refact.getSearchText().length() - currentDoc.getLineOffset(line2);
+
+						PositionInText pos1 = new PositionInText(line1 + 1, column1 + 1);
+						PositionInText pos2 = new PositionInText(line2 + 1, column2 + 1);
+
+						refact.setPararams(pos1, pos2, DRLdoc);
+					
+						if (refact.validateSelection()) {
+							wasFound = true;
+							curIdx = res;
+						}
 					}
 				}
 				res += 1;
@@ -185,6 +292,15 @@ public class SearchDictEntryDialog extends Dialog {
 		}		
 	}
 	
+	private boolean isDelimeter(char c) {
+		for (char curChar : delimeters) {
+			if (curChar == c)
+				return true;
+		}
+		
+		return false;
+	}
+	
 	private void replaceButtonPressed() {
 		try {
 			//DRLDocument DRLdoc = projectContent.DRLDocs.get(currentFile);
@@ -196,6 +312,25 @@ public class SearchDictEntryDialog extends Dialog {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void replaceAllButtonPressed() {
+		curIdx = -1;
+		it = projectContent.DRLDocs.keySet().iterator();
+		try {
+			while (!endReached) {
+				nextButtonPressed();
+				
+				refact.perform();
+			
+				projectContent.saveAll();
+			}
+			
+			okPressed();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}		
 	}
 	
 	private boolean nextFile() {

@@ -14,6 +14,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
+import org.spbu.pldoctoolkit.refactor.CreateNest;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
 import org.spbu.pldoctoolkit.refactor.ReplaceWithNest;
@@ -24,11 +25,14 @@ public class ReplaceWithNestAction extends Action implements IValidateDRLSelecti
 	TextEditor te;
 	IProject project;
 	
-	ReplaceWithNest refact = new ReplaceWithNest(); 
+	ReplaceWithNest refact = new ReplaceWithNest();
+	CreateNest createRefact = new CreateNest();
 	ProjectContent projectContent;// = new ProjectContent();
 	FileEditorInput editorInput;
 	
-	public final static String refactName = "Replace with nest"; 
+	public final static String refactName = "Replace with nest";
+	
+	public boolean replace;
 	
 	public ReplaceWithNestAction(IEditorPart editor) throws Exception {
 		super(refactName);
@@ -57,16 +61,20 @@ public class ReplaceWithNestAction extends Action implements IValidateDRLSelecti
 			PositionInText pos1 = new PositionInText(line1 + 1, column1 + 1);
 			PositionInText pos2 = new PositionInText(line2 + 1, column2 + 1);
 			
+			boolean res;
 			if (pos1.compare(pos2) == 0) {
-				setEnabled(false);
-				return;
+				createRefact.reset();
+				createRefact.setValidationPararams(DRLdoc, pos1);
+				res = createRefact.validate();
+				replace = false;
 			}
-				
-		
-			refact.reset();
-			refact.setValidationPararams( DRLdoc, pos1, pos2);			
-			
-			boolean res = refact.validate();
+			else {		
+				refact.reset();
+				refact.setValidationPararams( DRLdoc, pos1, pos2);
+				res = refact.validate();
+				replace = true;
+			}
+						
 			setEnabled(res);
 		} catch (Exception e) {
 			setEnabled(false);
@@ -91,9 +99,8 @@ public class ReplaceWithNestAction extends Action implements IValidateDRLSelecti
 			++i;
 		}
 		
-		InputDialog dialog = new InputDialog(editor.getSite().getShell(), "Create nest...", "Enter id", resId, 
+		InputDialog dialog = new InputDialog(editor.getSite().getShell(), "Create nest...", "Replace selected fragment with nest.\nEnter id of new Nest", resId, 
 				new IInputValidator() {
-
 					@Override
 					public String isValid(String newText) {
 						for (LangElem nest : projectContent.nests) {
@@ -102,17 +109,22 @@ public class ReplaceWithNestAction extends Action implements IValidateDRLSelecti
 						}
 						
 						return null;
-					}
-			
+					}			
 		});		
 		
 		int res = dialog.open();
 		if ( res != Window.OK)
 			return;
 	
-		try {			
-			refact.setPararams(dialog.getValue());			
-			refact.perform();
+		try {
+			if (replace) {
+				refact.setPararams(dialog.getValue());			
+				refact.perform();
+			}
+			else {
+				createRefact.setPararams(dialog.getValue());			
+				createRefact.perform();
+			}
 			
 			projectContent.saveAll();		
 		}

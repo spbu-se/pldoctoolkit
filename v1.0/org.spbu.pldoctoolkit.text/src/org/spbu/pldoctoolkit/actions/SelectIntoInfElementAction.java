@@ -63,7 +63,7 @@ public class SelectIntoInfElementAction extends Action implements IValidateDRLSe
 	ProjectContent projectContent;// = new ProjectContent();
 	FileEditorInput editorInput;
 	
-	public final static String refactName = "Select into InfElement"; 
+	public final static String refactName = "Extract InfElement..."; 
 	
 	public SelectIntoInfElementAction(IEditorPart editor) throws Exception {
 		super(refactName);
@@ -117,7 +117,7 @@ public class SelectIntoInfElementAction extends Action implements IValidateDRLSe
 	public void run() {		
 		SelectIntoInfElemDialog dialog = new SelectIntoInfElemDialog(editor.getSite().getShell());
 		
-		for (LangElem refs : projectContent.InfElemRefs) {
+		for (LangElem refs : projectContent.infElemRefs) {
 			dialog.addRefId(refs.attrs.getValue("id"));
 		}
 		for (LangElem elems : projectContent.infElems) {
