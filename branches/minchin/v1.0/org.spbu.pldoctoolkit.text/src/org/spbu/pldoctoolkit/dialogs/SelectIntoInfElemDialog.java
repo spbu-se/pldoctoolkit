@@ -15,12 +15,16 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Label;
+import org.spbu.pldoctoolkit.actions.SelectIntoInfElementAction;
 
 public class SelectIntoInfElemDialog extends Dialog{
 	private String infElemId = "";
@@ -35,7 +39,10 @@ public class SelectIntoInfElemDialog extends Dialog{
 	private Label nameLabel;
 	private Label refIdLabel;
 	
-	private Label errorMessage;
+	//private Label errorMessage;
+	private Label errorMessageId;
+	private Label errorMessageRefId;
+	
 	private boolean isValideElemId = false;
 	private boolean isValideElemRefId = false;
 	
@@ -48,33 +55,128 @@ public class SelectIntoInfElemDialog extends Dialog{
 	}
 	
 	protected Control createDialogArea(Composite parent) {
-		Composite composite = (Composite) super.createDialogArea(parent);
+		//Composite composite = (Composite) super.createDialogArea(parent);
 		//composite.setLayout(new GridLayout(1, false));
+		
+		
+		Composite composite = (Composite) super.createDialogArea(parent);
+		
+		GridLayout layout = new GridLayout();
+		layout.numColumns = 3;
+		layout.verticalSpacing = 9;
+		composite.setLayout(layout);
+		
+		////////////////////////////////////////////////////////////
+/*		
+		dirList = new Combo(composite, SWT.MULTI | SWT.BORDER);
+		setDirListContent();
+		GridData gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		dirList.setLayoutData(gd);
+		
+		new Label(composite, SWT.NONE);
+	*/	
+		
+		Label description = new Label(composite, SWT.LEFT);
+		description.setText("Extracts selected fragment into new InfElement, insert InfElemRef,\n" +
+							"create Adapter for new InfElemRef and change content of appropriate Adapters\n\n");
+		GridData gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 3;
+		description.setLayoutData(gd);		
+		
+		/////////////////////////////////////////////////////////////
+		
 		nameLabel = new Label(composite, SWT.LEFT);
-		nameLabel.setText("Name of new InfElement");
-		nameText = new Text(composite, SWT.SINGLE);
+		nameLabel.setText("Name of new InfElement:");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		nameLabel.setLayoutData(gd);
+		
+		nameText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		nameText.setLayoutData(gd);
 				
 		KeyListener listener = new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
-				//errorMessage.setText(nameText.getText());
 				setTexts();
 			}
 		};
 		nameText.addKeyListener(listener);
+		
+		new Label(composite, SWT.NONE);
+		
+//////////////////////////////////////////////////////////////////////////////////////
 			
 		
 		idLabel = new Label(composite, SWT.LEFT);
-		idLabel.setText("Id of new InfElement");		
-		idText = new Text(composite, SWT.SINGLE | SWT.BORDER);
-				
-		refIdLabel = new Label(composite, SWT.LEFT);
-		refIdLabel.setText("Id of new InfElementRef");
-		refIdText = new Text(composite, SWT.SINGLE);
+		idLabel.setText("Id of new InfElement:");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		idLabel.setLayoutData(gd);
 		
-		errorMessage = new Label(composite, SWT.LEFT);
-		errorMessage.setText("                                                                         ");
-		//errorMessage.setSize(300, 40);
-		errorMessage.setForeground(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
+		idText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		idText.setLayoutData(gd);
+		idText.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				validate();
+			}
+		});
+		
+		errorMessageId = new Label(composite, SWT.LEFT);
+		errorMessageId.setText("                                                 ");		
+		errorMessageId.setForeground(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		errorMessageId.setLayoutData(gd);
+				
+////////////////////////////////////////////////////////////////////////////////////////		
+		
+		refIdLabel = new Label(composite, SWT.LEFT);
+		refIdLabel.setText("Id of new InfElemtRef:");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		refIdLabel.setLayoutData(gd);
+		
+		refIdText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		refIdText.setLayoutData(gd);
+		refIdText.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				validate();
+			}
+		});
+		
+		errorMessageRefId = new Label(composite, SWT.LEFT);
+		errorMessageRefId.setText("                                                 ");		
+		errorMessageRefId.setForeground(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		errorMessageRefId.setLayoutData(gd);
 						
         return composite;
 	}
@@ -89,12 +191,12 @@ public class SelectIntoInfElemDialog extends Dialog{
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		Point size = new Point(500, 500);
+		Point size = new Point(420, 210);
 		newShell.setSize(size);
 		Shell p = getParentShell();
 		newShell.setLocation(p.getLocation().x + p.getSize().x / 2 - size.x / 2, p.getLocation().y + p.getSize().y / 2 - size.y / 2);
 		
-		newShell.setText("Enter id and name of new InfElem...");		
+		newShell.setText(SelectIntoInfElementAction.refactName);		
 	}	
 
 	protected void okPressed()
@@ -107,47 +209,56 @@ public class SelectIntoInfElemDialog extends Dialog{
 	
 	private void setTexts() {
 		String name = nameText.getText();
+		
 		String id = name + "_id";
+		idText.setText(id);
+		
+		String refId = name + "_refid";
+		refIdText.setText(refId);
+		
+		validate();
+	}
+	
+	private void validate() {
 		isValideElemId = true;
 		for (String otherId : infElemIds) {
-			if (id.equals(otherId)) {
+			if (idText.getText().equals(otherId)) {
 				isValideElemId = false;
 				break;
 			}
-		}
+		}		
 		
-		idText.setText(id);
 		if (!isValideElemId) {
-			errorMessage.setText("Bad infElement id");
+			errorMessageId.setText("Bad infElement id");
 			getButton(IDialogConstants.OK_ID).setEnabled(false);			
-			return;
+			//return;
 		}
 		else {
-			errorMessage.setText("");
+			errorMessageId.setText("");
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
 		}
 		
-////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////		
 		
-		String refId = name + "_refid";
 		isValideElemRefId = true;
 		for (String otherId : infElemRefIds) {
-			if (refId.equals(otherId)) {
+			if (refIdText.getText().equals(otherId)) {
 				isValideElemRefId = false;
 				break;
 			}
 		}
 		
-		refIdText.setText(refId);
+		
 		if (!isValideElemRefId) {
-			errorMessage.setText("Bad infElementRef id");
+			errorMessageRefId.setText("Bad infElementRef id");
 			getButton(IDialogConstants.OK_ID).setEnabled(false);;			
-			return;
+			//return;
 		}
 		else {
-			errorMessage.setText("");
+			errorMessageRefId.setText("");
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
 		}
+		
 	}
 	
 	public String getInfElemId()

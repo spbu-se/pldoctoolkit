@@ -153,7 +153,7 @@ public class SelectIntoInfElem {
 			for (LangElem infElemRef : infElemRefs)
 				{
 					String elemRefIdToFind = infElemRef.attrs.getValue("id");
-					for (LangElem adapter : project.Adapters) {
+					for (LangElem adapter : project.adapters) {
 						if (adapter.attrs.getValue("infelemrefid").equals(elemRefIdToFind)) {
 							ArrayList<LangElem> nestsRefs = new ArrayList<LangElem>();							
 							for (Element elem : adapter.getChilds()) {
@@ -237,7 +237,7 @@ public class SelectIntoInfElem {
 		
 		infElemRefs = new ArrayList<LangElem>();
 		String idTofind = ((LangElem)infElem).attrs.getValue("id");
-		for (LangElem infElemRef : project.InfElemRefs) {
+		for (LangElem infElemRef : project.infElemRefs) {
 			if (infElemRef.attrs.getValue("infelemid").equals(idTofind))
 				infElemRefs.add(infElemRef);
 		}

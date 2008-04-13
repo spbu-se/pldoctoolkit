@@ -192,9 +192,9 @@ public class DRLContentHandler implements ContentHandler {
 		savePosition(line, column);
 		
 		if (arg1.equals("Adapter"))
-			projectContent.Adapters.add( (LangElem)newElem );
+			projectContent.adapters.add( (LangElem)newElem );
 		else if (arg1.equals("InfElemRef"))
-			projectContent.InfElemRefs.add((LangElem)newElem);
+			projectContent.infElemRefs.add((LangElem)newElem);
 		else if (arg1.equals("Dictionary"))
 			projectContent.dictionarys.add((LangElem)newElem);
 		else if (arg1.equals("InfElement"))
@@ -202,6 +202,10 @@ public class DRLContentHandler implements ContentHandler {
 		else if (arg1.equals(LangElem.DIRECTORY))
 			projectContent.directories.add((LangElem)newElem);
 		else if (arg1.equals(LangElem.NEST))
+			projectContent.nests.add((LangElem)newElem);
+		else if (arg1.equals(LangElem.FINALINFPRODUCT))
+			projectContent.nests.add((LangElem)newElem);
+		else if (arg1.equals(LangElem.INFPRODUCT))
 			projectContent.nests.add((LangElem)newElem);
 	}
 

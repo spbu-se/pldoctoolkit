@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -13,12 +14,15 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
@@ -40,6 +44,7 @@ public class InsertIntoDictionaryDialog extends Dialog{
 	private Label dictLabel;
 		
 	private Combo dictionarysList;
+	
 	//private ArrayList<String> dictIds = new ArrayList<String>();
 	private ArrayList<LangElem> dicts;// = new ArrayList<LangElem>();
 	private ArrayList<Element> entrys = new ArrayList<Element>();
@@ -61,12 +66,51 @@ public class InsertIntoDictionaryDialog extends Dialog{
 		setBlockOnOpen(true);
 	}
 	
+	protected Control createContents(Composite parent) {		
+		Control res = super.createContents(parent);
+		
+		idText.setEnabled(false);
+		generateIdButton.setEnabled(false);
+		getButton(IDialogConstants.OK_ID).setEnabled(false);
+		
+		return res;
+	}
+	
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
-		//composite.setLayout(new GridLayout(1, false));
+		
+		GridLayout layout = new GridLayout();
+		layout.numColumns = 3;
+		layout.verticalSpacing = 9;
+		composite.setLayout(layout);
+		
+////////////////////////////////////////////////////////////////////////////////////
+		
+		Label description = new Label(composite, SWT.LEFT);
+		description.setText("Insert selected text into dictionary, and replace selected text with new DictRef\n\n");
+		GridData gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 3;
+		description.setLayoutData(gd);
+		
+////////////////////////////////////////////////////////////////////////////////////
+		
 		idLabel = new Label(composite, SWT.LEFT);
-		idLabel.setText("Id of new Enrty");
-		idText = new Text(composite, SWT.SINGLE);
+		idLabel.setText("Id of new Enrty:");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		idLabel.setLayoutData(gd);
+		
+		idText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		idText.setLayoutData(gd);
 		
 		KeyListener listener = new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {	
@@ -75,36 +119,13 @@ public class InsertIntoDictionaryDialog extends Dialog{
 		};
 		idText.addKeyListener(listener);
 		
-		errorMessage = new Label(composite, SWT.LEFT);
-		errorMessage.setText("                                                                         ");
-		//errorMessage.setSize(300, 40);
-		errorMessage.setForeground(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
-		
-		dictLabel = new Label(composite, SWT.LEFT);
-		dictLabel.setText("Select dictionary to insert into");
-		dictionarysList = new Combo(composite, SWT.READ_ONLY);		
-		updateDictsList();
-		dictionarysList.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {				
-				//super.widgetSelected(e);
-				entrys = dicts.get(dictionarysList.getSelectionIndex()).getChilds();
-				setTexts();
-			}			
-		});
-		
-		newDictButton = new Button(composite, SWT.LEFT);
-		newDictButton.setText("Create new Ditionary");
-		newDictButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {				
-				//super.widgetSelected(e);
-				newDictButtonPressed();
-			}			
-		});
-		
-		generateIdButton = new Button(composite, SWT.LEFT);
+		generateIdButton = new Button(composite, SWT.CENTER);
 		generateIdButton.setText("Generate Id");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;		
+		generateIdButton.setLayoutData(gd);
 		generateIdButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {				
@@ -113,10 +134,79 @@ public class InsertIntoDictionaryDialog extends Dialog{
 			}			
 		});
 		
+////////////////////////////////////////////////////////////////////////////////		
+		
+		dictLabel = new Label(composite, SWT.LEFT);
+		dictLabel.setText("Dictionary to insert into:");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 3;
+		dictLabel.setLayoutData(gd);
+		
+/////////////////////////////////////////////////////////////////////////////////
+		
+		dictionarysList = new Combo(composite, SWT.READ_ONLY | SWT.V_SCROLL | SWT.BORDER /*| SWT.SIMPLE*/);		
+		
+		//ListViewer lw = new ListViewer(composite, SWT.READ_ONLY | SWT.V_SCROLL | SWT.BORDER);
+		//dictionarysList = lw.getList();
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 2;
+		//dictionarysList.setBounds(50, 100, 50, 50);
+		dictionarysList.setLayoutData(gd);
+		
+		updateDictsList();
+		dictionarysList.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {				
+				//super.widgetSelected(e);
+				entrys = dicts.get(dictionarysList.getSelectionIndex()).getChilds();
+				idText.setEnabled(true);
+				generateIdButton.setEnabled(true);
+				setTexts();
+			}			
+		});
+		
+		newDictButton = new Button(composite, SWT.CENTER);
+		newDictButton.setText("Create new Ditionary");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.TOP;
+		gd.grabExcessHorizontalSpace = true;		
+		newDictButton.setLayoutData(gd);
+		
+		newDictButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {				
+				//super.widgetSelected(e);
+				newDictButtonPressed();
+			}			
+		});
+		
+//////////////////////////////////////////////////////////////////////////////////////		
+		
+		
+		errorMessage = new Label(composite, SWT.CENTER);
+		errorMessage.setText("Select dictionary                                ");
+		errorMessage.setForeground(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.CENTER;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 3;
+		errorMessage.setLayoutData(gd);
+		
+///////////////////////////////////////////////////////////////////////////////////		
+		
+		
         return composite;
 	}
 	
-	private void setTexts() {
+	private void setTexts() {		
 		//String name = nameText.getText();
 		String id = idText.getText();
 		isValidEntryId = true;
@@ -150,7 +240,7 @@ public class InsertIntoDictionaryDialog extends Dialog{
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		Point size = new Point(400, 400);
+		Point size = new Point(400, 300);
 		newShell.setSize(size);
 		Shell p = getParentShell();
 		newShell.setLocation(p.getLocation().x + p.getSize().x / 2 - size.x / 2, p.getLocation().y + p.getSize().y / 2 - size.y / 2);

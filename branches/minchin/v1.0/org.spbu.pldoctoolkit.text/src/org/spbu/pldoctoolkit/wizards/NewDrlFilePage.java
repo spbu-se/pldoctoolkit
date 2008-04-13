@@ -1,16 +1,19 @@
 package org.spbu.pldoctoolkit.wizards;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileInfo;
 import org.eclipse.core.filesystem.provider.FileInfo;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
@@ -29,6 +32,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
+import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
+import org.spbu.pldoctoolkit.refactor.ProjectContent;
+import org.spbu.pldoctoolkit.registry.ProjectRegistry;
 
 public class NewDrlFilePage extends WizardPage {
 	public static final String PRODUCT_LINE = "ProductLine";
@@ -51,7 +57,12 @@ public class NewDrlFilePage extends WizardPage {
 	private Group typeGroup;
 	private Button fileBrowseButton;
 	
+	private Text finalId, infPrId, infPrName, infElemId, infElemName, infElemRefId;
+	private Label finalIdLabel, infPrIdLabel, infPrNameLabel, infElemIdLabel, infElemNameLabel, infElemRefIdLabel;
+	
 	private boolean sourceType = false; // new DRL doc
+	
+	private ProjectContent projectContent = null;
 	
 	public NewDrlFilePage(String pageName, String title, ImageDescriptor titleImage, IStructuredSelection selection) {
 		super(pageName, title, titleImage);
@@ -60,7 +71,7 @@ public class NewDrlFilePage extends WizardPage {
 
 	public NewDrlFilePage(String pageName, IStructuredSelection selection) {
 		super(pageName);
-		this.selection = selection;
+		this.selection = selection;		
 	}
 
 	public void createControl(Composite parent) {
@@ -227,6 +238,98 @@ public class NewDrlFilePage extends WizardPage {
 			}
 		});
 		
+//////////////////////////////////////////////////////////////////////////////////
+		
+		infPrNameLabel = new Label(topLevel, SWT.NONE);
+		infPrNameLabel.setText("InfProduct name:");
+		infPrName = new Text(topLevel, SWT.BORDER | SWT.SINGLE);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 2;
+		infPrName.setLayoutData(gd);
+		infPrName.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				infPrNameChanged();
+			}
+		});				
+		//new Label(topLevel, SWT.NONE);
+		
+		infPrIdLabel = new Label(topLevel, SWT.NONE);
+		infPrIdLabel.setText("InfProduct id:");
+		infPrId = new Text(topLevel, SWT.BORDER | SWT.SINGLE);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 2;
+		infPrId.setLayoutData(gd);
+		infPrId.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				notifyDialogChanged();
+			}
+		});				
+		//new Label(topLevel, SWT.NONE);
+		
+		infElemIdLabel = new Label(topLevel, SWT.NONE);
+		infElemIdLabel.setText("InfElement id:");
+		infElemId = new Text(topLevel, SWT.BORDER | SWT.SINGLE);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 2;
+		infElemId.setLayoutData(gd);
+		infElemId.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				notifyDialogChanged();
+			}
+		});				
+		//new Label(topLevel, SWT.NONE);
+		
+		infElemNameLabel = new Label(topLevel, SWT.NONE);
+		infElemNameLabel.setText("InfElement name:");		
+		infElemName = new Text(topLevel, SWT.BORDER | SWT.SINGLE);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 2;
+		infElemName.setLayoutData(gd);
+		infElemName.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				notifyDialogChanged();
+			}
+		});				
+		//new Label(topLevel, SWT.NONE);
+		
+		infElemRefIdLabel = new Label(topLevel, SWT.NONE);
+		infElemRefIdLabel.setText("InfElemRef id:");
+		infElemRefId = new Text(topLevel, SWT.BORDER | SWT.SINGLE);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 2;
+		infElemRefId.setLayoutData(gd);
+		infElemRefId.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				notifyDialogChanged();
+			}
+		});				
+		//new Label(topLevel, SWT.NONE);
+		
+		finalIdLabel = new Label(topLevel, SWT.NONE);
+		finalIdLabel.setText("FinalInfProduct id:");
+		finalId = new Text(topLevel, SWT.BORDER | SWT.SINGLE);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 2;
+		finalId.setLayoutData(gd);
+		finalId.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				notifyDialogChanged();
+			}
+		});				
+		//new Label(topLevel, SWT.NONE);
+		
 		initialize();
 		setControl(topLevel);
 		
@@ -247,6 +350,20 @@ public class NewDrlFilePage extends WizardPage {
 			pruductDocLabel.setEnabled(true);
 			productDocText.setEnabled(true);
 			
+			finalId.setEnabled(true); 
+			infPrId.setEnabled(true);
+			infPrName.setEnabled(true);
+			infElemId.setEnabled(true);
+			infElemName.setEnabled(true);
+			infElemRefId.setEnabled(true);
+			
+			finalIdLabel.setEnabled(true);
+			infPrIdLabel.setEnabled(true);
+			infPrNameLabel.setEnabled(true);
+			infElemIdLabel.setEnabled(true);
+			infElemNameLabel.setEnabled(true);
+			infElemRefIdLabel.setEnabled(true);
+			
 			this.setTitle("Create a new DRL file with FinalInfProduct from existing docBook file\nand create new file with DocumentationCore");			
 		}
 		else {
@@ -261,6 +378,20 @@ public class NewDrlFilePage extends WizardPage {
 			docCoreText.setEnabled(false);
 			pruductDocLabel.setEnabled(false);
 			productDocText.setEnabled(false);
+			
+			finalId.setEnabled(false); 
+			infPrId.setEnabled(false);
+			infPrName.setEnabled(false);
+			infElemId.setEnabled(false);
+			infElemName.setEnabled(false);
+			infElemRefId.setEnabled(false);
+			
+			finalIdLabel.setEnabled(false);
+			infPrIdLabel.setEnabled(false);
+			infPrNameLabel.setEnabled(false);
+			infElemIdLabel.setEnabled(false);
+			infElemNameLabel.setEnabled(false);
+			infElemRefIdLabel.setEnabled(false);
 			
 			this.setTitle("Create a new DRL file");
 		}
@@ -282,6 +413,77 @@ public class NewDrlFilePage extends WizardPage {
 		nameText.setText("Untitled.drl");
 	}
 
+	private void infPrNameChanged() {
+		String name = infPrName.getText();
+		infPrId.setText(name + "_prId");
+		infElemId.setText(name + "_elemId");
+		infElemName.setText(name + "_elemName");
+		infElemRefId.setText(name + "_elemRefId");
+		finalId.setText(name + "_finalInfPrId");
+		
+		notifyDialogChanged();
+	}
+	
+	private boolean validateIds() {	
+		if (validateContainer() != null)
+			return false;
+		
+		IContainer container;
+		String contName = getContainerName();
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		container = (IContainer) root.findMember(new Path(contName));
+		while (! (container instanceof IProject)) {
+			container = container.getParent();
+			if (container == null){
+				System.out.print("There is no project");
+				setErrorMessage("There is no project above selected container");
+				setPageComplete(false);
+				return false;
+			}				
+		}
+		ProjectRegistry prReg = PLDocToolkitPlugin.getRegistryIndex().getRegistry(container.getName());
+		ProjectContent prContent = (ProjectContent)prReg.getProjectContent();
+		
+		if (!isValidId(prContent.infPrs, infPrId.getText())) {
+			setErrorMessage("Bad infProduct id");
+			setPageComplete(false);
+			return false;
+		}
+		
+		if (!isValidId(prContent.infElems, infElemId.getText())) {
+			setErrorMessage("Bad infElement id");
+			setPageComplete(false);
+			return false;
+		}
+		
+		if (!isValidId(prContent.infElemRefs, infElemRefId.getText())) {
+			setErrorMessage("Bad infElemRef id");
+			setPageComplete(false);
+			return false;
+		}
+		
+		if (!isValidId(prContent.finalInfPrs, finalId.getText())) {
+			setErrorMessage("Bad finalInfProduct id");
+			setPageComplete(false);
+			return false;
+		}	
+		
+		return true;
+	}
+	
+	private boolean isValidId(ArrayList<LangElem> elems, String newId) {
+		for (LangElem elem : elems) {
+			if (newId.equals(elem.attrs.getValue(LangElem.ID))) 
+				return false;
+		}
+		
+		return true;
+	}
+	
+	private String genId(){
+		return null;
+	}
+	
 	private void notifyDialogChanged() {
 		String message;
 		if ((message = validateContainer()) != null) {
@@ -296,6 +498,9 @@ public class NewDrlFilePage extends WizardPage {
 				setPageComplete(false);
 				return;
 			}
+			
+			if (!validateIds())
+				return;
 		}
 		else {
 			if ((message = validateName()) != null) {
@@ -445,5 +650,29 @@ public class NewDrlFilePage extends WizardPage {
 	
 	public boolean getSourceType() {
 		return sourceType;
+	}
+		
+	public String getFinalId() {
+		return finalId.getText();
+	}
+	
+	public String getInfPrId() {
+		return infPrId.getText();
+	}
+	
+	public String getInfPrName() {
+		return infPrName.getText();
+	}
+	
+	public String getInfElemId() {
+		return infElemId.getText();
+	}
+	
+	public String getInfElemName() {
+		return infElemName.getText();
+	}
+	
+	public String getInfElemRefId() {
+		return infElemRefId.getText();
 	}
 }

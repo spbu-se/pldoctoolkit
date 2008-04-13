@@ -103,14 +103,13 @@ public class NewDrlFile extends Wizard implements INewWizard {
 	private boolean createFromExistingFile() {
 		final IFile docCoreFile = page.getDocCoreFile();
 		final IFile productDocFile = page.getProductDocFile();
-		
-		IContainer temp;
-	
+			
 		if (docCoreFile == null)
 			return false;
 		if (productDocFile == null)
 			return false;
 		
+		IContainer temp;
 		String contName = page.getContainerName();
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		temp = (IContainer) root.findMember(new Path(contName));
@@ -124,6 +123,7 @@ public class NewDrlFile extends Wizard implements INewWizard {
 		
 		final IContainer container = temp;
 		final File file = new File(page.getFileName());
+		final String finalId = page.getFinalId(), infPrId = page.getInfPrId(), infPrName = page.getInfPrName(), infElemId = page.getInfElemId(), infElemName = page.getInfElemName(), infElemRefId = page.getInfElemRefId();
 		IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 				try {
@@ -149,10 +149,12 @@ public class NewDrlFile extends Wizard implements INewWizard {
 					prContent.add(productDocFile);
 					
 					DRLDocument coreDoc = prContent.DRLDocs.get(docCoreFile);
-					StartUpRefactoring.addInfoToCore(coreDoc, res);
+					StartUpRefactoring.addInfoToCore(coreDoc, res, 
+							infPrId, infPrName, infElemId, infElemName, infElemRefId);
 					
 					DRLDocument productDoc = prContent.DRLDocs.get(productDocFile);
-					StartUpRefactoring.addInfoToProduct(productDoc);				
+					StartUpRefactoring.addInfoToProduct(productDoc,
+							finalId, infPrId, infElemRefId);				
 					
 					prContent.saveAll();
 					

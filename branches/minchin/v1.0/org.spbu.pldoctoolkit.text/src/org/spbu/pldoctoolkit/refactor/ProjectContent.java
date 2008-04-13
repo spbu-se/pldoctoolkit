@@ -19,12 +19,14 @@ import org.xml.sax.InputSource;
 
 public class ProjectContent implements IProjectContent{
 	public HashMap<IFile , DRLDocument> DRLDocs = new HashMap<IFile, DRLDocument>();	
-	public ArrayList<LangElem> Adapters = new ArrayList<LangElem>();
-	public ArrayList<LangElem> InfElemRefs = new ArrayList<LangElem>();
+	public ArrayList<LangElem> adapters = new ArrayList<LangElem>();
+	public ArrayList<LangElem> infElemRefs = new ArrayList<LangElem>();
 	public ArrayList<LangElem> dictionarys = new ArrayList<LangElem>();
 	public ArrayList<LangElem> directories = new ArrayList<LangElem>();
 	public ArrayList<LangElem> infElems = new ArrayList<LangElem>();
 	public ArrayList<LangElem> nests = new ArrayList<LangElem>();
+	public ArrayList<LangElem> finalInfPrs = new ArrayList<LangElem>();
+	public ArrayList<LangElem> infPrs = new ArrayList<LangElem>();
 //	public String projectName;
 /*	
 	public void parseAll(IProject project) {
@@ -90,12 +92,14 @@ public class ProjectContent implements IProjectContent{
 	private void removeInfoAboutFile(IFile file) {
 		DRLDocument doc = DRLDocs.get(file);
 	
-		removeInfoAboutDocFromList(Adapters, doc);
-		removeInfoAboutDocFromList(InfElemRefs, doc);
+		removeInfoAboutDocFromList(adapters, doc);
+		removeInfoAboutDocFromList(infElemRefs, doc);
 		removeInfoAboutDocFromList(dictionarys, doc);
 		removeInfoAboutDocFromList(directories, doc);
 		removeInfoAboutDocFromList(infElems, doc);
 		removeInfoAboutDocFromList(nests, doc);
+		removeInfoAboutDocFromList(finalInfPrs, doc);
+		removeInfoAboutDocFromList(infPrs, doc);
 		/*
 		int i = 0;
 		while (i < Adapters.size()) {
