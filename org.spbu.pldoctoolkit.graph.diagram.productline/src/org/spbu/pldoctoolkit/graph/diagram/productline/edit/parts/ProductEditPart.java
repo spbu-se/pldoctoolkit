@@ -1,5 +1,6 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
+
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
@@ -7,8 +8,6 @@ import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -17,18 +16,16 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
-import org.eclipse.gef.editpolicies.SelectionEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
-import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.HideConnectionsSelectionEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.ProductItemSemanticEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
@@ -69,7 +66,7 @@ public class ProductEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new ProductItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, createSelectionFeedbackPolicy());
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new HideConnectionsSelectionEditPolicy());
 	}
 
 	/**
@@ -96,38 +93,6 @@ public class ProductEditPart extends ShapeNodeEditPart {
 			}
 		};
 		return lep;
-	}
-
-	protected EditPolicy createSelectionFeedbackPolicy() {
-		SelectionEditPolicy sep = new SelectionEditPolicy() {
-
-			@Override
-			protected void hideSelection() {
-				System.out.println("product unselected");
-
-				GMFEditingDomainFactory.getInstance().createEditingDomain();
-
-				// TODO iterate over outgoing connections
-				
-//				TransactionalEditingDomain te = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("xxx");
-// TODO OR:				TransactionalEditingDomain te = GMFEditingDomainFactory.getInstance().createEditingDomain();
-//				te.getCommandStack().execute(SetCommand.create(te, view, NotationPackage.eINSTANCE.getView_Visible() , Boolean.FALSE));
-
-			}
-
-			@Override
-			protected void showSelection() {
-				System.out.println("product selected");
-
-				// TODO iterate over outgoing connections
-
-//				TransactionalEditingDomain te = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("xxx");
-// TODO OR:				TransactionalEditingDomain te = GMFEditingDomainFactory.getInstance().createEditingDomain();
-//				te.getCommandStack().execute(SetCommand.create(te, view, NotationPackage.eINSTANCE.getView_Visible() , Boolean.FALSE));
-			}
-
-		};
-		return sep;
 	}
 
 	/**

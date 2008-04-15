@@ -3,11 +3,7 @@ package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
@@ -39,21 +35,24 @@ public class ProductInfProductLinkEditPart extends ConnectionNodeEditPart 	 {
 		
 		installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, null);
 		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, null);
+
+		disableEditMode();
 		
 		//HAND
 		// disable delete from keyboard
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ComponentEditPolicy() {
-			@Override
-			protected Command createDeleteSemanticCommand(
-					GroupRequest deleteRequest) {
-				return UnexecutableCommand.INSTANCE;
-			}
-
-			@Override
-			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
-				return UnexecutableCommand.INSTANCE;
-			}
-		});
+		// not needed as edit mode is now disabled
+//		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ComponentEditPolicy() {
+//			@Override
+//			protected Command createDeleteSemanticCommand(
+//					GroupRequest deleteRequest) {
+//				return UnexecutableCommand.INSTANCE;
+//			}
+//
+//			@Override
+//			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
+//				return UnexecutableCommand.INSTANCE;
+//			}
+//		});
 	}
 
 
@@ -87,9 +86,6 @@ public class ProductInfProductLinkEditPart extends ConnectionNodeEditPart 	 {
 	 */
 	public class ProductInfProductLinkFigure extends PolylineConnectionEx {
 
-		/**
-		 * @generated
-		 */
 		public ProductInfProductLinkFigure() {
 			this.setFill(true);
 			this.setFillXOR(false);
@@ -97,7 +93,6 @@ public class ProductInfProductLinkEditPart extends ConnectionNodeEditPart 	 {
 			this.setOutlineXOR(false);
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
 
 	}

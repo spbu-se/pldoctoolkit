@@ -1,6 +1,5 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts;
 
-import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.CompoundBorder;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
@@ -27,6 +26,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.HideConnectionsSelectionEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.InfProductItemSemanticEditPolicy;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
@@ -66,7 +66,8 @@ public class InfProductEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new InfProductItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new HideConnectionsSelectionEditPolicy());
+		
 		//HAND
 		installEditPolicy(EditPolicy.COMPONENT_ROLE,
 				createComponentEditPolicy());
