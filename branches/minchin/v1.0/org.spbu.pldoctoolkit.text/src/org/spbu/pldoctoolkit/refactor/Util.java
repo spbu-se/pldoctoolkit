@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Stack;
 
+import org.spbu.pldoctoolkit.parser.DRLLang.Element;
+import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
+import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
+
 //import net.sf.saxon.dom.NodeOverNodeInfo;
 
 public class Util {
@@ -97,5 +101,56 @@ public class Util {
 		}
 			
 		return col;
+	}
+	
+	public static String getTextRepresentationOfTemplateAndEntry(LangElem template, LangElem entry) {		
+		LangElem clonedTemplate = (LangElem)template.clone(template.getParent());
+		TreeIterator iterator = new TreeIterator(clonedTemplate);		
+		
+		while (iterator.hasNext()) {
+			Element elem = iterator.next();
+			if (elem instanceof LangElem && ((LangElem)elem).tag.equals(LangElem.ATTRREF)) {
+				LangElem attrRef = (LangElem)elem;
+				String attrId = attrRef.attrs.getValue(LangElem.ATTRID); 
+				LangElem attr = getAttr(entry, attrId);
+				
+				if (attr == null)
+					return null;
+									
+				LangElem parent = (LangElem)attrRef.getParent();
+				int idx = parent.getChilds().indexOf(attrRef);
+				parent.getChilds().remove(idx);
+				
+				String text = getChildsText(attr);
+				
+				TextElement textRepresentation = new TextElement(new PositionInText(0,0), text.length(), text,parent, parent.getDRLDocument());
+				
+				parent.getChilds().add(idx, textRepresentation);
+			}			
+		}
+			
+		return getChildsText(clonedTemplate);
+	}
+
+	public static LangElem getAttr(LangElem entry, String id) {
+		for (Element entryElem : entry.getChilds()) {
+			LangElem attr = (LangElem)entryElem;
+			if (attr != null && attr.tag.equals(LangElem.ATTR)) {
+				if (attr.attrs.getValue(LangElem.ID).equals(id)) {
+					return attr; 
+				}
+			}
+		}
+		
+		return null;
+	}
+	
+	private static String getChildsText(LangElem le) {
+		String text = "";
+		for (Element elemText : le.getChilds()) {
+			text += elemText.getTextRepresentation();
+		}		
+		
+		return text;
 	}
 }

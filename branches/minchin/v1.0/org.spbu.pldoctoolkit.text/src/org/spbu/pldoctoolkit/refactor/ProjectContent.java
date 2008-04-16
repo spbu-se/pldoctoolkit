@@ -27,6 +27,7 @@ public class ProjectContent implements IProjectContent{
 	public ArrayList<LangElem> nests = new ArrayList<LangElem>();
 	public ArrayList<LangElem> finalInfPrs = new ArrayList<LangElem>();
 	public ArrayList<LangElem> infPrs = new ArrayList<LangElem>();
+	public ArrayList<LangElem> templates = new ArrayList<LangElem>();
 //	public String projectName;
 /*	
 	public void parseAll(IProject project) {
@@ -100,6 +101,7 @@ public class ProjectContent implements IProjectContent{
 		removeInfoAboutDocFromList(nests, doc);
 		removeInfoAboutDocFromList(finalInfPrs, doc);
 		removeInfoAboutDocFromList(infPrs, doc);
+		removeInfoAboutDocFromList(templates, doc);
 		/*
 		int i = 0;
 		while (i < Adapters.size()) {

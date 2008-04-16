@@ -24,7 +24,7 @@ public class LangElem extends Element{
 	public static final String INSERTAFTER = "Insert-After";
 	public static final String INSERTBEFORE = "Insert-Before";
 	public static final String DIRECTORY = "Directory";
-	public static final String DIRTEMPPLATE = "DirTemplate";
+	public static final String DIRTEMPLATE = "DirTemplate";
 	public static final String DIRREF = "DirRef";
 	public static final String ATTR = "Attr";
 	public static final String ATTRREF = "AttrRef";
@@ -47,7 +47,7 @@ public class LangElem extends Element{
 		INSERTAFTER,
 		INSERTBEFORE,
 		DIRECTORY,
-		DIRTEMPPLATE,
+		DIRTEMPLATE,
 		DIRREF,
 		ATTR,
 		ATTRREF,
@@ -65,6 +65,8 @@ public class LangElem extends Element{
 	public static final String INFPRODUCTID = "infproductid";
 	public static final String INFELEMREFID = "infelemrefid";
 	public static final String INFELEMID = "infelemid";
+	public static final String ENTRYID = "entryid";
+	public static final String TEMPLATEID = "templateid";
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////	
 
@@ -75,7 +77,7 @@ public class LangElem extends Element{
 	
 	@Override
 	public Element clone(Element parent) {
-		LangElem newElem = new LangElem(tag, tagNS, new PositionInText(startPos), parent, parent.getDRLDocument(), new AttributesImpl());
+		LangElem newElem = new LangElem(tag, tagNS, new PositionInText(startPos), parent, parent.getDRLDocument(), new AttributesImpl(attrs));
 		newElem.setEndPos(new PositionInText(endPos));
 		newElem.setTagStartPos(new PositionInText(tagStartPos));
 		
