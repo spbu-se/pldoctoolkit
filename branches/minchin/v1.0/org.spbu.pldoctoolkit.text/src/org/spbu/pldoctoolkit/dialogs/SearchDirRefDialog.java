@@ -90,7 +90,7 @@ public class SearchDirRefDialog extends Dialog {
 	private boolean endReached = false;
 	
 	private static final char delimeters[] = { ' ', '<', '>', '\n', '\t', '(', ')', '{', '}', '"'};
-	private static final String descriptionText = "Search for posible dirRef using selected template and entry\n\n"; 
+	private static final String descriptionText = "Search for possible dirRef using selected template and entry\n\n"; 
 	
 	public SearchDirRefDialog(Shell parentShell, TextEditor startTE) {
 		super(parentShell);

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Stack;
 
+import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
@@ -152,5 +153,56 @@ public class Util {
 		}		
 		
 		return text;
+	}
+	
+	public static boolean isDocBookFragment(DRLDocument doc, PositionInDRL from, PositionInDRL to) {	
+		if (from.parent != to.parent) {			
+			return false;
+		}
+		
+		if (from.isInTag || to.isInTag) {			
+			return false;
+		}
+		
+		LangElem parent = (LangElem)from.parent;
+		
+		int fromIdx, toIdx;				
+		if (from.isInText)
+			fromIdx = parent.getChilds().indexOf(from.elem);
+		else
+			fromIdx = parent.getChilds().indexOf(from.next);
+		
+		if (to.isInText)
+			toIdx = parent.getChilds().indexOf(to.elem);
+		else
+			toIdx = parent.getChilds().indexOf(to.prev);
+		
+		for (int i = fromIdx; i <= toIdx; ++i ) {
+			if (isDRLLangElem(parent.getChilds().get(i)))
+				return false;
+			TreeIterator iter = new TreeIterator(parent.getChilds().get(i));
+			while (iter.hasNext()) {
+				Element elem = iter.next();
+				if (isDRLLangElem(elem))
+					return false;
+			}
+		}
+				
+		return true;
+	}
+	
+	public static boolean isDRLLangElem(Element elem) {		
+		if (elem instanceof LangElem) {
+			for (String tag : LangElem.TAGS)
+				if ( ((LangElem)elem).tag.equals(tag) ) {							
+					return true;
+				}
+		}		
+		
+		return false; 
+	}
+	
+	public static boolean isDocBookFragment(DRLDocument doc, PositionInText fromText, PositionInText toText) {
+		return isDocBookFragment(doc, doc.findByPosition(fromText), doc.findByPosition(toText));		
 	}
 }
