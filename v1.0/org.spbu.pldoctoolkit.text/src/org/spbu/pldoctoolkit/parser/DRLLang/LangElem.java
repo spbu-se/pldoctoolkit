@@ -67,6 +67,7 @@ public class LangElem extends Element{
 	public static final String INFELEMID = "infelemid";
 	public static final String ENTRYID = "entryid";
 	public static final String TEMPLATEID = "templateid";
+	public static final String NESTID = "nestid";
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////	
 
