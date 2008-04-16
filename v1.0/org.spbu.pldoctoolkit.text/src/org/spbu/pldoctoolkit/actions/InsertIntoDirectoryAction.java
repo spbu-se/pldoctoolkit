@@ -98,7 +98,7 @@ public class InsertIntoDirectoryAction extends Action implements IValidateDRLSel
 		if ( res != Window.OK)
 			return;	
 		
-		refact.perform(dialog.getFragmentsToReplace(), "templId", dialog.getDirectoryId());
+		refact.perform(dialog.getText(), "templId", dialog.getDirectoryId());
 		projectContent.saveAll();
 		/*
 		IDocument doc = te.getDocumentProvider().getDocument(editorInput);

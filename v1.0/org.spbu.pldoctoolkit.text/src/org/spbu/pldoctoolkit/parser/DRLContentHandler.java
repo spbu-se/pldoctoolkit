@@ -204,9 +204,11 @@ public class DRLContentHandler implements ContentHandler {
 		else if (arg1.equals(LangElem.NEST))
 			projectContent.nests.add((LangElem)newElem);
 		else if (arg1.equals(LangElem.FINALINFPRODUCT))
-			projectContent.nests.add((LangElem)newElem);
+			projectContent.finalInfPrs.add((LangElem)newElem);
 		else if (arg1.equals(LangElem.INFPRODUCT))
-			projectContent.nests.add((LangElem)newElem);
+			projectContent.infPrs.add((LangElem)newElem);
+		else if (arg1.equals(LangElem.DIRTEMPLATE))
+			projectContent.templates.add((LangElem)newElem);
 	}
 
 	@Override

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -33,6 +35,11 @@ import org.spbu.pldoctoolkit.refactor.ProjectContent;
 import org.spbu.pldoctoolkit.refactor.CreateDirTemplate.FragmentToReplace;
 
 public class CreateNewDirTamplateDialog extends Dialog {
+	private final static int OK = 0;
+	private final static int LEFT = 1;
+	private final static int RIGHT = 2;
+	private final static int NOONE = 3;	
+	
 	private Button replace;
 	private Button undoReplace;
 	private Button editId;
@@ -40,6 +47,7 @@ public class CreateNewDirTamplateDialog extends Dialog {
 	private Combo dirList;	
 	
 	private Text text;
+	private String textContent;
 	
 	private ProjectContent projectContent;	
 	private CreateDirTemplate refact;
@@ -58,13 +66,29 @@ public class CreateNewDirTamplateDialog extends Dialog {
 	
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
+		composite.setSize(this.getShell().getClientArea().width, this.getShell().getClientArea().height);
 		
 		GridLayout layout = new GridLayout();
-		layout.numColumns = 2;
+		layout.numColumns = 3;
 		layout.verticalSpacing = 9;
+		
+		
 		composite.setLayout(layout);
 		
+		///////////////////////////////////////////////////////////
+/*		
+		Label description = new Label(composite, SWT.LEFT);
+		description.setText("Create new DirTemplate in selected file\n\n");
+		GridData gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.horizontalSpan = 2;
+		description.setLayoutData(gd);
+*/		
 		////////////////////////////////////////////////////////////
+		
+		new Label(composite, SWT.NONE).setText("Directory:");
 		
 		dirList = new Combo(composite, SWT.MULTI | SWT.BORDER);
 		setDirListContent();
@@ -72,21 +96,31 @@ public class CreateNewDirTamplateDialog extends Dialog {
 		gd.horizontalAlignment = SWT.FILL;
 		gd.verticalAlignment = SWT.FILL;
 		gd.grabExcessHorizontalSpace = true;
-		dirList.setLayoutData(gd);
+		dirList.setLayoutData(gd);		
 		
 		new Label(composite, SWT.NONE);
 		
 		////////////////////////////////////////////////////////////
-		
-		text = new Text(composite, SWT.MULTI | SWT.BORDER);
-		text.setText(refact.getText());
-		text.setEditable(false);
-		text.setBackground(new Color(Display.getCurrent(), 250, 250, 250));
+		/*
+		Composite tempComposite = new Composite(composite, 0);*/
 		gd = new GridData();
 		gd.horizontalAlignment = SWT.FILL;
 		gd.verticalAlignment = SWT.FILL;
 		gd.grabExcessHorizontalSpace = true;
-		text.setLayoutData(gd);		
+		gd.grabExcessVerticalSpace = true;
+		gd.horizontalSpan = 2;
+		
+		//tempComposite.setLayoutData(gd);
+		
+		text = new Text(composite, /*SWT.MULTI | SWT.BORDER*/SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		text.setText(refact.getText());
+		text.setEditable(false);
+		text.setBackground(new Color(Display.getCurrent(), 250, 250, 250));
+		
+		
+		text.setLayoutData(gd);
+		
+		//text.setSize(tempComposite.getClientArea().width, tempComposite.getClientArea().height);
 		
 		// Buttons /////////////////////////////////////////////////		
 		
@@ -120,6 +154,25 @@ public class CreateNewDirTamplateDialog extends Dialog {
 		gd.horizontalAlignment = SWT.FILL;
 		gd.grabExcessHorizontalSpace = true;
 		undoReplace.setLayoutData(gd);
+		undoReplace.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				undoReplacePressed();
+			}
+		});	
+		
+		editId = new Button(buttonsComposite, SWT.PUSH);
+		editId.setText("Edit Attr id");
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		editId.setLayoutData(gd);
+		editId.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				editIdPressed();				
+			}
+		});	
 						
         return composite;
 	}
@@ -133,7 +186,7 @@ public class CreateNewDirTamplateDialog extends Dialog {
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		Point size = new Point(500, 500);
+		Point size = new Point(500, 200);
 		newShell.setSize(size);
 		Shell p = getParentShell();
 		newShell.setLocation(p.getLocation().x + p.getSize().x / 2 - size.x / 2, p.getLocation().y + p.getSize().y / 2 - size.y / 2);
@@ -143,10 +196,10 @@ public class CreateNewDirTamplateDialog extends Dialog {
 	
 	private void replacePressed() {
 		Point sel = text.getSelection();
-		if (sel.x == sel.y)
-			return;
+//		if (sel.x == sel.y)
+	//		return;
 		
-		if (!checkNotInAnyFragment(sel))
+		if (checkNotInAnyFragment(sel) != OK)
 			return;
 		
 		int i = 0;
@@ -156,39 +209,124 @@ public class CreateNewDirTamplateDialog extends Dialog {
 			++i;
 		}
 		
-		FragmentToReplace newFragment = new FragmentToReplace(sel.x - curDiff, text.getSelectionText(), 
-				"takID", projectContent.directories.get(dirList.getSelectionIndex()).getDRLDocument(), text.getText());		
+		String newId = getId("attrId");
+		if (newId != null) {		
+			FragmentToReplace newFragment = new FragmentToReplace(sel.x - curDiff, text.getSelectionText(), 
+					newId, projectContent.directories.get(dirList.getSelectionIndex()).getDRLDocument(), text.getText());		
 		
-		if (!refact.isText(newFragment))
+			if (!refact.isText(newFragment))
+				return;
+		
+			fragmentsToReplace.add(i, newFragment);		
+			
+			String textContent = text.getText();
+			String newTextCoontent = textContent.substring(0, sel.x) + newFragment.getTexRepresentation() + textContent.substring(sel.y, textContent.length());
+			text.setText(newTextCoontent);
+			text.setSelection(sel.x, sel.x + newFragment.getLengthAfter());
+		}
+		else
 			return;
-		
-		fragmentsToReplace.add(newFragment);		
-		
-		String textContent = text.getText();
-		String newTextCoontent = textContent.substring(0, sel.x) + newFragment.getTexRepresentation() + textContent.substring(sel.y, textContent.length());
-		text.setText(newTextCoontent);
-		text.setSelection(sel.x, sel.x + newFragment.getLengthAfter());
 	}
 	
-	private boolean checkNotInAnyFragment(Point sel) {
+	private void undoReplacePressed() {
+		Point sel = text.getSelection();
+//		if (sel.x == sel.y)
+	//		return;
+		
+		int pos;
+		
+		if (checkNotInAnyFragment(sel) == LEFT)
+			pos = sel.x;
+		else if (checkNotInAnyFragment(sel) == RIGHT)
+			pos = sel.y;
+		else
+			return;
+		
+		int i = 0;
+		int curDiff = 0;
+		while (i < fragmentsToReplace.size() && (fragmentsToReplace.get(i).getOffset() + fragmentsToReplace.get(i).getLengthAfter() + curDiff) < pos) {
+			curDiff += fragmentsToReplace.get(i).getLengthAfter() - fragmentsToReplace.get(i).getLengthBefore();
+			++i;
+		}
+		
+		FragmentToReplace fragment = fragmentsToReplace.get(i);
+		fragmentsToReplace.remove(i);
+				
+		String textContent = text.getText();
+		String newTextCoontent = textContent.substring(0, fragment.getOffset() + curDiff) + 
+								 fragment.getReplacedText() + 
+								 textContent.substring(fragment.getOffset() + fragment.getLengthAfter() + curDiff, textContent.length());
+		text.setText(newTextCoontent);
+		text.setSelection(fragment.getOffset() + curDiff, fragment.getOffset() + curDiff + fragment.getLengthBefore());
+	}
+	
+	private void editIdPressed() {
+		Point sel = text.getSelection();
+		int pos;
+		
+		if (checkNotInAnyFragment(sel) == LEFT)
+			pos = sel.x;
+		else if (checkNotInAnyFragment(sel) == RIGHT)
+			pos = sel.y;
+		else
+			return;
+		
+		int i = 0;
+		int curDiff = 0;
+		while (i < fragmentsToReplace.size() && (fragmentsToReplace.get(i).getOffset() + fragmentsToReplace.get(i).getLengthAfter() + curDiff) < pos) {
+			curDiff += fragmentsToReplace.get(i).getLengthAfter() - fragmentsToReplace.get(i).getLengthBefore();
+			++i;
+		}
+		
+		FragmentToReplace fragment = fragmentsToReplace.get(i);
+		String newId = getId(fragment.getAttrId());
+		if (newId != null) {
+			String textContent = text.getText();
+			String newTextCoontent1 = textContent.substring(0, fragment.getOffset() + curDiff); 
+			String newTextCoontent2 = textContent.substring(fragment.getOffset() + fragment.getLengthAfter() + curDiff, textContent.length());
+						
+			fragment.setAttrId(newId);
+			
+			text.setText(newTextCoontent1 + fragment.getTexRepresentation() + newTextCoontent2);
+			text.setSelection(fragment.getOffset() + curDiff, fragment.getOffset() + curDiff + fragment.getLengthAfter());			
+		}
+	}
+		
+	private String getId(String prev) {
+		InputDialog dialog = new InputDialog(this.getShell(), 
+											 "Enter attrId...", 
+											 "Enter attrId", 
+											 prev,
+											 null);
+		
+		if (dialog.open() == Window.OK)
+			return dialog.getValue();
+		else 
+			return null;
+	}
+	
+	/*
+	 * 
+	 */
+	private int checkNotInAnyFragment(Point sel) {
 		int curDiff = 0;
 		for (FragmentToReplace fragment : fragmentsToReplace) {
 			int fragStart = fragment.getOffset() + curDiff;
 			int fragEnd = fragment.getOffset() + fragment.getLengthAfter() + curDiff;
 			
 			if (fragStart < sel.x && fragEnd > sel.x)
-				return false;
+				return LEFT;
 			
 			if (fragStart < sel.y && fragEnd > sel.y)
-				return false;
+				return RIGHT;
 			
 			if (fragStart >= sel.x && fragEnd <= sel.y)
-				return false;
+				return NOONE;
 			
 			curDiff += fragment.getLengthAfter() - fragment.getLengthBefore();
 		}
 		
-		return true;
+		return OK;
 	}
 
 	protected void okPressed()
@@ -206,8 +344,9 @@ public class CreateNewDirTamplateDialog extends Dialog {
 		}
 		*/
 		directoryId = projectContent.directories.get(dirList.getSelectionIndex()).attrs.getValue(LangElem.ID);
+		textContent = text.getText();
 		
-		super.okPressed();
+		super.okPressed();		
 	}
 	
 	public String getDirectoryId() {
@@ -216,5 +355,9 @@ public class CreateNewDirTamplateDialog extends Dialog {
 	
 	public ArrayList<FragmentToReplace> getFragmentsToReplace() {
 		return fragmentsToReplace;
+	}
+	
+	public String getText() {
+		return textContent;
 	}
 }

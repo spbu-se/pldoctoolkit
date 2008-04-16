@@ -105,15 +105,22 @@ public class CreateDirTemplate {
 		this.textDoc = textDoc;
 	}
 	
-	public void perform(ArrayList<FragmentToReplace> fragmentsToReplace, String id_, String directoryid_) {
+	public void perform(String content, /*ArrayList<FragmentToReplace> fragmentsToReplace,*/ String id_, String directoryid_) {
 		if (!isDocBookFragment())
 			return;
 		
 		id = id_;
 		directoryid = directoryid_;
 		
+		LangElem template = createTemlate();
+		TextElement contentElem = new TextElement(new PositionInText(0,0), content.length(), content, template, doc);
+		template.getChilds().add(contentElem);
+		doc.getChilds().get(0).getChilds().add(template);
+		
+		
 		/*ArrayList<Element> newElems = new ArrayList<Element>();
 		for (int i = fromIdx)*/
+		/*
 		LangElem parent = (LangElem)from.parent.clone(from.parent.getParent());
 		
 		from = parent.findByPosition(fromText);
@@ -166,6 +173,7 @@ public class CreateDirTemplate {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 	
 	private PositionInDRL splitIfNecessary(PositionInDRL pos, PositionInText textPos) {
@@ -186,7 +194,7 @@ public class CreateDirTemplate {
 		
 		LangElem parent = (LangElem)doc.getChilds().get(0);
 		
-		LangElem template = new LangElem(LangElem.DIRTEMPPLATE, prefex + LangElem.DIRTEMPPLATE, null, parent, doc, new AttributesImpl());
+		LangElem template = new LangElem(LangElem.DIRTEMPLATE, prefex + LangElem.DIRTEMPLATE, null, parent, doc, new AttributesImpl());
 		((AttributesImpl)template.attrs).addAttribute(LangElem.ID, LangElem.ID, LangElem.ID, "", id);
 		((AttributesImpl)template.attrs).addAttribute(LangElem.DIRECTORYID, LangElem.DIRECTORYID, LangElem.DIRECTORYID, "", directoryid);
 		
