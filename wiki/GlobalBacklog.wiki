@@ -19,6 +19,10 @@ Issues are prioritized in each subsection.
   * update to GMF 2.0.2
 
   * Revise placement of newly created inf elements in DRL files
+  
+  * Outline panel
+  	* Root node doesn't have a name
+  	* All other nodes are placed on the same level (while tree is expected)
 
   * bugfix
 
