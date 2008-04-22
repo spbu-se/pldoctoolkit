@@ -1,7 +1,6 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -116,6 +115,7 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 				case ProductLineDataEditPart.VISUAL_ID:
 				case PLSchemeEditPart.VISUAL_ID:
 				case DocumentationCoreEditPart.VISUAL_ID:
+				// HAND
 				case LineSeparatorEditPart.VISUAL_ID:
 					break; // pure design element
 				case ProductEditPart.VISUAL_ID:
@@ -196,6 +196,7 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 			return ProductLineNameViewFactory.class;
 		case ProductLineDataEditPart.VISUAL_ID:
 			return ProductLineDataViewFactory.class;
+		// HAND
 		case LineSeparatorEditPart.VISUAL_ID:
 			return LineSeparatorViewFactory.class;
 		case PLSchemeEditPart.VISUAL_ID:
@@ -221,9 +222,6 @@ public class DrlModelViewProvider extends AbstractViewProvider {
 		case DocumentationCoreInfProductsCompartmentEditPart.VISUAL_ID:
 			return DocumentationCoreInfProductsCompartmentViewFactory.class;
 		}
-		
-		//XXX debug
-		System.out.println("Node for visual id " + visualID + " not found!");
 		return null;
 	}
 
