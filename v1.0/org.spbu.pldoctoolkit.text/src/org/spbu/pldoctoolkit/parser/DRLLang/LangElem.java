@@ -76,6 +76,7 @@ public class LangElem extends Element{
 	public HashMap<String, String> prefex;
 	
 	
+	
 	@Override
 	public Element clone(Element parent) {
 		LangElem newElem = new LangElem(tag, tagNS, new PositionInText(startPos), parent, parent.getDRLDocument(), new AttributesImpl(attrs));
@@ -121,6 +122,7 @@ public class LangElem extends Element{
 		if (childs != null) {
 			res += ">";
 			for (Element elem: childs){
+				elem.offsetInTextRepresentation = offsetInTextRepresentation + res.length();				
 				res += elem.getTextRepresentation();
 			}
 			res += "</" + tagNS + ">"; 

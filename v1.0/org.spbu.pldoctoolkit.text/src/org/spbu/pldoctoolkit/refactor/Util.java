@@ -2,6 +2,7 @@ package org.spbu.pldoctoolkit.refactor;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Stack;
 
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
@@ -204,5 +205,71 @@ public class Util {
 	
 	public static boolean isDocBookFragment(DRLDocument doc, PositionInText fromText, PositionInText toText) {
 		return isDocBookFragment(doc, doc.findByPosition(fromText), doc.findByPosition(toText));		
+	}
+	
+	public static ArrayList<LangElem> getTemplates(ProjectContent projectContent, LangElem directory) {
+		String directoryId = directory.attrs.getValue(LangElem.ID);
+		
+		ArrayList<LangElem> res = new ArrayList<LangElem>(); 
+		for(LangElem template : projectContent.templates) {
+			if (template.attrs.getValue(LangElem.DIRECTORYID).equals(directoryId))
+				res.add(template);
+		}
+		
+		return res;
+	}
+	
+
+	public static ArrayList<LangElem> getEntrys(LangElem directory) {		
+		ArrayList<LangElem> res = new ArrayList<LangElem>(); 
+		for(Element elem : directory.getChilds()) {			
+			if (elem instanceof LangElem && ((LangElem)elem).tag.equals(LangElem.ENTRY))
+				res.add((LangElem)elem);
+		}
+		
+		return res;
+	}
+	
+	public static String getPrefix(DRLDocument doc) {
+		String prefix = doc.DRLnsPrefix;
+		if (!prefix.equals(""))
+			prefix += ":";
+		
+		return prefix;
+	}
+	
+	public static String getId(ArrayList<Element> elems, String tag) {
+		String idBase = tag;
+		String resId = "";
+		int i = 0;
+		boolean goodId = false;
+		while (!goodId) {
+			resId = idBase + String.valueOf(i);
+			goodId = true;
+			for (Element elem : elems) {
+				if (elem instanceof LangElem) {
+					LangElem le = (LangElem)elem;
+					if (le.tag.equals(tag) && le.attrs.getValue(LangElem.ID).equals(resId)) {						
+						goodId = false;
+						break;
+					}
+				}
+			}
+			++i;
+		}
+		
+		return resId;
+	}
+	
+	public static boolean isValidId(ArrayList<Element> elems, String tag, String id) {		
+		for (Element elem : elems) {
+			if (elem instanceof LangElem) {
+				LangElem le = (LangElem)elem;
+				if (le.tag.equals(tag) && le.attrs.getValue(LangElem.ID).equals(id))						
+					return false;
+			}
+		}
+
+		return true;
 	}
 }

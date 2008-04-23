@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid = "home">
+  <d:FinalInfProduct id = "UserManual_home" infproductid = "UserManual">
+    <d:Adapter infelemrefid = "ref_antivirus"><d:Insert-Before nestid = "extended_actions"><listitem> <para> viewing event log </para> </listitem>
+					</d:Insert-Before></d:Adapter>
+    <d:Adapter infelemrefid = "ref_update_inet"></d:Adapter>
+    <d:Adapter infelemrefid = "ref_components_update">
+      <d:Replace-Nest nestid = "as-update"></d:Replace-Nest>
+    </d:Adapter>
+  </d:FinalInfProduct>
+  
+  <d:Dictionary id = "main" name = "������� �������">
+    <d:Entry id = "productname">�������� ��������</d:Entry>
+  </d:Dictionary>
+</d:ProductDocumentation>

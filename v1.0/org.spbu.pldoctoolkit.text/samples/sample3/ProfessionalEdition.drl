@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid = "professional">
+	<d:FinalInfProduct id = "UserManual_professional" infproductid = "UserManual">
+		<d:Adapter infelemrefid = "ref_antivirus">
+			<d:Replace-Nest nestid = "extended_actions">
+				<listitem><para>placement in quarantine</para></listitem>
+				<listitem><para>request online assistance</para></listitem>
+			</d:Replace-Nest>
+		</d:Adapter>
+		<d:Adapter infelemrefid = "ref_firewall_config"></d:Adapter>
+		<d:Adapter infelemrefid = "ref_antivirus_config"></d:Adapter>
+		<d:Adapter infelemrefid = "ref_update_inet"></d:Adapter>
+		<d:Adapter infelemrefid = "ref_antispam"></d:Adapter>
+	</d:FinalInfProduct>
+
+	<d:Dictionary id = "main" name = "Chief Slovar">
+		<d:Entry id = "productname">Professional InterBez</d:Entry>
+	</d:Dictionary>
+</d:ProductDocumentation>

@@ -1,0 +1,6 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<d:ProductLine xmlns:d="http://math.spbu.ru/drl" name = "product line InterBez(tm) (Web Bezopasnost)">
+	<d:Product id = "home" name = "InterBez Domashniy"> </d:Product>
+	<d:Product id = "professional" name = "InterBez Professionalnyy"> </d:Product>
+	<d:Product id = "enterprise" name = "InterBez Korporativnyy"> </d:Product>
+</d:ProductLine>
