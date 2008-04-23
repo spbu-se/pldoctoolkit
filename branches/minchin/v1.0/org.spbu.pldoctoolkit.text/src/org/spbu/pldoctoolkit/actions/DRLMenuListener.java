@@ -7,7 +7,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.ui.IEditorPart;
 
 public class DRLMenuListener implements IMenuListener{
-	ArrayList<IValidateDRLSelection> listeners = new ArrayList<IValidateDRLSelection>();
+	private ArrayList<IValidateDRLSelection> listeners = new ArrayList<IValidateDRLSelection>();
 	
 	public static DRLMenuListener instance = new DRLMenuListener();
 	public IEditorPart editor;
@@ -27,5 +27,9 @@ public class DRLMenuListener implements IMenuListener{
 	
 	public void removeListener(IValidateDRLSelection listener) {
 		listeners.remove(listener);
+	}
+	
+	public void removeAll() {
+		listeners.clear();
 	}
 }

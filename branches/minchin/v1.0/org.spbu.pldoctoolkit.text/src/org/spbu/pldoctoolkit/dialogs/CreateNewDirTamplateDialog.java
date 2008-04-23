@@ -27,11 +27,15 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.CreateDirTemplate;
+import org.spbu.pldoctoolkit.refactor.CreateNewDictionary;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
+import org.spbu.pldoctoolkit.refactor.Util;
 import org.spbu.pldoctoolkit.refactor.CreateDirTemplate.FragmentToReplace;
 
 public class CreateNewDirTamplateDialog extends Dialog {
@@ -44,10 +48,17 @@ public class CreateNewDirTamplateDialog extends Dialog {
 	private Button undoReplace;
 	private Button editId;
 	
-	private Combo dirList;	
+	private List dirList;	
+	
+	private List fileNamesList;
+	private ArrayList<DRLDocument> docs = new ArrayList<DRLDocument>();
+	private DRLDocument doc;
 	
 	private Text text;
 	private String textContent;
+	
+	private Text templateIdText;
+	private String templateId; 
 	
 	private ProjectContent projectContent;	
 	private CreateDirTemplate refact;
@@ -71,6 +82,7 @@ public class CreateNewDirTamplateDialog extends Dialog {
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		layout.verticalSpacing = 9;
+		layout.makeColumnsEqualWidth = true;
 		
 		
 		composite.setLayout(layout);
@@ -88,47 +100,98 @@ public class CreateNewDirTamplateDialog extends Dialog {
 */		
 		////////////////////////////////////////////////////////////
 		
-		new Label(composite, SWT.NONE).setText("Directory:");
+		Composite dirComposite = new Composite(composite, SWT.NONE);		
 		
-		dirList = new Combo(composite, SWT.MULTI | SWT.BORDER);
-		setDirListContent();
 		GridData gd = new GridData();
-		gd.horizontalAlignment = SWT.FILL;
-		gd.verticalAlignment = SWT.FILL;
-		gd.grabExcessHorizontalSpace = true;
-		dirList.setLayoutData(gd);		
-		
-		new Label(composite, SWT.NONE);
-		
-		////////////////////////////////////////////////////////////
-		/*
-		Composite tempComposite = new Composite(composite, 0);*/
-		gd = new GridData();
 		gd.horizontalAlignment = SWT.FILL;
 		gd.verticalAlignment = SWT.FILL;
 		gd.grabExcessHorizontalSpace = true;
 		gd.grabExcessVerticalSpace = true;
 		gd.horizontalSpan = 2;
+		dirComposite.setLayoutData(gd);
+		dirComposite.setLayout(new GridLayout(1, true));
 		
-		//tempComposite.setLayoutData(gd);
+		new Label(dirComposite, SWT.NONE).setText("Directory:");
 		
-		text = new Text(composite, /*SWT.MULTI | SWT.BORDER*/SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		dirList = new List(dirComposite, /*SWT.MULTI |*/ SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
+		setDirListContent();
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.grabExcessVerticalSpace = true;
+		dirList.setLayoutData(gd);
+		dirList.addSelectionListener(new SelectionAdapter() {		
+			public void widgetDefaultSelected(SelectionEvent e) {
+				dirSelected();
+			}
+			public void widgetSelected(SelectionEvent e) {
+				dirSelected();
+			}			
+		});
+		
+		//new Label(composite, SWT.NONE);
+		
+		////////////////////////////////////////////////////////////
+		
+		Composite fileComposite = new Composite(composite, SWT.NONE);		
+		
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.grabExcessVerticalSpace = true;		
+		fileComposite.setLayoutData(gd);
+		fileComposite.setLayout(new GridLayout(1, true));
+		
+		new Label(fileComposite, SWT.NONE).setText("File:");
+		
+		fileNamesList = new List(fileComposite, SWT.READ_ONLY | SWT.BORDER);
+		setFileListContent();
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;	
+		gd.grabExcessVerticalSpace = true;
+		fileNamesList.setLayoutData(gd);
+		
+		fileNamesList.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {				
+				//fileSelected();
+			}			
+		});
+		
+		////////////////////////////////////////////////////////////
+		
+		Composite textComposite = new Composite(composite, SWT.NONE);		
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.grabExcessVerticalSpace = true;	
+		gd.horizontalSpan = 3;
+		textComposite.setLayoutData(gd);
+		textComposite.setLayout(new GridLayout(2, false));		
+		
+		text = new Text(textComposite, /*SWT.MULTI | SWT.BORDER*/SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		text.setText(refact.getText());
 		text.setEditable(false);
 		text.setBackground(new Color(Display.getCurrent(), 250, 250, 250));
-		
-		
-		text.setLayoutData(gd);
-		
-		//text.setSize(tempComposite.getClientArea().width, tempComposite.getClientArea().height);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.grabExcessVerticalSpace = true;	
+		text.setLayoutData(gd);		
 		
 		// Buttons /////////////////////////////////////////////////		
 		
-		Composite buttonsComposite = new Composite(composite, 0);
-/*		gd = new GridData();
-		gd.horizontalAlignment = SWT.FILL;
-		gd.grabExcessHorizontalSpace = true;
-		buttonsComposite.setLayoutData(gd);*/
+		Composite buttonsComposite = new Composite(textComposite, SWT.NONE);
+		gd = new GridData();		
+		gd.verticalAlignment = SWT.FILL;
+		//gd.grabExcessHorizontalSpace = true;
+		gd.grabExcessVerticalSpace = true;		
+		buttonsComposite.setLayoutData(gd);
 		
 		GridLayout layout2 = new GridLayout();
 		layout2.numColumns = 1;
@@ -139,6 +202,7 @@ public class CreateNewDirTamplateDialog extends Dialog {
 		replace.setText("Replace");
 		gd = new GridData();
 		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.TOP;
 		gd.grabExcessHorizontalSpace = true;
 		replace.setLayoutData(gd);
 		replace.addSelectionListener(new SelectionAdapter() {
@@ -152,6 +216,7 @@ public class CreateNewDirTamplateDialog extends Dialog {
 		undoReplace.setText("Undo replace");
 		gd = new GridData();
 		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.TOP;
 		gd.grabExcessHorizontalSpace = true;
 		undoReplace.setLayoutData(gd);
 		undoReplace.addSelectionListener(new SelectionAdapter() {
@@ -165,6 +230,7 @@ public class CreateNewDirTamplateDialog extends Dialog {
 		editId.setText("Edit Attr id");
 		gd = new GridData();
 		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.TOP;
 		gd.grabExcessHorizontalSpace = true;
 		editId.setLayoutData(gd);
 		editId.addSelectionListener(new SelectionAdapter() {
@@ -173,8 +239,40 @@ public class CreateNewDirTamplateDialog extends Dialog {
 				editIdPressed();				
 			}
 		});	
-						
+		
+//////////////////////////////////////////////////////////////////////////////////////
+		
+		Composite idComposite = new Composite(composite, SWT.NONE);		
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.grabExcessVerticalSpace = true;	
+		gd.horizontalSpan = 3;
+		idComposite.setLayoutData(gd);
+		idComposite.setLayout(new GridLayout(2, false));
+		
+		new Label(idComposite, SWT.NONE).setText("Template id:");
+		
+		templateIdText = new Text(idComposite, SWT.BORDER);		
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.TOP;
+		gd.grabExcessHorizontalSpace = true;		
+		templateIdText.setLayoutData(gd);		
+								
         return composite;
+	}
+	
+	private void dirSelected() {
+		//templateIdText.setText(Util.getId(, LangElem.DIRTEMPLATE));
+	}
+	
+	private void setFileListContent() {
+		docs = CreateNewDictionary.getPossipleDocs(projectContent);
+		for (DRLDocument doc : docs) {
+			fileNamesList.add(doc.file.getName());			
+		}
 	}
 	
 	private void setDirListContent() {
@@ -186,7 +284,7 @@ public class CreateNewDirTamplateDialog extends Dialog {
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		Point size = new Point(500, 200);
+		Point size = new Point(500, 400);
 		newShell.setSize(size);
 		Shell p = getParentShell();
 		newShell.setLocation(p.getLocation().x + p.getSize().x / 2 - size.x / 2, p.getLocation().y + p.getSize().y / 2 - size.y / 2);
@@ -345,6 +443,8 @@ public class CreateNewDirTamplateDialog extends Dialog {
 		*/
 		directoryId = projectContent.directories.get(dirList.getSelectionIndex()).attrs.getValue(LangElem.ID);
 		textContent = text.getText();
+		templateId = templateIdText.getText();
+		doc = docs.get(fileNamesList.getSelectionIndex());
 		
 		super.okPressed();		
 	}
@@ -359,5 +459,13 @@ public class CreateNewDirTamplateDialog extends Dialog {
 	
 	public String getText() {
 		return textContent;
+	}
+	
+	public DRLDocument getDoc() {
+		return doc;
+	}
+	
+	public String getTemplateId() {
+		return templateId;
 	}
 }

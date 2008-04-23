@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
+	<d:InfProduct id = "UserManual" name = "Users Manual">
+		<book>
+			<bookinfo>
+				<title>Users Manual <d:DictRef dictid = "main" entryid = "productname"></d:DictRef></title>
+			</bookinfo>
+			<d:InfElemRef id = "ref_preface" infelemid = "preface"></d:InfElemRef>
+			<d:InfElemRef id = "ref_control_center" infelemid = "control_center"></d:InfElemRef>
+			<d:InfElemRef id = "ref_firewall" infelemid = "firewall"></d:InfElemRef>
+	
+			<d:InfElemRefGroup id = "optional_components" modifier = "OR" name = "options"></d:InfElemRefGroup>
+			<d:InfElemRef groupid = "optional_components" id = "ref_antivirus" infelemid = "antivirus" optional = "true"></d:InfElemRef>
+			<d:InfElemRef groupid = "optional_components" id = "ref_antispam" infelemid = "antispam" optional = "true"></d:InfElemRef>
+		</book>
+	</d:InfProduct>
+</d:DocumentationCore>

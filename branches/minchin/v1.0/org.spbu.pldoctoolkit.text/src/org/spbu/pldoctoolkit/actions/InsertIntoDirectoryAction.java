@@ -14,12 +14,15 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.dialogs.CreateNewDirTamplateDialog;
 import org.spbu.pldoctoolkit.dialogs.InsertIntoDictionaryDialog;
+import org.spbu.pldoctoolkit.dialogs.InsertIntoDirectoryDialog;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.CreateDirTemplate;
 import org.spbu.pldoctoolkit.refactor.InsertIntoDictionary;
+import org.spbu.pldoctoolkit.refactor.InsertIntoDirectory;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
+import org.spbu.pldoctoolkit.refactor.Util;
 import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 
 public class InsertIntoDirectoryAction extends Action implements IValidateDRLSelection {
@@ -27,7 +30,7 @@ public class InsertIntoDirectoryAction extends Action implements IValidateDRLSel
 	TextEditor te;
 	IProject project;
 	
-	CreateDirTemplate refact;
+	InsertIntoDirectory refact;
 	ProjectContent projectContent;// = new ProjectContent();
 	FileEditorInput editorInput;
 	
@@ -63,9 +66,9 @@ public class InsertIntoDirectoryAction extends Action implements IValidateDRLSel
 				return;
 			}
 				
-			refact = new CreateDirTemplate(pos1, pos2, DRLdoc, doc);
+			refact = new InsertIntoDirectory(pos1, pos2, DRLdoc, doc);
 						
-			boolean res = refact.isDocBookFragment();
+			boolean res = Util.isDocBookFragment(DRLdoc, pos1, pos2);//refact.isDocBookFragment();
 			setEnabled(res);			
 		} 
 		catch (Exception e) {
@@ -74,66 +77,14 @@ public class InsertIntoDirectoryAction extends Action implements IValidateDRLSel
 		}		
 	}
 	
-	public void run() {	
-		//SearchDictEntryDialog ddd = new SearchDictEntryDialog(editor.getSite().getShell());
-		//ddd.open();
-		
-		//if (true)return;
-		/*
-		IWorkbenchWindow w = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		Iterator<IFile> it = projectContent.DRLDocs.keySet().iterator();
-		IFile file = it.next();
-		FileEditorInput in = new FileEditorInput(file);
-		try {
-			w.getActivePage().openEditor(in, "org.spbu.pldoctoolkit.editors.DRLEditor");
-		} catch (PartInitException e) {
-			e.printStackTrace();
-		}
-		*/
-		CreateNewDirTamplateDialog dialog = new CreateNewDirTamplateDialog(editor.getSite().getShell(), projectContent, refact);//, projectContent);
-		//ArrayList<LangElem> dicts = refact.getPossibleDicts();
-		//dialog.setDicts(dicts);
-		
+	public void run() {		
+		InsertIntoDirectoryDialog dialog = new InsertIntoDirectoryDialog(editor.getSite().getShell(), projectContent, refact);//, projectContent);
+				
 		int res = dialog.open();
 		if ( res != Window.OK)
 			return;	
 		
-		refact.perform(dialog.getText(), "templId", dialog.getDirectoryId());
+		refact.perform(dialog.getEntry(), dialog.getTemplate());
 		projectContent.saveAll();
-		/*
-		IDocument doc = te.getDocumentProvider().getDocument(editorInput);
-		String text = doc.get();
-		ISelection sel = te.getSelectionProvider().getSelection();
-		TextSelection ts = (TextSelection) sel;
-		try {
-			DRLDocument DRLdoc = projectContent.DRLDocs.get(editorInput.getFile());
-			int line1 = ts.getStartLine();
-			int column1 = ts.getOffset() - doc.getLineOffset(line1);
-			int line2 = ts.getEndLine();
-			int column2 = ts.getOffset() + ts.getLength() - doc.getLineOffset(line2);
-			
-			PositionInText pos1 = new PositionInText(line1 + 1, column1 + 1);
-			PositionInText pos2 = new PositionInText(line2 + 1, column2 + 1);
-			
-			if (pos1.compare(pos2) == 0) {				
-				return;
-			}				
-		
-			refact.reset();
-			refact.setValidationPararams( projectContent, DRLdoc, 
-										  pos1,
-						   			      pos2);		
-			
-			refact.setPararams(dialog.getEntryId(), dicts.get(dialog.getSelectionIdx()));			
-			refact.perform();
-			
-			projectContent.saveAll();		
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}	
-		*/	
 	}
-
 }

@@ -72,6 +72,15 @@ public class ProjectContent implements IProjectContent{
 		catch (CoreException e){
 			e.printStackTrace();
 		}
+		catch (Exception e)
+		//catch (SAXException e) 
+		{
+			System.out.print(e.getMessage());
+		}
+		catch (Error e) {
+			System.out.print(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	public void remove(IFile file) {

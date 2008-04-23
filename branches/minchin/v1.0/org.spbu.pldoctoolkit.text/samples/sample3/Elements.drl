@@ -1,0 +1,180 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
+	<d:InfElement id = "about_company" name = " About kompanii">
+		<para>
+			The <d:DictRef dictid = "company" entryid = "name"></d:DictRef> company develops integrated
+			means of protection against network threats since 1990 and at the moment is the absolute leader
+			In this area.
+		</para>
+	</d:InfElement>
+
+	<d:InfElement id = "preface" name = " Vstuplenie">
+		<preface>
+			<title> Vsteplenie </title>
+			<para>
+				Thank you for purchasing <d:DictRef dictid = "main" entryid = "productname"></d:DictRef>!
+			</para>
+			<d:InfElemRef id = "ref_about_company" infelemid = "about_company"></d:InfElemRef>
+		</preface>
+	</d:InfElement>
+
+	<d:InfElement id = "firewall" name = " Brandmauer">
+		<chapter>
+			<title> Firewall </title>
+			<d:InfElemRef id = "ref_firewall_description" infelemid = "firewall_description"></d:InfElemRef>
+		<d:InfElemRef id = "ref_firewall_config" infelemid = "firewall_config" optional = "true"></d:InfElemRef>
+		</chapter>
+	</d:InfElement>
+
+	<d:InfElement id = "firewall_description" name = " What is brandmauer">
+		<para>
+			The firewall (firewall) - bulkhead of a fire-resistant material,
+			erected in the way of propagation of fire. Also this term
+			was used to describe hardware and software
+			means protection network (the network screen). Perhaps the name
+			was chosen from marketing considerations: "Let the outside wall
+			raging fire or besnuyutsya barbarians, but you reliable protection for
+			nothing threatening. "In fact, the network resembles not screen
+			on the continuous wall, and at the customs office, where, in accordance with
+			prescriptions checked luggage of travelers. If the goods to
+			import or export is allowed, it may miss. If not - sorry.
+			And decisions are taken based on the recipient's address / sender,
+			Rather than the contents of the cargo. So the sender can be trusted
+			send vis not only their own greeting card, but
+			three hundred grams of TNT equivalent. Customs "posylochku"
+			skip, if permitted us prescription.
+		</para>
+	</d:InfElement>
+
+	<d:InfElement id = "firewall_config" name = " Configuring brandmauera">
+		<para>
+			Fully automatic firewall configuration.
+			In case of difficulty, please contact our Service Support!
+		</para>
+	</d:InfElement>
+
+	<d:InfElement id = "antivirus" name = " Anti-virus">
+		<chapter>
+			Antivirus <title> </title>
+			<d:InfElemRef id = "ref_antivirus_description" infelemid = "antivirus_description"></d:InfElemRef>
+			<d:InfElemRef id = "ref_antivirus_config" infelemid = "antivirus_config" optional = "true"></d:InfElemRef>
+			<para>
+				The actions when detecting the virus or other threat.
+				The following types of action:
+				<itemizedlist Mark = "opencircle">
+					<listitem> <para> removal </para> </listitem>
+					<listitem> <para> viewing event log </para> </listitem>
+					<d:Nest id = "extended_actions"></d:Nest>
+				</itemizedlist>
+			</para>
+		</chapter>	
+	</d:InfElement>
+	
+	<d:InfElement id = "antivirus_description" name = " What is anti-virus">
+		<para>
+			Anti-virus program (antivirus) - program to detect and remove computer viruses and other malicious code, prevent their spread, as well as treatment programmes infected by them.
+		</para>
+		<para>
+			First, the most simple antivirus appeared almost immediately after the emergence of viruses. Now antivirus engaged in the development of large companies. Like the creators of viruses in this area also emerged original tricks - but to find and fight viruses. Modern anti-virus software can detect tens of thousands of viruses.
+			The main tasks of modern anti-virus programs:
+			<itemizedlist Mark = "opencircle">
+				<listitem> <para> scanning files and programs in real time. </para> </listitem>
+				<listitem> <para> scanning computer on demand. </para> </listitem>
+				<listitem> <para> scanning Internet traffic. </para> </listitem>
+				<listitem> <para> scanning e-mail. </para> </listitem>
+				<listitem> <para> protection from attack hostile Web sites. </para> </listitem>
+				<listitem> <para> Rebuilding damaged files (treatment). </para> </listitem>
+			</itemizedlist>
+		</para>
+	</d:InfElement>
+
+	<d:InfElement id = "antivirus_config" name = " Configuring antivirusa">
+		<para>
+			Configuration antivirus fully automatic. In case of difficulty, please contact our
+			Customer Support!
+		</para>
+	</d:InfElement>
+
+	<d:InfElement id = "antispam" name = " Anti-spam">
+		<chapter>
+			<title> Anti-spam </title>
+			<para>
+				Anti-spam component built in installed on your computer
+				email client and monitors all incoming mail for spam.
+				All messages containing spam, marked a special title.
+				It is also setting Anti-spam for processing spam
+				(automatic removal, placement in a special folder, etc.).
+			</para>
+		</chapter>
+	</d:InfElement>
+
+	<d:InfElement id = "control_center" name = " Center upravleniya">
+		<chapter>
+			<title> Control center </title>
+			<para>
+				Control Center provides a single interface for managing all
+				security system components <d:DictRef dictid = "main" entryid = "productname"></d:DictRef>.
+			</para>
+		<d:InfElemRef id = "ref_components_update" infelemid = "components_update"></d:InfElemRef>
+		</chapter>
+	</d:InfElement>
+
+	<d:InfElement id = "components_update" name = " Update komponent">
+		<para>
+			This section covers the renovation of the components of your security system <d:DictRef dictid = "company" entryid = "name"></d:DictRef>.
+			Will be described diferent menu items, such as: setting antivirus , anti setting.
+			You can save current configuration using menu Save - save current file. 
+		</para>
+		<d:InfElemRefGroup id = "update_methods" modifier = "XOR" name = " ways obnovleniya"></d:InfElemRefGroup>
+		<d:InfElemRef groupid = "update_methods" id = "ref_update_local" infelemid = "update_local" optional = "true"></d:InfElemRef>
+		<d:InfElemRef groupid = "update_methods" id = "ref_update_inet" infelemid = "update_inet" optional = "true"></d:InfElemRef>
+		<d:Nest id = "av-update">
+			<para>
+				To configure antivirus updates select "setting antivirus"
+			</para>
+		</d:Nest>
+		<d:Nest id = "as-update">
+			<para>
+				To configure antivirus updates select "anti setting"
+			</para>
+		</d:Nest>
+	</d:InfElement>
+
+	<d:InfElement id = "update_inet" name = " Centralized obnovleniya">
+		<para>
+			Update component of the system is made from a central server InterBez directly.
+			It must be the availability of Internet connection.
+		</para>
+	</d:InfElement>
+
+	<d:InfElement id = "update_local" name = " updates from the server kompanii">
+		<para>
+			Update component of the system performed with the local network server of your company.
+			Connection to the Internet is not required.
+		</para>
+	</d:InfElement>
+	
+	<d:InfElement id = "menuDescription" name = "menu description">
+		<itemizedlist Mark = "opencircle">
+			<listitem> <para>Save - save current file</para> </listitem>
+			<listitem> <para>Save All - save all files</para> </listitem>
+			<listitem> <para>Open - open file</para> </listitem>		
+		</itemizedlist>
+	</d:InfElement>
+	
+	<d:InfElement id = "ToolBarDescription" name = "toolBar description">
+		<itemizedlist Mark = "opencircle">
+			<listitem> <para><image>save.jpg</image>  Save - save current file</para> </listitem>
+			<listitem> <para><image>saveAll.jpg</image>  Save All - save all files</para> </listitem>
+			<listitem> <para><image>open.jpg</image>  Open - open file</para> </listitem>		
+		</itemizedlist>
+	</d:InfElement>
+
+	<d:Dictionary id = "company" name = " Global slovar">
+		<d:Entry id = "name"> InterBez Solutions </d:Entry>
+	</d:Dictionary>
+	
+	<d:Directory id = "1" name = "firstDir">
+	</d:Directory>
+		
+</d:DocumentationCore>

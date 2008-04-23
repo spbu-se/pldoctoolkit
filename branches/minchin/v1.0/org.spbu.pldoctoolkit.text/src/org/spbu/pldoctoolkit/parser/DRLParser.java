@@ -13,10 +13,14 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import com.thaiopensource.xml.sax.Jaxp11XMLReaderCreator;
-import org.apache.xerces.parsers.SAXParser;
+//import org.apache.xerces.parsers.;
 import org.xml.sax.helpers.XMLReaderFactory;
 //import org.xml.sax.Parser;
 //import org.apache.xerces.parsers.SAXParser;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 
 public class DRLParser {
 	//private static XMLReader xmlReader;// = new Jaxp11XMLReaderCreator().createXMLReader();
@@ -27,13 +31,23 @@ public class DRLParser {
 	{
 		try 
 		{
-			xmlReader = new Jaxp11XMLReaderCreator().createXMLReader();
-			//xmlReader = new SAXParser();
+		//	xmlReader = new Jaxp11XMLReaderCreator().createXMLReader();
+			SAXParserFactory factory = SAXParserFactory.newInstance();
+			factory.setNamespaceAware(true);
+			SAXParser parser = factory.newSAXParser();			
+			xmlReader = parser.getXMLReader();//XMLReaderFactory.createXMLReader("org.apache.xerces.parsers.SAXParser");//factory.newSAXParser();//new SAXParser();
+			
 			contetnHandler = new DRLContentHandler();		
 			xmlReader.setContentHandler(contetnHandler);
 		}
-		catch (SAXException e) {
-			System.err.print(e.getMessage());
+		catch (Exception e)
+		//catch (SAXException e) 
+		{
+			System.out.print(e.getMessage());
+		}
+		catch (Error e) {
+			System.out.print(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	
@@ -60,10 +74,19 @@ public class DRLParser {
 			xmlReader.parse(new InputSource(new InputStreamReader(input2)));//input.getCharacterStream().));			
 		}
 		catch (IOException e) {
-			System.err.print(e.getMessage());
+			System.out.print(e.getMessage());
 		}
 		catch (SAXException e) {
-			System.err.print(e.getMessage());
+			System.out.print(e.getMessage());
+		}
+		catch (Exception e)
+		//catch (SAXException e) 
+		{
+			System.out.print(e.getMessage());
+		}
+		catch (Error e) {
+			System.out.print(e.getMessage());
+			e.printStackTrace();
 		}
 		
 		return ((DRLContentHandler)xmlReader.getContentHandler()).doc;

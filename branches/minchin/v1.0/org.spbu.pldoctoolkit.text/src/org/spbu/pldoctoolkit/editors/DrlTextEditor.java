@@ -2,6 +2,7 @@ package org.spbu.pldoctoolkit.editors;
 
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.text.TextSelection;
 import org.spbu.pldoctoolkit.DrlPublisherPlugin;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
@@ -56,6 +57,7 @@ public class DrlTextEditor extends TextEditor {
 	}
 
 	public void dispose() {
+		DRLMenuListener.instance.removeAll();
 		colorManager.dispose();
 		super.dispose();
 	}
@@ -145,14 +147,16 @@ public class DrlTextEditor extends TextEditor {
 	
 	public void editorContextMenuAboutToShow(IMenuManager menu) {
 		super.editorContextMenuAboutToShow(menu);
-		addAction(menu, SELECT_INTO_INF_ELEMENT);
-		addAction(menu, INSERT_INTO_DICTIONARY);
-		addAction(menu, SEARCH_DICT_ENTRY);
-		addAction(menu, INSERT_INTO_DIRECTORY);
-		addAction(menu, REPLACE_WITH_NEST);
-		addAction(menu, SEARCH_DIR_REF);
-		addAction(menu, EXTRACT_INSERT_AFTER);
-		addAction(menu, EXTRACT_INSERT_BEFORE);
+		MenuManager refactMenu = new MenuManager("Refactor");
+		menu.add(refactMenu);
+		addAction(refactMenu, SELECT_INTO_INF_ELEMENT);
+		addAction(refactMenu, REPLACE_WITH_NEST);
+		addAction(refactMenu, EXTRACT_INSERT_AFTER);
+		addAction(refactMenu, EXTRACT_INSERT_BEFORE);
+		addAction(refactMenu, INSERT_INTO_DICTIONARY);
+		addAction(refactMenu, SEARCH_DICT_ENTRY);
+		addAction(refactMenu, INSERT_INTO_DIRECTORY);		
+		addAction(refactMenu, SEARCH_DIR_REF);		
 		
 		DRLMenuListener.instance.editor = this;
 		DRLMenuListener.instance.menuAboutToShow(menu);

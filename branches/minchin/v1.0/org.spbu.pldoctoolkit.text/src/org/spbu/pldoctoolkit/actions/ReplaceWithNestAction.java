@@ -91,7 +91,7 @@ public class ReplaceWithNestAction extends Action implements IValidateDRLSelecti
 			resId = nestId + String.valueOf(i);
 			goodId = true;
 			for (LangElem nest : projectContent.nests) {
-				if (nest.attrs.getValue(LangElem.ID).equals(nestId)) {
+				if (nest.attrs.getValue(LangElem.ID).equals(resId)) {
 					goodId = false;
 					break;
 				}

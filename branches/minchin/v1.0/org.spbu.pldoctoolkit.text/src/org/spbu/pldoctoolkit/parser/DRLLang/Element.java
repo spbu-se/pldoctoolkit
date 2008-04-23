@@ -11,6 +11,8 @@ public abstract class Element {
 	protected ArrayList<Element> childs = new ArrayList<Element>();
 	protected Element parent;
 	protected DRLDocument doc;	
+	
+	public int offsetInTextRepresentation;
 /*	
 	public int getStartLine()	{
 		return startLine;
