@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
+import org.spbu.pldoctoolkit.refactor.pattern.PatternElement;
 
 public abstract class Element {
 	protected int startLine, startColumn, endLine, endColumn;
@@ -169,4 +170,6 @@ public abstract class Element {
 	public abstract String getTextRepresentation();
 	
 	public abstract Element clone(Element parent);
+	
+	//public abstract ArrayList<PatternElement> getPatternElements();
 }

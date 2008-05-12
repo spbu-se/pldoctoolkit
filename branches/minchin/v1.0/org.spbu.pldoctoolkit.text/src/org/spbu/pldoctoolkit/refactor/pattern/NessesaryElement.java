@@ -5,4 +5,6 @@ public class NessesaryElement extends PatternElement {
 		setText(text);
 		setLength(text.length());
 	}
+	//public abstract String getNextText();
+	
 }

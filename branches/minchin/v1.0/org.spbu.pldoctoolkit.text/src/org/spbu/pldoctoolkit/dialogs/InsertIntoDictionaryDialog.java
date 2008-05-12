@@ -210,8 +210,8 @@ public class InsertIntoDictionaryDialog extends Dialog{
 		//String name = nameText.getText();
 		String id = idText.getText();
 		isValidEntryId = true;
-		for (Element entry : entrys) {
-			if (id.equals(((LangElem)entry).attrs.getValue("id"))) {
+		for (Element entry : entrys) {			
+			if (entry instanceof LangElem && id.equals(((LangElem)entry).attrs.getValue("id"))) {
 				isValidEntryId = false;
 				break;
 			}

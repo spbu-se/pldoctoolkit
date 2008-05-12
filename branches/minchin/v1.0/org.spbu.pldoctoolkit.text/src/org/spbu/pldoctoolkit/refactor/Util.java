@@ -272,4 +272,29 @@ public class Util {
 
 		return true;
 	}
+	
+	public static  Couple<String, ArrayList<Integer>> getTextWithOutSpaces(String text) {
+		ArrayList<Integer> deletedSpaces = new ArrayList<Integer>();
+		String res = "";
+		int retPos = -1;
+		do {
+			int prevRetPos = retPos;
+			int curPos = retPos + 1;
+			while (curPos < text.length() && isSapceOrTab(text.charAt(curPos)))
+				curPos++;
+			retPos = text.indexOf('\n', curPos);
+			if (retPos != -1)
+				res += text.substring(curPos, retPos + 1);
+			else 
+				res += text.substring(curPos, text.length());
+			
+			deletedSpaces.add(curPos - 1 - prevRetPos);
+		} while (retPos != -1);
+		
+		return new Couple<String, ArrayList<Integer>>(res, deletedSpaces);
+	}
+	
+	private static boolean isSapceOrTab(char ch) {
+		return (ch == ' ' || ch == '\t');
+	}
 }

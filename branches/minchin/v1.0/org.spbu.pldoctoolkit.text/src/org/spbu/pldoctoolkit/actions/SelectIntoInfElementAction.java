@@ -33,6 +33,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.cache.SchemaCache;
 import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
+import org.spbu.pldoctoolkit.editors.DrlTextEditor;
 //import org.spbu.pldoctoolkit.refactor.Util;
 import org.spbu.pldoctoolkit.parser.DRLParser;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
@@ -76,7 +77,7 @@ public class SelectIntoInfElementAction extends Action implements IValidateDRLSe
 		editorInput = (FileEditorInput) editor.getEditorInput();
 		project = editorInput.getFile().getProject();
 		projectContent = (ProjectContent)((ProjectRegistryImpl)PLDocToolkitPlugin.getRegistry(project.getName())).projectContent;
-		DRLMenuListener.instance.addListener(this);
+		((DrlTextEditor)te).getMenuListener().addListener(this);
 	}
 	
 	public void validateSelection(IEditorPart part) {

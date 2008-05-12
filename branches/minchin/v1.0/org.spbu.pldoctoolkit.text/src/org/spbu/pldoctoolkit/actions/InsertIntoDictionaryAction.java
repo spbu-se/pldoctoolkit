@@ -48,7 +48,7 @@ public class InsertIntoDictionaryAction extends Action implements IValidateDRLSe
 		editorInput = (FileEditorInput) editor.getEditorInput();
 		project = editorInput.getFile().getProject();
 		projectContent = (ProjectContent)((ProjectRegistryImpl)PLDocToolkitPlugin.getRegistry(project.getName())).projectContent;
-		DRLMenuListener.instance.addListener(this);
+		((DrlTextEditor)te).getMenuListener().addListener(this);
 	}
 	
 	public void validateSelection(IEditorPart part) {		

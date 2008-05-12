@@ -9,10 +9,10 @@ import org.eclipse.ui.IEditorPart;
 public class DRLMenuListener implements IMenuListener{
 	private ArrayList<IValidateDRLSelection> listeners = new ArrayList<IValidateDRLSelection>();
 	
-	public static DRLMenuListener instance = new DRLMenuListener();
+	//public static DRLMenuListener instance = new DRLMenuListener();
 	public IEditorPart editor;
 	
-	private DRLMenuListener() {		
+	public DRLMenuListener() {		
 	}
 	
 	public void menuAboutToShow(IMenuManager manager) {		

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
@@ -51,7 +52,7 @@ public class DRLParser {
 		}
 	}
 	
-	public static DRLDocument parse(InputStream input1, InputStream input2, ProjectContent project)
+	public static DRLDocument parse(InputStream input1, InputStream input2, ProjectContent project, String charset)
 	{		
 		try {			
 			contetnHandler.setProject(project);
@@ -71,18 +72,21 @@ public class DRLParser {
 			}
 			contetnHandler.inputText = sb;
 			//contetnHandler.input.getCharacterStream().read(cbuf, 0, 100);
-			xmlReader.parse(new InputSource(new InputStreamReader(input2)));//input.getCharacterStream().));			
+			xmlReader.parse(new InputSource(new InputStreamReader(input2, charset)));//input.getCharacterStream().));			
 		}
 		catch (IOException e) {
 			System.out.print(e.getMessage());
+			e.printStackTrace();
 		}
 		catch (SAXException e) {
 			System.out.print(e.getMessage());
+			e.printStackTrace();
 		}
 		catch (Exception e)
 		//catch (SAXException e) 
 		{
 			System.out.print(e.getMessage());
+			e.printStackTrace();
 		}
 		catch (Error e) {
 			System.out.print(e.getMessage());
