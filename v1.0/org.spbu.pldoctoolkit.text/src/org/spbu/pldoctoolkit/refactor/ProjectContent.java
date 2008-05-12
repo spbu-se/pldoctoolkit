@@ -2,6 +2,7 @@ package org.spbu.pldoctoolkit.refactor;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -54,7 +55,10 @@ public class ProjectContent implements IProjectContent{
 		for (IFile file : DRLDocs.keySet()) {			
 			String docText = DRLDocs.get(file).getTextRepresentation();
 			try {
-				file.setContents(new ByteArrayInputStream(docText.getBytes()), 0, null);
+				file.setContents(new ByteArrayInputStream(docText.getBytes(file.getCharset())), 0, null);
+			}
+			catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
 			}
 			catch (CoreException e) {
 				e.printStackTrace();
@@ -65,7 +69,7 @@ public class ProjectContent implements IProjectContent{
 	public void add(IFile file) {
 		try {
 			removeInfoAboutFile(file);
-			DRLDocument doc = DRLParser.parse( file.getContents(), file.getContents(), this );
+			DRLDocument doc = DRLParser.parse( file.getContents(), file.getContents(), this, file.getCharset());
 			DRLDocs.put(file, doc);
 			doc.file = file;
 		}
@@ -90,7 +94,7 @@ public class ProjectContent implements IProjectContent{
 	public void change(IFile file) {		
 		try {
 			removeInfoAboutFile(file);
-			DRLDocument doc = DRLParser.parse( file.getContents(), file.getContents(), this );
+			DRLDocument doc = DRLParser.parse( file.getContents(), file.getContents(), this, file.getCharset() );
 			DRLDocs.put(file, doc); // If the map previously contained a mapping for the key, the old value is replaced.
 			doc.file = file;
 		}

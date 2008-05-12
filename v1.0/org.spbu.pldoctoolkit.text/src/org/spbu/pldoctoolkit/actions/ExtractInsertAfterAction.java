@@ -9,6 +9,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
+import org.spbu.pldoctoolkit.editors.DrlTextEditor;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.refactor.ExtractInsertAfterBefore;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
@@ -34,7 +35,7 @@ public class ExtractInsertAfterAction extends Action implements IValidateDRLSele
 		editorInput = (FileEditorInput) editor.getEditorInput();
 		project = editorInput.getFile().getProject();
 		projectContent = (ProjectContent)((ProjectRegistryImpl)PLDocToolkitPlugin.getRegistry(project.getName())).projectContent;
-		DRLMenuListener.instance.addListener(this);
+		((DrlTextEditor)te).getMenuListener().addListener(this);
 	}
 	
 	public void validateSelection(IEditorPart part) {		

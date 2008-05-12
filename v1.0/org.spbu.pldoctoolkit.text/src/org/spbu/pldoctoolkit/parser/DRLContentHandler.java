@@ -48,6 +48,7 @@ public class DRLContentHandler implements ContentHandler {
 	public void characters(char[] arg0, int arg1, int arg2) throws SAXException {
 		int endLine = locator.getLineNumber();
 		int endCol = locator.getColumnNumber();
+		/*
 		int endOffset = Util.getOffset(inputText, endLine, endCol, prevPos.line, prevPos.column, prevOffset);
 		while (true) {
 			if (inputText.charAt(endOffset) != '<') {
@@ -64,7 +65,7 @@ public class DRLContentHandler implements ContentHandler {
 		else if (prevOffset > endOffset - arg2) {
 			int a = 3;
 		}
-				
+		*/		
 		Element parent = elemStack.lastElement();
 		
 		if (parent.getChilds() == null) {
@@ -94,7 +95,7 @@ public class DRLContentHandler implements ContentHandler {
 	public void endElement(String arg0, String arg1, String arg2) throws SAXException {
 		int line = locator.getLineNumber();
 		int column = locator.getColumnNumber();
-		
+		/*
 		if (line != prevPos.line || column != prevPos.column) {
 			int endOffset = Util.getOffset(inputText, line, column, prevPos.line, prevPos.column, prevOffset);
 			int tagStartPos = Util.findtagStartPos(inputText, endOffset);		
@@ -102,7 +103,7 @@ public class DRLContentHandler implements ContentHandler {
 				createComment(tagStartPos - prevOffset);			
 			}
 		}
-		
+		*/
 		Element elem = elemStack.pop();
 		
 		assert( ((LangElem)elem).tagNS == arg2 );
@@ -166,12 +167,12 @@ public class DRLContentHandler implements ContentHandler {
 				e.printStackTrace();
 			}*/			
 		}		
-		else {
+		else {/*
 			int endOffset = Util.getOffset(inputText, line, column, prevPos.line, prevPos.column, prevOffset);
 			int tagStartPos = Util.findtagStartPos(inputText, endOffset);		
 			if (tagStartPos != prevOffset) {
 				createComment(tagStartPos - prevOffset);			
-			}
+			}*/
 		}
 		
 		Element parent = elemStack.lastElement();

@@ -12,6 +12,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.dialogs.SearchDictEntryDialog;
 import org.spbu.pldoctoolkit.dialogs.SearchDirRefDialog;
+import org.spbu.pldoctoolkit.editors.DrlTextEditor;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
@@ -37,7 +38,7 @@ public class SearchDirRefAction extends Action implements IValidateDRLSelection 
 		editorInput = (FileEditorInput) editor.getEditorInput();
 		project = editorInput.getFile().getProject();
 		projectContent = (ProjectContent)((ProjectRegistryImpl)PLDocToolkitPlugin.getRegistry(project.getName())).projectContent;
-		DRLMenuListener.instance.addListener(this);
+		((DrlTextEditor)te).getMenuListener().addListener(this);
 	}
 	
 	public void validateSelection(IEditorPart part) {		

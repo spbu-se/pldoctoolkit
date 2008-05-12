@@ -13,6 +13,7 @@ import org.spbu.pldoctoolkit.actions.ExtractInsertBeforeAction;
 import org.spbu.pldoctoolkit.actions.InsertIntoDictionaryAction;
 import org.spbu.pldoctoolkit.actions.InsertIntoDirectoryAction;
 import org.spbu.pldoctoolkit.actions.PdfExportAction;
+import org.spbu.pldoctoolkit.actions.ReplaceWithInfElemRef;
 import org.spbu.pldoctoolkit.actions.ReplaceWithNestAction;
 import org.spbu.pldoctoolkit.actions.SearchDictEntryAction;
 import org.spbu.pldoctoolkit.actions.SearchDirRefAction;
@@ -36,8 +37,10 @@ public class DrlTextEditor extends TextEditor {
 	public static final String SEARCH_DIR_REF = "search_dir_ref";
 	public static final String EXTRACT_INSERT_AFTER = "extract_insert_after";
 	public static final String EXTRACT_INSERT_BEFORE = "extract_insert_before";
+	public static final String REPLACE_WITH_INFELMREF = "replace_with_infElemRef";
 	
 	private ColorManager colorManager;
+	private DRLMenuListener menuListener = new DRLMenuListener();
 	
 	static {
 		if (PLDocToolkitPlugin.getRegistryIndex().getProjectContentCreator() == null)
@@ -57,7 +60,7 @@ public class DrlTextEditor extends TextEditor {
 	}
 
 	public void dispose() {
-		DRLMenuListener.instance.removeAll();
+		//menuListener.removeAll();
 		colorManager.dispose();
 		super.dispose();
 	}
@@ -94,6 +97,8 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		try {
 			setAction(SELECT_INTO_INF_ELEMENT, new SelectIntoInfElementAction(this));
@@ -142,6 +147,12 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			setAction(REPLACE_WITH_INFELMREF, new ReplaceWithInfElemRef(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -156,13 +167,18 @@ public class DrlTextEditor extends TextEditor {
 		addAction(refactMenu, INSERT_INTO_DICTIONARY);
 		addAction(refactMenu, SEARCH_DICT_ENTRY);
 		addAction(refactMenu, INSERT_INTO_DIRECTORY);		
-		addAction(refactMenu, SEARCH_DIR_REF);		
+		addAction(refactMenu, SEARCH_DIR_REF);
+		addAction(refactMenu, REPLACE_WITH_INFELMREF);		
 		
-		DRLMenuListener.instance.editor = this;
-		DRLMenuListener.instance.menuAboutToShow(menu);
+		//DRLMenuListener.instance.editor = this;
+		menuListener.menuAboutToShow(menu);
 	}
 	
 	public void setSelection(int offset, int length) {
 		doSetSelection(new TextSelection(offset, length));
+	}
+	
+	public DRLMenuListener getMenuListener() {
+		return menuListener; 
 	}
 }

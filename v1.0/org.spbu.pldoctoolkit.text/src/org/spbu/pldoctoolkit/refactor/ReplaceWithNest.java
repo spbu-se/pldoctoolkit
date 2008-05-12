@@ -125,7 +125,7 @@ public class ReplaceWithNest  {
 				prefex += ":";					
 						
 			ArrayList<Element> removedChilds = from.parent.removeChilds(fromIdx, toIdx);
-			LangElem nest = createNewNest();			
+ 			LangElem nest = createNewNest();			
 			from.parent.getChilds().add(fromIdx, nest);		
 			nest.appendChilds(removedChilds);
 		}		

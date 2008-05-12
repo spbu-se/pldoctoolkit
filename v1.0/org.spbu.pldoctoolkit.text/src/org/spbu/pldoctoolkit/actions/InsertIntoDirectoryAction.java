@@ -15,6 +15,7 @@ import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.dialogs.CreateNewDirTamplateDialog;
 import org.spbu.pldoctoolkit.dialogs.InsertIntoDictionaryDialog;
 import org.spbu.pldoctoolkit.dialogs.InsertIntoDirectoryDialog;
+import org.spbu.pldoctoolkit.editors.DrlTextEditor;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.CreateDirTemplate;
@@ -44,7 +45,7 @@ public class InsertIntoDirectoryAction extends Action implements IValidateDRLSel
 		editorInput = (FileEditorInput) editor.getEditorInput();
 		project = editorInput.getFile().getProject();
 		projectContent = (ProjectContent)((ProjectRegistryImpl)PLDocToolkitPlugin.getRegistry(project.getName())).projectContent;
-		DRLMenuListener.instance.addListener(this);
+		((DrlTextEditor)te).getMenuListener().addListener(this);
 	}
 	
 	public void validateSelection(IEditorPart part) {		
