@@ -1,7 +1,7 @@
 # Tracing options for the org.spbu.pldoctoolkit.graph.diagram.productline plug-in
 
 # Common issues
-org.spbu.pldoctoolkit.graph.diagram.productline/debug=true
+org.spbu.pldoctoolkit.graph.diagram.productline/debug=false
 
 # Visual IDs
-org.spbu.pldoctoolkit.graph.diagram.productline/debug/visualID=true
+org.spbu.pldoctoolkit.graph.diagram.productline/debug/visualID=false

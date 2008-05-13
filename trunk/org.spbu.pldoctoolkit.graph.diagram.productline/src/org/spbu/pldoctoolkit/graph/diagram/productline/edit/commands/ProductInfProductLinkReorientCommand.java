@@ -9,6 +9,8 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.spbu.pldoctoolkit.graph.FinalInfProduct;
+import org.spbu.pldoctoolkit.graph.InfProduct;
+import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.ProductDocumentation;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies.DrlModelBaseItemSemanticEditPolicy;
 
@@ -111,8 +113,9 @@ public class ProductInfProductLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getFinalInfProducts().remove(getOldTarget());
-		getNewSource().getFinalInfProducts().add(getOldTarget());
+		//TODO implement
+//		getOldSource().getFinalInfProducts().remove(getOldTarget());
+//		getNewSource().getFinalInfProducts().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -120,36 +123,37 @@ public class ProductInfProductLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getFinalInfProducts().remove(getOldTarget());
-		getOldSource().getFinalInfProducts().add(getNewTarget());
+		//TODO implement
+//		getOldSource().getFinalInfProducts().remove(getOldTarget());
+//		getOldSource().getFinalInfProducts().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	protected ProductDocumentation getOldSource() {
-		return (ProductDocumentation) referenceOwner;
+	protected Product getOldSource() {
+		return (Product) referenceOwner;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	protected ProductDocumentation getNewSource() {
-		return (ProductDocumentation) newEnd;
+	protected Product getNewSource() {
+		return (Product) newEnd;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	protected FinalInfProduct getOldTarget() {
-		return (FinalInfProduct) oldEnd;
+	protected InfProduct getOldTarget() {
+		return (InfProduct) oldEnd;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	protected FinalInfProduct getNewTarget() {
-		return (FinalInfProduct) newEnd;
+	protected InfProduct getNewTarget() {
+		return (InfProduct) newEnd;
 	}
 }
