@@ -1,5 +1,7 @@
 package org.spbu.pldoctoolkit.graph.diagram.productline.part;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +9,8 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -252,4 +254,18 @@ public class DrlModelDiagramEditorPlugin extends AbstractUIPlugin {
 			throwable.printStackTrace();
 		}
 	}
+	
+	public static URL getURL(String relativePath) {
+		try {
+			Plugin instance = getInstance();
+			if(instance != null) {
+				return new URL(instance.getBundle().getEntry("/"), relativePath);
+			} else {
+				return null;
+			}
+		} catch (MalformedURLException e) {
+			return null;
+		}
+	}
+
 }

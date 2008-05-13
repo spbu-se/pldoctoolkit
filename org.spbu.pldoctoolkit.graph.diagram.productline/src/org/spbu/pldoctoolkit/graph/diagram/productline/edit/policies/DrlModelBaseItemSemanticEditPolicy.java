@@ -2,7 +2,7 @@ package org.spbu.pldoctoolkit.graph.diagram.productline.edit.policies;
 
 import java.util.Collections;
 import java.util.Iterator;
-import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
@@ -38,8 +38,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.spbu.pldoctoolkit.graph.FinalInfProduct;
-import org.spbu.pldoctoolkit.graph.ProductDocumentation;
+import org.spbu.pldoctoolkit.graph.InfProduct;
+import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.helpers.DrlModelBaseEditHelper;
 import org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelVisualIDRegistry;
 
@@ -343,17 +343,19 @@ public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * @generated
+		 * HAND changed source/target types
 		 */
 		public static boolean canCreateProductDocumentationFinalInfProducts_3001(
-				ProductDocumentation source, FinalInfProduct target) {
-			if (source != null) {
-				if (source.getFinalInfProducts().contains(target)) {
-					return false;
-				}
-				if (source == target) {
-					return false;
-				}
-			}
+				Product source, InfProduct target) {
+			//TODO implement
+//			if (source != null) {
+//				if (source.getFinalInfProducts().contains(target)) {
+//					return false;
+//				}
+//				if (source == target) {
+//					return false;
+//				}
+//			}
 			return canExistProductDocumentationFinalInfProducts_3001(source,
 					target);
 		}
@@ -362,7 +364,7 @@ public class DrlModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public static boolean canExistProductDocumentationFinalInfProducts_3001(
-				ProductDocumentation source, FinalInfProduct target) {
+				Product source, InfProduct target) {
 			return true;
 		}
 

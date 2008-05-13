@@ -8,6 +8,7 @@ import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
 import org.spbu.pldoctoolkit.graph.diagram.productline.providers.DrlModelElementTypes;
 
@@ -32,6 +33,7 @@ public class DrlModelPaletteFactory {
 				Messages.DrlTools1Group_title);
 		paletteContainer.add(createProduct1CreationTool());
 		paletteContainer.add(createInfProduct2CreationTool());
+		paletteContainer.add(createProductFinalInfProductCreationTool());
 		return paletteContainer;
 	}
 
@@ -67,6 +69,24 @@ public class DrlModelPaletteFactory {
 
 	/**
 	 * @generated
+	 * HAND
+	 */
+	private ToolEntry createProductFinalInfProductCreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(DrlModelElementTypes.ProductDocumentationFinalInfProducts_3001);
+		LinkToolEntry entry = new LinkToolEntry(
+				Messages.ProductFinalInfProductCreationTool_title,
+				Messages.ProductFinalInfProductCreationTool_desc, types);
+		entry
+				.setSmallIcon(DrlModelElementTypes
+						.getImageDescriptor(DrlModelElementTypes.ProductDocumentationFinalInfProducts_3001));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
 	 */
 	private static class NodeToolEntry extends ToolEntry {
 
@@ -89,6 +109,26 @@ public class DrlModelPaletteFactory {
 		 */
 		public Tool createTool() {
 			Tool tool = new UnspecifiedTypeCreationTool(elementTypes);
+			tool.setProperties(getToolProperties());
+			return tool;
+		}
+	}
+
+	/**
+	 * HAND copied from infproduct.DrlModelPaletteFactory, all <code>generated</code> tags removed
+	 */
+	private static class LinkToolEntry extends ToolEntry {
+
+		private final List relationshipTypes;
+
+		private LinkToolEntry(String title, String description,
+				List relationshipTypes) {
+			super(title, description, null, null);
+			this.relationshipTypes = relationshipTypes;
+		}
+
+		public Tool createTool() {
+			Tool tool = new UnspecifiedTypeConnectionTool(relationshipTypes);
 			tool.setProperties(getToolProperties());
 			return tool;
 		}

@@ -5,16 +5,20 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
+import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
+import org.spbu.pldoctoolkit.graph.Product;
 import org.spbu.pldoctoolkit.graph.command.diagram.DrlElementDestroyCommand;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.commands.ProductCreateCommand;
 import org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts.ProductEditPart;
@@ -60,4 +64,31 @@ public class ProductItemSemanticEditPolicy extends
 		}
 		return super.getCreateCommand(req);
 	}
+
+	@Override
+	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		
+		if (DrlModelElementTypes.ProductDocumentationFinalInfProducts_3001 == req.getElementType()) {
+			return req.getTarget() == null ? getCreateStartOutgoingProductDocumentationFinalInfProducts_3001Command(req)
+					: null;
+		}
+
+		return super.getCreateRelationshipCommand(req);
+	}
+	
+	protected Command getCreateStartOutgoingProductDocumentationFinalInfProducts_3001Command(
+			CreateRelationshipRequest req) {
+		EObject sourceEObject = req.getSource();
+		if (false == sourceEObject instanceof Product) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		Product source = (Product) sourceEObject;
+		if (!DrlModelBaseItemSemanticEditPolicy.LinkConstraints
+				.canCreateProductDocumentationFinalInfProducts_3001(source, null)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return new Command() {
+		};
+	}
+	
 }
