@@ -1,0 +1,7 @@
+# Tracing options for the org.spbu.pldoctoolkit.graph.diagram.fproduct plug-in
+
+# Common issues
+org.spbu.pldoctoolkit.graph.diagram.fproduct/debug=false
+
+# Visual IDs
+org.spbu.pldoctoolkit.graph.diagram.fproduct/debug/visualID=false
