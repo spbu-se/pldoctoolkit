@@ -26,7 +26,7 @@ public class PdfExportAction extends BasicExportAction {
 	private static FopFactory fopFactory;
 	
 	public PdfExportAction(IEditorPart editor) throws Exception {
-		super(editor, DrlPublisherPlugin.getURL("xsl/docbook/fo/docbook.xsl"), "Export to PDF", "PDF", "pdf");
+		super(editor, DrlPublisherPlugin.getURL("xsl/db2fo.xsl"), "Export to PDF", "PDF", "pdf", false);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class PdfExportAction extends BasicExportAction {
 		File tempFile = null;
 		OutputStream out = null;
 		try {
-			monitor.beginTask("Exporting to " + format + "...", 3);
+			monitor.beginTask("Exporting to " + sFormat + "...", 3);
 			tempFile = File.createTempFile("docbookgen", null);
 			System.out.println("temp file location: " + tempFile.getAbsolutePath());
 
@@ -55,7 +55,7 @@ public class PdfExportAction extends BasicExportAction {
 			out = new FileOutputStream(result);
 			Fop fop = getFopFactory().newFop(MimeConstants.MIME_PDF, out);
 			
-			monitor.subTask("Transforming DocBook -> " + format + "...");
+			monitor.subTask("Transforming DocBook -> " + sFormat + "...");
 			ContentHandler ch = fop.getDefaultHandler();
 			
 			// that's a work-around for a saxon's (or FOP's?) bug - the startDocument is actually called twice on
