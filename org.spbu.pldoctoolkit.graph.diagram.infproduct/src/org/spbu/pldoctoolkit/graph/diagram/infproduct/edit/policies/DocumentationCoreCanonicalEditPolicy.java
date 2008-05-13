@@ -55,7 +55,7 @@ public class DocumentationCoreCanonicalEditPolicy extends
 		CanonicalConnectionEditPolicy {
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected List getSemanticChildrenList() {
 		List result = new UniqueEList<EObject>();
@@ -94,12 +94,11 @@ public class DocumentationCoreCanonicalEditPolicy extends
 	}
 
 	@SuppressWarnings("unchecked")
-	private void findAccessibleElements(GenericDocumentPart curElement, List currentResult) {
+	private static void findAccessibleElements(GenericDocumentPart curElement, List currentResult) {
 		if(curElement == null) {
 			return;
 		}
 
-		
 		currentResult.add(curElement);
 		
 		Iterator groupIter = curElement.getGroups().iterator();
