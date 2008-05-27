@@ -9,6 +9,7 @@ import static org.spbu.pldoctoolkit.registry.RegisteredLocation.INF_ELEMENT;
 import static org.spbu.pldoctoolkit.registry.RegisteredLocation.INF_PRODUCT;
 import static org.spbu.pldoctoolkit.registry.RegisteredLocation.PRODUCT;
 import static org.spbu.pldoctoolkit.registry.RegisteredLocation.PRODUCT_CONTEXT;
+import static org.spbu.pldoctoolkit.registry.RegisteredLocation.INF_ELEM_REF;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -177,6 +178,12 @@ class ProjectRegistryImpl implements ProjectRegistry {
 							!DIRTEPLATE.equals(childName))
 							continue;
 						register(CORE_CONTEXT, child, file);
+
+						// currently inf elem ref is not needed and actually is under a question, 
+						// as infelemrefs could be infproduct-specific
+//						if(INF_PRODUCT.equals(childName) || INF_ELEMENT.equals(childName)) {
+//							registerInfElemRefs(child, file);
+//						}
 					}
 				} else if (PRODUCT_DOCUMENTATION.equals(nodeName)) {
 					Node idAttribute = rootNode.getAttributes().getNamedItem(PRODUCTID_ATTRIBUTE);
@@ -208,6 +215,22 @@ class ProjectRegistryImpl implements ProjectRegistry {
 		}
 	}
 	
+	private void registerInfElemRefs(Node parentNode, IFile file) {
+		NodeList childNodes = parentNode.getChildNodes();
+		for(int i = 0; i < childNodes.getLength(); i++) {
+			Node child = childNodes.item(i);
+			if (child.getNodeType() != Node.ELEMENT_NODE)
+				continue;
+
+			String childName = child.getLocalName();
+			if(INF_ELEM_REF.equals(childName)) {
+				register(CORE_CONTEXT, child, file);
+			}
+			
+			registerInfElemRefs(child, file);
+		}
+	}
+
 	void refreshContainer(IContainer container) throws CoreException {
 		IPath location = container.getLocation();
 		for (Iterator<RegisteredLocation> it = locationMap.values().iterator(); it.hasNext();) {

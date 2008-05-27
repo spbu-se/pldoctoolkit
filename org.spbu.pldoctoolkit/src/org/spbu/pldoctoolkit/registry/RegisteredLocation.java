@@ -13,6 +13,7 @@ public class RegisteredLocation {
 	public static final String FINAL_INF_PRODUCT = "FinalInfProduct";
 	public static final String DIRECTORY   = "Directory";
 	public static final String DIRTEPLATE  = "DirTemplate";
+	public static final String INF_ELEM_REF = "InfElemRef";
 	
 	private final String context;
 	private final String type;
