@@ -88,7 +88,6 @@ public class IdUtil {
 	}
 
 	private static String generateId(EObject obj) {
-		//TODO how to determine project name from URI?
 		final String projectName = obj.eResource().getURI().segment(1);
 		ProjectRegistry registry = PLDocToolkitPlugin.getRegistry(projectName);
 		

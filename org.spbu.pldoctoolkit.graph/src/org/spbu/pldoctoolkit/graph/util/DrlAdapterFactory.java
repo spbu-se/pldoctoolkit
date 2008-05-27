@@ -127,6 +127,14 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 				return createDrlElementAdapter();
 			}
 			@Override
+			public Adapter caseAdapter(org.spbu.pldoctoolkit.graph.Adapter object) {
+				return createAdapterAdapter();
+			}
+			@Override
+			public Adapter caseNest(Nest object) {
+				return createNestAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -311,6 +319,34 @@ public class DrlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDrlElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.Adapter <em>Adapter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.spbu.pldoctoolkit.graph.Adapter
+	 * @generated
+	 */
+	public Adapter createAdapterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.spbu.pldoctoolkit.graph.Nest <em>Nest</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.spbu.pldoctoolkit.graph.Nest
+	 * @generated
+	 */
+	public Adapter createNestAdapter() {
 		return null;
 	}
 

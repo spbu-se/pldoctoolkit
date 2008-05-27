@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getName <em>Name</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getProducts <em>Products</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.ProductLine#getProductDocumentations <em>Product Documentations</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,9 +72,25 @@ public interface ProductLine extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Products</em>' containment reference list.
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getProductLine_Products()
-	 * @model type="org.spbu.pldoctoolkit.graph.Product" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Product> getProducts();
+
+	/**
+	 * Returns the value of the '<em><b>Product Documentations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.spbu.pldoctoolkit.graph.ProductDocumentation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Product Documentations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Product Documentations</em>' containment reference list.
+	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getProductLine_ProductDocumentations()
+	 * @model containment="true" transient="true"
+	 * @generated
+	 */
+	EList<ProductDocumentation> getProductDocumentations();
 
 } // ProductLine

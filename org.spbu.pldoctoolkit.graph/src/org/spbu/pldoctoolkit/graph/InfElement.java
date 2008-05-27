@@ -44,7 +44,7 @@ public interface InfElement extends GenericDocumentPart {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nest Points</em>' containment reference list.
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getInfElement_NestPoints()
-	 * @model type="org.spbu.pldoctoolkit.graph.NestPoint" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<NestPoint> getNestPoints();

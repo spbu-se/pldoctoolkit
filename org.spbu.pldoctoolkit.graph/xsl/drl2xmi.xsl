@@ -82,6 +82,13 @@
         </xsl:attribute>
     </xsl:template>
     
+    <!-- Adapters -->
+    <xsl:template match="d:Adapter">
+        <adapters>
+            <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
+        </adapters>
+    </xsl:template>
+
     <xsl:template match="node() | attribute() | text() | comment()">
         <xsl:copy>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>            

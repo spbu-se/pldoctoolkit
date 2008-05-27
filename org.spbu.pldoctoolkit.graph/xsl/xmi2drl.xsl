@@ -78,6 +78,13 @@
         </d:FinalInfProduct>
     </xsl:template>
     
+    <!-- Adapters -->
+    <xsl:template match="adapters">
+        <d:Adapter>
+            <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
+        </d:Adapter>
+    </xsl:template>
+
     <xsl:template match="node() | attribute() | text() | comment()">
         <xsl:copy>
             <xsl:apply-templates select="node() | attribute() | text() | comment()"/>
