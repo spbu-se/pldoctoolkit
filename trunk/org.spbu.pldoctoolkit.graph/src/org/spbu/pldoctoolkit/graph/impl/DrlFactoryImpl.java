@@ -89,6 +89,8 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 			case DrlPackage.PRODUCT: return createProduct();
 			case DrlPackage.DOCUMENTATION_CORE: return createDocumentationCore();
 			case DrlPackage.PRODUCT_DOCUMENTATION: return createProductDocumentation();
+			case DrlPackage.ADAPTER: return createAdapter();
+			case DrlPackage.NEST: return createNest();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -104,6 +106,8 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 		switch (eDataType.getClassifierID()) {
 			case DrlPackage.GROUP_TYPE:
 				return createGroupTypeFromString(eDataType, initialValue);
+			case DrlPackage.NEST_TYPE:
+				return createNestTypeFromString(eDataType, initialValue);
 			case DrlPackage.NODE_TYPE:
 				return createNodeTypeFromString(eDataType, initialValue);
 			default:
@@ -121,6 +125,8 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 		switch (eDataType.getClassifierID()) {
 			case DrlPackage.GROUP_TYPE:
 				return convertGroupTypeToString(eDataType, instanceValue);
+			case DrlPackage.NEST_TYPE:
+				return convertNestTypeToString(eDataType, instanceValue);
 			case DrlPackage.NODE_TYPE:
 				return convertNodeTypeToString(eDataType, instanceValue);
 			default:
@@ -233,6 +239,26 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Adapter createAdapter() {
+		AdapterImpl adapter = new AdapterImpl();
+		return adapter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Nest createNest() {
+		NestImpl nest = new NestImpl();
+		return nest;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GroupType createGroupTypeFromString(EDataType eDataType, String initialValue) {
 		GroupType result = GroupType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -245,6 +271,26 @@ public class DrlFactoryImpl extends EFactoryImpl implements DrlFactory {
 	 * @generated
 	 */
 	public String convertGroupTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NestType createNestTypeFromString(EDataType eDataType, String initialValue) {
+		NestType result = NestType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertNestTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -103,7 +103,7 @@ public interface GenericDocumentPart extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inf Elem Refs</em>' containment reference list.
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getGenericDocumentPart_InfElemRefs()
-	 * @model type="org.spbu.pldoctoolkit.graph.InfElemRef" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<InfElemRef> getInfElemRefs();
@@ -119,7 +119,7 @@ public interface GenericDocumentPart extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Groups</em>' containment reference list.
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getGenericDocumentPart_Groups()
-	 * @model type="org.spbu.pldoctoolkit.graph.InfElemRefGroup" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<InfElemRefGroup> getGroups();

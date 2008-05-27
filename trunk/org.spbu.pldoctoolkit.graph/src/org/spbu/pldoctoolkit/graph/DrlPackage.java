@@ -365,13 +365,22 @@ public interface DrlPackage extends EPackage {
 	int FINAL_INF_PRODUCT__ID = DRL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Adapters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_INF_PRODUCT__ADAPTERS = DRL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Final Inf Product</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FINAL_INF_PRODUCT_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 2;
+	int FINAL_INF_PRODUCT_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Node</b></em>' attribute.
@@ -555,13 +564,22 @@ public interface DrlPackage extends EPackage {
 	int PRODUCT_LINE__PRODUCTS = DRL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Product Documentations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_LINE__PRODUCT_DOCUMENTATIONS = DRL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Product Line</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 2;
+	int PRODUCT_LINE_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.ProductImpl <em>Product</em>}' class.
@@ -693,6 +711,89 @@ public interface DrlPackage extends EPackage {
 	int PRODUCT_DOCUMENTATION_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.AdapterImpl <em>Adapter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.spbu.pldoctoolkit.graph.impl.AdapterImpl
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getAdapter()
+	 * @generated
+	 */
+	int ADAPTER = 12;
+
+	/**
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADAPTER__NODE = DRL_ELEMENT__NODE;
+
+	/**
+	 * The feature id for the '<em><b>Nests</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADAPTER__NESTS = DRL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Infelemrefid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADAPTER__INFELEMREFID = DRL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Adapter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADAPTER_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.impl.NestImpl <em>Nest</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.spbu.pldoctoolkit.graph.impl.NestImpl
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNest()
+	 * @generated
+	 */
+	int NEST = 13;
+
+	/**
+	 * The feature id for the '<em><b>Node</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEST__NODE = DRL_ELEMENT__NODE;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEST__TYPE = DRL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Nest</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEST_FEATURE_COUNT = DRL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.GroupType <em>Group Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -700,8 +801,18 @@ public interface DrlPackage extends EPackage {
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getGroupType()
 	 * @generated
 	 */
-	int GROUP_TYPE = 12;
+	int GROUP_TYPE = 14;
 
+
+	/**
+	 * The meta object id for the '{@link org.spbu.pldoctoolkit.graph.NestType <em>Nest Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.spbu.pldoctoolkit.graph.NestType
+	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNestType()
+	 * @generated
+	 */
+	int NEST_TYPE = 15;
 
 	/**
 	 * The meta object id for the '<em>Node Type</em>' data type.
@@ -711,7 +822,7 @@ public interface DrlPackage extends EPackage {
 	 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNodeType()
 	 * @generated
 	 */
-	int NODE_TYPE = 13;
+	int NODE_TYPE = 16;
 
 
 	/**
@@ -776,6 +887,17 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFinalInfProduct_Id();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.spbu.pldoctoolkit.graph.FinalInfProduct#getAdapters <em>Adapters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Adapters</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.FinalInfProduct#getAdapters()
+	 * @see #getFinalInfProduct()
+	 * @generated
+	 */
+	EReference getFinalInfProduct_Adapters();
 
 	/**
 	 * Returns the meta object for class '{@link org.spbu.pldoctoolkit.graph.NestPoint <em>Nest Point</em>}'.
@@ -1004,6 +1126,17 @@ public interface DrlPackage extends EPackage {
 	EReference getProductLine_Products();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.spbu.pldoctoolkit.graph.ProductLine#getProductDocumentations <em>Product Documentations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Product Documentations</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.ProductLine#getProductDocumentations()
+	 * @see #getProductLine()
+	 * @generated
+	 */
+	EReference getProductLine_ProductDocumentations();
+
+	/**
 	 * Returns the meta object for class '{@link org.spbu.pldoctoolkit.graph.Product <em>Product</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1110,6 +1243,59 @@ public interface DrlPackage extends EPackage {
 	EAttribute getDrlElement_Node();
 
 	/**
+	 * Returns the meta object for class '{@link org.spbu.pldoctoolkit.graph.Adapter <em>Adapter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Adapter</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.Adapter
+	 * @generated
+	 */
+	EClass getAdapter();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.spbu.pldoctoolkit.graph.Adapter#getNests <em>Nests</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Nests</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.Adapter#getNests()
+	 * @see #getAdapter()
+	 * @generated
+	 */
+	EReference getAdapter_Nests();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.spbu.pldoctoolkit.graph.Adapter#getInfelemrefid <em>Infelemrefid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Infelemrefid</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.Adapter#getInfelemrefid()
+	 * @see #getAdapter()
+	 * @generated
+	 */
+	EAttribute getAdapter_Infelemrefid();
+
+	/**
+	 * Returns the meta object for class '{@link org.spbu.pldoctoolkit.graph.Nest <em>Nest</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Nest</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.Nest
+	 * @generated
+	 */
+	EClass getNest();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.spbu.pldoctoolkit.graph.Nest#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.Nest#getType()
+	 * @see #getNest()
+	 * @generated
+	 */
+	EAttribute getNest_Type();
+
+	/**
 	 * Returns the meta object for enum '{@link org.spbu.pldoctoolkit.graph.GroupType <em>Group Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1118,6 +1304,16 @@ public interface DrlPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getGroupType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.spbu.pldoctoolkit.graph.NestType <em>Nest Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Nest Type</em>'.
+	 * @see org.spbu.pldoctoolkit.graph.NestType
+	 * @generated
+	 */
+	EEnum getNestType();
 
 	/**
 	 * Returns the meta object for data type '{@link org.w3c.dom.Element <em>Node Type</em>}'.
@@ -1205,6 +1401,14 @@ public interface DrlPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FINAL_INF_PRODUCT__ID = eINSTANCE.getFinalInfProduct_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Adapters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FINAL_INF_PRODUCT__ADAPTERS = eINSTANCE.getFinalInfProduct_Adapters();
 
 		/**
 		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.impl.NestPointImpl <em>Nest Point</em>}' class.
@@ -1385,6 +1589,14 @@ public interface DrlPackage extends EPackage {
 		EReference PRODUCT_LINE__PRODUCTS = eINSTANCE.getProductLine_Products();
 
 		/**
+		 * The meta object literal for the '<em><b>Product Documentations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRODUCT_LINE__PRODUCT_DOCUMENTATIONS = eINSTANCE.getProductLine_ProductDocumentations();
+
+		/**
 		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.impl.ProductImpl <em>Product</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1473,6 +1685,50 @@ public interface DrlPackage extends EPackage {
 		EAttribute DRL_ELEMENT__NODE = eINSTANCE.getDrlElement_Node();
 
 		/**
+		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.impl.AdapterImpl <em>Adapter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.spbu.pldoctoolkit.graph.impl.AdapterImpl
+		 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getAdapter()
+		 * @generated
+		 */
+		EClass ADAPTER = eINSTANCE.getAdapter();
+
+		/**
+		 * The meta object literal for the '<em><b>Nests</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ADAPTER__NESTS = eINSTANCE.getAdapter_Nests();
+
+		/**
+		 * The meta object literal for the '<em><b>Infelemrefid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ADAPTER__INFELEMREFID = eINSTANCE.getAdapter_Infelemrefid();
+
+		/**
+		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.impl.NestImpl <em>Nest</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.spbu.pldoctoolkit.graph.impl.NestImpl
+		 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNest()
+		 * @generated
+		 */
+		EClass NEST = eINSTANCE.getNest();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEST__TYPE = eINSTANCE.getNest_Type();
+
+		/**
 		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.GroupType <em>Group Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1481,6 +1737,16 @@ public interface DrlPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum GROUP_TYPE = eINSTANCE.getGroupType();
+
+		/**
+		 * The meta object literal for the '{@link org.spbu.pldoctoolkit.graph.NestType <em>Nest Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.spbu.pldoctoolkit.graph.NestType
+		 * @see org.spbu.pldoctoolkit.graph.impl.DrlPackageImpl#getNestType()
+		 * @generated
+		 */
+		EEnum NEST_TYPE = eINSTANCE.getNestType();
 
 		/**
 		 * The meta object literal for the '<em>Node Type</em>' data type.

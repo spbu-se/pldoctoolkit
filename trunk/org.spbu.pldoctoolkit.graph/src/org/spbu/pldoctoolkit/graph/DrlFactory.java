@@ -123,6 +123,24 @@ public interface DrlFactory extends EFactory {
 	ProductDocumentation createProductDocumentation();
 
 	/**
+	 * Returns a new object of class '<em>Adapter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Adapter</em>'.
+	 * @generated
+	 */
+	Adapter createAdapter();
+
+	/**
+	 * Returns a new object of class '<em>Nest</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Nest</em>'.
+	 * @generated
+	 */
+	Nest createNest();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

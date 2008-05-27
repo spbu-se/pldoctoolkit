@@ -6,10 +6,16 @@
  */
 package org.spbu.pldoctoolkit.graph.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.spbu.pldoctoolkit.graph.Adapter;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
@@ -28,6 +34,7 @@ import org.w3c.dom.Element;
  * <ul>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.FinalInfProductImpl#getProduct <em>Product</em>}</li>
  *   <li>{@link org.spbu.pldoctoolkit.graph.impl.FinalInfProductImpl#getId <em>Id</em>}</li>
+ *   <li>{@link org.spbu.pldoctoolkit.graph.impl.FinalInfProductImpl#getAdapters <em>Adapters</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,6 +77,16 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 * @ordered
 	 */
 	protected String id = ID_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAdapters() <em>Adapters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAdapters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Adapter> adapters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -163,6 +180,32 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Adapter> getAdapters() {
+		if (adapters == null) {
+			adapters = new EObjectContainmentEList<Adapter>(Adapter.class, this, DrlPackage.FINAL_INF_PRODUCT__ADAPTERS);
+		}
+		return adapters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DrlPackage.FINAL_INF_PRODUCT__ADAPTERS:
+				return ((InternalEList<?>)getAdapters()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -171,6 +214,8 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 				return basicGetProduct();
 			case DrlPackage.FINAL_INF_PRODUCT__ID:
 				return getId();
+			case DrlPackage.FINAL_INF_PRODUCT__ADAPTERS:
+				return getAdapters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -180,6 +225,7 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -188,6 +234,10 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 				return;
 			case DrlPackage.FINAL_INF_PRODUCT__ID:
 				setId((String)newValue);
+				return;
+			case DrlPackage.FINAL_INF_PRODUCT__ADAPTERS:
+				getAdapters().clear();
+				getAdapters().addAll((Collection<? extends Adapter>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -207,6 +257,9 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 			case DrlPackage.FINAL_INF_PRODUCT__ID:
 				setId(ID_EDEFAULT);
 				return;
+			case DrlPackage.FINAL_INF_PRODUCT__ADAPTERS:
+				getAdapters().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -223,6 +276,8 @@ public class FinalInfProductImpl extends DrlElementImpl implements FinalInfProdu
 				return product != null;
 			case DrlPackage.FINAL_INF_PRODUCT__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case DrlPackage.FINAL_INF_PRODUCT__ADAPTERS:
+				return adapters != null && !adapters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -45,7 +45,7 @@ public interface DocumentationCore extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parts</em>' containment reference list.
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getDocumentationCore_Parts()
-	 * @model type="org.spbu.pldoctoolkit.graph.GenericDocumentPart" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<GenericDocumentPart> getParts();

@@ -46,7 +46,7 @@ public interface ProductDocumentation extends DrlElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Final Inf Products</em>' containment reference list.
 	 * @see org.spbu.pldoctoolkit.graph.DrlPackage#getProductDocumentation_FinalInfProducts()
-	 * @model type="org.spbu.pldoctoolkit.graph.FinalInfProduct" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<FinalInfProduct> getFinalInfProducts();
