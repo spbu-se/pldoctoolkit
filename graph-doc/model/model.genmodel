@@ -12,6 +12,11 @@
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//GroupType/OR"/>
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//GroupType/XOR"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//NestType">
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestType/BEFORE"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestType/AFTER"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//NestType/REPLACE"/>
+    </genEnums>
     <genDataTypes ecoreDataType="model.ecore#//NodeType"/>
     <genClasses ecoreClass="model.ecore#//InfElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//InfElement/nestPoints"/>
@@ -20,6 +25,7 @@
     <genClasses ecoreClass="model.ecore#//FinalInfProduct">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FinalInfProduct/product"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FinalInfProduct/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//FinalInfProduct/adapters"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//NestPoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//NestPoint/id"/>
@@ -62,6 +68,13 @@
     </genClasses>
     <genClasses image="false" ecoreClass="model.ecore#//DrlElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//DrlElement/node"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Adapter">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Adapter/nests"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Adapter/infelemrefid"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Nest">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Nest/type"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
