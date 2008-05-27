@@ -4,7 +4,7 @@
 		<book>
 			<bookinfo>
 				<title>Знакомство с продуктом</title>
-				<d:InfElemRef id="preface" infelemid="preface"/>
+				<d:InfElemRef id="ref_preface" infelemid="preface"/>
 			</bookinfo>
 		</book>
 	</d:InfProduct>
