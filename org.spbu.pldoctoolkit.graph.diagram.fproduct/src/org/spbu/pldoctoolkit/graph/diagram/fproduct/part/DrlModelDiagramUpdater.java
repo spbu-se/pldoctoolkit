@@ -2,17 +2,19 @@ package org.spbu.pldoctoolkit.graph.diagram.fproduct.part;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.spbu.pldoctoolkit.graph.Adapter;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
 import org.spbu.pldoctoolkit.graph.FinalInfProduct;
 import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
@@ -70,11 +72,17 @@ public class DrlModelDiagramUpdater {
 		//			}
 		//		}
 
-		// HAND iteration
+		// HAND 
+		List<Adapter> adapters = modelElement.getAdapters();
+		Set<String> infelemrefids = new HashSet<String>(adapters.size());
+		for (Adapter adapter : adapters) {
+			infelemrefids.add(adapter.getInfelemrefid());
+		}
+		
 		List<GenericDocumentPart> partsList = new LinkedList<GenericDocumentPart>();
-
 		InfProduct rootElement = modelElement.getProduct();
-		findAccessibleElements(rootElement, partsList);
+		
+		findAccessibleElements(infelemrefids, rootElement, partsList);
 
 		for (GenericDocumentPart genericDocumentPart : partsList) {
 			result.add(new DrlModelNodeDescriptor(genericDocumentPart,
@@ -86,13 +94,13 @@ public class DrlModelDiagramUpdater {
 	}
 
 	/**
-	 * Copied from org.spbu.pldoctoolkit.graph.diagram.infproduct.edit.policies.DocumentationCoreCanonicalEditPolicy
+	 * @param idToInfElemRefMap 
 	 * 
 	 * @param curElement
 	 * @param currentResult
 	 */
 	@SuppressWarnings("unchecked")
-	private static void findAccessibleElements(GenericDocumentPart curElement,
+	private static void findAccessibleElements(final Set<String> infelemrefids, GenericDocumentPart curElement,
 			List<GenericDocumentPart> currentResult) {
 		if (curElement == null) {
 			return;
@@ -100,15 +108,18 @@ public class DrlModelDiagramUpdater {
 
 		currentResult.add(curElement);
 
-		//		Iterator groupIter = curElement.getGroups().iterator();
-		//		while(groupIter.hasNext()) {
-		//			currentResult.add(groupIter.next());
-		//		}
-
 		EList<InfElemRef> infElemRefs = curElement.getInfElemRefs();
 		for (InfElemRef ref : infElemRefs) {
+			String refId = ref.getId();
+			if(!infelemrefids.contains(refId)) {
+				if(null != ref.getGroup() || ref.isOptional()) {
+					System.out.println("ref id not included, skipping: " + refId);
+					continue;
+				}
+			}
+			
 			InfElement element = ref.getInfelem();
-			findAccessibleElements(element, currentResult);
+			findAccessibleElements(infelemrefids, element, currentResult);
 		}
 
 		return;
