@@ -13,6 +13,8 @@
         eType="#//InfProduct"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adapters" upperBound="-1"
+        eType="#//Adapter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NestPoint" eSuperTypes="#//DrlElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -57,7 +59,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
         eType="#//Product" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="productDocumentations"
-        upperBound="-1" eType="#//ProductDocumentation" containment="true"/>
+        upperBound="-1" eType="#//ProductDocumentation" transient="true" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//DrlElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -76,5 +78,19 @@
   <eClassifiers xsi:type="ecore:EDataType" name="NodeType" instanceClassName="org.w3c.dom.Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="DrlElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="node" eType="#//NodeType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Adapter" eSuperTypes="#//DrlElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nests" eType="#//Nest"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="infelemrefid" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Nest" eSuperTypes="#//DrlElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//NestType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="NestType">
+    <eLiterals name="BEFORE" value="1"/>
+    <eLiterals name="AFTER" value="2"/>
+    <eLiterals name="REPLACE"/>
   </eClassifiers>
 </ecore:EPackage>
