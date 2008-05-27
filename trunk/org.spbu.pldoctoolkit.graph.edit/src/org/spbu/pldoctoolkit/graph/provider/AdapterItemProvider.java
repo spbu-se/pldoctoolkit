@@ -1,6 +1,5 @@
 /**
- * <copyright>
- * </copyright>
+ * copyleft 2007
  *
  * $Id$
  */
@@ -12,8 +11,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,17 +25,19 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.spbu.pldoctoolkit.graph.Adapter;
 import org.spbu.pldoctoolkit.graph.DrlFactory;
 import org.spbu.pldoctoolkit.graph.DrlPackage;
-import org.spbu.pldoctoolkit.graph.GenericDocumentPart;
+import org.w3c.dom.Element;
 
 /**
- * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.graph.GenericDocumentPart} object.
+ * This is the item provider adapter for a {@link org.spbu.pldoctoolkit.graph.Adapter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GenericDocumentPartItemProvider
+public class AdapterItemProvider
 	extends DrlElementItemProvider
 	implements	
 		IEditingDomainItemProvider,	
@@ -54,7 +58,7 @@ public class GenericDocumentPartItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GenericDocumentPartItemProvider(AdapterFactory adapterFactory) {
+	public AdapterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -69,48 +73,25 @@ public class GenericDocumentPartItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIdPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
+			addInfelemrefidPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Id feature.
+	 * This adds a property descriptor for the Infelemrefid feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIdPropertyDescriptor(Object object) {
+	protected void addInfelemrefidPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GenericDocumentPart_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenericDocumentPart_id_feature", "_UI_GenericDocumentPart_type"),
-				 DrlPackage.Literals.GENERIC_DOCUMENT_PART__ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GenericDocumentPart_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenericDocumentPart_name_feature", "_UI_GenericDocumentPart_type"),
-				 DrlPackage.Literals.GENERIC_DOCUMENT_PART__NAME,
+				 getString("_UI_Adapter_infelemrefid_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Adapter_infelemrefid_feature", "_UI_Adapter_type"),
+				 DrlPackage.Literals.ADAPTER__INFELEMREFID,
 				 true,
 				 false,
 				 false,
@@ -131,8 +112,7 @@ public class GenericDocumentPartItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DrlPackage.Literals.GENERIC_DOCUMENT_PART__INF_ELEM_REFS);
-			childrenFeatures.add(DrlPackage.Literals.GENERIC_DOCUMENT_PART__GROUPS);
+			childrenFeatures.add(DrlPackage.Literals.ADAPTER__NESTS);
 		}
 		return childrenFeatures;
 	}
@@ -151,6 +131,17 @@ public class GenericDocumentPartItemProvider
 	}
 
 	/**
+	 * This returns Adapter.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Adapter"));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,10 +149,11 @@ public class GenericDocumentPartItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GenericDocumentPart)object).getName();
+		Element labelValue = ((Adapter)object).getNode();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_GenericDocumentPart_type") :
-			getString("_UI_GenericDocumentPart_type") + " " + label;
+			getString("_UI_Adapter_type") :
+			getString("_UI_Adapter_type") + " " + label;
 	}
 
 	/**
@@ -175,13 +167,11 @@ public class GenericDocumentPartItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GenericDocumentPart.class)) {
-			case DrlPackage.GENERIC_DOCUMENT_PART__ID:
-			case DrlPackage.GENERIC_DOCUMENT_PART__NAME:
+		switch (notification.getFeatureID(Adapter.class)) {
+			case DrlPackage.ADAPTER__INFELEMREFID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case DrlPackage.GENERIC_DOCUMENT_PART__INF_ELEM_REFS:
-			case DrlPackage.GENERIC_DOCUMENT_PART__GROUPS:
+			case DrlPackage.ADAPTER__NESTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -201,13 +191,8 @@ public class GenericDocumentPartItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DrlPackage.Literals.GENERIC_DOCUMENT_PART__INF_ELEM_REFS,
-				 DrlFactory.eINSTANCE.createInfElemRef()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DrlPackage.Literals.GENERIC_DOCUMENT_PART__GROUPS,
-				 DrlFactory.eINSTANCE.createInfElemRefGroup()));
+				(DrlPackage.Literals.ADAPTER__NESTS,
+				 DrlFactory.eINSTANCE.createNest()));
 	}
 
 	/**

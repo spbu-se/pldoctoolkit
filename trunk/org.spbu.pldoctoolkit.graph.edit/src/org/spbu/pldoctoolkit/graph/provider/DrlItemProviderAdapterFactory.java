@@ -64,7 +64,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection supportedTypes = new ArrayList();
+	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
 	 * This constructs an instance.
@@ -94,6 +94,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createInfElementAdapter() {
 		if (infElementItemProvider == null) {
 			infElementItemProvider = new InfElementItemProvider(this);
@@ -116,6 +117,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createInfProductAdapter() {
 		if (infProductItemProvider == null) {
 			infProductItemProvider = new InfProductItemProvider(this);
@@ -138,6 +140,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createFinalInfProductAdapter() {
 		if (finalInfProductItemProvider == null) {
 			finalInfProductItemProvider = new FinalInfProductItemProvider(this);
@@ -160,6 +163,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createNestPointAdapter() {
 		if (nestPointItemProvider == null) {
 			nestPointItemProvider = new NestPointItemProvider(this);
@@ -182,6 +186,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createInfElemRefAdapter() {
 		if (infElemRefItemProvider == null) {
 			infElemRefItemProvider = new InfElemRefItemProvider(this);
@@ -204,6 +209,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createInfElemRefGroupAdapter() {
 		if (infElemRefGroupItemProvider == null) {
 			infElemRefGroupItemProvider = new InfElemRefGroupItemProvider(this);
@@ -226,6 +232,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createProductLineAdapter() {
 		if (productLineItemProvider == null) {
 			productLineItemProvider = new ProductLineItemProvider(this);
@@ -248,6 +255,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createProductAdapter() {
 		if (productItemProvider == null) {
 			productItemProvider = new ProductItemProvider(this);
@@ -270,6 +278,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createDocumentationCoreAdapter() {
 		if (documentationCoreItemProvider == null) {
 			documentationCoreItemProvider = new DocumentationCoreItemProvider(this);
@@ -292,12 +301,59 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createProductDocumentationAdapter() {
 		if (productDocumentationItemProvider == null) {
 			productDocumentationItemProvider = new ProductDocumentationItemProvider(this);
 		}
 
 		return productDocumentationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.Adapter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AdapterItemProvider adapterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.spbu.pldoctoolkit.graph.Adapter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAdapterAdapter() {
+		if (adapterItemProvider == null) {
+			adapterItemProvider = new AdapterItemProvider(this);
+		}
+
+		return adapterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.spbu.pldoctoolkit.graph.Nest} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NestItemProvider nestItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.spbu.pldoctoolkit.graph.Nest}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNestAdapter() {
+		if (nestItemProvider == null) {
+			nestItemProvider = new NestItemProvider(this);
+		}
+
+		return nestItemProvider;
 	}
 
 	/**
@@ -325,6 +381,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object type) {
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
@@ -335,6 +392,7 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter adapt(Notifier notifier, Object type) {
 		return super.adapt(notifier, this);
 	}
@@ -344,10 +402,11 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class)type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -406,6 +465,8 @@ public class DrlItemProviderAdapterFactory extends DrlAdapterFactory implements 
 		if (productItemProvider != null) productItemProvider.dispose();
 		if (documentationCoreItemProvider != null) documentationCoreItemProvider.dispose();
 		if (productDocumentationItemProvider != null) productDocumentationItemProvider.dispose();
+		if (adapterItemProvider != null) adapterItemProvider.dispose();
+		if (nestItemProvider != null) nestItemProvider.dispose();
 	}
 
 }
