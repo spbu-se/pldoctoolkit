@@ -18,7 +18,7 @@ import org.xml.sax.DTDHandler;
 public class ValidateDrlAction extends BasicExportAction {
 
 	public ValidateDrlAction(IEditorPart editor) throws Exception {
-		super(editor, null, "Validate", null, null);
+		super(editor, null, "Validate", null, null, false);
 	}
 
 	@Override
