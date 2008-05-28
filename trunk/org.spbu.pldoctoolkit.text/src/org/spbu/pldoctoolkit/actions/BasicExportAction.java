@@ -69,12 +69,13 @@ public class BasicExportAction extends Action {
 	protected static final URL DOCBOOK_SCHEMA_URL = DrlPublisherPlugin.getURL("schema/docbook/docbook.rng");
 
 	protected final Controller drl2docbook;
-	protected final String format;
+	protected final String sFormat;
 	protected final String extension;
 	protected final IEditorPart editor;
 	protected final XMLReader xmlReader;
 	protected final Validator validator;
 	private final URL docbookTransformationURL;
+	protected final Boolean bTransform2DBOnly;
 	
 	protected Controller docbook2type;
 	protected DocbookContentHandler contentHandler;
@@ -124,14 +125,16 @@ public class BasicExportAction extends Action {
 		}
 	};
 	
-	public BasicExportAction(IEditorPart editor, URL docbookTransformationURL, String name, String format, String extension) throws Exception {
+	public BasicExportAction(IEditorPart editor, URL docbookTransformationURL, String name, 
+				String format, String extension, Boolean bTransform2DBOnly) throws Exception {
 		super(name);
 		if (editor == null)
 			throw new NullPointerException("editor cannot be null");
 		this.editor = editor;
 		this.docbookTransformationURL = docbookTransformationURL;
-		this.format = format;
+		this.sFormat = format;
 		this.extension = extension;
+		this.bTransform2DBOnly = bTransform2DBOnly;
 
 		// transformers
 		drl2docbook = CONTROLLER_CACHE.getController(DRL2DOCBOOK_URL);
@@ -225,14 +228,23 @@ public class BasicExportAction extends Action {
 	protected void doTransform(IProgressMonitor monitor, IFile source, File result) throws InvocationTargetException {
 		if (result == null)
 			return;
-		File tempFile = null;
+
+		File fileDB = null;
 		try {
-			monitor.beginTask("Exporting to " + format + "...", 3);
-			tempFile = File.createTempFile("docbookgen", null);
+			monitor.beginTask("Exporting to " + sFormat + "...", 3);
+			if (bTransform2DBOnly)
+			{
+				fileDB = result;
+			}
+			else
+			{
+				fileDB = File.createTempFile("docbookgen", null);
+				System.out.println(fileDB.getAbsolutePath());
+			}
 
 			monitor.subTask("Transforming DRL -> DocBook...");
 			drl2docbook.setParameter("finalinfproductid", fipId);
-			transform(drl2docbook, new StreamSource(source.getLocationURI().toString()), new StreamResult(tempFile));
+			transform(drl2docbook, new StreamSource(source.getLocationURI().toString()), new StreamResult(fileDB));
 			monitor.worked(1);
 
 			monitor.subTask("Validating DocBook...");
@@ -241,18 +253,24 @@ public class BasicExportAction extends Action {
 			DTDHandler dtdHandler = validator.getDTDHandler();
 			if (dtdHandler != null)
 				xmlReader.setDTDHandler(dtdHandler);
-			xmlReader.parse(tempFile.getAbsolutePath());
+			xmlReader.parse(fileDB.getAbsolutePath());
 			monitor.worked(1);
 
-			monitor.subTask("Transforming DocBook -> " + format + "...");
-			transform(getDocbookTransformer(), new StreamSource(tempFile), new StreamResult(result));
+			if (!bTransform2DBOnly)
+			{
+				monitor.subTask("Transforming DocBook -> " + sFormat + "...");
+				transform(getDocbookTransformer(), new StreamSource(fileDB), new StreamResult(result));
+			}
+			
 			monitor.done();
 		} catch (Exception e) {
 			throw new InvocationTargetException(e);
 		} finally {
 			validator.reset();
-			if (tempFile != null)
-				tempFile.deleteOnExit();
+			if (!bTransform2DBOnly && (fileDB != null))
+			{
+				//fileDB.deleteOnExit();
+			}
 		}
 	}
 
