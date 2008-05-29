@@ -11,6 +11,8 @@ import org.eclipse.ui.texteditor.RetargetTextEditorAction;
 
 public class DrlEditorActionContributor extends TextEditorActionContributor {
 	private final RetargetTextEditorAction exportToHtml = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ExportToHtml.");
+	private final RetargetTextEditorAction exportToHtmlHelp = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ExportToHtml Help.");
+	private final RetargetTextEditorAction exportToDocBook = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ExportToDocBook.");
 	private final RetargetTextEditorAction exportToPdf = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ExportToPdf.");
 	private final RetargetTextEditorAction validateDrl = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), "ValidateDrl.");
 	
@@ -18,7 +20,9 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		super.contributeToMenu(menu);
 		MenuManager docbookMenu = new MenuManager("DRL");
 		menu.insertAfter("additions", docbookMenu);
+		docbookMenu.add(exportToDocBook);
 		docbookMenu.add(exportToHtml);
+		docbookMenu.add(exportToHtmlHelp);
 		docbookMenu.add(exportToPdf);
 		docbookMenu.add(validateDrl);
 	}
@@ -26,7 +30,9 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
 		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("DocbookEditor"));
+		toolBarManager.add(exportToDocBook);
 		toolBarManager.add(exportToHtml);
+		toolBarManager.add(exportToHtmlHelp);
 		toolBarManager.add(exportToPdf);
 		toolBarManager.add(validateDrl);
 	}
@@ -36,7 +42,9 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		ITextEditor editor = null;
 		if (part instanceof ITextEditor)
 			editor = (ITextEditor) part;
+		exportToDocBook.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_DB));
 		exportToHtml.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_HTML));
+		exportToHtmlHelp.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_HH));
 		exportToPdf.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_PDF));
 		validateDrl.setAction(getAction(editor, DrlTextEditor.VALIDATE_DRL));
 	}
