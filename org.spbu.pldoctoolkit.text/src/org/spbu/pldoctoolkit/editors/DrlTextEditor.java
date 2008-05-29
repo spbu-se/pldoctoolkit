@@ -14,6 +14,8 @@ public class DrlTextEditor extends TextEditor {
 	public static final String VALIDATE_DRL = "validate_drl";
 	public static final String EXPORT_TO_HTML = "export_to_html";
 	public static final String EXPORT_TO_PDF = "export_to_pdf";
+	public static final String EXPORT_TO_HH = "export_to_html_help";
+	public static final String EXPORT_TO_DB = "export_to_docbook";
 	
 	private ColorManager colorManager;
 
@@ -56,13 +58,25 @@ public class DrlTextEditor extends TextEditor {
 		}
 		
 		try {
-			setAction(EXPORT_TO_HTML, new BasicExportAction(this, DrlPublisherPlugin.getURL("xsl/docbook/html/docbook.xsl"), "Export to HTML", "HTML", "html"));
+			setAction(EXPORT_TO_HTML, new BasicExportAction(this, DrlPublisherPlugin.getURL("xsl/docbook/html/docbook.xsl"), "Export to HTML", "HTML", "html", false));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		try {
 			setAction(EXPORT_TO_PDF, new PdfExportAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			setAction(EXPORT_TO_HH, new BasicExportAction(this, DrlPublisherPlugin.getURL("xsl/docbook/htmlhelp/htmlhelp.xsl"), "Export to HTML Help", "HTML help", "hh", false));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			setAction(EXPORT_TO_DB, new BasicExportAction(this, null, "Export to DocBook", "DocBook", "db", true));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
