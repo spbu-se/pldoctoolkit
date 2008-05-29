@@ -8,6 +8,7 @@
 
   <xsl:import href="./docbook/htmlhelp/htmlhelp.xsl"/>
 
+<!--
   <xsl:param name="l10n.gentext.language" select="'ru'"/>
   <xsl:param name="htmlhelp.encoding" select="'windows-1251'"/>
   <xsl:param name="default.encoding" select="'windows-1251'"/>
@@ -15,6 +16,6 @@
   <xsl:param name="textdata.default.encoding" select="'windows-1251'"/>
   <xsl:param name="saxon.character.representation" select="'native'"/>
   <xsl:param name="draft.mode" select="'no'"/>
-
+-->
                                    
 </xsl:stylesheet>
