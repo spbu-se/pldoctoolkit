@@ -1,8 +1,12 @@
 package org.spbu.pldoctoolkit;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -73,5 +77,28 @@ public class DrlPublisherPlugin extends AbstractUIPlugin {
 
 	public static Shell getShell() {
 		return getDefault().getWorkbench().getActiveWorkbenchWindow().getShell();
+	}
+	
+	public String getPath() {
+		try {
+			String s = getResource("/");
+			if (s == null)
+				s = "";
+			s = (!s.endsWith("/")) ? s += "/" : s;
+			return s;
+		} catch (Exception e) {
+		}
+		return "";
+	}
+
+
+	public String getResource(String path) {
+		try {
+			return new Path(FileLocator.resolve(
+					FileLocator.find(plugin.getBundle(), new Path(path), new HashMap()))
+					.getFile()).toFile().toString();
+		} catch (IOException e) {
+		}
+		return null;
 	}
 }
