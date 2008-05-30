@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Templates>
+	<Template name="Product">
+		<![CDATA[<d:Product id="" name=""/>]]>
+	</Template>  
+	<Template name="InfProduct">
+		<![CDATA[<d:InfProduct id="" name="">
+	</d:InfProduct>]]>
+	</Template> 
+	<Template name="InfElemRef">
+		<![CDATA[<d:InfElemRef id="" infelemid=""/>]]>
+	</Template>
+	<Template name="InfElemRefGroup">
+		<![CDATA[<d:InfElemRefGroup id="" modifier="" name=""/>]]>
+	</Template>
+	<Template name="InfElement">
+		<![CDATA[<d:InfElement id="" name="">
+		<para>
+		</para>
+	</d:InfElement>]]>
+	</Template>
+	<Template name="Adapter">
+  		<![CDATA[<d:Adapter infelemrefid="">
+    </d:Adapter>]]>
+	</Template>
+	<Template name="Dictionary">
+		<![CDATA[<d:Dictionary id="" name="">
+		<d:Entry id=""></d:Entry>
+	</d:Dictionary>]]>
+	</Template>  
+	<Template name = "Nest">  
+		<![CDATA[<d:Nest id="">
+		<para>
+		</para>
+	</d:Nest>]]>
+	</Template>
+</Templates>
