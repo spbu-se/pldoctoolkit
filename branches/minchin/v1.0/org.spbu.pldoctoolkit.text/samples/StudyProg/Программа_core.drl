@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">	
+	<d:InfProduct id = "program_prId" name = "program">
+		<article>
+			<d:InfElemRef id = "program_elemRefId" infelemid = "program_elemId"></d:InfElemRef>
+		</article> 
+	</d:InfProduct>
+	<d:InfElement id = "program_elemId" name = "program_elemName">		
+		<d:InfElemRef id = "Header_refid" infelemid = "Header_id"></d:InfElemRef>
+		<d:InfElemRef id = "VersionControl_refid" infelemid = "VersionControl_id" optional = "true"></d:InfElemRef>
+		<d:InfElemRef id = "MSVS_refid" infelemid = "MSVS_id" optional = "true"></d:InfElemRef> 
+		<d:InfElemRef id = "testing_refid" infelemid = "testing_id" optional = "true"></d:InfElemRef>	  
+		<d:InfElemRef id = "Literature_refid" infelemid = "Literature_id"></d:InfElemRef>
+	</d:InfElement>
+	<d:InfElement id = "Header_id" name = "Header">		
+			<title>
+				Программа № <d:Nest id = "programNumber"></d:Nest>				
+			</title>
+			<subtitle>
+				Индивидуальное обучение стажеров ЗАО ЛАНИТ-ТЕРКОМ			
+				Департамент: <d:Nest id = "departmentName"></d:Nest>.
+				Стажеры:  <d:Nest id = "studentName"></d:Nest>.
+			</subtitle>
+	</d:InfElement>
+	<d:InfElement id = "VersionControl_id" name = "VersionControl">
+		<section>
+			<title>Основы версионного контроля.</title>			
+			<para>
+				Основы групповой и распределенной работы над программным кодом.   
+				Cтруктура версионного хранилища: ветка разработки (developer), кандидатская ветка (candidate), 
+				ветка предъявления. Операции Check-in/check-out. Метки (labels) и правила их использования. 
+				Операции dif, merge. Правила комментирования изменений. Разграничение прав доступа в версионном 
+				хранилище. 
+				Особенности работы с <d:Nest id = "package"></d:Nest><d:DictRef entryid = "product" dictid = "podstanovki_id"></d:DictRef>.
+				<d:Nest id = "workWithVC"></d:Nest>				
+			</para>
+			<para>
+				<d:DictRef entryid = "wordTasks" dictid = "helper_id"></d:DictRef>.
+				<orderedlist numeration = "arabic">					
+					<listitem><para>Создать собственный проект в <d:DictRef entryid = "product" dictid = "podstanovki_id"></d:DictRef>, настроить права доступа<d:Nest id = "к нему"></d:Nest>.</para></listitem>  
+					<listitem><para>Наладить работу с дальнейшими упражнениями именно через <d:DictRef entryid = "product" dictid = "podstanovki_id"></d:DictRef>.</para></listitem>
+					<d:Nest id = "VCAdditionalTasks"></d:Nest>										
+				</orderedlist>
+			</para>
+		</section>
+	</d:InfElement>
+	<d:InfElement id = "MSVS_id" name = "MSVS">
+		<section>
+			<title>Знакомство с Microsoft Visual Studio.</title>		
+			<para>
+				<d:Nest id = "nesseryPartOfMSVS">
+					Структура рабочего пространства: Solution, Project, Item. 
+					Настройки компиляции. Правила работа с текстовым редактором и отладчиком.
+				</d:Nest>
+			</para>
+			<para>
+				<d:DictRef entryid = "wordTasks" dictid = "helper_id"></d:DictRef>.
+				<orderedlist numeration = "arabic">
+					<d:Nest id = "MSVS_Tasks"></d:Nest>
+				</orderedlist>
+			</para>
+		</section>
+	</d:InfElement>
+	<d:InfElement id = "testing_id" name = "testing">
+		<section>
+			<title>Тестирование.</title>
+			<para>
+				Определение тестирования. 
+				Виды тестирования: модульное, интеграционное, нагрузочное, регрессионное, стрессовое. 
+				Концепция тестового покрытия. Виды покрытия: операторов, путей, входных значений,  покрытие крайних случаев. 
+				Требования по удобству сопровождения тестовых пакетов. 
+				Основы автоматизации тестирования.  Жизненный цикл ошибки. Статусы ошибки. 
+				Различные роли сотрудников, работающих с ошибкой – инженер по тестированию, разработчик, менеджер.  
+				Средства контроля ошибок. 
+				<d:Nest id = "TestingAdditional"></d:Nest>
+			</para>
+			<d:Nest id = "testingTasks"></d:Nest>			
+		</section>  
+	</d:InfElement>
+	<d:InfElement id = "Literature_id" name = "Literature">
+		<section>
+			<title>Литература</title>			
+			<para> 
+				<orderedlist numeration = "arabic">
+					<d:Nest id = "literature"></d:Nest>									
+				</orderedlist>
+			</para>
+		</section>
+	</d:InfElement>
+	
+	<d:Dictionary id = "books_id" name = "books">
+		<d:Entry id = "Быстрое тестирование">Калбертсон Р., Браун К., Кобб Г. Быстрое тестирование. Изд-во «Вильямс». 2002. 384 с.</d:Entry>
+		<d:Entry id = "компас в мире SOA">Биберштейн Н. Компас в мире сервис ориентированной архитектуры (SOA):ценность для бизнеса, планирование и план развития предприятия. Изд-во «Кудиц-Пресс», 2006. 256 с.</d:Entry>
+		<d:Entry id = "разработка распред. прил. на .Net">Морган С., Райан Б., Хорн Ш., Бломсма М. Разработка распределенных приложений на платформе Microsoft . Net Framework. Изд-во «Питер», 2007. 608 с.»Р°С‚С„РѕСЂРјРµ Microsoft . Net Framework. Р�Р·Рґ-РІРѕ В«РџРёС‚РµСЂВ», 2007. 608 СЃ.</d:Entry>
+		<d:Entry id = "основы цифрового телевидения">Смирнов А.В. Основы цифрового телевидения: Учебное пособие. М. «Горячая линия – Телеком», 2001. 224 с.</d:Entry>
+		<d:Entry id = "mpeg - это просто">Гласман К. MPEG – это просто, Информационно-технический журнал 625. Изд. ООО «Издательство 625», №3, 2000. C. 4-48.</d:Entry>
+		<d:Entry id = "Кодеры и декодеры MPEG">Ануфриев А. Кодеры и декодеры MPEG, Информационно-технический журнал   625. Изд. ООО «Издательство 625», №7, 2003. C. 22-64.</d:Entry>
+		<d:Entry id = "Стандарт ISO/IEC 14496-10:2005(E)">Стандарт ISO/IEC 14496-10:2005(E) Information technology – Coding of audio-visual objects. Part 10: Advanced Video Coding.</d:Entry>
+		<d:Entry id = "Стандарт ISO/IEC 13818-1:2000(E)">Стандарт ISO/IEC 13818-1:2000(E). Information technology – Generic coding of moving pictures and associated audio information.</d:Entry>
+		<d:Entry id = "Келли-Бутл С. Введение в UNIX.">Келли-Бутл С. Введение в UNIX. Изд-во «Лори», 1997. 368 с.</d:Entry>
+		<d:Entry id = "Мифический человеко-месяц">Брукс Ф. Ф. Брукс. Мифический человеко-месяц, или как создаются программные системы. СПб.: Символ, 2000.</d:Entry>
+		<d:Entry id = "Буч Г. Объектно-ориентированный анализ">Буч Г. Объектно-ориентированный анализ и проектирование с примерами приложений на С++. Изд-во «Невский Диалект», 2000. 558 с.</d:Entry>
+		<d:Entry id = "Автоматизированное тестирование">Дастин Э., Рэшка Д., Пол Д. Автоматизированное тестирование программного обеспечения: Внедрение, управление и эксплуатация. Изд-во  «Лори», 2008.  592 с.</d:Entry>
+		<d:Entry id = "Microsoft WiX">Информация оп системе Microsoft WiX: http://www.citforum.ru/internet/xml/wix/.</d:Entry>
+		<d:Entry id = "Windows Installer">Материалы по продукту Windows Installer:  http://www.rsdn.ru/article/install/ wininstaller.xml.</d:Entry>
+		<d:Entry id = "usability">Материалы по usability: http://uidesign.ru/.</d:Entry>
+		<d:Entry id = "Кулямин В.В. Технология программирования.">Кулямин В.В. Технология программирования. Компонентный подход. М.: Интернет-Университет Информационных Технологий; БИНОМ. Лаборатория знаний, 2007. 463 с.</d:Entry>
+		<d:Entry id = "Хорстманн К.С., Корнелл Г. Библиотека профессионала. Java 2. Том 1.">Хорстманн К.С., Корнелл Г. Библиотека профессионала. Java 2. Том 1. Основы.  Изд-во «Вильямс», 2007. 848 с.</d:Entry>
+		<d:Entry id = "Гери Д.М. JavaServer Faces.">Гери Д.М. JavaServer Faces. Изд-во  «Вильямс», 2002. 576 с.</d:Entry>
+		<d:Entry id = "Матросов А., Сергеев А., Чаунин М. HTML 4.0 в подлиннике">Матросов А., Сергеев А., Чаунин М. HTML 4.0 в подлиннике, Изд-во БХВ, 2000. 672 с.</d:Entry>		
+		<d:Entry id = "СУБД H2">Информация о СУБД H2:  http://www.h2database.com/.</d:Entry>
+		<d:Entry id = "YourKit">Информация о профиляторе YourKit: http://www.yourkit.com/.</d:Entry>
+		<d:Entry id = "Apache Tomcat">Информация об Apache Tomcat:  http://tomcat.apache.org/.</d:Entry>		
+	</d:Dictionary>
+	
+	<d:Dictionary id = "helper_id" name = "helper">
+		<d:Entry id = "wordTasks"><emphasis>Задания</emphasis></d:Entry>
+	</d:Dictionary>
+</d:DocumentationCore>

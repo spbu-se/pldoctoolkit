@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid = "">	
+	<d:FinalInfProduct id = "program1_Id" infproductid = "program_prId">
+		<d:Adapter infelemrefid = "program_elemRefId">						
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Header_refid">
+			<d:Replace-Nest nestid = "programNumber">1</d:Replace-Nest>
+			<d:Replace-Nest nestid = "departmentName">Аутсорсинга</d:Replace-Nest>
+			<d:Replace-Nest nestid = "studentName">Алексей Гагарский</d:Replace-Nest>			
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "VersionControl_refid">					
+			<d:Insert-After nestid = "workWithVC">
+				Интеграция <d:DictRef entryid = "product" dictid = "podstanovki_id"></d:DictRef> c Microsoft Visual Studio.
+			</d:Insert-After>
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "MSVS_refid">						
+			<d:Insert-After nestid = "nesseryPartOfMSVS"> 
+				Понятие рефакторинга. Операции и сценарии рефакторинга. Средства рефакторинга кода в   Microsoft Visual Studio. 
+				Встроенные средства визуального моделирования: редактор классов, редактор схемы баз данных. 
+				Ресурсы проекта, их виды и правила работы с ними. 
+				Редактор экранных форм. Инструмент TestDriven.Net.
+			</d:Insert-After>
+			<d:Insert-After nestid = "MSVS_Tasks">
+				<listitem><para>Создание нескольких приложений для освоения различных инструментальных  возможностей Microsoft Visual Studio.</para></listitem>
+			</d:Insert-After>
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "testing_refid">						
+			<d:Insert-After nestid = "TestingAdditional">
+				Место в процессе разработки модульного тестирования. Модульное тестирование и рефакторинг.
+			</d:Insert-After>
+			<d:Insert-After nestid = "testingTasks">
+				<para>				
+					<d:DictRef entryid = "wordTasks" dictid = "helper_id"></d:DictRef>.							
+					<orderedlist numeration = "arabic"> 
+						<listitem><para>В соответствии с правилами  написание модульных тестов для фрагментов программ на C#, C++.В соответствии с правилами написание модульных тестов для своих фрагментов программ (созданных в упражнениях для защищенного программирования) на C#, C++.</para></listitem>
+					</orderedlist>
+				</para>	
+			</d:Insert-After>
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Literature_refid">
+			<d:Insert-After nestid = "literature">
+				<listitem><para><d:DictRef entryid = "Быстрое тестирование" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "компас в мире SOA" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "разработка распред. прил. на .Net" dictid = "books_id"></d:DictRef></para></listitem>				
+			</d:Insert-After>
+		</d:Adapter>			
+	</d:FinalInfProduct>
+	<d:Dictionary id = "podstanovki_id" name = "podstanovki">
+		<d:Entry id = "product">SVN</d:Entry>
+	</d:Dictionary>
+</d:ProductDocumentation>
