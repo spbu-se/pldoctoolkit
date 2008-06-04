@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid = "">
+	<d:FinalInfProduct id = "program5_Id" infproductid = "program_prId">
+		<d:Adapter infelemrefid = "program_elemRefId">						
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Header_refid">
+			<d:Replace-Nest nestid = "programNumber">5</d:Replace-Nest>
+			<d:Replace-Nest nestid = "departmentName">Аутсорсинга</d:Replace-Nest>
+			<d:Replace-Nest nestid = "studentName">Прокашев Дмитрий</d:Replace-Nest>			
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "VersionControl_refid">					
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "MSVS_refid">						
+			<d:Insert-After nestid = "nesseryPartOfMSVS"> 
+				Удаленная отладка. Понятие рефакторинга. Операции и сценарии рефакторинга.
+			</d:Insert-After>
+			<d:Insert-After nestid = "MSVS_Tasks">				
+				<listitem><para>Создание приложений с использованием базовых «мастеров»: MFC AppWizard, Win32 Application, Win32 console application.</para></listitem>
+				<listitem><para>Использование «мастера» для настройки карты сообщений для диалоговой экранной формы.</para></listitem>				
+			</d:Insert-After>
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "testing_refid">			
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Literature_refid">
+			<d:Insert-After nestid = "literature">
+				<listitem><para><d:DictRef entryid = "Быстрое тестирование" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "компас в мире SOA" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "разработка распред. прил. на .Net" dictid = "books_id"></d:DictRef></para></listitem>				
+			</d:Insert-After>
+		</d:Adapter>			
+	</d:FinalInfProduct>
+	<d:Dictionary id = "podstanovki_id" name = "podstanovki">
+		<d:Entry id = "product">Subversion</d:Entry>
+	</d:Dictionary>
+</d:ProductDocumentation>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid = "">
+	<d:FinalInfProduct id = "program3_Id" infproductid = "program_prId">	
+		<d:Adapter infelemrefid = "program_elemRefId">						
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Header_refid">
+			<d:Replace-Nest nestid = "programNumber">3</d:Replace-Nest>
+			<d:Replace-Nest nestid = "departmentName">Аутсорсинга</d:Replace-Nest>
+			<d:Replace-Nest nestid = "studentName">Анна Смирнова</d:Replace-Nest>			
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "VersionControl_refid">
+			<d:Insert-After nestid = "package">
+				   пакетом 
+			</d:Insert-After>						
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "MSVS_refid">						
+			<d:Insert-After nestid = "nesseryPartOfMSVS"> 
+				Основы С++: классы, иерархии классов. Библиотека  STL (Standard Template Library).
+			</d:Insert-After>
+			<d:Insert-After nestid = "MSVS_Tasks">				
+				<listitem><para>Создание собственных проектов в MS Visual Studio и их сборка.</para></listitem> 
+				<listitem><para>Экспериментирование с различными настройками при создании проектов и их сборке.</para></listitem>    
+				<listitem><para>Анализ промышленных C++ приложений и их описание (устное).</para></listitem>
+				<listitem><para>Создание учебных примеров на освоение библиотеки STL – работа с массивами, списками и т.д.</para></listitem>				
+			</d:Insert-After>
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "testing_refid">						
+			<d:Insert-After nestid = "TestingAdditional">
+				Описание случаев использования системы (use cases) и разработка для них тестовых наборов. Использование batch-файлов Windows и утилит для запуска приложений и сбора результатов их выполнения.
+			</d:Insert-After>
+			<d:Insert-After nestid = "testingTasks">
+				<para>				
+					<d:DictRef entryid = "wordTasks" dictid = "helper_id"></d:DictRef>.							
+					<orderedlist numeration = "arabic"> 
+						<listitem><para>Анализ существующих промышленных тестовых пакетов и правил их построения.</para></listitem>
+						<listitem><para>Изучение небольших фрагментов реальных приложений и создание небольших тестовых пакетов  для этих приложений.</para></listitem>
+						<listitem><para>Создание простейших учебных сценариев автоматизации (запуск приложения из командной строки, запуск тестов, анализ результатов, подготовка отчетов) и их реализация с помощью batch-файлов Windows.</para></listitem>
+					</orderedlist>
+				</para>								
+			</d:Insert-After>
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Literature_refid">
+			<d:Insert-After nestid = "literature">
+				<listitem><para><d:DictRef entryid = "Мифический человеко-месяц" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Буч Г. Объектно-ориентированный анализ" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Автоматизированное тестирование" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Быстрое тестирование" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Microsoft WiX" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Windows Installer" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "usability" dictid = "books_id"></d:DictRef></para></listitem>								
+			</d:Insert-After>
+		</d:Adapter>		
+	</d:FinalInfProduct>
+	
+	<d:Dictionary id = "podstanovki_id" name = "podstanovki">
+		<d:Entry id = "product">Microsoft Visual SourceSafe</d:Entry>
+	</d:Dictionary>
+</d:ProductDocumentation>

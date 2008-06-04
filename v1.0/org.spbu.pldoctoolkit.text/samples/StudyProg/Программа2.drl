@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid = "">
+	<d:FinalInfProduct id = "program2_Id" infproductid = "program_prId">
+		<d:Adapter infelemrefid = "program_elemRefId">						
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "Header_refid">
+			<d:Replace-Nest nestid = "programNumber">2</d:Replace-Nest>
+			<d:Replace-Nest nestid = "departmentName">Аутсорсинга</d:Replace-Nest>
+			<d:Replace-Nest nestid = "studentName">Алиса Пигуль</d:Replace-Nest>			
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "VersionControl_refid">					
+			<d:Insert-After nestid = "workWithVC">
+				Интеграция <d:DictRef entryid = "product" dictid = "podstanovki_id"></d:DictRef> c Microsoft Visual Studio.
+			</d:Insert-After>
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "MSVS_refid">						
+			<d:Insert-After nestid = "nesseryPartOfMSVS"> 
+				Понятие рефакторинга. Операции и сценарии рефакторинга. Средства рефакторинга кода в   Microsoft Visual Studio.
+				 
+						Встроенные средства визуального моделирования: редактор классов, редактор схемы баз данных. 
+				  asdРесурсы проекта, их виды и правила работы с ними. 
+				Редактор экранных форм. Инструмент TestDriven.Net.
+			</d:Insert-After>
+			<d:Insert-After nestid = "MSVS_Tasks">
+				<listitem><para>Создание нескольких учебных  приложений для освоения различных инструментальных  возможностей Microsoft Visual Studio.</para></listitem>
+			</d:Insert-After>
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "testing_refid">			
+			<d:Insert-After nestid = "TestingAdditional">
+				Возможности продукта BugZilla.
+			</d:Insert-After>
+			<d:Insert-After nestid = "testingTasks"> 
+				<para>				
+					<d:DictRef entryid = "wordTasks" dictid = "helper_id"></d:DictRef>.							
+					<orderedlist numeration = "arabic"> 
+						<listitem><para>Изучение структуры проекта в пакета BugZilla на реальном промышленном   приложении. Выборочное тестирование промышленных приложений с занесением результатов в пакет BugZilla.</para></listitem>
+					</orderedlist>
+				</para>
+			</d:Insert-After>
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Literature_refid">
+			<d:Insert-After nestid = "literature">
+				<listitem><para><d:DictRef entryid = "основы цифрового телевидения" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "mpeg - это просто" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Кодеры и декодеры MPEG" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Стандарт ISO/IEC 14496-10:2005(E)" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Стандарт ISO/IEC 13818-1:2000(E)" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Келли-Бутл С. Введение в UNIX." dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Быстрое тестирование" dictid = "books_id"></d:DictRef></para></listitem>				
+			</d:Insert-After>
+		</d:Adapter>		
+	</d:FinalInfProduct>
+	<d:Dictionary id = "podstanovki_id" name = "podstanovki">
+		<d:Entry id = "product">Microsoft Visual SourceSafe</d:Entry>
+	</d:Dictionary>
+</d:ProductDocumentation>

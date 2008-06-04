@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid = "">
+	<d:FinalInfProduct id = "program8_Id" infproductid = "program_prId">
+		<d:Adapter infelemrefid = "program_elemRefId">						
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Header_refid">
+			<d:Replace-Nest nestid = "programNumber">8</d:Replace-Nest>
+			<d:Replace-Nest nestid = "departmentName">Реинжиниринга</d:Replace-Nest>
+			<d:Replace-Nest nestid = "studentName">Елена Москотельникова</d:Replace-Nest>			
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "VersionControl_refid">
+			<d:Insert-After nestid = "workWithVC">
+				Особенности администрирования <d:DictRef entryid = "product" dictid = "podstanovki_id"></d:DictRef>.
+			</d:Insert-After>
+			<d:Replace-Nest nestid = "к нему"> к нему</d:Replace-Nest>
+			<d:Insert-After nestid = "VCAdditionalTasks">
+				<listitem><para>Ознакомиться с организацией в Microsoft Visual Source Safe промышленного проекта</para></listitem>
+			</d:Insert-After>						
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "MSVS_refid">			
+			<d:Insert-After nestid = "MSVS_Tasks">
+				<listitem><para>Создание нескольких иложений для освоения различных инструментальных  возможностей Microsoft Visual Studio.</para></listitem>
+			</d:Insert-After>
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "testing_refid">						
+			<d:Insert-After nestid = "TestingAdditional">
+				Место в процессе разработки модульного тестирования. Модульное тестирование и рефакторинг.
+			</d:Insert-After>
+			<d:Insert-After nestid = "testingTasks"> 
+				<para>				
+					<d:DictRef entryid = "wordTasks" dictid = "helper_id"></d:DictRef>.							
+					<orderedlist numeration = "arabic">						
+						<listitem><para>Изучение структуры промышленного проекта в средстве контроля ошибок.</para></listitem> 
+						<listitem><para>Практическое освоение правил создания тестов к продукту Modernization Workbench.</para></listitem>
+						<listitem><para>Практическое освоение средств автоматизации тестирования продукта Modernization Workbench.</para></listitem> 
+						<listitem><para>Учебное тестирование приложений с отражением информации о проделанной работе в средстве контроля ошибок.</para></listitem>						
+					</orderedlist>
+				</para>				
+			</d:Insert-After>
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Literature_refid">
+			<d:Insert-After nestid = "literature">
+				<listitem><para><d:DictRef entryid = "Быстрое тестирование" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "компас в мире SOA" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "разработка распред. прил. на .Net" dictid = "books_id"></d:DictRef></para></listitem>				
+			</d:Insert-After>
+		</d:Adapter>			
+	</d:FinalInfProduct>
+	<d:Dictionary id = "podstanovki_id" name = "podstanovki">
+		<d:Entry id = "product">Microsoft Visual Source Safe</d:Entry>
+	</d:Dictionary>	
+</d:ProductDocumentation>
