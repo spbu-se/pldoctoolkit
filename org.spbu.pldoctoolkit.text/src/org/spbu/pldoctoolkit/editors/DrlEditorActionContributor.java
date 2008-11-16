@@ -30,7 +30,7 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		try{
 			TemplatesDocument templatesDocument = new TemplatesDocument();
 		    MenuManager subInsertTemplate = new MenuManager("Insert Template");
-		    docbookMenu.insert(5, subInsertTemplate);
+		    docbookMenu.add(subInsertTemplate);
 		    for(int i = 0; i < templatesDocument.numOfTemplates; i++){
 			    insertTemplates[i] = new RetargetTextEditorAction(DrlEditorMessages.getBundle(), templatesDocument.templates[i].name+'.');
 			    subInsertTemplate.add(insertTemplates[i]);	
