@@ -19,8 +19,8 @@ public class DrlTextEditor extends TextEditor {
 	public static final String VALIDATE_DRL = "validate_drl";
 	public static final String EXPORT_TO_HTML = "export_to_html";
 	public static final String EXPORT_TO_PDF = "export_to_pdf";
-	public static final String EXPORT_TO_HH = "export_to_html_help";
-	public static final String EXPORT_TO_DB = "export_to_docbook";
+	//public static final String EXPORT_TO_HH = "export_to_html_help";
+	//public static final String EXPORT_TO_DB = "export_to_docbook";
 	public static final String [] INSERT_TEMPLATES = new String[1000];
 	
 	private ColorManager colorManager;
@@ -74,7 +74,7 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+/*
 		try {
 			setAction(EXPORT_TO_HH, new BasicExportAction(this, DrlPublisherPlugin.getURL("xsl/docbook/htmlhelp/htmlhelp.xsl"), "Export to HTML Help", "HTML help", "hh", false));
 		} catch (Exception e) {
@@ -86,7 +86,7 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+*/		
 		try {
 			TemplatesDocument templatesDocument = new TemplatesDocument();
 			for (int i = 0; i < templatesDocument.numOfTemplates;i++){
