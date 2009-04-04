@@ -1,12 +1,15 @@
 package org.spbu.pldoctoolkit.editors;	
 
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.editors.text.TextEditorActionContributor;
+import org.eclipse.ui.texteditor.ContentAssistAction;
 import org.eclipse.ui.texteditor.ITextEditor;
+import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.RetargetTextEditorAction;
 import org.spbu.pldoctoolkit.templates.TemplatesDocument;
 
@@ -60,6 +63,13 @@ public class DrlEditorActionContributor extends TextEditorActionContributor {
 		//exportToHtmlHelp.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_HH));
 		exportToPdf.setAction(getAction(editor, DrlTextEditor.EXPORT_TO_PDF));
 		validateDrl.setAction(getAction(editor, DrlTextEditor.VALIDATE_DRL));
+		/*changed*/
+			Action action = new ContentAssistAction(DrlEditorMessages.getBundle(),"ContentAssistProposal.",editor);
+			String id = ITextEditorActionDefinitionIds.CONTENT_ASSIST_PROPOSALS;
+			action.setActionDefinitionId(id);
+			editor.setAction("ContentAssistProposal",action);
+		
+		/*changed*/
 		TemplatesDocument templatesDocument = new TemplatesDocument();
 	    for(int i = 0; i < templatesDocument.numOfTemplates; i++){
 		    insertTemplates[i].setAction(getAction(editor, DrlTextEditor.INSERT_TEMPLATES[i]));
