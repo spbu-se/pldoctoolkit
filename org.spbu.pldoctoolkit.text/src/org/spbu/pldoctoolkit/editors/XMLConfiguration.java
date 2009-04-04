@@ -39,7 +39,9 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 	public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {
 		ContentAssistant assistant = new ContentAssistant();
 		assistant.setDocumentPartitioning(getConfiguredDocumentPartitioning(sourceViewer));
-		assistant.setContentAssistProcessor(new DrlCompletionProcessor(editor), IDocument.DEFAULT_CONTENT_TYPE);
+		/*changed*/
+	//	assistant.setContentAssistProcessor(new DrlCompletionProcessor(editor), IDocument.DEFAULT_CONTENT_TYPE);
+		/*changed*/
 		assistant.setContentAssistProcessor(new DrlCompletionProcessor(editor), XMLPartitionScanner.XML_TAG);
 		
 		assistant.enableAutoActivation(true);
