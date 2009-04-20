@@ -61,25 +61,40 @@
 
 
 #define BOOK 1
-#define NEWIE 2
-#define NEWIP 3
-#define PRINT 4
-#define BBOOK 5
-#define BDOC 6
-#define BCHECK 7
-#define BPRINT 8
-#define MAXSTRING 255
+#define NEWDC 2
+#define NEWDI 3
+#define NEWDT 4
+#define NEWIE 5
+#define NEWIP 6
+#define BBOOK 11
+#define BNEWDC 12
+#define BNEWDI 13
+#define BNEWDT 14
+#define BNEWIE 15
+#define BNEWIP 16
 #define SAVEHT 101
-#define SAVEPD 103
-#define OPEN 105
-#define TESTOPEN 106
-#define IMPORT 107
+#define SAVEPD 102
+#define OPEN 103
+#define IMPORT 104
+#define BSAVEHT 111
+#define BSAVEPD 112
+#define BOPEN 113
+#define BIMPORT 114
 #define FM 200
 #define DRL 201
 #define FMBOOK 202
-#define INFELEM 203
-#define EXPORT 998
-#define CLOSE 999
+#define MAXSTRING 255
+
+#define DICTION 501
+#define DIRECT 502
+#define DIRTEMP 503
+#define INFELEM 504
+#define INFPROD 505
+
+#define EXPORT 901
+#define CLOSE 902
+#define BEXPORT 911
+#define BCLOSE 912
 #define in ((MetricT) 65536*72)
 #define defaultPath  (F_StrCopyString("C:\\"))
 #define defaultBookName (F_StrCopyString("mainDRLFMBook.book"))
@@ -88,18 +103,32 @@ F_ObjHandleT menubarId, menuId; // !MakerMainMenu and Docline menus
 F_ObjHandleT newMenuId; // "New" submenu in the Docline menu
 F_ObjHandleT openMenuId; // "Open" submenu in the Docline menu
 F_ObjHandleT saveMenuId; // "Save As..." submenu in the Docline menu
-F_ObjHandleT newProjectId, separatorId, newInfElemId, newInfProdId, cmd4Id; // Commands from the "New" submenu
+F_ObjHandleT newProjectId, separatorId, newDictId, newDirectId, newDirTempId, newInfElemId, newInfProdId; // Commands from the "New" submenu
 F_ObjHandleT saveDoclineAsHtmlId, saveDoclineAsPdfId; // Commands from the "Save As..." submenu
-//F_ObjHandleT addInfElemId, addInfProdId; // Commands from the "Add" submenu
-F_ObjHandleT openFmID, importDrlID, bmenubarId, bmenuId, bnewmenuId, bcmd1Id, bcmd2Id, bcmd3Id, bcmd4Id;
+F_ObjHandleT openFmID, importDrlID; // open exising fm docline project, import project from existing drl documentation
 F_ObjHandleT closeProjectId; // menu item for closing active project and all files in it
 F_ObjHandleT exportProjectId; // menu item for exporting active project back to DRL
 
+/* All the same for !BookMainMenu */
+F_ObjHandleT bmenubarId, bmenuId; // !BookMainMenu and Docline menus
+F_ObjHandleT bnewMenuId; // "New" submenu in the Docline menu
+F_ObjHandleT bopenMenuId; // "Open" submenu in the Docline menu
+F_ObjHandleT bsaveMenuId; // "Save As..." submenu in the Docline menu
+F_ObjHandleT bnewProjectId, bseparatorId, bnewDictId, bnewDirectId, bnewDirTempId, bnewInfElemId, bnewInfProdId; // Commands from the "New" submenu
+F_ObjHandleT bsaveDoclineAsHtmlId, bsaveDoclineAsPdfId; // Commands from the "Save As..." submenu
+F_ObjHandleT bopenFmID, bimportDrlID; // open exising fm docline project, import project from existing drl documentation
+F_ObjHandleT bcloseProjectId; // menu item for closing active project and all files in it
+F_ObjHandleT bexportProjectId; // menu item for exporting active project back to DRL
+
+F_ObjHandleT firstAddedId[5];
+
 VoidT createNewDocLineBook();
-VoidT addNewDocLineDoc();
+VoidT newDocCoreChild(IntT type);
 VoidT openBook();
 VoidT importDocLineDoc();
+VoidT closeProject();
 IntT test;
+IntT dictionCount=0, directCount=0, dirTempCount=0, infElemCount=0, infProdCount=0;
 
 VoidT F_ApiInitialize(IntT init)
 {
@@ -125,6 +154,9 @@ VoidT F_ApiInitialize(IntT init)
 	separatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "NewSeparator");
 	F_ApiAddCommandToMenu(newMenuId, separatorId);
 	/* Define "New *SpecificElement*" commands and add them to the "New" menu. */
+	newDictId = F_ApiDefineAndAddCommand(NEWDC, newMenuId, "NewDictionary", "Dictionary", "\\!ND");
+	newDirectId = F_ApiDefineAndAddCommand(NEWDI, newMenuId, "NewDirectory", "Directory", "\\!DI");
+	newDirTempId = F_ApiDefineAndAddCommand(NEWDT, newMenuId, "NewDirTemplate", "DirTemplate", "\\!DT");
 	newInfElemId = F_ApiDefineAndAddCommand(NEWIE, newMenuId, "NewInfElement", "InfElement", "\\!NE");
 	newInfProdId = F_ApiDefineAndAddCommand(NEWIP, newMenuId, "NewInfProduct", "InfProduct", "\\!NP");
 	
@@ -152,14 +184,40 @@ VoidT F_ApiInitialize(IntT init)
 	bmenubarId = F_ApiGetNamedObject(FV_SessionId, FO_Menu, "!BookMainMenu");
 	/* Define and add the DocLine menu to the main menu. */
 	bmenuId = F_ApiDefineAndAddMenu(bmenubarId, "BDocLineMenu", "DocLine");
-	/* Define and add the New-> menu to the DocLine menu. */
-	bnewmenuId = F_ApiDefineAndAddMenu(bmenuId, "BNewDocLineMenu", "Add");
+
+	/* Define and add the New-> menu to the Book DocLine menu. */
+	bnewMenuId = F_ApiDefineAndAddMenu(bmenuId, "BNewDocLineMenu", "New");
 	/* Define some commands and add them to the New-> menu. */
-	//bcmd1Id = F_ApiDefineAndAddCommand(BBOOK, bnewmenuId, "BNewDocLineBook", "Book", "\\!BNB");
-	bcmd2Id = F_ApiDefineAndAddCommand(BDOC, bnewmenuId, "BNewDocLineDocument", "Element", "\\!BND");
-	/* Define some commands and add them to the DocLine menu. */
-	bcmd3Id = F_ApiDefineAndAddCommand(BCHECK, bmenuId, "BCheckGrammar", "Second command", "\\!BCG");
-	bcmd4Id = F_ApiDefineAndAddCommand(BPRINT, bmenuId, "BPrintErrors", "Third command", "\\!BPE");
+	bnewProjectId = F_ApiDefineAndAddCommand(BBOOK, bnewMenuId, "BNewDocLineProject", "Docline project", "\\!BNP");	
+	/* Add seperator after the New docline project command*/
+	bseparatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "BNewSeparator");
+	F_ApiAddCommandToMenu(bnewMenuId, bseparatorId);
+	/* Define "New *SpecificElement*" commands and add them to the "New" menu. */
+	bnewDictId = F_ApiDefineAndAddCommand(BNEWDC, bnewMenuId, "BNewDictionary", "Dictionary", "\\!BND");
+	bnewDirectId = F_ApiDefineAndAddCommand(BNEWDI, bnewMenuId, "BNewDirectory", "Directory", "\\!BDI");
+	bnewDirTempId = F_ApiDefineAndAddCommand(BNEWDT, bnewMenuId, "BNewDirTemplate", "DirTemplate", "\\!BDT");
+	bnewInfElemId = F_ApiDefineAndAddCommand(BNEWIE, bnewMenuId, "BNewInfElement", "InfElement", "\\!BNE");
+	bnewInfProdId = F_ApiDefineAndAddCommand(BNEWIP, bnewMenuId, "BNewInfProduct", "InfProduct", "\\!BNP");
+	
+	/* Define and add the Open-> menu to the DocLine menu. */
+	bopenMenuId = F_ApiDefineAndAddMenu(bmenuId, "BOpenDocLineMenu", "Open");
+	/* Define some commands and add them to the Open-> menu. */
+    bopenFmID = F_ApiDefineAndAddCommand(BOPEN, bopenMenuId, "BOpenDoclineProject", "Docline project", "\\!BIW");
+
+	/* Define command for importing DocLine project from existing DRL documentation. */
+    bimportDrlID = F_ApiDefineAndAddCommand(BIMPORT, bmenuId, "BImport", "Import","\\!BOO");
+
+	/* Define and add the Save As...-> menu to the DocLine menu. */
+	bsaveMenuId = F_ApiDefineAndAddMenu(bmenuId, "BSaveDocLineMenu", "Save Project As...");
+	/* Define some commands and add them to the Save As...-> menu. */
+    bsaveDoclineAsHtmlId = F_ApiDefineAndAddCommand(BSAVEHT, bsaveMenuId, "BSaveDoclineAsHtml", "HTML", "\\!BHT");
+    bsaveDoclineAsPdfId = F_ApiDefineAndAddCommand(BSAVEPD, bsaveMenuId, "BSaveDoclineAsPdf", "PDF", "\\!BPD");
+
+	/* Define command for exporting active project back to DRL */
+    bexportProjectId = F_ApiDefineAndAddCommand(BEXPORT, bmenuId, "BExportProject", "Export","\\!BEP");
+
+	/* Define command for closing active project and all files in it */
+    closeProjectId = F_ApiDefineAndAddCommand(BCLOSE, bmenuId, "BCloseProject", "Close Project","\\!BCP");
   }
 } 
 
@@ -180,8 +238,20 @@ VoidT F_ApiCommand(IntT command)
   case BOOK:
 	createNewDocLineBook();
     break;
-  case BDOC:
-	addNewDocLineDoc();
+  case BNEWDC:
+	newDocCoreChild(DICTION);
+	break;
+  case BNEWDI:
+	newDocCoreChild(DIRECT);
+	break;
+  case BNEWDT:
+	newDocCoreChild(DIRTEMP);
+	break;
+  case BNEWIE:
+	newDocCoreChild(INFELEM);
+	break;
+  case BNEWIP:
+	newDocCoreChild(INFPROD);
 	break;
   case OPEN:
       openBook();
@@ -189,13 +259,16 @@ VoidT F_ApiCommand(IntT command)
   case IMPORT:
       importDocLineDoc();
       break;
+  case BCLOSE:
+	closeProject();
+	break;
   }
 }
 
 //Converts full path to path of directory
 VoidT pathFilename(UCharT *str)
 {
-    F_ApiAlert(str,FF_ALERT_CONTINUE_NOTE);
+    //F_ApiAlert(str,FF_ALERT_CONTINUE_NOTE);
     while (*str)
     {
         *str++;
@@ -446,36 +519,159 @@ VoidT createNewDocLineBook()
 {
 	F_ObjHandleT bookId;
 	StringT path, bookPath;
+	IntT err;
+	/* Choose workspace for new docline project */
+	err = F_ApiChooseFile(&path, "Choose directory to save new docline project", "", "", FV_ChooseOpenDir, "");
+	/* Open template book and save it to the selected directory*/
 	bookId = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_book_template.book",False);
-	// proper path must be here
-	path = F_StrCopyString("D:\\framemaker\\newproject\\");
-	bookPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+1,NO_DSE);
-    bookPath = path;
+	bookPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+3,NO_DSE);
+    bookPath = F_StrCopyString(path);
+	F_StrCat(bookPath,F_StrCopyString("\\"));
     F_StrCat(bookPath,defaultBookName);
 	F_ApiSimpleSave(bookId, bookPath, False);
+	/* Deallocating memory */
     F_ApiDeallocateString(&path);
-    F_ApiDeallocateString(&bookPath);
+    //F_ApiDeallocateString(&bookPath);
 }
 
-VoidT addNewDocLineDoc()
+VoidT closeProject()
 {
-	F_ObjHandleT bookId, elemId;
-	F_ElementLocT elemLoc;
+	/*F_ObjHandleT bookId, compId, docId;
+	StringT tmpPath;
+	IntT response;
+	/* Get Id and path of the book */
+	/*bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
+	compId = F_ApiGetId(FV_SessionId, bookId, FP_FirstComponentInBook);
+    while (compId != 0)
+    {
+		tmpPath = F_ApiGetString(bookId, compId, FP_Name);
+		docId = F_ApiSimpleOpen(tmpPath, False);
+		/* See whether document has been modified. */
+	/*	if (F_ApiGetInt(FV_SessionId, docId, FP_DocIsModified))
+			response = F_ApiAlert("Document was changed. Close it anyway?",FF_ALERT_OK_DEFAULT);
+		if (!response)
+			F_ApiClose (docId, FF_CLOSE_MODIFIED);
+		compId = F_ApiGetId(bookId, compId, FP_NextComponentInBook);
+    }*/
+}
+
+VoidT newDocCoreChild(IntT type)
+{
+	F_ObjHandleT bookId, docId, childEdefId, compId, elemId;
+    F_ElementLocT elemLoc;
+	StringT bookPath, savePath, edefName;
+	IntT len, i, j; 
+	BoolT compExists;
 	
+	/* Get Id and path of the book */
 	bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
-	elemLoc.childId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
-	elemLoc.parentId = 0;
-	elemLoc.offset = 0;
-	/* Insert the new element. */
-	elemId = F_ApiNewBookComponentInHierarchy(bookId, "Chapter1", &elemLoc);
-	/*if (FP_HighestLevelElement)
-	{
-		F_ApiAlert("The book is structured!", FF_ALERT_CONTINUE_NOTE);
-	}*/
-	if (FA_errno == FE_BookUnStructured) 
-	{
-		F_ApiAlert("The book is unstructured! Can't insert new Book Component.", FF_ALERT_CONTINUE_NOTE);
+	bookPath = F_ApiGetString(FV_SessionId, bookId, FP_Name);
+	pathFilename(bookPath);
+	/* Choose what type of element we add*/
+	switch (type)
+    {
+    case DICTION:
+		dictionCount++;
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen("dictionary.fm")+5, NO_DSE);
+		len = F_Sprintf(savePath, "%sdictionary%d.fm", (StringT)bookPath, (IntT)dictionCount);
+		edefName = F_StrCopyString("Dictionary");
+		j = 0;
+        break;
+    case DIRECT:
+		directCount++;
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen("directory.fm")+5, NO_DSE);
+		len = F_Sprintf(savePath, "%sdirectory%d.fm", (StringT)bookPath, (IntT)directCount);
+		edefName = F_StrCopyString("Directory");
+		j = 1;
+        break;
+    case DIRTEMP:
+		dirTempCount++;
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen("dir_template.fm")+5, NO_DSE);
+		len = F_Sprintf(savePath, "%sdir_template%d.fm", (StringT)bookPath, (IntT)dirTempCount);
+		edefName = F_StrCopyString("DirTemplate");
+		j = 2;
+        break;
+    case INFELEM:
+		infElemCount++;
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen("inf_element.fm")+5, NO_DSE);
+		len = F_Sprintf(savePath, "%sinf_element%d.fm", (StringT)bookPath, (IntT)infElemCount);
+		edefName = F_StrCopyString("InfElement");
+		j = 3;
+        break;
+    case INFPROD:
+		infProdCount++;
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen("inf_product.fm")+5, NO_DSE);
+		len = F_Sprintf(savePath, "%sinf_product%d.fm", (StringT)bookPath, (IntT)infProdCount);
+		edefName = F_StrCopyString("InfProduct");
+		j = 4;
+        break;
 	}
+	/* First create an 8.5 x 11 custom document. */
+	docId = F_ApiCustomDoc(F_MetricFractMul(in,17,2), 11*in, 1, F_MetricFractMul(in,1,4), in, in, in, in, FF_Custom_SingleSided, True);
+	/* Import EDD from the current book */
+	F_ApiSimpleImportElementDefs(docId, bookId, FF_IED_REMOVE_OVERRIDES);
+	/* Get ID of the inserting element definitions */
+	childEdefId = F_ApiGetNamedObject(docId, FO_ElementDef, edefName);
+	/* Insert new Highest-level element into the document, i.e. InfElement, InfProduct, etc. */
+	F_ApiWrapElement(docId, childEdefId);
+	/* Save the doc with the specific name */
+	F_ApiSimpleSave(docId, savePath, False);
+	/* Make a component */
+	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+    if (!compId)
+    {
+		F_ApiAlert("Highest element error",FF_ALERT_CONTINUE_NOTE);
+    }
+    else
+    {
+		/* Check if DocumentationCore section exists */
+		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+        compExists = False;
+        while (compId && (!compExists))
+        {
+			elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
+			if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name),"DocumentationCore"))
+			{
+				compExists = True;
+			}
+			else
+			{
+				compId = F_ApiGetId(bookId,compId,FP_NextSiblingElement);
+			}
+        }
+        if (!compExists) // There is no "DocumentationCore" section
+        {
+			/* Create DocumentationCore section */
+			elemId = F_ApiGetNamedObject(bookId, FO_ElementDef, "DocumentationCore");
+			elemLoc.parentId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+			elemLoc.childId = 0;
+			elemLoc.offset = 0;
+			compId = F_ApiNewElementInHierarchy(bookId, elemId, &elemLoc);
+        }
+		/* Insert Book component in DocumentationCore section*/
+		i = j + 1; // j-type of element. 0 for Dictionary, 1 for Directory, 2 for DirTemplate, 3 for InfElement, 4 for InfProduct
+		/* Find element to insert our element before*/
+		while ((i<5) && (!firstAddedId[i])) i++;
+		if (i == 5)
+			elemLoc.childId = 0;
+		else
+			elemLoc.childId = firstAddedId[i];
+        elemLoc.parentId = compId;
+        elemLoc.offset = 0;
+        compId = F_ApiNewBookComponentInHierarchy(bookId, savePath, &elemLoc);
+		if (!firstAddedId[j])
+			firstAddedId[j] = compId;
+	}
+	/* Update book */
+    F_ApiSimpleGenerate(bookId, False, True);
+	bookPath = F_ApiGetString(FV_SessionId, bookId, FP_Name);
+	/* Save book and docs after update */
+	F_ApiSimpleSave(docId, savePath, False);
+    F_ApiSimpleSave(bookId, bookPath, False);
+	/* Deallocating memory */
+    F_ApiDeallocateString(&bookPath);
+    F_ApiDeallocateString(&savePath);
+    F_ApiDeallocateString(&edefName);
 }
 
 
