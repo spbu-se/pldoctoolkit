@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProductDocumentation productid="professional" xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+<FinalInfProduct id="UserManual_professional" infproductid="UserManual">
+<Adapter infelemrefid="ref_antivirus">
+<Replace-Nest nestid="extended_actions">
+<listitem><para>помещение в карантин</para></listitem>
+<listitem><para>запрос онлайн-помощи</para></listitem>
+</Replace-Nest>
+</Adapter>
+<Adapter infelemrefid="ref_firewall_config"/>
+<Adapter infelemrefid="ref_antivirus_config"/>
+<Adapter infelemrefid="ref_update_inet"/>
+<Adapter infelemrefid="ref_antispam"/>
+</FinalInfProduct>
+
+<Dictionary id="main" name="Главный Словарь">
+<Entry id="productname">ИнтерБез Профессиональный</Entry>
+</Dictionary>
+</ProductDocumentation>
