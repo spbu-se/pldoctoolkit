@@ -268,7 +268,6 @@ VoidT F_ApiCommand(IntT command)
 //Converts full path to path of directory
 VoidT pathFilename(UCharT *str)
 {
-    //F_ApiAlert(str,FF_ALERT_CONTINUE_NOTE);
     while (*str)
     {
         *str++;
@@ -311,7 +310,7 @@ BoolT validateFilename(UCharT *str, IntT type)
                 }
                 else
                 {
-                    return (!(F_StrIEqual((StringT)str,(StringT)".backup.fm")));
+                    return (!F_StrIEqual((StringT)str,(StringT)".backup.fm"))&&(!F_StrIEqual((StringT)str,(StringT)".recover.fm"));
                 }
             }
             else
@@ -336,6 +335,7 @@ BoolT validateFilename(UCharT *str, IntT type)
     }
 }
 
+
 //Converts full path to file name
 StringT fileFileName(UCharT *str)
 {
@@ -352,23 +352,59 @@ StringT fileFileName(UCharT *str)
     return str;
 }
 
+VoidT addStructuredElementToBook(F_ObjHandleT bookID, F_ObjHandleT newBookID, F_ObjHandleT currElemID, F_ObjHandleT elemID)
+{
+    F_ElementLocT loc;
+    F_ObjHandleT childID, parentID;
+    //F_ApiAlert(F_ApiGetString(bookID,F_ApiGetId(bookID,elemID,FP_ElementDef),FP_Name),FF_ALERT_CONTINUE_NOTE);
+    loc.childId = 0;
+    loc.offset = 0;
+    loc.parentId = currElemID;
+    if (F_ApiGetObjectType(bookID,elemID) == FO_BookComponent)
+    {
+        F_ApiNewBookComponentInHierarchy(newBookID,F_ApiGetString(bookID,elemID,FP_Name),&loc);
+    }
+    else if (F_ApiGetObjectType(bookID,elemID) == FO_Element)
+    {
+        parentID = F_ApiGetNamedObject(newBookID,FO_ElementDef,F_ApiGetString(bookID,F_ApiGetId(bookID,elemID,FP_ElementDef),FP_Name));
+        parentID = F_ApiNewElementInHierarchy(newBookID,parentID,&loc);
+        childID = F_ApiGetId(bookID,elemID,FP_FirstChildElement);
+        while (childID)
+        {
+            if (F_ApiGetId(bookID,childID,FP_BookComponent))
+            {
+                addStructuredElementToBook(bookID,newBookID,parentID,F_ApiGetId(bookID,childID,FP_BookComponent));
+            }
+            else
+            {
+                addStructuredElementToBook(bookID,newBookID,parentID,childID);
+            }
+            childID = F_ApiGetId(bookID,childID,FP_NextSiblingElement);
+        }
+    }
+    else
+    {
+        F_ApiAlert("Error in adding to hierarchy",FF_ALERT_CONTINUE_NOTE);
+    }
+}
+
 //Common part of Open and Import
 VoidT openFilesInDirectory(StringT path)
 {
     FilePathT *newpath, *file;
-    StringT bookPath, tmpPath, tmpPath2, place, fileName;
+    StringT bookPath, tmpPath, tmpPath2, place, fileName, tmpBookPath;
     //path - path of openned document
     //newpath~path
     //bookPath - book path
     //defaultPath - default directory path
-    F_ObjHandleT bookID, compID, elemID;
+    F_ObjHandleT bookID, compID, elemID, docID;
     DirHandleT handle;
-    IntT statusp, statusp2;
+    IntT statusp, statusp2, statusp3;
     BoolT bookExists, compExists;
     F_ElementLocT elemLoc;
 
     pathFilename(path);
-    bookPath = "";
+    tmpBookPath = "";
     newpath = F_PathNameToFilePath (path, NULL, FDosPath);
     handle = F_FilePathOpenDir(newpath, &statusp);
     if (handle == 0) 
@@ -380,33 +416,65 @@ VoidT openFilesInDirectory(StringT path)
     else
     {
         bookExists = False;
-        while ((!bookExists)&&((file = F_FilePathGetNext(handle, &statusp)) != NULL))
+        while ((file = F_FilePathGetNext(handle, &statusp)) != NULL)
         {
-            F_Free(bookPath);
-            bookPath = F_FilePathToPathName(file, FDosPath);
-            if (F_StrIEqual(fileFileName(bookPath),defaultBookName))
+            F_Free(tmpBookPath);
+            tmpBookPath = F_FilePathToPathName(file, FDosPath);
+            if (F_StrIEqual(fileFileName(tmpBookPath),defaultBookName))
             {
                 bookExists = True;
+                bookPath = F_StrCopyString(tmpBookPath);
             }
+            else if (F_StrSuffix(bookPath,".fm.lck"))
+            {
+                F_DeleteFile(file);
+            }
+            else
             F_FilePathFree(file);
-        }   
+        } 
+        F_ApiDeallocateString(&tmpBookPath);
         F_FilePathCloseDir(handle);
-        handle = F_FilePathOpenDir(newpath, &statusp2);
         if (!bookExists)
         {
             bookID = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_book_template.book",False);
-            bookPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+1,NO_DSE);
-            bookPath = path;
-            F_StrCat(bookPath,defaultBookName);    
+            //bookPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+1,NO_DSE);
+			bookPath = F_StrCopyString(path);
+			bookPath = F_Realloc(bookPath,F_StrLen(path)+F_StrLen(defaultBookName)+1,NO_DSE);
+            F_StrCat(bookPath,defaultBookName);
+			handle = F_FilePathOpenDir(F_PathNameToFilePath(path,NULL,FDosPath),&statusp3);
+			//F_ApiAlert(bookPath,FF_ALERT_CONTINUE_NOTE);
+			if (!handle)
+			{
+				F_ApiAlert("Handle error 1",FF_ALERT_CONTINUE_NOTE);
+				return;
+			}
+			while (file = F_FilePathGetNext(handle,&statusp3))
+			{
+				tmpPath = F_FilePathToPathName(file,FDosPath);
+				if ((validateFilename(tmpPath,FMBOOK))&&(!F_StrSuffix(tmpPath,defaultBookName)))
+				{
+					docID = F_ApiSimpleOpen(tmpPath,False);
+					addStructuredElementToBook(docID,bookID,F_ApiGetId(FV_SessionId,bookID,FP_HighestLevelElement),
+						F_ApiGetId(FV_SessionId,docID,FP_HighestLevelElement));
+					F_ApiClose(docID,FF_CLOSE_MODIFIED);
+				}
+			}
+			F_FilePathCloseDir(handle);
         }
         else
         {
+			//F_DeleteFile(F_PathNameToFilePath(bookPath,NULL,FDosPath));
+   //         bookID = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_book_template.book",False);
+   //         bookPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+1,NO_DSE);
+   //         bookPath = path;
+   //         F_StrCat(bookPath,defaultBookName);    
             bookID = F_ApiSimpleOpen(bookPath,False);
         }
+		handle = F_FilePathOpenDir(newpath, &statusp2);
         while((file = F_FilePathGetNext(handle, &statusp2)) != NULL)
         {
             tmpPath = F_FilePathToPathName(file, FDosPath);
-            if (validateFilename(tmpPath,FM) == True) 
+            if (validateFilename(tmpPath,FM)) 
             {
                 compID = F_ApiGetId(FV_SessionId,bookID,FP_FirstComponentInBook);
                 compExists = False;
@@ -514,7 +582,6 @@ VoidT openBook()
         openFilesInDirectory(path);
     }
 }
-
 VoidT createNewDocLineBook()
 {
 	F_ObjHandleT bookId;
@@ -683,11 +750,47 @@ VoidT importDocLineDoc()
     DirHandleT handle;
     IntT statusp, statusp2, i;
     F_PropValsT params, *returnParams;
-    //Do not use russian letters in path!!!
+
+    returnParams = NULL;
+    params = F_ApiGetOpenDefaultParams();
+    if (params.len == 0)
+    {
+        F_ApiAlert("Default params error",FF_ALERT_CONTINUE_NOTE);
+        //return;
+		//i = F_ApiGetPropIndex(&params, FS_ForceOpenAsText);
+		params.val[0].propIdent.num = FS_ForceOpenAsText;
+		params.val[0].propVal.valType = FT_Integer;
+		params.val[0].propVal.u.ival = True;
+    }
+    else
+    {
+        i = F_ApiGetPropIndex(&params, FS_UseAutoSaveFile);
+        params.val[i].propVal.u.ival = FV_DoYes;
+		i = F_ApiGetPropIndex(&params, FS_ShowBrowser);
+		params.val[i].propVal.u.ival = True;
+		i = F_ApiGetPropIndex(&params, FS_ForceOpenAsText);
+		params.val[i].propVal.u.ival = True;
+    }
     docID = F_ApiSimpleOpen(defaultPath,True);
-    if (docID != 0)
+	//docID = F_ApiOpen(defaultPath,&params,&returnParams);
+    returnParams = NULL;
+    params = F_ApiGetOpenDefaultParams();
+    if (params.len == 0)
+    {
+        F_ApiAlert("Default params error",FF_ALERT_CONTINUE_NOTE);
+        return;
+    }
+    else
+    {
+        i = F_ApiGetPropIndex(&params,FS_StructuredOpenApplication);
+        params.val[i].propVal.u.ival = "DocLine";
+        i = F_ApiGetPropIndex(&params, FS_UseAutoSaveFile);
+        params.val[i].propVal.u.ival = FV_DoYes;
+    }
+	if (docID != 0)
     {
         path = F_ApiGetString(FV_SessionId,docID,FP_Name);
+        F_ApiClose(docID,FF_CLOSE_MODIFIED);
         pathFilename(path);
         bookPath = "";
         newpath = F_PathNameToFilePath (path, NULL, FDosPath);
@@ -695,32 +798,31 @@ VoidT importDocLineDoc()
         if (handle == 0)
         {
             F_FilePathFree(newpath);
-            F_ApiAlert("Handle Error0", FF_ALERT_CONTINUE_NOTE);
+            F_ApiAlert("Handle Error2", FF_ALERT_CONTINUE_NOTE);
             return;
         }
         else
         {   
-            returnParams = NULL;
-            params = F_ApiGetOpenDefaultParams();
-            if (params.len == 0)
-            {
-                F_ApiAlert("Default params error",FF_ALERT_CONTINUE_NOTE);
-                return;
-            }
-            else
-            {
-                i = F_ApiGetPropIndex(&params,FS_StructuredOpenApplication);
-                params.val[i].propVal.u.ival = "DocLine";
-                i = F_ApiGetPropIndex(&params, FS_UseAutoSaveFile);
-                params.val[i].propVal.u.ival = FV_DoYes;
-            }
-            while((file = F_FilePathGetNext(handle, &statusp2)) != NULL)
+			while (file = F_FilePathGetNext(handle,&statusp2))
+			{
+				tmpPath = F_FilePathToPathName(file,FDosPath);
+				if (!validateFilename(tmpPath,DRL))
+				{
+					F_DeleteFile(file);
+				}
+			}
+			F_FilePathCloseDir(handle);
+			handle = F_FilePathOpenDir(newpath,&statusp2);
+            while((file = F_FilePathGetNext(handle, &statusp)) != NULL)
             {
                 tmpPath = F_FilePathToPathName(file,FDosPath);
                 if (validateFilename(tmpPath,DRL))
                 {
-                    F_ApiAlert(tmpPath,FF_ALERT_CONTINUE_NOTE);
                     fileID = F_ApiOpen(tmpPath,&params,&returnParams);
+					if (fileID)
+					{
+						F_ApiClose(fileID,FF_CLOSE_MODIFIED);
+					}
                     F_ApiDeallocatePropVals(returnParams);
                 }
                 F_Free(tmpPath);
