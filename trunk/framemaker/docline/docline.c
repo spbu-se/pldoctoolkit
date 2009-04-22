@@ -753,29 +753,22 @@ VoidT importDocLineDoc()
 
     returnParams = NULL;
     params = F_ApiGetOpenDefaultParams();
-    if (params.len == 0)
+    if (!params.len)
     {
         F_ApiAlert("Default params error",FF_ALERT_CONTINUE_NOTE);
-        //return;
-		//i = F_ApiGetPropIndex(&params, FS_ForceOpenAsText);
-		params.val[0].propIdent.num = FS_ForceOpenAsText;
-		params.val[0].propVal.valType = FT_Integer;
-		params.val[0].propVal.u.ival = True;
+        return;
     }
     else
     {
-        i = F_ApiGetPropIndex(&params, FS_UseAutoSaveFile);
-        params.val[i].propVal.u.ival = FV_DoYes;
 		i = F_ApiGetPropIndex(&params, FS_ShowBrowser);
 		params.val[i].propVal.u.ival = True;
 		i = F_ApiGetPropIndex(&params, FS_ForceOpenAsText);
 		params.val[i].propVal.u.ival = True;
     }
-    docID = F_ApiSimpleOpen(defaultPath,True);
-	//docID = F_ApiOpen(defaultPath,&params,&returnParams);
+	docID = F_ApiOpen(defaultPath,&params,&returnParams);
     returnParams = NULL;
     params = F_ApiGetOpenDefaultParams();
-    if (params.len == 0)
+    if (!params.len)
     {
         F_ApiAlert("Default params error",FF_ALERT_CONTINUE_NOTE);
         return;
@@ -784,8 +777,6 @@ VoidT importDocLineDoc()
     {
         i = F_ApiGetPropIndex(&params,FS_StructuredOpenApplication);
         params.val[i].propVal.u.ival = "DocLine";
-        i = F_ApiGetPropIndex(&params, FS_UseAutoSaveFile);
-        params.val[i].propVal.u.ival = FV_DoYes;
     }
 	if (docID != 0)
     {
@@ -815,6 +806,7 @@ VoidT importDocLineDoc()
 			handle = F_FilePathOpenDir(newpath,&statusp2);
             while((file = F_FilePathGetNext(handle, &statusp)) != NULL)
             {
+				//F_ApiAlert("Point",FF_ALERT_CONTINUE_NOTE);
                 tmpPath = F_FilePathToPathName(file,FDosPath);
                 if (validateFilename(tmpPath,DRL))
                 {
