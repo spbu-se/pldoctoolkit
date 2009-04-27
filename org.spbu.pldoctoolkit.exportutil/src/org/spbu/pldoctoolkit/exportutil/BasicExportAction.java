@@ -46,10 +46,15 @@ public class BasicExportAction {
 	protected static final ControllerCache CONTROLLER_CACHE = new ControllerCache();
 	protected static final SchemaCache SCHEMA_CACHE = new SchemaCache();
 	
-	protected static final File DRL2DOCBOOK_FILE = new File("xsl/drl/drl2docbook.xsl");
-	protected static final File DOCBOOK_SCHEMA_FILE = new File("schema/docbook/docbook.rng");
+	protected static final File DRL2DOCBOOK_FILE;
+	protected static final File DOCBOOK2HTML_FILE;
+	protected static final File DOCBOOK_SCHEMA_FILE;
 	
-	protected static final File DOCBOOK2HTML_FILE = new File("xsl/docbook/html/docbook.xsl");
+	static {
+		DRL2DOCBOOK_FILE = new File(ExportUtil.getRunningAppPath() + "/xsl/drl/drl2docbook.xsl");
+		DOCBOOK2HTML_FILE = new File(ExportUtil.getRunningAppPath() + "/xsl/docbook/html/docbook.xsl");
+		DOCBOOK_SCHEMA_FILE = new File(ExportUtil.getRunningAppPath() + "/schema/docbook/docbook.rng");
+	}
 
 	protected final static int drlSeverity = 0;
 	
