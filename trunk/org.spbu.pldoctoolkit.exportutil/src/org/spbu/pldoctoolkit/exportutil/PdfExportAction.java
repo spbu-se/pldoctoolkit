@@ -21,7 +21,11 @@ import org.xml.sax.SAXException;
 
 public class PdfExportAction extends BasicExportAction {
 	private static FopFactory fopFactory;
-	protected static final File DOCBOOK2PDF_FILE = new File("xsl/db2fo.xsl");
+	protected static final File DOCBOOK2PDF_FILE; 
+	
+	static {
+		DOCBOOK2PDF_FILE = new File(ExportUtil.getRunningAppPath() + "/xsl/db2fo.xsl");
+	}
 	
 	public PdfExportAction(File destinationFile) throws Exception {
 		super(destinationFile, DOCBOOK2PDF_FILE, false);
@@ -90,8 +94,8 @@ public class PdfExportAction extends BasicExportAction {
 	private FopFactory getFopFactory() throws SAXException, IOException {
 		if (fopFactory == null) {
 			fopFactory = FopFactory.newInstance();
-			fopFactory.setUserConfig((new File("fop/fop.xconf")).toURI().toURL().toString());
-			fopFactory.setFontBaseURL((new File("fop\\")).toURI().toURL().toString());
+			fopFactory.setUserConfig((new File(ExportUtil.getRunningAppPath() + "/fop/fop.xconf")).toURI().toURL().toString());
+			fopFactory.setFontBaseURL((new File(ExportUtil.getRunningAppPath() + "/fop/")).toURI().toURL().toString());
 		}
 		return fopFactory;
 	}

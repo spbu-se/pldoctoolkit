@@ -6,9 +6,11 @@ import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import org.spbu.pldoctoolkit.exportutil.ExportUtil;
+
 public class EventLoggerImpl implements EventLogger {
 	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
-	private static final String DEFAULT_ERROR_FILEPATH = "error.log";
+	private static final String DEFAULT_ERROR_FILEPATH = ExportUtil.getRunningAppPath() + "/error.log";
 	
 	private PrintStream errorLog;
 	

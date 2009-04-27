@@ -23,7 +23,7 @@ public class ExportUtil {
 	private final String srcId;
 	private final String format;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) {	
 		if (args.length < 2 || args.length > 5 || args.length == 3) {
 			printHelp();
 			return;
@@ -40,6 +40,10 @@ public class ExportUtil {
 	
 	public static void printHelp() {
 		System.out.println("Usage: exportutil <directory> <mainfile> [inf product id] [<format> <destinationfilepath>]");
+	}
+	
+	public static String getRunningAppPath() {
+		return new File(ExportUtil.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent();
 	}
 	
 	public ExportUtil(String srcDir, String srcFile) {
@@ -65,7 +69,7 @@ public class ExportUtil {
 			if (!srcDirFile.exists())
 				throw new ExportException("Specified folder is not found");
 			
-			File srcFile = new File(srcDir + "\\" + srcFilename);
+			File srcFile = new File(srcDir + "/" + srcFilename);
 			if (!srcFile.exists())
 				throw new ExportException("Specified file is not found");
 			
