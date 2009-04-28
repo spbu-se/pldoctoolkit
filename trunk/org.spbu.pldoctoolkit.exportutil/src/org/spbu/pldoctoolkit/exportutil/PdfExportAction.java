@@ -39,7 +39,7 @@ public class PdfExportAction extends BasicExportAction {
 		File tempFile = null;
 		OutputStream out = null;
 		try {
-			logger.logEvent("Exporting to pdf...");
+			logger.logEvent("Exporting to pdf:");
 			tempFile = File.createTempFile("docbookgen", null);
 
 			logger.logEvent("Transforming DRL -> DocBook...");
@@ -48,7 +48,6 @@ public class PdfExportAction extends BasicExportAction {
 			drl2docbook.reset();
 			drl2docbook.setParameter("finalinfproductid", fipId);
 			transform(drl2docbook, new StreamSource(source), new StreamResult(tempFile));
-			logger.logEvent("Done");
 
 			logger.logEvent("Validating DocBook...");
 			contentHandler = new DocbookContentHandler(validator.getContentHandler());
@@ -58,7 +57,6 @@ public class PdfExportAction extends BasicExportAction {
 				xmlReader.setDTDHandler(dtdHandler);
 			xmlReader.parse(tempFile.getAbsolutePath());
 
-			logger.logEvent("Done");
 			out = new FileOutputStream(result);
 			Fop fop = getFopFactory().newFop(MimeConstants.MIME_PDF, out);
 			
@@ -74,7 +72,6 @@ public class PdfExportAction extends BasicExportAction {
 				public void startDocument() throws SAXException {
 				}
 			}));
-			logger.logEvent("Done");
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new InvocationTargetException(e);

@@ -94,13 +94,22 @@ public class ExportUtil implements CJProxy {
 					dstFile.delete();
 			}
 			
+			ValidateDrlAction validateAction = new ValidateDrlAction();
+			validateAction.setLogger(logger);
+			
+			logger.logEvent("Validating DRL files...");
+			for (File file: srcDirFile.listFiles()) {
+				if (!file.isDirectory() && file.getName().endsWith(DRL_FILE_EXTENSION))
+					validateAction.run(file);
+			}
+			
 			ProjectRegistry registry = new ProjectRegistryImpl();
 			registry.registerDirectory(srcDirFile);
 			
 			BasicExportAction exportAction;
 			
 			if (this.format == null) {
-				exportAction = new ValidateDrlAction();
+				exportAction = new ValidateExportAction();
 			} else if (this.format.toLowerCase().equals(DOCBOOK_FORMAT)) {
 				exportAction = new BasicExportAction(dstFile, null, true);
 			} else if (this.format.toLowerCase().equals(HTML_FORMAT)) {
@@ -114,6 +123,8 @@ public class ExportUtil implements CJProxy {
 			exportAction.setRegistry(registry);
 			exportAction.setLogger(logger);
 			exportAction.run(srcFile, srcId);
+			
+			logger.logEvent("Done");
 
 		} catch (Exception e) {
 			logger.logExeption(e);
