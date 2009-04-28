@@ -216,6 +216,7 @@ public class BasicExportAction {
 
 		} catch (InvocationTargetException e) {
 //			throw new ExportException(e.getMessage());
+			// ignore
 		} catch (Exception e) {
 			throw new ExportException(e.getMessage());
 		}
