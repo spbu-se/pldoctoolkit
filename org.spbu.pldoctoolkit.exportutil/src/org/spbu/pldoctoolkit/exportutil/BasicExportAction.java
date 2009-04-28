@@ -228,7 +228,11 @@ public class BasicExportAction {
 
 		File fileDB = null;
 		try {
-			logger.logEvent("Exporting to html...");
+			if (bTransform2DBOnly)
+				logger.logEvent("Exporting to docbook:");
+			else
+				logger.logEvent("Exporting to html:");
+			
 			if (bTransform2DBOnly) {
 				fileDB = result;
 			} else {
@@ -241,7 +245,6 @@ public class BasicExportAction {
 			drl2docbook.reset();
 			drl2docbook.setParameter("finalinfproductid", fipId);
 			transform(drl2docbook, new StreamSource(source.toURI().toString()), new StreamResult(fileDB));
-			logger.logEvent("Done");
 
 			logger.logEvent("Validating DocBook...");
 			contentHandler = new DocbookContentHandler(validator.getContentHandler());
@@ -250,7 +253,6 @@ public class BasicExportAction {
 			if (dtdHandler != null)
 				xmlReader.setDTDHandler(dtdHandler);
 			xmlReader.parse(fileDB.getAbsolutePath());
-			logger.logEvent("Done");
 
 			if (!bTransform2DBOnly) {
 				logger.logEvent("Transforming DocBook -> html...");
@@ -258,7 +260,6 @@ public class BasicExportAction {
 				transform(getDocbookTransformer(), new StreamSource(fileDB), new StreamResult(result));
 			}
 			
-			logger.logEvent("Done");
 		} catch (Exception e) {
 			throw new InvocationTargetException(e);
 		} finally {
