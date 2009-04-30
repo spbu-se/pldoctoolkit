@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--DTD for DocLine. Typically invoked by
+      <!DOCTYPE  DocLine  SYSTEM
+    "D:\Jental\SP\MY_SP\EDDs\docline_edd_with_top.dtd">
+-->
+
+
+<!ELEMENT DocLine    (ProductLine | ProductDocumentation |
+                              DocumentationCore)* >
+
+<!ELEMENT ProductLine 
+                     (Product*) >
+<!ATTLIST ProductLine 
+                     Name      CDATA     #IMPLIED >
+
+<!ELEMENT Product    (#PCDATA) >
+<!ATTLIST Product    Id        CDATA     #IMPLIED
+                     Name      CDATA     #IMPLIED >
+
+<!ELEMENT ProductDocumentation 
+                     (FinalInfProduct | Dictionary | Directory |
+                              DirTemplate)* >
+<!ATTLIST ProductDocumentation 
+                     ProductId  CDATA     #IMPLIED >
+
+<!ELEMENT DocumentationCore 
+                     (InfProduct | InfElement | Dictionary | Directory |
+                              DirTemplate)* >
+
+<!ELEMENT InfProduct (#PCDATA | DirRef | InfElemRef | InfElemRefGroup |
+                              DictRef | Conditional | Nest | Para | Preface |
+                              Chapter | ListItem | book)* >
+<!ATTLIST InfProduct 
+                     Id        CDATA     #IMPLIED
+                     Name      CDATA     #IMPLIED >
+
+<!ELEMENT InfElement (#PCDATA | DirRef | InfElemRef | InfElemRefGroup |
+                              DictRef | Conditional | Nest | Para | Preface |
+                              Chapter | ListItem | book)* >
+<!ATTLIST InfElement 
+                     Id        CDATA     #IMPLIED
+                     Name      CDATA     #IMPLIED >
+
+<!ELEMENT Dictionary (DictionaryEntry*) >
+<!ATTLIST Dictionary 
+                     Id        CDATA     #IMPLIED
+                     Name      CDATA     #IMPLIED >
+
+<!ELEMENT DictionaryEntry 
+                     (#PCDATA) >
+
+<!ELEMENT FinalInfProduct 
+                     (SetValue | Adapter)* >
+<!ATTLIST FinalInfProduct 
+                     Id        CDATA     #IMPLIED
+                     InfProductId  CDATA     #IMPLIED >
+
+<!ELEMENT SetValue   EMPTY >
+<!ATTLIST SetValue   Id        CDATA     #IMPLIED
+                     Value     CDATA     #IMPLIED >
+
+<!ELEMENT Adapter    (Replace-Nest | Insert-Before | Insert-After)* >
+<!ATTLIST Adapter    InfElemRefId  CDATA     #IMPLIED >
+
+<!ELEMENT Replace-Nest 
+                     (#PCDATA | Para | Preface | Chapter | ListItem | book)* >
+<!ATTLIST Replace-Nest 
+                     NestId    CDATA     #IMPLIED >
+
+<!ELEMENT Insert-Before 
+                     (#PCDATA | Para | Preface | Chapter | ListItem | book)* >
+<!ATTLIST Insert-Before 
+                     NestId    CDATA     #IMPLIED >
+
+<!ELEMENT Insert-After 
+                     (#PCDATA | Para | Preface | Chapter | ListItem | book)* >
+<!ATTLIST Insert-After 
+                     NestId    CDATA     #IMPLIED >
+
+<!ELEMENT Directory  (DirectoryEntry*) >
+<!ATTLIST Directory  Id        CDATA     #IMPLIED
+                     Name      CDATA     #IMPLIED >
+
+<!ELEMENT DirectoryEntry 
+                     (Attr*) >
+<!ATTLIST DirectoryEntry 
+                     Id        CDATA     #IMPLIED >
+
+<!ELEMENT Attr       (#PCDATA) >
+<!ATTLIST Attr       Id        CDATA     #IMPLIED >
+
+<!ELEMENT DirTemplate 
+                     (DirTemplateContents) >
+<!ATTLIST DirTemplate 
+                     Id        CDATA     #IMPLIED
+                     DirectoryId  CDATA     #IMPLIED >
+
+<!ELEMENT DirTemplateContents 
+                     (#PCDATA | AttrRef | Para | Preface | Chapter |
+                              ListItem | book)* >
+
+<!ELEMENT AttrRef    EMPTY >
+<!ATTLIST AttrRef    AttrId    CDATA     #IMPLIED >
+
+<!ELEMENT DirRef     EMPTY >
+<!ATTLIST DirRef     TemplateId  CDATA     #IMPLIED
+                     EntryId   CDATA     #IMPLIED >
+
+<!ELEMENT InfElemRef EMPTY >
+<!ATTLIST InfElemRef 
+                     Id        CDATA     #IMPLIED
+                     InfElemId  CDATA     #IMPLIED
+                     GroupId   CDATA     #IMPLIED
+                     Optional  (true|false)  #IMPLIED >
+
+<!ELEMENT InfElemRefGroup 
+                     EMPTY >
+<!ATTLIST InfElemRefGroup 
+                     Id        CDATA     #IMPLIED
+                     Name      CDATA     #IMPLIED
+                     Modifier  (XOR|OR)  #IMPLIED >
+
+<!ELEMENT DictRef    EMPTY >
+<!ATTLIST DictRef    DictId    CDATA     #IMPLIED
+                     EntryId   CDATA     #IMPLIED >
+
+<!ELEMENT Conditional 
+                     (#PCDATA | DirRef | InfElemRef | InfElemRefGroup |
+                              DictRef | Conditional | Nest | Para | Preface |
+                              Chapter | ListItem | book)* >
+<!ATTLIST Conditional 
+                     Condition  CDATA     #IMPLIED >
+
+<!ELEMENT Nest       (#PCDATA | Para | Preface | Chapter | ListItem)* >
+<!ATTLIST Nest       Id        CDATA     #IMPLIED
+                     Descr     CDATA     #IMPLIED >
+
+<!ENTITY % dbnotn.module "INCLUDE">
+<![%dbnotn.module;[
+<!ENTITY % dbnotn PUBLIC 
+"-//OASIS//ENTITIES DocBook XML Notations V4.1.2//EN"
+"dbnotnx.mod">
+%dbnotn;
+]]>
+
+<!-- ...................................................................... -->
+<!-- ISO character entity sets ............................................ -->
+
+<!ENTITY % dbcent.module "INCLUDE">
+<![%dbcent.module;[
+<!ENTITY euro "&#x20AC;"><!-- euro sign, U+20AC NEW -->
+<!ENTITY % dbcent PUBLIC 
+"-//OASIS//ENTITIES DocBook XML Character Entities V4.1.2//EN"
+"dbcentx.mod">
+%dbcent;
+]]>
+
+<!-- ...................................................................... -->
+<!-- DTD modules .......................................................... -->
+
+<!-- Information pool .............. -->
+
+<!ENTITY % dbpool.module "INCLUDE">
+<![ %dbpool.module; [
+<!ENTITY % dbpool PUBLIC 
+"-//OASIS//ELEMENTS DocBook XML Information Pool V4.1.2//EN"
+"dbpoolx.mod">
+%dbpool;
+]]>
+
+<!-- Redeclaration placeholder ..... -->
+
+<!ENTITY % intermod.redecl.module "IGNORE">
+<![%intermod.redecl.module;[
+<!-- Defining rdbmods here makes some buggy XML parsers happy. -->
+<!ENTITY % rdbmods "">
+%rdbmods;
+<!--end of intermod.redecl.module-->]]>
+
+<!-- Document hierarchy ............ -->
+
+<!ENTITY % dbhier.module "INCLUDE">
+<![ %dbhier.module; [
+<!ENTITY % dbhier PUBLIC 
+"-//OASIS//ELEMENTS DocBook XML Document Hierarchy V4.1.2//EN"
+"dbhierx.mod">
+%dbhier;
+]]>
+
+<!-- ...................................................................... -->
+<!-- Other general entities ............................................... -->
+
+<!ENTITY % dbgenent.module "INCLUDE">
+<![ %dbgenent.module; [
+<!ENTITY % dbgenent PUBLIC
+"-//OASIS//ENTITIES DocBook XML Additional General Entities V4.1.2//EN"
+"dbgenent.mod">
+%dbgenent;
+]]>
+
+<!-- End of DocBook XML DTD V4.1.2 .......................................... -->
+<!-- ...................................................................... -->
+
