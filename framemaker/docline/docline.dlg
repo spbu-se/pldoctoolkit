@@ -1,0 +1,19 @@
+//-------------------------------------------------------------------
+// Source filename:      D:\framemaker\template\docline.dre
+// Date generated:       Mon May 04 19:45:56 2009
+//-------------------------------------------------------------------
+
+#include "windows.h"
+
+docline DIALOG LOADONCALL MOVEABLE DISCARDABLE 0, 0, 237, 81
+STYLE WS_CLIPSIBLINGS | DS_MODALFRAME
+FONT 9 "Segoe UI"
+BEGIN
+	CONTROL "", 101, "EDIT", WS_BORDER | ES_AUTOHSCROLL | ES_LEFT | WS_VISIBLE | WS_GROUP | WS_TABSTOP, 149, 4, 76, 12
+	CONTROL "Type here Name of the produced document", 102, "STATIC", SS_LEFTNOWORDWRAP | WS_VISIBLE | WS_GROUP, 9, 26, 140, 8
+	CONTROL "", 103, "EDIT", WS_BORDER | ES_AUTOHSCROLL | ES_LEFT | WS_VISIBLE | WS_GROUP | WS_TABSTOP, 149, 24, 76, 12
+	CONTROL "", 104, "STATIC", SS_ETCHEDHORZ | WS_VISIBLE | WS_GROUP, 14, 45, 208, 1
+	DEFPUSHBUTTON "OK", 105, 73, 51, 40, 12, WS_VISIBLE | WS_GROUP | WS_TABSTOP
+	CONTROL "Cancel", 106, "BUTTON", BS_PUSHBUTTON | WS_VISIBLE | WS_GROUP | WS_TABSTOP, 125, 51, 40, 12
+	CONTROL "Type here ID of the produced document", 100, "STATIC", SS_LEFTNOWORDWRAP | WS_VISIBLE | WS_GROUP, 9, 7, 129, 8
+END
