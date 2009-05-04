@@ -94,6 +94,7 @@
 
 #define EXPORT 901
 #define CLOSE 902
+#define EDITH 903
 #define BEXPORT 911
 #define BCLOSE 912
 #define in ((MetricT) 65536*72)
@@ -109,6 +110,7 @@ F_ObjHandleT saveDoclineAsHtmlId, saveDoclineAsPdfId; // Commands from the "Save
 F_ObjHandleT openFmID, importDrlID; // open exising fm docline project, import project from existing drl documentation
 F_ObjHandleT closeProjectId; // menu item for closing active project and all files in it
 F_ObjHandleT exportProjectId; // menu item for exporting active project back to DRL
+F_ObjHandleT editHeaderId; // temp item
 
 /* All the same for !BookMainMenu */
 F_ObjHandleT bmenubarId, bmenuId; // !BookMainMenu and Docline menus
@@ -129,6 +131,7 @@ VoidT openBook();
 VoidT importDocLineDoc();
 VoidT exportDocLineDoc();
 VoidT closeProject();
+VoidT editHeader();
 IntT test;
 IntT dictionCount=0, directCount=0, dirTempCount=0, infElemCount=0, infProdCount=0;
 
@@ -153,14 +156,14 @@ VoidT F_ApiInitialize(IntT init)
 	  /* Define some commands and add them to the New-> menu. */
 	  newProjectId = F_ApiDefineAndAddCommand(BOOK, newMenuId, "NewDocLineProject", "Docline project", "\\!NP");	
 	  /* Add seperator after the New docline project command*/
-	  separatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "NewSeparator");
-	  F_ApiAddCommandToMenu(newMenuId, separatorId);
+	  //separatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "NewSeparator");
+	  //F_ApiAddCommandToMenu(newMenuId, separatorId);
 	  /* Define "New *SpecificElement*" commands and add them to the "New" menu. */
-	  newDictId = F_ApiDefineAndAddCommand(NEWDC, newMenuId, "NewDictionary", "Dictionary", "\\!ND");
-	  newDirectId = F_ApiDefineAndAddCommand(NEWDI, newMenuId, "NewDirectory", "Directory", "\\!DI");
-	  newDirTempId = F_ApiDefineAndAddCommand(NEWDT, newMenuId, "NewDirTemplate", "DirTemplate", "\\!DT");
-	  newInfElemId = F_ApiDefineAndAddCommand(NEWIE, newMenuId, "NewInfElement", "InfElement", "\\!NE");
-	  newInfProdId = F_ApiDefineAndAddCommand(NEWIP, newMenuId, "NewInfProduct", "InfProduct", "\\!NP");
+	  //newDictId = F_ApiDefineAndAddCommand(NEWDC, newMenuId, "NewDictionary", "Dictionary", "\\!ND");
+	  //newDirectId = F_ApiDefineAndAddCommand(NEWDI, newMenuId, "NewDirectory", "Directory", "\\!DI");
+	  //newDirTempId = F_ApiDefineAndAddCommand(NEWDT, newMenuId, "NewDirTemplate", "DirTemplate", "\\!DT");
+	  //newInfElemId = F_ApiDefineAndAddCommand(NEWIE, newMenuId, "NewInfElement", "InfElement", "\\!NE");
+	  //newInfProdId = F_ApiDefineAndAddCommand(NEWIP, newMenuId, "NewInfProduct", "InfProduct", "\\!NP");
 
 	  /* Define and add the Open-> menu to the DocLine menu. */
 	  openMenuId = F_ApiDefineAndAddMenu(menuId, "OpenDocLineMenu", "Open");
@@ -171,16 +174,19 @@ VoidT F_ApiInitialize(IntT init)
 	  importDrlID = F_ApiDefineAndAddCommand(IMPORT, menuId, "Import", "Import","\\!OO");
 
 	  /* Define and add the Save As...-> menu to the DocLine menu. */
-	  saveMenuId = F_ApiDefineAndAddMenu(menuId, "SaveDocLineMenu", "Save Project As...");
+	  //saveMenuId = F_ApiDefineAndAddMenu(menuId, "SaveDocLineMenu", "Publish to...");
 	  /* Define some commands and add them to the Save As...-> menu. */
-	  saveDoclineAsHtmlId = F_ApiDefineAndAddCommand(SAVEHT, saveMenuId, "SaveDoclineAsHtml", "HTML", "\\!HT");
-	  saveDoclineAsPdfId = F_ApiDefineAndAddCommand(SAVEPD, saveMenuId, "SaveDoclineAsPdf", "PDF", "\\!PD");
+	  //saveDoclineAsHtmlId = F_ApiDefineAndAddCommand(SAVEHT, saveMenuId, "SaveDoclineAsHtml", "HTML", "\\!HT");
+	  //saveDoclineAsPdfId = F_ApiDefineAndAddCommand(SAVEPD, saveMenuId, "SaveDoclineAsPdf", "PDF", "\\!PD");
 
 	  /* Define command for exporting active project back to DRL */
-	  exportProjectId = F_ApiDefineAndAddCommand(EXPORT, menuId, "ExportProject", "Export","\\!EP");
+	  //exportProjectId = F_ApiDefineAndAddCommand(EXPORT, menuId, "ExportProject", "Export","\\!EP");
 
 	  /* Define command for closing active project and all files in it */
 	  closeProjectId = F_ApiDefineAndAddCommand(CLOSE, menuId, "CloseProject", "Close Project","\\!CP");
+
+	  /* Define command for updating document's header */
+	  editHeaderId = F_ApiDefineAndAddCommand(EDITH, menuId, "EditHeader", "Edit Master Header","\\!EH");
 
 	  /* Get the ID of the FrameMaker book menu bar. */
 	  bmenubarId = F_ApiGetNamedObject(FV_SessionId, FO_Menu, "!BookMainMenu");
@@ -210,7 +216,7 @@ VoidT F_ApiInitialize(IntT init)
 	  bimportDrlID = F_ApiDefineAndAddCommand(BIMPORT, bmenuId, "BImport", "Import","\\!BOO");
 
 	  /* Define and add the Save As...-> menu to the DocLine menu. */
-	  bsaveMenuId = F_ApiDefineAndAddMenu(bmenuId, "BSaveDocLineMenu", "Save Project As...");
+	  bsaveMenuId = F_ApiDefineAndAddMenu(bmenuId, "BSaveDocLineMenu", "Publish to...");
 	  /* Define some commands and add them to the Save As...-> menu. */
 	  bsaveDoclineAsHtmlId = F_ApiDefineAndAddCommand(BSAVEHT, bsaveMenuId, "BSaveDoclineAsHtml", "HTML", "\\!BHT");
 	  bsaveDoclineAsPdfId = F_ApiDefineAndAddCommand(BSAVEPD, bsaveMenuId, "BSaveDoclineAsPdf", "PDF", "\\!BPD");
@@ -225,6 +231,7 @@ VoidT F_ApiInitialize(IntT init)
 
 VoidT F_ApiCommand(IntT command)
 {
+	IntT response;
 	/*F_ObjHandleT docId;
 
 	get the ID of the active document */
@@ -238,6 +245,8 @@ VoidT F_ApiCommand(IntT command)
 	/* Setting commands for handling menu items */
 	switch(command) {
   case BOOK:
+  case BBOOK:
+	  closeProject();
 	  createNewDocLineBook();
 	  break;
   case BNEWDC:
@@ -256,17 +265,28 @@ VoidT F_ApiCommand(IntT command)
 	  newDocCoreChild(INFPROD);
 	  break;
   case OPEN:
+  case BOPEN:
+	  closeProject();
 	  openBook();
 	  break;
   case IMPORT:
+  case BIMPORT:
+	  closeProject();
 	  importDocLineDoc();
 	  break;
   case BEXPORT:
 	  exportDocLineDoc();
 	  break;
+  case CLOSE:
   case BCLOSE:
-	  closeProject();
+	  /* Prompt user if he really wants to save all and close. */
+	  response = F_ApiAlert("This will save all files and close them. Do you still wish to continue?",FF_ALERT_YES_DEFAULT);
+	  if (!response)
+		closeProject();
 	  break;
+  case EDITH:
+	editHeader();
+	break;
 	}
 }
 
@@ -695,6 +715,8 @@ VoidT createNewDocLineBook()
 	IntT err;
 	/* Choose workspace for new docline project */
 	err = F_ApiChooseFile(&path, "Choose directory to save new docline project", "", "", FV_ChooseOpenDir, "");
+	if (err)
+		return;
 	/* Open template book and save it to the selected directory*/
 	bookId = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_book_template.book",False);
 	bookPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+3,NO_DSE);
@@ -709,23 +731,54 @@ VoidT createNewDocLineBook()
 
 VoidT closeProject()
 {
-	/*F_ObjHandleT bookId, compId, docId;
-	StringT tmpPath;
-	IntT response;
-	/* Get Id and path of the book */
-	/*bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
-	compId = F_ApiGetId(FV_SessionId, bookId, FP_FirstComponentInBook);
-	while (compId != 0)
-	{
-	tmpPath = F_ApiGetString(bookId, compId, FP_Name);
-	docId = F_ApiSimpleOpen(tmpPath, False);
-	/* See whether document has been modified. */
-	/*	if (F_ApiGetInt(FV_SessionId, docId, FP_DocIsModified))
-	response = F_ApiAlert("Document was changed. Close it anyway?",FF_ALERT_OK_DEFAULT);
-	if (!response)
-	F_ApiClose (docId, FF_CLOSE_MODIFIED);
-	compId = F_ApiGetId(bookId, compId, FP_NextComponentInBook);
-	}*/
+	F_ObjHandleT openedDocId, nextDocId, openedBookId, nextBookId;
+	StringT fileName, pathName;
+
+	/* Get Id and path of the active document - any from the project */
+	openedDocId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveDoc);
+	/* if opened book get id of active book*/
+	if (openedDocId == 0)
+		openedDocId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
+	/* exit if no documents are opened*/
+	if (openedDocId == 0)
+		return;
+	fileName = F_ApiGetString(FV_SessionId, openedDocId, FP_Name);
+	/* Remember path of the project directory - we will close all files from there */
+	pathName = F_StrCopyString(fileName);
+	pathFilename(pathName);
+	/* from first opened we look through all opened documents */
+	openedDocId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_FirstOpenDoc);	
+    while (openedDocId != 0)
+    {
+		nextDocId = F_ApiGetId(FV_SessionId, openedDocId, FP_NextOpenDocInSession);
+		fileName = F_ApiGetString(FV_SessionId, openedDocId, FP_Name);
+		pathFilename(fileName);
+		/* If current file from the project's workspace, save and close it */
+		if (F_StrIEqual(pathName, fileName))
+		{
+			/* Save file and close it */
+				fileName = F_ApiGetString(FV_SessionId, openedDocId, FP_Name);
+				F_ApiSimpleSave(openedDocId, fileName, False);
+				F_ApiClose(openedDocId, FF_CLOSE_MODIFIED);
+		}
+		openedDocId = nextDocId;
+	}	
+	/* All the same with books*/
+	openedBookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_FirstOpenBook);	
+    while (openedBookId != 0)
+    {
+		nextBookId = F_ApiGetId(FV_SessionId, openedBookId, FP_NextOpenBookInSession);
+		fileName = F_ApiGetString(FV_SessionId, openedBookId, FP_Name);
+		pathFilename(fileName);
+		if (F_StrIEqual(pathName, fileName))
+		{
+			/* Save file and close it */
+				fileName = F_ApiGetString(FV_SessionId, openedBookId, FP_Name);
+				F_ApiSimpleSave(openedBookId, fileName, False);
+				F_ApiClose(openedBookId, FF_CLOSE_MODIFIED);
+		}
+		openedBookId = nextBookId;
+	}
 }
 
 VoidT newDocCoreChild(IntT type)
@@ -780,10 +833,11 @@ VoidT newDocCoreChild(IntT type)
 		break;
 	}
 	/* First create an 8.5 x 11 custom document. */
-	docId = F_ApiCustomDoc(F_MetricFractMul(in,17,2), 11*in, 1, F_MetricFractMul(in,1,4), in, in, in, in, FF_Custom_SingleSided, True);
+	//docId = F_ApiCustomDoc(F_MetricFractMul(in,17,2), 11*in, 1, F_MetricFractMul(in,1,4), in, in, in, in, FF_Custom_SingleSided, True);
 	/* Import EDD from the current book */
-	F_ApiSimpleImportElementDefs(docId, bookId, FF_IED_REMOVE_OVERRIDES);
+	//F_ApiSimpleImportElementDefs(docId, bookId, FF_IED_REMOVE_OVERRIDES);
 	/* Get ID of the inserting element definitions */
+	docId = F_ApiSimpleNewDoc("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_doc_template.fm", False);
 	childEdefId = F_ApiGetNamedObject(docId, FO_ElementDef, edefName);
 	/* Insert new Highest-level element into the document, i.e. InfElement, InfProduct, etc. */
 	F_ApiWrapElement(docId, childEdefId);
@@ -1069,4 +1123,75 @@ VoidT exportDocLineDoc()
 	F_Free(&docID);
 	F_Free(&bookID);
 	F_ApiDeallocateString(&dirPath);
+}
+
+VoidT editHeader()
+{
+	F_ObjHandleT docId, bodyPageId, masterPageId, pageFrameId, textFrameId, paraHeaderId, headerVarId, varFmtId, nextParaId, highId, firstFlowId, edefId;
+	F_TextLocT headerLoc;
+	StringT headerText, idText, elemName;
+	F_AttributesT attributes;
+	UIntT j;
+	/* get Id of the active document */
+	docId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveDoc);
+	/* get Id of the Right MasterPage*/
+	masterPageId = F_ApiGetId(FV_SessionId, docId, FP_FirstMasterPageInDoc);
+	/* Get Id of the first Page masterPage */
+	masterPageId = F_ApiGetId(FV_SessionId, masterPageId, FP_PageNext);
+	/* Get Id of the pageFrame of masterPage*/
+	pageFrameId = F_ApiGetId(FV_SessionId, masterPageId, FP_PageFrame);
+	/* Get Id of TextFrame of PageFrame */
+	textFrameId = F_ApiGetId(FV_SessionId, pageFrameId, FP_FirstGraphicInFrame);
+	/* Get Id of First Paragraph of TextFrame */
+	paraHeaderId = F_ApiGetId(FV_SessionId, textFrameId, FP_FirstPgf);
+	/* Insert new first paragraph and delete old first */
+	nextParaId = F_ApiNewSeriesObject(docId, FO_Pgf, paraHeaderId);
+	F_ApiDelete(docId, paraHeaderId);
+	/* Create insertion point in new paragraph */
+	headerLoc.objId = nextParaId;
+	headerLoc.offset = 0;
+	//headerLoc = F_ApiAddText(docId, &headerLoc, "Test text\'s header");
+	/* Create new variable format for header string */
+	varFmtId = F_ApiGetNamedObject(docId, FO_VarFmt, "userVarFormat");
+	if (FA_errno == FE_NameNotFound)
+	{
+		varFmtId = F_ApiNewNamedObject(docId, FO_VarFmt, "userVarFormat");
+		FA_errno = FE_Success;
+	}
+	bodyPageId = F_ApiGetId(FV_SessionId, docId, FP_FirstBodyPageInDoc);
+	pageFrameId = F_ApiGetId(docId, bodyPageId, FP_PageFrame);
+	textFrameId = F_ApiGetId(docId, pageFrameId, FP_FirstGraphicInFrame);
+	firstFlowId = F_ApiGetId(docId, textFrameId, FP_Flow);
+	highId = F_ApiGetId(docId, firstFlowId, FP_HighestLevelElement);
+	edefId = F_ApiGetId(docId, highId, FP_ElementDef);
+	elemName = F_ApiGetString(docId, edefId, FP_Name);
+	F_Printf(NULL, "%s\n", elemName);
+	attributes = F_ApiGetAttributes(docId, highId);
+	for(j=0; j<attributes.len; j++) {
+		if (F_StrEqual("Id", attributes.val[j].name))
+		{
+			idText = F_StrCopyString(attributes.val[j].values.val[0]);
+			F_StrStripTrailingSpaces(idText);
+			F_StrStripLeadingSpaces(idText);
+			break;
+		}
+	}
+	headerText = F_StrCopyString(elemName);
+	headerText = F_Realloc(headerText, F_StrLen(headerText)+F_StrLen(" <Emphasis>")+1, NO_DSE);
+    F_StrCat(headerText," <Emphasis>");
+		F_Printf(NULL, "A%sA\n", idText);
+	F_Printf(NULL, "%s\n", headerText);
+	if (!F_StrIsEmpty(idText))
+	{
+		headerText = F_Realloc(headerText, F_StrLen(headerText)+F_StrLen(idText)+1,NO_DSE);
+        F_StrCat(headerText,idText);
+		F_Printf(NULL, "%s\n", headerText);
+		F_ApiPrintFAErrno();
+	}
+	F_StrStripTrailingSpaces(headerText);
+	//F_ApiAlert(headerText,FF_ALERT_CONTINUE_NOTE);
+	F_ApiSetString(docId, varFmtId, FP_Fmt, headerText);
+	F_ApiPrintFAErrno();
+	/* Insert variable with created format into header */
+	headerVarId = F_ApiNewAnchoredFormattedObject(docId, FO_Var, "userVarFormat", &headerLoc);
 }
