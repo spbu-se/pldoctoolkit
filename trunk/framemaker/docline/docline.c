@@ -59,19 +59,21 @@
 #include "string.h"
 #include "ctype.h"
 
-
-#define BOOK 1
-#define NEWDC 2
-#define NEWDI 3
-#define NEWDT 4
-#define NEWIE 5
-#define NEWIP 6
-#define BBOOK 11
-#define BNEWDC 12
-#define BNEWDI 13
-#define BNEWDT 14
-#define BNEWIE 15
-#define BNEWIP 16
+#define NEW_DLG 239
+#define OKDLG 5
+#define CANCELDLG 6
+#define BOOK 11
+#define NEWDC 12
+#define NEWDI 13
+#define NEWDT 14
+#define NEWIE 15
+#define NEWIP 16
+#define BBOOK 21
+#define BNEWDC 22
+#define BNEWDI 23
+#define BNEWDT 24
+#define BNEWIE 25
+#define BNEWIP 26
 #define SAVEHT 101
 #define SAVEPD 102
 #define OPEN 103
@@ -94,7 +96,7 @@
 
 #define EXPORT 901
 #define CLOSE 902
-#define EDITH 903
+#define CHECK 904
 #define BEXPORT 911
 #define BCLOSE 912
 #define in ((MetricT) 65536*72)
@@ -110,7 +112,6 @@ F_ObjHandleT saveDoclineAsHtmlId, saveDoclineAsPdfId; // Commands from the "Save
 F_ObjHandleT openFmID, importDrlID; // open exising fm docline project, import project from existing drl documentation
 F_ObjHandleT closeProjectId; // menu item for closing active project and all files in it
 F_ObjHandleT exportProjectId; // menu item for exporting active project back to DRL
-F_ObjHandleT editHeaderId; // temp item
 
 /* All the same for !BookMainMenu */
 F_ObjHandleT bmenubarId, bmenuId; // !BookMainMenu and Docline menus
@@ -122,6 +123,7 @@ F_ObjHandleT bsaveDoclineAsHtmlId, bsaveDoclineAsPdfId; // Commands from the "Sa
 F_ObjHandleT bopenFmID, bimportDrlID; // open exising fm docline project, import project from existing drl documentation
 F_ObjHandleT bcloseProjectId; // menu item for closing active project and all files in it
 F_ObjHandleT bexportProjectId; // menu item for exporting active project back to DRL
+F_ObjHandleT checkCorrectId; // menu item for exporting active project back to DRL
 
 F_ObjHandleT firstAddedId[5];
 
@@ -132,8 +134,8 @@ VoidT importDocLineDoc();
 VoidT exportDocLineDoc();
 VoidT closeProject();
 VoidT editHeader();
+VoidT setAttributes(StringT idStr, StringT nameStr);
 IntT test;
-IntT dictionCount=0, directCount=0, dirTempCount=0, infElemCount=0, infProdCount=0;
 
 VoidT F_ApiInitialize(IntT init)
 {
@@ -185,9 +187,6 @@ VoidT F_ApiInitialize(IntT init)
 	  /* Define command for closing active project and all files in it */
 	  closeProjectId = F_ApiDefineAndAddCommand(CLOSE, menuId, "CloseProject", "Close Project","\\!CP");
 
-	  /* Define command for updating document's header */
-	  editHeaderId = F_ApiDefineAndAddCommand(EDITH, menuId, "EditHeader", "Edit Master Header","\\!EH");
-
 	  /* Get the ID of the FrameMaker book menu bar. */
 	  bmenubarId = F_ApiGetNamedObject(FV_SessionId, FO_Menu, "!BookMainMenu");
 	  /* Define and add the DocLine menu to the main menu. */
@@ -224,6 +223,9 @@ VoidT F_ApiInitialize(IntT init)
 	  /* Define command for exporting active project back to DRL */
 	  bexportProjectId = F_ApiDefineAndAddCommand(BEXPORT, bmenuId, "BExportProject", "Export","\\!BEP");
 
+	  /* Define command for checking correctness of active project */
+	  checkCorrectId = F_ApiDefineAndAddCommand(CHECK, bmenuId, "BCheckCorrect", "Check correctness","\\!CC");
+
 	  /* Define command for closing active project and all files in it */
 	  closeProjectId = F_ApiDefineAndAddCommand(BCLOSE, bmenuId, "BCloseProject", "Close Project","\\!BCP");
 	}
@@ -232,15 +234,13 @@ VoidT F_ApiInitialize(IntT init)
 VoidT F_ApiCommand(IntT command)
 {
 	IntT response;
-	/*F_ObjHandleT docId;
-
-	get the ID of the active document */
-	/*docId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveDoc);
-	if (!docId) {
-	F_ApiAlert((StringT) "Please open a document before invoking this command.", 
-	FF_ALERT_CONTINUE_WARN);
-	return;
-	}*/
+	//F_ObjHandleT docId;
+	/*get the ID of the active document */
+	/*  docId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveDoc);
+	  if (!docId) {
+		F_ApiAlert((StringT) "Please open a document before invoking this command.", FF_ALERT_CONTINUE_WARN);
+		return;
+	  }*/
 
 	/* Setting commands for handling menu items */
 	switch(command) {
@@ -284,9 +284,6 @@ VoidT F_ApiCommand(IntT command)
 	  if (!response)
 		closeProject();
 	  break;
-  case EDITH:
-	editHeader();
-	break;
 	}
 }
 
@@ -783,11 +780,34 @@ VoidT closeProject()
 
 VoidT newDocCoreChild(IntT type)
 {
-	F_ObjHandleT bookId, docId, childEdefId, compId, elemId;
+	F_ObjHandleT bookId, docId, childEdefId, compId, elemId, dlgId;
 	F_ElementLocT elemLoc;
-	StringT bookPath, savePath, edefName;
+	StringT bookPath, savePath, edefName, nameStr, idStr;
 	IntT len, i, j; 
 	BoolT compExists;
+
+	/* Open resource for the dialog*/
+	dlgId = F_ApiOpenResource(FO_DialogResource, "docline");
+	/* show modal dialog with prompt for attributes */
+	F_ApiModalDialog(NEW_DLG, dlgId);
+	if(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, CANCELDLG), FP_State) == True)
+		return;
+	else if(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, OKDLG), FP_State) != True)
+		return;
+	/* make sure that all attributes are typed in the text box*/
+	while (F_StrIsEmpty(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text)) ||
+			F_StrIsEmpty(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 3), FP_Text)))
+	{
+		F_ApiAlert("You must type Id and Name in text fields!", FF_ALERT_CONTINUE_NOTE);
+		F_ApiModalDialog(NEW_DLG, dlgId);
+		if(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, CANCELDLG), FP_State) == True)
+			return;
+		else if(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, OKDLG), FP_State) != True)
+			return;
+	}
+	/* get Id and Name values from dialog box*/
+	idStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text));
+	nameStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 3), FP_Text));
 
 	/* Get Id and path of the book */
 	bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
@@ -797,37 +817,32 @@ VoidT newDocCoreChild(IntT type)
 	switch (type)
 	{
 	case DICTION:
-		dictionCount++;
-		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen("dictionary.fm")+5, NO_DSE);
-		len = F_Sprintf(savePath, "%sdictionary%d.fm", (StringT)bookPath, (IntT)dictionCount);
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("dictionary_.fm")+1, NO_DSE);
+		len = F_Sprintf(savePath, "%sdictionary_%s.fm", (StringT)bookPath, (StringT)idStr);
 		edefName = F_StrCopyString("Dictionary");
 		j = 0;
 		break;
 	case DIRECT:
-		directCount++;
-		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen("directory.fm")+5, NO_DSE);
-		len = F_Sprintf(savePath, "%sdirectory%d.fm", (StringT)bookPath, (IntT)directCount);
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("directory_.fm")+1, NO_DSE);
+		len = F_Sprintf(savePath, "%sdirectory_%s.fm", (StringT)bookPath, (StringT)idStr);
 		edefName = F_StrCopyString("Directory");
 		j = 1;
 		break;
 	case DIRTEMP:
-		dirTempCount++;
-		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen("dir_template.fm")+5, NO_DSE);
-		len = F_Sprintf(savePath, "%sdir_template%d.fm", (StringT)bookPath, (IntT)dirTempCount);
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("dir_template_.fm")+1, NO_DSE);
+		len = F_Sprintf(savePath, "%sdir_template_%s.fm", (StringT)bookPath, (StringT)idStr);
 		edefName = F_StrCopyString("DirTemplate");
 		j = 2;
 		break;
 	case INFELEM:
-		infElemCount++;
-		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen("inf_element.fm")+5, NO_DSE);
-		len = F_Sprintf(savePath, "%sinf_element%d.fm", (StringT)bookPath, (IntT)infElemCount);
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("inf_element_.fm")+1, NO_DSE);
+		len = F_Sprintf(savePath, "%sinf_element_%s.fm", (StringT)bookPath, (StringT)idStr);
 		edefName = F_StrCopyString("InfElement");
 		j = 3;
 		break;
 	case INFPROD:
-		infProdCount++;
-		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen("inf_product.fm")+5, NO_DSE);
-		len = F_Sprintf(savePath, "%sinf_product%d.fm", (StringT)bookPath, (IntT)infProdCount);
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("inf_product_.fm")+1, NO_DSE);
+		len = F_Sprintf(savePath, "%sinf_product_%s.fm", (StringT)bookPath, (StringT)idStr);
 		edefName = F_StrCopyString("InfProduct");
 		j = 4;
 		break;
@@ -843,6 +858,10 @@ VoidT newDocCoreChild(IntT type)
 	F_ApiWrapElement(docId, childEdefId);
 	/* Save the doc with the specific name */
 	F_ApiSimpleSave(docId, savePath, False);
+	/* Set correct values of attributes */
+	setAttributes(idStr, nameStr);
+	/* Update header of the document */
+	editHeader();
 	/* Make a component */
 	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
 	if (!compId)
@@ -899,6 +918,7 @@ VoidT newDocCoreChild(IntT type)
 	F_ApiDeallocateString(&bookPath);
 	F_ApiDeallocateString(&savePath);
 	F_ApiDeallocateString(&edefName);
+	F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
 }
 
 
@@ -1165,10 +1185,10 @@ VoidT editHeader()
 	highId = F_ApiGetId(docId, firstFlowId, FP_HighestLevelElement);
 	edefId = F_ApiGetId(docId, highId, FP_ElementDef);
 	elemName = F_ApiGetString(docId, edefId, FP_Name);
-	F_Printf(NULL, "%s\n", elemName);
+	//F_Printf(NULL, "%s\n", elemName);
 	attributes = F_ApiGetAttributes(docId, highId);
 	for(j=0; j<attributes.len; j++) {
-		if (F_StrEqual("Id", attributes.val[j].name))
+		if (F_StrEqual("Name", attributes.val[j].name))
 		{
 			idText = F_StrCopyString(attributes.val[j].values.val[0]);
 			F_StrStripTrailingSpaces(idText);
@@ -1179,19 +1199,51 @@ VoidT editHeader()
 	headerText = F_StrCopyString(elemName);
 	headerText = F_Realloc(headerText, F_StrLen(headerText)+F_StrLen(" <Emphasis>")+1, NO_DSE);
     F_StrCat(headerText," <Emphasis>");
-		F_Printf(NULL, "A%sA\n", idText);
-	F_Printf(NULL, "%s\n", headerText);
+		//F_Printf(NULL, "A%sA\n", idText);
+	//F_Printf(NULL, "%s\n", headerText);
 	if (!F_StrIsEmpty(idText))
 	{
 		headerText = F_Realloc(headerText, F_StrLen(headerText)+F_StrLen(idText)+1,NO_DSE);
         F_StrCat(headerText,idText);
-		F_Printf(NULL, "%s\n", headerText);
-		F_ApiPrintFAErrno();
+		//F_Printf(NULL, "%s\n", headerText);
+		//F_ApiPrintFAErrno();
 	}
 	F_StrStripTrailingSpaces(headerText);
 	//F_ApiAlert(headerText,FF_ALERT_CONTINUE_NOTE);
 	F_ApiSetString(docId, varFmtId, FP_Fmt, headerText);
-	F_ApiPrintFAErrno();
+	//F_ApiPrintFAErrno();
 	/* Insert variable with created format into header */
 	headerVarId = F_ApiNewAnchoredFormattedObject(docId, FO_Var, "userVarFormat", &headerLoc);
+}
+
+VoidT setAttributes(StringT idStr, StringT nameStr)
+{
+	F_ObjHandleT docId, bodyPageId, pageFrameId, textFrameId, firstFlowId, highId;
+	F_AttributesT attributes;
+
+	/* get Id of the active document */
+	docId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveDoc);
+	/* get Id of the BodyPage*/
+	bodyPageId = F_ApiGetId(FV_SessionId, docId, FP_FirstBodyPageInDoc);
+	/* Get Id of the pageFrame of masterPage*/
+	pageFrameId = F_ApiGetId(docId, bodyPageId, FP_PageFrame);
+	/* Get Id of TextFrame of PageFrame */
+	textFrameId = F_ApiGetId(docId, pageFrameId, FP_FirstGraphicInFrame);
+	/* Get Id of First Flow in TextFrame */
+	firstFlowId = F_ApiGetId(docId, textFrameId, FP_Flow);
+	/* Get Id of the highest-level element in document */
+	highId = F_ApiGetId(docId, firstFlowId, FP_HighestLevelElement);
+	/* Create F_AttributesT structure to set values*/
+	attributes.len = 2;
+	attributes.val = (F_AttributeT *)F_Alloc(2*sizeof(F_AttributeT), DSE);
+	attributes.val[0].name = F_StrCopyString("Id");
+	attributes.val[0].values.len = 1;
+	attributes.val[0].values.val = (StringT *)F_Alloc(sizeof(StringT), DSE);
+	attributes.val[0].values.val[0] = F_StrCopyString(idStr);
+	attributes.val[1].name = F_StrCopyString("Name");
+	attributes.val[1].values.len = 1;
+	attributes.val[1].values.val = (StringT *)F_Alloc(sizeof(StringT), DSE);
+	attributes.val[1].values.val[0] = F_StrCopyString(nameStr);
+	/* Set proper values */
+	F_ApiSetAttributes(docId, highId, &attributes);
 }
