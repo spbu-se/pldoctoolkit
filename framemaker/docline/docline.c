@@ -125,8 +125,6 @@ F_ObjHandleT bcloseProjectId; // menu item for closing active project and all fi
 F_ObjHandleT bexportProjectId; // menu item for exporting active project back to DRL
 F_ObjHandleT checkCorrectId; // menu item for exporting active project back to DRL
 
-F_ObjHandleT firstAddedId[5];
-
 VoidT createNewDocLineBook();
 VoidT newDocCoreChild(IntT type);
 VoidT openBook(); //Opens existing docline project with checking its structure
@@ -223,7 +221,7 @@ VoidT F_ApiInitialize(IntT init)
 	  bimportDrlID = F_ApiDefineAndAddCommand(BIMPORT, bmenuId, "BImport", "Import","\\!BOO");
 
 	  /* Define and add the Save As...-> menu to the DocLine menu. */
-	  bsaveMenuId = F_ApiDefineAndAddMenu(bmenuId, "BSaveDocLineMenu", "Publish to...");
+	  bsaveMenuId = F_ApiDefineAndAddMenu(bmenuId, "BSaveDocLineMenu", "Publish");
 	  /* Define some commands and add them to the Save As...-> menu. */
 	  bsaveDoclineAsHtmlId = F_ApiDefineAndAddCommand(BSAVEHT, bsaveMenuId, "BSaveDoclineAsHtml", "HTML", "\\!BHT");
 	  bsaveDoclineAsPdfId = F_ApiDefineAndAddCommand(BSAVEPD, bsaveMenuId, "BSaveDoclineAsPdf", "PDF", "\\!BPD");
@@ -854,14 +852,88 @@ VoidT closeProject()
 }
 VoidT newDocCoreChild(IntT type)
 {
-	F_ObjHandleT bookId, docId, childEdefId, compId, elemId, dlgId;
+	F_ObjHandleT bookId, docId, childEdefId, compId, elemId, dlgId, childId;
 	F_ElementLocT elemLoc;
-	StringT bookPath, savePath, edefName, nameStr, idStr;
-	IntT len, i, j; 
-	BoolT compExists;
+	StringT bookPath, savePath, edefName, nameStr, idStr, elemName, selectedDocCore;
+	IntT len;
+	BoolT compExists, compFound;
+	F_AttributesT attributes, docCoreAttr;
+	F_StringsT doccores;
+	UIntT j;
 
 	/* Open resource for the dialog*/
 	dlgId = F_ApiOpenResource(FO_DialogResource, "docline");
+
+	/* Get Id and path of the book */
+	bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
+	bookPath = F_ApiGetString(FV_SessionId, bookId, FP_Name);
+	pathFilename(bookPath);
+
+	/* Check whether document has Docline section*/
+	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+	if (!compId)
+	{
+		F_ApiAlert("Highest element error",FF_ALERT_CONTINUE_NOTE);
+		return;
+	}
+	else
+	{
+		/* Check which DocumentationCore sections already exist */
+		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+		compExists = False;
+		/* Initiallze list for dialog's pop-up*/
+		doccores.val = (StringT*) F_Alloc(sizeof(StringT), NO_DSE);
+		doccores.len = 1;
+		doccores.val[0] = F_StrCopyString("...");
+		while (compId)
+		{
+			elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
+			if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name), "DocumentationCore"))
+			{
+				compExists = True;
+				docCoreAttr = F_ApiGetAttributes(bookId, compId);
+				for(j=0; j<docCoreAttr.len; j++) {
+					if (F_StrEqual("FileName", docCoreAttr.val[j].name))
+					{
+						/* Allocate space for new string in dialog's popup */
+						doccores.len++;
+						doccores.val = (StringT *) F_Realloc(doccores.val, doccores.len*sizeof(StringT), NO_DSE);
+						/* Add string to the Pop-Up. */
+						doccores.val[doccores.len-1] = F_StrCopyString(docCoreAttr.val[j].values.val[0]);
+						break;
+					}
+				}
+			}
+			compId = F_ApiGetId(bookId, compId, FP_NextSiblingElement);
+		}
+		if (!compExists) // There is no "DocumentationCore" section
+		{
+			/* Create DocumentationCore section */
+			elemId = F_ApiGetNamedObject(bookId, FO_ElementDef, "DocumentationCore");
+			elemLoc.parentId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+			elemLoc.childId = 0;
+			elemLoc.offset = 0;
+			compId = F_ApiNewElementInHierarchy(bookId, elemId, &elemLoc);
+			/* Create F_AttributesT structure to set FileName value */
+			attributes.len = 1;
+			attributes.val = (F_AttributeT *)F_Alloc(sizeof(F_AttributeT), DSE);
+			attributes.val[0].name = F_StrCopyString("FileName");
+			attributes.val[0].values.len = 1;
+			attributes.val[0].values.val = (StringT *)F_Alloc(sizeof(StringT), DSE);
+			attributes.val[0].values.val[0] = F_StrCopyString("TestString");
+			/* Set proper values */
+			F_ApiSetAttributes(bookId, compId, &attributes);
+			/* Allocate space for new string in dialog's pop-up */
+			doccores.len++;
+			doccores.val = (StringT *) F_Realloc(doccores.val, doccores.len*sizeof(StringT), NO_DSE);
+			/* Add string to the Pop-Up. */
+			doccores.val[doccores.len-1] = F_StrCopyString("TestString");
+		}
+		F_ApiSetStrings(dlgId, F_ApiDialogItemId(dlgId, 7), FP_Labels, &doccores);
+		/* Make the first item the default. */
+		F_ApiSetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State, 1);
+	}
+
 	/* show modal dialog with prompt for attributes */
 	F_ApiModalDialog(NEW_DLG, dlgId);
 	if(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, CANCELDLG), FP_State) == True)
@@ -883,10 +955,31 @@ VoidT newDocCoreChild(IntT type)
 	idStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text));
 	nameStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 3), FP_Text));
 
-	/* Get Id and path of the book */
-	bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
-	bookPath = F_ApiGetString(FV_SessionId, bookId, FP_Name);
-	pathFilename(bookPath);
+	/* get Id of selected DocumentationCore section */
+	selectedDocCore = doccores.val[F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State)];
+	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+	compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+	compFound = False;
+	while (True)
+	{
+		elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
+		if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name), "DocumentationCore"))
+		{	
+			docCoreAttr = F_ApiGetAttributes(bookId, compId);
+			for(j=0; j<docCoreAttr.len; j++) {
+				if (F_StrEqual("FileName", docCoreAttr.val[j].name))
+				{
+					if (F_StrEqual(selectedDocCore, docCoreAttr.val[j].values.val[0]))
+						compFound = True;
+					break;
+				}
+			}
+			if (compFound)
+				break;
+		}
+		compId = F_ApiGetId(bookId, compId, FP_NextSiblingElement);
+	}
+
 	/* Choose what type of element we add*/
 	switch (type)
 	{
@@ -894,39 +987,31 @@ VoidT newDocCoreChild(IntT type)
 		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("dictionary_.fm")+1, NO_DSE);
 		len = F_Sprintf(savePath, "%sdictionary_%s.fm", (StringT)bookPath, (StringT)idStr);
 		edefName = F_StrCopyString("Dictionary");
-		j = 0;
 		break;
 	case DIRECT:
 		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("directory_.fm")+1, NO_DSE);
 		len = F_Sprintf(savePath, "%sdirectory_%s.fm", (StringT)bookPath, (StringT)idStr);
 		edefName = F_StrCopyString("Directory");
-		j = 1;
 		break;
 	case DIRTEMP:
 		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("dir_template_.fm")+1, NO_DSE);
 		len = F_Sprintf(savePath, "%sdir_template_%s.fm", (StringT)bookPath, (StringT)idStr);
 		edefName = F_StrCopyString("DirTemplate");
-		j = 2;
 		break;
 	case INFELEM:
 		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("inf_element_.fm")+1, NO_DSE);
 		len = F_Sprintf(savePath, "%sinf_element_%s.fm", (StringT)bookPath, (StringT)idStr);
 		edefName = F_StrCopyString("InfElement");
-		j = 3;
 		break;
 	case INFPROD:
 		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("inf_product_.fm")+1, NO_DSE);
 		len = F_Sprintf(savePath, "%sinf_product_%s.fm", (StringT)bookPath, (StringT)idStr);
 		edefName = F_StrCopyString("InfProduct");
-		j = 4;
 		break;
 	}
-	/* First create an 8.5 x 11 custom document. */
-	//docId = F_ApiCustomDoc(F_MetricFractMul(in,17,2), 11*in, 1, F_MetricFractMul(in,1,4), in, in, in, in, FF_Custom_SingleSided, True);
-	/* Import EDD from the current book */
-	//F_ApiSimpleImportElementDefs(docId, bookId, FF_IED_REMOVE_OVERRIDES);
-	/* Get ID of the inserting element definitions */
+	/* Create document from template */
 	docId = F_ApiSimpleNewDoc("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_doc_template.fm", False);
+	/* Get Id of the highest-level element definition for created document */
 	childEdefId = F_ApiGetNamedObject(docId, FO_ElementDef, edefName);
 	/* Insert new Highest-level element into the document, i.e. InfElement, InfProduct, etc. */
 	F_ApiWrapElement(docId, childEdefId);
@@ -936,52 +1021,44 @@ VoidT newDocCoreChild(IntT type)
 	setAttributes(idStr, nameStr);
 	/* Update header of the document */
 	editHeader();
-	/* Make a component */
-	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
-	if (!compId)
+	
+	/* Insert Book component in DocumentationCore section*/
+	childId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+	while (childId)
 	{
-		F_ApiAlert("Highest element error",FF_ALERT_CONTINUE_NOTE);
-	}
-	else
-	{
-		/* Check if DocumentationCore section exists */
-		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
-		compExists = False;
-		while (compId && (!compExists))
+		elemId = F_ApiGetId(bookId, childId, FP_ElementDef);
+		elemName = F_ApiGetString(bookId, elemId, FP_Name);
+		if (F_StrIEqual(elemName, "Dictionary"))
 		{
-			elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
-			if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name),"DocumentationCore"))
-			{
-				compExists = True;
-			}
-			else
-			{
-				compId = F_ApiGetId(bookId,compId,FP_NextSiblingElement);
-			}
+			if (type == DICTION)
+				break;
 		}
-		if (!compExists) // There is no "DocumentationCore" section
+		else if (F_StrIEqual(elemName, "Directory"))
 		{
-			/* Create DocumentationCore section */
-			elemId = F_ApiGetNamedObject(bookId, FO_ElementDef, "DocumentationCore");
-			elemLoc.parentId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
-			elemLoc.childId = 0;
-			elemLoc.offset = 0;
-			compId = F_ApiNewElementInHierarchy(bookId, elemId, &elemLoc);
+			if (type <= DIRECT)
+				break;
 		}
-		/* Insert Book component in DocumentationCore section*/
-		i = j + 1; // j-type of element. 0 for Dictionary, 1 for Directory, 2 for DirTemplate, 3 for InfElement, 4 for InfProduct
-		/* Find element to insert our element before*/
-		while ((i<5) && (!firstAddedId[i])) i++;
-		if (i == 5)
-			elemLoc.childId = 0;
-		else
-			elemLoc.childId = firstAddedId[i];
-		elemLoc.parentId = compId;
-		elemLoc.offset = 0;
-		compId = F_ApiNewBookComponentInHierarchy(bookId, savePath, &elemLoc);
-		if (!firstAddedId[j])
-			firstAddedId[j] = compId;
+		else if (F_StrIEqual(elemName, "DirTemplate"))
+		{
+			if (type <= DIRTEMP)
+				break;
+		}
+		else if (F_StrIEqual(elemName, "InfElement"))
+		{
+			if (type <= INFELEM)
+				break;
+		}
+		else if (F_StrIEqual(elemName, "InfProduct"))
+		{
+			if (type <= INFPROD)
+				break;
+		} 
+		childId = F_ApiGetId(bookId, childId, FP_NextSiblingElement);
 	}
+	elemLoc.childId = childId;
+	elemLoc.parentId = compId;
+	elemLoc.offset = 0;
+	compId = F_ApiNewBookComponentInHierarchy(bookId, savePath, &elemLoc);
 	/* Update book */
 	F_ApiSimpleGenerate(bookId, False, True);
 	bookPath = F_ApiGetString(FV_SessionId, bookId, FP_Name);
