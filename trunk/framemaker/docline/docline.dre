@@ -1,0 +1,79 @@
+<DialogFile 5.5>
+<LongChar No>
+<Font 2 1 12>
+<DialogBox
+ <MBRect -1 -1 354 153>
+ <WBRect -1 -1 311 126>
+ <XBRect -1 -1 419 189>
+ <Platforms MWX>
+ <CurrentFocus 1>
+ <FirstFocus 1>
+ <OKButton 5>
+ <CancelButton 6>
+ <DefaultButton 5>
+ <HelpButton -1>
+ <TitleLabel -1>
+ <HypertextHelp clnthelp:dbre template>
+>
+<Label
+ <MCorner 11 28>
+ <WCorner 12 19>
+ <XCorner 11 37>
+ <Label Type here ID of the produced document>
+> # 0
+<EditBox
+ <MBaseLine 241 29 100>
+ <WBaseLine 196 16 100>
+ <XBaseLine 302 33 100>
+ <Label >
+ <StuffObject -1>
+ <HypertextHelp clnthelp:edit box>
+> # 1
+<Label
+ <MCorner 11 54>
+ <WCorner 12 42>
+ <XCorner 11 66>
+ <Label Type here Name of the produced document>
+> # 2
+<EditBox
+ <MBaseLine 241 56 100>
+ <WBaseLine 196 40 100>
+ <XBaseLine 302 66 100>
+ <Label >
+ <StuffObject -1>
+ <HypertextHelp clnthelp:edit box>
+> # 3
+<Rule
+ <MBRect 6 108 338 1>
+ <WBRect 19 85 273 1>
+ <XBRect 19 129 378 1>
+> # 4
+<Button
+ <MBaseLine 68 131 92>
+ <WBaseLine 96 103 53>
+ <XBaseLine 122 163 64>
+ <Label OK>
+ <Active No>
+ <HypertextHelp clnthelp:button>
+> # 5
+<Button
+ <MBaseLine 191 131 92>
+ <WBaseLine 164 103 53>
+ <XBaseLine 213 163 64>
+ <Label Cancel>
+ <Active No>
+ <HypertextHelp clnthelp:button>
+> # 6
+<PopUpMenu
+ <MBaseLine 241 81 99>
+ <WBaseLine 196 65 100>
+ <XBaseLine 302 98 100>
+ <StuffObject -1>
+ <HypertextHelp clnthelp:popup>
+> # 7
+<Label
+ <MCorner 12 79>
+ <WCorner 12 64>
+ <XCorner 12 98>
+ <Label Choose DocumentCore section to use>
+> # 8
