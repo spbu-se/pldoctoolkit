@@ -1,0 +1,60 @@
+<DialogFile 5.5>
+<LongChar No>
+<Font 2 1 12>
+<DialogBox
+ <MBRect -1 -1 458 127>
+ <WBRect -1 -1 390 127>
+ <XBRect -1 -1 491 142>
+ <Platforms MWX>
+ <CurrentFocus 1>
+ <FirstFocus 1>
+ <OKButton 3>
+ <CancelButton 4>
+ <DefaultButton 3>
+ <HelpButton -1>
+ <TitleLabel -1>
+ <HypertextHelp clnthelp:dbre template>
+>
+<Label
+ <MCorner 12 55>
+ <WCorner 12 53>
+ <XCorner 12 56>
+ <Label Type FileName attribute of new DocumentationCore section:>
+ <ShortcutPosition 0>
+> # 0
+<EditBox
+ <MBaseLine 346 55 80>
+ <WBaseLine 271 52 100>
+ <XBaseLine 382 54 80>
+ <Label >
+ <StuffObject -1>
+ <HypertextHelp clnthelp:edit box>
+> # 1
+<Rule
+ <MBRect 6 76 433 1>
+ <WBRect 20 74 351 1>
+ <XBRect 16 86 444 1>
+> # 2
+<Button
+ <MBaseLine 103 97 92>
+ <WBaseLine 124 103 53>
+ <XBaseLine 148 113 64>
+ <Label OK>
+ <Active No>
+ <HypertextHelp clnthelp:button>
+> # 3
+<Button
+ <MBaseLine 226 97 92>
+ <WBaseLine 192 103 53>
+ <XBaseLine 239 113 64>
+ <Label Cancel>
+ <Active No>
+ <HypertextHelp clnthelp:button>
+> # 4
+<Label
+ <MCorner 12 28>
+ <WCorner 12 28>
+ <XCorner 12 28>
+ <Label There is no DocumentationCore sections in project. New section will be created.>
+ <ShortcutPosition 0>
+> # 5

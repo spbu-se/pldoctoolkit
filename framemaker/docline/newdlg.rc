@@ -40,7 +40,9 @@ END
 3 TEXTINCLUDE 
 BEGIN
     "#include ""docline.dlg""\r\n"
-    "#include ""docline.xdi\0"
+    "#include ""docline.xdi""\r\n"
+    "#include ""doccore.dlg""\r\n"
+    "#include ""doccore.xdi\0"
 END
 
 #endif    // APSTUDIO_INVOKED
@@ -57,6 +59,8 @@ END
 //
 #include "docline.dlg"
 #include "docline.xdi"
+#include "doccore.dlg"
+#include "doccore.xdi"
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
 

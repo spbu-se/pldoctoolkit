@@ -60,6 +60,7 @@
 #include "ctype.h"
 
 #define NEW_DLG 239
+#define DOCCORE_DLG 240
 #define OKDLG 5
 #define CANCELDLG 6
 #define BOOK 11
@@ -69,6 +70,7 @@
 #define NEWIE 15
 #define NEWIP 16
 #define BBOOK 21
+#define BCORE 27
 #define BNEWDC 22
 #define BNEWDI 23
 #define BNEWDT 24
@@ -116,9 +118,11 @@ F_ObjHandleT exportProjectId; // menu item for exporting active project back to 
 /* All the same for !BookMainMenu */
 F_ObjHandleT bmenubarId, bmenuId; // !BookMainMenu and Docline menus
 F_ObjHandleT bnewMenuId; // "New" submenu in the Docline menu
+F_ObjHandleT docCoreId; // DocumentationCore submenu in the "New menu"
 F_ObjHandleT bopenMenuId; // "Open" submenu in the Docline menu
 F_ObjHandleT bsaveMenuId; // "Save As..." submenu in the Docline menu
-F_ObjHandleT bnewProjectId, bseparatorId, bnewDictId, bnewDirectId, bnewDirTempId, bnewInfElemId, bnewInfProdId; // Commands from the "New" submenu
+F_ObjHandleT bnewProjectId, bnewDocCoreSectionId, bseparatorId, bnewDictId, bnewDirectId, bnewDirTempId, bnewInfElemId, bnewInfProdId; // Commands from the "New" submenu
+F_ObjHandleT coreSeparatorId; // Separator in "New DocumentationCore section"
 F_ObjHandleT bsaveDoclineAsHtmlId, bsaveDoclineAsPdfId; // Commands from the "Save As..." submenu
 F_ObjHandleT bopenFmID, bimportDrlID; // open exising fm docline project, import project from existing drl documentation
 F_ObjHandleT bcloseProjectId; // menu item for closing active project and all files in it
@@ -127,6 +131,7 @@ F_ObjHandleT checkCorrectId; // menu item for exporting active project back to D
 
 VoidT createNewDocLineBook();
 VoidT newDocCoreChild(IntT type);
+BoolT newDocCoreSection(BoolT isFirst);
 VoidT openBook(); //Opens existing docline project with checking its structure
 VoidT importDocLineDoc(); //Imports .drl files in directory
 VoidT exportDocLineDoc(); //Exports docline project
@@ -163,15 +168,6 @@ VoidT F_ApiInitialize(IntT init)
 	  newMenuId = F_ApiDefineAndAddMenu(menuId, "NewDocLineMenu", "New");
 	  /* Define some commands and add them to the New-> menu. */
 	  newProjectId = F_ApiDefineAndAddCommand(BOOK, newMenuId, "NewDocLineProject", "Docline project", "\\!NP");	
-	  /* Add seperator after the New docline project command*/
-	  //separatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "NewSeparator");
-	  //F_ApiAddCommandToMenu(newMenuId, separatorId);
-	  /* Define "New *SpecificElement*" commands and add them to the "New" menu. */
-	  //newDictId = F_ApiDefineAndAddCommand(NEWDC, newMenuId, "NewDictionary", "Dictionary", "\\!ND");
-	  //newDirectId = F_ApiDefineAndAddCommand(NEWDI, newMenuId, "NewDirectory", "Directory", "\\!DI");
-	  //newDirTempId = F_ApiDefineAndAddCommand(NEWDT, newMenuId, "NewDirTemplate", "DirTemplate", "\\!DT");
-	  //newInfElemId = F_ApiDefineAndAddCommand(NEWIE, newMenuId, "NewInfElement", "InfElement", "\\!NE");
-	  //newInfProdId = F_ApiDefineAndAddCommand(NEWIP, newMenuId, "NewInfProduct", "InfProduct", "\\!NP");
 
 	  /* Define and add the Open-> menu to the DocLine menu. */
 	  openMenuId = F_ApiDefineAndAddMenu(menuId, "OpenDocLineMenu", "Open");
@@ -180,12 +176,6 @@ VoidT F_ApiInitialize(IntT init)
 
 	  /* Define command for importing DocLine project from existing DRL documentation. */
 	  importDrlID = F_ApiDefineAndAddCommand(IMPORT, menuId, "Import", "Import","\\!OO");
-
-	  /* Define and add the Save As...-> menu to the DocLine menu. */
-	  //saveMenuId = F_ApiDefineAndAddMenu(menuId, "SaveDocLineMenu", "Publish to...");
-	  /* Define some commands and add them to the Save As...-> menu. */
-	  //saveDoclineAsHtmlId = F_ApiDefineAndAddCommand(SAVEHT, saveMenuId, "SaveDoclineAsHtml", "HTML", "\\!HT");
-	  //saveDoclineAsPdfId = F_ApiDefineAndAddCommand(SAVEPD, saveMenuId, "SaveDoclineAsPdf", "PDF", "\\!PD");
 
 	  /* Define command for exporting active project back to DRL */
 	  exportProjectId = F_ApiDefineAndAddCommand(EXPORT, menuId, "ExportProject", "Export","\\!EP");
@@ -201,16 +191,23 @@ VoidT F_ApiInitialize(IntT init)
 	  /* Define and add the New-> menu to the Book DocLine menu. */
 	  bnewMenuId = F_ApiDefineAndAddMenu(bmenuId, "BNewDocLineMenu", "New");
 	  /* Define some commands and add them to the New-> menu. */
-	  bnewProjectId = F_ApiDefineAndAddCommand(BBOOK, bnewMenuId, "BNewDocLineProject", "Docline project", "\\!BNP");	
+	  bnewProjectId = F_ApiDefineAndAddCommand(BBOOK, bnewMenuId, "BNewDocLineProject", "Docline project", "\\!BNP");
 	  /* Add seperator after the New docline project command*/
 	  bseparatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "BNewSeparator");
-	  F_ApiAddCommandToMenu(bnewMenuId, bseparatorId);
-	  /* Define "New *SpecificElement*" commands and add them to the "New" menu. */
-	  bnewDictId = F_ApiDefineAndAddCommand(BNEWDC, bnewMenuId, "BNewDictionary", "Dictionary", "\\!BND");
-	  bnewDirectId = F_ApiDefineAndAddCommand(BNEWDI, bnewMenuId, "BNewDirectory", "Directory", "\\!BDI");
-	  bnewDirTempId = F_ApiDefineAndAddCommand(BNEWDT, bnewMenuId, "BNewDirTemplate", "DirTemplate", "\\!BDT");
-	  bnewInfElemId = F_ApiDefineAndAddCommand(BNEWIE, bnewMenuId, "BNewInfElement", "InfElement", "\\!BNE");
-	  bnewInfProdId = F_ApiDefineAndAddCommand(BNEWIP, bnewMenuId, "BNewInfProduct", "InfProduct", "\\!BNP");
+	  F_ApiAddCommandToMenu(bnewMenuId, bseparatorId);	
+	  /* Define and add DocumentationCore menu to the "New" menu. */
+	  docCoreId = F_ApiDefineAndAddMenu(bnewMenuId, "NewDocCoreMenu", "DocumentationCore");
+	  /* Define and add comand for adding new DocumentationCore section to the project */
+	  bnewDocCoreSectionId = F_ApiDefineAndAddCommand(BCORE, docCoreId, "BNewDocCoreSection", "DocumentationCore section", "\\!NDC");
+	  /* Add seperator after new DocumentationCore Section command*/
+	  coreSeparatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "CoreSeparator");
+	  F_ApiAddCommandToMenu(docCoreId, coreSeparatorId);	
+	  /* Define "New *SpecificElement*" commands and add them to the DocumentationCore menu. */
+	  bnewDictId = F_ApiDefineAndAddCommand(BNEWDC, docCoreId, "BNewDictionary", "Dictionary", "\\!BND");
+	  bnewDirectId = F_ApiDefineAndAddCommand(BNEWDI, docCoreId, "BNewDirectory", "Directory", "\\!BDI");
+	  bnewDirTempId = F_ApiDefineAndAddCommand(BNEWDT, docCoreId, "BNewDirTemplate", "DirTemplate", "\\!BDT");
+	  bnewInfElemId = F_ApiDefineAndAddCommand(BNEWIE, docCoreId, "BNewInfElement", "InfElement", "\\!BNE");
+	  bnewInfProdId = F_ApiDefineAndAddCommand(BNEWIP, docCoreId, "BNewInfProduct", "InfProduct", "\\!BNP");
 
 	  /* Define and add the Open-> menu to the DocLine menu. */
 	  bopenMenuId = F_ApiDefineAndAddMenu(bmenuId, "BOpenDocLineMenu", "Open");
@@ -253,6 +250,9 @@ VoidT F_ApiCommand(IntT command)
   case BBOOK:
 	  closeProject();
 	  createNewDocLineBook();
+	  break;
+  case BCORE:
+	  newDocCoreSection(False);
 	  break;
   case BNEWDC:
 	  newDocCoreChild(DICTION);
@@ -486,17 +486,23 @@ VoidT openFilesInDirectory(StringT path)
 	while ((file = F_FilePathGetNext(handle, &statusp)) != NULL)
 	{
 		tmpBookPath = F_FilePathToPathName(file, FDosPath);
-		if (F_StrIEqual(fileFileName(tmpBookPath),defaultBookName))
+		F_Printf(NULL,"%s\n",tmpBookPath);
+		tmpBookPath = fileFileName(tmpBookPath);
+		F_Printf(NULL,"%s\n",tmpBookPath);
+		if (F_StrIEqual(tmpBookPath,defaultBookName))
 		{
+			F_Printf(NULL,"point\n");
 			bookExists = True;
 			bookPath = F_StrCopyString(tmpBookPath);
 		}
-		else if (F_StrSuffix(bookPath,".fm.lck"))
+		else if (F_StrSuffix(tmpBookPath,".fm.lck"))
 		{
+			F_Printf(NULL,"point1\n");
 			F_DeleteFile(file);
 		}
-		F_FilePathFree(file);
-		F_ApiDeallocateString(&tmpBookPath);
+		F_Printf(NULL,"point2\n");
+		//F_FilePathFree(file);
+		//F_ApiDeallocateString(&tmpBookPath);
 	} 
 	F_FilePathCloseDir(handle);
 	if (!bookExists)
@@ -850,6 +856,60 @@ VoidT closeProject()
 		openedBookId = nextBookId;
 	}
 }
+
+BoolT newDocCoreSection(BoolT isFirst)
+{
+	F_ObjHandleT bookId, docCoreDlgId, compId, elemId;
+	StringT fileName;
+	F_AttributesT attributes;
+	F_ElementLocT elemLoc;
+
+	/* Get Id of the book */
+	bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
+	/* Open resource for the Create new DocumentationCore section dialog */
+	docCoreDlgId = F_ApiOpenResource(FO_DialogResource, "doccore");	
+	if (!isFirst)
+		F_ApiSetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 5), FP_Visibility, False);
+	else
+		F_ApiSetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 5), FP_Visibility, True);
+	
+	F_ApiModalDialog(DOCCORE_DLG, docCoreDlgId);
+	/* define which button was clicked */
+	if(F_ApiGetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 4), FP_State) == True)
+		return False;
+	else if(F_ApiGetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 3), FP_State) != True)
+		return False;
+	/* make sure that FileName attribute was typed in the text box */
+	while (F_StrIsEmpty(F_ApiGetString(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 1), FP_Text)))
+	{
+		F_ApiAlert("You must type FileName attribute in the text field!", FF_ALERT_CONTINUE_NOTE);
+		F_ApiModalDialog(DOCCORE_DLG, docCoreDlgId);
+		if(F_ApiGetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 4), FP_State) == True)
+			return False;
+		else if(F_ApiGetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 3), FP_State) != True)
+			return False;
+	}
+	/* get fileName attribute value from dialog box*/
+	fileName = F_StrCopyString(F_ApiGetString(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 1), FP_Text));
+	/* Get Id of DocumentationCore Element definitions*/
+	elemId = F_ApiGetNamedObject(bookId, FO_ElementDef, "DocumentationCore");
+	elemLoc.parentId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+	elemLoc.childId = 0;
+	elemLoc.offset = 0;
+	compId = F_ApiNewElementInHierarchy(bookId, elemId, &elemLoc);
+	/* Create F_AttributesT structure to set FileName value */
+	attributes.len = 1;
+	attributes.val = (F_AttributeT *)F_Alloc(sizeof(F_AttributeT), DSE);
+	attributes.val[0].name = F_StrCopyString("FileName");
+	attributes.val[0].values.len = 1;
+	attributes.val[0].values.val = (StringT *)F_Alloc(sizeof(StringT), DSE);
+	attributes.val[0].values.val[0] = F_StrCopyString(fileName);
+	/* Set proper values */
+	F_ApiSetAttributes(bookId, compId, &attributes);
+	F_ApiClose (docCoreDlgId, FF_CLOSE_MODIFIED);
+	return True;
+}
+
 VoidT newDocCoreChild(IntT type)
 {
 	F_ObjHandleT bookId, docId, childEdefId, compId, elemId, dlgId, childId;
@@ -857,11 +917,11 @@ VoidT newDocCoreChild(IntT type)
 	StringT bookPath, savePath, edefName, nameStr, idStr, elemName, selectedDocCore;
 	IntT len;
 	BoolT compExists, compFound;
-	F_AttributesT attributes, docCoreAttr;
+	F_AttributesT docCoreAttr;
 	F_StringsT doccores;
 	UIntT j;
 
-	/* Open resource for the dialog*/
+	/* Open resource for the dialogs */
 	dlgId = F_ApiOpenResource(FO_DialogResource, "docline");
 
 	/* Get Id and path of the book */
@@ -891,8 +951,26 @@ VoidT newDocCoreChild(IntT type)
 			if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name), "DocumentationCore"))
 			{
 				compExists = True;
+				break;
+			}
+			compId = F_ApiGetId(bookId, compId, FP_NextSiblingElement);
+		}
+		if (!compExists) // There is no "DocumentationCore" section
+		{
+			/* Create DocumentationCore section */
+			if(!newDocCoreSection(True))
+				return;
+		}
+		compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+		while (compId)
+		{
+			elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
+			if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name), "DocumentationCore"))
+			{
 				docCoreAttr = F_ApiGetAttributes(bookId, compId);
-				for(j=0; j<docCoreAttr.len; j++) {
+				for(j=0; j<docCoreAttr.len; j++)
+				{
 					if (F_StrEqual("FileName", docCoreAttr.val[j].name))
 					{
 						/* Allocate space for new string in dialog's popup */
@@ -905,29 +983,6 @@ VoidT newDocCoreChild(IntT type)
 				}
 			}
 			compId = F_ApiGetId(bookId, compId, FP_NextSiblingElement);
-		}
-		if (!compExists) // There is no "DocumentationCore" section
-		{
-			/* Create DocumentationCore section */
-			elemId = F_ApiGetNamedObject(bookId, FO_ElementDef, "DocumentationCore");
-			elemLoc.parentId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
-			elemLoc.childId = 0;
-			elemLoc.offset = 0;
-			compId = F_ApiNewElementInHierarchy(bookId, elemId, &elemLoc);
-			/* Create F_AttributesT structure to set FileName value */
-			attributes.len = 1;
-			attributes.val = (F_AttributeT *)F_Alloc(sizeof(F_AttributeT), DSE);
-			attributes.val[0].name = F_StrCopyString("FileName");
-			attributes.val[0].values.len = 1;
-			attributes.val[0].values.val = (StringT *)F_Alloc(sizeof(StringT), DSE);
-			attributes.val[0].values.val[0] = F_StrCopyString("TestString");
-			/* Set proper values */
-			F_ApiSetAttributes(bookId, compId, &attributes);
-			/* Allocate space for new string in dialog's pop-up */
-			doccores.len++;
-			doccores.val = (StringT *) F_Realloc(doccores.val, doccores.len*sizeof(StringT), NO_DSE);
-			/* Add string to the Pop-Up. */
-			doccores.val[doccores.len-1] = F_StrCopyString("TestString");
 		}
 		F_ApiSetStrings(dlgId, F_ApiDialogItemId(dlgId, 7), FP_Labels, &doccores);
 		/* Make the first item the default. */
@@ -1139,6 +1194,7 @@ VoidT importDocLineDoc()
 		tmpPath = F_FilePathToPathName(file,FDosPath);
 		if (validateFilename(tmpPath,DRL))
 		{
+			F_ApiAlert(tmpPath,FF_ALERT_CONTINUE_NOTE);
 			fileID = F_ApiOpen(tmpPath,&params,&returnParams);
 			if (!fileID)
 			{
@@ -1318,12 +1374,12 @@ VoidT exportDocLineDoc()
 		}
 	}
 	cleanDirectory(F_PathNameToFilePath(dirPath,NULL,FDosPath));
-	F_FilePathCloseDir(handle);
-	F_ApiDeallocateString(&path);
-	F_Free(filePath);
-	F_Free(&docID);
-	F_Free(&bookID);
-	F_ApiDeallocateString(&dirPath);
+	//F_FilePathCloseDir(handle);
+	//F_ApiDeallocateString(&path);
+	//F_Free(filePath);
+	//F_Free(&docID);
+	//F_Free(&bookID);
+	//F_ApiDeallocateString(&dirPath);
 }
 VoidT editHeader()
 {
