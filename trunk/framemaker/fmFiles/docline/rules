@@ -23,10 +23,10 @@ reader preserve fm element definition "Graphic", "Index", "IndexTerm",
 reader generate book for  doctype "set", "book", "part", "DocumentationCore", "ProductDocumentation", "ProductLine"
   {
     put element "Product" in file "product.fm";
-	put element "FinalInfProduct" in file "final_inf_product.fm";
+    put element "FinalInfProduct" in file "final_inf_product.fm";
     put element "Dictionary" in file "dictionary.fm";
     put element "Directory" in file "directory.fm";
-	put element "DirTemplate" in file "dir_template.fm";
+    put element "DirTemplate" in file "dir_template.fm";
     put element "InfProduct" in file "inf_product.fm";
     put element "InfElement" in file "inf_element.fm";
     put element "appendix" in file "app.fm";
