@@ -60,7 +60,7 @@
 #include "ctype.h"
 
 #define NEW_DLG 239
-#define DOCCORE_DLG 240
+#define SECTION_DLG 240
 #define OKDLG 5
 #define CANCELDLG 6
 #define BOOK 11
@@ -76,6 +76,13 @@
 #define BNEWDT 24
 #define BNEWIE 25
 #define BNEWIP 26
+#define BPROD 36
+#define PNEWDC 32
+#define PNEWDI 33
+#define PNEWDT 34
+#define PNEWIP 35
+#define BLINE 47
+#define BNEWPR 41
 #define SAVEHT 101
 #define SAVEPD 102
 #define OPEN 103
@@ -95,6 +102,8 @@
 #define DIRTEMP 503
 #define INFELEM 504
 #define INFPROD 505
+#define FINALINF 506
+#define PRODUCT 507
 
 #define EXPORT 901
 #define CLOSE 902
@@ -109,7 +118,7 @@ F_ObjHandleT menubarId, menuId; // !MakerMainMenu and Docline menus
 F_ObjHandleT newMenuId; // "New" submenu in the Docline menu
 F_ObjHandleT openMenuId; // "Open" submenu in the Docline menu
 F_ObjHandleT saveMenuId; // "Save As..." submenu in the Docline menu
-F_ObjHandleT newProjectId, separatorId, newDictId, newDirectId, newDirTempId, newInfElemId, newInfProdId; // Commands from the "New" submenu
+F_ObjHandleT newProjectId;// Commands from the "New" submenu
 F_ObjHandleT saveDoclineAsHtmlId, saveDoclineAsPdfId; // Commands from the "Save As..." submenu
 F_ObjHandleT openFmID, importDrlID; // open exising fm docline project, import project from existing drl documentation
 F_ObjHandleT closeProjectId; // menu item for closing active project and all files in it
@@ -119,10 +128,14 @@ F_ObjHandleT exportProjectId; // menu item for exporting active project back to 
 F_ObjHandleT bmenubarId, bmenuId; // !BookMainMenu and Docline menus
 F_ObjHandleT bnewMenuId; // "New" submenu in the Docline menu
 F_ObjHandleT docCoreId; // DocumentationCore submenu in the "New menu"
+F_ObjHandleT prodDocId; // ProductDocumentation submenu in the "New menu"
+F_ObjHandleT prodLineId; // ProductLine submenu in the "New menu"
 F_ObjHandleT bopenMenuId; // "Open" submenu in the Docline menu
-F_ObjHandleT bsaveMenuId; // "Save As..." submenu in the Docline menu
-F_ObjHandleT bnewProjectId, bnewDocCoreSectionId, bseparatorId, bnewDictId, bnewDirectId, bnewDirTempId, bnewInfElemId, bnewInfProdId; // Commands from the "New" submenu
-F_ObjHandleT coreSeparatorId; // Separator in "New DocumentationCore section"
+F_ObjHandleT bsaveMenuId; // "Publish" submenu in the Docline menu
+F_ObjHandleT bnewProjectId, separatorId; // Some commands from the "New" submenu
+F_ObjHandleT newDocCoreSectionId, coreSeparatorId, newDictId, newDirectId, newDirTempId, newInfElemId, newInfProdId; // Commands in "New DocumentationCore"
+F_ObjHandleT newProdDocSectionId, prodSeparatorId, prodDictId, prodDirectId, prodDirTempId, finalInfProdId; // Commands in "New ProductDocumentation"
+F_ObjHandleT newProdLineSectionId, lineSeparatorId, productId; // Commands in "New ProductLine"
 F_ObjHandleT bsaveDoclineAsHtmlId, bsaveDoclineAsPdfId; // Commands from the "Save As..." submenu
 F_ObjHandleT bopenFmID, bimportDrlID; // open exising fm docline project, import project from existing drl documentation
 F_ObjHandleT bcloseProjectId; // menu item for closing active project and all files in it
@@ -131,7 +144,9 @@ F_ObjHandleT checkCorrectId; // menu item for exporting active project back to D
 
 VoidT createNewDocLineBook();
 VoidT newDocCoreChild(IntT type);
-BoolT newDocCoreSection(BoolT isFirst);
+VoidT newProdDocChild(IntT type);
+VoidT newProdLineChild(IntT type);
+BoolT newSecondLevelSection(BoolT isFirst, StringT type);
 VoidT openBook(); //Opens existing docline project with checking its structure
 VoidT importDocLineDoc(); //Imports .drl files in directory
 VoidT exportDocLineDoc(); //Exports docline project
@@ -193,21 +208,44 @@ VoidT F_ApiInitialize(IntT init)
 	  /* Define some commands and add them to the New-> menu. */
 	  bnewProjectId = F_ApiDefineAndAddCommand(BBOOK, bnewMenuId, "BNewDocLineProject", "Docline project", "\\!BNP");
 	  /* Add seperator after the New docline project command*/
-	  bseparatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "BNewSeparator");
-	  F_ApiAddCommandToMenu(bnewMenuId, bseparatorId);	
+	  separatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "BNewSeparator");
+	  F_ApiAddCommandToMenu(bnewMenuId, separatorId);	
 	  /* Define and add DocumentationCore menu to the "New" menu. */
 	  docCoreId = F_ApiDefineAndAddMenu(bnewMenuId, "NewDocCoreMenu", "DocumentationCore");
 	  /* Define and add comand for adding new DocumentationCore section to the project */
-	  bnewDocCoreSectionId = F_ApiDefineAndAddCommand(BCORE, docCoreId, "BNewDocCoreSection", "DocumentationCore section", "\\!NDC");
+	  newDocCoreSectionId = F_ApiDefineAndAddCommand(BCORE, docCoreId, "BNewDocCoreSection", "DocumentationCore section", "\\!NDC");
 	  /* Add seperator after new DocumentationCore Section command*/
 	  coreSeparatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "CoreSeparator");
 	  F_ApiAddCommandToMenu(docCoreId, coreSeparatorId);	
 	  /* Define "New *SpecificElement*" commands and add them to the DocumentationCore menu. */
-	  bnewDictId = F_ApiDefineAndAddCommand(BNEWDC, docCoreId, "BNewDictionary", "Dictionary", "\\!BND");
-	  bnewDirectId = F_ApiDefineAndAddCommand(BNEWDI, docCoreId, "BNewDirectory", "Directory", "\\!BDI");
-	  bnewDirTempId = F_ApiDefineAndAddCommand(BNEWDT, docCoreId, "BNewDirTemplate", "DirTemplate", "\\!BDT");
-	  bnewInfElemId = F_ApiDefineAndAddCommand(BNEWIE, docCoreId, "BNewInfElement", "InfElement", "\\!BNE");
-	  bnewInfProdId = F_ApiDefineAndAddCommand(BNEWIP, docCoreId, "BNewInfProduct", "InfProduct", "\\!BNP");
+	  newDictId = F_ApiDefineAndAddCommand(BNEWDC, docCoreId, "BNewDictionary", "Dictionary", "\\!BND");
+	  newDirectId = F_ApiDefineAndAddCommand(BNEWDI, docCoreId, "BNewDirectory", "Directory", "\\!BDI");
+	  newDirTempId = F_ApiDefineAndAddCommand(BNEWDT, docCoreId, "BNewDirTemplate", "DirTemplate", "\\!BDT");
+	  newInfElemId = F_ApiDefineAndAddCommand(BNEWIE, docCoreId, "BNewInfElement", "InfElement", "\\!BNE");
+	  newInfProdId = F_ApiDefineAndAddCommand(BNEWIP, docCoreId, "BNewInfProduct", "InfProduct", "\\!BNP");
+
+	  /* Define and add ProductDocumentation menu to the "New" menu. */
+	  prodDocId = F_ApiDefineAndAddMenu(bnewMenuId, "NewProdDocMenu", "ProductDocumentation");
+	  /* Define and add comand for adding new ProductDocumentation section to the project */
+	  newProdDocSectionId = F_ApiDefineAndAddCommand(BPROD, prodDocId, "BNewProdDocSection", "ProductDocumentation section", "\\!NPD");
+	  /* Add seperator after new ProductDocumentation Section command*/
+	  prodSeparatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "ProdSeparator");
+	  F_ApiAddCommandToMenu(prodDocId, prodSeparatorId);	
+	  /* Define "New *SpecificElement*" commands and add them to the ProductDocumentation menu. */
+	  prodDictId = F_ApiDefineAndAddCommand(PNEWDC, prodDocId, "PNewDictionary", "Dictionary", "\\!PND");
+	  prodDirectId = F_ApiDefineAndAddCommand(PNEWDI, prodDocId, "PNewDirectory", "Directory", "\\!PDI");
+	  prodDirTempId = F_ApiDefineAndAddCommand(PNEWDT, prodDocId, "PNewDirTemplate", "DirTemplate", "\\!PDT");
+	  finalInfProdId = F_ApiDefineAndAddCommand(PNEWIP, prodDocId, "PNewInfProduct", "FinalInfProduct", "\\!PIP");
+
+	  /* Define and add ProductLine menu to the "New" menu. */
+	  prodLineId = F_ApiDefineAndAddMenu(bnewMenuId, "NewProdLineMenu", "ProductLine");
+	  /* Define and add comand for adding new ProductLine section to the project */
+	  newProdLineSectionId = F_ApiDefineAndAddCommand(BLINE, prodLineId, "BNewProdLineSection", "ProductLine section", "\\!NPL");
+	  /* Add seperator after new ProductLine Section command*/
+	  lineSeparatorId = F_ApiNewNamedObject(FV_SessionId, FO_MenuItemSeparator, "LineSeparator");
+	  F_ApiAddCommandToMenu(prodLineId, lineSeparatorId);	
+	  /* Define "New *SpecificElement*" commands and add them to the ProductLine menu. */
+	  productId = F_ApiDefineAndAddCommand(BNEWPR, prodLineId, "BNewProduct", "Product", "\\!BNP");
 
 	  /* Define and add the Open-> menu to the DocLine menu. */
 	  bopenMenuId = F_ApiDefineAndAddMenu(bmenuId, "BOpenDocLineMenu", "Open");
@@ -252,7 +290,7 @@ VoidT F_ApiCommand(IntT command)
 	  createNewDocLineBook();
 	  break;
   case BCORE:
-	  newDocCoreSection(False);
+	  newSecondLevelSection(False, "DocumentationCore");
 	  break;
   case BNEWDC:
 	  newDocCoreChild(DICTION);
@@ -268,6 +306,27 @@ VoidT F_ApiCommand(IntT command)
 	  break;
   case BNEWIP:
 	  newDocCoreChild(INFPROD);
+	  break;
+  case BPROD:
+	  newSecondLevelSection(False, "ProductDocumentation");
+	  break;
+  case PNEWDC:
+	  newProdDocChild(DICTION);
+	  break;
+  case PNEWDI:
+	  newProdDocChild(DIRECT);
+	  break;
+  case PNEWDT:
+	  newProdDocChild(DIRTEMP);
+	  break;
+  case PNEWIP:
+	  newProdDocChild(FINALINF);
+	  break;
+  case BLINE:
+	  newSecondLevelSection(False, "ProductLine");
+	  break;
+  case BNEWPR:
+	  newProdLineChild(PRODUCT);
 	  break;
   case OPEN:
   case BOPEN:
@@ -857,42 +916,56 @@ VoidT closeProject()
 	}
 }
 
-BoolT newDocCoreSection(BoolT isFirst)
+BoolT newSecondLevelSection(BoolT isFirst, StringT type)
 {
-	F_ObjHandleT bookId, docCoreDlgId, compId, elemId;
+	F_ObjHandleT bookId, sectionDlgId, compId, elemId;
 	StringT fileName;
 	F_AttributesT attributes;
 	F_ElementLocT elemLoc;
 
 	/* Get Id of the book */
 	bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
-	/* Open resource for the Create new DocumentationCore section dialog */
-	docCoreDlgId = F_ApiOpenResource(FO_DialogResource, "doccore");	
+	/* Open resource for the Create new DocumentationCore || ProductDocumentation || ProductLine section dialog */
+	sectionDlgId = F_ApiOpenResource(FO_DialogResource, "doccore");	
 	if (!isFirst)
-		F_ApiSetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 5), FP_Visibility, False);
+		F_ApiSetInt(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 5), FP_Visibility, False);
 	else
-		F_ApiSetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 5), FP_Visibility, True);
-	
-	F_ApiModalDialog(DOCCORE_DLG, docCoreDlgId);
+		F_ApiSetInt(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 5), FP_Visibility, True);
+	if (F_StrIEqual(type, "ProductDocumentation"))
+	{
+		F_ApiSetString(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 0), FP_Label, "Type FileName attribute of new ProductDocumentation section:");	
+		F_ApiSetString(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 5), FP_Label, "There is no ProductDocumentation section in project. New section will be created.");	
+	}
+	else if (F_StrIEqual(type, "ProductLine"))
+	{
+		F_ApiSetString(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 0), FP_Label, "Type FileName attribute of new ProductLine section:");
+		F_ApiSetString(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 5), FP_Label, "There is no ProductLine section in project. New section will be created.");	
+	}
+
+	F_ApiModalDialog(SECTION_DLG, sectionDlgId);
 	/* define which button was clicked */
-	if(F_ApiGetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 4), FP_State) == True)
+	if((F_ApiGetInt(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 4), FP_State) == True) ||
+		(F_ApiGetInt(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 3), FP_State) != True))
+	{
+		F_ApiClose (sectionDlgId, FF_CLOSE_MODIFIED);
 		return False;
-	else if(F_ApiGetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 3), FP_State) != True)
-		return False;
+	}
 	/* make sure that FileName attribute was typed in the text box */
-	while (F_StrIsEmpty(F_ApiGetString(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 1), FP_Text)))
+	while (F_StrIsEmpty(F_ApiGetString(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 1), FP_Text)))
 	{
 		F_ApiAlert("You must type FileName attribute in the text field!", FF_ALERT_CONTINUE_NOTE);
-		F_ApiModalDialog(DOCCORE_DLG, docCoreDlgId);
-		if(F_ApiGetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 4), FP_State) == True)
+		F_ApiModalDialog(SECTION_DLG, sectionDlgId);
+		if((F_ApiGetInt(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 4), FP_State) == True) ||
+			(F_ApiGetInt(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 3), FP_State) != True))
+		{
+			F_ApiClose (sectionDlgId, FF_CLOSE_MODIFIED);
 			return False;
-		else if(F_ApiGetInt(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 3), FP_State) != True)
-			return False;
+		}
 	}
 	/* get fileName attribute value from dialog box*/
-	fileName = F_StrCopyString(F_ApiGetString(docCoreDlgId, F_ApiDialogItemId(docCoreDlgId, 1), FP_Text));
-	/* Get Id of DocumentationCore Element definitions*/
-	elemId = F_ApiGetNamedObject(bookId, FO_ElementDef, "DocumentationCore");
+	fileName = F_StrCopyString(F_ApiGetString(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 1), FP_Text));
+	/* Get Id of Section Element definitions*/
+	elemId = F_ApiGetNamedObject(bookId, FO_ElementDef, type);
 	elemLoc.parentId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
 	elemLoc.childId = 0;
 	elemLoc.offset = 0;
@@ -906,7 +979,7 @@ BoolT newDocCoreSection(BoolT isFirst)
 	attributes.val[0].values.val[0] = F_StrCopyString(fileName);
 	/* Set proper values */
 	F_ApiSetAttributes(bookId, compId, &attributes);
-	F_ApiClose (docCoreDlgId, FF_CLOSE_MODIFIED);
+	F_ApiClose (sectionDlgId, FF_CLOSE_MODIFIED);
 	return True;
 }
 
@@ -934,6 +1007,7 @@ VoidT newDocCoreChild(IntT type)
 	if (!compId)
 	{
 		F_ApiAlert("Highest element error",FF_ALERT_CONTINUE_NOTE);
+		F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
 		return;
 	}
 	else
@@ -958,8 +1032,11 @@ VoidT newDocCoreChild(IntT type)
 		if (!compExists) // There is no "DocumentationCore" section
 		{
 			/* Create DocumentationCore section */
-			if(!newDocCoreSection(True))
+			if(!newSecondLevelSection(True, "DocumentationCore"))
+			{
+				F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
 				return;
+			}
 		}
 		compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
 		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
@@ -991,20 +1068,24 @@ VoidT newDocCoreChild(IntT type)
 
 	/* show modal dialog with prompt for attributes */
 	F_ApiModalDialog(NEW_DLG, dlgId);
-	if(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, CANCELDLG), FP_State) == True)
+	if ((F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, CANCELDLG), FP_State) == True) ||
+		(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, OKDLG), FP_State) != True))
+	{
+		F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
 		return;
-	else if(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, OKDLG), FP_State) != True)
-		return;
+	}
 	/* make sure that all attributes are typed in the text box*/
 	while (F_StrIsEmpty(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text)) ||
 			F_StrIsEmpty(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 3), FP_Text)))
 	{
 		F_ApiAlert("You must type Id and Name in text fields!", FF_ALERT_CONTINUE_NOTE);
 		F_ApiModalDialog(NEW_DLG, dlgId);
-		if(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, CANCELDLG), FP_State) == True)
+		if ((F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, CANCELDLG), FP_State) == True) ||
+			(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, OKDLG), FP_State) != True))
+		{
+			F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
 			return;
-		else if(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, OKDLG), FP_State) != True)
-			return;
+		}
 	}
 	/* get Id and Name values from dialog box*/
 	idStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text));
@@ -1126,6 +1207,396 @@ VoidT newDocCoreChild(IntT type)
 	F_ApiDeallocateString(&edefName);
 	F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
 }
+
+VoidT newProdDocChild(IntT type)
+{
+	F_ObjHandleT bookId, docId, childEdefId, compId, elemId, dlgId, childId;
+	F_ElementLocT elemLoc;
+	StringT bookPath, savePath, edefName, nameStr, idStr, elemName, selectedProdDoc;
+	IntT len;
+	BoolT compExists, compFound;
+	F_AttributesT prodDocAttr;
+	F_StringsT proddocs;
+	UIntT j;
+
+	/* Open resource for the dialogs */
+	dlgId = F_ApiOpenResource(FO_DialogResource, "docline");
+	/* Change label from DocumentationCore to ProductDocumentation*/
+	F_ApiSetString(dlgId, F_ApiDialogItemId(dlgId, 8), FP_Label, "Choose ProductDocumentation section to use");	
+
+	/* Get Id and path of the book */
+	bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
+	bookPath = F_ApiGetString(FV_SessionId, bookId, FP_Name);
+	pathFilename(bookPath);
+
+	/* Check whether document has Docline section*/
+	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+	if (!compId)
+	{
+		F_ApiAlert("Highest element error",FF_ALERT_CONTINUE_NOTE);
+		F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+		return;
+	}
+	else
+	{
+		/* Check which DocumentationCore sections already exist */
+		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+		compExists = False;
+		/* Initiallze list for dialog's pop-up*/
+		proddocs.val = (StringT*) F_Alloc(sizeof(StringT), NO_DSE);
+		proddocs.len = 1;
+		proddocs.val[0] = F_StrCopyString("...");
+		while (compId)
+		{
+			elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
+			if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name), "ProductDocumentation"))
+			{
+				compExists = True;
+				break;
+			}
+			compId = F_ApiGetId(bookId, compId, FP_NextSiblingElement);
+		}
+		if (!compExists) // There is no "ProsuctDocumentation" section
+		{
+			/* Create ProductDocumentation section */
+			if(!newSecondLevelSection(True, "ProductDocumentation"))
+			{
+				F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+				return;
+			}
+		}
+		compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+		while (compId)
+		{
+			elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
+			if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name), "ProductDocumentation"))
+			{
+				prodDocAttr = F_ApiGetAttributes(bookId, compId);
+				for(j=0; j<prodDocAttr.len; j++)
+				{
+					if (F_StrEqual("FileName", prodDocAttr.val[j].name))
+					{
+						/* Allocate space for new string in dialog's popup */
+						proddocs.len++;
+						proddocs.val = (StringT *) F_Realloc(proddocs.val, proddocs.len*sizeof(StringT), NO_DSE);
+						/* Add string to the Pop-Up. */
+						proddocs.val[proddocs.len-1] = F_StrCopyString(prodDocAttr.val[j].values.val[0]);
+						break;
+					}
+				}
+			}
+			compId = F_ApiGetId(bookId, compId, FP_NextSiblingElement);
+		}
+		F_ApiSetStrings(dlgId, F_ApiDialogItemId(dlgId, 7), FP_Labels, &proddocs);
+		/* Make the first item the default. */
+		F_ApiSetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State, 1);
+	}
+
+	/* show modal dialog with prompt for attributes */
+	F_ApiModalDialog(NEW_DLG, dlgId);
+	if ((F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, CANCELDLG), FP_State) == True) ||
+		(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, OKDLG), FP_State) != True))
+	{
+		F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+		return;
+	}
+	/* make sure that all attributes are typed in the text box*/
+	while (F_StrIsEmpty(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text)) ||
+			F_StrIsEmpty(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 3), FP_Text)))
+	{
+		F_ApiAlert("You must type Id and Name in text fields!", FF_ALERT_CONTINUE_NOTE);
+		F_ApiModalDialog(NEW_DLG, dlgId);
+		if ((F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, CANCELDLG), FP_State) == True) ||
+			(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, OKDLG), FP_State) != True))
+		{
+			F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+			return;
+		}
+	}
+	/* get Id and Name values from dialog box*/
+	idStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text));
+	nameStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 3), FP_Text));
+
+	/* get Id of selected ProductDocumentation section */
+	selectedProdDoc = proddocs.val[F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State)];
+	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+	compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+	compFound = False;
+	while (True)
+	{
+		elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
+		if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name), "ProductDocumentation"))
+		{	
+			prodDocAttr = F_ApiGetAttributes(bookId, compId);
+			for(j=0; j<prodDocAttr.len; j++) {
+				if (F_StrEqual("FileName", prodDocAttr.val[j].name))
+				{
+					if (F_StrEqual(selectedProdDoc, prodDocAttr.val[j].values.val[0]))
+						compFound = True;
+					break;
+				}
+			}
+			if (compFound)
+				break;
+		}
+		compId = F_ApiGetId(bookId, compId, FP_NextSiblingElement);
+	}
+
+	/* Choose what type of element we add*/
+	switch (type)
+	{
+	case DICTION:
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("dictionary_.fm")+1, NO_DSE);
+		len = F_Sprintf(savePath, "%sdictionary_%s.fm", (StringT)bookPath, (StringT)idStr);
+		edefName = F_StrCopyString("Dictionary");
+		break;
+	case DIRECT:
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("directory_.fm")+1, NO_DSE);
+		len = F_Sprintf(savePath, "%sdirectory_%s.fm", (StringT)bookPath, (StringT)idStr);
+		edefName = F_StrCopyString("Directory");
+		break;
+	case DIRTEMP:
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("dir_template_.fm")+1, NO_DSE);
+		len = F_Sprintf(savePath, "%sdir_template_%s.fm", (StringT)bookPath, (StringT)idStr);
+		edefName = F_StrCopyString("DirTemplate");
+		break;
+	case FINALINF:
+		savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("final_inf_product_.fm")+1, NO_DSE);
+		len = F_Sprintf(savePath, "%sfinal_inf_product_%s.fm", (StringT)bookPath, (StringT)idStr);
+		edefName = F_StrCopyString("FinalInfProduct");
+		break;
+	}
+	/* Create document from template */
+	docId = F_ApiSimpleNewDoc("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_doc_template.fm", False);
+	/* Get Id of the highest-level element definition for created document */
+	childEdefId = F_ApiGetNamedObject(docId, FO_ElementDef, edefName);
+	/* Insert new Highest-level element into the document, i.e. Dictionary, Directory, etc. */
+	F_ApiWrapElement(docId, childEdefId);
+	/* Save the doc with the specific name */
+	F_ApiSimpleSave(docId, savePath, False);
+	/* Set correct values of attributes */
+	setAttributes(idStr, nameStr);
+	/* Update header of the document */
+	editHeader();
+	
+	/* Insert Book component in ProductDocumentation section*/
+	childId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+	while (childId)
+	{
+		elemId = F_ApiGetId(bookId, childId, FP_ElementDef);
+		elemName = F_ApiGetString(bookId, elemId, FP_Name);
+		if (F_StrIEqual(elemName, "Dictionary"))
+		{
+			if (type == DICTION)
+				break;
+		}
+		else if (F_StrIEqual(elemName, "Directory"))
+		{
+			if (type <= DIRECT)
+				break;
+		}
+		else if (F_StrIEqual(elemName, "DirTemplate"))
+		{
+			if (type <= DIRTEMP)
+				break;
+		}
+		else if (F_StrIEqual(elemName, "FinalInfProduct"))
+		{
+			if (type <= FINALINF)
+				break;
+		}
+		childId = F_ApiGetId(bookId, childId, FP_NextSiblingElement);
+	}
+	elemLoc.childId = childId;
+	elemLoc.parentId = compId;
+	elemLoc.offset = 0;
+	compId = F_ApiNewBookComponentInHierarchy(bookId, savePath, &elemLoc);
+	/* Update book */
+	F_ApiSimpleGenerate(bookId, False, True);
+	bookPath = F_ApiGetString(FV_SessionId, bookId, FP_Name);
+	/* Save book and docs after update */
+	F_ApiSimpleSave(docId, savePath, False);
+	F_ApiSimpleSave(bookId, bookPath, False);
+	/* Deallocating memory */
+	F_ApiDeallocateString(&bookPath);
+	F_ApiDeallocateString(&savePath);
+	F_ApiDeallocateString(&edefName);
+	F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+}
+
+VoidT newProdLineChild(IntT type)
+{
+	F_ObjHandleT bookId, docId, childEdefId, compId, elemId, dlgId, childId;
+	F_ElementLocT elemLoc;
+	StringT bookPath, savePath, edefName, nameStr, idStr, selectedProdLine;
+	IntT len;
+	BoolT compExists, compFound;
+	F_AttributesT prodLineAttr;
+	F_StringsT prodlines;
+	UIntT j;
+
+	/* Open resource for the dialogs */
+	dlgId = F_ApiOpenResource(FO_DialogResource, "docline");
+	/* Change label from DocumentationCore to ProductLine*/
+	F_ApiSetString(dlgId, F_ApiDialogItemId(dlgId, 8), FP_Label, "Choose ProductLine section to use");	
+
+	/* Get Id and path of the book */
+	bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
+	bookPath = F_ApiGetString(FV_SessionId, bookId, FP_Name);
+	pathFilename(bookPath);
+
+	/* Check whether document has Docline section*/
+	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+	if (!compId)
+	{
+		F_ApiAlert("Highest element error",FF_ALERT_CONTINUE_NOTE);
+		F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+		return;
+	}
+	else
+	{
+		/* Check whether ProductLine sections already exist */
+		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+		compExists = False;
+		/* Initiallze list for dialog's pop-up*/
+		prodlines.val = (StringT*) F_Alloc(sizeof(StringT), NO_DSE);
+		prodlines.len = 1;
+		prodlines.val[0] = F_StrCopyString("...");
+		while (compId)
+		{
+			elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
+			if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name), "ProductLine"))
+			{
+				compExists = True;
+				break;
+			}
+			compId = F_ApiGetId(bookId, compId, FP_NextSiblingElement);
+		}
+		if (!compExists) // There is no "ProductLine" section
+		{
+			/* Create ProductLine section */
+			if(!newSecondLevelSection(True, "ProductLine"))
+			{
+				F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+				return;
+			}
+		}
+		compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+		while (compId)
+		{
+			elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
+			if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name), "ProductLine"))
+			{
+				prodLineAttr = F_ApiGetAttributes(bookId, compId);
+				for(j=0; j<prodLineAttr.len; j++)
+				{
+					if (F_StrEqual("FileName", prodLineAttr.val[j].name))
+					{
+						/* Allocate space for new string in dialog's popup */
+						prodlines.len++;
+						prodlines.val = (StringT *) F_Realloc(prodlines.val, prodlines.len*sizeof(StringT), NO_DSE);
+						/* Add string to the Pop-Up. */
+						prodlines.val[prodlines.len-1] = F_StrCopyString(prodLineAttr.val[j].values.val[0]);
+						break;
+					}
+				}
+			}
+			compId = F_ApiGetId(bookId, compId, FP_NextSiblingElement);
+		}
+		F_ApiSetStrings(dlgId, F_ApiDialogItemId(dlgId, 7), FP_Labels, &prodlines);
+		/* Make the first item the default. */
+		F_ApiSetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State, 1);
+	}
+
+	/* show modal dialog with prompt for attributes */
+	F_ApiModalDialog(NEW_DLG, dlgId);
+	if ((F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, CANCELDLG), FP_State) == True) ||
+		(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, OKDLG), FP_State) != True))
+	{
+		F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+		return;
+	}
+	/* make sure that all attributes are typed in the text box*/
+	while (F_StrIsEmpty(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text)) ||
+			F_StrIsEmpty(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 3), FP_Text)))
+	{
+		F_ApiAlert("You must type Id and Name in text fields!", FF_ALERT_CONTINUE_NOTE);
+		F_ApiModalDialog(NEW_DLG, dlgId);
+		if ((F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, CANCELDLG), FP_State) == True) ||
+			(F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, OKDLG), FP_State) != True))
+		{
+			F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+			return;
+		}
+	}
+	/* get Id and Name values from dialog box*/
+	idStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text));
+	nameStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 3), FP_Text));
+
+	/* get Id of selected ProductLine section */
+	selectedProdLine = prodlines.val[F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State)];
+	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
+	compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+	compFound = False;
+	while (True)
+	{
+		elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
+		if (F_StrIEqual(F_ApiGetString(bookId, elemId, FP_Name), "ProductLine"))
+		{	
+			prodLineAttr = F_ApiGetAttributes(bookId, compId);
+			for(j=0; j<prodLineAttr.len; j++) {
+				if (F_StrEqual("FileName", prodLineAttr.val[j].name))
+				{
+					if (F_StrEqual(selectedProdLine, prodLineAttr.val[j].values.val[0]))
+						compFound = True;
+					break;
+				}
+			}
+			if (compFound)
+				break;
+		}
+		compId = F_ApiGetId(bookId, compId, FP_NextSiblingElement);
+	}
+
+	/* Choose what type of element we add*/
+	savePath = F_Alloc(F_StrLen(bookPath)+F_StrLen(idStr)+F_StrLen("product_.fm")+1, NO_DSE);
+	len = F_Sprintf(savePath, "%sproduct_%s.fm", (StringT)bookPath, (StringT)idStr);
+	edefName = F_StrCopyString("Product");
+
+	/* Create document from template */
+	docId = F_ApiSimpleNewDoc("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_doc_template.fm", False);
+	/* Get Id of the highest-level element definition for created document */
+	childEdefId = F_ApiGetNamedObject(docId, FO_ElementDef, edefName);
+	/* Insert new Highest-level element into the document, i.e. Dictionary, Directory, etc. */
+	F_ApiWrapElement(docId, childEdefId);
+	/* Save the doc with the specific name */
+	F_ApiSimpleSave(docId, savePath, False);
+	/* Set correct values of attributes */
+	setAttributes(idStr, nameStr);
+	/* Update header of the document */
+	editHeader();
+	
+	/* Insert Book component in ProductDocumentation section*/
+	childId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
+	elemLoc.childId = childId;
+	elemLoc.parentId = compId;
+	elemLoc.offset = 0;
+	compId = F_ApiNewBookComponentInHierarchy(bookId, savePath, &elemLoc);
+	/* Update book */
+	F_ApiSimpleGenerate(bookId, False, True);
+	bookPath = F_ApiGetString(FV_SessionId, bookId, FP_Name);
+	/* Save book and docs after update */
+	F_ApiSimpleSave(docId, savePath, False);
+	F_ApiSimpleSave(bookId, bookPath, False);
+	/* Deallocating memory */
+	F_ApiDeallocateString(&bookPath);
+	F_ApiDeallocateString(&savePath);
+	F_ApiDeallocateString(&edefName);
+	F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+}
+
 VoidT importDocLineDoc()
 {
 	F_ObjHandleT docID, fileID, elemID, compID;
