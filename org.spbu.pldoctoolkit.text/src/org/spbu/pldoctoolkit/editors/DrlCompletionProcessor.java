@@ -352,7 +352,7 @@ public class DrlCompletionProcessor implements IContentAssistProcessor {
 			attrib.removeLast();
 		}
 
-		HashSet<String> s = ns.findOptionalAttrs(ns.getElement(tag), attrib);
+		HashSet<String> s = ns.findOptionalAttributes(ns.getElement(tag), attrib);
 
 		Object[] li = s.toArray();
 		for (int j = 0; j < li.length; j++) {
