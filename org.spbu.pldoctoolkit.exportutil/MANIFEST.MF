@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Class-Path: lib/fop.jar lib/jing.jar lib/saxon9.jar lib/saxon9-dom.jar lib/avalon-framework-4.2.0.jar lib/batik-all-1.6.jar lib/commons-io-1.1.jar lib/commons-logging-1.0.4.jar lib/xmlgraphics-commons-1.1.jar
-Main-Class: org.spbu.pldoctoolkit.exportutil.ExportUtil
-
