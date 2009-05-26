@@ -48,6 +48,7 @@
 ***********************************************************************/
 
 #include "fapi.h"
+#include "fchannel.h"
 #include "fdetypes.h"
 #include "futils.h"
 #include "fstrings.h"
@@ -58,6 +59,8 @@
 
 #include "string.h"
 #include "ctype.h"
+
+#include "publishutil.h"
 
 #define NEW_DLG 239
 #define SECTION_DLG 240
@@ -114,6 +117,13 @@
 #define defaultPath  (F_StrCopyString("C:\\"))
 #define defaultBookName (F_StrCopyString("mainDRLFMBook.book"))
 
+// constants for publishing action
+#define HTML_FORMAT "html"
+#define PDF_FORMAT "pdf"
+#define JAR_FILENAME "publishutil.jar"
+#define ERROR_LOG_FILENAME "error.log"
+#define BUFFERSIZE (IntT)256
+
 F_ObjHandleT menubarId, menuId; // !MakerMainMenu and Docline menus
 F_ObjHandleT newMenuId; // "New" submenu in the Docline menu
 F_ObjHandleT openMenuId; // "Open" submenu in the Docline menu
@@ -149,6 +159,7 @@ VoidT newProdLineChild(IntT type);
 BoolT newSecondLevelSection(BoolT isFirst, StringT type);
 VoidT openBook(); //Opens existing docline project with checking its structure
 VoidT importDocLineDoc(); //Imports .drl files in directory
+VoidT publishDocLineDoc(StringT format); //Publishes docline project
 VoidT exportDocLineDoc(); //Exports docline project
 VoidT closeProject();
 VoidT editHeader();
@@ -337,6 +348,12 @@ VoidT F_ApiCommand(IntT command)
   case BIMPORT:
 	  closeProject();
 	  importDocLineDoc();
+	  break;
+  case BSAVEHT:
+	  publishDocLineDoc(HTML_FORMAT);
+	  break;
+  case BSAVEPD:
+	  publishDocLineDoc(PDF_FORMAT);
 	  break;
   case EXPORT:
   case BEXPORT:
@@ -1754,6 +1771,143 @@ VoidT importDocLineDoc()
 	F_FilePathFree(newdirPath);
 	F_ApiDeallocateString(&dirPath);
 	F_ApiDeallocateString(&bookPath);
+}
+VoidT publishDocLineDoc(StringT format)
+{
+	IntT retVal, response;
+	UCharT jarPath[256]; // = "C:\\Program Files (x86)\\Adobe\\FDK8\\samples\\docline\\debug\\exportutil.jar";
+	UCharT sourceDirPath[256];
+	UCharT sourceFileName[256];
+	UCharT destinationFileName[256];
+
+	UCharT statusMessage[256];
+
+	StringT tempPath, tempName, tempResult;
+	F_ObjHandleT bookID;
+	ChannelT chan;
+	UCharT ptr[BUFFERSIZE];
+	IntT numread;
+
+	// promt user if he is sure he wants to publish document
+	response = F_ApiAlert("This will export all files to DRL and then publish them. Do you still wish to continue?", FF_ALERT_YES_DEFAULT);
+	if (response != 0) // user clicked "no"
+		return;
+
+	//get path to jar file and check if jar exists
+	tempPath = F_ApiClientDir();
+	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
+	F_Free(tempPath);
+	if((chan = F_ChannelOpen(F_PathNameToFilePath(jarPath, NULL, FDefaultPath),"r")) == NULL)
+	{
+		F_Sprintf(statusMessage, "Couldn't find %s. Reinstalling the application can solve this problem.", JAR_FILENAME);
+		F_ApiAlert(statusMessage, FF_ALERT_CONTINUE_WARN);
+		return;
+	}
+	F_ChannelClose(chan);
+
+	// export document back to DRL
+	//exportDocLineDoc(); // doesn't work for me
+
+	// show dialog to choose document to publish
+	//   get book's home dir
+	bookID = F_ApiGetId(0, FV_SessionId, FP_ActiveBook);
+	if (!bookID || !F_StrISuffix(F_ApiGetString(FV_SessionId, bookID, FP_Name), defaultBookName))
+	{
+		F_ApiAlert("Invalid book", FF_ALERT_CONTINUE_NOTE);
+		return;
+	}
+	tempPath = F_ApiGetString(FV_SessionId, bookID, FP_Name);
+	pathFilename(tempPath);
+	//   promt for filename
+	response = F_ApiChooseFile(&tempResult, "Choose a file with Final Product", tempPath, "", FV_ChooseSelect, "");
+	if (response != 0)
+	{
+		F_ApiDeallocateString(&tempResult);
+		return;
+	}
+	//   save file name
+	F_Sprintf(sourceFileName, "%s", F_FilePathBaseName(F_PathNameToFilePath(tempResult, NULL, FDefaultPath)));
+	//   save dir name
+	pathFilename(tempResult);
+	F_Sprintf(sourceDirPath, "%s", tempResult);
+	F_ApiDeallocateString(&tempResult);
+
+	// show dialog to choose published document name 
+	//   form suggested save name
+	tempName = F_Alloc(F_StrLen(sourceFileName)-F_StrLen(".drl") + F_StrLen(format) + 1 + 1,NO_DSE);
+	F_StrCpyN(tempName, sourceFileName, F_StrLen(sourceFileName)-F_StrLen(".drl") + 1);
+	F_StrCat(tempName, ".");
+	F_StrCat(tempName, format);
+	//   promt for save name
+	response = F_ApiChooseFile(&tempResult, "Choose a name for a file", tempPath, tempName, FV_ChooseSave, "");
+	if (response != 0)
+	{
+		F_ApiDeallocateString(&tempResult);
+		return;
+	}
+	//   save chosen destination file name
+	F_Sprintf(destinationFileName, "%s", tempResult);
+	F_ApiDeallocateString(&tempResult);
+	F_Free(tempPath);
+	F_Free(tempName);
+
+	// invoke java util
+	retVal = callJavaPublishUtil(jarPath, sourceDirPath, sourceFileName, " ", format, destinationFileName);
+
+	if (retVal > 0) // error in JVM initialization
+	{
+		F_ApiAlert("There was an error while initializing java machine.", FF_ALERT_CONTINUE_WARN);
+		return;
+	}
+	else  // java util worked, so there will be an error log file
+	{
+		tempPath = F_ApiClientDir();
+		tempResult = F_Alloc(F_StrLen(tempPath) + F_StrLen(ERROR_LOG_FILENAME) + 1, NO_DSE);
+		F_Sprintf(tempResult, "%s\\%s", tempPath, ERROR_LOG_FILENAME);
+		F_Free(tempPath);
+
+		if((chan = F_ChannelOpen(F_PathNameToFilePath(tempResult, NULL, FDefaultPath),"r")) == NULL)
+		{
+			F_Printf(NULL, "Couldn't find error log file.");
+		}
+		else
+		{
+			if (F_ChannelSize(chan) > 0) // error log file is not empty
+			{
+				F_Printf(NULL, "\nPUBLISH LOG:\n");
+				while(!F_ChannelEof(chan))
+				{
+					numread = F_ChannelRead(ptr, sizeof(UCharT), 
+					BUFFERSIZE-1, chan);
+					ptr[numread] = '\0';
+					F_Printf(NULL, "%s\n", (StringT)ptr);
+				}
+				if (retVal < 0) // error while transforming
+				{
+					F_ApiAlert("There was an error. Check console for details.", FF_ALERT_CONTINUE_WARN);
+				}
+				else // everything is ok
+				{
+					F_Sprintf(statusMessage, "Publishing to %s format succesfully completed, but there were several warnings.\nCheck console for details", format);
+					F_ApiAlert(statusMessage, FF_ALERT_CONTINUE_NOTE);	
+				}
+			}
+			else // error log is empty
+			{
+				if (retVal < 0) // very unlikely to happen, error and no cause logged
+				{
+					F_ApiAlert("Unhandled error happened.", FF_ALERT_CONTINUE_WARN);
+				}
+				else  // everything is perfectly fine
+				{
+					F_Sprintf(statusMessage, "Publishing to %s format succesfully completed.", format);
+					F_ApiAlert(statusMessage, FF_ALERT_CONTINUE_NOTE);	
+				}
+			}
+			F_ChannelClose(chan);
+		}
+		F_ApiDeallocateString(&tempResult);
+	}
 }
 VoidT exportDocLineDoc()
 {
