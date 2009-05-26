@@ -4,6 +4,7 @@
 	Version="8,00"
 	Name="docline"
 	ProjectGUID="{B4D4430C-14ED-445B-8063-99BD709E1EC6}"
+	RootNamespace="docline"
 	>
 	<Platforms>
 		<Platform
@@ -75,11 +76,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/section:.rsrc,w"
-				AdditionalDependencies="odbc32.lib odbccp32.lib fdk.lib api.lib fmdbms32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib fdk.lib api.lib fmdbms32.lib publishutil.lib"
 				OutputFile=".\debug/docline.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\lib"
+				AdditionalLibraryDirectories=".\debug;..\..\lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\debug/docline.pdb"
 				ImportLibrary=".\debug/docline.lib"
@@ -274,6 +275,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\publishutil.h"
+				>
+			</File>
 			<File
 				RelativePath=".\resource.h"
 				>
