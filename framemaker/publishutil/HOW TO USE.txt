@@ -1,0 +1,4 @@
+Для правильной работы PublishUtil необходимо
+- Добавить в переменную окружения PATH путь JAVA_HOME\jre\bin\client, где JAVA_HOME - путь к установленной jdk
+- Скопировать publishutil.jar и папки fop, lib, schema и xsl (из PuslishUtil\java\) в папку с используемой docline.dll
+- Скопировать publishutil.dll (из PublishUtil\c\debug\) в любое место, указанное в PATH или корневую папку FrameMaker
