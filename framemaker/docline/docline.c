@@ -1614,6 +1614,54 @@ VoidT newProdLineChild(IntT type)
 	F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
 }
 
+VoidT renameFilesToActualNames(F_ObjHandleT bookID)
+{
+	F_ObjHandleT compID;
+	StringT compPath, newCompPath, dirPath;
+	F_AttributesT attrs;
+	F_AttributeT attr;
+	UIntT i, j;
+
+	if (!bookID)
+	{
+		F_Printf(NULL,"renameFilesToActualNames error:\n\tInvalid Book\n");
+		return;
+	}
+	dirPath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
+	pathFilename(dirPath);
+	compID = F_ApiGetId(FV_SessionId,bookID,FP_FirstComponentInBook);
+	while (compID)
+	{
+		compPath = F_ApiGetString(bookID,compID,FP_Name);
+		attrs = F_ApiGetAttributes(bookID,F_ApiGetId(bookID,compID,FP_ComponentElement));
+		for (j=0; j<attrs.len; j++)
+		{
+			attr = attrs.val[j];
+			if (F_StrIEqual(attr.name,(StringT)"Id"))
+			{
+				if (!attr.values.len)
+				{
+					F_Printf(NULL,"Error in Id attribute in %s\n",compPath);
+					continue;
+				}
+
+				newCompPath = F_Alloc(F_StrLen(attr.values.val[0])+F_StrLen(dirPath)+10,NO_DSE);
+				F_Sprintf(newCompPath,"%s%s.fm",dirPath,attr.values.val[0]);
+				i = 0;
+				while (F_RenameFile(F_PathNameToFilePath(compPath,NULL,FDosPath),F_PathNameToFilePath(newCompPath,NULL,FDosPath)) != FdeSuccess)
+				{
+					F_Sprintf(newCompPath,"%s%s%d.fm",dirPath,attr.values.val[0],i);
+					F_Printf(NULL,"%s\n",newCompPath);
+					i++;
+				}
+				F_ApiSetString(bookID,compID,FP_Name,newCompPath);
+				F_ApiDeallocateString(&newCompPath);
+			}
+		}
+		compID = F_ApiGetId(bookID,compID,FP_NextComponentInBook);
+	}
+}
+
 VoidT importDocLineDoc()
 {
 	F_ObjHandleT docID, fileID, elemID, compID;
@@ -1626,6 +1674,9 @@ VoidT importDocLineDoc()
 	F_AttributesT attrs;
 	F_AttributeT attr;
 
+	// code to test XSLT
+
+	// end of coe to test XSLT
 	returnParams = NULL;
 	params = F_ApiGetOpenDefaultParams();
 	if (!params.len)
@@ -1676,13 +1727,17 @@ VoidT importDocLineDoc()
 	}
 	F_FilePathCloseDir(handle);
 	handle = F_FilePathOpenDir(newdirPath,&statusp);
+	if (!handle)
+	{
+		F_Printf(NULL,"import error:\n\tInvalid directory path: %s\n",dirPath);
+		return;
+	}
 	//Opening of all .drl files in directory with structured application "DocLine"
 	while((file = F_FilePathGetNext(handle, &statusp)) != NULL)
 	{
 		tmpPath = F_FilePathToPathName(file,FDosPath);
 		if (validateFilename(tmpPath,DRL))
 		{
-			F_ApiAlert(tmpPath,FF_ALERT_CONTINUE_NOTE);
 			fileID = F_ApiOpen(tmpPath,&params,&returnParams);
 			if (!fileID)
 			{
@@ -1712,37 +1767,7 @@ VoidT importDocLineDoc()
 				}
 				F_ApiSetAttributes(fileID,elemID,&attrs);
 			}
-			compID = F_ApiGetId(FV_SessionId,fileID,FP_FirstComponentInBook);
-			while (compID)
-			{
-				compPath = F_ApiGetString(fileID,compID,FP_Name);
-				attrs = F_ApiGetAttributes(fileID,F_ApiGetId(fileID,compID,FP_ComponentElement));
-				for (j=0; j<attrs.len; j++)
-				{
-					attr = attrs.val[j];
-					if (F_StrIEqual(attr.name,(StringT)"Id"))
-					{
-						if (!attr.values.len)
-						{
-							F_Printf(NULL,"Error in Id attribute in %s\n",compPath);
-							continue;
-						}
-
-						newCompPath = F_Alloc(F_StrLen(attr.values.val[0])+F_StrLen(dirPath)+10,NO_DSE);
-						F_Sprintf(newCompPath,"%s%s.fm",dirPath,attr.values.val[0]);
-						i = 0;
-						while (F_RenameFile(F_PathNameToFilePath(compPath,NULL,FDosPath),F_PathNameToFilePath(newCompPath,NULL,FDosPath)) != FdeSuccess)
-						{
-							F_Sprintf(newCompPath,"%s%s%d.fm",dirPath,attr.values.val[0],i);
-							F_Printf(NULL,"%s\n",newCompPath);
-							i++;
-						}
-						F_ApiSetString(fileID,compID,FP_Name,newCompPath);
-						F_ApiDeallocateString(&newCompPath);
-					}
-				}
-				compID = F_ApiGetId(fileID,compID,FP_NextComponentInBook);
-			}
+			renameFilesToActualNames(fileID);
 			fileID = F_ApiSimpleSave(fileID,F_ApiGetString(FV_SessionId,fileID,FP_Name),False);
 			F_ApiClose(fileID,FF_CLOSE_MODIFIED);
 			F_ApiDeallocatePropVals(returnParams);
@@ -1754,24 +1779,12 @@ VoidT importDocLineDoc()
 	F_FilePathCloseDir(handle);
 	F_Printf(NULL,"Point0\n");
 	openFilesInDirectory(dirPath);
-	//handle = F_FilePathOpenDir(newdirPath,&statusp);
-	//while (file = F_FilePathGetNext(handle,&statusp))
-	//{
-	//	tmpPath = F_FilePathToPathName(file,FDosPath);
-	//	tmpPath = fileFileName(tmpPath);
-	//	if ((!(validateFilename(tmpPath,FM)&&(!F_StrISuffix(tmpPath,(StringT)".backup.fm")&&(!F_StrISuffix(tmpPath,(StringT)".recover.fm")))))&&(!validateFilename(tmpPath,DRL))&&(!F_StrIEqual(tmpPath,defaultBookName)))
-	//	{
-	//		F_DeleteFile(file);
-	//	}
-	//}
-	//F_ApiDeallocateString(&tmpPath);
-	//F_FilePathCloseDir(handle);
-	//F_FilePathFree(file);
 	cleanDirectory(newdirPath);
 	F_FilePathFree(newdirPath);
 	F_ApiDeallocateString(&dirPath);
 	F_ApiDeallocateString(&bookPath);
 }
+
 VoidT publishDocLineDoc(StringT format)
 {
 	IntT retVal, response;
@@ -1999,13 +2012,14 @@ VoidT exportDocLineDoc()
 		}
 	}
 	cleanDirectory(F_PathNameToFilePath(dirPath,NULL,FDosPath));
-	//F_FilePathCloseDir(handle);
-	//F_ApiDeallocateString(&path);
-	//F_Free(filePath);
-	//F_Free(&docID);
-	//F_Free(&bookID);
-	//F_ApiDeallocateString(&dirPath);
+	F_FilePathCloseDir(handle);
+	F_ApiDeallocateString(&path);
+	F_Free(filePath);
+	F_Free(&docID);
+	F_Free(&bookID);
+	F_ApiDeallocateString(&dirPath);
 }
+
 VoidT editHeader()
 {
 	F_ObjHandleT docId, bodyPageId, masterPageId, pageFrameId, textFrameId, paraHeaderId, headerVarId, varFmtId, nextParaId, highId, firstFlowId, edefId;
