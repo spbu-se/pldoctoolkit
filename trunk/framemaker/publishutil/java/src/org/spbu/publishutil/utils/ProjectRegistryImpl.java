@@ -14,8 +14,8 @@ import static org.spbu.publishutil.utils.RegisteredLocation.NEST_POINT;
 import static org.spbu.publishutil.utils.RegisteredLocation.PRODUCT;
 import static org.spbu.publishutil.utils.RegisteredLocation.PRODUCT_CONTEXT;
 
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +28,6 @@ import net.sf.saxon.Configuration;
 import net.sf.saxon.dom.DocumentBuilderImpl;
 import net.sf.saxon.dom.NodeOverNodeInfo;
 
-import org.spbu.publishutil.PublishUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -119,7 +118,7 @@ public class ProjectRegistryImpl implements ProjectRegistry {
 	private void registerFile(File file) throws Exception {
 		String ext = (file.getName().indexOf(".")==-1) ? "" : 
 			file.getName().substring(file.getName().lastIndexOf(".")+1,file.getName().length());
-		if (!ext.toLowerCase().equals(PublishUtil.DRL_FILE_EXTENSION))
+		if (!ext.toLowerCase().equals(UtilConstants.DRL_FILE_EXTENSION))
 			return;
 		
 		try {

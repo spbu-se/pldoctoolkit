@@ -8,16 +8,9 @@ import org.spbu.publishutil.utils.EventLoggerImpl;
 import org.spbu.publishutil.utils.ProjectRegistry;
 import org.spbu.publishutil.utils.ProjectRegistryImpl;
 
+import static org.spbu.publishutil.utils.UtilConstants.*;
+
 public class PublishUtil implements CJProxy {
-	public static final int SUCCESS = 0;
-	public static final int ERROR = 1;
-	
-	public static final String DRL_FILE_EXTENSION = "drl";
-	
-	public static final String DOCBOOK_FORMAT = "docbook";
-	public static final String HTML_FORMAT = "html";
-	public static final String PDF_FORMAT = "pdf";
-	
 	private static PublishUtil publishUtil;
 	private EventLogger logger = null;
 	
@@ -91,6 +84,9 @@ public class PublishUtil implements CJProxy {
 			File srcDirFile = new File(srcDir);
 			if (!srcDirFile.exists())
 				throw new RuntimeException("Specified source folder is not found: " + srcDir);
+			
+			if (!srcDirFile.isDirectory())
+				throw new RuntimeException("Specified input is not a correct folder path: " + srcDir);
 			
 			File srcFile = new File(srcDir + "/" + srcFilename);
 			if (!srcFile.exists())

@@ -1,3 +1,5 @@
 LIBRARY	"publishutil"
 EXPORTS
 	callJavaPublishUtil @1
+	callJavaImportUtil @2
+	callJavaExportUtil @3
