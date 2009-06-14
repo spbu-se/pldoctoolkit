@@ -85,11 +85,19 @@ int cjJVMConnect(cjJVM_t *pJVM)
    // create VM
    if (rc == CJ_ERR_SUCCESS)
    {
-      JavaVM *jvm;
+      static JavaVM *jvm = NULL;
       JNIEnv *jni;
+	  
+	  if (!jvm)
+	  {
+		 jret = JNI_CreateJavaVM(&jvm, (void**)&jni, &vmArgs);
+	  }
+	  else
+	  {
+		 (*jvm)->AttachCurrentThread(jvm, (void**)&jni, &vmArgs);
+	  }
 
-      jret = JNI_CreateJavaVM(&jvm, (void**)&jni, &vmArgs);
-      free(options);
+	  free(options);
       if (jret == JNI_ERR)
       {
          rc = CJ_ERR_JVM_CONNECT;
@@ -123,8 +131,8 @@ int cjJVMDisconnect(cjJVM_t *pJVM)
 
    if (jvm != NULL) 
    {
-      (*jvm)->DetachCurrentThread(jvm);
-      (*jvm)->DestroyJavaVM(jvm);
+      //(*jvm)->DetachCurrentThread(jvm);
+      //(*jvm)->DestroyJavaVM(jvm);
    }
    return rc;
 }
@@ -152,7 +160,7 @@ int cjClassCreate(cjClass_t *pClass)
       {
          rc = CJ_ERR_JNI;
       }
-   }   
+   }
 
 // TODO -- do I need global ref to class?
 
