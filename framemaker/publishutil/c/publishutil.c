@@ -68,12 +68,14 @@ int invokeJava(char *jarPath,    // path to a jar, containing java class
 	rc = cjJVMConnect(&jvm);
 	if (rc != CJ_ERR_SUCCESS) {
 		printf(ERROR_MESSAGE);
+		printf("cjJVMConnect %i", rc);
 		return rc;
 	}
 
 	rc = cjProxyClassCreate(&proxyClass, className, &jvm);
 	if (rc != CJ_ERR_SUCCESS) {
 		printf(ERROR_MESSAGE);
+		printf("cjProxyClassCreate %i", rc);
 		return rc;
 	}
 
@@ -81,6 +83,7 @@ int invokeJava(char *jarPath,    // path to a jar, containing java class
 	rc = cjProxyCreate(&proxy);
 	if (rc != CJ_ERR_SUCCESS) {
 		printf(ERROR_MESSAGE);
+		printf("cjProxyCreate %i", rc);
 		return rc;
 	}
 
