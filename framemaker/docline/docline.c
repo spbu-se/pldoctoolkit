@@ -562,21 +562,16 @@ VoidT openFilesInDirectory(StringT path)
 	while ((file = F_FilePathGetNext(handle, &statusp)) != NULL)
 	{
 		tmpBookPath = F_FilePathToPathName(file, FDosPath);
-		F_Printf(NULL,"%s\n",tmpBookPath);
 		tmpBookPath = fileFileName(tmpBookPath);
-		F_Printf(NULL,"%s\n",tmpBookPath);
 		if (F_StrIEqual(tmpBookPath,defaultBookName))
 		{
-			F_Printf(NULL,"point\n");
 			bookExists = True;
 			bookPath = F_StrCopyString(tmpBookPath);
 		}
 		else if (F_StrSuffix(tmpBookPath,".fm.lck"))
 		{
-			F_Printf(NULL,"point1\n");
 			F_DeleteFile(file);
 		}
-		F_Printf(NULL,"point2\n");
 		//F_FilePathFree(file);
 		//F_ApiDeallocateString(&tmpBookPath);
 	} 
@@ -855,11 +850,19 @@ VoidT openBook()
 	F_ObjHandleT docID;
 	//Do not use russian letters in path!!!
 	docID = F_ApiSimpleOpen(defaultPath,True);
-	if (docID != 0)
+	if (!docID)
 	{
-		path = F_FilePathToPathName(F_PathNameToFilePath(F_ApiGetString(FV_SessionId,docID,FP_Name),NULL,FDefaultPath),FDosPath);
-		openFilesInDirectory(path);
+		F_Printf(NULL,"No such file: %s\n",defaultPath);
+		return;
 	}
+	path = F_FilePathToPathName(F_PathNameToFilePath(F_ApiGetString(FV_SessionId,docID,FP_Name),NULL,FDefaultPath),FDosPath);
+	if ((!validateFilename(path,FM))&&(!((validateFilename(path,FMBOOK))&&(F_StrISuffix(path,defaultBookName)))))
+	{
+		F_Printf(NULL,"Error. Not Framemaker file\n");
+		return;
+	}
+	openFilesInDirectory(path);
+
 }
 VoidT createNewDocLineBook()
 {
@@ -1673,10 +1676,14 @@ VoidT importDocLineDoc()
 	F_PropValsT params, *returnParams;
 	F_AttributesT attrs;
 	F_AttributeT attr;
+	IntT retVal;
+	UCharT jarPath[256], statusMessage[256];
+	StringT tempPath;
+	ChannelT chan;
 
-	// code to test XSLT
-
-	// end of coe to test XSLT
+	tempPath = F_ApiClientDir();
+	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
+	F_Free(tempPath);
 	returnParams = NULL;
 	params = F_ApiGetOpenDefaultParams();
 	if (!params.len)
@@ -1707,6 +1714,12 @@ VoidT importDocLineDoc()
 	dirPath = F_ApiGetString(FV_SessionId,docID,FP_Name);
 	F_ApiClose(docID,FF_CLOSE_MODIFIED);
 	pathFilename(dirPath);
+	retVal = callJavaImportUtil(jarPath, dirPath);
+	if (retVal > 0)
+	{
+		F_Printf(NULL,"JVM Initiliazation error\n");
+		return;
+	}
 	bookPath = "";
 	newdirPath = F_PathNameToFilePath (dirPath, NULL, FDosPath);
 	handle = F_FilePathOpenDir(newdirPath, &statusp);
@@ -1777,7 +1790,6 @@ VoidT importDocLineDoc()
 	}
 	F_ApiDeallocatePropVals(&params);    
 	F_FilePathCloseDir(handle);
-	F_Printf(NULL,"Point0\n");
 	openFilesInDirectory(dirPath);
 	cleanDirectory(newdirPath);
 	F_FilePathFree(newdirPath);
@@ -1933,6 +1945,8 @@ VoidT exportDocLineDoc()
 	F_AttributesT attrs;
 	F_AttributeT attr;
 	UIntT k;
+	UCharT jarPath[256];
+	StringT tempPath;
 
 	bookID = F_ApiGetId(0,FV_SessionId,FP_ActiveBook);
 	if (!bookID)
@@ -2011,13 +2025,20 @@ VoidT exportDocLineDoc()
 			F_ApiSave(docID,path,&params,&returnParams);
 		}
 	}
-	cleanDirectory(F_PathNameToFilePath(dirPath,NULL,FDosPath));
-	F_FilePathCloseDir(handle);
-	F_ApiDeallocateString(&path);
-	F_Free(filePath);
-	F_Free(&docID);
-	F_Free(&bookID);
-	F_ApiDeallocateString(&dirPath);
+	//dirPath = "D:\\Tests2\\";
+	tempPath = F_ApiClientDir();
+	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
+//	F_Free(tempPath);
+
+	callJavaExportUtil(jarPath,dirPath);
+
+	//cleanDirectory(F_PathNameToFilePath(dirPath,NULL,FDosPath));
+	//F_FilePathCloseDir(handle);
+	//F_ApiDeallocateString(&path);
+	//F_Free(filePath);
+	//F_Free(&docID);
+	//F_Free(&bookID);
+	//F_ApiDeallocateString(&dirPath);
 }
 
 VoidT editHeader()
