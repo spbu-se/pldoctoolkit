@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:d="http://math.spbu.ru/drl" version="1.0">
-    <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
-    
-    <xsl:template match="entity">
-        <xsl:apply-templates select="document(@url)"/>
-    </xsl:template>
-    
+    <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>    
     <xsl:template match="*">
         <xsl:variable name="newName">
             <xsl:choose>

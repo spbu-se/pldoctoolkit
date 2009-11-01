@@ -113,6 +113,8 @@
 #define CHECK 904
 #define BEXPORT 911
 #define BCLOSE 912
+#define SOPEN 913
+#define BSOPEN 914
 #define in ((MetricT) 65536*72)
 #define defaultPath  (F_StrCopyString("C:\\"))
 #define defaultBookName (F_StrCopyString("mainDRLFMBook.book"))
@@ -131,6 +133,7 @@ F_ObjHandleT saveMenuId; // "Save As..." submenu in the Docline menu
 F_ObjHandleT newProjectId;// Commands from the "New" submenu
 F_ObjHandleT saveDoclineAsHtmlId, saveDoclineAsPdfId; // Commands from the "Save As..." submenu
 F_ObjHandleT openFmID, importDrlID; // open exising fm docline project, import project from existing drl documentation
+F_ObjHandleT sopenIFmD;//open existing fm docline project without checking
 F_ObjHandleT closeProjectId; // menu item for closing active project and all files in it
 F_ObjHandleT exportProjectId; // menu item for exporting active project back to DRL
 
@@ -141,6 +144,7 @@ F_ObjHandleT docCoreId; // DocumentationCore submenu in the "New menu"
 F_ObjHandleT prodDocId; // ProductDocumentation submenu in the "New menu"
 F_ObjHandleT prodLineId; // ProductLine submenu in the "New menu"
 F_ObjHandleT bopenMenuId; // "Open" submenu in the Docline menu
+F_ObjHandleT bsopenIFmD;//open existing fm docline project without checking
 F_ObjHandleT bsaveMenuId; // "Publish" submenu in the Docline menu
 F_ObjHandleT bnewProjectId, separatorId; // Some commands from the "New" submenu
 F_ObjHandleT newDocCoreSectionId, coreSeparatorId, newDictId, newDirectId, newDirTempId, newInfElemId, newInfProdId; // Commands in "New DocumentationCore"
@@ -158,20 +162,37 @@ VoidT newProdDocChild(IntT type);
 VoidT newProdLineChild(IntT type);
 BoolT newSecondLevelSection(BoolT isFirst, StringT type);
 VoidT openBook(); //Opens existing docline project with checking its structure
+VoidT simpleOpenBook();//Opens existing docline project without checking its structure
 VoidT importDocLineDoc(); //Imports .drl files in directory
 VoidT publishDocLineDoc(StringT format); //Publishes docline project
 VoidT exportDocLineDoc(); //Exports docline project
 VoidT closeProject();
 VoidT editHeader();
 VoidT setAttributes(StringT idStr, StringT nameStr);
-VoidT cleanDirectory(FilePathT* dirPath); //Deletes temporary files in directory
-BoolT validateFilename(UCharT *str,IntT type); //Validates type of file
+BoolT cleanDirectory(FilePathT* dirPath); //Deletes temporary files in directory
+BoolT cleanImportDirectory(StringT dirPath); //Deletes all non-DRL files in directory
+BoolT validateFilename(StringT str,IntT type); //Validates type of file
 VoidT generateBooks(F_ObjHandleT mainBookID); //Generates books for second-level elements
 VoidT openFilesInDirectory(StringT path); //Common part of Open and Import
+F_ObjHandleT openMainBook(StringT path);//Opens or creates main book
+BoolT addExistingDocs(StringT path, F_ObjHandleT bookID);//Adds docs in directory to book
+BoolT addExistingDoc(StringT path, F_ObjHandleT bookID);//Adds doc in directory to book
+StringT getPlace(StringT fileName);//Returns name of parent element for this
+F_ObjHandleT componentExists(F_ObjHandleT bookID, F_ObjHandleT cID, StringT name);//Returns component's id if component with given name exists
 VoidT pathFilename(UCharT *str); //Converts full path to path of directory
 StringT fileFileName(UCharT *str); //Converts full path to file name
 BoolT isDocLine(F_ObjHandleT docID); //Checks if document is docline document
 StringT getHighestString(F_ObjHandleT docID); //Name of highest level element in document
+VoidT renameFilesToActualNames(F_ObjHandleT bookID);//Renames book to it's actual name
+IntT getActiveBookID();//Returns id of active book
+BoolT exportBook(StringT path, StringT dirPath, F_PropValsT params, UIntT* j);//Exporting of one docline book
+BoolT importBook(StringT path, F_PropValsT params);//Importing of one docline book
+VoidT closeAllDocs();//Closes all docs except main book
+F_PropValsT generateExportParams();//Generates saving params for exporting
+F_PropValsT generateOpenParams();//Generates opening params for importing
+F_PropValsT generateImportParams();//Genrates import params for importing
+BoolT performExportXSLT(StringT dirPath);//applying XSLT to exported documents
+BoolT performImportXSLT(StringT dirPath);//appying XSLT to document for impporting
 IntT test;
 
 VoidT F_ApiInitialize(IntT init)
@@ -198,7 +219,8 @@ VoidT F_ApiInitialize(IntT init)
 	  /* Define and add the Open-> menu to the DocLine menu. */
 	  openMenuId = F_ApiDefineAndAddMenu(menuId, "OpenDocLineMenu", "Open");
 	  /* Define some commands and add them to the Open-> menu. */
-	  openFmID = F_ApiDefineAndAddCommand(OPEN, openMenuId, "OpenDoclineProject", "Docline project", "\\!IW");
+	  sopenIFmD = F_ApiDefineAndAddCommand(SOPEN, openMenuId, "SimpleOpenDoclineProject","Docline project", "\\!IV");
+	  openFmID = F_ApiDefineAndAddCommand(OPEN, openMenuId, "OpenDoclineProject", "Docline project(with check)", "\\!IW");
 
 	  /* Define command for importing DocLine project from existing DRL documentation. */
 	  importDrlID = F_ApiDefineAndAddCommand(IMPORT, menuId, "Import", "Import","\\!OO");
@@ -261,7 +283,8 @@ VoidT F_ApiInitialize(IntT init)
 	  /* Define and add the Open-> menu to the DocLine menu. */
 	  bopenMenuId = F_ApiDefineAndAddMenu(bmenuId, "BOpenDocLineMenu", "Open");
 	  /* Define some commands and add them to the Open-> menu. */
-	  bopenFmID = F_ApiDefineAndAddCommand(BOPEN, bopenMenuId, "BOpenDoclineProject", "Docline project", "\\!BIW");
+	  bsopenIFmD = F_ApiDefineAndAddCommand(BSOPEN, bopenMenuId, "BSimpleOpenDoclineProject","Docline project", "\\!IV");
+	  bopenFmID = F_ApiDefineAndAddCommand(BOPEN, bopenMenuId, "BOpenDoclineProject", "Docline project(with check)", "\\!BIW");
 
 	  /* Define command for importing DocLine project from existing DRL documentation. */
 	  bimportDrlID = F_ApiDefineAndAddCommand(BIMPORT, bmenuId, "BImport", "Import","\\!BOO");
@@ -344,6 +367,11 @@ VoidT F_ApiCommand(IntT command)
 	  closeProject();
 	  openBook();
 	  break;
+  case SOPEN:
+  case BSOPEN:
+	  closeProject();
+	  simpleOpenBook();
+	  break;
   case IMPORT:
   case BIMPORT:
 	  closeProject();
@@ -381,85 +409,107 @@ VoidT pathFilename(UCharT *str)
 		*str--;
 	}
 }
-BoolT validateFilename(UCharT *str, IntT type)
+BoolT validateFilename(StringT str, IntT type)
 {
-	while (*str)
+	StringT name;
+	switch (type)
 	{
-		*str++;
-	}
-	str--;
-	while ((*str)&&(*str != '.'))
-	{
-		*str--;
-	}
-	if (*str)
-	{
-		switch (type)
-		{
-		case FM:
-			if (F_StrIEqual((StringT)str,(StringT)".fm"))
-			{
-				*str--;
-				while ((*str)&&(*str != '.'))
-				{
-					*str--;
-				}
-				if (*str == 0)
-				{
-					return True;
-				}
-				else
-				{
-					return (!F_StrIEqual((StringT)str,(StringT)".backup.fm"))&&(!F_StrIEqual((StringT)str,(StringT)".recover.fm"));
-				}
-			}
-			else
-			{
-				return False;
-			}
-			break;
-		case DRL:
-			return (F_StrIEqual((StringT)str,(StringT)".drl"));
-			break;
-		case FMBOOK:
-			*str--;
-			while ((*str)&&(*str != '\\')&&(*str != '.'))
-			{
-				*str--;
-			}
-			if ((!*str)||(*str == '\\'))
-			{
-				return (F_StrISuffix(str,(StringT)".book"));
-			}
-			return False;
-			break;
-		case GENBOOK:
-			*str--;
-			while ((*str)&&(*str != '\\')&&(*str != '.'))
-			{
-				*str--;
-			}
-			if (!*str)
-			{
-				F_Printf(NULL,"Filename error");
-				return False;
-			}
-			if (*str == '.')
-			{
-				return False;
-			}
-			*str++;
-			return F_StrIPrefix(str,(StringT)"book") && F_StrISuffix(str,(StringT)".book");
-			//this condition is more global - need to exclude files like book_foo.book
-		default:
-			F_ApiAlert("Invalid validation type",FF_ALERT_CONTINUE_NOTE);
-			return False;
-		}
-	}
-	else
-	{
+	case FM:
+		return F_StrISuffix(str,(StringT)".fm")
+			&& !F_StrISuffix(str,(StringT)".backup.fm")
+			&& !F_StrISuffix(str,(StringT)".recover.fm");
+	case FMBOOK:
+		return F_StrISuffix(str,(StringT)".book")
+			&& !F_StrISuffix(str,(StringT)".backup.book")
+			&& !F_StrISuffix(str,(StringT)".recover.book");
+	case GENBOOK:
+		name = str;
+		name = fileFileName(str);
+		//checking highest level element in book is better choise, but later
+		return validateFilename(name,FMBOOK) && F_StrIPrefix(name,(StringT)"book");
+	case DRL:
+		return F_StrISuffix(str,(StringT)".drl");
+	default:
 		return False;
 	}
+	////move to the end
+	//while (*str)
+	//{
+	//	*str++;
+	//}
+	//str--;
+	//while ((*str)&&(*str != '.'))
+	//{
+	//	*str--;
+	//}
+	//if (*str)
+	//{
+	//	switch (type)
+	//	{
+	//	case FM:
+	//		if (F_StrIEqual((StringT)str,(StringT)".fm"))
+	//		{
+	//			*str--;
+	//			while ((*str)&&(*str != '.'))
+	//			{
+	//				*str--;
+	//			}
+	//			if (*str == 0)
+	//			{
+	//				return True;
+	//			}
+	//			else
+	//			{
+	//				return (!F_StrIEqual((StringT)str,(StringT)".backup.fm"))&&(!F_StrIEqual((StringT)str,(StringT)".recover.fm"));
+	//			}
+	//		}
+	//		else
+	//		{
+	//			return False;
+	//		}
+	//		break;
+	//	case DRL:
+	//		return (F_StrIEqual((StringT)str,(StringT)".drl"));
+	//		break;
+	//	case FMBOOK:
+	//		*str--;
+	//		while ((*str)&&(*str != '\\')&&(*str != '.'))
+	//		{
+	//			*str--;
+	//		}
+	//		if ((!*str)||(*str == '\\'))
+	//		{
+	//			return (F_StrISuffix(str,(StringT)".book"));
+	//		}
+	//		return False;
+	//		break;
+	//	case GENBOOK:
+	//		*str--;
+	//		while ((*str)&&(*str != '\\')&&(*str != '.'))
+	//		{
+	//			*str--;
+	//		}
+	//		if (!*str)
+	//		{
+	//			F_Printf(NULL,"Filename error");
+	//			return False;
+	//		}
+	//		if (*str == '.')
+	//		{
+	//			return False;
+	//		}
+	//		*str++;
+	//		return F_StrIPrefix(str,(StringT)"book") && F_StrISuffix(str,(StringT)".book");
+	//		//this condition is more global - need to exclude files like book_foo.book
+	//	default:
+	//		F_ApiAlert("Invalid validation type",FF_ALERT_CONTINUE_NOTE);
+	//		return False;
+	//	}
+	//}
+	//else
+	//{
+	//	return False;
+	//}
 }
 BoolT isDocLine(F_ObjHandleT docID)
 {
@@ -535,30 +585,23 @@ VoidT addStructuredElementToBook(F_ObjHandleT bookID, F_ObjHandleT newBookID, F_
 		F_ApiAlert("Error in adding to hierarchy",FF_ALERT_CONTINUE_NOTE);
 	}
 }
-VoidT openFilesInDirectory(StringT path)
+F_ObjHandleT openMainBook(StringT path)
 {
-	FilePathT *newpath, *file;
-	StringT bookPath, tmpPath, tmpPath2, place, fileName, tmpBookPath;
-	//path - path of openned document
-	//newpath~path
-	//bookPath - book path
-	//defaultPath - default directory path
-	F_ObjHandleT bookID, compID, elemID, docID;
+	FilePathT *file;
 	DirHandleT handle;
 	IntT statusp;
-	BoolT bookExists, compExists;
-	F_ElementLocT elemLoc;
+	BoolT bookExists;
+	StringT tmpBookPath, bookPath, tmpPath;
+	F_ObjHandleT bookID, docID;
 
-	pathFilename(path);
-	newpath = F_PathNameToFilePath (path, NULL, FDosPath);
-	handle = F_FilePathOpenDir(newpath, &statusp);
+	handle = F_FilePathOpenDir(F_PathNameToFilePath (path, NULL, FDosPath), &statusp);
 	if (!handle) 
 	{
-		F_FilePathFree(newpath);
-		F_ApiAlert("Handle Error0", FF_ALERT_CONTINUE_NOTE);
-		return;
+		F_Printf(NULL,"Handle Error0\n");
+		return 0;
 	}
 	bookExists = False;
+	//searching for main book
 	while ((file = F_FilePathGetNext(handle, &statusp)) != NULL)
 	{
 		tmpBookPath = F_FilePathToPathName(file, FDosPath);
@@ -566,27 +609,30 @@ VoidT openFilesInDirectory(StringT path)
 		if (F_StrIEqual(tmpBookPath,defaultBookName))
 		{
 			bookExists = True;
-			bookPath = F_StrCopyString(tmpBookPath);
 		}
 		else if (F_StrSuffix(tmpBookPath,".fm.lck"))
 		{
 			F_DeleteFile(file);
 		}
-		//F_FilePathFree(file);
-		//F_ApiDeallocateString(&tmpBookPath);
 	} 
 	F_FilePathCloseDir(handle);
+	bookPath = F_StrCopyString(path);
+	bookPath = F_Realloc(bookPath,F_StrLen(path)+F_StrLen(defaultBookName)+1,NO_DSE);
+	F_StrCat(bookPath,defaultBookName);
 	if (!bookExists)
 	{
 		bookID = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_book_template.book",False);
-		bookPath = F_StrCopyString(path);
-		bookPath = F_Realloc(bookPath,F_StrLen(path)+F_StrLen(defaultBookName)+1,NO_DSE);
-		F_StrCat(bookPath,defaultBookName);
 		handle = F_FilePathOpenDir(F_PathNameToFilePath(path,NULL,FDosPath),&statusp);
 		if (!handle)
 		{
-			F_ApiAlert("Handle error 1",FF_ALERT_CONTINUE_NOTE);
-			return;
+			F_Printf(NULL,"Handle error 1\n");
+			F_Free(&statusp);
+			F_Free(&bookExists);
+			F_ApiDeallocateString(&tmpBookPath);
+			F_ApiDeallocateString(&bookPath);
+			F_Free(&handle);
+			F_FilePathFree(file);
+			return 0;
 		}
 		while (file = F_FilePathGetNext(handle,&statusp))
 		{
@@ -600,115 +646,198 @@ VoidT openFilesInDirectory(StringT path)
 			}
 		}
 		F_FilePathCloseDir(handle);
+		F_ApiSimpleSave(bookID,bookPath,False);
 	}
 	else
 	{
 		bookID = F_ApiSimpleOpen(bookPath,False);
 	}
-	handle = F_FilePathOpenDir(newpath, &statusp);
+
+	F_Free(&statusp);
+	F_Free(&bookExists);
+	F_Free(&docID);
+	F_ApiDeallocateString(&tmpPath);
+	F_ApiDeallocateString(&tmpBookPath);
+	F_ApiDeallocateString(&bookPath);
+	F_Free(&handle);
+	F_FilePathFree(file);
+
+	return bookID;
+}
+BoolT addExistingDocs(StringT path, F_ObjHandleT bookID)
+{
+	DirHandleT handle;
+	IntT statusp;
+	FilePathT *file, *filepath;
+	StringT tmpPath;
+
+	filepath = F_PathNameToFilePath (path, NULL, FDosPath);
+	handle = F_FilePathOpenDir(filepath, &statusp);
 	if (!handle)
 	{
 		F_Printf(NULL,"OpenBooks:\n\tDirectory path error: %s\n",path);
-		return;
+		return 0;
 	}
-	while((file = F_FilePathGetNext(handle, &statusp)) != NULL)
+	while((file = F_FilePathGetNext(handle, &statusp)))
 	{
 		tmpPath = F_FilePathToPathName(file, FDosPath);
 		if (validateFilename(tmpPath,FM)) 
 		{
-			compID = F_ApiGetId(FV_SessionId,bookID,FP_FirstComponentInBook);
-			compExists = False;
-			while ((compID != 0)&&(!compExists))
-			{
-				tmpPath2 = F_ApiGetString(bookID,compID,FP_Name);
-				compExists =  F_StrIEqual(fileFileName(tmpPath),fileFileName(tmpPath2));
-				compID = F_ApiGetId(bookID,compID,FP_NextComponentInBook);
-			}
-			if (!compExists)
-			{
-				docID = F_ApiSimpleOpen(tmpPath,False);
-				fileName = getHighestString(docID);
-				F_ApiClose(docID,FF_CLOSE_MODIFIED);
-				if ((F_StrIEqual(fileName,(StringT)"InfElement")) ||
-					(F_StrPrefix(fileName,(StringT)"InfProduct")))
-				{
-					place = (StringT)"DocumentationCore";
-				}
-				else if (F_StrIEqual(fileName,(StringT)"FinalInfProduct"))
-				{
-					place = (StringT)"ProductDocumentation";
-				}
-				else if (F_StrIEqual(fileName,(StringT)"Product"))
-				{
-					place = (StringT)"ProductLine";
-				}
-				else
-				{
-					place = (StringT)"";
-				}
-				F_ApiDeallocateString(&fileName);
-				if (F_StrIEqual(place,(StringT)""))
-				{
-					compID = F_ApiNewSeriesObject(bookID,FO_BookComponent,0);
-					F_ApiSetString(bookID,compID,FP_Name,tmpPath);
-				}
-				else
-				{
-					compID = F_ApiGetId(FV_SessionId,bookID,FP_HighestLevelElement);
-					//compID = F_ApiGetId(bookID,F_ApiGetId(FV_SessionId,bookID,FP_MainFlowInDoc),FP_HighestLevelElement);
-					if (!compID)
-					{
-						F_Printf(NULL,"OpenFiles:\n\tHighest element error\n");
-						return;
-					}
-					else
-					{
-						compID = F_ApiGetId(bookID,compID,FP_FirstChildElement);
-						compExists = False;
-						while (compID && (!compExists))
-						{
-							elemID = F_ApiGetId(bookID,compID,FP_ElementDef);
-							if (F_StrIEqual(F_ApiGetString(bookID,elemID,FP_Name),place))
-							{
-								compExists = True;
-							}
-							else
-							{
-								compID = F_ApiGetId(bookID,compID,FP_NextSiblingElement);
-							}
-						}
-						if (!compExists)
-						{
-							elemID = F_ApiGetNamedObject(bookID,FO_ElementDef,place);
-							elemLoc.parentId = F_ApiGetId(FV_SessionId,bookID,FP_HighestLevelElement);
-							elemLoc.childId = 0;
-							elemLoc.offset = 0;
-							compID = F_ApiNewElementInHierarchy(bookID,elemID,&elemLoc);
-						}
-						elemLoc.parentId = compID;
-						elemLoc.offset = 0;
-						elemLoc.childId = 0;
-						compID = F_ApiNewBookComponentInHierarchy(bookID,tmpPath,&elemLoc);
-					}
-				}
-			}
+			if (!addExistingDoc(tmpPath,bookID)) return 0;
 		}
 		else if ((!F_StrIEqual(fileFileName(tmpPath),defaultBookName))&&
-			(!F_StrSuffix(fileFileName(tmpPath),(StringT)".book"))&&
-			(!F_StrSuffix(fileFileName(tmpPath),(StringT)".drl")))
-			//(!F_StrSuffix(fileFileName(tmpPath),(StringT)".backup.fm")))
+			(!validateFilename(tmpPath,FMBOOK))&&
+			(!validateFilename(tmpPath,DRL)))
 		{
 			F_DeleteFile(file);
 		}
-		F_ApiDeallocateString(&tmpPath);
-		F_FilePathFree(file);
 	}
-	//Checking for all book components, that their files exists
+
+	F_FilePathCloseDir(handle);
+	F_Free(&statusp);
+	F_ApiDeallocateString(&tmpPath);
+	F_FilePathFree(file);
+	F_FilePathFree(filepath);
+	F_Free(&handle);
+
+	return 1;
+}
+BoolT addExistingDoc(StringT path, F_ObjHandleT bookID)
+{
+	F_ObjHandleT compID, docID, elemID;
+	BoolT compExists;
+	StringT tmpPath2, fileName, place;
+	F_ElementLocT elemLoc;
+
+	compID = F_ApiGetId(FV_SessionId,bookID,FP_FirstComponentInBook);
+	compExists = False;
+	while ((compID != 0)&&(!compExists))
+	{
+		tmpPath2 = F_ApiGetString(bookID,compID,FP_Name);
+		compExists =  F_StrIEqual(fileFileName(path),fileFileName(tmpPath2));
+		compID = F_ApiGetId(bookID,compID,FP_NextComponentInBook);
+	}
+	if (!compExists)
+	{
+		docID = F_ApiSimpleOpen(path,False);
+		fileName = getHighestString(docID);
+		F_ApiClose(docID,FF_CLOSE_MODIFIED);
+		place = getPlace(fileName);
+		if (F_StrIEqual(place,(StringT)""))
+		{
+			compID = F_ApiNewSeriesObject(bookID,FO_BookComponent,0);
+			F_ApiSetString(bookID,compID,FP_Name,path);
+		}
+		else
+		{
+			compID = F_ApiGetId(FV_SessionId,bookID,FP_HighestLevelElement);
+			//compID = F_ApiGetId(bookID,F_ApiGetId(FV_SessionId,bookID,FP_MainFlowInDoc),FP_HighestLevelElement);
+			if (!compID)
+			{
+				F_Printf(NULL,"OpenFiles:\n\tHighest element error\n");
+				return 0;
+			}
+			else
+			{
+				compID = componentExists(bookID,compID,place);
+				if (!compID)
+				{
+					elemID = F_ApiGetNamedObject(bookID,FO_ElementDef,place);
+					elemLoc.parentId = F_ApiGetId(FV_SessionId,bookID,FP_HighestLevelElement);
+					elemLoc.childId = 0;
+					elemLoc.offset = 0;
+					compID = F_ApiNewElementInHierarchy(bookID,elemID,&elemLoc);
+				}
+				elemLoc.parentId = compID;
+				elemLoc.offset = 0;
+				elemLoc.childId = 0;
+				compID = F_ApiNewBookComponentInHierarchy(bookID,path,&elemLoc);
+			}
+		}
+	}
+
+	F_Free(&compID);
+	F_Free(&elemLoc);
+	F_Free(&elemID);
+	F_ApiDeallocateString(&place);
+	F_ApiDeallocateString(&fileName);
+	F_Free(&docID);
+	F_Free(&compExists);
+	F_ApiDeallocateString(&tmpPath2);//
+
+	return 1;
+}
+StringT getPlace(StringT fileName)
+{
+	if ((F_StrIEqual(fileName,(StringT)"InfElement")) ||
+		(F_StrPrefix(fileName,(StringT)"InfProduct")))
+	{
+		return (StringT)"DocumentationCore";
+	}
+	else if (F_StrIEqual(fileName,(StringT)"FinalInfProduct"))
+	{
+		return (StringT)"ProductDocumentation";
+	}
+	else if (F_StrIEqual(fileName,(StringT)"Product"))
+	{
+		return (StringT)"ProductLine";
+	}
+	else
+	{
+		return (StringT)"";
+	}
+}
+F_ObjHandleT componentExists(F_ObjHandleT bookID, F_ObjHandleT cID, StringT name)
+{
+	F_ObjHandleT compID, elemID;
+
+	compID = F_ApiGetId(bookID,cID,FP_FirstChildElement);
+	while (compID)
+	{
+		elemID = F_ApiGetId(bookID,compID,FP_ElementDef);
+		if (F_StrIEqual(F_ApiGetString(bookID,elemID,FP_Name),name))
+		{
+			F_Free(&elemID);
+			return compID;
+		}
+		else
+		{
+			compID = F_ApiGetId(bookID,compID,FP_NextSiblingElement);
+		}
+	}
+
+	F_Free(&elemID);
+	F_Free(&compID);
+
+	return 0;
+}
+VoidT openFilesInDirectory(StringT path)
+{
+	FilePathT *newpath, *file;
+	StringT bookPath, tmpPath;
+	//path - path of openned document
+	//newpath~path
+	//bookPath - book path
+	//defaultPath - default directory path
+	F_ObjHandleT bookID, compID, elemID;
+	DirHandleT handle;
+	IntT statusp;
+	BoolT compExists;
+
+	pathFilename(path);
+	if (!(bookID = openMainBook(path))) return;
+	if (!addExistingDocs(path,bookID)) return;
+	newpath = F_PathNameToFilePath (path, NULL, FDosPath);
 	compID = F_ApiGetId(FV_SessionId,bookID,FP_FirstComponentInBook);
 	while (compID)
 	{
 		compExists = False;
 		handle = F_FilePathOpenDir(newpath,&statusp);
+		if (!handle)
+		{
+			F_Printf(NULL,"OpenDir:\n\tDirectory error: %s\n", F_FilePathToPathName(newpath,FDosPath));
+			return;
+		}
 		while (file = F_FilePathGetNext(handle,&statusp))
 		{
 			tmpPath = F_FilePathToPathName(file,FDosPath);
@@ -727,18 +856,24 @@ VoidT openFilesInDirectory(StringT path)
 		{
 			compID = F_ApiGetId(bookID,compID,FP_NextComponentInBook);
 		}
+		F_FilePathCloseDir(handle);
 	}
+	bookPath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
 	F_ApiSimpleGenerate(bookID,False,True);
 	F_ApiSimpleSave(bookID,bookPath,False); 
-	F_FilePathCloseDir(handle);
-	F_FilePathFree(file);
-	//F_FilePathFree(newpath);
-	F_ApiDeallocateString(&path);
+
 	F_ApiDeallocateString(&bookPath);
+	F_Free(&elemID);
 	F_ApiDeallocateString(&tmpPath);
-	F_ApiDeallocateString(&tmpPath2);
+	F_FilePathFree(file);
+	F_Free(&statusp);
+	F_Free(&handle);
+	F_Free(&compExists);
+	F_Free(&compID);
+	F_FilePathFree(newpath);
+	F_Free(&bookID);
 }
-VoidT cleanDirectory(FilePathT *dirPath)
+BoolT cleanDirectory(FilePathT *dirPath)
 {
 	FilePathT *file;
 	StringT path;
@@ -749,16 +884,16 @@ VoidT cleanDirectory(FilePathT *dirPath)
 	if (!handle)
 	{
 		F_Printf(NULL,"Invalid directory path: %s\n",F_FilePathToPathName(dirPath,FDosPath));
-		return;
+		return 0;
 	}
 	while (file = F_FilePathGetNext(handle,&statusp))
 	{
 		path = F_FilePathToPathName(file,FDosPath);
 		path = fileFileName(path);
 		if ((!(validateFilename(path,FM)&&(!F_StrISuffix(path,(StringT)".backup.fm")
-			&&(!F_StrISuffix(path,(StringT)".recover.fm")))))
-			&&(!validateFilename(path,DRL)||(F_StrSuffix(path,(StringT)".backup.drl")))
-			&&(!F_StrIEqual(path,defaultBookName)))
+				&&(!F_StrISuffix(path,(StringT)".recover.fm")))))//documents, which are not backup or recover
+			&&(!validateFilename(path,DRL)||(F_StrSuffix(path,(StringT)".backup.drl")))//drl documents, which are not recover
+			&&(!F_StrIEqual(path,defaultBookName)))//main book
 		{
 			F_DeleteFile(file);
 		}
@@ -766,6 +901,44 @@ VoidT cleanDirectory(FilePathT *dirPath)
 	F_FilePathCloseDir(handle);
 	F_ApiDeallocateString(&path);
 	F_FilePathFree(file);
+	F_Free(&handle);
+	F_Free(&statusp);
+
+	return 1;
+}
+BoolT cleanImportDirectory(StringT dirPath)
+{
+	FilePathT *filedirPath, *file;
+	DirHandleT handle;
+	StringT tmpPath;
+	IntT statusp;
+
+	filedirPath = F_PathNameToFilePath (dirPath, NULL, FDosPath);
+	handle = F_FilePathOpenDir(filedirPath, &statusp);
+	if (!handle)
+	{
+		F_FilePathFree(filedirPath);
+		F_ApiAlert("Handle Error2", FF_ALERT_CONTINUE_NOTE);
+		return 0;
+	}
+	//Deleting non-docline files in directory
+	while (file = F_FilePathGetNext(handle,&statusp))
+	{
+		tmpPath = F_FilePathToPathName(file,FDosPath);
+		if (!validateFilename(tmpPath,DRL))
+		{
+			F_DeleteFile(file);
+		}
+	}
+	F_FilePathCloseDir(handle);
+
+	F_Free(&handle);
+	F_ApiDeallocateString(&tmpPath);
+	F_Free(&statusp);
+	F_FilePathFree(file);
+	F_FilePathFree(filedirPath);
+
+	return 1;
 }
 VoidT generateBooks(F_ObjHandleT mainBookID)
 {
@@ -844,6 +1017,242 @@ VoidT generateBooks(F_ObjHandleT mainBookID)
 		elemID = F_ApiGetId(mainBookID,elemID,FP_NextSiblingElement);
 	}
 }
+IntT getActiveBookID()
+{
+	IntT bookID;
+	StringT dirPath, path;
+
+	bookID = F_ApiGetId(0,FV_SessionId,FP_ActiveBook);
+	//Active document is not framemaker book
+	if (!bookID)
+	{
+		bookID = F_ApiGetId(0,FV_SessionId,FP_ActiveDoc);
+		//Active document is not docline document
+		if (!isDocLine(bookID))
+		{
+			return 0;
+		}
+		path = F_ApiGetString(FV_SessionId,bookID,FP_Name);
+		pathFilename(path);
+		dirPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+5,NO_DSE);
+		F_Sprintf(dirPath,"%s%s",path,defaultBookName);
+		bookID = F_ApiSimpleOpen(dirPath,False);
+	}
+	//Active document is not docline book
+	else if (!F_StrISuffix(F_ApiGetString(FV_SessionId,bookID,FP_Name),defaultBookName))
+	{
+		return 0;
+	}
+	//Active document is docline book
+	F_ApiDeallocateString(&path);
+	F_ApiDeallocateString(&dirPath);
+	return bookID;
+}
+BoolT exportBook(StringT path, StringT dirPath, F_PropValsT params, UIntT* j)
+{
+	IntT docID, elemID;
+	UIntT k;
+	F_AttributesT attrs;
+	F_AttributeT attr;
+	F_PropValsT *returnParams;
+	StringT curFilePath;
+
+	docID = F_ApiSimpleOpen(path,False);
+	elemID = F_ApiGetId(FV_SessionId,docID,FP_HighestLevelElement);
+	if (!elemID)
+	{
+		F_Printf(NULL,"No highest level elment in %s",path);
+		return 0;
+	}
+	attrs = F_ApiGetAttributes(docID,elemID);
+	for (k=0; k<attrs.len; k++)
+	{
+		attr = attrs.val[k];
+		if (F_StrIEqual(attr.name,(StringT)"FileName"))
+		{
+			if (!attr.values.len || !attr.values.val[0])
+			{
+				curFilePath = F_Alloc(path,F_StrLen(path)+F_StrLen(dirPath)+10,NO_DSE);
+				F_Sprintf(path,"%sfile%d.drl",dirPath,*j);
+				(*j)++;
+			}
+			else
+			{
+				curFilePath = F_Alloc(path,F_StrLen(path)+F_StrLen(dirPath)+F_StrLen(attr.values.val[0])+5,NO_DSE);
+				F_Sprintf(path,"%s%s",dirPath,attr.values.val[0]);
+			}
+		}
+		F_ApiDeallocateString(&curFilePath);
+	}
+	returnParams = NULL;
+	F_ApiSave(docID,path,&params,&returnParams);
+	F_ApiClose(docID,FF_CLOSE_MODIFIED);
+
+	F_ApiDeallocatePropVals(returnParams);
+	//F_ApiDeallocateAttribute(&attr);
+	F_Free(&k);
+	F_ApiDeallocateAttributes(&attrs);
+	F_Free(&elemID);
+	F_Free(&docID);
+
+	return 1;
+}
+BoolT importBook(StringT path, F_PropValsT params)
+{
+	F_ObjHandleT fileID, elemID;
+	F_AttributeT attr;
+	F_AttributesT attrs;
+	F_PropValsT *returnParams;
+	UIntT j;
+
+	if (!validateFilename(path,DRL)) return 0;
+	returnParams = NULL;
+	fileID = F_ApiOpen(path,&params,&returnParams);
+	if (!fileID)
+	{
+		F_Printf(NULL,"Error in opening file %s",path);
+		return 0;
+	}
+	elemID = F_ApiGetId(FV_SessionId,fileID,FP_HighestLevelElement);
+	//Inserting additional attribute, that indicates file name, in highest level element
+	if ((F_StrIEqual(F_ApiGetString(fileID,F_ApiGetId(fileID,elemID,FP_ElementDef),FP_Name),(StringT)"DocumentationCore"))||
+		(F_StrIEqual(F_ApiGetString(fileID,F_ApiGetId(fileID,elemID,FP_ElementDef),FP_Name),(StringT)"ProductLine"))||
+		(F_StrIEqual(F_ApiGetString(fileID,F_ApiGetId(fileID,elemID,FP_ElementDef),FP_Name),(StringT)"ProductDocumentation")))
+	{
+		attrs = F_ApiGetAttributes(fileID,elemID);
+		for (j=0; j<attrs.len; j++)
+		{
+			attr = attrs.val[j];
+			if (F_StrIEqual(attr.name,(StringT)"FileName"))
+			{
+				if (!attr.values.len)
+				{
+					attr.values.len = 1;
+					attr.values.val = (StringT*)F_Alloc(sizeof(StringT),DSE);
+				}
+				attr.values.val[0] = fileFileName(F_StrCopyString(path));
+				attrs.val[j] = attr;
+			}
+		}
+		F_ApiSetAttributes(fileID,elemID,&attrs);
+	}
+	renameFilesToActualNames(fileID);
+	fileID = F_ApiSimpleSave(fileID,F_ApiGetString(FV_SessionId,fileID,FP_Name),False);
+	F_ApiClose(fileID,FF_CLOSE_MODIFIED);
+
+	F_Free(&fileID);
+	F_Free(&elemID);
+	F_ApiDeallocatePropVals(returnParams);
+	F_ApiDeallocateAttributes(&attrs);
+	//F_ApiDeallocateAttribute(&attr);//was commented
+
+	return 1;
+}
+VoidT closeAllDocs()
+{
+	F_ObjHandleT docID;
+	docID = F_ApiGetId(0,FV_SessionId,FP_FirstOpenDoc);
+	while(docID)
+	{
+		F_ApiClose(docID,FF_CLOSE_MODIFIED);
+		docID = F_ApiGetId(0,FV_SessionId,FP_NextOpenDocInSession);
+	}
+}
+F_PropValsT generateExportParams()
+{
+	F_PropValsT params;
+	IntT i;
+
+	params = F_ApiGetSaveDefaultParams();
+	if (!params.len)
+	{
+		F_Printf(NULL,"Invalid default save params");
+		return params;
+	}
+	i = F_ApiGetPropIndex(&params,FS_FileType);
+	params.val[i].propVal.u.ival = FV_SaveFmtXml;
+	i = F_ApiGetPropIndex(&params,FS_StructuredSaveApplication);
+	params.val[i].propVal.u.sval = "DocLine";
+
+	F_Free(&i);
+
+	return params;
+}
+F_PropValsT generateOpenParams()
+{
+	F_PropValsT params;
+	IntT i;
+
+	params = F_ApiGetOpenDefaultParams();
+	if (!params.len)
+	{
+		F_ApiAlert("Default params error",FF_ALERT_CONTINUE_NOTE);
+	}
+	i = F_ApiGetPropIndex(&params, FS_ShowBrowser);
+	params.val[i].propVal.u.ival = True;
+	i = F_ApiGetPropIndex(&params, FS_ForceOpenAsText);
+	params.val[i].propVal.u.ival = True;
+
+	F_Free(&i);
+
+	return params;
+}
+F_PropValsT generateImportParams()
+{
+	F_PropValsT params;
+	IntT i;
+
+	params = F_ApiGetOpenDefaultParams();
+	if (!params.len)
+	{
+		F_ApiAlert("Default params error",FF_ALERT_CONTINUE_NOTE);
+	}
+	i = F_ApiGetPropIndex(&params,FS_StructuredOpenApplication);
+	params.val[i].propVal.u.sval = "DocLine";
+
+	F_Free(&i);
+
+	return params;
+}
+BoolT performExportXSLT(StringT dirPath)
+{
+	StringT tempPath;
+	UCharT jarPath[256];
+	IntT retVal;
+
+	tempPath = F_ApiClientDir();
+	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
+	retVal = callJavaExportUtil(jarPath,dirPath);
+	if (retVal)
+	{
+		F_Printf(NULL,"JVM Initiliazation error\n");
+	}
+
+	F_Free(&jarPath);
+	F_ApiDeallocateString(&tempPath);
+
+	return !retVal;
+}
+BoolT performImportXSLT(StringT dirPath)
+{
+	IntT retVal;
+	UCharT jarPath[256];
+	StringT tempPath;
+
+	tempPath = F_ApiClientDir();
+	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
+	retVal = callJavaImportUtil(jarPath, dirPath);
+	if (retVal > 0)
+	{
+		F_Printf(NULL,"JVM Initiliazation error\n");
+
+	}
+
+	F_Free(&jarPath);
+	F_ApiDeallocateString(&tempPath);
+
+	return !retVal;
+}
 VoidT openBook()
 {
 	StringT path;
@@ -861,8 +1270,8 @@ VoidT openBook()
 		F_Printf(NULL,"Error. Not Framemaker file\n");
 		return;
 	}
+	pathFilename(path);
 	openFilesInDirectory(path);
-
 }
 VoidT createNewDocLineBook()
 {
@@ -946,7 +1355,7 @@ BoolT newSecondLevelSection(BoolT isFirst, StringT type)
 	/* Get Id of the book */
 	bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
 	/* Open resource for the Create new DocumentationCore || ProductDocumentation || ProductLine section dialog */
-	sectionDlgId = F_ApiOpenResource(FO_DialogResource, "doccore");	
+	sectionDlgId = F_ApiOpenResource(FO_DialogResource, "DOCCORE");	
 	if (!isFirst)
 		F_ApiSetInt(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 5), FP_Visibility, False);
 	else
@@ -1663,49 +2072,28 @@ VoidT renameFilesToActualNames(F_ObjHandleT bookID)
 		}
 		compID = F_ApiGetId(bookID,compID,FP_NextComponentInBook);
 	}
+
+	F_Free(&compID);
+	//F_ApiDeallocateAttribute(&attr);
+	F_ApiDeallocateAttributes(&attrs);
+	F_ApiDeallocateString(&compPath);
+	F_ApiDeallocateString(&dirPath);
+	F_Free(&i);
+	F_Free(&j);
 }
 
 VoidT importDocLineDoc()
 {
-	F_ObjHandleT docID, fileID, elemID, compID;
-	StringT dirPath, tmpPath, bookPath, compPath, newCompPath;
-	FilePathT *newdirPath, *file;
+	F_ObjHandleT docID;
+	StringT dirPath, tmpPath, bookPath;
+	FilePathT *filedirPath, *file;
 	DirHandleT handle;
-	IntT statusp, i;
-	UIntT j;
+	IntT statusp;
 	F_PropValsT params, *returnParams;
-	F_AttributesT attrs;
-	F_AttributeT attr;
-	IntT retVal;
-	UCharT jarPath[256], statusMessage[256];
-	StringT tempPath;
-	ChannelT chan;
 
-	tempPath = F_ApiClientDir();
-	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
-	F_Free(tempPath);
 	returnParams = NULL;
-	params = F_ApiGetOpenDefaultParams();
-	if (!params.len)
-	{
-		F_ApiAlert("Default params error",FF_ALERT_CONTINUE_NOTE);
-		return;
-	}
-	i = F_ApiGetPropIndex(&params, FS_ShowBrowser);
-	params.val[i].propVal.u.ival = True;
-	i = F_ApiGetPropIndex(&params, FS_ForceOpenAsText);
-	params.val[i].propVal.u.ival = True;
-	//Choise of file only determines directory
+	params = generateOpenParams();
 	docID = F_ApiOpen(defaultPath,&params,&returnParams);
-	returnParams = NULL;
-	params = F_ApiGetOpenDefaultParams();
-	if (!params.len)
-	{
-		F_ApiAlert("Default params error",FF_ALERT_CONTINUE_NOTE);
-		return;
-	}
-	i = F_ApiGetPropIndex(&params,FS_StructuredOpenApplication);
-	params.val[i].propVal.u.sval = "DocLine";
 	if (!docID)
 	{
 		F_Printf(NULL,"No such file: %s\n", defaultPath);
@@ -1713,33 +2101,13 @@ VoidT importDocLineDoc()
 	}
 	dirPath = F_ApiGetString(FV_SessionId,docID,FP_Name);
 	F_ApiClose(docID,FF_CLOSE_MODIFIED);
-	pathFilename(dirPath);
-	retVal = callJavaImportUtil(jarPath, dirPath);
-	if (retVal > 0)
-	{
-		F_Printf(NULL,"JVM Initiliazation error\n");
-		return;
-	}
+	params = generateImportParams();
+	pathFilename(dirPath);//since then dirPath should be const
+	filedirPath = F_PathNameToFilePath (dirPath, NULL, FDosPath);//since then filedirPath should be const
+	if (!performImportXSLT(dirPath)) return;
+	if (!cleanImportDirectory(dirPath)) return;
 	bookPath = "";
-	newdirPath = F_PathNameToFilePath (dirPath, NULL, FDosPath);
-	handle = F_FilePathOpenDir(newdirPath, &statusp);
-	if (!handle)
-	{
-		F_FilePathFree(newdirPath);
-		F_ApiAlert("Handle Error2", FF_ALERT_CONTINUE_NOTE);
-		return;
-	}
-	//Deleting non-docline files in directory
-	while (file = F_FilePathGetNext(handle,&statusp))
-	{
-		tmpPath = F_FilePathToPathName(file,FDosPath);
-		if (!validateFilename(tmpPath,DRL))
-		{
-			F_DeleteFile(file);
-		}
-	}
-	F_FilePathCloseDir(handle);
-	handle = F_FilePathOpenDir(newdirPath,&statusp);
+	handle = F_FilePathOpenDir(filedirPath,&statusp);
 	if (!handle)
 	{
 		F_Printf(NULL,"import error:\n\tInvalid directory path: %s\n",dirPath);
@@ -1749,52 +2117,22 @@ VoidT importDocLineDoc()
 	while((file = F_FilePathGetNext(handle, &statusp)) != NULL)
 	{
 		tmpPath = F_FilePathToPathName(file,FDosPath);
-		if (validateFilename(tmpPath,DRL))
-		{
-			fileID = F_ApiOpen(tmpPath,&params,&returnParams);
-			if (!fileID)
-			{
-				F_Printf(NULL,"Error in opening file %s",tmpPath);
-				continue;
-			}
-			elemID = F_ApiGetId(FV_SessionId,fileID,FP_HighestLevelElement);
-			//Inserting additional attribute, that indicates file name, in highest level element
-			if ((F_StrIEqual(F_ApiGetString(fileID,F_ApiGetId(fileID,elemID,FP_ElementDef),FP_Name),(StringT)"DocumentationCore"))||
-				(F_StrIEqual(F_ApiGetString(fileID,F_ApiGetId(fileID,elemID,FP_ElementDef),FP_Name),(StringT)"ProductLine"))||
-				(F_StrIEqual(F_ApiGetString(fileID,F_ApiGetId(fileID,elemID,FP_ElementDef),FP_Name),(StringT)"ProductDocumentation")))
-			{
-				attrs = F_ApiGetAttributes(fileID,elemID);
-				for (j=0; j<attrs.len; j++)
-				{
-					attr = attrs.val[j];
-					if (F_StrIEqual(attr.name,(StringT)"FileName"))
-					{
-						if (!attr.values.len)
-						{
-							attr.values.len = 1;
-							attr.values.val = (StringT*)F_Alloc(sizeof(StringT),DSE);
-						}
-						attr.values.val[0] = fileFileName(F_StrCopyString(tmpPath));
-						attrs.val[j] = attr;
-					}
-				}
-				F_ApiSetAttributes(fileID,elemID,&attrs);
-			}
-			renameFilesToActualNames(fileID);
-			fileID = F_ApiSimpleSave(fileID,F_ApiGetString(FV_SessionId,fileID,FP_Name),False);
-			F_ApiClose(fileID,FF_CLOSE_MODIFIED);
-			F_ApiDeallocatePropVals(returnParams);
-		}
-		F_ApiDeallocateString(&tmpPath);
-		F_FilePathFree(file);
+		importBook(tmpPath,params);
 	}
-	F_ApiDeallocatePropVals(&params);    
 	F_FilePathCloseDir(handle);
 	openFilesInDirectory(dirPath);
-	cleanDirectory(newdirPath);
-	F_FilePathFree(newdirPath);
+	cleanDirectory(filedirPath);
+
+	F_Free(&docID);
+	F_Free(&handle);
+	F_Free(&statusp);
+	F_ApiDeallocatePropVals(&params);    
+	F_ApiDeallocatePropVals(returnParams);
+	F_FilePathFree(filedirPath);
+	F_FilePathFree(file);
 	F_ApiDeallocateString(&dirPath);
 	F_ApiDeallocateString(&bookPath);
+	F_ApiDeallocateString(&tmpPath);
 }
 
 VoidT publishDocLineDoc(StringT format)
@@ -1804,14 +2142,17 @@ VoidT publishDocLineDoc(StringT format)
 	UCharT sourceDirPath[256];
 	UCharT sourceFileName[256];
 	UCharT destinationFileName[256];
+	FilePathT* filePath;
+	F_AttributesT attrs;
+	F_AttributeT attr;
 
 	UCharT statusMessage[256];
 
 	StringT tempPath, tempName, tempResult;
-	F_ObjHandleT bookID;
+	F_ObjHandleT bookID, compID;
 	ChannelT chan;
 	UCharT ptr[BUFFERSIZE];
-	IntT numread;
+	IntT numread, i;
 
 	// promt user if he is sure he wants to publish document
 	response = F_ApiAlert("This will export all files to DRL and then publish them. Do you still wish to continue?", FF_ALERT_YES_DEFAULT);
@@ -1841,6 +2182,25 @@ VoidT publishDocLineDoc(StringT format)
 		F_ApiAlert("Invalid book", FF_ALERT_CONTINUE_NOTE);
 		return;
 	}
+	//My code
+	//compID = F_ApiGetId(FV_SessionId, bookID, FP_HighestLevelElement);
+	//compID = F_ApiGetId(bookID, compID, FP_FirstChildElement);
+	//while (compID){
+	//	attrs = F_ApiGetAttributes(bookID,compID);
+	//	for (i=0; i<attrs.len; i++)
+	//	{
+	//		attr = attrs.val[i];
+	//		if (F_StrIEqual(attr.name, "FileName") && attr.values.len)
+	//		{
+	//			filePath = F_PathNameToFilePath(attr.values.val[0],NULL,FDosPath);
+	//			if (!F_FilePathProperty(filePath,FF_FilePathExist))
+	//			{
+	//				exportBook(
+	//			}
+	//		}
+	//	}
+	//}
+	// My code end
 	tempPath = F_ApiGetString(FV_SessionId, bookID, FP_Name);
 	pathFilename(tempPath);
 	//   promt for filename
@@ -1936,111 +2296,69 @@ VoidT publishDocLineDoc(StringT format)
 }
 VoidT exportDocLineDoc()
 {
-	F_ObjHandleT bookID, docID, elemID;
-	F_PropValsT params, *returnParams;
-	IntT i, j, statusp;
+	F_ObjHandleT bookID;
+	F_PropValsT params;
+	IntT j, statusp;
 	DirHandleT handle;
 	FilePathT *filePath;
 	StringT path, dirPath;
-	F_AttributesT attrs;
-	F_AttributeT attr;
-	UIntT k;
-	UCharT jarPath[256];
-	StringT tempPath;
 
-	bookID = F_ApiGetId(0,FV_SessionId,FP_ActiveBook);
+
+	bookID = getActiveBookID();
 	if (!bookID)
 	{
-		bookID = F_ApiGetId(0,FV_SessionId,FP_ActiveDoc);
-		if (!isDocLine(bookID))
-		{
-			return;
-		}
-		path = F_ApiGetString(FV_SessionId,bookID,FP_Name);
-		pathFilename(path);
-		dirPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+5,NO_DSE);
-		F_Sprintf(dirPath,"%s%s",path,defaultBookName);
-		bookID = F_ApiSimpleOpen(dirPath,False);
-	}
-	else if (!F_StrISuffix(F_ApiGetString(FV_SessionId,bookID,FP_Name),defaultBookName))
-	{
+		F_Printf(NULL,"Invalid document\n");
 		return;
 	}
-	else
-	{
-		dirPath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
-	}
-	if (!bookID)
-	{
-		F_Printf(NULL,"Invalid book\n");
-		return;
-	}
-	pathFilename(dirPath);
-	returnParams = NULL;
-	params = F_ApiGetSaveDefaultParams();
-	if (!params.len)
-	{
-		F_Printf(NULL,"Invalid default save params");
-		return;
-	}
-	i = F_ApiGetPropIndex(&params,FS_FileType);
-	params.val[i].propVal.u.ival = FV_SaveFmtXml;
-	i = F_ApiGetPropIndex(&params,FS_StructuredSaveApplication);
-	params.val[i].propVal.u.sval = "DocLine";
+	dirPath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
+	pathFilename(dirPath); //Since this point dirPath and bookID should be constants
+
+	params = generateExportParams();
 	generateBooks(bookID);
-	filePath = F_PathNameToFilePath(dirPath,NULL,FDefaultPath); //may be FDosPath
+
+	filePath = F_PathNameToFilePath(dirPath,NULL,FDefaultPath);
 	handle = F_FilePathOpenDir(filePath,&statusp);
 	j = 0;
+	//iteration through generated books in current directory
 	while (filePath = F_FilePathGetNext(handle,&statusp))
 	{
 		path = F_FilePathToPathName(filePath,FDosPath);
 		if (validateFilename(path,GENBOOK))
 		{
-			docID = F_ApiSimpleOpen(path,False);
-			elemID = F_ApiGetId(FV_SessionId,docID,FP_HighestLevelElement);
-			if (!elemID)
-			{
-				F_Printf(NULL,"No highest level elment in %s",path);
-				continue;
-			}
-			attrs = F_ApiGetAttributes(docID,elemID);
-			for (k=0; k<attrs.len; k++)
-			{
-				attr = attrs.val[k];
-				if (F_StrIEqual(attr.name,(StringT)"FileName"))
-				{
-					if (!attr.values.len)
-					{
-						path = F_Realloc(path,F_StrLen(path)+F_StrLen(dirPath)+10,NO_DSE);
-						F_Sprintf(path,"%sfile%d.drl",dirPath,j);
-						j++;
-					}
-					else
-					{
-						path = F_Realloc(path,F_StrLen(path)+F_StrLen(dirPath)+F_StrLen(attr.values.val[0])+5,NO_DSE);
-						F_Sprintf(path,"%s%s",dirPath,attr.values.val[0]);
-					}
-				}
-			}
-			F_ApiSave(docID,path,&params,&returnParams);
+			exportBook(path,dirPath,params, &j);
 		}
 	}
-	//dirPath = "D:\\Tests2\\";
-	tempPath = F_ApiClientDir();
-	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
-//	F_Free(tempPath);
+	performExportXSLT(dirPath);
+	closeAllDocs();
+	cleanDirectory(F_PathNameToFilePath(dirPath,NULL,FDosPath));
 
-	callJavaExportUtil(jarPath,dirPath);
-
-	//cleanDirectory(F_PathNameToFilePath(dirPath,NULL,FDosPath));
-	//F_FilePathCloseDir(handle);
-	//F_ApiDeallocateString(&path);
-	//F_Free(filePath);
-	//F_Free(&docID);
-	//F_Free(&bookID);
-	//F_ApiDeallocateString(&dirPath);
+	F_ApiDeallocateString(&path);
+	F_Free(&j);
+	F_Free(&statusp);
+	F_FilePathCloseDir(handle);
+	F_Free(&handle);
+	F_Free(filePath);
+	F_ApiDeallocatePropVals(&params);
+	F_ApiDeallocateString(&dirPath);
+	F_Free(&bookID);
 }
 
+VoidT simpleOpenBook()
+{
+	StringT filePath;
+	F_ObjHandleT bookID;
+
+	bookID = F_ApiSimpleOpen(defaultPath,True);
+	if (!bookID) return;
+	filePath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
+	filePath = fileFileName(filePath);
+	if (!F_StrIEqual(filePath,defaultBookName))
+	{
+		F_ApiClose(bookID,FF_CLOSE_MODIFIED);
+	}
+	F_ApiDeallocateString(&filePath);
+	F_Free(&bookID);
+}
 VoidT editHeader()
 {
 	F_ObjHandleT docId, bodyPageId, masterPageId, pageFrameId, textFrameId, paraHeaderId, headerVarId, varFmtId, nextParaId, highId, firstFlowId, edefId;

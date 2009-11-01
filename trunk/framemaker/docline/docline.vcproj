@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="9,00"
 	Name="docline"
 	ProjectGUID="{B4D4430C-14ED-445B-8063-99BD709E1EC6}"
 	RootNamespace="docline"
+	AssemblyReferenceSearchPaths="&quot;c:\WINDOWS\Microsoft.NET\Framework\v2.0.50727&quot;"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -75,14 +77,15 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/section:.rsrc,w"
 				AdditionalDependencies="odbc32.lib odbccp32.lib fdk.lib api.lib fmdbms32.lib publishutil.lib"
 				OutputFile=".\debug/docline.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories=".\debug;..\..\lib"
+				AdditionalLibraryDirectories="..\..\lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\debug/docline.pdb"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				ImportLibrary=".\debug/docline.lib"
 				TargetMachine="1"
 			/>
@@ -103,9 +106,6 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -173,13 +173,16 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib fdk.lib api.lib fmdbms32.lib"
+				AdditionalOptions="/section:.rsrc,w"
+				AdditionalDependencies="odbc32.lib odbccp32.lib fdk.lib api.lib fmdbms32.lib xerces-c_2.lib Xalan-C_1.lib publishutil.lib"
 				OutputFile=".\release/docline.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib"
 				IgnoreDefaultLibraryNames=""
 				ProgramDatabaseFile=".\release/docline.pdb"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				ImportLibrary=".\release/docline.lib"
 				TargetMachine="1"
 			/>
@@ -200,9 +203,6 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -242,29 +242,8 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="docline.c"
+				RelativePath=".\docline.c"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;docline_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;docline_EXPORTS;$(NoInherit)"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\newdlg.rc"
@@ -275,6 +254,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\docline.h"
+				>
+			</File>
 			<File
 				RelativePath=".\publishutil.h"
 				>
