@@ -78,6 +78,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/section:.rsrc,w"
 				AdditionalDependencies="odbc32.lib odbccp32.lib fdk.lib api.lib fmdbms32.lib publishutil.lib"
 				OutputFile=".\debug/docline.dll"
 				LinkIncremental="0"
