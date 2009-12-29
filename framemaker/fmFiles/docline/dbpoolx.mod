@@ -399,7 +399,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		|%link.char.class;	|%tech.char.class;
 		|%base.char.class;	|%docinfo.char.class;
 		|%other.char.class;	|%inlineobj.char.class;
-		|%ndxterm.class;
+		|%ndxterm.class; | DictRef
 		%local.title.char.mix;">
 
 <!ENTITY % local.ndxterm.char.mix "">
@@ -2855,6 +2855,7 @@ in the text (no (0) value, the default)
 		%common.attrib;
 		%graphic.role.attrib;
 		%local.graphic.attrib;
+		align
 >
 <!--end of graphic.attlist-->]]>
 <!--end of graphic.module-->]]>
