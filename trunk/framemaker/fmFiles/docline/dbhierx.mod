@@ -272,7 +272,7 @@
 		| %article.class;
  		| %appendix.class;
 		| %index.class;
-		| colophon)*)>
+		| colophon |InfElemRef | InfElemRefGroup)*)>
 <!--end of book.element-->]]>
 
 <!-- FPI: SGML formal public identifier -->
