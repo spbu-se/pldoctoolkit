@@ -11,4 +11,5 @@ public interface ProjectRegistry {
 	public List<RegisteredLocation> findForType(String type);
 	public List<RegisteredLocation> findForFile(IFile file);
 	public List<RegisteredLocation> findAll();
+	public IProjectContent getProjectContent();
 }

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar 
+	xmlns="http://relaxng.org/ns/structure/1.0"
+	xmlns:s="http://www.ascc.net/xml/schematron"
+	xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+	datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">	
+
+	<start>
+		<choice>			
+			<ref name="temp"/>
+		</choice>
+	</start>
+
+	<define name="temp">
+		<element name="temp">			
+			<ref name="DocbookOrCommonDrl"/>
+		</element>
+	</define>
+		
+	<define name="DocbookOrCommonDrl">
+		<zeroOrMore>
+			<choice>
+				<text/>
+				<element name="DirRef">
+					<attribute name="templateid"/>
+					<attribute name="entryid"/>
+				</element>
+				<element name="InfElemRef">
+					<attribute name="id"/>
+					<attribute name="infelemid"/>
+					<optional>
+						<attribute name="groupid"/>
+					</optional>
+					<optional>
+						<attribute name="optional">
+							<choice>
+								<value>true</value>
+								<value>false</value>
+							</choice>
+						</attribute>
+					</optional>
+				</element>
+				<element name="InfElemRefGroup">
+					<attribute name="id"/>
+					<attribute name="name"/>
+					<attribute name="modifier">
+						<choice>
+							<value>XOR</value>
+							<value>OR</value>
+						</choice>
+					</attribute>
+				</element>
+				<element name="DictRef">
+					<attribute name="dictid"/>
+					<attribute name="entryid"/>
+				</element>
+				<element name="Conditional">
+					<attribute name="condition"/>
+					<ref name="DocbookOrCommonDrl"/>
+				</element>
+				<element name="Nest">
+					<attribute name="id"/>
+					<optional>
+						<attribute name="descr"/>
+					</optional>
+					<ref name="JustDocbook"/>
+				</element>
+				<!-- docbook element that may contain the 'common' pattern recursively -->
+				<element>
+					<nsName ns="http://docbook.org/ns/docbook"/>
+					<zeroOrMore>
+						<attribute>
+							<anyName/>
+						</attribute>
+					</zeroOrMore>
+					<ref name="DocbookOrCommonDrl"/>
+				</element>
+			</choice>
+		</zeroOrMore>
+	</define>
+	
+	<define name="JustDocbook">
+		<zeroOrMore>
+			<choice>
+				<text/>
+				<element>
+					<nsName ns="http://docbook.org/ns/docbook"/>
+					<zeroOrMore>
+						<attribute>
+							<anyName/>
+						</attribute>
+					</zeroOrMore>
+					<ref name="JustDocbook"/>
+				</element>
+			</choice>
+		</zeroOrMore>
+	</define>
+</grammar>

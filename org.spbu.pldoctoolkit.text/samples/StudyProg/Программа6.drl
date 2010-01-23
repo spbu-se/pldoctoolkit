@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid = "">
+	<d:FinalInfProduct id = "program6_Id" infproductid = "program_prId">
+		<d:Adapter infelemrefid = "program_elemRefId">						
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Header_refid">
+			<d:Replace-Nest nestid = "programNumber">6</d:Replace-Nest>
+			<d:Replace-Nest nestid = "departmentName">Реижиниринг</d:Replace-Nest>
+			<d:Replace-Nest nestid = "studentName">Юрий Бабак, Ярослав Соколов, Семён Григорьев</d:Replace-Nest>			
+		</d:Adapter>		
+		
+		<d:Adapter infelemrefid = "Literature_refid">
+			<d:Insert-After nestid = "literature">
+				<listitem><para><d:DictRef entryid = "Быстрое тестирование" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "компас в мире SOA" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "разработка распред. прил. на .Net" dictid = "books_id"></d:DictRef></para></listitem>				
+			</d:Insert-After>
+		</d:Adapter>		
+	</d:FinalInfProduct>	
+</d:ProductDocumentation>

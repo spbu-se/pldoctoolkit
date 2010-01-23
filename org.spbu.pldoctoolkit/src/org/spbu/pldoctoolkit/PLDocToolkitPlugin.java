@@ -42,6 +42,10 @@ public class PLDocToolkitPlugin extends AbstractUIPlugin {
 		return plugin.registryIndex.getRegistry(projectName);
 	}
 	
+	public static WorkspaceRegistryIndex getRegistryIndex() {
+		return plugin.registryIndex;
+	}
+	
 	/**
 	 * Returns the shared instance
 	 *

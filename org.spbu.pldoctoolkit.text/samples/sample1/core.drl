@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">	
+	<d:InfProduct id="q" name="a">
+		<d:InfElemRef groupid="z" 
+					  id="2" 
+					  infelemid="1" 
+					  optional="false"/>		
+	</d:InfProduct>
+	<d:InfElement id="1" name="1n">
+		asdsad
+		<d:Nest id="3">nestcontent</d:Nest>		
+	</d:InfElement>	
+</d:DocumentationCore>
