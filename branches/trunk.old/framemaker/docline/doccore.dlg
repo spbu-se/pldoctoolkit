@@ -1,0 +1,18 @@
+//-------------------------------------------------------------------
+// Source filename:      D:\framemaker\template\doccore.dre
+// Date generated:       Thu May 07 10:26:49 2009
+//-------------------------------------------------------------------
+
+#include "windows.h"
+
+doccore DIALOG LOADONCALL MOVEABLE DISCARDABLE 0, 0, 297, 104
+STYLE WS_CLIPSIBLINGS | DS_MODALFRAME
+FONT 9 "Segoe UI"
+BEGIN
+	CONTROL "", 101, "EDIT", WS_BORDER | ES_AUTOHSCROLL | ES_LEFT | WS_VISIBLE | WS_GROUP | WS_TABSTOP, 206, 34, 76, 12
+	CONTROL "", 102, "STATIC", SS_ETCHEDHORZ | WS_VISIBLE | WS_GROUP, 15, 61, 267, 1
+	DEFPUSHBUTTON "OK", 103, 94, 75, 40, 12, WS_VISIBLE | WS_GROUP | WS_TABSTOP
+	CONTROL "Cancel", 104, "BUTTON", BS_PUSHBUTTON | WS_VISIBLE | WS_GROUP | WS_TABSTOP, 146, 75, 40, 12
+	CONTROL "&There is no DocumentationCore sections in project. New section will be created.", 105, "STATIC", SS_LEFTNOWORDWRAP | WS_VISIBLE | WS_GROUP, 9, 15, 254, 8
+	CONTROL "&Type FileName attribute of new DocumentationCore section:", 100, "STATIC", SS_LEFTNOWORDWRAP | WS_VISIBLE | WS_GROUP, 9, 35, 194, 8
+END

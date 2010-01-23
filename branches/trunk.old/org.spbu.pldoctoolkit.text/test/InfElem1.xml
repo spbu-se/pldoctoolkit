@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:InfElement id="InfElem1" name="Inf Element 1" 
+	xmlns:d="http://math.spbu.ru/drl" 
+	xmlns="http://docbook.org/ns/docbook">
+	<para>
+		<d:Nest id="nest1">
+			nest1
+		</d:Nest>
+	</para>
+	<para>
+		<d:Nest id="nest2">
+			nest2
+		</d:Nest>
+	</para>
+	<para>
+		<d:Nest id="nest3">
+			nest3
+		</d:Nest>
+	</para>
+</d:InfElement>

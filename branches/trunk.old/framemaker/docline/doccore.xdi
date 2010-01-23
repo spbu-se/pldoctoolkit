@@ -1,0 +1,30 @@
+//-------------------------------------------------------------------
+// Source filename:      D:\framemaker\template\doccore.dre
+// Date generated:       Thu May 07 10:26:49 2009
+//-------------------------------------------------------------------
+
+doccore 500 // DB_DBRE_INFO resource
+BEGIN
+	/* okbutton      */ 3,
+	/* cancelbutton  */ 4,
+	/* defaultbutton */ 3,
+	/* num           */ 6,
+	/* firstfocus    */ 1,
+	/* filenum       */ -1,
+	/* filetbx       */ -1,
+	/* filesbx       */ -1,
+	/* filelabel     */ -1,
+	/* helpbutton    */ -1,
+	/* titlelabel    */ -1,
+	/* hypertextHelp */ "clnthelp:dbre template\0",
+
+	//       id      type    active     stuff    hypertextHelp
+	// --------  --------  --------  --------  ---------------
+	        100,        4,        0,        0, "-1\0",
+	        101,        9,        0,       -1, "clnthelp:edit box\0",
+	        102,        1,        0,        0, "-1\0",
+	        103,        2,        0,        0, "clnthelp:button\0",
+	        104,        2,        0,        0, "clnthelp:button\0",
+	        105,        4,        0,        0, "-1\0"
+END
+

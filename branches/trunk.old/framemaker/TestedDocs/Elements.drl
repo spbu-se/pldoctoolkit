@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DocumentationCore xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+<InfElement id="about_company" name="О компании">
+<para>
+Компания <DictRef dictid="company" entryid="name"/> занимается разработкой комплексных
+средств защиты от сетевых угроз с 1990 года и на данный момент является безусловным лидером
+в этой области.
+</para>
+</InfElement>
+
+<InfElement id="preface" name="Вступление">
+<preface>
+<title>Встепление</title>
+<para>
+Благодарим за приобретение <DictRef dictid="main" entryid="productname"/>!
+</para>
+<InfElemRef id="ref_about_company" infelemid="about_company"/>
+</preface>
+</InfElement>
+
+<InfElement id="firewall" name="Брандмауэр">
+<chapter>
+<title>Брандмауэр</title>
+<InfElemRef id="ref_firewall_description" infelemid="firewall_description"/>
+<InfElemRef id="ref_firewall_config" infelemid="firewall_config" optional="true"/>
+</chapter>
+</InfElement>
+
+<InfElement id="firewall_description" name="Что такое брандмауэр">
+<para>
+Брандмауэр (firewall) - перегородка из огнеупорного материала, 
+возводимая на пути распространения пожара. Также данный термин 
+стал использоваться для обозначения аппаратных и программных 
+средств сетевой защиты (сетевой экран). Пожалуй, такое название 
+было выбрано из маркетинговых соображений: "Пусть за стеной 
+бушует пожар или беснуются варвары, но вам за надежной защитой 
+ничего не грозит". В действительности сетевой экран походит не 
+на сплошную стену, а на таможенный пост, где в соответствии с 
+предписаниями проверяется багаж путешественников. Если груз к 
+ввозу или вывозу разрешен, его пропускают. Если нет - извините. 
+Причем решения принимаются на основе адресов получателя/отправителя, 
+а не содержимого груза. Так что доверенный отправитель может 
+отправить своему визави не только поздравительную открытку, но и 
+грамм триста тротилового эквивалента. Таможня "посылочку" 
+пропустит, если связь разрешена в предписании.
+</para>
+</InfElement>
+
+<InfElement id="firewall_config" name="Конфигурирование брандмауэра">
+<para>
+Конфигурация брандмауэра полностью автоматическая. 
+В случае возникновения трудностей обращайтесь в нашу Службу Поддержки!
+</para>
+</InfElement>
+
+<InfElement id="antivirus" name="Анти-вирус">
+<chapter>
+<title>Антивирус</title>
+<InfElemRef id="ref_antivirus_description" infelemid="antivirus_description"/>
+<InfElemRef id="ref_antivirus_config" infelemid="antivirus_config" optional="true"/>
+<para>
+Действия при обнаружении вируса или другой угрозы.
+Доступны следующие виды действий: 
+<itemizedlist mark="opencircle">
+<listitem><para>удаление</para></listitem>
+<listitem><para>просмотр журнала событий</para></listitem>
+<Nest id="extended_actions"/>
+</itemizedlist>
+</para>
+</chapter>
+</InfElement>
+
+<InfElement id="antivirus_description" name="Что такое анти-вирус">
+<para>
+Антивирусная программа (антивирус) — программа для обнаружения и удаления компьютерных вирусов и других вредоносных программ, предотвращения их распространения, а также лечения программ зараженных ими.
+</para>
+<para>
+Первые, наиболее простые антивирусные программы появились почти сразу после появления вирусов. Сейчас разработкой антивирусов занимаются крупные компании. Как и у создателей вирусов, в этой сфере также сформировались оригинальные приемы - но уже для поиска и борьбы с вирусами. Современные антивирусные программы могут обнаруживать десятки тысяч вирусов.
+Основные задачи современных антивирусных программ:
+<itemizedlist mark="opencircle">
+<listitem><para>Сканирование файлов и программ в режиме реального времени.</para></listitem>
+<listitem><para>Сканирование компьютера по требованию.</para></listitem>
+<listitem><para>Сканирование интернет-трафика.</para></listitem>
+<listitem><para>Сканирование электронной почты.</para></listitem>
+<listitem><para>Защита от атак враждебных веб-узлов.</para></listitem>
+<listitem><para>Восстановление поврежденных файлов (лечение).</para></listitem>
+</itemizedlist>		
+</para>
+</InfElement>
+
+<InfElement id="antivirus_config" name="Конфигурирование антивируса">
+<para>
+Конфигурация антивируса полностью автоматическая. В случае возникновения трудностей обращайтесь в нашу
+Службу поддержки!
+</para>
+</InfElement>
+
+<InfElement id="antispam" name="Анти-спам">
+<chapter>
+<title>Анти-спам</title>
+<para>
+Компонент Анти-спам встраивается в установленный на Вашем компьютере 
+почтовый клиент и контролирует все поступающие почтовые сообщения на предмет спама. 
+Все письма, содержащие спам, помечаются специальным заголовком. 
+Предусмотрена также возможность настройки Анти-спама на обработку спама 
+(автоматическое удаление, помещение в специальную папку и т.д.). 
+</para>
+</chapter>
+</InfElement>
+
+<InfElement id="control_center" name="Центр управления">
+<chapter>
+<title>Центр управления</title>
+<para>
+Центр управления предоставляет единый интерфейс для управления всеми 
+компонентами системы безопасности <DictRef dictid="main" entryid="productname"/>.
+</para>
+<InfElemRef id="ref_components_update" infelemid="components_update"/>
+</chapter>
+</InfElement>
+
+<InfElement id="components_update" name="Обновление компонент">
+<para>
+Данный раздел посвящен обновлению компонентов Вашей системы безопасности <DictRef dictid="company" entryid="name"/>.
+</para>
+<InfElemRefGroup id="update_methods" modifier="XOR" name="способы обновления"/>
+<InfElemRef groupid="update_methods" id="ref_update_local" infelemid="update_local" optional="true"/>
+<InfElemRef groupid="update_methods" id="ref_update_inet" infelemid="update_inet" optional="true"/>
+<Nest id="av-update">
+<para>
+Для настройки обновлений антивируса выберите пункт меню "настройка антивируса".
+</para>
+</Nest>
+<Nest id="as-update">
+<para>
+Для настройки обновлений антивируса выберите пункт меню "настройка антиспама".
+</para>
+</Nest>
+</InfElement>
+
+<InfElement id="update_inet" name="Централизованные обновления">
+<para>
+Обновление компонент системы производится с центрального сервера ИнтерБез напрямую. 
+Необходимо наличие подключения к интернету.
+</para>
+</InfElement>
+
+<InfElement id="update_local" name="Обновления с сервера компании">
+<para>
+Обновление компонент системы производится с сервера локальной сети Вашей компании.
+Подключение к интернету не требуется.
+</para>
+</InfElement>
+
+<Dictionary id="company" name="Глобальный словарь">
+<Entry id="name">ИнтерБез солюшнз</Entry>
+</Dictionary>
+</DocumentationCore>
