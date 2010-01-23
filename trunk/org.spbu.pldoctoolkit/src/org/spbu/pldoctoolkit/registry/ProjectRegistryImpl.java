@@ -11,6 +11,7 @@ import static org.spbu.pldoctoolkit.registry.RegisteredLocation.PRODUCT;
 import static org.spbu.pldoctoolkit.registry.RegisteredLocation.PRODUCT_CONTEXT;
 import static org.spbu.pldoctoolkit.registry.RegisteredLocation.INF_ELEM_REF;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ import net.sf.saxon.dom.NodeOverNodeInfo;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.runtime.CoreException;
@@ -43,7 +45,7 @@ import org.xml.sax.SAXException;
  *
  * TODO look how we can utilize EMF model here.
  */
-class ProjectRegistryImpl implements ProjectRegistry {
+public class ProjectRegistryImpl implements ProjectRegistry {
 	private static final String DRLRESOLVE_PREFIX = "drlresolve://";
 	
 	private static final String DOCUMENTATION_CORE = "DocumentationCore";
@@ -57,6 +59,10 @@ class ProjectRegistryImpl implements ProjectRegistry {
 	private static DocumentBuilderImpl documentBuilder;
 	
 	private final Map<String, RegisteredLocation> locationMap = new HashMap<String, RegisteredLocation>();
+	
+	//minchin
+	public IProjectContent projectContent = null;
+	public IProject project;
 
 	private Document getXMLDocument(IFile file) throws ParserConfigurationException, SAXException, IOException {
 		if (documentBuilder == null) {
@@ -74,6 +80,11 @@ class ProjectRegistryImpl implements ProjectRegistry {
 	}
 
 	// === Public API ===
+	
+	//minchin
+	public IProjectContent getProjectContent() {
+		return projectContent;
+	}
 	
 	public RegisteredLocation getRegisteredLocation(String uri) {
 		if (!uri.startsWith(DRLRESOLVE_PREFIX))
@@ -139,6 +150,7 @@ class ProjectRegistryImpl implements ProjectRegistry {
 		RegisteredLocation loc = new RegisteredLocation(context, type, id, name, file, lineNumber); 
 		locationMap.put(context + "/" + type + "/" + id, loc);
 	}
+	
 	
 	void refreshFile(IFile file) throws CoreException {
 		IPath location = file.getLocation();

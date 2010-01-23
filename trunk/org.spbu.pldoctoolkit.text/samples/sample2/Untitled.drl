@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--_-->
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
+          <!-- -->
+<!--fdsfsdfdsfsdfsd-->
+	<d:InfElement id = "1" name = "2"></d:InfElement><!--	
+	--><d:InfElement id = "" name = ""></d:InfElement>	
+	<d:InfElement id = "3" name = "4">
+		afff<d:DictRef entryid = "tratata" dictid = "sd2"></d:DictRef>sa<!---->
+	</d:InfElement>
+	<d:Dictionary id = "sd"><d:Entry id = "1a">s</d:Entry></d:Dictionary>
+	<d:Dictionary id = "sd2"><d:Entry id = "tratata">sdd</d:Entry><d:Entry id = "newEntry_id">a</d:Entry></d:Dictionary>
+</d:DocumentationCore>

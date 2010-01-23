@@ -1,0 +1,5 @@
+<d:ProductDocumentation productid = "" xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+	<d:Adapter infelemrefid = "2">						
+		<d:Replace-Nest nestid = "3">asd</d:Replace-Nest>
+	</d:Adapter>
+</d:ProductDocumentation>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid = "">
+	<d:FinalInfProduct id = "program7_Id" infproductid = "program_prId">
+		<d:Adapter infelemrefid = "program_elemRefId">						
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Header_refid">
+			<d:Replace-Nest nestid = "programNumber">7</d:Replace-Nest>
+			<d:Replace-Nest nestid = "departmentName">реинжиниринга</d:Replace-Nest>
+			<d:Replace-Nest nestid = "studentName">Виктор Кац, Антон Загорский</d:Replace-Nest>			
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "VersionControl_refid">							
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "MSVS_refid">						
+			<d:Insert-After nestid = "nesseryPartOfMSVS"> 
+				Библиотеки Boost и STL. Другие средства программирования. Понятие о стилях кодирования. Понятие кодревью (code review), правила его подготовки, проведения, использования результатов. Основы языка С++: классы, иерархии классов, библиотека STL (Standard Template Library).
+			</d:Insert-After>
+			<d:Insert-After nestid = "MSVS_Tasks">				
+				<listitem><para>Провести несколько учебных кодревью друг с другом.</para></listitem> 
+				<listitem><para>Проанализировать промышленное C++ приложение и описать его (устно).</para></listitem>
+				<listitem><para>Создать несколько собственных проектов в Microsoft Visual Studio и собрать их.</para></listitem> 
+				<listitem><para>Поэкспериментировать с различными настройками при создании проектов и их сборке.</para></listitem>    
+				<listitem><para>Создать несколько учебных примеров на освоение библиотеки STL (работа с массивами, списками и т.д.).</para></listitem>
+				<listitem><para>Создать учебных примеров на освоение библиотеки Boost.</para></listitem>				
+			</d:Insert-After>
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "testing_refid">		
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Literature_refid">
+			<d:Insert-After nestid = "literature">
+				<listitem><para><d:DictRef entryid = "Быстрое тестирование" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "компас в мире SOA" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "разработка распред. прил. на .Net" dictid = "books_id"></d:DictRef></para></listitem>				
+			</d:Insert-After>
+		</d:Adapter>				
+	</d:FinalInfProduct>
+	<d:Dictionary id = "podstanovki_id" name = "podstanovki">
+		<d:Entry id = "product">Microsoft Visual SourceSafe</d:Entry>
+	</d:Dictionary>
+</d:ProductDocumentation>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid = "">
+	<d:FinalInfProduct id = "program4_Id" infproductid = "program_prId">
+		<d:Adapter infelemrefid = "program_elemRefId">						
+		</d:Adapter>
+		
+		<d:Adapter infelemrefid = "Header_refid">
+			<d:Replace-Nest nestid = "programNumber">4</d:Replace-Nest>
+			<d:Replace-Nest nestid = "departmentName">Аутсорсинга</d:Replace-Nest>
+			<d:Replace-Nest nestid = "studentName">Анна Жукова, Евгений Ларчик, Евгений Селезнев, Георгий Мавчун</d:Replace-Nest>			
+		</d:Adapter>
+				
+		<d:Adapter infelemrefid = "VersionControl_refid">						
+		</d:Adapter>		
+			
+		<d:Adapter infelemrefid = "Literature_refid">		
+			<d:Insert-After nestid = "literature">
+				<listitem><para><d:DictRef entryid = "Кулямин В.В. Технология программирования." dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Хорстманн К.С., Корнелл Г. Библиотека профессионала. Java 2. Том 1." dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Гери Д.М. JavaServer Faces." dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Матросов А., Сергеев А., Чаунин М. HTML 4.0 в подлиннике" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Быстрое тестирование" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "СУБД H2" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "YourKit" dictid = "books_id"></d:DictRef></para></listitem>
+				<listitem><para><d:DictRef entryid = "Apache Tomcat" dictid = "books_id"></d:DictRef></para></listitem>								
+			</d:Insert-After>
+		</d:Adapter>
+	</d:FinalInfProduct>
+		
+	<d:Dictionary id = "podstanovki_id" name = "podstanovki">
+		<d:Entry id = "product">Subversion</d:Entry>
+	</d:Dictionary>
+</d:ProductDocumentation>
