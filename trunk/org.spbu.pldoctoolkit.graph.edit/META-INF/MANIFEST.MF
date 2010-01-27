@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.spbu.pldoctoolkit.graph.edit; singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
 Bundle-Activator: org.spbu.pldoctoolkit.graph.provider.DrlModelEditPlugin$Implementation
-Bundle-Vendor: %providerName
+Bundle-Vendor: SPbSU
 Bundle-Localization: plugin
 Export-Package: org.spbu.pldoctoolkit.graph.command.diagram,
  org.spbu.pldoctoolkit.graph.provider

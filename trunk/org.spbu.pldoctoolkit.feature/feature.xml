@@ -2,7 +2,8 @@
 <feature
       id="org.spbu.pldoctoolkit.feature"
       label="Drl feature"
-      version="1.0.0">
+      version="1.0.0"
+      provider-name="SPbSU">
 
    <description url="http://www.example.com/description">
       DRL Diagram feature
@@ -92,6 +93,13 @@
 
    <plugin
          id="org.spbu.pldoctoolkit.text"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.spbu.pldoctoolkit.graph.diagram.fproduct"
          download-size="0"
          install-size="0"
          version="0.0.0"

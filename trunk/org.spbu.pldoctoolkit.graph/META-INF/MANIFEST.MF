@@ -6,7 +6,7 @@ Bundle-Version: 1.0.0
 Bundle-ClassPath: .,
  lib/saxon8.jar,
  lib/saxon8-dom.jar
-Bundle-Vendor: %providerName
+Bundle-Vendor: SPbSU
 Bundle-Localization: plugin
 Export-Package: org.spbu.pldoctoolkit.graph,
  org.spbu.pldoctoolkit.graph.impl,

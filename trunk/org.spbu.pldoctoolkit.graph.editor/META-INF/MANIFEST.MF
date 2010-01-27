@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.spbu.pldoctoolkit.graph.editor; singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
 Bundle-Activator: org.spbu.pldoctoolkit.graph.presentation.DrlModelEditorPlugin$Implementation
-Bundle-Vendor: %providerName
+Bundle-Vendor: SPbSU
 Bundle-Localization: plugin
 Export-Package: org.spbu.pldoctoolkit.graph.presentation
 Require-Bundle: org.eclipse.core.runtime,
