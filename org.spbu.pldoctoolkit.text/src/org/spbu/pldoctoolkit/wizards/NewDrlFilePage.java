@@ -3,9 +3,6 @@ package org.spbu.pldoctoolkit.wizards;
 import java.io.File;
 import java.util.ArrayList;
 
-import org.eclipse.core.filesystem.EFS;
-import org.eclipse.core.filesystem.IFileInfo;
-import org.eclipse.core.filesystem.provider.FileInfo;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;

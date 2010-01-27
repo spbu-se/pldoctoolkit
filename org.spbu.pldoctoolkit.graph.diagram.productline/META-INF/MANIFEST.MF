@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.spbu.pldoctoolkit.graph.diagram.productline; singleton:
 Bundle-Version: 1.0.1.0
 Bundle-ClassPath: .
 Bundle-Activator: org.spbu.pldoctoolkit.graph.diagram.productline.part.DrlModelDiagramEditorPlugin
-Bundle-Vendor: %providerName
+Bundle-Vendor: SPbSU
 Bundle-Localization: plugin
 Export-Package: org.spbu.pldoctoolkit.graph.diagram.productline.edit.parts,
  org.spbu.pldoctoolkit.graph.diagram.productline.part,
