@@ -34,4 +34,16 @@
 		</para>
 	</d:Nest>]]>
 	</Template>
+	<Template name="Directory">
+		<![CDATA[<d:Directory id="" name="">
+		<d:Entry id="">
+		<d:Attr id=""> </d:Attr>
+		</d:Entry>
+	</d:Directory>]]>
+	</Template>  
+	<Template name="DirTemplate">
+		<![CDATA[<d:DirTemplate id="" directoryid="">
+		<d:AttrRef attrid=""/>
+	</d:DirTemplate>]]>
+	</Template>  
 </Templates>
