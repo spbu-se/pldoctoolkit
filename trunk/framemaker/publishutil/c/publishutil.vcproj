@@ -120,6 +120,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;C:\Program Files (x86)\Adobe\FDK8\include&quot;;&quot;$(JAVA_HOME)\include&quot;;&quot;$(JAVA_HOME)\include\win32&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;PUBLISHUTIL_EXPORTS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -138,7 +139,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="jvm.lib"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="&quot;$(JAVA_HOME)\lib&quot;"
 				ModuleDefinitionFile="publishutil.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
