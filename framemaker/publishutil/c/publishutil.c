@@ -5,6 +5,111 @@
 
 #define ERROR_MESSAGE "Error occured while calling Java Virtual Machine, terminating...\n"
 
+char *fileFileName(char *str)
+{
+	while (*str)
+	{
+		*str++;
+	}
+	str--;
+	while ((*str)&&(*str != '\\'))
+	{
+		*str--;
+	}
+	*str++;
+	return str;
+}
+
+char *replace_str(char *str, char *sub, char *name)
+{
+	char buffer[10000];
+	char *p;
+
+	if(! (p = strstr(str, sub))) // Is 'sub' even in 'str'?
+	return str;
+	strncpy(buffer, str, p - str); // Copy characters before occurence
+	buffer[p - str] = '\0';
+	sprintf(buffer + (p - str), "%s filename=\"%s\" %s",sub, name, p + strlen(sub));
+	return buffer;
+}
+int mergeFilesTo(char **files, int len, char *out_file_name)
+{
+	FILE *in_file, *out_file;
+	char ch, *new_str;
+	char str[10000];
+	int i;
+	int first;
+	
+	out_file = fopen(out_file_name,"w");
+	if (!out_file) return 0;
+	//str = "";
+	first = 1;
+	for (i=0; i<len; i++)
+	{
+		in_file = fopen(files[i],"r");
+		if (!in_file) continue;
+		while (fgets(str,100,in_file))
+		{
+			if (strstr(str,"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"))
+			{
+				if (first)
+				{
+					fprintf(out_file,"%s\n%s\n","<?xml version=\"1.0\" encoding=\"UTF-8\"?>","<d:DocLine xmlns:d=\"http://math.spbu.ru/drl\" xmlns=\"http://docbook.org/ns/docbook\">");
+					first = 0; 
+				}
+				continue;
+			}
+			else if (strstr(str,"<d:DocumentationCore"))
+			{
+				fprintf(out_file,"%s",replace_str(str,"<d:DocumentationCore",fileFileName(files[i])));
+				continue;
+			}
+			else if (strstr(str,"<d:ProductDocumentation"))
+			{
+				fprintf(out_file,"%s",replace_str(str,"<d:ProductDocumentation",fileFileName(files[i])));
+				continue;
+			}
+			else if (strstr(str,"<d:ProductLine"))
+			{
+				fprintf(out_file,"%s",replace_str(str,"<d:ProductLine",fileFileName(files[i])));
+				continue;
+			}
+			fprintf(out_file,"%s",str);
+			//fgets(str,100,in_file);
+			//if (ch == '\n')
+			//{
+			//	if (str == "<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
+			//	{
+			//		if (first)
+			//		{
+			//			first = 0; 
+			//		}
+			//		else
+			//		{
+			//			str = "";
+			//		}
+			//	}
+			//	fprintf(out_file,"%s",str);
+			//	str = "";
+			//	continue;
+			//}
+			//new_str = str;
+			//
+			//str = (char *)realloc(NULL, strlen(str)+1);
+			//str = strcat(new_str,`);
+			//new_str = new_str + strlen(str);
+			//*new_str = ch;
+			//str = new_str;
+			//fputc(ch, out_file);
+		}
+		fputc('\n',out_file);
+		fclose(in_file);
+	}
+	fprintf(out_file,"%s","</d:DocLine>");
+	fclose(out_file);
+	return 1;
+}
+
 int callJavaPublishUtil(char *jarPath, // path to a jar, containing java class
 					    char *srcDir,  // path to a directory, containing all drl files
 					    char *scrFile, // name of the file, containgn final inf product
