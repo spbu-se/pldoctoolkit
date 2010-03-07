@@ -1,144 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--DTD for DocLine. Typically invoked by
-      <!DOCTYPE  DocLine  SYSTEM
-    "C:\Program Files\Adobe\FrameMaker8\Structure\xml\docline\_docline_edd.dtd">
+<!--DTD for ProductLine. Typically invoked by
+      <!DOCTYPE  ProductLine  SYSTEM
+    "C:\Program Files\Adobe\FrameMaker8\Structure\xml\docline\docline.dtd">
 -->
-
-
-<!ELEMENT DocLine    (ProductLine | ProductDocumentation |
-                              DocumentationCore)* >
-
-<!ELEMENT ProductLine 
-                     (Product*) >
-<!ATTLIST ProductLine 
-                     FileName  CDATA     #REQUIRED
-                     Name      CDATA     #IMPLIED >
-
-<!ELEMENT Product    (#PCDATA) >
-<!ATTLIST Product    Id        CDATA     #IMPLIED
-                     Name      CDATA     #IMPLIED >
-
-<!ELEMENT ProductDocumentation 
-                     (FinalInfProduct | Dictionary | Directory |
-                              DirTemplate)* >
-<!ATTLIST ProductDocumentation 
-                     FileName  CDATA     #REQUIRED
-                     ProductId  CDATA     #IMPLIED >
-
-<!ELEMENT DocumentationCore 
-                     (InfProduct | InfElement | Dictionary | Directory |
-                              DirTemplate)* >
-<!ATTLIST DocumentationCore 
-                     FileName  CDATA     #REQUIRED >
-
-<!ELEMENT InfProduct (#PCDATA | DirRef | InfElemRef | InfElemRefGroup |
-                              DictRef | Conditional | Nest | para | preface |
-                              chapter | listitem | book)* >
-<!ATTLIST InfProduct 
-                     Id        CDATA     #IMPLIED
-                     Name      CDATA     #IMPLIED >
-
-<!ELEMENT InfElement (#PCDATA | DirRef | InfElemRef | InfElemRefGroup |
-                              DictRef | Conditional | Nest | para | preface |
-                              chapter | listitem | book | section)* >
-<!ATTLIST InfElement 
-                     Id        CDATA     #IMPLIED
-                     Name      CDATA     #IMPLIED >
-
-<!ELEMENT Dictionary (Entry*) >
-<!ATTLIST Dictionary 
-                     Id        CDATA     #IMPLIED
-                     Name      CDATA     #IMPLIED >
-
-<!ELEMENT FinalInfProduct 
-                     (SetValue | Adapter)* >
-<!ATTLIST FinalInfProduct 
-                     Id        CDATA     #IMPLIED
-                     InfProductId  CDATA     #IMPLIED >
-
-<!ELEMENT SetValue   EMPTY >
-<!ATTLIST SetValue   Id        CDATA     #IMPLIED
-                     Value     CDATA     #IMPLIED >
-
-<!ELEMENT Adapter    (Replace-Nest | Insert-Before | Insert-After)* >
-<!ATTLIST Adapter    InfElemRefId  CDATA     #IMPLIED >
-
-<!ELEMENT Replace-Nest 
-                     (#PCDATA | para | preface | chapter | listitem |
-                              book)* >
-<!ATTLIST Replace-Nest 
-                     NestId    CDATA     #IMPLIED >
-
-<!ELEMENT Insert-Before 
-                     (#PCDATA | para | preface | chapter | listitem |
-                              book)* >
-<!ATTLIST Insert-Before 
-                     NestId    CDATA     #IMPLIED >
-
-<!ELEMENT Insert-After 
-                     (#PCDATA | para | preface | chapter | listitem |
-                              book)* >
-<!ATTLIST Insert-After 
-                     NestId    CDATA     #IMPLIED >
-
-<!ELEMENT Directory  (Entry*) >
-<!ATTLIST Directory  Id        CDATA     #IMPLIED
-                     Name      CDATA     #IMPLIED >
-
-<!ELEMENT Entry      (#PCDATA | Attr)* >
-<!ATTLIST Entry      Id        CDATA     #IMPLIED >
-
-<!ELEMENT Attr       (#PCDATA) >
-<!ATTLIST Attr       Id        CDATA     #IMPLIED >
-
-<!ELEMENT DirTemplate 
-                     (DirTemplateContents) >
-<!ATTLIST DirTemplate 
-                     Id        CDATA     #IMPLIED
-                     DirectoryId  CDATA     #IMPLIED >
-
-<!ELEMENT DirTemplateContents 
-                     (#PCDATA | AttrRef | para | preface | chapter |
-                              listitem | book)* >
-
-<!ELEMENT AttrRef    EMPTY >
-<!ATTLIST AttrRef    AttrId    CDATA     #IMPLIED >
-
-<!ELEMENT DirRef     EMPTY >
-<!ATTLIST DirRef     TemplateId  CDATA     #IMPLIED
-                     EntryId   CDATA     #IMPLIED >
-
-<!ELEMENT InfElemRef EMPTY >
-<!ATTLIST InfElemRef 
-                     Id        CDATA     #IMPLIED
-                     InfElemId  CDATA     #IMPLIED
-                     GroupId   CDATA     #IMPLIED
-                     Optional  (true|false)  #IMPLIED >
-
-<!ELEMENT InfElemRefGroup 
-                     EMPTY >
-<!ATTLIST InfElemRefGroup 
-                     Id        CDATA     #IMPLIED
-                     Name      CDATA     #IMPLIED
-                     Modifier  (XOR|OR)  #IMPLIED >
-
-<!ELEMENT DictRef    EMPTY >
-<!ATTLIST DictRef    DictId    CDATA     #IMPLIED
-                     EntryId   CDATA     #IMPLIED >
-
-<!ELEMENT Conditional 
-                     (#PCDATA | DirRef | InfElemRef | InfElemRefGroup |
-                              DictRef | Conditional | Nest | para | preface |
-                              chapter | listitem | book)* >
-<!ATTLIST Conditional 
-                     Condition  CDATA     #IMPLIED >
-
-<!ELEMENT Nest       (#PCDATA | para | preface | chapter | listitem |
-                              book)* >
-<!ATTLIST Nest       Id        CDATA     #IMPLIED
-                     Descr     CDATA     #IMPLIED >
-
 <!-- ...................................................................... -->
 <!-- DocBook XML DTD V4.1.2 ................................................. -->
 <!-- File docbookx.dtd .................................................... -->
@@ -265,3 +130,130 @@
 <!-- End of DocBook XML DTD V4.1.2 .......................................... -->
 <!-- ...................................................................... -->
 
+
+<!ELEMENT DocLine    (ProductLine | ProductDocumentation |
+                              DocumentationCore)* >
+<!ELEMENT ProductLine 
+                     (Product*) >
+<!ATTLIST ProductLine 
+                     name      CDATA     #IMPLIED 
+					 filename  CDATA     #IMPLIED>
+
+<!ELEMENT Product    (#PCDATA) >
+<!ATTLIST Product    id        CDATA     #IMPLIED
+                     name      CDATA     #IMPLIED >
+
+<!ELEMENT ProductDocumentation 
+                     (FinalInfProduct | Dictionary | Directory |
+                              DirTemplate)* >
+<!ATTLIST ProductDocumentation 
+                     productid  CDATA     #IMPLIED 
+					 filename   CDATA     #IMPLIED >
+
+<!ELEMENT DocumentationCore 
+                     (InfProduct | InfElement | Dictionary | Directory |
+                              DirTemplate)* >
+<!ATTLIST DocumentationCore
+                     filename  CDATA     #IMPLIED >
+
+<!ELEMENT InfProduct (#PCDATA | DirRef | InfElemRef | InfElemRefGroup |
+                              DictRef | Conditional | Nest | para | preface |
+                              chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
+<!ATTLIST InfProduct 
+                     id        CDATA     #IMPLIED
+                     name      CDATA     #IMPLIED >
+
+<!ELEMENT InfElement (#PCDATA | DirRef | InfElemRef | InfElemRefGroup |
+                              DictRef | Conditional | Nest | para | preface |
+                              chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
+<!ATTLIST InfElement 
+                     id        CDATA     #IMPLIED
+                     name      CDATA     #IMPLIED >
+
+<!ELEMENT Dictionary (Entry*) >
+<!ATTLIST Dictionary 
+                     id        CDATA     #IMPLIED
+                     name      CDATA     #IMPLIED >
+
+<!ELEMENT FinalInfProduct 
+                     (SetValue | Adapter)* >
+<!ATTLIST FinalInfProduct 
+                     id        CDATA     #IMPLIED
+                     infproductid  CDATA     #IMPLIED >
+
+<!ELEMENT SetValue   EMPTY >
+<!ATTLIST SetValue   id        CDATA     #IMPLIED
+                     value     CDATA     #IMPLIED >
+
+<!ELEMENT Adapter    (Replace-Nest | Insert-Before | Insert-After)* >
+<!ATTLIST Adapter    infelemrefid  CDATA     #IMPLIED >
+
+<!ELEMENT Replace-Nest 
+                     (#PCDATA | para | preface | chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
+<!ATTLIST Replace-Nest 
+                     nestid    CDATA     #IMPLIED >
+
+<!ELEMENT Insert-Before 
+                     (#PCDATA | para | preface | chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
+<!ATTLIST Insert-Before 
+                     nestid    CDATA     #IMPLIED >
+
+<!ELEMENT Insert-After 
+                     (#PCDATA | para | preface | chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis | row)* >
+<!ATTLIST Insert-After 
+                     nestid    CDATA     #IMPLIED >
+
+<!ELEMENT Directory  (Entry*) >
+<!ATTLIST Directory  id        CDATA     #IMPLIED
+                     name      CDATA     #IMPLIED >
+					 
+<!ELEMENT Entry      (#PCDATA | Attr)* >
+<!ATTLIST Entry      id        CDATA     #IMPLIED >
+
+<!ELEMENT Attr       (#PCDATA) >
+<!ATTLIST Attr       id        CDATA     #IMPLIED >
+
+<!ELEMENT DirTemplate 
+                     (#PCDATA | AttrRef | DirTemplateContentsInner)*>
+<!ATTLIST DirTemplate 
+                     id        CDATA     #IMPLIED
+                     directoryid  CDATA     #IMPLIED >
+
+<!ELEMENT AttrRef    EMPTY >
+<!ATTLIST AttrRef    attrid    CDATA     #IMPLIED >
+
+<!ELEMENT DirTemplateContentsInner 
+                     (DirTemplateContents) >
+
+<!ELEMENT DirRef     EMPTY >
+<!ATTLIST DirRef     templateid  CDATA     #IMPLIED
+                     entryid   CDATA     #IMPLIED >
+
+<!ELEMENT InfElemRef EMPTY >
+<!ATTLIST InfElemRef 
+                     id        CDATA     #IMPLIED
+                     infelemid  CDATA     #IMPLIED
+                     groupid   CDATA     #IMPLIED
+                     optional  (true|false)  #IMPLIED >
+
+<!ELEMENT InfElemRefGroup 
+                     EMPTY >
+<!ATTLIST InfElemRefGroup 
+                     id        CDATA     #IMPLIED
+                     name      CDATA     #IMPLIED
+                     modifier  (XOR|OR)  #IMPLIED >
+
+<!ELEMENT DictRef    EMPTY >
+<!ATTLIST DictRef    dictid    CDATA     #IMPLIED
+                     entryid   CDATA     #IMPLIED >
+
+<!ELEMENT Conditional 
+                     (#PCDATA | DirRef | InfElemRef | InfElemRefGroup |
+                              DictRef | Conditional | Nest | para | preface |
+                              chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
+<!ATTLIST Conditional 
+                     condition  CDATA     #IMPLIED >
+
+<!ELEMENT Nest       (#PCDATA | para | preface | chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
+<!ATTLIST Nest       id        CDATA     #IMPLIED
+                     descr     CDATA     #IMPLIED >

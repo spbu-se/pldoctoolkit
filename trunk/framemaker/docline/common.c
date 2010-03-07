@@ -285,6 +285,12 @@ StringT getPlace(StringT fileName)
 	{
 		return (StringT)"ProductLine";
 	}
+	else if ((F_StrIEqual(fileName,(StringT)"DocumentationCore"))
+		||((F_StrIEqual(fileName,(StringT)"ProductDocumentation")))
+		||(F_StrIEqual(fileName,(StringT)"ProductLine")))
+	{
+		return (StringT)"DocLine";
+	}
 	else
 	{
 		return (StringT)"";

@@ -20,8 +20,11 @@ reader preserve fm element definition "Graphic", "Index", "IndexTerm",
   "ToC", "XRef";
 
 /* Book structure */
-reader generate book for  doctype "set", "book", "part", "DocumentationCore", "ProductDocumentation", "ProductLine"
+reader generate book for  doctype "set", "book", "part", "DocumentationCore", "ProductDocumentation", "ProductLine", "DocLine"
   {
+    put element "DocumentationCore" in file "documentation_core.fm";
+    put element "ProductDocumentation" in file "product_documentation.fm";
+    put element "ProductLine" in file "product_line.fm";
     put element "Product" in file "product.fm";
 	put element "FinalInfProduct" in file "final_inf_product.fm";
     put element "Dictionary" in file "dictionary.fm";

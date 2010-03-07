@@ -1,6 +1,8 @@
 #ifndef PUBLISHUTIL_H
 #define PUBLISHUTIL_H
 
+IntT mergeFilesTo(UCharT **files, IntT len, UCharT *out_file_name);
+
 /* calls java impementation of export util 
    use empty string for default value */
 IntT callJavaPublishUtil(StringT jarPath, // path to a jar, containing java class

@@ -399,7 +399,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		|%link.char.class;	|%tech.char.class;
 		|%base.char.class;	|%docinfo.char.class;
 		|%other.char.class;	|%inlineobj.char.class;
-		|%ndxterm.class; | DictRef
+		|%ndxterm.class;
 		%local.title.char.mix;">
 
 <!ENTITY % local.ndxterm.char.mix "">
@@ -623,9 +623,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 	srccredit	CDATA		#IMPLIED
 	width		CDATA		#IMPLIED
 	depth		CDATA		#IMPLIED
-	align		(left
-			|right 
-			|center)	#IMPLIED
+	align		(aleft
+			|aright 
+			|acenter)	#IMPLIED
 	scale		CDATA		#IMPLIED
 	scalefit	%yesorno.attvals;
 					#IMPLIED
@@ -732,7 +732,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % title.element "INCLUDE">
 <![%title.element;[
-<!ELEMENT title (%title.char.mix;)*>
+<!ELEMENT title (%title.char.mix; | InfElemRef | InfElemRefGroup | DictRef | Conditional | Nest | InfElement)*>
 <!--end of title.element-->]]>
 
 <!ENTITY % title.attlist "INCLUDE">
@@ -1811,7 +1811,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % para.element "INCLUDE">
 <![%para.element;[
-<!ELEMENT para (%para.char.mix; | %para.mix;)*>
+<!ELEMENT para (%para.char.mix; | %para.mix; | InfElemRef | InfElemRefGroup | DictRef | DirRef | Conditional | Nest | InfElement)*>
 <!--end of para.element-->]]>
 
 <!ENTITY % para.attlist "INCLUDE">
@@ -1897,7 +1897,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % tip.element "INCLUDE">
 <![%tip.element;[
-<!ELEMENT tip (title?, (%admon.mix;)+)>
+<!ELEMENT tip (title?, (%admon.mix; | InfElemRef | InfElemRefGroup | DictRef | Conditional | Nest | InfElement)+)>
 <!--end of tip.element-->]]>
 
 <!ENTITY % tip.attlist "INCLUDE">
@@ -2065,7 +2065,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % itemizedlist.element "INCLUDE">
 <![%itemizedlist.element;[
-<!ELEMENT itemizedlist ((%formalobject.title.content;)?, listitem+)>
+<!ELEMENT itemizedlist ((%formalobject.title.content;)?, (listitem | InfElemRef | InfElemRefGroup | DictRef | Conditional | Nest | InfElement)+)>
 <!--end of itemizedlist.element-->]]>
 
 <!-- Spacing: Whether the vertical space in the list should be
@@ -2137,7 +2137,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % listitem.element "INCLUDE">
 <![%listitem.element;[
-<!ELEMENT listitem ((%component.mix;)+)>
+<!ELEMENT listitem ((%component.mix; | InfElemRef | InfElemRefGroup | DictRef | Conditional | Nest | InfElement)+)>
 <!--end of listitem.element-->]]>
 
 <!-- Override: Indicates the mark to be used for this ListItem
@@ -2791,7 +2791,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % informalfigure.element "INCLUDE">
 <![ %informalfigure.element; [
-<!ELEMENT informalfigure ((%figure.mix; | %link.char.class;)+)>
+<!ELEMENT informalfigure ((%figure.mix; | %link.char.class; | InfElemRef | InfElemRefGroup | DictRef | Conditional | Nest | InfElement)+)>
 <!--end of informalfigure.element-->]]>
 
 <!ENTITY % informalfigure.attlist "INCLUDE">
@@ -2855,7 +2855,6 @@ in the text (no (0) value, the default)
 		%common.attrib;
 		%graphic.role.attrib;
 		%local.graphic.attrib;
-		align
 >
 <!--end of graphic.attlist-->]]>
 <!--end of graphic.module-->]]>
@@ -3383,7 +3382,9 @@ in the text (no (0) value, the default)
 
 <!ENTITY % informaltable.element "INCLUDE">
 <![%informaltable.element;[
-<!ELEMENT informaltable (graphic+|mediaobject+|tgroup+)>
+<!ELEMENT informaltable ((graphic | InfElemRef | InfElemRefGroup | DictRef | Conditional | Nest | InfElement)+
+                         |(mediaobject | InfElemRef | InfElemRefGroup | DictRef | Conditional | Nest | InfElement)+
+                         |(tgroup | InfElemRef | InfElemRefGroup | DictRef | Conditional | Nest | InfElement)+)>
 <!--end of informaltable.element-->]]>
 
 <!-- Frame, Colsep, and Rowsep must be repeated because
@@ -6946,7 +6947,7 @@ OtherCredit. -->
 
 <!ENTITY % emphasis.element "INCLUDE">
 <![%emphasis.element;[
-<!ELEMENT emphasis (%para.char.mix;)*>
+<!ELEMENT emphasis (%para.char.mix; | InfElemRef | InfElemRefGroup | DictRef | Conditional | Nest | InfElement)*>
 <!--end of emphasis.element-->]]>
 
 <!ENTITY % emphasis.attlist "INCLUDE">
