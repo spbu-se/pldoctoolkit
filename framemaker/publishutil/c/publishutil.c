@@ -2,8 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <direct.h>
 
 #define ERROR_MESSAGE "Error occured while calling Java Virtual Machine, terminating...\n"
+
+int fileNum;
 
 char *fileFileName(char *str)
 {
@@ -20,7 +23,7 @@ char *fileFileName(char *str)
 	return str;
 }
 
-char *replace_str(char *str, char *sub, char *name)
+char *replace_str(char *str, char *sub, char *name, char *type)
 {
 	char buffer[10000];
 	char *p;
@@ -29,9 +32,168 @@ char *replace_str(char *str, char *sub, char *name)
 	return str;
 	strncpy(buffer, str, p - str); // Copy characters before occurence
 	buffer[p - str] = '\0';
-	sprintf(buffer + (p - str), "%s filename=\"%s\" %s",sub, name, p + strlen(sub));
+	sprintf(buffer + (p - str), "%s filename=\"%s\" parenttype=\"%s\" %s %s",sub, name, type, "xmlns:d=\"http://math.spbu.ru/drl\" xmlns=\"http://docbook.org/ns/docbook\"", p + strlen(sub));
 	return buffer;
 }
+
+int splitFilesTo(char** files, int len, char *out_dir_path)
+{
+	int i;
+	fileNum =0;
+	for (i=0; i<len; i++)
+	{
+		splitFileTo(files[i],out_dir_path);
+	}
+	return 1;
+}
+
+int writeHeaderToNewFile(FILE **outFile, char *out_dir_path)
+{
+	char newFileName[100];
+
+	if (*outFile) return 0;
+	sprintf(newFileName,"%s%d.drl",out_dir_path,fileNum);
+	fileNum++;
+	*outFile = fopen(newFileName,"w");
+	if (!(*outFile)) return 0;
+	fprintf(*outFile,"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+
+	return 1;
+}
+
+int splitFileTo(char *filePath, char *out_dir_path)
+{
+	FILE *file, *outFile;
+	char str[10000], *type;
+
+	file = fopen(filePath,"r");
+	if (!file) return 0;
+	outFile = NULL;
+	while (fgets(str,10000,file))
+	{
+		if (strstr(str,"<d:DocumentationCore")) 
+		{
+			type = "documentation_core";
+		}
+		else if (strstr(str,"<d:ProductDocumentation"))
+		{
+			type = "product_documentation";
+		}
+		else if (strstr(str,"<d:ProductLine"))
+		{
+			type = "product_line";
+		}
+		else if ((strstr(str,"</d:DocumentationCore"))
+			||(strstr(str,"</d:ProductDocumentation"))
+			||(strstr(str,"</d:ProducLine")))
+		{
+			continue;
+		}
+		else if (strstr(str,"<d:InfElement"))
+		{
+			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
+			fprintf(outFile,"%s",replace_str(str,"<d:InfElement",fileFileName(filePath),type));
+			if (strstr(str,"/>") && outFile)
+			{
+				fclose(outFile);
+				outFile = NULL;
+			}
+		}
+		else if (strstr(str,"<d:InfProduct"))
+		{
+			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
+			fprintf(outFile,"%s",replace_str(str,"<d:InfProduct",fileFileName(filePath),type));
+			if (strstr(str,"/>") && outFile)
+			{
+				fclose(outFile);
+				outFile = NULL;
+			}
+		}
+		else if (strstr(str,"<d:FinalInfProduct"))
+		{
+			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
+			fprintf(outFile,"%s",replace_str(str,"<d:FinalInfProduct",fileFileName(filePath),type));
+			if (strstr(str,"/>") && outFile)
+			{
+				fclose(outFile);
+				outFile = NULL;
+			}
+		}		
+		else if (strstr(str,"<d:Product"))
+		{
+			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
+			fprintf(outFile,"%s",replace_str(str,"<d:Product",fileFileName(filePath),type));
+			if (strstr(str,"/>") && outFile)
+			{
+				fclose(outFile);
+				outFile = NULL;
+			}		
+		}		
+		else if (strstr(str,"<d:DirTemplate"))
+		{
+			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
+			fprintf(outFile,"%s",replace_str(str,"<d:DirTemplate",fileFileName(filePath),type));
+			if (strstr(str,"/>") && outFile)
+			{
+				fclose(outFile);
+				outFile = NULL;
+			}
+		}		
+		else if (strstr(str,"<d:Directory"))
+		{
+			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
+			fprintf(outFile,"%s",replace_str(str,"<d:Directory",fileFileName(filePath),type));
+			if (strstr(str,"/>") && outFile)
+			{
+				fclose(outFile);
+				outFile = NULL;
+			}
+		}		
+		else if (strstr(str,"<d:Dictionary"))
+		{
+			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
+			fprintf(outFile,"%s",replace_str(str,"<d:Dictionary",fileFileName(filePath),type));
+			if (strstr(str,"/>") && outFile)
+			{
+				fclose(outFile);
+				outFile = NULL;
+			}
+		}
+		else if ((strstr(str,"</d:InfElement"))
+			|| (strstr(str,"</d:InfProduct"))
+			|| (strstr(str,"</d:FinalInfProduct"))
+			|| (strstr(str,"</d:Product"))
+			|| (strstr(str,"</d:DirTemplate"))
+			|| (strstr(str,"</d:Dictionary"))
+			|| (strstr(str,"</d:Directory")))
+		{
+			if (!outFile) continue;
+			fprintf(outFile,"%s",str);
+			fclose(outFile);
+			outFile = NULL;
+		}
+		else if (strstr(str,"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"))
+		{
+			continue;
+		}
+		else
+		{
+			if (!outFile) continue;
+			fprintf(outFile,"%s",str);
+		}
+	}
+	if (outFile)
+	{
+		fclose(outFile);
+		outFile = NULL;
+	}
+	fclose(file);
+	file = NULL;
+	return 1;
+}
+
+
+
 int mergeFilesTo(char **files, int len, char *out_file_name)
 {
 	FILE *in_file, *out_file;
@@ -48,7 +210,7 @@ int mergeFilesTo(char **files, int len, char *out_file_name)
 	{
 		in_file = fopen(files[i],"r");
 		if (!in_file) continue;
-		while (fgets(str,100,in_file))
+		while (fgets(str,10000,in_file))
 		{
 			if (strstr(str,"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"))
 			{
@@ -61,17 +223,17 @@ int mergeFilesTo(char **files, int len, char *out_file_name)
 			}
 			else if (strstr(str,"<d:DocumentationCore"))
 			{
-				fprintf(out_file,"%s",replace_str(str,"<d:DocumentationCore",fileFileName(files[i])));
+				fprintf(out_file,"%s",replace_str(str,"<d:DocumentationCore",fileFileName(files[i]),""));
 				continue;
 			}
 			else if (strstr(str,"<d:ProductDocumentation"))
 			{
-				fprintf(out_file,"%s",replace_str(str,"<d:ProductDocumentation",fileFileName(files[i])));
+				fprintf(out_file,"%s",replace_str(str,"<d:ProductDocumentation",fileFileName(files[i]),""));
 				continue;
 			}
 			else if (strstr(str,"<d:ProductLine"))
 			{
-				fprintf(out_file,"%s",replace_str(str,"<d:ProductLine",fileFileName(files[i])));
+				fprintf(out_file,"%s",replace_str(str,"<d:ProductLine",fileFileName(files[i]),""));
 				continue;
 			}
 			fprintf(out_file,"%s",str);

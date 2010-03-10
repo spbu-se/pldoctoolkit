@@ -1,6 +1,7 @@
 LIBRARY	"publishutil"
 EXPORTS
 	mergeFilesTo @1
-	callJavaPublishUtil @2
-	callJavaImportUtil @3
-	callJavaExportUtil @4
+	splitFilesTo @2
+	callJavaPublishUtil @3
+	callJavaImportUtil @4
+	callJavaExportUtil @5

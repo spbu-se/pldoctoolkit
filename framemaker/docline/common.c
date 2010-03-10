@@ -192,81 +192,16 @@ BoolT validateFilename(StringT str, IntT type)
 
 F_ObjHandleT openMainBook(StringT path)
 {
-	FilePathT *file;
-	DirHandleT handle;
-	IntT statusp;
-	BoolT bookExists;
-	StringT tmpBookPath, bookPath, tmpPath;
-	F_ObjHandleT bookID, docID;
+	StringT bookPath;
+	F_ObjHandleT bookID;
 
-	handle = F_FilePathOpenDir(F_PathNameToFilePath (path, NULL, FDosPath), &statusp);
-	if (!handle) 
-	{
-		F_Printf(NULL,"Handle Error0\n");
-		writeToChannel("Error. Handle error.\n");
-		return 0;
-	}
-	bookExists = False;
-	//searching for main book
-	while ((file = F_FilePathGetNext(handle, &statusp)) != NULL)
-	{
-		tmpBookPath = F_FilePathToPathName(file, FDosPath);
-		tmpBookPath = fileFileName(tmpBookPath);
-		if (F_StrIEqual(tmpBookPath,defaultBookName))
-		{
-			bookExists = True;
-		}
-		else if (F_StrSuffix(tmpBookPath,".fm.lck"))
-		{
-			F_DeleteFile(file);
-		}
-	} 
-	F_FilePathCloseDir(handle);
 	bookPath = F_StrCopyString(path);
 	bookPath = F_Realloc(bookPath,F_StrLen(path)+F_StrLen(defaultBookName)+1,NO_DSE);
 	F_StrCat(bookPath,defaultBookName);
-	if (!bookExists)
-	{
-		bookID = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_book_template.book",False);
-		handle = F_FilePathOpenDir(F_PathNameToFilePath(path,NULL,FDosPath),&statusp);
-		if (!handle)
-		{
-			F_Printf(NULL,"Handle error 1\n");
-			F_Free(&statusp);
-			F_Free(&bookExists);
-			F_ApiDeallocateString(&tmpBookPath);
-			F_ApiDeallocateString(&bookPath);
-			F_Free(&handle);
-			F_FilePathFree(file);
-			return 0;
-		}
-		while (file = F_FilePathGetNext(handle,&statusp))
-		{
-			tmpPath = F_FilePathToPathName(file,FDosPath);
-			if ((validateFilename(tmpPath,FMBOOK))&&(!F_StrSuffix(tmpPath,defaultBookName)))
-			{
-				docID = F_ApiSimpleOpen(tmpPath,False);
-				addStructuredElementToBook(docID,bookID,F_ApiGetId(FV_SessionId,bookID,FP_HighestLevelElement),
-					F_ApiGetId(FV_SessionId,docID,FP_HighestLevelElement));
-				F_ApiClose(docID,FF_CLOSE_MODIFIED);
-			}
-		}
-		F_FilePathCloseDir(handle);
-		F_ApiSimpleSave(bookID,bookPath,False);
-	}
-	else
-	{
-		bookID = F_ApiSimpleOpen(bookPath,False);
-	}
+	bookID = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_book_template.book",False);
+	F_ApiSimpleSave(bookID,bookPath,False);
 
-	F_Free(&statusp);
-	F_Free(&bookExists);
-	F_Free(&docID);
-	F_ApiDeallocateString(&tmpPath);
-	F_ApiDeallocateString(&tmpBookPath);
 	F_ApiDeallocateString(&bookPath);
-	F_Free(&handle);
-	F_FilePathFree(file);
 
 	return bookID;
 }
