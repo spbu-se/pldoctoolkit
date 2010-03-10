@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
-  <d:InfElement id="embedded_software" name="Управление встроенным ПО">
-    <section><title>3.2. Управление встроенным ПО</title>
-      <d:InfElemRef id="ref_station_modules" infelemid="station_modules"/>
-      <d:InfElemRef id="ref_join_in_embsoft" infelemid="join_in_embsoft" optional="true"/>
-    </section>
-  </d:InfElement>
-</d:DocumentationCore>
