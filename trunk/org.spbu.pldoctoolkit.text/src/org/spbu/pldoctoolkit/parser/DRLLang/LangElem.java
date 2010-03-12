@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.spbu.pldoctoolkit.refactor.PositionInText;
+import org.spbu.pldoctoolkit.refactor.ProjectContent;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.AttributesImpl;
 
@@ -69,10 +70,12 @@ public class LangElem extends Element{
 	public static final String TEMPLATEID = "templateid";
 	public static final String NESTID = "nestid";
 	
+	public static final String DICTID = "dictid";
+	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 	public final String tag, tagNS;
-	public final Attributes attrs;
+	public Attributes attrs;
 	public HashMap<String, String> prefex;
 	
 	
@@ -147,5 +150,48 @@ public class LangElem extends Element{
 		}
 		
 		return res;
+	}
+	
+	public static String getAttributeName(String tagName) {
+		if(tagName.equals(INFELEMENT))
+			return INFELEMID;
+		if(tagName.equals(DIRTEMPLATE))
+			return TEMPLATEID;
+		if(tagName.equals(DICTIONARY))
+			return DICTID;
+		if (tagName.equals(INFELEMREF))
+			return INFELEMREFID;
+		if (tagName.equals(NEST))
+			return NESTID;
+		if (tagName.equals(INFPRODUCT ))
+			return INFPRODUCTID;
+		if (tagName.equals(DIRECTORY))
+			return DIRECTORYID;
+		if (tagName.equals(ENTRY))
+			return ENTRYID;	
+		else {
+			return tagName.toLowerCase()+"id";	
+		}
+	}
+	
+	public static ArrayList<LangElem> getElemList(ProjectContent pc, String tagName) {
+		if(tagName.equals(INFELEMENT))
+			return pc.infElems;
+		if(tagName.equals(DIRTEMPLATE))
+			return pc.templates;
+		if(tagName.equals(DICTIONARY))
+			return pc.dictionarys;
+		if (tagName.equals(INFELEMREF))
+			return pc.infElemRefs;
+		if (tagName.equals(NEST))
+			return pc.nests;
+		if (tagName.equals(INFPRODUCT ))
+			return pc.infPrs;
+		if (tagName.equals(DIRECTORY))
+			return pc.directories;
+		else {
+			return new ArrayList<LangElem>();
+		}
+				
 	}
 }

@@ -25,6 +25,9 @@ import org.spbu.pldoctoolkit.actions.ValidateDrlOnSaveAction;
 import org.spbu.pldoctoolkit.templates.TemplatesDocument;
 import org.spbu.pldoctoolkit.refactor.ProjectContentCreator;
 
+//lebedkova
+import org.spbu.pldoctoolkit.actions.RenameAction;
+
 public class DrlTextEditor extends TextEditor {
 	public static final String XML_PARTITIONING = "__drl_partitioning";
 	
@@ -46,11 +49,13 @@ public class DrlTextEditor extends TextEditor {
 	public static final String EXTRACT_INSERT_AFTER = "extract_insert_after";
 	public static final String EXTRACT_INSERT_BEFORE = "extract_insert_before";
 	public static final String REPLACE_WITH_INFELMREF = "replace_with_infElemRef";
+
+	//lebedkova
+	public static final String RENAME = "rename";
 	
 	private ColorManager colorManager;
 	private DRLMenuListener menuListener = new DRLMenuListener();//minchin
-	
-	//minchin
+
 	static {
 		if (PLDocToolkitPlugin.getRegistryIndex().getProjectContentCreator() == null)
 			PLDocToolkitPlugin.getRegistryIndex().setProjectContentCreator(new ProjectContentCreator());
@@ -129,7 +134,7 @@ public class DrlTextEditor extends TextEditor {
 			e.printStackTrace();
 		}
 		
-		//minchin
+		
 		try {
 			setAction(SELECT_INTO_INF_ELEMENT, new SelectIntoInfElementAction(this));
 		} catch (Exception e) {
@@ -183,6 +188,13 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		//lebedkova
+		try {
+			setAction(RENAME, new RenameAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public ISourceViewer DrlGetSourceViewer(){
@@ -205,6 +217,7 @@ public class DrlTextEditor extends TextEditor {
 		//minchin
 		MenuManager refactMenu = new MenuManager("Refactor");
 		menu.add(refactMenu);
+
 		addAction(refactMenu, SELECT_INTO_INF_ELEMENT);
 		addAction(refactMenu, REPLACE_WITH_NEST);
 		addAction(refactMenu, EXTRACT_INSERT_AFTER);
@@ -214,6 +227,9 @@ public class DrlTextEditor extends TextEditor {
 		addAction(refactMenu, INSERT_INTO_DIRECTORY);		
 		addAction(refactMenu, SEARCH_DIR_REF);
 		addAction(refactMenu, REPLACE_WITH_INFELMREF);		
+		
+		//lebedkova
+		addAction(refactMenu, RENAME);
 		
 		//DRLMenuListener.instance.editor = this;
 		menuListener.menuAboutToShow(menu);

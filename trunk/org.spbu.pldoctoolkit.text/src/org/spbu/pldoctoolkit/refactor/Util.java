@@ -5,6 +5,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import org.eclipse.jface.text.TextSelection;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
@@ -297,4 +298,5 @@ public class Util {
 	private static boolean isSapceOrTab(char ch) {
 		return (ch == ' ' || ch == '\t');
 	}
+
 }
