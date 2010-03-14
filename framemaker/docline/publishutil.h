@@ -5,6 +5,8 @@ IntT mergeFilesTo(UCharT **files, IntT len, UCharT *out_file_name);
 
 IntT splitFilesTo(UCharT **files, IntT len, UCharT *out_dir_path);
 
+IntT removeTemporaryDRLs(UCharT **files, IntT num);
+
 /* calls java impementation of export util 
    use empty string for default value */
 IntT callJavaPublishUtil(StringT jarPath, // path to a jar, containing java class

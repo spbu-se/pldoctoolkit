@@ -64,129 +64,19 @@ int writeHeaderToNewFile(FILE **outFile, char *out_dir_path)
 int splitFileTo(char *filePath, char *out_dir_path)
 {
 	FILE *file, *outFile;
-	char str[10000], *type;
+	char *newFileName, ch, *str;
 
 	file = fopen(filePath,"r");
 	if (!file) return 0;
-	outFile = NULL;
-	while (fgets(str,10000,file))
+	str = fileFileName(filePath);
+	newFileName = (char *)malloc((strlen(out_dir_path)+strlen(str)+1)*sizeof(char));
+	sprintf(newFileName,"%s%s",out_dir_path,str);
+	outFile = fopen(newFileName,"w");
+	while ((ch = fgetc(file))!= EOF)
 	{
-		if (strstr(str,"<d:DocumentationCore")) 
-		{
-			type = "documentation_core";
-		}
-		else if (strstr(str,"<d:ProductDocumentation"))
-		{
-			type = "product_documentation";
-		}
-		else if (strstr(str,"<d:ProductLine"))
-		{
-			type = "product_line";
-		}
-		else if ((strstr(str,"</d:DocumentationCore"))
-			||(strstr(str,"</d:ProductDocumentation"))
-			||(strstr(str,"</d:ProducLine")))
-		{
-			continue;
-		}
-		else if (strstr(str,"<d:InfElement"))
-		{
-			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
-			fprintf(outFile,"%s",replace_str(str,"<d:InfElement",fileFileName(filePath),type));
-			if (strstr(str,"/>") && outFile)
-			{
-				fclose(outFile);
-				outFile = NULL;
-			}
-		}
-		else if (strstr(str,"<d:InfProduct"))
-		{
-			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
-			fprintf(outFile,"%s",replace_str(str,"<d:InfProduct",fileFileName(filePath),type));
-			if (strstr(str,"/>") && outFile)
-			{
-				fclose(outFile);
-				outFile = NULL;
-			}
-		}
-		else if (strstr(str,"<d:FinalInfProduct"))
-		{
-			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
-			fprintf(outFile,"%s",replace_str(str,"<d:FinalInfProduct",fileFileName(filePath),type));
-			if (strstr(str,"/>") && outFile)
-			{
-				fclose(outFile);
-				outFile = NULL;
-			}
-		}		
-		else if (strstr(str,"<d:Product"))
-		{
-			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
-			fprintf(outFile,"%s",replace_str(str,"<d:Product",fileFileName(filePath),type));
-			if (strstr(str,"/>") && outFile)
-			{
-				fclose(outFile);
-				outFile = NULL;
-			}		
-		}		
-		else if (strstr(str,"<d:DirTemplate"))
-		{
-			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
-			fprintf(outFile,"%s",replace_str(str,"<d:DirTemplate",fileFileName(filePath),type));
-			if (strstr(str,"/>") && outFile)
-			{
-				fclose(outFile);
-				outFile = NULL;
-			}
-		}		
-		else if (strstr(str,"<d:Directory"))
-		{
-			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
-			fprintf(outFile,"%s",replace_str(str,"<d:Directory",fileFileName(filePath),type));
-			if (strstr(str,"/>") && outFile)
-			{
-				fclose(outFile);
-				outFile = NULL;
-			}
-		}		
-		else if (strstr(str,"<d:Dictionary"))
-		{
-			if (!writeHeaderToNewFile(&outFile,out_dir_path)) continue;
-			fprintf(outFile,"%s",replace_str(str,"<d:Dictionary",fileFileName(filePath),type));
-			if (strstr(str,"/>") && outFile)
-			{
-				fclose(outFile);
-				outFile = NULL;
-			}
-		}
-		else if ((strstr(str,"</d:InfElement"))
-			|| (strstr(str,"</d:InfProduct"))
-			|| (strstr(str,"</d:FinalInfProduct"))
-			|| (strstr(str,"</d:Product"))
-			|| (strstr(str,"</d:DirTemplate"))
-			|| (strstr(str,"</d:Dictionary"))
-			|| (strstr(str,"</d:Directory")))
-		{
-			if (!outFile) continue;
-			fprintf(outFile,"%s",str);
-			fclose(outFile);
-			outFile = NULL;
-		}
-		else if (strstr(str,"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"))
-		{
-			continue;
-		}
-		else
-		{
-			if (!outFile) continue;
-			fprintf(outFile,"%s",str);
-		}
+		fputc(ch,outFile);
 	}
-	if (outFile)
-	{
-		fclose(outFile);
-		outFile = NULL;
-	}
+	fclose(outFile);
 	fclose(file);
 	file = NULL;
 	return 1;
@@ -386,4 +276,32 @@ int invokeJava(char *jarPath,    // path to a jar, containing java class
 		return 0;
 	else
 		return -1;
+}
+
+int removeTemporaryDRLs(char **files, int num)
+{
+	FILE *file;
+	int i, flag;
+	char str[10000];
+
+	for (i=0; i<num; i++)
+	{
+		file = fopen(files[i],"r");
+		flag = 0;
+		while (fgets(str,10000,file))
+		{
+			if ((strstr(str,"<DocumentationCore"))
+				||(strstr(str,"<ProductDocumentation"))
+				||(strstr(str,"<ProductLine")))
+			{
+				flag = 1;
+				break;
+			}
+		}
+		fclose(file);
+		if (flag)
+		{
+			remove(files[i]);
+		}
+	}
 }

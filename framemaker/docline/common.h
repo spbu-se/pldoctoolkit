@@ -34,5 +34,7 @@ IntT getActiveBookID();//Returns id of active book
 VoidT closeAllDocs();//Closes all docs except main book
 VoidT addStructuredElementToBook(F_ObjHandleT bookID, F_ObjHandleT newBookID, F_ObjHandleT currElemID, F_ObjHandleT elemID);//Adds structure of one book to another
 StringT getMainBookName(F_ObjHandleT bookID);
+BoolT getMainBookTemplate(StringT path);
+BoolT getMainBookEDD(StringT *path);
 
 #endif //COMMON_H
