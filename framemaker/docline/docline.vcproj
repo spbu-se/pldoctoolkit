@@ -80,7 +80,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/section:.rsrc,w"
 				AdditionalDependencies="odbc32.lib odbccp32.lib fdk.lib struct.lib api.lib fmdbms32.lib publishutil.lib"
-				OutputFile="C:\Program Files\Adobe\FrameMaker8\fminit\docline.dll"
+				OutputFile="$(FM_PATH)\fminit\docline.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib"
