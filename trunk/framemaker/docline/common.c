@@ -1,5 +1,39 @@
 #include "common.h"
 
+BoolT getMainBookTemplate(StringT *path)
+{
+	StringT tmplPath, fmDir, tmplName;
+
+	fmDir = F_StrCopyString(F_ApiGetString(0,FV_SessionId,FP_FM_HomeDir));
+	tmplName = F_StrCopyString((StringT)"\\structure\\xml\\docline\\docline_book_template.book");
+	tmplPath = (StringT)F_Alloc((F_StrLen(fmDir)+F_StrLen(tmplName)+1)*sizeof(UCharT),NO_DSE);
+	F_Sprintf(tmplPath,"%s%s",F_StrCopyString(fmDir),F_StrCopyString(tmplName));
+	*path = F_StrCopyString(tmplPath);
+
+	F_ApiDeallocateString(&tmplPath);
+	F_ApiDeallocateString(&tmplName);
+	F_ApiDeallocateString(&fmDir);
+
+	return TRUE;
+}
+
+BoolT getMainBookEDD(StringT *path)
+{
+	StringT tmplPath, fmDir, tmplName;
+
+	fmDir = F_StrCopyString(F_ApiGetString(0,FV_SessionId,FP_FM_HomeDir));
+	tmplName = F_StrCopyString((StringT)"\\structure\\xml\\docline\\docline_edd.fm");
+	tmplPath = (StringT)F_Alloc((F_StrLen(fmDir)+F_StrLen(tmplName)+1)*sizeof(UCharT),NO_DSE);
+	F_Sprintf(tmplPath,"%s%s",F_StrCopyString(fmDir),F_StrCopyString(tmplName));
+	*path = F_StrCopyString(tmplPath);
+
+	F_ApiDeallocateString(&tmplPath);
+	F_ApiDeallocateString(&tmplName);
+	F_ApiDeallocateString(&fmDir);
+
+	return TRUE;
+}
+
 VoidT closeProject()
 {
 	F_ObjHandleT openedDocId, nextDocId, openedBookId, nextBookId;
@@ -64,7 +98,7 @@ BoolT cleanDirectory(FilePathT *dirPath)
 	{
 		F_Printf(NULL,"Invalid directory path: %s\n",F_FilePathToPathName(dirPath,FDosPath));
 		writeToChannel("Error. Invalid directory path");
-		return 0;
+		return FALSE;
 	}
 	while (file = F_FilePathGetNext(handle,&statusp))
 	{
@@ -77,18 +111,19 @@ BoolT cleanDirectory(FilePathT *dirPath)
 		{
 			F_DeleteFile(file);
 		}
+		F_ApiDeallocateString(&path);
 	}
 	F_FilePathCloseDir(handle);
-	F_ApiDeallocateString(&path);
 	F_FilePathFree(file);
-	F_Free(&handle);
-	F_Free(&statusp);
+	//F_Free(&handle);
+	//F_Free(&statusp);
 
-	return 1;
+	return TRUE;
 }
 BoolT validateFilename(StringT str, IntT type)
 {
 	StringT name;
+	BoolT isBook;
 	switch (type)
 	{
 	case FM:
@@ -102,106 +137,35 @@ BoolT validateFilename(StringT str, IntT type)
 	case GENBOOK:
 		name = str;
 		name = fileFileName(str);
-		//checking highest level element in book is better choise, but later
-		return validateFilename(name,FMBOOK) && F_StrIPrefix(name,(StringT)"book");
+		//checking highest level element in book is better choise, but it decreases perfomance
+		isBook = validateFilename(name,FMBOOK) && F_StrIPrefix(name,(StringT)"book");
+
+		F_ApiDeallocateString(&name);
+
+		return isBook;
 	case DRL:
 		return F_StrISuffix(str,(StringT)".drl")
 			&& !F_StrISuffix(str,(StringT)".backup.drl");
 	default:
 		return False;
 	}
-	////move to the end
-	//while (*str)
-	//{
-	//	*str++;
-	//}
-	//str--;
-	//while ((*str)&&(*str != '.'))
-	//{
-	//	*str--;
-	//}
-	//if (*str)
-	//{
-	//	switch (type)
-	//	{
-	//	case FM:
-	//		if (F_StrIEqual((StringT)str,(StringT)".fm"))
-	//		{
-	//			*str--;
-	//			while ((*str)&&(*str != '.'))
-	//			{
-	//				*str--;
-	//			}
-	//			if (*str == 0)
-	//			{
-	//				return True;
-	//			}
-	//			else
-	//			{
-	//				return (!F_StrIEqual((StringT)str,(StringT)".backup.fm"))&&(!F_StrIEqual((StringT)str,(StringT)".recover.fm"));
-	//			}
-	//		}
-	//		else
-	//		{
-	//			return False;
-	//		}
-	//		break;
-	//	case DRL:
-	//		return (F_StrIEqual((StringT)str,(StringT)".drl"));
-	//		break;
-	//	case FMBOOK:
-	//		*str--;
-	//		while ((*str)&&(*str != '\\')&&(*str != '.'))
-	//		{
-	//			*str--;
-	//		}
-	//		if ((!*str)||(*str == '\\'))
-	//		{
-	//			return (F_StrISuffix(str,(StringT)".book"));
-	//		}
-	//		return False;
-	//		break;
-	//	case GENBOOK:
-	//		*str--;
-	//		while ((*str)&&(*str != '\\')&&(*str != '.'))
-	//		{
-	//			*str--;
-	//		}
-	//		if (!*str)
-	//		{
-	//			F_Printf(NULL,"Filename error");
-	//			return False;
-	//		}
-	//		if (*str == '.')
-	//		{
-	//			return False;
-	//		}
-	//		*str++;
-	//		return F_StrIPrefix(str,(StringT)"book") && F_StrISuffix(str,(StringT)".book");
-	//		//this condition is more global - need to exclude files like book_foo.book
-	//	default:
-	//		F_ApiAlert("Invalid validation type",FF_ALERT_CONTINUE_NOTE);
-	//		return False;
-	//	}
-	//}
-	//else
-	//{
-	//	return False;
-	//}
 }
 
 F_ObjHandleT openMainBook(StringT path)
 {
-	StringT bookPath;
+	StringT bookPath, tmplPath;
 	F_ObjHandleT bookID;
 
 	bookPath = F_StrCopyString(path);
-	bookPath = F_Realloc(bookPath,F_StrLen(path)+F_StrLen(defaultBookName)+1,NO_DSE);
+	bookPath = (StringT)F_Realloc(bookPath,(F_StrLen(path)+F_StrLen(defaultBookName)+1)*sizeof(UCharT),NO_DSE);
 	F_StrCat(bookPath,defaultBookName);
-	bookID = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_book_template.book",False);
-	F_ApiSimpleSave(bookID,bookPath,False);
+	tmplPath = F_StrCopyString("");
+	getMainBookTemplate(&tmplPath);
+	bookID = F_ApiSimpleOpen(tmplPath,FALSE);
+	F_ApiSimpleSave(bookID,bookPath,FALSE);
 
 	F_ApiDeallocateString(&bookPath);
+	F_ApiDeallocateString(&tmplPath);
 
 	return bookID;
 }
@@ -241,7 +205,7 @@ F_ObjHandleT componentExists(F_ObjHandleT bookID, F_ObjHandleT cID, StringT name
 		elemID = F_ApiGetId(bookID,compID,FP_ElementDef);
 		if (F_StrIEqual(F_ApiGetString(bookID,elemID,FP_Name),name))
 		{
-			F_Free(&elemID);
+			//F_Free(&elemID);
 			return compID;
 		}
 		else
@@ -250,8 +214,8 @@ F_ObjHandleT componentExists(F_ObjHandleT bookID, F_ObjHandleT cID, StringT name
 		}
 	}
 
-	F_Free(&elemID);
-	F_Free(&compID);
+	//F_Free(&elemID);
+	//F_Free(&compID);
 
 	return 0;
 }
@@ -271,17 +235,20 @@ VoidT pathFilename(UCharT *str)
 }
 StringT fileFileName(UCharT *str)
 {
-	while (*str)
+	StringT tmpStr;
+
+	tmpStr = F_StrCopyString(str);
+	while (*tmpStr)
 	{
-		*str++;
+		*tmpStr++;
 	}
-	str--;
-	while ((*str)&&(*str != '\\'))
+	tmpStr--;
+	while ((*tmpStr)&&(*tmpStr != '\\'))
 	{
-		*str--;
+		*tmpStr--;
 	}
-	*str++;
-	return str;
+	*tmpStr++;
+	return F_StrCopyString(tmpStr);
 }
 BoolT isDocLine(F_ObjHandleT docID)
 {

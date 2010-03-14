@@ -3,6 +3,7 @@
 
 int mergeFilesTo(char **files, int len, char *out_file_name);
 int splitFilesTo(char** files, int len, char *out_dir_path);
+int removeTemporaryDRLs(char **files, int num);
 
 /* calls java impementation of export util 
    use empty string for default value */

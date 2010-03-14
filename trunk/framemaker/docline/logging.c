@@ -13,7 +13,9 @@ BoolT getLogFileName(StringT *path)
 	//buf = F_Realloc(buf,F_StrLen(fmPath)+F_StrLen("\\docline\\docline.log")+5,NO_DSE);
 	i = F_Sprintf(buf,"%s", fmPath);
 	i = F_Sprintf(buf+i,"\\docline\\docline.log");
-	*path = (StringT)buf;
+	*path = F_StrCopyString((StringT)buf);
+
+	F_ApiDeallocateString(buf);
 	return TRUE;
 }
 

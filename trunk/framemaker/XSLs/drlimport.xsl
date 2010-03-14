@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version = '1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform' xmlns:d="http://math.spbu.ru/drl" xmlns:db="http://docbook.org/ns/docbook">
+<xsl:stylesheet version = '2.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform' xmlns:d="http://math.spbu.ru/drl" xmlns:db="http://docbook.org/ns/docbook">
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no"/>
     
@@ -9,13 +9,39 @@
     </xsl:template>
     
     <xsl:template match="*">
-        <xsl:element name="{local-name()}">
-            <xsl:for-each select="@*">
-                <xsl:copy/>
-            </xsl:for-each>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
+      <xsl:choose>
+        <xsl:when test="name()='d:InfElement' or
+                                 name()='d:InfProduct' or
+                                 name()='d:FinalInfProduct' or
+                                 name()='d:DirTemplate' or
+                                 name()='d:Dictionary' or
+                                 name()='d:Directory' or
+                                 name()='d:Product' ">
+          <xsl:result-document method="xml" href ="{resolve-uri(concat(@id,'_',generate-id(/),'.drl'),document-uri(/))}">
+            <xsl:element name="{local-name()}">
+                <xsl:attribute name="filename">
+                  <xsl:value-of select="tokenize(document-uri(/), '/')[last()]"/>
+                </xsl:attribute>
+                <xsl:attribute name="parenttype">
+                  <xsl:value-of select="local-name(..)"/>
+                </xsl:attribute>
+                <xsl:for-each select="@*">
+                  <xsl:copy/>
+                </xsl:for-each>
+                <xsl:apply-templates/>
+            </xsl:element>
+          </xsl:result-document>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:element name="{local-name()}">
+              <xsl:for-each select="@*">
+                  <xsl:copy/>
+              </xsl:for-each>
+              <xsl:apply-templates/>
+          </xsl:element>
+        </xsl:otherwise>
+      </xsl:choose>
+ </xsl:template>
 
     <xsl:template match="d:Insert-After">
 	    <xsl:element name="Insert-After">

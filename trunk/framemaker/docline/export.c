@@ -48,10 +48,10 @@ BoolT exportBook(StringT path, StringT dirPath, F_PropValsT params, UIntT* j)
 	F_ApiDeallocatePropVals(returnParams);
 	//F_ApiDeallocateAttribute(&attr);
 	F_ApiDeallocateString(&curFilePath);
-	F_Free(&k);
+	//F_Free(&k);
 	F_ApiDeallocateAttributes(&attrs);
-	F_Free(&elemID);
-	F_Free(&docID);
+	//F_Free(&elemID);
+	//F_Free(&docID);
 
 	return 1;
 }
@@ -70,7 +70,7 @@ BoolT performExportXSLT(StringT dirPath)
 		writeToChannel("Error. JVM Initialization error");
 	}
 
-	F_Free(&jarPath);
+	//F_Free(&jarPath);
 	F_ApiDeallocateString(&tempPath);
 
 	return !retVal;
@@ -130,14 +130,14 @@ VoidT exportDocLineDoc()
 	writeToChannel("Export finished succesfully.\n");
 
 	F_ApiDeallocateString(&path);
-	F_Free(&j);
-	F_Free(&statusp);
+	//F_Free(&j);
+	//F_Free(&statusp);
 	F_FilePathCloseDir(handle);
-	F_Free(&handle);
-	F_Free(filePath);
+	//F_Free(&handle);
+	//F_Free(filePath);
 	F_ApiDeallocatePropVals(&params);
 	F_ApiDeallocateString(&dirPath);
-	F_Free(&bookID);
+	//F_Free(&bookID);
 }
 
 VoidT generateBooks(F_ObjHandleT mainBookID)
@@ -236,7 +236,7 @@ F_PropValsT generateExportParams()
 	i = F_ApiGetPropIndex(&params,FS_StructuredSaveApplication);
 	params.val[i].propVal.u.sval = "DocLine";
 
-	F_Free(&i);
+	//F_Free(&i);
 
 	return params;
 }
@@ -266,7 +266,7 @@ VoidT publishDocLineDoc(StringT format)
 	//get path to jar file and check if jar exists
 	tempPath = F_ApiClientDir();
 	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
-	F_Free(tempPath);
+	//F_Free(tempPath);
 	if((chan = F_ChannelOpen(F_PathNameToFilePath(jarPath, NULL, FDefaultPath),"r")) == NULL)
 	{
 		F_Sprintf(statusMessage, "Couldn't find %s. Reinstalling the application can solve this problem.", JAR_FILENAME);
@@ -339,8 +339,8 @@ VoidT publishDocLineDoc(StringT format)
 	//   save chosen destination file name
 	F_Sprintf(destinationFileName, "%s", tempResult);
 	F_ApiDeallocateString(&tempResult);
-	F_Free(tempPath);
-	F_Free(tempName);
+	//F_Free(tempPath);
+	//F_Free(tempName);
 
 	// invoke java util
 	writeToChannel("Calling Java function...");
@@ -358,7 +358,7 @@ VoidT publishDocLineDoc(StringT format)
 		tempPath = F_ApiClientDir();
 		tempResult = F_Alloc(F_StrLen(tempPath) + F_StrLen(ERROR_LOG_FILENAME) + 1, NO_DSE);
 		F_Sprintf(tempResult, "%s\\%s", tempPath, ERROR_LOG_FILENAME);
-		F_Free(tempPath);
+		//F_Free(tempPath);
 
 		if((chan = F_ChannelOpen(F_PathNameToFilePath(tempResult, NULL, FDefaultPath),"r")) == NULL)
 		{
