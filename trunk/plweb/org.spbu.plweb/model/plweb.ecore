@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="plweb"
+    nsURI="http://plweb/1.0" nsPrefix="plweb">
+  <eClassifiers xsi:type="ecore:EClass" name="DiagramRoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="area" lowerBound="1" eType="#//Area"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Area" eSuperTypes="#//SourceRefElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//TargetRefElement #//SourceRefElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//SourceRefElement #//TargetRefElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//GroupType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Page" eSuperTypes="#//TargetRefElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SourceRefElement" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" upperBound="-1"
+        eType="#//TargetRefElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetRefElement" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//SourceRefElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GroupType">
+    <eLiterals name="OR" literal="OR"/>
+    <eLiterals name="XOR" value="1" literal="XOR"/>
+  </eClassifiers>
+</ecore:EPackage>
