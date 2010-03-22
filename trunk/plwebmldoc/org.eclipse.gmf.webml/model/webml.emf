@@ -1,0 +1,64 @@
+@namespace(uri="webml", prefix="webml")
+@gmf(foo="bar")
+package webml;
+
+@gmf.diagram(foo="bar")
+class Siteview {
+    val Unit[*] element;
+    val okLink[*] oklink;
+    val koLink[*] kolink;
+    val normalLink[*] nlink;
+    val transportLink[*] tlink;
+}
+
+class Area extends Page{
+}
+
+class Page extends ContentUnit {
+    @gmf.compartment(foo="bar", collapsible="false")
+    val Unit[*] element;
+}
+
+@gmf.link(source="source", target="target", style="solid", color="000000")
+class okLink {
+    ref OperationUnit source;
+    ref ContentUnit target;
+}
+
+@gmf.link(source="source", target="target", style="solid", color="000000")
+class koLink {
+    ref OperationUnit source;
+    ref ContentUnit target;
+}
+
+@gmf.link(source="source", target="target", style="solid", color="000000")
+class normalLink {
+    ref ContentUnit source;
+    ref Unit target;
+}
+
+@gmf.link(source="source", target="target", style="dash", color="000000")
+class transportLink {
+    ref ContentUnit source;
+    ref Unit target;
+}
+
+@gmf.node(label = "name")
+class DocTopic{
+	attr String name;
+}
+
+@gmf.node(label = "name")
+class ContentUnit extends Unit{
+	@gmf.compartment(foo = "bar", layout="list")
+	val DocTopic[*] topic; 
+}
+
+@gmf.node(label = "name")
+class OperationUnit extends Unit{
+}
+
+abstract class Unit{
+    attr String name;
+    attr String Id;
+}
