@@ -1,0 +1,7 @@
+#Fri Mar 05 18:17:52 MSK 2010
+eclipse.preferences.version=1
+gmf_dashboard/domainGenerationModel=platform\:/resource/org.eclipse.gmf.webml/model/webml.genmodel
+gmf_dashboard/domainModel=platform\:/resource/org.eclipse.gmf.webml/model/webml.ecore
+gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.eclipse.gmf.webml/model/webml.gmfgraph
+gmf_dashboard/mappingModel=platform\:/resource/org.eclipse.gmf.webml/model/webml.gmfmap
+gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.eclipse.gmf.webml/model/webml.gmftool

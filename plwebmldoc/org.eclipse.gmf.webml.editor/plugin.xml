@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="webml.presentation.WebmlModelWizardID"
+            name="%_UI_WebmlModelWizard_label"
+            class="webml.presentation.WebmlModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/WebmlModelFile.gif">
+         <description>%_UI_WebmlModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="webml.presentation.WebmlEditorID"
+            name="%_UI_WebmlEditor_label"
+            icon="icons/full/obj16/WebmlModelFile.gif"
+            extensions="webml"
+            class="webml.presentation.WebmlEditor"
+            contributorClass="webml.presentation.WebmlActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

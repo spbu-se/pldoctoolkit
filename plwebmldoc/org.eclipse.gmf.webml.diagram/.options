@@ -1,0 +1,7 @@
+# Tracing options for the org.eclipse.gmf.webml.diagram plug-in
+
+# Common issues
+org.eclipse.gmf.webml.diagram/debug=false
+
+# Visual IDs
+org.eclipse.gmf.webml.diagram/debug/visualID=false
