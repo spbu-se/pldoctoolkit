@@ -78,11 +78,11 @@ BoolT performExportXSLT(StringT dirPath)
 VoidT exportDocLineDoc()
 {
 	F_ObjHandleT bookID;
-	F_PropValsT params;
+	F_PropValsT params, *returnParams;
 	IntT j, statusp;
 	DirHandleT handle;
 	FilePathT *filePath;
-	StringT path, dirPath;
+	StringT path, dirPath, name, tempDirPath;
 
 
 	openLogChannel();
@@ -94,32 +94,23 @@ VoidT exportDocLineDoc()
 		writeToChannel("Error. Invalid document.\n");
 		return;
 	}
-	dirPath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
+	dirPath = F_StrCopyString(F_ApiGetString(FV_SessionId,bookID,FP_Name));
 	pathFilename(dirPath); //Since this point dirPath and bookID should be constants
-
+	if (!cleanTempDirectory()) return;
+	if (!getTempDirPath(&tempDirPath)) return;
 	writeToChannel("Generating export params... ");
 	params = generateExportParams();
 	writeToChannel("Succesful.\n");
-	writeToChannel("Generating books... ");
-	generateBooks(bookID);
-	writeToChannel("Succesful.\n");
-
-	filePath = F_PathNameToFilePath(dirPath,NULL,FDefaultPath);
-	handle = F_FilePathOpenDir(filePath,&statusp);
-	j = 0;
-	//iteration through generated books in current directory
 	writeToChannel("Exporting books... ");
-	while (filePath = F_FilePathGetNext(handle,&statusp))
-	{
-		path = F_FilePathToPathName(filePath,FDosPath);
-		if (validateFilename(path,GENBOOK))
-		{
-			exportBook(path,dirPath,params, &j);
-		}
-	}
+	name = F_StrCopyString("tmp_main_book.drl");
+	path = (StringT)F_Alloc((F_StrLen(tempDirPath)+F_StrLen(name)+1)*sizeof(UCharT),NO_DSE);
+	F_Sprintf(path,"%s\\%s",F_StrCopyString(tempDirPath),F_StrCopyString(name));
+	F_ApiDeallocateString(&name);
+	returnParams = NULL;
+	F_ApiSave(bookID,path,&params,&returnParams);
 	writeToChannel("Succesful.\n");
 	writeToChannel("Performing XSL transformation... ");
-	if (!performExportXSLT(dirPath)) return;
+	if (!performExportXSLT(tempDirPath)) return;
 	writeToChannel("Succesful.\n");
 	writeToChannel("Closing all documents... ");
 	closeAllDocs();
@@ -130,14 +121,8 @@ VoidT exportDocLineDoc()
 	writeToChannel("Export finished succesfully.\n");
 
 	F_ApiDeallocateString(&path);
-	//F_Free(&j);
-	//F_Free(&statusp);
-	F_FilePathCloseDir(handle);
-	//F_Free(&handle);
-	//F_Free(filePath);
 	F_ApiDeallocatePropVals(&params);
 	F_ApiDeallocateString(&dirPath);
-	//F_Free(&bookID);
 }
 
 VoidT generateBooks(F_ObjHandleT mainBookID)

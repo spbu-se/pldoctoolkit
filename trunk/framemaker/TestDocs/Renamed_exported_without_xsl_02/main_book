@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DocLine SYSTEM "file:///C:/Program%20Files/Adobe/FrameMaker8/structure/xml/docline/docline.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+<?Fm Validation Off?>
+
+
+<!ENTITY bkc1 SYSTEM "applications_0.e01">
+<!ENTITY bkc2 SYSTEM "based_1.e02">
+<!ENTITY bkc3 SYSTEM "complete_3.e03">
+<!ENTITY bkc4 SYSTEM "bussing_2.e04">
+<!ENTITY bkc5 SYSTEM "main_window_b_18.e05">
+<!NOTATION gif SYSTEM "">
+<!ENTITY graphic1 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-СЛ.gif" NDATA gif>
+<!ENTITY graphic2 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-индексы.gif" NDATA gif>
+<!ENTITY bkc6 SYSTEM "review_b_27.e06">
+<!ENTITY bkc7 SYSTEM "state_sections_b_38.e07">
+<!ENTITY graphic3 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-состояние-трактов.gif" NDATA gif>
+<!ENTITY graphic4 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-действия-над-трактами.gif" NDATA gif>
+<!ENTITY graphic5 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-операции-над-каналами.gif" NDATA gif>
+<!ENTITY bkc8 SYSTEM "decoding_4.e08">
+<!ENTITY bkc9 SYSTEM "terms_41.e09">
+<!ENTITY bkc10 SYSTEM "term_42.e10">
+<!ENTITY bkc11 SYSTEM "embedded_software_5.e11">
+<!ENTITY bkc12 SYSTEM "example_trasses_6.e12">
+<!ENTITY bkc13 SYSTEM "fails_7.e13">
+<!ENTITY bkc14 SYSTEM "identif_15_sm_8.e14">
+<!ENTITY bkc15 SYSTEM "identif_443_sm_9.e15">
+<!ENTITY bkc16 SYSTEM "main_window_sm_19.e16">
+<!ENTITY graphic6 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/sostojanie-abonenta.gif" NDATA gif>
+<!ENTITY inlinegraphic1 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/sost-ab-knopka-legenda.gif" NDATA gif>
+<!ENTITY graphic7 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/sost-ab-legenda.gif" NDATA gif>
+<!ENTITY inlinegraphic2 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/sost-ab-knopka-statistika.gif" NDATA gif>
+<!ENTITY graphic8 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/sost-ab-statistika.gif" NDATA gif>
+<!ENTITY inlinegraphic3 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/sostojanie-ab-knopka-obnovit.gif" NDATA gif>
+<!ENTITY bkc17 SYSTEM "menu_sm_21.e17">
+<!ENTITY bkc18 SYSTEM "renewal_15_sm_25.e18">
+<!ENTITY bkc19 SYSTEM "renewal_443_sm_26.e19">
+<!ENTITY bkc20 SYSTEM "review_sm_28.e20">
+<!ENTITY bkc21 SYSTEM "sentence_15_sm_33.e21">
+<!ENTITY bkc22 SYSTEM "sentence_443_sm_34.e22">
+<!ENTITY bkc23 SYSTEM "service_map_35.e23">
+<!ENTITY bkc24 SYSTEM "implementation_specification_10.e24">
+<!ENTITY graphic9 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/RMOBDScheme.gif" NDATA gif>
+<!ENTITY graphic10 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/View1.gif" NDATA gif>
+<!ENTITY graphic11 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/View2.gif" NDATA gif>
+<!ENTITY bkc25 SYSTEM "join_in_applications_11.e25">
+<!ENTITY graphic12 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/test-nomeronabiratelja.gif" NDATA gif>
+<!ENTITY graphic13 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/test-nomeronabiratelja-stati.gif" NDATA gif>
+<!ENTITY graphic14 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-obtsh.-vid.gif" NDATA gif>
+<!ENTITY graphic15 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-knopka-nov.-zad..gif" NDATA gif>
+<!ENTITY graphic16 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-novoe-zadanie.gif" NDATA gif>
+<!ENTITY graphic17 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika.gif" NDATA gif>
+<!ENTITY graphic18 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-stantzija.gif" NDATA gif>
+<!ENTITY graphic19 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-menedger1.gif" NDATA gif>
+<!ENTITY graphic20 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-gurnal1.gif" NDATA gif>
+<!ENTITY graphic21 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-ochered.gif" NDATA gif>
+<!ENTITY graphic22 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-test-al.gif" NDATA gif>
+<!ENTITY graphic23 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-rezultaty.gif" NDATA gif>
+<!ENTITY graphic24 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/поиск-абонента.gif" NDATA gif>
+<!ENTITY graphic25 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/коммутационное-поле.gif" NDATA gif>
+<!ENTITY graphic26 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/КМ-проключения.gif" NDATA gif>
+<!ENTITY graphic27 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/проход-по-шнуру.gif" NDATA gif>
+<!ENTITY graphic28 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/menedger-gr.-teletrafika.gif" NDATA gif>
+<!ENTITY graphic29 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/обозреватель-телетрафика.gif" NDATA gif>
+<!ENTITY graphic30 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-oshibka2.gif" NDATA gif>
+<!ENTITY graphic31 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-oshibka-podkljuchen.gif" NDATA gif>
+<!ENTITY graphic32 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika_obzor-papok.gif" NDATA gif>
+<!ENTITY graphic33 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-vneshnij-vid.gif" NDATA gif>
+<!ENTITY graphic34 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-uvelichenie.gif" NDATA gif>
+<!ENTITY graphic35 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-uvelichennyj.gif" NDATA gif>
+<!ENTITY graphic36 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-umenshenie.gif" NDATA gif>
+<!ENTITY graphic37 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-peremetshenie.gif" NDATA gif>
+<!ENTITY graphic38 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-chislennye-znachenija.gif" NDATA gif>
+<!ENTITY graphic39 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/tarifikatzija.gif" NDATA gif>
+<!ENTITY graphic40 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-окно-просм..gif" NDATA gif>
+<!ENTITY graphic41 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-фильтр.gif" NDATA gif>
+<!ENTITY graphic42 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-удалить-фильтр.gif" NDATA gif>
+<!ENTITY bkc26 SYSTEM "join_in_embsoft_12.e26">
+<!ENTITY graphic43 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/проводник-смм.gif" NDATA gif>
+<!ENTITY graphic44 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скрипты-РМО-общ.-вид1.gif" NDATA gif>
+<!ENTITY graphic45 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скрипты-РМО-кнопка-сохранит.gif" NDATA gif>
+<!ENTITY graphic46 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скрипРМОкнопка-сохранить-вс.gif" NDATA gif>
+<!ENTITY graphic47 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скрипРМОкнопка-переместить.gif" NDATA gif>
+<!ENTITY graphic48 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скрипРМОкнопка-копировать.gif" NDATA gif>
+<!ENTITY graphic49 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скрипРМОкнопка-вставить.gif" NDATA gif>
+<!ENTITY graphic50 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скрипРМОкнопка-выполнить.gif" NDATA gif>
+<!ENTITY graphic51 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скрипРМОкнопка-прервать.gif" NDATA gif>
+<!ENTITY graphic52 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скрипРМОкнопка-папка.gif" NDATA gif>
+<!ENTITY graphic53 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скрипРМОкнопка-обновить.gif" NDATA gif>
+<!ENTITY graphic54 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скрипты-РМО-вывод.gif" NDATA gif>
+<!ENTITY graphic55 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriptyrmolog.gif" NDATA gif>
+<!ENTITY graphic56 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скриптыРМОошибки.gif" NDATA gif>
+<!ENTITY graphic57 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/скриптыРМОполе-редакт.gif" NDATA gif>
+<!ENTITY bkc27 SYSTEM "join_in_monitoring_13.e27">
+<!NOTATION jpeg SYSTEM "">
+<!ENTITY graphic58 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/MonitorSheme.jpg" NDATA jpeg>
+<!ENTITY graphic59 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/monitor.gif" NDATA gif>
+<!ENTITY graphic60 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-настройка-та.gif" NDATA gif>
+<!ENTITY graphic61 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-табло-настро.gif" NDATA gif>
+<!ENTITY graphic62 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/PromMonitor_Pich_01.gif" NDATA gif>
+<!ENTITY graphic63 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/PromMonitor_Pich_02.gif" NDATA gif>
+<!ENTITY bkc28 SYSTEM "join_in_sysappl_14.e28">
+<!ENTITY graphic64 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/router.gif" NDATA gif>
+<!ENTITY graphic65 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/otkrytie-serverov.gif" NDATA gif>
+<!ENTITY graphic66 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/zakladka-serverarmo.gif" NDATA gif>
+<!ENTITY graphic67 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/otkrytie-serverov-2.gif" NDATA gif>
+<!ENTITY graphic68 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/spispok-stativov.gif" NDATA gif>
+<!ENTITY graphic69 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/Панель-станции(приложение).gif" NDATA gif>
+<!ENTITY graphic70 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-обзор.gif" NDATA gif>
+<!ENTITY graphic71 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/Панель-станции(прилож.)-рег.gif" NDATA gif>
+<!ENTITY graphic72 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-абоненты.gif" NDATA gif>
+<!ENTITY graphic73 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-тракты.gif" NDATA gif>
+<!ENTITY graphic74 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-kanaly.gif" NDATA gif>
+<!ENTITY graphic75 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-testy.gif" NDATA gif>
+<!ENTITY graphic76 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopki-panel.gif" NDATA gif>
+<!ENTITY graphic77 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopka1.gif" NDATA gif>
+<!ENTITY graphic78 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopka2.gif" NDATA gif>
+<!ENTITY graphic79 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stanzii-knopka3.gif" NDATA gif>
+<!ENTITY graphic80 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-nastrojka-ta.gif" NDATA gif>
+<!ENTITY graphic81 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-tablo-nastro.gif" NDATA gif>
+<!ENTITY graphic82 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/konsol-server.gif" NDATA gif>
+<!ENTITY graphic83 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/Тарификация-сервер.gif" NDATA gif>
+<!ENTITY graphic84 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/Сервер-времени.gif" NDATA gif>
+<!ENTITY graphic85 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/Синхронизация-станция.gif" NDATA gif>
+<!ENTITY graphic86 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-синхронизация.gif" NDATA gif>
+<!ENTITY graphic87 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-файлы.gif" NDATA gif>
+<!ENTITY graphic88 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-программатор.gif" NDATA gif>
+<!ENTITY graphic89 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-настройки.gif" NDATA gif>
+<!ENTITY graphic90 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/х25-сервер.gif" NDATA gif>
+<!ENTITY graphic91 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-server.gif" NDATA gif>
+<!ENTITY graphic92 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/Сервер-скриптов-общ.-вид.gif" NDATA gif>
+<!ENTITY graphic93 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmosborkamusora%20copy.gif" NDATA gif>
+<!ENTITY graphic94 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-priostanovit%20copy.gif" NDATA gif>
+<!ENTITY graphic95 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-vypolnit%20copy.gif" NDATA gif>
+<!ENTITY graphic96 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-prervat_copy.gif" NDATA gif>
+<!ENTITY graphic97 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoprervatvsjo.gif" NDATA gif>
+<!ENTITY graphic98 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-svojstva-servera_copy.gif" NDATA gif>
+<!ENTITY graphic99 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/сервер-скриптов-настройки.gif" NDATA gif>
+<!ENTITY graphic100 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-общий-вид.gif" NDATA gif>
+<!ENTITY graphic101 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-установки-журнала.gif" NDATA gif>
+<!ENTITY graphic102 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-внешний-вид.gif" NDATA gif>
+<!ENTITY graphic103 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-фильтр.gif" NDATA gif>
+<!ENTITY graphic104 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadanij1.gif" NDATA gif>
+<!ENTITY graphic105 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadach-zadanie.gif" NDATA gif>
+<!ENTITY graphic106 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadanij-redaktor-z.gif" NDATA gif>
+<!NOTATION cgm SYSTEM "">
+<!ENTITY graphic107 SYSTEM "../../runtime-New_configuration/rmo/Result/ScreenShots-full/dispecher-zadach-raspisanie.gif" NDATA cgm>
+<!ENTITY graphic108 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/trassa-obtshij-vid.gif" NDATA gif>
+<!ENTITY bkc29 SYSTEM "main_15.e29">
+<!ENTITY bkc30 SYSTEM "UserManual_based_43.e30">
+<!ENTITY bkc31 SYSTEM "main_16.e31">
+<!ENTITY bkc32 SYSTEM "UserManual_complete_44.e32">
+<!ENTITY graphic109 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/AbnStatesPich01.gif" NDATA gif>
+<!ENTITY graphic110 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/AbnStatesPich03.gif" NDATA gif>
+<!ENTITY graphic111 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/AbnStatesPich02.gif" NDATA gif>
+<!ENTITY bkc33 SYSTEM "main_17.e33">
+<!ENTITY bkc34 SYSTEM "UserManual_45.e34">
+<!ENTITY bkc35 SYSTEM "main_window_sp_20.e35">
+<!ENTITY graphic112 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/abonentskaja-panel.gif" NDATA gif>
+<!ENTITY bkc36 SYSTEM "review_sp_29.e36">
+<!ENTITY bkc37 SYSTEM "search_sp_32.e37">
+<!ENTITY graphic113 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/ap-poisk-po-parametram.gif" NDATA gif>
+<!ENTITY graphic114 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/ap-poisk-po-vsojstvam.gif" NDATA gif>
+<!ENTITY bkc38 SYSTEM "service_panel_36.e38">
+<!ENTITY bkc39 SYSTEM "standart_tasks_sp_37.e39">
+<!ENTITY bkc40 SYSTEM "monitoring_22.e40">
+<!ENTITY bkc41 SYSTEM "permissions_23.e41">
+<!ENTITY graphic115 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-prava.gif" NDATA gif>
+<!ENTITY graphic116 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-izmenit-imja.gif" NDATA gif>
+<!ENTITY graphic117 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-smena-parolja.gif" NDATA gif>
+<!ENTITY graphic118 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/свойства-группы-(новая-груп.gif" NDATA gif>
+<!ENTITY graphic119 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-sovjstva-polzovatel.gif" NDATA gif>
+<!ENTITY graphic120 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/dobavit-polzovatelja.gif" NDATA gif>
+<!ENTITY graphic121 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-domeny.gif" NDATA gif>
+<!ENTITY graphic122 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-domen-2.gif" NDATA gif>
+<!ENTITY graphic123 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-prava-polzovatelej.gif" NDATA gif>
+<!ENTITY bkc42 SYSTEM "rate_CTO_24.e42">
+<!ENTITY bkc43 SYSTEM "RMO_panel_30.e43">
+<!ENTITY graphic124 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient.gif" NDATA gif>
+<!ENTITY graphic125 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-idetifikatzija-polzov.gif" NDATA gif>
+<!ENTITY graphic126 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/клиент-соединение-со-станци.gif" NDATA gif>
+<!ENTITY graphic127 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Red.jpg" NDATA jpeg>
+<!ENTITY graphic128 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Magenta.jpg" NDATA jpeg>
+<!ENTITY graphic129 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Yellow.jpg" NDATA jpeg>
+<!ENTITY graphic130 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Cyan.jpg" NDATA jpeg>
+<!ENTITY graphic131 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-rmo-versija.gif" NDATA gif>
+<!ENTITY bkc44 SYSTEM "script_language_31.e44">
+<!ENTITY bkc45 SYSTEM "station_modules_39.e45">
+<!ENTITY graphic132 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/upravl.-mod.-obtshij-vid.gif" NDATA gif>
+<!ENTITY bkc46 SYSTEM "system_applications_40.e46">
+<!ENTITY bkc47 SYSTEM "users_problem_description_46.e47">
+<!ENTITY graphic133 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/безопасность.gif" NDATA gif>
+<!ENTITY graphic134 SYSTEM "../../runtime-New_configuration/rmo/illustrations/ScreenShots-full/nasledovanie.gif" NDATA gif>
+<!ENTITY graphic135 SYSTEM "../../runtime-New_configuration/rmo/Result/illustrations/u_p_d/safety.jpg" NDATA cgm>
+<!ENTITY bkc48 SYSTEM "visual_library_47.e48">
+
+<!-- End Document Specific Declarations -->
+
+]>
+<DocLine><DocumentationCore filename = "Prilozeniya.drl">&bkc1;</DocumentationCore>
+<ProductLine name = "РМО 1.5 базовая версия"
+    filename = "ProductLine.drl">&bkc2;&bkc3;</ProductLine>
+<DocumentationCore filename = "Soedinitelnie_linii.drl">&bkc4;&bkc5;&bkc6;&bkc7;</DocumentationCore>
+<DocumentationCore filename = "Rashifrovka_terminov_i_sokrashenii.drl">&bkc8;&bkc9;&bkc10;</DocumentationCore>
+<DocumentationCore filename = "Upravlenie_vstroennim_PO.drl">&bkc11;</DocumentationCore>
+<DocumentationCore filename = "Primeri_trass.drl">&bkc12;</DocumentationCore>
+<DocumentationCore filename = "Sostav_failov.drl">&bkc13;</DocumentationCore>
+<DocumentationCore
+    filename = "Karta_obsluzivaniya_abonentskih_linii.drl">&bkc14;&bkc15;&bkc16;&bkc17;&bkc18;&bkc19;&bkc20;&bkc21;&bkc22;&bkc23;</DocumentationCore>
+<DocumentationCore filename = "Opisanie_realizacii.drl">&bkc24;</DocumentationCore>
+<DocumentationCore filename = "Drugie_funkcii_prilozeniya.drl">&bkc25;</DocumentationCore>
+<DocumentationCore filename = "Provodnik_CMM_scripti_MMO.drl">&bkc26;</DocumentationCore>
+<DocumentationCore filename = "Drugie_funkcii_monitoringa.drl">&bkc27;</DocumentationCore>
+<DocumentationCore filename = "Drugie_funkcii_sistemih_prilozenii.drl">&bkc28;</DocumentationCore>
+<ProductDocumentation productid = "based"
+    filename = "UserManual_based.drl">&bkc29;&bkc30;</ProductDocumentation>
+<ProductDocumentation productid = "complete"
+    filename = "UserManual_complete.drl">&bkc31;&bkc32;</ProductDocumentation>
+<DocumentationCore filename = "User_manual.drl">&bkc33;&bkc34;</DocumentationCore>
+<DocumentationCore filename = "Abonentskaya_panel.drl">&bkc35;&bkc36;&bkc37;&bkc38;&bkc39;</DocumentationCore>
+<DocumentationCore filename = "Monitoring.drl">&bkc40;</DocumentationCore>
+<DocumentationCore filename = "Prava_dostupa.drl">&bkc41;</DocumentationCore>
+<DocumentationCore filename = "Rabota_v_rezime_CTO.drl">&bkc42;</DocumentationCore>
+<DocumentationCore filename = "Panel_RMO.drl">&bkc43;</DocumentationCore>
+<DocumentationCore filename = "Yazik_scriptov_MMO.drl">&bkc44;</DocumentationCore>
+<DocumentationCore filename = "Moduli_stancii.drl">&bkc45;</DocumentationCore>
+<DocumentationCore filename = "Sistemnie_prilozeniya.drl">&bkc46;</DocumentationCore>
+<DocumentationCore filename = "Opisanie_zadach_polzovatelya.drl">&bkc47;</DocumentationCore>
+<DocumentationCore filename = "Vizualnaya_biblioteka.drl">&bkc48;</DocumentationCore></DocLine>

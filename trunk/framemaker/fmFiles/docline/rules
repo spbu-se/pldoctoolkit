@@ -139,6 +139,8 @@ attribute "modifier" is fm attribute "Modifier";
 attribute "dictid" is fm attribute "DictId";
 attribute "descr" is fm attribute "Descr";
 attribute "filename" is fm attribute "FileName";
+attribute "parentnameattr" is fm attribute "ParentNameAttr";
+attribute "parenttype" is fm attribute "ParentType";
 
 /* Element rules. Many of these rules simply capitalize letters other than the 	   initial one in
    FrameMaker+SGML element tags.*/

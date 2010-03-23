@@ -1,0 +1,25 @@
+<InfElement id = "renewal_15_sm" name = "обновление15"
+    parenttype = "DocumentationCore"
+    filename = "Karta_obsluzivaniya_abonentskih_linii.drl"
+    FileName = "Karta_obsluzivaniya_abonentskih_linii.drl"
+    ParentType = "DocumentationCore">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+Чтобы активизировать автоматическое обновление состояний абонентских
+линий необходимо нажать на правую часть этой кнопки и в появившемся
+меню выбрать необходимый период времени обновления (из представленных:
+5, 10 или 30 секунд). При этом будут обновляться состояния абонентов,
+которые заказаны в списке опрашиваемых модулей. Для обновления состояния
+всех абонентских модулей станции (в случае если какой-то модуль
+во время последней загрузки был недоступен), то необходимо выбрать пункт
+меню<emphasis>Обновить все</emphasis>. Для прекращения автоматического
+обновления необходимо в том же меню выбрать<emphasis>Стоп</emphasis>.
+Следует заметить, что после обновления состояний и при открытом
+окне статистики абонентских линий, последняя обновляется автоматически.</InfElement>

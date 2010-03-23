@@ -1,0 +1,22 @@
+<InfElement id = "bussing"
+    name = "Соединительные линии"
+    parenttype = "DocumentationCore"
+    filename = "Soedinitelnie_linii.drl"
+    FileName = "Soedinitelnie_linii.drl"
+    ParentType = "DocumentationCore">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<section>
+<title id = "tri_tri_tri"
+    xreflabel = "3.3.3. Соединительные линии">3.3.3.
+Соединительные линии</title>
+<InfElemRef id = "ref_review_b" infelemid = "review_b"/>
+<InfElemRef id = "ref_main_window_b" infelemid = "main_window_b"/>
+<InfElemRef id = "ref_state_sections_b" infelemid = "state_sections_b"/></section></InfElement>

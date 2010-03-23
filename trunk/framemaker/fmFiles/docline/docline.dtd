@@ -141,14 +141,17 @@
 
 <!ELEMENT Product    (#PCDATA) >
 <!ATTLIST Product    id        CDATA     #IMPLIED
-                     name      CDATA     #IMPLIED >
+                     name      CDATA     #IMPLIED 
+                     filename CDATA #IMPLIED
+                     parentnameattr CDATA #IMPLIED
+                     parenttype CDATA #IMPLIED>
 
 <!ELEMENT ProductDocumentation 
                      (FinalInfProduct | Dictionary | Directory |
                               DirTemplate)* >
 <!ATTLIST ProductDocumentation 
                      productid  CDATA     #IMPLIED 
-					 filename   CDATA     #IMPLIED >
+                     filename   CDATA     #IMPLIED >
 
 <!ELEMENT DocumentationCore 
                      (InfProduct | InfElement | Dictionary | Directory |
@@ -161,25 +164,35 @@
                               chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
 <!ATTLIST InfProduct 
                      id        CDATA     #IMPLIED
-                     name      CDATA     #IMPLIED >
+                     name      CDATA     #IMPLIED 
+                     parenttype CDATA #IMPLIED
+                     filename CDATA #IMPLIED>
 
 <!ELEMENT InfElement (#PCDATA | DirRef | InfElemRef | InfElemRefGroup |
                               DictRef | Conditional | Nest | para | preface |
                               chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
 <!ATTLIST InfElement 
                      id        CDATA     #IMPLIED
-                     name      CDATA     #IMPLIED >
+                     name      CDATA     #IMPLIED
+                     parenttype CDATA #IMPLIED
+                     filename CDATA #IMPLIED >
 
 <!ELEMENT Dictionary (Entry*) >
 <!ATTLIST Dictionary 
                      id        CDATA     #IMPLIED
-                     name      CDATA     #IMPLIED >
+                     name      CDATA     #IMPLIED 
+                     productid CDATA #IMPLIED
+                     filename CDATA #IMPLIED
+                     parenttype CDATA #IMPLIED>
 
 <!ELEMENT FinalInfProduct 
                      (SetValue | Adapter)* >
 <!ATTLIST FinalInfProduct 
                      id        CDATA     #IMPLIED
-                     infproductid  CDATA     #IMPLIED >
+                     infproductid  CDATA     #IMPLIED 
+                     productid  CDATA #IMPLIED
+                     filename CDATA #IMPLIED
+                     parenttype CDATA #IMPLIED>
 
 <!ELEMENT SetValue   EMPTY >
 <!ATTLIST SetValue   id        CDATA     #IMPLIED
@@ -205,7 +218,10 @@
 
 <!ELEMENT Directory  (Entry*) >
 <!ATTLIST Directory  id        CDATA     #IMPLIED
-                     name      CDATA     #IMPLIED >
+                               name      CDATA     #IMPLIED 
+                               filename CDATA #IMPLIED
+                               productid CDATA #IMPLIED
+                               parenttype CDATA #IMPLIED>
 					 
 <!ELEMENT Entry      (#PCDATA | Attr)* >
 <!ATTLIST Entry      id        CDATA     #IMPLIED >
@@ -217,7 +233,10 @@
                      (#PCDATA | AttrRef | DirTemplateContentsInner)*>
 <!ATTLIST DirTemplate 
                      id        CDATA     #IMPLIED
-                     directoryid  CDATA     #IMPLIED >
+                     directoryid  CDATA     #IMPLIED
+                     productid CDATA  #IMPLIED
+                     filename CDATA #IMPLIED 
+                     parenttype CDATA #IMPLIED>
 
 <!ELEMENT AttrRef    EMPTY >
 <!ATTLIST AttrRef    attrid    CDATA     #IMPLIED >

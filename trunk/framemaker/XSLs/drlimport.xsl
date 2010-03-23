@@ -25,13 +25,76 @@
                 <xsl:attribute name="parenttype">
                   <xsl:value-of select="local-name(..)"/>
                 </xsl:attribute>
+                <xsl:if test="name()='d:FinalInfProduct' or
+                                  name()='d:DirTemplate' or
+                                  name()='d:Dictionary' or
+                                  name()='d:Directory'">
+                  <xsl:attribute name="productid">
+                    <xsl:value-of select="@productid[..]"/>
+                  </xsl:attribute>
+                </xsl:if>
+                <xsl:if test="name()='d:Product'">
+                  <xsl:attribute name="parentnameattr">
+                    <xsl:value-of select="@name[..]"/>
+                  </xsl:attribute>
+                </xsl:if>
                 <xsl:for-each select="@*">
                   <xsl:copy/>
                 </xsl:for-each>
+				<xsl:for-each select="../@*">
+          <xsl:copy/>
+				</xsl:for-each>
                 <xsl:apply-templates/>
             </xsl:element>
           </xsl:result-document>
         </xsl:when>
+        <xsl:when test="name() = 'Insert-After' or
+								name() = 'Insert-Before' or
+								name() = 'Replace-Nest'">
+			<xsl:element name="{local-name()}">
+			  <xsl:attribute name="nestid">
+				<xsl:value-of select="@nestid"/>
+			  </xsl:attribute>
+					<xsl:choose>
+						<xsl:when test="db:row">
+							<xsl:choose>
+							<xsl:when test="not(exists(db:tbody))">
+								<xsl:element name="FakeTable">
+								<xsl:attribute name="cols">10</xsl:attribute>
+									<xsl:element name="FakeTableBody">
+										<xsl:for-each select="*">
+											<xsl:choose>
+												<xsl:when test="local-name()='row'">
+													<xsl:copy-of select="current()"/>
+												</xsl:when>
+												<xsl:when test="local-name()='entry'">
+													<xsl:element name="FakeRow">
+														<xsl:copy-of select="current()"/>
+													</xsl:element>
+												</xsl:when>
+												<xsl:otherwise>
+													<xsl:copy-of select="current()"/>
+												</xsl:otherwise>
+											</xsl:choose>
+										</xsl:for-each>
+									</xsl:element>
+								</xsl:element>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:for-each select="*">
+									<xsl:copy-of select="current()"/>
+								</xsl:for-each>
+							</xsl:otherwise>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:for-each select="*">
+								<xsl:copy-of select="current()"/>
+							</xsl:for-each>
+						</xsl:otherwise>
+					</xsl:choose>
+			</xsl:element>
+		</xsl:when>
         <xsl:otherwise>
           <xsl:element name="{local-name()}">
               <xsl:for-each select="@*">

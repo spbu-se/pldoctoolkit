@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:d="http://math.spbu.ru/drl">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:d="http://math.spbu.ru/drl">
 	<!--xmlns="http://docbook.org/ns/docbook" -->
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
 	<xsl:template match="Insert-After">
@@ -122,11 +122,27 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
-		<xsl:element name="{$newName}">
-			<xsl:for-each select="@*">
-				<xsl:copy/>
-			</xsl:for-each>
-			<xsl:apply-templates/>
-		</xsl:element>
+    <xsl:choose>
+      <xsl:when test="local-name() = 'ProductLine' or 
+                              local-name() = 'DocumentationCore' or
+                              local-name() = 'ProductDocumentation'">
+        <xsl:result-document method="xml" href="{resolve-uri(@filename,document-uri(/))}">
+          <xsl:element name="{$newName}">
+            <xsl:for-each select="@*">
+              <xsl:copy/>
+            </xsl:for-each>
+            <xsl:apply-templates/>
+          </xsl:element>
+        </xsl:result-document>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:element name="{$newName}">
+          <xsl:for-each select="@*">
+            <xsl:copy/>
+          </xsl:for-each>
+          <xsl:apply-templates/>
+        </xsl:element>
+      </xsl:otherwise>
+    </xsl:choose>
 	</xsl:template>
 </xsl:stylesheet>
