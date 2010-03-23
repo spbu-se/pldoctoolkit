@@ -201,18 +201,22 @@
 <!ELEMENT Adapter    (Replace-Nest | Insert-Before | Insert-After)* >
 <!ATTLIST Adapter    infelemrefid  CDATA     #IMPLIED >
 
+<!ELEMENT FakeTable (thead?, (tbody | FakeTableBody), tfoot?) >
+<!ELEMENT FakeTableBody (FakeRow | row)* >
+<!ELEMENT FakeRow (entry)* >
+
 <!ELEMENT Replace-Nest 
-                     (#PCDATA | para | preface | chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
+                     (#PCDATA | para | preface | chapter | listitem | section | FakeTable | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
 <!ATTLIST Replace-Nest 
                      nestid    CDATA     #IMPLIED >
 
 <!ELEMENT Insert-Before 
-                     (#PCDATA | para | preface | chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
+                     (#PCDATA | para | preface | chapter | listitem | section | FakeTable | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis)* >
 <!ATTLIST Insert-Before 
                      nestid    CDATA     #IMPLIED >
 
 <!ELEMENT Insert-After 
-                     (#PCDATA | para | preface | chapter | listitem | section | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis | row)* >
+                     (#PCDATA | para | preface | chapter | listitem | section | FakeTable | book | itemizedlist | informaltable | tip | title | informalfigure | emphasis | row)* >
 <!ATTLIST Insert-After 
                      nestid    CDATA     #IMPLIED >
 
