@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:d="http://math.spbu.ru/drl">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:d="http://math.spbu.ru/drl">
 	<!--xmlns="http://docbook.org/ns/docbook" -->
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
-	<xsl:template match="Insert-After">
+	
+	<xsl:template name="copy_entry">
+    <xsl:if test="* or normalize-space()">
+      <xsl:copy-of select="."/>
+    </xsl:if>
+	</xsl:template>
+	
+  <xsl:template name="copy_row">
+    <xsl:for-each select="*">
+      <xsl:choose>
+        <xsl:when test="local-name()='entry'">
+          <xsl:call-template name="copy_entry"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="otherwise"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+  
+  <xsl:template name="otherwise">
+    <xsl:copy-of select="current()"/>
+    <xsl:apply-templates/>
+  </xsl:template>
+  
+	<xsl:template name="remove_fakes">
 		<xsl:element name="d:Insert-After">
 			<xsl:attribute name="nestid"><xsl:value-of select="@nestid"/></xsl:attribute>
 			<xsl:for-each select="*">
@@ -15,63 +40,32 @@
 										<xsl:choose>
 											<xsl:when test="local-name()='row'">
 												<xsl:element name="row">
-													<xsl:for-each select="*">
-														<xsl:choose>
-															<xsl:when test="local-name()='entry'">
-																<xsl:if test="* or normalize-space()">
-																	<xsl:element name="entry">
-																		<xsl:for-each select="*">
-																			<xsl:copy-of select="current()"/>
-																		</xsl:for-each>
-																		<xsl:value-of select="current()"/>
-																	</xsl:element>
-																</xsl:if>
-															</xsl:when>
-															<xsl:otherwise>
-																<xsl:copy-of select="current()"/>
-															</xsl:otherwise>
-														</xsl:choose>
-													</xsl:for-each>
+													<xsl:call-template name="copy_row"/>
 												</xsl:element>
 											</xsl:when>
 											<xsl:when test="local-name()='FakeRow'">
-												<xsl:for-each select="*">
-													<xsl:choose>
-														<xsl:when test="local-name()='entry'">
-															<xsl:if test="* or normalize-space()">
-																<xsl:element name="entry">
-																	<xsl:for-each select="*">
-																		<xsl:copy-of select="current()"/>
-																	</xsl:for-each>
-																	<xsl:value-of select="current()"/>
-																</xsl:element>
-															</xsl:if>
-														</xsl:when>
-														<xsl:otherwise>
-															<xsl:copy-of select="current()"/>
-														</xsl:otherwise>
-													</xsl:choose>
-												</xsl:for-each>
+												<xsl:call-template name="copy_row"/>
 											</xsl:when>
 											<xsl:otherwise>
-												<xsl:copy-of select="current()"/>
+                        <xsl:call-template name="otherwise"/>
 											</xsl:otherwise>
 										</xsl:choose>
 									</xsl:for-each>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:copy-of select="current()"/>
+									<xsl:call-template name="otherwise"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:for-each>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:copy-of select="current()"/>
+						<xsl:call-template name="otherwise"/>
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:for-each>
 		</xsl:element>
 	</xsl:template>
+	
 	<xsl:template match="graphic">
 		<xsl:element name="graphic">
 			<xsl:for-each select="@*">
@@ -87,6 +81,7 @@
 			<xsl:attribute name="fileref"><xsl:value-of select="unparsed-entity-uri($ent)"/></xsl:attribute>
 		</xsl:element>
 	</xsl:template>
+	
 	<xsl:template match="*">
 		<xsl:variable name="newName">
 			<xsl:choose>
@@ -122,11 +117,33 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
-		<xsl:element name="{$newName}">
-			<xsl:for-each select="@*">
-				<xsl:copy/>
-			</xsl:for-each>
-			<xsl:apply-templates/>
-		</xsl:element>
+    <xsl:choose>
+      <xsl:when test="local-name() = 'ProductLine' or 
+                              local-name() = 'DocumentationCore' or
+                              local-name() = 'ProductDocumentation'">
+        <xsl:result-document method="xml" href="{resolve-uri(@filename,document-uri(/))}">
+          <xsl:element name="{$newName}">
+            <xsl:for-each select="@*">
+              <xsl:copy/>
+            </xsl:for-each>
+            <xsl:apply-templates/>
+          </xsl:element>
+        </xsl:result-document>
+      </xsl:when>
+      <xsl:when test="local-name() = 'Insert-After' or
+                              local-name() = 'Insert-Before' or
+                              local-name() = 'Replace-Nest'">
+        <xsl:call-template name="remove_fakes"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:element name="{$newName}">
+          <xsl:for-each select="@*">
+            <xsl:copy/>
+          </xsl:for-each>
+          <xsl:apply-templates/>
+        </xsl:element>
+      </xsl:otherwise>
+    </xsl:choose>
 	</xsl:template>
+	
 </xsl:stylesheet>

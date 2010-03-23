@@ -25,6 +25,19 @@
                 <xsl:attribute name="parenttype">
                   <xsl:value-of select="local-name(..)"/>
                 </xsl:attribute>
+                <xsl:if test="name()='d:FinalInfProduct' or
+                                  name()='d:DirTemplate' or
+                                  name()='d:Dictionary' or
+                                  name()='d:Directory'">
+                  <xsl:attribute name="productid">
+                    <xsl:value-of select="@productid[..]"/>
+                  </xsl:attribute>
+                </xsl:if>
+                <xsl:if test="name()='d:Product'">
+                  <xsl:attribute name="parentnameattr">
+                    <xsl:value-of select="@name[..]"/>
+                  </xsl:attribute>
+                </xsl:if>
                 <xsl:for-each select="@*">
                   <xsl:copy/>
                 </xsl:for-each>
