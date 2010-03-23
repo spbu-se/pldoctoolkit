@@ -422,12 +422,6 @@ VoidT importDocLineDoc()
 	i = F_Sprintf(buf,"%s", tmpDirPath);
 	i = F_Sprintf(buf+i,"\\docline\\temp\\");
 	tmpDirPath = F_StrCopyString((StringT)buf);
-	//if (!F_StrCat(tmpDirPath,F_StrCopyString("\\docline\\temp\\")))
-	//{
-	//	F_Printf(NULL,"%s\n","Copying. Concatenation error");
-	//	writeToChannel("Concatenation error");
-	//	return;
-	//}
 	filetmpPath = F_PathNameToFilePath (tmpDirPath, NULL, FDosPath);//since then filedirPath should be const
 	writeToChannel("Performing XSL Transformation... ");
 	if (!performImportXSLT(tmpDirPath)) return;
@@ -622,6 +616,86 @@ F_PropValsT generateBookUpdateParams()
 	return params;
 }
 
+BoolT setAttributeValue(F_ObjHandleT docID, F_ObjHandleT elemID, StringT attrName, StringT attrVal)
+{
+	F_AttributesT attrs;
+	F_AttributeT *attr;
+	IntT i;
+
+	if (!elemID)
+	{
+		writeToChannel("\tError. setAttributeValue: invalid element\n");
+		return FALSE;
+	}
+	attrs = F_ApiGetAttributes(docID,elemID);
+	for (i=0; i<attrs.len; i++)
+	{
+		attr = &(attrs.val[i]);
+		if (F_StrIEqual((*attr).name,attrName))
+		{
+			if ((*attr).values.len == 0)
+			{
+				(*attr).values.len = 1;
+				(*attr).values.val = (StringT *)F_Alloc(sizeof(StringT),NO_DSE);
+			}
+			(*attr).values.val[0] = F_StrCopyString(attrVal);
+			F_ApiSetAttributes(docID,elemID,&attrs);
+			return TRUE;
+		}
+	}
+
+	writeToChannel("\tError. setAttributeValue: no such attribute definition for this element\n");
+	return FALSE;
+}
+
+BoolT setSecondLevelAttributes(F_ObjHandleT bookID)
+{
+	F_ObjHandleT topID, secondID, compID;
+	F_AttributesT attrs, tmpAttrs;
+	F_AttributeT attr;
+	IntT i;
+
+	topID = F_ApiGetId(FV_SessionId, bookID, FP_HighestLevelElement);
+	if (!topID)
+	{
+		writeToChannel("\tError. setSecondLevelAttributes: No highest level element\n");
+		return FALSE;
+	}
+	secondID = F_ApiGetId(bookID,topID,FP_FirstChildElement);
+	while (secondID)
+	{
+		compID = F_ApiGetId(bookID,secondID,FP_FirstChildElement);
+		if (!compID) continue;
+		tmpAttrs = F_ApiGetAttributes(bookID,compID);
+		attrs = F_ApiCopyAttributes(&tmpAttrs);
+		for (i=0; i<attrs.len; i++)
+		{
+			attr = F_ApiCopyAttribute(&(attrs.val[i]));
+			if (attr.values.len != 0)
+			{
+				if (F_StrIEqual(attr.name,"ParentNameAttr"))
+				{
+					setAttributeValue(bookID,secondID,"Name",attr.values.val[0]);
+					continue;
+				}
+				else if (F_StrIEqual(attr.name,"ProductId"))
+				{
+					if (F_StrIEqual(F_ApiGetString(bookID,F_ApiGetId(bookID,secondID,FP_ElementDef),FP_Name),(StringT)"ProductDocumentation"))
+					{
+						setAttributeValue(bookID,secondID,"ProductId",attr.values.val[0]);
+						continue;
+					}
+				}
+			}
+			F_ApiDeallocateAttribute(&attr);
+		}
+		F_ApiDeallocateAttributes(&attrs);
+		secondID = F_ApiGetId(bookID,secondID,FP_NextSiblingElement);
+	}
+
+	return TRUE;
+}
+
 VoidT openFilesInDirectory(StringT path)
 {
 	StringT bookPath, dirPath;
@@ -637,6 +711,7 @@ VoidT openFilesInDirectory(StringT path)
 	params = generateBookUpdateParams();
 	F_ApiUpdateBook(bookID,&params,&returnParams);
 	//F_ApiSimpleGenerate(bookID,False,True);
+	if (!setSecondLevelAttributes(bookID)) return;
 	F_ApiSimpleSave(bookID,bookPath,False); 
 
 	F_ApiDeallocateString(&bookPath);

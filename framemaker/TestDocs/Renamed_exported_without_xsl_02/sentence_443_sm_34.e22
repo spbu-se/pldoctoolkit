@@ -1,0 +1,15 @@
+<InfElement id = "sentence_443_sm" name = "предложение443"
+    parenttype = "DocumentationCore"
+    filename = "Karta_obsluzivaniya_abonentskih_linii.drl"
+    FileName = "Karta_obsluzivaniya_abonentskih_linii.drl"
+    ParentType = "DocumentationCore">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+В нижней части окна приложения есть информация о названии станции.</InfElement>

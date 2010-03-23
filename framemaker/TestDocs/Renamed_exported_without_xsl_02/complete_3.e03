@@ -1,0 +1,23 @@
+<Product id = "complete"
+    name = "Электронная автоматическая телефонная станция Квант-Е-Сокол"
+    filename = "ProductLine.drl"
+    parentnameattr = "РМО 1.5 полная версия"
+    parenttype = "ProductLine" FileName = "ProductLine.drl"
+    ParentType = "ProductLine"
+    ParentNameAttr = "РМО 1.5 полная версия">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+
+</Product>

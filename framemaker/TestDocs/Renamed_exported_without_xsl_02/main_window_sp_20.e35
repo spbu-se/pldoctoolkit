@@ -1,0 +1,327 @@
+<InfElement id = "main_window_sp" name = "Главное окно"
+    parenttype = "DocumentationCore" filename = "Abonentskaya_panel.drl"
+    FileName = "Abonentskaya_panel.drl" ParentType = "DocumentationCore">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<section><title>Главное окно</title>
+<para>Главное окно программы выглядит так:</para>
+<informalfigure>
+<graphic entityref = "graphic112" width = "8.972in" align = "aleft"/></informalfigure>
+<para>Абонентская панель содержит следующую информацию об абоненте:</para>
+<para><command>Информация об абоненте, содержащаяся в абонентской
+панели</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Информация</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">Констр. адрес</entry>
+<entry colname = "2">Конструктивный адрес (см. «<xref linkend = "stradd"
+    role = "Undefined Cross-Reference"/>») оборудования, относящаяся
+к данному абоненту (стойка.этаж.тэз.комплект)</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Включ. в<xref linkend = "КП"
+    role = "Undefined Cross-Reference"/></entry>
+<entry colname = "2">Подключение абонента в коммутационное поле (модуль.тракт.канал)</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Номер</entry>
+<entry colname = "2">Станционный номер абонента</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Категория<xref linkend = "АОН"
+    role = "Undefined Cross-Reference"/></entry>
+<entry colname = "2">Устанавливается в соответствии с РД ОГСТФС</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Тип<xref linkend = "АТ"
+    role = "Undefined Cross-Reference"/></entry>
+<entry colname = "2">Тип телефона, устанавливается в соответствии
+с РД ОГСТФС</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Вид<xref linkend = "АЛ"
+    role = "Undefined Cross-Reference"/></entry>
+<entry colname = "2">Вид абонентской линии</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Состояние абонента</entry>
+<entry colname = "2"></entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Тип набора</entry>
+<entry colname = "2">Бывает трех видов – см. таблицу « Типы наборов номера»</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Класс обслуживания</entry>
+<entry colname = "2">На<xref linkend = "АТС"
+    role = "Undefined Cross-Reference"/>используются только указанные в
+таблице « Виды классов обслуживания»</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Административные услуги (включаются оператором)</entry>
+<entry colname = "2">см. таблицу « Административные услуги»</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Признак безотбойности</entry>
+<entry colname = "2"></entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1"><xref linkend = "ДВО"
+    role = "Undefined Cross-Reference"/><footnote><para><emphasis>Замечание</emphasis>:
+Рядом с<xref linkend = "ДВО" role = "Undefined Cross-Reference"/><emphasis>Код-пароль</emphasis>и<emphasis>Конференцсвязь</emphasis>отсутствуют индикаторы.
+Это обусловлено тем, что<xref linkend = "ДВО"
+    role = "Undefined Cross-Reference"/><emphasis>Код-пароль</emphasis>–
+это операторское<xref linkend = "ДВО"
+    role = "Undefined Cross-Reference"/>, пользователь не может его
+заказать или отменить, а<xref linkend = "ДВО"
+    role = "Undefined Cross-Reference"/><emphasis>Конференцсвязь</emphasis>не требует
+специальных действий для заказа.<xref linkend = "ДВО"
+    role = "Undefined Cross-Reference"/><emphasis>Код-пароль</emphasis>и<emphasis>Ввод/зам.
+к.-пароля</emphasis>могут быть разрешены или отменены только вместе.</para></footnote></entry>
+<entry colname = "2">Список возможных<xref linkend = "ДВО"
+    role = "Undefined Cross-Reference"/>, среди которых крестиком помечены разрешённые,
+а зелёным кружочком заказанные (текущие), расшифровка и принцип действия указаны
+в файле<xref linkend = "ДВО" role = "Undefined Cross-Reference"/>.doc.</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Код-пароль на<xref linkend = "ДВО"
+    role = "Undefined Cross-Reference"/><Nest id = "alarm_clock"></Nest></entry>
+<entry colname = "2">(если таковой имеется)</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Переадресат</entry>
+<entry colname = "2">Номер телефона, на который осуществляется переадресация входящих вызовов, при заказанном соответствующем<xref
+    linkend = "ДВО" role = "Undefined Cross-Reference"/></entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Запрет ИС (адм./усл.)</entry>
+<entry colname = "2">Запрет исходящей связи пользователем, среди которых крестиком помечены запрещённые,
+а зелёненьким кружочком помечены заказанные</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Контроль частоты потерь</entry>
+<entry colname = "2">Согласно РД 45.051-99, для расчета установлены пороговые значения, см. таблицу
+« Пороговые значения контроля частоты потерь»</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">Контроль кратковременных занятий</entry>
+<entry colname = "2">Согласно РД 45.051-99</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>Виды классов обслуживания</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Вид</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">Обычный</entry>
+<entry colname = "2">Телефонный аппарат</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">Захват<xref linkend = "СЛ"
+    role = "Undefined Cross-Reference"/></entry>
+<entry colname = "2">Телефонный аппарат, с которого возможен «прозвон» конкретной<xref
+    linkend = "СЛ" role = "Undefined Cross-Reference"/></entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>Типы наборов номера</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Тип</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">Декадный</entry>
+<entry colname = "2">Только декадный набор цифр</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Частотный</entry>
+<entry colname = "2">Только частотный набор цифр</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">Универсальный</entry>
+<entry colname = "2">Может быть как декадный, так и частотный(устанавливается абонентом на
+ТА)</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>Административные услуги</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Услуга</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1"><xref linkend = "АОН"
+    role = "Undefined Cross-Reference"/></entry>
+<entry colname = "2">выдача информации<xref linkend = "АОН"
+    role = "Undefined Cross-Reference"/>в абонентскую линию</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Регистрация входящих вызовов</entry>
+<entry colname = "2"></entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">Признак трассировки</entry>
+<entry colname = "2">включение трассы регистрации событий для абонента</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>Расшифровка некоторых ДВО, не совпадающих с файлом</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1"><xref linkend = "ДВО"
+    role = "Undefined Cross-Reference"/></entry>
+<entry colname = "2">Расшифровка</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1"><xref linkend = "ЗВС"
+    role = "Undefined Cross-Reference"/></entry>
+<entry colname = "2">Запрет входящей связи</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1"><xref linkend = "ЗИС"
+    role = "Undefined Cross-Reference"/></entry>
+<entry colname = "2">Запрет некоторых видов исходящей связи</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1"><xref linkend = "ОВУ"
+    role = "Undefined Cross-Reference"/></entry>
+<entry colname = "2">Отмена всех услуг</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1"><xref linkend = "ООВ"
+    role = "Undefined Cross-Reference"/><Nest id = "alarm_clock_a"></Nest></entry>
+<entry colname = "2">Ожидание с обратным вызовом</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>Пороговые значения контроля частоты потерь</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Параметр</entry>
+<entry colname = "2">Значение</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">Порог Вызовов</entry>
+<entry colname = "2">10</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Порог Потерь</entry>
+<entry colname = "2">5</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Порог Реабилитации</entry>
+<entry colname = "2">5</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Порог Кратковременных занятий</entry>
+<entry colname = "2">5</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">Длительность Кратковременных занятий</entry>
+<entry colname = "2">256</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para>При запуске приложения автоматически появляются данные абонента
+с индексом равным 1. Последующее фокусирование приложения на нужного
+абонента осуществляется либо изменением его номера в поле<emphasis>Номер</emphasis>,
+либо при помощи функции<emphasis>Найти</emphasis>. При изменении
+номера просматриваемого абонента информация в панели будет автоматически
+обновлена.</para>
+<para>В момент загрузки абонентских данных из станции внизу появляется
+линейка прогресса загрузки данных. При необходимости вы можете обновить
+данные абонента нажатием кнопки<emphasis>Прочитать</emphasis>. Например,
+для определения текущего состояния абонента, значение которого носит
+динамический характер и меняется в зависимости от действий абонента.</para>
+<para>При включенном<xref linkend = "ДВО"
+    role = "Undefined Cross-Reference"/><emphasis>код-пароль</emphasis>появляется
+панель с кодами-паролями (по умолчанию FFFF), первый из которых
+является текущим (он показывается только пользователям с администраторскими
+привилегиями).</para>
+<para>При нажатии кнопки меню<emphasis>Найти->Поиск</emphasis>,
+активизируется панель поиска абонента.</para>
+<para>При нажатии кнопки<emphasis>Найти->Фильтр</emphasis>, активизируется
+форма фильтрации абонента.</para>
+<para>При необходимости оператор может непосредственно из абонентской
+панели активизировать другие приложения<xref linkend = "РМО"
+    role = "Undefined Cross-Reference"/>, позволяющие просматривать
+статистические данные, связанные с данным абонентом и абонентской
+линией, выполнять тестирование и проключение нужных каналов на данного
+абонента:</para>
+<Nest id = "appl_from_com"></Nest>
+<para>Как говорилось ранее, есть возможность запускать СММ-скрипты
+с параметрами, характерными для выбранного абонента. Для этого нужно
+нажать на кнопку меню<emphasis>Запустить скрипт</emphasis>и в списке
+выбрать нужный скрипт для запуска. Настройка списка скриптов осуществляется
+в файле<filename>AbonentScripts.xml</filename>. Список доступных скриптов
+может быть пустой. Стоит отметить, что синхронизация абонентских
+данных также реализована в виде CMM-скрипта и по умолчанию является
+первым скриптом в списке, при условии, что файл<filename>AbonentScripts.xml</filename>содержит
+соответствующую информацию.</para>
+<para>В пункте меню<emphasis>Команды</emphasis>, наряду с другими,
+есть два подпункта<emphasis>Прочитать</emphasis>и<emphasis>Прочитать
+полностью</emphasis>. Разница между ними заключатся в том, что<emphasis>Прочитать</emphasis>вычитывает
+из станции информацию об абоненте, кроме значений<emphasis>Коды паролей</emphasis>,
+а<emphasis>Прочитать полностью</emphasis>– всю информацию. Такое
+разделение связано с конструктивными особенностями станции. Вычитывание
+из станции информации об абоненте, кроме значений<emphasis>Коды
+паролей</emphasis>, происходит быстрее.</para>
+<para><emphasis>Пункт меню Справка</emphasis></para>
+<para>При нажатии на эту кнопку вызывается справка приложения.</para></section></InfElement>

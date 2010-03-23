@@ -36,5 +36,6 @@ VoidT addStructuredElementToBook(F_ObjHandleT bookID, F_ObjHandleT newBookID, F_
 StringT getMainBookName(F_ObjHandleT bookID);
 BoolT getMainBookTemplate(StringT path);
 BoolT getMainBookEDD(StringT *path);
+BoolT getTempDirPath(StringT *path);
 
 #endif //COMMON_H

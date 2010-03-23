@@ -371,6 +371,18 @@ BoolT setDefaultDirectory(StringT dirPath)
 	return TRUE;
 }
 
+BoolT getTempDirPath(StringT *path)
+{
+	StringT clPath, suffix;
+
+	clPath = F_StrCopyString(F_ApiClientDir());
+	suffix = F_StrCopyString("\\docline\\temp\\");
+	*path = (StringT)F_Alloc((F_StrLen(clPath)+F_StrLen(suffix)+1)*sizeof(UCharT),NO_DSE);
+	F_Sprintf((*path),"%s%s",F_StrCopyString(clPath),F_StrCopyString(suffix));
+	F_ApiDeallocateString(&clPath);
+	F_ApiDeallocateString(&suffix);
+}
+
 BoolT cleanTempDirectory()
 {
 	DirHandleT handle;
@@ -379,10 +391,7 @@ BoolT cleanTempDirectory()
 	StringT tmpDirPath;
 	FilePathT *tmpDirFilepath, *file;
 
-	tmpDirPath = F_StrCopyString(F_ApiClientDir());
-	i = F_Sprintf(buf,"%s",tmpDirPath);
-	i = F_Sprintf(buf+i,"\\docline\\temp\\");
-	tmpDirPath = F_StrCopyString((StringT)buf);
+	if (!getTempDirPath(&tmpDirPath)) return FALSE;
 	tmpDirFilepath = F_PathNameToFilePath(tmpDirPath,NULL,FDosPath);
 	handle = F_FilePathOpenDir(tmpDirFilepath, &statusp);
 	if (!handle)
