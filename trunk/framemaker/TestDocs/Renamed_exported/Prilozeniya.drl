@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Prilozeniya.drl">
+   <d:InfElement id="applications" name="Приложения" parenttype="DocumentationCore"
+                 filename="Prilozeniya.drl">
+
+
+
+
+
+
+
+
+
+      <chapter>
+         <title>Приложения</title>
+         <d:InfElemRef id="ref_system_applications" infelemid="system_applications"/>
+         <d:InfElemRef id="ref_embedded_software" infelemid="embedded_software"/>
+         <d:InfElemRef id="ref_monitoring" infelemid="monitoring"/>
+         <d:InfElemRef id="ref_join_in_applications" infelemid="join_in_applications" optional="true"/>
+      </chapter>
+   </d:InfElement>
+</d:DocumentationCore>

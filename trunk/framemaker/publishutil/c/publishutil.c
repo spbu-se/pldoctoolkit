@@ -82,6 +82,16 @@ int splitFileTo(char *filePath, char *out_dir_path)
 	return 1;
 }
 
+int copyFilesFromTempDirectoryTo(char **files, int len, char *out_dir_path)
+{
+	int i;
+	for (i=0; i<len; i++)
+	{
+		if (!splitFileTo(files[i],out_dir_path)) continue;
+	}
+	return 1;
+}
+
 
 
 int mergeFilesTo(char **files, int len, char *out_file_name)
