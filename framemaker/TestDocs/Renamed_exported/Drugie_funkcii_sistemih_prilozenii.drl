@@ -1,0 +1,3460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl"
+                     filename="Drugie_funkcii_sistemih_prilozenii.drl">
+   <d:InfElement id="join_in_sysappl" name="Другие функции Системных приложений"
+                 parenttype="DocumentationCore"
+                 filename="Drugie_funkcii_sistemih_prilozenii.drl">
+
+
+
+
+
+
+
+
+
+      <section>
+         <title id="tri_odin_odin" xreflabel="3.1.1. Маршрутизатор">3.1.1. Маршрутизатор</title>
+         <section>
+            <title>Обзор</title>
+            <para>Маршрутизатор<xref linkend="РМО" role="Undefined Cross-Reference"/>служит для выполнения следующих
+функций:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>поддержка перманентного канала для
+обмена данными между<xref linkend="РМО" role="Undefined Cross-Reference"/>и<xref linkend="АТС" role="Undefined Cross-Reference"/>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>обеспечение подключения нескольких<xref linkend="РМО" role="Undefined Cross-Reference"/>к одной<xref linkend="АТС" role="Undefined Cross-Reference"/>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>обеспечение работы серверов<xref linkend="РМО" role="Undefined Cross-Reference"/>
+                  </para>
+               </listitem>
+            </itemizedlist>
+            <para>Программа предназначена для работы на локальном станционном<xref linkend="PC" role="Undefined Cross-Reference"/>, опционально оборудованным
+модемом (модемами) и<xref linkend="IP" role="Undefined Cross-Reference"/>каналом для организации
+удаленных подключений.</para>
+            <para>Так как программа предназначена для работы в неинтерактивном
+режиме, пользовательский интерфейс ограничен минимумом функций.
+Это позволило упростить реализацию и повысить надежность программы.
+Все настройки программы задаются в конфигурационном файле.</para>
+         </section>
+         <section>
+            <title>Главное окно</title>
+            <para>Главное окно разделено на две части:</para>
+            <informalfigure float="0">
+               <graphic width="10.806in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/router.gif"/>
+            </informalfigure>
+            <para>
+               <emphasis>Активные соединения</emphasis>
+            </para>
+            <para>В этом списке отображаются все активные на настоящий момент
+соединения, включая соединения со всеми модулями станции и всеми
+подключенными<xref linkend="РМО" role="Undefined Cross-Reference"/>.
+В графе<emphasis>Описание</emphasis>отображается дополнительная
+информацио о соединении, если таковая доступна. В графе<emphasis>Состояние</emphasis>показывается
+состояние соединения, если соединение может находится в нескольких
+состояниях.</para>
+            <para>
+               <emphasis>Коммуникационные порты</emphasis>
+            </para>
+            <para>В этом списке отображаются состояния всех открытых коммуникационных
+портов, через которые к маршрутизатору могут быть подключены модули
+станции и другие<xref linkend="РМО" role="Undefined Cross-Reference"/>, а также состояния модемов,
+если таковые имеются. Графа<emphasis>Направление</emphasis>показывает,
+каким образом маршрутизатор работает с данным портом и может принимать
+значения модем или локально. В графе<emphasis>Состояние</emphasis>указывается,
+к какому модулю подключен маршрутизатор через данный порт.</para>
+            <para>Конфигурирование</para>
+            <para>Конфигурационный файл описывает конфигурацию маршрутизатора.
+Файл состоит из нескольких частей, конфигурирующих различные подсистемы
+маршрутизатора.</para>
+            <para>
+               <command moreinfo="none">Описание конфигурационного файла маршрутизатора</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Секция конфигурационного файла</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">[TCPIP]</entry>
+                        <entry colname="2">Конфигурирует TCP сервер. Параметром port задается TCP
+порт, на котором маршрутизатор будет ожидать подключения TCP клиентов<xref linkend="РМО" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">[Lines]</entry>
+                        <entry colname="2">Предназначена для описания топологии внутренней сети станции. Представляет
+из себя набор строк вида &lt;модуль_УКС&gt;=&lt;модуль_N1&gt;[,&lt;модуль_N2&gt;…],
+где модуль, указанный в первой по порядку строке - тот модуль станции,
+к которому подключено<xref linkend="РМО" role="Undefined Cross-Reference"/>. Модули в правой части равенства (&lt;модуль_N1&gt;, &lt;модуль_N2&gt;, &lt;модуль_N3&gt;
+и т. д.)- непосредственно подключены к соответствующему модулю в левой части равенства.</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">[Station]</entry>
+                        <entry colname="2">Содержит таблицу параметров станции. Параметры используются программами<xref linkend="РМО" role="Undefined Cross-Reference"/>, работающими совместно с маршрутизатором. Параметр Tablo может принимать следующие значения:<itemizedlist>
+                              <listitem>
+                                 <para>0 – периферийное устройство аварийной панели в системе отсутствует</para>
+                              </listitem>
+                              <listitem>
+                                 <para>1-255 – используется табло аварийной сигнализации, подключаемое
+к локальному станционному компьютеру через последовательный интерфейс<xref linkend="RS" role="Undefined Cross-Reference"/>. Значение параметра соответствует номеру последовательного порта Windows</para>
+                              </listitem>
+                              <listitem>
+                                 <para>256 и более – используется табло аварийной сигнализации, подключаемое посредством релейной платы, установленной
+в локальный станционный компьютер. В этом случае число соответствует базовому адресу порта ввода-вывода релейной платы.</para>
+                              </listitem>
+                           </itemizedlist>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">[Channels]</entry>
+                        <entry colname="2">Описывает все коммуникационные порты, используемые маршрутизатором. Представляет
+из себя набор строк вида &lt;название_секции_описания_порта&gt;=&lt;описание_порта&gt;</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Секции описания портов</entry>
+                        <entry colname="2">Служат для описания параметров коммуникационных портов. Для
+того, чтобы маршрутизатор использовал данные этой секции ссылка
+на нее должна быть сделана из секции [Channels].</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <emphasis>Параметры коммуникационных портов</emphasis>
+            </para>
+            <para>Приведённые ниже настройки не используются при работе<xref linkend="РМО" role="Undefined Cross-Reference"/>в режиме<xref linkend="ЦТО" role="Undefined Cross-Reference"/>. (см.
+разд. «<xref linkend="rvrCTO" role="Undefined Cross-Reference"/>»)</para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Параметр</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">port</entry>
+                        <entry colname="2">Уникальное имя порта Windows, например «COM2»</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">speed</entry>
+                        <entry colname="2">Скорость порта в бит/с., например 19200</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">modem</entry>
+                        <entry colname="2">Ненулевое значение этого параметра показывает, что
+на этом порту установлен модем. По умолчанию маршрутизатор предполагает отсутствие модема.</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+      </section>
+      <section>
+         <title id="tri_odin_dva" xreflabel="3.1.2. Серверы РМО">3.1.2.
+Серверы РМО</title>
+         <section>
+            <title>Обзор</title>
+            <para>
+               <emphasis>Введение</emphasis>
+            </para>
+            <para>Северы<xref linkend="РМО" role="Undefined Cross-Reference"/>это
+набор приложений автоматически запускаемый при старте Маршрузитзатора (см.
+разд. «<xref endterm="tri_odin_odin" linkend="tri_odin_odin"
+                     role="Undefined Cross-Reference"/>»), обеспечивают обслуживание<xref linkend="АТС" role="Undefined Cross-Reference"/>и предоставляют широкие
+возможности по управлению внутренним<xref linkend="ПО" role="Undefined Cross-Reference"/>
+               <xref linkend="АТС" role="Undefined Cross-Reference"/>. В более ранних версиях<xref linkend="РМО" role="Undefined Cross-Reference"/>функциональность
+всех серверных приложений была реализована в рамках одного приложения
+Сервера<xref linkend="РМО" role="Undefined Cross-Reference"/>(см.
+разд. «<xref endterm="tri_odin_dva" linkend="tri_odin_dva" role="Undefined Cross-Reference"/>»), однако с увеличением количества
+серверных приложений уменьшалась надежность, что приводило к большему количеству
+сбоев. Поэтому в<xref linkend="РМО" role="Undefined Cross-Reference"/>1.5 архитектура серверных
+приложений претерпела значительные изменения – теперь функциональность
+каждого сервера вынесена в отдельное приложение, что значительно
+увеличило надежность и отказоустойчивость системы. Для удобства
+пользователя, все серверные приложения интегрированы на уровне пользовательского
+интерфейса. Более подробно архитектура серверов<xref linkend="РМО" role="Undefined Cross-Reference"/>1.5 описана в разделе «<xref linkend="odin_tri_4et" role="Undefined Cross-Reference"/>»</para>
+            <para>
+               <emphasis>Загрузка серверов РМО</emphasis>
+            </para>
+            <para>Сервера<xref linkend="РМО" role="Undefined Cross-Reference"/>стартуют
+автоматически при старте маршрутизатора, если при загрузке последнего
+не произошло никаких ошибок. Первым стартует главное приложение
+Сервера<xref linkend="РМО" role="Undefined Cross-Reference"/>. Оно
+читает из системного реестра список зарегистрированных серверов<xref linkend="РМО" role="Undefined Cross-Reference"/>и начинает
+их последовательно запускать. Процесс загрузки серверов отображается
+в информационном окне:</para>
+            <informalfigure float="0">
+               <graphic width="4.514in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/otkrytie-serverov.gif"/>
+            </informalfigure>
+            <para>После загрузки всех серверов главное окно маршрутизатора примет
+вид:</para>
+            <informalfigure float="0">
+               <graphic width="10.694in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/zakladka-serverarmo.gif"/>
+            </informalfigure>
+            <para>Теперь пользовательский интерфейс каждого сервера доступен
+через закладку соответствующую имени сервера.</para>
+            <para>
+               <emphasis>Работа серверов</emphasis>
+            </para>
+            <para>Поскольку при работе отдельных серверов все еще возможны ошибки
+и сбои, главное приложение осуществляет постоянный мониторинг жизнеспособности
+каждого из запущенных серверов. Если сервер не отвечает в течении
+10 секунд или при попытке обратиться к серверу возникают ошибки,
+то он автоматически перезапускается. при перезапуске сервера пользователь
+видит окно:</para>
+            <informalfigure float="0">
+               <graphic width="4.514in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/otkrytie-serverov-2.gif"/>
+            </informalfigure>
+            <para>Иногда, при ошибке конфигурации данных или структуры объектов<xref linkend="ФПО" role="Undefined Cross-Reference"/>, возникают ситуации
+когда работа одного из серверов становиться нестабильной и ошибки
+в нем начинают возникать слишком часто. Это может привести к постоянным
+перезапуском сервера и, в итоге, к нестабильности всей системы серверов<xref linkend="РМО" role="Undefined Cross-Reference"/>. Для
+избежания этого введено ограничение на минимальное время устойчивой
+работы. Сервра проработавшие после запуска меньше минуты не будут
+перезапущены.</para>
+            <para>Иногда возникают ситуации когда один из серверов «зависает»,
+входя в бесконечный цикл или бесконечное ожидание. При этом, если
+его пользовательский интерфейс был в момент зависания активен, возникает
+ситуация когда «зависает» и основное приложение серверов<xref linkend="РМО" role="Undefined Cross-Reference"/>, т.е.
+ошибка при работе сервера не будет обнаружена. Для таких случаев предусмотрен
+специальный механизм, работающий внутри каждого сервера и отлавливающий
+ситуации возможного зависания. В случае если главный поток исполнения сервера
+зависает и перестает обрабатывать сообщения, сервер закрывается
+экстренным образом. Однако, при сильной загрузке операционной системы
+возможны ситуации, когда сервер не «завис», а просто работает медленно
+из-за перегруженности центрального процессора. Для того чтобы избежать
+неправомерного закрытия сервера в таких случаях требуется подтверждение
+пользователя.</para>
+            <para>В качестве дополнительного механизма защиты от сбоев, работоспособность
+главного приложения Сервера<xref linkend="РМО" role="Undefined Cross-Reference"/>контролируется со стороны
+маршрутизатора. Если в течении 10 секунд главное приложение не ответит
+на запрос или при обращении к нему произойдет ошибка, главное приложение
+Сервера<xref linkend="РМО" role="Undefined Cross-Reference"/>(см.
+разд. «<xref endterm="tri_odin_dva" linkend="tri_odin_dva" role="Undefined Cross-Reference"/>») будет перезапущено. При
+этом пользователь увидит окно с текстом «Идёт перезапуск серверов<xref linkend="РМО" role="Undefined Cross-Reference"/>! Подождите
+пожалуйста…».</para>
+            <para>Перед тем как перезапустить главное приложение маршрутизатор
+ждет 20 секунд. Этот интервал времени введен для того, чтобы остальные
+серверные приложения смогли обнаружить некорректность в работе главного
+и закрыться. Минимальное время работы для главного приложения 1
+минута. Если ошибка в работе будет обнаружено меньше чем через минуту
+после старта, главное приложение Сервера<xref linkend="РМО" role="Undefined Cross-Reference"/>не будет перезапущено.</para>
+            <para>
+               <emphasis>Журнал работы сервера</emphasis>
+            </para>
+            <para>Каждый сервер в процессе работы ведет запись всех важных событий
+в специальный файл журнала. Эти файлы находятся в папке<command moreinfo="none">ServerLogs</command>корневой
+папки<xref linkend="РМО" role="Undefined Cross-Reference"/>.
+Каждый файл имеет расширение<command moreinfo="none">log</command>. Имя файла состоит
+из двух частей:<filename moreinfo="none">Имя_приложения</filename>(<filename moreinfo="none">дата_запуска</filename>).
+Дата запуска указывается с точностью до дня в формате ДД.ММ.ГГ.
+Имя приложения соответствует имени исполняемого файла сервера. Иногда
+имя приложения урезается до 8 букв по правилам преобразования имен Windows
+в имена MS-DOS.</para>
+            <para>В журнале работы сервера могут встретиться записи четырех
+видов:</para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Информация</entry>
+                        <entry colname="2">Сообщение о нормальном событии в нормальной
+работе сервера</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Предупреждение</entry>
+                        <entry colname="2">Сообщение об опасном событии в нормальной работе сервера</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Ошибка</entry>
+                        <entry colname="2">Сообщение о серьезном сбое при работе сервера. То,
+что сообщение об ошибке появилось в журнале работы сервера указывает на
+то, что сервер смог обнаружить ошибку работы и восстановиться после нее. Однако серия таких ошибок может привести
+к неисправимым последствиям и сервер будет перезапущен. В этом случае сообщения о предшествующих перезапуску
+событиях могут помочь установить причину сбоя в работе сервера</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Debug</entry>
+                        <entry colname="2">Сообщения выведенное в журнал разработчиком сервера
+в целях отладки приложения. как правила являются совершенно неинформативным
+для всех, кроме самого разработчика</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>Журналы работы сервера рекомендуется хранить некоторое время.
+Если произошло какое-либо исключительное событие, например сервера
+закрылись выдав неприятное сообщение об ошибке, рекомендуется собрать
+журналы работы за этот день в определенное место и отправить в службу
+поддержки.</para>
+         </section>
+         <section>
+            <title>Главное окно</title>
+            <para>В этом разделе справки в будущем будет описаны возможности
+по настройке параметров серверов и управлению ходом их работы.</para>
+         </section>
+      </section>
+      <section>
+         <title id="tri_odin_tri" xreflabel="3.1.3. Панель станции">3.1.3. Панель
+станции</title>
+         <section>
+            <title>Обзор</title>
+            <para>Приложение Панель станции предназначено для визуального мониторинга
+текущего состояния оборудования станции, а так же для удобной навигации
+по оборудованию и абонентским данным. Основной диалог приложения
+содержит изображение станции в виде фасада статива (стойки). Т.
+е. оператор как бы наблюдает стойку станции. Изображение соответствует
+реальному внешнему виду станции и содержит все блоки, входящие в
+состав данной стойки. Текущее состояние блоков определяется их цветом
+на панели станции.</para>
+         </section>
+         <section>
+            <title>Главное окно</title>
+            <para>Главное окно позволяет проводить навигацию по стативам, этажам
+и платам станции, для получения полной информации по любому элементу
+оборудования. Состоит из нескольких основных частей:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Список стативов</para>
+               </listitem>
+               <listitem>
+                  <para>Информация о всех платах станции</para>
+               </listitem>
+               <listitem>
+                  <para>Детальная информация о выбранном элементе</para>
+               </listitem>
+               <listitem>
+                  <para>Панель управления</para>
+               </listitem>
+               <listitem>
+                  <para>Строка состояния</para>
+               </listitem>
+            </itemizedlist>
+            <para>
+               <emphasis>Список стативов</emphasis>
+            </para>
+            <informalfigure float="0">
+               <graphic width="2.736in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/spispok-stativov.gif"/>
+            </informalfigure>
+            <para>Отображает список стативов в составе станции. Рядом с именем
+статива расположен цветовой индикатор. Зеленый цвет индикатора говорит
+о корректной работе статива. Желтый цвет о неизвестном состоянии
+статива. Красный цвет индикатора сигнализирует о наличии аварий
+в оборудовании статива.</para>
+            <para>
+               <emphasis>Информация о всех платах станции</emphasis>
+            </para>
+            <informalfigure float="0">
+               <graphic width="11.000in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Панель-станции(приложение).gif"/>
+            </informalfigure>
+            <para>Отображает состояние всех плат станции. Зеленый цвет платы
+говорит о её нормальной работе. Темно серый – информация о плате
+в данный момент не доступна. Красный цвет платы сигнализирует о
+её аварии. В случае плат поля или УУСов рамка вокруг изображения
+платы говорит о том, что в данный момент это поле или УУС активно.
+Если изображение платы покрыто диагональной сеткой, значит эта плата
+выбрана для получения детальной информации. Чтобы выбрать плату
+достаточно один раз щелкнуть правой кнопкой мыши по изображению
+платы.</para>
+            <para>
+               <emphasis>Детальная информация о выбранном элементе</emphasis>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Примерный вид</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="7.542in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-обзор.gif"/>
+                        </entry>
+                        <entry colname="2">
+                           <emphasis>Общая информация об элементе</emphasis>Содержит информацию
+о тезоместе платы, её модулю, а также подробное описание аварии
+в случае ее наличия</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="7.361in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Панель-станции(прилож.)-рег.gif"/>
+                        </entry>
+                        <entry colname="2">
+                           <emphasis>Регистры платы</emphasis>Содержит информацию
+о регистрах платы в двоичном и шеснадцатиричном виде</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="7.542in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-абоненты.gif"/>
+                        </entry>
+                        <entry colname="2">
+                           <emphasis>Информация о абонентах</emphasis>Содержит информацию
+о абонентах, подключенных к плате</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="7.542in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-тракты.gif"/>
+                        </entry>
+                        <entry colname="2">
+                           <emphasis>Информация о трактах</emphasis>Содержит список трактов, подключенных
+к плате с их детальным описанием. Рядом с номером каждого тракта находится цветовой индикатор. Зеленый цвет индикатора говорит
+о нормальной работе тракта. Желтый цвет – о невозможности считать состояние тракта. Красный цвет сигнализирует
+о наличии аварий в тракте</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="6.861in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-kanaly.gif"/>
+                        </entry>
+                        <entry colname="2">
+                           <emphasis>Информация о каналах</emphasis>Содержит информацию
+о каналах, подключенных к плате, с описанием их направления</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">
+                           <graphic width="7.542in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-testy.gif"/>
+                        </entry>
+                        <entry colname="2">
+                           <emphasis>Список допустимых тестов для платы</emphasis>Содержит список сценариев тестирования, допустимых
+для данного типа плат. Для запуска сценария достаточно дважды щелкнуть мышью
+на его названии.<command moreinfo="none">ВНИМАНИЕ!!!!</command>Запускать сценарии тестирования
+не возможно во встроенной в сервера версии приложения</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <emphasis>Панель управления</emphasis>
+            </para>
+            <para>Панель управления содержит три кнопки:</para>
+            <informalfigure float="0">
+               <graphic width="10.181in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopki-panel.gif"/>
+            </informalfigure>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="3" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <colspec colnum="3" colname="3" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Кнопка</entry>
+                        <entry colname="2">Название</entry>
+                        <entry colname="3">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="0.569in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopka1.gif"/>
+                        </entry>
+                        <entry colname="2">Переключить ствол</entry>
+                        <entry colname="3">Смена активного поля</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="0.681in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopka2.gif"/>
+                        </entry>
+                        <entry colname="2">Управление табло</entry>
+                        <entry colname="3">Открывает меню управления табло</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">
+                           <graphic width="0.444in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stanzii-knopka3.gif"/>
+                        </entry>
+                        <entry colname="2">Справка</entry>
+                        <entry colname="3">Вывод справки</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>Управление табло осуществляется с помощью следующего меню<emphasis>Управление
+табло</emphasis>:</para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Погасить табло</entry>
+                        <entry colname="2">Выключает все лампочки на табло</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Выставить аварии</entry>
+                        <entry colname="2">Включает лампочки на табло в соответствии с замеченными авариями</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Редактор ламп</entry>
+                        <entry colname="2">Вызывает редактор ламп, позволяющий задать параметры отображения
+аварий на табло (см. раздел Настройки табло)</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Настроить табло</entry>
+                        <entry colname="2">Вызывает окно с настройками табло (см. раздел Настройки табло)</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <emphasis>Строка состояния</emphasis>
+            </para>
+            <para>Строка состояния содержит информацию о состоянии подключения
+к станции.</para>
+            <para>Настройка табло</para>
+            <para>Настройка аварийной сигнализации выполняется с помощью редактора,
+который можно вызвать из приложения Серверы (см. разд. «<xref endterm="tri_odin_dva" linkend="tri_odin_dva" role="Undefined Cross-Reference"/>») и Монитор (см. разд.
+«<xref linkend="tri_tri_4et" role="Undefined Cross-Reference"/>»),
+выбрав соответствующий пункт меню.</para>
+            <para>В редакторе в виде таблицы отображен список имеющихся аварий
+и их параметры, ниже приведен пример и описание параметров:</para>
+            <informalfigure float="0">
+               <graphic width="7.778in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-nastrojka-ta.gif"/>
+            </informalfigure>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Столбец</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Сигнализация</entry>
+                        <entry colname="2">Название аварии, оно же – сообщение, которое выдается
+в консоли Серверов. Название можно изменять только для датчиков</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Включено</entry>
+                        <entry colname="2">Значения «<command moreinfo="none">Да/Нет</command>» означают, что состояние аварии, соответственно, включено/выключено.
+Если авария выключена, то она не отслеживается и не будет сгенерирована</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Индикатор</entry>
+                        <entry colname="2">Номер индикатора на табло, который будет загораться при возникновении
+аварии. Значение «<command moreinfo="none">Нет</command>» означает, что индикатор не
+задан</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Звонок</entry>
+                        <entry colname="2">Определяет должна ли авария сопровождаться сиреной</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Замкнутый</entry>
+                        <entry colname="2">Используется только для датчиков, значение<command moreinfo="none">«Да/Нет»</command>определяют
+тип датчика – соответственно замкнутый/разомкнутый.</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>Параметры имеющие значение «–» не подлежат изменению и не
+влияют на работу аварийной панели.</para>
+            <para>
+               <emphasis>Настройка табло аварийной сигнализации</emphasis>
+            </para>
+            <para>Аварийную панель можно подключать к портам COM1, COM2 и т.д.,
+после чего, необходимо указать, к какому именно порту произведено
+подключение. Одновременно управлять аварийной сигнализацией может
+только одно приложение. Ниже приведено окно настроек, которое позволяет
+настроить порт, тип и управляющее приложение для табло:</para>
+            <informalfigure float="0">
+               <graphic width="4.931in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-tablo-nastro.gif"/>
+            </informalfigure>
+            <para>Примечания:</para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Тип</entry>
+                        <entry colname="2">Новое или старое табло</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Владелец</entry>
+                        <entry colname="2">Приложение Серверы РМО (см. разд. «<xref endterm="tri_odin_dva" linkend="tri_odin_dva" role="Undefined Cross-Reference"/>») или Монитор (см. разд. «<xref linkend="tri_tri_4et" role="Undefined Cross-Reference"/>»)</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Порт</entry>
+                        <entry colname="2">Любой из COM-портов (см. «COM-порт»), имеющихся
+в системе</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+      </section>
+      <section>
+         <title id="tri_odin_4" xreflabel="3.1.4. Сервер консоли">3.1.4. Сервер
+консоли</title>
+         <section>
+            <title>Обзор</title>
+            <para>Сервер консоли предназначен для обработки сообщений приходящие
+в и от определенных объектов функционального программного обеспечения<xref linkend="АТС" role="Undefined Cross-Reference"/>. Эти
+сообщения могут сигнализировать о различных важных события, происходящих
+с<xref linkend="АТС" role="Undefined Cross-Reference"/>,
+например о рестарте одного и модулей. Помимо этого, сервер консоли
+может быть использован другими приложениями<xref linkend="РМО" role="Undefined Cross-Reference"/>для вывода сообщений о различных
+важных событиях их работы. Оператор может использовать информацию,
+собранную в сервере консоли, для выяснения причин тех или иных неполадок
+в работе как внешнего обслуживающего<xref linkend="ПО" role="Undefined Cross-Reference"/>, так и внутреннего<xref linkend="ПО" role="Undefined Cross-Reference"/>
+               <xref linkend="АТС" role="Undefined Cross-Reference"/>.</para>
+            <para>Сервер консоли создан с использованием технологии<xref linkend="DCOM" role="Undefined Cross-Reference"/>. Реализован
+в приложении ConsoleServer.exe.</para>
+         </section>
+         <section>
+            <title>Функции</title>
+            <para>Сервер консоли предназначен для предоставления оператору информации
+о ходе работы внутреннего<xref linkend="ПО" role="Undefined Cross-Reference"/>
+               <xref linkend="АТС" role="Undefined Cross-Reference"/>(<xref linkend="ФПО" role="Undefined Cross-Reference"/>) и внешнего обслуживающего<xref linkend="ПО" role="Undefined Cross-Reference"/>(<xref linkend="РМО" role="Undefined Cross-Reference"/>). Собранная
+информация сохраняется в локальной базе данных для использования
+совместно с программой Журнал (см. разд. «<xref endterm="tri_odin_odinn" linkend="tri_odin_odinn"
+                     role="Undefined Cross-Reference"/>»).</para>
+            <para>
+               <emphasis>Сообщения в консоли</emphasis>
+            </para>
+            <para>В окне сервера консоли могут появляться следующие сообщения:</para>
+            <para>
+               <command moreinfo="none">Сообщения системных процессов станции</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Примерный вид сообщения</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">модуль nn. ОС-BETA версия xxxx</entry>
+                        <entry colname="2">Запрос версии<xref linkend="ОС1" role="Undefined Cross-Reference"/>– одна из функций системного процесса. При
+старте модуля этот запрос посылается автоматически. Его также можно послать
+и в процессе работы, не влияя на работоспособность модуля и станции</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">модуль nn. старт процесса xxxx</entry>
+                        <entry colname="2">Информация о рестарте процессора в системную консоль. Означает то,
+что процессор рестартовал. Одно из первых сообщений вновь стартовавшего
+модуля</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">модуль nn. неизвестная команда xxxx</entry>
+                        <entry colname="2">Самопроизвольное появление сообшения сигнализирует
+об ошибках (несогласованиях) при сборке<xref linkend="ОС1" role="Undefined Cross-Reference"/>и<xref linkend="ФПО" role="Undefined Cross-Reference"/>. Сообщение может появлятся и
+при прогоне некоторых тестовых скриптов, в этом случае следует откорректировать скрипт</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">переполнение стека. модуль восстановлен xxxx</entry>
+                        <entry colname="2">Информация о причине, вызвавшей предыдущий
+рестарт модуля. При исполнении программы произошла критическая ситуация – «переполнение
+стека». Системой контроля целостности<xref linkend="ОС1" role="Undefined Cross-Reference"/>было принято решение о рестарте модуля</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">зацикливание процесса xx. модуль восстановлен</entry>
+                        <entry colname="2">Информация о причине, вызвавшей предыдущий
+рестарт модуля. При исполнении программы произошла критическая ситуация – «зацикливание процесса». Системой контроля целостности<xref linkend="ОС1" role="Undefined Cross-Reference"/>было принято решение
+о рестарте модуля</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">рестарт процессора схемой контроля УУС</entry>
+                        <entry colname="2">Информация о причине, вызвавшей предыдущий
+рестарт модуля. При исполнении программы произошла критическая ситуация –
+«Схема контроля УУС обнаружила еще один активный УУС». Системой контроля целостности<xref linkend="ОС1" role="Undefined Cross-Reference"/>было принято решение
+о рестарте модуля</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Сторож остановлен ! xxxx xxxx xxxx</entry>
+                        <entry colname="2">Информация о причине, вызвавшей предыдущий
+рестарт модуля. При исполнении программы произошла критическая ситуация – «Подконтрольные процессы не подтверждают
+свое функционирование». Системой контроля целостности ОС было принято решение
+о рестарте модуля</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">рестарт по команде.0! xxxx xxxx xxxx</entry>
+                        <entry colname="2">Трассировка подпрограммы рестарта модуля. Прошли через контрольную
+точку 0</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">рестарт по команде.1! xxxx xxxx xxxx</entry>
+                        <entry colname="2">Трассировка подпрограммы рестарта модуля. Прошли через контрольную
+точку 1</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">рестарт по команде.2! xxxx xxxx xxxx</entry>
+                        <entry colname="2">Трассировка подпрограммы рестарта модуля. Прошли через контрольную
+точку 2</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">рестарт по команде.3! xxxx xxxx xxxx</entry>
+                        <entry colname="2">Трассировка подпрограммы рестарта модуля. Прошли через контрольную
+точку 3</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Сообщения процессов тех. обслуживания</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Примерный вид сообщения</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">рестарт процессора</entry>
+                        <entry colname="2">Cообщение от УКС о рестарте одного из модулей</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">закончена инициализация</entry>
+                        <entry colname="2">Сообщение сигнализирует о завершении процесса рестарта</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">MTP&gt; открылось направление</entry>
+                        <entry colname="2">Подсистема<xref linkend="MTP" role="Undefined Cross-Reference"/>сигнализирует о доступности направления</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">MTP&gt; закрылось направление</entry>
+                        <entry colname="2">Подсистема<xref linkend="MTP" role="Undefined Cross-Reference"/>сигнализирует о недоступности направления</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">авария тракта</entry>
+                        <entry colname="2">Была обнаружена аварийная ситуация на тракте<xref linkend="EI" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">восстановление тракта</entry>
+                        <entry colname="2">Тракт<xref linkend="EI" role="Undefined Cross-Reference"/>восстановлен после аварийной ситуации</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Сбой в линии</entry>
+                        <entry colname="2">Нарушение протокола сигнализации в линии</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Конец сбоя в линии</entry>
+                        <entry colname="2">Восстановление нормальной сигнализации в линии</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Блокировка линии</entry>
+                        <entry colname="2">Получен сигнал от встречной станции о блокировке линии входящей связи</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Разблокировка линии</entry>
+                        <entry colname="2">Снятие сигнала блокировки от встречной станции</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">смена выбора опорного тракта</entry>
+                        <entry colname="2">Был изменен опорный тракт для модуля Ц<xref linkend="СЛ" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">потеря опорного тракта</entry>
+                        <entry colname="2">Был потерян опорный тракт для модуля Ц<xref linkend="СЛ" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Исчерпание буферов<xref linkend="ОКС7" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Аварийное служебное сообщение. В случае появления этого сообщения уведомите производителя</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Сбой в<xref linkend="ОКС7" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Аварийное служебное сообщение. В случае появления этого сообщения уведомите производителя</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Сообщения процессов тех. обслуживания</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Примерный вид сообщения</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">сбой теста поля</entry>
+                        <entry colname="2">см. « Тестирование коммутационных полей» на с.
+118</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">сбой теста памяти ГВВ</entry>
+                        <entry colname="2">см. « Тестирование коммутационных полей» на с.
+118</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Потеря связи с модулем</entry>
+                        <entry colname="2">см. « Контроль наличия межпроцессорных связей»
+на с. 117</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Нет живых модулей через ТП</entry>
+                        <entry colname="2">см. « Тестирование коммутационных полей» на с.
+118</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">сбой теста памяти сканирования</entry>
+                        <entry colname="2">см. « Тестирование коммутационных полей» на с.
+118</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">потеря проключения</entry>
+                        <entry colname="2">см. « Проверка постоянных проключений» на с. 119</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Переход на другое поле</entry>
+                        <entry colname="2">см. « Тестирование коммутационных полей» на с.
+118</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Сообщения обработки статистических данных</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Примерный вид сообщения</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">окончание безотбойности<xref linkend="СЛ" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Произошло занятие<xref linkend="СЛ" role="Undefined Cross-Reference"/>с признаком безотбойности</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Кратковременные занятия<xref linkend="СЛ" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Превышен порог кратковременных занятий для<xref linkend="СЛ" role="Undefined Cross-Reference"/>(смотри «Статистика соединительных линий»)</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Снятие КР занятия<xref linkend="СЛ" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Реабилитация<xref linkend="СЛ" role="Undefined Cross-Reference"/>после превышения порога кратковременных занятий</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Кратковременные занятия<xref linkend="АЛ" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Превышен порог кратковременных занятий для<xref linkend="АЛ" role="Undefined Cross-Reference"/>(смотри «Статистика абонентских
+линий»)</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Снятие КР занятия<xref linkend="АЛ" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Реабилизация<xref linkend="АЛ" role="Undefined Cross-Reference"/>после превышения порога кратковременных занятий</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Превышение порога потерь в<xref linkend="АЛ" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Превышен порог потерь для<xref linkend="АЛ" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Снятие порога потерь для<xref linkend="АЛ" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Реабилитация<xref linkend="АЛ" role="Undefined Cross-Reference"/>после превышения порога кратковременных занятий</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Длинный разговор</entry>
+                        <entry colname="2">Зафиксирован разговор длительностью более 16
+часов</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <important>
+               <para>
+                  <command moreinfo="none">Внимание!!!</command>Данный список НЕ
+включает в себя ВСЕ возможные сообщения в сервере консоли. Документацию
+о других возможных сообщениях консоли можно найти в документации
+на приложения эти сообщения посылающиее</para>
+            </important>
+         </section>
+         <section>
+            <title>Пользовательский интерфейс</title>
+            <para>В приложении Сервера<xref linkend="РМО" role="Undefined Cross-Reference"/>окно сервера консоли становится
+видимым если нажать на кнопку Консоль. Это окно выглядит следующим
+образом:</para>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/konsol-server.gif"/>
+            </informalfigure>
+            <para>В окне сервера консоли могут отображаться сообщения трех типов:</para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Информационное сообщение (зеленый цвет)</entry>
+                        <entry colname="2">Сообщение о нормальном событии в процессе нормальной
+работы<xref linkend="ПО" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Предупреждение (оранжевый цвет)</entry>
+                        <entry colname="2">Сообщение о опасном событии в процессе нормальной
+работы<xref linkend="ПО" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Авария (красный цвет)</entry>
+                        <entry colname="2">Сообщение об аварийном событии внутреннего
+или внешнего обслуживающего<xref linkend="ПО" role="Undefined Cross-Reference"/>
+                           <xref linkend="АТС" role="Undefined Cross-Reference"/>с возможным прекращением нормальной
+работы</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>Сообщения других цветов следует рассматривать как предупреждающие.</para>
+            <para>Кнопки Информационное, Предупреждение, Авария служат для фильтрации выводимых
+в консоль сообщений. Установка кнопки в нажатое состояние разрешает выдачу
+соответствующего типа сообщений.</para>
+         </section>
+         <section>
+            <title>Клиентские приложения</title>
+            <para>В качестве клиентских приложений для сервера консоли выступают
+все остальные сервера<xref linkend="РМО" role="Undefined Cross-Reference"/>, которые могут выводить
+в консоль свои сообщения. Отсутствие сервера консоли может привести
+к потере важной информации о ходе работы<xref linkend="ПО" role="Undefined Cross-Reference"/>
+               <xref linkend="АТС" role="Undefined Cross-Reference"/>и сделать невозможным установление
+причин тех или иных сбоев.</para>
+         </section>
+         <section>
+            <title>Взаимодействия с другими серверами</title>
+            <para>Сервер консоли используется другими серверами<xref linkend="РМО" role="Undefined Cross-Reference"/>для вывода
+информации о важных событиях, произошедших в процессе их работы.</para>
+         </section>
+      </section>
+      <section>
+         <title id="tri_odin_5" xreflabel="3.1.5. Сервер тарификации">3.1.5.
+Сервер тарификации</title>
+         <section>
+            <title>Обзор</title>
+            <para>Сервер тарификации предназначен для сбора данных тарификации
+из станции, формирования суточных файлов тарификации и предоставления
+доступа к данным тарификации клиентского приложения просмотра тарификации.</para>
+            <para>Сервер тарификации создан с использованием технологии<xref linkend="DCOM" role="Undefined Cross-Reference"/>. Реализован
+в приложении<filename moreinfo="none">TariffServer.exe</filename>.</para>
+         </section>
+         <section>
+            <title>Функции</title>
+            <para>Сервер тарификации выполняет следующие функции:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Сбор данных тарификации из станции</para>
+               </listitem>
+               <listitem>
+                  <para>Формирование суточных файлов тарификации</para>
+               </listitem>
+               <listitem>
+                  <para>Предоставление доступа к данным тарификации</para>
+               </listitem>
+            </itemizedlist>
+            <para>
+               <emphasis>Сбор данных тарификации из станции</emphasis>
+            </para>
+            <para>
+               <command moreinfo="none">Описание файлов, в которые попадают записи при выкачке тарификации</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="3" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <colspec colnum="3" colname="3" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Описание</entry>
+                        <entry colname="2">Путь к файлу</entry>
+                        <entry colname="3">Примечание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Промежуточный файл связи с клиентской частью</entry>
+                        <entry colname="2">
+                           <filename moreinfo="none">tarif.cdb</filename>
+                        </entry>
+                        <entry colname="3">Емкость: 260 000 записей</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Суточные файлы для<xref linkend="ЦТО" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Базовые пути задаются в<filename moreinfo="none">tarif.ini</filename>,
+в них файлы распределены по дням по подкаталогам с именами вида<command moreinfo="none">ГГГГММ</command>,
+имена файлов имеют вид<command moreinfo="none">ССССММДД.XXX</command>, где<command moreinfo="none">CCCC</command>– первые
+4 цифры первого списочного номера,<command moreinfo="none">ХХХ</command>– берется из параметра<command moreinfo="none">Options\Extension</command>файла<filename moreinfo="none">tarif.ini</filename>
+                        </entry>
+                        <entry colname="3">Находятся в ведении<xref linkend="ЦТО" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Файлы прямого доступа</entry>
+                        <entry colname="2">Базовый путь задается в<filename moreinfo="none">tarif.ini</filename>,
+далее файлы распределены по дням по подкаталогам с именами вида<command moreinfo="none">ГГГГ\ГГГГММ</command>, имена файлов имеют вид<filename moreinfo="none">ГГГГММДД.rdb</filename>, также
+в каталоге автоматически создается служебный файл<filename moreinfo="none">tarif.lrc</filename>
+                        </entry>
+                        <entry colname="3">Файлы для быстрой передачи информации клиентской программе</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>Выкачка данных из станции производится периодически. Для ручного
+управления можно (но не рекомендуется) использовать контекстное
+меню, вызываемое нажатием правой кнопки мыши на строке, представляющей
+требуемый модуль.</para>
+            <para>
+               <emphasis>Формирование суточных файлов тарификации</emphasis>
+            </para>
+            <para>Для управления формированием суточных файлов служит файл настройки<filename moreinfo="none">tarif.ini</filename>. Разрешается
+менять значения только в секциях Daily и Options. Для изменения
+значений следует сначала закрыть приложение Серверы<xref linkend="РМО" role="Undefined Cross-Reference"/>.</para>
+            <para>
+               <command moreinfo="none">Управление формированием суточных файлов</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="3" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <colspec colnum="3" colname="3" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Секция</entry>
+                        <entry colname="2">Параметр</entry>
+                        <entry colname="3">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">[Options]</entry>
+                        <entry colname="2">DownloadInterval</entry>
+                        <entry colname="3">Интервал выкачки (в миллисекундах). Не гарантируется нормальная работа
+при слишком маленьких (менее 60000 = 1 минута) значениях</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">[Daily]</entry>
+                        <entry colname="2">Password</entry>
+                        <entry colname="3">Пароль шифрации суточных файлов</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1"/>
+                        <entry colname="2">Extension</entry>
+                        <entry colname="3">Расширение для имен суточных файлов</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1"/>
+                        <entry colname="2">RootDir</entry>
+                        <entry colname="3">Базовый путь для суточных файлов тарификации</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1"/>
+                        <entry colname="2">DVORootDir</entry>
+                        <entry colname="3">Базовый путь для суточных файлов<xref linkend="ДВО" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1"/>
+                        <entry colname="2">RICRootDir</entry>
+                        <entry colname="3">Базовый путь для суточных файлов<xref linkend="РВВ" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1"/>
+                        <entry colname="2">RapidBaseRootDir</entry>
+                        <entry colname="3">Базовый путь для файлов прямого доступа</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">[Loader]</entry>
+                        <entry colname="2">ReadTimeout</entry>
+                        <entry colname="3">Таймаут при работе с<xref linkend="DRAM" role="Undefined Cross-Reference"/>модулей станции и чтении
+из<xref linkend="F-EPROM" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1"/>
+                        <entry colname="2">ReadRetries</entry>
+                        <entry colname="3">Количество попыток повторного чтения из<xref linkend="DRAM" role="Undefined Cross-Reference"/>,<xref linkend="F-EPROM" role="Undefined Cross-Reference"/>или записи
+в<xref linkend="DRAM" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1"/>
+                        <entry colname="2">WriteTimeout</entry>
+                        <entry colname="3">Таймаут при записи во<xref linkend="F-EPROM" role="Undefined Cross-Reference"/>модулей станции</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1"/>
+                        <entry colname="2">WriteRetries</entry>
+                        <entry colname="3">Количество попыток записи во<xref linkend="F-EPROM" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>Пример:</para>
+            <programlisting format="linespecific">[Daily] RootDir=C:\Kvant\TAP DVORootDir=C:\Kvant\DBO
+RICRootDir=C:\Kvant\PBB RapidBaseRootDir=C:\Tarif Extension=123
+Password=kvant</programlisting>
+            <para>
+               <emphasis>Предоставление доступа к данным тарификации</emphasis>
+            </para>
+            <para>Существует две возможности передачи данных клиентской программе:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Использование файлов прямого доступа</para>
+               </listitem>
+               <listitem>
+                  <para>Перекачка данных клиентом, используя соединение
+клиента<xref linkend="РМО" role="Undefined Cross-Reference"/>с
+сервером</para>
+               </listitem>
+            </itemizedlist>
+            <para>Первый способ используется, когда есть доступ к файлам данных
+сервера, например, в случае когда клиентская и серверная части<xref linkend="РМО" role="Undefined Cross-Reference"/>находятся
+либо на одном компьютере, либо на компьютерах, соединенных локальной
+сетью с открытым доступом к каталогу данных сервера. Второй способ
+используется, когда возможности доступа к файлам данных сервера
+с клиентского компьютера нет, например, при соединении<xref linkend="РМО" role="Undefined Cross-Reference"/>с сервером
+по модему.</para>
+            <para>
+               <command moreinfo="none">Задача 1. Передача данных от сервера тарификации
+клиентской программе с использованием файлов прямого доступа</command>
+            </para>
+            <itemizedlist>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 4a)</emphasis>Открыть
+базовый каталог файлов прямого доступа на сервере.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 4b)</emphasis>Открыть подкаталог<emphasis>Tarif</emphasis>каталога
+данных<xref linkend="РМО" role="Undefined Cross-Reference"/>на
+клиенте.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 4c)</emphasis>Скопировать все файлы
+из первого каталога во второй, обязательно заменяя старые файлы
+из второго каталога более свежими файлами первого каталога.</para>
+               </listitem>
+            </itemizedlist>
+            <para>Для перекачки данных от сервера к клиенту, используя соединение
+клиента<xref linkend="РМО" role="Undefined Cross-Reference"/>с
+сервером, следует выбрать пункт меню<emphasis>Файл -&gt; Начать</emphasis>скачивание
+в главном окне клиентской программы тарификации. При этом клиенту
+перекачиваются данные из файла<filename moreinfo="none">tarif.cdb</filename>.</para>
+            <para>Оба метода можно использовать совместно, дублирования данных
+на клиентской стороне происходить не будет. Рекомендуется использовать
+первый метод, как более быстрый.</para>
+            <para>С файлами прямого доступа как на клиентской, так и на серверной
+стороне можно обращаться достаточно свободно – при нехватке места
+на диске их можно архивировать или удалять, при этом, очевидно,
+просматривать архивированные (удаленные) данные будет уже нельзя,
+но их просмотр будет опять возможен при помещении файлов обратно
+с сохранением структуры каталогов.</para>
+            <para>Следует обратить особое внимание на файл<filename moreinfo="none">tarif.lrc</filename>на
+клиентской стороне – именно он определяет стартовую позицию при
+скачивании данных тарификации (второй способ передачи данных). При
+его отсутствии клиентская программа будет скачивать все имеющиеся
+в файле<filename moreinfo="none">tarif.cdb</filename>записи. Поэтому при передаче
+данных клиенту первым способом следует удостовериться в том, чтобы
+он был заменен на клиентской стороне на более свежий с серверной
+стороны.</para>
+         </section>
+         <section>
+            <title>Пользовательский интерфейс</title>
+            <para>Окно сервера тарификации вглядит следующим образом:</para>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Тарификация-сервер.gif"/>
+            </informalfigure>
+            <para>В окне представлен список модулей станции, в которых собирается
+тарификация. Для каждого модуля указывается текущее состояние выкачки
+и время последней выкачки.</para>
+            <para>При нажатии правой кнопки мыши на элементе списка появляется
+контекстное меню, с помощью которого можно управлять процессом выкачивания
+данных тарификации из станции.</para>
+         </section>
+         <section>
+            <title>Клиентские приложения</title>
+            <para>Клиентским приложением для сервера тарификации является приложение
+Тарификация (см. разд. «<xref linkend="tri_6_tri" role="Undefined Cross-Reference"/>»).</para>
+         </section>
+         <section>
+            <title>Взаимодействие с другими серверами</title>
+            <para>Сервер тарификации использует Сервер времени (см. разд. «<xref endterm="tri_odin_6" linkend="tri_odin_6" role="Undefined Cross-Reference"/>») для перевода времени
+записей тарификации из внутреннего формата модуля в астрономическое
+время. При отсутствии сервера времени декодирование записей тарификации
+становится невозможным.</para>
+         </section>
+      </section>
+      <section>
+         <title id="tri_odin_6" xreflabel="3.1.6. Сервер времени">3.1.6. Сервер
+времени</title>
+         <section>
+            <title>Обзор</title>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Сервер-времени.gif"/>
+            </informalfigure>
+            <para>Сервер-времени.gif</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Синхронизация времени всех модулей
+со временем в станционном сервере. Синхронизация времени всех модулей
+происходит автоматически с заданным интервалом. Интервал автоматической
+синхронизации для данного модуля задается нажатием правой кнопки
+мыши и выбором пункта<emphasis>Интервал корректировки</emphasis>из появившегося
+контекстного меню. После редактирования интервала для подтверждения
+редактирования и записи в конфигурационный файл должна быть нажата
+клавиша<emphasis>Ввод</emphasis>. Автоматическая синхронизация выполняется
+также при каждом рестарте модуля. Для осуществления ручной синхронизации
+модуля необходимо выбрать пункт<emphasis>Синхронизировать сейчас</emphasis>из
+контекстного меню модуля.</para>
+               </listitem>
+               <listitem>
+                  <para>Маркировка тарификационных записей в модулях<xref linkend="БАЛ" role="Undefined Cross-Reference"/>.</para>
+               </listitem>
+            </itemizedlist>
+            <para>Маркировка тарификационных записей с точки зрения настроек
+и режима работы аналогична синхронизации времени. Установке интервала
+маркировки и ручной маркировке соответствуют пункты контекстного
+меню<emphasis>Интервал маркировки</emphasis>и<emphasis>Маркировать
+сейчас</emphasis>.</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Синхронизация часов реального времени
+для модулей УУС.</para>
+               </listitem>
+            </itemizedlist>
+            <para>Нижняя часть окна синхронизации времени служит для отображения
+состояния и управляющей информации службы синхронизации часов реального
+времени. В задачу данной службы входит:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Установка часов реального времени
+в модулях УУС</para>
+               </listitem>
+               <listitem>
+                  <para>Отображение состояния часов реального времени модулей
+УУС</para>
+               </listitem>
+               <listitem>
+                  <para>Фоновая синхронизация/проверка часов реального времени
+модуля УУС и станционного сервера</para>
+               </listitem>
+            </itemizedlist>
+            <para>В панели службы отображается следующая информация:</para>
+            <para>
+               <command moreinfo="none">Информация, отображаемая в панели службы</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Информация</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Управляющий модуль</entry>
+                        <entry colname="2">Модуль, с которым работает служба. В качестве управляющего
+УУС следует выбирать главный УКС станции</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Режим</entry>
+                        <entry colname="2">
+                           <para>Служба может работать в двух режимах.
+В режиме проверки по команде чтения времени из<xref linkend="PPC" role="Undefined Cross-Reference"/>сервер сравнивает время
+в управляющем УУС со временем на сервере станции. Результат сравнения отображается
+в строке разница во времени. В режиме корректировки в дополнение
+к указанным действиям сервер корректирует время на сервере станции.</para>
+                           <para>
+                              <command moreinfo="none">ВНИМАНИЕ:
+Для нормального функционирования сервера в этом режиме под</command>
+                              <xref linkend="ОС1" role="Undefined Cross-Reference"/>
+                              <command moreinfo="none">Windows
+NT/2000/XP пользователь, запустивший сервер, должен обладать правами на установку локального времени.</command>
+                           </para>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Интервал корректировки</entry>
+                        <entry colname="2">Интервал определяет, как часто сервер должен выполнять команду чтения времени
+из<xref linkend="PPC" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Время</entry>
+                        <entry colname="2">Здесь отображается время последней корректировки/проверки</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Разница во времени</entry>
+                        <entry colname="2">Здесь отображается разница во времени УУС и сервера станции, измеренная во
+время последней корректировки/проверки. Значение положительно, если часы станционного
+сервера опережают часы реального времени в<xref linkend="PPC" role="Undefined Cross-Reference"/>и отрицательно в противном случае</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>Для управления службой используется меню Настройки…:</para>
+            <para>
+               <command moreinfo="none">Меню Настройки…</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Установить время в<xref linkend="PPC" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">По этой команде сервер устанавливает в часах реального времени управляющего<xref linkend="PPC" role="Undefined Cross-Reference"/>время, взятое
+из часов сервера станции</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Прочитать время из<xref linkend="PPC" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">По этой команде сервер читает время в часах реального времени управляющего<xref linkend="PPC" role="Undefined Cross-Reference"/>и действует как описано
+в поле Режим таблицы « Информация, отображаемая в панели службы»</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Корректировка/Проверка</entry>
+                        <entry colname="2">Режим работы сервера (см. поле Режим таблицы
+« Информация, отображаемая в панели службы»)</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Интервал</entry>
+                        <entry colname="2">Переход сервера в режим редактирования интервала корректировки. Редактирование интервала корректировки осуществляется аналогично редактированию интервала синхронизации</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Модуль</entry>
+                        <entry colname="2">Переход сервера в режим редактирования управляющего
+модуля. Модуль может быть выбран из модулей, представленных в выпадающем
+списке, а может быть указан путем ввода номера модуля в поле редактирования</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+      </section>
+      <section>
+         <title>3.1.7.
+Синхронизация</title>
+         <section>
+            <title>Обзор</title>
+            <para>Сервер синхронизации – многофункциональное приложение, основная
+задача которого заключается в поддержании соответствия между конфигурацией<xref linkend="АТС" role="Undefined Cross-Reference"/>и базой
+данных<xref linkend="РМО" role="Undefined Cross-Reference"/>.
+Сервер синхронизации выполняет модификацию данных<xref linkend="АТС" role="Undefined Cross-Reference"/>при изменении
+конфигурации посредством приложения Конфигуратор, восстанавливает
+поврежденные данные, а также оповещает Конфигуратор при обнаружении
+изменений в абонентских данных. При синхронизации выполняется сравнение
+файлов конфигурации и содержимого энергонезависимой памяти<xref linkend="АТС" role="Undefined Cross-Reference"/>(флэш).</para>
+            <para>Другие возможность сервера синхронизации включают в себя:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Построение файлов конфигураций (файлов
+с именем вида<filename moreinfo="none">NN.PRG</filename>, где NN – шестнадцатеричное
+число, указывающее номер модуля) по базе данных</para>
+               </listitem>
+               <listitem>
+                  <para>Сравнение содержимого файлов конфигураций</para>
+               </listitem>
+               <listitem>
+                  <para>Сборка загрузочных образов для записи во флэш (файлов
+с именем вида<filename moreinfo="none">tNN.040</filename>) по файлам конфигурации</para>
+               </listitem>
+               <listitem>
+                  <para>Запись (программирование) флэш</para>
+               </listitem>
+            </itemizedlist>
+            <important>
+               <para>
+                  <command moreinfo="none">Внимание</command>Для нормальной работы
+сервера синхронизации необходимо, чтобы была произведена процедура
+регистрации пользователя с необходимым набором прав (предоставляющих
+возможность модификации данных в<xref linkend="АТС" role="Undefined Cross-Reference"/>). Для выполнения регистрации необходимо
+выполнить команду<command moreinfo="none">Файл -&gt; Идентификация</command>в меню
+приложения Маршрутизатор (см. разд. «<xref endterm="tri_odin_odin" linkend="tri_odin_odin"
+                        role="Undefined Cross-Reference"/>»).</para>
+            </important>
+         </section>
+         <section>
+            <title>Пользовательский интерфейс</title>
+            <para>Интерфейс сервера синхронизации построен на разделении функциональности
+на несколько задач, каждая из которых включает в себя одну или несколько
+страниц. Список задач постоянно отображается и расположен в левой
+части окна. Для переключения страниц внутри задачи могут быть использованы
+закладки, размещенные в верхней части окна.</para>
+         </section>
+         <section>
+            <title>Станция</title>
+            <para>Страница<command moreinfo="none">Станция</command>содержит список модулей<xref linkend="АТС" role="Undefined Cross-Reference"/>, отображает
+их состояние, и позволяет просматривать журнал действий для каждого
+отдельного модуля. Для просмотра журнала достаточно выбрать требуемый
+модуль из списка.</para>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Синхронизация-станция.gif"/>
+            </informalfigure>
+            <para>Состояние модулей отображаются посредством цветных символов,
+расположенных слева от имени каждого модуля в списке. Зеленый цвет
+символа означает готовность модуля, серый цвет – отказ модуля, красный
+цвет – выполнение программирования флэш, синий цвет – выполнение
+синхронизации. Проверка модулей на готовность или отказ выполняется
+автоматически каждую минуту. Для того чтобы обновить состояния модулей вручную,
+достаточно нажать кнопку<command moreinfo="none">Обновить</command>в нижней части
+окна. При этом будут опрошены все модули станции, независимо от
+текущего выбора в списке модулей.</para>
+         </section>
+         <section>
+            <title>Синхронизация</title>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-синхронизация.gif"/>
+            </informalfigure>
+            <para>Эта задача содержит две страницы. Страница<command moreinfo="none">Синхронизация</command>является
+основной, она содержит список модулей<xref linkend="АТС" role="Undefined Cross-Reference"/>и позволяет следить за процессом
+синхронизации, а также управлять им. На странице<command moreinfo="none">Транзакция</command>отображается
+служебная информация.</para>
+            <para>Синхронизация может выполняться вручную, а также автоматически
+в фоновом режиме. Для включения фоновой синхронизации необходимо
+установить флажок<command moreinfo="none">Автоматическая синхронизация</command>в
+нижней части экрана, и задать необходимый интервал времени для выполнения
+синхронизации. Для станций с большим количеством модулей рекомендуется
+устанавливать большее значение интервала. Каждый модуль станции
+может быть индивидуально включен или исключен из процесса фоновой синхронизации.
+Для смены режима достаточно нажать на имени модуля в списке правую кнопку
+мыши, и выбрать пункт<command moreinfo="none">Фоновая синхронизация</command>.</para>
+            <para>Синхронизация выполняется автоматически после успешного выполнения
+транзакции (модификации базы данных<xref linkend="РМО" role="Undefined Cross-Reference"/>посредством приложения Конфигуратор),
+независимо от состояния флажка Автоматическая синхронизация. Оператор
+может запретить выполнение транзакций для отдельных модулей станции,
+например, для физически отсутствующих модулей, с целью увеличить
+скорость выполнения транзакций. Для запрета или разрешения выполнения
+транзакций для модуля необходимо нажать на его имени правую кнопку мыши,
+и выбрать пункт<command moreinfo="none">Участвует в транзакциях</command>.</para>
+            <para>Для запуска процесса синхронизации вручную достаточно дважды
+щелкнуть кнопкой мыши на имени нужного модуля. Хотя есть возможность
+одновременной синхронизации нескольких модулей, использовать её
+не рекомендуется, так как при перегрузке информационного канала
+может возникнуть потеря сообщений.</para>
+            <para>При выполнении синхронизации для некоторого модуля, напротив
+его имени в графах отображается текущий процесс и его состояние (графы<command moreinfo="none">Процесс</command>и<command moreinfo="none">Состояние</command>соответственно).
+Если синхронизация была завершена успешно, в графе<command moreinfo="none">Состояние</command>напротив
+имени модуля будет отображено время ее завершения, иначе соответствующее
+поле будет содержать сообщение об ошибке.</para>
+            <para>Кнопка<command moreinfo="none">Обновить</command>в нижней части экрана предназначена
+для опроса состояния модулей. Она имеет тот же смысл, что и на странице<command moreinfo="none">Станция</command>.</para>
+            <para>Кнопка<command moreinfo="none">Конфигуратор</command>открывает приложение
+Конфигуратор, которое предназначено для внесения изменений в базу
+данных<xref linkend="РМО" role="Undefined Cross-Reference"/>.
+При начале редактирования данных Конфигуратором страница<command moreinfo="none">Синхронизации</command>блокируется.
+После успешной модификации базы данных, сервер синхронизации выполняет
+транзакцию и приводит данные станции в соответствие с базой данных<xref linkend="РМО" role="Undefined Cross-Reference"/>.</para>
+            <para>Необходимо иметь в виду, что в случае, если модификация базы
+данных<xref linkend="РМО" role="Undefined Cross-Reference"/>была
+проведена без участия сервера синхронизации, изменения не смогут
+попасть в<xref linkend="АТС" role="Undefined Cross-Reference"/>.</para>
+            <para>Страница<command moreinfo="none">Журнал</command>в задаче<command moreinfo="none">Синхронизация</command>является
+вспомогательной, и предназначена для отладки механизма транзакций
+и взаимодействия с Конфигуратором.</para>
+         </section>
+         <section>
+            <title>Файлы</title>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-файлы.gif"/>
+            </informalfigure>
+            <para>Страница<command moreinfo="none">Файлы</command>задачи является основной и
+предоставляет возможность собирать файлы конфигураций по базе данных<xref linkend="РМО" role="Undefined Cross-Reference"/>, а также
+образы прошивок для флэш и загрузочных дискет для модулей УКС. В
+левой части страницы расположен список модулей станции, напротив
+каждого из которых отображаются дата и время создания соотвтетсвующих файлов
+конфигурации и загрузочного образа.</para>
+            <para>В правой части страницы отображается состав файла конфигурации
+для выбранного модуля. Конфигурация любого модуля состоит из трех
+основных частей – списка объектов, перечесления связей между объектами,
+и списка групповых точек. Флажки в нижней части страницы позволяют
+управлять отображением соответствующих частей конфигурации.</para>
+            <para>Файлы конфигурации располагаются в каталоге<command moreinfo="none">Bin</command>внутри
+каталога с базой данных<xref linkend="РМО" role="Undefined Cross-Reference"/>. Там же расположен программный
+код объектов<xref linkend="ФПО" role="Undefined Cross-Reference"/>.
+Файлы конфигурации именуются как<filename moreinfo="none">NN.prg</filename>, где
+NN – шестнадцаетричный номер модуля.</para>
+            <para>Файлы загрузочных образов для флэш и загрузочных дискет располагаются
+в каталоге Flash внутри каталога с базой данных<xref linkend="РМО" role="Undefined Cross-Reference"/>. Файлы флэш именуются как<filename moreinfo="none">tNN.040</filename>,
+где NN – шестнадцатеричный номер модуля. Файлы для загрузочных дискет
+располагаются в каталогах с именем вида<filename moreinfo="none">disk_NN</filename>внутри
+каталога<command moreinfo="none">Flash</command>, NN – шестнадцатеричный номер модуля.</para>
+            <para>Во время работы сервера синхронизации не рекомендуется открывать
+файлы внутри каталогов<command moreinfo="none">Bin</command>и<command moreinfo="none">Flash</command>.
+При необходимости работы с файлами конфигурации желательно скопировать
+необходимые файлы во временный каталог и работать с копиями.</para>
+            <para>Кнопка<command moreinfo="none">Обновить</command>обновляет информацию о файлах
+в списке модулей. Обратите внимание, что нажатие на эту кнопку не
+обновляет состояние модулей.</para>
+            <para>Кнопка<command moreinfo="none">Создать конфигурации</command>создает файлы
+конфигураций по базе данных<xref linkend="РМО" role="Undefined Cross-Reference"/>для всех модулей станции.
+При этом старые файлы конфигурации будут перезаписаны новыми, и
+может потребоваться выполнение процедуры синхронизации для всех
+модулей станции.</para>
+            <para>Кнопка<command moreinfo="none">Собрать загрузочные файлы</command>создает
+образы прошивок для флэш и загрузочные дискеты для УКС. Если при
+нажатии на кнопку в списке модулей не было выбранных элементов,
+сборка будет выполнена для всех модулей станции. Если же в списке
+один или несколько модулей выбраны, сборка будет произведена лишь
+для этих модулей. Для выбора более одного модуля можно воспользоваться
+клавишами<command moreinfo="none">Shift</command>и/или<command moreinfo="none">Control</command>,
+удерживая их при нажатии кнопки мыши на именах модулей.</para>
+            <para>Нажатие правой кнопки мыши на списке модулей отображает контекстное
+меню, которое позволяет запуститить процесс сборки, или выполнить
+сравнение конфигураций. Двойной щелчок мыши на имени модуля выполняет
+сборку загрузочного образа для этого модуля.</para>
+            <para>Страница<command moreinfo="none">Сравнение</command>позволяет выполнить сравнение
+двух файлов конфигурации, и предназначена для отладки механизма
+построения конфигураций по базе данных<xref linkend="РМО" role="Undefined Cross-Reference"/>.</para>
+         </section>
+         <section>
+            <title>Программирование</title>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-программатор.gif"/>
+            </informalfigure>
+            <para>При помощи этой задачи осуществляется ручная запись флэш-памяти
+модулей станции. Ручная запись необходима при начальной установке
+станции, а также при замене версии<xref linkend="ОС1" role="Undefined Cross-Reference"/>.</para>
+            <para>В левой части окна расположен список модулей, напротив каждого
+из которых отображается дата и время файла с загрузочным образом.
+Если информация о файле для необходимого модуля не указана, необходимо
+собрать соответствующий загрузочный образ при помощи задачи<command moreinfo="none">Файлы</command>.
+При выборе модуля, для которого существует загрузочный образ, в
+правой части окна схематично отображается содержимое образа.</para>
+            <para>Для записи флэш-памяти необходимо выбрать требуемый модуль
+из списка, и установить необходимые параметры в правой части окна.
+При установленном флажке<command moreinfo="none">Запись конфигурации</command>в
+модуле будут заменены данные конфигурации, при установленном флажке<command moreinfo="none">Запись</command>
+               <xref linkend="ФПО" role="Undefined Cross-Reference"/>будет
+обновлен код<xref linkend="ФПО" role="Undefined Cross-Reference"/>.
+Для обновления кода операционной системы необходимо установить оба
+флажка<command moreinfo="none">Запись</command>
+               <xref linkend="ФПО" role="Undefined Cross-Reference"/>и<command moreinfo="none">Замена</command>
+               <xref linkend="ОС1" role="Undefined Cross-Reference"/>. Для
+начала программирования модуля достаточно нажать кнопку<command moreinfo="none">Записать</command>,
+при этом на экране появится индикация состояния процесса программирования.</para>
+            <para>При возникновении ошибок в процессе программирования операция
+запускается заново, число попыток ограничивается установленным значением
+в соответствующем поле ввода. Во время программирования модуля для
+каждой страницы выполняется сравнение новых и существующих данных,
+поэтому повторное программирование обычно начинается с места, где
+произошел сбой.</para>
+            <para>Кнопка<command moreinfo="none">Обновить</command>в нижней части окна обновляет
+информацию о файлах с загрузочными образами, а также выполняет опрос
+состояния модулей. Кнопка<command moreinfo="none">Рестарт</command>перезагружает
+выбранный модуль, и может быть использована для отмены операции
+программирования. При отмене программирования модуль не сможет нормально
+функционировать до тех пор, пока не будет успешно завершена очередная операция
+программирования.</para>
+            <para>Поддерживается возможность программирования нескольких модулей
+одновременно. Тем не менее, рекомендуется программировать модули
+последовательно, так как параллельное обновление флэш-памяти в нескольких
+модулях станции может привести к перегрузке информационного канала
+и потере сообщений.</para>
+         </section>
+         <section>
+            <title>Настройки</title>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-настройки.gif"/>
+            </informalfigure>
+            <para>Страница настроек позволяет устанавливать желаемые параметры.
+Для выбора группы настроек необходимо выбрать соответствующий элемент
+в списке в правой части страницы.</para>
+            <para>Список синхронизуемых полей отображается в группе<command moreinfo="none">Синхронизация</command>.
+Для каждого поля указывается, где сервер синхронизации должен брать
+корректное значение поля (из<xref linkend="АТС" role="Undefined Cross-Reference"/>или базы данных<xref linkend="РМО" role="Undefined Cross-Reference"/>) при
+обнаружении несоответствия данных, а также может быть задан промежуток
+времени, в течение которого сервер не будет вносить изменения. Механизм синхронизации
+с задержкой необходим для корректной обработки ситуации, когда некоторое
+приложение<xref linkend="РМО" role="Undefined Cross-Reference"/>временно
+модифицирует поле статических данных, и изменения случайно попадают
+во флэш; задержка в данном случае может позволить приложению нормально
+завершить работу.</para>
+            <para>В качестве имени поля может использоваться символ *, который
+означает любое поле выбранного класса. Для всех неуказанных полей
+используется правило синхронизации, при котором корректные данные
+берутся из файла конфигурации и записываются в станцию без какой-либо
+задержки.</para>
+            <para>Элементы управления в нижней части группы настроек позволяют
+добавлять, удалять и редактировать поля. Кнопка<command moreinfo="none">Сбросить</command>восстанавливает
+значения, принятые по умолчанию.</para>
+         </section>
+         <section>
+            <title>Принцип работы</title>
+            <para>
+               <emphasis>Процедура выполнения транзакций</emphasis>
+            </para>
+            <para>Для внесения изменений в конфигурацию станции необходимо вызвать
+приложение Конфигуратор нажатием на соответствующую кнопку в нижней
+части страницы<command moreinfo="none">Синхронизация</command>. При этом сервер
+синхронизации получает возможность выполнять транзакции, заказанные
+Конфигуратором. В случае если приложение Конфигуратор было запущено
+каким-то другим образом, транзакции не смогут быть выполнены в сервере
+синхронизации, и записать изменения в<xref linkend="АТС" role="Undefined Cross-Reference"/>можно будет только одним способом
+– созданием конфигурационных файлов по базе данных<xref linkend="РМО" role="Undefined Cross-Reference"/>с последующей
+записью во флэш. Запись конфигурации сопровождается рестартом модуля,
+поэтому всегда предпочтительнее обеспечивать возможность выполнения
+транзакций в сервере синхронизации.</para>
+            <para>Для начала транзакции достаточно нажать на кнопку<command moreinfo="none">Правка</command>в
+приложении Конфигуратор. При этом пользовательский интерфейс страницы<command moreinfo="none">Синхронизация</command>сервера заблокируется,
+и все процессы синхронизации будут отменены. Для завершения транзакции
+после внесения изменений в базу данных<xref linkend="РМО" role="Undefined Cross-Reference"/>, достаточно отжать кнопку<command moreinfo="none">Правка</command>. В
+случае если транзакция не была отменена, сервер синхронизации начнет
+ее обработку. Эта процедура может занять несколько десятков секунд,
+в зависимости от объема произведенных изменений и производительности
+компьютера.</para>
+            <para>Транзакции обрабатываются только для тех модулей, которые
+не были исключены из этой процедуры на странице<command moreinfo="none">Синхронизация</command>.
+Обработка транзакции включает в себя модификацию файлов конфигурации
+в соответствии с новым состоянием базы данных<xref linkend="РМО" role="Undefined Cross-Reference"/>, сборку новых файлов с
+образами прошивок, составление списка действий для последующей синхронизации,
+а также определение необходимости полной замены конфигурации и кода<xref linkend="ФПО" role="Undefined Cross-Reference"/>в станции.
+После завершения обработки транзакции сервер автоматически запускает
+процесс синхронизации всей станции с тем, чтобы все необходимые
+модификации были записаны в<xref linkend="АТС" role="Undefined Cross-Reference"/>.</para>
+            <para>
+               <emphasis>Процедура выполнения синхронизации</emphasis>
+            </para>
+            <para>Фоновая и ручная синхронизации начинаются с процесса сравнения
+конфигурации станции с конфигурацией, сохраненной на диске, с целью
+определения возможных несоответствий. При обнаружении расхождений
+в некотором поле, в зависимости от типа этого поля, сервер либо
+обновляет данные в<xref linkend="АТС" role="Undefined Cross-Reference"/>, либо модифицирует файл
+конфигурации на диске и информирует Конфигуратор для обновления
+базы данных<xref linkend="РМО" role="Undefined Cross-Reference"/>.
+Если обнаруживается серьезное несоответствие конфигураций для некоторого
+модуля, сервер синхронизации перезаписывает конфигурацию в этом
+модуле полностью.</para>
+            <para>В случае автоматической синхронизации, выполняющейся после
+выполнения транзакции, сервер пропускает процесс сравнения и сразу
+записывает в станцию все модификации, выполненные в ходе транзакции,
+либо перепрограммирует флэш-память модуля, если это необходимо.</para>
+            <para>Модули УКС синхронизируются последними. Если транзакция затрагивала
+модули УКС, для них потребуется замена загрузочных дискет, чтобы
+новая конфигурация сохранилась при рестарте этих модулей. Дата и
+время последней сборки загрузочных дискет отображается на странице<command moreinfo="none">Файлы</command>–
+в случае, если дата загрузочного образа для некоторого модуля УКС
+более новая, необходимо заменить соответствующую дискету.</para>
+         </section>
+      </section>
+      <section>
+         <title>3.1.8. Сервер X.25</title>
+         <section>
+            <title>Обзор</title>
+            <para>Сервер<xref linkend="X.25" role="Undefined Cross-Reference"/>предназначен
+для обеспечения работы<xref linkend="СОРМ" role="Undefined Cross-Reference"/>. Он передает данные между<xref linkend="АТС" role="Undefined Cross-Reference"/>и оборудованием<xref linkend="X.25" role="Undefined Cross-Reference"/>, установленном
+на том же компьютере, или на другом сервере, доступном по локальной
+сети.</para>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/х25-сервер.gif"/>
+            </informalfigure>
+            <para>При первом запуске сервера необходимо выбрать и запустить
+модуль<xref linkend="X.25" role="Undefined Cross-Reference"/>,
+по которому будет осуществляться передача данных. При последующих
+запусках будет автоматически запускаться модуль, который использовался
+в предыдущем сеансе работы.</para>
+            <para>Процедура настройки модулей<xref linkend="X.25" role="Undefined Cross-Reference"/>детально описываются в документе
+«Настройка<xref linkend="СОРМ" role="Undefined Cross-Reference"/>», входящем
+в состав документации на программное обеспечение<xref linkend="АТС" role="Undefined Cross-Reference"/>Квант-Е-Сокол. Как правило,
+настройка выполняется только один раз; сервер<xref linkend="X.25" role="Undefined Cross-Reference"/>не требует регулярного вмешательства
+оператора.</para>
+         </section>
+      </section>
+      <section>
+         <title id="tri_odin_9" xreflabel="3.1.9. Сервер статистики">3.1.9.
+Сервер статистики</title>
+         <section>
+            <title>Обзор</title>
+            <para>Сервер статистики предназначен для сбора данных статистики
+из станции, сохранения этих данных в базе данных и предоставлении
+доступа к этим данным соответствующим приложениям<xref linkend="РМО" role="Undefined Cross-Reference"/>(см.
+разделы «<xref linkend="tri_6_odin" role="Undefined Cross-Reference"/>»
+и «<xref linkend="tri_6_dva" role="Undefined Cross-Reference"/>»).</para>
+            <para>Сервер статистики создан с использованием технологии<xref linkend="DCOM" role="Undefined Cross-Reference"/>. Реализован
+в приложении<filename moreinfo="none">RMOStatisticsServer.exe</filename>.</para>
+         </section>
+         <section>
+            <title>Функции</title>
+            <para>Сервер статистики выполняет следующие функции:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Сбор данных статистики из станции</para>
+               </listitem>
+               <listitem>
+                  <para>Запись данных статистики в базу</para>
+               </listitem>
+               <listitem>
+                  <para>Предоставлении доступа к данных статистики</para>
+               </listitem>
+            </itemizedlist>
+         </section>
+         <section>
+            <title>Сбор данных статистики из станции</title>
+            <para>Сервер статистики запрашивает из станции данные статистики
+в соответствии с предварительно созданными группами.</para>
+            <para>
+               <emphasis>Группы статистики</emphasis>
+            </para>
+            <para>Группа объединяет некоторый набор однотипных объектов (абоненты,
+соединительные линии, ….). Для всех объектов из соответствующей
+группы происходит запрос данных статистики из станции через определенный
+интервал времени.</para>
+            <para>Группы бывают двух видов:</para>
+            <para>
+               <command moreinfo="none">Группы статистики</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Группа</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Группы, созданные автоматически</entry>
+                        <entry colname="2">Пользователь не может удалять и изменять состав таких групп.
+В такие группы включаются объекты объединенные по какому либо признаку, который присутствует
+в названии группы («Все аналоговые<xref linkend="АЛ" role="Undefined Cross-Reference"/>», «<xref linkend="СЛ" role="Undefined Cross-Reference"/>тракта 0.3.10.0», ….). –Пользователь
+может изменять интервал времени выкачки для таких групп и включать
+и исключать такие группы из процесса запроса данных статистики</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Группы, создаваемые пользователем</entry>
+                        <entry colname="2">Пользователь может создавать такие группы, удалять, изменять их
+состав, изменять интервал времени выкачки и включать и исключать такие группы
+из процесса запроса данных статистики</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>Информация о всех группах и их параметры содержатся в базе
+данных<xref linkend="РМО" role="Undefined Cross-Reference"/>.
+Группы, созданные автоматически, создаются, уничтожаются и изменяется
+их состав в процессе работы приложения Конфигуратор. При создании
+такие группы выключены из процесса запроса данных статистики, и
+интервал считывания для них нулевой. Изменить эти параметры для
+таких групп можно с помощью приложения Менеджер групп телетрафика (см.
+разд. «<xref linkend="tri_6_odin" role="Undefined Cross-Reference"/>»).
+Для создания, удаления и других предусмотренных операций с группами, создаваемыми
+пользователем, используется то же самое приложение.</para>
+            <para>
+               <command moreinfo="none">Замечание:</command>При изменение состава групп,
+создаваемых пользователем, автоматически создается группа, содержащая
+старый набор объектов. Имя для этой группы строится автоматически.
+Это имя имеет вид: {имя, измененной группы} – старые данные (создана автоматически,
+{время изменения состава группы}). Эти действия делаются для того, чтобы
+данные статистики, собранные для старого набора объектов в группе,
+были доступны из приложения Обозреватель телетрафика (см. разд.
+«<xref linkend="tri_6_dva" role="Undefined Cross-Reference"/>»).</para>
+            <para>
+               <emphasis>Представление данных</emphasis>
+            </para>
+            <para>Полученная из станции информация представляет значения разных
+измерений статистики. Значение по каждому измерению – это суммарное
+значение этого измерения для всех объектов группы.</para>
+         </section>
+         <section>
+            <title>Запись данных статистики в базу</title>
+            <para>Сервер статистики сохраняет полученные данные статистики в
+файлах базы данных, разных для каждых суток. Используемым форматом
+базы данных является формат базы данных приложения MS Access.</para>
+            <para>Все базы, в которых сохраняются данные статистики находится
+в папке, расположенной по адресу<command moreinfo="none">{Данные РМО}\Servers\Traffic</command>.
+В этой папке находятся файлы вида<filename moreinfo="none">«год»_«месяц»_«день».mdb</filename>.
+Именно в этих файлах и сохраняются полученные данные статистики.
+Эти суточные файлы баз данных содержат так же информацию о группах
+и составе этих групп для того, чтобы можно было использовать информацию
+о данных статистики из этих файлов отдельно от установленных данных.</para>
+            <para>Так же в этой папке присутствует файл<filename moreinfo="none">default15.mdb</filename>.
+Этот файл содержит описание внутренней структуры базы данных для
+хранения данных статистики. Он используется для создания суточных
+файлов с данными.</para>
+         </section>
+         <section>
+            <title>Предоставлении доступа к данных статистики</title>
+            <para>Все данные, которые использует сервер статистики (данные для
+групп статистики и данные статистики, полученные из станции), хранятся
+только на на компьютере, на котором работаю сервера<xref linkend="РМО" role="Undefined Cross-Reference"/>. Доступ
+к этим данным из клиента<xref linkend="РМО" role="Undefined Cross-Reference"/>осуществляется с помощью технологии<xref linkend="DCOM" role="Undefined Cross-Reference"/>. Клиентскими
+приложениями для сервера статистики являются два приложения. Это
+– приложение Менеджер групп телетрафика и приложение Обозреватель телетрафика
+(см. разделы «<xref linkend="tri_6_odin" role="Undefined Cross-Reference"/>» и «<xref linkend="tri_6_dva" role="Undefined Cross-Reference"/>»).</para>
+            <para>
+               <command moreinfo="none">Замечание:</command>Для корректной работы этих приложений
+требуется настройка прав доступа для соответствующих<xref linkend="DCOM" role="Undefined Cross-Reference"/>-компонет.
+Эта процедура осуществляется автоматически при инсталляции<xref linkend="РМО" role="Undefined Cross-Reference"/>.</para>
+         </section>
+         <section>
+            <title>Пользовательский интерфейс</title>
+            <para>В приложении Сервера<xref linkend="РМО" role="Undefined Cross-Reference"/>(см. разд. «<xref endterm="tri_odin_dva" linkend="tri_odin_dva" role="Undefined Cross-Reference"/>») окно сервера статистики
+становится видимым если нажать на кнопку<command moreinfo="none">Статистика</command>.
+Это окно выглядит следующим образом:</para>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-server.gif"/>
+            </informalfigure>
+            <para>Окно сервера статистики разделено на две части:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Информация о группах</para>
+               </listitem>
+               <listitem>
+                  <para>Консоль сообщений сервера статистики</para>
+               </listitem>
+            </itemizedlist>
+            <para>
+               <emphasis>Информация о группах</emphasis>
+            </para>
+            <para>В этой части окна отображается следующая информация в табличном
+виде.</para>
+            <para>
+               <command moreinfo="none">Информация о группах</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Колонка</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Имя группы</entry>
+                        <entry colname="2">Имя группы, которое используется в приложениях Менеджер групп телетрафика
+и Обозреватель телетрафика (см. разделы «<xref linkend="tri_6_odin" role="Undefined Cross-Reference"/>» и «<xref linkend="tri_6_dva" role="Undefined Cross-Reference"/>»)</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Интервал обновления</entry>
+                        <entry colname="2">Интервал времени, через который сервер статистики запрашивает
+данные статистики из станции для соответствующей группы</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Статус</entry>
+                        <entry colname="2">Текущее состояние для соответствующей группы</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>Состояние группы может быть одним из следующих:</para>
+            <para>
+               <command moreinfo="none">Возможные состояния групп статистики</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Состояние</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Ошибка</entry>
+                        <entry colname="2">Такое состояние группа имеет, когда при работе
+с этой группой произошла ошибка. Дополнительная информация об этой ошибке выводится в
+консоль сообщений сервера статистики</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Ожидание</entry>
+                        <entry colname="2">Состояние, при котором сервер статистики ожидает для
+данной группы истечения интервала обновления</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Запрос</entry>
+                        <entry colname="2">Состояние, при котором сервер статистики запросил из
+станции данные статистики и ожидает ответ от станции</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Запись</entry>
+                        <entry colname="2">Состояние, при котором сервер статистики записывает полученные
+от станции данные статистики в базу</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Замечание:</command>В этом окне отображаются только
+те группы, которые включены в процесс сбора данных статистики. Как
+включить или выключить группы из этого процесса смотри подробнее
+справку по приложению Менеджер групп телетрафика (раздел «<xref linkend="tri_6_odin" role="Undefined Cross-Reference"/>»).</para>
+            <para>
+               <emphasis>Консоль сообщений сервера статистики</emphasis>
+            </para>
+            <para>Сервер статистики имеет собственную консоль сообщений. В ней
+отображается служебная информация сервера статистики и сообщения
+об ошибках сервера статистики. Каждое сообщение, выводящееся в это
+окно, содержит время.</para>
+            <para>
+               <command moreinfo="none">Типы сообщений консоли сервера статистики</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Сообщение</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Информационные сообщения</entry>
+                        <entry colname="2">Такие сообщения служат для уведомления пользователя
+о происходящих событиях. Эти сообщения выводятся стандартным для настроек вашей системы цветом</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Сообщения об ошибках</entry>
+                        <entry colname="2">Сообщения об ошибках содержат информацию о
+сути ошибки. Такие сообщения выводятся красным цветом</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+         <section>
+            <title>Клиентские приложения</title>
+            <para>В качестве клиентских приложений для сервера статистики выступают
+два приложения:</para>
+            <para>
+               <command moreinfo="none">Клиентские приложения сервера статистики</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Приложение</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Mенеджер групп телетрафика (см. разд. «<xref linkend="tri_6_odin" role="Undefined Cross-Reference"/>»)</entry>
+                        <entry colname="2">Это приложение позволяет создовать и удалять группы, менять
+их состав, включать и выключать группы из процесса выкачивания данных статистики из
+станции, изменять интервал времени, через который будут запрашиваться
+данные статистики из станции</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Обозреватель телетрафика (см. разд. «<xref linkend="tri_6_dva" role="Undefined Cross-Reference"/>»)</entry>
+                        <entry colname="2">Это приложение позволяет просматривать собранные данные статистики</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+         <section>
+            <title>Взаимодействие с другими серверами</title>
+            <para>В настоящее время сервер статистики не взаимодействует с другими
+серверами<xref linkend="РМО" role="Undefined Cross-Reference"/>.</para>
+         </section>
+      </section>
+      <section>
+         <title id="tri_odin_10" xreflabel="3.1.10. Сервер скриптов РМО">3.1.10.
+Сервер скриптов РМО</title>
+         <section>
+            <title>Обзор</title>
+            <para>Сервер сриптов<xref linkend="РМО" role="Undefined Cross-Reference"/>выполняет следующие функции:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Исполнение сценариев</para>
+               </listitem>
+               <listitem>
+                  <para>Контроль исполнения сценариев</para>
+               </listitem>
+               <listitem>
+                  <para>Управление сценариями (создание, удаление, редактирование
+и т.д.)</para>
+               </listitem>
+            </itemizedlist>
+         </section>
+         <section>
+            <title>Главное окно</title>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Сервер-скриптов-общ.-вид.gif"/>
+            </informalfigure>
+            <para>Главное окно приложение содержит следующие элементы управления:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Список запущенных сценариев</para>
+               </listitem>
+               <listitem>
+                  <para>Строку состояния</para>
+               </listitem>
+               <listitem>
+                  <para>Главное меню</para>
+               </listitem>
+               <listitem>
+                  <para>Панель управления</para>
+               </listitem>
+            </itemizedlist>
+            <para>В списке запущенных сценариев отображаются такие атрибуты
+сценария, как имя, статус и время запуска. Сценарий может находится
+в следующих состояниях:</para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Не инициализирован</entry>
+                        <entry colname="2">Загрузка сценария не завершена</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Работает</entry>
+                        <entry colname="2">Сценарий в данный момент исполняется</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Приостановлен</entry>
+                        <entry colname="2">Исполнение сценария временно приостановлено</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Прерван</entry>
+                        <entry colname="2">Исполнение сценария прервано</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Завершен</entry>
+                        <entry colname="2">Исполнение сценария завершено</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Не используется</entry>
+                        <entry colname="2">Ссылка на данный сценарий не используется ни одним клиентом</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>Строка состояния отображает статус сервера. Если сервер подключен
+к<xref linkend="РМО" role="Undefined Cross-Reference"/>,
+то строка состояния сигнализирует<command moreinfo="none">Готов</command>и сервер
+может запускать сценарии на исполнения. Если сервер не соединен
+с<xref linkend="РМО" role="Undefined Cross-Reference"/>или<xref linkend="РМО" role="Undefined Cross-Reference"/>не соединено
+со станцией, то строка состояния сигнализирует<command moreinfo="none">Нет соединения</command>с<xref linkend="РМО" role="Undefined Cross-Reference"/>!, в
+этом случае исполнение сценариев невозможно.</para>
+            <para>
+               <emphasis>Главное меню</emphasis>
+            </para>
+            <para>
+               <command moreinfo="none">Меню Файл</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Выход</entry>
+                        <entry colname="2">Завершение работы сервера</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Содержание</entry>
+                        <entry colname="2">Показать эту справку</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <emphasis>Панель управления</emphasis>
+            </para>
+            <para>
+               <command moreinfo="none">Описание панели управления</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Кнопка</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="0.444in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmosborkamusora%20copy.gif"/>
+                        </entry>
+                        <entry colname="2">Инициирует процедуру сборки мусора</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="0.431in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-priostanovit%20copy.gif"/>
+                        </entry>
+                        <entry colname="2">Приостановить исполнение сценария</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="0.431in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-vypolnit%20copy.gif"/>
+                        </entry>
+                        <entry colname="2">Возобновить исполнение сценария</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="0.444in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-prervat_copy.gif"/>
+                        </entry>
+                        <entry colname="2">Прервать исполнение сценария</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic width="0.403in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoprervatvsjo.gif"/>
+                        </entry>
+                        <entry colname="2">Прервать выполнение всех сценариев</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">
+                           <graphic width="0.417in" align="aleft"
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-svojstva-servera_copy.gif"/>
+                        </entry>
+                        <entry colname="2">Вызывает Окно свойств сервера</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <emphasis>Окно свойств сервера</emphasis>
+            </para>
+            <informalfigure float="0">
+               <graphic width="4.431in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/сервер-скриптов-настройки.gif"/>
+            </informalfigure>
+            <para>Окно свойств сервера позволяет изменять два основных параметра:</para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Интервал очистки</entry>
+                        <entry colname="2">Время в миллисекундах, между автоматическими запусками процедуры очистки списка сценариев, которая удалит
+из хвоста списка все неиспользуемые сценарии</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Путь к сценариям</entry>
+                        <entry colname="2">Путь, относительно которого сервер ищет файлы сценариев</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+         <section>
+            <title>Язык сценариев</title>
+            <para>Описание языка сценариев смотри в разделе «<xref linkend="srmo" role="Undefined Cross-Reference"/>».</para>
+         </section>
+      </section>
+      <section>
+         <title id="tri_odin_odinn" xreflabel="3.1.11. Журнал событий">3.1.11. Журнал
+событий</title>
+         <section>
+            <title>Обзор</title>
+            <para>Программа Журнал событий предназначена для сбора информации
+о работе станции и хранения системной консоли.</para>
+            <para>С помощью программы Вы можете:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Просматривать системную консоль станции</para>
+               </listitem>
+               <listitem>
+                  <para>Хранить и обновлять локальную копию консоли</para>
+               </listitem>
+               <listitem>
+                  <para>Производить выборку системных событий по различным
+критериям</para>
+                  <itemizedlist>
+                     <listitem>
+                        <para>модуль станции</para>
+                     </listitem>
+                     <listitem>
+                        <para>интервал времени</para>
+                     </listitem>
+                     <listitem>
+                        <para>тип события</para>
+                     </listitem>
+                     <listitem>
+                        <para>и др.</para>
+                     </listitem>
+                  </itemizedlist>
+               </listitem>
+               <listitem>
+                  <para>В случае аварийной ситуации копия журнала может
+быть использована для локализации источника аварии (возможно совместно
+с разработчиком)</para>
+               </listitem>
+            </itemizedlist>
+         </section>
+         <section>
+            <title>Главное окно</title>
+            <para>Главное окно Журнала выглядит следующим образом:</para>
+            <informalfigure float="0">
+               <graphic width="10.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-общий-вид.gif"/>
+            </informalfigure>
+            <para>Пункты главного меню:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Журнал</para>
+               </listitem>
+               <listitem>
+                  <para>Вид</para>
+               </listitem>
+               <listitem>
+                  <para>Настройки</para>
+               </listitem>
+               <listitem>
+                  <para>Справка</para>
+               </listitem>
+            </itemizedlist>
+            <para>Рабочая область Журнала разделена на 3 части:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Панель инструментов</para>
+               </listitem>
+               <listitem>
+                  <para>Просмотр журнала</para>
+               </listitem>
+               <listitem>
+                  <para>Локальная консоль</para>
+               </listitem>
+            </itemizedlist>
+            <para>В строке состояния отображается информация о текущем состоянии<xref linkend="БД" role="Undefined Cross-Reference"/>Журнала.</para>
+            <para>
+               <emphasis>Главное меню</emphasis>
+            </para>
+            <para>Меню<command moreinfo="none">Журнал</command>служит для управления<xref linkend="БД" role="Undefined Cross-Reference"/>журналов</para>
+            <para>
+               <command moreinfo="none">Меню Журнал</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <xref linkend="БД" role="Undefined Cross-Reference"/>Журнала</entry>
+                        <entry colname="2">Открывает для просмотра базу данных текущей станции</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Удаленная<xref linkend="БД" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Выбирает удаленную базу данных для просмотра. При выборе данного пункта формируется
+запрос к серверу в соответствии с текущим фильтром.</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Открыть</entry>
+                        <entry colname="2">Открыть для просмотра указанный файл<xref linkend="БД" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Закрыть</entry>
+                        <entry colname="2">Закрыть просматриваемую<xref linkend="БД" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Сохранить как</entry>
+                        <entry colname="2">Сохранить все записи из окна просмотра в файл базы данных Журнала</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Установки журнала</entry>
+                        <entry colname="2">Показать диалог установок Журнала</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Очистить все</entry>
+                        <entry colname="2">Пункт доступен только для локальных<xref linkend="БД" role="Undefined Cross-Reference"/>. При выборе данной команды производится
+очистка<xref linkend="БД" role="Undefined Cross-Reference"/>в соответствии
+с текущим фильтром (все сообщения, удовлетворяющие фильтру, удаляются).</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Упаковать<xref linkend="БД" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Пункт доступен только для локальных<xref linkend="БД" role="Undefined Cross-Reference"/>. Для физического освобождения дискового пространства необходимо упаковывать<xref linkend="БД" role="Undefined Cross-Reference"/>. Выбор данной команды позволяет произвести упаковку текущей открытой<xref linkend="БД" role="Undefined Cross-Reference"/>. См. также
+« Упаковка журнала».</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Выход</entry>
+                        <entry colname="2">Выход из программы</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>В меню<command moreinfo="none">Вид</command>осуществляется выбор специальных
+функций для работы с записями Журнала.</para>
+            <para>
+               <command moreinfo="none">Меню Вид</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Все события</entry>
+                        <entry colname="2">Отображать все события (не использовать какой-либо фильтр)</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Фильтр</entry>
+                        <entry colname="2">Показать диалог выбора фильтра</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Найти</entry>
+                        <entry colname="2">Найти запись в журнале по определенным критериям</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Подробно</entry>
+                        <entry colname="2">Показать подробную информацию по данной записи (только
+в режиме администратора)</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Обновить</entry>
+                        <entry colname="2">Скопировать новые записи из удаленной<xref linkend="БД" role="Undefined Cross-Reference"/>в локальную<xref linkend="БД" role="Undefined Cross-Reference"/>текущей станции</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Прервать</entry>
+                        <entry colname="2">Прервать процесс обновления локальной<xref linkend="БД" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Меню Настройки</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Внешний вид</entry>
+                        <entry colname="2">Показать диалог настроек и поведения Журнала</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Шрифт</entry>
+                        <entry colname="2">Выбрать шрифт области просмотра журнала</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Меню Справка</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Пункт меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Содержание</entry>
+                        <entry colname="2">Открыть содержание справки</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Поиск</entry>
+                        <entry colname="2">Открыть окно поиска по справке</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Справка Windows</entry>
+                        <entry colname="2">Как пользоваться справкой</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <emphasis>Панель инструментов</emphasis>
+            </para>
+            <para>Панель инструментов предназначена для навигации по базе данных
+Журнала. Записи, отображаемые в окне просмотра журнала обновляются
+по нажатии кнопки<command moreinfo="none">Обновить</command>. Используйте обновление,
+когда хотите, чтобы в окне просмотра журнала появились записи, которые
+еще не были получены с сервера при предыдущем обновлении.</para>
+            <para>
+               <emphasis>Окно просмотра журнала</emphasis>
+            </para>
+            <para>В окне просмотра журнала показываются записи из текущей<xref linkend="БД" role="Undefined Cross-Reference"/>. Журнал
+может работать в 3 основных режимах:</para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Пункт меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Просмотр локальной базы данных</entry>
+                        <entry colname="2">В этом режиме в окне просмотра отображается содержимое локальной<xref linkend="БД" role="Undefined Cross-Reference"/>, находящийся
+в файле. Содержимое<xref linkend="БД" role="Undefined Cross-Reference"/>фильтруется, если был установлен фильтр</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Просмотр<xref linkend="БД" role="Undefined Cross-Reference"/>Журнала</entry>
+                        <entry colname="2">Этот режим аналогичен режиму локального просмотра. В
+качестве локальной базы выбирается база данных текущей станции</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Просмотр удаленной<xref linkend="БД" role="Undefined Cross-Reference"/>
+                        </entry>
+                        <entry colname="2">Этот режим может быть полезен, если отсутствует
+локальная копия системной консоли. В этом режиме Журналом создается временная<xref linkend="БД" role="Undefined Cross-Reference"/>, в которую помещаются
+события, передаваемые сервером по запросу. При этом если был установлен фильтр,
+с удаленного сервера передаются только события, соответствующие этому фильтру.</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <emphasis>Окно локальной консоли</emphasis>
+            </para>
+            <para>В окно локальной консоли выдаются сообщения приложений<xref linkend="РМО" role="Undefined Cross-Reference"/>, сообщения
+об ошибках и другая полезная информация.</para>
+            <para>
+               <emphasis>Строка состояния</emphasis>
+            </para>
+            <para>Строка состояния служит для отображения следующей информации:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>В левой панели отображается количество
+записей в текущей<xref linkend="БД" role="Undefined Cross-Reference"/>. Если открыта удаленная<xref linkend="БД" role="Undefined Cross-Reference"/>, показывается
+количество записей, уже полученых от сервера.</para>
+               </listitem>
+               <listitem>
+                  <para>Информация о текущем состоянии задачи поддержания
+локальной копии журнала. Если в настоящий момент происходит обмен
+информацией с сервером, здесь отображается количество переданных
+записей.</para>
+               </listitem>
+               <listitem>
+                  <para>В правой панели отображается имя текущего открытого
+файла или строка «Удаленная<xref linkend="БД" role="Undefined Cross-Reference"/>» в случае, если открыта
+удаленная<xref linkend="БД" role="Undefined Cross-Reference"/>.</para>
+               </listitem>
+            </itemizedlist>
+            <para>При выборе какого-либо пункта меню или при наведении указателя
+мыши на какие-либо элементы управления в строке состояния отображается
+подсказка.</para>
+         </section>
+         <section>
+            <title>Окно установок журнала</title>
+            <para>Окно установок Журнала выглядит следующим образом:</para>
+            <informalfigure float="0">
+               <graphic width="6.264in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-установки-журнала.gif"/>
+            </informalfigure>
+            <para>Все опции, задаваемые в этом окне, относятся только к станции,
+с которой установлено соединение в настояций момент.</para>
+            <para>Окно установок журнала служит для задания параметров работы
+Журнала в режиме установленного соединения со станцией и позволяет
+изменять следующие параметры:</para>
+            <para>
+               <command moreinfo="none">Параметры окна установок журнала</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Параметр</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Звуковой сигнал при приходе нового сообщения</entry>
+                        <entry colname="2">Если установлен этот флажок, Журнал будет оповещать о поступлении
+новых записей в локальную копию системной консоли при помощи звукового сигнала. Эта
+опция может быть удобной, если включен режим периодической проверки новых сообщений в системной консоли</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Проверять сервер при подключении</entry>
+                        <entry colname="2">Если установлен этот флажок, Журнал будет автоматически обновлять локальную копию системной консоли при соединении
+со станцией. Эта опция может быть полезной, если клиент<xref linkend="РМО" role="Undefined Cross-Reference"/>периодически устанавливает кратковременные соединения со станцией для обновления тарификации, системной консоли
+и т.д.</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Периодическая проверка</entry>
+                        <entry colname="2">Если установлен этот флажок, Журнал будет автоматически обновлять локальную копию системной консоли спустя указанное число минут
+с момента последнего обновления. Эта опция может быть полезной в случае, когда клиент<xref linkend="РМО" role="Undefined Cross-Reference"/>имеет постоянное соединение со станцией
+и может автоматически обновлять тарификационную и системную информацию</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Максимальное кол-во сообщений</entry>
+                        <entry colname="2">Если установлен этот флажок, Журнал будет автоматически
+удалять лишние сообщения из локальной копии системной консоли, если
+общее число сообщений превысило указанное</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Хранить сообщения не более…</entry>
+                        <entry colname="2">Заставляет Журнал автоматически удалять старые сообщения из<xref linkend="БД" role="Undefined Cross-Reference"/>Журнала. Эту возможность
+удобно использовать совместно с автоматической упаковкой журнала</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Упаковка журнала</entry>
+                        <entry colname="2">При удалении сообщений из<xref linkend="БД" role="Undefined Cross-Reference"/>Журнала место, которое они занимали, физически не освобождается.
+Для физического удаления записей необходимо упаковывать<xref linkend="БД" role="Undefined Cross-Reference"/>. Включение этой
+опции позволяет производить эту операцию автоматически</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+         <section>
+            <title>Окно установок внешнего вида</title>
+            <para>Окно установок внешнего вида выглядит следующим образом:</para>
+            <informalfigure float="0">
+               <graphic width="4.972in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-внешний-вид.gif"/>
+            </informalfigure>
+            <para>Все опции, задаваемые в этом окне, относятся к поведению и
+внешнему виду программы и не имеют отношения к станции.</para>
+            <para>Окно установок поведения и внешнего вида служит для задания
+режимов работы Журнала.</para>
+            <para>
+               <command moreinfo="none">Режимы работы журнала</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Режим работы</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Обновлять консоль</entry>
+                        <entry colname="2">Если этот флажок установлен, при появления события
+в локальной консоли, консоль автоматически позиционируется на него</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Открывать базу после сжатия</entry>
+                        <entry colname="2">Если установлен флажок автоматической упаковки журнала
+и в момент сжатия открыта локальная копия системной консоли текущей станции, она
+будет закрыта. Установка этого флага заставляет журнал открывать<xref linkend="БД" role="Undefined Cross-Reference"/>текущей станции
+по окончании упаковки</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Разворачивать при активности</entry>
+                        <entry colname="2">Если журнал был спрятан, установка этого флажка заставляет журнал разворачиваться
+при появлении новых событий в локальной копии системной консоли или появлении аварийных событий
+в локальной консоли</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Прятать при запуске</entry>
+                        <entry colname="2">Минимизировать окно журнала при старте<xref linkend="РМО" role="Undefined Cross-Reference"/>. Данная опция актуальна только
+в случае автоматического запуска приложения при старте<xref linkend="РМО" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+         <section>
+            <title>Окно выбора фильтра</title>
+            <para>Окно выбора фильтра выглядит следующим образом:</para>
+            <informalfigure float="0">
+               <graphic width="7.222in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-фильтр.gif"/>
+            </informalfigure>
+            <para>Все установки, произведенные в этом окне, вступают в силу
+по нажатию кнопки<command moreinfo="none">OK</command>. Нажатие на<command moreinfo="none">Отмена</command>закрывает
+окно не внося никаких изменений в текущий фильтр.</para>
+            <para>Окно выбора фильтра позволяет установить фильтр для событий
+журнала.</para>
+            <para>
+               <command moreinfo="none">Фильтр для событий журнала</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">От …</entry>
+                        <entry colname="2">Показывать только события, произошедшие позже обозначенной
+даты</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">До …</entry>
+                        <entry colname="2">Показывать только события, произошедшие раньше обозначенной
+даты</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Вид событий …</entry>
+                        <entry colname="2">Показывать только события определенного вида</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Модуль …</entry>
+                        <entry colname="2">Показывать только события относящиеся к указанному модулю</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+         <section>
+            <title>Задача 1. Задание фильтра</title>
+            <para>
+               <command moreinfo="none"/>
+            </para>
+            <itemizedlist>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1a)</emphasis>Выбрать
+пункт меню<emphasis>Вид-&gt;Фильтр</emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1b)</emphasis>В первой части окна
+проставить галочку в поле<command moreinfo="none">Начало</command>или в поле<command moreinfo="none">Выбрать</command>.
+В последнем случае становятся доступными поля, с помощью которых
+можно проставить желаемые дату и время начала журнала</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1c)</emphasis>Во второй части окна,
+по аналогии, можно проставить галочку в поле<command moreinfo="none">Конец</command>или
+в поле<command moreinfo="none">Выбор</command>, причём в последнем случае следует
+проставить желаемые время и дату конца журнала</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1d)</emphasis>В третьей части окна
+галочками отметить виды интересующих событий</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1e)</emphasis>Проставить галочку в
+окошке<command moreinfo="none">Модуль</command>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1f)</emphasis>Выбрать модуль из предложенного
+списка</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1g)</emphasis>Начать кнопку<command moreinfo="none">Ок</command>
+                  </para>
+               </listitem>
+            </itemizedlist>
+         </section>
+      </section>
+      <section>
+         <title>3.1.12. Диспетчер заданий</title>
+         <section>
+            <title>Обзор</title>
+            <para>Диспетчер заданий позволяет запускать приложения<xref linkend="РМО" role="Undefined Cross-Reference"/>по расписанию.</para>
+            <para>Приложения, поддерживающие диспетчеризацию:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Скрипты CMM</para>
+               </listitem>
+               <listitem>
+                  <para>Диагностика</para>
+               </listitem>
+            </itemizedlist>
+         </section>
+         <section>
+            <title>Главное окно</title>
+            <para>Панель диспетчера состоит из трех секций, как показано на
+рисунке:</para>
+            <informalfigure float="0">
+               <graphic width="10.083in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadanij1.gif"/>
+            </informalfigure>
+            <para>
+               <emphasis>Станции</emphasis>
+            </para>
+            <para>Секция станции отображает список имеющихся станций.</para>
+            <para>
+               <emphasis>Секция задач отображает задачи для выбранной станции.
+Задачи имеют ряд параметров:</emphasis>
+            </para>
+            <para>
+               <command moreinfo="none">Параметры задачи</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Параметр</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Задание</entry>
+                        <entry colname="2">Название задачи</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Состояние</entry>
+                        <entry colname="2">Текущее состояние задачи. Изменение состояния заноситься в
+историю</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Следующий запуск</entry>
+                        <entry colname="2">Ближайшее время запуска задачи</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Прошлый запуск</entry>
+                        <entry colname="2">Последнее время запуска задачи</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Закончено</entry>
+                        <entry colname="2">Время окончания задачи при последнем запуске</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <emphasis>История</emphasis>
+            </para>
+            <para>Секция истории показывает события, такие как соединение со
+станцией, запуск задачи и изменение состояния задачи. Секция имеет
+отладочное меню. Пользователям не следует его использовать. События
+имеют следующие характеристики:</para>
+            <para>
+               <command moreinfo="none">Характеристики событий</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Характеристика</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Время</entry>
+                        <entry colname="2">Время возникновения события</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Станция</entry>
+                        <entry colname="2">Название станции</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Задание</entry>
+                        <entry colname="2">Название задания</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Событие</entry>
+                        <entry colname="2">Описание события</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <emphasis>Управление задачами</emphasis>
+            </para>
+            <para>Секция станций и задач имеет меню для управления задачами.
+При вызове меню из секции станций действия пользователя применяются
+ко всем задачам станции, то же самое происходит при выборе нескольких
+задач.</para>
+            <para>
+               <command moreinfo="none">Меню для управления задачами</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Добавить задание</entry>
+                        <entry colname="2">В списке заданий выберите нужное, после чего появиться редактор заданий, используйте
+его для настройки</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Изменить задание</entry>
+                        <entry colname="2">Вызывает редактор задач, используйте его для изменения настроек задания</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Удалить задание</entry>
+                        <entry colname="2">Удаляет задачу</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Начать задание</entry>
+                        <entry colname="2">Запускает задачу. Событие заносится в историю</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Остановить задание</entry>
+                        <entry colname="2">Останавливает выполнение задания дипетчером
+и заносит событие в историю. Данная операция ни каким образом не влияет
+на поведение управляемого приложения, а только указывает диспетчеру прекратить посылать приложению
+команды управления</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Включить/выключить задание</entry>
+                        <entry colname="2">Меняет состояние задания. Начальное состояние заданий
+– включено, в выключенном состоянии задание не будет выполняться автоматически,
+пока его снова не включат</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+         <section>
+            <title>Редактор заданий</title>
+            <para>Редактор заданий используется при создании нового задания
+или для редактирования одного или нескольких заданий. Окно состоит
+из трех страниц, как показано на рисунке:</para>
+            <informalfigure float="0">
+               <graphic width="5.861in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadach-zadanie.gif"/>
+            </informalfigure>
+            <para>
+               <emphasis>Задание</emphasis>
+            </para>
+            <para>Страница<emphasis>Задание</emphasis>содержит параметры задачи.
+Если редактируются несколько задач разных типов, то страница не
+показывается.</para>
+            <para>Параметры, задаваемые на странице<emphasis>Задание</emphasis>,
+делятся на общие для всех типов задач и на специфические для конкретных
+задач.</para>
+            <para>
+               <command moreinfo="none">Описание общих параметров</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="3" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <colspec colnum="3" colname="3" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Параметр</entry>
+                        <entry colname="2">Назначение</entry>
+                        <entry colname="3">Замечание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Станция</entry>
+                        <entry colname="2">Указывает, для какой станции предназначена
+задача</entry>
+                        <entry colname="3">Не редактируется</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Комментарий</entry>
+                        <entry colname="2">Содержит дополнительную информацию о задаче</entry>
+                        <entry colname="3">Не обязательный</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Описание параметров, специфичных для задачи «Скрипты
+CMM»</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="3" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <colspec colnum="3" colname="3" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Параметр</entry>
+                        <entry colname="2">Назначение</entry>
+                        <entry colname="3">Замечание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Файл</entry>
+                        <entry colname="2">Название файла скрипта</entry>
+                        <entry colname="3">Используйте<emphasis>Обзор</emphasis>для поиска файла</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Параметры</entry>
+                        <entry colname="2">Параметры скрипта</entry>
+                        <entry colname="3">Не обязательный</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Описание параметров, специфичных для задачи «Диагностика»</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="3" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <colspec colnum="3" colname="3" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Параметр</entry>
+                        <entry colname="2">Назначение</entry>
+                        <entry colname="3">Замечание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Вся станция</entry>
+                        <entry colname="2">Тестировать все комплекты станции</entry>
+                        <entry colname="3"/>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Абоненты</entry>
+                        <entry colname="2">Задает телефонный интервал для тестирования абонентов</entry>
+                        <entry colname="3"/>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <emphasis>Настройки</emphasis>
+            </para>
+            <para>Страница<emphasis>Настройки</emphasis>содержит параметры управления
+задачей.</para>
+            <informalfigure float="0">
+               <graphic width="5.861in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadanij-redaktor-z.gif"/>
+            </informalfigure>
+            <para>
+               <command moreinfo="none">Описание параметров управления задачей</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="3" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <colspec colnum="3" colname="3" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Параметр</entry>
+                        <entry colname="2">Описание</entry>
+                        <entry colname="3">Состояние по умолчанию</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Выход по окончании задания</entry>
+                        <entry colname="2">Указывает, должно ли приложение быть закрыто после окончания задания</entry>
+                        <entry colname="3">Отмечено</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Удалить задание, если нет его повторения по расписанию</entry>
+                        <entry colname="2">Указывает, нужно ли удалять задание, если оно
+по расписанию, больше никогда не будет запущено</entry>
+                        <entry colname="3">Не отмечено</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Свернуть приложение после старта</entry>
+                        <entry colname="2">Указывает, должно ли приложение минимизироваться
+при запуске</entry>
+                        <entry colname="3">Отмечено</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <emphasis>Расписание</emphasis>
+            </para>
+            <informalfigure float="0">
+               <graphic width="0.417in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/Result/ScreenShots-full/dispecher-zadach-raspisanie.gif"/>
+            </informalfigure>
+            <para>Страница<emphasis>Расписание</emphasis>позволяет задать расписание,
+по которому будет выполняться задание. Выберите в списке<emphasis>Назначить
+расписание</emphasis>один из четырех типов расписания выполнения
+задачи:</para>
+            <para>
+               <command moreinfo="none">Типы расписаний</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Тип</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Ежедневно</entry>
+                        <entry colname="2">Каждые N дней начиная с текущего дня, когда наступит Время начала</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Ежечасно</entry>
+                        <entry colname="2">Через каждые N часов, начиная со Времени начала</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Однократно</entry>
+                        <entry colname="2">Один раз в указанный день и Время начала</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Интервально</entry>
+                        <entry colname="2">Через каждые N часов M минут, начиная со Времени начала</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+      </section>
+      <section>
+         <title>3.1.13.
+Трасса</title>
+         <section>
+            <title>Обзор</title>
+            <para>Приложение Трасса позволяет отслеживать события, происходящие
+в станции.</para>
+            <para>Трассу можно прочитать как из модуля, так и из hex-файла.
+Существует два режима просмотра: операторский и отладочный.</para>
+         </section>
+         <section>
+            <title>Главное окно</title>
+            <informalfigure float="0">
+               <graphic width="9.833in" align="aleft"
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/trassa-obtshij-vid.gif"/>
+            </informalfigure>
+            <para>В главном окне можно просматривать несколько трасс одновменно.
+Используйте меню<emphasis>Файл -&gt; Модуль</emphasis>для чтения трассы
+из модуля и<emphasis>Файл -&gt; Открыть</emphasis>– из hex файла.</para>
+         </section>
+         <section>
+            <title>Меню</title>
+            <para>
+               <command moreinfo="none">Меню Файл</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Модуль</entry>
+                        <entry colname="2">Прочитать трассу из модуля. Модуль выбирается из
+списка</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Сохранить</entry>
+                        <entry colname="2">Сохранить трассу в файле. Если трасса из hex-файла, то
+ее расшифровка будет сохранена в файле с таким же именем и расширением<filename moreinfo="none">lst</filename>
+                        </entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Сохранить как</entry>
+                        <entry colname="2">Сохранить трассу в файле. Появляется диалог предлагающий сохранить трассу ввиде
+hex или<filename moreinfo="none">lst</filename>файла</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Закрыть</entry>
+                        <entry colname="2">Закрыть окно. Если трасса из модуля, то будет предложено сохранить ее
+в файле</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Послать</entry>
+                        <entry colname="2">Послать трассу по электронной почте</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Послать -&gt; Сообщение</entry>
+                        <entry colname="2">Вложить в письмо трассу в виде hex-файла, а расшифровку поместить в содержимое
+письма</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Послать -&gt; Сообщение (как вложение)</entry>
+                        <entry colname="2">Вложить в письмо расшифровку и hex-файл, содержимое
+письма будет пустым</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Закрыть все</entry>
+                        <entry colname="2">Закрыть все окна</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Выход</entry>
+                        <entry colname="2">Выход из приложения</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Меню Вид</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Обновить</entry>
+                        <entry colname="2">Прочитать трассу заново</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Очистить</entry>
+                        <entry colname="2">Очистить трассу в модуле</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Форматировать</entry>
+                        <entry colname="2">Показать сообщения в операторском или отладочном режиме</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Перенос строк</entry>
+                        <entry colname="2">Выполнять перенос строк, если они не помещаются
+в окне просмотра</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Выделять ошибки цветом</entry>
+                        <entry colname="2">В режиме выключенного форматирования выделять цветом обнаруженные ошибки. Данная функция предназначена
+для отладочных целей</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Меню Фильтры</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Список фильтров</entry>
+                        <entry colname="2"/>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Показать все</entry>
+                        <entry colname="2">Отменить все фильтры и показать все сообщения</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Меню Окна</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Список дочерних окон</entry>
+                        <entry colname="2"/>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Упорядочить все</entry>
+                        <entry colname="2">Показать дочерние окна каскадом</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Разделить</entry>
+                        <entry colname="2">Показать дочерние окна одинакового размера</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Меню Справка</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                  <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="0">
+                        <entry colname="1">Содержание</entry>
+                        <entry colname="2">Открыть содержание справки</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+         <section>
+            <title>Hex файлы</title>
+            <para>Hex файлы – это текстовые файлы. Они имеют следующий вид:</para>
+            <para>
+               <command moreinfo="none">3300:0000 45 11 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 ¦ E...............</command>
+            </para>
+            <para>
+               <command moreinfo="none">3300:0010 0F 02 F0 D1 FC 40 00 40 01 FF FF F0 D1
+49 00 00 ¦ ..ЁT№@.@. ЁTI...</command>
+            </para>
+            <para>
+               <command moreinfo="none">3300:0020 0F 01 F0 D1 FD 40 FC 40 01 41 00 F9 FF
+CA 21 24 ¦ ..ЁT¤@№@.A.o ¦!$</command>
+            </para>
+            <para>
+               <command moreinfo="none">3300:0030 0D 01 F0 D1 FD 40 FC 40 01 52 00 00 00
+C2 40 D9 ¦ ..ЁT¤@№@.R...T@-</command>
+            </para>
+            <para>
+               <command moreinfo="none">3300:0040 0D 01 F0 D1 FD 40 FC 40 01 3D 00 20 00
+BC 40 C8 ¦ ..ЁT¤@№@.=...-@L</command>
+            </para>
+         </section>
+         <section>
+            <title>Форматирование</title>
+            <para>Трассу можно смотреть в двух режимах: операторскам и отладочном.
+Для переключения режима используйте меню<emphasis>Вид -&gt; Форматировать</emphasis>.</para>
+            <para>Примеры трасс с включенным и отключенным форматированием можно
+найти в приложениях «<xref linkend="vosem_odin" role="Undefined Cross-Reference"/>» и «<xref linkend="vosem_dva" role="Undefined Cross-Reference"/>».</para>
+            <para>
+               <command moreinfo="none">Задача 1. Общий порядок снятия трассы</command>
+            </para>
+            <itemizedlist>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1a)</emphasis>Включите
+трассировку абонентов и/или каналов как описано ниже</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1b)</emphasis>В меню<emphasis>Файл
+-&gt; Модули</emphasis>выберите требуемый модуль</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1c)</emphasis>Нажмите кнопку<command moreinfo="none">Очистить</command>(или
+выберите меню<emphasis>Вид -&gt; Очистить</emphasis>)</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1d)</emphasis>Выполните действия,
+для которых выполняется процедура трассировки</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1e)</emphasis>Нажмите кнопку<command moreinfo="none">Обновить</command>(или
+выберите меню<emphasis>Вид -&gt; Обновить</emphasis>)</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1f)</emphasis>По завершению выкачки
+трассы она отображается в окне приложения</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1g)</emphasis>Выберите меню<emphasis>Файл
+-&gt; Сохранить</emphasis>и укажите в какой файл сохранить трассу</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1h)</emphasis>Выключите трассировку
+абонентов и/или каналов</para>
+               </listitem>
+            </itemizedlist>
+            <para>
+               <emphasis>Рекомендации</emphasis>
+            </para>
+            <itemizedlist>
+               <listitem>
+                  <para>Снятие трассы не рекомендуется проводить
+в<xref linkend="ЧНН" role="Undefined Cross-Reference"/>,
+кроме анализа ситуаций, возникающих только в данное время</para>
+               </listitem>
+               <listitem>
+                  <para>На шаге 7 при снятии трассы для исходящей связи
+используйте режим административного захвата линии</para>
+               </listitem>
+               <listitem>
+                  <para>На шаге 8 при просмотре трассы используйте режим
+форматирования (меню<emphasis>Вид -&gt; Форматировать</emphasis>).
+Режим с выключенным форматированием предназначен для наладчиков
+оборудования</para>
+               </listitem>
+            </itemizedlist>
+            <para>
+               <command moreinfo="none">Задача 2. Включение трассировки абонентов</command>
+            </para>
+            <para>См. «<xref linkend="zad_7" role="Undefined Cross-Reference"/>»</para>
+            <para>
+               <command moreinfo="none">Задача 3. Включение трассировки каналов</command>
+            </para>
+            <para>См. «<xref linkend="zad_1" role="Undefined Cross-Reference"/>»</para>
+            <para>
+               <emphasis>Дополнительные виды трассировки</emphasis>
+            </para>
+            <para>Существуют дополнительные виды трассировки для различных объектов.
+Они, как правило, активируются путем запуска специализированных
+скриптов, которые не входят в поставку<xref linkend="РМО" role="Undefined Cross-Reference"/>. Сами скрипты и инструкции
+по их использованию предоставляются наладчиками оборудования.</para>
+         </section>
+      </section>
+   </d:InfElement>
+</d:DocumentationCore>

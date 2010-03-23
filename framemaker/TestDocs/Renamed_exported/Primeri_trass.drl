@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Primeri_trass.drl">
+   <d:InfElement id="example_trasses" name="Примеры трасс" parenttype="DocumentationCore"
+                 filename="Primeri_trass.drl">
+
+
+
+
+
+
+
+
+
+      <chapter>
+         <title>Примеры трасс</title>
+         <para>Трассу можно смотреть в двух режимах: операторскам и отладочном.
+Для переключения режима используйте меню Вид -&gt; Форматировать.</para>
+         <para>В нижеприведённых примерах одна строчка трассы не всегда соответсвует
+одной строчке текста. В случае, если строчка трассы не умещается
+на тесктовой строке, продолжение переносится на следующие строки
+с большим отступом.</para>
+         <para>Например,</para>
+         <para>
+            <command moreinfo="none">06:43.21 KM[32] &lt; AB[2] Info1_Keypad (первые цифры=3,
+последние цифры=1001, n=FFFB, index ВМА=41E4)</command>
+         </para>
+         <para>является одной строкой трассы.</para>
+         <section>
+            <title id="vosem_odin"
+                   xreflabel="8.1. Пример трассы в операторском режиме (форматирование включено)">8.1.
+Пример трассы в операторском режиме (форматирование включено)</title>
+            <para>
+               <command moreinfo="none">06:36.09 OK[1] &gt; AB[2] абонент 590001 снял трубку</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.09 AB[2] &lt; OK[1] абонент 590001 снял трубку</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.09 AB[2] &gt; OK[1] 590001 перевести сканер в
+режим приема цифр декадным способом</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.10 OK[1] &lt; AB[2] 590001 перевести сканер
+в режим приема цифр декадным способом</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.14 OK[1] &gt; AB[2] абонент 590001 начал набор
+цифр</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.14 AB[2] &lt; OK[1] абонент 590001 начал набор
+цифр</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 OK[1] &gt; AB[2] абонент 590001 набрал цифру
+3</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 AB[2] &lt; OK[1] абонент 590001 набрал цифру
+3</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.43 OK[1] &gt; AB[2] абонент 590001 набрал цифру
+1</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.43 AB[2] &lt; OK[1] абонент 590001 набрал цифру
+1</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:40.22 OK[1] &gt; AB[2] абонент 590001 набрал цифру
+0</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:40.22 AB[2] &lt; OK[1] абонент 590001 набрал цифру
+0</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.00 OK[1] &gt; AB[2] абонент 590001 набрал цифру
+0</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.00 AB[2] &lt; OK[1] абонент 590001 набрал цифру
+0</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 OK[1] &gt; AB[2] абонент 590001 набрал цифру
+1</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 AB[2] &lt; OK[1] абонент 590001 набрал цифру
+1</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 AB[2] &gt; OK[1] 590001 вывести сканер из режима
+приема цифр</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 OK[1] &lt; AB[2] 590001 вывести сканер из
+режима приема цифр</command>
+            </para>
+            <para>
+               <command moreinfo="none">07:08.94 OK[1] &gt; AB[2] абонент 590001 положил трубку</command>
+            </para>
+            <para>
+               <command moreinfo="none">07:08.94 AB[2] &lt; OK[1] абонент 590001 положил
+трубку</command>
+            </para>
+         </section>
+         <section>
+            <title id="vosem_dva"
+                   xreflabel="8.2. Пример трассы в отладочном режиме (форматирование выключено)">8.2.
+Пример трассы в отладочном режиме (форматирование выключено)</title>
+            <para>
+               <command moreinfo="none">06:36.09 OK[1] &gt; OK[1] OKinout (Инф=1 1 0 0 7C6B
+7540)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.09 OK[1] &lt; OK[1] OKinout (Инф=1 1 0 0 7C6B
+7540)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.09 OK[1] &gt; AB[2] Setup Internal</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.09 AB[2] &lt; OK[1] Setup Internal</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.09 AB[2] &gt; OK[1] принимай_цифру</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.09 AB[2] &gt; KM[32] Info (АС=12)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.09 AB[2] &gt; OK[1] Сигнал (инфстат=1)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.09 AB[2] set timer 1 for 06:56.09</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.10 OK[1] &lt; AB[2] принимай_цифру</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.10 OK[1] &lt; AB[2] Сигнал (инфстат=1)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:36.10 KM[32] &lt; AB[2] Info (АС=12)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.14 OK[1] &gt; OK[1] OKinout (Инф=4 1 0 0 0 0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.14 OK[1] &lt; OK[1] OKinout (Инф=4 1 0 0 0
+0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.14 OK[1] &gt; AB[2] Cancel ton</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.14 AB[2] &lt; OK[1] Cancel ton</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.14 AB[2] &gt; KM[32] Info (АС=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.14 KM[32] &lt; AB[2] Info (АС=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 OK[1] &gt; OK[1] OKinout (Инф=4 1 0 3 0 0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 OK[1] &lt; OK[1] OKinout (Инф=4 1 0 3 0
+0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 OK[1] &gt; AB[2] Info (цифра_номера=3)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 AB[2] &lt; OK[1] Info (цифра_номера=3)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 AB[2] reset timer 1</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 AB[2] set system timer for 06:47.53</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 AB[2] &gt; KM[32] sync_Запрос_типа_связи (цифры1=1000, цифры2=3)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 KM[32] &lt; AB[2] sync_Запрос_типа_связи
+(цифры1=1000, цифры2=3)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 KM[32] &gt; AB[2] repl_Тип_связи (tc=6, КЦ=0, ПарИнднапр=0,
+pring=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 AB[2] &lt; KM[32] repl_Тип_связи (tc=6,
+КЦ=0, ПарИнднапр=0, pring=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.53 AB[2] reset system timer</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:37.54 AB[2] set timer 1 for 06:57.54</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.43 OK[1] &gt; OK[1] OKinout (Инф=4 1 0 1 0 0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.43 OK[1] &lt; OK[1] OKinout (Инф=4 1 0 1 0
+0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.43 OK[1] &gt; AB[2] Info (цифра_номера=1)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.43 AB[2] &lt; OK[1] Info (цифра_номера=1)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.43 AB[2] reset timer 1</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.43 AB[2] set system timer for 06:48.43</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.43 AB[2] &gt; KM[32] sync_Запрос_типа_связи (цифры1=2000, цифры2=31)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.43 KM[32] &lt; AB[2] sync_Запрос_типа_связи
+(цифры1=2000, цифры2=31)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.43 KM[32] &gt; AB[2] repl_Тип_связи (tc=C, КЦ=5, ПарИнднапр=2,
+pring=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.44 AB[2] &lt; KM[32] repl_Тип_связи (tc=C,
+КЦ=5, ПарИнднапр=2, pring=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.44 AB[2] reset system timer</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:38.44 AB[2] set timer 1 for 06:58.44</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:40.22 OK[1] &gt; OK[1] OKinout (Инф=4 1 0 A 0 0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:40.22 OK[1] &lt; OK[1] OKinout (Инф=4 1 0 A 0
+0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:40.22 OK[1] &gt; AB[2] Info (цифра_номера=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:40.22 AB[2] &lt; OK[1] Info (цифра_номера=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:40.22 AB[2] reset timer 1</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:40.22 AB[2] set timer 1 for 07:00.22</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.00 OK[1] &gt; OK[1] OKinout (Инф=4 1 0 A 0 0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.00 OK[1] &lt; OK[1] OKinout (Инф=4 1 0 A 0
+0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.00 OK[1] &gt; AB[2] Info (цифра_номера=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.00 AB[2] &lt; OK[1] Info (цифра_номера=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.00 AB[2] reset timer 1</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.00 AB[2] set timer 1 for 07:02.00</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 OK[1] &gt; OK[1] OKinout (Инф=4 1 0 1 0 0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 OK[1] &lt; OK[1] OKinout (Инф=4 1 0 1 0
+0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 OK[1] &gt; AB[2] Info (цифра_номера=1)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 AB[2] &lt; OK[1] Info (цифра_номера=1)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 AB[2] reset timer 1</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 AB[2] &gt; KM[32] Setup ISUP (инднапр=2, катАОН=1, чпопыток=1)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 AB[2] set timer 1 for 06:45.90</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 AB[2] &gt; OK[1] alerting</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 KM[32] &lt; AB[2] Setup ISUP (инднапр=2,
+катАОН=1, чпопыток=1)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 KM[32] &gt; KM[1] SetupOutISUP (asker=20FB,
+инднапр=2, p1=1101, цифры1=1353, цифры2=2001)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:42.90 OK[1] &lt; AB[2] alerting</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.10 KM[32] &lt; KM[1] ПоискПП (pb1=41E4, pb2=20FB,
+sKM=1FD, pnpar=0, pnpar1=0, ktr=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.10 KM[32] &gt; KM[1] Промпутьнайден (pb1=41E4,
+pb2=20FB, sKM=1FD, pnpar=9)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.20 AB[2] &lt; KM[65] Setup Ask (n=5, index=41E4)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 AB[2] reset timer 1</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 AB[2] set timer 1 for 08:43.21</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 AB[2] &gt; OK[1] НомерВМА (n1=500, n2=0, n3=0,
+n4=3, n5=1001)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 AB[2] &gt; OK[1] Прием полного номера ВМА (адресдраб=41E4,
+типдр=2)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 AB[2] &gt; KM[32] Info1_Keypad (первые цифры=3,
+последние цифры=1001, n=FFFB, index ВМА=41E4)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 OK[1] &lt; AB[2] НомерВМА (n1=500, n2=0,
+n3=0, n4=3, n5=1001)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 OK[1] &gt; CA[1] НомерВМА (n1=500, n2=0, n3=0,
+n4=3, n5=1001, адраб=20FB)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 OK[1] &lt; AB[2] Прием полного номера ВМА (адресдраб=41E4,
+типдр=2)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 OK[1] &gt; CA[1] Прием полного номера ВМА (адрабА=20FB, адресдраб=41E4,
+типдр=2)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 KM[32] &lt; AB[2] Info1_Keypad (первые цифры=3,
+последние цифры=1001, n=FFFB, index ВМА=41E4)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 KM[32] &gt; C7[25] Info_Keypad (первые цифры=3,
+последние цифры=1001, n=FFFB)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 CA[1] &lt; OK[1] НомерВМА (n1=500, n2=0,
+n3=0, n4=3, n5=1001, адраб=20FB)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.21 CA[1] &lt; OK[1] Прием полного номера ВМА
+(адрабА=20FB, адресдраб=41E4, типдр=2)</command>
+            </para>
+            <para>
+               <command moreinfo="none">06:43.32 KM[32] &lt; KM[1] Проключениепути (pnpar=9,
+дупл=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">07:08.94 OK[1] &gt; OK[1] OKinout (Инф=5 1 0 0 80B2
+8215)</command>
+            </para>
+            <para>
+               <command moreinfo="none">07:08.94 OK[1] &lt; OK[1] OKinout (Инф=5 1 0 0 80B2
+8215)</command>
+            </para>
+            <para>
+               <command moreinfo="none">07:08.94 OK[1] &gt; AB[2] Disconnect (причина=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">07:08.94 AB[2] &lt; OK[1] Disconnect (причина=0)</command>
+            </para>
+            <para>
+               <command moreinfo="none">07:08.94 AB[2] reset timer 1</command>
+            </para>
+            <para>
+               <command moreinfo="none">07:08.94 AB[2] &gt; OK[1] Разъединение (кзс=4)</command>
+            </para>
+            <para>
+               <command moreinfo="none">07:08.94 AB[2] &gt; KM[32] Disconnect (Причина=FFFD, indexВЩА=41E4)</command>
+            </para>
+         </section>
+      </chapter>
+   </d:InfElement>
+</d:DocumentationCore>

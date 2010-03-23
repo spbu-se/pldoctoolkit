@@ -1,6 +1,8 @@
 #include "export.h"
 #include "logging.h"
 
+StringT curDirPath;
+
 BoolT exportBook(StringT path, StringT dirPath, F_PropValsT params, UIntT* j)
 {
 	IntT docID, elemID;
@@ -75,6 +77,57 @@ BoolT performExportXSLT(StringT dirPath)
 
 	return !retVal;
 }
+
+BoolT copyFilesFromTempDirectory()
+{
+	DirHandleT handle;
+	IntT statusp, i;
+	FilePathT *dirFilePath, *file;
+	StringT *file_names, tempDirPath;
+
+	if (!getTempDirPath(&tempDirPath)) return FALSE;
+	dirFilePath = F_PathNameToFilePath(tempDirPath,NULL,FDosPath);
+	if (!dirFilePath)
+	{
+		writeToChannel("\tError. copyFilesFromTempDirectory:filePth error.\n");
+		return FALSE;
+	}
+	handle = F_FilePathOpenDir(dirFilePath,&statusp);
+	if (!handle)
+	{
+		writeToChannel("\tError. copyFilesFromTempDirectory:handle error.\n");
+		return FALSE;
+	}
+	i=0;
+	while (file = F_FilePathGetNext(handle,&statusp))
+	{
+		if (!file) continue;
+		i++;
+	}
+	F_FilePathCloseDir(handle);
+	file_names = (StringT *)F_Alloc((i)*sizeof(StringT),NO_DSE);
+	handle = F_FilePathOpenDir(dirFilePath,&statusp);
+	if (!handle)
+	{
+		writeToChannel("\tError. copyFilesFromTempDirectory:handle error.\n");
+		return FALSE;
+	}
+	i=0;
+	while (file = F_FilePathGetNext(handle,&statusp))
+	{
+		if (!file) continue;
+		file_names[i] = F_StrCopyString(F_FilePathToPathName(file,FDosPath));
+		i++;
+	}
+
+	copyFilesFromTempDirectoryTo(file_names,i-1,curDirPath);
+
+	F_FilePathFree(file);
+	F_FilePathFree(dirFilePath);
+
+	return TRUE;
+}
+
 VoidT exportDocLineDoc()
 {
 	F_ObjHandleT bookID;
@@ -96,6 +149,7 @@ VoidT exportDocLineDoc()
 	}
 	dirPath = F_StrCopyString(F_ApiGetString(FV_SessionId,bookID,FP_Name));
 	pathFilename(dirPath); //Since this point dirPath and bookID should be constants
+	curDirPath = F_StrCopyString(dirPath);
 	if (!cleanTempDirectory()) return;
 	if (!getTempDirPath(&tempDirPath)) return;
 	writeToChannel("Generating export params... ");
@@ -111,6 +165,9 @@ VoidT exportDocLineDoc()
 	writeToChannel("Succesful.\n");
 	writeToChannel("Performing XSL transformation... ");
 	if (!performExportXSLT(tempDirPath)) return;
+	writeToChannel("Succesful.\n");
+	writeToChannel("Copying files from temporary...");
+	if (!copyFilesFromTempDirectory()) return;
 	writeToChannel("Succesful.\n");
 	writeToChannel("Closing all documents... ");
 	closeAllDocs();

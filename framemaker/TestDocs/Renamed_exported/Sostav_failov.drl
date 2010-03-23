@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Sostav_failov.drl">
+   <d:InfElement id="fails" name="Состав файлов" parenttype="DocumentationCore"
+                 filename="Sostav_failov.drl">
+
+
+
+
+
+
+
+
+
+      <chapter>
+         <title>Состав файлов</title>
+         <para>Файлы<xref linkend="ПО" role="Undefined Cross-Reference"/>
+            <xref linkend="РМО" role="Undefined Cross-Reference"/>делятся
+на две группы:</para>
+         <itemizedlist>
+            <listitem>
+               <para>Файлы установочного пакета<xref linkend="ПО" role="Undefined Cross-Reference"/>
+                  <xref linkend="РМО" role="Undefined Cross-Reference"/>
+               </para>
+            </listitem>
+            <listitem>
+               <para>Файлы установочного пакета данных<xref linkend="АТС" role="Undefined Cross-Reference"/>
+               </para>
+            </listitem>
+         </itemizedlist>
+         <section>
+            <title>7.1. Файлы пакета данных АТС</title>
+            <para>Файлы, входящие в пакет установки данных АТС можно разделить
+на следующие категории:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Программные файлы<xref linkend="ФПО" role="Undefined Cross-Reference"/>(встроенное<xref linkend="ПО" role="Undefined Cross-Reference"/>
+                     <xref linkend="АТС" role="Undefined Cross-Reference"/>)</para>
+               </listitem>
+               <listitem>
+                  <para>Файлы настройки<xref linkend="РМО" role="Undefined Cross-Reference"/>на<xref linkend="ФПО" role="Undefined Cross-Reference"/>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>Файлы настроек приложения Серверы<xref linkend="РМО" role="Undefined Cross-Reference"/>(см.
+разд. «<xref linkend="tri_odin_dva" role="Undefined Cross-Reference"/>»)</para>
+               </listitem>
+               <listitem>
+                  <para>Файл<xref linkend="БД" role="Undefined Cross-Reference"/>
+                     <xref linkend="РМО" role="Undefined Cross-Reference"/>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>Вспомогательные файлы</para>
+               </listitem>
+               <listitem>
+                  <para>Файлы, создаваемые приложениями<xref linkend="РМО" role="Undefined Cross-Reference"/>
+                  </para>
+               </listitem>
+            </itemizedlist>
+            <section>
+               <title>7.1.1. Программные файлы ФПО (встроенное ПО АТС)</title>
+               <para>Находятся в подкаталоге<command moreinfo="none">Bin</command>. Программные
+файлы<xref linkend="РМО" role="Undefined Cross-Reference"/>делятся
+на два вида: файлы кода объектов (каждому объекту соответствует
+свой файл с именем, совпадающим с именем объекта), файлы конфигурации
+модулей (каждому модулю соответствует свой файл с именем, совпадающим
+с номером модуля) и файлы<xref linkend="ОС1" role="Undefined Cross-Reference"/>.</para>
+               <para>Файлы загрузочных образов модулей находятся в каталоге<command moreinfo="none">Flash</command>.
+Каждому программируемому модулю станции соответствует файл с именем
+вида<filename moreinfo="none">tNN.040</filename>. Загрузочные образы могут быть
+прошиты во flash-память модуля с помощью аппаратного программатора.</para>
+            </section>
+            <section>
+               <title>7.1.2. Файлы настройки РМО на ФПО</title>
+               <para>Находятся в подкаталоге<command moreinfo="none">Classes_Win</command>. Внутри
+на каждый объект<xref linkend="ФПО" role="Undefined Cross-Reference"/>заводится свой подкаталог
+с именем, совпадающим с именем объекта. В этом подкаталоге находятся следующие
+файлы:</para>
+               <para>
+                  <command moreinfo="none">Файлы настройки</command>
+                  <xref linkend="РМО" role="Undefined Cross-Reference"/>на<xref linkend="ФПО" role="Undefined Cross-Reference"/>
+               </para>
+               <informaltable frame="all" colsep="1" rowsep="1">
+                  <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                     <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                     <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                     <thead>
+                        <row rowsep="1">
+                           <entry colname="1">Файл</entry>
+                           <entry colname="2">Описание</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row rowsep="1">
+                           <entry colname="1">
+                              <filename moreinfo="none">Objects.lst</filename>
+                           </entry>
+                           <entry colname="2">Список экземпляров этого объекта</entry>
+                        </row>
+                        <row rowsep="1">
+                           <entry colname="1">
+                              <filename moreinfo="none">Ofs.a68</filename>
+                           </entry>
+                           <entry colname="2">Список адресов полей объекта</entry>
+                        </row>
+                        <row rowsep="1">
+                           <entry colname="1">
+                              <filename moreinfo="none">State.lst</filename>
+                           </entry>
+                           <entry colname="2">Список внутренних состояний объекта</entry>
+                        </row>
+                        <row rowsep="0">
+                           <entry colname="1">
+                              <filename moreinfo="none">UsrState.ini</filename>
+                           </entry>
+                           <entry colname="2">Описание, необходимое для приложений Абонентская
+панель (см. разд. «<xref linkend="tri_tri_odin" role="Undefined Cross-Reference"/>»), Карта состояния абонентов (см.
+разд. «<xref linkend="tri_tri_dva" role="Undefined Cross-Reference"/>»), Соединительные линии
+(см. разд. «<xref linkend="tri_tri_tri" role="Undefined Cross-Reference"/>») для вывода удобочитаемых состояний объекта. Нужен лишь
+для некоторых объектов</entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+               <para>
+                  <command moreinfo="none">Примечание</command>: не следует пытаться самостоятельно
+вносить изменения, перемещать, переименовывать или удалять эти файлы,
+т.к. это приведет к некорректной работе приложений<xref linkend="РМО" role="Undefined Cross-Reference"/>.</para>
+            </section>
+            <section>
+               <title>7.1.3. Файлы настроек приложения. Серверы РМО</title>
+               <para>Находятся в подкаталоге<command moreinfo="none">Servers</command>. Это файлы:<filename moreinfo="none">AbonentStatistics.ini</filename>;<filename moreinfo="none">ChannelStatistics.ini</filename>;<filename moreinfo="none">CLStat.ini</filename>;<filename moreinfo="none">Stat.ini</filename>;<filename moreinfo="none">Tarif.ini</filename>.</para>
+               <para>Вносить изменения в эти файлы, кроме<filename moreinfo="none">Tarif.ini</filename>,
+пользователю не требуется, параметры файла<filename moreinfo="none">Tarif.ini</filename>описаны
+в разделе «<xref linkend="tri_odin_5" role="Undefined Cross-Reference"/>».</para>
+            </section>
+            <section>
+               <title>7.1.4. Файлы БД РМО</title>
+               <para>Файлы<filename moreinfo="none">ats.mdb</filename>,<filename moreinfo="none">dictionary.mdb</filename>,<filename moreinfo="none">rmodb.mdb</filename>.
+Не следует пытаться вносить в них изменения вручную, т.к. это приведет
+к некорректной работе приложений<xref linkend="РМО" role="Undefined Cross-Reference"/>.</para>
+            </section>
+            <section>
+               <title>7.1.5. Вспомогательные файлы</title>
+               <para>Приложение добавления новых станций – файлы<filename moreinfo="none">AddData.exe</filename>,<filename moreinfo="none">adddata15.exe</filename>. Приложение,
+настраивающее<xref linkend="РМО" role="Undefined Cross-Reference"/>на
+использование пакета данных. Запускается автоматически программой-инсталлятором
+пакета данных в конце процесса установки данных<xref linkend="АТС" role="Undefined Cross-Reference"/>.</para>
+               <para>Файл расшифровки системных сообщений – файл<filename moreinfo="none">Console.xml</filename>.
+Несколько атрибутов тега &lt;Console&gt; конфигурируют выносное табло.
+Ниже приведено их описание:</para>
+               <para>Атрибуты тега &lt;Console&gt;</para>
+               <informaltable frame="all" colsep="1" rowsep="1">
+                  <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                     <colspec colnum="1" colname="1" colwidth="1.000in"/>
+                     <colspec colnum="2" colname="2" colwidth="1.000in"/>
+                     <thead>
+                        <row rowsep="1">
+                           <entry colname="1">Атрибут</entry>
+                           <entry colname="2">Описание</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row rowsep="1">
+                           <entry colname="1">Ioport</entry>
+                           <entry colname="2">Порт ввода/вывода релейной платы. О настройке платы
+на конкретный порт см. документацию к плате. В версии<xref linkend="РМО" role="Undefined Cross-Reference"/>после 30.03.2002 этот параметр используется
+и для настройки выносного табло. В случае, если значение этого параметра меньше 256, программа будет использовать
+драйвер для выносного табло, а в качестве имени порта будет использована
+строчка: «COM» + указанный порт. Нулевое значение этого параметра отключает использование
+табло</entry>
+                        </row>
+                        <row rowsep="1">
+                           <entry colname="1">Mask</entry>
+                           <entry colname="2">Маска использования табло. Для использования
+табло на сервере должен быть установлен первый бит этого параметра. Для использования
+табло на клиентской машине – второй. Значение по умолчанию: 3</entry>
+                        </row>
+                        <row rowsep="1">
+                           <entry colname="1">Permute</entry>
+                           <entry colname="2">Определяет преобразование битов байта при посылке
+в порт релейной платы. Значение по умолчанию: $76543210. Менять
+это значение нужно в том случае, если неверно осуществлена распайка проводов от
+платы на аварийное табло. Каждая шестнадцатеричная цифра определяет, на
+какую позицию перемещать соответствующий бит посылаемого байта. Таким образом, значение по умолчанию определяет нормальное расположение
+битов. Если, например, требуется поменять местами 4-й и 6-й биты, значение будет выглядеть так: $74563210</entry>
+                        </row>
+                        <row rowsep="0">
+                           <entry colname="1">Fade</entry>
+                           <entry colname="2">Определяет действие компоненты Консоль Серверов<xref linkend="РМО" role="Undefined Cross-Reference"/>при нажатии на кнопку<command moreinfo="none">Погасить табло</command>. Первый байт определяет те
+реле, которые следует открыть, второй байт – те реле, которые следует закрыть. Значение по умолчанию:
+$01fe означает, что при нажатии на кнопку<command moreinfo="none">Погасить табло</command>будет
+включено первое реле, а остальные – выключены</entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+               <para>Кроме того, управление табло из файла<filename moreinfo="none">Console.xml</filename>производится
+с помощью атрибута level тэга attr. Значение атрибута level распространяется
+на все сообщения, описанные внутри тэга attr. В случае вложенных
+тэгов attr используется значение атрибута level внутреннего тэга
+attr.</para>
+               <para>Значение атрибута level интерпретируется<xref linkend="ПО" role="Undefined Cross-Reference"/>
+                  <xref linkend="РМО" role="Undefined Cross-Reference"/>как двойное слово. Для записи
+значения в шестнадцатеричном представлении используется префикс
+$. Значение интерпретируется следующим образом:</para>
+               <itemizedlist>
+                  <listitem>
+                     <para>младшие 16 бит определяют категорию
+сообщения (информационное, авария, ошибка, системное). Каждой категории
+соответствует тетрада (от младшей к старшей соответственно). Сообщение
+относится к категории, если значение соответствующей тетрады ненулевое.
+Например, сообщение с атрибутом level="$00001010" относится к категориям
+«Авария» и «Системное».</para>
+                  </listitem>
+                  <listitem>
+                     <para>старшие 16 бит используются для управления табло.
+Младшие 8 бит указывают, какие лампы должны быть погашены на табло
+при получении команды. Старшие 8 бит указывают, какие лампы должны
+быть зажжены при получении команды. Например, в результате получения
+сообщения с атрибутом level="$40010000" будет зажжена лампа №7 и
+погашена лампа №1.</para>
+                  </listitem>
+               </itemizedlist>
+               <para>Дополнительное соответствие логических и физических битов
+устанавливается атрибутом permute тэга console.</para>
+               <para>Файл конфигурации аварий -<filename moreinfo="none">tablo.xml</filename>.
+Настройка аварий производится с помощью панели (см. разд. «<xref linkend="tri_tri_5" role="Undefined Cross-Reference"/>»).</para>
+            </section>
+            <section>
+               <title>7.1.6. Файлы, создаваемые приложениями РМО</title>
+               <para>Каталог<command moreinfo="none">Tarif</command>: Создается приложением Тарификация:
+клиент, содержит данные тарификации, скачанные с сервера тарификации.
+Об использовании см. раздел «<xref linkend="tri_odin_5" role="Undefined Cross-Reference"/>».</para>
+               <para>Файлы<filename moreinfo="none">*.cdb</filename>в каталоге<command moreinfo="none">Servers</command>:
+Файлы взаимодействия компонент Серверов<xref linkend="РМО" role="Undefined Cross-Reference"/>со своими клиентскими частями.</para>
+               <para>Файлы<filename moreinfo="none">*.bin</filename>, подкаталог<command moreinfo="none">Talks</command>в
+каталоге<command moreinfo="none">Servers</command>: Временные файлы компоненты Тарификация
+Серверов<xref linkend="РМО" role="Undefined Cross-Reference"/>
+               </para>
+               <para>Суточные файлы и файлы прямого доступа тарификации: Местоположение
+задается в конфигурационном файле<filename moreinfo="none">Tarif.ini</filename>,
+см. раздел «<xref linkend="tri_odin_5" role="Undefined Cross-Reference"/>».</para>
+            </section>
+         </section>
+      </chapter>
+   </d:InfElement>
+</d:DocumentationCore>
