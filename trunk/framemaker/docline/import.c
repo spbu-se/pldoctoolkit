@@ -158,6 +158,7 @@ BoolT copyFilesToTempDirectory(FilePathT *filePath)
 	StringT path;
 	StringT fileArr[65535];
 	F_StringsT strs;
+  StringT tempDirPath;
 
 	handle = F_FilePathOpenDir(filePath, &statusp);
 	if (!handle)
@@ -194,7 +195,8 @@ BoolT copyFilesToTempDirectory(FilePathT *filePath)
 	}
 	strs.val = fileArr;
 	//mergeFile(strs,"C:\\Program Files\\Adobe\\FrameMaker8\\fminit\\docline\\temp\\temp.drl");
-	if (!splitFilesTo(strs.val,strs.len,"C:\\Program Files\\Adobe\\FrameMaker8\\fminit\\docline\\temp\\")) return FALSE;
+  if (!getTempDirPath(&tempDirPath)) return FALSE;
+  if (!splitFilesTo(strs.val,strs.len,tempDirPath)) return FALSE;
 	return TRUE;
 
 }
