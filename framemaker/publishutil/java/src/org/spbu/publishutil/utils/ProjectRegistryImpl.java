@@ -25,6 +25,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import net.sf.saxon.Configuration;
+import net.sf.saxon.dom.DocumentBuilderFactoryImpl;
 import net.sf.saxon.dom.DocumentBuilderImpl;
 import net.sf.saxon.dom.NodeOverNodeInfo;
 
@@ -88,8 +89,7 @@ public class ProjectRegistryImpl implements ProjectRegistry {
 	
 	private Document getXMLDocument(File file) throws ParserConfigurationException, SAXException, IOException {
 		if (documentBuilder == null) {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(
-				net.sf.saxon.dom.DocumentBuilderFactoryImpl.class.getName(), getClass().getClassLoader());
+			DocumentBuilderFactoryImpl factory = (DocumentBuilderFactoryImpl)DocumentBuilderFactoryImpl.newInstance();
 			factory.setNamespaceAware(true);
 			documentBuilder = (DocumentBuilderImpl) factory.newDocumentBuilder();
 		}

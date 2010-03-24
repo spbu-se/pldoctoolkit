@@ -143,7 +143,6 @@ public class PublishUtil implements CJProxy {
 		return SUCCESS;
 	}
 	
-	@Override
 	// this function is invoke by C code
 	public Object execute(Object args) throws Exception { 	
 		if (!(args instanceof String)) {
@@ -156,19 +155,19 @@ public class PublishUtil implements CJProxy {
 			throw new RuntimeException("Invalid input");
 		}
 		
-		if (!input[0].trim().isEmpty()) {
+		if (input[0].trim() != "") {
 			this.srcDir = input[0]; 
 		}
-		if (!input[1].trim().isEmpty()) {
+		if (input[1].trim() != "") {
 			this.srcFilename = input[1];
 		}
-		if (!input[2].trim().isEmpty()) {
+		if (input[2].trim() != "") {
 			this.srcId = input[2];
 		}
-		if (!input[3].trim().isEmpty()) {
+		if (input[3].trim() != "") {
 			this.format = input[3];
 		}
-		if (!input[4].trim().isEmpty()) {
+		if (input[4].trim() != "") {
 			this.dstFilepath = input[4];
 		}
 	
