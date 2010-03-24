@@ -68,7 +68,6 @@ public class ImportUtil implements CJProxy {
 		return DirectoryXSLApplyAction.DRLIMPORT_FILE;
 	}
 	
-	@Override
 	// this function is invoke by C code
 	public Object execute(Object args) throws Exception {
 		if (!(args instanceof String)) {
