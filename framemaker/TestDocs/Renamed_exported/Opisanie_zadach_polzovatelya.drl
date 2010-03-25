@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Opisanie_zadach_polzovatelya.drl">
-   <d:InfElement id="users_problem_description" name="Описание задач пользователя"
-                 parenttype="DocumentationCore"
-                 filename="Opisanie_zadach_polzovatelya.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="users_problem_description" name="Описание задач пользователя">
 
 
 

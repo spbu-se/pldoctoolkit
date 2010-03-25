@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Rabota_v_rezime_CTO.drl">
-   <d:InfElement id="rate_CTO" name="Работа в режиме ЦТО" parenttype="DocumentationCore"
-                 filename="Rabota_v_rezime_CTO.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="rate_CTO" name="Работа в режиме ЦТО">
 
 
 

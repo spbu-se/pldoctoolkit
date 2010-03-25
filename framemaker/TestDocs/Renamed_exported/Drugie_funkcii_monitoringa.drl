@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Drugie_funkcii_monitoringa.drl">
-   <d:InfElement id="join_in_monitoring" name="Другие функции Мониторинга"
-                 parenttype="DocumentationCore"
-                 filename="Drugie_funkcii_monitoringa.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="join_in_monitoring" name="Другие функции Мониторинга">
 
 
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Vizualnaya_biblioteka.drl">
-   <d:InfElement id="visual_library" name="Визуальная библиотека" parenttype="DocumentationCore"
-                 filename="Vizualnaya_biblioteka.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="visual_library" name="Визуальная библиотека">
 
 
 

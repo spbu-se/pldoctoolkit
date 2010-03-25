@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Soedinitelnie_linii.drl">
-   <d:InfElement id="bussing" name="Соединительные линии" parenttype="DocumentationCore"
-                 filename="Soedinitelnie_linii.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="bussing" name="Соединительные линии">
 
 
 
@@ -19,8 +18,7 @@
          <d:InfElemRef id="ref_state_sections_b" infelemid="state_sections_b"/>
       </section>
    </d:InfElement>
-   <d:InfElement id="main_window_b" name="Главное окно" parenttype="DocumentationCore"
-                 filename="Soedinitelnie_linii.drl">
+   <d:InfElement id="main_window_b" name="Главное окно">
 
 
 
@@ -164,8 +162,7 @@
          <d:Nest id="switching_on_trace"/>
       </section>
    </d:InfElement>
-   <d:InfElement id="review_b" name="Обзор" parenttype="DocumentationCore"
-                 filename="Soedinitelnie_linii.drl">
+   <d:InfElement id="review_b" name="Обзор">
 
 
 
@@ -211,9 +208,7 @@
          </itemizedlist>
       </section>
    </d:InfElement>
-   <d:InfElement id="state_sections_b" name="Панель состояния трактов"
-                 parenttype="DocumentationCore"
-                 filename="Soedinitelnie_linii.drl">
+   <d:InfElement id="state_sections_b" name="Панель состояния трактов">
 
 
 

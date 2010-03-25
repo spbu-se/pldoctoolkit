@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Monitoring.drl">
-   <d:InfElement id="monitoring" name="Мониторинг" parenttype="DocumentationCore"
-                 filename="Monitoring.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="monitoring" name="Мониторинг">
 
 
 

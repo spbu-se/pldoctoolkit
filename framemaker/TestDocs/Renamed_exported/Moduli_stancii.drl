@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Moduli_stancii.drl">
-   <d:InfElement id="station_modules" name="Модули станции" parenttype="DocumentationCore"
-                 filename="Moduli_stancii.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="station_modules" name="Модули станции">
 
 
 
