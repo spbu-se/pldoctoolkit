@@ -128,6 +128,33 @@ BoolT copyFilesFromTempDirectory()
 	return TRUE;
 }
 
+BoolT correctFiles()
+{
+  DirHandleT handle;
+  FilePathT *dirpath, *file;
+  IntT statusp;
+  StringT path, tmpDirPath, name, newPath;
+
+  if (!getTempDirPath(&tmpDirPath)) return FALSE;
+  dirpath = F_PathNameToFilePath(tmpDirPath,NULL,FDosPath);
+  F_ApiDeallocateString(&tmpDirPath);
+  handle = F_FilePathOpenDir(dirpath,&statusp);
+  if (!handle) return FALSE;
+  while(file = F_FilePathGetNext(handle,&statusp))
+  {
+    path = F_FilePathToPathName(file,FDosPath);
+    name = F_StrCopyString(fileFileName(F_StrCopyString(path)));
+    newPath = (StringT)F_Alloc((F_StrLen(curDirPath)+F_StrLen(name)+3)*sizeof(UCharT),NO_DSE);
+    F_Sprintf(newPath,"%s\\%s",F_StrCopyString(curDirPath),F_StrCopyString(name));
+    if (!correctXMLNamespaces(path,newPath)) continue;
+    F_ApiDeallocateString(&newPath);
+    F_ApiDeallocateString(&name);
+    F_ApiDeallocateString(&path);
+  }
+
+  return TRUE;
+}
+
 VoidT exportDocLineDoc()
 {
 	F_ObjHandleT bookID;
@@ -167,8 +194,9 @@ VoidT exportDocLineDoc()
 	if (!performExportXSLT(tempDirPath)) return;
 	writeToChannel("Succesful.\n");
 	writeToChannel("Copying files from temporary...");
-	if (!copyFilesFromTempDirectory()) return;
+	//if (!copyFilesFromTempDirectory()) return;
 	writeToChannel("Succesful.\n");
+  if (!correctFiles()) return;
 	writeToChannel("Closing all documents... ");
 	closeAllDocs();
 	writeToChannel("Succesful.\n");

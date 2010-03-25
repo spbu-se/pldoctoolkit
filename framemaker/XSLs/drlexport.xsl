@@ -5,7 +5,26 @@
 	
 	<xsl:template name="copy_entry">
     <xsl:if test="* or normalize-space()">
-      <xsl:copy-of select="."/>
+	  <xsl:element name="{local-name()}" namespace="http://docbook.org/ns/docbook">
+		  <xsl:for-each select="@* ,  node()">
+			  <xsl:choose>
+				  <xsl:when test="local-name() = 'xref'">
+					  <xsl:element name="{local-name()}" namespace="http://docbook.org/ns/docbook">
+						  <xsl:for-each select="@*">
+							  <xsl:if test="not(local-name() = 'role')">
+								  <xsl:copy-of select="current()"/>
+							  </xsl:if>
+						  </xsl:for-each>
+					  </xsl:element>
+				  </xsl:when>
+				  <xsl:when test="local-name() = 'colname'">
+				  </xsl:when>
+				  <xsl:otherwise>
+					  <xsl:copy-of select="current()"/>
+				  </xsl:otherwise>
+			  </xsl:choose>
+		  </xsl:for-each>
+      </xsl:element>
     </xsl:if>
 	</xsl:template>
 	
@@ -30,7 +49,7 @@
   </xsl:template>
   
 	<xsl:template name="remove_fakes">
-		<xsl:element name="{concat('d:',local-name())}">
+		<xsl:element name="{concat('d:',local-name())}" >
 			<xsl:attribute name="nestid"><xsl:value-of select="@nestid"/></xsl:attribute>
 			<xsl:for-each select="*">
 				<xsl:choose>
@@ -120,7 +139,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:element name="{$newName}">
+    <xsl:element name="{$newName}" >
       <xsl:for-each select="@*">
         <xsl:if test="not(exclude and (local-name()='productid')) and 
                           not(local-name()='parenttype') and 
