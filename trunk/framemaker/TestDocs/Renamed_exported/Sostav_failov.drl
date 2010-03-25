@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Sostav_failov.drl">
-   <d:InfElement id="fails" name="Состав файлов" parenttype="DocumentationCore"
-                 filename="Sostav_failov.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="fails" name="Состав файлов">
 
 
 

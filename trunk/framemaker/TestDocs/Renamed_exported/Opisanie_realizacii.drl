@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Opisanie_realizacii.drl">
-   <d:InfElement id="implementation_specification" name="Описание реализации"
-                 parenttype="DocumentationCore"
-                 filename="Opisanie_realizacii.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="implementation_specification" name="Описание реализации">
 
 
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Prilozeniya.drl">
-   <d:InfElement id="applications" name="Приложения" parenttype="DocumentationCore"
-                 filename="Prilozeniya.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="applications" name="Приложения">
 
 
 

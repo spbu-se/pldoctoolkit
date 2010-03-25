@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl"
-                     filename="Karta_obsluzivaniya_abonentskih_linii.drl">
-   <d:InfElement id="identif_15_sm" name="идентификация15" parenttype="DocumentationCore"
-                 filename="Karta_obsluzivaniya_abonentskih_linii.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="identif_15_sm" name="идентификация15">
 
 
 
@@ -21,8 +19,7 @@
 панель»). Переход в приложение Абонентская панель осуществляется нажатием
 правой кнопки мыши на интересующем абоненте и в появившемся меню
 нажать на пункт<emphasis>Абонент</emphasis>.</d:InfElement>
-   <d:InfElement id="identif_443_sm" name="идентификация443" parenttype="DocumentationCore"
-                 filename="Karta_obsluzivaniya_abonentskih_linii.drl">
+   <d:InfElement id="identif_443_sm" name="идентификация443">
 
 
 
@@ -41,8 +38,7 @@
 для чего нужно нажать правую кнопку на интересующем абоненте и в появившемся
 меню нажать на пункт<emphasis>Абонент</emphasis>.</para>
    </d:InfElement>
-   <d:InfElement id="main_window_sm" name="Главное окно" parenttype="DocumentationCore"
-                 filename="Karta_obsluzivaniya_abonentskih_linii.drl">
+   <d:InfElement id="main_window_sm" name="Главное окно">
 
 
 
@@ -118,8 +114,7 @@
          <d:Nest id="choise_module"/>
       </section>
    </d:InfElement>
-   <d:InfElement id="menu_sm" name="Меню окна" parenttype="DocumentationCore"
-                 filename="Karta_obsluzivaniya_abonentskih_linii.drl">
+   <d:InfElement id="menu_sm" name="Меню окна">
 
 
 
@@ -268,8 +263,7 @@
          </informaltable>
       </section>
    </d:InfElement>
-   <d:InfElement id="renewal_15_sm" name="обновление15" parenttype="DocumentationCore"
-                 filename="Karta_obsluzivaniya_abonentskih_linii.drl">
+   <d:InfElement id="renewal_15_sm" name="обновление15">
 
 
 
@@ -290,8 +284,7 @@
 обновления необходимо в том же меню выбрать<emphasis>Стоп</emphasis>.
 Следует заметить, что после обновления состояний и при открытом
 окне статистики абонентских линий, последняя обновляется автоматически.</d:InfElement>
-   <d:InfElement id="renewal_443_sm" name="обновление443" parenttype="DocumentationCore"
-                 filename="Karta_obsluzivaniya_abonentskih_linii.drl">
+   <d:InfElement id="renewal_443_sm" name="обновление443">
 
 
 
@@ -314,8 +307,7 @@
 после обновления состояний и при открытом окне статистики абонентских
 линий, последняя обновляется автоматически.</para>
    </d:InfElement>
-   <d:InfElement id="review_sm" name="Обзор" parenttype="DocumentationCore"
-                 filename="Karta_obsluzivaniya_abonentskih_linii.drl">
+   <d:InfElement id="review_sm" name="Обзор">
 
 
 
@@ -337,8 +329,7 @@
 времени.</para>
       </section>
    </d:InfElement>
-   <d:InfElement id="sentence_15_sm" name="предложение15" parenttype="DocumentationCore"
-                 filename="Karta_obsluzivaniya_abonentskih_linii.drl">
+   <d:InfElement id="sentence_15_sm" name="предложение15">
 
 
 
@@ -349,8 +340,7 @@
 
 
 В нижней части окна приложения есть информация о названии станции.</d:InfElement>
-   <d:InfElement id="sentence_443_sm" name="предложение443" parenttype="DocumentationCore"
-                 filename="Karta_obsluzivaniya_abonentskih_linii.drl">
+   <d:InfElement id="sentence_443_sm" name="предложение443">
 
 
 
@@ -361,9 +351,7 @@
 
 
 В нижней части окна приложения есть информация о названии станции.</d:InfElement>
-   <d:InfElement id="service_map" name="Карта обслуживания абонентских линий"
-                 parenttype="DocumentationCore"
-                 filename="Karta_obsluzivaniya_abonentskih_linii.drl">
+   <d:InfElement id="service_map" name="Карта обслуживания абонентских линий">
 
 
 

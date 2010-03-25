@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Drugie_funkcii_prilozeniya.drl">
-   <d:InfElement id="join_in_applications" name="Другие функции Приложения"
-                 parenttype="DocumentationCore"
-                 filename="Drugie_funkcii_prilozeniya.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="join_in_applications" name="Другие функции Приложения">
 
 
 

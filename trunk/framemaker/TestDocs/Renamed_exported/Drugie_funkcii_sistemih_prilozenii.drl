@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl"
-                     filename="Drugie_funkcii_sistemih_prilozenii.drl">
-   <d:InfElement id="join_in_sysappl" name="Другие функции Системных приложений"
-                 parenttype="DocumentationCore"
-                 filename="Drugie_funkcii_sistemih_prilozenii.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="join_in_sysappl" name="Другие функции Системных приложений">
 
 
 

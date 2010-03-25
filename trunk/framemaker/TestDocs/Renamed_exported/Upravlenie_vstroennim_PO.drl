@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Upravlenie_vstroennim_PO.drl">
-   <d:InfElement id="embedded_software" name="Управление встроенным ПО"
-                 parenttype="DocumentationCore"
-                 filename="Upravlenie_vstroennim_PO.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="embedded_software" name="Управление встроенным ПО">
 
 
 

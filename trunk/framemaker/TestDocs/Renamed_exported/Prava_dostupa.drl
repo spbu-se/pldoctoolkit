@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Prava_dostupa.drl">
-   <d:InfElement id="permissions" name="Права доступа" parenttype="DocumentationCore"
-                 filename="Prava_dostupa.drl">
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="permissions" name="Права доступа">
 
 
 
