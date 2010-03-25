@@ -36,6 +36,25 @@ char *replace_str(char *str, char *sub, char *name, char *type)
 	return buffer;
 }
 
+int replace_all_str(char *str, char **out_str, char *sub, char *new_sub)
+{
+	char buffer[10000];
+	char *p;
+  int i;
+
+	if(! (p = strstr(str, sub))) // Is 'sub' even in 'str'?
+	return str;
+
+	strncpy(buffer, str, p - str); // Copy characters before occurence
+	buffer[p - str] = '\0';
+  i = sprintf(buffer + (p - str), "%s%s", new_sub, p + strlen(sub));
+  buffer[i+1] = '\0';
+  strncpy((*out_str),buffer,strlen(buffer));
+
+	return 1;
+}
+
+
 int splitFilesTo(char** files, int len, char *out_dir_path)
 {
 	int i;
@@ -314,4 +333,32 @@ int removeTemporaryDRLs(char **files, int num)
 			remove(files[i]);
 		}
 	}
+}
+
+int correctXMLNamespaces(char *fileName, char *outFileName)
+{
+  FILE *file, *outFile;
+  char str[10000], new_str[10000];
+
+  file = fopen(fileName,"r");
+  outFile = fopen(outFileName,"w");
+  if (!file || !outFile) return 0;
+  new_str[0] = '\0';
+  while (fgets(str,10000,file))
+  {
+    if (strstr(str, "xmlns=\"http://docbook.org/ns/docbook\""))
+    {
+      if (!replace_all_str(str,&new_str,"xmlns=\"http://docbook.org/ns/docbook\"","")) continue;
+      fputs(new_str,outFile);
+      continue;
+    }
+    else
+    {
+      fputs(str,outFile);
+    }
+  }
+  fclose(file);
+  fclose(outFile);
+
+  return 1;
 }

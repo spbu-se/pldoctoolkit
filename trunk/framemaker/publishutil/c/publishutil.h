@@ -21,4 +21,6 @@ int callJavaImportUtil(char *jarPath,  // path to a jar, containing java class
 int callJavaExportUtil(char *jarPath,  // path to a jar, containing java class
 					   char *srcDir);  // path to a directory, containing all drl files
 
+int correctXMLNamespaces(char *fileName, char *outFileName);
+
 #endif /* PUBLISHUTIL_H */

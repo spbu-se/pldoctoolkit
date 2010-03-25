@@ -7,3 +7,4 @@ EXPORTS
 	callJavaPublishUtil @5
 	callJavaImportUtil @6
 	callJavaExportUtil @7
+	correctXMLNamespaces @8

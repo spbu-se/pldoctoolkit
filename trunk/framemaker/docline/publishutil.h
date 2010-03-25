@@ -24,4 +24,6 @@ IntT callJavaImportUtil(StringT jarPath,  // path to a jar, containing java clas
 IntT callJavaExportUtil(StringT jarPath,  // path to a jar, containing java class
 					    StringT srcDir);  // path to a directory, containing all drl files
 
+IntT correctXMLNamespaces(StringT fileName, StringT outFileName);
+
 #endif /* PUBLISHUTIL_H */
