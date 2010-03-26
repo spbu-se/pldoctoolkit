@@ -116,7 +116,9 @@
 				    <xsl:choose>
 					<xsl:when test="not(exists(db:tbody))">
 				        <xsl:element name="FakeTable">
-				        <xsl:attribute name="cols">10</xsl:attribute>
+				        <xsl:attribute name="cols">
+							<xsl:value-of select="count(./db:entry)"/>
+				        </xsl:attribute>
 				            <xsl:element name="FakeTableBody">
 	                            <xsl:for-each select="*">
 			                        <xsl:choose>

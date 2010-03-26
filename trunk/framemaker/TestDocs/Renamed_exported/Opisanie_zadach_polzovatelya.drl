@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
    <d:InfElement id="users_problem_description" name="Описание задач пользователя">
 
 
@@ -10,7 +10,7 @@
 
 
 
-      <chapter>
+      <chapter >
          <title>Описание задач пользователя</title>
          <section>
             <title id="dva_odin" xreflabel="2.1. Установка и настройка">2.1.
@@ -193,7 +193,7 @@ Users</emphasis>добавьте остальных пользователей �
                      <para>
                         <emphasis>Шаг 1b)</emphasis>Выберите закладку<emphasis>Безопасность</emphasis>.</para>
                      <graphic width="5.472in" align="aleft"
-                              fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/безопасность.gif"/>
+                              fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/безопасность.gif"/>
                   </listitem>
                   <listitem>
                      <para>
@@ -207,7 +207,7 @@ Users</emphasis>добавьте остальных пользователей �
 дочерним объектам разрешения...</emphasis>, появиться диалог где
 следует нажать кнопку<emphasis>Удалить</emphasis>.</para>
                      <graphic width="6.500in" align="aleft"
-                              fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/nasledovanie.gif"/>
+                              fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/nasledovanie.gif"/>
                   </listitem>
                   <listitem>
                      <para>
@@ -286,7 +286,7 @@ Users</emphasis>с правами только на чтение («Чтение
 из списка,<emphasis>Порты COM и LPT</emphasis>,<emphasis>Коммуникационный
 порт</emphasis>.</para>
                      <graphic width="0.417in" align="aleft"
-                              fileref="file:///F:/runtime-New_configuration/rmo/Result/illustrations/u_p_d/safety.jpg"/>
+                              fileref="file:///E:/runtime-New_configuration/rmo/Result/illustrations/u_p_d/safety.jpg"/>
                   </listitem>
                   <listitem>
                      <para>

@@ -143,12 +143,15 @@ BoolT correctFiles()
   while(file = F_FilePathGetNext(handle,&statusp))
   {
     path = F_FilePathToPathName(file,FDosPath);
-    name = F_StrCopyString(fileFileName(F_StrCopyString(path)));
-    newPath = (StringT)F_Alloc((F_StrLen(curDirPath)+F_StrLen(name)+3)*sizeof(UCharT),NO_DSE);
-    F_Sprintf(newPath,"%s\\%s",F_StrCopyString(curDirPath),F_StrCopyString(name));
-    if (!correctXMLNamespaces(path,newPath)) continue;
-    F_ApiDeallocateString(&newPath);
-    F_ApiDeallocateString(&name);
+    if (validateFilename(path,DRL))
+    {
+      name = F_StrCopyString(fileFileName(F_StrCopyString(path)));
+      newPath = (StringT)F_Alloc((F_StrLen(curDirPath)+F_StrLen(name)+3)*sizeof(UCharT),NO_DSE);
+      F_Sprintf(newPath,"%s\\%s",F_StrCopyString(curDirPath),F_StrCopyString(name));
+      if (!correctXMLNamespaces(path,newPath)) continue;
+      F_ApiDeallocateString(&newPath);
+      F_ApiDeallocateString(&name);
+    }
     F_ApiDeallocateString(&path);
   }
 
@@ -192,6 +195,9 @@ VoidT exportDocLineDoc()
 	writeToChannel("Succesful.\n");
 	writeToChannel("Performing XSL transformation... ");
 	if (!performExportXSLT(tempDirPath)) return;
+  filePath = F_PathNameToFilePath(path,NULL,FDosPath);
+  F_DeleteFile(filePath);
+  F_FilePathFree(filePath);
 	writeToChannel("Succesful.\n");
 	writeToChannel("Copying files from temporary...");
 	//if (!copyFilesFromTempDirectory()) return;

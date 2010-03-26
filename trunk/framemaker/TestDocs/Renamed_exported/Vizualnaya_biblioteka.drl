@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
    <d:InfElement id="visual_library" name="Визуальная библиотека">
 
 
@@ -10,7 +10,7 @@
 
 
 
-      <chapter>
+      <chapter >
          <title id="vb" xreflabel="Визуальная библиотека">Визуальная
 библиотека</title>
          <section>

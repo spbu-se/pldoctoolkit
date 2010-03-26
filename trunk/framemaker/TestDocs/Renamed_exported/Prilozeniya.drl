@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
    <d:InfElement id="applications" name="Приложения">
 
 
@@ -10,7 +10,7 @@
 
 
 
-      <chapter>
+      <chapter >
          <title>Приложения</title>
          <d:InfElemRef id="ref_system_applications" infelemid="system_applications"/>
          <d:InfElemRef id="ref_embedded_software" infelemid="embedded_software"/>
