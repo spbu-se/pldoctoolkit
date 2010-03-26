@@ -8,7 +8,8 @@
 	  <xsl:element name="{local-name()}" namespace="http://docbook.org/ns/docbook">
 		  <xsl:for-each select="@* ,  node()">
 			  <xsl:choose>
-				  <xsl:when test="local-name() = 'xref'">
+				  <xsl:when test="local-name() = 'xref' or 
+										  local-name() = 'command'">
 					  <xsl:element name="{local-name()}" namespace="http://docbook.org/ns/docbook">
 						  <xsl:for-each select="@*">
 							  <xsl:if test="not(local-name() = 'role')">

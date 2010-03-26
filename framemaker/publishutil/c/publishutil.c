@@ -38,18 +38,20 @@ char *replace_str(char *str, char *sub, char *name, char *type)
 
 int replace_all_str(char *str, char **out_str, char *sub, char *new_sub)
 {
-	char buffer[10000];
+	char *buffer;
 	char *p;
-  int i;
 
 	if(! (p = strstr(str, sub))) // Is 'sub' even in 'str'?
 	return str;
 
+  buffer = (char *)malloc((strlen(str)-strlen(sub)+strlen(new_sub)+1)*sizeof(char));
 	strncpy(buffer, str, p - str); // Copy characters before occurence
-	buffer[p - str] = '\0';
-  i = sprintf(buffer + (p - str), "%s%s", new_sub, p + strlen(sub));
-  buffer[i+1] = '\0';
+  sprintf(buffer + (p - str), "%s%s\0", new_sub, p + strlen(sub));
+  //free(p);
+  *out_str = (char *)malloc((strlen(buffer)+1)*sizeof(char));
   strncpy((*out_str),buffer,strlen(buffer));
+  (*out_str)[strlen(buffer)] = '\0';
+  free(buffer);
 
 	return 1;
 }
@@ -338,19 +340,36 @@ int removeTemporaryDRLs(char **files, int num)
 int correctXMLNamespaces(char *fileName, char *outFileName)
 {
   FILE *file, *outFile;
-  char str[10000], new_str[10000];
+  char str[10000], *new_str;
 
   file = fopen(fileName,"r");
   outFile = fopen(outFileName,"w");
   if (!file || !outFile) return 0;
-  new_str[0] = '\0';
   while (fgets(str,10000,file))
   {
     if (strstr(str, "xmlns=\"http://docbook.org/ns/docbook\""))
     {
       if (!replace_all_str(str,&new_str,"xmlns=\"http://docbook.org/ns/docbook\"","")) continue;
       fputs(new_str,outFile);
-      continue;
+      free(new_str);
+    }
+    else if (strstr(str,"<d:ProductDocumentation"))
+    {
+      if (!replace_all_str(str,&new_str,"<d:ProductDocumentation","<d:ProductDocumentation xmlns=\"http://docbook.org/ns/docbook\"")) continue;
+      fputs(new_str,outFile);
+      free(new_str);
+    }
+    else if (strstr(str,"<d:DocumentationCore"))
+    {
+      if (!replace_all_str(str,&new_str,"<d:DocumentationCore","<d:DocumentationCore xmlns=\"http://docbook.org/ns/docbook\"")) continue;
+      fputs(new_str,outFile);
+      free(new_str);
+    }
+    else if (strstr(str,"<d:ProductLine"))
+    {
+      if (!replace_all_str(str,&new_str,"<d:ProductLine","<d:ProductLine xmlns=\"http://docbook.org/ns/docbook\"")) continue;
+      fputs(new_str,outFile);
+      free(new_str);
     }
     else
     {

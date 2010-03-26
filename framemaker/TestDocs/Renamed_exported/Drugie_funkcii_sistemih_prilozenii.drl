@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
    <d:InfElement id="join_in_sysappl" name="Другие функции Системных приложений">
 
 
@@ -10,7 +10,7 @@
 
 
 
-      <section>
+      <section >
          <title id="tri_odin_odin" xreflabel="3.1.1. Маршрутизатор">3.1.1. Маршрутизатор</title>
          <section>
             <title>Обзор</title>
@@ -44,7 +44,7 @@
             <para>Главное окно разделено на две части:</para>
             <informalfigure float="0">
                <graphic width="10.806in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/router.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/router.gif"/>
             </informalfigure>
             <para>
                <emphasis>Активные соединения</emphasis>
@@ -163,7 +163,7 @@
             </informaltable>
          </section>
       </section>
-      <section>
+      <section >
          <title id="tri_odin_dva" xreflabel="3.1.2. Серверы РМО">3.1.2.
 Серверы РМО</title>
          <section>
@@ -199,13 +199,13 @@
 в информационном окне:</para>
             <informalfigure float="0">
                <graphic width="4.514in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/otkrytie-serverov.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/otkrytie-serverov.gif"/>
             </informalfigure>
             <para>После загрузки всех серверов главное окно маршрутизатора примет
 вид:</para>
             <informalfigure float="0">
                <graphic width="10.694in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/zakladka-serverarmo.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/zakladka-serverarmo.gif"/>
             </informalfigure>
             <para>Теперь пользовательский интерфейс каждого сервера доступен
 через закладку соответствующую имени сервера.</para>
@@ -220,7 +220,7 @@
 видит окно:</para>
             <informalfigure float="0">
                <graphic width="4.514in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/otkrytie-serverov-2.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/otkrytie-serverov-2.gif"/>
             </informalfigure>
             <para>Иногда, при ошибке конфигурации данных или структуры объектов<xref linkend="ФПО" role="Undefined Cross-Reference"/>, возникают ситуации
 когда работа одного из серверов становиться нестабильной и ошибки
@@ -313,7 +313,7 @@
 по настройке параметров серверов и управлению ходом их работы.</para>
          </section>
       </section>
-      <section>
+      <section >
          <title id="tri_odin_tri" xreflabel="3.1.3. Панель станции">3.1.3. Панель
 станции</title>
          <section>
@@ -354,7 +354,7 @@
             </para>
             <informalfigure float="0">
                <graphic width="2.736in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/spispok-stativov.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/spispok-stativov.gif"/>
             </informalfigure>
             <para>Отображает список стативов в составе станции. Рядом с именем
 статива расположен цветовой индикатор. Зеленый цвет индикатора говорит
@@ -366,7 +366,7 @@
             </para>
             <informalfigure float="0">
                <graphic width="11.000in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Панель-станции(приложение).gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Панель-станции(приложение).gif"/>
             </informalfigure>
             <para>Отображает состояние всех плат станции. Зеленый цвет платы
 говорит о её нормальной работе. Темно серый – информация о плате
@@ -394,7 +394,7 @@
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="7.542in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-обзор.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-обзор.gif"/>
                         </entry>
                         <entry colname="2">
                            <emphasis>Общая информация об элементе</emphasis>Содержит информацию
@@ -404,7 +404,7 @@
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="7.361in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Панель-станции(прилож.)-рег.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Панель-станции(прилож.)-рег.gif"/>
                         </entry>
                         <entry colname="2">
                            <emphasis>Регистры платы</emphasis>Содержит информацию
@@ -413,7 +413,7 @@
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="7.542in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-абоненты.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-абоненты.gif"/>
                         </entry>
                         <entry colname="2">
                            <emphasis>Информация о абонентах</emphasis>Содержит информацию
@@ -422,7 +422,7 @@
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="7.542in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-тракты.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-тракты.gif"/>
                         </entry>
                         <entry colname="2">
                            <emphasis>Информация о трактах</emphasis>Содержит список трактов, подключенных
@@ -433,7 +433,7 @@
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="6.861in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-kanaly.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-kanaly.gif"/>
                         </entry>
                         <entry colname="2">
                            <emphasis>Информация о каналах</emphasis>Содержит информацию
@@ -442,7 +442,7 @@
                      <row rowsep="0">
                         <entry colname="1">
                            <graphic width="7.542in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-testy.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-testy.gif"/>
                         </entry>
                         <entry colname="2">
                            <emphasis>Список допустимых тестов для платы</emphasis>Содержит список сценариев тестирования, допустимых
@@ -459,7 +459,7 @@
             <para>Панель управления содержит три кнопки:</para>
             <informalfigure float="0">
                <graphic width="10.181in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopki-panel.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopki-panel.gif"/>
             </informalfigure>
             <informaltable frame="all" colsep="1" rowsep="1">
                <tgroup cols="3" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
@@ -477,7 +477,7 @@
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="0.569in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopka1.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopka1.gif"/>
                         </entry>
                         <entry colname="2">Переключить ствол</entry>
                         <entry colname="3">Смена активного поля</entry>
@@ -485,7 +485,7 @@
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="0.681in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopka2.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-knopka2.gif"/>
                         </entry>
                         <entry colname="2">Управление табло</entry>
                         <entry colname="3">Открывает меню управления табло</entry>
@@ -493,7 +493,7 @@
                      <row rowsep="0">
                         <entry colname="1">
                            <graphic width="0.444in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stanzii-knopka3.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stanzii-knopka3.gif"/>
                         </entry>
                         <entry colname="2">Справка</entry>
                         <entry colname="3">Вывод справки</entry>
@@ -548,7 +548,7 @@
 и их параметры, ниже приведен пример и описание параметров:</para>
             <informalfigure float="0">
                <graphic width="7.778in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-nastrojka-ta.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-nastrojka-ta.gif"/>
             </informalfigure>
             <informaltable frame="all" colsep="1" rowsep="1">
                <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
@@ -601,7 +601,7 @@
 настроить порт, тип и управляющее приложение для табло:</para>
             <informalfigure float="0">
                <graphic width="4.931in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-tablo-nastro.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-stantzii-tablo-nastro.gif"/>
             </informalfigure>
             <para>Примечания:</para>
             <informaltable frame="all" colsep="1" rowsep="1">
@@ -627,7 +627,7 @@
             </informaltable>
          </section>
       </section>
-      <section>
+      <section >
          <title id="tri_odin_4" xreflabel="3.1.4. Сервер консоли">3.1.4. Сервер
 консоли</title>
          <section>
@@ -941,7 +941,7 @@
 образом:</para>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/konsol-server.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/konsol-server.gif"/>
             </informalfigure>
             <para>В окне сервера консоли могут отображаться сообщения трех типов:</para>
             <informaltable frame="all" colsep="1" rowsep="1">
@@ -991,7 +991,7 @@
 информации о важных событиях, произошедших в процессе их работы.</para>
          </section>
       </section>
-      <section>
+      <section >
          <title id="tri_odin_5" xreflabel="3.1.5. Сервер тарификации">3.1.5.
 Сервер тарификации</title>
          <section>
@@ -1232,7 +1232,7 @@ Password=kvant</programlisting>
             <para>Окно сервера тарификации вглядит следующим образом:</para>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Тарификация-сервер.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Тарификация-сервер.gif"/>
             </informalfigure>
             <para>В окне представлен список модулей станции, в которых собирается
 тарификация. Для каждого модуля указывается текущее состояние выкачки
@@ -1254,14 +1254,14 @@ Password=kvant</programlisting>
 становится невозможным.</para>
          </section>
       </section>
-      <section>
+      <section >
          <title id="tri_odin_6" xreflabel="3.1.6. Сервер времени">3.1.6. Сервер
 времени</title>
          <section>
             <title>Обзор</title>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Сервер-времени.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Сервер-времени.gif"/>
             </informalfigure>
             <para>Сервер-времени.gif</para>
             <itemizedlist>
@@ -1413,7 +1413,7 @@ NT/2000/XP пользователь, запустивший сервер, дол
             </informaltable>
          </section>
       </section>
-      <section>
+      <section >
          <title>3.1.7.
 Синхронизация</title>
          <section>
@@ -1471,7 +1471,7 @@ NT/2000/XP пользователь, запустивший сервер, дол
 модуль из списка.</para>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Синхронизация-станция.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Синхронизация-станция.gif"/>
             </informalfigure>
             <para>Состояние модулей отображаются посредством цветных символов,
 расположенных слева от имени каждого модуля в списке. Зеленый цвет
@@ -1487,7 +1487,7 @@ NT/2000/XP пользователь, запустивший сервер, дол
             <title>Синхронизация</title>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-синхронизация.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-синхронизация.gif"/>
             </informalfigure>
             <para>Эта задача содержит две страницы. Страница<command moreinfo="none">Синхронизация</command>является
 основной, она содержит список модулей<xref linkend="АТС" role="Undefined Cross-Reference"/>и позволяет следить за процессом
@@ -1540,7 +1540,7 @@ NT/2000/XP пользователь, запустивший сервер, дол
             <title>Файлы</title>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-файлы.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-файлы.gif"/>
             </informalfigure>
             <para>Страница<command moreinfo="none">Файлы</command>задачи является основной и
 предоставляет возможность собирать файлы конфигураций по базе данных<xref linkend="РМО" role="Undefined Cross-Reference"/>, а также
@@ -1595,7 +1595,7 @@ NN – шестнадцаетричный номер модуля.</para>
             <title>Программирование</title>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-программатор.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-программатор.gif"/>
             </informalfigure>
             <para>При помощи этой задачи осуществляется ручная запись флэш-памяти
 модулей станции. Ручная запись необходима при начальной установке
@@ -1641,7 +1641,7 @@ NN – шестнадцаетричный номер модуля.</para>
             <title>Настройки</title>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-настройки.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/синхронизация-настройки.gif"/>
             </informalfigure>
             <para>Страница настроек позволяет устанавливать желаемые параметры.
 Для выбора группы настроек необходимо выбрать соответствующий элемент
@@ -1723,7 +1723,7 @@ NN – шестнадцаетричный номер модуля.</para>
 более новая, необходимо заменить соответствующую дискету.</para>
          </section>
       </section>
-      <section>
+      <section >
          <title>3.1.8. Сервер X.25</title>
          <section>
             <title>Обзор</title>
@@ -1733,7 +1733,7 @@ NN – шестнадцаетричный номер модуля.</para>
 сети.</para>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/х25-сервер.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/х25-сервер.gif"/>
             </informalfigure>
             <para>При первом запуске сервера необходимо выбрать и запустить
 модуль<xref linkend="X.25" role="Undefined Cross-Reference"/>,
@@ -1747,7 +1747,7 @@ NN – шестнадцаетричный номер модуля.</para>
 оператора.</para>
          </section>
       </section>
-      <section>
+      <section >
          <title id="tri_odin_9" xreflabel="3.1.9. Сервер статистики">3.1.9.
 Сервер статистики</title>
          <section>
@@ -1882,7 +1882,7 @@ NN – шестнадцаетричный номер модуля.</para>
 Это окно выглядит следующим образом:</para>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-server.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-server.gif"/>
             </informalfigure>
             <para>Окно сервера статистики разделено на две части:</para>
             <itemizedlist>
@@ -2047,7 +2047,7 @@ NN – шестнадцаетричный номер модуля.</para>
 серверами<xref linkend="РМО" role="Undefined Cross-Reference"/>.</para>
          </section>
       </section>
-      <section>
+      <section >
          <title id="tri_odin_10" xreflabel="3.1.10. Сервер скриптов РМО">3.1.10.
 Сервер скриптов РМО</title>
          <section>
@@ -2070,7 +2070,7 @@ NN – шестнадцаетричный номер модуля.</para>
             <title>Главное окно</title>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Сервер-скриптов-общ.-вид.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Сервер-скриптов-общ.-вид.gif"/>
             </informalfigure>
             <para>Главное окно приложение содержит следующие элементы управления:</para>
             <itemizedlist>
@@ -2177,42 +2177,42 @@ NN – шестнадцаетричный номер модуля.</para>
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="0.444in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmosborkamusora%20copy.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmosborkamusora%20copy.gif"/>
                         </entry>
                         <entry colname="2">Инициирует процедуру сборки мусора</entry>
                      </row>
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="0.431in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-priostanovit%20copy.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-priostanovit%20copy.gif"/>
                         </entry>
                         <entry colname="2">Приостановить исполнение сценария</entry>
                      </row>
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="0.431in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-vypolnit%20copy.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-vypolnit%20copy.gif"/>
                         </entry>
                         <entry colname="2">Возобновить исполнение сценария</entry>
                      </row>
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="0.444in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-prervat_copy.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-prervat_copy.gif"/>
                         </entry>
                         <entry colname="2">Прервать исполнение сценария</entry>
                      </row>
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="0.403in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoprervatvsjo.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoprervatvsjo.gif"/>
                         </entry>
                         <entry colname="2">Прервать выполнение всех сценариев</entry>
                      </row>
                      <row rowsep="0">
                         <entry colname="1">
                            <graphic width="0.417in" align="aleft"
-                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-svojstva-servera_copy.gif"/>
+                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/skriprmoknopka-svojstva-servera_copy.gif"/>
                         </entry>
                         <entry colname="2">Вызывает Окно свойств сервера</entry>
                      </row>
@@ -2224,7 +2224,7 @@ NN – шестнадцаетричный номер модуля.</para>
             </para>
             <informalfigure float="0">
                <graphic width="4.431in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/сервер-скриптов-настройки.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/сервер-скриптов-настройки.gif"/>
             </informalfigure>
             <para>Окно свойств сервера позволяет изменять два основных параметра:</para>
             <informaltable frame="all" colsep="1" rowsep="1">
@@ -2250,7 +2250,7 @@ NN – шестнадцаетричный номер модуля.</para>
             <para>Описание языка сценариев смотри в разделе «<xref linkend="srmo" role="Undefined Cross-Reference"/>».</para>
          </section>
       </section>
-      <section>
+      <section >
          <title id="tri_odin_odinn" xreflabel="3.1.11. Журнал событий">3.1.11. Журнал
 событий</title>
          <section>
@@ -2295,7 +2295,7 @@ NN – шестнадцаетричный номер модуля.</para>
             <para>Главное окно Журнала выглядит следующим образом:</para>
             <informalfigure float="0">
                <graphic width="10.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-общий-вид.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-общий-вид.gif"/>
             </informalfigure>
             <para>Пункты главного меню:</para>
             <itemizedlist>
@@ -2571,7 +2571,7 @@ NN – шестнадцаетричный номер модуля.</para>
             <para>Окно установок Журнала выглядит следующим образом:</para>
             <informalfigure float="0">
                <graphic width="6.264in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-установки-журнала.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-установки-журнала.gif"/>
             </informalfigure>
             <para>Все опции, задаваемые в этом окне, относятся только к станции,
 с которой установлено соединение в настояций момент.</para>
@@ -2636,7 +2636,7 @@ NN – шестнадцаетричный номер модуля.</para>
             <para>Окно установок внешнего вида выглядит следующим образом:</para>
             <informalfigure float="0">
                <graphic width="4.972in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-внешний-вид.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-внешний-вид.gif"/>
             </informalfigure>
             <para>Все опции, задаваемые в этом окне, относятся к поведению и
 внешнему виду программы и не имеют отношения к станции.</para>
@@ -2689,7 +2689,7 @@ NN – шестнадцаетричный номер модуля.</para>
             <para>Окно выбора фильтра выглядит следующим образом:</para>
             <informalfigure float="0">
                <graphic width="7.222in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-фильтр.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/журнал-фильтр.gif"/>
             </informalfigure>
             <para>Все установки, произведенные в этом окне, вступают в силу
 по нажатию кнопки<command moreinfo="none">OK</command>. Нажатие на<command moreinfo="none">Отмена</command>закрывает
@@ -2782,7 +2782,7 @@ NN – шестнадцаетричный номер модуля.</para>
             </itemizedlist>
          </section>
       </section>
-      <section>
+      <section >
          <title>3.1.12. Диспетчер заданий</title>
          <section>
             <title>Обзор</title>
@@ -2803,7 +2803,7 @@ NN – шестнадцаетричный номер модуля.</para>
 рисунке:</para>
             <informalfigure float="0">
                <graphic width="10.083in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadanij1.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadanij1.gif"/>
             </informalfigure>
             <para>
                <emphasis>Станции</emphasis>
@@ -2953,7 +2953,7 @@ NN – шестнадцаетричный номер модуля.</para>
 из трех страниц, как показано на рисунке:</para>
             <informalfigure float="0">
                <graphic width="5.861in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadach-zadanie.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadach-zadanie.gif"/>
             </informalfigure>
             <para>
                <emphasis>Задание</emphasis>
@@ -3060,7 +3060,7 @@ CMM»</command>
 задачей.</para>
             <informalfigure float="0">
                <graphic width="5.861in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadanij-redaktor-z.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dispecher-zadanij-redaktor-z.gif"/>
             </informalfigure>
             <para>
                <command moreinfo="none">Описание параметров управления задачей</command>
@@ -3103,7 +3103,7 @@ CMM»</command>
             </para>
             <informalfigure float="0">
                <graphic width="0.417in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/Result/ScreenShots-full/dispecher-zadach-raspisanie.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/Result/ScreenShots-full/dispecher-zadach-raspisanie.gif"/>
             </informalfigure>
             <para>Страница<emphasis>Расписание</emphasis>позволяет задать расписание,
 по которому будет выполняться задание. Выберите в списке<emphasis>Назначить
@@ -3144,7 +3144,7 @@ CMM»</command>
             </informaltable>
          </section>
       </section>
-      <section>
+      <section >
          <title>3.1.13.
 Трасса</title>
          <section>
@@ -3158,7 +3158,7 @@ CMM»</command>
             <title>Главное окно</title>
             <informalfigure float="0">
                <graphic width="9.833in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/trassa-obtshij-vid.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/trassa-obtshij-vid.gif"/>
             </informalfigure>
             <para>В главном окне можно просматривать несколько трасс одновменно.
 Используйте меню<emphasis>Файл -&gt; Модуль</emphasis>для чтения трассы

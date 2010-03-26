@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
    <d:InfElement id="fails" name="Состав файлов">
 
 
@@ -10,7 +10,7 @@
 
 
 
-      <chapter>
+      <chapter >
          <title>Состав файлов</title>
          <para>Файлы<xref linkend="ПО" role="Undefined Cross-Reference"/>
             <xref linkend="РМО" role="Undefined Cross-Reference"/>делятся

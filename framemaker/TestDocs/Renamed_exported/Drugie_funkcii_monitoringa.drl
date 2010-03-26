@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
    <d:InfElement id="join_in_monitoring" name="Другие функции Мониторинга">
 
 
@@ -10,7 +10,7 @@
 
 
 
-      <section>
+      <section >
          <title id="tri_tri_4et" xreflabel="3.3.4. Монитор">3.3.4.
 Монитор</title>
          <section>
@@ -76,7 +76,7 @@
 требуется.</para>
             <informalfigure float="0">
                <graphic width="9.917in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/MonitorSheme.jpg"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/MonitorSheme.jpg"/>
             </informalfigure>
             <para>Подключенное к Монитору<xref linkend="АТС" role="Undefined Cross-Reference"/>отображает состояние всей
 телефонной сети, объединяя полученную со всех станций информацию.
@@ -90,7 +90,7 @@
             <para>Панель монитора состоит из окон:</para>
             <informalfigure float="0">
                <graphic width="10.778in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/monitor.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/monitor.gif"/>
             </informalfigure>
             <para>
                <command moreinfo="none">Окна панели монитора</command>
@@ -146,7 +146,7 @@
 нормального состояния.</para>
          </section>
       </section>
-      <section>
+      <section >
          <title id="tri_tri_5" xreflabel="3.3.5. Панель аварийной сигнализации">3.3.5.
 Панель аварийной сигнализации</title>
          <section>
@@ -235,7 +235,7 @@
 и их параметры, ниже приведен пример и описание параметров:</para>
             <informalfigure float="0">
                <graphic width="7.778in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-настройка-та.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-настройка-та.gif"/>
             </informalfigure>
             <para>
                <command moreinfo="none">Описание параметров аварий</command>
@@ -315,7 +315,7 @@ Message="" Modify="Нет" Category="Servers" Ring="Нет" Loop="-"/&gt;</progr
 настроить порт, тип и управляющее приложение для табло.</para>
             <informalfigure float="0">
                <graphic width="4.931in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-табло-настро.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-табло-настро.gif"/>
             </informalfigure>
             <para>
                <command moreinfo="none">Параметры настройки</command>
@@ -344,7 +344,7 @@ Message="" Modify="Нет" Category="Servers" Ring="Нет" Loop="-"/&gt;</progr
             </informaltable>
          </section>
       </section>
-      <section>
+      <section >
          <title>3.3.6.
 Монитор промлиний</title>
          <section>
@@ -364,7 +364,7 @@ Message="" Modify="Нет" Category="Servers" Ring="Нет" Loop="-"/&gt;</progr
 -&gt; Модули</emphasis>.</para>
             <informalfigure float="0">
                <graphic width="10.889in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/PromMonitor_Pich_01.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/PromMonitor_Pich_01.gif"/>
             </informalfigure>
             <para>Состояние элементов станции определятся цветом, ниже приведено
 описание цветов и их значение:</para>
@@ -462,7 +462,7 @@ Message="" Modify="Нет" Category="Servers" Ring="Нет" Loop="-"/&gt;</progr
 в главном окне пользователь может добавить сразу все тракты модуля.</para>
             <informalfigure float="0">
                <graphic width="10.944in" align="aleft"
-                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/PromMonitor_Pich_02.gif"/>
+                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/PromMonitor_Pich_02.gif"/>
             </informalfigure>
             <para>Каждый канал может находиться в одном из следующих состояний:</para>
             <informaltable frame="all" colsep="1" rowsep="1">

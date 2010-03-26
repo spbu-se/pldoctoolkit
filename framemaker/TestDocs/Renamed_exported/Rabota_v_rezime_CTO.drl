@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl">
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
    <d:InfElement id="rate_CTO" name="Работа в режиме ЦТО">
 
 
@@ -10,7 +10,7 @@
 
 
 
-      <chapter>
+      <chapter >
          <title id="rvrCTO" xreflabel="Работа в режиме ЦТО">Работа
 в режиме ЦТО</title>
          <para>В данном документе описано, как организовать работу РМО в
