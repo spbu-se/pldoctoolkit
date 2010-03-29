@@ -1,0 +1,133 @@
+<InfElement id = "menu_sm" name = "Меню окна">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<section><title>Меню</title>
+<para><emphasis>Главное меню окна «Состояния абонентов».</emphasis></para>
+<para>Главное меню окна «Состояния абонентов» представлено пиктограммами
+в верхней части окна.</para>
+<para><command>Главное меню окна «Состояния абонентов»</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Элемент меню/подменю</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">Обновить</entry>
+<entry colname = "2">Обновление состояний заказанных модулей</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Обновить -> Стоп</entry>
+<entry colname = "2">Остановка обновления состояний заказанных модулей</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Обновить -> 5 секунд</entry>
+<entry colname = "2">Автоматическое обновление состояний заказанных модулей через каждые
+5 секунд</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Обновить -> 10 секунд</entry>
+<entry colname = "2">Автоматическое обновление состояний заказанных модулей через каждые 10секунд</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Обновить -> 30 секунд</entry>
+<entry colname = "2">Автоматическое обновление состояний заказанных модулей через каждые 30секунд</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Обновить -> Обновить</entry>
+<entry colname = "2">Обновление состояний заказанных модулей</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Обновить -> Обновить все</entry>
+<entry colname = "2">Обновление состояний всех модулей</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Обновить -> Модули...</entry>
+<entry colname = "2">Открытие окна «Выбор модулей»</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Легенда</entry>
+<entry colname = "2">Открытие окна «Легенда»</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Статистика</entry>
+<entry colname = "2">Открытие окна «Текущая статистика по абонентским
+линиям»</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">Справка</entry>
+<entry colname = "2">Открытие окна «Помощь»</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><emphasis>Всплывающие меню окна «Состояния абонентов».</emphasis></para>
+<para>Окно «Состояния абонентов» имеет два всплывающих меню: «Модуль»
+и «Абонент». Всплывающее меню «Модуль» активизируется при установке
+указателя мышки на название выбранного модуля и нажатии правой кнопки.
+Всплывающее меню «Абонент» активизируется при установке указателя
+мышки квадратик абонента и нажатии правой кнопки</para>
+<para><command>Всплывающее меню «Модуль»</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Элемент меню/подменю</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">Обновить модуль</entry>
+<entry colname = "2">Обновление выбранного модуля</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">Добавить в список</entry>
+<entry colname = "2">Активирование заказа обновления модуля в списке опрашиваемых модулей</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">Удалить из списка</entry>
+<entry colname = "2">Деактивирование заказа обновления модуля в списке опрашиваемых модулей</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<important><para><emphasis>Замечание</emphasis>: Во время ожидания
+ответа станции всплывающее меню названия модуля не доступно.</para></important>
+<para><command>Всплывающее меню «Абонент»</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Элемент меню/подменю</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">Абонент (номер абонента)</entry>
+<entry colname = "2">Запуск приложения «Абонентская панель»</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">Пройти по шнуру</entry>
+<entry colname = "2">Проход по шнуру</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section></InfElement>

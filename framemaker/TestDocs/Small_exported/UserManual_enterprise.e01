@@ -1,0 +1,32 @@
+<FinalInfProduct id = "UserManual_enterprise"
+    infproductid = "UserManual">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+
+<Adapter infelemrefid = "ref_antivirus">
+<Replace-Nest nestid = "extended_actions"><listitem><para>помещение
+в карантин</para></listitem><listitem><para>запрос о помощи у представителя
+ИнтерБез в вашей фирме</para></listitem></Replace-Nest></Adapter>
+<Adapter infelemrefid = "ref_firewall_config"></Adapter>
+<Adapter infelemrefid = "ref_antivirus_config"></Adapter>
+<Adapter infelemrefid = "ref_update_local"></Adapter>
+<Adapter infelemrefid = "ref_components_update">
+<Insert-After nestid = "av-update"><para>Скорее всего все настройки
+уже произведены Вашим системным администратором.</para></Insert-After>
+<Insert-After nestid = "as-update"><para>ИнтерБез Корпоративный
+использует центральный локальный сервер для обнаружения спама. В
+настройках необходимо указать его адрес. Для получения адреса обратитесь
+с системному администратору.</para></Insert-After></Adapter>
+<Adapter infelemrefid = "ref_antispam"></Adapter></FinalInfProduct>

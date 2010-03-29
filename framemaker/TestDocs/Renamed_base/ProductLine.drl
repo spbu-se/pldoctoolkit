@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductLine name="Электронная автоматическая телефонная станция Квант-Е-Сокол" xmlns:d="http://math.spbu.ru/drl">
+   <d:Product name="РМО 1.5 полная версия" id="complete"/>
+   <d:Product name="РМО 1.5 базовая версия" id="based"/>
+</d:ProductLine>

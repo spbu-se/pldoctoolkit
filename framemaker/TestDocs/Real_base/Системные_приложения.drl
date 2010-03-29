@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+
+  <d:InfElement id="system_applications" name="Системные приложения">
+    <section><title>3.1. Системные приложения</title>
+    
+      <d:InfElemRef id="ref_join_in_sysappl" infelemid="join_in_sysappl" optional="true"/>
+          
+      <d:InfElemRef id="ref_RMO_panel" infelemid="RMO_panel"/>
+      <d:InfElemRef id="ref_permissions" infelemid="permissions"/>
+
+    </section>
+  </d:InfElement>
+
+</d:DocumentationCore>

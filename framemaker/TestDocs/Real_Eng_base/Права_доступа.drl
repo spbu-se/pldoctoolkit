@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+
+  <d:InfElement id="permissions" name="Права доступа">
+    <section><title id="tri_odin_p9t" xreflabel="3.1.15. Права доступа">3.1.15. Права доступа</title>
+
+    <section><title>Обзор</title>
+      <para>Приложение <emphasis>Права доступа</emphasis> служит для выполнения следующих функций:</para>
+        <itemizedlist>
+          <listitem><para>Создание/изменение списка пользователей и групп</para></listitem>
+          <listitem><para>Назначение прав пользователям и группам</para></listitem>
+        </itemizedlist>
+      <para>Приложение представляет собой систему администрирования для обеспечения безопасности работы с <xref linkend="РМО"/>. С помощью него возможно регестрирование пользователей <xref linkend="РМО"/>, создание групп пользователей с различными правами на выполнение операций в <xref linkend="РМО"/> и непосредственно операций с телефонной станцией.</para> 
+      <para><emphasis>Пользователи</emphasis></para> 
+      <para><command>Набор атрибутов пользователей</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Атрибут</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>Имя</entry>
+                <entry>Имя – логин пользователя используемый для его идентификации</entry>
+              </row>
+              <row>
+                <entry>Полное имя</entry>
+                <entry>Информация о полном имени данного пользователя (необязательная информация)</entry>
+              </row>
+              <row>
+                <entry>Описание</entry>
+                <entry>Какой-либо комментарий о данном пользователе (необязательная информация)</entry>
+              </row>
+              <row>
+                <entry>Домейн</entry>
+                <entry>Домейн пользователя</entry>
+              </row>
+              <row>
+                <entry>Пароль</entry>
+                <entry>Пароль пользователя для входа в <xref linkend="РМО"/></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      <para><emphasis>Группы</emphasis></para> 
+      <para>Каждая группа содержит список принадлежащих ей пользователей. Так же для группы характерны ее аттрибуты:</para> 
+      <para><command>Набор атрибутов групп пользователей</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Атрибут</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>Имя</entry>
+                <entry>Имя – логин пользователя используемый для его идентификации</entry>
+              </row>
+              <row>
+                <entry>Описание</entry>
+                <entry>Какой-либо комментарий о данном пользователе (необязательная информация)</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      <para><emphasis>Операции</emphasis></para> 
+      <para>Для каждого приложения в составе <xref linkend="РМО"/> существует набор операций/действий, которые может выполнить пользователь. Каждая операция содержит список пользователей и групп, в котором для каждого пользователя (или группы) прописано право доступа на выполнение данной операции.</para>
+    </section>
+
+    <section><title>Главное окно</title>
+      <para>Главное окно приложения «Права доступа» выглядит следующим образом:</para> 
+        <informalfigure>
+          <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\klient-prava.gif"/>
+        </informalfigure>
+      <para>Рабочая область приложения разделена на 2 части:</para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <tbody>
+              <row>
+                <entry>Список пользователей</entry>
+                <entry>Список локальных пользователей на данном компьютере</entry>
+              </row>
+              <row>
+                <entry>Список групп</entry>
+                <entry>Список групп на данном компьютере</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      <para><emphasis>Главное меню</emphasis></para> 
+      <para>Меню <emphasis>Пользователи</emphasis> служит для работы со списком пользователей и групп.</para>
+      <para><command>Меню пользователи</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Элемент меню</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>Новый пользователь</entry>
+                <entry>Открыть окно <emphasis>Свойства пользователя</emphasis> для создания нового пользователя</entry>
+              </row>
+              <row>
+                <entry>Новая группа</entry>
+                <entry>Открыть форму для создания новой группы</entry>
+              </row>
+              <row>
+                <entry>Удалить</entry>
+                <entry>Удалить выделенного пользователя или выделенную группу</entry>
+              </row>
+              <row>
+                <entry>Изменить имя</entry>
+                <entry>Открыть форму для изменения имени выделенного пользователя</entry>
+              </row>
+              <row>
+                <entry>Изменить пароль</entry>
+                <entry>Открыть форму для изменения пароля выделенного пользователя</entry>
+              </row>
+              <row>
+                <entry>Сохранить</entry>
+                <entry>Сохранить все изменения в <filename>xml</filename> файл</entry>
+              </row>
+              <row>
+                <entry>Выход</entry>
+                <entry>Выход из программы</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      <para>Примерный вид диалога изменения имени:</para>
+        <informalfigure>
+          <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\klient-izmenit-imja.gif"/>
+        </informalfigure>
+      <para>Примерный вид диалога изменения пароля:</para>
+        <informalfigure>
+          <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\klient-smena-parolja.gif"/>
+        </informalfigure>
+      <para>Меню <emphasis>Политики</emphasis> служит для работы со списком прав пользователей и групп а так же для работы со списком доменов.</para>
+      <para><command>Меню Политики</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Элемент меню</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>Права</entry>
+                <entry>Открыть форму для работы с назначением прав</entry>
+              </row>
+              <row>
+                <entry>Домены</entry>
+                <entry>Открыть форму для работы со списком доменов</entry>
+              </row>
+              <row>
+                <entry>История</entry>
+                <entry>Открыть форму для работы с историей действий оператора</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      <para><command>Меню Справка</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Элемент меню</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>Содержание</entry>
+                <entry>Открыть содержание справки</entry>
+              </row>
+              <row>
+                <entry>Поиск</entry>
+                <entry>Открыть окно поиска по справке</entry>
+              </row>
+              <row>
+                <entry>Справка Windows</entry>
+                <entry>Как пользоваться справкой</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      <para>В окне пользователей доступно контекстное меню, которое можно вызвать нажатием правой кнопки мыши.</para>
+      <para><command>Пункты контекстного меню</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Элемент меню</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>Удалить</entry>
+                <entry>Удалить выделенного пользователя или выделенную группу</entry>
+              </row>
+              <row>
+                <entry>Изменить пароль</entry>
+                <entry>Открыть форму для изменения пароля выделенного пользователя</entry>
+              </row>
+              <row>
+                <entry>Изменить имя</entry>
+                <entry>Открыть форму для изменения имени выделенного пользователя</entry>
+              </row>
+              <row>
+                <entry>Свойства</entry>
+                <entry>Открыть окно <emphasis>Свойства пользователя</emphasis> со свойствами данного пользователя</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+    </section>
+
+    <section><title>Группа</title>
+      <para>Окно <emphasis>Свойства группы</emphasis> выглядит следующим образом:</para>
+        <informalfigure>
+          <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\свойства-группы-(новая-груп.gif"/>
+        </informalfigure>
+      <para>Работает в двух режимах:</para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <tbody>
+              <row>
+                <entry>Создание новой группы</entry>
+                <entry>Вызывается из меню <emphasis>Пользователи -> Новая группа</emphasis> главного окна</entry>
+              </row>
+              <row>
+                <entry>Посмотр свойств группы</entry>
+                <entry>Вызывается при помощи двойного нажатия на выделенную группу в главном окне</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      <para><emphasis>Создание новой группы</emphasis></para>
+        <para>В этом режиме следует поля, идентифицирующие группу. Если у новой группы будет уникальное имя, то она добавляется к списку всех групп. Данной группе приводится в соответствие входящие в ее состав пользователи.</para>
+      <para><emphasis>Просмотр свойств группы</emphasis></para>
+        <para>В этом режиме администартор может поменять значение поля <emphasis>Комментарий</emphasis> выбранной группы. Так же оператор может изменить состав принадлежащих ей пользователей.</para>
+      <para><emphasis>Редактирование списка входящих пользователей</emphasis></para>
+        <para>Пользователей можно удалять, для этого нужно выбрать желаемого пользователя и нажать кнопку <emphasis>Удалить</emphasis>. Так же пользователей можно добавлять c помощью кнопки Добавить. При нажатии вызывается окно <emphasis>Добавление</emphasis> пользователей.</para>
+    </section>
+
+    <section><title>Пользователь</title>
+      <para>Окно <emphasis>Свойства пользователя</emphasis> выглядит следующим образом:</para>
+        <informalfigure>
+          <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\klient-sovjstva-polzovatel.gif"/>
+        </informalfigure>
+      <para>Работает в двух режимах:</para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <tbody>
+              <row>
+                <entry>Создание нового пользователя</entry>
+                <entry>Вызывается из меню <emphasis>Пользователи -> Новый пользователь</emphasis> главного окна</entry>
+              </row>
+              <row>
+                <entry>Просмотр свойств пользователя</entry>
+                <entry>Вызывается из выпадающего меню <emphasis>Свойства</emphasis> главного окна, или при помощи двойного нажатия на выделенного пользователя в главном окне</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      <para><emphasis>Создание нового пользователя</emphasis></para>
+        <para>В этом режиме следует заполнить все поля, кроме необязательных. Если у нового пользователя уникальное имя в указанном домене, то новый пользователь добавляется к списку всех пользователей. Данному пользователю приводится в соответствие группы, членом которых он будет являться.</para>
+      <para><emphasis>Просмотр свойств пользователя</emphasis></para>
+        <para>В этом режиме администартор может поменять значения некоторых полей выбранного пользователя, таких как <emphasis>Полное имя</emphasis>, <emphasis>Описание</emphasis> и <emphasis>Домен</emphasis>. Так же оператор может изменить состав групп, соответствующих данному пользователю.</para>
+      <para><emphasis>Добавление пользователей</emphasis></para>
+        <para>Окно <emphasis>Добавление пользователей</emphasis> выглядит следующим образом:</para>
+          <informalfigure>
+            <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\dobavit-polzovatelja.gif"/>
+          </informalfigure>
+          <para>В окошке <emphasis>Домен</emphasis> находится выпадающий список доступных доменов. При выборе определенного домена в окне <emphasis>Пользователи</emphasis> появляется список пользователей данного домена. Пустое значения домена соответствует локальному списку пользователей. Чтобы добавить пользователя в список «добавленных», нужно выбрать его из списка и нажать кнопку <emphasis>Добавить</emphasis> ( Можно выбрать сразу несколько пользователей удерживая кнопку <command>Ctrl</command> на клавиатуре). Когда в списке «добавленные» все желаемые пользователи нужно нажать кнопку <emphasis>ОК</emphasis></para>            
+      <para><emphasis>Домены</emphasis></para>
+        <para>Окно <emphasis>Домены</emphasis> выглядит следующим образом:</para>
+          <informalfigure>
+            <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\klient-domeny.gif"/>
+          </informalfigure>
+        <para>Данное окно предназначено для работы со списком доступных доменов. Домены можно удалять, для этого нужно выбрать желаемый, нажать правую кнопку мыши и в выпадающем меню выбрать пункт <emphasis>Удалить</emphasis>. Так можно создавать новые домены c помощью кнопки <emphasis>Добавить</emphasis>. При нажатии вызывается окно <emphasis>Домен</emphasis>.</para>
+        <informalfigure>
+          <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\klient-domen-2.gif"/>
+        </informalfigure>
+      <para>Так же в этом же окне можно изменять пароль уже существующего домена , для этого нужно выбрать желаемый в окне <emphasis>Домены</emphasis>, нажать правую кнопку мыши и в выпадающем меню выбрать пункт <emphasis>Изменить пароль</emphasis>.</para>
+      <para><emphasis>Права пользователей</emphasis></para>
+        <para>Окно <emphasis>Права пользователей</emphasis> выглядит следующим образом:</para>
+          <informalfigure>
+            <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\klient-prava-polzovatelej.gif"/>
+          </informalfigure>
+        <para>В окне <emphasis>Операции</emphasis> дерево приложений и соответствующих им операций. При выборе какой-либо операции в окне <emphasis>Пользователи</emphasis> высвечивается список пользователей с правами на данную операцию. Двойным щелчком мыши можно поменять права. Для назначения прав новым пользователям нужно нажать кнопку <emphasis>Добавить</emphasis>, при этом откроется окно <emphasis>Добавление пользователей</emphasis>, в котором можно выбрать желаемых пользователей.</para>
+    </section>
+
+    </section>
+  </d:InfElement>
+
+</d:DocumentationCore>

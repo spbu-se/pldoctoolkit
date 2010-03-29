@@ -1,0 +1,13 @@
+<InfElement id = "about_company" name = "О компании">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<para>Компания<DictRef dictid = "company" entryid = "name"/>занимается
+разработкой комплексных средств защиты от сетевых угроз с 1990 года
+и на данный момент является безусловным лидером в этой области.</para></InfElement>

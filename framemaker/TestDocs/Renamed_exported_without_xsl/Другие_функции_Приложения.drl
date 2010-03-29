@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DocumentationCore SYSTEM "file:///C:/Program%20Files/Adobe/FrameMaker8/structure/xml/docline/docline.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+
+<!ENTITY bkc1 SYSTEM "join_in_applications.e01">
+<!NOTATION gif SYSTEM "">
+<!ENTITY graphic1 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/test-nomeronabiratelja.gif" NDATA gif>
+<!ENTITY graphic2 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/test-nomeronabiratelja-stati.gif" NDATA gif>
+<!ENTITY graphic3 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-obtsh.-vid.gif" NDATA gif>
+<!ENTITY graphic4 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-knopka-nov.-zad..gif" NDATA gif>
+<!ENTITY graphic5 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-novoe-zadanie.gif" NDATA gif>
+<!ENTITY graphic6 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika.gif" NDATA gif>
+<!ENTITY graphic7 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-stantzija.gif" NDATA gif>
+<!ENTITY graphic8 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-menedger1.gif" NDATA gif>
+<!ENTITY graphic9 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-gurnal1.gif" NDATA gif>
+<!ENTITY graphic10 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-ochered.gif" NDATA gif>
+<!ENTITY graphic11 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-test-al.gif" NDATA gif>
+<!ENTITY graphic12 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-rezultaty.gif" NDATA gif>
+<!ENTITY graphic13 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/поиск-абонента.gif" NDATA gif>
+<!ENTITY graphic14 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/коммутационное-поле.gif" NDATA gif>
+<!ENTITY graphic15 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/КМ-проключения.gif" NDATA gif>
+<!ENTITY graphic16 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/проход-по-шнуру.gif" NDATA gif>
+<!ENTITY graphic17 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/menedger-gr.-teletrafika.gif" NDATA gif>
+<!ENTITY graphic18 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/обозреватель-телетрафика.gif" NDATA gif>
+<!ENTITY graphic19 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-oshibka2.gif" NDATA gif>
+<!ENTITY graphic20 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-oshibka-podkljuchen.gif" NDATA gif>
+<!ENTITY graphic21 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika_obzor-papok.gif" NDATA gif>
+<!ENTITY graphic22 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-vneshnij-vid.gif" NDATA gif>
+<!ENTITY graphic23 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-uvelichenie.gif" NDATA gif>
+<!ENTITY graphic24 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-uvelichennyj.gif" NDATA gif>
+<!ENTITY graphic25 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-umenshenie.gif" NDATA gif>
+<!ENTITY graphic26 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-peremetshenie.gif" NDATA gif>
+<!ENTITY graphic27 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-chislennye-znachenija.gif" NDATA gif>
+<!ENTITY graphic28 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tarifikatzija.gif" NDATA gif>
+<!ENTITY graphic29 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-окно-просм..gif" NDATA gif>
+<!ENTITY graphic30 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-фильтр.gif" NDATA gif>
+<!ENTITY graphic31 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-удалить-фильтр.gif" NDATA gif>
+<?Fm Validation Off?>
+
+
+<!-- End Document Specific Declarations -->
+
+]>
+<DocumentationCore
+    filename = "Другие_функции_Приложения.drl">&bkc1;</DocumentationCore>

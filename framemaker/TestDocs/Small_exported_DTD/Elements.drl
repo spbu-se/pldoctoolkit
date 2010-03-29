@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DocumentationCore SYSTEM "file:///C:/Program%20Files/Adobe/FrameMaker8/structure/xml/docline/docline.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+<?Fm Validation Off?>
+
+
+<!ENTITY bkc1 SYSTEM "about_company.e01">
+<!ENTITY bkc2 SYSTEM "preface.e02">
+<!ENTITY bkc3 SYSTEM "firewall.e03">
+<!ENTITY bkc4 SYSTEM "firewall_description.e04">
+<!ENTITY bkc5 SYSTEM "firewall_config.e05">
+<!ENTITY bkc6 SYSTEM "antivirus.e06">
+<!ENTITY bkc7 SYSTEM "antivirus_description.e07">
+<!ENTITY bkc8 SYSTEM "antivirus_config.e08">
+<!ENTITY bkc9 SYSTEM "antispam.e09">
+<!ENTITY bkc10 SYSTEM "control_center.e10">
+<!ENTITY bkc11 SYSTEM "components_update.e11">
+<!ENTITY bkc12 SYSTEM "update_inet.e12">
+<!ENTITY bkc13 SYSTEM "update_local.e13">
+<!ENTITY bkc14 SYSTEM "company.e14">
+
+<!-- End Document Specific Declarations -->
+
+]>
+<DocumentationCore filename = "Elements.drl">&bkc1;&bkc2;&bkc3;&bkc4;&bkc5;&bkc6;&bkc7;&bkc8;&bkc9;&bkc10;&bkc11;&bkc12;&bkc13;&bkc14;</DocumentationCore>

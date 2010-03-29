@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ProductLine SYSTEM "file:///C:/Program%20Files/Adobe/FrameMaker8/structure/xml/docline/docline.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+<?Fm Validation Off?>
+
+
+<!ENTITY bkc1 SYSTEM "home.e01">
+<!ENTITY bkc2 SYSTEM "professional.e02">
+<!ENTITY bkc3 SYSTEM "enterprise.e03">
+
+<!-- End Document Specific Declarations -->
+
+]>
+<ProductLine
+    name = "Линейка продуктов ИнтерБез(tm) (Интернет Безопасность)"
+    filename = "ProductLine.drl">&bkc1;&bkc2;&bkc3;</ProductLine>

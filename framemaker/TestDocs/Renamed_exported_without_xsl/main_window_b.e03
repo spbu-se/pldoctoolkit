@@ -1,0 +1,130 @@
+<InfElement id = "main_window_b" name = "Главное окно">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<section><title>Главное окно</title>
+<para>Главное окно программы<emphasis>Соединительные линии</emphasis>выглядит
+следующим образом:</para>
+<informalfigure>
+<graphic entityref = "graphic1" width = "10.833in" align = "aleft"/></informalfigure>
+<para>Слева расположена панель с закладками:</para>
+<para><command>Закладки</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Закладка</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1"><xref linkend = "СЛ"
+    role = "Undefined Cross-Reference"/></entry>
+<entry colname = "2">Дерево соединительных линий</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">АБ</entry>
+<entry colname = "2">Список абонентов</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">Индекс</entry>
+<entry colname = "2">Индекс всех трактов, каналов и абонентов</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para>Справа расположена панель свойств текущего выбранного объекта.
+Она представляет собой список, содержимое которого зависит от текущего
+объекта.</para>
+<para>Главное окно программы c активной закладкой<emphasis>Индекс</emphasis>выглядит
+следующим образом:</para>
+<informalfigure>
+<graphic entityref = "graphic2" width = "10.833in" align = "aleft"/></informalfigure>
+<para>Перед списком индекса объектов расположено поле быстрого поиска
+объекта.</para>
+<para>Кнопка Состояние тракта открывает панель состояния трактов.</para>
+<para>Кнопка<emphasis>Указать</emphasis>служит для того, чтобы после
+выбора объекта в индексе можно было перейти на него в дереве. Например,
+найдя канал по конструктивному адресу (см. «<xref linkend = "stradd"
+    role = "Undefined Cross-Reference"/>») в панели<emphasis>Индекс</emphasis>и
+нажав на<emphasis>Указать</emphasis>попадаем в дереве<xref
+    linkend = "СЛ" role = "Undefined Cross-Reference"/>на этот
+канал.</para>
+<para>Кнопка<emphasis>Предыдущий</emphasis>служит для выбора предыдущего
+элемента.</para>
+<para>Кнопка<emphasis>Следующий</emphasis>служит для выбора следующего
+элемента.</para>
+<para><emphasis>Идентификация<xref linkend = "СЛ"
+    role = "Undefined Cross-Reference"/></emphasis></para>
+<para>В приложениях<xref linkend = "РМО"
+    role = "Undefined Cross-Reference"/>используется несколько способов
+идентификации соединительных линий:</para>
+<para><command>Способы идентификации соединительных линий</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">По номеру</entry>
+<entry colname = "2">Номер представляет собой число в десятичной
+системе счисления; в характеристиках<xref linkend = "СЛ"
+    role = "Undefined Cross-Reference"/>он отображается в поле<emphasis>Номер</emphasis></entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">По конструктивному адресу</entry>
+<entry colname = "2"><para>Конструктивный адрес (см. «<xref
+    linkend = "stradd" role = "Undefined Cross-Reference"/>») представляет
+собой четыре числа в десятичной с/с, разделенные точками; опционально
+он может быть заключен в квадратные скобки; в характеристиках<xref
+    linkend = "СЛ" role = "Undefined Cross-Reference"/>он отображается
+в поле<emphasis>Конструктивный адрес</emphasis></para><para>Для цифровых каналов конструктивный
+адрес является логическим понятием, поскольку физическую сущность имеет только
+сам тракт</para></entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">По адресу включения в коммутационное поле</entry>
+<entry colname = "2"><itemizedlist><listitem><para>Для цифровых каналов
+это адрес включения в коммутационное поле модуля УКС; представляет собой число в шестнадцатеричной
+с/с (номер группового тракта УКС) и число в десятичной с/с (временная позиция), разделенные точкой и заключенные
+в круглые скобки</para></listitem>
+<listitem><para>Для аналоговых линий это адрес включения в коммутационное поле модуля<xref
+    linkend = "БАЛ" role = "Undefined Cross-Reference"/>Д; представляет собой число в шестнадцатеричной
+с/с (номер модуля<xref linkend = "БАЛ"
+    role = "Undefined Cross-Reference"/>Д), число в десятичной с/с (номер тракта в<xref
+    linkend = "КП" role = "Undefined Cross-Reference"/><xref
+    linkend = "БАЛ" role = "Undefined Cross-Reference"/>Д) и еще одно число в десятичной с/с (временная позиция в<xref
+    linkend = "КП" role = "Undefined Cross-Reference"/><xref
+    linkend = "БАЛ" role = "Undefined Cross-Reference"/>Д), разделенные точкой и заключенные
+в круглые скобки</para></listitem></itemizedlist><para>В характеристиках<xref
+    linkend = "СЛ" role = "Undefined Cross-Reference"/>адрес включения в<xref
+    linkend = "КП" role = "Undefined Cross-Reference"/>отображается
+в поле<emphasis>Адрес включения в<xref linkend = "КП"
+    role = "Undefined Cross-Reference"/></emphasis></para></entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para>Можно производить поиск<xref linkend = "СЛ"
+    role = "Undefined Cross-Reference"/>по конструктивному адресу
+(см. «<xref linkend = "stradd" role = "Undefined Cross-Reference"/>»)
+и адресу включения в<xref linkend = "КП"
+    role = "Undefined Cross-Reference"/>. Для этого в левой половине
+главного окна приложения на панели закладок нужно выбрать закладку<emphasis>Индекс</emphasis>,
+затем в поле ввода начать набирать конструктивный адрес линии или
+адрес включения в<xref linkend = "КП"
+    role = "Undefined Cross-Reference"/>(вместе со скобками), тогда
+список автоматически позиционируется на линию с указанным конструктивным
+адресом или адресом включения в<xref linkend = "КП"
+    role = "Undefined Cross-Reference"/>, и справа можно будет увидеть
+всю информацию о выбранной линии.</para>
+<Nest id = "switching_on_trace"></Nest></section></InfElement>

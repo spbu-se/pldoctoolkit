@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+
+  <d:InfElement id="script_language" name="Язык скриптов РМО">
+    <chapter>
+      <title id="tri_6_odin" xreflabel="9srmo">Язык скриптов РМО</title>
+      <para>Сервер скриптов <xref linkend="РМО"/> может исполнять сценарии написанные на языках Java Script и Visual Basic Script. Так же может исполнять сценарии написанные в формате Windows Script host File, как целиком, так и отдельные работы. Для доступа к <xref linkend="ФПО"/> станции и другим приложениям пакета <xref linkend="РМО"/>, а так же для операций с базой данных <xref linkend="РМО"/> в пространство имен сценария подгружены следующие automation объекты:</para>
+      <para><command>Объекты, подгруженные в пространство имён сценария</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Объект</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>PC</entry>
+                <entry>Объект, позволяющий запускать приложения <xref linkend="РМО"/> и обмениваться с ними сообщениями, а так же получать информацию о станции</entry>
+              </row>
+              <row>
+                <entry>PS</entry>
+                <entry>Объект, позволяющий обмениваться сообщениями с объектами <xref linkend="ФПО"/></entry>
+              </row>
+              <row>
+                <entry>FC</entry>
+                <entry>Объект, позволяющий получить информацию о классах и объектах <xref linkend="ФПО"/></entry>
+              </row>
+              <row>
+                <entry>ScriptIO</entry>
+                <entry>Объект, обеспечивающий операции ввода/вывода для скриптов</entry>
+              </row>
+              <row>
+                <entry>Arguments</entry>
+                <entry>Объект, обеспечивающий доступ к аргументам, переданным скрипту</entry>
+              </row>
+              <row>
+                <entry>Forms</entry>
+                <entry>Объект, позволяющий манипулировать коллекцией форм скрипта.
+                <para><command>Внимание!</command>Имена методов и свойств этого объекта не добавлены в пространство имен скрипта. Доступ к ним осуществляется только с указанием имени объекта: Forms.Add…</para>
+                </entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      <para>Методы выше перечисленных объектов могут возвращать или принимать помимо стандартных значений automation указатели на следующие интерфейсы:</para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Интерфейс</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>IMessagesQueue</entry>
+                <entry>Очередь сообщений для сокетов</entry>
+              </row>
+              <row>
+                <entry>IMessageCover</entry>
+                <entry>Оболочка для данных полученного сообщения</entry>
+              </row>
+              <row>
+                <entry>IFPOClassCover</entry>
+                <entry>Оболочка для данных, описывающих класс <xref linkend="ФПО"/></entry>
+              </row>
+              <row>
+                <entry>IFPOFieldsCover</entry>
+                <entry>Оболочка для данных, описывающих поля класса <xref linkend="ФПО"/></entry>
+              </row>
+              <row>
+                <entry>IFPOFieldCover</entry>
+                <entry>Оболочка для данных, описывающих поле класса <xref linkend="ФПО"/></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      <para>Сервер скриптов <xref linkend="РМО"/> поддерживает возможность включения в сценарий функций из других файлов с помощью директивы include. При написании сценариев на языках Java Script и Visual Basic Script директива include имеет следующий синтаксис:</para>
+      <para><command>//#include "Имя_файла"</command></para>  
+      <para>В случае использования Windows Script host File введен используйте таг include:</para>
+      <para><command>&lt;include src="Имя_файла">;</command></para>
+      
+      <section><title>5.1. Объект PC</title>
+        <para>Объект PC предназначен для взаимодействия с другими приложениями <xref linkend="РМО"/> и получения информации о станции.</para>
+        <para><command>Методы объекта PC</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Метод</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>SendMessageInternal</entry>
+                <entry>Посылка сообщения приложению <xref linkend="РМО"/></entry>
+              </row>
+              <row>
+                <entry>GetStationParameter</entry>
+                <entry>Запрос параметра станции</entry>
+              </row>
+              <row>
+                <entry>VerifyAccessRight</entry>
+                <entry>Проверка прав доступа</entry>
+              </row>
+              <row>
+                <entry>GetInstance</entry>
+                <entry>Получение адреса модуля</entry>
+              </row>
+              <row>
+                <entry>WaitFor</entry>
+                <entry>Организация задержки на заданное время</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <para><command>Свойства объекта PC</command><footnote><para>Все свойства доступны только на чтение</para></footnote></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Свойство</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>INT StationsCount</entry>
+                <entry>Количество доступных станций</entry>
+              </row>
+              <row>
+                <entry>BSTR Station(INT Index)</entry>
+                <entry>Имя станции по её номеру</entry>
+              </row>
+              <row>
+                <entry>IDispatch * Connection</entry>
+                <entry>Диспетчерский интерфейс объекта ADOCOnnection, подключенного к базе данных <xref linkend="РМО"/></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <itemizedlist>
+          <listitem><para>SendMessageInternal(BSTR sAppName) – посылает сообщение приложению <xref linkend="РМО"/></para>
+            <itemizedlist>
+              <listitem><para>BSTR sAppName – имя приложения</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>BSTR GetStationParameter(BSTR sParamName) –запрашивает значение параметра станции</para>
+            <itemizedlist>
+              <listitem><para>Результат типа BSTR – значение параметра</para></listitem>
+              <listitem><para>BSTR sParamName – имя параметра, например "Путь_К_Данным"</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>VARIANT_BOOL VerifyAccessRight(BSTR sAction) – выявляет наличие или отсутствие прав на выполнение определенного действия</para>
+            <itemizedlist>
+              <listitem><para>Результат типа VARIANT_BOOL – истина в случае наличия прав, ложь иначе</para></listitem>
+              <listitem><para>BSTR sAction – имя действия</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>BYTE GetInstance()– возвращает адрес модуля, присвоенный серверу скриптов</para>
+            <itemizedlist>
+              <listitem><para>Результат типа BYTE – адрес модуля</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>WaitFor(INT TimeOut) – организует задержку на заданное количество миллисекунд</para>
+            <itemizedlist>
+              <listitem><para>INT TimeOut – время ожидания</para></listitem>
+            </itemizedlist>
+          </listitem>
+        </itemizedlist>
+      </section>
+      
+      <section><title>5.2. Объект PS</title>
+        <para>Объект PS предназначен для взаимодействия с объектами <xref linkend="ФПО"/>.</para>
+        <para><command>Методы объекта PS</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Метод</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>RecvMess</entry>
+                <entry>Прием сообщения</entry>
+              </row>
+              <row>
+                <entry>SendMess</entry>
+                <entry>Отправка сообщения</entry>
+              </row>
+              <row>
+                <entry>GetSocket</entry>
+                <entry>Запрос номера сокета</entry>
+              </row>
+              <row>
+                <entry>SetTimer</entry>
+                <entry>Установка таймера</entry>
+              </row>
+              <row>
+                <entry>ClearTimer</entry>
+                <entry>Сброс таймера</entry>
+              </row>
+              <row>
+                <entry>SetReturnAddress</entry>
+                <entry>Установка адреса для получения ответных сообщений</entry>
+              </row>
+              <row>
+                <entry>SetQueue</entry>
+                <entry>Установка очереди для получаемых сообщений</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <para><command>Свойства объекта PS</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Свойство</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>BYTE Mask</entry>
+                <entry>Маска отправляемых сообщений</entry>
+              </row>
+              <row>
+                <entry>INT TimeOut</entry>
+                <entry>Максимальное время ожидания поступления сообщения в очередь</entry>
+              </row>
+              <row>
+                <entry>IDispatch * Connection</entry>
+                <entry>Диспетчерский интерфейс объекта ADOCOnnection, подключенного к базе данных РМО</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <itemizedlist>
+          <listitem><para>IMessageCover RecvMess() – метод ожидает поступления сообщения в очередь сообщений. Отлавливает сообщения от объектов <xref linkend="ФПО"/>, а так же от внутренних таймеров. В случае получения сообщения от таймера адрес отправителя и маска будет равна 0</para>
+            <itemizedlist>
+              <listitem><para>Результат типа IMessageCover – указатель на полученное сообщение</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>SendMess(WORD mhDest, WORD mhCmd, BSTR Data) – посылка сообщения по заданному адресу</para>
+            <itemizedlist>
+              <listitem><para>WORD mhDest –сокет получателя сообщения</para></listitem>
+              <listitem><para>WORD mhCmd – команда сообщения</para></listitem>
+              <listitem><para>BSTR Data – данные сообщения в BinHex формате</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>WORD GetSocket() – возвращает номер сокета, присвоенный сценарию</para>
+            <itemizedlist>
+              <listitem><para>Результат типа WORD – номер сокета, присвоенный сценарию</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>SetTimer(WORD wCode, BSTR Data, LONG iLength) – по истечению интервала времени равного iLength миллисекунд помещает в очередь сообщение с адресом отправителя и маской 0, командой равной wCode и данными Data</para>
+            <itemizedlist>
+              <listitem><para>WORD wCode – код устанавливаемого таймера</para></listitem>
+              <listitem><para>BSTR Data – данные таймера в BinHex формате</para></listitem>
+              <listitem><para>LONG iLength – интервал таймера, если интервал равен 0 – таймер уничтожается</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>ClearTimer(WORD wCode, BSTR Data) – удаляет таймер из очереди</para>
+            <itemizedlist>
+              <listitem><para>WORD wCode – код устанавливаемого таймера</para></listitem>
+              <listitem><para>BSTR Data – данные таймера в BinHex формате</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>SetReturnAddress(WORD wAdr) – устанавливает адрес, на который будут приходить ответы на сообщения из скрипта. Если передать 0xFFFF, то ответы вернутся в скрипт и могут быть получены с помощью функции RecvMess</para>
+            <itemizedlist>
+              <listitem><para>WORD wAdr – адрес сокета получателя ответных сообщений</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>SetReturnAddress() – устанавливает очередь, в которую сокет будет добавлять пришедшие сообщения. Из этой же очереди будет извлекать сообщения функция RecvMess</para>
+            <itemizedlist>
+              <listitem><para>IMessagesQueue * pQueue – очередь, в которую сокет будет добавлять пришедшие сообщения</para></listitem>
+            </itemizedlist>
+          </listitem>
+        </itemizedlist>
+      </section>
+      
+      <section><title>5.3. Интерфейс IMessagesQueue</title>
+        <para>Интерфейс предназначен для объединения сообщений, получаемых от разных сокетов в одну очередь.</para>
+      </section>
+      
+      <section><title>5.4. Интерфейс IMessageCover</title>
+        <para>Интерфейс предназначен для представления данных полученного сообщения.</para>
+        <para><command>Свойства интерфейса IMessageCover</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Свойство</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>WORD Length</entry>
+                <entry>Длина данных сообщения в байтах</entry>
+              </row>
+              <row>
+                <entry>WORD Destination</entry>
+                <entry>Сокет получателя сообщения (0 если сообщение от таймера)</entry>
+              </row>
+              <row>
+                <entry>WORD Source</entry>
+                <entry>Сокет отправителя сообщения (0 если сообщение от таймера)</entry>
+              </row>
+              <row>
+                <entry>BYTE Mask</entry>
+                <entry>Маска сообщения (0 если сообщение от таймера)</entry>
+              </row>
+              <row>
+                <entry>WORD Command</entry>
+                <entry>Команда сообщения или таймера</entry>
+              </row>
+              <row>
+                <entry>BSTR Data</entry>
+                <entry>Данные сообщения или таймера в BinHex формате</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </section>
+      
+      <section><title>5.5. Объект FC</title>
+        <para>Объект FC предназначен для получения данных о классах <xref linkend="ФПО"/>.</para>
+        <para><command>Методы объекта FC</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Метод</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>GetClassBySocket</entry>
+                <entry>Возвращает описание класса для объекта с заданным сокетом.</entry>
+              </row>
+              <row>
+                <entry>GetClassesPath</entry>
+                <entry>Возвращает путь на диске к данным о классах.</entry>
+              </row>
+              <row>
+                <entry>GetClassNames</entry>
+                <entry>Возвращает список всех классов, разделенный символом новой строки.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <para><command>Свойства объекта FC</command></para>
+        <informaltable>
+          <tgroup cols="3" align="left" colsep="1" rowsep="1">
+            <colspec colnum="3" colname="c3"/>
+            <thead>
+              <row><entry>Свойство</entry><entry></entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>IFPOClassCover Classes(BSTR NAME)</entry>
+                <entry>(read-only)</entry>
+                <entry>Указатель на интерфейс, описывающий класс с заданным именем.</entry>
+              </row>
+              <row>
+                <entry>INT ClassesCount</entry>
+                <entry>(read-only)</entry>
+                <entry>Количество зарегистрированных классов.</entry>
+              </row>
+              <row>
+                <entry>BSTR ClassNames(INT Index)</entry>
+                <entry>(read-only)</entry>
+                <entry>Имя заданного класса.</entry>
+              </row>
+              <row>
+                <entry>VARIANT_BOOL OEMSource</entry>
+                <entry></entry>
+                <entry>Данные о классах в OEM формате.</entry>
+              </row>
+              <row>
+                <entry>VARIANT_BOOL coFields</entry>
+                <entry></entry>
+                <entry>В описании содержатся поля.</entry>
+              </row>
+              <row>
+                <entry>VARIANT_BOOL coSockets</entry>
+                <entry></entry>
+                <entry>В описании содержатся сокеты.</entry>
+              </row>
+              <row>
+                <entry>VARIANT_BOOL coStates</entry>
+                <entry></entry>
+                <entry>В описании содержатся состояния.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <itemizedlist>
+          <listitem><para>IFPOClassCover GetClassBySocket(WORD Socket) – Возвращает описание класса для объекта с заданным сокетом.</para>
+            <itemizedlist>
+              <listitem><para>Результат типа IFPOClassCover – описание класса или NULL, если класс не найден.</para></listitem>
+              <listitem><para>WORD Socket – сокет объекта.</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>BSTR GetClassesPath() – Возвращает путь на диске к данным с описанием классов.</para>
+            <itemizedlist>
+              <listitem><para>Результат типа BSTR – путь на диске к данным с описанием классов.</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>BSTR GetClassNames() – Возвращает список всех классов, разделенный символом новой строки.</para>
+            <itemizedlist>
+              <listitem><para>Результат типа BSTR – список всех классов, разделенный символом новой строки.</para></listitem>
+            </itemizedlist>
+          </listitem>
+        </itemizedlist>
+      </section>
+      
+      <section><title>5.6. Объект ScriptIO</title>
+        <para>Объект ScriptIO обеспечивает операции ввода/вывода для скриптов.</para>
+        <para><command>Методы объекта ScriptIO</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Метод</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>Write</entry>
+                <entry>Записывает текс в вывод скрипта</entry>
+              </row>
+              <row>
+                <entry>Writeln</entry>
+                <entry>Записывает текст и добавляет символ конца строки в вывод скрипта</entry>
+              </row>
+              <row>
+                <entry>Clear</entry>
+                <entry>Очищает вывод скрипта</entry>
+              </row>
+              <row>
+                <entry>MsgDlg</entry>
+                <entry>Выводит окно с сообщением</entry>
+              </row>
+              <row>
+                <entry>InputDlg</entry>
+                <entry>Выводит окно с запросом некоторого значения</entry>
+              </row>
+              <row>
+                <entry>AddToLog</entry>
+                <entry>Добавляет сообщение в лог</entry>
+              </row>
+              <row>
+                <entry>ClearLog</entry>
+                <entry>Очищает сообщение лога</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <para><command>Свойства объекта ScriptIO</command></para>
+        <informaltable>
+          <tgroup cols="3" align="left" colsep="1" rowsep="1">
+            <colspec colnum="3" colname="c3"/>
+            <thead>
+              <row><entry>Свойство</entry><entry></entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>BSTR Output</entry>
+                <entry>(read-only)</entry>
+                <entry>Вывод скрипта</entry>
+              </row>
+              <row>
+                <entry>VARIANT_BOOL IsHTML</entry>
+                <entry></entry>
+                <entry>Формат вывода скрипта (просто текст или HTML)</entry>
+              </row>
+              <row>
+                <entry>LONG mtConfirmation</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Тип диалога – подтверждение)</entry>
+              </row>
+              <row>
+                <entry>LONG mtCustom</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Тип диалога – пользовательский)</entry>
+              </row>
+              <row>
+                <entry>LONG mtError</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Тип диалога – ошибка)</entry>
+              </row>
+              <row>
+                <entry>LONG mtInformation</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Тип диалога – информация)</entry>
+              </row>
+              <row>
+                <entry>LONG mtWarning</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Тип диалога – предупреждение)</entry>
+              </row>
+              <row>
+                <entry>LONG mbAbort</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопки <emphasis>Прервать</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mbAll</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопки <emphasis>Все</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mbCancel</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопки <emphasis>Отмена</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mbHelp</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопки <emphasis>Помощь</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mbIgnore</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопки <emphasis>Пропустить</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mbNo</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопки <emphasis>Нет</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mbNoToAll</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога.(Наличие кнопки <emphasis>Нет для всех</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mbOK</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопки <emphasis>ОК</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mbRetry</entry>
+                <entry>(read-only)</entry>
+                <entry>Вывод скрипта</entry>
+              </row>
+              <row>
+                <entry>Используется для задания внешнего вида диалога.(Наличие кнопки <emphasis>Повторить</emphasis>)</entry>
+                <entry>(read-only)</entry>
+                <entry>Вывод скрипта</entry>
+              </row>
+              <row>
+                <entry>LONG mbYes</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопки <emphasis>Да</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mbYesToAll</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопки <emphasis>Да для всех</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mbAbortRetryIgnore</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопок <emphasis>Прервать</emphasis>, <emphasis>Повторить</emphasis>, <emphasis>Пропустить</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>mbOKCancel</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопок <emphasis>ОК</emphasis> и <emphasis>Отмена</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mbYesNoCancel</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для задания внешнего вида диалога. (Наличие кнопок <emphasis>Да</emphasis>, <emphasis>Нет</emphasis>, <emphasis>Отмена</emphasis>)</entry>
+              </row>
+              <row>
+                <entry>LONG mlInformation</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для записи в лог. (Информационное сообщение)</entry>
+              </row>
+              <row>
+                <entry>LONG mlHint</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для записи в лог. (Сообщение с советом)</entry>
+              </row>
+              <row>
+                <entry>LONG mlWarning</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для записи в лог. (Сообщение с предупреждением)</entry>
+              </row>
+              <row>
+                <entry>LONG mlError</entry>
+                <entry>(read-only)</entry>
+                <entry>Используется для записи в лог. (Сообщение об ошибке)</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <itemizedlist>
+          <listitem><para>Write(BSTR sString) – Записывает текст в вывод скрипта.</para>
+            <itemizedlist>
+              <listitem><para>BSTR sString – текст для вывода.</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>Writeln(BSTR sString) – Записывает текст в вывод скрипта и добавляет символ перевода строки..</para>
+            <itemizedlist>
+              <listitem><para>BSTR sString – текст для вывода.</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>Clear() – Очищает вывод скрипта.</para></listitem>
+          <listitem><para>LONG MsgDlg(BSTR sMessageText, LONG mbDlgType, LOMG mbButtons) – Выводит диалог с сообщением определенного вида..</para>
+            <itemizedlist>
+              <listitem><para>Результат типа LONG – код нажатой пользователем кнопки (Коды кнопок – свойства объекта ScriptIO).</para></listitem>
+              <listitem><para>BSTR sMessageText – сокет объекта.</para></listitem>
+              <listitem><para>LONG mbDlgType – тип диалога. (Возможные типы – свойства объекта ScriptIO).</para></listitem>
+              <listitem><para>LOMG mbButtons – кнопки, изображаемые на диалоге. Для отображения нескольких кнопок их коды нужно объеденить знаком "+". (Коды кнопок – свойства объекта ScriptIO).</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>BSTR InputDlg(BSTR sMessageText, BSTR sDefault) – Выводит диалог за запросом некоторого значения.</para>
+            <itemizedlist>
+              <listitem><para>Результат тип BSTR – введенное пользователем значение.</para></listitem>
+              <listitem><para>BSTR sMessageText – текст запроса.</para></listitem>
+              <listitem><para>BSTR sDefault – значение по умолчанию.</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>AddToLog(LONG lMessageType, BSTR sMessage) – Добавляет сообщение в лог скрипта. Возможные типы сообщений – mlInformation, mlHint, mlWarning, mlError.</para>
+            <itemizedlist>
+              <listitem><para>LONG lMessageType – тип сообщения.</para></listitem>
+              <listitem><para>BSTR sMessage – текст сообщения.</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>ClearLog() – Удаляет все сообщения из лога.</para></listitem>
+        </itemizedlist>
+      </section>
+      
+      <section><title>5.7. Объект Arguments</title>
+        <para>Объект Arguments обеспечивает доступ к аргументам, переданным скрипту.</para>
+        <para><command>Свойства объекта Arguments</command><footnote><para>Все свойства доступны только на чтение</para></footnote></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Свойство</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>BSTR Argument( BSTR Name, BSTR Default )</entry>
+                <entry>Значение аргумента с заданным именем. Если значение аргумента не задано, возвращается Default.</entry>
+              </row>
+              <row>
+                <entry>BSTR ArgumentName( LONG Index )</entry>
+                <entry>Имя аргумента с заданным номером.</entry>
+              </row>
+              <row>
+                <entry>LONG ArgumentsCount</entry>
+                <entry>Количество аргументов.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </section>
+      
+      <section><title>5.8. Объект Forms</title>
+        <para>Объект Forms позволяющий манипулировать коллекцией форм скрипта.</para>
+        <important><para>Имена методов и свойств этого объекта не добавлены в пространство имен скрипта. Доступ к ним осуществляется только с указанием имени объекта: Forms.Add…</para></important>
+        <para><command>Методы объекта Forms</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Метод</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>Add</entry>
+                <entry>Загружает форму из файла.</entry>
+              </row>
+              <row>
+                <entry>Remove</entry>
+                <entry>Удаляет форму из коллекции.</entry>
+              </row>
+              <row>
+                <entry>Clear</entry>
+                <entry>Очищает коллекцию.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <para><command>Свойства объекта Forms</command><footnote><para>Все свойства доступны только на чтение</para></footnote></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Свойство</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>LONG Count</entry>
+                <entry>Количество форм в коллекции.</entry>
+              </row>
+              <row>
+                <entry>IDispatch *Item(VARIANT Index)</entry>
+                <entry>Диспетчерский интерфейс формы в коллекции по имени или индексу.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <itemizedlist>
+          <listitem><para>IScriptFrame Add(BSTR <xref linkend="XML"/>File) – Загружает форму из <xref linkend="XML"/>-файла.</para>
+            <itemizedlist>
+              <listitem><para>Результат типа IScriptFrame – диспетчерский интерфейс формы.</para></listitem>
+              <listitem><para>BSTR <xref linkend="XML"/>File – имя файла с описанием формы относительно корневой папки скриптов.</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>IScriptFrame Remove(VARIANT Index) – Удаляет форму из коллекции.</para>
+            <itemizedlist>
+              <listitem><para>Результат типа IScriptFrame – диспетчерский интерфейс удаленной формы.</para></listitem>
+              <listitem><para>VARIANT Index – индекс или имя формы для удаления.</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>Clear() – Удаляет все формы из коллекции.</para></listitem>
+        </itemizedlist>
+        
+      </section>
+      
+      <section><title>5.9. Интерфейс IFPOClassCover</title>
+        <para>Интерфейс предназначен для получения данных о классе <xref linkend="ФПО"/> и объектах этого класса.</para>
+        <para><command>Методы интерфейса IFPOClassCover</command></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Метод</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>ObjectExists</entry>
+                <entry>Проверяет наличие объекта с заданным индексом.</entry>
+              </row>
+              <row>
+                <entry>IndexInSameModule</entry>
+                <entry>Возвращает индекс первого объекта данного класса в заданном модуле.</entry>
+              </row>
+              <row>
+                <entry>SocketInSameModule</entry>
+                <entry>Возвращает сокет первого объекта данного класса в заданном модуле.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <para><command>Свойства интерфейса IFPOClassCover</command><footnote><para>Все свойства доступны только на чтение</para></footnote></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Свойство</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>BSTR Name</entry>
+                <entry>Имя класса.</entry>
+              </row>
+              <row>
+                <entry>IFPOFieldsCover Fields</entry>
+                <entry>Поля класса.</entry>
+              </row>
+              <row>
+                <entry>INT SocketsCount</entry>
+                <entry>Количество объектов данного класса.</entry>
+              </row>
+              <row>
+                <entry>WORD Sockets( INT Index )</entry>
+                <entry>Сокет объекта с заданным индексом.</entry>
+              </row>
+              <row>
+                <entry>INT Indices( WORD Socket )</entry>
+                <entry>Индекс объекта с заданным сокетом.</entry>
+              </row>
+              <row>
+                <entry>INT SatesCount</entry>
+                <entry>Количество состояний для данного класса.</entry>
+              </row>
+              <row>
+                <entry>BSTR States( INT Index )</entry>
+                <entry>Состояние данного класса.</entry>
+              </row>
+              <row>
+                <entry>BSTR UserStates( INT Index )</entry>
+                <entry>Состояние пользователя.</entry>
+              </row>
+              <row>
+                <entry>OLE_COLOR UserColors( INT Index )</entry>
+                <entry>Цвет пользователя.</entry>
+              </row>
+              <row>
+                <entry>INT UserGroups( INT Index )</entry>
+                <entry>Группа пользователя.</entry>
+              </row>
+              <row>
+                <entry>INT StateGroupCount</entry>
+                <entry>Количество групп состояний для данного класса.</entry>
+              </row>
+              <row>
+                <entry>BSTR StateGroups( INT Index )</entry>
+                <entry>Группа состояний данного класса.</entry>
+              </row>
+              <row>
+                <entry>OLE_COLOR StateGroupColors( INT Index )</entry>
+                <entry>Цвет группы состояний данного класса.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+        <itemizedlist>
+          <listitem><para>VARIANT_BOOL ObjectExists(INT Index) – Проверяет наличие объекта с заданным индексом.</para>
+            <itemizedlist>
+              <listitem><para>Результат типа VARIANT_BOOL– истина, если объект существует, ложь иначе.</para></listitem>
+              <listitem><para>INT Index – индекс объекта.</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>INT IndexInSameModule(WORD AsSocket) – Возвращает индекс первого объекта в том же модуле, что и AsSocket.</para>
+            <itemizedlist>
+              <listitem><para>Результат типа INT – индекс объекта, если таковой есть, -1 иначе.</para></listitem>
+              <listitem><para>WORD AsSocket – сокет в том модуле, где нужно найти объект.</para></listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem><para>WORD SocketInSameModule(WORD AsSocket) – Возвращает сокет первого объекта в том же модуле, что и AsSocket.</para>
+            <itemizedlist>
+              <listitem><para>Результат типа WORD – сокет объекта, если таковой есть, 0 иначе.</para></listitem>
+              <listitem><para>WORD AsSocket – сокет в том модуле, где нужно найти объект.</para></listitem>
+            </itemizedlist>
+          </listitem>
+        </itemizedlist>
+      </section>
+      
+      <section><title>5.10. Интерфейс IFPOFieldsCover</title>
+        <para>Интерфейс предназначен для получения данных о полях класса <xref linkend="ФПО"/>.</para>
+        <para><command>Свойства интерфейса IFPOFieldsCover</command><footnote><para>Все свойства доступны только на чтение</para></footnote></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Свойство</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>INT Count</entry>
+                <entry>Количество полей.</entry>
+              </row>
+              <row>
+                <entry>IFPOFieldCover Fields</entry>
+                <entry>Поле класса с заданым индексом.</entry>
+              </row>
+              <row>
+                <entry>IFPOFieldCover FieldByName( BSTR Name )</entry>
+                <entry>Поле класса с заданым именем.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </section>
+      
+      <section><title>5.11. Интерфейс IFPOFieldCover</title>
+        <para>Интерфейс предназначен для получения данных о поле класса <xref linkend="ФПО"/>.</para>
+        <para><command>Свойства интерфейса IFPOFieldCover</command><footnote><para>Все свойства доступны только на чтение</para></footnote></para>
+        <informaltable>
+          <tgroup cols="2" align="left" colsep="1" rowsep="1">
+            <colspec colnum="2" colname="c2"/>
+            <thead>
+              <row><entry>Свойство</entry><entry>Описание</entry></row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>BSTR Name</entry>
+                <entry>Имя поля.</entry>
+              </row>
+              <row>
+                <entry>WORD Offset</entry>
+                <entry>Смещение поля.</entry>
+              </row>
+              <row>
+                <entry>WORD Length</entry>
+                <entry>Длинна поля.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </section>
+      
+    </chapter>
+  </d:InfElement>
+
+</d:DocumentationCore>

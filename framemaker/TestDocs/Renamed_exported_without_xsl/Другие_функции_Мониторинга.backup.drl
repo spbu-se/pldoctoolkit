@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DocumentationCore SYSTEM "file:///C:/Program%20Files/Adobe/FrameMaker8/structure/xml/docline/docline.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+
+<!ENTITY bkc1 SYSTEM "join_in_monitoring.e01">
+<!NOTATION jpeg SYSTEM "">
+<!ENTITY graphic1 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/MonitorSheme.jpg" NDATA jpeg>
+<!NOTATION gif SYSTEM "">
+<!ENTITY graphic2 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/monitor.gif" NDATA gif>
+<!ENTITY graphic3 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-настройка-та.gif" NDATA gif>
+<!ENTITY graphic4 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/панель-станции-табло-настро.gif" NDATA gif>
+<!ENTITY graphic5 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/PromMonitor_Pich_01.gif" NDATA gif>
+<!ENTITY graphic6 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/PromMonitor_Pich_02.gif" NDATA gif>
+<?Fm Validation Off?>
+
+
+<!-- End Document Specific Declarations -->
+
+]>
+<DocumentationCore
+    filename = "Другие_функции_Мониторинга.drl">&bkc1;</DocumentationCore>

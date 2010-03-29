@@ -1,0 +1,12 @@
+<InfElement id = "about_company" name = "О компании">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<para>&Kcy;&ocy;&mcy;&pcy;&acy;&ncy;&icy;&yacy;<DictRef
+    dictid = "company" entryid = "name"/>&zcy;&acy;&ncy;&icy;&mcy;&acy;&iecy;&tcy;&scy;&yacy; &rcy;&acy;&zcy;&rcy;&acy;&bcy;&ocy;&tcy;&kcy;&ocy;&jcy; &kcy;&ocy;&mcy;&pcy;&lcy;&iecy;&kcy;&scy;&ncy;&ycy;&khcy; &scy;&rcy;&iecy;&dcy;&scy;&tcy;&vcy; &zcy;&acy;&shchcy;&icy;&tcy;&ycy; &ocy;&tcy; &scy;&iecy;&tcy;&iecy;&vcy;&ycy;&khcy; &ucy;&gcy;&rcy;&ocy;&zcy; &scy; 1990 &gcy;&ocy;&dcy;&acy; &icy; &ncy;&acy; &dcy;&acy;&ncy;&ncy;&ycy;&jcy; &mcy;&ocy;&mcy;&iecy;&ncy;&tcy; &yacy;&vcy;&lcy;&yacy;&iecy;&tcy;&scy;&yacy; &bcy;&iecy;&zcy;&ucy;&scy;&lcy;&ocy;&vcy;&ncy;&ycy;&mcy; &lcy;&icy;&dcy;&iecy;&rcy;&ocy;&mcy; &vcy; &ecy;&tcy;&ocy;&jcy; &ocy;&bcy;&lcy;&acy;&scy;&tcy;&icy;&period;</para></InfElement>

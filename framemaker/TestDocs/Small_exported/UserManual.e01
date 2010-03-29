@@ -1,0 +1,22 @@
+<InfProduct id = "UserManual"
+    name = "Руководство Пользователя">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<book><bookinfo><title>Руководство Пользователя<DictRef dictid = "main"
+    entryid = "productname"/></title></bookinfo>
+<InfElemRef id = "ref_preface" infelemid = "preface"/>
+<InfElemRef id = "ref_control_center" infelemid = "control_center"/>
+<InfElemRef id = "ref_firewall" infelemid = "firewall"/>
+<InfElemRefGroup id = "optional_components" name = "опции"
+    modifier = "OR"/>
+<InfElemRef id = "ref_antivirus" infelemid = "antivirus"
+    groupid = "optional_components" optional = "true"/>
+<InfElemRef id = "ref_antispam" infelemid = "antispam"
+    groupid = "optional_components" optional = "true"/></book></InfProduct>
