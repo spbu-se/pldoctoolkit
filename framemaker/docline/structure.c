@@ -332,7 +332,7 @@ VoidT newProdDocChild(IntT type)
 
 	/* Get Id and path of the book */
 	//bookId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveBook);
-	bookId - getActiveBookID();
+	bookId = getActiveBookID();
 
 
 

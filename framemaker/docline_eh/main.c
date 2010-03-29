@@ -35,6 +35,8 @@ SrwErrorT Sr_EventHandler(SrEventT *eventp, SrConvObjT srObj)
 	switch(eventp->evtype)
 	{
 	case SR_EVT_BEGIN_READER:
+		Sr_Convert(eventp,srObj);
+		break;
 	case SR_EVT_BEGIN_BOOK:
 		////case SR_EVT_
 		//bookPath = Sr_GetBookFilePath(srObj);
@@ -62,7 +64,8 @@ SrwErrorT Sr_EventHandler(SrEventT *eventp, SrConvObjT srObj)
 	default:
 		break;
 	}
-	return Sr_Convert(eventp, srObj);
+	Sr_Convert(eventp, srObj);
+	return (SRW_E_SUCCESS);
 }
 
 SrwErrorT Sw_EventHandler(SwEventT *eventp, SwConvObjT swObj)

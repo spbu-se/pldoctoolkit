@@ -1,4 +1,5 @@
 #include "export.h"
+#include "logging.h"
 
 BoolT exportBook(StringT path, StringT dirPath, F_PropValsT params, UIntT* j)
 {
@@ -13,7 +14,8 @@ BoolT exportBook(StringT path, StringT dirPath, F_PropValsT params, UIntT* j)
 	elemID = F_ApiGetId(FV_SessionId,docID,FP_HighestLevelElement);
 	if (!elemID)
 	{
-		F_Printf(NULL,"No highest level elment in %s",path);
+		F_Printf(NULL,"No highest level element in %s",path);
+		writeToChannel("Error. No highest level element.\n");
 		return 0;
 	}
 	attrs = F_ApiGetAttributes(docID,elemID);
@@ -34,14 +36,18 @@ BoolT exportBook(StringT path, StringT dirPath, F_PropValsT params, UIntT* j)
 				F_Sprintf(curFilePath,"%s%s",dirPath,attr.values.val[0]);
 			}
 		}
-		F_ApiDeallocateString(&curFilePath);
 	}
 	returnParams = NULL;
-	F_ApiSave(docID,path,&params,&returnParams);
+	writeToChannel("\n\tExporting ");
+	writeToChannel(path);
+	writeToChannel("... ");
+	F_ApiSave(docID,curFilePath,&params,&returnParams);
 	F_ApiClose(docID,FF_CLOSE_MODIFIED);
+	writeToChannel("Succesful.\n");
 
 	F_ApiDeallocatePropVals(returnParams);
 	//F_ApiDeallocateAttribute(&attr);
+	F_ApiDeallocateString(&curFilePath);
 	F_Free(&k);
 	F_ApiDeallocateAttributes(&attrs);
 	F_Free(&elemID);
@@ -61,6 +67,7 @@ BoolT performExportXSLT(StringT dirPath)
 	if (retVal)
 	{
 		F_Printf(NULL,"JVM Initiliazation error\n");
+		writeToChannel("Error. JVM Initialization error");
 	}
 
 	F_Free(&jarPath);
@@ -78,22 +85,30 @@ VoidT exportDocLineDoc()
 	StringT path, dirPath;
 
 
+	openLogChannel();
+	writeToChannel("\nExport started...\n");
 	bookID = getActiveBookID();
 	if (!bookID)
 	{
 		F_Printf(NULL,"Invalid document\n");
+		writeToChannel("Error. Invalid document.\n");
 		return;
 	}
 	dirPath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
 	pathFilename(dirPath); //Since this point dirPath and bookID should be constants
 
+	writeToChannel("Generating export params... ");
 	params = generateExportParams();
+	writeToChannel("Succesful.\n");
+	writeToChannel("Generating books... ");
 	generateBooks(bookID);
+	writeToChannel("Succesful.\n");
 
 	filePath = F_PathNameToFilePath(dirPath,NULL,FDefaultPath);
 	handle = F_FilePathOpenDir(filePath,&statusp);
 	j = 0;
 	//iteration through generated books in current directory
+	writeToChannel("Exporting books... ");
 	while (filePath = F_FilePathGetNext(handle,&statusp))
 	{
 		path = F_FilePathToPathName(filePath,FDosPath);
@@ -102,9 +117,17 @@ VoidT exportDocLineDoc()
 			exportBook(path,dirPath,params, &j);
 		}
 	}
-	performExportXSLT(dirPath);
+	writeToChannel("Succesful.\n");
+	writeToChannel("Performing XSL transformation... ");
+	if (!performExportXSLT(dirPath)) return;
+	writeToChannel("Succesful.\n");
+	writeToChannel("Closing all documents... ");
 	closeAllDocs();
+	writeToChannel("Succesful.\n");
+	writeToChannel("Cleaning directory... ");
 	cleanDirectory(F_PathNameToFilePath(dirPath,NULL,FDosPath));
+	writeToChannel("Succesful.\n");
+	writeToChannel("Export finished succesfully.\n");
 
 	F_ApiDeallocateString(&path);
 	F_Free(&j);
@@ -146,6 +169,7 @@ VoidT generateBooks(F_ObjHandleT mainBookID)
 		if (!bookName)
 		{
 			F_Printf(NULL,"Convert error");
+			writeToChannel("Error. Convert error.\n");
 			return;
 		}
 		tmpString = F_ApiGetString(mainBookID,F_ApiGetId(mainBookID,elemID,FP_ElementDef),FP_Name);
@@ -204,6 +228,7 @@ F_PropValsT generateExportParams()
 	if (!params.len)
 	{
 		F_Printf(NULL,"Invalid default save params");
+		writeToChannel("Error. Invalide default save params.\n");
 		return params;
 	}
 	i = F_ApiGetPropIndex(&params,FS_FileType);
@@ -231,6 +256,8 @@ VoidT publishDocLineDoc(StringT format)
 	UCharT ptr[BUFFERSIZE];
 	IntT numread;
 
+	openLogChannel();
+	writeToChannel("\nPublishing started... \n");
 	// promt user if he is sure he wants to publish document
 	response = F_ApiAlert("This will export all files to DRL and then publish them. Do you still wish to continue?", FF_ALERT_YES_DEFAULT);
 	if (response != 0) // user clicked "no"
@@ -281,12 +308,14 @@ VoidT publishDocLineDoc(StringT format)
 	tempPath = F_ApiGetString(FV_SessionId, bookID, FP_Name);
 	pathFilename(tempPath);
 	//   promt for filename
+	writeToChannel("Choosing Final Product file...");
 	response = F_ApiChooseFile(&tempResult, "Choose a file with Final Product", tempPath, "", FV_ChooseSelect, "");
 	if (response != 0)
 	{
 		F_ApiDeallocateString(&tempResult);
 		return;
 	}
+	writeToChannel("Succesful.\n");
 	//   save file name
 	F_Sprintf(sourceFileName, "%s", F_FilePathBaseName(F_PathNameToFilePath(tempResult, NULL, FDefaultPath)));
 	//   save dir name
@@ -314,15 +343,18 @@ VoidT publishDocLineDoc(StringT format)
 	F_Free(tempName);
 
 	// invoke java util
+	writeToChannel("Calling Java function...");
 	retVal = callJavaPublishUtil(jarPath, sourceDirPath, sourceFileName, " ", format, destinationFileName);
 
 	if (retVal > 0) // error in JVM initialization
 	{
+		writeToChannel("UnSuccesful.\n");
 		F_ApiAlert("There was an error while initializing java machine.", FF_ALERT_CONTINUE_WARN);
 		return;
 	}
 	else  // java util worked, so there will be an error log file
 	{
+		writeToChannel("Succesful.\n");
 		tempPath = F_ApiClientDir();
 		tempResult = F_Alloc(F_StrLen(tempPath) + F_StrLen(ERROR_LOG_FILENAME) + 1, NO_DSE);
 		F_Sprintf(tempResult, "%s\\%s", tempPath, ERROR_LOG_FILENAME);
@@ -331,6 +363,7 @@ VoidT publishDocLineDoc(StringT format)
 		if((chan = F_ChannelOpen(F_PathNameToFilePath(tempResult, NULL, FDefaultPath),"r")) == NULL)
 		{
 			F_Printf(NULL, "Couldn't find error log file.");
+			writeToChannel("Error. Log file error.\n");
 		}
 		else
 		{
@@ -370,4 +403,5 @@ VoidT publishDocLineDoc(StringT format)
 		}
 		F_ApiDeallocateString(&tempResult);
 	}
+	closeLogChannel();
 }
