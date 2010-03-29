@@ -20,6 +20,7 @@ import org.spbu.pldoctoolkit.actions.ReplaceWithNestAction;
 import org.spbu.pldoctoolkit.actions.SearchDictEntryAction;
 import org.spbu.pldoctoolkit.actions.SearchDirRefAction;
 import org.spbu.pldoctoolkit.actions.SelectIntoInfElementAction;
+import org.spbu.pldoctoolkit.actions.SelectIntoInfProductAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlOnSaveAction;
 import org.spbu.pldoctoolkit.templates.TemplatesDocument;
@@ -52,6 +53,7 @@ public class DrlTextEditor extends TextEditor {
 
 	//lebedkova
 	public static final String RENAME = "rename";
+	public static final String SELECT_INTO_INF_PRODUCT = "select_into_inf_product";
 	
 	private ColorManager colorManager;
 	private DRLMenuListener menuListener = new DRLMenuListener();//minchin
@@ -195,6 +197,12 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			setAction(SELECT_INTO_INF_PRODUCT, new SelectIntoInfProductAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public ISourceViewer DrlGetSourceViewer(){
@@ -230,6 +238,7 @@ public class DrlTextEditor extends TextEditor {
 		
 		//lebedkova
 		addAction(refactMenu, RENAME);
+		addAction(refactMenu, SELECT_INTO_INF_PRODUCT);
 		
 		//DRLMenuListener.instance.editor = this;
 		menuListener.menuAboutToShow(menu);
