@@ -2,7 +2,6 @@ package org.spbu.pldoctoolkit.wizards;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,19 +28,15 @@ import org.eclipse.ui.ide.IDE;
 import org.spbu.pldoctoolkit.DrlPublisherPlugin;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
-import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
-import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
-import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
 import org.spbu.pldoctoolkit.refactor.ProjectContentCreator;
 import org.spbu.pldoctoolkit.refactor.StartUpRefactoring;
 import org.spbu.pldoctoolkit.registry.ProjectRegistry;
-import org.xml.sax.helpers.AttributesImpl;
 
 public class NewDrlFile extends Wizard implements INewWizard {
-	private URL PRODUCT_LINE_TEMPLATE_URL = DrlPublisherPlugin.getURL("templates/ProductLine.xml");
-	private URL DOCUMENTATION_CORE_TEMPLATE_URL = DrlPublisherPlugin.getURL("templates/DocumentationCore.xml");
-	private URL PRODUCT_DOCUMENTATION_TEMPLATE_URL = DrlPublisherPlugin.getURL("templates/ProductDocumentation.xml");
+	public static URL PRODUCT_LINE_TEMPLATE_URL = DrlPublisherPlugin.getURL("templates/ProductLine.xml");
+	public static URL DOCUMENTATION_CORE_TEMPLATE_URL = DrlPublisherPlugin.getURL("templates/DocumentationCore.xml");
+	public static URL PRODUCT_DOCUMENTATION_TEMPLATE_URL = DrlPublisherPlugin.getURL("templates/ProductDocumentation.xml");
 	
 	private IWorkbench workbench;
 	private IStructuredSelection selection;
@@ -116,7 +111,7 @@ public class NewDrlFile extends Wizard implements INewWizard {
 		while (! (temp instanceof IProject)) {
 			temp = temp.getParent();
 			if (temp == null){
-				System.out.print("Ther is no project");
+				System.out.print("There is no project");
 				return false;
 			}				
 		}

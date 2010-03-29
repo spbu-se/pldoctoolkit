@@ -52,4 +52,24 @@ public class StartUpRefactoring {
 		product.getChilds().add(finalPr);		
 		finalPr.getChilds().add(adapter);		
 	}
+
+	public static void addInfoToCore(DRLDocument doc,
+			String infPrId, String infPrName, String infElemId, String infElemName, String infElemRefId) {
+		String prefex = doc.DRLnsPrefix;
+		if (!prefex.equals(""))
+			prefex += ":";
+		
+		LangElem core = (LangElem)doc.getChilds().get(0);
+
+		LangElem infPr = new LangElem(LangElem.INFPRODUCT, prefex + LangElem.INFPRODUCT, null, core, doc, new AttributesImpl());
+		((AttributesImpl)infPr.attrs).addAttribute(LangElem.ID, LangElem.ID, LangElem.ID, "", infPrId);
+		((AttributesImpl)infPr.attrs).addAttribute(LangElem.NAME, LangElem.NAME, LangElem.NAME, "", infPrName);
+		
+		LangElem infElemRef = new LangElem(LangElem.INFELEMREF, prefex + LangElem.INFELEMREF, null, infPr, doc, new AttributesImpl());
+		((AttributesImpl)infElemRef.attrs).addAttribute(LangElem.ID, LangElem.ID, LangElem.ID, "", infElemRefId);
+		((AttributesImpl)infElemRef.attrs).addAttribute(LangElem.INFELEMID, LangElem.INFELEMID, LangElem.INFELEMID, "", infElemId);
+		
+		core.getChilds().add(infPr);
+		infPr.getChilds().add(infElemRef);	
+	}
 }

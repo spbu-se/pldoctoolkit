@@ -65,8 +65,7 @@ public class RenameAction extends Action implements IValidateDRLSelection{
 	
 			boolean refactoringEnable;
 		
-		    //refact.reset();
-			refact.setValidationParams(DRLdoc, startPosition, endPosition);
+		    refact.setValidationParams(DRLdoc, startPosition, endPosition);
 			refactoringEnable = refact.validate();
 				
 			setEnabled(refactoringEnable);
@@ -94,7 +93,7 @@ public class RenameAction extends Action implements IValidateDRLSelection{
 		});
 		
 		int res = newNameDialog.open();
-		if ( res != Window.OK)
+		if (res != Window.OK)
 			return;
 		
 		try {

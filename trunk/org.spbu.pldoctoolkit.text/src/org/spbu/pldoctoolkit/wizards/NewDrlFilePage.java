@@ -10,7 +10,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
@@ -516,7 +515,7 @@ public class NewDrlFilePage extends WizardPage {
 		return validateFileName(name, "Name");
 	}
 	
-	private String validateFileName(String name, String messagePrefix) {
+	public  static String validateFileName(String name, String messagePrefix) {
 		if (name.length() == 0)
 			return messagePrefix + " must be specified";
 		char[] chars = name.toCharArray();
