@@ -45,7 +45,7 @@
 выглядит следующим образом:</para>
                <informalfigure float="0">
                   <graphic width="5.514in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/test-nomeronabiratelja.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/test-nomeronabiratelja.gif"/>
                </informalfigure>
                <para>В этом окне вы увидите следующее:</para>
                <para>
@@ -184,7 +184,7 @@
                <para>В состав статистики входят:</para>
                <informalfigure float="0">
                   <graphic width="2.736in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/test-nomeronabiratelja-stati.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/test-nomeronabiratelja-stati.gif"/>
                </informalfigure>
                <para>
                   <command moreinfo="none">Значения, входящие в состав статистики</command>
@@ -256,7 +256,7 @@
                <para>Главное окно программы выглядит так:</para>
                <informalfigure float="0">
                   <graphic width="8.889in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-obtsh.-vid.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-obtsh.-vid.gif"/>
                </informalfigure>
                <para>Главное окно по функциональным признакам можно разделить на
 4 части (сверху вниз):</para>
@@ -434,7 +434,7 @@
                <itemizedlist>
                   <listitem>
                      <para>Нажав на кнопку<command moreinfo="none">Добавить</command>(<graphic width="0.708in" align="aleft"
-                                 fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-knopka-nov.-zad..gif"/>)
+                                 fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-knopka-nov.-zad..gif"/>)
 в верхней панели кнопок</para>
                   </listitem>
                   <listitem>
@@ -446,7 +446,7 @@
                <para>Окно выглядит следующим образом:</para>
                <informalfigure float="0">
                   <graphic width="4.736in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-novoe-zadanie.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tsl-novoe-zadanie.gif"/>
                </informalfigure>
                <para>Это диалоговое окно предлагает оператору ввести данные задания
 для тестирования, а именно:</para>
@@ -602,7 +602,7 @@
                <title>Главное окно</title>
                <informalfigure float="0">
                   <graphic width="11.000in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika.gif"/>
                </informalfigure>
                <para>Главное окно приложения состоит из трех основных частей: рабочей
 области, панели навигации и окна вывода.</para>
@@ -628,7 +628,7 @@
 в рабочей области автоматически открывается страница<emphasis>Станция</emphasis>.</para>
                <informalfigure float="0">
                   <graphic width="9.042in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-stantzija.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-stantzija.gif"/>
                </informalfigure>
                <para>Страница отображает физическую структуру<xref linkend="АТС" role="Undefined Cross-Reference"/>, с разделением на модули,
 платы и комплекты. В списке<xref linkend="ТЭЗ" role="Undefined Cross-Reference"/>ов отображаются только те
@@ -706,7 +706,7 @@
 процесса диагностики всей станции.</para>
                <informalfigure float="0">
                   <graphic width="9.028in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-menedger1.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-menedger1.gif"/>
                </informalfigure>
                <para>В списке содержится информация о размере очереди для каждого
 независимого процесса диагностики, прошедшее и оставшееся время,
@@ -725,7 +725,7 @@
 процессом диагностики.</para>
                <informalfigure float="0">
                   <graphic width="9.028in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-gurnal1.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-gurnal1.gif"/>
                </informalfigure>
                <para>Во время диагностики в списке отображаются названия тестов
 и результаты проведенных измерений. Зеленая отметка рядом с названием
@@ -742,7 +742,7 @@
 на диагностику оборудования.</para>
                <informalfigure float="0">
                   <graphic width="9.028in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-ochered.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-ochered.gif"/>
                </informalfigure>
                <para>Цветные символы рядом с элементами списка имеют следующий
 смысл:</para>
@@ -780,7 +780,7 @@
 абонентских линий.</para>
                <informalfigure float="0">
                   <graphic width="8.861in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-test-al.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-test-al.gif"/>
                </informalfigure>
                <para>Когда в поле ввода<emphasis>Номер абонента</emphasis>оператор
 вводит телефонный номер абонента, чью линию необходимо проверить,
@@ -803,7 +803,7 @@
 диагностики оборудования.</para>
                <informalfigure float="0">
                   <graphic width="9.028in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-rezultaty.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/diagnostika-rezultaty.gif"/>
                </informalfigure>
                <para>В верхней части страницы распологаются поля, при помощи которых
 можно задать фильтр для отображаемых результатов. В поле ввода<emphasis>Адрес</emphasis>можно
@@ -1457,7 +1457,7 @@ Q.703 Белой Книги)</command>
 в качестве параметра заданный телефонный номер.</para>
                <informalfigure float="0">
                   <graphic width="3.944in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/поиск-абонента.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/поиск-абонента.gif"/>
                </informalfigure>
                <para>В поле ввода<emphasis>Номер</emphasis>оператор указывает телефонный
 номер. После нажатия на кнопку &gt; или клавишу<command moreinfo="none">Enter</command>программа
@@ -1499,7 +1499,7 @@ Q.703 Белой Книги)</command>
                <para>Главное окно программы выглядит так:</para>
                <informalfigure float="0">
                   <graphic width="9.792in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/коммутационное-поле.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/коммутационное-поле.gif"/>
                </informalfigure>
                <para>Основную часть окна занимает собственно поле, представленное
 в виде таблицы. Столбцы – тракты, строки – временные каналы. В ячейке
@@ -1543,7 +1543,7 @@ Q.703 Белой Книги)</command>
 диалог:</para>
                <informalfigure float="0">
                   <graphic width="2.819in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/КМ-проключения.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/КМ-проключения.gif"/>
                </informalfigure>
                <para>Указав соответствующие параметры проключения, можно осуществить
 его, нажав на кнопку<command moreinfo="none">Проключение</command>в диалоге.</para>
@@ -1567,7 +1567,7 @@ Q.703 Белой Книги)</command>
                <para>Главное окно приложения выглядит следующим образом:</para>
                <informalfigure float="0">
                   <graphic width="6.708in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/проход-по-шнуру.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/проход-по-шнуру.gif"/>
                </informalfigure>
                <para>В верхней панели находится группа элементов управления, формирующая
 адрес в едином коммутационном поле станции:</para>
@@ -1709,7 +1709,7 @@ Q.703 Белой Книги)</command>
                <para>Главное окно программы выглядит так:</para>
                <informalfigure float="0">
                   <graphic width="8.306in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/menedger-gr.-teletrafika.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/menedger-gr.-teletrafika.gif"/>
                </informalfigure>
                <para>Окно делится на три основных части:</para>
                <itemizedlist>
@@ -2028,7 +2028,7 @@ Q.703 Белой Книги)</command>
                <para>Главное окно программы выглядит так:</para>
                <informalfigure float="0">
                   <graphic width="10.000in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/обозреватель-телетрафика.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/обозреватель-телетрафика.gif"/>
                </informalfigure>
                <para>Окно делится на шесть основных частей:</para>
                <itemizedlist>
@@ -2089,7 +2089,7 @@ Q.703 Белой Книги)</command>
 вида:</para>
                <informalfigure float="0">
                   <graphic width="8.625in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-oshibka2.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-oshibka2.gif"/>
                </informalfigure>
                <para>Вторая строка этого предупреждения содержит текст сообщения,
 выданное сервером доступа к данным и группам телетрафика, и представляет
@@ -2159,7 +2159,7 @@ Q.703 Белой Книги)</command>
 вида:</para>
                <informalfigure float="0">
                   <graphic width="8.625in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-oshibka-podkljuchen.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-oshibka-podkljuchen.gif"/>
                </informalfigure>
                <para>В первой строке указано имя компьютера на котором ведется
 сбор статистики (запущен сервер телетрафика).</para>
@@ -2179,7 +2179,7 @@ Q.703 Белой Книги)</command>
 клиента<xref linkend="РМО" role="Undefined Cross-Reference"/>.</para>
                <informalfigure float="0">
                   <graphic width="4.667in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika_obzor-papok.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika_obzor-papok.gif"/>
                </informalfigure>
                <para>Для работы с данными телетрафика приложение использует<xref linkend="DCOM" role="Undefined Cross-Reference"/>-компоненту, реализованную
 в приложении<filename moreinfo="none">RMOStatisticServer.exe</filename>.</para>
@@ -2194,7 +2194,7 @@ Q.703 Белой Книги)</command>
 в минуту, от времени.</para>
                <informalfigure float="0">
                   <graphic width="6.306in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-vneshnij-vid.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-vneshnij-vid.gif"/>
                </informalfigure>
                <para>Над графиком расположено название измерения и название группы.</para>
                <para>На графике по горизонтали отображается время, по вертикали
@@ -2224,7 +2224,7 @@ Q.703 Белой Книги)</command>
                <para>На графике вы можете выделить область, которую хотите увеличить:</para>
                <informalfigure float="0">
                   <graphic width="6.264in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-uvelichenie.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-uvelichenie.gif"/>
                </informalfigure>
                <para>Это можно осуществить, выделив c помощью мышки требуемую область,
 удерживая левую кнопку мышки, и перемещая мышку от левого верхнего
@@ -2232,14 +2232,14 @@ Q.703 Белой Книги)</command>
 отпустите левую кнопку мышки, и выбранная область увеличится:</para>
                <informalfigure float="0">
                   <graphic width="6.361in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-uvelichennyj.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-uvelichennyj.gif"/>
                </informalfigure>
                <para>Для восcтановления изначального вида графика проделайте ту
 жу операцию, но выделение производите от правого нижнего угла к
 верхнему левому:</para>
                <informalfigure float="0">
                   <graphic width="6.250in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-umenshenie.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-umenshenie.gif"/>
                </informalfigure>
                <para>
                   <emphasis>Перемещение</emphasis>
@@ -2248,7 +2248,7 @@ Q.703 Белой Книги)</command>
 правой кнопкой мышки.</para>
                <informalfigure float="0">
                   <graphic width="6.361in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-peremetshenie.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-grafiki-peremetshenie.gif"/>
                </informalfigure>
             </section>
             <section>
@@ -2260,7 +2260,7 @@ Q.703 Белой Книги)</command>
 измерений, выглядит следующим образом.</para>
                <informalfigure float="0">
                   <graphic width="9.833in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-chislennye-znachenija.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/statistika-chislennye-znachenija.gif"/>
                </informalfigure>
                <para>В графе<emphasis>Потерянное время</emphasis>содержится общее
 за данный период время (например, рестарт модуля) про которое нет
@@ -2288,7 +2288,7 @@ Q.703 Белой Книги)</command>
                <title>Главное окно</title>
                <informalfigure float="0">
                   <graphic width="6.736in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tarifikatzija.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/tarifikatzija.gif"/>
                </informalfigure>
                <para>Идеология пользования программой такова: есть база данных,
 в которую сваливается вся тарификационная информация; для работы
@@ -2422,7 +2422,7 @@ Q.703 Белой Книги)</command>
                <title/>
                <informalfigure float="0">
                   <graphic width="8.111in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-окно-просм..gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-окно-просм..gif"/>
                </informalfigure>
                <para>В верхней части окна просмотра находятся кнопки перемещения
 по записям таблицы:</para>
@@ -2577,7 +2577,7 @@ Q.703 Белой Книги)</command>
                <title>Задание фильтра</title>
                <informalfigure float="0">
                   <graphic width="5.042in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-фильтр.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-фильтр.gif"/>
                </informalfigure>
                <para>Для каждого из имеющихся в просмотре столбцов можно задать
 фильтр для отбора интересующих записей. Для текстовых полей задается
@@ -2637,7 +2637,7 @@ Q.703 Белой Книги)</command>
                <title>Удаление фильтров</title>
                <informalfigure float="0">
                   <graphic width="4.708in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-удалить-фильтр.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/тарификация-удалить-фильтр.gif"/>
                </informalfigure>
                <para>Все заданные пользователем фильтры сохраняются от сеанса к
 сеансу, и в скором времени фильтров может набраться достаточно много.

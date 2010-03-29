@@ -163,12 +163,12 @@
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="caption"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -186,14 +186,24 @@
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="click"/>
-                              <d:Nest id="key"/>
-                              <d:Nest id="mouse"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="key"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="mouse"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -247,13 +257,13 @@
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="1">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="caption3"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
                            <entry colname="3"/>
-                        </row>
+                        </FakeRow>
                         <row rowsep="0">
                            <entry colname="1">IScriptControls *Controls</entry>
                            <entry colname="2">(read-only)</entry>
@@ -283,13 +293,28 @@
 это событие передаются с помощью интерфейса IScriptEventParams</entry>
                         </row>
                         <row rowsep="1">
-                           <entry colname="1">onUnload<d:Nest id="click"/>
-                              <d:Nest id="key"/>
-                              <d:Nest id="mouse"/>
-                           </entry>
+                           <entry colname="1">onUnload</entry>
                            <entry colname="2">Вызывается при выгрузке формы из памяти.. Параметры в
 это событие передаются с помощью интерфейса IScriptEventParams</entry>
                         </row>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="click"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="key"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="mouse"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                         <row rowsep="1">
                            <entry colname="1">onMouseWheel</entry>
                            <entry colname="2">Показывает, что пользователь крутит колесико мыши. Параметры в
@@ -349,16 +374,36 @@
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="cange"/>
-                              <d:Nest id="dblclick"/>
-                              <d:Nest id="click"/>
-                              <d:Nest id="key"/>
-                              <d:Nest id="mouse"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="dblclick"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="click"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="key"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="mouse"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -382,13 +427,18 @@
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="caption"/>
-                              <d:Nest id="checked"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="checked"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -406,14 +456,24 @@
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="click"/>
-                              <d:Nest id="key"/>
-                              <d:Nest id="mouse"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="key"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="mouse"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -439,14 +499,20 @@ groupBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="caption3"/>
-                              <d:Nest id="controls"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
                            <entry colname="3"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="controls"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -464,14 +530,24 @@ groupBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="dblclick"/>
-                              <d:Nest id="click"/>
-                              <d:Nest id="mouse"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="click"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="mouse"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -495,12 +571,12 @@ groupBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="1">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="caption"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
                         <row rowsep="0">
                            <entry colname="1">VARIANT_BOOL AutoSize</entry>
                            <entry colname="2">Показывает, будет ли размер области, занимаемой
@@ -523,14 +599,24 @@ groupBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="dblclick"/>
-                              <d:Nest id="click"/>
-                              <d:Nest id="mouse"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="click"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="mouse"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -588,13 +674,18 @@ groupBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="caption"/>
-                              <d:Nest id="checked"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="checked"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -612,14 +703,24 @@ groupBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="click"/>
-                              <d:Nest id="key"/>
-                              <d:Nest id="mouse"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="key"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="mouse"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -646,19 +747,25 @@ radioGroup.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="1">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="caption3"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
                            <entry colname="3"/>
-                        </row>
-                        <row rowsep="0">
-                           <entry colname="1">LONG Columns<d:Nest id="controls"/>
-                           </entry>
+                        </FakeRow>
+                        <row rowsep="1">
+                           <entry colname="1">LONG Columns</entry>
                            <entry colname="2"/>
                            <entry colname="3">Количество колонок в контейнере</entry>
                         </row>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="controls"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -676,13 +783,18 @@ radioGroup.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="dblclick"/>
-                              <d:Nest id="click"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="click"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -706,13 +818,18 @@ radioGroup.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="caption"/>
-                              <d:Nest id="checked"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="checked"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -738,20 +855,32 @@ radioGroup.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="1">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="sorted"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
                            <entry colname="3"/>
-                        </row>
-                        <row rowsep="0">
-                           <entry colname="1">VARIANT_BOOL MultiSelect<d:Nest id="current"/>
-                              <d:Nest id="controls"/>
-                           </entry>
+                        </FakeRow>
+                        <row rowsep="1">
+                           <entry colname="1">VARIANT_BOOL MultiSelect</entry>
                            <entry colname="2"/>
                            <entry colname="3">Флаг, разрешающий или запрещающий выбор нескольких элементов списка одновременно. Соответствует<xref linkend="XML" role="Undefined Cross-Reference"/>-атрибуту multiSelect. Значение по умолчанию false</entry>
                         </row>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="current"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="controls"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -775,12 +904,12 @@ radioGroup.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="1">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="caption"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
                         <row rowsep="1">
                            <entry colname="1">BSTR Value</entry>
                            <entry colname="2">Строковые данные, ассоциированные с элементом. Соответствует<xref linkend="XML" role="Undefined Cross-Reference"/>-атрибуту value</entry>
@@ -814,22 +943,34 @@ comboBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="1">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="sorted"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
                            <entry colname="3"/>
-                        </row>
-                        <row rowsep="0">
-                           <entry colname="1">INT Style<d:Nest id="current"/>
-                              <d:Nest id="controls"/>
-                           </entry>
+                        </FakeRow>
+                        <row rowsep="1">
+                           <entry colname="1">INT Style</entry>
                            <entry colname="2"/>
                            <entry colname="3">Стиль раскрывающегося списка. Допустимые значения: 0
 – раскрывающийся с возможностью редактирования (значение по умолчанию),
 1 – раскрывающийся без возможности редактирования, 2 – простой. Соответствует<xref linkend="XML" role="Undefined Cross-Reference"/>-атрибуту style</entry>
                         </row>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="current"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="controls"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -847,15 +988,30 @@ comboBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="cange"/>
-                              <d:Nest id="dblclick"/>
-                              <d:Nest id="click"/>
-                              <d:Nest id="key"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="dblclick"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="click"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="key"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -880,12 +1036,12 @@ comboBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="1">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="caption"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
-                        </row>
+                        </FakeRow>
                         <row rowsep="1">
                            <entry colname="1">BSTR Value</entry>
                            <entry colname="2">Строковые данные, ассоциированные с элементом. Соответствует<xref linkend="XML" role="Undefined Cross-Reference"/>-атрибуту value</entry>
@@ -1140,12 +1296,18 @@ comboBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">LONG Key<d:Nest id="alt"/>
-                           </entry>
+                        <row rowsep="1">
+                           <entry colname="1">LONG Key</entry>
                            <entry colname="2"/>
                            <entry colname="3">Код нажатой клавиши</entry>
                         </row>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="alt"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -1198,14 +1360,26 @@ comboBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">INT Button<d:Nest id="alt"/>
-                              <d:Nest id="long"/>
-                           </entry>
+                        <row rowsep="1">
+                           <entry colname="1">INT Button</entry>
                            <entry colname="2">(read-only)</entry>
                            <entry colname="3">Параметр, показывающий, какая кнопка мыши инициировала сообщение. Допустимые
 значения: 0 – левая, 1 – правая, 2 – средняя</entry>
                         </row>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="alt"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="long"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -1231,14 +1405,20 @@ comboBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="alt"/>
-                              <d:Nest id="long"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
                            <entry colname="3"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="long"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -1264,19 +1444,25 @@ comboBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="1">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="alt"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
                            <entry colname="3"/>
-                        </row>
-                        <row rowsep="0">
-                           <entry colname="1">LONG WheelDelta<d:Nest id="pos"/>
-                           </entry>
+                        </FakeRow>
+                        <row rowsep="1">
+                           <entry colname="1">LONG WheelDelta</entry>
                            <entry colname="2">(read-only)</entry>
                            <entry colname="3">Изменение положения колесика</entry>
                         </row>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="pos"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -1302,14 +1488,20 @@ comboBox.</para>
                         </row>
                      </thead>
                      <tbody>
-                        <row rowsep="0">
-                           <entry colname="1">
+                        <FakeRow>
+                           <FakeEntry>
                               <d:Nest id="alt"/>
-                              <d:Nest id="pos"/>
-                           </entry>
+                           </FakeEntry>
                            <entry colname="2"/>
                            <entry colname="3"/>
-                        </row>
+                        </FakeRow>
+                        <FakeRow>
+                           <FakeEntry>
+                              <d:Nest id="pos"/>
+                           </FakeEntry>
+                           <entry colname="2"/>
+                           <entry colname="3"/>
+                        </FakeRow>
                      </tbody>
                   </tgroup>
                </informaltable>

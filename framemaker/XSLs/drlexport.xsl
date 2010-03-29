@@ -4,7 +4,6 @@
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="no" />
 	
 	<xsl:template name="copy_entry">
-    <xsl:if test="* or normalize-space()">
 	  <xsl:element name="{local-name()}" namespace="http://docbook.org/ns/docbook">
 		  <xsl:for-each select="@* ,  node()">
 			  <xsl:choose>
@@ -25,8 +24,7 @@
 				  </xsl:otherwise>
 			  </xsl:choose>
 		  </xsl:for-each>
-      </xsl:element>
-    </xsl:if>
+    </xsl:element>
 	</xsl:template>
 	
   <xsl:template name="copy_row">
@@ -47,6 +45,10 @@
 		<xsl:copy-of select="attribute()"/>
 		<xsl:apply-templates/>
     </xsl:element>
+  </xsl:template>
+  
+  <xsl:template match="FakeRow">
+    <xsl:apply-templates select="./*[1]/*" />
   </xsl:template>
   
 	<xsl:template name="remove_fakes">

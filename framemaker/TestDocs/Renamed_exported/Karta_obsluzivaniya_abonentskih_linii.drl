@@ -49,13 +49,13 @@
 
 
       <section >
-         <d:Nest id="main_win">
-            <title>Главное окно</title>
-            <para>Главное
-окно программы выглядит так:</para>
+         <d:Nest id="main_win">                                 
+            <title>Главное
+окно</title>
+            <para>Главное окно программы выглядит так:</para>
             <informalfigure float="0">
                <graphic width="3.500in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/sostojanie-abonenta.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/sostojanie-abonenta.gif"/>
             </informalfigure>
          </d:Nest>
          <d:InfElemRefGroup id="sent" name="Предложение" modifier="XOR"/>
@@ -91,7 +91,7 @@
 : номер – цвет и цвет – Состояние Абонента.</para>
          <informalfigure float="0">
             <graphic width="2.944in" align="aleft"
-                     fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/sost-ab-legenda.gif"/>
+                     fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/sost-ab-legenda.gif"/>
          </informalfigure>
          <d:Nest id="win_curstat"/>
          <d:InfElemRef id="ref_identif_443_sm" infelemid="identif_443_sm" groupid="identif"
@@ -104,7 +104,7 @@
 и количеству абонентских линий, находящихся в соответствующем состоянии.</para>
          <informalfigure float="0">
             <graphic width="6.208in" align="aleft"
-                     fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/sost-ab-statistika.gif"/>
+                     fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/sost-ab-statistika.gif"/>
          </informalfigure>
          <para>Для обновления состояний абонентских линий необходимо нажать
 кнопку<emphasis>Обновить</emphasis>(<inlinegraphic entityref="inlinegraphic3" width="0.806in" align="aleft"/>)

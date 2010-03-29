@@ -120,7 +120,7 @@ CD-диск с дистрибутивом<xref linkend="РМО" role="Undefined 
 на следующем рисунке:</para>
                <informalfigure float="0">
                   <graphic width="9.139in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/RMOBDScheme.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/RMOBDScheme.gif"/>
                </informalfigure>
                <para>Основным приложением, ответственным за изменение базы данных<xref linkend="РМО" role="Undefined Cross-Reference"/>является<emphasis>Конфигуратор</emphasis>,
 позволяющее в достаточно удобное форме изменять комплексные настройки<xref linkend="АТС" role="Undefined Cross-Reference"/>(в том
@@ -221,12 +221,12 @@ CD-диск с дистрибутивом<xref linkend="РМО" role="Undefined 
                <para>Такую картину пользователь может наблюдать на экране:</para>
                <informalfigure float="0">
                   <graphic width="10.181in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/View1.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/View1.gif"/>
                </informalfigure>
                <para>А так ситуация выглядит с точки зрения операционной системы:</para>
                <informalfigure float="0">
                   <graphic width="9.139in" align="aleft"
-                           fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/View2.gif"/>
+                           fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/View2.gif"/>
                </informalfigure>
                <para>Сплошными стрелками показаны связи с использование технологии<xref linkend="DCOM" role="Undefined Cross-Reference"/>(новшество
 в<xref linkend="РМО" role="Undefined Cross-Reference"/>1.5),

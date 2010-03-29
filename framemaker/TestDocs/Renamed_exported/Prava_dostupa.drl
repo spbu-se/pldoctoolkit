@@ -116,7 +116,7 @@
 образом:</para>
             <informalfigure float="0">
                <graphic width="8.181in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-prava.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-prava.gif"/>
             </informalfigure>
             <para>Рабочая область приложения разделена на 2 части:</para>
             <informaltable frame="all" colsep="1" rowsep="1">
@@ -189,12 +189,12 @@
             <para>Примерный вид диалога изменения имени:</para>
             <informalfigure float="0">
                <graphic width="3.375in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-izmenit-imja.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-izmenit-imja.gif"/>
             </informalfigure>
             <para>Примерный вид диалога изменения пароля:</para>
             <informalfigure float="0">
                <graphic width="3.792in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-smena-parolja.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-smena-parolja.gif"/>
             </informalfigure>
             <para>Меню<emphasis>Политики</emphasis>служит для работы со списком
 прав пользователей и групп а так же для работы со списком доменов.</para>
@@ -299,7 +299,7 @@
 образом:</para>
             <informalfigure float="0">
                <graphic width="5.111in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/свойства-группы-(новая-груп.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/свойства-группы-(новая-груп.gif"/>
             </informalfigure>
             <para>Работает в двух режимах:</para>
             <informaltable frame="all" colsep="1" rowsep="1">
@@ -346,7 +346,7 @@
 образом:</para>
             <informalfigure float="0">
                <graphic width="5.347in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-sovjstva-polzovatel.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-sovjstva-polzovatel.gif"/>
             </informalfigure>
             <para>Работает в двух режимах:</para>
             <informaltable frame="all" colsep="1" rowsep="1">
@@ -389,7 +389,7 @@
 следующим образом:</para>
             <informalfigure float="0">
                <graphic width="4.764in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dobavit-polzovatelja.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dobavit-polzovatelja.gif"/>
             </informalfigure>
             <para>В окошке<emphasis>Домен</emphasis>находится выпадающий список
 доступных доменов. При выборе определенного домена в окне<emphasis>Пользователи</emphasis>появляется
@@ -406,7 +406,7 @@
             <para>Окно<emphasis>Домены</emphasis>выглядит следующим образом:</para>
             <informalfigure float="0">
                <graphic width="3.944in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-domeny.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-domeny.gif"/>
             </informalfigure>
             <para>Данное окно предназначено для работы со списком доступных
 доменов. Домены можно удалять, для этого нужно выбрать желаемый,
@@ -415,7 +415,7 @@
 При нажатии вызывается окно<emphasis>Домен</emphasis>.</para>
             <informalfigure float="0">
                <graphic width="3.375in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-domen-2.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-domen-2.gif"/>
             </informalfigure>
             <para>Так же в этом же окне можно изменять пароль уже существующего
 домена , для этого нужно выбрать желаемый в окне<emphasis>Домены</emphasis>,
@@ -428,7 +428,7 @@
 образом:</para>
             <informalfigure float="0">
                <graphic width="7.722in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-prava-polzovatelej.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-prava-polzovatelej.gif"/>
             </informalfigure>
             <para>В окне<emphasis>Операции</emphasis>дерево приложений и соответствующих
 им операций. При выборе какой-либо операции в окне<emphasis>Пользователи</emphasis>высвечивается
