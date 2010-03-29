@@ -63,15 +63,16 @@ BoolT cleanDirectory(FilePathT *dirPath)
 	if (!handle)
 	{
 		F_Printf(NULL,"Invalid directory path: %s\n",F_FilePathToPathName(dirPath,FDosPath));
+		writeToChannel("Error. Invalid directory path");
 		return 0;
 	}
 	while (file = F_FilePathGetNext(handle,&statusp))
 	{
 		path = F_FilePathToPathName(file,FDosPath);
 		path = fileFileName(path);
-		if ((!(validateFilename(path,FM)&&(!F_StrISuffix(path,(StringT)".backup.fm")
-				&&(!F_StrISuffix(path,(StringT)".recover.fm")))))//documents, which are not backup or recover
-			&&(!validateFilename(path,DRL)||(F_StrSuffix(path,(StringT)".backup.drl")))//drl documents, which are not recover
+		if ((!validateFilename(path,FM) || F_StrISuffix(path,(StringT)".backup.fm")
+				|| F_StrISuffix(path,(StringT)".recover.fm"))//documents, which are not backup or recover
+			&&(!validateFilename(path,DRL) || F_StrSuffix(path,(StringT)".backup.drl"))//drl documents, which are not recover
 			&&(!F_StrIEqual(path,defaultBookName)))//main book
 		{
 			F_DeleteFile(file);
@@ -104,7 +105,8 @@ BoolT validateFilename(StringT str, IntT type)
 		//checking highest level element in book is better choise, but later
 		return validateFilename(name,FMBOOK) && F_StrIPrefix(name,(StringT)"book");
 	case DRL:
-		return F_StrISuffix(str,(StringT)".drl");
+		return F_StrISuffix(str,(StringT)".drl")
+			&& !F_StrISuffix(str,(StringT)".backup.drl");
 	default:
 		return False;
 	}
@@ -201,6 +203,7 @@ F_ObjHandleT openMainBook(StringT path)
 	if (!handle) 
 	{
 		F_Printf(NULL,"Handle Error0\n");
+		writeToChannel("Error. Handle error.\n");
 		return 0;
 	}
 	bookExists = False;
@@ -358,6 +361,7 @@ StringT getHighestString(F_ObjHandleT docID)
 	if (!docID)
 	{
 		F_Printf(NULL,"getHighestString:\n\tError: Null document\n");
+		writeToChannel("Error. Document not opened.\n");
 		return F_StrCopyString("");
 	}
 	return F_ApiGetString(docID,F_ApiGetId(docID,F_ApiGetId(docID,F_ApiGetId(FV_SessionId,docID,FP_MainFlowInDoc),FP_HighestLevelElement),FP_ElementDef),FP_Name);
@@ -451,4 +455,38 @@ StringT getMainBookName(F_ObjHandleT docID)
 	newPathName = F_Alloc(F_StrLen(pathName)+F_StrLen(defaultBookName)+5,NO_DSE);
 	F_Sprintf(newPathName,"%s%s",pathName,defaultBookName);
 	return newPathName;
+}
+
+BoolT setDefaultDirectory(StringT dirPath)
+{
+	F_ApiSetString(0,FV_SessionId,FP_OpenDir, dirPath);
+	return TRUE;
+}
+
+BoolT cleanTempDirectory()
+{
+	DirHandleT handle;
+	IntT statusp, i;
+	UCharT buf[100];
+	StringT tmpDirPath;
+	FilePathT *tmpDirFilepath, *file;
+
+	tmpDirPath = F_StrCopyString(F_ApiClientDir());
+	i = F_Sprintf(buf,"%s",tmpDirPath);
+	i = F_Sprintf(buf+i,"\\docline\\temp\\");
+	tmpDirPath = F_StrCopyString((StringT)buf);
+	tmpDirFilepath = F_PathNameToFilePath(tmpDirPath,NULL,FDosPath);
+	handle = F_FilePathOpenDir(tmpDirFilepath, &statusp);
+	if (!handle)
+	{
+		F_Printf(NULL,"%s\n","CleanTempDirectory.DirHandle error.");
+		writeToChannel("CleanTempDirectory.DirHandle error.\n");
+		return FALSE;
+	}
+	while (file = F_FilePathGetNext(handle,&statusp))
+	{
+		F_DeleteFile(file);
+	}
+
+	return TRUE;
 }
