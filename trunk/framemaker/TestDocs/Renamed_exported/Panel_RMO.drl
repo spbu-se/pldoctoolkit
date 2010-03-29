@@ -18,7 +18,7 @@
             <para>Главное окно<xref linkend="РМО" role="Undefined Cross-Reference"/>выглядит следующим образом:</para>
             <informalfigure float="0">
                <graphic width="4.250in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient.gif"/>
             </informalfigure>
             <para>В строке заголовка отображается информация о текущем пользователе.</para>
             <para>Пункты главного меню:</para>
@@ -176,7 +176,7 @@
 -&gt; Завершить сеанс</emphasis>появляется панель Идентификация пользователя:</para>
             <informalfigure float="0">
                <graphic width="4.264in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-idetifikatzija-polzov.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-idetifikatzija-polzov.gif"/>
             </informalfigure>
             <para>Каждому типу пользователей<xref linkend="РМО" role="Undefined Cross-Reference"/>предоставлен свой набор
 прав (возможность выполнять определенные действия). После ввода
@@ -204,7 +204,7 @@ Windows при старте<xref linkend="РМО" role="Undefined Cross-Referenc
 нажатием кнопки<emphasis>Отмена</emphasis>.</para>
             <informalfigure float="0">
                <graphic width="6.139in" align="aleft"
-                        fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/клиент-соединение-со-станци.gif"/>
+                        fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/клиент-соединение-со-станци.gif"/>
             </informalfigure>
             <para>Во время установки соединения в окне соединения со станцией
 отображается индикатор, отображающий текущее состояние соединения:</para>
@@ -227,7 +227,7 @@ Windows при старте<xref linkend="РМО" role="Undefined Cross-Referenc
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="0.500in" align="aleft"
-                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Red.jpg"/>
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Red.jpg"/>
                         </entry>
                         <entry colname="2">Красный</entry>
                         <entry colname="3">Произошла ошибка</entry>
@@ -235,7 +235,7 @@ Windows при старте<xref linkend="РМО" role="Undefined Cross-Referenc
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="0.500in" align="aleft"
-                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Magenta.jpg"/>
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Magenta.jpg"/>
                         </entry>
                         <entry colname="2">Розовый</entry>
                         <entry colname="3">Программа пытается инициализировать COM порт (см.
@@ -244,7 +244,7 @@ Windows при старте<xref linkend="РМО" role="Undefined Cross-Referenc
                      <row rowsep="1">
                         <entry colname="1">
                            <graphic width="0.500in" align="aleft"
-                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Yellow.jpg"/>
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Yellow.jpg"/>
                         </entry>
                         <entry colname="2">Желтый</entry>
                         <entry colname="3">Производится установка соединения со станцией</entry>
@@ -252,7 +252,7 @@ Windows при старте<xref linkend="РМО" role="Undefined Cross-Referenc
                      <row rowsep="0">
                         <entry colname="1">
                            <graphic width="0.500in" align="aleft"
-                                    fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Cyan.jpg"/>
+                                    fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/Circle-Cyan.jpg"/>
                         </entry>
                         <entry colname="2">Голубой</entry>
                         <entry colname="3">Завершающая стадия установки соединения</entry>
@@ -303,7 +303,7 @@ Windows при старте<xref linkend="РМО" role="Undefined Cross-Referenc
                <listitem>
                   <para>
                      <emphasis>Файл</emphasis>– имя файла<graphic width="9.653in" align="aleft"
-                              fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-rmo-versija.gif"/>
+                              fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/panel-rmo-versija.gif"/>
                   </para>
                </listitem>
                <listitem>

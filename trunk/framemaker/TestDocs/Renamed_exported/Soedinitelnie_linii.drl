@@ -34,7 +34,7 @@
 следующим образом:</para>
          <informalfigure float="0">
             <graphic width="10.833in" align="aleft"
-                     fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-СЛ.gif"/>
+                     fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-СЛ.gif"/>
          </informalfigure>
          <para>Слева расположена панель с закладками:</para>
          <para>
@@ -75,7 +75,7 @@
 следующим образом:</para>
          <informalfigure float="0">
             <graphic width="10.833in" align="aleft"
-                     fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-индексы.gif"/>
+                     fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-индексы.gif"/>
          </informalfigure>
          <para>Перед списком индекса объектов расположено поле быстрого поиска
 объекта.</para>
@@ -246,7 +246,7 @@
          <para>Главное окно приложения выглядит следующим образом:</para>
          <informalfigure float="0">
             <graphic width="10.833in" align="aleft"
-                     fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-состояние-трактов.gif"/>
+                     fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-состояние-трактов.gif"/>
          </informalfigure>
          <para>Окно разделено на три части:</para>
          <itemizedlist>
@@ -326,7 +326,7 @@ In/Out</entry>
 списком этих операций:</para>
          <informalfigure float="0">
             <graphic width="4.792in" align="aleft"
-                     fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-действия-над-трактами.gif"/>
+                     fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-действия-над-трактами.gif"/>
          </informalfigure>
          <para>Для выполнения операций над каналом или несколькими каналами
 нужно нажать правую кнопку мыши над требуемым каналом. Можно выбирать
@@ -336,7 +336,7 @@ In/Out</entry>
 диапазона каналов). Ниже представлен пример такого выбора:</para>
          <informalfigure float="0">
             <graphic width="10.722in" align="aleft"
-                     fileref="file:///E:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-операции-над-каналами.gif"/>
+                     fileref="file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/СЛ-операции-над-каналами.gif"/>
          </informalfigure>
          <para>Следует обратить внимание на то, что часть команд над каналами
 воздействует только на один канал (самый первый из выбранных). Эта
@@ -436,12 +436,12 @@ In/Out</entry>
                <colspec colnum="1" colname="1" colwidth="1.000in"/>
                <colspec colnum="2" colname="2" colwidth="1.000in"/>
                <tbody>
-                  <row rowsep="1">
-                     <entry colname="1">
+                  <FakeRow>
+                     <FakeEntry>
                         <d:Nest id="mov_info_restart"/>
-                     </entry>
+                     </FakeEntry>
                      <entry colname="2"/>
-                  </row>
+                  </FakeRow>
                   <row rowsep="1">
                      <entry colname="1">In, Out</entry>
                      <entry colname="2">Состояния<xref linkend="СУВ" role="Undefined Cross-Reference"/>. Для<xref linkend="BCKu" role="Undefined Cross-Reference"/>показываются значения 2СК
@@ -477,11 +477,16 @@ In/Out</entry>
                      <entry colname="1">ТЗСл</entry>
                      <entry colname="2">Флаг трассировки объекта ЗОВСл</entry>
                   </row>
-                  <row rowsep="0">
-                     <entry colname="1">ТСгн<d:Nest id="mov_info_flag"/>
-                     </entry>
+                  <row rowsep="1">
+                     <entry colname="1">ТСгн</entry>
                      <entry colname="2">Флаг трассировки объекта сигнализации</entry>
                   </row>
+                  <FakeRow>
+                     <FakeEntry>
+                        <d:Nest id="mov_info_flag"/>
+                     </FakeEntry>
+                     <entry colname="2"/>
+                  </FakeRow>
                </tbody>
             </tgroup>
          </informaltable>
@@ -552,12 +557,17 @@ In/Out</entry>
                      <entry colname="2">Для всех выделенных каналов<d:Nest id="where_use"/>
                      </entry>
                   </row>
-                  <row rowsep="0">
-                     <entry colname="1">Пройти по шнуру<d:Nest id="operation_channel_15"/>
-                     </entry>
+                  <row rowsep="1">
+                     <entry colname="1">Пройти по шнуру</entry>
                      <entry colname="2">Вызвать панель прохода по шнуру для канала<d:Nest id="where_use"/>
                      </entry>
                   </row>
+                  <FakeRow>
+                     <FakeEntry>
+                        <d:Nest id="operation_channel_15"/>
+                     </FakeEntry>
+                     <entry colname="2"/>
+                  </FakeRow>
                </tbody>
             </tgroup>
          </informaltable>
