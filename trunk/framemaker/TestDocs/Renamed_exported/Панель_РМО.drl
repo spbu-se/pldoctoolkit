@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Панель_РМО.drl">
+   <d:InfElement id="RMO_panel" name="Панель РМО">
+
+
+
+
+
+
+
+
+
+      <section>
+         <title id="tri_odin_4etn" xreflabel="3.1.14. Панель РМО">3.1.14.
+Панель РМО</title>
+         <section>
+            <title>Главное окно</title>
+            <para>Главное окно<xref linkend="РМО" role="Undefined Cross-Reference"/>выглядит следующим образом:</para>
+            <informalfigure float="0">
+               <graphic entityref="graphic1" width="4.250in" align="aleft"/>
+            </informalfigure>
+            <para>В строке заголовка отображается информация о текущем пользователе.</para>
+            <para>Пункты главного меню:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Файл</para>
+               </listitem>
+               <listitem>
+                  <para>Станция</para>
+               </listitem>
+               <listitem>
+                  <para>Настройки</para>
+               </listitem>
+               <listitem>
+                  <para>Справка</para>
+               </listitem>
+               <listitem>
+                  <para>Пуск</para>
+               </listitem>
+            </itemizedlist>
+            <para>В строке состояния отображается информация о текущем соединении
+со станцией.</para>
+            <para>
+               <command moreinfo="none">Меню Файл</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="0.984in"/>
+                  <colspec colnum="2" colname="2" colwidth="0.984in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Пункт меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Завершить сеанс</entry>
+                        <entry colname="2">Перерегистрироваться для изменения текущих прав</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Версии</entry>
+                        <entry colname="2">Просмотреть версии программных компонент</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Выход</entry>
+                        <entry colname="2">Завершить работу с<xref linkend="РМО" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Меню Станция</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="0.984in"/>
+                  <colspec colnum="2" colname="2" colwidth="0.984in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Пункт меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Имя станции</entry>
+                        <entry colname="2">Соединиться с указанной станцией</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Разорвать соединение</entry>
+                        <entry colname="2">Разорвать текущее соединение со станцией</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Новая станция</entry>
+                        <entry colname="2">Добавить в список новую станцию</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>В меню<emphasis>Настройки</emphasis>перечислен набор параметров,
+каждый из которых может быть либо «включен» (тогда напротив него
+ставится галочка), либо «выключен»:</para>
+            <para>
+               <command moreinfo="none">Меню Настройки</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="0.984in"/>
+                  <colspec colnum="2" colname="2" colwidth="0.984in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Пункт меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Права</entry>
+                        <entry colname="2">Вызов приложения Права доступа (см. разд. «<xref linkend="tri_odin_p9t" role="Undefined Cross-Reference"/>»)</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Главное окно -&gt; Располагать поверх остальных окон</entry>
+                        <entry colname="2">Располагать данное окно поверх остальных</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Главное окно -&gt; Зафиксировать положение окна</entry>
+                        <entry colname="2">Предотвратить нежелательные перемещения окна
+по экрану</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Главное окно -&gt; Зафиксировать позицию окна</entry>
+                        <entry colname="2">Запоминать позицию окна при выходе из<xref linkend="РМО" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>
+               <command moreinfo="none">Меню Справка</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="0.984in"/>
+                  <colspec colnum="2" colname="2" colwidth="0.984in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">Пункт меню</entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">Содержание</entry>
+                        <entry colname="2">Открыть содержание справки</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Поиск</entry>
+                        <entry colname="2">Открыть окно поиска по справке</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">Справка Windows</entry>
+                        <entry colname="2">Как пользоваться справкой</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para>В меню<emphasis>Пуск</emphasis>перечислены клиентские приложения<xref linkend="РМО" role="Undefined Cross-Reference"/>. Выбор
+какого-либо пункта меню приводит к запуску соответствующего приложения.</para>
+         </section>
+         <section>
+            <title>Идентификация пользователя</title>
+            <para>После запуска<xref linkend="РМО" role="Undefined Cross-Reference"/>или при выборе пункта меню<emphasis>Файл
+-&gt; Завершить сеанс</emphasis>появляется панель Идентификация пользователя:</para>
+            <informalfigure float="0">
+               <graphic entityref="graphic2" width="4.264in" align="aleft"/>
+            </informalfigure>
+            <para>Каждому типу пользователей<xref linkend="РМО" role="Undefined Cross-Reference"/>предоставлен свой набор
+прав (возможность выполнять определенные действия). После ввода
+правильного имени пользователя и подтверждающего имя пароля осуществляется
+вход пользователя в систему с предоставлением ему соответствующих
+прав.</para>
+            <para>В результате недокументированой ошибки Программного Интерфейса
+Windows при старте<xref linkend="РМО" role="Undefined Cross-Reference"/>окно идентификации пользователя
+может не появиться на экране. В этом случае для идентификации нужно
+принудительно открыть это окно, выбрав в меню<emphasis>Файл</emphasis>команду<emphasis>Завершить
+сеанс</emphasis>.</para>
+         </section>
+         <section>
+            <title>Соединение со станцией</title>
+            <para>Для работы со станцией необходимо установить с ней соединение.
+После выбора желаемой станции в меню<emphasis>Станция</emphasis>
+               <xref linkend="РМО" role="Undefined Cross-Reference"/>пытается
+подключиться к ней. Подключение состоит из нескольких этапов, которые
+при отсутствии проблем проходят достаточно быстро. Если панель<emphasis>Установка
+соединения со станцией…</emphasis>долгое время не исчезает с экрана,
+то существуют проблемы с установкой соединения.</para>
+            <para>В этом случае рекомендуется проверить соединительные кабели,
+идущие от<xref linkend="ПК" role="Undefined Cross-Reference"/>к станции.
+Процесс установки соединения можно прервать в любое время нажатием кнопки<emphasis>Отмена</emphasis>.</para>
+            <informalfigure float="0">
+               <graphic entityref="graphic3" width="6.139in" align="aleft"/>
+            </informalfigure>
+            <para>Во время установки соединения в окне соединения со станцией
+отображается индикатор, отображающий текущее состояние соединения:</para>
+            <para>
+               <command moreinfo="none">Состояние соединения</command>
+            </para>
+            <informaltable frame="all" colsep="1" rowsep="1">
+               <tgroup cols="3" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="0.984in"/>
+                  <colspec colnum="2" colname="2" colwidth="0.984in"/>
+                  <colspec colnum="3" colname="3" colwidth="0.984in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1"/>
+                        <entry colname="2">Цвет</entry>
+                        <entry colname="3">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic entityref="graphic4" width="0.500in" align="aleft"/>
+                        </entry>
+                        <entry colname="2">Красный</entry>
+                        <entry colname="3">Произошла ошибка</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic entityref="graphic5" width="0.500in" align="aleft"/>
+                        </entry>
+                        <entry colname="2">Розовый</entry>
+                        <entry colname="3">Программа пытается инициализировать COM порт (см.
+"<xref linkend="COM-p" role="Undefined Cross-Reference"/>")</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">
+                           <graphic entityref="graphic6" width="0.500in" align="aleft"/>
+                        </entry>
+                        <entry colname="2">Желтый</entry>
+                        <entry colname="3">Производится установка соединения со станцией</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">
+                           <graphic entityref="graphic7" width="0.500in" align="aleft"/>
+                        </entry>
+                        <entry colname="2">Голубой</entry>
+                        <entry colname="3">Завершающая стадия установки соединения</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+         <section>
+            <title>Версии</title>
+            <para>Используйте панель Версии для проверки состояния версии<xref linkend="РМО" role="Undefined Cross-Reference"/>. Вы
+можете получить следующую информацию:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Версия<xref linkend="РМО" role="Undefined Cross-Reference"/>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>Дата сборки</para>
+               </listitem>
+               <listitem>
+                  <para>Общее состояние версии</para>
+               </listitem>
+               <listitem>
+                  <para>Справка</para>
+               </listitem>
+               <listitem>
+                  <para>Состояние каждого файла в отдельности</para>
+               </listitem>
+            </itemizedlist>
+            <para>Проверка версии<xref linkend="РМО" role="Undefined Cross-Reference"/>выполняется с помощью контрольного
+файла<filename moreinfo="none">Version.xml</filename>, который входит в поставку<xref linkend="РМО" role="Undefined Cross-Reference"/>. Состояние
+версии устанавливается в «OK», если все файлы<xref linkend="РМО" role="Undefined Cross-Reference"/>соответствуют контрольному
+файлу, в противном случае указывается количество ошибок.</para>
+            <para>Панель содержит дерево из двух веток:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>
+                     <emphasis>Файлы<xref linkend="РМО" role="Undefined Cross-Reference"/>
+                     </emphasis>– содержит все
+файлы, входящие в поставку<xref linkend="РМО" role="Undefined Cross-Reference"/>(кроме файла<filename moreinfo="none">Version.xml</filename>).</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Аварийные файлы</emphasis>– содержит только
+те файлы, состояние которых отлично от ОК.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Файл</emphasis>– имя файла<graphic entityref="graphic8" width="9.653in" align="aleft"/>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Версия</emphasis>– десятичное число, обозначающее
+номер версии</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Тип</emphasis>– способ контроля версии
+файла</para>
+                  <itemizedlist>
+                     <listitem>
+                        <para>- – версия файла не контролируется,
+значения поля<emphasis>Версия</emphasis>будет всегда пусто</para>
+                     </listitem>
+                     <listitem>
+                        <para>ins – номер версии прошит в файл</para>
+                     </listitem>
+                     <listitem>
+                        <para>crc – проверка контрольной суммы файла</para>
+                     </listitem>
+                  </itemizedlist>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Состояние</emphasis>– результат проверки
+версии</para>
+                  <itemizedlist>
+                     <listitem>
+                        <para>OK – правильная версия файла</para>
+                     </listitem>
+                     <listitem>
+                        <para>Неизвестная версия – версия не прошита в файл, либо
+не совпадает контрольная сумма файла</para>
+                     </listitem>
+                     <listitem>
+                        <para>Версия не совпадает – версия файла отличается от
+версии указанной в контрольном файле</para>
+                     </listitem>
+                     <listitem>
+                        <para>Ошибка при чтении версии – не удалось прочитать
+версию, возможно файл кем-то используется, например, открыт файл
+справки, в этом случае его следует закрыть и повторить проверку</para>
+                     </listitem>
+                     <listitem>
+                        <para>Файл не найден – файл не найден в папке</para>
+                     </listitem>
+                  </itemizedlist>
+               </listitem>
+            </itemizedlist>
+            <para>Чтобы повторно выполнить проверку версий выберите во всплывающем меню<emphasis>Обновить</emphasis>.</para>
+         </section>
+      </section>
+   </d:InfElement>
+</d:DocumentationCore>

@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl"
+                     filename="Rashifrovka_terminov_i_sokrashenii.drl">
+   <d:InfElement id="decoding" name="Расшифровка терминов и сокращений">
+
+
+
+
+
+
+
+
+
+      <chapter>
+         <title>Расшифровка терминов и сокращений</title>
+         <para id="BCK1" xreflabel="1BCK">
+            <d:DirRef templateid="term" entryid="1BCK"/>
+         </para>
+         <para id="BCK2" xreflabel="2BCK">
+            <d:DirRef templateid="term" entryid="2BCK"/>
+         </para>
+         <para id="BCKu" xreflabel="2BCK(У)">
+            <d:DirRef templateid="term" entryid="2BCK(U)"/>
+         </para>
+         <para id="B-c" xreflabel="B-канал">
+            <d:DirRef templateid="term" entryid="B-canal"/>
+         </para>
+         <para id="BRI" xreflabel="BRI">
+            <d:DirRef templateid="term" entryid="BRI"/>
+         </para>
+         <para id="COMs" xreflabel="COM(служба)">
+            <d:DirRef templateid="term" entryid="COM(service)"/>
+         </para>
+         <para id="COMt" xreflabel="COM(технология)">
+            <d:DirRef templateid="term" entryid="COM(technol)"/>
+         </para>
+         <para id="COM-p" xreflabel="COM-порт">
+            <d:DirRef templateid="term" entryid="COM-port"/>
+         </para>
+         <para id="CR" xreflabel="CR">
+            <d:DirRef templateid="term" entryid="CR"/>
+         </para>
+         <para id="DCOM" xreflabel="DCOM">
+            <d:DirRef templateid="term" entryid="DCOM"/>
+         </para>
+         <para id="DL" xreflabel="DL">
+            <d:DirRef templateid="term" entryid="DL"/>
+         </para>
+         <para id="DL-j" xreflabel="DL-соединение">
+            <d:DirRef templateid="term" entryid="DL-join"/>
+         </para>
+         <para id="DRAM" xreflabel="DRAM">
+            <d:DirRef templateid="term" entryid="DRAM"/>
+         </para>
+         <para id="DSS-1" xreflabel="DSS-1">
+            <d:DirRef templateid="term" entryid="DSS-1"/>
+         </para>
+         <para id="EI" xreflabel="EI">
+            <d:DirRef templateid="term" entryid="EI"/>
+         </para>
+         <para id="F-EPROM" xreflabel="Flash-EPROM">
+            <d:DirRef templateid="term" entryid="Flash-EPROM"/>
+         </para>
+         <para id="IP" xreflabel="IP">
+            <d:DirRef templateid="term" entryid="IP"/>
+         </para>
+         <para id="MTP" xreflabel="MTP">
+            <d:DirRef templateid="term" entryid="MTP"/>
+         </para>
+         <para id="PC" xreflabel="PC">
+            <d:DirRef templateid="term" entryid="PC"/>
+         </para>
+         <para id="PPC" xreflabel="PPC">
+            <d:DirRef templateid="term" entryid="PPC"/>
+         </para>
+         <para id="PRI" xreflabel="PRI">
+            <d:DirRef templateid="term" entryid="PRI"/>
+         </para>
+         <para id="RS" xreflabel="RS-232">
+            <d:DirRef templateid="term" entryid="RS-232"/>
+         </para>
+         <para id="SDF" xreflabel="SDF">
+            <d:DirRef templateid="term" entryid="SDF"/>
+         </para>
+         <para id="SS7" xreflabel="SS7">
+            <d:DirRef templateid="term" entryid="SS7"/>
+         </para>
+         <para id="TCPIP" xreflabel="TCP/IP">
+            <d:DirRef templateid="term" entryid="TCPIP"/>
+         </para>
+         <para id="X.25" xreflabel="X.25">
+            <d:DirRef templateid="term" entryid="X.25"/>
+         </para>
+         <para id="XML" xreflabel="XML">
+            <d:DirRef templateid="term" entryid="XML"/>
+         </para>
+         <para id="АК" xreflabel="АК">
+            <d:DirRef templateid="term" entryid="АК"/>
+         </para>
+         <para id="АКТ" xreflabel="АКТ">
+            <d:DirRef templateid="term" entryid="АКТ"/>
+         </para>
+         <para id="АЛ" xreflabel="АЛ">
+            <d:DirRef templateid="term" entryid="АЛ"/>
+         </para>
+         <para id="АОН" xreflabel="АОН">
+            <d:DirRef templateid="term" entryid="АОН"/>
+         </para>
+         <para id="АТ" xreflabel="АТ">
+            <d:DirRef templateid="term" entryid="АТ"/>
+         </para>
+         <para id="АТС" xreflabel="АТС">
+            <d:DirRef templateid="term" entryid="АТС"/>
+         </para>
+         <para id="БАЛ" xreflabel="БАЛ">
+            <d:DirRef templateid="term" entryid="БАЛ"/>
+         </para>
+         <para id="БД" xreflabel="БД">
+            <d:DirRef templateid="term" entryid="БД"/>
+         </para>
+         <para id="ВК" xreflabel="ВК">
+            <d:DirRef templateid="term" entryid="ВК"/>
+         </para>
+         <para id="ВС" xreflabel="ВС">
+            <d:DirRef templateid="term" entryid="ВС"/>
+         </para>
+         <para id="ДВО" xreflabel="ДВО">
+            <d:DirRef templateid="term" entryid="ДВО"/>
+         </para>
+         <para id="ЗВС" xreflabel="ЗВС">
+            <d:DirRef templateid="term" entryid="ЗВС"/>
+         </para>
+         <para id="ЗИС" xreflabel="ЗИС">
+            <d:DirRef templateid="term" entryid="ЗИС"/>
+         </para>
+         <para id="ИКМ-15" xreflabel="ИКМ-15">
+            <d:DirRef templateid="term" entryid="ИКМ-15"/>
+         </para>
+         <para id="ИКМ-30" xreflabel="ИКМ-30">
+            <d:DirRef templateid="term" entryid="ИКМ-30"/>
+         </para>
+         <para id="КЗ" xreflabel="КЗ">
+            <d:DirRef templateid="term" entryid="КЗ"/>
+         </para>
+         <para id="КП" xreflabel="КП">
+            <d:DirRef templateid="term" entryid="КП"/>
+         </para>
+         <para id="МГ" xreflabel="МГ">
+            <d:DirRef templateid="term" entryid="МГ"/>
+         </para>
+         <para id="МН" xreflabel="МН">
+            <d:DirRef templateid="term" entryid="МН"/>
+         </para>
+         <para id="МС" xreflabel="МС">
+            <d:DirRef templateid="term" entryid="МС"/>
+         </para>
+         <para id="МТ" xreflabel="МТ">
+            <d:DirRef templateid="term" entryid="МТ"/>
+         </para>
+         <para id="МЧП" xreflabel="МЧП">
+            <d:DirRef templateid="term" entryid="МЧП"/>
+         </para>
+         <para id="ОВУ" xreflabel="ОВУ">
+            <d:DirRef templateid="term" entryid="ОВУ"/>
+         </para>
+         <para id="ОКС7" xreflabel="ОКС №7">
+            <d:DirRef templateid="term" entryid="ОКС7"/>
+         </para>
+         <para id="ООВ" xreflabel="ООВ">
+            <d:DirRef templateid="term" entryid="ООВ"/>
+         </para>
+         <para id="ОС1" xreflabel="ОС1">
+            <d:DirRef templateid="term" entryid="ОС1"/>
+         </para>
+         <para id="ОС2" xreflabel="ОС2">
+            <d:DirRef templateid="term" entryid="ОС2"/>
+         </para>
+         <para id="ПК" xreflabel="ПК">
+            <d:DirRef templateid="term" entryid="ПК"/>
+         </para>
+         <para id="ПО" xreflabel="ПО">
+            <d:DirRef templateid="term" entryid="ПО"/>
+         </para>
+         <para id="РВВ" xreflabel="РВВ">
+            <d:DirRef templateid="term" entryid="РВВ"/>
+         </para>
+         <para id="РМО" xreflabel="РМО">
+            <d:DirRef templateid="term" entryid="РМО"/>
+         </para>
+         <para id="СБ" xreflabel="СБ">
+            <d:DirRef templateid="term" entryid="СБ"/>
+         </para>
+         <para id="СГ" xreflabel="СГ">
+            <d:DirRef templateid="term" entryid="СГ"/>
+         </para>
+         <para id="СК" xreflabel="СК">
+            <d:DirRef templateid="term" entryid="СК"/>
+         </para>
+         <para id="СЛ" xreflabel="СЛ">
+            <d:DirRef templateid="term" entryid="СЛ"/>
+         </para>
+         <para id="СН" xreflabel="СН">
+            <d:DirRef templateid="term" entryid="СН"/>
+         </para>
+         <para id="СОРМ" xreflabel="СОРМ">
+            <d:DirRef templateid="term" entryid="СОРМ"/>
+         </para>
+         <para id="СП" xreflabel="СП">
+            <d:DirRef templateid="term" entryid="СП"/>
+         </para>
+         <para id="СУВ" xreflabel="СУВ">
+            <d:DirRef templateid="term" entryid="СУВ"/>
+         </para>
+         <para id="СЭ" xreflabel="СЭ">
+            <d:DirRef templateid="term" entryid="СЭ"/>
+         </para>
+         <para id="ТАС" xreflabel="ТАС">
+            <d:DirRef templateid="term" entryid="ТАС"/>
+         </para>
+         <para id="ТфОП" xreflabel="ТфОП">
+            <d:DirRef templateid="term" entryid="ТфОП"/>
+         </para>
+         <para id="ТЭЗ" xreflabel="ТЭЗ">
+            <d:DirRef templateid="term" entryid="ТЭЗ"/>
+         </para>
+         <para id="ФПО" xreflabel="ФПО">
+            <d:DirRef templateid="term" entryid="ФПО"/>
+         </para>
+         <para id="ЦТО" xreflabel="ЦТО">
+            <d:DirRef templateid="term" entryid="ЦТО"/>
+         </para>
+         <para id="ЧНН" xreflabel="ЧНН">
+            <d:DirRef templateid="term" entryid="ЧНН"/>
+         </para>
+         <para id="ЭАТС" xreflabel="ЭАТС">
+            <d:DirRef templateid="term" entryid="ЭАТС"/>
+         </para>
+         <para id="dedl" xreflabel="выделенная линия">
+            <d:DirRef templateid="term" entryid="dedline"/>
+         </para>
+         <para id="glyp" xreflabel="глифы">
+            <d:DirRef templateid="term" entryid="glyphs"/>
+         </para>
+         <para id="structadd" xreflabel="конструктивный адрес">
+            <d:DirRef templateid="term" entryid="structadd"/>
+         </para>
+         <para id="config" xreflabel="конфиг">
+            <d:DirRef templateid="term" entryid="config"/>
+         </para>
+         <para id="indl" xreflabel="промлиния">
+            <d:DirRef templateid="term" entryid="industline"/>
+         </para>
+         <para id="promch" xreflabel="промтракт">
+            <d:DirRef templateid="term" entryid="promchan"/>
+         </para>
+         <para id="settype" xreflabel="тип набора номера">
+            <d:DirRef templateid="term" entryid="settype"/>
+         </para>
+         <para id="wire" xreflabel="трехпроводная (сигнализация)">
+            <d:DirRef templateid="term" entryid="three-wire"/>
+         </para>
+         <para id="loops" xreflabel="шлейфная (сигнализация)">
+            <d:DirRef templateid="term" entryid="loopsign"/>
+         </para>
+      </chapter>
+   </d:InfElement>
+   <d:Directory id="terms" name="Термины и сокращения">
+      <d:Entry id="1BCK">
+         <d:Attr id="abbr">1ВСК</d:Attr>
+         <d:Attr id="decod">Сигнализация
+«1 выделенный сигнальный канал». Межстанционный протокол, применяемый
+в российских сельских сетях. Использует в качестве управляющего
+канала всего лишь один информационный канал (бит A) на каждый из
+голосовых каналов в трактах E1 (или ИКМ-15), или один тоновый сигнал
+3825 Гц в аналоговых линиях</d:Attr>
+      </d:Entry>
+      <d:Entry id="2BCK">
+         <d:Attr id="abbr">2ВСК</d:Attr>
+         <d:Attr id="decod">Сигнализация
+«2 выделенных сигнальных канала». Межстанционный протокол по трактам
+E1. Это наиболее распространённая линейная сигнализация в российских городских
+телефонных сетях; также применяется и в сельских сетях. Использует сигнальные
+биты A и B (откуда и берется название этого протокола)</d:Attr>
+      </d:Entry>
+      <d:Entry id="2BCK(U)">
+         <d:Attr id="abbr">2ВСК(У)</d:Attr>
+         <d:Attr id="decod">Модификация
+сигнализации 2ВСК для универсальных двусторонних соединительных линий
+(специфичных для сельских сетей)</d:Attr>
+      </d:Entry>
+      <d:Entry id="B-canal">
+         <d:Attr id="abbr">В-канал</d:Attr>
+         <d:Attr id="decod">Канал
+для передачи данных на скорости 64 Кбит/с по линии ISDN, который
+в телефонии используется как голосовой канал. ISDN-BRI поддерживает
+2 B-канала на одну линию, европейский вариант ISDN-PRI – 30 каналов</d:Attr>
+      </d:Entry>
+      <d:Entry id="BRI">
+         <d:Attr id="abbr">BRI</d:Attr>
+         <d:Attr id="decod">ISDN
+Basic Rate Interface (2B+D). Цифровая линия, применяемая в сетях
+ISDN. Специфицирована в рекомендации ITU-T I.430. Состоит из трех
+цифровых каналов: двух B-каналов (по 64 Кбит/с каждый), применяемых
+для передачи речи или данных, и одного D-канала (16 Кбит/с), предназначенного
+для управления состоянием соединений в B-каналах</d:Attr>
+      </d:Entry>
+      <d:Entry id="COM(service)">
+         <d:Attr id="abbr">COM(служба)</d:Attr>
+         <d:Attr id="decod">Системное приложение, реализованное с использованием
+технологии COM, предназначенное для предоставления услуги другим
+приложениям</d:Attr>
+      </d:Entry>
+      <d:Entry id="COM(technol)">
+         <d:Attr id="abbr">COM(технология)</d:Attr>
+         <d:Attr id="decod">Component Object Model. Технология фирмы Microsoft,
+обеспечивающая взаимодействие программных компонент от разных производителей
+между собой</d:Attr>
+      </d:Entry>
+      <d:Entry id="COM-port">
+         <d:Attr id="abbr">COM-порт</d:Attr>
+         <d:Attr id="decod">Последовательный коммуникационный порт, реализующий
+интерфейс RS-232. Физически может быть выполнен на основе 9- или
+25-контактного разъема. Современные ПК как правило комплектуются
+как минимум одним COM-портом</d:Attr>
+      </d:Entry>
+      <d:Entry id="CR">
+         <d:Attr id="abbr">CR</d:Attr>
+         <d:Attr id="decod">Call
+Request. Запрос на установление вызова</d:Attr>
+      </d:Entry>
+      <d:Entry id="DCOM">
+         <d:Attr id="abbr">DCOM</d:Attr>
+         <d:Attr id="decod">Distributed
+COM. Расширение технологии COM для создания распределенных приложений,
+взаимодействующих в том числе и по сетям передачи данных</d:Attr>
+      </d:Entry>
+      <d:Entry id="DL">
+         <d:Attr id="abbr">DL</d:Attr>
+         <d:Attr id="decod">Data
+Link. Звено управления передачей данных в сигнализации DSS-1. Определяет
+набор сообщений для взаимодействия между канальным уровнем и протоколом
+третьего уровня</d:Attr>
+      </d:Entry>
+      <d:Entry id="DL-join">
+         <d:Attr id="abbr">DL-соединение</d:Attr>
+         <d:Attr id="decod">Соединение на уровне сообщений DL</d:Attr>
+      </d:Entry>
+      <d:Entry id="DRAM">
+         <d:Attr id="abbr">DRAM</d:Attr>
+         <d:Attr id="decod">Dynamic
+Random Access Memory. Динамическая память произвольного доступа. Используется
+для организации оперативной памяти ПК</d:Attr>
+      </d:Entry>
+      <d:Entry id="DSS-1">
+         <d:Attr id="abbr">DSS-1</d:Attr>
+         <d:Attr id="decod">Digital
+Subscriber Signaling #1. Абонентский протокол в сетях ISDN. Использует
+D-канал для управления соединениями по B-каналам (см. «B-канал»)
+и состоит из трех логических уровней. Первый, «физический» уровень
+– это сам принцип разделения на B- и D-каналы. Второй уровень («канальный»)
+называется LAPD (или Q.921); он обеспечивает двустороннюю передачу
+пакетов (которые в ISDN называют кадрами) по D-каналу. На основе
+LAPD работают протоколы третьего уровня («сетевые») – Q.931 (коммутация
+соединений), X.25 (коммутация пакетов) и другие.</d:Attr>
+      </d:Entry>
+      <d:Entry id="EI">
+         <d:Attr id="abbr">EI</d:Attr>
+         <d:Attr id="decod">(ИКМ-30)
+Европейский стандарт для цифровых линий связи, состоящих из 30 каналов
+по 64 Кбит/c каждый (используются в телефонии в качестве голосовых
+каналов), причем на каждый из этих каналов имеется по четыре дополнительных,
+по 0,5 Кбит/с каждый (они называются A, B, C и D и используются
+в качестве управляющих каналов). E1 стандартизован ITU-T в рекомендациях
+G.703 и G.732. При передаче звука используется формат, описанный
+в рекомендации G.711 (PCM 8 кГц, 8 бит по A-закону)</d:Attr>
+      </d:Entry>
+      <d:Entry id="Flash-EPROM">
+         <d:Attr id="abbr">Flash-EPROM</d:Attr>
+         <d:Attr id="decod">Flash Electronically Programmable Read-Only Memory.
+Электрически перепограммируемая память только для чтения. Используется
+в АТС и других устройствах для хранения управляющих программ</d:Attr>
+      </d:Entry>
+      <d:Entry id="IP">
+         <d:Attr id="abbr">IP</d:Attr>
+         <d:Attr id="decod">Internet
+Protocol. Протокол связи в сети Интернет, на основе которого работают протоколы
+TCP и UDP. Широко используется также в локальных сетях передачи
+данных (интранет)</d:Attr>
+      </d:Entry>
+      <d:Entry id="MTP">
+         <d:Attr id="abbr">MTP</d:Attr>
+         <d:Attr id="decod">Message
+Transfer Part, «подсистема передачи сообщений». Протокол связи нижнего уровня
+в сети SS7, реализующий передачу сигнальных единиц (т. е. пакетов)
+по сигнальному звену (т. е. линии), соединяющему смежные пункты
+сигнализации (т. е. узлы). Определен рекомендациями ITU-T Q.700–Q.709</d:Attr>
+      </d:Entry>
+      <d:Entry id="PC">
+         <d:Attr id="abbr">PC</d:Attr>
+         <d:Attr id="decod">Personal
+Computer. Персональный компьютер (ПК)</d:Attr>
+      </d:Entry>
+      <d:Entry id="PPC">
+         <d:Attr id="abbr">PPC</d:Attr>
+         <d:Attr id="decod">Промышленный
+персональный компьютер, отличающийся от обычного специальными требованиями
+к физическим характеристикам аппаратных компонент</d:Attr>
+      </d:Entry>
+      <d:Entry id="PRI">
+         <d:Attr id="abbr">PRI</d:Attr>
+         <d:Attr id="decod">ISDN
+Primary Rate Interface (30B+D). Цифровая линия, применяемая в сетях
+ISDN, основана на E1. При этом 30 каналов E1 используются как 30
+B-каналов (64 Кбит/c каждый, см. «B-канал»), а все вспомогательные
+каналы объединяются в один общий D-канал (тоже 64 Кбит/с)</d:Attr>
+      </d:Entry>
+      <d:Entry id="RS-232">
+         <d:Attr id="abbr">RS-232</d:Attr>
+         <d:Attr id="decod">Стандарт,
+используемый для подключения внешних периферийных устройств (принтеров,
+модемов и т. д.) к последовательному порту компьютера, или для соединения
+двух компьютеров между собой. Скорость передачи данных по RS-232 невелика
+– до 200 Кбит/c (зависит от длины кабеля и способа передачи). Стандарт описывает
+как электрические параметры соединения, так и механические (форму разъёма,
+число контактов и т. д.)</d:Attr>
+      </d:Entry>
+      <d:Entry id="SDF">
+         <d:Attr id="abbr">SDF</d:Attr>
+         <d:Attr id="decod">Semicolon-Delimited
+Format. Формат представления последовательностей значений, в котором
+элементы последовательности отделяются друг от друга символом «точка
+с запятой» (;)</d:Attr>
+      </d:Entry>
+      <d:Entry id="SS7">
+         <d:Attr id="abbr">SS7</d:Attr>
+         <d:Attr id="decod">Signaling
+System 7 (ОКС №7). Стандарт, основанный на рекомендациях ITU-T (серии I.7xx,
+I.12xx), охватывающий различные аспекты построения глобальной сети
+ISDN, сотовых сетей, интеллектуальных сетей и т. д. на основе единой
+инфраструктуры</d:Attr>
+      </d:Entry>
+      <d:Entry id="TCPIP">
+         <d:Attr id="abbr">TCP/IP</d:Attr>
+         <d:Attr id="decod">Семейство
+протоколов связи, применяемых в Интернет и в локальных сетях передачи данных,
+основанных на базовом протоколе IP</d:Attr>
+      </d:Entry>
+      <d:Entry id="X.25">
+         <d:Attr id="abbr">X.25</d:Attr>
+         <d:Attr id="decod">Абонентский
+протокол, используемый в некоторых сетях передачи данных. Наряду
+с Q.931, является протоколом 3-го уровня в DSS-1, предоставляющим
+услуги по передаче данных на основе коммутации пакетов</d:Attr>
+      </d:Entry>
+      <d:Entry id="XML">
+         <d:Attr id="abbr">XML</d:Attr>
+         <d:Attr id="decod">eXtensible
+Markup Language. Расширяемый язык разметки. На текущий момент является наиболее
+распространенным языком структурированного представления информации</d:Attr>
+      </d:Entry>
+      <d:Entry id="АК">
+         <d:Attr id="abbr">АК</d:Attr>
+         <d:Attr id="decod">Абонентский
+комплект. Аппаратура для обслуживания абонентов</d:Attr>
+      </d:Entry>
+      <d:Entry id="АКТ">
+         <d:Attr id="abbr">АКТ</d:Attr>
+         <d:Attr id="decod">Абонентский
+комплект таксофонный. Аппаратура для обслуживания таксофонов</d:Attr>
+      </d:Entry>
+      <d:Entry id="АЛ">
+         <d:Attr id="abbr">АЛ</d:Attr>
+         <d:Attr id="decod">Абонентская
+линия. Телефонная линия, соединяющая абонентское устройство и АТС</d:Attr>
+      </d:Entry>
+      <d:Entry id="АОН">
+         <d:Attr id="abbr">АОН</d:Attr>
+         <d:Attr id="decod">Автоматическое
+определение номера. Протокол связи, предназначенный для получения номера
+вызывающего абонента</d:Attr>
+      </d:Entry>
+      <d:Entry id="АТ">
+         <d:Attr id="abbr">АТ</d:Attr>
+         <d:Attr id="decod">Абонентский
+терминал. Оконечный узел телефонной сети: телефон, факс, модем, домофон
+или аппаратура мини-АТС для связи с ТфОП через внешнюю линию по абонентскому
+протоколу</d:Attr>
+      </d:Entry>
+      <d:Entry id="АТС">
+         <d:Attr id="abbr">АТС</d:Attr>
+         <d:Attr id="decod">Автоматическая
+телефонная станция. С исчезновением ручной коммутации все телефонные
+станции по сути автоматические</d:Attr>
+      </d:Entry>
+      <d:Entry id="БАЛ">
+         <d:Attr id="abbr">БАЛ</d:Attr>
+         <d:Attr id="decod">Блок
+абонентских линий</d:Attr>
+      </d:Entry>
+      <d:Entry id="БД">
+         <d:Attr id="abbr">БД</d:Attr>
+         <d:Attr id="decod">База
+данных</d:Attr>
+      </d:Entry>
+      <d:Entry id="ВК">
+         <d:Attr id="abbr">ВК</d:Attr>
+         <d:Attr id="decod">Временной
+канал. Промежуток времени, выделяемый каждому каналу при их передаче по
+одной линии с разделением времени</d:Attr>
+      </d:Entry>
+      <d:Entry id="ВС">
+         <d:Attr id="abbr">ВС</d:Attr>
+         <d:Attr id="decod">Внутристанционное
+соединение</d:Attr>
+      </d:Entry>
+      <d:Entry id="ДВО">
+         <d:Attr id="abbr">ДВО</d:Attr>
+         <d:Attr id="decod">Допольнительные
+виды обслуживания. Сервисные услуги, предоставляемые абонентам АТС
+помимо основной – доступа к ТфОП. Это могут быть такие услуги, как
+будильник, конференц-связь, передача АОН и т.п.</d:Attr>
+      </d:Entry>
+      <d:Entry id="ЗВС">
+         <d:Attr id="abbr">ЗВС</d:Attr>
+         <d:Attr id="decod">Запрет
+входящей связи. Вид ДВО</d:Attr>
+      </d:Entry>
+      <d:Entry id="ЗИС">
+         <d:Attr id="abbr">ЗИС</d:Attr>
+         <d:Attr id="decod">Запрет
+исходящей связи. Вид ДВО</d:Attr>
+      </d:Entry>
+      <d:Entry id="ИКМ-15">
+         <d:Attr id="abbr">ИКМ-15</d:Attr>
+         <d:Attr id="decod">Импульсно-кодовая модуляция по 15 каналам. Стандарт
+цифровых линий, аналогичный E1, но поддерживающий передачу только
+15 голосовых каналов (64 Кбит/с каждый) и по 2 вспомогательных (0,5
+Кбит/c) на каждый голосовой. Применяется в российских сельских сетях,
+где низкая плотность телефонизации делает нерентабельным применение
+E1</d:Attr>
+      </d:Entry>
+      <d:Entry id="ИКМ-30">
+         <d:Attr id="abbr">ИКМ-30</d:Attr>
+         <d:Attr id="decod">«Импульсно-кодовая модуляция по 30 каналам». Название
+цифровых линий E1, принятое у российских связистов</d:Attr>
+      </d:Entry>
+      <d:Entry id="КЗ">
+         <d:Attr id="abbr">КЗ</d:Attr>
+         <d:Attr id="decod">Короткое
+замыкание</d:Attr>
+      </d:Entry>
+      <d:Entry id="КП">
+         <d:Attr id="abbr">КП</d:Attr>
+         <d:Attr id="decod">Коммутационное
+поле</d:Attr>
+      </d:Entry>
+      <d:Entry id="МГ">
+         <d:Attr id="abbr">МГ</d:Attr>
+         <d:Attr id="decod">Междугороднее
+соединение</d:Attr>
+      </d:Entry>
+      <d:Entry id="МН">
+         <d:Attr id="abbr">МН</d:Attr>
+         <d:Attr id="decod">Международное
+соединение</d:Attr>
+      </d:Entry>
+      <d:Entry id="МС">
+         <d:Attr id="abbr">МС</d:Attr>
+         <d:Attr id="decod">Межстанционное
+соединение</d:Attr>
+      </d:Entry>
+      <d:Entry id="МТ">
+         <d:Attr id="abbr">МТ</d:Attr>
+         <d:Attr id="decod">Межстоечное
+соединение</d:Attr>
+      </d:Entry>
+      <d:Entry id="МЧП">
+         <d:Attr id="abbr">МЧП</d:Attr>
+         <d:Attr id="decod">Мультичастотный
+приемник. Оборудование для анализа частотного спектра сигнала</d:Attr>
+      </d:Entry>
+      <d:Entry id="ОВУ">
+         <d:Attr id="abbr">ОВУ</d:Attr>
+         <d:Attr id="decod">Отмена
+всех услуг ДВО</d:Attr>
+      </d:Entry>
+      <d:Entry id="ОКС7">
+         <d:Attr id="abbr">ОКС7</d:Attr>
+         <d:Attr id="decod">Общеканальная
+система сигнализации номер 7. Российская версия международного стандарта
+SS7</d:Attr>
+      </d:Entry>
+      <d:Entry id="ООВ">
+         <d:Attr id="abbr">ООВ</d:Attr>
+         <d:Attr id="decod">Ожидание
+с обратным вызовом. Вид ДВО</d:Attr>
+      </d:Entry>
+      <d:Entry id="ОС1">
+         <d:Attr id="abbr">ОС</d:Attr>
+         <d:Attr id="decod">Операционная
+система</d:Attr>
+      </d:Entry>
+      <d:Entry id="ОС2">
+         <d:Attr id="abbr">ОС</d:Attr>
+         <d:Attr id="decod">Ответ
+станции (акустический сигнал)</d:Attr>
+      </d:Entry>
+      <d:Entry id="ПК">
+         <d:Attr id="abbr">ПК</d:Attr>
+         <d:Attr id="decod">Персональный
+компьютер</d:Attr>
+      </d:Entry>
+      <d:Entry id="ПО">
+         <d:Attr id="abbr">ПО</d:Attr>
+         <d:Attr id="decod">Программное
+обеспечение</d:Attr>
+      </d:Entry>
+      <d:Entry id="РВВ">
+         <d:Attr id="abbr">РВВ</d:Attr>
+         <d:Attr id="decod">Регистрация
+входящих вызовов. Вид ДВО</d:Attr>
+      </d:Entry>
+      <d:Entry id="РМО">
+         <d:Attr id="abbr">РМО</d:Attr>
+         <d:Attr id="decod">Рабочее
+место оператора</d:Attr>
+      </d:Entry>
+      <d:Entry id="СБ">
+         <d:Attr id="abbr">СБ</d:Attr>
+         <d:Attr id="decod">Спецслужбы
+бесплатные</d:Attr>
+      </d:Entry>
+      <d:Entry id="СГ">
+         <d:Attr id="abbr">СГ</d:Attr>
+         <d:Attr id="decod">Спецслужбы
+междугородние</d:Attr>
+      </d:Entry>
+      <d:Entry id="СК">
+         <d:Attr id="abbr">СК</d:Attr>
+         <d:Attr id="decod">Секционный
+контроллер</d:Attr>
+      </d:Entry>
+      <d:Entry id="СЛ">
+         <d:Attr id="abbr">СЛ</d:Attr>
+         <d:Attr id="decod">Соединительная
+линия. Линия, соединяющая АТС между собой</d:Attr>
+      </d:Entry>
+      <d:Entry id="СН">
+         <d:Attr id="abbr">СН</d:Attr>
+         <d:Attr id="decod">Спецслужбы
+международны</d:Attr>
+      </d:Entry>
+      <d:Entry id="СОРМ">
+         <d:Attr id="abbr">СОРМ</d:Attr>
+         <d:Attr id="decod">Система
+оперативно-розыскных мероприятий</d:Attr>
+      </d:Entry>
+      <d:Entry id="СП">
+         <d:Attr id="abbr">СП</d:Attr>
+         <d:Attr id="decod">Спецслужбы
+платны</d:Attr>
+      </d:Entry>
+      <d:Entry id="СУВ">
+         <d:Attr id="abbr">СУВ</d:Attr>
+         <d:Attr id="decod">Управляющие
+каналы цифрового тракта ИКМ-30</d:Attr>
+      </d:Entry>
+      <d:Entry id="СЭ">
+         <d:Attr id="abbr">СЭ</d:Attr>
+         <d:Attr id="decod">Спецслужбы
+экстренны</d:Attr>
+      </d:Entry>
+      <d:Entry id="ТАС">
+         <d:Attr id="abbr">ТАС</d:Attr>
+         <d:Attr id="decod">Табло
+аварийной сигнализации</d:Attr>
+      </d:Entry>
+      <d:Entry id="ТфОП">
+         <d:Attr id="abbr">ТфОП</d:Attr>
+         <d:Attr id="decod">Телефонная
+сеть общего пользования. Общедоступная телефонная сеть</d:Attr>
+      </d:Entry>
+      <d:Entry id="ТЭЗ">
+         <d:Attr id="abbr">ТЭЗ</d:Attr>
+         <d:Attr id="decod">Типовой
+элемент замены</d:Attr>
+      </d:Entry>
+      <d:Entry id="ФПО">
+         <d:Attr id="abbr">ФПО</d:Attr>
+         <d:Attr id="decod">Функциональное
+программное обеспечение</d:Attr>
+      </d:Entry>
+      <d:Entry id="ЦТО">
+         <d:Attr id="abbr">ЦТО</d:Attr>
+         <d:Attr id="decod">Централизованное
+техническое обслуживание. Центр технического обслуживания</d:Attr>
+      </d:Entry>
+      <d:Entry id="ЧНН">
+         <d:Attr id="abbr">ЧНН</d:Attr>
+         <d:Attr id="decod">Часы
+наибольшей нагрузки</d:Attr>
+      </d:Entry>
+      <d:Entry id="ЭАТС">
+         <d:Attr id="abbr">ЭАТС</d:Attr>
+         <d:Attr id="decod">Электронная
+АТС (Цифровая АТС). АТС на основе цифровой электронной аппаратуры</d:Attr>
+      </d:Entry>
+      <d:Entry id="dedline">
+         <d:Attr id="abbr">выделенная линия</d:Attr>
+         <d:Attr id="decod">Соединительная линия, зарезервированная для специальных
+целей и не используемая для обслуживания обычных вызовов</d:Attr>
+      </d:Entry>
+      <d:Entry id="glyphs">
+         <d:Attr id="abbr">глифы</d:Attr>
+         <d:Attr id="decod">Графические
+символы</d:Attr>
+      </d:Entry>
+      <d:Entry id="structadd">
+         <d:Attr id="abbr">конструктивный адрес</d:Attr>
+         <d:Attr id="decod">Набор чисел, разделенных точками, позволяющих однозначно
+идентифицировать элемент оборудования. Обычно в адресе используется
+не более 4 компонент: адрес статива, адрес кассеты, адрес платы,
+адрес комплекта</d:Attr>
+      </d:Entry>
+      <d:Entry id="config">
+         <d:Attr id="abbr">конфиг</d:Attr>
+         <d:Attr id="decod">Совокупность
+статических данных всех программных объектов модуля</d:Attr>
+      </d:Entry>
+      <d:Entry id="industline">
+         <d:Attr id="abbr">промлиния</d:Attr>
+         <d:Attr id="decod">Линия, используемая для соединения модулей станции
+между собой</d:Attr>
+      </d:Entry>
+      <d:Entry id="promchan">
+         <d:Attr id="abbr">промтракт</d:Attr>
+         <d:Attr id="decod">Тракт, состоящий из промлиний</d:Attr>
+      </d:Entry>
+      <d:Entry id="settype">
+         <d:Attr id="abbr">тип набора номера</d:Attr>
+         <d:Attr id="decod">Импульсный или тоновый (DTMF)</d:Attr>
+      </d:Entry>
+      <d:Entry id="three-wire">
+         <d:Attr id="abbr">трехпроводная (сигнализация)</d:Attr>
+         <d:Attr id="decod">Устаревший межстанционный протокол связи по аналоговым
+трехпроводным соединительным линиям, применяемый в России для связи
+декадно-шаговых, а также координатных АТС между собой. Дополнительный
+3-й провод вместе с заземлением используется в качестве управляющего
+канала</d:Attr>
+      </d:Entry>
+      <d:Entry id="loopsign">
+         <d:Attr id="abbr">шлейфная (сигнализация)</d:Attr>
+         <d:Attr id="decod">Способ организации управляющего канала с помощью
+передачи постоянного тока по двум проводам (шлейфу)</d:Attr>
+      </d:Entry>
+   </d:Directory>
+   <d:DirTemplate id="term" directoryid="terms">
+      <d:AttrRef attrid="abbr"/>
+-
+<d:AttrRef attrid="decod"/>
+   </d:DirTemplate>
+</d:DocumentationCore>

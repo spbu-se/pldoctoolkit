@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns:d="http://math.spbu.ru/drl" productid="complete"
+                        filename="UserManual_complete.drl">
+   <d:FinalInfProduct id="UserManual_complete" infproductid="UserManual">
+      <d:Adapter infelemrefid="ref_implementation_specification"/>
+      <d:Adapter infelemrefid="ref_users_problem_description"/>
+      <d:Adapter infelemrefid="ref_rate_CTO"/>
+      <d:Adapter infelemrefid="ref_script_language"/>
+      <d:Adapter infelemrefid="ref_visual_library">
+         <d:Insert-After nestid="current">
+            <row>
+               <entry>IScriptListBoxItem * CurrentItem</entry>
+               <entry>Выбранный элемент списка</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="sorted">
+            <row>
+               <entry>VARIANT_BOOL Sorted</entry>
+               <entry>
+                  <xref linkend="XML" role="Undefined Cross-Reference"/>Флаг, показывающий будет ли производится сортировка элементов по
+имени. Соответствует -атрибуту sorted. Значение по умолчанию false</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="checked">
+            <row>
+               <entry>VARIANT_BOOL Checked</entry>
+               <entry>
+                  <xref linkend="XML" role="Undefined Cross-Reference"/>Показывает, выбрана альтернатива или нет. Соответствует -атрибуту checked</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="controls">
+            <row>
+               <entry>IScriptControls *Controls</entry>
+               <entry>(read-only)</entry>
+               <entry>
+                  <xref linkend="XML" role="Undefined Cross-Reference"/>Коллекция альтернатив. Содержит элементы типа IScriptRadioButtonOfGroup.
+В  соответствует вложенному
+элементу controls</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="caption3">
+            <row>
+               <entry>BSTR Caption</entry>
+               <entry>
+                  <xref linkend="XML" role="Undefined Cross-Reference"/>Надпись на компоненте. Соответствует -атрибуту caption</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="caption">
+            <row>
+               <entry>BSTR Caption</entry>
+               <entry>
+                  <xref linkend="XML" role="Undefined Cross-Reference"/>Надпись на компоненте. Соответствует -атрибуту caption</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="cange">
+            <row>
+               <entry>onCange</entry>
+               <entry>Вызывается при изменении содержимого поля ввода. Параметры в
+это событие передаются с помощью интерфейса IScriptEventParams</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="dblclick">
+            <row>
+               <entry>onDblClick</entry>
+               <entry>Событие, показывающее, что пользователь дважды щелкнул мышью
+по компоненте. Параметры в это событие передаются с помощью интерфейса
+IScriptEventParams</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="click">
+            <row>
+               <entry>onClick</entry>
+               <entry>Событие, показывающее, что пользователь щелкнул мышью
+по компоненте. Параметры в это событие передаются с помощью интерфейса
+IScriptEventParams</entry>
+            </row>
+            <row>
+               <entry>onContextPopup</entry>
+               <entry>Показывает, что пользователь вывел контекстное
+меню для этого компонента. Параметры в это событие передаются с помощью интерфейса
+IScriptContextPopupEventParams</entry>
+            </row>
+            <row>
+               <entry>onEnter</entry>
+               <entry>Показывает, что компонента получила фокус ввода. Параметры в
+это событие передаются с помощью интерфейса IScriptEventParams</entry>
+            </row>
+            <row>
+               <entry>onExit</entry>
+               <entry>Показывает, что компонента потеряла фокус ввода. Параметры в
+это событие передаются с помощью интерфейса IScriptEventParams</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="key">
+            <row>
+               <entry>onKeyDown</entry>
+               <entry>Показывает, что пользователь зажал кнопку на клавиатуре. Параметры в
+это событие передаются с помощью интерфейса IScriptKeyEventParams</entry>
+            </row>
+            <row>
+               <entry>onKeyPress</entry>
+               <entry>Показывает, что пользователь нажал и отпустил кнопку
+на клавиатуре. Параметры в это событие передаются с помощью интерфейса
+IScriptKeyPressEventParams</entry>
+            </row>
+            <row>
+               <entry>onKeyUp</entry>
+               <entry>Показывает, что пользователь отпустил кнопку
+на клавиатуре. Параметры в это событие передаются с помощью интерфейса
+IScriptKeyEventParams</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="mouse">
+            <row>
+               <entry>onMouseDown</entry>
+               <entry>Показывает, что пользователь нажал кнопку мыши. Параметры в
+это событие передаются с помощью интерфейса IScriptMouseMoveEventParams</entry>
+            </row>
+            <row>
+               <entry>onMouseMove</entry>
+               <entry>Показывает, что пользователь двигает мышь над компонентой. Параметры в
+это событие передаются с помощью интерфейса IScriptMouseMoveEventParams</entry>
+            </row>
+            <row>
+               <entry>onMouseUp</entry>
+               <entry>Показывает, что пользователь отпустил кнопку мыши. Параметры в
+это событие передаются с помощью интерфейса IScriptMouseMoveEventParams</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="alt">
+            <row>
+               <entry>VARIANT_BOOL Alt</entry>
+               <entry>(read-only)</entry>
+               <entry>
+                  <command moreinfo="none">Alt</command>Флаг, показывающий, была ли зажата клавиша Alt</entry>
+            </row>
+            <row>
+               <entry>VARIANT_BOOL Shift</entry>
+               <entry>(read-only)</entry>
+               <entry>
+                  <command moreinfo="none">Shift</command>Флаг, показывающий, была ли зажата клавиша Shift</entry>
+            </row>
+            <row>
+               <entry>VARIANT_BOOL Ctrl</entry>
+               <entry>(read-only)</entry>
+               <entry>Флаг, показывающий, была ли зажата клавиша Ctrl</entry>
+            </row>
+            <row>
+               <entry>VARIANT_BOOL Left</entry>
+               <entry>(read-only)</entry>
+               <entry>Флаг, показывающий, была ли зажата левая кнопка мыши</entry>
+            </row>
+            <row>
+               <entry>VARIANT_BOOL Right</entry>
+               <entry>(read-only)</entry>
+               <entry>Флаг, показывающий, была ли зажата правая кнопка мыши</entry>
+            </row>
+            <row>
+               <entry>VARIANT_BOOL Middle</entry>
+               <entry>(read-only)</entry>
+               <entry>Флаг, показывающий, была ли зажата средняя кнопка мыши</entry>
+            </row>
+            <row>
+               <entry>VARIANT_BOOL Double</entry>
+               <entry>(read-only)</entry>
+               <entry>Флаг, показывающий, был ли осуществлен двойной щелчок</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="long">
+            <row>
+               <entry>LONG X</entry>
+               <entry>(read-only)</entry>
+               <entry>Горизонтальная координата мыши</entry>
+            </row>
+            <row>
+               <entry>LONG Y</entry>
+               <entry>(read-only)</entry>
+               <entry>Вертикальная координата мыши</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="pos">
+            <row>
+               <entry>LONG MousePosX</entry>
+               <entry>(read-only)</entry>
+               <entry>Горизонтальная координата мыши</entry>
+            </row>
+            <row>
+               <entry>LONG MousePosY</entry>
+               <entry>(read-only)</entry>
+               <entry>Вертикальная координата мыши</entry>
+            </row>
+            <row>
+               <entry>VARIANT_BOOL Handled</entry>
+               <entry>(read-only)</entry>
+               <entry>Флаг, показывающий, было ли событие уже обработано каким-либо обработчиком</entry>
+            </row>
+         </d:Insert-After>
+      </d:Adapter>
+      <d:Adapter infelemrefid="ref_fails"/>
+      <d:Adapter infelemrefid="ref_example_trasses"/>
+      <d:Adapter infelemrefid="ref_join_in_applications"/>
+      <d:Adapter infelemrefid="ref_join_in_sysappl"/>
+      <d:Adapter infelemrefid="ref_join_in_embsoft">
+         <d:Insert-After nestid="vid">
+            <informaltable xmlns="http://docbook.org/ns/docbook" frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="0.984in"/>
+                  <colspec colnum="2" colname="2" colwidth="0.984in"/>
+                  <thead>
+                     <row rowsep="1">
+                        <entry colname="1">                     </entry>
+                        <entry colname="2"/>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">Элемент меню                   </entry>
+                        <entry colname="2">Описание</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">                                          
+                                  </entry>
+                        <entry colname="2"/>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                          
+   Отменить последнюю операцию                                 
+        </entry>
+                        <entry colname="2">Отменить</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                          
+   Перемещает выделенное в буфер обмена                        
+                 </entry>
+                        <entry colname="2">Вырезать</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                          
+   Копирует выделенное в буфер обмена                          
+               </entry>
+                        <entry colname="2">Копировать</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                          
+   Вставляет содержимое буфера обмена                          
+               </entry>
+                        <entry colname="2">Вставить</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                          
+   Удаляет выделенное                                          </entry>
+                        <entry colname="2">Удалить</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">                                          
+   Выделяет все содержимое                                     
+                   </entry>
+                        <entry colname="2">Выделить все</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </d:Insert-After>
+         <d:Insert-After nestid="script"/>
+      </d:Adapter>
+      <d:Adapter infelemrefid="ref_join_in_monitoring"/>
+      <d:Adapter infelemrefid="ref_review_sp">
+         <d:Insert-After nestid="change_characteristic">
+            <para xmlns="http://docbook.org/ns/docbook">
+               <command moreinfo="none">Изменение характеристик
+абонента производится из приложения Конфигуратор.</command>
+            </para>
+         </d:Insert-After>
+         <d:Replace-Nest nestid="cordway_activ_trass">
+            <listitem>
+               <para>активизировать
+для текущего абонента средства управления статистикой, тарификацией и
+тестированием</para>
+            </listitem>
+            <listitem>
+               <para>активизировать для
+модуля, в котором находится данный абонент, средства просмотра трассы</para>
+            </listitem>
+            <listitem>
+               <para>выполнять «проход по шнуру»</para>
+            </listitem>
+         </d:Replace-Nest>
+      </d:Adapter>
+      <d:Adapter infelemrefid="ref_main_window_sp">
+         <d:Insert-After nestid="alarm_clock">
+            <row>
+               <entry>Флажок активации будильника</entry>
+            </row>
+            <row>
+               <entry>Будильник</entry>
+               <entry>
+                  <xref linkend="ДВО" role="Undefined Cross-Reference"/>Время на которое заказан  «Будильник»</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="alarm_clock_a">
+            <row>
+               <entry>Будильник</entry>
+               <entry>Автопобудка</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="appl_from_com">
+            <para xmlns="http://docbook.org/ns/docbook">
+               <command moreinfo="none">Приложения
+РМО, запускаемые из меню Команды</command>
+            </para>
+            <informaltable xmlns="http://docbook.org/ns/docbook" frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="0.984in"/>
+                  <colspec colnum="2" colname="2" colwidth="0.984in"/>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">                                          
+    </entry>
+                        <entry colname="2"/>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                      Нажмите эту
+кнопку, если вы хотите посмотреть последовательное проключение (цепочку)
+в поле начиная с текущего абонента                             
+    </entry>
+                        <entry colname="2">Пройти по шнуру</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                      Вызывается приложение,
+с помощью которого можно проключить тракт-канал этого абонента в необходимый
+тракт-канал                                  </entry>
+                        <entry colname="2">Проключить</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                      Нажатием этой кнопки активизируется панель теста абонентской
+линии, которая предназначена для измерения параметров линии    
+                             </entry>
+                        <entry colname="2">Тест <xref linkend="АК" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">                                      Вызывается приложение,
+с помощью которого можно посмотреть трассу модуля, в котором находится данный абонент
+                                            </entry>
+                        <entry colname="2">Трасса</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para xmlns="http://docbook.org/ns/docbook">При запуске любого из
+первых 3-х перечисленных приложений производится автофокусировка
+на текущего абонента. Причем, так же имеется и обратная возможность активизации
+абонентской панели из указанных панелей. Более подробную информацию об
+этой возможности читайте в разделах описания соответствующих приложений.</para>
+         </d:Insert-After>
+      </d:Adapter>
+      <d:Adapter infelemrefid="ref_standart_tasks_sp">
+         <d:Insert-After nestid="z7_inclus_trass">
+            <section xmlns="http://docbook.org/ns/docbook">
+               <title id="zad_7" xreflabel="Задача 7. Включение трассировки абонентов">Задача
+7. Включение трассировки абонентов</title>
+               <itemizedlist>
+                  <listitem>
+                     <para>
+                        <emphasis>Шаг 7a)</emphasis> Выберите в списке <emphasis>Номер</emphasis> требуемого
+абонента</para>
+                  </listitem>
+                  <listitem>
+                     <para>
+                        <emphasis>Шаг 7b)</emphasis> Нажмите кнопку <emphasis>Заблокировать</emphasis>
+                     </para>
+                  </listitem>
+                  <listitem>
+                     <para>
+                        <emphasis>Шаг 7c)</emphasis> Включите флаг <emphasis>Признак
+трассировки</emphasis>
+                     </para>
+                  </listitem>
+                  <listitem>
+                     <para>
+                        <emphasis>Шаг 7d)</emphasis> Нажмите кнопку <emphasis>Записать</emphasis>
+                     </para>
+                  </listitem>
+                  <listitem>
+                     <para>
+                        <emphasis>Шаг 7e)</emphasis> Нажмите кнопку <emphasis>Разблокировать</emphasis>
+                     </para>
+                  </listitem>
+               </itemizedlist>
+               <important>
+                  <para>
+                     <emphasis>Замечание:</emphasis> Выключение трассировки
+выполняется аналогично, но на шаге 4 следует выключить флаг <emphasis>Признак
+трассировки</emphasis>.</para>
+               </important>
+            </section>
+         </d:Insert-After>
+      </d:Adapter>
+      <d:Adapter infelemrefid="ref_review_b">
+         <d:Insert-After nestid="occupy_channel_ftesting">
+            <listitem xmlns="http://docbook.org/ns/docbook">
+               <para>захватывать канал
+для тестирования</para>
+            </listitem>
+         </d:Insert-After>
+      </d:Adapter>
+      <d:Adapter infelemrefid="ref_main_window_b">
+         <d:Insert-After nestid="switching_on_trace">
+            <para xmlns="http://docbook.org/ns/docbook" id="zad_1"
+                  xreflabel="Задача 1. Включение трассировки каналов">
+               <command moreinfo="none">Задача 1. Включение
+трассировки каналов</command>
+            </para>
+            <itemizedlist xmlns="http://docbook.org/ns/docbook">
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1a)</emphasis> Запустите приложение <emphasis>Соединительные
+линии</emphasis> (см. разд. «<xref linkend="tri_tri_tri" role="Undefined Cross-Reference"/>»)</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1b)</emphasis> Нажмите кнопку <emphasis>Состояние
+тракта</emphasis>, появиться окно <emphasis>Состояние трактов/канальных
+групп</emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1c)</emphasis> Выберите в списке в
+верхней части окна нужный тракт, после чего в нижней части окна
+появиться список существующих каналов</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1d)</emphasis> Выберите в списке в
+нижней части окна нужный канал или группу каналов</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1e)</emphasis> Во всплывающем меню
+выберите пункты <emphasis>Включить трассу объекта(ов) ЗОВСл</emphasis> и <emphasis>Включить
+трассу объекта(ов) сигнализации</emphasis>
+                  </para>
+               </listitem>
+            </itemizedlist>
+            <tip xmlns="http://docbook.org/ns/docbook">
+               <para>Замечание: Выключение
+трассировки выполняется аналогично, но на шаге 5 следует выбрать
+пункт <emphasis>Выключить трассу объекта(ов) ЗОВСл</emphasis> и <emphasis>сигнализации</emphasis> соответственно.</para>
+            </tip>
+         </d:Insert-After>
+      </d:Adapter>
+      <d:Adapter infelemrefid="ref_state_sections_b">
+         <d:Insert-After nestid="attention_operation">
+            <tip xmlns="http://docbook.org/ns/docbook">
+               <para>Внимание! Некоторые
+операции над трактами и каналами могут быть реализованы скриптами.
+Описание таких команд находится в разделе справки Скрипты и тесты
+(см. разд. «<xref linkend="tri_4_4" role="Undefined Cross-Reference"/>»).</para>
+            </tip>
+         </d:Insert-After>
+         <d:Insert-After nestid="mov_info_section">
+            <para xmlns="http://docbook.org/ns/docbook">
+               <command moreinfo="none">Список всех
+возможных типов динамической информации о тракте</command>
+            </para>
+            <informaltable xmlns="http://docbook.org/ns/docbook" frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="0.984in"/>
+                  <colspec colnum="2" colname="2" colwidth="0.984in"/>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">                                          
+    </entry>
+                        <entry colname="2"/>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                      Наличие DL-соединения
+(см. «<xref linkend="DL-j" role="Undefined Cross-Reference"/>») <xref linkend="DSS-1" role="Undefined Cross-Reference"/>     
+                            </entry>
+                        <entry colname="2">Есть DL соед.</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                      Режим <xref linkend="DSS-1" role="Undefined Cross-Reference"/>     
+                            </entry>
+                        <entry colname="2">BRI/PRI</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                      Канал
+– номер B-канала (см. «<xref linkend="B-c" role="Undefined Cross-Reference"/>»), предназначенного для следующего
+вызова (<xref linkend="DSS-1" role="Undefined Cross-Reference"/>)
+                                 </entry>
+                        <entry colname="2">Тек. B</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">                                      Указатель на <xref linkend="CR" role="Undefined Cross-Reference"/>, предназначенную
+для назначения, равный численной величине <xref linkend="CR" role="Undefined Cross-Reference"/> (<xref linkend="DSS-1" role="Undefined Cross-Reference"/>)                      
+                      </entry>
+                        <entry colname="2">Тек. <xref linkend="CR" role="Undefined Cross-Reference"/>
+                        </entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </d:Insert-After>
+         <d:Insert-After nestid="operation_on_sections">
+            <para xmlns="http://docbook.org/ns/docbook">
+               <emphasis>Информация
+о тракте</emphasis>
+            </para>
+            <para xmlns="http://docbook.org/ns/docbook">
+               <command moreinfo="none">Список всех
+возможных операций над трактами</command>
+            </para>
+            <informaltable xmlns="http://docbook.org/ns/docbook" frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="0.984in"/>
+                  <colspec colnum="2" colname="2" colwidth="0.984in"/>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">                                          
+    </entry>
+                        <entry colname="2"/>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">                                      Послать команду "сброс" интерфейсу <xref linkend="DSS-1" role="Undefined Cross-Reference"/>     
+                                       </entry>
+                        <entry colname="2">Сбросить интерфейс</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </d:Insert-After>
+         <d:Insert-After nestid="mov_info_restart">
+            <row>
+               <entry>Рестарт</entry>
+               <entry>
+                  <xref linkend="DSS-1" role="Undefined Cross-Reference"/>Рестарт по каналу ()</entry>
+            </row>
+            <row>
+               <entry>П/п пр.</entry>
+               <entry>
+                  <xref linkend="DSS-1" role="Undefined Cross-Reference"/>Полупостоянное проключение ()</entry>
+            </row>
+            <row>
+               <entry>Блокир</entry>
+               <entry>
+                  <xref linkend="DSS-1" role="Undefined Cross-Reference"/>Канал заблокирован ()</entry>
+            </row>
+            <row>
+               <entry>Занят</entry>
+               <entry>
+                  <xref linkend="DSS-1" role="Undefined Cross-Reference"/>Канал занят ()</entry>
+            </row>
+            <row>
+               <entry>Инд.</entry>
+               <entry>
+                  <xref linkend="DSS-1" role="Undefined Cross-Reference"/>Индекс пары объектов, выделенных для обслуживания
+вызова ()</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="mov_info_flag">
+            <row>
+               <entry>ПриоИсх</entry>
+               <entry>
+                  <xref linkend="ОКС7" role="Undefined Cross-Reference"/>Флаг приоритета исходящей связи ()</entry>
+            </row>
+         </d:Insert-After>
+         <d:Insert-After nestid="operation_channel_15">
+            <row>
+               <entry>Установить каналу(ам) признак «Блокирован»</entry>
+               <entry>Для всех выделенных каналов</entry>
+            </row>
+            <row>
+               <entry>Сбросить каналу(ам) признак «Блокирован»</entry>
+               <entry>Для всех выделенных каналов</entry>
+            </row>
+         </d:Insert-After>
+      </d:Adapter>
+      <d:Adapter infelemrefid="ref_review_sm">
+         <d:Insert-After nestid="ordered_modules">
+            <para xmlns="http://docbook.org/ns/docbook">Приложение позволяет
+заказать модули, информация о состоянии которых будет загружаться
+из станции.</para>
+         </d:Insert-After>
+      </d:Adapter>
+      <d:Adapter infelemrefid="ref_main_window_sm">
+         <d:Replace-Nest nestid="main_win">
+            <title>Главное окно "Состояния
+абонентов"</title>
+            <para>Главное окно программы имеет следующий вид:</para>
+            <informalfigure float="0">
+               <graphic entityref="graphic1" width="4.708in" align="aleft"/>
+            </informalfigure>
+         </d:Replace-Nest>
+         <d:Replace-Nest nestid="refl">отображены</d:Replace-Nest>
+         <d:Replace-Nest nestid="mult">набор</d:Replace-Nest>
+         <d:Insert-After nestid="balk_20">
+            <informalfigure xmlns="http://docbook.org/ns/docbook" float="0">
+               <graphic entityref="graphic2" width="1.194in" align="aleft"/>
+            </informalfigure>
+         </d:Insert-After>
+         <d:Replace-Nest nestid="color">цвет квадратика</d:Replace-Nest>
+         <d:Insert-After nestid="color_info"/>
+         <d:Insert-After nestid="color_name">
+            <para xmlns="http://docbook.org/ns/docbook">
+               <command moreinfo="none">Цвет заголовка
+названия модуля соответствует состоянию модуля :</command>
+            </para>
+            <informaltable xmlns="http://docbook.org/ns/docbook" frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="0.984in"/>
+                  <colspec colnum="2" colname="2" colwidth="0.984in"/>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">                                          
+    </entry>
+                        <entry colname="2"/>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                      информация
+о модуле еще не прочитана, это изначальное состояние           
+                      </entry>
+                        <entry colname="2">Серый</entry>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                      модуль активен
+                                 </entry>
+                        <entry colname="2">Зелёный</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">                                      модуль
+не ответил на запрос                                           
+ </entry>
+                        <entry colname="2">Красный</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+            <para xmlns="http://docbook.org/ns/docbook">
+               <command moreinfo="none">Цвет текста
+названия модуля соответсвтвует заказанности модуля :</command>
+            </para>
+            <informaltable xmlns="http://docbook.org/ns/docbook" frame="all" colsep="1" rowsep="1">
+               <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+                  <colspec colnum="1" colname="1" colwidth="0.984in"/>
+                  <colspec colnum="2" colname="2" colwidth="0.984in"/>
+                  <tbody>
+                     <row rowsep="1">
+                        <entry colname="1">                                          
+    </entry>
+                        <entry colname="2"/>
+                     </row>
+                     <row rowsep="1">
+                        <entry colname="1">                                      модуль заказан
+в списке опрашиваемых модулей                                  </entry>
+                        <entry colname="2">Черный</entry>
+                     </row>
+                     <row rowsep="0">
+                        <entry colname="1">                                      модуль
+не заказан в списке опрашиваемых модулей                       
+                     </entry>
+                        <entry colname="2">Белый</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </d:Insert-After>
+         <d:Insert-After nestid="win_legend">
+            <para xmlns="http://docbook.org/ns/docbook">
+               <emphasis>Окно "Легенда"</emphasis>
+            </para>
+         </d:Insert-After>
+         <d:Insert-After nestid="renew_ab">
+            <emphasis xmlns="http://docbook.org/ns/docbook">Обновить модуль</emphasis>
+         </d:Insert-After>
+         <d:Replace-Nest nestid="at_that">После нажатия на кнопку</d:Replace-Nest>
+         <d:Insert-After nestid="win_curstat">
+            <para xmlns="http://docbook.org/ns/docbook">
+               <emphasis>Окно "Текущая
+статистика по абонентским линиям"</emphasis>
+            </para>
+         </d:Insert-After>
+         <d:Replace-Nest nestid="for_it">просмотра</d:Replace-Nest>
+         <d:Replace-Nest nestid="whereupon">нажатие вызовет</d:Replace-Nest>
+         <d:Insert-After nestid="choise_module">
+            <para xmlns="http://docbook.org/ns/docbook">
+               <emphasis>Окно "Выбор
+модулей"</emphasis>
+            </para>
+            <para xmlns="http://docbook.org/ns/docbook">Пользователь имеет возможность
+сформировать список модулей, информация о состоянии которых будет
+загружаться из станции. Нажатие дополнительной секции кнопки <emphasis>Обновить</emphasis> ( <inlinegraphic entityref="inlinegraphic1" width="0.806in" align="aleft"/> )
+в верхней части окна и выбор пункта <emphasis>Модули</emphasis> вызовет
+появление окна «Выбор модулей»:</para>
+            <informalfigure xmlns="http://docbook.org/ns/docbook" float="0">
+               <graphic entityref="graphic3" width="7.306in" align="aleft"/>
+            </informalfigure>
+            <para xmlns="http://docbook.org/ns/docbook">Для заказа модулей,
+информация о состоянии которых будет загружаться из станции, неодходимо
+подвести указатель мыши к полю активации и нажать правую кнопку.
+Цвет текста названий модулей, отображённых в главном окне «Состояния
+абонентов», примет соответствующую окраску.</para>
+            <para xmlns="http://docbook.org/ns/docbook">В левом нижнем углу
+окна находится кнопка групповой операции <emphasis>Выбрать все</emphasis>(<emphasis>Очистить
+все</emphasis>), нажатие которой вызывает активацию(деактивацию)
+всех модулей списка «Опрашиваемые модули».</para>
+            <para xmlns="http://docbook.org/ns/docbook">Кнопки <emphasis>Обновить</emphasis> и <emphasis>Не
+Обновлять</emphasis> закрывают окно «Выбор модулей», обновляя и, соответственно,
+не обновляя состояния абонентов.</para>
+         </d:Insert-After>
+      </d:Adapter>
+      <d:Adapter infelemrefid="ref_sentence_15_sm"/>
+      <d:Adapter infelemrefid="ref_renewal_15_sm"/>
+      <d:Adapter infelemrefid="ref_identif_15_sm"/>
+      <d:Adapter infelemrefid="ref_menu_sm"/>
+   </d:FinalInfProduct>
+   <d:Dictionary id="main" name="main_dictionary">
+      <d:Entry id="productname">РМО 1.5</d:Entry>
+   </d:Dictionary>
+</d:ProductDocumentation>

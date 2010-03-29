@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductLine xmlns:d="http://math.spbu.ru/drl"
+               name="Электронная автоматическая телефонная станция Квант-Е-Сокол"
+               filename="ProductLine.drl">
+   <d:Product id="complete" name="РМО 1.5 полная версия">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</d:Product>
+   <d:Product id="based" name="РМО 1.5 базовая версия">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</d:Product>
+</d:ProductLine>

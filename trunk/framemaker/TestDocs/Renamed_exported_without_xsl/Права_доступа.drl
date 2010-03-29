@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DocumentationCore SYSTEM "file:///C:/Program%20Files/Adobe/FrameMaker8/structure/xml/docline/docline.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+
+<!ENTITY bkc1 SYSTEM "permissions.e01">
+<!NOTATION gif SYSTEM "">
+<!ENTITY graphic1 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-prava.gif" NDATA gif>
+<!ENTITY graphic2 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-izmenit-imja.gif" NDATA gif>
+<!ENTITY graphic3 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-smena-parolja.gif" NDATA gif>
+<!ENTITY graphic4 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/свойства-группы-(новая-груп.gif" NDATA gif>
+<!ENTITY graphic5 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-sovjstva-polzovatel.gif" NDATA gif>
+<!ENTITY graphic6 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/dobavit-polzovatelja.gif" NDATA gif>
+<!ENTITY graphic7 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-domeny.gif" NDATA gif>
+<!ENTITY graphic8 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-domen-2.gif" NDATA gif>
+<!ENTITY graphic9 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/klient-prava-polzovatelej.gif" NDATA gif>
+<?Fm Validation Off?>
+
+
+<!-- End Document Specific Declarations -->
+
+]>
+<DocumentationCore filename = "Права_доступа.drl">&bkc1;</DocumentationCore>

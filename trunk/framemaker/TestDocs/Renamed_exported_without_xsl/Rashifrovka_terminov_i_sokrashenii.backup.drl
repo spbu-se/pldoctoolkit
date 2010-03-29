@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DocumentationCore SYSTEM "file:///C:/Program%20Files/Adobe/FrameMaker8/structure/xml/docline/docline.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+<?Fm Validation Off?>
+
+
+<!ENTITY bkc1 SYSTEM "decoding.e01">
+<!ENTITY bkc2 SYSTEM "terms.e02">
+<!ENTITY bkc3 SYSTEM "term.e03">
+
+<!-- End Document Specific Declarations -->
+
+]>
+<DocumentationCore filename = "Rashifrovka_terminov_i_sokrashenii.drl">&bkc1;&bkc2;&bkc3;</DocumentationCore>

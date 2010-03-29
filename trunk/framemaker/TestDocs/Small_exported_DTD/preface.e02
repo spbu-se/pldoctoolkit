@@ -1,0 +1,14 @@
+<InfElement id = "preface" name = "Вступление">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<preface><title>&Vcy;&scy;&tcy;&iecy;&pcy;&lcy;&iecy;&ncy;&icy;&iecy;</title>
+<para>&Bcy;&lcy;&acy;&gcy;&ocy;&dcy;&acy;&rcy;&icy;&mcy; &zcy;&acy; &pcy;&rcy;&icy;&ocy;&bcy;&rcy;&iecy;&tcy;&iecy;&ncy;&icy;&iecy;<DictRef
+    dictid = "main" entryid = "productname"/>&excl;</para>
+<InfElemRef id = "ref_about_company" infelemid = "about_company"/></preface></InfElement>

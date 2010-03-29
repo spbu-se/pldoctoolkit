@@ -1,0 +1,27 @@
+<FinalInfProduct id = "UserManual_enterprise"
+    infproductid = "UserManual">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+
+<Adapter infelemrefid = "ref_antivirus">
+<Replace-Nest nestid = "extended_actions"><listitem><para>&pcy;&ocy;&mcy;&iecy;&shchcy;&iecy;&ncy;&icy;&iecy; &vcy; &kcy;&acy;&rcy;&acy;&ncy;&tcy;&icy;&ncy;</para></listitem><listitem>
+<para>&zcy;&acy;&pcy;&rcy;&ocy;&scy; &ocy; &pcy;&ocy;&mcy;&ocy;&shchcy;&icy; &ucy; &pcy;&rcy;&iecy;&dcy;&scy;&tcy;&acy;&vcy;&icy;&tcy;&iecy;&lcy;&yacy; &Icy;&ncy;&tcy;&iecy;&rcy;&Bcy;&iecy;&zcy; &vcy; &vcy;&acy;&shcy;&iecy;&jcy; &fcy;&icy;&rcy;&mcy;&iecy;</para></listitem></Replace-Nest></Adapter>
+<Adapter infelemrefid = "ref_firewall_config"></Adapter>
+<Adapter infelemrefid = "ref_antivirus_config"></Adapter>
+<Adapter infelemrefid = "ref_update_local"></Adapter>
+<Adapter infelemrefid = "ref_components_update">
+<Insert-After nestid = "av-update"><para>&Scy;&kcy;&ocy;&rcy;&iecy;&iecy; &vcy;&scy;&iecy;&gcy;&ocy; &vcy;&scy;&iecy; &ncy;&acy;&scy;&tcy;&rcy;&ocy;&jcy;&kcy;&icy; &ucy;&zhcy;&iecy; &pcy;&rcy;&ocy;&icy;&zcy;&vcy;&iecy;&dcy;&iecy;&ncy;&ycy; &Vcy;&acy;&shcy;&icy;&mcy; &scy;&icy;&scy;&tcy;&iecy;&mcy;&ncy;&ycy;&mcy; &acy;&dcy;&mcy;&icy;&ncy;&icy;&scy;&tcy;&rcy;&acy;&tcy;&ocy;&rcy;&ocy;&mcy;&period;</para></Insert-After>
+<Insert-After nestid = "as-update"><para>&Icy;&ncy;&tcy;&iecy;&rcy;&Bcy;&iecy;&zcy; &Kcy;&ocy;&rcy;&pcy;&ocy;&rcy;&acy;&tcy;&icy;&vcy;&ncy;&ycy;&jcy; &icy;&scy;&pcy;&ocy;&lcy;&softcy;&zcy;&ucy;&iecy;&tcy; &tscy;&iecy;&ncy;&tcy;&rcy;&acy;&lcy;&softcy;&ncy;&ycy;&jcy; &lcy;&ocy;&kcy;&acy;&lcy;&softcy;&ncy;&ycy;&jcy; &scy;&iecy;&rcy;&vcy;&iecy;&rcy; &dcy;&lcy;&yacy; &ocy;&bcy;&ncy;&acy;&rcy;&ucy;&zhcy;&iecy;&ncy;&icy;&yacy; &scy;&pcy;&acy;&mcy;&acy;&period; &Vcy; &ncy;&acy;&scy;&tcy;&rcy;&ocy;&jcy;&kcy;&acy;&khcy; &ncy;&iecy;&ocy;&bcy;&khcy;&ocy;&dcy;&icy;&mcy;&ocy; &ucy;&kcy;&acy;&zcy;&acy;&tcy;&softcy; &iecy;&gcy;&ocy; &acy;&dcy;&rcy;&iecy;&scy;&period; &Dcy;&lcy;&yacy; &pcy;&ocy;&lcy;&ucy;&chcy;&iecy;&ncy;&icy;&yacy; &acy;&dcy;&rcy;&iecy;&scy;&acy; &ocy;&bcy;&rcy;&acy;&tcy;&icy;&tcy;&iecy;&scy;&softcy; &scy; &scy;&icy;&scy;&tcy;&iecy;&mcy;&ncy;&ocy;&mcy;&ucy; &acy;&dcy;&mcy;&icy;&ncy;&icy;&scy;&tcy;&rcy;&acy;&tcy;&ocy;&rcy;&ucy;&period;</para></Insert-After></Adapter>
+<Adapter infelemrefid = "ref_antispam"></Adapter></FinalInfProduct>

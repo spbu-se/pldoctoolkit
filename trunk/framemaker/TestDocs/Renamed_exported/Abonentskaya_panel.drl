@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" filename="Abonentskaya_panel.drl">
+   <d:InfElement id="service_panel" name="Абонентская панель">
+
+
+
+
+
+
+
+
+
+      <section>
+         <title id="tri_tri_odin" xreflabel="3.3.1. Абонентская панель">3.3.1.
+Абонентская панель</title>
+         <d:InfElemRef id="ref_review_sp" infelemid="review_sp"/>
+         <d:InfElemRef id="ref_main_window_sp" infelemid="main_window_sp"/>
+         <d:InfElemRef id="ref_search_sp" infelemid="search_sp"/>
+         <d:InfElemRef id="ref_standart_tasks_sp" infelemid="standart_tasks_sp"/>
+      </section>
+   </d:InfElement>
+   <d:InfElement id="review_sp" name="Обзор">
+
+
+
+
+
+
+
+
+
+      <section>
+         <title>Обзор</title>
+         <para>Абонентская панель является средством для управления характеристиками
+абонента.</para>
+         <d:Nest id="change_characteristic"/>
+         <para>Приложение включает в себя удобные средства поиска абонента
+по индексу, конструктивному адресу (см. «<xref linkend="structadd" role="Undefined Cross-Reference"/>») и подключению в коммутационном
+поле.</para>
+         <para>Так же имеется ряд дополнительных возможностей позволяющих
+оператору осуществлять:</para>
+         <itemizedlist>
+            <listitem>
+               <para>быстрый поиск безотбойных абонентов</para>
+            </listitem>
+            <listitem>
+               <para>быстрый поиск заблокированных абонентов</para>
+            </listitem>
+            <listitem>
+               <para>быстрый поиск необслуживаемых абонентов</para>
+            </listitem>
+            <listitem>
+               <para>фильтрацию абонентов по его характеристикам</para>
+            </listitem>
+            <listitem>
+               <para>синхронизацию абонентских данных между станционной
+базой и<xref linkend="БД" role="Undefined Cross-Reference"/>
+                  <xref linkend="РМО" role="Undefined Cross-Reference"/>
+               </para>
+            </listitem>
+            <listitem>
+               <para>запуск CMM-скриптов из приложения с параметрами,
+характерными для выбранного абонента</para>
+            </listitem>
+            <d:Nest id="cordway_activ_trass">
+               <listitem>
+                  <para>активизировать
+для текущего абонента средства управления тарификацией</para>
+               </listitem>
+            </d:Nest>
+         </itemizedlist>
+      </section>
+   </d:InfElement>
+   <d:InfElement id="main_window_sp" name="Главное окно">
+
+
+
+
+
+
+
+
+
+      <section>
+         <title>Главное окно</title>
+         <para>Главное окно программы выглядит так:</para>
+         <informalfigure float="0">
+            <graphic entityref="graphic1" width="8.972in" align="aleft"/>
+         </informalfigure>
+         <para>Абонентская панель содержит следующую информацию об абоненте:</para>
+         <para>
+            <command moreinfo="none">Информация об абоненте, содержащаяся в абонентской
+панели</command>
+         </para>
+         <informaltable frame="all" colsep="1" rowsep="1">
+            <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+               <colspec colnum="1" colname="1" colwidth="0.984in"/>
+               <colspec colnum="2" colname="2" colwidth="0.984in"/>
+               <thead>
+                  <row rowsep="1">
+                     <entry colname="1">Информация</entry>
+                     <entry colname="2">Описание</entry>
+                  </row>
+               </thead>
+               <tbody>
+                  <row rowsep="1">
+                     <entry colname="1">Констр. адрес</entry>
+                     <entry colname="2">Конструктивный адрес (см. «<xref linkend="stradd" role="Undefined Cross-Reference"/>») оборудования, относящаяся
+к данному абоненту (стойка.этаж.тэз.комплект)</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Включ. в<xref linkend="КП" role="Undefined Cross-Reference"/>
+                     </entry>
+                     <entry colname="2">Подключение абонента в коммутационное поле (модуль.тракт.канал)</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Номер</entry>
+                     <entry colname="2">Станционный номер абонента</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Категория<xref linkend="АОН" role="Undefined Cross-Reference"/>
+                     </entry>
+                     <entry colname="2">Устанавливается в соответствии с РД ОГСТФС</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Тип<xref linkend="АТ" role="Undefined Cross-Reference"/>
+                     </entry>
+                     <entry colname="2">Тип телефона, устанавливается в соответствии
+с РД ОГСТФС</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Вид<xref linkend="АЛ" role="Undefined Cross-Reference"/>
+                     </entry>
+                     <entry colname="2">Вид абонентской линии</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Состояние абонента</entry>
+                     <entry colname="2"/>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Тип набора</entry>
+                     <entry colname="2">Бывает трех видов – см. таблицу « Типы наборов номера»</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Класс обслуживания</entry>
+                     <entry colname="2">На<xref linkend="АТС" role="Undefined Cross-Reference"/>используются только указанные в
+таблице « Виды классов обслуживания»</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Административные услуги (включаются оператором)</entry>
+                     <entry colname="2">см. таблицу « Административные услуги»</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Признак безотбойности</entry>
+                     <entry colname="2"/>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">
+                        <xref linkend="ДВО" role="Undefined Cross-Reference"/>
+                        <footnote>
+                           <para>
+                              <emphasis>Замечание</emphasis>:
+Рядом с<xref linkend="ДВО" role="Undefined Cross-Reference"/>
+                              <emphasis>Код-пароль</emphasis>и<emphasis>Конференцсвязь</emphasis>отсутствуют индикаторы.
+Это обусловлено тем, что<xref linkend="ДВО" role="Undefined Cross-Reference"/>
+                              <emphasis>Код-пароль</emphasis>–
+это операторское<xref linkend="ДВО" role="Undefined Cross-Reference"/>, пользователь не может его
+заказать или отменить, а<xref linkend="ДВО" role="Undefined Cross-Reference"/>
+                              <emphasis>Конференцсвязь</emphasis>не требует
+специальных действий для заказа.<xref linkend="ДВО" role="Undefined Cross-Reference"/>
+                              <emphasis>Код-пароль</emphasis>и<emphasis>Ввод/зам.
+к.-пароля</emphasis>могут быть разрешены или отменены только вместе.</para>
+                        </footnote>
+                     </entry>
+                     <entry colname="2">Список возможных<xref linkend="ДВО" role="Undefined Cross-Reference"/>, среди которых крестиком помечены разрешённые,
+а зелёным кружочком заказанные (текущие), расшифровка и принцип действия указаны
+в файле<xref linkend="ДВО" role="Undefined Cross-Reference"/>.doc.</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Код-пароль на<xref linkend="ДВО" role="Undefined Cross-Reference"/>
+                        <d:Nest id="alarm_clock"/>
+                     </entry>
+                     <entry colname="2">(если таковой имеется)</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Переадресат</entry>
+                     <entry colname="2">Номер телефона, на который осуществляется переадресация входящих вызовов, при заказанном соответствующем<xref linkend="ДВО" role="Undefined Cross-Reference"/>
+                     </entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Запрет ИС (адм./усл.)</entry>
+                     <entry colname="2">Запрет исходящей связи пользователем, среди которых крестиком помечены запрещённые,
+а зелёненьким кружочком помечены заказанные</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Контроль частоты потерь</entry>
+                     <entry colname="2">Согласно РД 45.051-99, для расчета установлены пороговые значения, см. таблицу
+« Пороговые значения контроля частоты потерь»</entry>
+                  </row>
+                  <row rowsep="0">
+                     <entry colname="1">Контроль кратковременных занятий</entry>
+                     <entry colname="2">Согласно РД 45.051-99</entry>
+                  </row>
+               </tbody>
+            </tgroup>
+         </informaltable>
+         <para>
+            <command moreinfo="none">Виды классов обслуживания</command>
+         </para>
+         <informaltable frame="all" colsep="1" rowsep="1">
+            <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+               <colspec colnum="1" colname="1" colwidth="0.984in"/>
+               <colspec colnum="2" colname="2" colwidth="0.984in"/>
+               <thead>
+                  <row rowsep="1">
+                     <entry colname="1">Вид</entry>
+                     <entry colname="2">Описание</entry>
+                  </row>
+               </thead>
+               <tbody>
+                  <row rowsep="1">
+                     <entry colname="1">Обычный</entry>
+                     <entry colname="2">Телефонный аппарат</entry>
+                  </row>
+                  <row rowsep="0">
+                     <entry colname="1">Захват<xref linkend="СЛ" role="Undefined Cross-Reference"/>
+                     </entry>
+                     <entry colname="2">Телефонный аппарат, с которого возможен «прозвон» конкретной<xref linkend="СЛ" role="Undefined Cross-Reference"/>
+                     </entry>
+                  </row>
+               </tbody>
+            </tgroup>
+         </informaltable>
+         <para>
+            <command moreinfo="none">Типы наборов номера</command>
+         </para>
+         <informaltable frame="all" colsep="1" rowsep="1">
+            <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+               <colspec colnum="1" colname="1" colwidth="0.984in"/>
+               <colspec colnum="2" colname="2" colwidth="0.984in"/>
+               <thead>
+                  <row rowsep="1">
+                     <entry colname="1">Тип</entry>
+                     <entry colname="2">Описание</entry>
+                  </row>
+               </thead>
+               <tbody>
+                  <row rowsep="1">
+                     <entry colname="1">Декадный</entry>
+                     <entry colname="2">Только декадный набор цифр</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Частотный</entry>
+                     <entry colname="2">Только частотный набор цифр</entry>
+                  </row>
+                  <row rowsep="0">
+                     <entry colname="1">Универсальный</entry>
+                     <entry colname="2">Может быть как декадный, так и частотный(устанавливается абонентом на
+ТА)</entry>
+                  </row>
+               </tbody>
+            </tgroup>
+         </informaltable>
+         <para>
+            <command moreinfo="none">Административные услуги</command>
+         </para>
+         <informaltable frame="all" colsep="1" rowsep="1">
+            <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+               <colspec colnum="1" colname="1" colwidth="0.984in"/>
+               <colspec colnum="2" colname="2" colwidth="0.984in"/>
+               <thead>
+                  <row rowsep="1">
+                     <entry colname="1">Услуга</entry>
+                     <entry colname="2">Описание</entry>
+                  </row>
+               </thead>
+               <tbody>
+                  <row rowsep="1">
+                     <entry colname="1">
+                        <xref linkend="АОН" role="Undefined Cross-Reference"/>
+                     </entry>
+                     <entry colname="2">выдача информации<xref linkend="АОН" role="Undefined Cross-Reference"/>в абонентскую линию</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Регистрация входящих вызовов</entry>
+                     <entry colname="2"/>
+                  </row>
+                  <row rowsep="0">
+                     <entry colname="1">Признак трассировки</entry>
+                     <entry colname="2">включение трассы регистрации событий для абонента</entry>
+                  </row>
+               </tbody>
+            </tgroup>
+         </informaltable>
+         <para>
+            <command moreinfo="none">Расшифровка некоторых ДВО, не совпадающих с файлом</command>
+         </para>
+         <informaltable frame="all" colsep="1" rowsep="1">
+            <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+               <colspec colnum="1" colname="1" colwidth="0.984in"/>
+               <colspec colnum="2" colname="2" colwidth="0.984in"/>
+               <thead>
+                  <row rowsep="1">
+                     <entry colname="1">
+                        <xref linkend="ДВО" role="Undefined Cross-Reference"/>
+                     </entry>
+                     <entry colname="2">Расшифровка</entry>
+                  </row>
+               </thead>
+               <tbody>
+                  <row rowsep="1">
+                     <entry colname="1">
+                        <xref linkend="ЗВС" role="Undefined Cross-Reference"/>
+                     </entry>
+                     <entry colname="2">Запрет входящей связи</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">
+                        <xref linkend="ЗИС" role="Undefined Cross-Reference"/>
+                     </entry>
+                     <entry colname="2">Запрет некоторых видов исходящей связи</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">
+                        <xref linkend="ОВУ" role="Undefined Cross-Reference"/>
+                     </entry>
+                     <entry colname="2">Отмена всех услуг</entry>
+                  </row>
+                  <row rowsep="0">
+                     <entry colname="1">
+                        <xref linkend="ООВ" role="Undefined Cross-Reference"/>
+                        <d:Nest id="alarm_clock_a"/>
+                     </entry>
+                     <entry colname="2">Ожидание с обратным вызовом</entry>
+                  </row>
+               </tbody>
+            </tgroup>
+         </informaltable>
+         <para>
+            <command moreinfo="none">Пороговые значения контроля частоты потерь</command>
+         </para>
+         <informaltable frame="all" colsep="1" rowsep="1">
+            <tgroup cols="2" tgroupstyle="Format A" colsep="1" rowsep="1" align="left">
+               <colspec colnum="1" colname="1" colwidth="0.984in"/>
+               <colspec colnum="2" colname="2" colwidth="0.984in"/>
+               <thead>
+                  <row rowsep="1">
+                     <entry colname="1">Параметр</entry>
+                     <entry colname="2">Значение</entry>
+                  </row>
+               </thead>
+               <tbody>
+                  <row rowsep="1">
+                     <entry colname="1">Порог Вызовов</entry>
+                     <entry colname="2">10</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Порог Потерь</entry>
+                     <entry colname="2">5</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Порог Реабилитации</entry>
+                     <entry colname="2">5</entry>
+                  </row>
+                  <row rowsep="1">
+                     <entry colname="1">Порог Кратковременных занятий</entry>
+                     <entry colname="2">5</entry>
+                  </row>
+                  <row rowsep="0">
+                     <entry colname="1">Длительность Кратковременных занятий</entry>
+                     <entry colname="2">256</entry>
+                  </row>
+               </tbody>
+            </tgroup>
+         </informaltable>
+         <para>При запуске приложения автоматически появляются данные абонента
+с индексом равным 1. Последующее фокусирование приложения на нужного
+абонента осуществляется либо изменением его номера в поле<emphasis>Номер</emphasis>,
+либо при помощи функции<emphasis>Найти</emphasis>. При изменении
+номера просматриваемого абонента информация в панели будет автоматически
+обновлена.</para>
+         <para>В момент загрузки абонентских данных из станции внизу появляется
+линейка прогресса загрузки данных. При необходимости вы можете обновить
+данные абонента нажатием кнопки<emphasis>Прочитать</emphasis>. Например,
+для определения текущего состояния абонента, значение которого носит
+динамический характер и меняется в зависимости от действий абонента.</para>
+         <para>При включенном<xref linkend="ДВО" role="Undefined Cross-Reference"/>
+            <emphasis>код-пароль</emphasis>появляется
+панель с кодами-паролями (по умолчанию FFFF), первый из которых
+является текущим (он показывается только пользователям с администраторскими
+привилегиями).</para>
+         <para>При нажатии кнопки меню<emphasis>Найти-&gt;Поиск</emphasis>,
+активизируется панель поиска абонента.</para>
+         <para>При нажатии кнопки<emphasis>Найти-&gt;Фильтр</emphasis>, активизируется
+форма фильтрации абонента.</para>
+         <para>При необходимости оператор может непосредственно из абонентской
+панели активизировать другие приложения<xref linkend="РМО" role="Undefined Cross-Reference"/>, позволяющие просматривать
+статистические данные, связанные с данным абонентом и абонентской
+линией, выполнять тестирование и проключение нужных каналов на данного
+абонента:</para>
+         <d:Nest id="appl_from_com"/>
+         <para>Как говорилось ранее, есть возможность запускать СММ-скрипты
+с параметрами, характерными для выбранного абонента. Для этого нужно
+нажать на кнопку меню<emphasis>Запустить скрипт</emphasis>и в списке
+выбрать нужный скрипт для запуска. Настройка списка скриптов осуществляется
+в файле<filename moreinfo="none">AbonentScripts.xml</filename>. Список доступных скриптов
+может быть пустой. Стоит отметить, что синхронизация абонентских
+данных также реализована в виде CMM-скрипта и по умолчанию является
+первым скриптом в списке, при условии, что файл<filename moreinfo="none">AbonentScripts.xml</filename>содержит
+соответствующую информацию.</para>
+         <para>В пункте меню<emphasis>Команды</emphasis>, наряду с другими,
+есть два подпункта<emphasis>Прочитать</emphasis>и<emphasis>Прочитать
+полностью</emphasis>. Разница между ними заключатся в том, что<emphasis>Прочитать</emphasis>вычитывает
+из станции информацию об абоненте, кроме значений<emphasis>Коды паролей</emphasis>,
+а<emphasis>Прочитать полностью</emphasis>– всю информацию. Такое
+разделение связано с конструктивными особенностями станции. Вычитывание
+из станции информации об абоненте, кроме значений<emphasis>Коды
+паролей</emphasis>, происходит быстрее.</para>
+         <para>
+            <emphasis>Пункт меню Справка</emphasis>
+         </para>
+         <para>При нажатии на эту кнопку вызывается справка приложения.</para>
+      </section>
+   </d:InfElement>
+   <d:InfElement id="search_sp" name="Поиск">
+
+
+
+
+
+
+
+
+
+      <section>
+         <title>Поиск</title>
+         <para>В большинстве случаев оператору более удобно осуществлять
+поиск абонента не по его номеру, а по другим критериям, например,
+по индексу или конструктивному адресу (см. «<xref linkend="stradd" role="Undefined Cross-Reference"/>»). Для этих целей реализована
+возможность поиска абонентов по следующим характеристикам:</para>
+         <itemizedlist>
+            <listitem>
+               <para>Индексу в базе данных;</para>
+            </listitem>
+            <listitem>
+               <para>Конструктивному адресу (стойка.этаж.<xref linkend="ТЭЗ" role="Undefined Cross-Reference"/>.комплект);</para>
+            </listitem>
+            <listitem>
+               <para>Подключению в коммутационное поле (модуль.тракт.канал);</para>
+            </listitem>
+            <listitem>
+               <para>Признаку блокировки;</para>
+            </listitem>
+            <listitem>
+               <para>Признаку безотбойности;</para>
+            </listitem>
+            <listitem>
+               <para>Признаку выключенности из обслуживания</para>
+            </listitem>
+         </itemizedlist>
+         <informalfigure float="0">
+            <graphic entityref="graphic2" width="3.708in" align="aleft"/>
+         </informalfigure>
+         <informalfigure float="0">
+            <graphic entityref="graphic3" width="3.708in" align="aleft"/>
+         </informalfigure>
+         <para>На приведённых картинках вы можете увидеть панель поиска в
+двух возможных вариантах. При необходимости осуществления поиска
+абонентов по каким-либо характеристикам, выберите соответствующую
+закладку и введите данные для поиска. После ввода данных нажмите
+кнопку<emphasis>OK</emphasis>. При этом кнопка<emphasis>ОК</emphasis>погаснет.
+Во время осуществления поиска курсор мышки изменится на "часики".
+После завершения поиска кнопка вновь станет доступной для нажатия,
+и курсор мышки вернётся в прежнее состояние. Если поиск осуществляется
+по первой закладке, то при нахождении нужного абонента приложение
+закроет форму поиска и сфокусируется на найденном абоненте. Если
+же вы осуществляли поиск по второй закладке, то все абоненты найденные
+в результате введённых вами данных появятся в списке и для фокусировки
+на нужного вам абонента выберите его в списке и дважды нажмите на
+него в списке (double-click). Если вы не хотите больше осуществлять
+поиск, то нажмите кнопку<emphasis>Cancel</emphasis>.</para>
+      </section>
+   </d:InfElement>
+   <d:InfElement id="standart_tasks_sp" name="Стандартные задачи">
+
+
+
+
+
+
+
+
+
+      <section>
+         <title>Стандартные задачи</title>
+         <section>
+            <title>Задача 1. Поиск абонента по параметрам</title>
+            <itemizedlist>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1a)</emphasis>Выбрать
+пункт меню<emphasis>Найти-&gt;Поиск</emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1b)</emphasis>Нажать кнопку<emphasis>Поиск
+по параметрам</emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1c)</emphasis>Выбрать поиск по индексу
+и указать индекс</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1d)</emphasis>В случае поиска по конструктивному
+адресу (см. «<xref linkend="stradd" role="Undefined Cross-Reference"/>»),
+указать<emphasis>Стойку, Этаж, номер<xref linkend="ТЭЗ" role="Undefined Cross-Reference"/>, комплект</emphasis>.</para>
+                  <para>В случае поиска по подключению в КП, заполнить поля<emphasis>Модуль,
+Тракт, Канал</emphasis>.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 1e)</emphasis>Нажать кнопку<emphasis>Ок</emphasis>
+                  </para>
+               </listitem>
+            </itemizedlist>
+         </section>
+         <section>
+            <title>Задача 2. Поиск абонента по свойствам</title>
+            <itemizedlist>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 2a)</emphasis>Выбрать
+пункт меню<emphasis>Найти-&gt;Поиск</emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 2b)</emphasis>Нажать кнопку<emphasis>Поиск
+по свойствам</emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 2c)</emphasis>Проставить галочку в
+окошке<emphasis>Все модули</emphasis>, что приведёт к поиску по
+всем модулям, либо выбрать необходимый модуль в окошке<emphasis>Модуль</emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 2d)</emphasis>Выбрать в окошке<emphasis>Отобрать</emphasis>необходимые
+свойства</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 2e)</emphasis>Нажать кнопку<emphasis>Ок</emphasis>
+                  </para>
+               </listitem>
+            </itemizedlist>
+         </section>
+         <section>
+            <title>Задача 3. Фильтр абонентов</title>
+            <para>Рассмотрим создание фильтра на примере.</para>
+            <para>Предположим, что нас интересуют абоненты со 2-ым классом обслуживания.</para>
+            <para>В таком случае выполняется следующая последовательность действий:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 3a)</emphasis>Выбрать
+пункт меню<emphasis>Найти-&gt;Фильтр</emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 3b)</emphasis>Выбрать в списке<emphasis>Возможные
+параметры</emphasis>параметр<emphasis>Класс обслуживания</emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 3c)</emphasis>Нажать кнопку<emphasis>Добавить</emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 3d)</emphasis>В панели<emphasis>Условия</emphasis>в
+разворачивающемся списке<emphasis>Значение</emphasis>выбрать<emphasis>2-Для захвата<xref linkend="СЛ" role="Undefined Cross-Reference"/>
+                     </emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 3e)</emphasis>В разворачивающемся
+списке<emphasis>Оператор</emphasis>выбрать «=»</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 3f)</emphasis>Нажать кнопку<emphasis>Искать</emphasis>
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 3g)</emphasis>Результаты можно сохранить
+в виде файла, нажав кнопку<emphasis>Печать</emphasis>
+                  </para>
+               </listitem>
+            </itemizedlist>
+         </section>
+         <section>
+            <title>Задача 4. Изменение категории<xref linkend="АОН" role="Undefined Cross-Reference"/>
+            </title>
+            <itemizedlist>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 4a)</emphasis>Сфокусируйтесь
+на абонента. Для этого выберите его номер в списке (или укажите
+вручную) в соответствующем поле. Убедитесь, что данные абонента
+были удачно загружены со станции.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 4b)</emphasis>Если абонент находится
+не в заблокированном состоянии, то следует его заблокировать. Для
+этого нажмите кнопку<emphasis>Заблокировать</emphasis>, после чего
+состояние абонента должно измениться на заблокированное.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 4c)</emphasis>Теперь для изменения
+категории<xref linkend="АОН" role="Undefined Cross-Reference"/>нужно
+нажать на стрелочку возле соответствующей категории. В выпадающем
+списке выбрать необходимую категорию. После этого следует записать
+изменения в станцию, для чего нужно нажать кнопку<emphasis>Записать</emphasis>.
+Разблокируйте абонента нажатием кнопки<emphasis>Разблокировать.</emphasis>
+                  </para>
+               </listitem>
+            </itemizedlist>
+         </section>
+         <section>
+            <title>Задача 5. Установка разрешенных<xref linkend="ДВО" role="Undefined Cross-Reference"/>и кодов паролей</title>
+            <itemizedlist>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 5a)</emphasis>Сфокусируйтесь
+на абонента. Для этого выберите его номер в списке (или укажите
+вручную) в соответствующем поле. Убедитесь, что данные абонента
+были удачно загружены со станции.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 5b)</emphasis>Если абонент находится
+не в заблокированном состоянии, то следует его заблокировать. Для
+этого нажмите кнопку<emphasis>Заблокировать</emphasis>, после чего
+состояние абонента должно измениться на заблокированное.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 5c)</emphasis>Проставьте флажки разрешённых<xref linkend="ДВО" role="Undefined Cross-Reference"/>в соответствующих
+квадратиках. При проставлении<xref linkend="ДВО" role="Undefined Cross-Reference"/>код-пароль, появляются коды-пароли
+(по умолчанию FF). Коды-пароли могут быть разрешены не более чем
+у 15 абонентов модуля.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 5d)</emphasis>Для сохранения внесённых
+изменений следует нажать кнопку<emphasis>Записать</emphasis>, после
+чего данные будут записаны в станцию.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 5e)</emphasis>Разблокируйте абонента
+нажатием кнопки<emphasis>Разблокировать</emphasis>.</para>
+               </listitem>
+            </itemizedlist>
+         </section>
+         <section>
+            <title>Задача 6. Блокировка входящей связи</title>
+            <itemizedlist>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 6a)</emphasis>Сфокусируйтесь
+на абонента. Для этого выберите его номер в списке (или укажите
+вручную) в соответствующем поле. Убедитесь, что данные абонента
+были удачно загружены со станции.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 6b)</emphasis>Если абонент находится
+не в заблокированном состоянии, то следует его заблокировать. Для
+этого нажмите кнопку<emphasis>Заблокировать</emphasis>, после чего
+состояние абонента должно измениться на заблокированное.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 6c)</emphasis>Для блокировки входящей
+связи отметьте соответствующие пункты в группе<emphasis>Запрет ИС
+(адм./усл.)</emphasis>.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 6d)</emphasis>Для сохранения внесённых
+изменений следует нажать кнопку<emphasis>Записать</emphasis>, после
+чего данные будут записаны в станцию.</para>
+               </listitem>
+               <listitem>
+                  <para>
+                     <emphasis>Шаг 6e)</emphasis>Разблокируйте абонента
+нажатием кнопки<emphasis>Разблокировать</emphasis>.</para>
+               </listitem>
+            </itemizedlist>
+         </section>
+         <d:Nest id="z7_inclus_trass"/>
+      </section>
+   </d:InfElement>
+</d:DocumentationCore>

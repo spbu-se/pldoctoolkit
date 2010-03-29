@@ -1,0 +1,19 @@
+<InfElement id = "review_sm" name = "Обзор">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<section><title>Обзор</title>
+<para>Данное приложение предназначено для просмотра и анализа состояний
+абонентских линий станции.</para>
+<para>C его помощью оператор может посмотреть текущую статистику
+состояний в виде диаграммы.</para>
+<Nest id = "ordered_modules"></Nest>
+<para>Приложение также включает в себя возможность атоматического
+обновления текущих состояний через определённые оператором промежутки
+времени.</para></section></InfElement>

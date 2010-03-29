@@ -1,0 +1,27 @@
+<InfElement id = "antivirus_description"
+    name = "Что такое анти-вирус">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<para>Антивирусная программа (антивирус) — программа для обнаружения
+и удаления компьютерных вирусов и других вредоносных программ, предотвращения
+их распространения, а также лечения программ зараженных ими.</para><para>Первые,
+наиболее простые антивирусные программы появились почти сразу после появления
+вирусов. Сейчас разработкой антивирусов занимаются крупные компании. Как
+и у создателей вирусов, в этой сфере также сформировались оригинальные
+приемы - но уже для поиска и борьбы с вирусами. Современные антивирусные
+программы могут обнаруживать десятки тысяч вирусов. Основные задачи
+современных антивирусных программ:<itemizedlist mark = "opencircle">
+<listitem><para>Сканирование файлов и программ в режиме реального
+времени.</para></listitem>
+<listitem><para>Сканирование компьютера по требованию.</para></listitem>
+<listitem><para>Сканирование интернет-трафика.</para></listitem>
+<listitem><para>Сканирование электронной почты.</para></listitem>
+<listitem><para>Защита от атак враждебных веб-узлов.</para></listitem>
+<listitem><para>Восстановление поврежденных файлов (лечение).</para></listitem></itemizedlist></para></InfElement>

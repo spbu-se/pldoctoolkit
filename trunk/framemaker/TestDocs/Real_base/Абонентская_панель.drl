@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+  <d:InfElement id="service_panel" name="Абонентская панель">
+    <section><title id="tri_tri_odin" xreflabel="3.3.1. Абонентская панель">3.3.1. Абонентская панель</title>
+      <d:InfElemRef id="ref_review_sp" infelemid="review_sp"/>
+      <d:InfElemRef id="ref_main_window_sp" infelemid="main_window_sp"/>
+      <d:InfElemRef id="ref_search_sp" infelemid="search_sp"/>
+      <d:InfElemRef id="ref_standart_tasks_sp" infelemid="standart_tasks_sp"/>
+    </section>
+  </d:InfElement>
+
+
+
+  <d:InfElement id="review_sp" name="Обзор">
+    <section><title>Обзор</title>
+      <para>Абонентская панель является средством для управления характеристиками абонента.</para>
+      <d:Nest id="change_characteristic"/>
+      <para>Приложение включает в себя удобные средства поиска абонента по индексу, конструктивному адресу (см. «<xref linkend="structadd"/>») и подключению в коммутационном поле.</para>
+      <para>Так же имеется ряд дополнительных возможностей позволяющих оператору осуществлять:</para>
+        <itemizedlist>
+          <listitem><para>быстрый поиск безотбойных абонентов</para></listitem>
+          <listitem><para>быстрый поиск заблокированных абонентов</para></listitem>
+          <listitem><para>быстрый поиск необслуживаемых абонентов</para></listitem>
+          <listitem><para>фильтрацию абонентов по его характеристикам</para></listitem>
+          <listitem><para>синхронизацию абонентских данных между станционной базой и <xref linkend="БД"/> <xref linkend="РМО"/></para></listitem>
+          <listitem><para>запуск CMM-скриптов из приложения с параметрами, характерными для выбранного абонента</para></listitem>
+          <d:Nest id="cordway_activ_trass">
+            <listitem><para>активизировать для текущего абонента средства управления тарификацией</para></listitem>
+          </d:Nest>
+        </itemizedlist>
+    </section>
+  </d:InfElement>
+
+  <d:InfElement id="main_window_sp" name="Главное окно">
+    <section><title>Главное окно</title>
+      <para>Главное окно программы выглядит так:</para>
+      <informalfigure>
+        <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\abonentskaja-panel.gif"/>
+      </informalfigure>
+      <para>Абонентская панель содержит следующую информацию об абоненте:</para>
+      <para><command>Информация об абоненте, содержащаяся в абонентской панели</command></para>
+      <informaltable>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="2" colname="c2"/>
+          <thead>
+            <row><entry>Информация</entry><entry>Описание</entry></row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Констр. адрес</entry>
+              <entry>Конструктивный адрес (см. «<xref linkend="stradd"/>») оборудования, относящаяся к данному абоненту (стойка.этаж.тэз.комплект)</entry>
+            </row>
+            <row>
+              <entry>Включ. в <xref linkend="КП"/></entry>
+              <entry>Подключение абонента в коммутационное поле (модуль.тракт.канал)</entry>
+            </row>
+            <row>
+              <entry>Номер</entry>
+              <entry>Станционный номер абонента</entry>
+            </row>
+            <row>
+              <entry>Категория <xref linkend="АОН"/></entry>
+              <entry>Устанавливается в соответствии с РД ОГСТФС</entry>
+            </row>
+            <row>
+              <entry>Тип <xref linkend="АТ"/></entry>
+              <entry>Тип телефона, устанавливается в соответствии с РД ОГСТФС</entry>
+            </row>
+            <row>
+              <entry>Вид <xref linkend="АЛ"/></entry>
+              <entry>Вид абонентской линии</entry>
+            </row>
+            <row>
+              <entry>Состояние абонента</entry>
+              <entry> </entry>
+            </row>
+            <row>
+              <entry>Тип набора</entry>
+              <entry>Бывает трех видов – см. таблицу « Типы наборов номера»</entry>
+            </row>
+            <row>
+              <entry>Класс обслуживания</entry>
+              <entry>На <xref linkend="АТС"/> используются только указанные в таблице « Виды классов обслуживания»</entry>
+            </row>
+            <row>
+              <entry>Административные услуги (включаются оператором)</entry>
+              <entry>см. таблицу « Административные услуги»</entry>
+            </row>
+            <row>
+              <entry>Признак безотбойности</entry>
+              <entry> </entry>
+            </row>
+            <row>
+              <entry><xref linkend="ДВО"/><footnote><para><emphasis>Замечание</emphasis>: Рядом с <xref linkend="ДВО"/> <emphasis>Код-пароль</emphasis> и <emphasis>Конференцсвязь</emphasis> отсутствуют индикаторы. Это обусловлено тем, что <xref linkend="ДВО"/> <emphasis>Код-пароль</emphasis> – это операторское <xref linkend="ДВО"/>, пользователь не может его заказать или отменить, а <xref linkend="ДВО"/> <emphasis>Конференцсвязь</emphasis> не требует специальных действий для заказа. <xref linkend="ДВО"/> <emphasis>Код-пароль</emphasis> и <emphasis>Ввод/зам. к.-пароля</emphasis> могут быть разрешены или отменены только вместе.</para></footnote></entry>
+              <entry>Список возможных <xref linkend="ДВО"/>, среди которых крестиком помечены разрешённые, а зелёным кружочком заказанные (текущие), расшифровка и принцип действия указаны в файле <xref linkend="ДВО"/>.doc.</entry>
+            </row>
+            <row>
+              <entry>Код-пароль на <xref linkend="ДВО"/></entry>
+              <entry>(если таковой имеется)</entry>
+            </row>
+            <d:Nest id="alarm_clock"/>
+            <row>
+              <entry>Переадресат</entry>
+              <entry>Номер телефона, на который осуществляется переадресация входящих вызовов, при заказанном соответствующем <xref linkend="ДВО"/></entry>
+            </row>
+            <row>
+              <entry>Запрет ИС (адм./усл.)</entry>
+              <entry>Запрет исходящей связи пользователем, среди которых крестиком помечены запрещённые, а зелёненьким кружочком помечены заказанные</entry>
+            </row>
+            <row>
+              <entry>Контроль частоты потерь</entry>
+              <entry>Согласно РД 45.051-99, для расчета установлены пороговые значения, см. таблицу « Пороговые значения контроля частоты потерь»</entry>
+            </row>
+            <row>
+              <entry>Контроль кратковременных занятий</entry>
+              <entry>Согласно РД 45.051-99</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+      <para><command>Виды классов обслуживания</command></para>
+      <informaltable>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="2" colname="c2"/>
+          <thead>
+            <row><entry>Вид</entry><entry>Описание</entry></row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Обычный</entry>
+              <entry>Телефонный аппарат</entry>
+            </row>
+            <row>
+              <entry>Захват <xref linkend="СЛ"/></entry>
+              <entry>Телефонный аппарат, с которого возможен «прозвон» конкретной <xref linkend="СЛ"/></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+      <para><command>Типы наборов номера</command></para>
+      <informaltable>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="2" colname="c2"/>
+          <thead>
+            <row><entry>Тип</entry><entry>Описание</entry></row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Декадный</entry>
+              <entry>Только декадный набор цифр</entry>
+            </row>
+            <row>
+              <entry>Частотный</entry>
+              <entry>Только частотный набор цифр</entry>
+            </row>
+            <row>
+              <entry>Универсальный</entry>
+              <entry>Может быть как декадный, так и частотный(устанавливается абонентом на ТА)</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+      <para><command>Административные услуги</command></para>
+      <informaltable>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="2" colname="c2"/>
+          <thead>
+            <row><entry>Услуга</entry><entry>Описание</entry></row>
+          </thead>
+          <tbody>
+            <row>
+              <entry><xref linkend="АОН"/></entry>
+              <entry>выдача информации <xref linkend="АОН"/> в абонентскую линию</entry>
+            </row>
+            <row>
+              <entry>Регистрация входящих вызовов</entry>
+              <entry> </entry>
+            </row>
+            <row>
+              <entry>Признак трассировки</entry>
+              <entry>включение трассы регистрации событий для абонента</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+      <para><command>Расшифровка некоторых ДВО, не совпадающих с файлом</command></para>
+      <informaltable>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="2" colname="c2"/>
+          <thead>
+            <row><entry><xref linkend="ДВО"/></entry><entry>Расшифровка</entry></row>
+          </thead>
+          <tbody>
+            <row>
+              <entry><xref linkend="ЗВС"/></entry>
+              <entry>Запрет входящей связи</entry>
+            </row>
+            <row>
+              <entry><xref linkend="ЗИС"/></entry>
+              <entry>Запрет некоторых видов исходящей связи</entry>
+            </row>
+            <row>
+              <entry><xref linkend="ОВУ"/></entry>
+              <entry>Отмена всех услуг</entry>
+            </row>
+            <row>
+              <entry><xref linkend="ООВ"/></entry>
+              <entry>Ожидание с обратным вызовом</entry>
+            </row>
+            <d:Nest id="alarm_clock_a"/>
+          </tbody>
+        </tgroup>
+      </informaltable>
+      <para><command>Пороговые значения контроля частоты потерь</command></para>
+      <informaltable>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="2" colname="c2"/>
+          <thead>
+            <row><entry>Параметр</entry><entry>Значение</entry></row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Порог Вызовов</entry>
+              <entry>10</entry>
+            </row>
+            <row>
+              <entry>Порог Потерь</entry>
+              <entry>5</entry>
+            </row>
+            <row>
+              <entry>Порог Реабилитации</entry>
+              <entry>5</entry>
+            </row>
+            <row>
+              <entry>Порог Кратковременных занятий</entry>
+              <entry>5</entry>
+            </row>
+            <row>
+              <entry>Длительность Кратковременных занятий</entry>
+              <entry>256</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+      <para>При запуске приложения автоматически появляются данные абонента с индексом равным 1. Последующее фокусирование приложения на нужного абонента осуществляется либо изменением его номера в поле <emphasis>Номер</emphasis>, либо при помощи функции <emphasis>Найти</emphasis>. При изменении номера просматриваемого абонента информация в панели будет автоматически обновлена.</para>
+      <para>В момент загрузки абонентских данных из станции внизу появляется линейка прогресса загрузки данных. При необходимости вы можете обновить данные абонента нажатием кнопки <emphasis>Прочитать</emphasis>. Например, для определения текущего состояния абонента, значение которого носит динамический характер и меняется в зависимости от действий абонента.</para>
+      <para>При включенном <xref linkend="ДВО"/> <emphasis>код-пароль</emphasis> появляется панель с кодами-паролями (по умолчанию FFFF), первый из которых является текущим (он показывается только пользователям с администраторскими привилегиями).</para>
+      <para>При нажатии кнопки меню <emphasis>Найти->Поиск</emphasis>, активизируется панель поиска абонента.</para>
+      <para>При нажатии кнопки <emphasis>Найти->Фильтр</emphasis>, активизируется форма фильтрации абонента.</para>
+      <para>При необходимости оператор может непосредственно из абонентской панели активизировать другие приложения <xref linkend="РМО"/>, позволяющие просматривать статистические данные, связанные с данным абонентом и абонентской линией, выполнять тестирование и проключение нужных каналов на данного абонента:</para>
+      <d:Nest id="appl_from_com"/>
+      <para>Как говорилось ранее, есть возможность запускать СММ-скрипты с параметрами, характерными для выбранного абонента. Для этого нужно нажать на кнопку меню <emphasis>Запустить скрипт</emphasis> и в списке выбрать нужный скрипт для запуска. Настройка списка скриптов осуществляется в файле <filename>AbonentScripts.xml</filename>. Список доступных скриптов может быть пустой. Стоит отметить, что синхронизация абонентских данных также реализована в виде CMM-скрипта и по умолчанию является первым скриптом в списке, при условии, что файл <filename>AbonentScripts.xml</filename> содержит соответствующую информацию.</para>
+      <para>В пункте меню <emphasis>Команды</emphasis>, наряду с другими, есть два подпункта <emphasis>Прочитать</emphasis> и <emphasis>Прочитать полностью</emphasis>. Разница между ними заключатся в том, что <emphasis>Прочитать</emphasis> вычитывает из станции информацию об абоненте, кроме значений <emphasis>Коды паролей</emphasis>, а <emphasis>Прочитать полностью</emphasis> – всю информацию. Такое разделение связано с конструктивными особенностями станции. Вычитывание из станции информации об абоненте, кроме значений <emphasis>Коды паролей</emphasis>, происходит быстрее.</para>
+      <para><emphasis>Пункт меню Справка</emphasis></para>
+      <para>При нажатии на эту кнопку вызывается справка приложения.</para>
+    </section>
+  </d:InfElement>
+
+  <d:InfElement id="search_sp" name="Поиск">
+    <section><title>Поиск</title>
+      <para>В большинстве случаев оператору более удобно осуществлять поиск абонента не по его номеру, а по другим критериям, например, по индексу или конструктивному адресу (см. «<xref linkend="stradd"/>»). Для этих целей реализована возможность поиска абонентов по следующим характеристикам:</para>
+      <itemizedlist>
+        <listitem><para>Индексу в базе данных;</para></listitem>
+        <listitem><para>Конструктивному адресу (стойка.этаж.<xref linkend="ТЭЗ"/>.комплект);</para></listitem>
+        <listitem><para>Подключению в коммутационное поле (модуль.тракт.канал);</para></listitem>
+        <listitem><para>Признаку блокировки;</para></listitem>
+        <listitem><para>Признаку безотбойности;</para></listitem>
+        <listitem><para>Признаку выключенности из обслуживания</para></listitem>
+      </itemizedlist>
+      <informalfigure>
+        <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\ap-poisk-po-parametram.gif"/>
+      </informalfigure>
+      <informalfigure>
+        <graphic fileref="F:\runtime-New_configuration\rmo\illustrations\ScreenShots-full\ap-poisk-po-vsojstvam.gif"/>
+      </informalfigure>
+      <para>На приведённых картинках вы можете увидеть панель поиска в двух возможных вариантах. При необходимости осуществления поиска абонентов по каким-либо характеристикам, выберите соответствующую закладку и введите данные для поиска. После ввода данных нажмите кнопку <emphasis>OK</emphasis>. При этом кнопка <emphasis>ОК</emphasis> погаснет. Во время осуществления поиска курсор мышки изменится на "часики". После завершения поиска кнопка вновь станет доступной для нажатия, и курсор мышки вернётся в прежнее состояние. Если поиск осуществляется по первой закладке, то при нахождении нужного абонента приложение закроет форму поиска и сфокусируется на найденном абоненте. Если же вы осуществляли поиск по второй закладке, то все абоненты найденные в результате введённых вами данных появятся в списке и для фокусировки на нужного вам абонента выберите его в списке и дважды нажмите на него в списке (double-click). Если вы не хотите больше осуществлять поиск, то нажмите кнопку <emphasis>Cancel</emphasis>.</para>
+    </section>
+  </d:InfElement>
+
+  <d:InfElement id="standart_tasks_sp" name="Стандартные задачи">
+    <section><title>Стандартные задачи</title>
+
+      <section><title>Задача 1. Поиск абонента по параметрам</title>
+        <itemizedlist>
+          <listitem><para><emphasis>Шаг 1a)</emphasis> Выбрать пункт меню <emphasis>Найти->Поиск</emphasis></para></listitem>
+          <listitem><para><emphasis>Шаг 1b)</emphasis> Нажать кнопку <emphasis>Поиск по параметрам</emphasis></para></listitem>                                                              
+          <listitem><para><emphasis>Шаг 1c)</emphasis> Выбрать поиск по индексу и указать индекс</para></listitem>
+          <listitem><para><emphasis>Шаг 1d)</emphasis> В случае поиска по конструктивному адресу (см. «<xref linkend="stradd"/>»), указать <emphasis>Стойку, Этаж, номер <xref linkend="ТЭЗ"/>, комплект</emphasis>.</para>
+                    <para>В случае поиска по подключению в КП, заполнить поля <emphasis>Модуль, Тракт, Канал</emphasis>.</para></listitem>                                         
+          <listitem><para><emphasis>Шаг 1e)</emphasis> Нажать кнопку <emphasis>Ок</emphasis></para></listitem>
+        </itemizedlist>  
+      </section>
+
+      <section><title>Задача 2. Поиск абонента по свойствам</title>
+        <itemizedlist>
+          <listitem><para><emphasis>Шаг 2a)</emphasis> Выбрать пункт меню <emphasis>Найти->Поиск</emphasis></para></listitem>
+          <listitem><para><emphasis>Шаг 2b)</emphasis> Нажать кнопку <emphasis>Поиск по свойствам</emphasis></para></listitem>
+          <listitem><para><emphasis>Шаг 2c)</emphasis> Проставить галочку в окошке <emphasis>Все модули</emphasis>, что приведёт к поиску по всем модулям, либо выбрать необходимый модуль в окошке <emphasis>Модуль</emphasis></para></listitem>
+          <listitem><para><emphasis>Шаг 2d)</emphasis> Выбрать в окошке <emphasis>Отобрать</emphasis> необходимые свойства</para></listitem>
+          <listitem><para><emphasis>Шаг 2e)</emphasis> Нажать кнопку <emphasis>Ок</emphasis></para></listitem>
+        </itemizedlist>  
+      </section>
+
+      <section><title>Задача 3. Фильтр абонентов</title>
+        <para>Рассмотрим создание фильтра на примере.</para>
+        <para>Предположим, что нас интересуют абоненты со 2-ым классом обслуживания.</para>
+        <para>В таком случае выполняется следующая последовательность действий:</para>
+        <itemizedlist>
+          <listitem><para><emphasis>Шаг 3a)</emphasis> Выбрать пункт меню <emphasis>Найти->Фильтр</emphasis></para></listitem>
+          <listitem><para><emphasis>Шаг 3b)</emphasis> Выбрать в списке <emphasis>Возможные параметры</emphasis> параметр <emphasis>Класс обслуживания</emphasis></para></listitem>
+          <listitem><para><emphasis>Шаг 3c)</emphasis> Нажать кнопку <emphasis>Добавить</emphasis></para></listitem>
+          <listitem><para><emphasis>Шаг 3d)</emphasis> В панели <emphasis>Условия</emphasis> в разворачивающемся списке <emphasis>Значение</emphasis> выбрать <emphasis>2-Для захвата <xref linkend="СЛ"/></emphasis></para></listitem>
+          <listitem><para><emphasis>Шаг 3e)</emphasis> В разворачивающемся списке <emphasis>Оператор</emphasis> выбрать «=»</para></listitem>
+          <listitem><para><emphasis>Шаг 3f)</emphasis> Нажать кнопку <emphasis>Искать</emphasis></para></listitem>
+          <listitem><para><emphasis>Шаг 3g)</emphasis> Результаты можно сохранить в виде файла, нажав кнопку <emphasis>Печать</emphasis></para></listitem>
+        </itemizedlist>  
+      </section>
+
+      <section><title>Задача 4. Изменение категории <xref linkend="АОН"/></title>
+        <itemizedlist>
+          <listitem><para><emphasis>Шаг 4a)</emphasis> Сфокусируйтесь на абонента. Для этого выберите его номер в списке (или укажите вручную) в соответствующем поле. Убедитесь, что данные абонента были удачно загружены со станции.</para></listitem>
+          <listitem><para><emphasis>Шаг 4b)</emphasis> Если абонент находится не в заблокированном состоянии, то следует его заблокировать. Для этого нажмите кнопку <emphasis>Заблокировать</emphasis>, после чего состояние абонента должно измениться на заблокированное.</para></listitem>
+          <listitem><para><emphasis>Шаг 4c)</emphasis> Теперь для изменения категории <xref linkend="АОН"/> нужно нажать на стрелочку возле соответствующей категории. В выпадающем списке выбрать необходимую категорию. После этого следует записать изменения в станцию, для чего нужно нажать кнопку <emphasis>Записать</emphasis>. Разблокируйте абонента нажатием кнопки <emphasis>Разблокировать.</emphasis></para></listitem>
+        </itemizedlist>  
+      </section>
+
+      <section><title>Задача 5. Установка разрешенных <xref linkend="ДВО"/> и кодов паролей</title>
+        <itemizedlist>
+          <listitem><para><emphasis>Шаг 5a)</emphasis> Сфокусируйтесь на абонента. Для этого выберите его номер в списке (или укажите вручную) в соответствующем поле. Убедитесь, что данные абонента были удачно загружены со станции.</para></listitem>
+          <listitem><para><emphasis>Шаг 5b)</emphasis> Если абонент находится не в заблокированном состоянии, то следует его заблокировать. Для этого нажмите кнопку <emphasis>Заблокировать</emphasis>, после чего состояние абонента должно измениться на заблокированное.</para></listitem>
+          <listitem><para><emphasis>Шаг 5c)</emphasis> Проставьте флажки разрешённых <xref linkend="ДВО"/> в соответствующих квадратиках. При проставлении <xref linkend="ДВО"/> код-пароль, появляются коды-пароли (по умолчанию FF). Коды-пароли могут быть разрешены не более чем у 15 абонентов модуля.</para></listitem>
+          <listitem><para><emphasis>Шаг 5d)</emphasis> Для сохранения внесённых изменений следует нажать кнопку <emphasis>Записать</emphasis>, после чего данные будут записаны в станцию.</para></listitem>
+          <listitem><para><emphasis>Шаг 5e)</emphasis> Разблокируйте абонента нажатием кнопки <emphasis>Разблокировать</emphasis>.</para></listitem>
+        </itemizedlist>  
+      </section>
+
+      <section><title>Задача 6. Блокировка входящей связи</title>
+        <itemizedlist>
+          <listitem><para><emphasis>Шаг 6a)</emphasis> Сфокусируйтесь на абонента. Для этого выберите его номер в списке (или укажите вручную) в соответствующем поле. Убедитесь, что данные абонента были удачно загружены со станции.</para></listitem>
+          <listitem><para><emphasis>Шаг 6b)</emphasis> Если абонент находится не в заблокированном состоянии, то следует его заблокировать. Для этого нажмите кнопку <emphasis>Заблокировать</emphasis>, после чего состояние абонента должно измениться на заблокированное.</para></listitem>
+          <listitem><para><emphasis>Шаг 6c)</emphasis> Для блокировки входящей связи отметьте соответствующие пункты в группе <emphasis>Запрет ИС (адм./усл.)</emphasis>.</para></listitem>
+          <listitem><para><emphasis>Шаг 6d)</emphasis> Для сохранения внесённых изменений следует нажать кнопку <emphasis>Записать</emphasis>, после чего данные будут записаны в станцию.</para></listitem>
+          <listitem><para><emphasis>Шаг 6e)</emphasis> Разблокируйте абонента нажатием кнопки <emphasis>Разблокировать</emphasis>.</para></listitem>
+        </itemizedlist>  
+      </section>
+
+      <d:Nest id="z7_inclus_trass"/>
+      </section>
+    </d:InfElement>
+</d:DocumentationCore>

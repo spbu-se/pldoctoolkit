@@ -1,0 +1,12 @@
+<InfElement id = "update_local"
+    name = "Обновления с сервера компании">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<para>&Ocy;&bcy;&ncy;&ocy;&vcy;&lcy;&iecy;&ncy;&icy;&iecy; &kcy;&ocy;&mcy;&pcy;&ocy;&ncy;&iecy;&ncy;&tcy; &scy;&icy;&scy;&tcy;&iecy;&mcy;&ycy; &pcy;&rcy;&ocy;&icy;&zcy;&vcy;&ocy;&dcy;&icy;&tcy;&scy;&yacy; &scy; &scy;&iecy;&rcy;&vcy;&iecy;&rcy;&acy; &lcy;&ocy;&kcy;&acy;&lcy;&softcy;&ncy;&ocy;&jcy; &scy;&iecy;&tcy;&icy; &Vcy;&acy;&shcy;&iecy;&jcy; &kcy;&ocy;&mcy;&pcy;&acy;&ncy;&icy;&icy;&period; &Pcy;&ocy;&dcy;&kcy;&lcy;&yucy;&chcy;&iecy;&ncy;&icy;&iecy; &kcy; &icy;&ncy;&tcy;&iecy;&rcy;&ncy;&iecy;&tcy;&ucy; &ncy;&iecy; &tcy;&rcy;&iecy;&bcy;&ucy;&iecy;&tcy;&scy;&yacy;&period;</para></InfElement>

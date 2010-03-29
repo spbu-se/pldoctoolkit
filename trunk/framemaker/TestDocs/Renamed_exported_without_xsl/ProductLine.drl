@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ProductLine SYSTEM "file:///C:/Program%20Files/Adobe/FrameMaker8/structure/xml/docline/docline.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+<?Fm Validation Off?>
+
+
+<!ENTITY bkc1 SYSTEM "complete.e01">
+<!ENTITY bkc2 SYSTEM "based.e02">
+
+<!-- End Document Specific Declarations -->
+
+]>
+<ProductLine
+    name = "Электронная автоматическая телефонная станция Квант-Е-Сокол"
+    filename = "ProductLine.drl">&bkc1;&bkc2;</ProductLine>

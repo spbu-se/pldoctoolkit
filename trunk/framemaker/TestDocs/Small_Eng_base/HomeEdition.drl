@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProductDocumentation productid="home" xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
+<FinalInfProduct id="UserManual_home" infproductid="UserManual">
+<Adapter infelemrefid="ref_antivirus"/>
+<Adapter infelemrefid="ref_update_inet"/>
+<Adapter infelemrefid="ref_components_update">
+<Replace-Nest nestid="as-update"/>
+</Adapter>
+</FinalInfProduct>
+<Dictionary id="main" name="Main Dictionary">
+<Entry id="productname">InterBez Home</Entry>
+</Dictionary>
+</ProductDocumentation>

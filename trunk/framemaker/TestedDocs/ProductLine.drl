@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ProductLine name="Линейка продуктов ИнтерБез(tm) (Интернет Безопасность)" xmlns:d="http://math.spbu.ru/drl">
-<Product id="home" name="ИнтерБез Домашний"/>
-<Product id="professional" name="ИнтерБез Профессиональный"/>
-<Product id="enterprise" name="ИнтерБез Корпоративный"/>
-</ProductLine>

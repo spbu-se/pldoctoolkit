@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DocumentationCore SYSTEM "file:///C:/Program%20Files/Adobe/FrameMaker8/structure/xml/docline/docline.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+
+<!ENTITY bkc1 SYSTEM "implementation_specification.e01">
+<!NOTATION gif SYSTEM "">
+<!ENTITY graphic1 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/RMOBDScheme.gif" NDATA gif>
+<!ENTITY graphic2 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/View1.gif" NDATA gif>
+<!ENTITY graphic3 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/View2.gif" NDATA gif>
+
+<!-- End Document Specific Declarations -->
+
+]>
+<DocumentationCore
+    filename = "Описание_реализации.drl">&bkc1;</DocumentationCore>

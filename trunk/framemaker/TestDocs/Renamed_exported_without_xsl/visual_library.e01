@@ -1,0 +1,1088 @@
+<InfElement id = "visual_library"
+    name = "Визуальная библиотека">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<chapter>
+<title id = "vb" xreflabel = "Визуальная библиотека">Визуальная
+библиотека</title>
+<section><title>6.1. Интерфейсы визуальных компонентов</title>
+<para>Иерархия</para>
+<itemizedlist><listitem><para>IScriptControl</para>
+<itemizedlist><listitem><para>IScriptButton</para></listitem>
+<listitem><para>IScriptFrame</para></listitem>
+<listitem><para>IScriptEdit</para></listitem>
+<listitem><para>IScriptCheckBox</para></listitem>
+<listitem><para>IScriptGroupBox</para></listitem>
+<listitem><para>IScriptLabel</para></listitem>
+<listitem><para>IScriptBevel</para></listitem>
+<listitem><para>IScriptRadioButton</para></listitem>
+<listitem><para>IScriptRadioGroup</para></listitem>
+<listitem><para>IScriptRadioButtonOfGroup</para></listitem>
+<listitem><para>IScriptListBox</para></listitem>
+<listitem><para>IScriptListBoxItem</para></listitem>
+<listitem><para>IScriptComboBox</para></listitem>
+<listitem><para>IScriptComboBoxItem</para></listitem></itemizedlist></listitem>
+<listitem><para>IScriptControls</para></listitem></itemizedlist>
+<section><title>6.1.1. Интерфейс IScriptControl</title>
+<para>Предок: IDispatch</para>
+<para>Базовый интерфейс, от которого наследуются интерфейсы всех
+остальных визуальных компонентов.</para>
+<para><command>Свойства интерфейса IScriptControl</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">BSTR Type_</entry>
+<entry colname = "2">(read-only)</entry>
+<entry colname = "3">Текстовое название типа компоненты. В случае, если
+тип не известен возвращает undefined. Обычно в этом свойстве храниться название<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-тага, с помощью которого определялась компонента</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">BSTR Name</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Имя компоненты. Соответствует<xref linkend = "XML"
+    role = "Undefined Cross-Reference"/>-атрибуту name</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">WORD Top</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Верхняя точка компоненты относительно контейнера. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту top</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">SHORT Left</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Левая точка формы относительно контейнера. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту left</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">WORD Width</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Ширина компоненты. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту width</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">WORD Height</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Высота компоненты. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту height</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">VARIANT_BOOL Visible</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Свойство, показывающее будет ли видна компонента
+а экране или нет. Соответствует<xref linkend = "XML"
+    role = "Undefined Cross-Reference"/>-атрибуту visible. По умолчанию true</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">VARIANT_BOOL Enabled</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Свойство, показывающее будет ли компонента
+доступна или закрашена серым. Соответствует<xref linkend = "XML"
+    role = "Undefined Cross-Reference"/>-атрибуту enabled. По умолчанию true</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">INT Align</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Задает параметры выравнивания компоненты. Возможные
+значения: 0 – нет выравнивания (по умолчанию), 1 – выравнивание
+по верху контейнера, 2 – выравнивание по низу контейнера, 3 – выравнивание
+по левой части контейнера, 4 – выравнивание по правой части контейнера,
+5 – полное заполнение клиентской области контейнера. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту align</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.2. Интерфейс IScriptButton</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение обычной кнопки. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует
+элементу button.</para>
+<para><command>Свойства интерфейса IScriptButton</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "caption"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>События интерфейса IScriptButton</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Событие</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "click"></Nest><Nest id = "key"></Nest><Nest
+    id = "mouse"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.3. Интерфейс IScriptFrame</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение всех форм. В<xref linkend = "XML"
+    role = "Undefined Cross-Reference"/>соответствует элементу form.</para>
+<para><command>Методы интерфейса IScriptFrame</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Метод</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">HRESULT Show</entry>
+<entry colname = "2">Создает форму и выводит её на экран. Если форма
+уже показана, то создается новая форма и содержимое переносится
+в нее. Выход из метода происходит только после скрытия формы</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">HRESULT Hide</entry>
+<entry colname = "2">Убирает форму с экрана. Если форма показана несколько раз,
+то произойдет возвращение к прошлому содержимому. Если форма показана
+в одном экземпляре, то она убирается с экрана полностью</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>Свойства интерфейса IScriptFrame</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1"><Nest id = "caption3"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3"></entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">IScriptControls *Controls</entry>
+<entry colname = "2">(read-only)</entry>
+<entry colname = "3">Коллекция дочерних компонент формы. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует вложенному
+элементу controls</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>События интерфейса IScriptFrame</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Событие</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">onLoad</entry>
+<entry colname = "2">Вызывается при загрузке формы из<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>. Параметры в
+это событие передаются с помощью интерфейса IScriptEventParams</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">onUnload<Nest id = "click"></Nest><Nest id = "key"></Nest><Nest
+    id = "mouse"></Nest></entry>
+<entry colname = "2">Вызывается при выгрузке формы из памяти.. Параметры в
+это событие передаются с помощью интерфейса IScriptEventParams</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">onMouseWheel</entry>
+<entry colname = "2">Показывает, что пользователь крутит колесико мыши. Параметры в
+это событие передаются с помощью интерфейса IScriptMouseWheelEventParams</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">onMouseWheelDown</entry>
+<entry colname = "2">Показывает, что пользователь нажал на колесико мыши. Параметры в
+это событие передаются с помощью интерфейса IScriptMouseWheelUpDownEventParams</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">onMouseWheelUp</entry>
+<entry colname = "2">Показывает, что пользователь отпустил колесико мыши. Параметры в
+это событие передаются с помощью интерфейса IScriptMouseWheelUpDownEventParams</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.4. Интерфейс IScriptEdit</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение полей ввода текста. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует
+элементу edit.</para>
+<para><command>Свойства интерфейса IScriptEdit</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1">BSTR Text</entry>
+<entry colname = "2">Содержимое поля ввода. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту text</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>События интерфейса IScriptEdit</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Событие</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "cange"></Nest><Nest id = "dblclick"></Nest><Nest
+    id = "click"></Nest><Nest id = "key"></Nest><Nest id = "mouse"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.5. Интерфейс IScriptCheckBox</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение галочек с текстом. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует
+элементу checkBox.</para>
+<para><command>Свойства интерфейса IScriptCheckBox</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "caption"></Nest><Nest id = "checked"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>События интерфейса IScriptCheckBox</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Событие</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "click"></Nest><Nest id = "key"></Nest><Nest
+    id = "mouse"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.6. Интерфейс IScriptGroupBox</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение всех рамок-контейнеров. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует элементу
+groupBox.</para>
+<para><command>Свойства интерфейса IScriptGroupBox</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "caption3"></Nest><Nest id = "controls"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3"></entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>События интерфейса IScriptGroupBox</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Событие</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "dblclick"></Nest><Nest id = "click"></Nest><Nest
+    id = "mouse"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.7. Интерфейс IScriptLabel</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение всех надписей. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует
+элементу label.</para>
+<para><command>Свойства интерфейса IScriptLabel</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1"><Nest id = "caption"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">VARIANT_BOOL AutoSize</entry>
+<entry colname = "2">Показывает, будет ли размер области, занимаемой надписью автоматически изменяться при изменении текста надписи. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту autoSize</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>События интерфейса IScriptLabel</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Событие</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "dblclick"></Nest><Nest id = "click"></Nest><Nest
+    id = "mouse"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.8. Интерфейс IScriptBevel</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение всех бордюров. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует
+элементу bevel.</para>
+<para><command>Свойства интерфейса IScriptBevel</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">INT Shape</entry>
+<entry colname = "2">Форма бордюра. Допустимые значения: 0 – вид коробки (значение по умолчанию),
+1 – вид рамки, 2 – верхняя часть рамки, 3 – нижняя часть рамки,
+4 – левая часть рамки, 5 – правая часть рамки, 5 – пунктирная рамка. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту shape</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">INT Style</entry>
+<entry colname = "2">Стиль бордюра. Допустимые значения: 0 – понижающий (значение по умочанию),
+1 – повышающий. Соответствует<xref linkend = "XML"
+    role = "Undefined Cross-Reference"/>-атрибуту style</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.9. Интерфейс IScriptRadioButton</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение альтернатив вне группы. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует элементу
+radioButton.</para>
+<para><command>Свойства интерфейса IScriptRadioButton</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "caption"></Nest><Nest id = "checked"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>События интерфейса IScriptRadioButton</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Событие</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "click"></Nest><Nest id = "key"></Nest><Nest
+    id = "mouse"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.10. Интерфейс IScriptRadioGroup</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение всех контейнеров альтернатив.
+В<xref linkend = "XML" role = "Undefined Cross-Reference"/>соответствует элементу
+radioGroup.</para>
+<para><command>Свойства интерфейса IScriptRadioGroup</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1"><Nest id = "caption3"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3"></entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">LONG Columns<Nest id = "controls"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Количество колонок в контейнере</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>События интерфейса IScriptRadioGroup</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Событие</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "dblclick"></Nest><Nest id = "click"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.11. Интерфейс IScriptRadioButtonOfGroup</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение альтернатив в группе. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует
+элементу radioButton.</para>
+<para><command>Свойства интерфейса IScriptRadioButtonOfGroup</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "caption"></Nest><Nest id = "checked"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.12. Интерфейс IScriptListBox</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение всех списков элементов. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует элементу
+listBox.</para>
+<para><command>Свойства интерфейса IScriptControl</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1"><Nest id = "sorted"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3"></entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">VARIANT_BOOL MultiSelect<Nest id = "current"></Nest><Nest
+    id = "controls"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Флаг, разрешающий или запрещающий выбор нескольких элементов списка одновременно. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту multiSelect. Значение по умолчанию false</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.13. Интерфейс IScriptListBoxItem</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение всех элементов списков. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует элементу
+listBoxItem.</para>
+<para><command>Свойства интерфейса IScriptListBoxItem</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1"><Nest id = "caption"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">BSTR Value</entry>
+<entry colname = "2">Строковые данные, ассоциированные с элементом. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту value</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">VARIANT_BOOL Current</entry>
+<entry colname = "2">Флаг, показывающий, выбран ли этот элемент списка. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту current. Значение по умолчанию false</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.14. Интерфейс IScriptComboBox</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение раскрывающихся списков. В<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>соответствует элементу
+comboBox.</para>
+<para><command>Свойства интерфейса IScriptComboBox</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+<entry colname = "3"></entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1"><Nest id = "sorted"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3"></entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">INT Style<Nest id = "current"></Nest><Nest
+    id = "controls"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Стиль раскрывающегося списка. Допустимые значения:
+0 – раскрывающийся с возможностью редактирования (значение по умолчанию),
+1 – раскрывающийся без возможности редактирования, 2 – простой. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту style</entry>
+</row>
+</tbody>
+</tgroup></informaltable>
+<para><command>События интерфейса IScriptComboBox</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Событие</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "cange"></Nest><Nest id = "dblclick"></Nest><Nest
+    id = "click"></Nest><Nest id = "key"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.15. Интерфейс IScriptComboBoxItem</title>
+<para>Предок: IScriptControl</para>
+<para>Интерфейс, описывающий поведение всех элементов раскрывающихся
+списков. В<xref linkend = "XML" role = "Undefined Cross-Reference"/>соответствует
+элементу comboBoxItem.</para>
+<para><command>Свойства интерфейса IScriptComboBoxItem</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1"><Nest id = "caption"></Nest></entry>
+<entry colname = "2"></entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">BSTR Value</entry>
+<entry colname = "2">Строковые данные, ассоциированные с элементом. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту value</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">VARIANT_BOOL Current</entry>
+<entry colname = "2">Флаг, показывающий, выбран ли этот элемент списка. Соответствует<xref
+    linkend = "XML" role = "Undefined Cross-Reference"/>-атрибуту current. Значение по умолчанию false</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.1.16. Интерфейс IScriptControls</title>
+<para>Предок: IDispatch</para>
+<para>Коллекция дочерних элементов контейнера. В<xref linkend = "XML"
+    role = "Undefined Cross-Reference"/>соответствует вложеному
+элементу controls.</para>
+<para><command>Свойства интерфейса IScriptControls</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">LONG Count</entry>
+<entry colname = "2">(read-only)</entry>
+<entry colname = "3">Количество элементов в списке</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">IDispatch *Item[VARIANT Index]</entry>
+<entry colname = "2">(read-only)</entry>
+<entry colname = "3">Элемент коллекции по имени или индексу</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section></section>
+<section><title>6.2. Интерфейсы, передаваемые обработчикам событий</title>
+<section><title>6.2.1. Иерархия</title>
+<itemizedlist><listitem><para>IScriptEventParams</para>
+<itemizedlist><listitem><para>IScriptCanResizeEventParams</para></listitem>
+<listitem><para>IScriptConstrainedResizeEventParams</para></listitem>
+<listitem><para>IScriptContextPopupEventParams</para></listitem>
+<listitem><para>IScriptKeyEventParams</para></listitem>
+<listitem><para>IScriptKeyPressEventParams</para></listitem>
+<listitem><para>IScriptMouseEventParams</para></listitem>
+<listitem><para>IScriptMouseMoveEventParams</para></listitem>
+<listitem><para>IScriptMouseWheelEventParams</para></listitem>
+<listitem><para>IScriptMouseWheelUpDownEventParams</para></listitem></itemizedlist></listitem></itemizedlist></section>
+<section><title>6.2.2. Интерфейс IScriptEventParams</title>
+<para>Предок: IDispatch</para>
+<para>Базовый интерфейс, с общей информацией для обработчиков. От
+него наследуются все остальные интерфейсы.</para>
+<para><command>Свойства интерфейса IScriptEventParams</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1">IDispatch *Sender</entry>
+<entry colname = "2">(read-only)</entry>
+<entry colname = "3">Диспетчерский интерфейс объекта, вызвавшего
+событие</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.2.3. Интерфейс IScriptCanResizeEventParams</title>
+<para>Предок: IScriptEventParams</para>
+<para>Интерфейс, описывающий параметры, передаваемые в обработчик
+запроса на возможность изменения размера формы.</para>
+<para><command>Свойства интерфейса IScriptCanResizeEventParams</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">LONG NewWidth</entry>
+<entry colname = "2">Новая ширина формы</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">LONG NewHeight</entry>
+<entry colname = "2">Новая высота формы</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">VARIANT_BOOL Resize</entry>
+<entry colname = "2">Флаг, показывающий, разрешать изменение размера или
+нет</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.2.4. Интерфейс IScriptConstrainedResizeEventParams</title>
+<para>Предок: IScriptEventParams</para>
+<para>Интерфейс, описывающий параметры-ограничения на размер формы.</para>
+<para><command>Свойства интерфейса IScriptConstrainedResizeEventParams</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">LONG MinWidth</entry>
+<entry colname = "2">Минимальная ширина формы</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">LONG MinHeight</entry>
+<entry colname = "2">Минимальная высота формы</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">LONG MaxWidth</entry>
+<entry colname = "2">Максимальная ширина формы</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">LONG MaxHeight</entry>
+<entry colname = "2">Максимальная высота формы</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.2.5. Интерфейс IScriptContextPopupEventParams</title>
+<para>Предок: IScriptEventParams</para>
+<para>Интерфейс, описывающий параметры, передаваемые в обработчики
+события onContextPopup.</para>
+<para><command>Свойства интерфейса IScriptContextPopupEventParams</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">LONG MousePosX</entry>
+<entry colname = "2">(read-only)</entry>
+<entry colname = "3">Горизонтальная координата курсора мыши</entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">LONG MousePosY</entry>
+<entry colname = "2">(read-only)</entry>
+<entry colname = "3">Вертикальная координата курсора мыши</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">VARIANT_BOOL Handled</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Флаг, показывающий, обработано это сообщение каким-либо обработчиком,
+или еще нет</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.2.6. Интерфейс IScriptKeyEventParams</title>
+<para>Предок: IScriptEventParams</para>
+<para>Интерфейс, описывающий параметры, передаваемые в обработчики
+событий клавиатуры.</para>
+<para><command>Свойства интерфейса IScriptKeyEventParams</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1">LONG Key<Nest id = "alt"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Код нажатой клавиши</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.2.7. Интерфейс IScriptKeyPressEventParams</title>
+<para>Предок: IScriptEventParams</para>
+<para>Интерфейс, описывающий параметры, передаваемые в обработчики
+события onKeyPress.</para>
+<para><command>Свойства интерфейса IScriptKeyPressEventParams</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1">LONG Key</entry>
+<entry colname = "2">Код нажатой клавиши</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.2.8. Интерфейс IScriptMouseEventParams</title>
+<para>Предок: IScriptEventParams</para>
+<para>Интерфейс, описывающий параметры, передаваемые в обработчики
+событий мыши.</para>
+<para><command>Свойства интерфейса IScriptMouseEventParams</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1">INT Button<Nest id = "alt"></Nest><Nest id = "long"></Nest></entry>
+<entry colname = "2">(read-only)</entry>
+<entry colname = "3">Параметр, показывающий, какая кнопка мыши инициировала сообщение. Допустимые значения:
+0 – левая, 1 – правая, 2 – средняя</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.2.9. Интерфейс IScriptMouseMoveEventParams</title>
+<para>Предок: IScriptEventParams</para>
+<para>Интерфейс, описывающий параметры, передаваемые в обработчики
+событий движения мыши.</para>
+<para><command>Свойства интерфейса IScriptMouseMoveEventParams</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "alt"></Nest><Nest id = "long"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3"></entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.2.10. Интерфейс IScriptMouseWheelEventParams</title>
+<para>Предок: IScriptEventParams</para>
+<para>Интерфейс, описывающий параметры, передаваемые в обработчики
+событий движения колесика мыши.</para>
+<para><command>Свойства интерфейса IScriptMouseWheelEventParams</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1"><Nest id = "alt"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3"></entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">LONG WheelDelta<Nest id = "pos"></Nest></entry>
+<entry colname = "2">(read-only)</entry>
+<entry colname = "3">Изменение положения колесика</entry>
+</row>
+</tbody>
+</tgroup></informaltable></section>
+<section><title>6.2.11. Интерфейс IScriptMouseWheelUpDownEventParams</title>
+<para>Предок: IScriptEventParams</para>
+<para>Интерфейс, описывающий параметры, передаваемые в обработчики
+событий зажатия и отпускания колесика мыши.</para>
+<para><command>Свойства интерфейса IScriptMouseWheelUpDownEventParams</command></para>
+<informaltable frame = "all" colsep = "1" rowsep = "1">
+<tgroup cols = "3" tgroupstyle = "Format A" colsep = "1" rowsep = "1"
+    align = "left">
+<colspec colnum = "1" colname = "1" colwidth = "0.984in"/>
+<colspec colnum = "2" colname = "2" colwidth = "0.984in"/>
+<colspec colnum = "3" colname = "3" colwidth = "0.984in"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Свойство</entry>
+<entry colname = "2"></entry>
+<entry colname = "3">Описание</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1"><Nest id = "alt"></Nest><Nest id = "pos"></Nest></entry>
+<entry colname = "2"></entry>
+<entry colname = "3"></entry>
+</row>
+</tbody>
+</tgroup></informaltable></section></section></chapter></InfElement>

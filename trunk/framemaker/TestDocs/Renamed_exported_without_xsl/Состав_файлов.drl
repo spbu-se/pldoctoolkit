@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DocumentationCore SYSTEM "file:///C:/Program%20Files/Adobe/FrameMaker8/structure/xml/docline/docline.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+
+<!ENTITY bkc1 SYSTEM "fails.e01">
+
+<!-- End Document Specific Declarations -->
+
+]>
+<DocumentationCore filename = "Состав_файлов.drl">&bkc1;</DocumentationCore>

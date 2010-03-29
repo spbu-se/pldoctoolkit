@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductLine name="InterBez Line" xmlns:d="http://math.spbu.ru/drl">
+	<d:Product id="home" name="InterBez Home"/>
+	<d:Product id="professional" name="InterBez Professional"/>
+	<d:Product id="enterprise" name="InterBez Home"/>
+</d:ProductLine>

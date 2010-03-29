@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DocumentationCore SYSTEM "file:///C:/Program%20Files/Adobe/FrameMaker8/structure/xml/docline/docline.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+<?Fm Validation Off?>
+
+
+<!ENTITY bkc1 SYSTEM "service_panel.e01">
+<!ENTITY bkc2 SYSTEM "review_sp.e02">
+<!ENTITY bkc3 SYSTEM "main_window_sp.e03">
+<!NOTATION gif SYSTEM "">
+<!ENTITY graphic1 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/abonentskaja-panel.gif" NDATA gif>
+<!ENTITY bkc4 SYSTEM "search_sp.e04">
+<!ENTITY graphic2 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/ap-poisk-po-parametram.gif" NDATA gif>
+<!ENTITY graphic3 SYSTEM "file:///F:/runtime-New_configuration/rmo/illustrations/ScreenShots-full/ap-poisk-po-vsojstvam.gif" NDATA gif>
+<!ENTITY bkc5 SYSTEM "standart_tasks_sp.e05">
+
+<!-- End Document Specific Declarations -->
+
+]>
+<DocumentationCore filename = "Abonentskaya_panel.drl">&bkc1;&bkc2;&bkc3;&bkc4;&bkc5;</DocumentationCore>

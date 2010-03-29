@@ -1,0 +1,31 @@
+<InfElement id = "review_sp" name = "Обзор">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<section><title>Обзор</title>
+<para>Абонентская панель является средством для управления характеристиками
+абонента.</para>
+<Nest id = "change_characteristic"></Nest>
+<para>Приложение включает в себя удобные средства поиска абонента
+по индексу, конструктивному адресу (см. «<xref linkend = "structadd"
+    role = "Undefined Cross-Reference"/>») и подключению в коммутационном
+поле.</para>
+<para>Так же имеется ряд дополнительных возможностей позволяющих
+оператору осуществлять:</para>
+<itemizedlist><listitem><para>быстрый поиск безотбойных абонентов</para></listitem>
+<listitem><para>быстрый поиск заблокированных абонентов</para></listitem>
+<listitem><para>быстрый поиск необслуживаемых абонентов</para></listitem>
+<listitem><para>фильтрацию абонентов по его характеристикам</para></listitem>
+<listitem><para>синхронизацию абонентских данных между станционной
+базой и<xref linkend = "БД" role = "Undefined Cross-Reference"/><xref
+    linkend = "РМО" role = "Undefined Cross-Reference"/></para></listitem>
+<listitem><para>запуск CMM-скриптов из приложения с параметрами,
+характерными для выбранного абонента</para></listitem>
+<Nest id = "cordway_activ_trass"><listitem><para>активизировать
+для текущего абонента средства управления тарификацией</para></listitem></Nest></itemizedlist></section></InfElement>

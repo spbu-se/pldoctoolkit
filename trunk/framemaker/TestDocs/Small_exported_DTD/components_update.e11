@@ -1,0 +1,20 @@
+<InfElement id = "components_update"
+    name = "Обновление компонент">
+<?Fm Condition Comment Red SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green NO_OVERRIDE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red NO_OVERRIDE hide?>
+
+<?Fm BoolCondExpr "" State 0?>
+
+
+<?Fm TrackChange Off PreviewState PREVIEW_ON_FINAL?>
+<para>&Dcy;&acy;&ncy;&ncy;&ycy;&jcy; &rcy;&acy;&zcy;&dcy;&iecy;&lcy; &pcy;&ocy;&scy;&vcy;&yacy;&shchcy;&iecy;&ncy; &ocy;&bcy;&ncy;&ocy;&vcy;&lcy;&iecy;&ncy;&icy;&yucy; &kcy;&ocy;&mcy;&pcy;&ocy;&ncy;&iecy;&ncy;&tcy;&ocy;&vcy; &Vcy;&acy;&shcy;&iecy;&jcy; &scy;&icy;&scy;&tcy;&iecy;&mcy;&ycy; &bcy;&iecy;&zcy;&ocy;&pcy;&acy;&scy;&ncy;&ocy;&scy;&tcy;&icy;<DictRef
+    dictid = "company" entryid = "name"/>&period;</para><InfElemRefGroup
+    id = "update_methods" name = "способы обновления"
+    modifier = "XOR"/><InfElemRef id = "ref_update_local"
+    infelemid = "update_local" groupid = "update_methods"
+    optional = "true"/><InfElemRef id = "ref_update_inet"
+    infelemid = "update_inet" groupid = "update_methods"
+    optional = "true"/><Nest id = "av-update"><para>&Dcy;&lcy;&yacy; &ncy;&acy;&scy;&tcy;&rcy;&ocy;&jcy;&kcy;&icy; &ocy;&bcy;&ncy;&ocy;&vcy;&lcy;&iecy;&ncy;&icy;&jcy; &acy;&ncy;&tcy;&icy;&vcy;&icy;&rcy;&ucy;&scy;&acy; &vcy;&ycy;&bcy;&iecy;&rcy;&icy;&tcy;&iecy; &pcy;&ucy;&ncy;&kcy;&tcy; &mcy;&iecy;&ncy;&yucy; "&ncy;&acy;&scy;&tcy;&rcy;&ocy;&jcy;&kcy;&acy; &acy;&ncy;&tcy;&icy;&vcy;&icy;&rcy;&ucy;&scy;&acy;"&period;</para></Nest><Nest
+    id = "as-update"><para>&Dcy;&lcy;&yacy; &ncy;&acy;&scy;&tcy;&rcy;&ocy;&jcy;&kcy;&icy; &ocy;&bcy;&ncy;&ocy;&vcy;&lcy;&iecy;&ncy;&icy;&jcy; &acy;&ncy;&tcy;&icy;&vcy;&icy;&rcy;&ucy;&scy;&acy; &vcy;&ycy;&bcy;&iecy;&rcy;&icy;&tcy;&iecy; &pcy;&ucy;&ncy;&kcy;&tcy; &mcy;&iecy;&ncy;&yucy; "&ncy;&acy;&scy;&tcy;&rcy;&ocy;&jcy;&kcy;&acy; &acy;&ncy;&tcy;&icy;&scy;&pcy;&acy;&mcy;&acy;"&period;</para></Nest></InfElement>
