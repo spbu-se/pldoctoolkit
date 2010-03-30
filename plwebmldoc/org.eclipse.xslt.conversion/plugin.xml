@@ -24,6 +24,20 @@
                toolbarPath="conversionGroup"
                id="org.eclipse.xslt.conversion.actions.ConversionAction">
          </action>
+         <action
+               class="org.eclipse.xslt.conversion.actions.ConversionAction"
+               icon="icons/sample.gif"
+               id="org.eclipse.xslt.conversion.check"
+               label="&amp;Check Documentation"
+               menubarPath="conversionMenu/conversionGroup">
+         </action>
+         <action
+               class="org.eclipse.xslt.conversion.actions.ConversionAction"
+               icon="icons/sample.gif"
+               id="org.eclipse.xslt.conversion.openeditor"
+               label="&amp;Open Binding Editor"
+               menubarPath="conversionMenu/conversionGroup">
+         </action>
       </actionSet>
    </extension>
 

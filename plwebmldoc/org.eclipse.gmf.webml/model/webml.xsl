@@ -9,6 +9,7 @@
         <xsl:text>
 </xsl:text>
             <xsl:apply-templates/>
+			<xsl:apply-templates  mode="linkprocessing"/>
         <xsl:text>
 </xsl:text>
         </webml:Siteview>
@@ -50,6 +51,41 @@
 			<xsl:value-of select="@id" />
 		</xsl:attribute>
 	</xsl:attribute-set>
+	<xsl:attribute-set name="link_attrs">
+		<xsl:attribute name="source">
+			<xsl:value-of select="../@id" />
+		</xsl:attribute>
+		<xsl:attribute name="target">
+			<xsl:value-of select="@to" />
+		</xsl:attribute>
+	</xsl:attribute-set>
+	
+    <!-- Link Transformations  -->
+	
+	<xsl:template match="Link[@type='normal']"/>
+    <xsl:template match="Link[@type='normal']" mode="linkprocessing">
+		<nlink xsl:use-attribute-sets="link_attrs"/>
+	</xsl:template>
+	
+	<xsl:template match="Link[@type='automatic']"/>
+    <xsl:template match="Link[@type='automatic']" mode="linkprocessing">
+		<nlink xsl:use-attribute-sets="link_attrs"/>
+	</xsl:template>
+	
+	<xsl:template match="Link[@type='transport']"/>
+    <xsl:template match="Link[@type='transport']" mode="linkprocessing">
+		<tlink xsl:use-attribute-sets="link_attrs"/>
+	</xsl:template>
+	
+	<xsl:template match="OKLink"/>
+    <xsl:template match="OKLink" mode="linkprocessing">
+		<oklink xsl:use-attribute-sets="link_attrs"/>
+	</xsl:template>
+	
+	<xsl:template match="KOLink"/>
+    <xsl:template match="KOLink" mode="linkprocessing">
+		<kolink xsl:use-attribute-sets="link_attrs"/>
+	</xsl:template>
 	
     <!-- Area Transformations  -->
 	 <xsl:template match="Area">
@@ -162,4 +198,5 @@
     <xsl:template match="ChangeGroupUnit">
         <element xsl:use-attribute-sets="ou_attrs"/>
     </xsl:template>
+	
 </xsl:stylesheet>
