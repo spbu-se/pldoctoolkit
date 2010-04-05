@@ -339,6 +339,7 @@ VoidT publishDocLineDoc(StringT format)
 	if (response != 0) // user clicked "no"
 		return;
 
+	exportDocLineDoc();
 	//get path to jar file and check if jar exists
 	tempPath = F_ApiClientDir();
 	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);

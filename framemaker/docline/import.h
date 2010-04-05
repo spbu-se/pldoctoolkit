@@ -6,8 +6,8 @@
 VoidT importDocLineDoc(); //Imports .drl files in directory
 BoolT importBook(StringT path, F_PropValsT params);//Importing of one docline book
 BoolT performImportXSLT(StringT dirPath);//appying XSLT to document for impporting
-BoolT cleanImportDirectory(StringT dirPath); //Deletes all non-DRL files in directory
-VoidT openFilesInDirectory(StringT path); //Common part of Open and Import
+BoolT cleanImportDirectory(); //Deletes all non-DRL files in directory
+VoidT openFilesInDirectory(); //Common part of Open and Import
 VoidT openBook(); //Opens existing docline project with checking its structure
 F_PropValsT generateOpenParams(BoolT interactive);//Generates opening params for importing
 F_PropValsT generateImportParams();//Generates import params for importing

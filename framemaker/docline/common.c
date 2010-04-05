@@ -156,9 +156,8 @@ F_ObjHandleT openMainBook(StringT path)
 	StringT bookPath, tmplPath;
 	F_ObjHandleT bookID;
 
-	bookPath = F_StrCopyString(path);
-	bookPath = (StringT)F_Realloc(bookPath,(F_StrLen(path)+F_StrLen(defaultBookName)+1)*sizeof(UCharT),NO_DSE);
-	F_StrCat(bookPath,defaultBookName);
+	bookPath = (StringT)F_Alloc((F_StrLen(path)+F_StrLen(defaultBookName)+2)*sizeof(UCharT),NO_DSE);
+	F_Sprintf(bookPath,"%s\\%s\0",F_StrCopyString(path),F_StrCopyString(defaultBookName));
 	tmplPath = F_StrCopyString("");
 	getMainBookTemplate(&tmplPath);
 	bookID = F_ApiSimpleOpen(tmplPath,FALSE);
