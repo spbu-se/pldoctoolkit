@@ -5,64 +5,9 @@
 
 StringT mainBookPath;
 StringT workDirPath;
+StringT tempDirPath;
 IntT fileNum;
 
-BoolT mergeFile(F_StringsT in_files, StringT out_file)
-{
-	//F_PropValsT params, *returnParams;
-	//F_ObjHandleT fileID, flowID;
-	//StringT fileName, str;
-	//FilePathT *outPath;
-	//ChannelT outChannel;
-	//F_TextItemsT tis;
-	//F_TextItemT *ip;
-	//UIntT i,j;
-	//FontEncIdT enc;
-
-	//outPath = F_PathNameToFilePath(out_file,NULL,FDosPath);
-	//outChannel = F_ChannelOpen(outPath, "a");
-	//if (!outChannel)
-	//{
-	//	writeToChannel("Open merge channel error");
-	//	F_Printf(NULL,"Open merge channel error");
-	//	return FALSE;
-	//}
-
-	//returnParams = NULL;
-	//for (j=0; j<in_files.len; j++)
-	//{
-	//	fileName = in_files.val[j];
-	//	params = generateOpenParams(FALSE);
-	//	fileID = F_ApiOpen(fileName, &params, &returnParams);
-	//	if (!fileID) continue;
-	//	flowID = F_ApiGetId(FV_SessionId, fileID, FP_MainFlowInDoc);
-	//	if (!flowID) continue;
-	//	tis = F_ApiGetText(fileID, flowID, FTI_String | FTI_LineEnd);
-	//	//if (!tis) continue;
-	//	for (i=0; i<tis.len; i++)
-	//	{
-	//		ip=&tis.val[i];
-	//		if (ip->dataType == FTI_String)
-	//		{
-	//			str = ip->u.sdata;
-	//		}
-	//		else
-	//		{
-	//			str="\n";
-	//		}
-	//		if (!F_ChannelWrite(str, sizeof(UCharT), F_StrLen(str), outChannel))
-	//		{
-	//			F_Printf(NULL,"%s\n","Merge file writing error");
-	//			return FALSE;
-	//		}
-	//	}
-	//	F_ApiClose(fileID,FF_CLOSE_MODIFIED);
-	//	//*in_files++;
-	//}
-	//F_ChannelClose(outChannel);
-	mergeFilesTo(in_files.val,in_files.len,out_file);
-	return TRUE;
-}
 
 StringT chooseFile()
 {
@@ -73,6 +18,7 @@ StringT chooseFile()
 	returnParams = NULL;
 	params = generateOpenParams(TRUE);
 	docID = F_ApiOpen(defaultPath,&params,&returnParams);
+//	F_ApiChooseFile(&path, "Choose directory to save new docline project", "", "", FV_ChooseOpenDir, "");
 	if (!docID)
 	{
 		F_Printf(NULL,"No such file: %s\n", defaultPath);
@@ -115,40 +61,7 @@ F_PropValsT generateSaveParams()
 
 	return params;
 }
-BoolT copyFileToTempDirectory(StringT filePath)
-{
-	F_PropValsT params, *returnParams;
-	F_ObjHandleT fileID;
-	StringT newPath;
-	UCharT buf[256];
-	IntT i;
 
-	params = generateOpenParams(FALSE);
-	returnParams = NULL;
-	fileID = F_ApiOpen(filePath,&params,&returnParams);
-	params = generateSaveParams();
-	newPath = F_ApiClientDir();
-	i = 0;
-	i = F_Sprintf(buf, "%s", newPath);
-	i += F_Sprintf(buf+i, "%s", "\\docline\\temp\\");
-	i += F_Sprintf(buf+i, "%s", F_StrCopyString(fileFileName(filePath)));
-	//if (!F_StrCat(newPath,F_StrCopyString("\\docline\\temp\\")))
-	//{
-	//	F_Printf(NULL,"%s\n","Copying. Concatenation error");
-	//	return FALSE;
-	//}
-	//if (!F_StrCat(newPath,F_StrCopyString(fileFileName(filePath))))
-	//{
-	//	F_Printf(NULL,"%s\n","Copying. Concatenation error");
-	//	return FALSE;
-	//}
-	newPath = (StringT)buf;
-	returnParams = NULL;
-	F_ApiSave(fileID,newPath,&params,&returnParams);
-	F_ApiClose(fileID,FF_CLOSE_MODIFIED);
-
-	return TRUE;
-}
 
 BoolT copyFilesToTempDirectory(FilePathT *filePath)
 {
@@ -201,175 +114,7 @@ BoolT copyFilesToTempDirectory(FilePathT *filePath)
 
 }
 
-BoolT splitFiles(StringT dirPath)
-{
-	DirHandleT handle;
-	IntT statusp, numb;
-	FilePathT *filePath;
-	StringT pathName;
 
-	filePath = F_PathNameToFilePath(dirPath,NULL,FDosPath);
-	handle = F_FilePathOpenDir(filePath, &statusp);
-	if (!handle)
-	{
-		writeToChannel((StringT)"\tHandle error\n");
-		return FALSE;
-	}
-	numb = 0;
-	while (filePath = F_FilePathGetNext(handle,&statusp))
-	{
-		pathName = F_FilePathToPathName(filePath,FDosPath);
-		if (validateFilename(pathName,FM))
-		{
-			if (!splitFile(pathName, &numb)) continue;
-		}
-	}
-	F_FilePathCloseDir(handle);
-	return TRUE;
-}
-
-BoolT splitFile(StringT filePath, IntT *numb)
-{
-	StringT highestString, idAttrVal, newBookPath, dirPath, newDocPath, elemDefName, name;
-	F_ObjHandleT docID, topID, topDefID, elemID, newBookID, newFileID, newTopID, newDocID, newDocTopID, elemDef, childID;
-	F_AttributesT attrs;
-	F_AttributeT attr;
-	UCharT buf[100];
-	IntT i;
-	F_ElementLocT loc;
-	F_PropValsT params, *returnParams;
-
-	params = generateOpenWithUnresolvedRefsParams();
-	returnParams = NULL;
-	docID = F_ApiOpen(filePath,&params,&returnParams);
-	F_ApiDeallocatePropVals(&params);
-	F_ApiDeallocatePropVals(returnParams);
-	writeToChannel("\n\t");
-	writeToChannel(filePath);
-	writeToChannel(":\n");
-	if (!docID)
-	{
-		i = FA_errno;
-		return FALSE;
-	}
-	topID = F_ApiGetId(docID,F_ApiGetId(FV_SessionId,docID,FP_MainFlowInDoc),FP_HighestLevelElement);
-	topDefID = F_ApiGetId(docID,topID,FP_ElementDef);
-	//highestString = F_ApiGetString(docID,F_ApiGetId(docID,F_ApiGetId(FV_SessionId,docID,FP_MainFlowInDoc),FP_Name);
-	highestString = getHighestString(docID);
-	if (F_StrIEqual(highestString, (StringT)"DocumentationCore"))
-	{
-		newBookID = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_documentationCore_book_template.book",FALSE);
-	}
-	else if (F_StrIEqual(highestString, (StringT)"ProductDocumentation"))
-	{
-		newBookID = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_productDocumentation_book_template.book",FALSE);
-	}
-	else if (F_StrIEqual(highestString, (StringT)"ProductLine"))
-	{
-		newBookID = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_productLine_book_template.book",FALSE);
-	}
-	else
-	{
-		return TRUE;//this may be already generated file
-	}
-	writeToChannel("\t\tTemplate opened");
-	dirPath = F_ApiCopyString(filePath);
-	pathFilename(dirPath);
-	F_ApiDeallocateString(&buf);
-	i = F_Sprintf(buf,"%s", dirPath);
-	i = F_Sprintf(buf+i,"%s_%d.book","book",*numb);
-	(*numb)++;
-	newBookPath = F_StrCopyString((StringT)buf);
-	writeToChannel("\t\tNew book file: ");
-	writeToChannel(newBookPath);
-	newTopID = F_ApiGetId(FV_SessionId,newBookID,FP_HighestLevelElement);
-	attrs = F_ApiGetAttributes(docID,topID);
-	F_ApiSetAttributes(newBookID,newTopID, &attrs);
-	F_ApiSimpleSave(newBookID,newBookPath,FALSE);
-	writeToChannel("\n\t\tBook Saved\n");
-	elemID = F_ApiGetId(docID,topID,FP_FirstChildElement);
-	while (elemID)
-	{
-		newDocID = F_ApiSimpleNewDoc("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_doc_template.fm",FALSE);
-		attrs = F_ApiGetAttributes(docID,elemID);
-		for (i=0; i<attrs.len; i++)
-		{
-			if(F_StrIEqual(attrs.val[i].name, "id"))
-			{
-				idAttrVal = attrs.val[i].values.val[0];
-			}
-		}
-		F_ApiDeallocateString(&buf);
-		i = F_Sprintf(buf,"%s", dirPath);
-		i = F_Sprintf(buf+i,"%s_%d.fm",idAttrVal,*numb);
-		newDocPath = F_StrCopyString((StringT)buf);
-		(*numb)++;
-		writeToChannel("\t\tNew document: ");
-		writeToChannel(newDocPath);
-		writeToChannel("\n");
-		F_ApiSimpleSave(newDocID,newDocPath,FALSE);
-		elemDef = F_ApiGetId(docID,elemID,FP_ElementDef);
-		elemDefName = F_ApiGetString(docID,elemDef,FP_Name);
-		elemDef = F_ApiGetNamedObject(newDocID,FO_ElementDef,elemDefName);
-		F_ApiWrapElement(newDocID,elemDef);
-		writeToChannel("\t\tHighest element added\n");
-		attrs = F_ApiGetAttributes(docID,elemID);
-		newDocTopID = F_ApiGetId(newDocID,F_ApiGetId(FV_SessionId,newDocID,FP_MainFlowInDoc),FP_HighestLevelElement);
-		F_ApiSetAttributes(newDocID,newDocTopID,&attrs);
-		childID = F_ApiGetId(docID,elemID,FP_FirstChildElement);
-		while (childID)
-		{
-			addStructuredElementToDoc(docID,newDocID,newDocTopID,childID);
-			childID = F_ApiGetId(docID,childID,FP_NextSiblingElement);
-		}
-		writeToChannel("\t\tStructure added\n");
-		F_ApiSimpleSave(newDocID,newDocPath,FALSE);
-		F_ApiClose(newDocID,FF_CLOSE_MODIFIED);
-		loc.childId = 0;
-		loc.offset = 0;
-		loc.parentId = newTopID;
-		F_ApiNewBookComponentInHierarchy(newBookID,newDocPath, &loc);
-		elemID = F_ApiGetId(docID,elemID,FP_NextSiblingElement);
-	}
-	F_ApiSimpleGenerate(newBookID,FALSE,TRUE);
-	F_ApiSimpleSave(newBookID,newBookPath,FALSE);
-	F_ApiClose(newBookID,FF_CLOSE_MODIFIED);
-	F_ApiClose(docID,FF_CLOSE_MODIFIED);
-	//F_DeleteFile(F_PathNameToFilePath(filePath,NULL,FDosPath));
-	//F_ApiDeallocateString(buf);
-	F_Sprintf(buf,"%s_%d",filePath,*numb);
-	F_RenameFile(F_PathNameToFilePath(filePath,NULL,FDosPath),F_PathNameToFilePath(buf,NULL,FDosPath));
-	F_ApiDeallocateString(&buf);
-	writeToChannel("\t\tSplitting completed\n");
-
-	return TRUE;
-}
-
-BoolT addStructuredElementToDoc(F_ObjHandleT fromDocID, F_ObjHandleT toDocID, F_ObjHandleT parentID, F_ObjHandleT elemToMove)
-{
-	F_ObjHandleT defID, childID, elemID;
-	F_ElementLocT loc;
-	F_AttributesT attrs;
-	StringT defName, name;
- 
-	defID = F_ApiGetId(fromDocID,elemToMove,FP_ElementDef);
-	if (!defID) return FALSE;
-	defName = F_ApiGetString(fromDocID,defID,FP_Name);
-	defID = F_ApiGetNamedObject(toDocID,FO_ElementDef,defName);
-	loc.childId = 0;
-	loc.offset = 0;
-	loc.parentId = parentID;
-	elemID = F_ApiNewElementInHierarchy(toDocID,defID,&loc);
-	attrs = F_ApiGetAttributes(fromDocID,elemToMove);
-	F_ApiSetAttributes(toDocID,elemID, &attrs);
-
-	childID = F_ApiGetId(fromDocID,elemToMove,FP_FirstChildElement);
-	while (childID)
-	{
-		addStructuredElementToDoc(fromDocID,toDocID,elemID,childID);
-		childID = F_ApiGetId(fromDocID,childID,FP_NextSiblingElement);
-	}
-}
 
 F_PropValsT generateOpenWithUnresolvedRefsParams()
 {
@@ -393,10 +138,26 @@ F_PropValsT generateOpenWithUnresolvedRefsParams()
 	return params;
 }
 
+BoolT initializeConstants()
+{
+	//workDirPath = F_StrCopyString(chooseFile());
+	if (F_ApiChooseFile(&workDirPath, "Choose directory to save new docline project", "", "", FV_ChooseOpenDir, "")) return;
+	if (!setDefaultDirectory(workDirPath)) return FALSE;
+	if (!getTempDirPath(&tempDirPath)) return FALSE;
+
+	return TRUE;
+}
+BoolT deinitializeConstants()
+{
+	F_ApiDeallocateString(&tempDirPath);
+	F_ApiDeallocateString(workDirPath);
+
+	return TRUE;
+}
 VoidT importDocLineDoc()
 {
 	F_ObjHandleT docID;
-	StringT dirPath, tmpPath, bookPath, tmpDirPath;
+	StringT tmpPath, bookPath;
 	FilePathT *filedirPath, *file, *filetmpPath;
 	DirHandleT handle;
 	IntT statusp, i;
@@ -406,39 +167,33 @@ VoidT importDocLineDoc()
 	openLogChannel();
 	writeToChannel("Import started\n\n");
 
-	dirPath = chooseFile();
-	if (dirPath == "") return;
-	filedirPath = F_PathNameToFilePath (dirPath, NULL, FDosPath);//since then filedirPath should be const
-	writeToChannel("Cleaning temporary directory... ");
+	if (!initializeConstants()) return;
+	if (F_StrIEqual(workDirPath,(StringT)"")) return;
+	filedirPath = F_PathNameToFilePath (workDirPath, NULL, FDosPath);//since then filedirPath should be const
+	writeToChannel("\tCleaning temporary directory... ");
 	if (!cleanTempDirectory()) return;
 	writeToChannel("Succesful.\n");
-	writeToChannel("Copying files to temporary directory... ");
+	writeToChannel("\tCopying files to temporary directory... ");
 	if (!copyFilesToTempDirectory(filedirPath)) return;
 	writeToChannel("Succesfull.\n");
-	if (!setDefaultDirectory(dirPath)) return;
-	workDirPath = F_StrCopyString(dirPath);
-	writeToChannel("Cleaning import directory... ");
-	if (!cleanImportDirectory(dirPath)) return;
+	writeToChannel("\tCleaning import directory... ");
+	if (!cleanImportDirectory()) return;
 	writeToChannel("Succesfull.\n");
-	tmpDirPath = F_StrCopyString(F_ApiClientDir());
-	i = F_Sprintf(buf,"%s", tmpDirPath);
-	i = F_Sprintf(buf+i,"\\docline\\temp\\");
-	tmpDirPath = F_StrCopyString((StringT)buf);
-	filetmpPath = F_PathNameToFilePath (tmpDirPath, NULL, FDosPath);//since then filedirPath should be const
-	writeToChannel("Performing XSL Transformation... ");
-	if (!performImportXSLT(tmpDirPath)) return;
+	filetmpPath = F_PathNameToFilePath (tempDirPath, NULL, FDosPath);//since then filedirPath should be const
+	writeToChannel("\tPerforming XSL Transformation... ");
+	if (!performImportXSLT(tempDirPath)) return;
 	writeToChannel("Succesfull.\n");
 	bookPath = "";
 	handle = F_FilePathOpenDir(filetmpPath,&statusp);
 	if (!handle)
 	{
-		F_Printf(NULL,"import error:\n\tInvalid directory path: %s\n",dirPath);
+		F_Printf(NULL,"import error:\n\tInvalid directory path: %s\n",workDirPath);
 		writeToChannel("Error. Invalid directory path.\n");
 		return;
 	}
 	params = generateImportParams();
 	//Opening of all .drl files in directory with structured application "DocLine"
-	writeToChannel("Importing all DRL files... ");
+	writeToChannel("\tImporting all DRL files... ");
 	fileNum = 0;
 	while((file = F_FilePathGetNext(handle, &statusp)) != NULL)
 	{
@@ -450,14 +205,11 @@ VoidT importDocLineDoc()
 	}
 	F_FilePathCloseDir(handle);
 	writeToChannel("Succesfull.\n");
-	//writeToChannel("Splitting... ");
-	//if (!splitFiles(dirPath)) return;
-	//writeToChannel("Succesfull.\n");
-	writeToChannel("Creating main project book... ");
-	openFilesInDirectory(dirPath);
+	writeToChannel("\tCreating main project book... ");
+	openFilesInDirectory();
 	writeToChannel("Succesfull.\n");
-	writeToChannel("Cleaning directory... ");
-	filedirPath = F_PathNameToFilePath(dirPath,NULL,FDosPath);
+	writeToChannel("\tCleaning directory... ");
+	//filedirPath = F_PathNameToFilePath(dirPath,NULL,FDosPath);
 	cleanDirectory(filedirPath);
 	writeToChannel("Succesfull.\n");
 
@@ -465,39 +217,10 @@ VoidT importDocLineDoc()
 	closeLogChannel();
 
 	F_ApiDeallocatePropVals(&params);    
-	F_FilePathFree(filedirPath);
-	F_ApiDeallocateString(&dirPath);
-	F_ApiDeallocateString(&bookPath);
+
+	if (!deinitializeConstants()) return;
 }
 
-BoolT editAttributes(F_ObjHandleT fileID, F_ObjHandleT elemID, StringT path)
-{
-	F_AttributesT attrs;
-	F_AttributeT attr;
-	IntT j;
-
-	if ((F_StrIEqual(F_ApiGetString(fileID,F_ApiGetId(fileID,elemID,FP_ElementDef),FP_Name),(StringT)"DocumentationCore"))||
-		(F_StrIEqual(F_ApiGetString(fileID,F_ApiGetId(fileID,elemID,FP_ElementDef),FP_Name),(StringT)"ProductLine"))||
-		(F_StrIEqual(F_ApiGetString(fileID,F_ApiGetId(fileID,elemID,FP_ElementDef),FP_Name),(StringT)"ProductDocumentation")))
-	{
-		attrs = F_ApiGetAttributes(fileID,elemID);
-		for (j=0; j<attrs.len; j++)
-		{
-			attr = attrs.val[j];
-			if (F_StrIEqual(attr.name,(StringT)"FileName"))
-			{
-				if (!attr.values.len)
-				{
-					attr.values.len = 1;
-					attr.values.val = (StringT*)F_Alloc(sizeof(StringT),DSE);
-				}
-				attr.values.val[0] = fileFileName(F_StrCopyString(path));
-				attrs.val[j] = attr;
-			}
-		}
-		F_ApiSetAttributes(fileID,elemID,&attrs);
-	}
-}
 
 BoolT importBook(StringT path, F_PropValsT params)
 {
@@ -569,14 +292,14 @@ BoolT performImportXSLT(StringT dirPath)
 	return !retVal;
 }
 
-BoolT cleanImportDirectory(StringT dirPath)
+BoolT cleanImportDirectory()
 {
 	FilePathT *filedirPath, *file;
 	DirHandleT handle;
 	StringT tmpPath;
 	IntT statusp;
 
-	filedirPath = F_PathNameToFilePath (dirPath, NULL, FDosPath);
+	filedirPath = F_PathNameToFilePath (workDirPath, NULL, FDosPath);
 	handle = F_FilePathOpenDir(filedirPath, &statusp);
 	if (!handle)
 	{
@@ -595,9 +318,7 @@ BoolT cleanImportDirectory(StringT dirPath)
 	}
 	F_FilePathCloseDir(handle);
 
-	//F_Free(&handle);
 	F_ApiDeallocateString(&tmpPath);
-	//F_Free(&statusp);
 	F_FilePathFree(file);
 	F_FilePathFree(filedirPath);
 
@@ -698,16 +419,14 @@ BoolT setSecondLevelAttributes(F_ObjHandleT bookID)
 	return TRUE;
 }
 
-VoidT openFilesInDirectory(StringT path)
+VoidT openFilesInDirectory()
 {
-	StringT bookPath, dirPath;
+	StringT bookPath;
 	F_ObjHandleT bookID;
 	F_PropValsT params, *returnParams;
 
-	dirPath = F_StrCopyString(path);
-	pathFilename(dirPath);
-	if (!(bookID = openMainBook(dirPath))) return;
-	if (!addExistingDocs(dirPath,bookID)) return;
+	if (!(bookID = openMainBook(F_StrCopyString(workDirPath)))) return;
+	if (!addExistingDocs(F_StrCopyString(workDirPath),bookID)) return;
 	bookPath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
 	returnParams = NULL;
 	params = generateBookUpdateParams();
@@ -717,7 +436,6 @@ VoidT openFilesInDirectory(StringT path)
 	F_ApiSimpleSave(bookID,bookPath,False); 
 
 	F_ApiDeallocateString(&bookPath);
-	F_ApiDeallocateString(&dirPath);
 	//F_Free(&bookID);
 }
 VoidT openBook()
@@ -820,7 +538,7 @@ BoolT renameFileToActualName(F_ObjHandleT fileID)
 		}
 		if (F_StrIEqual(attr.name,"Id"))
 		{
-			F_Sprintf(newFilePathName,"%s%s_%d.fm",workDirPath,attr.values.val[0],fileNum);
+			F_Sprintf(newFilePathName,"%s\\%s_%d.fm\0",workDirPath,attr.values.val[0],fileNum);
 			fileNum++;
 			F_ApiSimpleSave(fileID,newFilePathName,FALSE);
 
@@ -846,7 +564,7 @@ BoolT renameFileToActualName(F_ObjHandleT fileID)
 VoidT renameFilesToActualNames(F_ObjHandleT bookID)
 {
 	F_ObjHandleT compID;
-	StringT compPath, newCompPath, dirPath;
+	StringT compPath, newCompPath;
 	F_AttributesT attrs;
 	F_AttributeT attr;
 	UIntT i, j;
@@ -857,8 +575,6 @@ VoidT renameFilesToActualNames(F_ObjHandleT bookID)
 		writeToChannel("Error. Invalid book.\n");
 		return;
 	}
-	dirPath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
-	pathFilename(dirPath);
 	compID = F_ApiGetId(FV_SessionId,bookID,FP_FirstComponentInBook);
 	while (compID)
 	{
@@ -876,12 +592,12 @@ VoidT renameFilesToActualNames(F_ObjHandleT bookID)
 					continue;
 				}
 
-				newCompPath = F_Alloc(F_StrLen(attr.values.val[0])+F_StrLen(dirPath)+10,NO_DSE);
-				F_Sprintf(newCompPath,"%s%s.fm",dirPath,attr.values.val[0]);
+				newCompPath = F_Alloc((F_StrLen(attr.values.val[0])+F_StrLen(workDirPath)+10)*sizeof(UCharT),NO_DSE);
+				F_Sprintf(newCompPath,"%s\\%s.fm",workDirPath,attr.values.val[0]);
 				i = 0;
 				while (F_RenameFile(F_PathNameToFilePath(compPath,NULL,FDosPath),F_PathNameToFilePath(newCompPath,NULL,FDosPath)) != FdeSuccess)
 				{
-					F_Sprintf(newCompPath,"%s%s%d.fm",dirPath,attr.values.val[0],i);
+					F_Sprintf(newCompPath,"%s\\%s%d.fm\0",workDirPath,attr.values.val[0],i);
 					//F_Printf(NULL,"%s\n",newCompPath);
 					i++;
 				}
@@ -896,7 +612,6 @@ VoidT renameFilesToActualNames(F_ObjHandleT bookID)
 	//F_ApiDeallocateAttribute(&attr);
 	F_ApiDeallocateAttributes(&attrs);
 	F_ApiDeallocateString(&compPath);
-	F_ApiDeallocateString(&dirPath);
 	//F_Free(&i);
 	//F_Free(&j);
 }
@@ -1107,71 +822,3 @@ BoolT addExistingDoc(StringT path, F_ObjHandleT bookID)
 	return TRUE;
 }
 
-//BoolT addExistingDoc(StringT path, F_ObjHandleT bookID)
-//{
-//	F_ObjHandleT compID, docID, elemID;
-//	BoolT compExists;
-//	StringT tmpPath2, fileName, place;
-//	F_ElementLocT elemLoc;
-//
-//	compID = F_ApiGetId(FV_SessionId,bookID,FP_FirstComponentInBook);
-//	compExists = False;
-//	while ((compID != 0)&&(!compExists))
-//	{
-//		tmpPath2 = F_ApiGetString(bookID,compID,FP_Name);
-//		compExists =  F_StrIEqual(fileFileName(path),fileFileName(tmpPath2));
-//		compID = F_ApiGetId(bookID,compID,FP_NextComponentInBook);
-//	}
-//	if (!compExists)
-//	{
-//		docID = F_ApiSimpleOpen(path,False);
-//		fileName = getHighestString(docID);
-//		F_ApiClose(docID,FF_CLOSE_MODIFIED);
-//		place = getPlace(fileName);
-//		if (F_StrIEqual(place,(StringT)""))
-//		{
-//			compID = F_ApiNewSeriesObject(bookID,FO_BookComponent,0);
-//			F_ApiSetString(bookID,compID,FP_Name,path);
-//		}
-//		else
-//		{
-//			compID = F_ApiGetId(FV_SessionId,bookID,FP_HighestLevelElement);
-//			//compID = F_ApiGetId(bookID,F_ApiGetId(FV_SessionId,bookID,FP_MainFlowInDoc),FP_HighestLevelElement);
-//			if (!compID)
-//			{
-//				F_Printf(NULL,"OpenFiles:\n\tHighest element error\n");
-//				writeToChannel("Error. Highest level element error.\n");
-//				return 0;
-//			}
-//			else
-//			{
-//				compID = componentExists(bookID,compID,place);
-//				if (!compID)
-//				{
-//					elemID = F_ApiGetNamedObject(bookID,FO_ElementDef,place);
-//					elemLoc.parentId = F_ApiGetId(FV_SessionId,bookID,FP_HighestLevelElement);
-//					elemLoc.childId = 0;
-//					elemLoc.offset = 0;
-//					compID = F_ApiNewElementInHierarchy(bookID,elemID,&elemLoc);
-//				}
-//				elemLoc.parentId = compID;
-//				elemLoc.offset = 0;
-//				elemLoc.childId = 0;
-//				compID = F_ApiNewBookComponentInHierarchy(bookID,path,&elemLoc);
-//			}
-//		}
-//	}
-//
-//	//F_Free(&compID);
-//	//F_Free(&elemLoc);
-//	//F_Free(&elemID);
-//	F_ApiDeallocateString(&place);
-//	F_ApiDeallocateString(&fileName);
-//	//F_Free(&docID);
-//	//F_Free(&compExists);
-//	F_ApiDeallocateString(&tmpPath2);//
-//
-//	return 1;
-//}
-//
-//
