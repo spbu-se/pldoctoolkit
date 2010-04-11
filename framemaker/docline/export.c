@@ -165,8 +165,7 @@ VoidT exportDocLineDoc()
 	IntT j, statusp;
 	DirHandleT handle;
 	FilePathT *filePath;
-	StringT path, dirPath, name, tempDirPath;
-
+	StringT path, name, tempDirPath;
 
 	openLogChannel();
 	writeToChannel("\nExport started...\n");
@@ -177,10 +176,10 @@ VoidT exportDocLineDoc()
 		writeToChannel("Error. Invalid document.\n");
 		return;
 	}
-	dirPath = F_StrCopyString(F_ApiGetString(FV_SessionId,bookID,FP_Name));
-	pathFilename(dirPath); //Since this point dirPath and bookID should be constants
-	curDirPath = F_StrCopyString(dirPath);
+	curDirPath = F_StrCopyString(F_ApiGetString(FV_SessionId,bookID,FP_Name));
+	pathFilename(curDirPath); //Since this point dirPath and bookID should be constants
 	if (!cleanTempDirectory()) return;
+	writeToChannel("Point02");
 	if (!getTempDirPath(&tempDirPath)) return;
 	writeToChannel("Generating export params... ");
 	params = generateExportParams();
@@ -207,13 +206,12 @@ VoidT exportDocLineDoc()
 	closeAllDocs();
 	writeToChannel("Succesful.\n");
 	writeToChannel("Cleaning directory... ");
-	cleanDirectory(F_PathNameToFilePath(dirPath,NULL,FDosPath));
+	cleanDirectory(F_PathNameToFilePath(curDirPath,NULL,FDosPath));
 	writeToChannel("Succesful.\n");
 	writeToChannel("Export finished succesfully.\n");
 
 	F_ApiDeallocateString(&path);
 	F_ApiDeallocatePropVals(&params);
-	F_ApiDeallocateString(&dirPath);
 }
 
 VoidT generateBooks(F_ObjHandleT mainBookID)

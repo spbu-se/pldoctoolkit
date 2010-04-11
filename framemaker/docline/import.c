@@ -191,7 +191,7 @@ VoidT importDocLineDoc()
 		writeToChannel("Error. Invalid directory path.\n");
 		return;
 	}
-	params = generateImportParams();
+	generateImportParams(&params);
 	//Opening of all .drl files in directory with structured application "DocLine"
 	writeToChannel("\tImporting all DRL files... ");
 	fileNum = 0;
@@ -483,26 +483,24 @@ F_PropValsT generateOpenParams(BoolT interactive)
 
 	return params;
 }
-F_PropValsT generateImportParams()
+BoolT generateImportParams(F_PropValsT *params)
 {
-	F_PropValsT params;
 	IntT i;
 
-	params = F_ApiGetOpenDefaultParams();
-	if (!params.len)
+	*params = F_ApiGetOpenDefaultParams();
+	if (!(*params).len)
 	{
-		F_ApiAlert("Default params error",FF_ALERT_CONTINUE_NOTE);
+		writeToChannel("Generating import params error.");
+		return FALSE;
 	}
-	i = F_ApiGetPropIndex(&params,FS_StructuredOpenApplication);
-	params.val[i].propVal.u.sval = "DocLine";
-	i = F_ApiGetPropIndex(&params,FS_DontNotifyAPIClients);
-	params.val[i].propVal.u.ival = False;
-	i = F_ApiGetPropIndex(&params,FS_RefFileNotFound);
-	params.val[i].propVal.u.ival = FV_AllowAllRefFilesUnFindable;
+	i = F_ApiGetPropIndex(params,FS_StructuredOpenApplication);
+	(*params).val[i].propVal.u.sval = F_StrCopyString("DocLine");
+	i = F_ApiGetPropIndex(params,FS_DontNotifyAPIClients);
+	(*params).val[i].propVal.u.ival = False;
+	i = F_ApiGetPropIndex(params,FS_RefFileNotFound);
+	(*params).val[i].propVal.u.ival = FV_AllowAllRefFilesUnFindable;
 
-	//F_Free(&i);
-
-	return params;
+	return TRUE;
 }
 
 BoolT renameFileToActualName(F_ObjHandleT fileID)
