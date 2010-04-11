@@ -10,7 +10,7 @@ BoolT cleanImportDirectory(); //Deletes all non-DRL files in directory
 VoidT openFilesInDirectory(); //Common part of Open and Import
 VoidT openBook(); //Opens existing docline project with checking its structure
 F_PropValsT generateOpenParams(BoolT interactive);//Generates opening params for importing
-F_PropValsT generateImportParams();//Generates import params for importing
+BoolT generateImportParams(F_PropValsT *params);//Generates import params for importing
 F_PropValsT generateOpenWithUnresolvedRefsParams();//Generates opening params for .fm files with unresolved XRefs
 VoidT renameFilesToActualNames(F_ObjHandleT bookID);//Renames book to it's actual name
 VoidT simpleOpenBook();//Opens existing docline project without checking its structure

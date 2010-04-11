@@ -5,17 +5,18 @@ ChannelT logChannel;
 
 BoolT getLogFileName(StringT *path)
 {
-	StringT fmPath;
-	UCharT buf[100];
-	IntT i;
-	//*path = F_StrCopyString(F_ApiClientDir());
-	fmPath = F_StrCopyString(F_ApiClientDir());
-	//buf = F_Realloc(buf,F_StrLen(fmPath)+F_StrLen("\\docline\\docline.log")+5,NO_DSE);
-	i = F_Sprintf(buf,"%s", fmPath);
-	i = F_Sprintf(buf+i,"\\docline\\docline.log");
-	*path = F_StrCopyString((StringT)buf);
+	StringT fmPath, suffix;
 
-	F_ApiDeallocateString(buf);
+	//if (!getMainDirPath(&fmPath)) return FALSE;
+	fmPath = F_StrCopyString(F_ApiClientDir());
+	//fmPath = F_StrCopyString("c:\\Program Files\\Adobe\\FrameMaker8\\fminit");
+	suffix = F_StrCopyString("\\docline\\docline.log");
+	(*path) = F_Alloc(F_StrLen(fmPath)+F_StrLen(suffix)+1,NO_DSE);
+	F_Sprintf((*path),"%s%s\0", fmPath, suffix);
+
+	F_ApiDeallocateString(&fmPath);
+	F_ApiDeallocateString(&suffix);
+
 	return TRUE;
 }
 
@@ -23,6 +24,8 @@ BoolT openLogChannel()
 {
 	StringT logPath;
 	FilePathT *logFilePath;
+
+	if (logChannel) return TRUE;
 
 	logPath = "";
 	if (!getLogFileName(&logPath)) return FALSE;

@@ -1,5 +1,7 @@
 #include "common.h"
 
+StringT mainDirPath;
+
 BoolT getMainBookTemplate(StringT *path)
 {
 	StringT tmplPath, fmDir, tmplName;
@@ -331,6 +333,9 @@ IntT getActiveBookID()
 		dirPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+5,NO_DSE);
 		F_Sprintf(dirPath,"%s%s",path,defaultBookName);
 		bookID = F_ApiSimpleOpen(dirPath,False);
+
+		F_ApiDeallocateString(&path);
+		F_ApiDeallocateString(&dirPath);
 	}
 	//Active document is not docline book
 	else if (!F_StrISuffix(F_ApiGetString(FV_SessionId,bookID,FP_Name),defaultBookName))
@@ -338,8 +343,6 @@ IntT getActiveBookID()
 		return 0;
 	}
 	//Active document is docline book
-	F_ApiDeallocateString(&path);
-	F_ApiDeallocateString(&dirPath);
 	return bookID;
 }
 VoidT closeAllDocs()
@@ -370,16 +373,33 @@ BoolT setDefaultDirectory(StringT dirPath)
 	return TRUE;
 }
 
+BoolT getMainDirPath(StringT *path)
+{
+	if (!mainDirPath)
+	{
+		mainDirPath = F_StrCopyString(F_ApiClientDir());
+	}
+	*path = F_StrCopyString(mainDirPath);
+
+	return TRUE;
+}
+
 BoolT getTempDirPath(StringT *path)
 {
 	StringT clPath, suffix;
 
+	writeToChannel("Point01");
 	clPath = F_StrCopyString(F_ApiClientDir());
+	//if (!getMainDirPath(&clPath)) return FALSE;
+	//clPath = F_StrCopyString("c:\\Program Files\\Adobe\\FrameMaker8\\fminit");
+	writeToChannel("Point02");
 	suffix = F_StrCopyString("\\docline\\temp\\");
-	*path = (StringT)F_Alloc((F_StrLen(clPath)+F_StrLen(suffix)+1)*sizeof(UCharT),NO_DSE);
-	F_Sprintf((*path),"%s%s",F_StrCopyString(clPath),F_StrCopyString(suffix));
+	*path = (StringT)F_Alloc((F_StrLen(clPath)+F_StrLen(suffix)+2)*sizeof(UCharT),NO_DSE);
+	F_Sprintf((*path),"%s%s\0",F_StrCopyString(clPath),F_StrCopyString(suffix));
 	F_ApiDeallocateString(&clPath);
 	F_ApiDeallocateString(&suffix);
+
+	return TRUE;
 }
 
 BoolT cleanTempDirectory()

@@ -20,6 +20,7 @@
 #define defaultPath  (F_StrCopyString("C:\\"))
 #define defaultBookName (F_StrCopyString("mainDRLFMBook.book"))
 
+BoolT getMainDirPath(StringT *path);
 VoidT closeProject();
 BoolT cleanDirectory(FilePathT* dirPath); //Deletes temporary files in directory
 BoolT validateFilename(StringT str,IntT type); //Validates type of file
