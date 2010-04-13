@@ -1,0 +1,16 @@
+//-------------------------------------------------------------------
+// Source filename:      F:\SP\Code\docline\publish.dre
+// Date generated:       Mon Apr 12 19:05:52 2010
+//-------------------------------------------------------------------
+
+#include "windows.h"
+
+publish DIALOG LOADONCALL MOVEABLE DISCARDABLE 0, 0, 237, 200
+STYLE WS_CLIPSIBLINGS | DS_MODALFRAME
+FONT 9 "Segoe UI"
+BEGIN
+	CONTROL "", 101, "LISTBOX", LBS_OWNERDRAWFIXED | LBS_NOTIFY | WS_VSCROLL | WS_BORDER | WS_GROUP | WS_TABSTOP | WS_VISIBLE | LBS_SORT | LBS_HASSTRINGS, 4, 25, 233, 130
+	CONTROL "OK", 102, "BUTTON", BS_PUSHBUTTON | WS_VISIBLE | WS_GROUP | WS_TABSTOP, 78, 170, 40, 12
+	DEFPUSHBUTTON "Cancel", 103, 132, 170, 40, 12, WS_VISIBLE | WS_GROUP | WS_TABSTOP
+	CONTROL "Choose FinalInfProduct", 100, "STATIC", SS_LEFTNOWORDWRAP | WS_VISIBLE | WS_GROUP, 9, 7, 73, 8
+END

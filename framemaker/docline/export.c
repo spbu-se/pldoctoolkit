@@ -2,6 +2,109 @@
 #include "logging.h"
 
 StringT curDirPath;
+F_ObjHandleT mainBookID;
+
+BoolT getFinalInfProductNameByDialog(StringT *fileName)
+{
+	F_ObjHandleT dlgID, highID, elemID, childID, *finals;
+	F_StringsT finalInfProds;
+	StringT elemName, childName, name;
+	F_AttributesT attrs;
+	F_AttributeT *attr;
+	BoolT first;
+	IntT i;
+
+	dlgID = F_ApiOpenResource(FO_DialogResource, "PUBLISH");
+	//if (!sectionDlgId) F_ApiAlert("dsdsdfdfs",FF_ALERT_OK_DEFAULT);
+	//F_ApiSetInt(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 5), FP_Visibility, True
+
+	if (!mainBookID)
+	{
+		writeToChannel("\tNo main book\n");
+		return FALSE;
+	}
+	highID = F_ApiGetId(FV_SessionId, mainBookID, FP_HighestLevelElement);
+	if (!highID)
+	{
+		writeToChannel("\tNo highest element\n");
+		return TRUE;
+	}
+	first = TRUE;
+	elemID = F_ApiGetId(mainBookID,highID,FP_FirstChildElement);
+	while (elemID)
+	{
+		elemName = F_ApiGetString(mainBookID,F_ApiGetId(mainBookID,elemID,FP_ElementDef),FP_Name);
+		if (F_StrIEqual(elemName,"ProductDocumentation"))
+		{
+			childID = F_ApiGetId(mainBookID,elemID,FP_FirstChildElement);
+			while (childID)
+			{
+				childName = F_ApiGetString(mainBookID,F_ApiGetId(mainBookID,childID,FP_ElementDef),FP_Name);
+				if (F_StrIEqual(childName,(StringT)"FinalInfProduct"))
+				{
+					attrs = F_ApiGetAttributes(mainBookID,childID);
+					for (i=0; i<attrs.len; i++)
+					{
+						attr = &(attrs.val[i]);
+						if ((F_StrIEqual((*attr).name,"Id")) && ((*attr).values.len != 0))
+						{
+							if (first)
+							{
+								finalInfProds.len = 1;
+								finalInfProds.val = (StringT *)F_Alloc(sizeof(StringT),NO_DSE);
+								finals = (F_ObjHandleT *)F_Alloc(sizeof(F_ObjHandleT),NO_DSE);
+								first = FALSE;
+							}
+							else
+							{
+								finalInfProds.len++;
+								finalInfProds.val = (StringT *)F_Realloc(finalInfProds.val,finalInfProds.len*sizeof(StringT),NO_DSE);
+								finals = (F_ObjHandleT *)F_Realloc(finals,finalInfProds.len*sizeof(F_ObjHandleT),NO_DSE);
+							}
+							finalInfProds.val[finalInfProds.len-1] = F_StrCopyString((*attr).values.val[0]);
+							finals[finalInfProds.len-1] = childID;
+						}
+					}
+					F_ApiDeallocateAttributes(&attrs);
+				}
+				F_ApiDeallocateString(&childName);
+				childID = F_ApiGetId(mainBookID,childID,FP_NextSiblingElement);
+			}
+		}
+		F_ApiDeallocateString(&elemName);
+		elemID = F_ApiGetId(mainBookID,elemID,FP_NextSiblingElement);
+	}
+
+	F_ApiSetStrings(dlgID, F_ApiDialogItemId(dlgID, FINALLIST), FP_Labels, &finalInfProds);
+	F_ApiDeallocateStrings(&finalInfProds);
+	/* Make the first item the default. */
+	F_ApiSetInt(dlgID, F_ApiDialogItemId(dlgID, FINALLIST), FP_State, 0);
+	F_ApiModalDialog(DLG_NUM, dlgID);
+
+	//not OK button pressed
+	if (F_ApiGetInt(dlgID, F_ApiDialogItemId(dlgID, OKBUTTON), FP_State) != True) return FALSE;
+	elemID = finals[F_ApiGetInt(dlgID, F_ApiDialogItemId(dlgID, FINALLIST), FP_State)];
+	if (!elemID) return FALSE;
+	attrs = F_ApiGetAttributes(mainBookID,elemID);
+	for (i=0; i<attrs.len; i++)
+	{
+		attr = &(attrs.val[i]);
+		if (F_StrIEqual((*attr).name,"FileName") && ((*attr).values.len != 0))
+		{
+			name = F_StrCopyString((*attr).values.val[0]);
+			(*fileName) = F_Alloc((F_StrLen(curDirPath)+F_StrLen(name)+2)*sizeof(UCharT),NO_DSE);
+			F_Sprintf((*fileName),"%s\\%s\0",curDirPath,name);
+			F_ApiDeallocateString(&name);
+			F_ApiDeallocateAttributes(&attrs);
+			F_Free(finals);
+			return TRUE;
+		}
+	}
+	F_ApiDeallocateAttributes(&attrs);
+	F_Free(finals);
+
+	return FALSE;
+}
 
 BoolT exportBook(StringT path, StringT dirPath, F_PropValsT params, UIntT* j)
 {
@@ -169,15 +272,12 @@ VoidT exportDocLineDoc()
 
 	openLogChannel();
 	writeToChannel("\nExport started...\n");
-	bookID = getActiveBookID();
-	if (!bookID)
+	if (!mainBookID) mainBookID = getActiveBookID();
+	if (!curDirPath)
 	{
-		F_Printf(NULL,"Invalid document\n");
-		writeToChannel("Error. Invalid document.\n");
-		return;
+		curDirPath = F_StrCopyString(F_ApiGetString(FV_SessionId,mainBookID,FP_Name));
+		pathFilename(curDirPath); //Since this point dirPath and bookID should be constants
 	}
-	curDirPath = F_StrCopyString(F_ApiGetString(FV_SessionId,bookID,FP_Name));
-	pathFilename(curDirPath); //Since this point dirPath and bookID should be constants
 	if (!cleanTempDirectory()) return;
 	writeToChannel("Point02");
 	if (!getTempDirPath(&tempDirPath)) return;
@@ -190,7 +290,7 @@ VoidT exportDocLineDoc()
 	F_Sprintf(path,"%s\\%s",F_StrCopyString(tempDirPath),F_StrCopyString(name));
 	F_ApiDeallocateString(&name);
 	returnParams = NULL;
-	F_ApiSave(bookID,path,&params,&returnParams);
+	F_ApiSave(mainBookID,path,&params,&returnParams);
 	writeToChannel("Succesful.\n");
 	writeToChannel("Performing XSL transformation... ");
 	if (!performExportXSLT(tempDirPath)) return;
@@ -308,7 +408,7 @@ F_PropValsT generateExportParams()
 	i = F_ApiGetPropIndex(&params,FS_FileType);
 	params.val[i].propVal.u.ival = FV_SaveFmtXml;
 	i = F_ApiGetPropIndex(&params,FS_StructuredSaveApplication);
-	params.val[i].propVal.u.sval = "DocLine";
+	params.val[i].propVal.u.sval = F_StrCopyString("DocLine");
 
 	//F_Free(&i);
 
@@ -337,7 +437,6 @@ VoidT publishDocLineDoc(StringT format)
 	if (response != 0) // user clicked "no"
 		return;
 
-	exportDocLineDoc();
 	//get path to jar file and check if jar exists
 	tempPath = F_ApiClientDir();
 	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
@@ -355,8 +454,8 @@ VoidT publishDocLineDoc(StringT format)
 
 	// show dialog to choose document to publish
 	//   get book's home dir
-	bookID = F_ApiGetId(0, FV_SessionId, FP_ActiveBook);
-	if (!bookID || !F_StrISuffix(F_ApiGetString(FV_SessionId, bookID, FP_Name), defaultBookName))
+	mainBookID = getActiveBookID();
+	if (!mainBookID || !F_StrISuffix(F_ApiGetString(FV_SessionId, mainBookID, FP_Name), defaultBookName))
 	{
 		F_ApiAlert("Invalid book", FF_ALERT_CONTINUE_NOTE);
 		return;
@@ -380,16 +479,18 @@ VoidT publishDocLineDoc(StringT format)
 	//	}
 	//}
 	// My code end
-	tempPath = F_ApiGetString(FV_SessionId, bookID, FP_Name);
+	tempPath = F_ApiGetString(FV_SessionId, mainBookID, FP_Name);
 	pathFilename(tempPath);
+	curDirPath = F_StrCopyString(tempPath);
 	//   promt for filename
 	writeToChannel("Choosing Final Product file...");
-	response = F_ApiChooseFile(&tempResult, "Choose a file with Final Product", tempPath, "", FV_ChooseSelect, "");
-	if (response != 0)
-	{
-		F_ApiDeallocateString(&tempResult);
-		return;
-	}
+	//response = F_ApiChooseFile(&tempResult, "Choose a file with Final Product", tempPath, "", FV_ChooseSelect, "");
+	//if (response != 0)
+	//{
+	//	F_ApiDeallocateString(&tempResult);
+	//	return;
+	//}
+	if (!getFinalInfProductNameByDialog(&tempResult)) return;
 	writeToChannel("Succesful.\n");
 	//   save file name
 	F_Sprintf(sourceFileName, "%s", F_FilePathBaseName(F_PathNameToFilePath(tempResult, NULL, FDefaultPath)));
@@ -416,6 +517,9 @@ VoidT publishDocLineDoc(StringT format)
 	F_ApiDeallocateString(&tempResult);
 	//F_Free(tempPath);
 	//F_Free(tempName);
+
+	//export documentation
+	exportDocLineDoc();
 
 	// invoke java util
 	writeToChannel("Calling Java function...");
