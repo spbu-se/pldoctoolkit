@@ -16,13 +16,18 @@
             </separator>
          </menu>
          <action
-               label="&amp;XSLT conversion from WebML"
+               class="org.eclipse.xslt.conversion.actions.ConversionAction"
+               icon="icons/sample.gif"
+               id="org.eclipse.xslt.conversion.openeditor"
+               label="&amp;Open Binding Editor"
+               menubarPath="conversionMenu/conversionGroup">
+         </action>
+         <action
+               label="&amp;Arrange all"
                icon="icons/sample.gif"
                class="org.eclipse.xslt.conversion.actions.ConversionAction"
-               tooltip="XSLT conversion from WebML"
                menubarPath="conversionMenu/conversionGroup"
-               toolbarPath="conversionGroup"
-               id="org.eclipse.xslt.conversion.actions.ConversionAction">
+               id="org.eclipse.xslt.conversion.arrangeall">
          </action>
          <action
                class="org.eclipse.xslt.conversion.actions.ConversionAction"
@@ -34,9 +39,11 @@
          <action
                class="org.eclipse.xslt.conversion.actions.ConversionAction"
                icon="icons/sample.gif"
-               id="org.eclipse.xslt.conversion.openeditor"
-               label="&amp;Open Binding Editor"
-               menubarPath="conversionMenu/conversionGroup">
+               id="org.eclipse.xslt.conversion.actions.ConversionAction"
+               label="&amp;XSLT conversion from WebML"
+               menubarPath="conversionMenu/conversionGroup"
+               toolbarPath="conversionGroup"
+               tooltip="XSLT conversion from WebML">
          </action>
       </actionSet>
    </extension>

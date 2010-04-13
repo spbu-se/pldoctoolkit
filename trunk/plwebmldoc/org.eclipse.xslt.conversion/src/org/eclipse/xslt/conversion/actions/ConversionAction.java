@@ -48,6 +48,9 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 
 	private static final String CHECK_DOC =
 	    "org.eclipse.xslt.conversion.check"; 
+	
+	private static final String ARRANGE_ALL =
+	    "org.eclipse.xslt.conversion.arrangeall"; 
 
 	/**
 	 * The action has been activated. The argument of the
@@ -56,31 +59,140 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 	 * @see IWorkbenchWindowActionDelegate#run
 	 */
 	public void run(IAction action){
-		//getWebRatioDiff();
 		String id = action.getId();
-		String projectPath = getWebRatioProjectDirectory();
-		String webModelPath = projectPath.concat("\\Model\\WebModel");
-		String docModelPath = projectPath.concat("\\Model\\DocModel");
+		String docModelPath = "C:\\Users\\Bagum\\runtime-EclipseApplication\\DocModel";
 		if (id.equals(OPEN_EDITOR)){
-			backupAllModels(docModelPath);
+			String projectPath = getWebRatioProjectDirectory();
+			String webModelPath = projectPath.concat("\\Model\\WebModel");
+			backupAllModels(docModelPath, "webml");
+			backupAllModels(docModelPath, "xml");
 			if (!genAllModels(webModelPath, docModelPath)) return;
 			copyTopics(docModelPath);
+			xmlDiff(docModelPath);
+		}else if (id.equals(ARRANGE_ALL)){
+	        arrangeAllBlocks(docModelPath);
 	    }else if (id.equals(CHECK_DOC)){
 	        System.out.println("Check Documentation command selected");
-	    }else {
-			backupAllModels(docModelPath);
+	    }else  {
+			String projectPath = getWebRatioProjectDirectory();
+			String webModelPath = projectPath.concat("\\Model\\WebModel");
+			backupAllModels(docModelPath, "webml");
+			backupAllModels(docModelPath, "xml");
 			if (!genAllModels(webModelPath, docModelPath)) return;
         }
 	}
 	
+	private void arrangeAllBlocks(String docModelPath) {
+		try {
+			// create filter to read only diagram files
+			FilenameFilter diagramFile = new FilenameFilter() {
+			    public boolean accept(File dir, String name) {
+			        return name.endsWith("webml_diagram");
+			    }
+			};
+			//docModelDir
+			File docModelDir = new File(docModelPath);
+			
+			// array of diagram files in docModelDir directory
+			File[] curfile = docModelDir.listFiles(diagramFile);
+			for (int i=0; i<curfile.length; i++) {
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder builder = factory.newDocumentBuilder();
+				
+		        // DOM with webml diagram
+		        Document diagram = builder.parse(curfile[i]);
+		        // get coords dom from file
+		        Document coords = builder.parse(curfile[i].getAbsolutePath().replace("webml_diagram", "coords"));
+		        //set Id attribute for every element on Dom
+		        coords = setCoordsIdAttribute(coords, "gmfId");
+				
+		        // get list of all tags with name "element" and next to him layoutConstraint
+				NodeList elems = diagram.getElementsByTagName("element");
+				NodeList coordList = diagram.getElementsByTagName("layoutConstraint");
+				for (int j = 0; j < coordList.getLength(); j++) {
+					Element curElem = (Element) elems.item(j);
+					int gmfIdPos = curElem.getAttribute("href").lastIndexOf("#");
+					String gmfId = curElem.getAttribute("href").substring(gmfIdPos + 1);
+					Element coordsElem = coords.getElementById(gmfId);
+					//System.out.println(gmfId);
+					Element coord = (Element) coordList.item(j);
+					//System.out.println("hello");
+					coord.setAttribute("x", coordsElem.getAttribute("x"));
+					coord.setAttribute("y", coordsElem.getAttribute("y"));
+					//print updated DOM to file
+					printXMLToFile(diagram, curfile[i].getAbsolutePath());
+					//System.out.println(gmfId + " : x=" + coord.getAttribute("x") + "; y=" + coord.getAttribute("y"));
+					
+				}
+			}
+		}
+	    catch (Exception err) {
+	        err.printStackTrace();
+	    	return;
+	    }
+	}
+
+	private Document setCoordsIdAttribute(Document coords, String idAttr) {
+		NodeList elems = coords.getElementsByTagName("element");
+		for (int j = 0; j < elems.getLength(); j++) {
+			Element curElem = (Element) elems.item(j);
+			curElem.setIdAttribute(idAttr, true);
+		}
+		return coords;
+	}
+
+	private void xmlDiff(String docModelPath) {
+		try {
+			// create filter to read only webratio xml files
+			FilenameFilter xmlFile = new FilenameFilter() {
+			    public boolean accept(File dir, String name) {
+			        return name.endsWith("xml");
+			    }
+			};
+			
+			//docModelDir
+			File docModelDir = new File(docModelPath);
+			
+			// array of xml files in docModelDir directory
+			File[] curfile = docModelDir.listFiles(xmlFile);
+			for (int i=0; i<curfile.length; i++) {
+				// new XOperator to detect changes in WebRatio model
+				XOperator xop = new XOperator();
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder builder = factory.newDocumentBuilder();
+				// DOM with old WebRatio xml
+		        Document oldxml = builder.parse(new File(curfile[i].getAbsolutePath().concat(".old")));
+				// DOM with new WebRatio xml
+		        Document newxml = builder.parse(curfile[i]);
+				// DOM with changes of WebRatio xmls
+		        Document changes = xop.difference(newxml, oldxml);
+		        // print changes to output file
+		        String outPath = curfile[i].getAbsolutePath().replace(".xml", ".diff");
+		        printXMLToFile(changes, outPath);
+		        
+		        // parse changes xml
+		        SAXParserFactory diffFactory = SAXParserFactory.newInstance();
+				SAXParser parser = diffFactory.newSAXParser();
+
+				// override default handler
+				DiffHandler handler = new DiffHandler();
+				parser.parse(new File(outPath), handler);
+			}
+	    }
+	    catch (Exception e) {
+	        System.out.println("diff exception");
+	    	return;
+	    }
+	}
+
 	//on every opening of GMF editor new diagram id generated.
 	// To keep all topics we firstly have to backup all webml files to .old files
 	// Input: docModelPath - path of directory with files to backup
-	private void backupAllModels(String docModelPath) {
-		// create filter to read only generated Webml files
-		FilenameFilter webmlFile = new FilenameFilter() {
+	private void backupAllModels(String docModelPath, final String extension) {
+		// create filter to read only files with specified extension
+		FilenameFilter correctFile = new FilenameFilter() {
 		    public boolean accept(File dir, String name) {
-		        return name.endsWith(".webml");
+		        return name.endsWith(extension);
 		    }
 		};
 		
@@ -89,10 +201,10 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 		
 		//copy files to backup .old files
 		try {
-			File[] curfile = docModelDir.listFiles(webmlFile);
+			File[] curfile = docModelDir.listFiles(correctFile);
 			for (int i=0; i<curfile.length; i++) {
 				BufferedReader from =  new BufferedReader(new FileReader(curfile[i]));
-				String outputPath =  docModelPath + "\\" + curfile[i].getName().replace(".webml", ".old");
+				String outputPath =  docModelPath + "\\" + curfile[i].getName().concat(".old");
 				BufferedWriter to = new BufferedWriter(new FileWriter(outputPath));
 				String line = null; // next string read from input file
 				boolean notFirst = false;  
@@ -132,7 +244,7 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 				DocumentBuilder db = dbf.newDocumentBuilder();
 				Document outputDom = db.parse(curfile[i]);
 								
-				String oldFilePath = curfile[i].getAbsolutePath().replace(".webml", ".old");
+				String oldFilePath = curfile[i].getAbsolutePath().concat(".old");
 				File oldFile = new File(oldFilePath);
 				SAXParserFactory factory = SAXParserFactory.newInstance();
 				SAXParser parser = factory.newSAXParser();
@@ -236,7 +348,7 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 	}
 
 	// xslt transformation generates links in unproper format
-	// this procedure convert links to proper GMF editoe format
+	// this procedure convert links to proper GMF editor format
 	private void updateLinks(String svGMFModel) {
 		try {
 			SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -248,8 +360,62 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 
 			// SAXParser parses svGMFModel and returns dom with correct links
 			Document dom =  handler.getDom();
+			Document coords = handler.getCoords();
+			coords = updateCoords(coords, svGMFModel.concat("_diagram"));
 			
 			//print
+			printXMLToFile(dom, svGMFModel);
+			printXMLToFile(coords, svGMFModel.replace("webml", "coords"));
+		}
+		catch (Exception err) {
+			err.printStackTrace();
+		}
+	}
+
+	private Document updateCoords(Document coords, String svGMFModel) {
+		try {
+			SAXParserFactory factory = SAXParserFactory.newInstance();
+			SAXParser parser = factory.newSAXParser();
+
+			// override default handler
+			UpdateCoordsHandler handler = new UpdateCoordsHandler();
+			parser.parse(new File(svGMFModel), handler);
+
+			// UpdateCoordsParser parses webml_diagram file and returns
+			// dom with existing coords of elements
+			Document updCoords =  handler.getCoords();
+			printXMLToFile(updCoords, svGMFModel.replace("_diagram", ".test"));
+			
+			// set "Id" as ID attribute in coords DOM
+			coords = setCoordsIdAttribute(coords, "Id");
+			
+			// get webml.old file to know element id by gmfId
+			GetIdByGMFIdHandler idhandler = new GetIdByGMFIdHandler();
+			parser.parse(new File(svGMFModel.replace(".webml_diagram", ".webml.old")), idhandler);
+			Document oldWebml = idhandler.getDom();
+			
+			// get all elements 
+			NodeList elems = updCoords.getElementsByTagName("element");
+			for (int j = 0; j < elems.getLength(); j++) {
+				Element curElem = (Element) elems.item(j);
+				// get gmfId attribute of current element from webml_diagram
+				String gmfId = curElem.getAttribute("gmfId");
+				// get Element from old Webml file corresponding current gmfId
+				Element oldElem = oldWebml.getElementById(gmfId);
+				// get element of coords file corresponding gmfId attribute 
+				Element curCoord = coords.getElementById(oldElem.getAttribute("Id"));
+				curCoord.setAttribute("x", curElem.getAttribute("x"));
+				curCoord.setAttribute("y", curElem.getAttribute("y"));
+			}
+		}
+		catch (Exception err) {
+			//err.printStackTrace();
+		}
+		return coords;
+	}
+
+	private void printXMLToFile(Document dom, String output) {
+		try {
 			// set up a transformer
             TransformerFactory transfac = TransformerFactory.newInstance();
             Transformer trans = transfac.newTransformer();
@@ -258,13 +424,13 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 
             // create string from xml tree
             StringWriter sw = new StringWriter();
-            StreamResult result = new StreamResult(sw);
+            StreamResult result = new StreamResult(sw);            
             DOMSource source = new DOMSource(dom);
             trans.transform(source, result);
             String xmlString = sw.toString();
 
             // print xmlString to file
-            BufferedWriter out = new BufferedWriter(new FileWriter(svGMFModel));
+            BufferedWriter out = new BufferedWriter(new FileWriter(output));
 	        out.write(xmlString);
 	        out.close();
 		}

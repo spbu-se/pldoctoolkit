@@ -10,12 +10,13 @@ import org.w3c.dom.*;
 
 import java.util.Stack;
 
-// class for parsing webml model with links formatted by id and returning
-// DOM with links in proper format that can be read in GMF editor
-public class SAXHandler extends DefaultHandler{
+// class for parsing diff xml file
+// returns string with list of changes in webratio xml file
+public class DiffHandler extends DefaultHandler{
 	
 	  private Document dom; // output dom with proper links
 	  private Document coords; // DOM with coordinates of blocks
+	  private String changesStr = ""; // String for output.
 	  private Element rootCoords; // root element of coords DOM
 	  private int level = 0; // level of current "element" tag while parsing
 	  private int[] number = new int[5]; // array of numbers of current tag "element"
@@ -56,8 +57,10 @@ public class SAXHandler extends DefaultHandler{
 	  @Override
 	  public void startDocument() throws SAXException
 	  {
+		  changesStr += "-----------new Siteview----------";
+		  number[0] = -1;
 		//get an instance of factory
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+/*		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilderFactory cdbf = DocumentBuilderFactory.newInstance();
 		try {
 			//get an instance of builder
@@ -71,14 +74,31 @@ public class SAXHandler extends DefaultHandler{
 			coords.appendChild(rootCoords);
 		}catch(Exception err) {
 			err.printStackTrace();
-		}
+		}*/
 	  }
 
 	  // Event while parsing - new Element started
 	  public void startElement(String uri, String localName, String qName, Attributes attr) throws SAXException
 	  {
-		  int attrCount = attr.getLength();
-		  if (qName.equals("webml:Siteview")) {
+		  String changedStatus = attr.getValue("erc:inherit");
+		  if (changedStatus == null)
+			  changesStr  += "\nElement " + qName + " added";
+		  else {
+			  number[level]++;
+			  number[++level] = -1;
+			  if (changedStatus.equals("delete"))
+				  changesStr += "\nElement " + qName + " deleted";
+			  else if (changedStatus.equals("match")){
+				  int attrCount = attr.getLength();
+				  for(int i = 0 ; i<attrCount ; i++) {
+					  String attrName = attr.getQName(i);
+					  if (!attrName.equals("erc:inherit"))
+						  changesStr += "\nAttribute " + attr.getQName(i) + " of element " + 
+						  	qName + " changed. New value is " + attr.getValue(i);
+				  }
+			  }
+		  }
+		  /*if (qName.equals("webml:Siteview")) {
 			  //create the root element 
 			  Element rootElem = dom.createElement(qName);
 			  for(int i = 0 ; i<attrCount ; i++)
@@ -99,15 +119,11 @@ public class SAXHandler extends DefaultHandler{
 			  for(int i = 0 ; i<attrCount ; i++) {
 				  // copy all attributes to dom element
 				  // except x and y - copy them to coords DOM
-				  // id attribute copy to all DOMs
 				  String attrName = attr.getQName(i);
 				  if (attrName.equals("x") || attrName.equals("y"))
 					  newCoords.setAttribute(attrName, attr.getValue(i));
-				  else {
+				  else
 					  newElem.setAttribute(attrName, attr.getValue(i));
-					  if (attrName.equals("Id"))
-						  newCoords.setAttribute(attrName, attr.getValue(i));
-				  }
 			  }
 			  // generate gmfId string. It uses in GMF model links 
 			  String gmfId = "/";
@@ -115,11 +131,11 @@ public class SAXHandler extends DefaultHandler{
 				  gmfId+="/@element." + number[i];
 			  // set attribute gmfId to all DOMs
 			  newElem.setAttribute("gmfId", gmfId);
-			  newCoords.setAttribute("gmfId", gmfId);
+			  newCoords.setAttribute("Id", gmfId);
 			  try {
 				  // set which attribute has ID type
 				  newElem.setIdAttribute("Id", true);
-				  newCoords.setIdAttribute("gmfId", true);
+				  newCoords.setIdAttribute("Id", true);
 			  } catch (DOMException err) {
 				  //err.printStackTrace();
 			  }
@@ -151,7 +167,7 @@ public class SAXHandler extends DefaultHandler{
 				  link.setAttribute("target", targetElem.getAttribute("gmfId"));
 			  }
 			  elemParent.peek().appendChild(link);
-		  }
+		  }*/
 	  }
 
 	  // Event while parsing - Element ended
@@ -160,10 +176,10 @@ public class SAXHandler extends DefaultHandler{
 	  {
 		  // element tag ended, pop parent element from stack
 		  // and set proper level and number values
-		  if (qName.equals("element")) {
+	/*	  if (qName.equals("element")) {
 			  elemParent.pop();
 			  number[--level]++;
-		  }
+		  }*/
 	  }
 
 	  // Event while parsing - Document ended
@@ -171,7 +187,8 @@ public class SAXHandler extends DefaultHandler{
 	  public void endDocument() throws SAXException
 	  {
 		  // clear stack
-		  elemParent.clear();
+//		  elemParent.clear();
+		  System.out.println(changesStr+"\n\n");
 	  }
 	  
 	  public void warning(SAXParseException spe) {
