@@ -1,0 +1,28 @@
+//-------------------------------------------------------------------
+// Source filename:      F:\SP\Code\docline\publish.dre
+// Date generated:       Mon Apr 12 19:05:52 2010
+//-------------------------------------------------------------------
+
+publish 500 // DB_DBRE_INFO resource
+BEGIN
+	/* okbutton      */ 2,
+	/* cancelbutton  */ 3,
+	/* defaultbutton */ 3,
+	/* num           */ 4,
+	/* firstfocus    */ 1,
+	/* filenum       */ -1,
+	/* filetbx       */ -1,
+	/* filesbx       */ -1,
+	/* filelabel     */ -1,
+	/* helpbutton    */ -1,
+	/* titlelabel    */ -1,
+	/* hypertextHelp */ "clnthelp:dbre template\0",
+
+	//       id      type    active     stuff    hypertextHelp
+	// --------  --------  --------  --------  ---------------
+	        100,        4,        0,        0, "-1\0",
+	        101,        8,        0,       -1, "clnthelp:button\0",
+	        102,        2,        0,        0, "clnthelp:button\0",
+	        103,        2,        0,        0, "clnthelp:button\0"
+END
+

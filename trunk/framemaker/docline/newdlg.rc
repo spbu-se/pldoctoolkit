@@ -41,6 +41,8 @@ END
 BEGIN
     "#include ""docline.dlg""\r\n"
     "#include ""docline.xdi""\r\n"
+	"#include ""publish.dlg""\r\n"
+    "#include ""publish.xdi""\r\n"
     "#include ""doccore.dlg""\r\n"
     "#include ""doccore.xdi\0"
 END
@@ -61,6 +63,8 @@ END
 #include "docline.xdi"
 #include "doccore.dlg"
 #include "doccore.xdi"
+#include "publish.dlg"
+#include "publish.xdi"
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
 

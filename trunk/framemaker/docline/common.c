@@ -316,9 +316,11 @@ VoidT addStructuredElementToBook(F_ObjHandleT bookID, F_ObjHandleT newBookID, F_
 IntT getActiveBookID()
 {
 	IntT bookID;
-	StringT dirPath, path;
+	StringT dirPath, path, name, bookName;
 
 	bookID = F_ApiGetId(0,FV_SessionId,FP_ActiveBook);
+	name = F_ApiGetString(FV_SessionId,bookID,FP_Name);
+	bookName = defaultBookName;
 	//Active document is not framemaker book
 	if (!bookID)
 	{
@@ -330,18 +332,22 @@ IntT getActiveBookID()
 		}
 		path = F_ApiGetString(FV_SessionId,bookID,FP_Name);
 		pathFilename(path);
-		dirPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+5,NO_DSE);
-		F_Sprintf(dirPath,"%s%s",path,defaultBookName);
+		dirPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+1,NO_DSE);
+		F_Sprintf(dirPath,"%s%s\0",path,defaultBookName);
 		bookID = F_ApiSimpleOpen(dirPath,False);
 
 		F_ApiDeallocateString(&path);
 		F_ApiDeallocateString(&dirPath);
 	}
 	//Active document is not docline book
-	else if (!F_StrISuffix(F_ApiGetString(FV_SessionId,bookID,FP_Name),defaultBookName))
+	else if (!F_StrISuffix(name,bookName))
 	{
+		F_ApiDeallocateString(&bookName);
+		F_ApiDeallocateString(&name);
 		return 0;
 	}
+	F_ApiDeallocateString(&bookName);
+	F_ApiDeallocateString(&name);
 	//Active document is docline book
 	return bookID;
 }
