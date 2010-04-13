@@ -1,7 +1,6 @@
 package org.eclipse.xslt.conversion.actions;
 
 import org.xml.sax.helpers.DefaultHandler;
-import org.xml.sax.SAXParseException;
 import org.xml.sax.SAXException;
 import org.xml.sax.Attributes;
 import javax.xml.parsers.*;
@@ -10,13 +9,11 @@ import org.w3c.dom.*;
 
 import java.util.Stack;
 
-// class for parsing webml model with links formatted by id and returning
+// Parses old webml model and creates extended dom with gmfId
 // DOM with links in proper format that can be read in GMF editor
-public class SAXHandler extends DefaultHandler{
+public class GetIdByGMFIdHandler extends DefaultHandler{
 	
 	  private Document dom; // output dom with proper links
-	  private Document coords; // DOM with coordinates of blocks
-	  private Element rootCoords; // root element of coords DOM
 	  private int level = 0; // level of current "element" tag while parsing
 	  private int[] number = new int[5]; // array of numbers of current tag "element"
 	  									 // for example, [1,0,3] means that current element
@@ -30,27 +27,9 @@ public class SAXHandler extends DefaultHandler{
 	  // returns DOM with links in proper format
 	  public Document getDom()
 	  {
-		// remove "gmfId" attributes from every element
-		removeGMFId();
 	    return dom;
 	  }
 	  
-	  // returns DOM with coordinates of blocks
-	  public Document getCoords() {
-	    return coords;
-	  }
-
-	// removes "gmfId" attribute from every element
-	  private void removeGMFId()
-	  {
-		  // get list of all tags with name "element"
-		  NodeList x = dom.getElementsByTagName("element");
-		  for (int i = 0; i < x.getLength(); i++) {
-			  Element curElem = (Element) x.item(i);
-			  // remove attribute named "gmfId"
-			  curElem.removeAttribute("gmfId");
-		  }
-	  }
 	  
 	  // Event while parsing - Document started
 	  @Override
@@ -58,17 +37,12 @@ public class SAXHandler extends DefaultHandler{
 	  {
 		//get an instance of factory
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilderFactory cdbf = DocumentBuilderFactory.newInstance();
 		try {
 			//get an instance of builder
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			DocumentBuilder cdb = cdbf.newDocumentBuilder();
 
 			//create an instance of DOMs
 			dom = db.newDocument();
-			coords  = cdb.newDocument();
-			rootCoords = coords.createElement("root");
-			coords.appendChild(rootCoords);
 		}catch(Exception err) {
 			err.printStackTrace();
 		}
@@ -84,30 +58,14 @@ public class SAXHandler extends DefaultHandler{
 			  for(int i = 0 ; i<attrCount ; i++)
 				  // copy all attributes to dom element
 				  rootElem.setAttribute(attr.getQName(i), attr.getValue(i));
-			  try {
-				  // set which attribute has ID type
-				  rootElem.setIdAttribute("Id", true);
-			  } catch (DOMException err) {
-				  //err.printStackTrace();
-			  }
 			  dom.appendChild(rootElem);
 			  // push element to stack. Next elements will be children of this element
 			  elemParent.push(rootElem);
 		  } else if (qName.equals("element")) {
 			  Element newElem = dom.createElement(qName);
-			  Element newCoords = coords.createElement(qName);
 			  for(int i = 0 ; i<attrCount ; i++) {
 				  // copy all attributes to dom element
-				  // except x and y - copy them to coords DOM
-				  // id attribute copy to all DOMs
-				  String attrName = attr.getQName(i);
-				  if (attrName.equals("x") || attrName.equals("y"))
-					  newCoords.setAttribute(attrName, attr.getValue(i));
-				  else {
-					  newElem.setAttribute(attrName, attr.getValue(i));
-					  if (attrName.equals("Id"))
-						  newCoords.setAttribute(attrName, attr.getValue(i));
-				  }
+				 	  newElem.setAttribute(attr.getQName(i), attr.getValue(i));
 			  }
 			  // generate gmfId string. It uses in GMF model links 
 			  String gmfId = "/";
@@ -115,42 +73,18 @@ public class SAXHandler extends DefaultHandler{
 				  gmfId+="/@element." + number[i];
 			  // set attribute gmfId to all DOMs
 			  newElem.setAttribute("gmfId", gmfId);
-			  newCoords.setAttribute("gmfId", gmfId);
 			  try {
 				  // set which attribute has ID type
-				  newElem.setIdAttribute("Id", true);
-				  newCoords.setIdAttribute("gmfId", true);
+				  newElem.setIdAttribute("gmfId", true);
 			  } catch (DOMException err) {
 				  //err.printStackTrace();
 			  }
 			  // add current element in proper place
 			  elemParent.peek().appendChild(newElem);
-			  rootCoords.appendChild(newCoords);
 			  // element was handled so if any element will be started it'll be child
 			  // of this element. Its level'll be more by 1 and current number in level is 0
 			  number[++level] = 0;
 			  elemParent.push(newElem);
-		  } else if (qName.endsWith("link")) {
-			  // links handler here
-			  Element link = dom.createElement(qName);
-			  String sourceId = attr.getValue("source");
-			  String targetId = attr.getValue("target");
-			  //change source and target attributes to proper value
-			  Element sourceElem = dom.getElementById(sourceId);
-			  Element targetElem = dom.getElementById(targetId);
-			  if (sourceElem == null) {
-			  	  link.setAttribute("source", sourceId);
-			  }
-			  else {
-				  link.setAttribute("source", sourceElem.getAttribute("gmfId"));
-			  }
-			  if (targetElem == null) {
-			  	  link.setAttribute("target", targetId);
-			  }
-			  else {
-				  link.setAttribute("target", targetElem.getAttribute("gmfId"));
-			  }
-			  elemParent.peek().appendChild(link);
 		  }
 	  }
 
@@ -172,16 +106,5 @@ public class SAXHandler extends DefaultHandler{
 	  {
 		  // clear stack
 		  elemParent.clear();
-	  }
-	  
-	  public void warning(SAXParseException spe) {
-		  System.out.println("Warning at line "+spe.getLineNumber());
-		  System.out.println(spe.getMessage());
-	  }
-
-	  public void fatalError(SAXParseException spe) throws SAXException {
-		  System.out.println("Fatal error at line "+spe.getLineNumber());
-		  System.out.println(spe.getMessage());
-		  throw spe;
 	  }
 }
