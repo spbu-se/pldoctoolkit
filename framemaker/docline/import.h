@@ -9,6 +9,7 @@ BoolT cleanImportDirectory(); //Deletes all non-DRL files in directory
 BoolT deinitializeConstants(); //Deinitialization of global variables
 BoolT generateImportParams(F_PropValsT *params); //Generates import params for importing
 F_PropValsT generateOpenParams(BoolT interactive); //Generates opening params for importing
+BoolT generateBookUpdateParams(F_PropValsT *params); //Generates opening params for book updating
 BoolT generateOpenWithUnresolvedRefsParams(F_PropValsT * params); //Generates opening params for .fm files with unresolved XRefs
 VoidT importDocLineDoc(); //Imports .drl files in directory
 BoolT importBook(StringT path, F_PropValsT params); //Importing of one docline book
