@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:d="http://math.spbu.ru/drl">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook">
 	<!--xmlns="http://docbook.org/ns/docbook" -->
-	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
+	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="no" />
 	
 	<xsl:template name="copy_entry">
-    <xsl:if test="* or normalize-space()">
-      <xsl:copy-of select="."/>
-    </xsl:if>
+	  <xsl:element name="{local-name()}" namespace="http://docbook.org/ns/docbook">
+		  <xsl:for-each select="@* ,  node()">
+			  <xsl:choose>
+				  <xsl:when test="local-name() = 'xref' or 
+										  local-name() = 'command'">
+					  <xsl:element name="{local-name()}" namespace="http://docbook.org/ns/docbook">
+						  <xsl:for-each select="@*">
+							  <xsl:if test="not(local-name() = 'role')">
+								  <xsl:copy-of select="current()"/>
+							  </xsl:if>
+						  </xsl:for-each>
+					  </xsl:element>
+				  </xsl:when>
+				  <xsl:when test="local-name() = 'colname'">
+				  </xsl:when>
+				  <xsl:otherwise>
+					  <xsl:copy-of select="current()"/>
+				  </xsl:otherwise>
+			  </xsl:choose>
+		  </xsl:for-each>
+    </xsl:element>
 	</xsl:template>
 	
   <xsl:template name="copy_row">
@@ -23,12 +41,18 @@
   </xsl:template>
   
   <xsl:template name="otherwise">
-    <xsl:copy-of select="current()"/>
-    <xsl:apply-templates/>
+    <xsl:element name="{local-name()}">
+		<xsl:copy-of select="attribute()"/>
+		<xsl:apply-templates/>
+    </xsl:element>
+  </xsl:template>
+  
+  <xsl:template match="FakeRow">
+    <xsl:apply-templates select="./*[1]/*" />
   </xsl:template>
   
 	<xsl:template name="remove_fakes">
-		<xsl:element name="d:Insert-After">
+		<xsl:element name="{concat('d:',local-name())}" >
 			<xsl:attribute name="nestid"><xsl:value-of select="@nestid"/></xsl:attribute>
 			<xsl:for-each select="*">
 				<xsl:choose>
@@ -82,10 +106,11 @@
 		</xsl:element>
 	</xsl:template>
 	
-	<xsl:template match="*">
-		<xsl:variable name="newName">
-			<xsl:choose>
-				<xsl:when test="name()='ProductLine' or 
+	<xsl:template name="add_namespace_prefix">
+    <xsl:param name="exclude"/>
+    <xsl:variable name="newName">
+      <xsl:choose>
+        <xsl:when test="name()='ProductLine' or 
                       name()='Product' or
                       name()='DocumentationCore' or
                       name()='ProductDocumentation' or
@@ -110,24 +135,35 @@
                       name()='Conditional' or
                       name()='Nest'
                       ">
-					<xsl:value-of select="concat('d:', name())"/>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="name()"/>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
+          <xsl:value-of select="concat('d:', name())"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="name()"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:element name="{$newName}" >
+      <xsl:for-each select="@*">
+        <xsl:if test="not(exclude and (local-name()='productid')) and 
+                          not(local-name()='parenttype') and 
+                          not(local-name()='filename' and 
+                          not(local-name()='parentnameattr'))">
+          <xsl:copy/>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:apply-templates/>
+    </xsl:element>
+	</xsl:template>	
+
+	<xsl:template match="*" >
     <xsl:choose>
       <xsl:when test="local-name() = 'ProductLine' or 
                               local-name() = 'DocumentationCore' or
                               local-name() = 'ProductDocumentation'">
         <xsl:result-document method="xml" href="{resolve-uri(@filename,document-uri(/))}">
-          <xsl:element name="{$newName}">
-            <xsl:for-each select="@*">
-              <xsl:copy/>
-            </xsl:for-each>
-            <xsl:apply-templates/>
-          </xsl:element>
+          <xsl:call-template name="add_namespace_prefix">
+            <xsl:with-param name="exclude" select="false"/>
+          </xsl:call-template>
         </xsl:result-document>
       </xsl:when>
       <xsl:when test="local-name() = 'Insert-After' or
@@ -135,15 +171,27 @@
                               local-name() = 'Replace-Nest'">
         <xsl:call-template name="remove_fakes"/>
       </xsl:when>
+      <xsl:when test="local-name() = 'FinalInfProduct' or
+                              local-name() = 'Dictionary' or
+                              local-name() = 'Directory' or
+                              local-name() = 'DirTemplate'">
+        <xsl:call-template name="add_namespace_prefix">
+          <xsl:with-param name="exclude" select="true"/>
+        </xsl:call-template>
+      </xsl:when>
       <xsl:otherwise>
-        <xsl:element name="{$newName}">
-          <xsl:for-each select="@*">
-            <xsl:copy/>
-          </xsl:for-each>
-          <xsl:apply-templates/>
-        </xsl:element>
+        <xsl:call-template name="add_namespace_prefix">
+          <xsl:with-param name="exclude" select="false"/>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
 	</xsl:template>
+	
+	<!-- Attributes to exclude -->
+	<xsl:template match="@parenttype">
+    <xsl:apply-templates/>
+	</xsl:template>
+	<xsl:template match="@filename"/>
+	<xsl:template match="@parentnameattr"/>
 	
 </xsl:stylesheet>
