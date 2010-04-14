@@ -79,7 +79,7 @@ BoolT generateOpenWithUnresolvedRefsParams(F_PropValsT *params)
 
 BoolT initializeConstants()
 {
-	if (F_ApiChooseFile(&workDirPath, "Choose directory to save new docline project", "", "", FV_ChooseOpenDir, "")) return;
+	if (F_ApiChooseFile(&workDirPath, "Choose directory to save new docline project", "", "", FV_ChooseOpenDir, "")) return FALSE;
 	if (!setDefaultDirectory(workDirPath)) return FALSE;
 	if (!getTempDirPath(&tempDirPath)) return FALSE;
   openLogChannel();
@@ -98,13 +98,11 @@ BoolT deinitializeConstants()
 }
 VoidT importDocLineDoc()
 {
-	F_ObjHandleT docID;
 	StringT tmpPath;
 	FilePathT *filedirPath, *file, *filetmpPath;
 	DirHandleT handle;
-	IntT statusp, i;
+	IntT statusp;
 	F_PropValsT params;
-	UCharT buf[100];
 
 	if (!initializeConstants())
   {
@@ -222,7 +220,13 @@ BoolT importBook(StringT path, F_PropValsT params)
 	F_ObjHandleT fileID;
 	F_PropValsT *returnParams;
 
-	if (!validateFilename(path,DRL)) return 0;
+	if (!validateFilename(path,DRL))
+	{
+		writeToChannel("\n\tError. importBook: ");
+		writeToChannel(path);
+		writeToChannel(" is nor drl file.");
+		return FALSE;
+	}
 	returnParams = NULL;
 	writeToChannel("\n\tImporting ");
 	writeToChannel(path);
@@ -232,60 +236,83 @@ BoolT importBook(StringT path, F_PropValsT params)
 	{
 		F_Printf(NULL,"Error in opening file %s",path);
 		writeToChannel("Error. File not opened\n");
-		return 0;
+		if (returnParams != NULL) F_ApiDeallocatePropVals(returnParams);
+		return FALSE;
 	}
 	writeToChannel("\tSuccesful.\n");
 	writeToChannel("\tRenaming file... ");
-	renameFileToActualName(fileID);
+	if (!renameFileToActualName(fileID))
+	{
+		if (returnParams != NULL) F_ApiDeallocatePropVals(returnParams);
+	}
 	writeToChannel("\tSuccesful.\n");
-	fileID = F_ApiSimpleSave(fileID,F_StrCopyString(F_ApiGetString(FV_SessionId,fileID,FP_Name)),False);
+	F_ApiSimpleSave(fileID,F_StrCopyString(F_ApiGetString(FV_SessionId,fileID,FP_Name)),False);
 	F_ApiClose(fileID,FF_CLOSE_MODIFIED);
 
-	F_ApiDeallocatePropVals(returnParams);
+	if (returnParams != NULL) F_ApiDeallocatePropVals(returnParams);
 
-	return 1;
+	return TRUE;
 }
 BoolT performImportXSLT()
 {
-	IntT retVal, statusp, i;
-	UCharT jarPath[256];
-	StringT tempPath, fileArr[65535], dirPath;
+	IntT statusp;
+	StringT tempPath, dirPath, jarPath;
 	FilePathT *filePath, *file;
 	DirHandleT handle;
 	F_StringsT strs;
+	BoolT first;
 
 	tempPath = F_ApiClientDir();
-  dirPath = F_StrCopyString(tempDirPath);
-	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
-	retVal = callJavaImportUtil(jarPath, dirPath);
-	if (retVal > 0)
+	dirPath = F_StrCopyString(tempDirPath);
+	jarPath = (StringT)F_Alloc((F_StrLen(tempPath)+F_StrLen((StringT)JAR_FILENAME)+2),NO_DSE);
+	F_Sprintf(jarPath, "%s\\%s\0", tempPath, JAR_FILENAME);
+	if (callJavaImportUtil(jarPath, dirPath) > 0)
 	{
-		F_Printf(NULL,"JVM Initiliazation error\n");
 		writeToChannel("Error. JVM Intialization error");
+		F_ApiDeallocateString(&jarPath);
+		F_ApiDeallocateString(&dirPath);
+		F_ApiDeallocateString(&tempPath);
+		return FALSE;
 	}
 
-	i=0;
+	first = TRUE;
 	filePath = F_PathNameToFilePath(dirPath,NULL,FDosPath);
 	handle = F_FilePathOpenDir(filePath, &statusp);
+	F_FilePathFree(filePath);
 	if (!handle)
 	{
-		F_Printf(NULL,"%s\n","XSLT.Handle error");
 		writeToChannel("Error. Handle error\n");
+		F_ApiDeallocateString(&jarPath);
+		F_ApiDeallocateString(&dirPath);
+		F_ApiDeallocateString(&tempPath);
 		return FALSE;
 	}
 	while(file = F_FilePathGetNext(handle, &statusp))
 	{
+		if (first)
+		{
+			strs.len = 1;
+			strs.val = (StringT *)F_Alloc(sizeof(StringT),NO_DSE);
+			first = FALSE;
+		}
+		else
+		{
+			strs.len++;
+			strs.val = (StringT *)F_Realloc(strs.val,strs.len*sizeof(StringT),NO_DSE);
+		}
 		tempPath = F_FilePathToPathName(file, FDosPath);
-		fileArr[i] = F_ApiCopyString(tempPath);
-		i++;
+		strs.val[strs.len-1] = F_ApiCopyString(tempPath);
 		F_ApiDeallocateString(&tempPath);
+		F_FilePathFree(file);
 	}
-	strs.len = i;
-	strs.val = fileArr;
+	removeTemporaryDRLs(strs.val,strs.len);
 
-	removeTemporaryDRLs(fileArr,i);
+	F_ApiDeallocateStrings(&strs);
+	F_ApiDeallocateString(&jarPath);
+	F_ApiDeallocateString(&dirPath);
+	F_ApiDeallocateString(&tempPath);
 
-	return !retVal;
+	return TRUE;
 }
 
 BoolT cleanImportDirectory()
@@ -297,11 +324,11 @@ BoolT cleanImportDirectory()
 
 	filedirPath = F_PathNameToFilePath (workDirPath, NULL, FDosPath);
 	handle = F_FilePathOpenDir(filedirPath, &statusp);
+	F_FilePathFree(filedirPath);
 	if (!handle)
 	{
-		F_FilePathFree(filedirPath);
-		F_ApiAlert("Handle Error2", FF_ALERT_CONTINUE_NOTE);
-		return 0;
+		writeToChannel("\t\nError. cleanImportDirectory: invalid directory");
+		return FALSE;
 	}
 	//Deleting non-docline files in directory
 	while (file = F_FilePathGetNext(handle,&statusp))
@@ -311,28 +338,25 @@ BoolT cleanImportDirectory()
 		{
 			F_DeleteFile(file);
 		}
+		F_ApiDeallocateString(&tmpPath);
+		F_FilePathFree(file);
 	}
 	F_FilePathCloseDir(handle);
 
-	F_ApiDeallocateString(&tmpPath);
-	F_FilePathFree(file);
-	F_FilePathFree(filedirPath);
-
-	return 1;
+	return TRUE;
 }
 
-F_PropValsT generateBookUpdateParams()
+BoolT generateBookUpdateParams(F_PropValsT *params)
 {
-	F_PropValsT params;
 	IntT i;
 
-	params = F_ApiGetUpdateBookDefaultParams();
-	i = F_ApiGetPropIndex(&params,FS_AlertUserAboutFailure);
-	params.val[i].propVal.u.ival = TRUE;
-	i = F_ApiGetPropIndex(&params,FS_FontNotFoundInDoc);
-	params.val[i].propVal.u.ival = FV_DoOK;
+	*params = F_ApiGetUpdateBookDefaultParams();
+	i = F_ApiGetPropIndex(params,FS_AlertUserAboutFailure);
+	(*params).val[i].propVal.u.ival = TRUE;
+	i = F_ApiGetPropIndex(params,FS_FontNotFoundInDoc);
+	(*params).val[i].propVal.u.ival = FV_DoOK;
 
-	return params;
+	return TRUE;
 }
 
 BoolT setAttributeValue(F_ObjHandleT docID, F_ObjHandleT elemID, StringT attrName, StringT attrVal)
@@ -425,7 +449,7 @@ BoolT openFilesInDirectory()
 	if (!addExistingDocs(F_StrCopyString(workDirPath),bookID)) return;
 	bookPath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
 	returnParams = NULL;
-	params = generateBookUpdateParams();
+	if (!generateBookUpdateParams(&params)) return;
 	F_ApiUpdateBook(bookID,&params,&returnParams);
 	//F_ApiSimpleGenerate(bookID,False,True);
 	if (!setSecondLevelAttributes(bookID)) return;
