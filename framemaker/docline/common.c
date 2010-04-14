@@ -394,11 +394,9 @@ BoolT getTempDirPath(StringT *path)
 {
 	StringT clPath, suffix;
 
-	writeToChannel("Point01");
 	clPath = F_StrCopyString(F_ApiClientDir());
 	//if (!getMainDirPath(&clPath)) return FALSE;
 	//clPath = F_StrCopyString("c:\\Program Files\\Adobe\\FrameMaker8\\fminit");
-	writeToChannel("Point02");
 	suffix = F_StrCopyString("\\docline\\temp\\");
 	*path = (StringT)F_Alloc((F_StrLen(clPath)+F_StrLen(suffix)+2)*sizeof(UCharT),NO_DSE);
 	F_Sprintf((*path),"%s%s\0",F_StrCopyString(clPath),F_StrCopyString(suffix));
