@@ -46,6 +46,7 @@ BoolT openLogChannel()
 
 BoolT closeLogChannel()
 {
+  if (!logChannel) return TRUE;
 	if (!F_ChannelClose(logChannel))
 	{
 		F_Printf(NULL,"%s\n", "Log closing error");

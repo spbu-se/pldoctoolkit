@@ -8,70 +8,14 @@ StringT workDirPath;
 StringT tempDirPath;
 IntT fileNum;
 
-
-StringT chooseFile()
-{
-	F_ObjHandleT docID;
-	F_PropValsT params, *returnParams;
-	StringT dirPath;
-
-	returnParams = NULL;
-	params = generateOpenParams(TRUE);
-	docID = F_ApiOpen(defaultPath,&params,&returnParams);
-//	F_ApiChooseFile(&path, "Choose directory to save new docline project", "", "", FV_ChooseOpenDir, "");
-	if (!docID)
-	{
-		F_Printf(NULL,"No such file: %s\n", defaultPath);
-		writeToChannel("Error. No such file.\n");
-		return "";
-	}
-	dirPath = F_ApiGetString(FV_SessionId,docID,FP_Name);
-	F_ApiClose(docID,FF_CLOSE_MODIFIED);
-	pathFilename(dirPath);//since then dirPath should be const
-	//err = F_ApiChooseFile(&dirPath, "Choose directory with documentation", "", "", FV_ChooseOpenDir, "");
- //	if (err || !dirPath)
-	//{
-	//	F_Printf(NULL,"%s\n","Invalid folder");
-	//	return;
-	//}
-	//dirPath = F_Realloc(dirPath,F_StrLen(dirPath)+1,NO_DSE);
-	//if (!F_StrCat(dirPath, "\\"))
-	//{
-	//	F_Printf(NULL, "%s\n", "Invalid concatenation");
-	//	return;
-	//}
-
-	return dirPath;
-}
-F_PropValsT generateSaveParams()
-{
-	F_PropValsT params;
-	IntT i;
-
-	params = F_ApiGetSaveDefaultParams();
-	if (!params.len)
-	{
-		F_Printf(NULL,"%s\n","Default params error");
-		writeToChannel("Error. Default params error.\n");
-	}
-	i = F_ApiGetPropIndex(&params, FS_FileType);
-	params.val[i].propVal.u.ival = FV_SaveFmtText;
-
-	//F_Free(&i);
-
-	return params;
-}
-
-
 BoolT copyFilesToTempDirectory(FilePathT *filePath)
 {
 	DirHandleT handle;
 	IntT statusp, i;
 	FilePathT *file;
 	StringT path;
-	StringT fileArr[65535];
 	F_StringsT strs;
-  StringT tempDirPath;
+  BoolT first;
 
 	handle = F_FilePathOpenDir(filePath, &statusp);
 	if (!handle)
@@ -80,145 +24,196 @@ BoolT copyFilesToTempDirectory(FilePathT *filePath)
 		writeToChannel("Error. Handle error\n");
 		return FALSE;
 	}
-	i=0;
+  first = TRUE;
 	while(file = F_FilePathGetNext(handle, &statusp))
 	{
-		//path = F_FilePathToPathName(file, FDosPath);
-		i++;
-		//copyFileToTempDirectory(path);
+    if (first)
+    {
+      strs.len = 1;
+      strs.val = (StringT *)F_Alloc(sizeof(StringT),NO_DSE);
+      first = FALSE;
+    }
+    else
+    {
+      strs.len ++;
+      strs.val = (StringT *)F_Realloc(strs.val,strs.len*sizeof(StringT),NO_DSE);
+    }
+    path = F_FilePathToPathName(file, FDosPath);
+    strs.val[strs.len-1] = F_StrCopyString(path);
+    F_ApiDeallocateString(&path);
+    F_FilePathFree(file);
 	}
-	F_FilePathCloseDir(handle);	
+	F_FilePathCloseDir(handle);
+  if (!splitFilesTo(strs.val,strs.len,tempDirPath))
+  {
+    F_ApiDeallocateStrings(&strs);
+    return FALSE;
+  }
 
-	//fileArr = (StringT*)F_Alloc(i,NO_DSE);
-	strs.len=i;
-	//fileArr=(StringT*)F_Alloc(i*2,NO_DSE);
-	i=0;
-	handle = F_FilePathOpenDir(filePath, &statusp);
-	if (!handle)
-	{
-		F_Printf(NULL,"%s\n","CopyFilesToTempDirectory.Handle error");
-		writeToChannel("Error. Handle error\n");
-		return FALSE;
-	}
-	while(file = F_FilePathGetNext(handle, &statusp))
-	{
-		path = F_FilePathToPathName(file, FDosPath);
-		fileArr[i] = F_ApiCopyString(path);
-		i++;
-	}
-	strs.val = fileArr;
-	//mergeFile(strs,"C:\\Program Files\\Adobe\\FrameMaker8\\fminit\\docline\\temp\\temp.drl");
-  if (!getTempDirPath(&tempDirPath)) return FALSE;
-  if (!splitFilesTo(strs.val,strs.len,tempDirPath)) return FALSE;
+  F_ApiDeallocateStrings(&strs);
 	return TRUE;
 
 }
 
 
 
-F_PropValsT generateOpenWithUnresolvedRefsParams()
+BoolT generateOpenWithUnresolvedRefsParams(F_PropValsT *params)
 {
-	F_PropValsT params;
 	IntT i;
 
-	params = F_ApiGetOpenDefaultParams();
-	if (!params.len)
+	*params = F_ApiGetOpenDefaultParams();
+	if (!(*params).len)
 	{
-		F_ApiAlert("Default params error",FF_ALERT_CONTINUE_NOTE);
+    writeToChannel("\tgenerateOpenWithUnresolvedRefsParams: get default params error");
+    return FALSE;
 	}
-	i = F_ApiGetPropIndex(&params,FS_RefFileNotFound);
-	params.val[i].propVal.u.ival = FV_AllowAllRefFilesUnFindable;
-	i = F_ApiGetPropIndex(&params,FS_FontNotFoundInCatalog);
-	params.val[i].propVal.u.ival = FV_DoOK;
-	i = F_ApiGetPropIndex(&params,FS_FontNotFoundInDoc);
-	params.val[i].propVal.u.ival = FV_DoOK;
+	i = F_ApiGetPropIndex(params,FS_RefFileNotFound);
+	(*params).val[i].propVal.u.ival = FV_AllowAllRefFilesUnFindable;
+	i = F_ApiGetPropIndex(params,FS_FontNotFoundInCatalog);
+	(*params).val[i].propVal.u.ival = FV_DoOK;
+	i = F_ApiGetPropIndex(params,FS_FontNotFoundInDoc);
+	(*params).val[i].propVal.u.ival = FV_DoOK;
 
-	//F_Free(&i);
-
-	return params;
+	return TRUE;
 }
 
 BoolT initializeConstants()
 {
-	//workDirPath = F_StrCopyString(chooseFile());
 	if (F_ApiChooseFile(&workDirPath, "Choose directory to save new docline project", "", "", FV_ChooseOpenDir, "")) return;
 	if (!setDefaultDirectory(workDirPath)) return FALSE;
 	if (!getTempDirPath(&tempDirPath)) return FALSE;
+  openLogChannel();
+  fileNum = 0;
 
 	return TRUE;
 }
 BoolT deinitializeConstants()
-{
-	F_ApiDeallocateString(&tempDirPath);
-	F_ApiDeallocateString(workDirPath);
+{ 
+	if (tempDirPath) F_ApiDeallocateString(&tempDirPath);
+	if (workDirPath) F_ApiDeallocateString(&workDirPath);
+  if (mainBookPath) F_ApiDeallocateString(&mainBookPath);
+  if (!closeLogChannel()) return FALSE;
 
 	return TRUE;
 }
 VoidT importDocLineDoc()
 {
 	F_ObjHandleT docID;
-	StringT tmpPath, bookPath;
+	StringT tmpPath;
 	FilePathT *filedirPath, *file, *filetmpPath;
 	DirHandleT handle;
 	IntT statusp, i;
 	F_PropValsT params;
 	UCharT buf[100];
 
-	openLogChannel();
-	writeToChannel("Import started\n\n");
-
-	if (!initializeConstants()) return;
-	if (F_StrIEqual(workDirPath,(StringT)"")) return;
-	filedirPath = F_PathNameToFilePath (workDirPath, NULL, FDosPath);//since then filedirPath should be const
+	if (!initializeConstants())
+  {
+    deinitializeConstants();
+    return;
+  }
+  writeToChannel("Import started\n");
+	if (F_StrIEqual(workDirPath,(StringT)"")) //Check if directory selected
+  {
+    writeToChannel("\tNo output directory selected");
+    deinitializeConstants();
+    return; 
+  }
+	filedirPath = F_PathNameToFilePath(workDirPath, NULL, FDosPath);
+  if (!filedirPath)
+  {
+    writeToChannel("\tInvalid directory selected");
+    deinitializeConstants();
+    return;
+  }
 	writeToChannel("\tCleaning temporary directory... ");
-	if (!cleanTempDirectory()) return;
+	if (!cleanTempDirectory())
+  {
+    F_FilePathFree(filedirPath);
+    deinitializeConstants();
+    return;
+  }
 	writeToChannel("Succesful.\n");
 	writeToChannel("\tCopying files to temporary directory... ");
-	if (!copyFilesToTempDirectory(filedirPath)) return;
+	if (!copyFilesToTempDirectory(filedirPath))
+  {
+    F_FilePathFree(filedirPath);
+    deinitializeConstants();
+    return;
+  }
 	writeToChannel("Succesfull.\n");
 	writeToChannel("\tCleaning import directory... ");
-	if (!cleanImportDirectory()) return;
+	if (!cleanImportDirectory())
+  {
+    F_FilePathFree(filedirPath);
+    deinitializeConstants();
+    return;
+  }
 	writeToChannel("Succesfull.\n");
-	filetmpPath = F_PathNameToFilePath (tempDirPath, NULL, FDosPath);//since then filedirPath should be const
+	filetmpPath = F_PathNameToFilePath (tempDirPath, NULL, FDosPath);
+  if (!filetmpPath)
+  {
+    writeToChannel("\tNo temporary directory");
+    F_FilePathFree(filedirPath);
+    deinitializeConstants();
+    return;
+  }
 	writeToChannel("\tPerforming XSL Transformation... ");
-	if (!performImportXSLT(tempDirPath)) return;
+  if (!performImportXSLT())
+  {
+    F_FilePathFree(filetmpPath);
+    F_FilePathFree(filedirPath);
+    deinitializeConstants();
+    return;
+  }
 	writeToChannel("Succesfull.\n");
-	bookPath = "";
 	handle = F_FilePathOpenDir(filetmpPath,&statusp);
 	if (!handle)
 	{
 		F_Printf(NULL,"import error:\n\tInvalid directory path: %s\n",workDirPath);
 		writeToChannel("Error. Invalid directory path.\n");
-		return;
+    F_FilePathFree(filetmpPath);
+    F_FilePathFree(filedirPath);
+    deinitializeConstants();
+    return;
 	}
-	generateImportParams(&params);
+  F_FilePathFree(filetmpPath);
+	if (!generateImportParams(&params))
+  {
+    F_FilePathFree(filedirPath);
+    deinitializeConstants();
+    return;
+  }
 	//Opening of all .drl files in directory with structured application "DocLine"
 	writeToChannel("\tImporting all DRL files... ");
-	fileNum = 0;
-	while((file = F_FilePathGetNext(handle, &statusp)) != NULL)
+	while(file = F_FilePathGetNext(handle, &statusp))
 	{
 		tmpPath = F_FilePathToPathName(file,FDosPath);
 		importBook(tmpPath,params);
 		F_ApiDeallocateString(&tmpPath);
 		F_FilePathFree(file);
-
 	}
+  F_ApiDeallocatePropVals(&params);
 	F_FilePathCloseDir(handle);
 	writeToChannel("Succesfull.\n");
 	writeToChannel("\tCreating main project book... ");
-	openFilesInDirectory();
+	if (!openFilesInDirectory())
+  {
+    F_FilePathFree(filedirPath);
+    deinitializeConstants();
+    return;
+  }
 	writeToChannel("Succesfull.\n");
 	writeToChannel("\tCleaning directory... ");
-	//filedirPath = F_PathNameToFilePath(dirPath,NULL,FDosPath);
-	cleanDirectory(filedirPath);
+	if (!cleanDirectory(filedirPath))
+  {
+    F_FilePathFree(filedirPath);
+    deinitializeConstants();
+    return;
+  }
+  F_FilePathFree(filedirPath);
 	writeToChannel("Succesfull.\n");
-
-	writeToChannel("\nImport finished successully\n\n");
-	closeLogChannel();
-
-	F_ApiDeallocatePropVals(&params);    
-
-	if (!deinitializeConstants()) return;
+	writeToChannel("\nImport finished successully\n");
+	deinitializeConstants();
 }
 
 
@@ -250,16 +245,17 @@ BoolT importBook(StringT path, F_PropValsT params)
 
 	return 1;
 }
-BoolT performImportXSLT(StringT dirPath)
+BoolT performImportXSLT()
 {
 	IntT retVal, statusp, i;
 	UCharT jarPath[256];
-	StringT tempPath, fileArr[65535];
+	StringT tempPath, fileArr[65535], dirPath;
 	FilePathT *filePath, *file;
 	DirHandleT handle;
 	F_StringsT strs;
 
 	tempPath = F_ApiClientDir();
+  dirPath = F_StrCopyString(tempDirPath);
 	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
 	retVal = callJavaImportUtil(jarPath, dirPath);
 	if (retVal > 0)
@@ -419,7 +415,7 @@ BoolT setSecondLevelAttributes(F_ObjHandleT bookID)
 	return TRUE;
 }
 
-VoidT openFilesInDirectory()
+BoolT openFilesInDirectory()
 {
 	StringT bookPath;
 	F_ObjHandleT bookID;
@@ -437,6 +433,8 @@ VoidT openFilesInDirectory()
 
 	F_ApiDeallocateString(&bookPath);
 	//F_Free(&bookID);
+
+  return TRUE;
 }
 VoidT openBook()
 {
@@ -685,7 +683,7 @@ BoolT addExistingDoc(StringT path, F_ObjHandleT bookID)
 		writeToChannel((StringT)"Error. addExistingDoc: invalid book\n");
 		return FALSE;
 	}
-	params = generateOpenWithUnresolvedRefsParams();
+	if (!generateOpenWithUnresolvedRefsParams(&params)) return FALSE;
 	returnParams = NULL;
 	fileID = F_ApiOpen(path,&params, &returnParams);
 	if (!fileID)
