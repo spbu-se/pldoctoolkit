@@ -22,9 +22,10 @@
 
 BoolT getMainDirPath(StringT *path);
 VoidT closeProject();
+BoolT cleanTempDirectory();
 BoolT cleanDirectory(FilePathT* dirPath); //Deletes temporary files in directory
 BoolT validateFilename(StringT str,IntT type); //Validates type of file
-F_ObjHandleT openMainBook(StringT path);//Opens or creates main book
+BoolT openMainBook(StringT path, F_ObjHandleT *bookID, StringT *bookPath);//Creates and opens main book
 StringT getPlace(StringT fileName);//Returns name of parent element for this
 F_ObjHandleT componentExists(F_ObjHandleT bookID, F_ObjHandleT cID, StringT name);//Returns component's id if component with given name exists
 VoidT pathFilename(UCharT *str); //Converts full path to path of directory
