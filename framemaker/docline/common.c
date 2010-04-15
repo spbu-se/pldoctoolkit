@@ -153,22 +153,19 @@ BoolT validateFilename(StringT str, IntT type)
 	}
 }
 
-F_ObjHandleT openMainBook(StringT path)
+BoolT openMainBook(StringT path, F_ObjHandleT *bookID, StringT *bookPath)
 {
-	StringT bookPath, tmplPath;
-	F_ObjHandleT bookID;
+	StringT tmplPath;
 
-	bookPath = (StringT)F_Alloc((F_StrLen(path)+F_StrLen(defaultBookName)+2)*sizeof(UCharT),NO_DSE);
-	F_Sprintf(bookPath,"%s\\%s\0",F_StrCopyString(path),F_StrCopyString(defaultBookName));
-	tmplPath = F_StrCopyString("");
+	*bookPath = (StringT)F_Alloc((F_StrLen(path)+F_StrLen(defaultBookName)+2)*sizeof(UCharT),NO_DSE);
+	F_Sprintf(*bookPath,"%s\\%s\0",F_StrCopyString(path),F_StrCopyString(defaultBookName));
+	//tmplPath = F_StrCopyString("");
 	getMainBookTemplate(&tmplPath);
-	bookID = F_ApiSimpleOpen(tmplPath,FALSE);
-	F_ApiSimpleSave(bookID,bookPath,FALSE);
+	*bookID = F_ApiSimpleOpen(tmplPath,FALSE);
+  F_ApiDeallocateString(&tmplPath);
+	F_ApiSimpleSave(*bookID,*bookPath,FALSE);
 
-	F_ApiDeallocateString(&bookPath);
-	F_ApiDeallocateString(&tmplPath);
-
-	return bookID;
+	return TRUE;
 }
 StringT getPlace(StringT fileName)
 {

@@ -70,11 +70,8 @@ VoidT F_ApiInitialize(IntT init)
 	  /* Define "New *SpecificElement*" commands and add them to the ProductLine menu. */
 	  productId = F_ApiDefineAndAddCommand(NEWPR, prodLineId, "NewProduct", "Product", "\\!BNP");
 
-	  /* Define and add the Open-> menu to the DocLine menu. */
-	  openMenuId = F_ApiDefineAndAddMenu(menuId, "OpenDocLineMenu", "Open");
 	  /* Define some commands and add them to the Open-> menu. */
-	  sopenIFmD = F_ApiDefineAndAddCommand(SOPEN, openMenuId, "SimpleOpenDoclineProject","Docline project", "\\!IV");
-	  openFmID = F_ApiDefineAndAddCommand(OPEN, openMenuId, "OpenDoclineProject", "Docline project(with check)", "\\!BIW");
+	  sopenIFmD = F_ApiDefineAndAddCommand(SOPEN, menuId, "SimpleOpenDoclineProject","Open", "\\!IV");
 
 	  /* Define command for importing DocLine project from existing DRL documentation. */
 	  importDrlID = F_ApiDefineAndAddCommand(IMPORT, menuId, "Import", "Import","\\!BOO");
@@ -142,11 +139,8 @@ VoidT F_ApiInitialize(IntT init)
 	  /* Define "New *SpecificElement*" commands and add them to the ProductLine menu. */
 	  bproductId = F_ApiDefineAndAddCommand(BNEWPR, bprodLineId, "BNewProduct", "Product", "\\!BNP");
 
-	  /* Define and add the Open-> menu to the DocLine menu. */
-	  bopenMenuId = F_ApiDefineAndAddMenu(bmenuId, "BOpenDocLineMenu", "Open");
 	  /* Define some commands and add them to the Open-> menu. */
-	  bsopenIFmD = F_ApiDefineAndAddCommand(BSOPEN, bopenMenuId, "BSimpleOpenDoclineProject","Docline project", "\\!IV");
-	  bopenFmID = F_ApiDefineAndAddCommand(BOPEN, bopenMenuId, "BOpenDoclineProject", "Docline project(with check)", "\\!BIW");
+	  bsopenIFmD = F_ApiDefineAndAddCommand(BSOPEN, bmenuId, "BSimpleOpenDoclineProject","Open", "\\!IV");
 
 	  /* Define command for importing DocLine project from existing DRL documentation. */
 	  bimportDrlID = F_ApiDefineAndAddCommand(BIMPORT, bmenuId, "BImport", "Import","\\!BOO");
@@ -236,11 +230,6 @@ VoidT F_ApiCommand(IntT command)
   case NEWPR:
   case BNEWPR:
 	  newProdLineChild(PRODUCT);
-	  break;
-  case OPEN:
-  case BOPEN:
-	  closeProject();
-	  openBook();
 	  break;
   case SOPEN:
   case BSOPEN:
