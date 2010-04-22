@@ -162,22 +162,17 @@ BoolT exportBook(StringT path, StringT dirPath, F_PropValsT params, UIntT* j)
 }
 BoolT performExportXSLT(StringT dirPath)
 {
-	StringT tempPath;
-	UCharT jarPath[256];
+	StringT jarPath;
 	IntT retVal;
 
-	tempPath = F_ApiClientDir();
-	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
+	if (!getJarFileName(&jarPath)) return FALSE;
 	retVal = callJavaExportUtil(jarPath,dirPath);
+	F_ApiDeallocateString(&jarPath);
 	if (retVal)
 	{
 		F_Printf(NULL,"JVM Initiliazation error\n");
 		writeToChannel("Error. JVM Initialization error");
 	}
-
-	//F_Free(&jarPath);
-	F_ApiDeallocateString(&tempPath);
-
 	return !retVal;
 }
 
@@ -417,7 +412,7 @@ F_PropValsT generateExportParams()
 VoidT publishDocLineDoc(StringT format)
 {
 	IntT retVal, response;
-	UCharT jarPath[256]; // = "C:\\Program Files (x86)\\Adobe\\FDK8\\samples\\docline\\debug\\exportutil.jar";
+	StringT jarPath; // = "C:\\Program Files (x86)\\Adobe\\FDK8\\samples\\docline\\debug\\exportutil.jar";
 	UCharT sourceDirPath[256];
 	UCharT sourceFileName[256];
 	UCharT destinationFileName[256];
@@ -439,7 +434,8 @@ VoidT publishDocLineDoc(StringT format)
 
 	//get path to jar file and check if jar exists
 	tempPath = F_ApiClientDir();
-	F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
+	//F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
+	if (!getJarFileName(&jarPath)) return FALSE;
 	//F_Free(tempPath);
 	if((chan = F_ChannelOpen(F_PathNameToFilePath(jarPath, NULL, FDefaultPath),"r")) == NULL)
 	{
@@ -448,48 +444,17 @@ VoidT publishDocLineDoc(StringT format)
 		return;
 	}
 	F_ChannelClose(chan);
-
-	// export document back to DRL
-	//exportDocLineDoc(); // doesn't work for me
-
-	// show dialog to choose document to publish
-	//   get book's home dir
 	mainBookID = getActiveBookID();
 	if (!mainBookID || !F_StrISuffix(F_ApiGetString(FV_SessionId, mainBookID, FP_Name), defaultBookName))
 	{
 		F_ApiAlert("Invalid book", FF_ALERT_CONTINUE_NOTE);
 		return;
 	}
-	//My code
-	//compID = F_ApiGetId(FV_SessionId, bookID, FP_HighestLevelElement);
-	//compID = F_ApiGetId(bookID, compID, FP_FirstChildElement);
-	//while (compID){
-	//	attrs = F_ApiGetAttributes(bookID,compID);
-	//	for (i=0; i<attrs.len; i++)
-	//	{
-	//		attr = attrs.val[i];
-	//		if (F_StrIEqual(attr.name, "FileName") && attr.values.len)
-	//		{
-	//			filePath = F_PathNameToFilePath(attr.values.val[0],NULL,FDosPath);
-	//			if (!F_FilePathProperty(filePath,FF_FilePathExist))
-	//			{
-	//				exportBook(
-	//			}
-	//		}
-	//	}
-	//}
-	// My code end
 	tempPath = F_ApiGetString(FV_SessionId, mainBookID, FP_Name);
 	pathFilename(tempPath);
 	curDirPath = F_StrCopyString(tempPath);
 	//   promt for filename
 	writeToChannel("Choosing Final Product file...");
-	//response = F_ApiChooseFile(&tempResult, "Choose a file with Final Product", tempPath, "", FV_ChooseSelect, "");
-	//if (response != 0)
-	//{
-	//	F_ApiDeallocateString(&tempResult);
-	//	return;
-	//}
 	if (!getFinalInfProductNameByDialog(&tempResult)) return;
 	writeToChannel("Succesful.\n");
 	//   save file name
