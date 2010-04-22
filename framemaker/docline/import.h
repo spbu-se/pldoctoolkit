@@ -18,6 +18,7 @@ BoolT openFilesInDirectory(); //Common part of Open and Import
 VoidT openBook(); //Opens existing docline project with checking its structure
 BoolT performImportXSLT(); //appying XSLT to document for impporting
 VoidT renameFilesToActualNames(F_ObjHandleT bookID); //Renames book to it's actual name
+BoolT renameFileToActualName(F_ObjHandleT fileID); //Renames file to name by it's highest level element attribute
 VoidT simpleOpenBook(); //Opens existing docline project without checking its structure
 
 #endif //IMPORT_H

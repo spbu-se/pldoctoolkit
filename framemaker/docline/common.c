@@ -2,6 +2,22 @@
 
 StringT mainDirPath;
 
+BoolT getJarFileName(StringT *path)
+{
+	StringT pluginFolderName, clientDirPath, jarName;
+
+	clientDirPath = F_ApiClientDir();
+	pluginFolderName = F_StrCopyString(PLUGIN_DIR_NAME);
+	jarName = F_StrCopyString(JAR_FILENAME);
+	*path = (StringT)F_Alloc((F_StrLen(clientDirPath)+F_StrLen(pluginFolderName)+F_StrLen(jarName)+3)*sizeof(UCharT),NO_DSE);
+	F_Sprintf(*path,"%s\\%s\\%s\0",clientDirPath,pluginFolderName,jarName);
+	F_ApiDeallocateString(&jarName);
+	F_ApiDeallocateString(&pluginFolderName);
+	F_ApiDeallocateString(&clientDirPath);
+
+	return TRUE;
+}
+
 BoolT getMainBookTemplate(StringT *path)
 {
 	StringT tmplPath, fmDir, tmplName;

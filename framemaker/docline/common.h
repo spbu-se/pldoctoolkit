@@ -20,6 +20,7 @@
 #define defaultPath  (F_StrCopyString("C:\\"))
 #define defaultBookName (F_StrCopyString("mainDRLFMBook.book"))
 
+BoolT getJarFileName(StringT *path);
 BoolT getMainDirPath(StringT *path);
 VoidT closeProject();
 BoolT cleanTempDirectory();
@@ -39,5 +40,6 @@ StringT getMainBookName(F_ObjHandleT bookID);
 BoolT getMainBookTemplate(StringT path);
 BoolT getMainBookEDD(StringT *path);
 BoolT getTempDirPath(StringT *path);
+BoolT setDefaultDirectory(StringT dirPath);
 
 #endif //COMMON_H
