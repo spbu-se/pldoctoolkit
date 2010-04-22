@@ -236,7 +236,8 @@ int invokeJava(char *jarPath,    // path to a jar, containing java class
 	cjObject_t proxy;
 	int rc;
 	char *args[3];
-	char arg0[256] = "", arg1[] = "-Xms256m", arg2[] =	"-Xmx512m";
+	//char arg0[256] = "", arg1[] = "-Xms256m", arg2[] =	"-Xmx512m";
+	char arg0[256] = "", arg1[] = "-Xms32m", arg2[] =	"-Xmx100m";
 	char sout[4];
 
 	strcat(arg0, "-Djava.class.path=");

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="docline"
 	ProjectGUID="{B4D4430C-14ED-445B-8063-99BD709E1EC6}"
 	RootNamespace="docline"
@@ -147,7 +147,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				InlineFunctionExpansion="1"
+				InlineFunctionExpansion="0"
 				AdditionalIncludeDirectories="..\..\include;..\utilities"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;docline_EXPORTS"
 				StringPooling="true"

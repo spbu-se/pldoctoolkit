@@ -14,7 +14,7 @@
 #define FMBOOK 202
 #define GENBOOK 203
 
-
+#define PLUGIN_DIR_NAME "docline"
 #define JAR_FILENAME "publishutil.jar"
 
 #define defaultPath  (F_StrCopyString("C:\\"))
