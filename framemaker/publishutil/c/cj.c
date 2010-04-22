@@ -73,6 +73,8 @@ int cjJVMConnect(cjJVM_t *pJVM)
       options[i].optionString = (pJVM->argv)[i];
       options[i].extraInfo = NULL;
    }
+   //options[i].optionString = "-Xms32m";
+   //options[i+1].optionString = "-Xmx128m";
 
    memset(&vmArgs, 0, sizeof(vmArgs));
    vmArgs.version = JNI_VERSION_1_2;
