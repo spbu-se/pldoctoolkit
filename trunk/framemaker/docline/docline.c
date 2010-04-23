@@ -11,6 +11,75 @@
 #include "structure.h"
 #include "check.h"
 
+#define STRUCTAPP_TEMPLATE_FILENAME "stuctapp_entry.fm"
+#define STRUCTAPP_NAME "DocLine"
+#define STRUCTURE_DIR "xml\\docline" //base filePath - framemaker structure dir
+
+VoidT addStructApp()
+{
+  F_ObjHandleT structAppFm, templateID, topID, secondID, newChildID, thirdID;
+  StringT structAppFmPath, fminitDir, pluginDirName, structAppFmName, elemName, docLineElemName, doclineDir;
+  FilePathT *clientDirPath, *fmPath;
+  IntT statusp;
+  F_TextRangeT trange;
+  BoolT flag;
+
+  //open structapps.fm
+  fminitDir = F_ApiClientDir();
+  clientDirPath = F_PathNameToFilePath(fminitDir,NULL,FDosPath);
+  F_ApiDeallocateString(&fminitDir);
+  if (clientDirPath == NULL) return;
+  fmPath = F_FilePathParent(clientDirPath,&statusp);
+  F_FilePathFree(clientDirPath);
+  fminitDir = F_FilePathToPathName(fmPath,FDosPath);
+  F_FilePathFree(fmPath);
+  pluginDirName = F_StrCopyString("Structure");
+  structAppFmName = F_StrCopyString("structapps.fm");
+  structAppFmPath = (StringT)F_Alloc((F_StrLen(fminitDir)+F_StrLen(pluginDirName)+F_StrLen(structAppFmName)+3)*sizeof(UCharT),NO_DSE);
+  F_Sprintf(structAppFmPath, "%s\\%s\\%s", fminitDir,pluginDirName,structAppFmName);
+  F_ApiDeallocateString(&structAppFmName);
+  structAppFm = F_ApiSimpleOpen(structAppFmPath,FALSE);
+  F_ApiDeallocateString(&structAppFmPath);
+
+  topID = F_ApiGetId(structAppFm,F_ApiGetId(FV_SessionId,structAppFm,FP_MainFlowInDoc),FP_HighestLevelElement);
+  if (!topID)
+  {
+    F_ApiAlert("Error. Empty structapps.fm", FF_ALERT_CONTINUE_WARN);
+    return;
+  }
+  docLineElemName = F_StrCopyString(STRUCTAPP_NAME);
+  flag = FALSE;
+  secondID = F_ApiGetId(structAppFm,topID,FP_FirstChildElement);
+  while (!flag && secondID)
+  {
+    elemName = F_ApiGetString(structAppFm,F_ApiGetId(structAppFm,secondID,FP_ElementDef),FP_Name);
+    F_ApiDeallocateString(&elemName);
+    thirdID = F_ApiGetId(structAppFm,secondID,FP_FirstChildElement);
+    if (!thirdID)
+    {
+      F_Printf(NULL,"\nEmpty entry in structapps.fm");
+      secondID = F_ApiGetId(structAppFm,secondID,FP_NextSiblingElement);
+      continue;
+    }
+    trange = F_ApiGetTextRange(structAppFm,thirdID,FP_TextRange);
+    trange.end.
+    elemName = F_ApiGetString(structAppFm,F_ApiGetId(structAppFm,thirdID,FP_ElementDef),FP_Name);
+    if (F_StrIEqual(elemName, docLineElemName))
+    {
+      flag = TRUE;
+    }
+    F_ApiDeallocateString(&elemName);
+    secondID = F_ApiGetId(structAppFm,secondID,FP_NextSiblingElement);
+  }
+  if (!flag)
+  {
+    structAppFmName = F_StrCopyString(STRUCTAPP_TEMPLATE_FILENAME);
+    doclineDir = F_StrCopyString(STRUCTURE_DIR);
+    structAppFmPath = (StringT)F_Alloc((F_StrLen(fminitDir)+F_StrLen(pluginDirName)+F_StrLen(doclineDir)+F_StrLen(structAppFmName)+4)*sizeof(UCharT),NO_DSE);
+    F_Sprintf(structAppFmPath, "%s\\%s\\%s\\%s", fminitDir, pluginDirName, doclineDir, structAppFmName);
+  }
+}
+
 VoidT F_ApiInitialize(IntT init)
 {
 	/* Making it unicode enabled. */
@@ -159,6 +228,7 @@ VoidT F_ApiInitialize(IntT init)
 
 	  /* Define command for closing active project and all files in it */
 	  bcloseProjectId = F_ApiDefineAndAddCommand(BCLOSE, bmenuId, "BCloseProject", "Close Project","\\!BCP");
+    addStructApp();
 	}
 } 
 VoidT F_ApiCommand(IntT command)
