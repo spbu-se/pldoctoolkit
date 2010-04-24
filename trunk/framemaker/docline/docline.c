@@ -17,12 +17,14 @@
 
 VoidT addStructApp()
 {
-  F_ObjHandleT structAppFm, templateID, topID, secondID, newChildID, thirdID;
+  F_ObjHandleT structAppFm, templateID, topID, secondID, newChildID, thirdID, ttopID, tsecondID, elemDef;
   StringT structAppFmPath, fminitDir, pluginDirName, structAppFmName, elemName, docLineElemName, doclineDir;
   FilePathT *clientDirPath, *fmPath;
   IntT statusp;
   F_TextRangeT trange;
+  F_TextItemsT tis;
   BoolT flag;
+  F_ElementLocT loc;
 
   //open structapps.fm
   fminitDir = F_ApiClientDir();
@@ -50,10 +52,10 @@ VoidT addStructApp()
   docLineElemName = F_StrCopyString(STRUCTAPP_NAME);
   flag = FALSE;
   secondID = F_ApiGetId(structAppFm,topID,FP_FirstChildElement);
-  while (!flag && secondID)
+  //check if structure  application "DocLine" exists
+  //while (!flag && secondID)
+  while (FALSE)
   {
-    elemName = F_ApiGetString(structAppFm,F_ApiGetId(structAppFm,secondID,FP_ElementDef),FP_Name);
-    F_ApiDeallocateString(&elemName);
     thirdID = F_ApiGetId(structAppFm,secondID,FP_FirstChildElement);
     if (!thirdID)
     {
@@ -62,8 +64,13 @@ VoidT addStructApp()
       continue;
     }
     trange = F_ApiGetTextRange(structAppFm,thirdID,FP_TextRange);
-    trange.end.
-    elemName = F_ApiGetString(structAppFm,F_ApiGetId(structAppFm,thirdID,FP_ElementDef),FP_Name);
+	tis = F_ApiGetTextForRange(structAppFm,&trange,FTI_String);
+	if (tis.len < 1)
+	{
+      secondID = F_ApiGetId(structAppFm,secondID,FP_NextSiblingElement);
+      continue;
+	}
+	elemName = tis.val[1].u.sdata;
     if (F_StrIEqual(elemName, docLineElemName))
     {
       flag = TRUE;
@@ -73,11 +80,10 @@ VoidT addStructApp()
   }
   if (!flag)
   {
-    structAppFmName = F_StrCopyString(STRUCTAPP_TEMPLATE_FILENAME);
-    doclineDir = F_StrCopyString(STRUCTURE_DIR);
-    structAppFmPath = (StringT)F_Alloc((F_StrLen(fminitDir)+F_StrLen(pluginDirName)+F_StrLen(doclineDir)+F_StrLen(structAppFmName)+4)*sizeof(UCharT),NO_DSE);
-    F_Sprintf(structAppFmPath, "%s\\%s\\%s\\%s", fminitDir, pluginDirName, doclineDir, structAppFmName);
+	  //F_ApiImport()
   }
+  F_ApiDeallocateString(&pluginDirName);
+  F_ApiDeallocateString(&fminitDir);
 }
 
 VoidT F_ApiInitialize(IntT init)
@@ -228,7 +234,7 @@ VoidT F_ApiInitialize(IntT init)
 
 	  /* Define command for closing active project and all files in it */
 	  bcloseProjectId = F_ApiDefineAndAddCommand(BCLOSE, bmenuId, "BCloseProject", "Close Project","\\!BCP");
-    addStructApp();
+    //addStructApp();
 	}
 } 
 VoidT F_ApiCommand(IntT command)

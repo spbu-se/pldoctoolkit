@@ -255,7 +255,7 @@ BoolT importBook(StringT path, F_PropValsT params)
 }
 BoolT performImportXSLT()
 {
-	IntT statusp;
+	IntT statusp, err;
 	StringT tempPath, dirPath, jarPath, doclineDir;
 	FilePathT *filePath, *file;
 	DirHandleT handle;
@@ -264,9 +264,22 @@ BoolT performImportXSLT()
 
 	if (!getJarFileName(&jarPath)) return FALSE;
 	dirPath = F_StrCopyString(tempDirPath);
-	if (callJavaImportUtil(jarPath, dirPath) > 0)
+	err = callJavaImportUtil(jarPath, dirPath);
+	if (err > 0)
 	{
-		writeToChannel("Error. JVM Intialization error");
+		switch (err)
+		{
+		case JVM_INIT_MEM_ERROR:
+			writeToChannel("\n\t");
+			F_ApiDeallocateString(&jarPath);
+			jarPath = (StringT)F_Alloc((F_StrLen(ERROR_MEM_MESSAGE)+F_StrLen(MAX_MEM))*sizeof(UCharT),NO_DSE);
+			F_Sprintf(jarPath,ERROR_MEM_MESSAGE,MAX_MEM);
+			writeToChannel(jarPath);
+			break;
+		default:
+			writeToChannel("Error. JVM Intialization error");
+			break;
+		}
 		F_ApiDeallocateString(&jarPath);
 		F_ApiDeallocateString(&dirPath);
 		return FALSE;

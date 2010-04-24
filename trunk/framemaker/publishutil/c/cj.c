@@ -100,7 +100,12 @@ int cjJVMConnect(cjJVM_t *pJVM)
 	  }
 
 	  free(options);
-      if (jret == JNI_ERR)
+
+	  if (jret == JNI_ENOMEM)
+	  {
+		  rc = CJ_ERR_JVM_CONNECT_NOT_ENOUGH_MEM;
+	  }
+	  else if (jret != JNI_OK)
       {
          rc = CJ_ERR_JVM_CONNECT;
       }
