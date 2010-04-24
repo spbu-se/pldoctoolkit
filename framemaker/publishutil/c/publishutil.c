@@ -1,10 +1,9 @@
 #include "cj.h"
+#include "publishutil.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <direct.h>
-
-#define ERROR_MESSAGE "Error occured while calling Java Virtual Machine, terminating...\n"
 
 int fileNum;
 
@@ -235,17 +234,19 @@ int invokeJava(char *jarPath,    // path to a jar, containing java class
 	cjClass_t proxyClass;
 	cjObject_t proxy;
 	int rc;
-	char *args[3];
-	//char arg0[256] = "", arg1[] = "-Xms256m", arg2[] =	"-Xmx512m";
-	char arg0[256] = "", arg1[] = "-Xms32m", arg2[] =	"-Xmx100m";
-	char sout[4];
+	char *args[3], *minMemParam, *maxMemParam, *clpParam, sout[4];
 
-	strcat(arg0, "-Djava.class.path=");
-	strcat(arg0, jarPath);
-	
-	args[0] = arg0;
-	args[1] = arg1;
-	args[2] = arg2;
+	args[1] = (char *)malloc((strlen(MIN_MEM)+6)*sizeof(char));
+	sprintf(args[1],"-Xms%sm\0",MIN_MEM);
+	args[2] = (char *)malloc((strlen(MAX_MEM)+6)*sizeof(char));
+	sprintf(args[2],"-Xmx%sm\0",MAX_MEM);
+	//char arg0[256] = "", arg1[] = "-Xms256m", arg2[] =	"-Xmx512m";
+	//char arg0[256] = "", arg1[] = "-Xms32m", arg2[] =	"-Xmx256m";
+	//char arg0[256] = "", arg1[] = minMemParam, arg2[] =	maxMemParam;
+	//char arg0[256] = "", arg1[] = "-Xms32m", arg2[] =	"-Xmx100m";
+	clpParam = "-Djava.class.path=";
+	args[0] = (char *)malloc((strlen(clpParam)+strlen(jarPath)+1)*sizeof(char));
+	sprintf(args[0],"%s%s\0",clpParam,jarPath);
 
 	memset(&sout, 0, 4);
 	memset(&jvm, 0, sizeof(cjJVM_t));
@@ -256,9 +257,16 @@ int invokeJava(char *jarPath,    // path to a jar, containing java class
 	jvm.argv = args;
 	rc = cjJVMConnect(&jvm);
 	if (rc != CJ_ERR_SUCCESS) {
-		printf(ERROR_MESSAGE);
-		printf("cjJVMConnect %i", rc);
-		return rc;
+		switch (rc)
+		{
+		case CJ_ERR_JVM_CONNECT_NOT_ENOUGH_MEM:
+			printf(ERROR_MEM_MESSAGE,"maxMem");
+			return JVM_INIT_MEM_ERROR;
+		default:
+			printf(ERROR_MESSAGE);
+			printf("cjJVMConnect %i", rc);
+			return rc;
+		}
 	}
 
 	rc = cjProxyClassCreate(&proxyClass, className, &jvm);

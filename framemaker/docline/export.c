@@ -167,6 +167,25 @@ BoolT performExportXSLT(StringT dirPath)
 
 	if (!getJarFileName(&jarPath)) return FALSE;
 	retVal = callJavaExportUtil(jarPath,dirPath);
+	if (retVal > 0)
+	{
+		switch (retVal)
+		{
+		case JVM_INIT_MEM_ERROR:
+			writeToChannel("\n\t");
+			F_ApiDeallocateString(&jarPath);
+			jarPath = (StringT)F_Alloc((F_StrLen(ERROR_MEM_MESSAGE)+F_StrLen(MAX_MEM))*sizeof(UCharT),NO_DSE);
+			F_Sprintf(jarPath,ERROR_MEM_MESSAGE,MAX_MEM);
+			writeToChannel(jarPath);
+			break;
+		default:
+			writeToChannel("Error. JVM Intialization error");
+			break;
+		}
+		F_ApiDeallocateString(&jarPath);
+		F_ApiDeallocateString(&dirPath);
+		return FALSE;
+	}
 	F_ApiDeallocateString(&jarPath);
 	if (retVal)
 	{
@@ -489,12 +508,22 @@ VoidT publishDocLineDoc(StringT format)
 	// invoke java util
 	writeToChannel("Calling Java function...");
 	retVal = callJavaPublishUtil(jarPath, sourceDirPath, sourceFileName, " ", format, destinationFileName);
-
-	if (retVal > 0) // error in JVM initialization
+	if (retVal > 0)
 	{
-		writeToChannel("UnSuccesful.\n");
-		F_ApiAlert("There was an error while initializing java machine.", FF_ALERT_CONTINUE_WARN);
-		return;
+		switch (retVal)
+		{
+		case JVM_INIT_MEM_ERROR:
+			writeToChannel("\n\t");
+			F_ApiDeallocateString(&jarPath);
+			jarPath = (StringT)F_Alloc((F_StrLen(ERROR_MEM_MESSAGE)+F_StrLen(MAX_MEM))*sizeof(UCharT),NO_DSE);
+			F_Sprintf(jarPath,ERROR_MEM_MESSAGE,MAX_MEM);
+			writeToChannel(jarPath);
+			break;
+		default:
+			writeToChannel("Error. JVM Intialization error");
+			break;
+		}
+		return FALSE;
 	}
 	else  // java util worked, so there will be an error log file
 	{

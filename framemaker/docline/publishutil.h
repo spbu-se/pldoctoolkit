@@ -1,6 +1,12 @@
 #ifndef PUBLISHUTIL_H
 #define PUBLISHUTIL_H
 
+#define JVM_INIT_MEM_ERROR 11
+#define MIN_MEM "32"
+#define MAX_MEM "512"
+#define ERROR_MESSAGE "Error occured while calling Java Virtual Machine, terminating...\n"
+#define ERROR_MEM_MESSAGE "Error. Not enough memory to initialize Java Virtual Machine. Needed %s megabytes. Terminating...\n"
+
 IntT mergeFilesTo(UCharT **files, IntT len, UCharT *out_file_name);
 
 IntT splitFilesTo(UCharT **files, IntT len, UCharT *out_dir_path);

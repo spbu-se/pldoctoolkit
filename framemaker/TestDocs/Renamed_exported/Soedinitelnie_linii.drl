@@ -436,12 +436,7 @@ In/Out</entry>
                <colspec colnum="1" colname="1" colwidth="1.000in"/>
                <colspec colnum="2" colname="2" colwidth="1.000in"/>
                <tbody>
-                  <FakeRow>
-                     <FakeEntry>
-                        <d:Nest id="mov_info_restart"/>
-                     </FakeEntry>
-                     <entry colname="2"/>
-                  </FakeRow>
+                  <d:Nest id="mov_info_restart"/>
                   <row rowsep="1">
                      <entry colname="1">In, Out</entry>
                      <entry colname="2">Состояния<xref linkend="СУВ" role="Undefined Cross-Reference"/>. Для<xref linkend="BCKu" role="Undefined Cross-Reference"/>показываются значения 2СК
@@ -481,12 +476,7 @@ In/Out</entry>
                      <entry colname="1">ТСгн</entry>
                      <entry colname="2">Флаг трассировки объекта сигнализации</entry>
                   </row>
-                  <FakeRow>
-                     <FakeEntry>
-                        <d:Nest id="mov_info_flag"/>
-                     </FakeEntry>
-                     <entry colname="2"/>
-                  </FakeRow>
+                  <d:Nest id="mov_info_flag"/>
                </tbody>
             </tgroup>
          </informaltable>
@@ -562,12 +552,7 @@ In/Out</entry>
                      <entry colname="2">Вызвать панель прохода по шнуру для канала<d:Nest id="where_use"/>
                      </entry>
                   </row>
-                  <FakeRow>
-                     <FakeEntry>
-                        <d:Nest id="operation_channel_15"/>
-                     </FakeEntry>
-                     <entry colname="2"/>
-                  </FakeRow>
+                  <d:Nest id="operation_channel_15"/>
                </tbody>
             </tgroup>
          </informaltable>
