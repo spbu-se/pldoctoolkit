@@ -83,47 +83,47 @@
         <xsl:when test="name() = 'd:Insert-After' or
 								name() = 'd:Insert-Before' or
 								name() = 'd:Replace-Nest'">
-          <xsl:element name="{local-name()}">
-            <xsl:attribute name="nestid">
-            <xsl:value-of select="@nestid"/>
-            </xsl:attribute>
-            <xsl:choose>
-              <xsl:when test="db:row or db:entry">
+          <xsl:choose>
+            <xsl:when test="db:row or db:entry">
+              <xsl:element name="{local-name()}">
+                <xsl:attribute name="nestid">
+                  <xsl:value-of select="@nestid"/>
+                </xsl:attribute>
                 <xsl:choose>
-                <xsl:when test="not(exists(db:tbody))">
-                  <xsl:element name="FakeTable">
-                    <xsl:attribute name="cols">
-                      <xsl:value-of select="count(db:row[1]/*)+count(db:entry)"/>
-                    </xsl:attribute>
-                    <xsl:element name="FakeTableBody">
-                      <xsl:for-each select="*">
-                        <xsl:choose>
-                          <xsl:when test="local-name()='row'">
-                            <xsl:call-template name="otherwise"/>
-                          </xsl:when>
-                          <xsl:when test="local-name()='entry'">
-                            <xsl:element name="FakeRow">
-                              <xsl:copy-of select="current()"/>
-                            </xsl:element>
-                          </xsl:when>
-                          <xsl:otherwise>
-                            <xsl:call-template name="otherwise"/>
-                          </xsl:otherwise>
-                        </xsl:choose>
-                      </xsl:for-each>
-                    </xsl:element>
+              <xsl:when test="not(exists(db:tbody))">
+                <xsl:element name="FakeTable">
+                  <xsl:attribute name="cols">
+                    <xsl:value-of select="count(db:row[1]/*)+count(db:entry)"/>
+                  </xsl:attribute>
+                  <xsl:element name="FakeTableBody">
+                    <xsl:for-each select="*">
+                      <xsl:choose>
+                        <xsl:when test="local-name()='row'">
+                          <xsl:call-template name="otherwise"/>
+                        </xsl:when>
+                        <xsl:when test="local-name()='entry'">
+                          <xsl:element name="FakeRow">
+                            <xsl:copy-of select="current()"/>
+                          </xsl:element>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:call-template name="otherwise"/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:for-each>
                   </xsl:element>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:call-template name="otherwise"/>
-                </xsl:otherwise>
-                </xsl:choose>
+                </xsl:element>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:call-template name="otherwise"/>
               </xsl:otherwise>
-            </xsl:choose>
-          </xsl:element>
+              </xsl:choose>
+              </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:call-template name="otherwise"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
         <xsl:otherwise>
           <xsl:element name="{local-name()}">
