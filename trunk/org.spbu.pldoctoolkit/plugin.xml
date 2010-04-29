@@ -14,7 +14,7 @@
          point="org.eclipse.ui.newWizards">
       <category
             id="org.spbu.pldoctoolkit.ui.category.Wizard.ID"
-            name="%_UI_Wizard_category"/>
+            name="Product Line Documentation"/>
    </extension>
 
 </plugin>

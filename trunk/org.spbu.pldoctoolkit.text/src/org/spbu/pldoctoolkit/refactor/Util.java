@@ -1,11 +1,7 @@
 package org.spbu.pldoctoolkit.refactor;
 
-import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Stack;
-
-import org.eclipse.jface.text.TextSelection;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
@@ -14,11 +10,11 @@ import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
 //import net.sf.saxon.dom.NodeOverNodeInfo;
 
 public class Util {
-	// Предполагается, что строка заканчивается концом тэга
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	public static int findtagStartPos(CharSequence text, int from) {
 		Stack<Character> stack = new Stack<Character>();
 		int curPos = from;//text.length();
-		stack.push('>'); // кладём закр скобку
+		stack.push('>'); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		--curPos;		
 		while (!stack.isEmpty() || curPos < 0) {			
 			char curTop = stack.peek();
@@ -46,7 +42,7 @@ public class Util {
 			
 			--curPos;
 		}
-		//TODO Добавить кидание исключения в случае не нах. откр. скобки
+		//TODO пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ
 		return ++curPos;
 	}
 	
@@ -297,6 +293,13 @@ public class Util {
 	
 	private static boolean isSapceOrTab(char ch) {
 		return (ch == ' ' || ch == '\t');
+	}
+	
+	//lebedkova
+	public static void addNewLine(LangElem fip) {
+		TextElement newLine = new TextElement(new PositionInText(0,0),
+		           1, "\n", fip, fip.getDRLDocument());
+		fip.getChilds().add(newLine);
 	}
 
 }

@@ -10,14 +10,11 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -80,8 +77,7 @@ public class SelectIntoInfElemDialog extends Dialog{
 	*/	
 		
 		Label description = new Label(composite, SWT.LEFT);
-		description.setText("Extracts selected fragment into new InfElement, insert InfElemRef,\n" +
-							"create Adapter for new InfElemRef and change content of appropriate Adapters\n\n");
+		description.setText("Extracts selected fragment into new InfElement");
 		GridData gd = new GridData();
 		gd.horizontalAlignment = SWT.FILL;
 		gd.verticalAlignment = SWT.FILL;
@@ -191,7 +187,7 @@ public class SelectIntoInfElemDialog extends Dialog{
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		Point size = new Point(420, 210);
+		Point size = new Point(420, 230);
 		newShell.setSize(size);
 		Shell p = getParentShell();
 		newShell.setLocation(p.getLocation().x + p.getSize().x / 2 - size.x / 2, p.getLocation().y + p.getSize().y / 2 - size.y / 2);

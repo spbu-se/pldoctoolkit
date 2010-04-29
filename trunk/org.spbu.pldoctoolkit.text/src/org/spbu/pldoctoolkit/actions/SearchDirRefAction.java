@@ -2,21 +2,14 @@ package org.spbu.pldoctoolkit.actions;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.TextSelection;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
-import org.spbu.pldoctoolkit.dialogs.SearchDictEntryDialog;
 import org.spbu.pldoctoolkit.dialogs.SearchDirRefDialog;
 import org.spbu.pldoctoolkit.editors.DrlTextEditor;
-import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
-import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
-import org.spbu.pldoctoolkit.refactor.SearchDictEntry;
 import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 
 public class SearchDirRefAction extends Action implements IValidateDRLSelection {

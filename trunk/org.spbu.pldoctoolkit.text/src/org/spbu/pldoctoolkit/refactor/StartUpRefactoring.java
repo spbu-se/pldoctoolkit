@@ -6,6 +6,8 @@ import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
 import org.xml.sax.helpers.AttributesImpl;
 
 public class StartUpRefactoring {
+	private static String XML_DECLARATION_TAG_STARTS_WITH = "<?xml";
+	
 	public static void addInfoToCore(DRLDocument doc, String info,
 			String infPrId, String infPrName, String infElemId, String infElemName, String infElemRefId) {
 		String prefex = doc.DRLnsPrefix;
@@ -27,13 +29,28 @@ public class StartUpRefactoring {
 		((AttributesImpl)infElemRef.attrs).addAttribute(LangElem.INFELEMID, LangElem.INFELEMID, LangElem.INFELEMID, "", infElemId);
 		
 		core.getChilds().add(infPr);
+		Util.addNewLine(core);
 		core.getChilds().add(infElem);
-		infPr.getChilds().add(infElemRef);
+		Util.addNewLine(core);
 		
-		TextElement textEl = new TextElement(new PositionInText(0, 0),0,info, infPr, doc);		
-		infElem.getChilds().add(textEl);		
+		Util.addNewLine(infPr);
+		infPr.getChilds().add(infElemRef);
+		Util.addNewLine(infPr);
+		
+		TextElement textEl = new TextElement(new PositionInText(0, 0),0,deleteXMLDeclaration(info), infPr, doc);		
+		infElem.getChilds().add(textEl);
+		Util.addNewLine(infElem);
 	}
-	
+	//lebedkova
+	//delete XML declararion tag from info string
+	private static String deleteXMLDeclaration(String info) {
+		String result = info.trim();
+		if(result.startsWith(XML_DECLARATION_TAG_STARTS_WITH)) {
+			result = result.substring(result.indexOf('>')+1, result.length());
+		}
+		return result;
+	}
+
 	public static void addInfoToProduct(DRLDocument doc,
 			String finalId, String infPrId, String infElemRefId) {
 		String prefex = doc.DRLnsPrefix;
@@ -49,8 +66,12 @@ public class StartUpRefactoring {
 		LangElem adapter = new LangElem(LangElem.ADAPTER, prefex + LangElem.ADAPTER, null, finalPr, doc, new AttributesImpl());
 		((AttributesImpl)adapter.attrs).addAttribute(LangElem.INFELEMREFID, LangElem.INFELEMREFID, LangElem.INFELEMREFID, "", infElemRefId);
 		
-		product.getChilds().add(finalPr);		
-		finalPr.getChilds().add(adapter);		
+		product.getChilds().add(finalPr);	
+		Util.addNewLine(product);
+		
+		Util.addNewLine(finalPr);
+		finalPr.getChilds().add(adapter);	
+		Util.addNewLine(finalPr);
 	}
 
 	public static void addInfoToCore(DRLDocument doc,
@@ -70,6 +91,10 @@ public class StartUpRefactoring {
 		((AttributesImpl)infElemRef.attrs).addAttribute(LangElem.INFELEMID, LangElem.INFELEMID, LangElem.INFELEMID, "", infElemId);
 		
 		core.getChilds().add(infPr);
+		Util.addNewLine(core);
+		
+		Util.addNewLine(infPr);
 		infPr.getChilds().add(infElemRef);	
+		Util.addNewLine(infPr);
 	}
 }

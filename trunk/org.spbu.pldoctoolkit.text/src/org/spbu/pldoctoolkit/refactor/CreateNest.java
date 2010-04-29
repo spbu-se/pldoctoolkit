@@ -1,7 +1,5 @@
 package org.spbu.pldoctoolkit.refactor;
 
-import java.util.ArrayList;
-
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;

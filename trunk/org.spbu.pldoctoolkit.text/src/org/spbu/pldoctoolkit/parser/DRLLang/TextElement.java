@@ -1,14 +1,8 @@
 package org.spbu.pldoctoolkit.parser.DRLLang;
 
-import java.util.ArrayList;
-
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.Util;
-import org.spbu.pldoctoolkit.refactor.pattern.NessesaryElement;
-import org.spbu.pldoctoolkit.refactor.pattern.PatternElement;
-
-import sun.font.LayoutPathImpl.EndType;
 
 public class TextElement extends Element {
 	private int length;

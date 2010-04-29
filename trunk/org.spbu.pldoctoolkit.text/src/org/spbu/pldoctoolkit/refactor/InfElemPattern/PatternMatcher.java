@@ -2,7 +2,6 @@ package org.spbu.pldoctoolkit.refactor.InfElemPattern;
 
 import java.util.Stack;
 
-import org.spbu.pldoctoolkit.refactor.Couple;
 import org.spbu.pldoctoolkit.refactor.InfElemPattern.TextFragments.TextFragment;
 
 public class PatternMatcher {

@@ -2,18 +2,12 @@ package org.spbu.pldoctoolkit.actions;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.TextSelection;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.dialogs.ReplaceWithInfElemRefDialog;
 import org.spbu.pldoctoolkit.editors.DrlTextEditor;
-import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
-import org.spbu.pldoctoolkit.refactor.ExtractInsertAfterBefore;
-import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
 import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 

@@ -1,33 +1,19 @@
 package org.spbu.pldoctoolkit.actions;
 
-import java.io.InputStream;
 import java.io.StringReader;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.text.BadLocationException;
-
-import net.sf.saxon.om.NodeInfo;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.dialogs.InputDialog;
-import org.eclipse.jface.text.FindReplaceDocumentAdapter;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 //import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.ui.actions.SelectionProviderAction;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
@@ -35,21 +21,14 @@ import org.spbu.pldoctoolkit.cache.SchemaCache;
 import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
 import org.spbu.pldoctoolkit.editors.DrlTextEditor;
 //import org.spbu.pldoctoolkit.refactor.Util;
-import org.spbu.pldoctoolkit.parser.DRLParser;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
-import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
-import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
 import org.spbu.pldoctoolkit.refactor.SelectIntoInfElem;
-import org.spbu.pldoctoolkit.registry.ProjectRegistry;
 import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
-import org.spbu.pldoctoolkit.registry.RegisteredLocation;
-import org.w3c.dom.Document;
 import org.xml.sax.DTDHandler;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import com.thaiopensource.validate.Validator;
@@ -150,7 +129,7 @@ public class SelectIntoInfElementAction extends Action implements IValidateDRLSe
 		//Util.findNodeByPosition(doc1, 1, 1);
 		
 		IDocument doc = te.getDocumentProvider().getDocument(editorInput);
-		String text = doc.get();
+		//String text = doc.get();
 		ISelection sel = te.getSelectionProvider().getSelection();
 		TextSelection ts = (TextSelection) sel;
 		try {			
@@ -190,7 +169,7 @@ public class SelectIntoInfElementAction extends Action implements IValidateDRLSe
 	private XMLReader xmlReader;
 	private final Validator validator;	
 	
-	private boolean validate(String what)
+	public boolean validate(String what)
 	{		
 		try {
 			validator.reset();

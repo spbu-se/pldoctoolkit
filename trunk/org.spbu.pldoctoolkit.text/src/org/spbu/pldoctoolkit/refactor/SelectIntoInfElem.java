@@ -7,8 +7,6 @@ import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
-import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
-import org.xml.sax.Attributes;
 import org.xml.sax.helpers.AttributesImpl;
 
 public class SelectIntoInfElem {

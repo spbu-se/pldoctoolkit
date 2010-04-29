@@ -1,7 +1,5 @@
 package org.spbu.pldoctoolkit.actions;
 
-import java.util.ArrayList;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.text.IDocument;
@@ -12,14 +10,9 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
-import org.spbu.pldoctoolkit.dialogs.CreateNewDirTamplateDialog;
-import org.spbu.pldoctoolkit.dialogs.InsertIntoDictionaryDialog;
 import org.spbu.pldoctoolkit.dialogs.InsertIntoDirectoryDialog;
 import org.spbu.pldoctoolkit.editors.DrlTextEditor;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
-import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
-import org.spbu.pldoctoolkit.refactor.CreateDirTemplate;
-import org.spbu.pldoctoolkit.refactor.InsertIntoDictionary;
 import org.spbu.pldoctoolkit.refactor.InsertIntoDirectory;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;

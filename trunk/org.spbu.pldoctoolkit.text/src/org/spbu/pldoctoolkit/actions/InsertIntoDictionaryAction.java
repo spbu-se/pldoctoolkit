@@ -1,9 +1,6 @@
 package org.spbu.pldoctoolkit.actions;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.text.IDocument;
@@ -11,22 +8,16 @@ import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.dialogs.InsertIntoDictionaryDialog;
-import org.spbu.pldoctoolkit.dialogs.SearchDictEntryDialog;
-import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
 import org.spbu.pldoctoolkit.editors.DrlTextEditor;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.InsertIntoDictionary;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
-import org.spbu.pldoctoolkit.refactor.SelectIntoInfElem;
 import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 
 public class InsertIntoDictionaryAction extends Action implements IValidateDRLSelection {

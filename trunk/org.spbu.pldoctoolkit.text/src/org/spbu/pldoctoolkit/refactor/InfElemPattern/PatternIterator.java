@@ -1,8 +1,8 @@
 package org.spbu.pldoctoolkit.refactor.InfElemPattern;
 
-import java.util.ArrayList;
+
 import java.util.LinkedList;
-import java.util.Stack;
+
 
 import org.spbu.pldoctoolkit.refactor.Couple;
 

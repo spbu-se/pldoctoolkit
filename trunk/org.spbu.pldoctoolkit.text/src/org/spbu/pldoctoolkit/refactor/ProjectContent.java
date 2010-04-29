@@ -1,22 +1,15 @@
 package org.spbu.pldoctoolkit.refactor;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFileState;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.parser.DRLParser;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.registry.IProjectContent;
-import org.xml.sax.InputSource;
 
 public class ProjectContent implements IProjectContent{
 	public HashMap<IFile , DRLDocument> DRLDocs = new HashMap<IFile, DRLDocument>();	
@@ -29,6 +22,9 @@ public class ProjectContent implements IProjectContent{
 	public ArrayList<LangElem> finalInfPrs = new ArrayList<LangElem>();
 	public ArrayList<LangElem> infPrs = new ArrayList<LangElem>();
 	public ArrayList<LangElem> templates = new ArrayList<LangElem>();
+	//lebedkova
+	//finalInfProducts with defined variables
+	private HashMap<String, ArrayList<String>> finalInfProductsVariables = new HashMap<String,ArrayList<String>>();
 //	public String projectName;
 /*	
 	public void parseAll(IProject project) {
@@ -150,5 +146,29 @@ public class ProjectContent implements IProjectContent{
 			else
 				++i;
 		}
+	}
+	
+	public boolean containsVariable(LangElem finalInfProduct, String varName) {
+		String name = finalInfProduct.attrs.getValue(LangElem.ID);
+		if(finalInfProductsVariables.containsKey(name)) {
+			ArrayList<String> vars = finalInfProductsVariables.get(name);
+			if(vars.contains(varName)) 
+				return true;
+		}
+		return false;
+	}
+	
+	public void setFinalInfProdValiable(String finalInfProduct, String varName) {
+		if(finalInfProduct == null || finalInfProduct.isEmpty())
+			return;
+		ArrayList<String> vars;
+		if(finalInfProductsVariables.containsKey(finalInfProduct)) {
+			vars = finalInfProductsVariables.get(finalInfProduct);
+		} 
+		else {
+			vars = new ArrayList<String>();
+		}
+		vars.add(varName);
+		finalInfProductsVariables.put(finalInfProduct, vars);
 	}
 }
