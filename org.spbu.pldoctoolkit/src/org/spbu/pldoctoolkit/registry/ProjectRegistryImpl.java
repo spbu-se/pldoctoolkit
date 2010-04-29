@@ -11,7 +11,6 @@ import static org.spbu.pldoctoolkit.registry.RegisteredLocation.PRODUCT;
 import static org.spbu.pldoctoolkit.registry.RegisteredLocation.PRODUCT_CONTEXT;
 import static org.spbu.pldoctoolkit.registry.RegisteredLocation.INF_ELEM_REF;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;

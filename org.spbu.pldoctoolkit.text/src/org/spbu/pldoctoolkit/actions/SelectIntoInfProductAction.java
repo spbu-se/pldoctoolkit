@@ -111,11 +111,7 @@ public class SelectIntoInfProductAction extends Action implements IValidateDRLSe
 					new PositionInText(line1 + 1, column1 + 1),
 					new PositionInText(line2 + 1, column2 + 1),
 					project.getFullPath(), dialog.getInfProdFile(), dialog.getFinalProdFile());
-			
-			//refact.setPararams(dialog.getInfElemId(), dialog.getInfElemName(), dialog.getInfElemRefId(),
-			//				   projectContent, DRLdoc, 
-			//				   new PositionInText(line1 + 1, column1 + 1),
-			//				   new PositionInText(line2 + 1, column2 + 1));			
+					
 			refact.perform();
 			
 			projectContent.saveAll();		

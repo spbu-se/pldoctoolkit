@@ -1,12 +1,8 @@
 package org.spbu.pldoctoolkit.parser;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
-import org.xml.sax.InputSource;
 
 import org.spbu.pldoctoolkit.parser.DRLLang.Comment;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
@@ -32,6 +28,7 @@ public class DRLContentHandler implements ContentHandler {
 	private boolean isFirstTag = true;
 	
 	public DRLDocument doc = null;
+	public String finalInfProduct = null;
 	
 //	public InputSource input;	
 	public StringBuffer inputText;
@@ -204,12 +201,20 @@ public class DRLContentHandler implements ContentHandler {
 			projectContent.directories.add((LangElem)newElem);
 		else if (arg1.equals(LangElem.NEST))
 			projectContent.nests.add((LangElem)newElem);
-		else if (arg1.equals(LangElem.FINALINFPRODUCT))
+		else if (arg1.equals(LangElem.FINALINFPRODUCT)) {
 			projectContent.finalInfPrs.add((LangElem)newElem);
+			finalInfProduct = ((LangElem)newElem).attrs.getValue(LangElem.ID);
+		}
 		else if (arg1.equals(LangElem.INFPRODUCT))
 			projectContent.infPrs.add((LangElem)newElem);
 		else if (arg1.equals(LangElem.DIRTEMPLATE))
 			projectContent.templates.add((LangElem)newElem);
+		else if (arg1.equals(LangElem.SETVALUE)) {
+			if(finalInfProduct!=null) {
+				String name = ((LangElem)newElem).attrs.getValue(LangElem.ID);
+				projectContent.setFinalInfProdValiable(finalInfProduct,name);
+			}		
+		}
 	}
 
 	@Override

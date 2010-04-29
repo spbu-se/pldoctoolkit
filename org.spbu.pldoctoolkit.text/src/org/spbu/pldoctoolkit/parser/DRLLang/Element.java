@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
-import org.spbu.pldoctoolkit.refactor.pattern.PatternElement;
 
 public abstract class Element {
 	protected int startLine, startColumn, endLine, endColumn;
@@ -120,7 +119,7 @@ public abstract class Element {
 		}
 		
 	//	if (childs != null && 
-		//	childs.size() != 0) // на всякий случай
+		//	childs.size() != 0) // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			PositionInText prevPos = new PositionInText(startPos);
 			Element prevChild = null;

@@ -12,7 +12,6 @@ import org.eclipse.jface.text.IRegion;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -38,7 +37,6 @@ import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
-import org.spbu.pldoctoolkit.refactor.SearchDictEntry;
 import org.spbu.pldoctoolkit.refactor.SearchDirRef;
 import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 

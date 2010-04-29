@@ -19,6 +19,7 @@ import org.spbu.pldoctoolkit.actions.ReplaceWithInfElemRef;
 import org.spbu.pldoctoolkit.actions.ReplaceWithNestAction;
 import org.spbu.pldoctoolkit.actions.SearchDictEntryAction;
 import org.spbu.pldoctoolkit.actions.SearchDirRefAction;
+import org.spbu.pldoctoolkit.actions.SelectIntoCondBlockAction;
 import org.spbu.pldoctoolkit.actions.SelectIntoInfElementAction;
 import org.spbu.pldoctoolkit.actions.SelectIntoInfProductAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
@@ -42,7 +43,7 @@ public class DrlTextEditor extends TextEditor {
 	
 	//minchin
 	public static final String SELECT_INTO_INF_ELEMENT = "select_into_inf_element";
-	public static final String INSERT_INTO_DICTIONARY = "Iinsert_into_dictionary";
+	public static final String INSERT_INTO_DICTIONARY = "insert_into_dictionary";
 	public static final String SEARCH_DICT_ENTRY = "search_dict_entry";
 	public static final String INSERT_INTO_DIRECTORY = "insert_into_directory";
 	public static final String REPLACE_WITH_NEST = "replace_with_nest";
@@ -54,6 +55,7 @@ public class DrlTextEditor extends TextEditor {
 	//lebedkova
 	public static final String RENAME = "rename";
 	public static final String SELECT_INTO_INF_PRODUCT = "select_into_inf_product";
+	public static final String SELECT_INTO_COND_BLOCK = "select_into_cond_block";
 	
 	private ColorManager colorManager;
 	private DRLMenuListener menuListener = new DRLMenuListener();//minchin
@@ -203,6 +205,11 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		try {
+			setAction(SELECT_INTO_COND_BLOCK, new SelectIntoCondBlockAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public ISourceViewer DrlGetSourceViewer(){
@@ -239,6 +246,7 @@ public class DrlTextEditor extends TextEditor {
 		//lebedkova
 		addAction(refactMenu, RENAME);
 		addAction(refactMenu, SELECT_INTO_INF_PRODUCT);
+		addAction(refactMenu, SELECT_INTO_COND_BLOCK);
 		
 		//DRLMenuListener.instance.editor = this;
 		menuListener.menuAboutToShow(menu);

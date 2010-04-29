@@ -1,17 +1,6 @@
 package org.spbu.pldoctoolkit.refactor;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-
-import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
-import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
-import org.spbu.pldoctoolkit.refactor.pattern.AnyThing;
-import org.spbu.pldoctoolkit.refactor.pattern.NessesaryElement;
-import org.spbu.pldoctoolkit.refactor.pattern.Pattern;
-import org.spbu.pldoctoolkit.refactor.pattern.PatternElement;
 
 public class ReplaceWithInfElemRef {
 	private LangElem infElem;

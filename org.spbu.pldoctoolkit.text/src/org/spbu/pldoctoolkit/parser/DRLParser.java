@@ -1,21 +1,16 @@
 package org.spbu.pldoctoolkit.parser;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.CharBuffer;
-import java.nio.charset.Charset;
 
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
-import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-import com.thaiopensource.xml.sax.Jaxp11XMLReaderCreator;
 //import org.apache.xerces.parsers.;
-import org.xml.sax.helpers.XMLReaderFactory;
 //import org.xml.sax.Parser;
 //import org.apache.xerces.parsers.SAXParser;
 

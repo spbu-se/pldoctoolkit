@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -22,16 +21,13 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.CreateNewDictionary;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
-import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 
 public class InsertIntoDictionaryDialog extends Dialog{
 	private String entryId = "";

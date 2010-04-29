@@ -3,7 +3,8 @@
       id="org.spbu.pldoctoolkit.feature"
       label="Drl feature"
       version="1.0.0"
-      provider-name="SPbSU">
+      provider-name="SPbSU"
+      plugin="org.spbu.pldoctoolkit">
 
    <description url="http://www.example.com/description">
       DRL Diagram feature

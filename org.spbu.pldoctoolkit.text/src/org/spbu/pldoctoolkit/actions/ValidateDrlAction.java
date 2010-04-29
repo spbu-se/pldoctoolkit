@@ -2,17 +2,11 @@ package org.spbu.pldoctoolkit.actions;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IEditorPart;
-import org.spbu.pldoctoolkit.DrlPublisherPlugin;
-import org.spbu.pldoctoolkit.registry.RegisteredLocation;
 import org.xml.sax.DTDHandler;
 
 public class ValidateDrlAction extends BasicExportAction {

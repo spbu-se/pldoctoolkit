@@ -32,6 +32,9 @@ public class LangElem extends Element{
 	public static final String ENTRY = "Entry";
 	public static final String DICTIONARY = "Dictionary";
 	public static final String DICTREF = "DictRef";
+	//lebedkova
+	public static final String CONDITIONAL = "Conditional";
+	public static final String SETVALUE = "SetValue";
 	
 	public static final String TAGS[] = {
 		DOCUMENTATIONCORE,
@@ -54,7 +57,9 @@ public class LangElem extends Element{
 		ATTRREF,
 		ENTRY,
 		DICTIONARY,
-		DICTREF
+		DICTREF,
+		CONDITIONAL,
+		SETVALUE
 	};
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,8 +74,10 @@ public class LangElem extends Element{
 	public static final String ENTRYID = "entryid";
 	public static final String TEMPLATEID = "templateid";
 	public static final String NESTID = "nestid";
-	
 	public static final String DICTID = "dictid";
+	//lebedkova
+	public static final String CONDITION = "condition";
+	public static final String VALUE = "value";
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////	
 
