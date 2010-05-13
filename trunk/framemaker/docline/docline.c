@@ -327,7 +327,7 @@ VoidT F_ApiCommand(IntT command)
 	  break;
   case EXPORT:
   case BEXPORT:
-	  exportDocLineDoc();
+	  exportDocLineDoc(FALSE);
 	  break;
   case CHECK:
   case BCHECK:
