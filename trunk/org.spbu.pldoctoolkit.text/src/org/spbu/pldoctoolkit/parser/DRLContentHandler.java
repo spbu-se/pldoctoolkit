@@ -215,6 +215,8 @@ public class DRLContentHandler implements ContentHandler {
 				projectContent.setFinalInfProdValiable(finalInfProduct,name);
 			}		
 		}
+		else if (arg1.equals(LangElem.INFELEMREFGROUP))
+			projectContent.infElemRefGroups.add((LangElem)newElem);
 	}
 
 	@Override

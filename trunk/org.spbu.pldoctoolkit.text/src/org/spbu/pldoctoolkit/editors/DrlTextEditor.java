@@ -14,6 +14,7 @@ import org.spbu.pldoctoolkit.actions.ExtractInsertBeforeAction;
 import org.spbu.pldoctoolkit.actions.InsertTemplateAction;
 import org.spbu.pldoctoolkit.actions.InsertIntoDictionaryAction;
 import org.spbu.pldoctoolkit.actions.InsertIntoDirectoryAction;
+import org.spbu.pldoctoolkit.actions.MakeRefOptionalAction;
 import org.spbu.pldoctoolkit.actions.PdfExportAction;
 import org.spbu.pldoctoolkit.actions.ReplaceWithInfElemRef;
 import org.spbu.pldoctoolkit.actions.ReplaceWithNestAction;
@@ -22,12 +23,11 @@ import org.spbu.pldoctoolkit.actions.SearchDirRefAction;
 import org.spbu.pldoctoolkit.actions.SelectIntoCondBlockAction;
 import org.spbu.pldoctoolkit.actions.SelectIntoInfElementAction;
 import org.spbu.pldoctoolkit.actions.SelectIntoInfProductAction;
+import org.spbu.pldoctoolkit.actions.SplitInfElemAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlAction;
 import org.spbu.pldoctoolkit.actions.ValidateDrlOnSaveAction;
 import org.spbu.pldoctoolkit.templates.TemplatesDocument;
 import org.spbu.pldoctoolkit.refactor.ProjectContentCreator;
-
-//lebedkova
 import org.spbu.pldoctoolkit.actions.RenameAction;
 
 public class DrlTextEditor extends TextEditor {
@@ -56,6 +56,8 @@ public class DrlTextEditor extends TextEditor {
 	public static final String RENAME = "rename";
 	public static final String SELECT_INTO_INF_PRODUCT = "select_into_inf_product";
 	public static final String SELECT_INTO_COND_BLOCK = "select_into_cond_block";
+	public static final String SPLIT_INF_ELEM = "split_inf_elem";
+	public static final String MAKE_REF_OPTIONAL = "make_ref_optional";
 	
 	private ColorManager colorManager;
 	private DRLMenuListener menuListener = new DRLMenuListener();//minchin
@@ -210,6 +212,16 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		try {
+			setAction(SPLIT_INF_ELEM, new SplitInfElemAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			setAction(MAKE_REF_OPTIONAL, new MakeRefOptionalAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public ISourceViewer DrlGetSourceViewer(){
@@ -247,6 +259,8 @@ public class DrlTextEditor extends TextEditor {
 		addAction(refactMenu, RENAME);
 		addAction(refactMenu, SELECT_INTO_INF_PRODUCT);
 		addAction(refactMenu, SELECT_INTO_COND_BLOCK);
+		addAction(refactMenu, SPLIT_INF_ELEM);
+		addAction(refactMenu, MAKE_REF_OPTIONAL);
 		
 		//DRLMenuListener.instance.editor = this;
 		menuListener.menuAboutToShow(menu);

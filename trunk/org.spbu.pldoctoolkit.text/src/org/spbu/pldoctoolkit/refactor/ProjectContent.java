@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.spbu.pldoctoolkit.parser.DRLParser;
@@ -24,8 +26,11 @@ public class ProjectContent implements IProjectContent{
 	public ArrayList<LangElem> templates = new ArrayList<LangElem>();
 	//lebedkova
 	//finalInfProducts with defined variables
+	public ArrayList<LangElem> infElemRefGroups = new ArrayList<LangElem>();
 	private HashMap<String, ArrayList<String>> finalInfProductsVariables = new HashMap<String,ArrayList<String>>();
-//	public String projectName;
+	//matches <ref group,list of refs>
+	//private HashMap<String, ArrayList<String>> groupRefs = new HashMap<String,ArrayList<String>>();
+	//	public String projectName;
 /*	
 	public void parseAll(IProject project) {
 		DRLDocs.clear();
@@ -171,4 +176,18 @@ public class ProjectContent implements IProjectContent{
 		vars.add(varName);
 		finalInfProductsVariables.put(finalInfProduct, vars);
 	}
+	/*
+	public void insertRefInGroup(LangElem elem) {
+		int groupIdIdx = elem.attrs.getIndex(LangElem.GROUPID);
+		int idIdx = elem.attrs.getIndex(LangElem.ID);
+		if(groupIdIdx != -1 && idIdx != -1) {
+			String groupName = elem.attrs.getValue(groupIdIdx);
+			ArrayList<String> refs = new ArrayList<String>();
+			if(groupRefs.containsKey(groupName)) {
+				refs = groupRefs.get(groupName);
+			}
+			refs.add(elem.attrs.getValue(idIdx));
+			groupRefs.put(groupName, refs);
+		}
+	}*/
 }
