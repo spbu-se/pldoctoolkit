@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="pldoctoolkit.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="pldoctoolkit.Perspective"
+            id="PlDocToolkit.perspective">
+      </perspective>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="PlDocToolkit.application"
+            name="DocLine Toolkit">
+         <property
+               name="appName"
+               value="DocLine Toolkit">
+         </property>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="PlDocToolkit.toolbar">
+            <separator
+                  name="PlDocToolkit.separator1"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.eclipse.ui.newWizard"
+                  label="New..."
+                  style="push">
+            </command>
+            <command
+                  commandId="org.eclipse.ui.file.save"
+                  label="Save"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.eclipse.ui.file.print"
+                  label="Print"
+                  style="push">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.eclipse.ui.navigator.CommonNavigator"
+            id="PlDocToolkit.NavigatorView"
+            name="PLDNavigator"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.elementFactories">
+      <factory
+            class="pldoctoolkit.NavigatorRoot"
+            id="PlDocToolkit.NavigatorRoot">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewer
+            viewerId="PlDocToolkit.NavigatorView">
+      </viewer>
+      <viewerContentBinding
+            viewerId="PlDocToolkit.NavigatorView">
+         <includes>
+            <contentExtension
+                  pattern="org.eclipse.ui.navigator.resourceContent">
+            </contentExtension>
+            <contentExtension
+                  pattern="net.videodb.navigator.filters.*">
+            </contentExtension>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding
+            viewerId="PlDocToolkit.NavigatorView">
+         <includes>
+            <actionExtension
+                  pattern="org.eclipse.ui.navigator.resources.*">
+            </actionExtension>
+            <actionExtension
+                  pattern="org.eclipse.ui.navigator.resources.NewActions">
+            </actionExtension>
+            <actionExtension
+                  pattern="org.eclipse.resources.PropertiesActionProvider">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="commands.ShowNavigatorHandler"
+            id="PlDocToolkit.ShowNavigator"
+            name="Navigator">
+      </command>
+   </extension>
+   <extension
+         id="product1"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="PlDocToolkit.application"
+            name="DocLine Toolkit">
+         <property
+               name="appName"
+               value="DocLine Toolkit">
+         </property>
+      </product>
+   </extension>
+   <extension
+         id="PlDocToolkit"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="PlDocToolkit.application"
+            name="DocLine Toolkit">
+         <property
+               name="appName"
+               value="DocLine Toolkit">
+         </property>
+      </product>
+   </extension>
+   <extension
+         id="product2"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="PlDocToolkit.application"
+            name="DocLine Toolkit">
+         <property
+               name="appName"
+               value="DocLine Toolkit">
+         </property>
+      </product>
+   </extension>
+
+</plugin>
