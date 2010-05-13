@@ -78,6 +78,14 @@ public class LangElem extends Element{
 	//lebedkova
 	public static final String CONDITION = "condition";
 	public static final String VALUE = "value";
+	public static final String GROUPID = "groupid";
+	public static final String MODIFIER = "modifier";
+	public static final String OPTIONAL = "optional";
+	//modifiers
+	public static final String XOR = "XOR";
+	public static final String OR = "OR";
+	public static final String TRUE = "true";
+	public static final String FALSE = "false";
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////	
 

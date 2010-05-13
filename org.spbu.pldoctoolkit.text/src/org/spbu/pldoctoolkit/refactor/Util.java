@@ -13,169 +13,168 @@ public class Util {
 	// ��������������, ��� ������ ������������� ������ ����
 	public static int findtagStartPos(CharSequence text, int from) {
 		Stack<Character> stack = new Stack<Character>();
-		int curPos = from;//text.length();
+		int curPos = from;// text.length();
 		stack.push('>'); // ����� ���� ������
-		--curPos;		
-		while (!stack.isEmpty() || curPos < 0) {			
+		--curPos;
+		while (!stack.isEmpty() || curPos < 0) {
 			char curTop = stack.peek();
-			char buf[] = new char[1];
+			// char buf[] = new char[1];
 			/*
-			try {
-				text.read(buf, 1, 1);
-			}
-			catch (IOException e){
-				e.printStackTrace();
-			}
-			*/
+			 * try { text.read(buf, 1, 1); } catch (IOException e){
+			 * e.printStackTrace(); }
+			 */
 			char curChar = text.charAt(curPos);
-			
+
 			if (curChar == '"') {
 				if (curTop == '"')
 					stack.pop();
 				else
 					stack.push(curChar);
-			}
-			else if (curChar == '<') {
+			} else if (curChar == '<') {
 				if (curTop != '"')
-					stack.pop();		
+					stack.pop();
 			}
-			
+
 			--curPos;
 		}
-		//TODO �������� ������� ���������� � ������ �� ���. ����. ������
+		// TODO �������� ������� ���������� � ������ �� ���. ����. ������
 		return ++curPos;
 	}
-	
-	public static int getOffset(CharSequence input, int line, int col) {		
+
+	public static int getOffset(CharSequence input, int line, int col) {
 		int offset = getOffset(input, line, col, 1, 1, 0);
 		return offset;
 	}
-	
-	public static int getOffset(CharSequence input, int line, int col, int prevLine, int prevCol, int prevOffset) {
+
+	public static int getOffset(CharSequence input, int line, int col,
+			int prevLine, int prevCol, int prevOffset) {
 		int offset = prevOffset;
 		int curLine = prevLine;
-		int curCol = prevCol;		
-		//try 
+		int curCol = prevCol;
+		// try
 		{
-			//char buf[] = new char[1000];
-			//input.read(buf, 0, 1000);
+			// char buf[] = new char[1000];
+			// input.read(buf, 0, 1000);
 			while (true) {
 				if (curLine == line && curCol == col)
-					break;		
-				try 
-				{
+					break;
+				try {
 					if (input.charAt(offset) == '\n') {
 						++curLine;
 						curCol = 1;
-					}
-					else
-						++curCol;		
-				}
-				catch (IndexOutOfBoundsException e) {
+					} else
+						++curCol;
+				} catch (IndexOutOfBoundsException e) {
 					e.printStackTrace();
 					offset = -1;
-					return offset; 
+					return offset;
 				}
-				++offset;					
+				++offset;
 			}
 		}
-		/*catch (IndexOutOfBoundsException e) {
-			e.printStackTrace();
-			offset = -1;
-		}	*/	
-		
+		/*
+		 * catch (IndexOutOfBoundsException e) { e.printStackTrace(); offset =
+		 * -1; }
+		 */
+
 		return offset;
 	}
-	
+
 	public static int getColumn(CharSequence input, int offset) {
 		int col = 0;
 		if (input.charAt(offset) == '\n') {
 			--offset;
 			++col;
 		}
-		
+
 		while (offset >= 0 && input.charAt(offset) == '\n') {
 			--offset;
 			++col;
 		}
-			
+
 		return col;
 	}
-	
-	public static String getTextRepresentationOfTemplateAndEntry(LangElem template, LangElem entry) {		
-		LangElem clonedTemplate = (LangElem)template.clone(template.getParent());
-		TreeIterator iterator = new TreeIterator(clonedTemplate);		
-		
+
+	public static String getTextRepresentationOfTemplateAndEntry(
+			LangElem template, LangElem entry) {
+		LangElem clonedTemplate = (LangElem) template.clone(template
+				.getParent());
+		TreeIterator iterator = new TreeIterator(clonedTemplate);
+
 		while (iterator.hasNext()) {
 			Element elem = iterator.next();
-			if (elem instanceof LangElem && ((LangElem)elem).tag.equals(LangElem.ATTRREF)) {
-				LangElem attrRef = (LangElem)elem;
-				String attrId = attrRef.attrs.getValue(LangElem.ATTRID); 
+			if (elem instanceof LangElem
+					&& ((LangElem) elem).tag.equals(LangElem.ATTRREF)) {
+				LangElem attrRef = (LangElem) elem;
+				String attrId = attrRef.attrs.getValue(LangElem.ATTRID);
 				LangElem attr = getAttr(entry, attrId);
-				
+
 				if (attr == null)
 					return null;
-									
-				LangElem parent = (LangElem)attrRef.getParent();
+
+				LangElem parent = (LangElem) attrRef.getParent();
 				int idx = parent.getChilds().indexOf(attrRef);
 				parent.getChilds().remove(idx);
-				
+
 				String text = getChildsText(attr);
-				
-				TextElement textRepresentation = new TextElement(new PositionInText(0,0), text.length(), text,parent, parent.getDRLDocument());
-				
+
+				TextElement textRepresentation = new TextElement(
+						new PositionInText(0, 0), text.length(), text, parent,
+						parent.getDRLDocument());
+
 				parent.getChilds().add(idx, textRepresentation);
-			}			
+			}
 		}
-			
+
 		return getChildsText(clonedTemplate);
 	}
 
 	public static LangElem getAttr(LangElem entry, String id) {
 		for (Element entryElem : entry.getChilds()) {
-			LangElem attr = (LangElem)entryElem;
+			LangElem attr = (LangElem) entryElem;
 			if (attr != null && attr.tag.equals(LangElem.ATTR)) {
 				if (attr.attrs.getValue(LangElem.ID).equals(id)) {
-					return attr; 
+					return attr;
 				}
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	private static String getChildsText(LangElem le) {
 		String text = "";
 		for (Element elemText : le.getChilds()) {
 			text += elemText.getTextRepresentation();
-		}		
-		
+		}
+
 		return text;
 	}
-	
-	public static boolean isDocBookFragment(DRLDocument doc, PositionInDRL from, PositionInDRL to) {	
-		if (from.parent != to.parent) {			
+
+	public static boolean isDocBookFragment(DRLDocument doc,
+			PositionInDRL from, PositionInDRL to) {
+		if (from.parent != to.parent) {
 			return false;
 		}
-		
-		if (from.isInTag || to.isInTag) {			
+
+		if (from.isInTag || to.isInTag) {
 			return false;
 		}
-		
-		LangElem parent = (LangElem)from.parent;
-		
-		int fromIdx, toIdx;				
+
+		LangElem parent = (LangElem) from.parent;
+
+		int fromIdx, toIdx;
 		if (from.isInText)
 			fromIdx = parent.getChilds().indexOf(from.elem);
 		else
 			fromIdx = parent.getChilds().indexOf(from.next);
-		
+
 		if (to.isInText)
 			toIdx = parent.getChilds().indexOf(to.elem);
 		else
 			toIdx = parent.getChilds().indexOf(to.prev);
-		
-		for (int i = fromIdx; i <= toIdx; ++i ) {
+
+		for (int i = fromIdx; i <= toIdx; ++i) {
 			if (isDRLLangElem(parent.getChilds().get(i)))
 				return false;
 			TreeIterator iter = new TreeIterator(parent.getChilds().get(i));
@@ -185,56 +184,60 @@ public class Util {
 					return false;
 			}
 		}
-				
+
 		return true;
 	}
-	
-	public static boolean isDRLLangElem(Element elem) {		
+
+	public static boolean isDRLLangElem(Element elem) {
 		if (elem instanceof LangElem) {
 			for (String tag : LangElem.TAGS)
-				if ( ((LangElem)elem).tag.equals(tag) ) {							
+				if (((LangElem) elem).tag.equals(tag)) {
 					return true;
 				}
-		}		
-		
-		return false; 
+		}
+
+		return false;
 	}
-	
-	public static boolean isDocBookFragment(DRLDocument doc, PositionInText fromText, PositionInText toText) {
-		return isDocBookFragment(doc, doc.findByPosition(fromText), doc.findByPosition(toText));		
+
+	public static boolean isDocBookFragment(DRLDocument doc,
+			PositionInText fromText, PositionInText toText) {
+		return isDocBookFragment(doc, doc.findByPosition(fromText), doc
+				.findByPosition(toText));
 	}
-	
-	public static ArrayList<LangElem> getTemplates(ProjectContent projectContent, LangElem directory) {
+
+	public static ArrayList<LangElem> getTemplates(
+			ProjectContent projectContent, LangElem directory) {
 		String directoryId = directory.attrs.getValue(LangElem.ID);
-		
-		ArrayList<LangElem> res = new ArrayList<LangElem>(); 
-		for(LangElem template : projectContent.templates) {
-			if (template.attrs.getValue(LangElem.DIRECTORYID).equals(directoryId))
+
+		ArrayList<LangElem> res = new ArrayList<LangElem>();
+		for (LangElem template : projectContent.templates) {
+			if (template.attrs.getValue(LangElem.DIRECTORYID).equals(
+					directoryId))
 				res.add(template);
 		}
-		
-		return res;
-	}
-	
 
-	public static ArrayList<LangElem> getEntrys(LangElem directory) {		
-		ArrayList<LangElem> res = new ArrayList<LangElem>(); 
-		for(Element elem : directory.getChilds()) {			
-			if (elem instanceof LangElem && ((LangElem)elem).tag.equals(LangElem.ENTRY))
-				res.add((LangElem)elem);
-		}
-		
 		return res;
 	}
-	
+
+	public static ArrayList<LangElem> getEntrys(LangElem directory) {
+		ArrayList<LangElem> res = new ArrayList<LangElem>();
+		for (Element elem : directory.getChilds()) {
+			if (elem instanceof LangElem
+					&& ((LangElem) elem).tag.equals(LangElem.ENTRY))
+				res.add((LangElem) elem);
+		}
+
+		return res;
+	}
+
 	public static String getPrefix(DRLDocument doc) {
 		String prefix = doc.DRLnsPrefix;
 		if (!prefix.equals(""))
 			prefix += ":";
-		
+
 		return prefix;
 	}
-	
+
 	public static String getId(ArrayList<Element> elems, String tag) {
 		String idBase = tag;
 		String resId = "";
@@ -245,8 +248,9 @@ public class Util {
 			goodId = true;
 			for (Element elem : elems) {
 				if (elem instanceof LangElem) {
-					LangElem le = (LangElem)elem;
-					if (le.tag.equals(tag) && le.attrs.getValue(LangElem.ID).equals(resId)) {						
+					LangElem le = (LangElem) elem;
+					if (le.tag.equals(tag)
+							&& le.attrs.getValue(LangElem.ID).equals(resId)) {
 						goodId = false;
 						break;
 					}
@@ -254,23 +258,26 @@ public class Util {
 			}
 			++i;
 		}
-		
+
 		return resId;
 	}
-	
-	public static boolean isValidId(ArrayList<Element> elems, String tag, String id) {		
+
+	public static boolean isValidId(ArrayList<Element> elems, String tag,
+			String id) {
 		for (Element elem : elems) {
 			if (elem instanceof LangElem) {
-				LangElem le = (LangElem)elem;
-				if (le.tag.equals(tag) && le.attrs.getValue(LangElem.ID).equals(id))						
+				LangElem le = (LangElem) elem;
+				if (le.tag.equals(tag)
+						&& le.attrs.getValue(LangElem.ID).equals(id))
 					return false;
 			}
 		}
 
 		return true;
 	}
-	
-	public static  Couple<String, ArrayList<Integer>> getTextWithOutSpaces(String text) {
+
+	public static Couple<String, ArrayList<Integer>> getTextWithOutSpaces(
+			String text) {
 		ArrayList<Integer> deletedSpaces = new ArrayList<Integer>();
 		String res = "";
 		int retPos = -1;
@@ -282,24 +289,30 @@ public class Util {
 			retPos = text.indexOf('\n', curPos);
 			if (retPos != -1)
 				res += text.substring(curPos, retPos + 1);
-			else 
+			else
 				res += text.substring(curPos, text.length());
-			
+
 			deletedSpaces.add(curPos - 1 - prevRetPos);
 		} while (retPos != -1);
-		
+
 		return new Couple<String, ArrayList<Integer>>(res, deletedSpaces);
 	}
-	
+
 	private static boolean isSapceOrTab(char ch) {
 		return (ch == ' ' || ch == '\t');
 	}
-	
-	//lebedkova
+
+	// lebedkova
 	public static void addNewLine(LangElem fip) {
-		TextElement newLine = new TextElement(new PositionInText(0,0),
-		           1, "\n", fip, fip.getDRLDocument());
+		Element newLine = new TextElement(new PositionInText(0, 0), 1, "\n",
+				fip, fip.getDRLDocument());
 		fip.getChilds().add(newLine);
+	}
+
+	public static void addNewLine(LangElem fip, int i) {
+		Element newLine = new TextElement(new PositionInText(0, 0), 1, "\n",
+				fip, fip.getDRLDocument());
+		fip.getChilds().add(i, newLine);
 	}
 
 }

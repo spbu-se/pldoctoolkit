@@ -2,11 +2,9 @@ package org.spbu.pldoctoolkit.refactor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
-import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
 import org.xml.sax.helpers.AttributesImpl;
 
 public class SelectIntoCondBlock {
