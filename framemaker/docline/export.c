@@ -15,8 +15,6 @@ BoolT getFinalInfProductNameByDialog(StringT *fileName)
 	IntT i;
 
 	dlgID = F_ApiOpenResource(FO_DialogResource, "PUBLISH");
-	//if (!sectionDlgId) F_ApiAlert("dsdsdfdfs",FF_ALERT_OK_DEFAULT);
-	//F_ApiSetInt(sectionDlgId, F_ApiDialogItemId(sectionDlgId, 5), FP_Visibility, True
 
 	if (!mainBookID)
 	{
@@ -91,10 +89,11 @@ BoolT getFinalInfProductNameByDialog(StringT *fileName)
 		attr = &(attrs.val[i]);
 		if (F_StrIEqual((*attr).name,"FileName") && ((*attr).values.len != 0))
 		{
-			name = F_StrCopyString((*attr).values.val[0]);
-			(*fileName) = F_Alloc((F_StrLen(curDirPath)+F_StrLen(name)+2)*sizeof(UCharT),NO_DSE);
-			F_Sprintf((*fileName),"%s\\%s\0",curDirPath,name);
-			F_ApiDeallocateString(&name);
+			(*fileName) = F_StrCopyString((*attr).values.val[0]);
+			//name = F_StrCopyString((*attr).values.val[0]);
+			//(*fileName) = F_Alloc((F_StrLen(curDirPath)+F_StrLen(name)+2)*sizeof(UCharT),NO_DSE);
+			//F_Sprintf((*fileName),"%s\\%s\0",curDirPath,name);
+			//F_ApiDeallocateString(&name);
 			F_ApiDeallocateAttributes(&attrs);
 			F_Free(finals);
 			return TRUE;
@@ -275,7 +274,7 @@ BoolT correctFiles()
   return TRUE;
 }
 
-VoidT exportDocLineDoc()
+VoidT exportDocLineDoc(BoolT isPublish)
 {
 	F_ObjHandleT bookID;
 	F_PropValsT params, *returnParams;
@@ -284,16 +283,12 @@ VoidT exportDocLineDoc()
 	FilePathT *filePath;
 	StringT path, name, tempDirPath;
 
+	if (!isPublish && F_ApiAlert("This will export DocLineFM project and overwrite output directory. Do you still wish to continue?", FF_ALERT_YES_DEFAULT)) return;
 	openLogChannel();
 	writeToChannel("\nExport started...\n");
 	if (!mainBookID) mainBookID = getActiveBookID();
-	if (!curDirPath)
-	{
-		curDirPath = F_StrCopyString(F_ApiGetString(FV_SessionId,mainBookID,FP_Name));
-		pathFilename(curDirPath); //Since this point dirPath and bookID should be constants
-	}
+	if (!isPublish && F_ApiChooseFile(&curDirPath, "Choose output directory", "", "", FV_ChooseOpenDir, "")) return;
 	if (!cleanTempDirectory()) return;
-	writeToChannel("Point02");
 	if (!getTempDirPath(&tempDirPath)) return;
 	writeToChannel("Generating export params... ");
 	params = generateExportParams();
@@ -323,6 +318,8 @@ VoidT exportDocLineDoc()
 	cleanDirectory(F_PathNameToFilePath(curDirPath,NULL,FDosPath));
 	writeToChannel("Succesful.\n");
 	writeToChannel("Export finished succesfully.\n");
+
+	if (!isPublish) closeLogChannel();
 
 	F_ApiDeallocateString(&path);
 	F_ApiDeallocatePropVals(&params);
@@ -469,18 +466,25 @@ VoidT publishDocLineDoc(StringT format)
 		F_ApiAlert("Invalid book", FF_ALERT_CONTINUE_NOTE);
 		return;
 	}
-	tempPath = F_ApiGetString(FV_SessionId, mainBookID, FP_Name);
-	pathFilename(tempPath);
-	curDirPath = F_StrCopyString(tempPath);
 	//   promt for filename
 	writeToChannel("Choosing Final Product file...");
+	curDirPath = F_ApiGetString(FV_SessionId,mainBookID,FP_Name);
+	pathFilename(curDirPath);
 	if (!getFinalInfProductNameByDialog(&tempResult)) return;
 	writeToChannel("Succesful.\n");
+	if (!F_ApiAlert("Save exported files?", FF_ALERT_YES_DEFAULT))
+	{
+		if (F_ApiChooseFile(&tempPath, "Choose output directory", "", "", FV_ChooseOpenDir, "")) return;
+	}
+	else
+	{
+		if (!getTempDirPath(&tempPath)) return FALSE;
+	}	
+	curDirPath = F_StrCopyString(tempPath);
 	//   save file name
 	F_Sprintf(sourceFileName, "%s", F_FilePathBaseName(F_PathNameToFilePath(tempResult, NULL, FDefaultPath)));
 	//   save dir name
-	pathFilename(tempResult);
-	F_Sprintf(sourceDirPath, "%s", tempResult);
+	F_Sprintf(sourceDirPath, "%s", tempPath);
 	F_ApiDeallocateString(&tempResult);
 
 	// show dialog to choose published document name 
@@ -503,7 +507,7 @@ VoidT publishDocLineDoc(StringT format)
 	//F_Free(tempName);
 
 	//export documentation
-	exportDocLineDoc();
+	exportDocLineDoc(TRUE);
 
 	// invoke java util
 	writeToChannel("Calling Java function...");

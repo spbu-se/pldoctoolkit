@@ -3,8 +3,8 @@
 #include "logging.h"
 #include "publishutil.h"
 
-//StringT mainBookPath;
 StringT workDirPath;
+StringT docDirPath;
 StringT tempDirPath;
 IntT fileNum;
 
@@ -55,8 +55,6 @@ BoolT copyFilesToTempDirectory(FilePathT *filePath)
 
 }
 
-
-
 BoolT generateOpenWithUnresolvedRefsParams(F_PropValsT *params)
 {
 	IntT i;
@@ -79,23 +77,27 @@ BoolT generateOpenWithUnresolvedRefsParams(F_PropValsT *params)
 
 BoolT initializeConstants()
 {
+	if (F_ApiChooseFile(&docDirPath, "Choose directory with docline project to import", "", "", FV_ChooseOpenDir, "")) return FALSE;
 	if (F_ApiChooseFile(&workDirPath, "Choose directory to save new docline project", "", "", FV_ChooseOpenDir, "")) return FALSE;
 	if (!setDefaultDirectory(workDirPath)) return FALSE;
+	if (!setDefaultDirectory(docDirPath)) return FALSE;
 	if (!getTempDirPath(&tempDirPath)) return FALSE;
-  openLogChannel();
-  fileNum = 0;
+	openLogChannel();
+	fileNum = 0;
 
 	return TRUE;
 }
+
 BoolT deinitializeConstants()
 { 
 	if (tempDirPath) F_ApiDeallocateString(&tempDirPath);
+	if (docDirPath) F_ApiDeallocateString(&docDirPath);
 	if (workDirPath) F_ApiDeallocateString(&workDirPath);
-  //if (mainBookPath) F_ApiDeallocateString(&mainBookPath);
-  if (!closeLogChannel()) return FALSE;
+	if (!closeLogChannel()) return FALSE;
 
 	return TRUE;
 }
+
 VoidT importDocLineDoc()
 {
 	StringT tmpPath;
@@ -104,83 +106,84 @@ VoidT importDocLineDoc()
 	IntT statusp;
 	F_PropValsT params;
 
+	if (F_ApiAlert("This will import all files from input directory and overwrite output directory. Do you still wish to continue?", FF_ALERT_YES_DEFAULT)) return;
 	if (!initializeConstants())
-  {
-    deinitializeConstants();
-    return;
-  }
-  writeToChannel("Import started\n");
-	if (F_StrIEqual(workDirPath,(StringT)"")) //Check if directory selected
-  {
-    writeToChannel("\tNo output directory selected");
-    deinitializeConstants();
-    return; 
-  }
-	filedirPath = F_PathNameToFilePath(workDirPath, NULL, FDosPath);
-  if (!filedirPath)
-  {
-    writeToChannel("\tInvalid directory selected");
-    deinitializeConstants();
-    return;
-  }
+	{
+		deinitializeConstants();
+		return;
+	}
+	writeToChannel("Import started\n");
+	if (F_StrIEqual(docDirPath,(StringT)"")) //Check if directory selected
+	{
+		writeToChannel("\tNo output directory selected");
+		deinitializeConstants();
+		return; 
+	}
+	filedirPath = F_PathNameToFilePath(docDirPath, NULL, FDosPath);
+	if (!filedirPath)
+	{
+		writeToChannel("\tInvalid directory selected");
+		deinitializeConstants();
+		return;
+	}
 	writeToChannel("\tCleaning temporary directory... ");
 	if (!cleanTempDirectory())
-  {
-    F_FilePathFree(filedirPath);
-    deinitializeConstants();
-    return;
-  }
+	{
+		F_FilePathFree(filedirPath);
+		deinitializeConstants();
+		return;
+	}
 	writeToChannel("Succesful.\n");
-  writeToChannel("\tCleaning import directory... ");
+	writeToChannel("\tCleaning import directory... ");
 	if (!cleanImportDirectory())
-  {
-    F_FilePathFree(filedirPath);
-    deinitializeConstants();
-    return;
-  }
+	{
+		F_FilePathFree(filedirPath);
+		deinitializeConstants();
+		return;
+	}
 	writeToChannel("Succesfull.\n");
 	writeToChannel("\tCopying files to temporary directory... ");
 	if (!copyFilesToTempDirectory(filedirPath))
-  {
-    F_FilePathFree(filedirPath);
-    deinitializeConstants();
-    return;
-  }
+	{
+		F_FilePathFree(filedirPath);
+		deinitializeConstants();
+		return;
+	}
 	writeToChannel("Succesfull.\n");
 	filetmpPath = F_PathNameToFilePath (tempDirPath, NULL, FDosPath);
-  if (!filetmpPath)
-  {
-    writeToChannel("\tNo temporary directory");
-    F_FilePathFree(filedirPath);
-    deinitializeConstants();
-    return;
-  }
+	if (!filetmpPath)
+	{
+		writeToChannel("\tNo temporary directory");
+		F_FilePathFree(filedirPath);
+		deinitializeConstants();
+		return;
+	}
 	writeToChannel("\tPerforming XSL Transformation... ");
-  if (!performImportXSLT())
-  {
-    F_FilePathFree(filetmpPath);
-    F_FilePathFree(filedirPath);
-    deinitializeConstants();
-    return;
-  }
+	if (!performImportXSLT())
+	{
+		F_FilePathFree(filetmpPath);
+		F_FilePathFree(filedirPath);
+		deinitializeConstants();
+		return;
+	}
 	writeToChannel("Succesfull.\n");
 	handle = F_FilePathOpenDir(filetmpPath,&statusp);
 	if (!handle)
 	{
-		F_Printf(NULL,"import error:\n\tInvalid directory path: %s\n",workDirPath);
+		F_Printf(NULL,"import error:\n\tInvalid directory path: %s\n",docDirPath);
 		writeToChannel("Error. Invalid directory path.\n");
-    F_FilePathFree(filetmpPath);
-    F_FilePathFree(filedirPath);
-    deinitializeConstants();
-    return;
+		F_FilePathFree(filetmpPath);
+		F_FilePathFree(filedirPath);
+		deinitializeConstants();
+		return;
 	}
-  F_FilePathFree(filetmpPath);
+	F_FilePathFree(filetmpPath);
 	if (!generateImportParams(&params))
-  {
-    F_FilePathFree(filedirPath);
-    deinitializeConstants();
-    return;
-  }
+	{
+		F_FilePathFree(filedirPath);
+		deinitializeConstants();
+		return;
+	}
 	//Opening of all .drl files in directory with structured application "DocLine"
 	writeToChannel("\tImporting all DRL files... ");
 	while(file = F_FilePathGetNext(handle, &statusp))
@@ -190,25 +193,25 @@ VoidT importDocLineDoc()
 		F_ApiDeallocateString(&tmpPath);
 		F_FilePathFree(file);
 	}
-  F_ApiDeallocatePropVals(&params);
+	F_ApiDeallocatePropVals(&params);
 	F_FilePathCloseDir(handle);
 	writeToChannel("Succesfull.\n");
 	writeToChannel("\tCreating main project book... ");
 	if (!openFilesInDirectory())
-  {
-    F_FilePathFree(filedirPath);
-    deinitializeConstants();
-    return;
-  }
+	{
+		F_FilePathFree(filedirPath);
+		deinitializeConstants();
+		return;
+	}
 	writeToChannel("Succesfull.\n");
 	writeToChannel("\tCleaning directory... ");
 	if (!cleanDirectory(filedirPath))
-  {
-    F_FilePathFree(filedirPath);
-    deinitializeConstants();
-    return;
-  }
-  F_FilePathFree(filedirPath);
+	{
+		F_FilePathFree(filedirPath);
+		deinitializeConstants();
+		return;
+	}
+	F_FilePathFree(filedirPath);
 	writeToChannel("Succesfull.\n");
 	writeToChannel("\nImport finished successully\n");
 	deinitializeConstants();
