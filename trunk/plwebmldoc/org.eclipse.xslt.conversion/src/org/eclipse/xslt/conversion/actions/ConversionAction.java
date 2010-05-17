@@ -16,9 +16,9 @@ import javax.xml.transform.dom.*;
 import javax.xml.transform.stream.*;
 import java.io.*;
 
-import com.ercato.core.xml.XOperator;
 import javax.xml.parsers.*;
 import javax.xml.parsers.DocumentBuilder;
+import com.a7soft.examxml.ExamXML;
 
 import org.w3c.dom.*;
 
@@ -62,7 +62,8 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 		String id = action.getId();
 		String docModelPath = "C:\\Users\\Bagum\\runtime-EclipseApplication\\DocModel";
 		if (id.equals(OPEN_EDITOR)){
-			String projectPath = getWebRatioProjectDirectory();
+			//String projectPath = getWebRatioProjectDirectory();
+			String projectPath = "C:\\Program Files\\WebRatio\\WebRatio 5.1.1\\workspace\\Acme";
 			String webModelPath = projectPath.concat("\\Model\\WebModel");
 			backupAllModels(docModelPath, "webml");
 			backupAllModels(docModelPath, "xml");
@@ -73,12 +74,15 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 	        arrangeAllBlocks(docModelPath);
 	    }else if (id.equals(CHECK_DOC)){
 	        System.out.println("Check Documentation command selected");
+	        //String path = getElemPath(sv2#area5#page21#dau11, );
+	        //System.out.println();
 	    }else  {
 			String projectPath = getWebRatioProjectDirectory();
 			String webModelPath = projectPath.concat("\\Model\\WebModel");
 			backupAllModels(docModelPath, "webml");
 			backupAllModels(docModelPath, "xml");
 			if (!genAllModels(webModelPath, docModelPath)) return;
+			copyTopics(docModelPath);
         }
 	}
 	
@@ -140,7 +144,7 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 		}
 		return coords;
 	}
-
+	
 	private void xmlDiff(String docModelPath) {
 		try {
 			// create filter to read only webratio xml files
@@ -156,32 +160,128 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 			// array of xml files in docModelDir directory
 			File[] curfile = docModelDir.listFiles(xmlFile);
 			for (int i=0; i<curfile.length; i++) {
-				// new XOperator to detect changes in WebRatio model
-				XOperator xop = new XOperator();
-				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-				DocumentBuilder builder = factory.newDocumentBuilder();
-				// DOM with old WebRatio xml
-		        Document oldxml = builder.parse(new File(curfile[i].getAbsolutePath().concat(".old")));
-				// DOM with new WebRatio xml
-		        Document newxml = builder.parse(curfile[i]);
-				// DOM with changes of WebRatio xmls
-		        Document changes = xop.difference(newxml, oldxml);
-		        // print changes to output file
-		        String outPath = curfile[i].getAbsolutePath().replace(".xml", ".diff");
-		        printXMLToFile(changes, outPath);
-		        
-		        // parse changes xml
-		        SAXParserFactory diffFactory = SAXParserFactory.newInstance();
-				SAXParser parser = diffFactory.newSAXParser();
+				// Assign log file to null,
+			      // all error messages will be printing to the standard error stream
+			      ExamXML.setLogFile(null);
+			      // input XML files
+			      String oldxml = curfile[i].getAbsolutePath().concat(".old");
+			      String newxml = curfile[i].getAbsolutePath();
+			      // output XML file with Diff
+			      String result = curfile[i].getAbsolutePath().replace(".xml", ".diff");
+			      // compare XMLs
+			      ExamXML.compareXMLFiles(oldxml, newxml, result, null);
+			      updateXMLDiff(result);
+			      // parse changes xml
+			      SAXParserFactory diffFactory = SAXParserFactory.newInstance();
+			      SAXParser diffParser = diffFactory.newSAXParser();
 
-				// override default handler
-				DiffHandler handler = new DiffHandler();
-				parser.parse(new File(outPath), handler);
+			      // override default handler
+			      DiffHandler diffHandler = new DiffHandler();
+			      diffParser.parse(new File(result), diffHandler);
+			      
+			      // handle changes
+			      String[] changesStr = diffHandler.getChangesStr();
+			      String[] changesId = diffHandler.getChangesId();
+			      int changesQuantity = diffHandler.getChangesQuantity();
+			      
+			      // get sections of user manual which must be checked
+			      getDocSections(changesId, changesStr, changesQuantity, curfile[i].getAbsolutePath().replace(".xml", ".webml"));
 			}
 	    }
-	    catch (Exception e) {
+	    catch (Exception err) {
 	        System.out.println("diff exception");
+	        err.printStackTrace();
 	    	return;
+	    }
+	}
+	
+	// offers list of user manual sections that must be checked depending on changes in hypertext model
+	private void getDocSections(String[] changesId, String[] changesStr,
+			int changesQuantity, String webmlPath) {
+		try {
+			// set file with webmldoc model
+			File webmlFile = new File(webmlPath);
+			
+			// parse webmldoc file into Document webmlDom
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document webmlDom = db.parse(webmlFile);
+			
+			// set 'Id' attribute as default id attribute in every 'element' tag
+			NodeList elems =  webmlDom.getElementsByTagName("element");
+			for (int k = 0; k < elems.getLength(); k++) {
+				Element curElem = (Element) elems.item(k);
+				curElem.setIdAttribute("Id", true);
+			}
+			
+			// handle all changes in hypertext model
+			for (int i = 0; i < changesQuantity; i++) {
+				Element changedElem = webmlDom.getElementById(changesId[i]);
+				if (changedElem == null) continue;
+				NodeList children = changedElem.getChildNodes();
+				String checkDoc = "";
+				for (int k = 0; k < children.getLength(); k++) {
+					Node child = children.item(k);
+					if (child.getNodeName().equals("topic")) {
+						Node attrName = child.getAttributes().getNamedItem("name"); //getAttribute("name");
+						String sectionId = attrName.getNodeValue();
+						checkDoc = checkDoc + "'" + sectionId + "', ";
+					}
+				}
+				if (checkDoc.length() > 0) {
+					checkDoc = " Check documentation sections with these ID attributes: " + checkDoc.substring(0, checkDoc.length() - 2) + ".";
+				}
+				changesStr[i] = changesStr[i] + checkDoc;
+			}
+			
+			// print all information about changes
+			for (int i = 0; i < changesQuantity; i++) {
+				System.out.println(changesStr[i]);
+			}
+			
+		} catch (FileNotFoundException err) {
+			return;
+    	} catch (Exception err) {
+			err.printStackTrace();
+    	}
+		
+	}
+
+	// changes all generated comments to special elements to parse result
+	// diff file without parsing comments
+	private void updateXMLDiff(String filename) {
+		try {
+			StringBuilder contents = new StringBuilder();
+	    	BufferedReader input =  new BufferedReader(new FileReader(new File(filename)));
+	    	String line = null; // next string read from input file
+	    	int lineCounter = 0;
+	    	if ((line = input.readLine()) != null) {
+	    		lineCounter++;
+	    		line = line.replace("<!-- Added Element(s) -->", "<added/>");
+	        	line = line.replace("<!-- Deleted Element(s) -->", "<deleted/>");
+	        	line = line.replace("<!-- Changed Element:old -->", "<changed_old/>");
+	        	line = line.replace("<!-- Changed Element:new -->", "<changed_new/>");
+	        	contents.append(line);
+	    	}
+	        while (( line = input.readLine()) != null){
+	    		lineCounter++;
+	        	line = line.replace("<!-- Added Element(s) -->", "<added/>");
+	        	line = line.replace("<!-- Deleted Element(s) -->", "<deleted/>");
+	        	line = line.replace("<!-- Changed Element:old -->", "<changed_old/>");
+	        	line = line.replace("<!-- Changed Element:new -->", "<changed_new/>");
+	        	contents.append(System.getProperty("line.separator"));
+	        	contents.append(line);
+	        }
+	        input.close();
+	        if (lineCounter == 1) {
+	        	contents.append(System.getProperty("line.separator"));
+	        	contents.append("<empty/>");
+	        }
+	        BufferedWriter out = new BufferedWriter(new FileWriter(filename));
+	        out.write(contents.toString());
+	        out.close();
+	    } catch (IOException err) {
+			return;
 	    }
 	}
 
@@ -266,7 +366,6 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 					  }
 					  Element newTopic = outputDom.createElement("topic");
 					  newTopic.setAttribute("name", curTopic.getAttribute("name"));
-					  // check getbyid
 					  Element parent = outputDom.getElementById(parentId);
 					  parent.appendChild(newTopic);
 				}
@@ -384,7 +483,6 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 			// UpdateCoordsParser parses webml_diagram file and returns
 			// dom with existing coords of elements
 			Document updCoords =  handler.getCoords();
-			printXMLToFile(updCoords, svGMFModel.replace("_diagram", ".test"));
 			
 			// set "Id" as ID attribute in coords DOM
 			coords = setCoordsIdAttribute(coords, "Id");
@@ -624,37 +722,6 @@ public class ConversionAction implements IWorkbenchWindowActionDelegate {
 	    return dd.open();
 	}
 	
-	public static void getWebRatioDiff(){
-	/*    try {
-	    	// test code, will be removed
-	        System.out.println("test1");
-		    String oldFile = WR_PATH.concat("\\workspace\\Acme\\Model\\DocModel\\siteview1.old");
-		    String newFile = WR_PATH.concat("\\workspace\\Acme\\Model\\DocModel\\siteview1.webml");;
-	        // Create a factory
-	        System.out.println("test2");
-	        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	        // Use the factory to create a builder
-	        System.out.println("test3");
-	        DocumentBuilder builder = factory.newDocumentBuilder();
-	        System.out.println("test4");
-	        org.w3c.dom.Document oldwr = builder.parse(oldFile);
-	        org.w3c.dom.Document newwr = builder.parse(newFile);
-	        //org.w3c.dom.Document changes = difference(newwr, oldwr);
-	        System.out.println("test5");
-	        NodeList list = newwr.getElementsByTagName("*");
-	         System.out.println("XML Elements: ");
-	         for (int i=0; i<list.getLength(); i++) {
-	           // Get element
-	           Element element = (Element)list.item(i);
-	           System.out.println(element.getNodeName());
-	         }
-	    }
-	    catch (Exception e) {
-	        System.out.println("diff exception");
-	    	return;
-	    }*/
-	}
-
 	/**
 	 * Selection in the workbench has been changed. We 
 	 * can change the state of the 'real' action here

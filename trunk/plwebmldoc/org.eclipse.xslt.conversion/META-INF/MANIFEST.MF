@@ -11,4 +11,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/saxon9he.jar,
  src/,
- lib/xop.jar
+ lib/xop.jar,
+ lib/jexamxml.jar
