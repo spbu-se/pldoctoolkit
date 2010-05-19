@@ -1,7 +1,6 @@
 package pldoctoolkit;
 
 import org.eclipse.jface.action.GroupMarker;
-import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -90,6 +89,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     	closeProjectAction = IDEActionFactory.CLOSE_PROJECT.create(window);
     	projectPropertiesAction = IDEActionFactory.OPEN_PROJECT_PROPERTIES.create(window);
     	
+    	
     	newWindowAction = ActionFactory.OPEN_NEW_WINDOW.create(window);
     	newEditorAction = ActionFactory.NEW_EDITOR.create(window);
     	perspectiveMenu.add(ContributionItemFactory.PERSPECTIVES_SHORTLIST.create(window));
@@ -110,12 +110,12 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     	MenuManager windowMenu = new MenuManager("&Window",IWorkbenchActionConstants.M_WINDOW);
     	MenuManager helpMenu = new MenuManager("&Help",IWorkbenchActionConstants.M_HELP);
 
-    	   for (int i=0; i<menuBar.getItems().length; i++){
+    	  /* for (int i=0; i<menuBar.getItems().length; i++){
     	       IContributionItem item=menuBar.getItems()[i];
     	       if (item.getId().equals("org.eclipse.search")){
     	           item.setVisible(false);
     	       }
-    	   }
+    	   }*/
     	
     	menuBar.add(fileMenu);
     	menuBar.add(editMenu);
