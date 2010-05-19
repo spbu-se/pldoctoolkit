@@ -83,7 +83,7 @@ public class InsertIntoDictionaryDialog extends Dialog{
 ////////////////////////////////////////////////////////////////////////////////////
 		
 		Label description = new Label(composite, SWT.LEFT);
-		description.setText("Insert selected text into dictionary, and replace selected text with new DictRef\n\n");
+		description.setText("Insert selected text into dictionary\n\n");
 		GridData gd = new GridData();
 		gd.horizontalAlignment = SWT.FILL;
 		gd.verticalAlignment = SWT.FILL;
@@ -168,7 +168,7 @@ public class InsertIntoDictionaryDialog extends Dialog{
 		});
 		
 		newDictButton = new Button(composite, SWT.CENTER);
-		newDictButton.setText("Create new Ditionary");
+		newDictButton.setText("New Dictionary");
 		gd = new GridData();
 		gd.horizontalAlignment = SWT.FILL;
 		gd.verticalAlignment = SWT.TOP;
@@ -236,7 +236,7 @@ public class InsertIntoDictionaryDialog extends Dialog{
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		Point size = new Point(400, 300);
+		Point size = new Point(500, 250);
 		newShell.setSize(size);
 		Shell p = getParentShell();
 		newShell.setLocation(p.getLocation().x + p.getSize().x / 2 - size.x / 2, p.getLocation().y + p.getSize().y / 2 - size.y / 2);

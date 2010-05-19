@@ -74,7 +74,7 @@ public class NewDrlFilePage extends WizardPage {
 		Composite topLevel = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
-		layout.verticalSpacing = 9;
+		layout.verticalSpacing = 10;
 		topLevel.setLayout(layout);
 		
 		// === container ===
@@ -324,8 +324,8 @@ public class NewDrlFilePage extends WizardPage {
 				notifyDialogChanged();
 			}
 		});				
-		//new Label(topLevel, SWT.NONE);
-		
+		new Label(topLevel, SWT.NONE);
+		new Label(topLevel, SWT.NONE).setText(" ");
 		initialize();
 		setControl(topLevel);
 		
@@ -360,7 +360,7 @@ public class NewDrlFilePage extends WizardPage {
 			infElemNameLabel.setEnabled(true);
 			infElemRefIdLabel.setEnabled(true);
 			
-			this.setTitle("Create a new DRL file with FinalInfProduct from existing docBook file\nand create new file with DocumentationCore");			
+			this.setTitle("Create a new DRL file with FinalInfProduct from existing\ndocBook file and create new file with DocumentationCore");			
 		}
 		else {
 			typeGroup.setEnabled(true);
