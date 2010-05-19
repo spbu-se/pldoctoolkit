@@ -166,7 +166,7 @@ public class CreateNewDictDialog extends Dialog {
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		Point size = new Point(400, 200);
+		Point size = new Point(400,230);
 		newShell.setSize(size);
 		Shell p = getParentShell();
 		newShell.setLocation(p.getLocation().x + p.getSize().x / 2 - size.x / 2, p.getLocation().y + p.getSize().y / 2 - size.y / 2);
@@ -224,6 +224,7 @@ public class CreateNewDictDialog extends Dialog {
 		idText.setEnabled(true);
 		nameText.setEnabled(true);
 		getButton(IDialogConstants.OK_ID).setEnabled(true);
+		errorMessageFile.setText("");
 	}
 	
 	public String getDictId()

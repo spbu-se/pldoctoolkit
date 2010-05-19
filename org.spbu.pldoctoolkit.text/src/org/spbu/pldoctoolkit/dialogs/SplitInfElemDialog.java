@@ -20,7 +20,6 @@ import org.eclipse.swt.widgets.Text;
 import org.spbu.pldoctoolkit.actions.SelectIntoCondBlockAction;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
-import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.SelectIntoInfElem;
