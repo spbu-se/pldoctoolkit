@@ -58,6 +58,51 @@
             </command>
          </toolbar>
       </menuContribution>
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               id="SearchMenu"
+               label="Search">
+            <command
+                  commandId="org.eclipse.search.ui.openSearchDialog"
+                  label="Search..."
+                  style="push">
+            </command>
+            <command
+                  commandId="org.eclipse.search.ui.openFileSearchPage"
+                  id="searchInFile"
+                  label="File..."
+                  style="push">
+            </command>
+            <separator
+                  name="PlDocToolkit.separator1"
+                  visible="true">
+            </separator>
+            <menu
+                  label="Text">
+               <command
+                     commandId="org.eclipse.search.ui.performTextSearchFile"
+                     label="File"
+                     style="push">
+               </command>
+               <command
+                     commandId="org.eclipse.search.ui.performTextSearchProject"
+                     label="Project"
+                     style="push">
+               </command>
+               <command
+                     commandId="org.eclipse.search.ui.performTextSearchWorkingSet"
+                     label="WorkingSet..."
+                     style="push">
+               </command>
+               <command
+                     commandId="org.eclipse.search.ui.performTextSearchWorkspace"
+                     label="Workspace"
+                     style="push">
+               </command>
+            </menu>
+         </menu>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.views">
