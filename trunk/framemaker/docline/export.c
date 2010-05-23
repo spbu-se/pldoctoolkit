@@ -194,56 +194,6 @@ BoolT performExportXSLT(StringT dirPath)
 	return !retVal;
 }
 
-BoolT copyFilesFromTempDirectory()
-{
-	DirHandleT handle;
-	IntT statusp, i;
-	FilePathT *dirFilePath, *file;
-	StringT *file_names, tempDirPath;
-
-	if (!getTempDirPath(&tempDirPath)) return FALSE;
-	dirFilePath = F_PathNameToFilePath(tempDirPath,NULL,FDosPath);
-	if (!dirFilePath)
-	{
-		writeToChannel("\tError. copyFilesFromTempDirectory:filePth error.\n");
-		return FALSE;
-	}
-	handle = F_FilePathOpenDir(dirFilePath,&statusp);
-	if (!handle)
-	{
-		writeToChannel("\tError. copyFilesFromTempDirectory:handle error.\n");
-		return FALSE;
-	}
-	i=0;
-	while (file = F_FilePathGetNext(handle,&statusp))
-	{
-		if (!file) continue;
-		i++;
-	}
-	F_FilePathCloseDir(handle);
-	file_names = (StringT *)F_Alloc((i)*sizeof(StringT),NO_DSE);
-	handle = F_FilePathOpenDir(dirFilePath,&statusp);
-	if (!handle)
-	{
-		writeToChannel("\tError. copyFilesFromTempDirectory:handle error.\n");
-		return FALSE;
-	}
-	i=0;
-	while (file = F_FilePathGetNext(handle,&statusp))
-	{
-		if (!file) continue;
-		file_names[i] = F_StrCopyString(F_FilePathToPathName(file,FDosPath));
-		i++;
-	}
-
-	copyFilesFromTempDirectoryTo(file_names,i-1,curDirPath);
-
-	F_FilePathFree(file);
-	F_FilePathFree(dirFilePath);
-
-	return TRUE;
-}
-
 BoolT correctFiles()
 {
   DirHandleT handle;
@@ -303,14 +253,14 @@ VoidT exportDocLineDoc(BoolT isPublish)
 	writeToChannel("Succesful.\n");
 	writeToChannel("Performing XSL transformation... ");
 	if (!performExportXSLT(tempDirPath)) return;
-  filePath = F_PathNameToFilePath(path,NULL,FDosPath);
-  F_DeleteFile(filePath);
-  F_FilePathFree(filePath);
+	filePath = F_PathNameToFilePath(path,NULL,FDosPath);
+	F_DeleteFile(filePath);
+	F_FilePathFree(filePath);
 	writeToChannel("Succesful.\n");
-	writeToChannel("Copying files from temporary...");
+	//writeToChannel("Copying files from temporary...");
 	//if (!copyFilesFromTempDirectory()) return;
-	writeToChannel("Succesful.\n");
-  if (!correctFiles()) return;
+	//writeToChannel("Succesful.\n");
+	if (!correctFiles()) return;
 	writeToChannel("Closing all documents... ");
 	closeAllDocs();
 	writeToChannel("Succesful.\n");
@@ -450,9 +400,7 @@ VoidT publishDocLineDoc(StringT format)
 
 	//get path to jar file and check if jar exists
 	tempPath = F_ApiClientDir();
-	//F_Sprintf(jarPath, "%s\\%s", tempPath, JAR_FILENAME);
 	if (!getJarFileName(&jarPath)) return FALSE;
-	//F_Free(tempPath);
 	if((chan = F_ChannelOpen(F_PathNameToFilePath(jarPath, NULL, FDefaultPath),"r")) == NULL)
 	{
 		F_Sprintf(statusMessage, "Couldn't find %s. Reinstalling the application can solve this problem.", JAR_FILENAME);

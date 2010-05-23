@@ -348,45 +348,64 @@ int removeTemporaryDRLs(char **files, int num)
 
 int correctXMLNamespaces(char *fileName, char *outFileName)
 {
-  FILE *file, *outFile;
-  char str[10000], *new_str;
+	FILE *file, *outFile;
+	char str[10000], *new_str, **strArr;
+	int i, j;
 
-  file = fopen(fileName,"r");
-  outFile = fopen(outFileName,"w");
-  if (!file || !outFile) return 0;
-  while (fgets(str,10000,file))
-  {
-    if (strstr(str, "xmlns=\"http://docbook.org/ns/docbook\""))
-    {
-      if (!replace_all_str(str,&new_str,"xmlns=\"http://docbook.org/ns/docbook\"","")) continue;
-      fputs(new_str,outFile);
-      free(new_str);
-    }
-    else if (strstr(str,"<d:ProductDocumentation"))
-    {
-      if (!replace_all_str(str,&new_str,"<d:ProductDocumentation","<d:ProductDocumentation xmlns=\"http://docbook.org/ns/docbook\"")) continue;
-      fputs(new_str,outFile);
-      free(new_str);
-    }
-    else if (strstr(str,"<d:DocumentationCore"))
-    {
-      if (!replace_all_str(str,&new_str,"<d:DocumentationCore","<d:DocumentationCore xmlns=\"http://docbook.org/ns/docbook\"")) continue;
-      fputs(new_str,outFile);
-      free(new_str);
-    }
-    else if (strstr(str,"<d:ProductLine"))
-    {
-      if (!replace_all_str(str,&new_str,"<d:ProductLine","<d:ProductLine xmlns=\"http://docbook.org/ns/docbook\"")) continue;
-      fputs(new_str,outFile);
-      free(new_str);
-    }
-    else
-    {
-      fputs(str,outFile);
-    }
-  }
-  fclose(file);
-  fclose(outFile);
+	strArr = (char **)malloc(10000*sizeof(char *));
+	i = 0;
+	file = fopen(fileName,"r");
+	if (!file) return 0;
+	while (fgets(str,10000,file))
+	{
+		if (strstr(str, "xmlns=\"http://docbook.org/ns/docbook\""))
+		{
+			if (!replace_all_str(str,&new_str,"xmlns=\"http://docbook.org/ns/docbook\"","")) continue;
+			strArr[i] = (char *)malloc((strlen(new_str)+1)*sizeof(char));
+			strcpy(strArr[i],new_str);
+			i++;
+			free(new_str);
+		}
+		else if (strstr(str,"<d:ProductDocumentation"))
+		{
+			if (!replace_all_str(str,&new_str,"<d:ProductDocumentation","<d:ProductDocumentation xmlns=\"http://docbook.org/ns/docbook\"")) continue;
+			strArr[i] = (char *)malloc((strlen(new_str)+1)*sizeof(char));
+			strcpy(strArr[i],new_str);
+			i++;
+			free(new_str);
+		}
+		else if (strstr(str,"<d:DocumentationCore"))
+		{
+			if (!replace_all_str(str,&new_str,"<d:DocumentationCore","<d:DocumentationCore xmlns=\"http://docbook.org/ns/docbook\"")) continue;
+			strArr[i] = (char *)malloc((strlen(new_str)+1)*sizeof(char));
+			strcpy(strArr[i],new_str);
+			i++;
+			free(new_str);
+		}
+		else if (strstr(str,"<d:ProductLine"))
+		{
+			if (!replace_all_str(str,&new_str,"<d:ProductLine","<d:ProductLine xmlns=\"http://docbook.org/ns/docbook\"")) continue;
+			strArr[i] = (char *)malloc((strlen(new_str)+1)*sizeof(char));
+			strcpy(strArr[i],new_str);
+			i++;
+			free(new_str);
+		}
+		else
+		{
+			strArr[i] = (char *)malloc((strlen(str)+1)*sizeof(char));
+			strcpy(strArr[i],str);
+			i++;
+		}
+	}
+	fclose(file);
+	outFile = fopen(outFileName,"w");
+	for (j=0; j<i; j++)
+	{
+		fputs(strArr[j],outFile);
+		free(strArr[j]);
+	}
+	fclose(outFile);
+	free(strArr);
 
-  return 1;
+	return 1;
 }
