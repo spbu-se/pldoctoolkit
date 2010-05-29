@@ -15,6 +15,7 @@ import org.spbu.pldoctoolkit.actions.InsertTemplateAction;
 import org.spbu.pldoctoolkit.actions.InsertIntoDictionaryAction;
 import org.spbu.pldoctoolkit.actions.InsertIntoDirectoryAction;
 import org.spbu.pldoctoolkit.actions.MakeRefOptionalAction;
+import org.spbu.pldoctoolkit.actions.MakeRefRequiredAction;
 import org.spbu.pldoctoolkit.actions.PdfExportAction;
 import org.spbu.pldoctoolkit.actions.ReplaceWithInfElemRef;
 import org.spbu.pldoctoolkit.actions.ReplaceWithNestAction;
@@ -58,6 +59,7 @@ public class DrlTextEditor extends TextEditor {
 	public static final String SELECT_INTO_COND_BLOCK = "select_into_cond_block";
 	public static final String SPLIT_INF_ELEM = "split_inf_elem";
 	public static final String MAKE_REF_OPTIONAL = "make_ref_optional";
+	public static final String MAKE_REF_REQUIRED = "make_ref_required";
 	
 	private ColorManager colorManager;
 	private DRLMenuListener menuListener = new DRLMenuListener();//minchin
@@ -222,6 +224,11 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		try {
+			setAction(MAKE_REF_REQUIRED, new MakeRefRequiredAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public ISourceViewer DrlGetSourceViewer(){
@@ -261,6 +268,7 @@ public class DrlTextEditor extends TextEditor {
 		addAction(refactMenu, SELECT_INTO_COND_BLOCK);
 		addAction(refactMenu, SPLIT_INF_ELEM);
 		addAction(refactMenu, MAKE_REF_OPTIONAL);
+		addAction(refactMenu,MAKE_REF_REQUIRED);
 		
 		//DRLMenuListener.instance.editor = this;
 		menuListener.menuAboutToShow(menu);
