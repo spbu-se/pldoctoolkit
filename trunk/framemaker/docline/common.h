@@ -17,6 +17,10 @@
 #define PLUGIN_DIR_NAME "docline"
 #define JAR_FILENAME "publishutil.jar"
 
+#define HIGH_ELEM "DocLine"
+#define THIRD_ELEMENTS {"InfElement", "InfProduct", "FinalInfProduct", "DirTemplate", "Directory", "Dictionary"}
+#define THIRD_LENGTH 6
+
 #define defaultPath  (F_StrCopyString("C:\\"))
 #define defaultBookName (F_StrCopyString("mainDRLFMBook.book"))
 

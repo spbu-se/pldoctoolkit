@@ -133,7 +133,6 @@ F_ObjHandleT openFmID, importDrlID; // open exising fm docline project, import p
 F_ObjHandleT closeProjectId; // menu item for closing active project and all files in it
 F_ObjHandleT exportProjectId; // menu item for exporting active project back to DRL
 F_ObjHandleT checkCorrectId; // menu item for checking project
-F_ObjHandleT checkCorrectId; //menu item for checking active project
 
 /* All the same for !BookMainMenu */
 F_ObjHandleT bmenubarId, bmenuId; // !BookMainMenu and Docline menus
@@ -154,3 +153,5 @@ F_ObjHandleT bcloseProjectId; // menu item for closing active project and all fi
 F_ObjHandleT bexportProjectId; // menu item for exporting active project back to DRL
 F_ObjHandleT bcheckCorrectId; // menu item for checking project
 F_ObjHandleT bcheckCorrectId; //menu item for checking active project
+
+F_ObjHandleT test;

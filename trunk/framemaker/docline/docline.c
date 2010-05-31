@@ -235,19 +235,113 @@ VoidT F_ApiInitialize(IntT init)
 	  /* Define command for closing active project and all files in it */
 	  bcloseProjectId = F_ApiDefineAndAddCommand(BCLOSE, bmenuId, "BCloseProject", "Close Project","\\!BCP");
     //addStructApp();
+	  
+	  F_ApiNotification(FA_Note_PostActiveDocChange,TRUE);
 	}
-} 
+}
+
+BoolT getDoclineFmDocType(IntT *type)
+{
+	F_ObjHandleT docID, highID, elemDef;
+	StringT defName;
+	BoolT isThird;
+	IntT i;
+
+	if (docID = F_ApiGetId(0, FV_SessionId, FP_ActiveBook)) //Opened document is book
+	{
+		highID = F_ApiGetId(FV_SessionId, docID, FP_HighestLevelElement);
+	}
+	else if (docID = F_ApiGetId(0, FV_SessionId, FP_ActiveDoc)) //Opened document is document
+	{
+		highID = F_ApiGetId(docID, F_ApiGetId(FV_SessionId, docID, FP_MainFlowInDoc), FP_HighestLevelElement);
+	}
+	else //No opened document
+	{
+		*type = 0;
+		return TRUE;
+	}
+	if (!highID) //Unstructured document
+	{
+		*type = 0;
+		return TRUE;
+	}
+	elemDef = F_ApiGetId(docID, highID, FP_ElementDef);
+	if (!elemDef) return FALSE;
+	defName = F_ApiGetString(docID, elemDef, FP_Name);
+	if (F_StrIEqual(defName, HIGH_ELEM))
+	{
+		*type = FMBOOK;
+		F_ApiDeallocateString(&elemDef);
+		return TRUE;
+	}
+	else
+	{
+		StringT thirds[] = THIRD_ELEMENTS;
+		for (i=0; i<THIRD_LENGTH; i++)
+		{
+			if (F_StrIEqual(thirds[i], defName))
+			{
+				*type = FM;
+				F_ApiDeallocateString(&elemDef);
+				return TRUE;
+			}
+		}
+	}
+
+	*type = 0; //Not DocLineFm document or book
+	F_ApiDeallocateString(&elemDef);
+	return TRUE;
+}
+
+VoidT DisableMenuItems(IntT type)
+{
+	F_ApiSetInt(FV_SessionId, checkCorrectId, FP_EnabledWhen, FV_ENABLE_ALWAYS_DISABLE);
+	F_ApiSetInt(FV_SessionId, bcheckCorrectId, FP_EnabledWhen, FV_ENABLE_ALWAYS_DISABLE);
+	switch (type)
+	{
+	case FMBOOK:
+		F_ApiSetInt(bsaveMenuId, bsaveDoclineAsPdfId, FP_EnabledWhen, FV_ENABLE_ALWAYS_ENABLE);
+		F_ApiSetInt(bsaveMenuId, bsaveDoclineAsHtmlId, FP_EnabledWhen, FV_ENABLE_ALWAYS_ENABLE);
+		F_ApiSetInt(bmenuId, bcloseProjectId, FP_EnabledWhen, FV_ENABLE_ALWAYS_ENABLE);
+		F_ApiSetInt(bmenuId, bexportProjectId, FP_EnabledWhen, FV_ENABLE_ALWAYS_ENABLE);
+		break;
+	case FM:
+		F_ApiSetInt(saveMenuId, saveDoclineAsHtmlId, FP_EnabledWhen, FV_ENABLE_ALWAYS_ENABLE);
+		F_ApiSetInt(saveMenuId, saveDoclineAsPdfId, FP_EnabledWhen, FV_ENABLE_ALWAYS_ENABLE);
+		F_ApiSetInt(menuId, closeProjectId, FP_EnabledWhen, FV_ENABLE_ALWAYS_ENABLE);
+		F_ApiSetInt(menuId, exportProjectId, FP_EnabledWhen, FV_ENABLE_ALWAYS_ENABLE);
+		break;
+	default:
+		F_ApiSetInt(saveMenuId, saveDoclineAsHtmlId, FP_EnabledWhen, FV_ENABLE_ALWAYS_DISABLE);
+		F_ApiSetInt(saveMenuId, saveDoclineAsPdfId, FP_EnabledWhen, FV_ENABLE_ALWAYS_DISABLE);
+		F_ApiSetInt(bsaveMenuId, bsaveDoclineAsHtmlId, FP_EnabledWhen, FV_ENABLE_ALWAYS_DISABLE);
+		F_ApiSetInt(bsaveMenuId, bsaveDoclineAsPdfId, FP_EnabledWhen, FV_ENABLE_ALWAYS_DISABLE);
+		F_ApiSetInt(menuId, closeProjectId, FP_EnabledWhen, FV_ENABLE_ALWAYS_DISABLE);
+		F_ApiSetInt(menuId, exportProjectId, FP_EnabledWhen, FV_ENABLE_ALWAYS_DISABLE);
+		F_ApiSetInt(bmenuId, bsaveMenuId, FP_EnabledWhen, FV_ENABLE_ALWAYS_DISABLE);
+		F_ApiSetInt(bmenuId, bcloseProjectId, FP_EnabledWhen, FV_ENABLE_ALWAYS_DISABLE);
+		F_ApiSetInt(bmenuId, bexportProjectId, FP_EnabledWhen, FV_ENABLE_ALWAYS_DISABLE);
+		break;
+	}
+	return TRUE;
+}
+
+VoidT F_ApiNotify(IntT notification, F_ObjHandleT docID, StringT sparm, IntT iparm)
+{
+	IntT type;
+	switch (notification)
+	{
+	case FA_Note_PostActiveDocChange:
+		type = NULL;
+		if (!getDoclineFmDocType(&type)) return;
+		DisableMenuItems(type);
+		break;
+	}
+}
+
 VoidT F_ApiCommand(IntT command)
 {
 	IntT response;
-	//F_ObjHandleT docId;
-	/*get the ID of the active document */
-	/*  docId = F_ApiGetId(FV_SessionId, FV_SessionId, FP_ActiveDoc);
-	  if (!docId) {
-		F_ApiAlert((StringT) "Please open a document before invoking this command.", FF_ALERT_CONTINUE_WARN);
-		return;
-	  }*/
-
 	/* Setting commands for handling menu items */
 	switch(command) {
   case BOOK:
