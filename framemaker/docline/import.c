@@ -570,9 +570,9 @@ VoidT simpleOpenBook()
 	StringT filePath;
 	F_ObjHandleT bookID;
 
-  filePath = defaultPath;
+	filePath = defaultPath;
 	bookID = F_ApiSimpleOpen(defaultPath,True);
-  F_ApiDeallocateString(&filePath);
+	F_ApiDeallocateString(&filePath);
 	if (!bookID) return;
 	filePath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
 	filePath = fileFileName(filePath);

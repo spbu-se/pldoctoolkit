@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="installation" name="Установка плагина">
+
+
+
+
+
+
+
+
+
+      <chapter >
+         <title>Описание установки плагина</title>
+         <section>
+            <title>Процесс установки</title>
+            <itemizedlist>
+               <listitem>
+                  <para>Переключить Adobe FrameMaker в структурный
+режим</para>
+               </listitem>
+               <listitem>
+                  <para>Поместить структурное приложение DocLine в директорию
+$StructAppPath</para>
+               </listitem>
+               <listitem>
+                  <para>Открыть файл $StructDir/structapps.fm при помощи
+Adobe FrameMaker как обычный документ или меню Structure Tools &gt;
+Edit Application Definitions</para>
+               </listitem>
+               <listitem>
+                  <para>Ипортировать определение структурное приложение
+DocLine из файла $StructAppPath/structapp_entry.fm </para>
+                  <itemizedlist>
+                     <listitem>
+                        <para>Установить курсор во второй уровень
+структуры</para>
+                     </listitem>
+                     <listitem>
+                        <para>Выбрать пункт меню File &gt; Import &gt; File</para>
+                     </listitem>
+                     <listitem>
+                        <para>Выбрать Import file by reference</para>
+                     </listitem>
+                     <listitem>
+                        <para>Выбрать файл $StructAppPath/structapp_entry.fm</para>
+                     </listitem>
+                  </itemizedlist>
+               </listitem>
+               <listitem>
+                  <para>Сохранить structapps.fm</para>
+               </listitem>
+               <listitem>
+                  <para>Выполнить Structure Tools &gt; Read Application Definitions</para>
+               </listitem>
+               <listitem>
+                  <para>Закрыть structapps.fm</para>
+               </listitem>
+               <listitem>
+                  <para>Создать новый документ Adobe FrameMaker </para>
+               </listitem>
+               <listitem>
+                  <para>Выполнить Structure Tools &gt; Set Structured Application</para>
+                  <para>В списке структурных приложений должен появиться элемент DocLine</para>
+               </listitem>
+               <listitem>
+                  <para>В файл $FmDir/maker.ini добавить строку </para>
+                  <para>docline=Standard, Docline plugin, $PluginPath, structured</para>
+                  <para/>
+               </listitem>
+               <listitem>
+                  <para>Добавить в переменную окружения Path путь к папке,
+содержащей jvm.dll </para>
+                  <para>Пример: С:\Program Files\Java\jre6\bin\client\jvm.dll</para>
+               </listitem>
+               <listitem>
+                  <para>Поместить publishutil.dll в $FmDir</para>
+               </listitem>
+               <listitem>
+                  <para>Поместить docline.dll в $FmDir/fminit/</para>
+               </listitem>
+            </itemizedlist>
+         </section>
+      </chapter>
+   </d:InfElement>
+</d:DocumentationCore>

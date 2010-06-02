@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="close" name="Закрытие">
+
+
+
+
+
+
+
+
+
+      <section >
+         <title>Закрытие проекта</title>
+         <para>Пункт меню DocLine &gt; Close project сохраняет основную книгу
+проекта и закрывает её.</para>
+         <para>Также закрыть проект можно через File &gt; Close</para>
+      </section>
+   </d:InfElement>
+   <d:InfElement id="publish" name="Публикация">
+
+
+
+
+
+
+
+
+
+      <section >
+         <title>Публикация документации</title>
+         <para>Публикация документации подразумевает её сборку с разрешением
+всех зависимостей и конвертацию в один из форматов:</para>
+         <itemizedlist>
+            <listitem>
+               <para>Pdf</para>
+            </listitem>
+            <listitem>
+               <para>HTML</para>
+            </listitem>
+         </itemizedlist>
+         <para>Для выполнения публикации надо выбрать соотвествующий пункт
+в подменю DocLine &gt; Publish</para>
+         <para>Перед началом публикации пользователю потребуется выбрать
+в специальном диалоге элемент второго уровня, содержащий финальный
+информационный продукт.</para>
+         <para>Публикация включает в себя экспортирование документации и
+поэтому у пользователя есть возможность сохранения экспортированной
+документации после публикации. В таком случае у пользователя будет
+запрошена директория для её сохранения. </para>
+      </section>
+   </d:InfElement>
+   <d:InfElement id="functionsmanual" name="Функции плагина">
+
+
+
+
+
+
+
+
+
+      <chapter >
+         <title>Описание функций плагина</title>
+         <d:InfElemRef id="ref_new" infelemid="new" optional="true"/>
+         <d:InfElemRef id="ref_open" infelemid="open" optional="true"/>
+         <d:InfElemRef id="ref_import" infelemid="import" optional="true"/>
+         <d:InfElemRef id="ref_export" infelemid="export" optional="true"/>
+         <d:InfElemRef id="ref_publish" infelemid="publish" optional="true"/>
+         <d:InfElemRef id="ref_close" infelemid="close" optional="true"/>
+      </chapter>
+   </d:InfElement>
+   <d:InfElement id="new" name="Создание элементов">
+
+
+
+
+
+
+
+
+
+      <section >
+         <title>Создание проекта DocLineFm и его составных частей</title>
+         <section>
+            <title>Создание нового проекта</title>
+            <para>Для создания нового проекта требуется выбрать пункт меню DocLine
+&gt; New &gt; DocLine project и затем выбрать в диалоге директорию для
+проекта.</para>
+            <para>В созданной книге уже будет корневой элемент DocLine. </para>
+            <para>Важно отметить, что при этом уже открытый проект DocLineFm
+будет закрыт. </para>
+            <para>Также можно создать новый проект средствами Adobe FrameMaker
+как книгу с именем MainDRLFMBook.book из шаблона docline_book_template.fm,
+находящегося в $StructAppPath.</para>
+         </section>
+         <section>
+            <title>Создание элементов второго и третьего уровня</title>
+            <para>К элементам второго уровня относятся:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>ProductLine</para>
+               </listitem>
+               <listitem>
+                  <para>ProductDocumentation</para>
+               </listitem>
+               <listitem>
+                  <para>DocumentationCore</para>
+               </listitem>
+            </itemizedlist>
+            <para>Для каждого элемента второго уровне выделено отдлеьное подменю,
+содержащее помимо пункта для создания самого элемента пункты для
+создания соотвествующих ему элементов третьего уровня.</para>
+            <para>При создании элементов элементов второго уровня требуется
+ввести имя drl-файла, в который будет отображаться документ при
+экспортировании. Для корректной публикации документации файл должен
+иметь расширение drl.</para>
+            <para>При создании элементов третьего уровня польззователью будет
+показан специальный диалог, в котором надо указать уникальный идентификатор
+элемента и его  имя. Также в этом диалоге требуется выбрать соотвествующий
+элемент второго уровня, в который надо всравить новый элемент. Если
+ни одного такого элемента нет, то перед показом диалога пользователю
+будет предложено создать элемент второго уровня.</para>
+         </section>
+      </section>
+   </d:InfElement>
+   <d:InfElement id="open" name="Открытие проекта">
+
+
+
+
+
+
+
+
+
+      <section >
+         <title>Описание функции открытия проекта</title>
+         <para>Проект DocLineFM може быть открыт двумя способами:</para>
+         <itemizedlist>
+            <listitem>
+               <para>Стандартное открытие книги средствами
+Adobe FrameMaker (File &gt; Open)</para>
+               <para>Для открытия проекта в таком случае требуется открыть книгу
+MainDRLFMBook.book</para>
+            </listitem>
+            <listitem>
+               <para>Открытие при помощи меню DocLine (DocLine &gt; Open)</para>
+            </listitem>
+         </itemizedlist>
+      </section>
+   </d:InfElement>
+   <d:InfElement id="import" name="Импортирование">
+
+
+
+
+
+
+
+
+
+      <section >
+         <title>Импортирование проекта</title>
+         <para>Вместо создания нового проекта можно импортировать уже существующий
+проект DocLine, представленный в виде drl-файлов.</para>
+         <para>Для импортирования требуется выполнить пункт DocLine &gt; Import.
+При этом появится диалоги выбора директории с существующим проектом
+для импортирования и директории для сохранения нового проекта.</para>
+      </section>
+   </d:InfElement>
+</d:DocumentationCore>

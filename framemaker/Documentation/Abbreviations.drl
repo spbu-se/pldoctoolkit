@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
+   <d:InfElement id="abbreviations" name="Сокращения">
+
+
+
+
+
+
+
+
+
+      <chapter >
+         <title>Используемые сокращения</title>
+         <section>
+            <title>Сокращения</title>
+            <para>Список используемых далее сокращений</para>
+            <itemizedlist>
+               <listitem>
+                  <para>$FmDir - директория с установленным
+Adobe FrameMaker</para>
+                  <para>Пример: C:\Program Files\Adobe\FrameMaker8\</para>
+               </listitem>
+               <listitem>
+                  <para>$PluginPath - Абсолютный путь к основной библиотеке
+плагина (docline.dll)</para>
+                  <para>Пример: C:\Program Files\Adobe\FrameMaker8\fminit\docline.dll</para>
+                  <para>Традиционно библиотеки плагинов Adobe FrameMaker находятся
+в $FMDir\fminit\</para>
+               </listitem>
+               <listitem>
+                  <para>$StructPath - Абсолютный путь к папке структурных
+приложений Adobe FrameMaker</para>
+                  <para>Пример: C:\Program Files\Adobe\FrameMaker8\Structure\</para>
+               </listitem>
+               <listitem>
+                  <para>$StructAppPath - Абсолютный путь к папке содержащей
+структурное приложение DocLine</para>
+                  <para>Пример: C:\Program Files\Adobe\FrameMaker8\Structure\xml\docline\</para>
+               </listitem>
+               <listitem>
+                  <para>$PluginDirPath - Абсолютный путь к директории плагина
+DocLine</para>
+                  <para>Пример: C:\Program Files\Adobe\FrameMaker8\fminit\docline\</para>
+               </listitem>
+            </itemizedlist>
+         </section>
+      </chapter>
+   </d:InfElement>
+</d:DocumentationCore>

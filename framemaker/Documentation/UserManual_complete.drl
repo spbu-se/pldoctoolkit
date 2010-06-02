@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ProductDocumentation xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl" productid="complete">
+   <d:FinalInfProduct id="UserManual_complete" infproductid="UserManual">
+      <d:Adapter infelemrefid="ref_installation"/>
+      <d:Adapter infelemrefid="ref_abbreviations"/>
+      <d:Adapter infelemrefid="ref_functionsmanual"/>
+      <d:Adapter infelemrefid="ref_open"/>
+      <d:Adapter infelemrefid="ref_new"/>
+      <d:Adapter infelemrefid="ref_import"/>
+      <d:Adapter infelemrefid="ref_export"/>
+      <d:Adapter infelemrefid="ref_publish"/>
+      <d:Adapter infelemrefid="ref_close"/>
+   </d:FinalInfProduct>
+</d:ProductDocumentation>
