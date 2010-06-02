@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>PlDocToolkit</name>
+	<name>DocLineRCP</name>
 	<comment></comment>
 	<projects>
 		<project>org.spbu.pldoctoolkit</project>

@@ -40,7 +40,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	private IWorkbenchAction deleteAction;
 	private IWorkbenchAction selectAllAction;
 	private IWorkbenchAction findAndReplaceAction;
-	
+		
 	//projectMenu
 	private IWorkbenchAction openProjectAction;
 	private IWorkbenchAction closeProjectAction;
@@ -55,7 +55,9 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	
 	//helpMenu
 	private IWorkbenchAction helpContentsAction;
+	private IWorkbenchAction searchAction;
 	private IWorkbenchAction aboutAction;
+	
 	  
     public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
         super(configurer);
@@ -97,6 +99,9 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	    windowPreferencesAction = ActionFactory.PREFERENCES.create(window);
 	    
 	    helpContentsAction = ActionFactory.HELP_CONTENTS.create(window);
+	    register (helpContentsAction);
+	    searchAction = ActionFactory.HELP_SEARCH.create(window);
+	    register (searchAction);
 	    aboutAction = ActionFactory.ABOUT.create(window);
         /*
         register(aboutAction);
@@ -176,6 +181,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         
         
         helpMenu.add(helpContentsAction);
+        helpMenu.add(searchAction);
         helpMenu.add(aboutAction);
     }
     
