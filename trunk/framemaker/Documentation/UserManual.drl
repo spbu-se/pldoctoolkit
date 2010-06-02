@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns="http://docbook.org/ns/docbook" xmlns:d="http://math.spbu.ru/drl">
+   <d:Dictionary id="main" name="main_dictionary">
+      <d:Entry id="productname">Плагин DocLine</d:Entry>
+   </d:Dictionary>
+   <d:InfElement id="export" name="Экспортирование">
+
+
+
+
+
+
+
+
+
+      <section >
+         <title>Экспортирование документации</title>
+         <para>Экспортрование документации - преобразование проекта DocLineFm
+в проект DocLine, представленный в виде drl-файлов.</para>
+         <para>Для вызова функции экспортирования требуется выполнить пунт
+меню DocLine &gt; Export</para>
+         <para>При экспортировании пользователю будет предложено выбрать
+директорию для конечных drl-файлов.</para>
+         <para>После экспортирования каждый элемент второго уровня главной
+книги проекта будет представленив виде одлеьного документа с именем,
+указанным в атрибуте FileName этого элемента.</para>
+      </section>
+   </d:InfElement>
+   <d:InfProduct id="UserManual" name="Руководство пользователя">
+
+
+
+
+
+
+
+
+
+      <book  lang="ru">
+         <bookinfo>
+            <subtitle>Плагин DocLine к Adobe FrameMaker</subtitle>
+            <subtitle>Программное обеспечение</subtitle>
+            <title>Руководство пользователя<d:DictRef dictid="main" entryid="productname"/>
+            </title>
+         </bookinfo>
+         <d:InfElemRef id="ref_abbreviations" infelemid="abbreviations" optional="true"/>
+         <d:InfElemRef id="ref_installation" infelemid="installation" optional="true"/>
+         <d:InfElemRef id="ref_functionsmanual" infelemid="functionsmanual" optional="false"/>
+      </book>
+   </d:InfProduct>
+</d:DocumentationCore>

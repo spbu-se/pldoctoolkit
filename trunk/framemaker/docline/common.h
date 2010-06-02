@@ -22,7 +22,7 @@
 #define THIRD_LENGTH 6
 
 #define defaultPath  (F_StrCopyString("C:\\"))
-#define defaultBookName (F_StrCopyString("mainDRLFMBook.book"))
+#define defaultBookName "mainDRLFMBook.book"
 
 BoolT getJarFileName(StringT *path);
 BoolT getMainDirPath(StringT *path);

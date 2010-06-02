@@ -12,13 +12,10 @@ VoidT createNewDocLineBook()
 	/* Open template book and save it to the selected directory*/
 	bookId = F_ApiSimpleOpen("C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_book_template.book",False);
 	bookPath = F_Alloc(F_StrLen(path)+F_StrLen(defaultBookName)+3,NO_DSE);
-	bookPath = F_StrCopyString(path);
-	F_StrCat(bookPath,F_StrCopyString("\\"));
-	F_StrCat(bookPath,defaultBookName);
-	F_ApiSimpleSave(bookId, bookPath, False);
-	/* Deallocating memory */
+	F_Sprintf(bookPath,"%s\\%s\0", path, defaultBookName);
 	F_ApiDeallocateString(&path);
-	//F_ApiDeallocateString(&bookPath);
+	F_ApiSimpleSave(bookId, bookPath, False);
+	F_ApiDeallocateString(&bookPath);
 }
 BoolT newSecondLevelSection(BoolT isFirst, StringT type)
 {

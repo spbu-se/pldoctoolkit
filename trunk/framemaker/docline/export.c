@@ -1,6 +1,8 @@
 #include "export.h"
 #include "logging.h"
 
+#define TEMP_BOOK_NAME "tmp_main_book.drl"
+
 StringT curDirPath;
 F_ObjHandleT mainBookID;
 
@@ -60,7 +62,7 @@ BoolT getFinalInfProductNameByDialog(StringT *fileName)
 								finals = (F_ObjHandleT *)F_Realloc(finals,finalInfProds.len*sizeof(F_ObjHandleT),NO_DSE);
 							}
 							finalInfProds.val[finalInfProds.len-1] = F_StrCopyString((*attr).values.val[0]);
-							finals[finalInfProds.len-1] = childID;
+							finals[finalInfProds.len-1] = elemID;
 						}
 					}
 					F_ApiDeallocateAttributes(&attrs);
@@ -105,60 +107,6 @@ BoolT getFinalInfProductNameByDialog(StringT *fileName)
 	return FALSE;
 }
 
-BoolT exportBook(StringT path, StringT dirPath, F_PropValsT params, UIntT* j)
-{
-	IntT docID, elemID;
-	UIntT k;
-	F_AttributesT attrs;
-	F_AttributeT attr;
-	F_PropValsT *returnParams;
-	StringT curFilePath;
-
-	docID = F_ApiSimpleOpen(path,False);
-	elemID = F_ApiGetId(FV_SessionId,docID,FP_HighestLevelElement);
-	if (!elemID)
-	{
-		F_Printf(NULL,"No highest level element in %s",path);
-		writeToChannel("Error. No highest level element.\n");
-		return 0;
-	}
-	attrs = F_ApiGetAttributes(docID,elemID);
-	for (k=0; k<attrs.len; k++)
-	{
-		attr = attrs.val[k];
-		if (F_StrIEqual(attr.name,(StringT)"FileName"))
-		{
-			if (!attr.values.len || !attr.values.val[0])
-			{
-				curFilePath = F_Alloc(F_StrLen(path)+F_StrLen(dirPath)+10,NO_DSE);
-				F_Sprintf(curFilePath,"%sfile%d.drl",dirPath,*j);
-				(*j)++;
-			}
-			else
-			{
-				curFilePath = F_Alloc(F_StrLen(path)+F_StrLen(dirPath)+F_StrLen(attr.values.val[0])+5,NO_DSE);
-				F_Sprintf(curFilePath,"%s%s",dirPath,attr.values.val[0]);
-			}
-		}
-	}
-	returnParams = NULL;
-	writeToChannel("\n\tExporting ");
-	writeToChannel(path);
-	writeToChannel("... ");
-	F_ApiSave(docID,curFilePath,&params,&returnParams);
-	F_ApiClose(docID,FF_CLOSE_MODIFIED);
-	writeToChannel("Succesful.\n");
-
-	F_ApiDeallocatePropVals(returnParams);
-	//F_ApiDeallocateAttribute(&attr);
-	F_ApiDeallocateString(&curFilePath);
-	//F_Free(&k);
-	F_ApiDeallocateAttributes(&attrs);
-	//F_Free(&elemID);
-	//F_Free(&docID);
-
-	return 1;
-}
 BoolT performExportXSLT(StringT dirPath)
 {
 	StringT jarPath;
@@ -182,7 +130,6 @@ BoolT performExportXSLT(StringT dirPath)
 			break;
 		}
 		F_ApiDeallocateString(&jarPath);
-		F_ApiDeallocateString(&dirPath);
 		return FALSE;
 	}
 	F_ApiDeallocateString(&jarPath);
@@ -196,32 +143,38 @@ BoolT performExportXSLT(StringT dirPath)
 
 BoolT correctFiles()
 {
-  DirHandleT handle;
-  FilePathT *dirpath, *file;
-  IntT statusp;
-  StringT path, tmpDirPath, name, newPath;
+	DirHandleT handle;
+	FilePathT *dirpath, *file;
+	IntT statusp;
+	StringT path, tmpDirPath, name, newPath;
 
-  if (!getTempDirPath(&tmpDirPath)) return FALSE;
-  dirpath = F_PathNameToFilePath(tmpDirPath,NULL,FDosPath);
-  F_ApiDeallocateString(&tmpDirPath);
-  handle = F_FilePathOpenDir(dirpath,&statusp);
-  if (!handle) return FALSE;
-  while(file = F_FilePathGetNext(handle,&statusp))
-  {
-    path = F_FilePathToPathName(file,FDosPath);
-    if (validateFilename(path,DRL))
-    {
-      name = F_StrCopyString(fileFileName(F_StrCopyString(path)));
-      newPath = (StringT)F_Alloc((F_StrLen(curDirPath)+F_StrLen(name)+3)*sizeof(UCharT),NO_DSE);
-      F_Sprintf(newPath,"%s\\%s",F_StrCopyString(curDirPath),F_StrCopyString(name));
-      if (!correctXMLNamespaces(path,newPath)) continue;
-      F_ApiDeallocateString(&newPath);
-      F_ApiDeallocateString(&name);
-    }
-    F_ApiDeallocateString(&path);
-  }
+	if (!getTempDirPath(&tmpDirPath)) return FALSE;
+	dirpath = F_PathNameToFilePath(tmpDirPath,NULL,FDosPath);
+	F_ApiDeallocateString(&tmpDirPath);
+	handle = F_FilePathOpenDir(dirpath,&statusp);
+	if (!handle)
+	{
+		F_FilePathFree(dirpath);
+		return FALSE;
+	}
+	while(file = F_FilePathGetNext(handle,&statusp))
+	{
+		path = F_FilePathToPathName(file,FDosPath);
+		if (validateFilename(path,DRL))
+		{
+			name = F_StrCopyString(fileFileName(F_StrCopyString(path)));
+			newPath = (StringT)F_Alloc((F_StrLen(curDirPath)+F_StrLen(name)+3)*sizeof(UCharT),NO_DSE);
+			F_Sprintf(newPath,"%s\\%s",F_StrCopyString(curDirPath),F_StrCopyString(name));
+			if (!correctXMLNamespaces(path,newPath)) continue;
+			F_ApiDeallocateString(&newPath);
+			F_ApiDeallocateString(&name);
+		}
+		F_ApiDeallocateString(&path);
+		F_FilePathFree(file);
+	}
+	F_FilePathFree(dirpath);
 
-  return TRUE;
+	return TRUE;
 }
 
 VoidT exportDocLineDoc(BoolT isPublish)
@@ -238,13 +191,21 @@ VoidT exportDocLineDoc(BoolT isPublish)
 	writeToChannel("\nExport started...\n");
 	if (!mainBookID) mainBookID = getActiveBookID();
 	if (!isPublish && F_ApiChooseFile(&curDirPath, "Choose output directory", "", "", FV_ChooseOpenDir, "")) return;
-	if (!cleanTempDirectory()) return;
-	if (!getTempDirPath(&tempDirPath)) return;
+	if (!cleanTempDirectory())
+	{
+		F_ApiDeallocateString(&curDirPath);
+		return;
+	}
+	if (!getTempDirPath(&tempDirPath))
+	{
+		F_ApiDeallocateString(&curDirPath);
+		return;
+	}
 	writeToChannel("Generating export params... ");
 	params = generateExportParams();
 	writeToChannel("Succesful.\n");
 	writeToChannel("Exporting books... ");
-	name = F_StrCopyString("tmp_main_book.drl");
+	name = F_StrCopyString(TEMP_BOOK_NAME);
 	path = (StringT)F_Alloc((F_StrLen(tempDirPath)+F_StrLen(name)+1)*sizeof(UCharT),NO_DSE);
 	F_Sprintf(path,"%s\\%s",F_StrCopyString(tempDirPath),F_StrCopyString(name));
 	F_ApiDeallocateString(&name);
@@ -269,7 +230,11 @@ VoidT exportDocLineDoc(BoolT isPublish)
 	writeToChannel("Succesful.\n");
 	writeToChannel("Export finished succesfully.\n");
 
-	if (!isPublish) closeLogChannel();
+	if (!isPublish)
+	{
+		F_ApiDeallocateString(&curDirPath);
+		closeLogChannel();
+	}
 
 	F_ApiDeallocateString(&path);
 	F_ApiDeallocatePropVals(&params);
