@@ -23,7 +23,7 @@
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            application="PlDocToolkit.application"
+            application="DocLineRCP.application"
             name="DocLine Toolkit">
          <property
                name="appName"
