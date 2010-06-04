@@ -567,19 +567,14 @@ BoolT renameFileToActualName(F_ObjHandleT fileID)
 
 VoidT simpleOpenBook()
 {
-	StringT filePath;
+	StringT filePath, dirPath;
 	F_ObjHandleT bookID;
 
-	filePath = defaultPath;
-	bookID = F_ApiSimpleOpen(defaultPath,True);
-	F_ApiDeallocateString(&filePath);
-	if (!bookID) return;
-	filePath = F_ApiGetString(FV_SessionId,bookID,FP_Name);
-	filePath = fileFileName(filePath);
-	if (!F_StrIEqual(filePath,defaultBookName))
-	{
-		F_ApiClose(bookID,FF_CLOSE_MODIFIED);
-	}
+	F_ApiChooseFile(&dirPath, "Choose output directory", "", "", FV_ChooseOpenDir, "");
+	filePath = (StringT)F_Alloc((F_StrLen(dirPath)+F_StrLen(defaultBookName)+2)*sizeof(UCharT),NO_DSE);
+	F_Sprintf(filePath, "%s\\%s\0", dirPath, defaultBookName);
+	F_ApiDeallocateString(&dirPath);
+	bookID = F_ApiSimpleOpen(filePath,FALSE);
 	F_ApiDeallocateString(&filePath);
 }
 BoolT addExistingDocs(StringT path, F_ObjHandleT bookID)

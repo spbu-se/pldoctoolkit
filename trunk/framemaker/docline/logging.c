@@ -35,6 +35,7 @@ BoolT openLogChannel()
 	if (!logChannel)
 	{
 		F_Printf(NULL,"%s\n", "Log opening error");
+		logChannel = NULL;
 		return FALSE;
 	}
 
@@ -50,11 +51,11 @@ BoolT closeLogChannel()
 	if (!F_ChannelClose(logChannel))
 	{
 		F_Printf(NULL,"%s\n", "Log closing error");
+		logChannel = NULL;
 		return FALSE;
 	}
 
-	//F_ApiDeallocateString(&endString);
-
+	logChannel = NULL;
 	return TRUE;
 }
 BoolT writeToChannel(StringT str)
