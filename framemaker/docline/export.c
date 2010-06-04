@@ -188,253 +188,199 @@ VoidT exportDocLineDoc(BoolT isPublish)
 
 	if (!isPublish && F_ApiAlert("This will export DocLineFM project and overwrite output directory. Do you still wish to continue?", FF_ALERT_YES_DEFAULT)) return;
 	openLogChannel();
-	writeToChannel("\nExport started...\n");
+	writeToChannel("\nExport started...");
 	if (!mainBookID) mainBookID = getActiveBookID();
 	if (!isPublish && F_ApiChooseFile(&curDirPath, "Choose output directory", "", "", FV_ChooseOpenDir, "")) return;
 	if (!cleanTempDirectory())
 	{
+		writeToChannel("\nCleaning directory error.");
 		F_ApiDeallocateString(&curDirPath);
 		return;
 	}
 	if (!getTempDirPath(&tempDirPath))
 	{
+		writeToChannel("\nInvalid temporary directory.");
 		F_ApiDeallocateString(&curDirPath);
 		return;
 	}
-	writeToChannel("Generating export params... ");
-	params = generateExportParams();
-	writeToChannel("Succesful.\n");
-	writeToChannel("Exporting books... ");
+	writeToChannel("\nGenerating export params... ");
+	if (!generateExportParams(&params))
+	{
+		writeToChannel("\nError.");
+		F_ApiDeallocateString(&curDirPath);
+		return;
+	}
+	writeToChannel("Succesful.");
+	writeToChannel("\nExporting books... ");
 	name = F_StrCopyString(TEMP_BOOK_NAME);
 	path = (StringT)F_Alloc((F_StrLen(tempDirPath)+F_StrLen(name)+1)*sizeof(UCharT),NO_DSE);
-	F_Sprintf(path,"%s\\%s",F_StrCopyString(tempDirPath),F_StrCopyString(name));
+	F_Sprintf(path,"%s\\%s\0",tempDirPath,name);
 	F_ApiDeallocateString(&name);
 	returnParams = NULL;
 	F_ApiSave(mainBookID,path,&params,&returnParams);
-	writeToChannel("Succesful.\n");
-	writeToChannel("Performing XSL transformation... ");
-	if (!performExportXSLT(tempDirPath)) return;
+	F_ApiDeallocatePropVals(&params);
+	F_ApiDeallocatePropVals(returnParams);
+	writeToChannel("Succesful.");
+	writeToChannel("\nPerforming XSL transformation... ");
+	if (!performExportXSLT(tempDirPath))
+	{
+		writeToChannel("\nError.");
+		F_ApiDeallocateString(&tempDirPath);
+		F_ApiDeallocateString(&curDirPath);
+		F_ApiDeallocateString(&path);
+		return;
+	}
+	F_ApiDeallocateString(&tempDirPath);
 	filePath = F_PathNameToFilePath(path,NULL,FDosPath);
 	F_DeleteFile(filePath);
 	F_FilePathFree(filePath);
+	F_ApiDeallocateString(&path);
 	writeToChannel("Succesful.\n");
-	//writeToChannel("Copying files from temporary...");
-	//if (!copyFilesFromTempDirectory()) return;
-	//writeToChannel("Succesful.\n");
-	if (!correctFiles()) return;
-	writeToChannel("Closing all documents... ");
+	if (!correctFiles())
+	{
+		writeToChannel("\nError in correcting DRL files");
+		F_ApiDeallocateString(&curDirPath);
+		return;
+	}
+	writeToChannel("\nClosing all documents... ");
 	closeAllDocs();
-	writeToChannel("Succesful.\n");
-	writeToChannel("Cleaning directory... ");
+	writeToChannel("Succesful.");
+	writeToChannel("\nCleaning directory... ");
 	cleanDirectory(F_PathNameToFilePath(curDirPath,NULL,FDosPath));
-	writeToChannel("Succesful.\n");
-	writeToChannel("Export finished succesfully.\n");
+	writeToChannel("Succesful.");
+	writeToChannel("\nExport finished succesfully.");
 
 	if (!isPublish)
 	{
-		F_ApiDeallocateString(&curDirPath);
 		closeLogChannel();
 	}
-
-	F_ApiDeallocateString(&path);
-	F_ApiDeallocatePropVals(&params);
+	F_ApiDeallocateString(&curDirPath);
 }
 
-VoidT generateBooks(F_ObjHandleT mainBookID)
+BoolT generateExportParams(F_PropValsT *params)
 {
-	F_ObjHandleT elemID, bookID, childID, compID;
-	StringT dirPath, bookName, place, tmpString;
-	IntT i;
-	F_AttributesT attrs;
-
-	dirPath = F_ApiGetString(FV_SessionId,mainBookID,FP_Name);
-	pathFilename(dirPath);
-	elemID = F_ApiGetId(FV_SessionId,mainBookID,FP_HighestLevelElement);
-	if (!elemID)
-	{
-		F_ApiAlert("Book is unstructured of there is no elements",FF_ALERT_CONTINUE_NOTE);
-		return;
-	}
-	elemID = F_ApiGetId(mainBookID,elemID,FP_FirstChildElement);
-	if (!elemID)
-	{
-		F_ApiAlert("There is only highest element in book",FF_ALERT_CONTINUE_NOTE);
-		return;
-	}
-	i = 0;
-	bookName = F_Alloc(F_StrLen(dirPath)+20,NO_DSE);
-	while (elemID)
-	{
-		F_Sprintf(bookName,"%sbook%d.book",dirPath,i);
-		if (!bookName)
-		{
-			F_Printf(NULL,"Convert error");
-			writeToChannel("Error. Convert error.\n");
-			return;
-		}
-		tmpString = F_ApiGetString(mainBookID,F_ApiGetId(mainBookID,elemID,FP_ElementDef),FP_Name);
-		attrs = F_ApiGetAttributes(mainBookID,elemID);
-		if (F_StrIEqual(tmpString,(StringT)"DocumentationCore"))
-		{
-			place = (StringT)"C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_documentationCore_book_template.book";
-		}
-		else if (F_StrIEqual(tmpString,(StringT)"ProductDocumentation"))
-		{
-			place = (StringT)"C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_productDocumentation_book_template.book";
-		}
-		else if (F_StrIEqual(tmpString,(StringT)"ProductLine"))
-		{
-			place = (StringT)"C:\\Program Files\\Adobe\\FrameMaker8\\Structure\\xml\\docline\\docline_productLine_book_template.book";
-		}
-		else
-		{
-			place = (StringT)"";
-		}
-		bookID = F_ApiSimpleOpen(place,False);
-		if (!bookID)
-		{
-			F_Printf(NULL,"There is no template for this type of book");
-			continue;
-		}
-		F_ApiSetAttributes(bookID,F_ApiGetId(FV_SessionId,bookID,FP_HighestLevelElement),&attrs);
-		childID = F_ApiGetId(mainBookID,elemID,FP_FirstChildElement);
-		while (childID)
-		{
-			compID = F_ApiGetId(mainBookID,childID,FP_BookComponent);
-			if (compID)
-			{
-				addStructuredElementToBook(mainBookID,bookID,F_ApiGetId(FV_SessionId,bookID,FP_HighestLevelElement),compID);
-			}
-			else
-			{
-				addStructuredElementToBook(mainBookID,bookID,F_ApiGetId(FV_SessionId,bookID,FP_HighestLevelElement),childID);
-			}
-			childID = F_ApiGetId(mainBookID,childID,FP_NextSiblingElement);
-		}
-		F_ApiSimpleGenerate(bookID,False,True);
-		F_ApiSimpleSave(bookID,bookName,False);
-		F_ApiClose(bookID,FF_CLOSE_MODIFIED);
-		i++;
-		elemID = F_ApiGetId(mainBookID,elemID,FP_NextSiblingElement);
-	}
-}
-
-F_PropValsT generateExportParams()
-{
-	F_PropValsT params;
 	IntT i;
 
-	params = F_ApiGetSaveDefaultParams();
-	if (!params.len)
+	*params = F_ApiGetSaveDefaultParams();
+	if (!(*params).len)
 	{
 		F_Printf(NULL,"Invalid default save params");
 		writeToChannel("Error. Invalide default save params.\n");
-		return params;
+		return FALSE;
 	}
-	i = F_ApiGetPropIndex(&params,FS_FileType);
-	params.val[i].propVal.u.ival = FV_SaveFmtXml;
-	i = F_ApiGetPropIndex(&params,FS_StructuredSaveApplication);
-	params.val[i].propVal.u.sval = F_StrCopyString("DocLine");
+	i = F_ApiGetPropIndex(params,FS_FileType);
+	(*params).val[i].propVal.u.ival = FV_SaveFmtXml;
+	i = F_ApiGetPropIndex(params,FS_StructuredSaveApplication);
+	(*params).val[i].propVal.u.sval = F_StrCopyString("DocLine");
 
-	//F_Free(&i);
-
-	return params;
+	return TRUE;
 }
 VoidT publishDocLineDoc(StringT format)
 {
 	IntT retVal, response;
-	StringT jarPath; // = "C:\\Program Files (x86)\\Adobe\\FDK8\\samples\\docline\\debug\\exportutil.jar";
-	UCharT sourceDirPath[256];
-	UCharT sourceFileName[256];
-	UCharT destinationFileName[256];
 
 	UCharT statusMessage[256];
 
-	StringT tempPath, tempName, tempResult;
+	StringT jarPath, tempPath, suggestName, errorFileName, errorMessage, errorPath, mainDrlFileName, sourceFileName, outFileName, sourceDirPath;
 	F_ObjHandleT bookID;
 	ChannelT chan;
 	UCharT ptr[BUFFERSIZE];
 	IntT numread;
 
 	openLogChannel();
-	writeToChannel("\nPublishing started... \n");
+	writeToChannel("\nPublishing started...");
 	// promt user if he is sure he wants to publish document
 	response = F_ApiAlert("This will export all files to DRL and then publish them. Do you still wish to continue?", FF_ALERT_YES_DEFAULT);
 	if (response != 0) // user clicked "no"
 		return;
 
 	//get path to jar file and check if jar exists
-	tempPath = F_ApiClientDir();
 	if (!getJarFileName(&jarPath)) return FALSE;
 	if((chan = F_ChannelOpen(F_PathNameToFilePath(jarPath, NULL, FDefaultPath),"r")) == NULL)
 	{
 		F_Sprintf(statusMessage, "Couldn't find %s. Reinstalling the application can solve this problem.", JAR_FILENAME);
 		F_ApiAlert(statusMessage, FF_ALERT_CONTINUE_WARN);
+
+		F_ApiDeallocateString(&jarPath);
 		return;
 	}
 	F_ChannelClose(chan);
 	mainBookID = getActiveBookID();
 	if (!mainBookID || !F_StrISuffix(F_ApiGetString(FV_SessionId, mainBookID, FP_Name), defaultBookName))
 	{
-		F_ApiAlert("Invalid book", FF_ALERT_CONTINUE_NOTE);
+		writeToChannel("\nError. Invalid book");
+
+		F_ApiDeallocateString(&jarPath);
 		return;
 	}
 	//   promt for filename
 	writeToChannel("Choosing Final Product file...");
-	curDirPath = F_ApiGetString(FV_SessionId,mainBookID,FP_Name);
-	pathFilename(curDirPath);
-	if (!getFinalInfProductNameByDialog(&tempResult)) return;
+	if (!getFinalInfProductNameByDialog(&mainDrlFileName))
+	{
+		F_ApiDeallocateString(&jarPath);
+		return;
+	}
 	writeToChannel("Succesful.\n");
 	if (!F_ApiAlert("Save exported files?", FF_ALERT_YES_DEFAULT))
 	{
-		if (F_ApiChooseFile(&tempPath, "Choose output directory", "", "", FV_ChooseOpenDir, "")) return;
+		if (F_ApiChooseFile(&sourceDirPath, "Choose output directory", "", "", FV_ChooseOpenDir, ""))
+		{
+			F_ApiDeallocateString(&mainDrlFileName);
+			F_ApiDeallocateString(&jarPath);
+			return;
+		}
 	}
 	else
 	{
-		if (!getTempDirPath(&tempPath)) return FALSE;
+		if (!getTempDirPath(&sourceDirPath))
+		{
+			F_ApiDeallocateString(&mainDrlFileName);
+			F_ApiDeallocateString(&jarPath);
+			return;
+		}
 	}	
-	curDirPath = F_StrCopyString(tempPath);
+	curDirPath = F_StrCopyString(sourceDirPath);
 	//   save file name
-	F_Sprintf(sourceFileName, "%s", F_FilePathBaseName(F_PathNameToFilePath(tempResult, NULL, FDefaultPath)));
-	//   save dir name
-	F_Sprintf(sourceDirPath, "%s", tempPath);
-	F_ApiDeallocateString(&tempResult);
+	sourceFileName = (F_FilePathBaseName(F_PathNameToFilePath(mainDrlFileName, NULL, FDefaultPath)));
+	F_ApiDeallocateString(&mainDrlFileName);
 
 	// show dialog to choose published document name 
 	//   form suggested save name
-	tempName = F_Alloc(F_StrLen(sourceFileName)-F_StrLen(".drl") + F_StrLen(format) + 1 + 1,NO_DSE);
-	F_StrCpyN(tempName, sourceFileName, F_StrLen(sourceFileName)-F_StrLen(".drl") + 1);
-	F_StrCat(tempName, ".");
-	F_StrCat(tempName, format);
+	suggestName = (StringT)F_Alloc((F_StrLen(sourceFileName)-F_StrLen(".drl") + F_StrLen(format) + 2)*sizeof(UCharT),NO_DSE);
+	F_StrCpyN(suggestName, sourceFileName, F_StrLen(sourceFileName)-F_StrLen(".drl") + 1);
+	F_StrCat(suggestName, ".");
+	F_StrCat(suggestName, format);
 	//   promt for save name
-	response = F_ApiChooseFile(&tempResult, "Choose a name for a file", tempPath, tempName, FV_ChooseSave, "");
+	response = F_ApiChooseFile(&outFileName, "Choose a name for a file", sourceDirPath, suggestName, FV_ChooseSave, "");
+	F_ApiDeallocateString(&suggestName);
 	if (response != 0)
 	{
-		F_ApiDeallocateString(&tempResult);
+		F_ApiDeallocateString(&outFileName);
+		F_ApiDeallocateString(&jarPath);
 		return;
 	}
-	//   save chosen destination file name
-	F_Sprintf(destinationFileName, "%s", tempResult);
-	F_ApiDeallocateString(&tempResult);
-	//F_Free(tempPath);
-	//F_Free(tempName);
 
 	//export documentation
 	exportDocLineDoc(TRUE);
 
 	// invoke java util
 	writeToChannel("Calling Java function...");
-	retVal = callJavaPublishUtil(jarPath, sourceDirPath, sourceFileName, " ", format, destinationFileName);
-	if (retVal > 0)
+	retVal = callJavaPublishUtil(jarPath, sourceDirPath, sourceFileName, " ", format, outFileName);
+	F_ApiDeallocateString(&sourceFileName);
+	F_ApiDeallocateString(&sourceDirPath);
+	F_ApiDeallocateString(&outFileName);
+	F_ApiDeallocateString(&jarPath);
+	if (retVal > 0)  // java util worked with error
 	{
 		switch (retVal)
 		{
 		case JVM_INIT_MEM_ERROR:
 			writeToChannel("\n\t");
-			F_ApiDeallocateString(&jarPath);
-			jarPath = (StringT)F_Alloc((F_StrLen(ERROR_MEM_MESSAGE)+F_StrLen(MAX_MEM))*sizeof(UCharT),NO_DSE);
-			F_Sprintf(jarPath,ERROR_MEM_MESSAGE,MAX_MEM);
-			writeToChannel(jarPath);
+			errorMessage = (StringT)F_Alloc((F_StrLen(ERROR_MEM_MESSAGE)+F_StrLen(MAX_MEM))*sizeof(UCharT),NO_DSE);
+			F_Sprintf(errorMessage,ERROR_MEM_MESSAGE,MAX_MEM);
+			writeToChannel("\n");
+			writeToChannel(errorMessage);
+			F_ApiDeallocateString(&errorMessage);
 			break;
 		default:
 			writeToChannel("Error. JVM Intialization error");
@@ -445,12 +391,12 @@ VoidT publishDocLineDoc(StringT format)
 	else  // java util worked, so there will be an error log file
 	{
 		writeToChannel("Succesful.\n");
-		tempPath = F_ApiClientDir();
-		tempResult = F_Alloc(F_StrLen(tempPath) + F_StrLen(ERROR_LOG_FILENAME) + 1, NO_DSE);
-		F_Sprintf(tempResult, "%s\\%s", tempPath, ERROR_LOG_FILENAME);
-		//F_Free(tempPath);
+		errorPath = F_ApiClientDir();
+		errorFileName = F_Alloc(F_StrLen(errorPath) + PLUGIN_DIR_NAME + F_StrLen(ERROR_LOG_FILENAME) + 1, NO_DSE);
+		F_Sprintf(errorFileName, "%s\\%s\\%s\0", errorPath, PLUGIN_DIR_NAME, ERROR_LOG_FILENAME);
+		F_ApiDeallocateString(&errorPath);
 
-		if((chan = F_ChannelOpen(F_PathNameToFilePath(tempResult, NULL, FDefaultPath),"r")) == NULL)
+		if((chan = F_ChannelOpen(F_PathNameToFilePath(errorFileName, NULL, FDefaultPath),"r")) == NULL)
 		{
 			F_Printf(NULL, "Couldn't find error log file.");
 			writeToChannel("Error. Log file error.\n");
@@ -462,10 +408,10 @@ VoidT publishDocLineDoc(StringT format)
 				F_Printf(NULL, "\nPUBLISH LOG:\n");
 				while(!F_ChannelEof(chan))
 				{
-					numread = F_ChannelRead(ptr, sizeof(UCharT), 
-					BUFFERSIZE-1, chan);
+					numread = F_ChannelRead(ptr, sizeof(UCharT), BUFFERSIZE-1, chan);
 					ptr[numread] = '\0';
-					F_Printf(NULL, "%s\n", (StringT)ptr);
+					writeToChannel("\n");
+					writeToChannel((StringT)ptr);
 				}
 				if (retVal < 0) // error while transforming
 				{
@@ -481,6 +427,7 @@ VoidT publishDocLineDoc(StringT format)
 			{
 				if (retVal < 0) // very unlikely to happen, error and no cause logged
 				{
+					writeToChannel("\nPublication error.");
 					F_ApiAlert("Unhandled error happened.", FF_ALERT_CONTINUE_WARN);
 				}
 				else  // everything is perfectly fine
@@ -491,7 +438,8 @@ VoidT publishDocLineDoc(StringT format)
 			}
 			F_ChannelClose(chan);
 		}
-		F_ApiDeallocateString(&tempResult);
+		F_ApiDeallocateString(&errorFileName);
 	}
+	writeToChannel("\nPublication complted");
 	closeLogChannel();
 }

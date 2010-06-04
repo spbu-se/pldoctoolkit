@@ -21,7 +21,7 @@
 #define THIRD_ELEMENTS {"InfElement", "InfProduct", "FinalInfProduct", "DirTemplate", "Directory", "Dictionary"}
 #define THIRD_LENGTH 6
 
-#define defaultPath  (F_StrCopyString("C:\\"))
+#define defaultPath  "C:\\"
 #define defaultBookName "mainDRLFMBook.book"
 
 BoolT getJarFileName(StringT *path);
