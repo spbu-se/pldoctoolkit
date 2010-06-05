@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="DocLine Toolkit" id="DocLineRCP.product" application="DocLineRCP.application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="DocLineRCP" id="DocLineRCP.product" application="DocLineRCP.application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+
+   <aboutInfo>
+      <text>
+         DocLine project was started in 2004 on the Software Engineering Chair of the Faculty of Mathematics and Mechanics of Saint-Petersburg State University.
+The goal of DocLine project is to provide a method for developemnt and maintenance of electronic documentation packages having multiple commonalities.
+
+Web-site: http://www.math.spbu.ru/user/kromanovsky/docline/
+      </text>
+   </aboutInfo>
 
    <configIni use="default">
    </configIni>
@@ -12,7 +21,7 @@
 
    <windowImages/>
 
-   <launcher>
+   <launcher name="DocLineRCP">
       <solaris/>
       <win useIco="false">
          <bmp/>
