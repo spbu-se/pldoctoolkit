@@ -26,7 +26,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		configurer.setInitialSize(new Point(800, 600));
 		configurer.setShowCoolBar(false);
 		configurer.setShowStatusLine(false);
-		configurer.setTitle("DocLine Toolkit");
+		configurer.setTitle("DocLineRCP");
 		configurer.setShowCoolBar(true);
 
 		configurer.setShowPerspectiveBar(true);
