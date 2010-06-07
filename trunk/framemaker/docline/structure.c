@@ -17,7 +17,7 @@ VoidT createNewDocLineBook()
 	F_ApiSimpleSave(bookId, bookPath, False);
 	F_ApiDeallocateString(&bookPath);
 }
-BoolT newSecondLevelSection(BoolT isFirst, StringT type)
+BoolT newSecondLevelSection(BoolT isFirst, StringT type, StringT *newFileName)
 {
 	F_ObjHandleT bookId, sectionDlgId, compId, elemId;
 	StringT fileName;
@@ -79,6 +79,7 @@ BoolT newSecondLevelSection(BoolT isFirst, StringT type)
 	attributes.val[0].values.len = 1;
 	attributes.val[0].values.val = (StringT *)F_Alloc(sizeof(StringT), DSE);
 	attributes.val[0].values.val[0] = F_StrCopyString(fileName);
+	*newFileName = F_StrCopyString(fileName);
 	/* Set proper values */
 	F_ApiSetAttributes(bookId, compId, &attributes);
 	F_ApiClose (sectionDlgId, FF_CLOSE_MODIFIED);
@@ -119,9 +120,10 @@ VoidT newDocCoreChild(IntT type)
 		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
 		compExists = False;
 		/* Initiallze list for dialog's pop-up*/
-		doccores.val = (StringT*) F_Alloc(sizeof(StringT), NO_DSE);
-		doccores.len = 1;
+		doccores.val = (StringT*) F_Alloc(2*sizeof(StringT), NO_DSE);
+		doccores.len = 2;
 		doccores.val[0] = F_StrCopyString("...");
+		doccores.val[1] = F_StrCopyString("New...");
 		while (compId)
 		{
 			elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
@@ -135,7 +137,7 @@ VoidT newDocCoreChild(IntT type)
 		if (!compExists) // There is no "DocumentationCore" section
 		{
 			/* Create DocumentationCore section */
-			if(!newSecondLevelSection(True, "DocumentationCore"))
+			if(!newSecondLevelSection(True, "DocumentationCore", NULL))
 			{
 				F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
 				return;
@@ -190,12 +192,24 @@ VoidT newDocCoreChild(IntT type)
 			return;
 		}
 	}
+
 	/* get Id and Name values from dialog box*/
 	idStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text));
 	nameStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 3), FP_Text));
 
-	/* get Id of selected DocumentationCore section */
-	selectedDocCore = doccores.val[F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State)];
+	if (F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State) == 1)
+	{
+		if(!newSecondLevelSection(True, "DocumentationCore", &selectedDocCore))
+		{
+			F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+			return;
+		}
+	}
+	else
+	{
+		/* get Id of selected DocumentationCore section */
+		selectedDocCore = doccores.val[F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State)];
+	}
 	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
 	compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
 	compFound = False;
@@ -352,9 +366,10 @@ VoidT newProdDocChild(IntT type)
 		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
 		compExists = False;
 		/* Initiallze list for dialog's pop-up*/
-		proddocs.val = (StringT*) F_Alloc(sizeof(StringT), NO_DSE);
-		proddocs.len = 1;
+		proddocs.val = (StringT*) F_Alloc(2*sizeof(StringT), NO_DSE);
+		proddocs.len = 2;
 		proddocs.val[0] = F_StrCopyString("...");
+		proddocs.val[1] = F_StrCopyString("New...");
 		while (compId)
 		{
 			elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
@@ -368,7 +383,7 @@ VoidT newProdDocChild(IntT type)
 		if (!compExists) // There is no "ProsuctDocumentation" section
 		{
 			/* Create ProductDocumentation section */
-			if(!newSecondLevelSection(True, "ProductDocumentation"))
+			if(!newSecondLevelSection(True, "ProductDocumentation", NULL))
 			{
 				F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
 				return;
@@ -427,8 +442,19 @@ VoidT newProdDocChild(IntT type)
 	idStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text));
 	nameStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 3), FP_Text));
 
-	/* get Id of selected ProductDocumentation section */
-	selectedProdDoc = proddocs.val[F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State)];
+	if (F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State) == 1)
+	{
+		if(!newSecondLevelSection(True, "ProductDocumentation", &selectedProdDoc))
+		{
+			F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+			return;
+		}
+	}
+	else
+	{
+		/* get Id of selected ProductDocumentation section */
+		selectedProdDoc = proddocs.val[F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State)];
+	}
 	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
 	compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
 	compFound = False;
@@ -569,9 +595,10 @@ VoidT newProdLineChild(IntT type)
 		compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
 		compExists = False;
 		/* Initiallze list for dialog's pop-up*/
-		prodlines.val = (StringT*) F_Alloc(sizeof(StringT), NO_DSE);
-		prodlines.len = 1;
+		prodlines.val = (StringT*) F_Alloc(2*sizeof(StringT), NO_DSE);
+		prodlines.len = 2;
 		prodlines.val[0] = F_StrCopyString("...");
+		prodlines.val[1] = F_StrCopyString("New...");
 		while (compId)
 		{
 			elemId = F_ApiGetId(bookId, compId, FP_ElementDef);
@@ -585,7 +612,7 @@ VoidT newProdLineChild(IntT type)
 		if (!compExists) // There is no "ProductLine" section
 		{
 			/* Create ProductLine section */
-			if(!newSecondLevelSection(True, "ProductLine"))
+			if(!newSecondLevelSection(True, "ProductLine", NULL))
 			{
 				F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
 				return;
@@ -644,8 +671,19 @@ VoidT newProdLineChild(IntT type)
 	idStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 1), FP_Text));
 	nameStr = F_StrCopyString(F_ApiGetString(dlgId, F_ApiDialogItemId(dlgId, 3), FP_Text));
 
-	/* get Id of selected ProductLine section */
-	selectedProdLine = prodlines.val[F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State)];
+	if (F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State) == 1)
+	{
+		if(!newSecondLevelSection(True, "ProductLine", &selectedProdLine))
+		{
+			F_ApiClose (dlgId, FF_CLOSE_MODIFIED);
+			return;
+		}
+	}
+	else
+	{
+		/* get Id of selected ProductLine section */
+		selectedProdLine = prodlines.val[F_ApiGetInt(dlgId, F_ApiDialogItemId(dlgId, 7), FP_State)];
+	}
 	compId = F_ApiGetId(FV_SessionId, bookId, FP_HighestLevelElement);
 	compId = F_ApiGetId(bookId, compId, FP_FirstChildElement);
 	compFound = False;

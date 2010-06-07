@@ -21,7 +21,7 @@ VoidT createNewDocLineBook();
 VoidT newDocCoreChild(IntT type);
 VoidT newProdDocChild(IntT type);
 VoidT newProdLineChild(IntT type);
-BoolT newSecondLevelSection(BoolT isFirst, StringT type);
+BoolT newSecondLevelSection(BoolT isFirst, StringT type, StringT *newFileName);
 VoidT editHeader();
 VoidT setAttributes(StringT idStr, StringT nameStr);
 
