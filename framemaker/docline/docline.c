@@ -351,7 +351,7 @@ VoidT F_ApiCommand(IntT command)
 	  break;
   case CORE:
   case BCORE:
-	  newSecondLevelSection(False, "DocumentationCore");
+	  newSecondLevelSection(False, "DocumentationCore", NULL);
 	  break;
   case NEWDC:
   case BNEWDC:
@@ -375,7 +375,7 @@ VoidT F_ApiCommand(IntT command)
 	  break;
   case PROD:
   case BPROD:
-	  newSecondLevelSection(False, "ProductDocumentation");
+	  newSecondLevelSection(False, "ProductDocumentation", NULL);
 	  break;
   case BPNEWDC:
   case PNEWDC:
@@ -395,7 +395,7 @@ VoidT F_ApiCommand(IntT command)
 	  break;
   case LINE:
   case BLINE:
-	  newSecondLevelSection(False, "ProductLine");
+	  newSecondLevelSection(False, "ProductLine", NULL);
 	  break;
   case NEWPR:
   case BNEWPR:
