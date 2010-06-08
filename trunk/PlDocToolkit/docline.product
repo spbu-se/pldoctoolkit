@@ -8,7 +8,9 @@
          DocLine project was started in 2004 on the Software Engineering Chair of the Faculty of Mathematics and Mechanics of Saint-Petersburg State University.
 The goal of DocLine project is to provide a method for developemnt and maintenance of electronic documentation packages having multiple commonalities.
 
-Web-site: http://www.math.spbu.ru/user/kromanovsky/docline/
+Web-sites: 
+http://www.math.spbu.ru/user/kromanovsky/docline/
+http://code.google.com/p/pldoctoolkit/
       </text>
    </aboutInfo>
 
@@ -29,6 +31,7 @@ Web-site: http://www.math.spbu.ru/user/kromanovsky/docline/
    </launcher>
 
    <vm>
+      <windows>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JRE-1.1</windows>
    </vm>
 
    <plugins>
@@ -227,7 +230,6 @@ Web-site: http://www.math.spbu.ru/user/kromanovsky/docline/
       <plugin id="org.spbu.pldoctoolkit.graph.diagram.infproduct"/>
       <plugin id="org.spbu.pldoctoolkit.graph.diagram.productline"/>
       <plugin id="org.spbu.pldoctoolkit.graph.edit"/>
-      <plugin id="org.spbu.pldoctoolkit.graph.editor"/>
       <plugin id="org.spbu.pldoctoolkit.text"/>
       <plugin id="org.w3c.css.sac"/>
       <plugin id="org.w3c.dom.events"/>

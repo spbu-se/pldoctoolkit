@@ -24,40 +24,19 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="DocLineRCP.application"
-            name="DocLine Toolkit">
+            name="DocLineRCP">
          <property
                name="appName"
-               value="DocLine Toolkit">
+               value="DocLineRCP">
+         </property>
+         <property
+               name="aboutText"
+               value="DocLine project was started in 2004 on the Software Engineering Chair of the Faculty of Mathematics and Mechanics of Saint-Petersburg State University.&#x0A;The goal of DocLine project is to provide a method for developemnt and maintenance of electronic documentation packages having multiple commonalities.&#x0A;&#x0A;Web-sites: &#x0A;http://www.math.spbu.ru/user/kromanovsky/docline/&#x0A;http://code.google.com/p/pldoctoolkit/">
          </property>
       </product>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
-      <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
-         <toolbar
-               id="PlDocToolkit.toolbar">
-            <separator
-                  name="PlDocToolkit.separator1"
-                  visible="true">
-            </separator>
-            <command
-                  commandId="org.eclipse.ui.newWizard"
-                  label="New..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.eclipse.ui.file.save"
-                  label="Save"
-                  style="push">
-            </command>
-            <command
-                  commandId="org.eclipse.ui.file.print"
-                  label="Print"
-                  style="push">
-            </command>
-         </toolbar>
-      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.views">

@@ -10,7 +10,7 @@ public class Perspective implements IPerspectiveFactory {
 		defineLayout(layout);
 	}
 
-	@SuppressWarnings("deprecation")
+	
 	public void defineActions(IPageLayout layout) {
 		// Add "new wizards".
 		layout.addNewWizardShortcut("org.eclipse.ui.wizards.new.folder");
@@ -33,12 +33,9 @@ public class Perspective implements IPerspectiveFactory {
 
 	public void defineLayout(IPageLayout layout) {
 		String editorArea = layout.getEditorArea();
-		//IFolderLayout leftFolder = layout.createFolder("left", IPageLayout.LEFT, 0.3f, editorArea);
-		//leftFolder.addView("org.eclipse.jdt.ui.PackageExplorer");
-		layout.addView("plpdoctoolkit.NavigatorView", IPageLayout.LEFT, 0.3f, editorArea);
-		//layout.addView(IPageLayout.ID_PROJECT_EXPLORER, IPageLayout.LEFT, 0.3f, editorArea);
+		IFolderLayout leftFolder = layout.createFolder("left", IPageLayout.LEFT, 0.3f, editorArea);
+	    leftFolder.addView(IPageLayout.ID_RES_NAV);
 		IFolderLayout bottomFolder = layout.createFolder("bottom", IPageLayout.BOTTOM, 0.65f, editorArea);
 		bottomFolder.addView(IPageLayout.ID_PROBLEM_VIEW);
-		//bottomFolder.addView("org.eclipse.pde.runtime.LogView");
 	}
 }
