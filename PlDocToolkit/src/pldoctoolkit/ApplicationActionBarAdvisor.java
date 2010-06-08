@@ -1,10 +1,17 @@
 package pldoctoolkit;
 
+import org.eclipse.jface.action.CoolBarManager;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IContributionItem;
+import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.action.ToolBarContributionItem;
+import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.actions.ActionFactory;
@@ -103,9 +110,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	    searchAction = ActionFactory.HELP_SEARCH.create(window);
 	    register (searchAction);
 	    aboutAction = ActionFactory.ABOUT.create(window);
-        /*
         register(aboutAction);
-*/
     }
 
     protected void fillMenuBar(IMenuManager menuBar) {
@@ -185,4 +190,11 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         helpMenu.add(aboutAction);
     }
     
+    protected void fillCoolBar(ICoolBarManager coolBar) {
+        IToolBarManager toolbar = new ToolBarManager(SWT.FLAT | SWT.RIGHT);
+        coolBar.add(new ToolBarContributionItem(toolbar, "main"));
+        toolbar.add(newAction);
+    	toolbar.add(saveAction);
+    	toolbar.add(printAction);
+    }
 }

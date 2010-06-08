@@ -226,7 +226,6 @@ import org.osgi.framework.*;
 			return new NavigatorRoot();
 		}
 
-		@SuppressWarnings({ "deprecation" })
 		@Override
 		public void preStartup()
 		{
