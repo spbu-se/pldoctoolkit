@@ -190,24 +190,6 @@ VoidT exportDocLineDoc(BoolT isPublish)
 	F_ElementRangeT range;
 	F_ObjHandleT defID;
 
-	bookID = F_ApiGetId(0,FV_SessionId, FP_ActiveBook);
-	if (!bookID)
-	{
-		F_Printf(NULL,"Invalid book\n");
-		return;
-	}
-	range = F_ApiGetElementRange(FV_SessionId, bookID, FP_ElementSelection);
-	loc = range.beg;
-	defID = F_ApiGetId(bookID, loc.childId, FP_ElementDef);
-	if (!defID)
-	{
-		F_Printf(NULL,"Invalid element\n");
-		return;
-	}
-	name = F_ApiGetString(bookID, defID, FP_Name);
-	F_Printf(NULL,"%s\n",name);
-	return;
-
 	if (!isPublish && F_ApiAlert("This will export DocLineFM project and overwrite output directory. Do you still wish to continue?", FF_ALERT_YES_DEFAULT)) return;
 	openLogChannel();
 	writeToChannel("\nExport started...");
