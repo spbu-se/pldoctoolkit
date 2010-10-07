@@ -12,14 +12,6 @@
       </application>
    </extension>
    <extension
-         point="org.eclipse.ui.perspectives">
-      <perspective
-            name="RCP Perspective"
-            class="pldoctoolkit.Perspective"
-            id="PlDocToolkit.perspective">
-      </perspective>
-   </extension>
-   <extension
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
@@ -34,9 +26,6 @@
                value="DocLine project was started in 2004 on the Software Engineering Chair of the Faculty of Mathematics and Mechanics of Saint-Petersburg State University.&#x0A;The goal of DocLine project is to provide a method for developemnt and maintenance of electronic documentation packages having multiple commonalities.&#x0A;&#x0A;Web-sites: &#x0A;http://www.math.spbu.ru/user/kromanovsky/docline/&#x0A;http://code.google.com/p/pldoctoolkit/">
          </property>
       </product>
-   </extension>
-   <extension
-         point="org.eclipse.ui.menus">
    </extension>
    <extension
          point="org.eclipse.ui.views">
