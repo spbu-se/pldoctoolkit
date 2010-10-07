@@ -187,7 +187,7 @@ public class SelectIntoInfElemDialog extends Dialog{
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		Point size = new Point(420, 230);
+		Point size = new Point(500, 230);
 		newShell.setSize(size);
 		Shell p = getParentShell();
 		newShell.setLocation(p.getLocation().x + p.getSize().x / 2 - size.x / 2, p.getLocation().y + p.getSize().y / 2 - size.y / 2);

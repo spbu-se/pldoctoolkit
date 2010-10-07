@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.spbu.pldoctoolkit.actions.SelectIntoCondBlockAction;
+import org.spbu.pldoctoolkit.actions.SplitInfElemAction;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
@@ -150,7 +150,7 @@ public class SplitInfElemDialog extends Dialog {
 						.getLocation().y
 						+ p.getSize().y / 2 - size.y / 2);
 
-		newShell.setText(SelectIntoCondBlockAction.refactName);
+		newShell.setText(SplitInfElemAction.refactName);
 	}
 
 	private void validate() {
