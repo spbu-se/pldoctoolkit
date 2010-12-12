@@ -1,7 +1,0 @@
-# Tracing options for the org.spbu.plweb.diagram plug-in
-
-# Common issues
-org.spbu.plweb.diagram/debug=false
-
-# Visual IDs
-org.spbu.plweb.diagram/debug/visualID=false
