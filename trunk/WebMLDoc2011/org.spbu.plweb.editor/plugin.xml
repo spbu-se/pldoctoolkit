@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.spbu.plweb.presentation.PlwebModelWizardID"
+            name="%_UI_PlwebModelWizard_label"
+            class="org.spbu.plweb.presentation.PlwebModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PlwebModelFile.gif">
+         <description>%_UI_PlwebModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.spbu.plweb.presentation.PlwebEditorID"
+            name="%_UI_PlwebEditor_label"
+            icon="icons/full/obj16/PlwebModelFile.gif"
+            extensions="plweb"
+            class="org.spbu.plweb.presentation.PlwebEditor"
+            contributorClass="org.spbu.plweb.presentation.PlwebActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
