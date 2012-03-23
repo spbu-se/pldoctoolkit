@@ -11,6 +11,7 @@ import org.spbu.pldoctoolkit.actions.BasicExportAction;
 import org.spbu.pldoctoolkit.actions.DRLMenuListener;
 import org.spbu.pldoctoolkit.actions.ExtractInsertAfterAction;
 import org.spbu.pldoctoolkit.actions.ExtractInsertBeforeAction;
+import org.spbu.pldoctoolkit.actions.HandleDIffWithAnotherInfElemAction;
 import org.spbu.pldoctoolkit.actions.InsertTemplateAction;
 import org.spbu.pldoctoolkit.actions.InsertIntoDictionaryAction;
 import org.spbu.pldoctoolkit.actions.InsertIntoDirectoryAction;
@@ -60,6 +61,7 @@ public class DrlTextEditor extends TextEditor {
 	public static final String SPLIT_INF_ELEM = "split_inf_elem";
 	public static final String MAKE_REF_OPTIONAL = "make_ref_optional";
 	public static final String MAKE_REF_REQUIRED = "make_ref_required";
+	public static final String HANDLE_DIFF_WITH_ANOTHER_INF_ELEM = "handle_diff_with_another_inf_elem";
 	
 	private ColorManager colorManager;
 	private DRLMenuListener menuListener = new DRLMenuListener();//minchin
@@ -229,6 +231,13 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		//smak
+		try {
+			setAction(HANDLE_DIFF_WITH_ANOTHER_INF_ELEM, new HandleDIffWithAnotherInfElemAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public ISourceViewer DrlGetSourceViewer(){
@@ -269,6 +278,9 @@ public class DrlTextEditor extends TextEditor {
 		addAction(refactMenu, SPLIT_INF_ELEM);
 		addAction(refactMenu, MAKE_REF_OPTIONAL);
 		addAction(refactMenu,MAKE_REF_REQUIRED);
+		
+		//smak
+		addAction(refactMenu,HANDLE_DIFF_WITH_ANOTHER_INF_ELEM);
 		
 		//DRLMenuListener.instance.editor = this;
 		menuListener.menuAboutToShow(menu);
