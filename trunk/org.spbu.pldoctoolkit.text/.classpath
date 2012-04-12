@@ -8,6 +8,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/fop.jar" sourcepath="D:/dev/fop-0.93-src.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/xmlgraphics-commons-1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jing.jar" sourcepath="D:/dev/jing-20030619/src.zip"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.compare_3.4.1.r34x_20090121.jar" sourcepath="lib/org.eclipse.compare.source_3.4.1.r34x_20090121.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="lib/saxon8.jar" sourcepath="D:/dev/saxon-resources8-9/source.zip"/>

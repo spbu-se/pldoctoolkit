@@ -24,5 +24,4 @@
             id="org.spbu.pldoctoolkit.editors.DRLEditor"
             name="DRL Editor"/>
    </extension>
-
 </plugin>

@@ -61,6 +61,8 @@ public class DrlTextEditor extends TextEditor {
 	public static final String SPLIT_INF_ELEM = "split_inf_elem";
 	public static final String MAKE_REF_OPTIONAL = "make_ref_optional";
 	public static final String MAKE_REF_REQUIRED = "make_ref_required";
+	
+	//smak
 	public static final String HANDLE_DIFF_WITH_ANOTHER_INF_ELEM = "handle_diff_with_another_inf_elem";
 	
 	private ColorManager colorManager;
