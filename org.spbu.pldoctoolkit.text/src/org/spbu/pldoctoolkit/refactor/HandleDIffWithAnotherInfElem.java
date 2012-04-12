@@ -10,6 +10,7 @@ public class HandleDIffWithAnotherInfElem {
 	public PositionInText startPosition, endPosition;
 	public DRLDocument doc;
 	private LangElem firstInfElementToCompare;
+	private LangElem secondInfElementToCompare;
 	
 	public HandleDIffWithAnotherInfElem() {
 	}
@@ -76,6 +77,14 @@ public class HandleDIffWithAnotherInfElem {
 
 	public LangElem getFirstInfElementToCompare() {
 		return firstInfElementToCompare;
+	}
+	
+	public LangElem getSecondInfElementToCompare() {
+		return secondInfElementToCompare;
+	}
+	
+	public void setSecondInfElementToCompare(LangElem secondInfElementToCompare) {
+		this.secondInfElementToCompare = secondInfElementToCompare;
 	}
 	
 }

@@ -3,8 +3,13 @@ package org.spbu.pldoctoolkit.dialogs;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.compare.CompareConfiguration;
+import org.eclipse.compare.CompareUI;
+import org.eclipse.compare.internal.CompareEditor;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceStore;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -50,7 +55,7 @@ public class HandleDIffWithAnotherInfElemDialog extends Dialog {
 
 	private List<DRLDocument> documents;
 	private List<LangElem> infElements;
-	private LangElem firstInfElementToCompare;
+	private HandleDIffWithAnotherInfElem refact;
 
 	private Label fileNamesLabel;
 	private Label elemsLabel;
@@ -61,11 +66,11 @@ public class HandleDIffWithAnotherInfElemDialog extends Dialog {
 	private Combo elemsCombo;
 
 	public HandleDIffWithAnotherInfElemDialog(Shell parentShell,
-			ProjectContent projectContent, LangElem firstInfElementToCompare) {
+			ProjectContent projectContent, HandleDIffWithAnotherInfElem refact) {
 		super(parentShell);
 		setBlockOnOpen(true);
 		this.projectContent = projectContent;
-		this.firstInfElementToCompare = firstInfElementToCompare;
+		this.refact = refact;
 		/*
 		 * this.firstInfElem = firstInfElem; this.secondInfElem = secondInfElem;
 		 * 
@@ -202,7 +207,7 @@ public class HandleDIffWithAnotherInfElemDialog extends Dialog {
 				LangElem.INFELEMENT);
 		for (LangElem infElem : allInfElements) {
 			if (infElem.getDRLDocument().equals(document)
-					&& !infElem.equals(firstInfElementToCompare)) {
+					&& !infElem.equals(refact.getFirstInfElementToCompare())) {
 				infElements.add(infElem);
 				elemsCombo.add(infElem.attrs.getValue("name") + " ( id: "
 						+ infElem.attrs.getValue("id") + ")");
@@ -220,8 +225,9 @@ public class HandleDIffWithAnotherInfElemDialog extends Dialog {
 	}
 
 	private void infElemSelected() {
-		LangElem infElem = infElements.get(elemsCombo.getSelectionIndex());
-		System.out.println(infElem.getTextRepresentation());
+		LangElem secondInfElementToCompare = infElements.get(elemsCombo.getSelectionIndex());
+		refact.setSecondInfElementToCompare(secondInfElementToCompare);
+		//System.out.println(secondInfElementToCompare.getTextRepresentation());
 		getButton(IDialogConstants.OK_ID).setEnabled(true);
 		errorMessageElem.setText("");
 	}

@@ -1,11 +1,27 @@
 package org.spbu.pldoctoolkit.actions;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.compare.BufferedContent;
+import org.eclipse.compare.CompareConfiguration;
+import org.eclipse.compare.CompareEditorInput;
+import org.eclipse.compare.CompareUI;
+import org.eclipse.compare.ITypedElement;
+import org.eclipse.compare.internal.CompareEditor;
+import org.eclipse.compare.internal.Utilities;
+import org.eclipse.compare.structuremergeviewer.DiffNode;
+import org.eclipse.compare.structuremergeviewer.Differencer;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.TextSelection;
@@ -24,7 +40,7 @@ import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 
 public class HandleDIffWithAnotherInfElemAction extends Action implements
 		IValidateDRLSelection {
-
+	
 	IEditorPart editor;
 	TextEditor te;
 	IProject project;
@@ -79,13 +95,31 @@ public class HandleDIffWithAnotherInfElemAction extends Action implements
 	}
 
 	public void run() {
-
 		HandleDIffWithAnotherInfElemDialog dialog = new HandleDIffWithAnotherInfElemDialog(
-				editor.getSite().getShell(), projectContent, refact.getFirstInfElementToCompare());
+				editor.getSite().getShell(), projectContent, refact);
 
 		int res = dialog.open();
+
 		if (res != Window.OK)
 			return;
+
+		CompareConfiguration cc = new CompareConfiguration();
+		// buffered merge mode: don't ask for confirmation
+		// when switching between modified resources
+		cc.setProperty(CompareEditor.CONFIRM_SAVE_PROPERTY, new Boolean(false));
+
+		// uncomment following line to have separate outline view
+		// cc.setProperty(CompareConfiguration.USE_OUTLINE_VIEW, new Boolean(true));
+
+		MyCompareInput input = new MyCompareInput(cc, refact.getFirstInfElementToCompare().getTextRepresentation(), refact.getSecondInfElementToCompare().getTextRepresentation());
+
+		/*Differencer differencer = new Differencer();
+		Object obj = differencer.findDifferences(false,null,null,null,refact.getFirstInfElementToCompare().getTextRepresentation(), refact.getSecondInfElementToCompare().getTextRepresentation());
+		System.out.println(obj);*/	
+		CompareUI.openCompareEditor(input);
+//		CompareUI.openCompareDialog(input);
+//		DrlTextEditor editor = new DrlTextEditor();
+//		CompareUI.reuseCompareEditor(input, editor);
 		/*
 		 * DRLDocument DRLdoc =
 		 * projectContent.DRLDocs.get(editorInput.getFile()); IDocument doc =
@@ -108,4 +142,67 @@ public class HandleDIffWithAnotherInfElemAction extends Action implements
 		 */
 	}
 
+	final class MyCompareInput extends CompareEditorInput {
+
+		private final String fLeft;
+		private final String fRight;
+
+		public MyCompareInput(CompareConfiguration configuration, String fleft, String fright) {
+			super(configuration);
+			configuration.setLeftLabel("firstInfElementToCompare");
+			configuration.setRightLabel("secondInfElementToCompare");
+			this.fLeft = fleft;
+			this.fRight = fright;
+		}
+
+		@Override
+		protected Object prepareInput(IProgressMonitor pm)
+				throws InvocationTargetException, InterruptedException {
+			// pm.beginTask(Utilities.getString("ResourceCompare.taskName"),
+			// IProgressMonitor.UNKNOWN);
+
+			/*String format = Utilities.getString("ResourceCompare.twoWay.title"); //$NON-NLS-1$
+			String title = MessageFormat.format(format, new String[] {
+					"firstInfElement", "secondInfElement" });
+			setTitle(title);*/
+
+			ITypedElement left = new MyTypedElem(fLeft);
+			ITypedElement right = new MyTypedElem(fRight);
+
+			return new DiffNode(left, right);
+		}
+		
+		final class MyTypedElem extends BufferedContent implements ITypedElement {
+
+			private final String string;
+
+			public MyTypedElem(String string) {
+				this.string = string;
+			}
+
+			@Override
+			public String getName() {
+				return "typedElemStringName";
+			}
+
+			@Override
+			public Image getImage() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public String getType() {
+				return ITypedElement.TEXT_TYPE;
+			}
+
+			@Override
+			protected InputStream createStream() throws CoreException {
+				return new ByteArrayInputStream(string.getBytes());
+			}
+
+		}
+		
+	}
+	
 }
