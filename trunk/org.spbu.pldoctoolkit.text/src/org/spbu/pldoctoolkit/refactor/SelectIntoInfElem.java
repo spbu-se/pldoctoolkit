@@ -3,6 +3,8 @@ package org.spbu.pldoctoolkit.refactor;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.eclipse.ui.IEditorPart;
+import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
@@ -241,6 +243,20 @@ public class SelectIntoInfElem {
 		}
 		
 		return infElemRefs;
+	}
+	
+	public SelectIntoInfElemDialog createSelectIntoInfElemDialog(IEditorPart editor, ProjectContent projectContent) {
+		SelectIntoInfElemDialog dialog = new SelectIntoInfElemDialog(editor
+				.getSite().getShell());
+
+		for (LangElem refs : projectContent.infElemRefs) {
+			dialog.addRefId(refs.attrs.getValue("id"));
+		}
+		for (LangElem elems : projectContent.infElems) {
+			dialog.addId(elems.attrs.getValue("id"));
+		}
+
+		return dialog;
 	}
 	
 	private void prepareNests() {		
