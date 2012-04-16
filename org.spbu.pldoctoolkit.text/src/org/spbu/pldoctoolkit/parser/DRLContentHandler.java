@@ -228,8 +228,9 @@ public class DRLContentHandler implements ContentHandler {
 	
 	private void savePosition(int line, int col) {
 		prevOffset = Util.getOffset(inputText, line, col, prevPos.line, prevPos.column, prevOffset);
-		prevPos.line = line;
-		prevPos.column = col;		
+//		prevPos.line = line;
+//		prevPos.column = col;
+		prevPos = new PositionInText(line, col);
 	}
 	
 	private void createComment(int length) {
