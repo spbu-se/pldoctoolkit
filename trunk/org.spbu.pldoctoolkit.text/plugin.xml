@@ -24,4 +24,14 @@
             id="org.spbu.pldoctoolkit.editors.DRLEditor"
             name="DRL Editor"/>
    </extension>
+   <extension
+         id="org.spbu.pldoctoolkit.compare_id"
+         name="org.spbu.pldoctoolkit.compare_name"
+         point="org.eclipse.ui.views">
+      <view
+            class="org.spbu.pldoctoolkit.clones.view.ClonesGroupResultView"
+            id="org.spbu.pldoctoolkit.clones.view.ClonesGroupResultView"
+            name="DocLine clones">
+      </view>
+   </extension>
 </plugin>

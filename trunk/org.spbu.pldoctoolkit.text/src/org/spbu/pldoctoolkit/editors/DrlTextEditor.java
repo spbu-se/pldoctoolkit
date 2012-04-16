@@ -11,6 +11,7 @@ import org.spbu.pldoctoolkit.actions.BasicExportAction;
 import org.spbu.pldoctoolkit.actions.DRLMenuListener;
 import org.spbu.pldoctoolkit.actions.ExtractInsertAfterAction;
 import org.spbu.pldoctoolkit.actions.ExtractInsertBeforeAction;
+import org.spbu.pldoctoolkit.actions.FindClonesInInfElemAction;
 import org.spbu.pldoctoolkit.actions.HandleDIffWithAnotherInfElemAction;
 import org.spbu.pldoctoolkit.actions.InsertTemplateAction;
 import org.spbu.pldoctoolkit.actions.InsertIntoDictionaryAction;
@@ -64,7 +65,8 @@ public class DrlTextEditor extends TextEditor {
 	
 	//smak
 	public static final String HANDLE_DIFF_WITH_ANOTHER_INF_ELEM = "handle_diff_with_another_inf_elem";
-	
+	public static final String FIND_CLONES_IN_INF_ELEM = "find_clones_in_inf_elem";
+
 	private ColorManager colorManager;
 	private DRLMenuListener menuListener = new DRLMenuListener();//minchin
 
@@ -240,6 +242,12 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		//shutak
+		try {
+			setAction(FIND_CLONES_IN_INF_ELEM, new FindClonesInInfElemAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public ISourceViewer DrlGetSourceViewer(){
@@ -283,7 +291,8 @@ public class DrlTextEditor extends TextEditor {
 		
 		//smak
 		addAction(refactMenu,HANDLE_DIFF_WITH_ANOTHER_INF_ELEM);
-		
+		//shutak
+		addAction(refactMenu, FIND_CLONES_IN_INF_ELEM);
 		//DRLMenuListener.instance.editor = this;
 		menuListener.menuAboutToShow(menu);
 	}
