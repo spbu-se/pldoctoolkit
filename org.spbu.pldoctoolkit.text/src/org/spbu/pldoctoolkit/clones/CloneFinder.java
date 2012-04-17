@@ -48,7 +48,9 @@ public final class CloneFinder {
 		File fileWithText = new File(cloneToolDirectory + tmpFile4TextName);
 		createFileWithTextInUtf16(fileWithText, infEl.getTextRepresentation());
 
-		CloneToolRunner.runTool(cloneToolDirectory);
+		CloneToolRunner cloneToolRunner = new CloneToolRunner();
+		cloneToolRunner.runTool(cloneToolDirectory);
+		while (!cloneToolRunner.completed());
 		CloneToolResultsParser parser = new CloneToolResultsParser();
 		List<ClonesGroupData> toolRez = parser.parse(cloneToolDirectory + RESULT_FILE_POSTFIX);
 

@@ -37,10 +37,6 @@ public class ClonesGroupResultView extends ViewPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
-		/*
-		 * Create a grid layout object so the text and treeviewer are layed out
-		 * the way I want.
-		 */
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 1;
 		layout.verticalSpacing = 2;
@@ -48,12 +44,6 @@ public class ClonesGroupResultView extends ViewPart {
 		layout.marginHeight = 2;
 		parent.setLayout(layout);
 
-		/*
-		 * Create a "label" to display information in. I'm using a text field
-		 * instead of a lable so you can copy-paste out of it.
-		 */
-		// text = new Text(parent, SWT.READ_ONLY | SWT.SINGLE | SWT.BORDER);
-		// // layout the text field above the treeviewer
 		GridData layoutData = new GridData();
 		layoutData.grabExcessHorizontalSpace = true;
 		layoutData.horizontalAlignment = GridData.FILL;
@@ -99,8 +89,8 @@ public class ClonesGroupResultView extends ViewPart {
 
 	public void setContent(List<IClonesGroup> clonesGroups) {
 		treeViewer.setInput(clonesGroups);
-		treeViewer.expandAll();
 		treeViewer.refresh(clonesGroups, true);
+		treeViewer.expandAll();
 	}
 	
 	private Action createDoubleCLickAction() {

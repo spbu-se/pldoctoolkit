@@ -1,6 +1,5 @@
 package org.spbu.pldoctoolkit.clones;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.spbu.pldoctoolkit.clones.ReaderThread.IStopper;
@@ -8,11 +7,11 @@ import org.spbu.pldoctoolkit.clones.ReaderThread.IStopper;
 public final class CloneToolRunner {
 
 	private static final String CMD = "clones_run.bat";
+	private volatile boolean completed;
 
-	public static void runTool(String cloneToolDir) {
+	public void runTool(String cloneToolDir) {
 		try {
 			Runtime r = Runtime.getRuntime();
-			System.out.println("CMD:"+cloneToolDir+CMD);
 			final Process p = r.exec(cloneToolDir + CMD);
 			IStopper readStopper = new IStopper(){
 				@Override
@@ -20,16 +19,17 @@ public final class CloneToolRunner {
 					boolean needStop = needStop(line);
 					if (needStop ){
 						try {
-							p.getOutputStream().write(' ');
+							p.getOutputStream().write(' ');//clone tool exit
 							p.getOutputStream().flush();
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
+						completed = true;
 					}
 					return needStop;
 				}
 			};
-			new ReaderThread(p.getInputStream(), readStopper ,false, "clone_tool" );
+			new ReaderThread(p.getInputStream(), readStopper ,false, "clone_tool", false );
 //			ReaderThread rt2 = new ReaderThread(p.getErrorStream(),readStopper,true, name+"_err" );
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -39,6 +39,10 @@ public final class CloneToolRunner {
 	private static boolean needStop(String line){
 		//TODO Need delete second condition
 		return line.startsWith("Total Time Taken =")||line.startsWith("Total Groups 0");
+	}
+
+	public boolean completed() {
+		return completed;
 	}
 
 }

@@ -1,6 +1,5 @@
 package org.spbu.pldoctoolkit.actions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IProject;
@@ -16,7 +15,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
-import org.spbu.pldoctoolkit.clones.ICloneInst;
 import org.spbu.pldoctoolkit.clones.IClonesGroup;
 import org.spbu.pldoctoolkit.clones.view.ClonesGroupResultView;
 import org.spbu.pldoctoolkit.editors.DrlTextEditor;
@@ -29,7 +27,7 @@ import org.spbu.pldoctoolkit.registry.ProjectRegistryImpl;
 import org.spbu.pldoctoolkit.clones.*;
 
 public final class FindClonesInInfElemAction extends Action implements
-IValidateDRLSelection {
+		IValidateDRLSelection {
 
 	private static String refactName = "Find clones in InfElem";
 	private final DrlTextEditor drlTextEditor;
@@ -39,7 +37,6 @@ IValidateDRLSelection {
 	private ClonesGroupResultView view;
 	private LangElem infElementToFindOfClones;
 
-	
 	public FindClonesInInfElemAction(DrlTextEditor drlTextEditor) {
 		super(refactName);
 		this.drlTextEditor = drlTextEditor;
@@ -55,7 +52,8 @@ IValidateDRLSelection {
 		ISelection sel = drlTextEditor.getSelectionProvider().getSelection();
 		TextSelection ts = (TextSelection) sel;
 
-		IDocument doc = drlTextEditor.getDocumentProvider().getDocument(editorInput);
+		IDocument doc = drlTextEditor.getDocumentProvider().getDocument(
+				editorInput);
 		DRLDocument DRLdoc = projectContent.DRLDocs.get(editorInput.getFile());
 		try {
 			int line1 = ts.getStartLine();
@@ -65,7 +63,7 @@ IValidateDRLSelection {
 					- doc.getLineOffset(line2);
 			PositionInText pos1 = new PositionInText(line1 + 1, column1 + 1);
 			PositionInText pos2 = new PositionInText(line2 + 1, column2 + 1);
-			
+
 			if (pos1.compare(pos2) == 0) {
 				setEnabled(false);
 				return;
@@ -77,12 +75,11 @@ IValidateDRLSelection {
 		}
 		setEnabled(true);
 	}
+
 	private boolean selectedAreaIsInfElem(DRLDocument doc,
 			PositionInText startPos, PositionInText endPos) {
 		PositionInDRL from = doc.findByPosition(startPos);
-		PositionInDRL to = doc.findByPosition(endPos);
-		boolean selectedBorderInTag = from.isInTag || to.isInTag;
-		boolean selectedAllElem = to.parent == from.parent && from.next == to.prev;
+		boolean selectedBorderInTag = from.isInTag;
 		LangElem elem;
 		try {
 			elem = (LangElem) from.next;
@@ -93,13 +90,11 @@ IValidateDRLSelection {
 			return false;
 		}
 		boolean selectedIsInfElem = elem.tag.equals(LangElem.INFELEMENT);
-		
+
 		if (!selectedBorderInTag && !selectedBorderInTag) {
-			if (selectedAllElem) {
-				if (selectedIsInfElem) {
-					infElementToFindOfClones= elem;
-					return true;
-				}
+			if (selectedIsInfElem) {
+				infElementToFindOfClones = elem;
+				return true;
 			}
 		}
 		return false;
@@ -115,7 +110,7 @@ IValidateDRLSelection {
 		List<IClonesGroup> clonesGroups = getClonesGroups();
 		view.setContent(clonesGroups);
 	}
-	
+
 	private List<IClonesGroup> getClonesGroups() {
 		CloneFinder cloneFinder = new CloneFinder();
 		return cloneFinder.findClones(infElementToFindOfClones);
@@ -132,5 +127,4 @@ IValidateDRLSelection {
 		return window.getActivePage();
 	}
 
-	
 }
