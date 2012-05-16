@@ -7,8 +7,8 @@ import org.spbu.pldoctoolkit.refactor.PositionInText;
 
 public class CloneInstImpl implements ICloneInst {
 
-	private final PositionInText localStartPosOfClone;
-	private final PositionInText localEndPosOfClone;
+	private PositionInText localStartPosOfClone;
+	private PositionInText localEndPosOfClone;
 	private final LangElem infEl;
 	private String cloneText;
 
@@ -18,6 +18,14 @@ public class CloneInstImpl implements ICloneInst {
 		this.localStartPosOfClone = localStartPos;
 		this.localEndPosOfClone = extractCloneTextAndGetTrueEndPosit(
 				localStartPos, localEndPos);
+	}
+	
+	public CloneInstImpl(LangElem infEl, PositionInText localStartPos,
+			PositionInText localEndPos, String cloneText) {
+		this.infEl = infEl;
+		this.localStartPosOfClone = localStartPos;
+		this.localEndPosOfClone = localEndPos;
+		this.cloneText = cloneText;
 	}
 
 	@Override
@@ -39,10 +47,15 @@ public class CloneInstImpl implements ICloneInst {
 	}
 
 	@Override
+	public LangElem getInfEl() {
+		return infEl;
+	}
+
+	@Override
 	public String getCloneText() {
 		return cloneText;
 	}
-
+	
 	private PositionInText extractCloneTextAndGetTrueEndPosit(
 			PositionInText localStartPosOfClone,
 			PositionInText localEndPosOfClone) {
@@ -113,11 +126,13 @@ public class CloneInstImpl implements ICloneInst {
 				getFullTextOfFile());
 	}
 
-	private PositionInText getAbsoluteStartPos() {
+	@Override
+	public PositionInText getAbsoluteStartPos() {
 		return getAbsolutePosition(infEl.getTagStartPos(), localStartPosOfClone);
 	}
 
-	private PositionInText getAbsoluteEndPos() {
+	@Override
+	public PositionInText getAbsoluteEndPos() {
 		return getAbsolutePosition(infEl.getTagStartPos(), localEndPosOfClone);
 	}
 

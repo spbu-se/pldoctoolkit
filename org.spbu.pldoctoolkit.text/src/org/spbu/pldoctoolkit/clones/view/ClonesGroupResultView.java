@@ -30,25 +30,34 @@ import org.eclipse.jface.viewers.OpenEvent;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeExpansionEvent;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.events.HelpEvent;
 import org.eclipse.swt.events.HelpListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.ViewPart;
+import org.spbu.pldoctoolkit.actions.ExtractAsNewInfElem;
 import org.spbu.pldoctoolkit.clones.*;
+import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
+import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
+import org.spbu.pldoctoolkit.parser.DRLLang.Element;
+import org.spbu.pldoctoolkit.refactor.CreateNest;
+import org.spbu.pldoctoolkit.refactor.SelectIntoInfElem;
 
 public class ClonesGroupResultView extends ViewPart {
-	
+
+	private IEditorPart editor;
 	private TreeViewer treeViewer;
 	private Action doubleClickAction;
 
 	@Override
 	public void createPartControl(Composite parent) {
-		
+
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 1;
 		layout.verticalSpacing = 2;
@@ -85,7 +94,7 @@ public class ClonesGroupResultView extends ViewPart {
 				doubleClickAction.run();
 			}
 		});
-		
+
 		createPopupMenu();
 	}
 
@@ -96,44 +105,35 @@ public class ClonesGroupResultView extends ViewPart {
 		menuMgr.setRemoveAllWhenShown(true);
 		treeViewer.getControl().setMenu(menu);
 	}
-	
+
 	private final class MyMenuListener implements IMenuListener {
 		@Override
 		public void menuAboutToShow(IMenuManager manager) {
 			ISelection iSelection = treeViewer.getSelection();
-			if ( ! iSelection.isEmpty() && iSelection instanceof IStructuredSelection){
+			if (!iSelection.isEmpty()
+					&& iSelection instanceof IStructuredSelection) {
 				IStructuredSelection selection = (IStructuredSelection) iSelection;
-				if (selection.getFirstElement() instanceof IClonesGroup){
-					manager.add(new ExtractAsNewInfElem("Extract as new InfElem"));						
+				if (selection.getFirstElement() instanceof IClonesGroup) {
+					manager.add(new ExtractAsNewInfElem((IClonesGroup) selection
+									.getFirstElement(), editor));
 				}
 			}
 		}
-	}
-	
-	private final static class ExtractAsNewInfElem extends Action{
-		
-		ExtractAsNewInfElem(String text){
-			super(text);
-		}
-		
-		public void run() {
-			System.out.println("Ruuuun");
-		}
-		
 	}
 
 	@Override
 	public void setFocus() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void setContent(List<IClonesGroup> clonesGroups) {
+	public void setContent(List<IClonesGroup> clonesGroups, IEditorPart editor) {
+		this.editor = editor;
 		treeViewer.setInput(clonesGroups);
 		treeViewer.refresh(clonesGroups, true);
 		treeViewer.expandAll();
 	}
-	
+
 	private Action createDoubleCLickAction() {
 
 		return new Action() {
@@ -144,7 +144,8 @@ public class ClonesGroupResultView extends ViewPart {
 				if (obj instanceof IClonesGroup) {
 					IClonesGroup clonesGroup = (IClonesGroup) obj;
 					if (treeViewer.getExpandedState(clonesGroup)) {
-						treeViewer.collapseToLevel(clonesGroup, TreeViewer.ALL_LEVELS);
+						treeViewer.collapseToLevel(clonesGroup,
+								TreeViewer.ALL_LEVELS);
 					} else {
 						treeViewer.expandToLevel(clonesGroup, 1);
 					}
@@ -155,8 +156,10 @@ public class ClonesGroupResultView extends ViewPart {
 						IFile file = ResourcesPlugin.getWorkspace().getRoot()
 								.getFile(new Path(path));
 						IMarker marker = file.createMarker(IMarker.TEXT);
-						marker.setAttribute(IMarker.CHAR_START, cloneInst.getAbsoluteStartPosition());
-						marker.setAttribute(IMarker.CHAR_END, cloneInst.getAbsoluteEndPosition());
+						marker.setAttribute(IMarker.CHAR_START, cloneInst
+								.getAbsoluteStartPosition());
+						marker.setAttribute(IMarker.CHAR_END, cloneInst
+								.getAbsoluteEndPosition());
 
 						IDE.openEditor(getSite().getPage(), marker);
 						marker.delete();
@@ -166,35 +169,35 @@ public class ClonesGroupResultView extends ViewPart {
 						e.printStackTrace();
 					}
 				} else {
-//					treeViewer.refresh(root, false);
+					// treeViewer.refresh(root, false);
 					throw new IllegalStateException();
 				}
 			}
 		};
 	}
-	
-//	private void createToolbar() {
-//		Object addBookAction;
-//		getViewSite().
-////		IAction addBookAction = new Action(){
-////			public void run() {
-////				System.out.println("Actiooooooon!");
-////			}
-////		};
-//		toolbarManager.add(addBookAction );
-//		// toolbarManager.add(removeAction);
-//	}
 
-//	private void createToolbar() {
-//		IToolBarManager toolbarManager = getViewSite().getActionBars()
-//				.getToolBarManager();
-//		getViewSite().registerContextMenu(menuManager, selectionProvider);
-//		IAction action = new Action(){
-//			public void run() {
-//			System.out.println("Actiooooooon!");
-//		}
-//		};
-//		toolbarManager.add(action );
-//	}
-	
+	// private void createToolbar() {
+	// Object addBookAction;
+	// getViewSite().
+	// // IAction addBookAction = new Action(){
+	// // public void run() {
+	// // System.out.println("Actiooooooon!");
+	// // }
+	// // };
+	// toolbarManager.add(addBookAction );
+	// // toolbarManager.add(removeAction);
+	// }
+
+	// private void createToolbar() {
+	// IToolBarManager toolbarManager = getViewSite().getActionBars()
+	// .getToolBarManager();
+	// getViewSite().registerContextMenu(menuManager, selectionProvider);
+	// IAction action = new Action(){
+	// public void run() {
+	// System.out.println("Actiooooooon!");
+	// }
+	// };
+	// toolbarManager.add(action );
+	// }
+
 }

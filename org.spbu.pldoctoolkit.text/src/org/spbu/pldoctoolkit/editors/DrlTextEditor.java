@@ -236,7 +236,7 @@ public class DrlTextEditor extends TextEditor {
 			e.printStackTrace();
 		}
 		
-		//smak
+		//smazhevsky
 		try {
 			setAction(HANDLE_DIFF_WITH_ANOTHER_INF_ELEM, new HandleDIffWithAnotherInfElemAction(this));
 		} catch (Exception e) {
@@ -289,7 +289,7 @@ public class DrlTextEditor extends TextEditor {
 		addAction(refactMenu, MAKE_REF_OPTIONAL);
 		addAction(refactMenu,MAKE_REF_REQUIRED);
 		
-		//smak
+		//smazhevsky
 		addAction(refactMenu,HANDLE_DIFF_WITH_ANOTHER_INF_ELEM);
 		//shutak
 		addAction(refactMenu, FIND_CLONES_IN_INF_ELEM);
