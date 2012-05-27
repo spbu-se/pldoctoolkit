@@ -158,8 +158,8 @@ public class SplitInfElemDialog extends Dialog {
 			line = Integer.decode(xText.getText());
 			column = Integer.decode(yText.getText());
 			
-			firstInfElem.setValidationPararams(firstInfElem.project, firstInfElem.doc, firstSonStartPos, new PositionInText(line, column-1));
-			secondInfElem.setValidationPararams(secondInfElem.project, secondInfElem.doc,  new PositionInText(line, column), lastSonEndPos);
+			firstInfElem.setValidationPararams(firstInfElem.project, firstInfElem.getPositionToReplace().getDoc(), firstSonStartPos, new PositionInText(line, column-1));
+			secondInfElem.setValidationPararams(secondInfElem.project, secondInfElem.getPositionToReplace().getDoc(),  new PositionInText(line, column), lastSonEndPos);
 			firstInfElem.reset();
 			firstInfElem.reset();
 			boolean isValidSplit = firstInfElem.validate() && secondInfElem.validate();
