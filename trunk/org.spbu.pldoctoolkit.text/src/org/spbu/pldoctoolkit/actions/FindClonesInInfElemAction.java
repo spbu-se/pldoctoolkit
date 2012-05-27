@@ -1,12 +1,18 @@
 package org.spbu.pldoctoolkit.actions;
 
+import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ISelection;
@@ -18,6 +24,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.part.FileEditorInput;
+import org.spbu.pldoctoolkit.DrlPublisherPlugin;
 import org.spbu.pldoctoolkit.PLDocToolkitPlugin;
 import org.spbu.pldoctoolkit.clones.IClonesGroup;
 import org.spbu.pldoctoolkit.clones.view.ClonesGroupResultView;
@@ -112,6 +119,7 @@ public final class FindClonesInInfElemAction extends Action implements
 		return false;
 	}
 
+	private volatile List<IClonesGroup> clonesGroups = null;
 	@Override
 	public void run() {
 		try {
@@ -119,14 +127,33 @@ public final class FindClonesInInfElemAction extends Action implements
 		} catch (PartInitException e) {
 			e.printStackTrace();
 		}
-//		int lineOfBadString = textContainsStringWithLengthMore299(infElementToFindOfClones.getTextRepresentation());
-//		if (lineOfBadString !=-1){
-//			System.out.println("Bad string line+"+lineOfBadString);
-//		}
-//		System.out.println("infElText:\n"+infElementToFindOfClones.getTextRepresentation());
-		List<IClonesGroup> clonesGroups = getClonesGroups();
+		//progress monitor
+		IRunnableWithProgress op = new IRunnableWithProgress() {
+			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+				monitor.beginTask("DocLine clones finding ...", 24);
+				clonesGroups = getClonesGroups(monitor);
+				monitor.done();
+			}
+		};
+		ProgressMonitorDialog pmDialog = new ProgressMonitorDialog(DrlPublisherPlugin.getShell());
+		try {
+			pmDialog.run(true, false, op);
+			int returnCode = pmDialog.getReturnCode();
+			if (returnCode == ProgressMonitorDialog.OK)
+				showMessage(null);
+		} catch (InvocationTargetException e) {
+			showMessage(e);
+		} catch (InterruptedException e) {
+			showMessage(e);
+		}
 		view.setContent(clonesGroups, editor);
-//		view.setContent(specifyClonesGroups(clonesGroups), editor);
+	}
+	
+	private void showMessage(Exception e) {
+		if (e == null){
+//			MessageDialog.openInformation(DrlPublisherPlugin.getShell(), "Information", "Export successfull");
+		}else
+			MessageDialog.openError(DrlPublisherPlugin.getShell(), "Error", "Export failed: " + e.getCause().getMessage());
 	}
 
 	private void formatTextInDrlFile(IEditorPart editor2) {
@@ -147,9 +174,9 @@ public final class FindClonesInInfElemAction extends Action implements
 		return -1;
 	}
 
-	private List<IClonesGroup> getClonesGroups() {
+	private List<IClonesGroup> getClonesGroups(IProgressMonitor monitor) {
 		CloneFinder cloneFinder = new CloneFinder();
-		return cloneFinder.findClones(infElementToFindOfClones);
+		return cloneFinder.findClones(infElementToFindOfClones, monitor);
 	}
 
 	private void showView() throws PartInitException {

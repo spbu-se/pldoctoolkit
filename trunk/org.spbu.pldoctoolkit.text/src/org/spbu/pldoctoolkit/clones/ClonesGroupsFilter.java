@@ -23,7 +23,7 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 final class ClonesGroupsFilter {
 
-	private static final String DELIMITERS_OF_DOCBOOK = " \n\t";
+	static final String DELIMITERS_OF_DOCBOOK = " \n\t";
 
 	public List<IClonesGroup> specifyClonesGroups4DRL(List<IClonesGroup> input, LangElem infEl) {
 		List<IClonesGroup> output = new ArrayList<IClonesGroup>();

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 
@@ -27,18 +28,25 @@ public final class CloneFinder {
 	private static final String tmpFile4TextName = "tmpFile4CloneFinding.txt";
 	private LangElem infEl;
 
-	public List<IClonesGroup> findClones(LangElem infElementToFindOfClones){
-		return findClones(DEFAULT_CLONE_TOOL_DIR, infElementToFindOfClones);
+	public List<IClonesGroup> findClones(LangElem infElementToFindOfClones, IProgressMonitor monitor){
+		return findClones(DEFAULT_CLONE_TOOL_DIR, infElementToFindOfClones, monitor);
 	}
 	
-	public List<IClonesGroup> findClones(String cloneToolDirectory, LangElem infElementToFindOfClones) {
+	public List<IClonesGroup> findClones(LangElem infElementToFindOfClones){
+		return findClones(infElementToFindOfClones, null);
+	}
+	
+	public List<IClonesGroup> findClones(String cloneToolDirectory, LangElem infElementToFindOfClones, IProgressMonitor monitor) {
 		List<IClonesGroup> rez = null;
 		try{
-		this.infEl = infElementToFindOfClones;
+			this.infEl = infElementToFindOfClones;
+			if (monitor != null)
+				monitor.subTask("CloneMiner working ...");
 			long startInMillis = System.currentTimeMillis();
 			File inputFile = new File(cloneToolDirectory + INPUT_FILE_POSTFIX);
 			createFileWithTextInUtf8(inputFile, tmpFile4TextName);
 			File fileWithText = new File(cloneToolDirectory + tmpFile4TextName);
+			//TODO for CloneMiner utf16 version need use next line
 			// createFileWithTextInUtf8(fileWithText,
 			// infEl.getTextRepresentation());
 			createFileWithText(fileWithText, infEl.getTextRepresentation(),
@@ -48,6 +56,10 @@ public final class CloneFinder {
 			cloneToolRunner.runTool(cloneToolDirectory);
 			while (!cloneToolRunner.completed())
 				;
+			if (monitor != null){
+				monitor.worked(2);
+				monitor.subTask("Parsing of CloneMiner results ...");
+			}
 			CloneToolResultsParser parser = new CloneToolResultsParser();
 			List<ClonesGroupData> toolRez = parser.parse(cloneToolDirectory
 					+ RESULT_FILE_POSTFIX);
@@ -58,10 +70,21 @@ public final class CloneFinder {
 			System.out.println("Time of CloneMiner run and parsing: "
 					+ (System.currentTimeMillis() - startInMillis) / 1000
 					+ " sec");
+			if (monitor != null){
+				monitor.worked(2);				
+				monitor.subTask("Conversion of results ...");
+			}
 			rez = convertToolResultsToListOfClones(toolRez);
-			System.out.println("Ok convertation");
+			System.out.println("Ok conversion");
+			if (monitor != null){
+				monitor.worked(10);				
+				monitor.subTask("Filtration of results ...");
+			}
 			ClonesGroupsFilter filter = new ClonesGroupsFilter();
 			rez = filter.specifyClonesGroups4DRL(rez, infEl);
+			if (monitor != null){
+				monitor.worked(10);				
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public final class ClonesGroupImpl implements IClonesGroup {
 	
@@ -11,7 +12,7 @@ public final class ClonesGroupImpl implements IClonesGroup {
 	private final List<ICloneInst> insts = new ArrayList<ICloneInst>();
 	private boolean instsIsSorted = true;
 	private int clonesGroupId;
-	private final int termCount;
+	private int termCount;
 	
 
 	public ClonesGroupImpl(int clonesGroupId, int termCount) {
@@ -42,8 +43,16 @@ public final class ClonesGroupImpl implements IClonesGroup {
 		if (insts.isEmpty())
 			return "Empty clone group";
 		String cloneText = insts.get(0).getCloneText();
-		if (cloneText.length()>MAX_LENGTH_OF_TEXT_4_PRINT)
-			cloneText = cloneText.substring(0, MAX_LENGTH_OF_TEXT_4_PRINT)+"...";
+		if (cloneText.length() > MAX_LENGTH_OF_TEXT_4_PRINT)
+			cloneText = cloneText.substring(0, MAX_LENGTH_OF_TEXT_4_PRINT)
+					+ "...";
+		if (termCount == -1) {
+			termCount = 0;
+			for (StringTokenizer tok = new StringTokenizer(insts.get(0)
+					.getCloneText(), ClonesGroupsFilter.DELIMITERS_OF_DOCBOOK); tok
+					.hasMoreTokens(); tok.nextToken(), termCount++)
+				;
+		}
 		return clonesGroupId+") Text: \""+cloneText + "\" found "+insts.size() + " times and contains "+termCount+" term(s).";
 	}
 	@Override
