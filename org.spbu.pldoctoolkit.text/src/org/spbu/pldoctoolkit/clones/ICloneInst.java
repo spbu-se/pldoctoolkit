@@ -15,10 +15,8 @@ public interface ICloneInst {
 
 	String getCloneText();
 
-	String getFirstLineOfCloneText();
+	PositionInText getStartPos4EntireDocument();
 
-	PositionInText getAbsoluteStartPos();
-
-	PositionInText getAbsoluteEndPos();
+	PositionInText getEndPos4EntireDocument();
 	
 }

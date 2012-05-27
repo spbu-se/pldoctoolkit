@@ -13,6 +13,11 @@ public abstract class Element {
 	protected DRLDocument doc;
 
 	public int offsetInTextRepresentation;
+	
+	public String toString(){
+		return "[pos:"+startLine+"."+startColumn+"-"+endLine+"."+endColumn 
+		+ " startPos:"+startPos+" endPos:"+endPos+ " tagStartPos:" + tagStartPos+"]";
+	}
 
 	/*
 	 * public int getStartLine() { return startLine; }

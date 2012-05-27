@@ -2,7 +2,9 @@ package org.spbu.pldoctoolkit.actions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.text.IDocument;
@@ -73,6 +75,7 @@ public final class FindClonesInInfElemAction extends Action implements
 				return;
 			}
 			setEnabled(selectedAreaIsInfElem(DRLdoc, pos1, pos2));
+//			setEnabled(true);
 		} catch (Exception e) {
 			setEnabled(false);
 			e.printStackTrace();
@@ -116,9 +119,32 @@ public final class FindClonesInInfElemAction extends Action implements
 		} catch (PartInitException e) {
 			e.printStackTrace();
 		}
+//		int lineOfBadString = textContainsStringWithLengthMore299(infElementToFindOfClones.getTextRepresentation());
+//		if (lineOfBadString !=-1){
+//			System.out.println("Bad string line+"+lineOfBadString);
+//		}
+//		System.out.println("infElText:\n"+infElementToFindOfClones.getTextRepresentation());
 		List<IClonesGroup> clonesGroups = getClonesGroups();
-//		view.setContent(clonesGroups, editor);
-		view.setContent(specifyClonesGroups(clonesGroups), editor);
+		view.setContent(clonesGroups, editor);
+//		view.setContent(specifyClonesGroups(clonesGroups), editor);
+	}
+
+	private void formatTextInDrlFile(IEditorPart editor2) {
+		IFile file = ((FileEditorInput) editor.getEditorInput()).getFile();
+		IProject project = file.getProject();
+		ProjectContent projectContent = (ProjectContent) ((ProjectRegistryImpl) PLDocToolkitPlugin
+				.getRegistry(project.getName())).projectContent;
+		projectContent.saveAll();		
+	}
+
+	private int textContainsStringWithLengthMore299(String text) {
+		StringTokenizer sTok = new StringTokenizer(text, "\n");
+		for (int i = 1;sTok.hasMoreTokens();i++){
+			if (sTok.nextToken().length()>299){
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	private List<IClonesGroup> getClonesGroups() {
@@ -126,51 +152,51 @@ public final class FindClonesInInfElemAction extends Action implements
 		return cloneFinder.findClones(infElementToFindOfClones);
 	}
 
-	private List<IClonesGroup> specifyClonesGroups(List<IClonesGroup> groups) {
-		List<IClonesGroup> specifiedGroups = new ArrayList<IClonesGroup>(groups
-				.size());
-		DRLDocument doc = projectContent.DRLDocs.get(editorInput.getFile());
-		for (IClonesGroup group : groups) {
-			IClonesGroup specifiedGroup = new ClonesGroupImpl();
-			for (ICloneInst inst : group.getInstances()) {
-				System.out.println("BEGIN " + inst.getCloneText() + " END");
-				PositionInDRL from = doc.findByPosition(inst.getAbsoluteStartPos());
-				PositionInDRL to = doc.findByPosition(inst.getAbsoluteEndPos());
-				int start = inst.getAbsoluteStartPos().column;
-				int end = inst.getAbsoluteEndPos().column;
-				boolean wasInLoop = false;
-				while (from.isInTag) {
-					wasInLoop = true;
-					start++;
-					from = doc.findByPosition(new PositionInText(inst.getAbsoluteStartPos().line, start));
-				}
-				if (wasInLoop) {
-					from = doc.findByPosition(new PositionInText(inst.getAbsoluteStartPos().line, start + 1));
-				}
-				Element first = from.elem != null ? from.elem : from.next;
-				wasInLoop = false;
-				while (to.isInTag) {
-					wasInLoop = true;
-					end--;
-					to = doc.findByPosition(new PositionInText(inst.getAbsoluteEndPos().line, end));
-				}
-				if (wasInLoop) {
-					to = doc.findByPosition(new PositionInText(inst.getAbsoluteEndPos().line, end - 1));
-				}
-				Element last = to.elem != null ? to.elem : to.prev;
-
-				//System.out.println(first.getTextRepresentation());
-				//System.out.println(last.getTextRepresentation());
-				ICloneInst specifiedInstance = new DRLCloneInstImpl(inst
-						.getInfEl(), first.getStartPos(), new PositionInText(last.getEndPos().line, last.getEndPos().column - 1), inst.getCloneText());
-				specifiedGroup.addCloneInst(specifiedInstance);
-			}
-			if (!specifiedGroup.getInstances().isEmpty()) {
-				specifiedGroups.add(specifiedGroup);
-			}
-		}
-		return specifiedGroups;
-	}
+//	private List<IClonesGroup> specifyClonesGroups(List<IClonesGroup> groups) {
+//		List<IClonesGroup> specifiedGroups = new ArrayList<IClonesGroup>(groups
+//				.size());
+//		DRLDocument doc = projectContent.DRLDocs.get(editorInput.getFile());
+//		for (IClonesGroup group : groups) {
+//			IClonesGroup specifiedGroup = new ClonesGroupImpl();
+//			for (ICloneInst inst : group.getInstances()) {
+//				System.out.println("BEGIN " + inst.getCloneText() + " END");
+//				PositionInDRL from = doc.findByPosition(inst.getStartPos4EntireDocument());
+//				PositionInDRL to = doc.findByPosition(inst.getEndPos4EntireDocument());
+//				int start = inst.getStartPos4EntireDocument().column;
+//				int end = inst.getEndPos4EntireDocument().column;
+//				boolean wasInLoop = false;
+//				while (from.isInTag) {
+//					wasInLoop = true;
+//					start++;
+//					from = doc.findByPosition(new PositionInText(inst.getStartPos4EntireDocument().line, start));
+//				}
+//				if (wasInLoop) {
+//					from = doc.findByPosition(new PositionInText(inst.getStartPos4EntireDocument().line, start + 1));
+//				}
+//				Element first = from.elem != null ? from.elem : from.next;
+//				wasInLoop = false;
+//				while (to.isInTag) {
+//					wasInLoop = true;
+//					end--;
+//					to = doc.findByPosition(new PositionInText(inst.getEndPos4EntireDocument().line, end));
+//				}
+//				if (wasInLoop) {
+//					to = doc.findByPosition(new PositionInText(inst.getEndPos4EntireDocument().line, end - 1));
+//				}
+//				Element last = to.elem != null ? to.elem : to.prev;
+//
+//				//System.out.println(first.getTextRepresentation());
+//				//System.out.println(last.getTextRepresentation());
+//				ICloneInst specifiedInstance = new DRLCloneInstImpl(inst
+//						.getInfEl(), first.getStartPos(), new PositionInText(last.getEndPos().line, last.getEndPos().column - 1), inst.getCloneText());
+//				specifiedGroup.addCloneInst(specifiedInstance);
+//			}
+//			if (!specifiedGroup.getInstances().isEmpty()) {
+//				specifiedGroups.add(specifiedGroup);
+//			}
+//		}
+//		return specifiedGroups;
+//	}
 	
 	/*private List<IClonesGroup> specifyClonesGroups(List<IClonesGroup> groups) {
 		List<IClonesGroup> specifiedGroups = new ArrayList<IClonesGroup>(groups

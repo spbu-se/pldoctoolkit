@@ -68,8 +68,8 @@ public final class ExtractAsNewInfElem extends Action {
 		List<PositionInText> l1 = new ArrayList<PositionInText>();
 		List<PositionInText> l2 = new ArrayList<PositionInText>();
 		for (ICloneInst inst : cloneGroupToRefactor.getInstances()) {
-			l1.add(inst.getAbsoluteStartPos());
-			l2.add(inst.getAbsoluteEndPos());
+			l1.add(inst.getStartPos4EntireDocument());
+			l2.add(inst.getEndPos4EntireDocument());
 		}
 		refactSelectIntoInfElem.setPararams(selectIntoInfElemDialog
 				.getInfElemId(), selectIntoInfElemDialog.getInfElemName(),
