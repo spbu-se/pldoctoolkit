@@ -14,6 +14,7 @@ import org.spbu.pldoctoolkit.clones.ICloneInst;
 import org.spbu.pldoctoolkit.clones.IClonesGroup;
 import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
+import org.spbu.pldoctoolkit.refactor.ElementPositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
 import org.spbu.pldoctoolkit.refactor.SelectIntoInfElem;
@@ -64,17 +65,18 @@ public final class ExtractAsNewInfElem extends Action {
 		projectContent.saveAll();*/
 
 		
-		DRLDocument DRLdoc = projectContent.DRLDocs.get(file);
-		List<PositionInText> l1 = new ArrayList<PositionInText>();
-		List<PositionInText> l2 = new ArrayList<PositionInText>();
+		//DRLDocument DRLdoc = projectContent.DRLDocs.get(file);
+		List<ElementPositionInDRL> list = new ArrayList<ElementPositionInDRL>();
 		for (ICloneInst inst : cloneGroupToRefactor.getInstances()) {
-			l1.add(inst.getStartPos4EntireDocument());
-			l2.add(inst.getEndPos4EntireDocument());
+			ElementPositionInDRL eInDRL = new ElementPositionInDRL();
+			eInDRL.setFromText(inst.getStartPos4EntireDocument());
+			eInDRL.setToText(inst.getEndPos4EntireDocument());
+			eInDRL.setDoc(projectContent.DRLDocs.get(file));
+			list.add(eInDRL);
 		}
 		refactSelectIntoInfElem.setPararams(selectIntoInfElemDialog
 				.getInfElemId(), selectIntoInfElemDialog.getInfElemName(),
-				selectIntoInfElemDialog.getInfElemRefId(), projectContent,
-				DRLdoc, l1, l2);
+				selectIntoInfElemDialog.getInfElemRefId(), projectContent, list);
 		refactSelectIntoInfElem.perform();
 		projectContent.saveAll();
 		
