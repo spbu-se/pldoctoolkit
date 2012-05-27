@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import net.sf.saxon.expr.PositionRange;
+
 import org.eclipse.ui.IEditorPart;
 import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
@@ -17,7 +19,7 @@ public class SelectIntoInfElem {
 	public ProjectContent project;
 	public ElementPositionInDRL positionToReplace = new ElementPositionInDRL();
 	// public List<PositionInText> cloneFromTexts, cloneToTexts;
-	public List<ElementPositionInDRL> clonePositions;
+	public List<ElementPositionInDRL> cloneOrSimilarElementPositions;
 	//public DRLDocument doc;
 
 	private ArrayList<LangElem> infElemRefs = null;
@@ -51,39 +53,32 @@ public class SelectIntoInfElem {
 		this.positionToReplace.setDoc(doc);
 	}
 
-	public void setPararams(String id, String name, String refId,
-			ProjectContent project, DRLDocument doc,
-			List<PositionInText> fromTexts, List<PositionInText> toTexts) {
-		setPararams(id, name, refId, project, doc, fromTexts.remove(0), toTexts
-				.remove(0));
-		if (fromTexts.size() == toTexts.size()) {
-			clonePositions = new ArrayList<ElementPositionInDRL>();
-			for (int i = 0; i < fromTexts.size(); i++) {
-				ElementPositionInDRL eInDRL = new ElementPositionInDRL();
-				eInDRL.setFromText(fromTexts.get(i));
-				eInDRL.setToText(toTexts.get(i));
-				eInDRL.setDoc(doc);
-				clonePositions.add(eInDRL);
-			}
-		}
-	}
-
 	/*public void setPararams(String id, String name, String refId,
 			ProjectContent project, DRLDocument doc,
 			List<PositionInText> fromTexts, List<PositionInText> toTexts) {
 		setPararams(id, name, refId, project, doc, fromTexts.remove(0), toTexts
 				.remove(0));
 		if (fromTexts.size() == toTexts.size()) {
-			clonePositions = new ArrayList<ElementPositionInDRL>();
+			cloneOrSimilarElementPositions = new ArrayList<ElementPositionInDRL>();
 			for (int i = 0; i < fromTexts.size(); i++) {
 				ElementPositionInDRL eInDRL = new ElementPositionInDRL();
 				eInDRL.setFromText(fromTexts.get(i));
 				eInDRL.setToText(toTexts.get(i));
 				eInDRL.setDoc(doc);
-				clonePositions.add(eInDRL);
+				cloneOrSimilarElementPositions.add(eInDRL);
 			}
 		}
 	}*/
+
+	public void setPararams(String id, String name, String refId,
+			ProjectContent project, List<ElementPositionInDRL> elementPositions) {
+		this.elemId = id;
+		this.elemName = name;
+		this.refId = refId;
+		this.project = project;
+		this.positionToReplace = elementPositions.remove(0);
+		this.cloneOrSimilarElementPositions = elementPositions;
+	}
 	
 	public void setValidationPararams(ProjectContent project, DRLDocument doc,
 			PositionInText fromText, PositionInText toText) {
@@ -112,10 +107,10 @@ public class SelectIntoInfElem {
 		if (positionToReplace.getFrom().isInTag == true)
 			return;
 
-		if (clonePositions != null) {
-			for (int i = 0; i < clonePositions.size(); i++) {
-				clonePositions.get(i).init();
-				if (clonePositions.get(i).getFrom().isInTag == true)
+		if (cloneOrSimilarElementPositions != null) {
+			for (int i = 0; i < cloneOrSimilarElementPositions.size(); i++) {
+				cloneOrSimilarElementPositions.get(i).init();
+				if (cloneOrSimilarElementPositions.get(i).getFrom().isInTag == true)
 					return;
 			}
 		}
@@ -261,13 +256,13 @@ public class SelectIntoInfElem {
 		positionToReplace.getFrom().parent.removeChilds(positionToReplace.getFromIdx(), positionToReplace.getToIdx());
 		positionToReplace.getFrom().parent.getChilds().add(positionToReplace.getFromIdx(), newInfElemRef);
 		
-		if (clonePositions != null) {
-			for (int i = 0; i < clonePositions.size(); i++) {
-				LangElem newInfElemRefClone = createNewInfElemRef((LangElem) clonePositions.get(i).getFrom().parent,
+		if (cloneOrSimilarElementPositions != null) {
+			for (int i = 0; i < cloneOrSimilarElementPositions.size(); i++) {
+				LangElem newInfElemRefClone = createNewInfElemRef((LangElem) cloneOrSimilarElementPositions.get(i).getFrom().parent,
 						refId, elemId);
 				
-				clonePositions.get(i).getFrom().parent.removeChilds(clonePositions.get(i).getFromIdx(), clonePositions.get(i).getToIdx());
-				clonePositions.get(i).getFrom().parent.getChilds().add(clonePositions.get(i).getFromIdx(), newInfElemRefClone);
+				cloneOrSimilarElementPositions.get(i).getFrom().parent.removeChilds(cloneOrSimilarElementPositions.get(i).getFromIdx(), cloneOrSimilarElementPositions.get(i).getToIdx());
+				cloneOrSimilarElementPositions.get(i).getFrom().parent.getChilds().add(cloneOrSimilarElementPositions.get(i).getFromIdx(), newInfElemRefClone);
 			}
 		}
 	}
@@ -281,9 +276,9 @@ public class SelectIntoInfElem {
 
 	private void splitIfNecessary() {
 		positionToReplace.splitIfNecessary();
-		if (clonePositions != null) {
-			for (int i = 0; i < clonePositions.size(); i++) {
-				clonePositions.get(i).splitIfNecessary();
+		if (cloneOrSimilarElementPositions != null) {
+			for (int i = 0; i < cloneOrSimilarElementPositions.size(); i++) {
+				cloneOrSimilarElementPositions.get(i).splitIfNecessary();
 			}
 		}
 	}
@@ -322,9 +317,9 @@ public class SelectIntoInfElem {
 
 	private void prepareNests() {
 		positionToReplace.prepareNests();
-		if (clonePositions != null) {
-			for (int i = 0; i < clonePositions.size(); i++) {
-				clonePositions.get(i).prepareNests();
+		if (cloneOrSimilarElementPositions != null) {
+			for (int i = 0; i < cloneOrSimilarElementPositions.size(); i++) {
+				cloneOrSimilarElementPositions.get(i).prepareNests();
 			}
 		}
 	}
@@ -359,4 +354,8 @@ public class SelectIntoInfElem {
 		return newInfElem;
 	}
 
+	public ElementPositionInDRL getPositionToReplace() {
+		return positionToReplace;
+	}
+	
 }
