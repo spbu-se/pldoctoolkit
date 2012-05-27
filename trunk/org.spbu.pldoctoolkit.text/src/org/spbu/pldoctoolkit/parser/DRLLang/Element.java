@@ -141,6 +141,14 @@ public abstract class Element {
 		// return new PositionInDRL(false, false, null, null, null, this);
 	}
 
+	public ArrayList<Element> getChilds(int from, int to) {
+		ArrayList<Element> res = new ArrayList<Element>();
+		for (int i = from; i <= to; ++i)
+			res.add(childs.get(i));
+
+		return res;
+	}
+	
 	public ArrayList<Element> removeChilds(int from, int to) {
 		ArrayList<Element> res = new ArrayList<Element>();
 		for (int i = from; i <= to; ++i)

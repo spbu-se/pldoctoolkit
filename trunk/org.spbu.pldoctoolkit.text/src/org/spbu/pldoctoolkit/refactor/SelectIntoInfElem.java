@@ -18,7 +18,7 @@ public class SelectIntoInfElem {
 	public ElementPositionInDRL positionToReplace = new ElementPositionInDRL();
 	// public List<PositionInText> cloneFromTexts, cloneToTexts;
 	public List<ElementPositionInDRL> clonePositions;
-	public DRLDocument doc;
+	//public DRLDocument doc;
 
 	private ArrayList<LangElem> infElemRefs = null;
 
@@ -46,9 +46,9 @@ public class SelectIntoInfElem {
 		this.elemName = name;
 		this.refId = refId;
 		this.project = project;
-		positionToReplace.setFromText(fromText);
-		positionToReplace.setToText(toText);
-		this.doc = doc;
+		this.positionToReplace.setFromText(fromText);
+		this.positionToReplace.setToText(toText);
+		this.positionToReplace.setDoc(doc);
 	}
 
 	public void setPararams(String id, String name, String refId,
@@ -62,17 +62,35 @@ public class SelectIntoInfElem {
 				ElementPositionInDRL eInDRL = new ElementPositionInDRL();
 				eInDRL.setFromText(fromTexts.get(i));
 				eInDRL.setToText(toTexts.get(i));
+				eInDRL.setDoc(doc);
 				clonePositions.add(eInDRL);
 			}
 		}
 	}
 
+	/*public void setPararams(String id, String name, String refId,
+			ProjectContent project, DRLDocument doc,
+			List<PositionInText> fromTexts, List<PositionInText> toTexts) {
+		setPararams(id, name, refId, project, doc, fromTexts.remove(0), toTexts
+				.remove(0));
+		if (fromTexts.size() == toTexts.size()) {
+			clonePositions = new ArrayList<ElementPositionInDRL>();
+			for (int i = 0; i < fromTexts.size(); i++) {
+				ElementPositionInDRL eInDRL = new ElementPositionInDRL();
+				eInDRL.setFromText(fromTexts.get(i));
+				eInDRL.setToText(toTexts.get(i));
+				eInDRL.setDoc(doc);
+				clonePositions.add(eInDRL);
+			}
+		}
+	}*/
+	
 	public void setValidationPararams(ProjectContent project, DRLDocument doc,
 			PositionInText fromText, PositionInText toText) {
 		this.project = project;
-		positionToReplace.setFromText(fromText);
-		positionToReplace.setToText(toText);
-		this.doc = doc;
+		this.positionToReplace.setFromText(fromText);
+		this.positionToReplace.setToText(toText);
+		this.positionToReplace.setDoc(doc);
 	}
 
 	/*
@@ -88,7 +106,7 @@ public class SelectIntoInfElem {
 
 	private void init() {
 		// 1.
-		positionToReplace.init(doc);
+		positionToReplace.init();
 
 		// 2.
 		if (positionToReplace.getFrom().isInTag == true)
@@ -96,7 +114,7 @@ public class SelectIntoInfElem {
 
 		if (clonePositions != null) {
 			for (int i = 0; i < clonePositions.size(); i++) {
-				clonePositions.get(i).init(doc);
+				clonePositions.get(i).init();
 				if (clonePositions.get(i).getFrom().isInTag == true)
 					return;
 			}
@@ -154,14 +172,17 @@ public class SelectIntoInfElem {
 		if (isValide) {
 			firstPartOfPerform();
 
-			ArrayList<Element> childsToInsert = positionToReplace.getFrom().parent.removeChilds(
+			ArrayList<Element> childsToInsert = positionToReplace.getFrom().parent.getChilds(
+					positionToReplace.getFromIdx(), positionToReplace.getToIdx());
+			
+			/*ArrayList<Element> childsToInsert = positionToReplace.getFrom().parent.removeChilds(
 					positionToReplace.getFromIdx(), positionToReplace.getToIdx());
 			
 			if (clonePositions != null) {
 				for (int i = 0; i < clonePositions.size(); i++) {
 					clonePositions.get(i).getFrom().parent.removeChilds(clonePositions.get(i).getFromIdx(), clonePositions.get(i).getToIdx());
 				}
-			}
+			}*/
 			
 			LangElem newInfElem = createNewInfElem((LangElem) positionToReplace.getFrom().parent,
 					elemId, elemName);
@@ -198,7 +219,7 @@ public class SelectIntoInfElem {
 
 		prepareNests();
 
-		prefex = doc.DRLnsPrefix;
+		prefex = positionToReplace.getDoc().DRLnsPrefix;
 		if (!prefex.equals(""))
 			prefex += ":";
 
@@ -236,12 +257,16 @@ public class SelectIntoInfElem {
 	private void lastPartOfPerform() {
 		LangElem newInfElemRef = createNewInfElemRef((LangElem) positionToReplace.getFrom().parent,
 				refId, elemId);
+		
+		positionToReplace.getFrom().parent.removeChilds(positionToReplace.getFromIdx(), positionToReplace.getToIdx());
 		positionToReplace.getFrom().parent.getChilds().add(positionToReplace.getFromIdx(), newInfElemRef);
 		
 		if (clonePositions != null) {
 			for (int i = 0; i < clonePositions.size(); i++) {
 				LangElem newInfElemRefClone = createNewInfElemRef((LangElem) clonePositions.get(i).getFrom().parent,
 						refId, elemId);
+				
+				clonePositions.get(i).getFrom().parent.removeChilds(clonePositions.get(i).getFromIdx(), clonePositions.get(i).getToIdx());
 				clonePositions.get(i).getFrom().parent.getChilds().add(clonePositions.get(i).getFromIdx(), newInfElemRefClone);
 			}
 		}
@@ -255,10 +280,10 @@ public class SelectIntoInfElem {
 	}
 
 	private void splitIfNecessary() {
-		positionToReplace.splitIfNecessary(doc);
+		positionToReplace.splitIfNecessary();
 		if (clonePositions != null) {
 			for (int i = 0; i < clonePositions.size(); i++) {
-				clonePositions.get(i).splitIfNecessary(doc);
+				clonePositions.get(i).splitIfNecessary();
 			}
 		}
 	}
@@ -333,4 +358,5 @@ public class SelectIntoInfElem {
 				"infelemid", "infelemid", "", infelemid);
 		return newInfElem;
 	}
+
 }
