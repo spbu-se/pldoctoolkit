@@ -10,6 +10,8 @@ import org.spbu.pldoctoolkit.parser.DRLLang.TextElement;
 
 public class ElementPositionInDRL {
 
+	private DRLDocument doc;
+	
 	private PositionInText fromText, toText;
 	
 	private PositionInDRL from, to;
@@ -18,7 +20,7 @@ public class ElementPositionInDRL {
 
 	private HashMap<String, LangElem> nestsInSelection = null;
 	
-	public void init(DRLDocument doc) {
+	public void init() {
 		from = doc.findByPosition(fromText);
 		to = doc.findByPosition(toText);
 
@@ -33,7 +35,7 @@ public class ElementPositionInDRL {
 			toIdx = from.parent.getChilds().indexOf(to.prev);
 	}
 	
-	public void splitIfNecessary(DRLDocument doc) {
+	public void splitIfNecessary() {
 		if (from.isInText) {
 			boolean isSame = false;
 			if (to.isInText && from.elem == to.elem)
@@ -99,10 +101,18 @@ public class ElementPositionInDRL {
 	}
 	
 	public int getFromIdx() {
+		/*if (from.isInText)
+			return from.parent.getChilds().indexOf(from.elem);
+		else
+			return from.parent.getChilds().indexOf(from.next);*/
 		return fromIdx;
 	}
 	
 	public int getToIdx() {
+		/*if (to.isInText)
+			return to.parent.getChilds().indexOf(to.elem);
+		else
+			return to.parent.getChilds().indexOf(to.prev);*/
 		return toIdx;
 	}
 	
@@ -136,6 +146,14 @@ public class ElementPositionInDRL {
 	
 	public void setNestsInSelection(HashMap<String, LangElem> nestsInSelection) {
 		this.nestsInSelection = nestsInSelection;
+	}
+
+	public DRLDocument getDoc() {
+		return doc;
+	}
+
+	public void setDoc(DRLDocument doc) {
+		this.doc = doc;
 	}
 	
 }
