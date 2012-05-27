@@ -14,6 +14,8 @@ import org.spbu.pldoctoolkit.clones.ICloneInst;
 import org.spbu.pldoctoolkit.clones.IClonesGroup;
 import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
+import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
+import org.spbu.pldoctoolkit.refactor.CloneFinderUtil;
 import org.spbu.pldoctoolkit.refactor.ElementPositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
@@ -80,6 +82,7 @@ public final class ExtractAsNewInfElem extends Action {
 		refactSelectIntoInfElem.perform();
 		projectContent.saveAll();
 		
+		CloneFinderUtil.getView().clear();
 		/*// заменяем остальные клоны ссылкой на новый инф элемент
 		for (ICloneInst inst : cloneGroupToRefactor.getInstances()) {
 			refactSelectIntoInfElem.reset();

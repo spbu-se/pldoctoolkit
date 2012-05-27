@@ -32,6 +32,7 @@ import org.spbu.pldoctoolkit.editors.DrlTextEditor;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
+import org.spbu.pldoctoolkit.refactor.CloneFinderUtil;
 import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 import org.spbu.pldoctoolkit.refactor.ProjectContent;
@@ -119,41 +120,9 @@ public final class FindClonesInInfElemAction extends Action implements
 		return false;
 	}
 
-	private volatile List<IClonesGroup> clonesGroups = null;
 	@Override
 	public void run() {
-		try {
-			showView();
-		} catch (PartInitException e) {
-			e.printStackTrace();
-		}
-		//progress monitor
-		IRunnableWithProgress op = new IRunnableWithProgress() {
-			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-				monitor.beginTask("DocLine clones finding ...", 24);
-				clonesGroups = getClonesGroups(monitor);
-				monitor.done();
-			}
-		};
-		ProgressMonitorDialog pmDialog = new ProgressMonitorDialog(DrlPublisherPlugin.getShell());
-		try {
-			pmDialog.run(true, false, op);
-			int returnCode = pmDialog.getReturnCode();
-			if (returnCode == ProgressMonitorDialog.OK)
-				showMessage(null);
-		} catch (InvocationTargetException e) {
-			showMessage(e);
-		} catch (InterruptedException e) {
-			showMessage(e);
-		}
-		view.setContent(clonesGroups, editor);
-	}
-	
-	private void showMessage(Exception e) {
-		if (e == null){
-//			MessageDialog.openInformation(DrlPublisherPlugin.getShell(), "Information", "Export successfull");
-		}else
-			MessageDialog.openError(DrlPublisherPlugin.getShell(), "Error", "Export failed: " + e.getCause().getMessage());
+		CloneFinderUtil.doFindOfClones(infElementToFindOfClones, editor);
 	}
 
 	private void formatTextInDrlFile(IEditorPart editor2) {
@@ -172,22 +141,6 @@ public final class FindClonesInInfElemAction extends Action implements
 			}
 		}
 		return -1;
-	}
-
-	private List<IClonesGroup> getClonesGroups(IProgressMonitor monitor) {
-		CloneFinder cloneFinder = new CloneFinder();
-		return cloneFinder.findClones(infElementToFindOfClones, monitor);
-	}
-
-	private void showView() throws PartInitException {
-		view = (ClonesGroupResultView) getPage().showView(
-				"org.spbu.pldoctoolkit.clones.view.ClonesGroupResultView");
-	}
-
-	private IWorkbenchPage getPage() {
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		IWorkbenchWindow window = workbench.getActiveWorkbenchWindow();
-		return window.getActivePage();
 	}
 
 }
