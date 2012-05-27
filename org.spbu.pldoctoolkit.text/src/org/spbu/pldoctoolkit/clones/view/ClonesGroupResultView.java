@@ -1,5 +1,6 @@
 package org.spbu.pldoctoolkit.clones.view;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -46,6 +47,7 @@ import org.spbu.pldoctoolkit.clones.*;
 import org.spbu.pldoctoolkit.dialogs.SelectIntoInfElemDialog;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
+import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.CreateNest;
 import org.spbu.pldoctoolkit.refactor.SelectIntoInfElem;
 
@@ -54,6 +56,7 @@ public class ClonesGroupResultView extends ViewPart {
 	private IEditorPart editor;
 	private TreeViewer treeViewer;
 	private Action doubleClickAction;
+	private LangElem infElem;
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -176,6 +179,11 @@ public class ClonesGroupResultView extends ViewPart {
 				}
 			}
 		};
+	}
+
+	public void clear() {
+		List<IClonesGroup> emptyList = Collections.emptyList();
+		this.setContent(emptyList , editor);
 	}
 
 	// private void createToolbar() {
