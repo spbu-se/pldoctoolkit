@@ -27,18 +27,6 @@ public final class CloneFinder {
 	private static final String tmpFile4TextName = "tmpFile4CloneFinding.txt";
 	private LangElem infEl;
 
-
-//	/**
-//	 * @param args
-//	 */
-//	public static void main(String[] args) {
-//		String text = "str 1\n"
-//			+"str 2 str\n"
-//			+"str 3 str str";
-//		CloneToolRunner.runTool(DEFAULT_CLONE_TOOL_DIR);
-//		System.out.println("OK");
-//	}
-
 	public List<IClonesGroup> findClones(LangElem infElementToFindOfClones){
 		return findClones(DEFAULT_CLONE_TOOL_DIR, infElementToFindOfClones);
 	}
