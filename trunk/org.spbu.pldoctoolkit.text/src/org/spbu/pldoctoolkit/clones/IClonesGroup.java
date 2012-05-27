@@ -7,5 +7,7 @@ public interface IClonesGroup {
 	String getName();
 	List<ICloneInst> getInstances();
 	void addCloneInst(ICloneInst cloneInst);
+	void setGroupId(int id);
+	int getId();
 
 }

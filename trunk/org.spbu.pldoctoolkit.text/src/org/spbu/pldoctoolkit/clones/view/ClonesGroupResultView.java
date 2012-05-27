@@ -160,6 +160,8 @@ public class ClonesGroupResultView extends ViewPart {
 								.getAbsoluteStartPosition());
 						marker.setAttribute(IMarker.CHAR_END, cloneInst
 								.getAbsoluteEndPosition());
+//						marker.setAttribute(IMarker.CHAR_START, 364);
+//						marker.setAttribute(IMarker.CHAR_END, 363+1);
 
 						IDE.openEditor(getSite().getPage(), marker);
 						marker.delete();

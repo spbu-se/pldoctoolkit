@@ -5,10 +5,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
+import org.spbu.pldoctoolkit.refactor.PositionInText;
 
 public final class CloneFinder {
 
@@ -41,35 +44,56 @@ public final class CloneFinder {
 	}
 	
 	public List<IClonesGroup> findClones(String cloneToolDirectory, LangElem infElementToFindOfClones) {
+		List<IClonesGroup> rez = null;
+		try{
 		this.infEl = infElementToFindOfClones;
+			long startInMillis = System.currentTimeMillis();
+			File inputFile = new File(cloneToolDirectory + INPUT_FILE_POSTFIX);
+			createFileWithTextInUtf8(inputFile, tmpFile4TextName);
+			File fileWithText = new File(cloneToolDirectory + tmpFile4TextName);
+			// createFileWithTextInUtf8(fileWithText,
+			// infEl.getTextRepresentation());
+			createFileWithText(fileWithText, infEl.getTextRepresentation(),
+					"US-ASCII");
 
-		File inputFile = new File(cloneToolDirectory + INPUT_FILE_POSTFIX);
-		createFileWithTextInUtf8(inputFile, tmpFile4TextName);
-		File fileWithText = new File(cloneToolDirectory + tmpFile4TextName);
-		createFileWithTextInUtf16(fileWithText, infEl.getTextRepresentation());
+			CloneToolRunner cloneToolRunner = new CloneToolRunner();
+			cloneToolRunner.runTool(cloneToolDirectory);
+			while (!cloneToolRunner.completed())
+				;
+			CloneToolResultsParser parser = new CloneToolResultsParser();
+			List<ClonesGroupData> toolRez = parser.parse(cloneToolDirectory
+					+ RESULT_FILE_POSTFIX);
 
-		CloneToolRunner cloneToolRunner = new CloneToolRunner();
-		cloneToolRunner.runTool(cloneToolDirectory);
-		while (!cloneToolRunner.completed());
-		CloneToolResultsParser parser = new CloneToolResultsParser();
-		List<ClonesGroupData> toolRez = parser.parse(cloneToolDirectory + RESULT_FILE_POSTFIX);
+			fileWithText.deleteOnExit();
+			// inputFile.deleteOnExit();
 
-		fileWithText.deleteOnExit();
-//		inputFile.deleteOnExit();
-
-		return convertToolResultsToListOfClones(toolRez);
+			System.out.println("Time of CloneMiner run and parsing: "
+					+ (System.currentTimeMillis() - startInMillis) / 1000
+					+ " sec");
+			rez = convertToolResultsToListOfClones(toolRez);
+			System.out.println("Ok convertation");
+			ClonesGroupsFilter filter = new ClonesGroupsFilter();
+			rez = filter.specifyClonesGroups4DRL(rez, infEl);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rez;
 	}
 
 	private List<IClonesGroup> convertToolResultsToListOfClones(
 			List<ClonesGroupData> toolRez) {
 		List<IClonesGroup> rez = new ArrayList<IClonesGroup>(toolRez.size());
 		for (ClonesGroupData clonesGroupData : toolRez) {
-			IClonesGroup cloneGroupImpl = new ClonesGroupImpl();
+			long startInMillis = System.currentTimeMillis();
+			IClonesGroup cloneGroupImpl = new ClonesGroupImpl(clonesGroupData.clonesGroupId, clonesGroupData.termCount);
 			rez.add(cloneGroupImpl);
 			for (CloneInstData cloneInstData : clonesGroupData.clones) {
-				ICloneInst cloneInst = new CloneInstImpl(infEl, cloneInstData.startPos, cloneInstData.endPos);
+				PositionInText trueEndPos = CloneInstImpl.findTrueLocalEndPosition(infEl, cloneInstData.endPos);
+				ICloneInst cloneInst = CloneInstImpl.createCloneInstByLocalPositions(infEl, cloneInstData.startPos, trueEndPos);
 				cloneGroupImpl.addCloneInst(cloneInst );
 			}
+			System.out.println("Processing clonesGroup : "+clonesGroupData.clonesGroupId
+					+" finished. time: "+ (System.currentTimeMillis()-startInMillis) + " millis.");
 		}
 		return rez;
 	}
@@ -86,7 +110,7 @@ public final class CloneFinder {
 		BufferedWriter out = null;
 		try {
 			out = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(file), charsetName));
+					new FileOutputStream(file), Charset.forName(charsetName)));
 			out.write(text);
 			out.flush();
 		} catch (IOException e) {
