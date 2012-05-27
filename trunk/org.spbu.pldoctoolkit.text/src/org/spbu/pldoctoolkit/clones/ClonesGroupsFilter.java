@@ -34,9 +34,6 @@ final class ClonesGroupsFilter {
 				if (groupTextIsSimpleText(clonesGroup)){
 					output.add(clonesGroup);
 				}else{
-//					List<String> substrings = getSubstrings(clonesGroup.getInstances().get(0), infEl);
-//					List<IClonesGroup> newGroups = applyChangesToGroup(substrings, clonesGroup);
-//					output.addAll(newGroups);
 					List<IClonesGroup> newGroups = new LinkedList<IClonesGroup>();
 					boolean firstOperation = true;
 					int countOfClonesAfterSpecify = -1;
@@ -68,7 +65,6 @@ final class ClonesGroupsFilter {
 				}else{
 					System.out.println("register");					
 				}
-//				output.add(clonesGroup);
 			}
 		}
 		for (IClonesGroup clonesGroup : output) {
@@ -106,35 +102,6 @@ final class ClonesGroupsFilter {
 			}
 		}
 		return newGroups;
-	}
-
-	private List<IClonesGroup> applyChangesToGroup(List<String> substrings,
-			IClonesGroup clonesGroup) {
-		List<IClonesGroup> rez = new ArrayList<IClonesGroup>(substrings.size());
-		for (String substring: substrings) {
-			int count = getCountOfTerms(substring);
-			IClonesGroup group = new ClonesGroupImpl(clonesGroup.getId(), count);
-		}
-		for (ICloneInst clone : clonesGroup.getInstances()) {
-			String cloneText = clone.getCloneText();
-			StringTokenizer cloneTextTok = new StringTokenizer(cloneText, DELIMITERS_OF_DOCBOOK);
-			int fromIndex = 0;
-			for (String subst: substrings) {
-//				cloneTextTok.
-//				
-//				int index = myIndexOf(cloneText, subst, fromIndex);
-				
-			}
-		}
-		return rez;
-	}
-
-	private int getCountOfTerms(String st) {
-		int count = 0;
-		for (StringTokenizer tok = new StringTokenizer(st, DELIMITERS_OF_DOCBOOK);
-			tok.hasMoreTokens(); tok.nextToken(), count++) {
-		}
-		return count;
 	}
 
 	private final List<Tag> tags = new ArrayList<Tag>();
@@ -192,87 +159,7 @@ final class ClonesGroupsFilter {
 				rez.add(inst);				
 			}
 			return rez;
-
 		}	
-			
-			
-//		int indexOfLastGT = text.lastIndexOf('<');
-//		int indexOfLastLT = text.lastIndexOf('>');
-//		
-//		DRLDocument doc = infEl.getDRLDocument();
-//		System.out.println("BEGIN start:"+clone.getStartPos4EntireDocument()
-//				+" end:"+ clone.getEndPos4EntireDocument()+ " :\n" + clone.getCloneText() + "\n:END");
-//		PositionInText startPosOfClone = clone.getStartPos4EntireDocument();
-//		PositionInText endPosOfClone = clone.getEndPos4EntireDocument();
-//		
-//		PositionInDRL from = doc.findByPosition(startPosOfClone );
-//		System.out.println("\nfrom.elem:"+from.elem + "\nfrom.isIntext:" 
-//				+ from.isInText + " \nfrom.isInTag:" + from.isInTag 
-//				+ " \nfrom.next:" + from.next+ "\nfrom.prev:" + from.prev +" \nfrom.parent:"+from.parent);
-//		PositionInDRL to = doc.findByPosition(endPosOfClone);
-//		int start = endPosOfClone.column;
-//		int end = endPosOfClone.column;
-//		boolean wasInLoop = false;
-//		while (from.isInTag) {
-//			wasInLoop = true;
-//			start++;
-//			from = doc.findByPosition(new PositionInText(startPosOfClone.line, start));
-//		}
-//		if (wasInLoop) {
-//			from = doc.findByPosition(new PositionInText(startPosOfClone.line, start + 1));
-//		}
-//		Element first = from.elem != null ? from.elem : from.next;
-//		wasInLoop = false;
-//		while (to.isInTag) {
-//			wasInLoop = true;
-//			end--;
-//			to = doc.findByPosition(new PositionInText(endPosOfClone.line, end));
-//		}
-//		if (wasInLoop) {
-//			to = doc.findByPosition(new PositionInText(endPosOfClone.line, end - 1));
-//		}
-//		Element last = to.elem != null ? to.elem : to.prev;
-////		ICloneInst specifiedInstance = new DRLCloneInstImpl(clone
-////				.getInfEl(), first.getStartPos(), new PositionInText(last.getEndPos().line, last.getEndPos().column - 1), clone.getCloneText());
-//		return CloneInstImpl.createCloneInstByPositions4EntireDoc(clone.getInfEl(), first.getStartPos(), 
-//				new PositionInText(last.getEndPos().line, last.getEndPos().column));
-		//		specifiedGroup.addCloneInst(specifiedInstance);
-		
-//		rez.add(text);
-//		return rez;
-	}
-	
-	private List<PosPara> deleteParasWhichDontContainsText(List<PosPara> paras) {
-		for (Iterator<PosPara> iterator = paras.iterator(); iterator.hasNext();) {
-			PosPara posPara = iterator.next();
-			int tagIndex = 0;
-			boolean needDelete = false;
-			if (posPara.startPos.compare(posPara.endPos)==0){
-				needDelete = true;
-			}else{
-				//contains text ?
-				boolean tagFound = false;
-				while (!tagFound ){
-					if (tags.get(tagIndex).startPos.compare(posPara.startPos)==0){
-						tagFound = true;
-					}
-					tagIndex++;
-				}
-				boolean posParaContainsText = false;
-				for(;!posParaContainsText && tagIndex+1 < tags.size();tagIndex++){
-					if (tags.get(tagIndex).endPos.compare(tags.get(tagIndex+1).startPos)!=0){
-						posParaContainsText = true;
-					}
-					
-				}
-				needDelete = !posParaContainsText;
-			}
-			if (needDelete){
-				iterator.remove();				
-			}
-			
-		}
-		return paras;
 	}
 
 	private List<PosPara> getListofPosParaByTagList() {
