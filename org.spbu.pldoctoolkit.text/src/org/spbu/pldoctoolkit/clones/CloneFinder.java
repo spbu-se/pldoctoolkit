@@ -81,7 +81,7 @@ public final class CloneFinder {
 				monitor.subTask("Filtration of results ...");
 			}
 			ClonesGroupsFilter filter = new ClonesGroupsFilter();
-			rez = filter.specifyClonesGroups4DRL(rez, infEl);
+			rez = filter.specifyClonesGroups4DRL(rez);
 			if (monitor != null){
 				monitor.worked(10);				
 			}
@@ -96,7 +96,7 @@ public final class CloneFinder {
 		List<IClonesGroup> rez = new ArrayList<IClonesGroup>(toolRez.size());
 		for (ClonesGroupData clonesGroupData : toolRez) {
 			long startInMillis = System.currentTimeMillis();
-			IClonesGroup cloneGroupImpl = new ClonesGroupImpl(clonesGroupData.clonesGroupId, clonesGroupData.termCount);
+			IClonesGroup cloneGroupImpl = new ClonesGroupImpl(clonesGroupData.clonesGroupId, clonesGroupData.termCount, clonesGroupData.clones.size());
 			rez.add(cloneGroupImpl);
 			for (CloneInstData cloneInstData : clonesGroupData.clones) {
 				PositionInText trueEndPos = CloneInstImpl.findTrueLocalEndPosition(infEl, cloneInstData.endPos);
