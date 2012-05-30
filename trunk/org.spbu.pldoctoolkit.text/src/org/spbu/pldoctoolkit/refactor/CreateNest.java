@@ -138,4 +138,29 @@ public class CreateNest {
 		((AttributesImpl)entry.attrs).addAttribute(LangElem.ID, LangElem.ID, LangElem.ID, "", nestId);		
 		return entry;
 	}	
+	
+	public static String getAppropriateNestId(String prefix, ProjectContent projectContent) {
+		String nestId;
+		if ("".equals(prefix)) {
+			nestId = "nestId";
+		} else {
+			nestId = prefix + "NestId";
+		}
+		String resId = "";
+		int i = projectContent.nests.size();
+		boolean goodId = false;
+		while (!goodId) {
+			resId = nestId + String.valueOf(i);
+			goodId = true;
+			for (LangElem nest : projectContent.nests) {
+				if (nest.attrs.getValue(LangElem.ID).equals(resId)) {
+					goodId = false;
+					break;
+				}
+			}
+			++i;
+		}
+		return resId;
+	}
+	
 }
