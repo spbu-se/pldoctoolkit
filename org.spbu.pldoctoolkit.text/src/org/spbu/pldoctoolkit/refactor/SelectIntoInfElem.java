@@ -20,7 +20,7 @@ public class SelectIntoInfElem {
 	public ElementPositionInDRL positionToReplace = new ElementPositionInDRL();
 	// public List<PositionInText> cloneFromTexts, cloneToTexts;
 	public List<ElementPositionInDRL> cloneOrSimilarElementPositions;
-	//public DRLDocument doc;
+	// public DRLDocument doc;
 
 	private ArrayList<LangElem> infElemRefs = null;
 
@@ -28,7 +28,6 @@ public class SelectIntoInfElem {
 	private boolean wasValidation = false;
 	private boolean wasInfElemRefsPrepared = false;
 
-	private Element infElem = null;
 	private String prefex;
 
 	/*
@@ -48,38 +47,61 @@ public class SelectIntoInfElem {
 		this.elemName = name;
 		this.refId = refId;
 		this.project = project;
+		System.out.println("Const1");
+		System.out.println(project);
+		System.out.println(fromText.line);
+		System.out.println(fromText.column);
+		System.out.println(toText.line);
+		System.out.println(toText.column);
+		System.out.println(doc);
 		this.positionToReplace.setFromText(fromText);
 		this.positionToReplace.setToText(toText);
 		this.positionToReplace.setDoc(doc);
 	}
 
-	/*public void setPararams(String id, String name, String refId,
-			ProjectContent project, DRLDocument doc,
-			List<PositionInText> fromTexts, List<PositionInText> toTexts) {
-		setPararams(id, name, refId, project, doc, fromTexts.remove(0), toTexts
-				.remove(0));
-		if (fromTexts.size() == toTexts.size()) {
-			cloneOrSimilarElementPositions = new ArrayList<ElementPositionInDRL>();
-			for (int i = 0; i < fromTexts.size(); i++) {
-				ElementPositionInDRL eInDRL = new ElementPositionInDRL();
-				eInDRL.setFromText(fromTexts.get(i));
-				eInDRL.setToText(toTexts.get(i));
-				eInDRL.setDoc(doc);
-				cloneOrSimilarElementPositions.add(eInDRL);
-			}
-		}
-	}*/
+	/*
+	 * public void setPararams(String id, String name, String refId,
+	 * ProjectContent project, DRLDocument doc, List<PositionInText> fromTexts,
+	 * List<PositionInText> toTexts) { setPararams(id, name, refId, project,
+	 * doc, fromTexts.remove(0), toTexts .remove(0)); if (fromTexts.size() ==
+	 * toTexts.size()) { cloneOrSimilarElementPositions = new
+	 * ArrayList<ElementPositionInDRL>(); for (int i = 0; i < fromTexts.size();
+	 * i++) { ElementPositionInDRL eInDRL = new ElementPositionInDRL();
+	 * eInDRL.setFromText(fromTexts.get(i)); eInDRL.setToText(toTexts.get(i));
+	 * eInDRL.setDoc(doc); cloneOrSimilarElementPositions.add(eInDRL); } } }
+	 */
 
 	public void setPararams(String id, String name, String refId,
 			ProjectContent project, List<ElementPositionInDRL> elementPositions) {
 		this.elemId = id;
 		this.elemName = name;
 		this.refId = refId;
+		System.out.println(id + name +refId);
 		this.project = project;
 		this.positionToReplace = elementPositions.remove(0);
-		this.cloneOrSimilarElementPositions = elementPositions;
+		System.out.println("Const2");
+		System.out.println(project);
+		System.out.println(positionToReplace.getFromText().line);
+		System.out.println(positionToReplace.getFromText().column);
+		System.out.println(positionToReplace.getToText().line);
+		System.out.println(positionToReplace.getToText().column);
+		System.out.println(positionToReplace.getDoc());
+		if (elementPositions.size() > 0) {
+			this.cloneOrSimilarElementPositions = elementPositions;
+			System.out.println("Const3");
+			System.out.println(project);
+			System.out.println(cloneOrSimilarElementPositions.get(0)
+					.getFromText().line);
+			System.out.println(cloneOrSimilarElementPositions.get(0)
+					.getFromText().column);
+			System.out.println(cloneOrSimilarElementPositions.get(0)
+					.getToText().line);
+			System.out.println(cloneOrSimilarElementPositions.get(0)
+					.getToText().column);
+			System.out.println(cloneOrSimilarElementPositions.get(0).getDoc());
+		}
 	}
-	
+
 	public void setValidationPararams(ProjectContent project, DRLDocument doc,
 			PositionInText fromText, PositionInText toText) {
 		this.project = project;
@@ -100,40 +122,15 @@ public class SelectIntoInfElem {
 	}
 
 	private void init() {
-		// 1.
-		positionToReplace.init();
 
-		// 2.
-		if (positionToReplace.getFrom().isInTag == true)
-			return;
+		positionToReplace.init();
 
 		if (cloneOrSimilarElementPositions != null) {
 			for (int i = 0; i < cloneOrSimilarElementPositions.size(); i++) {
 				cloneOrSimilarElementPositions.get(i).init();
-				if (cloneOrSimilarElementPositions.get(i).getFrom().isInTag == true)
-					return;
 			}
 		}
 
-		UpwardIterator searchInfElemiterator;
-		if (positionToReplace.getFrom().isInText)
-			searchInfElemiterator = new UpwardIterator(positionToReplace
-					.getFrom().elem);
-		else if (positionToReplace.getFrom().next != null)
-			searchInfElemiterator = new UpwardIterator(positionToReplace
-					.getFrom().next);
-		else
-			return;
-
-		infElem = searchInfElemiterator.next();
-		while (infElem != null) {
-			if (infElem instanceof LangElem) {
-				LangElem langElem = (LangElem) infElem;
-				if (langElem.tag.equals("InfElement"))
-					break;
-			}
-			infElem = searchInfElemiterator.next();
-		}
 	}
 
 	public boolean validate() {
@@ -142,20 +139,15 @@ public class SelectIntoInfElem {
 
 		init();
 
-		isValide = true;
+		isValide = positionToReplace.validate();
 
-		// 1.
-		if (positionToReplace.getFrom().parent != positionToReplace.getTo().parent)
-			isValide = false;
-
-		// 2.
-		if (infElem == null)
-			isValide = false;
-
-		// 3.
-		if (positionToReplace.getFrom().isInTag == true
-				|| positionToReplace.getTo().isInTag == true)
-			isValide = false;
+		if (isValide && cloneOrSimilarElementPositions != null) {
+			int i = 0;
+			while (isValide && i < cloneOrSimilarElementPositions.size()) {
+				isValide = cloneOrSimilarElementPositions.get(i).validate();
+				i++;
+			}
+		}
 
 		wasValidation = true;
 		return isValide;
@@ -164,31 +156,42 @@ public class SelectIntoInfElem {
 	public void perform() {
 		validate();
 
+		System.out.println(positionToReplace.getFromIdx());
+		System.out.println(positionToReplace.getToIdx());
+		System.out.println(positionToReplace.getFrom());
+		System.out.println(positionToReplace.getTo());
+		System.out.println(positionToReplace.getDoc());
+		System.out.println(positionToReplace.getInfElem());
 		if (isValide) {
 			firstPartOfPerform();
 
-			ArrayList<Element> childsToInsert = positionToReplace.getFrom().parent.getChilds(
-					positionToReplace.getFromIdx(), positionToReplace.getToIdx());
-			
-			/*ArrayList<Element> childsToInsert = positionToReplace.getFrom().parent.removeChilds(
-					positionToReplace.getFromIdx(), positionToReplace.getToIdx());
-			
-			if (clonePositions != null) {
-				for (int i = 0; i < clonePositions.size(); i++) {
-					clonePositions.get(i).getFrom().parent.removeChilds(clonePositions.get(i).getFromIdx(), clonePositions.get(i).getToIdx());
-				}
-			}*/
-			
-			LangElem newInfElem = createNewInfElem((LangElem) positionToReplace.getFrom().parent,
-					elemId, elemName);
-			positionToReplace.getFrom().parent.getDRLDocument().getChilds().get(0).getChilds().add(
-					newInfElem);
+			ArrayList<Element> childsToInsert = positionToReplace.getFrom().parent
+					.getChilds(positionToReplace.getFromIdx(),
+							positionToReplace.getToIdx());
+
+			/*
+			 * ArrayList<Element> childsToInsert =
+			 * positionToReplace.getFrom().parent.removeChilds(
+			 * positionToReplace.getFromIdx(), positionToReplace.getToIdx());
+			 * 
+			 * if (clonePositions != null) { for (int i = 0; i <
+			 * clonePositions.size(); i++) {
+			 * clonePositions.get(i).getFrom().parent
+			 * .removeChilds(clonePositions.get(i).getFromIdx(),
+			 * clonePositions.get(i).getToIdx()); } }
+			 */
+
+			LangElem newInfElem = createNewInfElem((LangElem) positionToReplace
+					.getFrom().parent, elemId, elemName);
+			positionToReplace.getFrom().parent.getDRLDocument().getChilds()
+					.get(0).getChilds().add(newInfElem);
 			// newInfElem.appendChilds(childsToInsert);
 			newInfElem.setChilds(new ArrayList<Element>());
 			newInfElem.getChilds().addAll(childsToInsert);
-			
+
 			lastPartOfPerform();
 
+			System.out.println(positionToReplace.getDoc().getTextRepresentation());
 			/*
 			 * ArrayList<Element> childsToInsert =
 			 * pos1.parent.removeChilds(from, to);
@@ -199,15 +202,12 @@ public class SelectIntoInfElem {
 		}
 	}
 
-	/*public void performWithoutCreatingNewElement() {
-		validate();
-
-		if (isValide) {
-			firstPartOfPerform();
-			from.parent.removeChilds(fromIdx, toIdx);
-			lastPartOfPerform();
-		}
-	}*/
+	/*
+	 * public void performWithoutCreatingNewElement() { validate();
+	 * 
+	 * if (isValide) { firstPartOfPerform(); from.parent.removeChilds(fromIdx,
+	 * toIdx); lastPartOfPerform(); } }
+	 */
 
 	private void firstPartOfPerform() {
 		splitIfNecessary();
@@ -232,7 +232,8 @@ public class SelectIntoInfElem {
 						if (elem instanceof LangElem) {
 							LangElem nestRef = (LangElem) elem;
 							String nestid = nestRef.attrs.getValue("nestid");
-							if (positionToReplace.getNestsInSelection().get(nestid) != null)
+							if (positionToReplace.getNestsInSelection().get(
+									nestid) != null)
 								nestsRefs.add(nestRef);
 						}
 					}
@@ -250,19 +251,29 @@ public class SelectIntoInfElem {
 	}
 
 	private void lastPartOfPerform() {
-		LangElem newInfElemRef = createNewInfElemRef((LangElem) positionToReplace.getFrom().parent,
-				refId, elemId);
-		
-		positionToReplace.getFrom().parent.removeChilds(positionToReplace.getFromIdx(), positionToReplace.getToIdx());
-		positionToReplace.getFrom().parent.getChilds().add(positionToReplace.getFromIdx(), newInfElemRef);
-		
+		System.out.println(positionToReplace.getFrom().parent.getTextRepresentation());
+		LangElem newInfElemRef = createNewInfElemRef(
+				(LangElem) positionToReplace.getFrom().parent, refId, elemId);
+
+		positionToReplace.getFrom().parent.removeChilds(positionToReplace
+				.getFromIdx(), positionToReplace.getToIdx());
+		positionToReplace.getFrom().parent.getChilds().add(
+				positionToReplace.getFromIdx(), newInfElemRef);
+
 		if (cloneOrSimilarElementPositions != null) {
 			for (int i = 0; i < cloneOrSimilarElementPositions.size(); i++) {
-				LangElem newInfElemRefClone = createNewInfElemRef((LangElem) cloneOrSimilarElementPositions.get(i).getFrom().parent,
-						refId, elemId);
-				
-				cloneOrSimilarElementPositions.get(i).getFrom().parent.removeChilds(cloneOrSimilarElementPositions.get(i).getFromIdx(), cloneOrSimilarElementPositions.get(i).getToIdx());
-				cloneOrSimilarElementPositions.get(i).getFrom().parent.getChilds().add(cloneOrSimilarElementPositions.get(i).getFromIdx(), newInfElemRefClone);
+				LangElem newInfElemRefClone = createNewInfElemRef(
+						(LangElem) cloneOrSimilarElementPositions.get(i)
+								.getFrom().parent, refId, elemId);
+
+				cloneOrSimilarElementPositions.get(i).getFrom().parent
+						.removeChilds(cloneOrSimilarElementPositions.get(i)
+								.getFromIdx(), cloneOrSimilarElementPositions
+								.get(i).getToIdx());
+				cloneOrSimilarElementPositions.get(i).getFrom().parent
+						.getChilds().add(
+								cloneOrSimilarElementPositions.get(i)
+										.getFromIdx(), newInfElemRefClone);
 			}
 		}
 	}
@@ -291,11 +302,17 @@ public class SelectIntoInfElem {
 			return infElemRefs;
 
 		infElemRefs = new ArrayList<LangElem>();
-		String idTofind = ((LangElem) infElem).attrs.getValue("id");
-		for (LangElem infElemRef : project.infElemRefs) {
-			if (infElemRef.attrs.getValue("infelemid").equals(idTofind))
-				infElemRefs.add(infElemRef);
+
+		infElemRefs.addAll(positionToReplace.getInfElemRefs(project));
+
+		if (cloneOrSimilarElementPositions != null) {
+			for (int i = 0; i < cloneOrSimilarElementPositions.size(); i++) {
+				infElemRefs.addAll(cloneOrSimilarElementPositions.get(i)
+						.getInfElemRefs(project));
+			}
 		}
+
+		wasInfElemRefsPrepared = true;
 
 		return infElemRefs;
 	}
@@ -357,5 +374,5 @@ public class SelectIntoInfElem {
 	public ElementPositionInDRL getPositionToReplace() {
 		return positionToReplace;
 	}
-	
+
 }

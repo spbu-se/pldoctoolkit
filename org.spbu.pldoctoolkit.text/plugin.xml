@@ -14,7 +14,7 @@
             id="org.spbu.pldoctoolkit.text.wizards.new.drlfile"
             name="DRL document"/>
    </extension>
-   <extension
+    <extension
          point="org.eclipse.ui.editors">
       <editor
             class="org.spbu.pldoctoolkit.editors.DrlTextEditor"
@@ -24,7 +24,17 @@
             id="org.spbu.pldoctoolkit.editors.DRLEditor"
             name="DRL Editor"/>
    </extension>
-   <extension
+    <extension
+         id="org.spbu.pldoctoolkit.diff_id"
+         name="org.spbu.pldoctoolkit.diff_name"
+         point="org.eclipse.ui.views">
+      <view
+            class="org.spbu.pldoctoolkit.diff.view.DiffGroupResultView"
+            id="org.spbu.pldoctoolkit.diff.view.DiffGroupResultView"
+            name="DocLine diff">
+      </view>
+   </extension>
+	<extension
          id="org.spbu.pldoctoolkit.compare_id"
          name="org.spbu.pldoctoolkit.compare_name"
          point="org.eclipse.ui.views">
@@ -34,4 +44,4 @@
             name="DocLine clones">
       </view>
    </extension>
-</plugin>
+   </plugin>
