@@ -134,7 +134,6 @@ public class CloneInstImpl implements ICloneInst {
 	public String getCloneText() {
 		if (cloneText == null){			
 			StringBuilder rez = null;
-			String lastToken = null;
 			String firstCloneLine = stringInfo.getLineByNumber(startPosOfClone4EntireDoc.line);
 			rez = new StringBuilder();
 			String lastCloneLine = null;
@@ -269,10 +268,6 @@ public class CloneInstImpl implements ICloneInst {
 		if (prefixPos.column < lastPrefixLine.length())
 			line--;
 		return new PositionInText(line, column);
-	}
-
-	private String getFullTextOfFile() {
-		return infEl.getDRLDocument().getTextRepresentation();
 	}
 
 }

@@ -45,9 +45,51 @@ public class CloneFinderUtil {
 		} catch (InterruptedException e) {
 			showMessage(e);
 		}
+		createSearchReport();
 		view.setContent(clonesGroups, editor);		
 	}
 	
+	private static void createSearchReport() {
+		int maxGroupSize = 0;
+		int averageGroupSize = 0;
+		int minTokensInClone = Integer.MAX_VALUE;
+		int maxTokensInClone = 0;
+		int averageTokensInClone = 0;
+		int minGroupSize = Integer.MAX_VALUE;
+		for (IClonesGroup group : clonesGroups) {
+			int groupSize = group.getInstances().size();
+			if (maxGroupSize < groupSize ){
+				maxGroupSize = groupSize;
+			}
+			averageGroupSize+=groupSize;
+			if (minGroupSize > groupSize){
+				minGroupSize = groupSize;
+			}
+			
+			int tokensInCLone = group.getCountOfTokens();
+			if (maxTokensInClone < tokensInCLone ){
+				maxTokensInClone = tokensInCLone;
+			}
+			averageTokensInClone+=tokensInCLone;
+			if (minTokensInClone > tokensInCLone){
+				minTokensInClone = tokensInCLone;
+			}
+			
+		}
+		averageGroupSize = averageGroupSize / clonesGroups.size();
+		averageTokensInClone = averageTokensInClone / clonesGroups.size();
+		System.out.println("FINAL REPORT ABOUT CLONES FINDING: ");
+		System.out.println("    Number of groups of clones            : " + clonesGroups.size());
+		System.out.println("    MAXIMUM of elements in a group        : " + maxGroupSize);
+		System.out.println("    The AVERAGE number of items in a group: " + averageGroupSize);
+		System.out.println("    MINIMUM of elements in a group        : " + minGroupSize);
+		System.out.println("    MAXIMUM of tokens in a clone          : " + maxTokensInClone);
+		System.out.println("    The AVERAGE number of terms in a clone: " + averageTokensInClone);
+		System.out.println("    MINIMUM of tokens in a clone          : " + minTokensInClone);
+		
+
+	}
+
 	private static void showMessage(Exception e) {
 		if (e == null){
 //			MessageDialog.openInformation(DrlPublisherPlugin.getShell(), "Information", "Export successfull");

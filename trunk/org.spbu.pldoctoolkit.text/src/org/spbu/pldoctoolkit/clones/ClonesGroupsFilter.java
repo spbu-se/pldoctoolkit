@@ -4,28 +4,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.EmptyStackException;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
-import org.spbu.pldoctoolkit.parser.DRLLang.Element;
-import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
-import org.spbu.pldoctoolkit.refactor.PositionInDRL;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
-
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 final class ClonesGroupsFilter {
 
 	static final String DELIMITERS_OF_DOCBOOK = " \n\t";
 
-	public List<IClonesGroup> specifyClonesGroups4DRL(List<IClonesGroup> input, LangElem infEl) {
+	public List<IClonesGroup> specifyClonesGroups4DRL(List<IClonesGroup> input) {
 		List<IClonesGroup> output = new ArrayList<IClonesGroup>();
 //		output.addAll(input);
 		for (IClonesGroup clonesGroup : input) {
@@ -38,13 +30,14 @@ final class ClonesGroupsFilter {
 					boolean firstOperation = true;
 					int countOfClonesAfterSpecify = -1;
 					for (ICloneInst clone : clonesGroup.getInstances()) {
-						List<ICloneInst> specifiedClones = specifyClone4DRL(clone);
+						List<ICloneInst> specifiedClones = specifyClone4XML(clone);
 						if (firstOperation){
 							firstOperation = false;
 							countOfClonesAfterSpecify = specifiedClones.size();
 							for (int i = 0; i < countOfClonesAfterSpecify; i++) {
 								//TODO 
-								IClonesGroup newGroup = new ClonesGroupImpl(clonesGroup.getId(), -1);
+								IClonesGroup newGroup = new ClonesGroupImpl(
+										clonesGroup.getId(), clonesGroup.getInstances().size());
 								newGroups.add(newGroup);
 							}
 						}else{
@@ -75,9 +68,8 @@ final class ClonesGroupsFilter {
 				}
 			}
 		}
-		//TODO
-//		return doRecalculationOfClonesGroupsIds(output);
-		return output;
+		return doRecalculationOfClonesGroupsIds(output);
+//		return output;
 	}
 	
 	private List<IClonesGroup> deleteGroupsWithoutText(
@@ -105,7 +97,7 @@ final class ClonesGroupsFilter {
 	}
 
 	private final List<Tag> tags = new ArrayList<Tag>();
-	private List<ICloneInst> specifyClone4DRL(ICloneInst clone) {
+	private List<ICloneInst> specifyClone4XML(ICloneInst clone) {
 		tags.clear();
 		System.out.println("\nBEGIN start:"+clone.getStartPos4EntireDocument()
 				+" end:"+ clone.getEndPos4EntireDocument()+ " :\n" + clone.getCloneText() + "\n:END");
@@ -113,7 +105,7 @@ final class ClonesGroupsFilter {
 		int indexOfFirstGT = text .indexOf('<');
 		int indexOfFirstLT = text.indexOf('>');
 		if (indexOfFirstGT == -1 && indexOfFirstLT == -1)
-			throw new IllegalArgumentException("text of clones have to contains '<' or '>'.");
+			throw new IllegalArgumentException("text of clone have to contains '<' or '>'.");
 		List<ICloneInst> rez = new ArrayList<ICloneInst>();
 		if (indexOfFirstGT == -1){
 			//=> indexOfFirstLT!=-1

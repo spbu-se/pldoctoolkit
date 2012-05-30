@@ -9,5 +9,6 @@ public interface IClonesGroup {
 	void addCloneInst(ICloneInst cloneInst);
 	void setGroupId(int id);
 	int getId();
+	int getCountOfTokens();
 
 }
