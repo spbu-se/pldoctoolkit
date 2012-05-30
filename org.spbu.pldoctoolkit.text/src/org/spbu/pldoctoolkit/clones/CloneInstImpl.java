@@ -235,11 +235,23 @@ public class CloneInstImpl implements ICloneInst {
 	public PositionInText getStartPos4EntireDocument() {
 		return startPosOfClone4EntireDoc;
 	}
+	
+	/*public PositionInText getAbsoluteStartPos() {
+		System.out.println(" clone getAbsoluteStartPos");
+		System.out.println(localStartPosOfClone.line);
+		System.out.println(localStartPosOfClone.column);
+		return getAbsolutePosition(infEl.getTagStartPos(), localStartPosOfClone);
+	}*/
 
 	@Override
 	public PositionInText getEndPos4EntireDocument() {
 		return endPosOfClone4EntireDoc;
 	}
+	
+	/*public PositionInText getAbsoluteEndPos() {
+		System.out.println(" clone getAbsoluteEndPos");
+		return getAbsolutePosition(infEl.getTagStartPos(), localEndPosOfClone);
+	}*/
 
 	private static PositionInText getPosition4EntireDocument(PositionInText prefixPos,
 			PositionInText localPos) {
