@@ -1,6 +1,8 @@
 package org.spbu.pldoctoolkit.refactor;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
@@ -12,6 +14,8 @@ public class ElementPositionInDRL {
 
 	private DRLDocument doc;
 	
+	private Element infElem = null;
+	
 	private PositionInText fromText, toText;
 	
 	private PositionInDRL from, to;
@@ -21,6 +25,9 @@ public class ElementPositionInDRL {
 	private HashMap<String, LangElem> nestsInSelection = null;
 	
 	public void init() {
+//		System.out.println(doc);
+//		System.out.println(fromText);
+//		System.out.println(toText);
 		from = doc.findByPosition(fromText);
 		to = doc.findByPosition(toText);
 
@@ -30,9 +37,51 @@ public class ElementPositionInDRL {
 			fromIdx = from.parent.getChilds().indexOf(from.next);
 
 		if (to.isInText)
-			toIdx = from.parent.getChilds().indexOf(to.elem);
+			toIdx = to.parent.getChilds().indexOf(to.elem);
 		else
-			toIdx = from.parent.getChilds().indexOf(to.prev);
+			toIdx = to.parent.getChilds().indexOf(to.prev);
+		
+		if (from.isInTag == true)
+			return;
+		
+		UpwardIterator searchInfElemiterator;
+		if (from.isInText)
+			searchInfElemiterator = new UpwardIterator(from.elem);
+		else if (from.next != null)
+			searchInfElemiterator = new UpwardIterator(from.next);
+		else
+			return;
+
+		infElem = searchInfElemiterator.next();
+		while (infElem != null) {
+			if (infElem instanceof LangElem) {
+				LangElem langElem = (LangElem) infElem;
+				if (langElem.tag.equals("InfElement"))
+					break;
+			}
+			infElem = searchInfElemiterator.next();
+		}
+		
+	}
+	
+	public boolean validate() {
+		
+		boolean isValide = true;
+
+		// 1.
+		if (from.parent != from.parent)
+			isValide = false;
+
+		// 2.
+		if (infElem == null)
+			isValide = false;
+
+		// 3.
+		if (from.isInTag == true
+				|| from.isInTag == true)
+			isValide = false;
+
+		return isValide;
 	}
 	
 	public void splitIfNecessary() {
@@ -82,6 +131,19 @@ public class ElementPositionInDRL {
 				}
 			}
 		}
+	}
+	
+	public List<LangElem> getInfElemRefs(ProjectContent project) {
+		
+		List<LangElem> infElemRefs = new ArrayList<LangElem>();
+		
+		String idTofind = ((LangElem) infElem).attrs.getValue("id");
+		for (LangElem infElemRef : project.infElemRefs) {
+			if (infElemRef.attrs.getValue("infelemid").equals(idTofind))
+				infElemRefs.add(infElemRef);
+		}
+		
+		return infElemRefs;
 	}
 	
 	public PositionInText getFromText() {
@@ -154,6 +216,10 @@ public class ElementPositionInDRL {
 
 	public void setDoc(DRLDocument doc) {
 		this.doc = doc;
+	}
+	
+	public Element getInfElem() {
+		return infElem;
 	}
 	
 }
