@@ -1,4 +1,4 @@
-package org.spbu.pldoctoolkit.clones;
+package org.spbu.pldoctoolkit.filter4xml;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,13 +8,13 @@ import java.util.List;
 
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 
-final class StringInfo {
+public final class StringInfo {
 
 	private String text = "";
 	private final List<String> lines = new ArrayList<String>();
 	private final List<Integer> absoluteIndexes = new ArrayList<Integer>();
 
-	void setTextIfNeed(String text) {
+	public void setTextIfNeed(String text) {
 		if (!text.equals(this.text)){
 			long startInMillis = System.currentTimeMillis();
 			this.text = text;
@@ -40,7 +40,7 @@ final class StringInfo {
 	 * @param index - minimum value is 1
 	 * @return
 	 */
-	String getLineByNumber(int index) {
+	public String getLineByNumber(int index) {
 		return lines.get(index-1);
 	}
 
@@ -49,7 +49,7 @@ final class StringInfo {
 	 * @param index - minimum value is 1
 	 * @return
 	 */
-	int getAbsoluteIndexOfFirstSymbolOfLineNumber(int line) {
+	public int getAbsoluteIndexOfFirstSymbolOfLineNumber(int line) {
 		return absoluteIndexes.get(line-1);
 	}
 

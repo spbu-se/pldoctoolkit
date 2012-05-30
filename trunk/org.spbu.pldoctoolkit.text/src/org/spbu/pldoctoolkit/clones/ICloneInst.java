@@ -1,9 +1,10 @@
 package org.spbu.pldoctoolkit.clones;
 
+import org.spbu.pldoctoolkit.filter4xml.IPartOfInfEl;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 
-public interface ICloneInst {
+public interface ICloneInst extends IPartOfInfEl{
 	
 	String getName();
 
@@ -11,12 +12,6 @@ public interface ICloneInst {
 
 	int getAbsoluteStartPosition();
 	int getAbsoluteEndPosition();
-	LangElem getInfEl();
 
-	String getCloneText();
-
-	PositionInText getStartPos4EntireDocument();
-
-	PositionInText getEndPos4EntireDocument();
 	
 }

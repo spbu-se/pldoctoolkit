@@ -1,82 +1,15 @@
 package org.spbu.pldoctoolkit.clones;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.StringTokenizer;
 
+import org.spbu.pldoctoolkit.filter4xml.AbstractPartOfIE;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 
-public class CloneInstImpl implements ICloneInst {
-	//This is cache
-	private static final StringInfo stringInfo = new StringInfo();
+public class CloneInstImpl extends AbstractPartOfIE implements ICloneInst {
 	private static final String DELIMITERS_OF_CLONE_TOOL = " ,.\t\n*\"\'()";
 	// don't delimiters: "?_|<>="
 
-	private final PositionInText startPosOfClone4EntireDoc;
-	private final PositionInText endPosOfClone4EntireDoc;
-	private final LangElem infEl;
-	private String cloneText;
-
-//	public CloneInstImpl(final LangElem infEl, final PositionInText localStartPos,
-//			final PositionInText localEndPos) {
-//		langInfo.setTextIfNeed(infEl.getDRLDocument().getTextRepresentation());
-//		
-//		this.infEl = infEl;
-//		this.startPosOfClone4EntireDoc = getPosition4EntireDocument(infEl.getTagStartPos(), localStartPos);
-//		this.endPosOfClone4EntireDoc = getPosition4EntireDocument(infEl.getTagStartPos(), localEndPos);
-//		this.infEl = infEl;
-//		startPosOfClone4EntireDoc = getPosition4EntireDocument(infEl.getTagStartPos(), localStartPos);
-//		PositionInText tmpEndPosOfClone4EntireDoc = getPosition4EntireDocument(infEl.getTagStartPos(), localEndPos);
-//		// precalculation
-//		StringBuilder rez = null;
-//		String lastToken = null;
-//		// BufferedReader r = new BufferedReader(new StringReader(infEl
-//		// .getTextRepresentation()));
-//		// for (int i = 1; i < localStartPos.line; i++) {
-//		// if (r.readLine() == null)
-//		// throw new IllegalStateException();
-//		// }
-//		// String firstCloneLine = r.readLine();
-//		String firstCloneLine = langInfo
-//				.getLineByNumber(startPosOfClone4EntireDoc.line);
-//		rez = new StringBuilder();
-//		String lastCloneLine = null;
-//		if (localStartPos.line == localEndPos.line) {
-//			// rez.append(firstCloneLine.substring(
-//			// localStartPosOfClone.column - 1,
-//			// localEndPosOfClone.column - 1));
-//			rez.append(mySubstring(firstCloneLine, localStartPos.column,
-//					localEndPos.column));
-//			lastCloneLine = firstCloneLine;
-//		} else {
-//			// rez.append(firstCloneLine
-//			// .substring(localStartPosOfClone.column - 1));
-//			rez.append(mySubstring(firstCloneLine, localStartPos.column));
-//			rez.append('\n');
-//			// for (int i = localStartPos.line + 1; i < localEndPos.line; i++) {
-//			// rez.append(r.readLine() + "\n");
-//			// }
-//			for (int i = startPosOfClone4EntireDoc.line + 1; i < tmpEndPosOfClone4EntireDoc.line; i++) {
-//				rez.append(langInfo.getLineByNumber(i) + "\n");
-//			}
-//			// lastCloneLine = r.readLine();
-//			lastCloneLine = langInfo
-//					.getLineByNumber(tmpEndPosOfClone4EntireDoc.line);
-//			// rez.append(lastCloneLine
-//			// .substring(0, localEndPosOfClone.column - 1));
-//			rez.append(mySubstring(lastCloneLine, 1, localEndPos.column));
-//		}
-//		lastToken = extractFirstToken(mySubstring(lastCloneLine,
-//				localEndPos.column));
-//		rez.append(lastToken);
-//		// end precalcelation
-//		this.cloneText = rez.toString();
-//		this.endPosOfClone4EntireDoc = new PositionInText(tmpEndPosOfClone4EntireDoc.line,
-//				tmpEndPosOfClone4EntireDoc.column + lastToken .length());
-		
-//	}
 	public static ICloneInst createCloneInstByLocalPositions(final LangElem infEl, final PositionInText localStartPos,
 			final PositionInText localEndPos){
 		if (infEl == null || localStartPos == null || localEndPos == null)
@@ -94,13 +27,7 @@ public class CloneInstImpl implements ICloneInst {
 	
 	private CloneInstImpl(final LangElem infEl, final PositionInText startPosOfClone4EntireDoc,
 			final PositionInText endPosOfClone4EntireDoc) {
-		if (infEl == null || startPosOfClone4EntireDoc == null || endPosOfClone4EntireDoc == null)
-			throw new NullPointerException();
-		stringInfo.setTextIfNeed(infEl.getDRLDocument().getTextRepresentation());
-		
-		this.infEl = infEl;
-		this.startPosOfClone4EntireDoc = startPosOfClone4EntireDoc;
-		this.endPosOfClone4EntireDoc = endPosOfClone4EntireDoc;
+		super(infEl, startPosOfClone4EntireDoc, endPosOfClone4EntireDoc);
 	}
 	
 	public static PositionInText findTrueLocalEndPosition(final LangElem infEl, final PositionInText localEndPosFromCloneMiner){
@@ -118,60 +45,7 @@ public class CloneInstImpl implements ICloneInst {
 	public String getName() {
 		return toString();
 	}
-
-	@Override
-	public String toString() {
-		return infEl.getDRLDocument().file.getFullPath() + ":"
-				+ getStartPos4EntireDocument() + "-" + getEndPos4EntireDocument();
-	}
-
-	@Override
-	public LangElem getInfEl() {
-		return infEl;
-	}
-
-	@Override
-	public String getCloneText() {
-		if (cloneText == null){			
-			StringBuilder rez = null;
-			String firstCloneLine = stringInfo.getLineByNumber(startPosOfClone4EntireDoc.line);
-			rez = new StringBuilder();
-			String lastCloneLine = null;
-			if (startPosOfClone4EntireDoc.line == endPosOfClone4EntireDoc.line) {
-				rez.append(mySubstring(firstCloneLine, startPosOfClone4EntireDoc.column,
-						endPosOfClone4EntireDoc.column));
-				lastCloneLine = firstCloneLine;
-			} else {
-				rez.append(mySubstring(firstCloneLine, startPosOfClone4EntireDoc.column));
-				rez.append('\n');
-				for (int i = startPosOfClone4EntireDoc.line + 1; i < endPosOfClone4EntireDoc.line; i++) {
-					rez.append(stringInfo.getLineByNumber(i) + "\n");
-				}
-				lastCloneLine = stringInfo.getLineByNumber(endPosOfClone4EntireDoc.line);
-				rez.append(mySubstring(lastCloneLine, 1, endPosOfClone4EntireDoc.column));
-			}
-			cloneText = rez.toString();
-		}
-		return cloneText;
-	}
 	
-	private static String mySubstring(String string, int beginIndex) {
-		String stWithoutTabs = string.replaceAll("\t", "    ");
-		return stWithoutTabs.substring(beginIndex-1);
-	}
-	
-	/**
-	 * 
-	 * @param string
-	 * @param beginIndex - first index equals 1
-	 * @param endIndex
-	 * @return
-	 */
-	private static String mySubstring(String string, int beginIndex, int endIndex) {
-		String stWithoutTabs = string.replaceAll("\t", "    ");
-		return stWithoutTabs.substring(beginIndex-1, endIndex-1);
-	}
-
 	private static String extractFirstToken(String string) {
 		StringTokenizer tokenTok = new StringTokenizer(string, DELIMITERS_OF_CLONE_TOOL);
 		if (!tokenTok.hasMoreTokens())
@@ -181,7 +55,7 @@ public class CloneInstImpl implements ICloneInst {
 
 	@Override
 	public String getPath() {
-		return infEl.getDRLDocument().file.getFullPath().toString();
+		return getInfEl().getDRLDocument().file.getFullPath().toString();
 	}
 
 	@Override
@@ -229,28 +103,6 @@ public class CloneInstImpl implements ICloneInst {
 	public int getAbsoluteEndPosition() {
 		return convertPositionInEntireDocToIntPosition(getEndPos4EntireDocument());
 	}
-
-	@Override
-	public PositionInText getStartPos4EntireDocument() {
-		return startPosOfClone4EntireDoc;
-	}
-	
-	/*public PositionInText getAbsoluteStartPos() {
-		System.out.println(" clone getAbsoluteStartPos");
-		System.out.println(localStartPosOfClone.line);
-		System.out.println(localStartPosOfClone.column);
-		return getAbsolutePosition(infEl.getTagStartPos(), localStartPosOfClone);
-	}*/
-
-	@Override
-	public PositionInText getEndPos4EntireDocument() {
-		return endPosOfClone4EntireDoc;
-	}
-	
-	/*public PositionInText getAbsoluteEndPos() {
-		System.out.println(" clone getAbsoluteEndPos");
-		return getAbsolutePosition(infEl.getTagStartPos(), localEndPosOfClone);
-	}*/
 
 	private static PositionInText getPosition4EntireDocument(PositionInText prefixPos,
 			PositionInText localPos) {
