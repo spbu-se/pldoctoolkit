@@ -42,7 +42,7 @@ public final class ClonesGroupImpl implements IClonesGroup {
 	public String getName() {
 		if (insts.isEmpty())
 			return "Empty clone group";
-		String cloneText = insts.get(0).getCloneText();
+		String cloneText = insts.get(0).getText();
 		if (cloneText.length() > MAX_LENGTH_OF_TEXT_4_PRINT)
 			cloneText = cloneText.substring(0, MAX_LENGTH_OF_TEXT_4_PRINT)
 					+ "...";
@@ -71,7 +71,7 @@ public final class ClonesGroupImpl implements IClonesGroup {
 	public int getCountOfTokens() {
 		int termCount = 0;
 		for (StringTokenizer tok = new StringTokenizer(insts.get(0)
-				.getCloneText(), ClonesGroupsFilter.DELIMITERS_OF_DOCBOOK); tok
+				.getText(), ClonesGroupsFilter.DELIMITERS_OF_DOCBOOK); tok
 				.hasMoreTokens(); tok.nextToken(), termCount++)
 			;
 		return termCount;
