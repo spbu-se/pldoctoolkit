@@ -117,7 +117,7 @@ public class CreateNest {
 					idx = pos.parent.getChilds().indexOf(pos.next);
 			}						
 						
-			LangElem nest = createNewNest();			
+			LangElem nest = createNewNest(prefex, nestId, parent);			
 			pos.parent.getChilds().add(idx, nest);			
 		}		
 	}	
@@ -133,7 +133,7 @@ public class CreateNest {
 		}		
 	}
 
-	private LangElem createNewNest() {		
+	public static LangElem createNewNest(String prefex, String nestId, Element parent) {		
 		LangElem entry = new LangElem(LangElem.NEST, prefex + LangElem.NEST, null, parent, parent.getDRLDocument(), new AttributesImpl());
 		((AttributesImpl)entry.attrs).addAttribute(LangElem.ID, LangElem.ID, LangElem.ID, "", nestId);		
 		return entry;

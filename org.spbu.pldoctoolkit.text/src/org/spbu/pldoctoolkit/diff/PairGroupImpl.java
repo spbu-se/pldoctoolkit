@@ -9,9 +9,9 @@ public class PairGroupImpl implements IPairGroup{
 	
 	public PairGroupImpl(LangElem firstInfElem, LangElem secondInfElem) {
 		firstInstance = new ElementInstImpl();
-		firstInstance.setInfElem(firstInfElem);
+		firstInstance.setInfEl(firstInfElem);
 		secondInstance = new ElementInstImpl();
-		secondInstance.setInfElem(secondInfElem);
+		secondInstance.setInfEl(secondInfElem);
 	}
 	
 	@Override

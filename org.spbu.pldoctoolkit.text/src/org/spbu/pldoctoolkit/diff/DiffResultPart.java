@@ -56,10 +56,10 @@ public class DiffResultPart {
 		if (endLineNumber == Difference.NONE) {
 			return true;
 		}
-		Element startElem = getElement(infElement, startLineNumber);
-		Element endElem = getElement(infElement, endLineNumber);
-		System.out.println("ololololo" + startElem.getTextRepresentation() + "olo");
-		System.out.println("ololololo2" + endElem.getTextRepresentation() + "2olo");
+		Element startElem = getElement(infElement, startLineNumber, true);
+		Element endElem = getElement(infElement, endLineNumber, false);
+		System.out.println("element of diff start [" + startElem.getTextRepresentation() + "]");
+		System.out.println("element of diff end [" + endElem.getTextRepresentation() + "]");
 		boolean isInLangElemTag = false;
 		PositionInText posStart = new PositionInText(startLineNumber, 1);
 		PositionInDRL start = infElement.getDRLDocument().findByPosition(posStart);
@@ -73,12 +73,17 @@ public class DiffResultPart {
 		return (!isInLangElemTag && notManyChildren && startElem.equals(endElem));
 	}
 	
-	public static Element getElement(LangElem infElement, int localLineNumber) {
+	public static Element getElement(LangElem infElement, int localLineNumber, boolean posAtStart) {
 		int absoluteLineNumber = localLineNumber + infElement.getTagStartPos().line + 1;
 		int absoluteColumnNumber = getTrueLocalColumn(infElement, localLineNumber) + infElement.getTagStartPos().column;
 		PositionInText pos = new PositionInText(absoluteLineNumber, absoluteColumnNumber);
 		PositionInDRL posDRL = infElement.getDRLDocument().findByPosition(pos);
-		Element elem = posDRL.elem != null ? posDRL.elem : posDRL.next;
+		Element elem;
+		if (posAtStart) {
+			elem = posDRL.next != null ? posDRL.next : posDRL.elem;
+		} else {
+			elem = posDRL.prev != null ? posDRL.prev : posDRL.elem;
+		}
 		//elem = getNotBlanc(elem);
 		return elem;
 	}

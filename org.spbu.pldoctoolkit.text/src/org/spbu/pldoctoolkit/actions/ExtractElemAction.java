@@ -45,7 +45,7 @@ public final class ExtractElemAction extends Action {
 		project = ((FileEditorInput) editor.getEditorInput()).getFile().getProject();
 		projectContent = (ProjectContent) ((ProjectRegistryImpl) PLDocToolkitPlugin
 				.getRegistry(project.getName())).projectContent;
-		refact.setParams(projectContent);
+		refact.setParams(projectContent, pairGroupToRefactor);
 	}
 
 	public void run() {
@@ -55,11 +55,10 @@ public final class ExtractElemAction extends Action {
 		int result = selectIntoInfElemDialog.open();
 		if (result != Window.OK)
 			return;
-		
-		System.out.println("MOOOOOOOOOOOOOOOOOORE");
-		for (Element elem : refact.setNestsAndReturnElements(pairGroupToRefactor)) {
+				
+		/*for (Element elem : refact.setNestsAndReturnElements()) {
 			System.out.println(elem.getTextRepresentation());
-		}
+		}*/
 		
 		List<ElementPositionInDRL> list = new ArrayList<ElementPositionInDRL>();
 		list.add(createElementPositionInDRL(pairGroupToRefactor.getFirstInstance()));
@@ -68,19 +67,20 @@ public final class ExtractElemAction extends Action {
 		refactSelectIntoInfElem.setPararams(selectIntoInfElemDialog
 				.getInfElemId(), selectIntoInfElemDialog.getInfElemName(),
 				selectIntoInfElemDialog.getInfElemRefId(), projectContent, list);
-		
+		refactSelectIntoInfElem.setExtractElemForDiffRefact(refact);
 		/*refactSelectIntoInfElem.setPararams(selectIntoInfElemDialog
 				.getInfElemId(), selectIntoInfElemDialog.getInfElemName(),
 				selectIntoInfElemDialog.getInfElemRefId(), projectContent, list.get(0).getDoc(), list.get(0).getFromText(), list.get(0).getToText());*/
 		refactSelectIntoInfElem.perform();
+		refact.replaceNests(projectContent, selectIntoInfElemDialog.getInfElemRefId());
 		projectContent.saveAll();
 	}
 
 	private ElementPositionInDRL createElementPositionInDRL(IElementInst inst) {
 		ElementPositionInDRL eInDRL = new ElementPositionInDRL();
-		eInDRL.setFromText(inst.getAbsoluteStartPos());
-		eInDRL.setToText(inst.getAbsoluteEndPos());
-		eInDRL.setDoc(inst.getInfElem().getDRLDocument());
+		eInDRL.setFromText(inst.getStartPos4EntireDocument());
+		eInDRL.setToText(inst.getEndPos4EntireDocument());
+		eInDRL.setDoc(inst.getInfEl().getDRLDocument());
 		return eInDRL;
 	}
 	

@@ -3,6 +3,9 @@ package org.spbu.pldoctoolkit.diff;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.spbu.pldoctoolkit.clones.CloneInstImpl;
+import org.spbu.pldoctoolkit.clones.ICloneInst;
+import org.spbu.pldoctoolkit.filter4xml.Specifier;
 import org.spbu.pldoctoolkit.parser.DRLLang.DRLDocument;
 import org.spbu.pldoctoolkit.parser.DRLLang.Element;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
@@ -15,8 +18,110 @@ public class DiffMaker {
 	private IPairGroup currentPair;
 	private DiffResultPart partInFirstElement;
 	private DiffResultPart partInSecondElement;
+	private static final Specifier<IElementInst> clonesSpecifier = new Specifier<IElementInst>(){
+
+		@Override
+		protected IElementInst createPartOfInfEl(LangElem infEl,
+				PositionInText startPos, PositionInText endPos) {
+			return FilteredElementInstImpl.createInstByPositions4EntireDoc(infEl, startPos, endPos);
+		}};
 
 	public List<IPairGroup> makeDiff(LangElem firstInfElementToCompare,
+			LangElem secondInfElementToCompare) {
+
+		groups = new ArrayList<IPairGroup>();
+
+		String[] cleanFirstLines = getLines(firstInfElementToCompare);
+		String[] cleanSecondLines = getLines(secondInfElementToCompare);
+		//String[] cleanFirstLines = new String[]{firstInfElementToCompare.getTextRepresentation()};
+		//String[] cleanSecondLines = new String[]{secondInfElementToCompare.getTextRepresentation()};
+		for (int i =0;i<cleanFirstLines.length;i++) {
+			System.out.println("IIIII" + cleanFirstLines[i] + "IIIII");
+		}
+		for (int i =0;i<cleanSecondLines.length;i++) {
+			System.out.println("II_II" + cleanSecondLines[i] + "II_II");
+		}
+		List<Difference> diffs = (new Diff<String>(cleanFirstLines,
+				cleanSecondLines)).diff();
+
+		currentPair = new PairGroupImpl(firstInfElementToCompare,
+				secondInfElementToCompare);
+		//groups.add(currentPair);
+		partInFirstElement = new DiffResultPart(0);
+		partInSecondElement = new DiffResultPart(0);
+
+		System.out.println("diffs size " + diffs.size());
+		for (Difference diff : diffs) {
+			
+			addIdenticalIfNecessary(diff.getDeletedStart(), partInFirstElement, currentPair.getFirstInstance());
+			addIdenticalIfNecessary(diff.getAddedStart(), partInSecondElement, currentPair.getSecondInstance());
+
+			if (currentPair.getFirstInstance().getParts().size() > 0 && currentPair.getSecondInstance().getParts().size() > 0) {
+			partInFirstElement = new DiffResultPart(diff.getDeletedStart(),
+					diff.getDeletedEnd(), false);
+			partInSecondElement = new DiffResultPart(diff.getAddedStart(), diff
+					.getAddedEnd(), false);
+
+			System.out.println("first diff safe" + partInFirstElement.isSafe(firstInfElementToCompare));
+			System.out.println("second diff safe" + partInSecondElement.isSafe(secondInfElementToCompare));
+			
+			if (partInFirstElement.isSafe(firstInfElementToCompare) && partInSecondElement.isSafe(secondInfElementToCompare)) {
+				currentPair.getFirstInstance().addPart(partInFirstElement);
+				currentPair.getSecondInstance().addPart(partInSecondElement);
+			} else {
+				List<IElementInst> firstSpecifiedResults = clonesSpecifier.specifyPart4XML(currentPair.getFirstInstance());
+				List<IElementInst> secondSpecifiedResults = clonesSpecifier.specifyPart4XML(currentPair.getSecondInstance());
+				int size = Math.min(firstSpecifiedResults.size(), secondSpecifiedResults.size());
+				//if (firstSpecifiedResults.size() == secondSpecifiedResults.size()) {
+					for (int i = 0; i < size; i++) {
+						PairGroupImpl pair = new PairGroupImpl(firstInfElementToCompare, secondInfElementToCompare);
+						setDifferences(firstSpecifiedResults.get(i), currentPair.getFirstInstance());
+						setDifferences(secondSpecifiedResults.get(i), currentPair.getSecondInstance());
+						System.out.println("firstSpecifiedResult " + firstSpecifiedResults.get(i).getText());
+						System.out.println("secondSpecifiedResult " + secondSpecifiedResults.get(i).getText());
+						pair.setFirstInstance(firstSpecifiedResults.get(i));
+						pair.setSecondInstance(secondSpecifiedResults.get(i));
+						groups.add(pair);
+					}
+				/*} else {
+					System.out.println("ERROR: SPECIFIED RESULTS HAS DIFFERENT SIZES");
+				}*/
+				currentPair = new PairGroupImpl(firstInfElementToCompare, secondInfElementToCompare);
+			}
+			}
+			if (diff.getDeletedEnd() != Difference.NONE) {
+			partInFirstElement = new DiffResultPart(diff.getDeletedEnd() + 1);
+			} else {
+				partInFirstElement = new DiffResultPart(diff.getDeletedStart() + 1);
+			}
+			if (diff.getAddedEnd() != Difference.NONE) {
+			partInSecondElement = new DiffResultPart(diff.getAddedEnd() + 1);
+			} else {
+				partInSecondElement = new DiffResultPart(diff.getAddedStart() + 1);
+			}
+		}
+		addIdenticalIfNecessary(cleanFirstLines.length, partInFirstElement, currentPair.getFirstInstance());
+		addIdenticalIfNecessary(cleanSecondLines.length, partInSecondElement, currentPair.getSecondInstance());
+		if (currentPair.getFirstInstance().getParts().size() > 0 && currentPair.getSecondInstance().getParts().size() > 0) {
+			List<IElementInst> firstSpecifiedResults = clonesSpecifier.specifyPart4XML(currentPair.getFirstInstance());
+			List<IElementInst> secondSpecifiedResults = clonesSpecifier.specifyPart4XML(currentPair.getSecondInstance());
+			if (firstSpecifiedResults.size() == secondSpecifiedResults.size()) {
+				for (int i = 0; i < firstSpecifiedResults.size(); i++) {
+					PairGroupImpl pair = new PairGroupImpl(firstInfElementToCompare, secondInfElementToCompare);
+					setDifferences(firstSpecifiedResults.get(i), currentPair.getFirstInstance());
+					setDifferences(secondSpecifiedResults.get(i), currentPair.getSecondInstance());
+					System.out.println("firstSpecifiedResult " + firstSpecifiedResults.get(i).getText());
+					System.out.println("secondSpecifiedResult " + secondSpecifiedResults.get(i).getText());
+					pair.setFirstInstance(firstSpecifiedResults.get(i));
+					pair.setSecondInstance(secondSpecifiedResults.get(i));
+					groups.add(pair);
+				}
+			}
+		}
+		return groups;
+	}
+	
+	public List<IPairGroup> makeDiff2(LangElem firstInfElementToCompare,
 			LangElem secondInfElementToCompare) {
 
 		groups = new ArrayList<IPairGroup>();
@@ -105,6 +210,39 @@ public class DiffMaker {
 		return cleanLines;
 	}
 
+	private void addIdenticalIfNecessary(int start, DiffResultPart part, IElementInst inst) {
+		if (start > part.getStartLineNumber()) {
+			/*int lineEnd;
+			if (delEnd != Difference.NONE) {
+				lineEnd = delStart - 1;
+			} else {
+				lineEnd = delStart;
+			}
+			System.out.println("identical" + delStart + lineEnd);*/
+			part.setEndLineNumber(start - 1);
+		inst.addPart(part);
+		}
+	}
+	
+	private void setDifferences(IElementInst instToInsert, IElementInst instToGet) {
+		int i = 0;
+		boolean findDiff = true;
+		int additionalLinePart = instToGet.getInfEl().getTagStartPos().line + 1;
+		while (findDiff && i < instToGet.getParts().size()) {
+			DiffResultPart part = instToGet.getParts().get(i);
+			if (!part.getIdentical()) {
+				if (part.getStartLineNumber() + additionalLinePart >= instToInsert.getStartPos4EntireDocument().line && part.getEndLineNumber() + additionalLinePart <= instToInsert.getEndPos4EntireDocument().line) {
+					instToInsert.addPart(part);
+				} else {
+					if (part.getStartLineNumber() + additionalLinePart > instToInsert.getEndPos4EntireDocument().line) {
+						findDiff = false;
+					}
+				}
+			}
+			i++;
+		}
+	}
+	
 	private void addIdenticalIfNecessary(int delStart, int delEnd, int addStart, int addEnd, LangElem firstInfElem,
 			LangElem secondInfElem) {
 		if (delStart > partInFirstElement.getStartLineNumber()) {
@@ -147,9 +285,9 @@ public class DiffMaker {
 					.getEndLineNumber(); line++) {
 				boolean addLineToPart = true;
 				Element curElem1 = DiffResultPart
-						.getElement(firstInfElem, line);
+						.getElement(firstInfElem, line, true);
 				Element curElem2 = DiffResultPart.getElement(secondInfElem,
-						line);
+						line, false);
 				if ((curElem1.getEndPos().line == firstInfElem.getTagStartPos().line
 						+ 1 + line
 						|| curElem2.getEndPos().line == secondInfElem
@@ -165,11 +303,11 @@ public class DiffMaker {
 						Element firstElemOfFirstInst = DiffResultPart
 								.getElement(firstInfElem, currentPair
 										.getFirstInstance().getParts().get(0)
-										.getStartLineNumber());
+										.getStartLineNumber(), true);
 						Element firstElemOfSecondInst = DiffResultPart
 								.getElement(secondInfElem, currentPair
 										.getSecondInstance().getParts().get(0)
-										.getStartLineNumber());
+										.getStartLineNumber(), false);
 						if (curElem1.contains(firstElemOfFirstInst)
 								|| curElem2.contains(firstElemOfSecondInst)) {
 							addLineToPart = false;
