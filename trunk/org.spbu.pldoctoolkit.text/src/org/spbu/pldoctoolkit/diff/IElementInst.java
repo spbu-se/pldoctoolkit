@@ -2,14 +2,15 @@ package org.spbu.pldoctoolkit.diff;
 
 import java.util.List;
 
+import org.spbu.pldoctoolkit.filter4xml.IPartOfInfEl;
 import org.spbu.pldoctoolkit.parser.DRLLang.LangElem;
 import org.spbu.pldoctoolkit.refactor.PositionInText;
 
-public interface IElementInst {
+public interface IElementInst extends IPartOfInfEl{
 
-	PositionInText getAbsoluteStartPos();
+	PositionInText getStartPos4EntireDocument();
 
-	PositionInText getAbsoluteEndPos();
+	PositionInText getEndPos4EntireDocument();
 
 	void addPart(DiffResultPart part);
 
@@ -19,9 +20,9 @@ public interface IElementInst {
 
 	String getPath();
 	
-	LangElem getInfElem();
+	LangElem getInfEl();
 	
-	void setInfElem(LangElem infElem);
+	void setInfEl(LangElem infElem);
 
 	int getAbsoluteStartPosition();
 	

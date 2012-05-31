@@ -27,6 +27,8 @@ public class SelectIntoInfElem {
 	private boolean isValide = false;
 	private boolean wasValidation = false;
 	private boolean wasInfElemRefsPrepared = false;
+	
+	private ExtractElemForDiff refact;
 
 	private String prefex;
 
@@ -110,6 +112,10 @@ public class SelectIntoInfElem {
 		this.positionToReplace.setDoc(doc);
 	}
 
+	public void setExtractElemForDiffRefact(ExtractElemForDiff ref) {
+		this.refact = ref;
+	}
+	
 	/*
 	 * public void setClonePositions(List<ClonePositionInDRL>
 	 * clonePositionsInDRL) { this.clonePositions = clonePositionsInDRL; }
@@ -156,18 +162,23 @@ public class SelectIntoInfElem {
 	public void perform() {
 		validate();
 
-		System.out.println(positionToReplace.getFromIdx());
+		/*System.out.println(positionToReplace.getFromIdx());
 		System.out.println(positionToReplace.getToIdx());
 		System.out.println(positionToReplace.getFrom());
 		System.out.println(positionToReplace.getTo());
 		System.out.println(positionToReplace.getDoc());
-		System.out.println(positionToReplace.getInfElem());
+		System.out.println(positionToReplace.getInfElem());*/
 		if (isValide) {
 			firstPartOfPerform();
 
-			ArrayList<Element> childsToInsert = positionToReplace.getFrom().parent
+			ArrayList<Element> childsToInsert;
+			if (refact != null) {
+				childsToInsert = refact.setNestsAndReturnElements();
+			} else {
+			childsToInsert = positionToReplace.getFrom().parent
 					.getChilds(positionToReplace.getFromIdx(),
 							positionToReplace.getToIdx());
+			}
 
 			/*
 			 * ArrayList<Element> childsToInsert =
