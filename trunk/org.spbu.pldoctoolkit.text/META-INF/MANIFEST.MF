@@ -13,8 +13,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.text,
  org.eclipse.ui.editors,
  org.eclipse.ui.workbench.texteditor,
- org.spbu.pldoctoolkit,
- org.eclipse.compare;bundle-version="3.4.1"
+ org.spbu.pldoctoolkit
 Eclipse-LazyStart: true
 Bundle-ClassPath: lib/saxon8.jar,
  lib/jing.jar,
