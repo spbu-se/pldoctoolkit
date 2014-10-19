@@ -1,43 +1,47 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os
+# requires https://pypi.python.org/pypi/PyContracts
+
 import logging
+logging.basicConfig(filename='clones2html.log', level=logging.ERROR)
+global logger
+# logger = logging.Logger('clones.reporter')
+logger = logging # use it this way
+
+import traceback
+import os
 import cgi
 import string
 import collections
 import argparse
-import operator
+import shutil
 import time
 import errno
-import intertree
 
+import intertree
 import clones
 clones.initdata()
 
-
 def initargs():
     argpar = argparse.ArgumentParser()
-    argpar.add_argument("-nb", "--findnearby", help="Find clones nearby each other")
+    argpar.add_argument("-nb", "--findnearby", help="Find clones nearby each other, specify maximal distance (if clones theirselves are shorter)")
     argpar.add_argument("-wv", "--writevariations", help="Detect and write clone variations")
     argpar.add_argument("-sd", "--subdir", help="Subdir for output")
     argpar.add_argument("-bl", "--blacklist", help="Group ID's (as Clone Miner prints) to throw away")
+    argpar.add_argument("-wl", "--whitelist", help="Group ID's (as Clone Miner prints) to keep (consider others blacklisted)")
     argpar.add_argument("-minl", "--minimalclonelength", help="Minimal clone length in symbols. Default = 0")
     argpar.add_argument("-mino", "--minimalgrouppower", help="Minimal count of clones in group. Default = 2")
     argpar.add_argument("-cmup", "--checkmarkup", help="Filter groups, containing broken markup")
     argpar.add_argument("-fint", "--filterintersections", help="Filter clone intersections")
     argpar.add_argument("-ph", "--printheader", help="Print header for stats line")
+    argpar.add_argument("-mv", "--maximalvariance", help="Maximal variance of variative insertion sizes, defaults to 2000", default=2000)
     args = argpar.parse_args()
 
-    logging.basicConfig(filename='clones2htlm.log', level=logging.ERROR)
-    global logger
-    # logger = logging.Logger('clones.reporter')
-    logger = logging # use it this way
-
     global nearby
-    nearby = True
+    nearby = None
     if args.findnearby:
-        nearby &= (args.findnearby == 'yes')
+        nearby = int(args.findnearby)
 
     global printheader
     printheader = True
@@ -251,7 +255,7 @@ Dirty groups: ${dirtygrp}
 </p>
 Clone groups:
 <table>
-<thead><tr><th>X</th><th>G</th><th>R</th><th>#</th><th>ID</th><th>#Tokens</th><th>Occurs</th><th>Text</th></tr></thead>
+<thead><tr><th>X</th><th>G</th><th>R</th><th>#</th><th>ID</th><th>#Tokens</th><th>Occurs</th><th>{{</th><th>Text</th><th>}}</th></tr></thead>
 <tbody>${rows}</tbody>
 </table>
 
@@ -312,7 +316,11 @@ trt = string.Template("""<tr bgcolor="${bgcolor}">
 <td><input type="checkbox" value="0" id="x_${id}" class="cx"></input></td>
 <td><input type="checkbox" value="0" id="g_${id}" class="cg"></input></td>
 <td><input type="checkbox" value="0" id="r_${id}" class="cr"></input></td>
-<td>${no}</td><td>${id}</td><td>${nt}</td><td>${occurs}</td><td><tt>${text}</tt></td></tr>""")
+<td>${no}</td><td>${id}</td><td>${nt}</td><td>${occurs}</td>
+<td><tt>${ltext}</tt></td>
+<td><tt>${text}</tt></td>
+<td><tt>${rtext}</tt></td>
+</tr>""")
 
 trows = []
 
@@ -331,9 +339,10 @@ for g in clones.clonegroups:
         instancelengths.append(g.ntokens)
 #    octx = "<br/>".join(["%d: %d" % (k, occurs[k]) for k in occurs])
     octx = str(occurs[0])
+    lt, ct, rt = tuple(map(lambda t: cgi.escape(t).replace('\r','').replace('\n', '&#10;'), g.textwithcontext()))
     trows.append(
         trt.substitute(id = g.id, nt = g.ntokens, occurs = octx,
-                       text = cgi.escape(g.text()).replace('\r','').replace('\n', '&#10;'),
+                       ltext = lt, text = ct, rtext = rt,
                        bgcolor = "white" if g.isCorrect() else "yellow", no = no if coct else '/'
         )
     )
@@ -360,14 +369,15 @@ with open(os.path.join("Output", subdir, "pygroups.html"), 'w', encoding='utf-8'
 
 # measure distances
 
-def findnearby():
+def findnearby201312():
     mkdir_p(os.path.join("Output", subdir, "variations"))
 
     # clones.clonegroups = [ kg for kg in clones.clonegroups if kg.isCorrect() ]
 
     print("Measuring distances...")
 
-    # borderdist = 100
+    global nearby
+    minborderdist = nearby
 
     def sgn(n):
         if n < 0:
@@ -385,61 +395,24 @@ def findnearby():
 
     print("Filtering %d group combinations..." % ttu)
 
+    participatedgroups = set()
+
     def c1gc2gdist(g1g2):
         cg1, cg2 = g1g2
-        maxdist = 0
-        try:
-            signum = 0
-
-            borderdist = len(clones.clonegroups[cg1].text()) + len(clones.clonegroups[cg2].text())
-
-            # sort by offset
-            insts1 = sorted(clones.clonegroups[cg1].instances, key = operator.itemgetter(1))
-            insts2 = sorted(clones.clonegroups[cg2].instances, key = operator.itemgetter(1))
-
-            maxdist = 0
-            for c1i, c2i in zip(insts1, insts2):
-                _, c1o, _ = c1i
-                _, c2o, _ = c2i
-
-
-                newsignum = sgn(c2o-c1o) # criteria for 1 file only!!!
-                if newsignum * signum >= 0:
-                    signum = newsignum
-                else:
-                    raise Exception("Clones of two groups are combined in different order")
-
-                maxdist = max(clones.clonegroups.CloneGroup.distance(c1i, c2i), maxdist)
-
-                if maxdist > borderdist:
-                    raise Exception("No, those groups are not neighbours")
-            # if everything is ok
-
-            if writevariations:
-                pfx = ufilepr()
-                cic = 0
-                for c1i, c2i in zip(insts1, insts2):
-                    cic += 1
-                    _, c1b, c1e = c1i # TODO: same file only
-                    _, c2b, c2e = c2i
-                    with open(os.path.join("Output", subdir, "variations", pfx + "_" + str(cic) + ".txt"), "w") as insts:
-                        insts.write(clones.inputfiles[0][min(c1b, c2b):max(c1e, c2e)])
-                        insts.flush()
-            
-            return maxdist
-        except Exception as e:
-            # traceback.print_exc()
-            return None
+        cg1, cg2 = clones.clonegroups[cg1], clones.clonegroups[cg2]
+        return clones.CloneGroup.distance(cg1, cg2)
 
     # sequential
     for g1g2 in uniqp:
         if ttu % 5000 == 0:
-            print("%d group pairs left" % ttu)
+            print("%d group pairs left" % ttu, end="       \r", flush=True)
         ttu -= 1
 
         d = c1gc2gdist(g1g2)
-        if not d is None:
+        if 0 <= d < clones.infty:
             dists[g1g2] = d
+            participatedgroups.add(g1g2[0])
+            participatedgroups.add(g1g2[1])
 
     """
     # Parallel. Does not work =)
@@ -456,6 +429,8 @@ def findnearby():
             dists[k] = v
     """
 
+    print("Participated %d groups" % len(participatedgroups))
+
     with open(os.path.join("Output", subdir, "nearby.txt"), 'w') as nearby:
         for gp in dists:
             cg1 = clones.clonegroups[gp[0]]
@@ -468,5 +443,49 @@ def findnearby():
 
     logger.info("Done.")
 
+def combine_gruops20140819():
+    # sort descending
+    available_groups = sorted(clones.clonegroups,
+                              key=lambda gr: len(gr.text()),
+                              reverse=True)
+
+    participated_groups = set()
+    combinations = []
+
+    print("Combining groups, %d total..." % len(available_groups))
+    pcounter = 0
+    ptotal = len(available_groups)
+
+    for g1 in available_groups:
+        if g1 not in participated_groups:
+            best_g2 = None
+            best_dist = clones.infty
+            for g2 in available_groups:
+                if g2 != g1 and g2 not in participated_groups:
+                    d = clones.CloneGroup.distance(g1, g2)
+                    if d < best_dist:
+                        best_dist = d
+                        best_g2 = g2
+            if best_dist != clones.infty:
+                combinations.append(clones.VariativeElement([g1, best_g2]))
+                participated_groups.add(g1)
+                participated_groups.add(best_g2)
+
+        pcounter += 1
+        print("~ %d / %d = %03.1f%%" % (pcounter, ptotal, 100.0 * pcounter / ptotal), end='\r', flush=True)
+
+    combinations += [clones.VariativeElement([gr]) for gr in set(available_groups).difference(participated_groups)]
+    combinations.sort(key=lambda ve: ve.size, reverse=True)
+
+    cohtml = clones.VariativeElement.summaryhtml(combinations)
+    with open(os.path.join("Output", subdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:
+        htmlfile.write(cohtml)
+
+    shutil.copyfile(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'interactivity.js'),
+        os.path.join("Output", subdir, "interactivity.js")
+    )
+
 if nearby:
-    findnearby()
+    # findnearby201312()
+    combine_gruops20140819()
