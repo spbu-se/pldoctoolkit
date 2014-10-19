@@ -3,6 +3,7 @@
 
 # banyan http://pythonhosted.org/Banyan/ fails to build at least on Win 7 64 with Python 3
 # let's do ourselves, it is pleasant
+# requires https://pypi.python.org/pypi/PyContracts
 
 from contracts import contract
 

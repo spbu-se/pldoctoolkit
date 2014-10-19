@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# requires:
+# - https://pypi.python.org/pypi/PyContracts -- pip install pycontracts
+# - numpy
+
 import os
 import sys
 import re
@@ -8,10 +12,19 @@ import bisect
 import xml.etree.ElementTree as ET
 import xml.sax as xs
 import xml.sax.handler as xsh
-
+import textwrap
+import string
+import itertools
+import numpy
+import verbhtml
 
 # seems reasonable
 # http://stackoverflow.com/questions/3269434/whats-the-most-efficient-way-to-test-two-integer-ranges-for-overlap
+import operator
+
+infty = sys.maxsize
+clonegroups = []
+
 def is_overlapping(x1,x2, y1,y2):
     return max(x1,y1) <= min(x2,y2)
 
@@ -20,6 +33,8 @@ def initdata(inputfilesiv = [], clonegroupsiv = []):
     global inputfiles
     global clonegroups
     global blacklist
+    global black_descriptor_list
+    global whitelist
 
     inputfiles = inputfilesiv
     clonegroups = clonegroupsiv
@@ -47,9 +62,30 @@ def initoptions(args, logger):
     if args.checkmarkup and args.checkmarkup == 'no':
         checkmarkup = False
 
+    global maximalvariance
+    maximalvariance = int(args.maximalvariance)
+
+    global maxvariantdistance
+    maxvariantdistance = 100
+    if args.findnearby:
+        try:
+            maxvariantdistance = int(args.findnearby)
+        except:
+            logger.note("not a number in -nb <...>")
+
     global blacklist
     blacklist = set()
-    
+
+    # black descriptor list format is file with textual group descriptors
+    # it is portable across CloneMiner settings, run iterations, etc, it only depends on input data
+    # so it is named black_descriptor_list.txt and located together with Clones.txt
+
+    global black_descriptor_list
+    black_descriptor_list = set()
+
+    global whitelist
+    whitelist = set()
+
     if args.blacklist:
         try:
             with open(args.blacklist) as blf:
@@ -65,6 +101,20 @@ def initoptions(args, logger):
         except IOError:
             logger.warning("Can't load group ID blacklist form %s" % args.blacklist)
 
+    if args.whitelist:
+        try:
+            with open(args.whitelist) as blf:
+                bls = blf.read()
+                blss = re.split(',| |\r|\n', bls)
+                for idf in blss:
+                    idf = idf.strip()
+                    if idf != '':
+                        try:
+                            whitelist.add(int(idf))
+                        except:
+                            logger.warning("whitelist contains non-integer {{%s}}" % idf)
+        except IOError:
+            logger.warning("Can't load group ID whitelist form %s" % args.whitelist)
 
 class TextZone(object):
     UFO = 0
@@ -196,6 +246,9 @@ class InputFile(object):
             end = self.anything2offset(stst.stop)
             return self.text[start:end + 1]
 
+    def __len__(self):
+        return len(self.text)
+
     def offset2linecol(self, offset):
         line = bisect.bisect_left(self.offsets, offset) - 1
         return (line + 1, offset - self.offsets[line] + 1)
@@ -212,6 +265,12 @@ class InputFile(object):
 
     def anything2offset(self, coord):
         return self.linecol2offset(coord) if isinstance(coord, tuple) else coord
+
+class InternalException(Exception):
+    pass
+
+class InternalOkBreak(InternalException):
+    pass
 
 class CloneGroup(object):
     def __init__(self, id, ntokens, instances):
@@ -236,17 +295,55 @@ class CloneGroup(object):
             ifile = inputfiles[ifilen]
             s, e = ifile.anything2offset(s), ifile.anything2offset(e)
             self.instances.append((ifilen, s, e))
-            self.significances.append(int(len(instances)*(e-s+1)**2)) # from Kopin diploma
+            self.significances.append(int(len(instances)*(e-s+1)**2))  # from Kopin diploma
 
-    def text(self, inst = 0):
+        self.instances.sort(key=lambda i: i[1])  # clones in textual order
+        self.instances.sort(key=lambda i: i[0])  # and by file with more weight (sort is stable)
+        # now instances are sorted by file then by appearance
+
+    @property
+    def textdescriptor(self):
+        """
+        :return: textual description in form of fileno:begin-end joined by "," ordered by fileno then by begin offset
+        """
+        return ",".join(
+            ["%d:%d-%d" % inst for inst in sorted(self.instances)] # sorting should work as described above
+        )
+
+    def __hash__(self):  # to add to set
+        return hash(self.id) ^ 445051238233  # fast, but not very safe, better to only add CloneGroups to sets
+
+    def __eq__(self, other):
+        return type(self) == type(other) and self.id == other.id
+
+    def __ne__(self, other):
+        return type(self) != type(other) or self.id != other.id
+
+    def text(self, inst=0):
         global inputfiles
         global clonegroups
 
         fileno, start, end = self.instances[inst]
         return inputfiles[fileno][start:end]
 
+    def html(self, inst=0):
+        return "<code>" + verbhtml.escapecode(self.text(inst)) + "</code>"
+
+    def textwithcontext(self, inst = 0):
+        global inputfiles
+        global clonegroups
+
+        fileno, start, end = self.instances[inst]
+        length = end - start
+        ifl = inputfiles[fileno]
+        clength = max(min(length, 50), 20)
+        cstart = max(0, start - clength)
+        cend = min(len(ifl), end + clength)
+        return ifl[cstart : start - 1], ifl[start:end], ifl[end + 1 : cend]
+
+
     @classmethod
-    def distance(clgrcl, inst1, inst2):
+    def _inst_distance(cls, inst1, inst2):
         global inputfiles
 
         file1, start1, end1 = inst1
@@ -267,6 +364,79 @@ class CloneGroup(object):
         else:
             return start2 - end1 if start2 >= end1 else start1 - end2
 
+    @classmethod
+    def _cg_distance(cls, cg1, cg2):
+        def sgn(n):
+            if n < 0:
+                return -1
+            elif n > 0:
+                return 1
+            else:
+                return 0
+
+        global inputfiles
+
+        if len(cg1.instances) != len(cg2.instances):
+            return infty
+
+        global maxvariantdistance
+        maxdist = 0
+        signum = 0
+
+        borderdist = max(maxvariantdistance, len(cg1.text()) + len(cg2.text()))
+        # print("borderdist = %d" % borderdist)
+
+        # sort by offset
+        insts1 = sorted(cg1.instances, key=operator.itemgetter(1))
+        insts2 = sorted(cg2.instances, key=operator.itemgetter(1))
+
+        maxdist = 0
+        dists = []
+
+        for c1i in insts1:
+            for c2i in insts2:
+                if CloneGroup.distance(c1i, c2i) < 0:
+                    return infty
+
+        for c1i, c2i in zip(insts1, insts2):
+            fn1, c1o, _ = c1i
+            fn2, c2o, _ = c2i
+
+            if fn1 != fn2:  # different files
+                return infty
+
+            newsignum = sgn(c2o-c1o)  # criteria for file only!!!
+            if newsignum * signum < 0:
+                return infty  # different order
+            else:
+                signum = newsignum
+
+            dists.append(CloneGroup.distance(c1i, c2i))
+
+        m = max(dists)
+        if m > borderdist:
+            return infty
+
+        global maximalvariance
+        import numpy
+        va = numpy.var(dists)
+        # print("variance: %f" % va)
+        if va > maximalvariance:
+            return infty
+
+        return m
+
+    @classmethod  # was tooooo complicated for multimethod
+    def distance(cls, i1, i2):
+        if type(i1) != type(i2):
+            raise NotImplemented("Different types distance")
+        elif type(i1) == CloneGroup:
+            return cls._cg_distance(i1, i2)
+        elif type(i1) == tuple:
+            return cls._inst_distance(i1, i2)
+        else:
+            raise InternalException("What to do with integers here?..")
+
     def containsNoText(self):
         global inputfiles
         global clonegroups
@@ -285,7 +455,7 @@ class CloneGroup(object):
 
             # we can always use bisect_left ast text zones do not intersect
             startinfrontof = bisect.bisect_left(ifile0.textzoneoffsets, s)
-            endafter     =   bisect.bisect_right(ifile0.textzoneends, e)
+            endafter       = bisect.bisect_right(ifile0.textzoneends, e)
 
             s1i = saturate(startinfrontof - 1, 0, len(ifile0.textzoneoffsets))
             e1i = saturate(endafter + 1, 0, len(ifile0.textzoneoffsets))
@@ -388,9 +558,15 @@ class CloneGroup(object):
     def isBlacklisted(self):
         global inputfiles
         global clonegroups
+        global black_descriptor_list
 
         # logger.debug("self.id in blacklist: %s" % str(self.id in blacklist))
-        return self.id in blacklist
+        if len(black_descriptor_list) > 0:
+            return self.textdescriptor in black_descriptor_list
+        elif len(whitelist) > 0:
+            return self.id not in whitelist
+        else:
+            return self.id in blacklist
 
     def isCorrect(self):
         global inputfiles
@@ -436,6 +612,15 @@ def loadinputs(logger):
             if len(sl):
                 inputfiles.append(InputFile(sl))
 
+    if os.path.exists(os.path.join("Output", "black_descriptor_list.txt")):
+        with open(os.path.join("Output", "black_descriptor_list.txt")) as blst:
+            global black_descriptor_list
+            for line in blst:
+                sline = line.strip()
+                if sline:
+                    for segm in sline.split(';'):
+                        black_descriptor_list.add(segm.strip())
+
     # process clones and initialize groups & instances
     with open(os.path.join("Output", "Clones.txt")) as clotx:
         grid = None
@@ -470,3 +655,174 @@ def loadinputs(logger):
                         insts.append((mg[0], (mg[1], mg[2]), (mg[3], mg[4])))
                     else:
                         logger.warning("Garbage in input!!")
+
+class VariativeElement(object):
+    def __init__(self, clone_groups: 'list(CloneGroup)'):
+        global inputfiles
+
+        def grorder(group):  # no normal lambdas in Python...
+            file0, ost, oen = group.instances[0]  # first clone appearance
+            return ost
+
+        self.clone_groups = sorted(clone_groups, key=grorder)
+        self.htmlvcolors = itertools.cycle(['yellow', 'lightgreen', 'cyan'])
+
+    @property
+    def textdescriptor(self):
+        """
+        groups descriptors joined with ;
+        """
+        return ";".join([g.textdescriptor for g in self.clone_groups])
+
+    @property
+    def size(self):
+        return sum([len(g.text()) * len(g.instances) for g in self.clone_groups])
+
+    @property
+    def power(self):
+        return len(self.clone_groups)
+
+    def getvariations(self, position):
+        global inputfiles
+        g1 = self.clone_groups[position]
+        g2 = self.clone_groups[position + 1]
+
+        result = []
+
+        for ii in range(len(g1.instances)):
+            g1file, g1start, g1end = g1.instances[ii]
+            g2file, g2start, g2end = g2.instances[ii]
+
+            if g1file != g2file:
+                raise InternalException("Different files in variation groups")
+
+            result.append(inputfiles[g1file][g1end + 1 : g2start - 1])
+
+        return result
+
+    @property
+    def html(self):
+        def esc(s):
+            if len(s.strip()) == 0:
+                return """<span style="font-weight: bold; color: red;">&#x3b5;</span>"""
+            else:
+                return verbhtml.escapecode(s)
+
+        templ = string.Template(textwrap.dedent("""
+            <tr class="variative" data-groups="${desc}">
+            <td><input type="checkbox" data-groups="${desc}" data-functionality="create-inf-el"></input></td>
+            <td>${ngrp}</td>
+            <td>${grps}</td>
+            <td>${clgr}</td>
+            <td>${varel}</td>
+            <td>${varnc}</td>
+            <td><tt>${text}</tt></td>
+            </tr>"""))
+
+        vtext = self.clone_groups[0].text()
+        vnc = 0
+
+        startgrp = self.clone_groups[0]
+        endgrp = self.clone_groups[-1]
+
+        starts = [ s for (fno, s, e) in startgrp.instances ]
+        ends = [ e for (fno, s, e) in endgrp.instances ]
+
+        if self.power > 1:
+            variations = self.getvariations(0)  # may be more in the future
+
+            # was """<pre style="font-weight: bold; color: red; background-color: pink;">||</pre>"""
+            vvtext = ''.join([
+                (
+                    """<code class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
+                ) % (hlstart, hlend, hlstart, hlend, clr, esc(t))
+                for (hlstart, hlend, clr, t) in zip(starts, ends, self.htmlvcolors, variations)
+            ])
+
+            vnc = numpy.var([len(v) for v in variations])
+
+            vtext = self.clone_groups[0].html() + vvtext + self.clone_groups[1].html()
+
+        return templ.substitute(
+            ngrp = self.power,
+            grps = ",".join([str(grp.id) for grp in self.clone_groups]) + ",",
+            clgr = len(self.clone_groups[0].instances),
+            varel = self.size,
+            varnc = vnc,
+            text = vtext,
+            desc = self.textdescriptor
+        )
+
+    @staticmethod
+    def summaryhtml(elements: 'list(VariativeElement)'):
+        start = textwrap.dedent("""
+        <html>
+        <head>
+        <title>Variative elements</title>
+        <!-- link href="https://raw.githubusercontent.com/jcubic/jquery.splitter/master/css/jquery.splitter.css" rel="stylesheet"/ -->
+        <style type="text/css">
+        table
+        {
+            border-width: 0 0 1px 1px;
+            border-spacing: 0;
+            border-collapse: collapse;
+            border-style: solid;
+        }
+        td, th
+        {
+            margin: 0;
+            padding: 4px;
+            border-width: 1px 1px 0 0;
+            border-style: solid;
+        }
+        th
+        {
+            transform: rotate(-90deg);
+            height: 150px;
+        }
+        div #table, #source {
+            overflow: auto;
+            height: 50%;
+            border: 1px black;
+        }
+        span.highlight {
+            background-color: lightgreen;
+        }
+        </style>
+        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <!-- script src="https://raw.githubusercontent.com/jcubic/jquery.splitter/master/js/jquery.splitter-0.14.0.js"></script --> 
+        <script src="interactivity.js"></script>
+        </head>
+        <body>
+        <div id="content">
+        <div id="source">
+        <code>""")
+
+        middle = textwrap.dedent("""</code>
+        </div>
+        <div id="table">
+        <table>
+        <thead>
+        <tr>
+        <th>Create Inf. El</th>
+        <th>Participating groups</th>
+        <th>e.g.</th>
+        <th>Clones/group</th>
+        <th>Num of variants</th>
+        <th>Variance of variants</th>
+        <th>Element:</th>
+        </tr>
+        </thead>
+        <tbody>""")
+
+        finish = textwrap.dedent("""
+        </tbody></table>
+        Blacklisted group descriptors:
+        <textarea style="width:100%; height:100px;" id="black_descriptor_list"></textarea>
+        </div>
+        </div>
+        </body></html>""")
+
+        source = verbhtml.escapecode(inputfiles[0].text)
+
+        return start + source + middle + (os.linesep.join([e.html for e in elements])) + finish
