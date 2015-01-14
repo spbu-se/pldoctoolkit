@@ -709,8 +709,7 @@ class VariativeElement(object):
                 return verbhtml.escapecode(s)
 
         templ = string.Template(textwrap.dedent("""
-            <tr class="variative" data-groups="${desc}">
-            <td><input type="checkbox" data-groups="${desc}" data-functionality="create-inf-el"></input></td>
+            <tr class="${cssclass} variative" data-groups="${desc}">
             <td>${ngrp}</td>
             <td>${grps}</td>
             <td>${clgr}</td>
@@ -744,10 +743,11 @@ class VariativeElement(object):
             vtext = self.clone_groups[0].html() + vvtext + self.clone_groups[1].html()
 
         return templ.substitute(
+            cssclass = "multiple" if len(self.clone_groups) > 1 else "single",
             ngrp = self.power,
             grps = ",".join([str(grp.id) for grp in self.clone_groups]) + ",",
             clgr = len(self.clone_groups[0].instances),
-            varel = self.size,
+            varel = len(self.clone_groups) - 1,
             varnc = vnc,
             text = vtext,
             desc = self.textdescriptor
@@ -794,6 +794,15 @@ class VariativeElement(object):
         <script src="interactivity.js"></script>
         </head>
         <body>
+
+        <menu type="context" id="singlemenu">
+          <menuitem label="Add to Dictionary" id="single2dict"></menuitem>
+          <menuitem label="Create Information Element" id="single2elem"></menuitem>
+        </menu>
+        <menu type="context" id="multiplemenu">
+          <menuitem label="Create Variative Element" id="multiple2elem"></menuitem>
+        </menu>
+
         <div id="content">
         <div id="source">
         <code>""")
@@ -804,7 +813,6 @@ class VariativeElement(object):
         <table>
         <thead>
         <tr>
-        <th>Create Inf. El</th>
         <th>Participating groups</th>
         <th>e.g.</th>
         <th>Clones/group</th>
@@ -819,6 +827,10 @@ class VariativeElement(object):
         </tbody></table>
         Blacklisted group descriptors:
         <textarea style="width:100%; height:100px;" id="black_descriptor_list"></textarea>
+        2dict group descriptors:
+        <textarea style="width:100%; height:100px;" id="todict_descriptor_list"></textarea>
+        2elem group descriptors:
+        <textarea style="width:100%; height:100px;" id="toelem_descriptor_list"></textarea>
         </div>
         </div>
         </body></html>""")

@@ -45,6 +45,7 @@ $.fn.scrollXY = function(scx, scy) {
 }
 
 $( document ).ready(function() {
+  /*
   $('input[data-functionality="create-inf-el"][type="checkbox"]').change(function() {
     if($(this).is(":checked")) {
       $(this).attr("disabled", true);
@@ -53,6 +54,39 @@ $( document ).ready(function() {
       bdl.html(bdl.html() + "\n" + datagroups);
       $(this).parent().parent().css( "background-color", "lightgrey" );
     }
+  });
+  */
+
+  var curtr = undefined;
+  $('.variative').mouseenter(function() {
+    curtr = $(this);
+  });
+
+  $('.multiple').attr('contextmenu',  'multiplemenu');
+  $('.single').attr('contextmenu',  'singlemenu');
+
+  var commoncontext = function(ctr) {
+    ctr.css( "background-color", "lightgrey").removeAttr('contextmenu');
+    var datagroups = ctr.attr("data-groups");
+    var bdl = $('#black_descriptor_list');
+    bdl.html(bdl.html() + datagroups + "\n");
+    return datagroups;
+  };
+
+  $('#single2dict').click(function() {
+    var dg = commoncontext(curtr);
+    var targ = $('#todict_descriptor_list');
+    targ.html(targ.html() + dg + "\n");
+  });
+  $('#single2elem').click(function() {
+    var dg = commoncontext(curtr);
+    var targ = $('#toelem_descriptor_list');
+    targ.html(targ.html() + dg + "\n");
+  });
+  $('#multiple2elem').click(function() {
+    var dg = commoncontext(curtr);
+    var targ = $('#toelem_descriptor_list');
+    targ.html(targ.html() + dg + "\n");
   });
 
   $('code.variationclick').click(function() {
