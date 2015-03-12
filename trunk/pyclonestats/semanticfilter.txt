@@ -1,0 +1,74 @@
+#
+# If all clone words (without markup) belong to the set of the words of any non-comment line, clone is considered a garbage
+#
+
+this that is
+is a the
+shuts down up
+mutes the
+suppose that you
+compare the
+claimed by
+tells the
+appears in under
+appear in under
+situations where
+followed by
+tells the
+consult the
+placement of
+on the
+located in on
+hook is
+notify the a
+taking a the
+trying talking to
+rather than
+forget about
+seen by in
+greater less than
+says ensures that
+think of
+please note use check
+copies the
+find a the
+ones are
+know when which
+safe ready to
+increment decrement aquire a the
+stored in the
+why is
+just like
+create a
+likely need to
+once again
+meant to
+must be
+described above below later here a
+provides a an
+an example of
+further in the
+found in the
+because it a their
+make sure
+make use of
+we know that
+whether or not
+when the you are
+then you need be
+from the
+there are is one two
+which is in
+# !!! also applies is arguable
+also applies need known
+on a the
+other than
+at the same
+use used for to
+is are in on
+thus you
+would have be like
+does not need
+when the
+# !!! also arguable
+only when a if from

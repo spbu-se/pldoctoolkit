@@ -5,6 +5,7 @@
 # - https://pypi.python.org/pypi/PyContracts -- pip install pycontracts
 # - numpy
 
+import logging
 import os
 import sys
 import re
@@ -17,6 +18,9 @@ import string
 import itertools
 import numpy
 import verbhtml
+import xmllexer
+import xmlfixup
+import semanticfilter
 
 # seems reasonable
 # http://stackoverflow.com/questions/3269434/whats-the-most-efficient-way-to-test-two-integer-ranges-for-overlap
@@ -58,9 +62,10 @@ def initoptions(args, logger):
             logger.error("Expecting integer minimal group power")
 
     global checkmarkup
-    checkmarkup = True
-    if args.checkmarkup and args.checkmarkup == 'no':
-        checkmarkup = False
+    checkmarkup = args.checkmarkup == 'yes'
+
+    global shrink_broken_markup
+    shrink_broken_markup = args.checkmarkup == 'shrink'
 
     global maximalvariance
     maximalvariance = int(args.maximalvariance)
@@ -72,6 +77,12 @@ def initoptions(args, logger):
             maxvariantdistance = int(args.findnearby)
         except:
             logger.note("not a number in -nb <...>")
+
+    global checksemanticspresence
+    checksemanticspresence = args.check_semantics_presence == 'yes'
+
+    global cm_inclusiveend
+    cm_inclusiveend = args.inclusive_end == 'yes'
 
     global blacklist
     blacklist = set()
@@ -116,6 +127,7 @@ def initoptions(args, logger):
         except IOError:
             logger.warning("Can't load group ID whitelist form %s" % args.whitelist)
 
+# TODO: this should be enum (requires py 3.4+) and should be robably removed and replaced with xmllexer
 class TextZone(object):
     UFO = 0
     ELEM = 1
@@ -228,6 +240,9 @@ class InputFile(object):
         self.textzoneoffsets = marker.textzoneoffsets
         self.textzoneends = marker.textzoneends
         self.textzones = marker.textzones
+
+        # calculate tag coordinates using pygments lexer (hope correctly)
+        self.lexintervals = xmllexer.lex(self.text)
     
     def _getsinglechar(self, coord):
         o = self.anything2offset(coord)
@@ -437,7 +452,27 @@ class CloneGroup(object):
         else:
             raise InternalException("What to do with integers here?..")
 
+    def _plain_texts_from_intervals(self):
+        # detecting on instance[0]
+        ifilen, s, e = self.instances[0]
+        ifile = inputfiles[ifilen]
+        so = ifile.anything2offset(s)
+        sl = ifile.anything2offset(e) - so + 1
+
+        return xmllexer.get_plain_texts(so, sl, ifile.lexintervals)
+
+    def containsNoSemantic(self):
+        plaintext = ' '.join(self._plain_texts_from_intervals())
+        hs = semanticfilter.does_have_semantic(plaintext)
+        return not hs
+
     def containsNoText(self):
+        return len(''.join([s.strip() for s in self._plain_texts_from_intervals()])) == 0
+
+    def containsNoText_0(self):
+        """
+        deprecated version
+        """
         global inputfiles
         global clonegroups
 
@@ -598,6 +633,10 @@ class CloneGroup(object):
             # logger.info("broken markup")
             return False
 
+        if checksemanticspresence and self.containsNoSemantic():
+            # logger.info("no semantic")
+            return False
+
         return True
 
 
@@ -632,7 +671,8 @@ def loadinputs(logger):
             sl = line.strip()
             if sl == '': # empty line => group end
                 if grid is not None:
-                    clonegroups.append(CloneGroup(grid, ntoks, insts))
+                    if len(insts): # all instances can be filtered out due to broken markup
+                        clonegroups.append(CloneGroup(grid, ntoks, insts))
                     grid = None
                     ntoks = None
                     insts = []
@@ -649,10 +689,36 @@ def loadinputs(logger):
                 else:
                     idm = instdesc.match(sl)
 
+                    global cm_inclusiveend
                     if idm:
                         # logger.debug("Matched clone instance: " + sl)
                         mg = [int(n) for n in idm.groups()]
-                        insts.append((mg[0], (mg[1], mg[2]), (mg[3], mg[4])))
+
+                        ifilen = mg[0]
+                        ifile = inputfiles[ifilen]
+
+                        # xml fixup here if needed
+                        if shrink_broken_markup:
+                            # leave tags unbalanced, but truncate clone instances to complete tags
+                            i1_stoffs = ifile.anything2offset((mg[1], mg[2]))
+                            ilastoffs = ifile.anything2offset((mg[3], mg[4]))
+                            ilen = ilastoffs - i1_stoffs + 1
+                            shrinked = xmlfixup.shrink_broken_markup_interval(i1_stoffs, ilen, ifile.lexintervals)
+                            if shrinked is not None:
+                                i1_stoffs, ilen = shrinked
+                                ilastoffs = i1_stoffs + ilen - 1
+
+                                insts.append((
+                                    ifilen,
+                                    ifile.anything2linecol(i1_stoffs),
+                                    ifile.anything2linecol(ilastoffs - (0 if cm_inclusiveend else 1))
+                                ))
+                        else:
+                            insts.append((
+                                mg[0],
+                                (mg[1], mg[2]),
+                                (mg[3], mg[4]) if cm_inclusiveend else ifile.anything2linecol(ifile.anything2offset((mg[3], mg[4])) - 1)
+                            ))
                     else:
                         logger.warning("Garbage in input!!")
 
@@ -710,6 +776,10 @@ class VariativeElement(object):
 
         templ = string.Template(textwrap.dedent("""
             <tr class="${cssclass} variative" data-groups="${desc}">
+            <td class="qwebview_only" data-groups="${desc}">
+              <input type="button" data-rel="create_inf" value="Inf"></input><br/>
+              <input type="button" data-rel="create_dic" value="Dic"></input>
+            </td>
             <td>${ngrp}</td>
             <td>${grps}</td>
             <td>${clgr}</td>
@@ -718,7 +788,7 @@ class VariativeElement(object):
             <td><tt>${text}</tt></td>
             </tr>"""))
 
-        vtext = self.clone_groups[0].text()
+        vtext = esc(self.clone_groups[0].text())
         vnc = 0
 
         startgrp = self.clone_groups[0]
@@ -788,6 +858,15 @@ class VariativeElement(object):
         span.highlight {
             background-color: lightgreen;
         }
+
+        tr.multiple input[data-rel="create_dic"] {
+            display: none;
+        }
+        </style>
+        <style id="removeforqwebview">
+        .qwebview_only {
+            display: none;
+        }
         </style>
         <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
         <!-- script src="https://raw.githubusercontent.com/jcubic/jquery.splitter/master/js/jquery.splitter-0.14.0.js"></script --> 
@@ -813,6 +892,7 @@ class VariativeElement(object):
         <table>
         <thead>
         <tr>
+        <th class="qwebview_only">Create</th>
         <th>Participating groups</th>
         <th>e.g.</th>
         <th>Clones/group</th>

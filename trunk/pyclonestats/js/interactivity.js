@@ -73,20 +73,39 @@ $( document ).ready(function() {
     return datagroups;
   };
 
-  $('#single2dict').click(function() {
+  var saveInfDicts = function() {
+    var te = $('#toelem_descriptor_list').html();
+    var td = $('#todict_descriptor_list').html();
+    if(qtab) {
+      qtab.inf_dic_descs(te, td);
+    } else {
+      console.log(te, td);
+    }
+  }
+
+  $("#single2dict, tr.single > td > input[data-rel='create_dic']").click(function() {
+    console.log("#single2dict");
     var dg = commoncontext(curtr);
     var targ = $('#todict_descriptor_list');
     targ.html(targ.html() + dg + "\n");
+    $("td.qwebview_only[data-groups='"+dg+"']").empty();
+    saveInfDicts();
   });
-  $('#single2elem').click(function() {
+  $("#single2elem, tr.single > td > input[data-rel='create_inf']").click(function() {
+    console.log("#single2elem");
     var dg = commoncontext(curtr);
     var targ = $('#toelem_descriptor_list');
     targ.html(targ.html() + dg + "\n");
+    $("td.qwebview_only[data-groups='"+dg+"']").empty();
+    saveInfDicts();
   });
-  $('#multiple2elem').click(function() {
+  $("#multiple2elem, tr.multiple > td > input[data-rel='create_inf']").click(function() {
+    console.log("#multiple2elem");
     var dg = commoncontext(curtr);
     var targ = $('#toelem_descriptor_list');
     targ.html(targ.html() + dg + "\n");
+    $("td.qwebview_only[data-groups='"+dg+"']").empty();
+    saveInfDicts();
   });
 
   $('code.variationclick').click(function() {
@@ -102,4 +121,12 @@ $( document ).ready(function() {
   });
 
   window.source0 = $('div#source code').get(0).textContent;  // unescapes
+
+
+  window.adaptToQWebView = function() {
+    console.log("Adapting to QWebView!");
+    $("#removeforqwebview").remove();
+  }
+
+  // window.adaptToQWebView(); // uncomment to debug in browser
 });

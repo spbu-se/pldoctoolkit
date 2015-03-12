@@ -11,6 +11,7 @@ logger = logging # use it this way
 
 import traceback
 import os
+import sys
 import cgi
 import string
 import collections
@@ -32,10 +33,12 @@ def initargs():
     argpar.add_argument("-wl", "--whitelist", help="Group ID's (as Clone Miner prints) to keep (consider others blacklisted)")
     argpar.add_argument("-minl", "--minimalclonelength", help="Minimal clone length in symbols. Default = 0")
     argpar.add_argument("-mino", "--minimalgrouppower", help="Minimal count of clones in group. Default = 2")
-    argpar.add_argument("-cmup", "--checkmarkup", help="Filter groups, containing broken markup")
+    argpar.add_argument("-cmup", "--checkmarkup", help="Allow (no) Filter (yes) and Shrink-fix (shrink) groups, containing broken markup", default='no')
     argpar.add_argument("-fint", "--filterintersections", help="Filter clone intersections")
     argpar.add_argument("-ph", "--printheader", help="Print header for stats line")
     argpar.add_argument("-mv", "--maximalvariance", help="Maximal variance of variative insertion sizes, defaults to 2000", default=2000)
+    argpar.add_argument("-csp", "--check-semantics-presence", help="Filter clones without textual semantics", default="no")
+    argpar.add_argument("-ie", "--inclusive-end", help="Clone Miner last clone symbol is assumed to be included in the clone", default="no")
     args = argpar.parse_args()
 
     global nearby
@@ -456,6 +459,8 @@ def combine_gruops20140819():
     pcounter = 0
     ptotal = len(available_groups)
 
+    ttyn = '\r' if sys.stdout.isatty() else '\n'
+
     for g1 in available_groups:
         if g1 not in participated_groups:
             best_g2 = None
@@ -472,7 +477,7 @@ def combine_gruops20140819():
                 participated_groups.add(best_g2)
 
         pcounter += 1
-        print("~ %d / %d = %03.1f%%" % (pcounter, ptotal, 100.0 * pcounter / ptotal), end='\r', flush=True)
+        print("~ %d / %d = %03.1f%%" % (pcounter, ptotal, 100.0 * pcounter / ptotal), end=ttyn, flush=True)
 
     combinations += [clones.VariativeElement([gr]) for gr in set(available_groups).difference(participated_groups)]
     combinations.sort(key=lambda ve: ve.size, reverse=True)
