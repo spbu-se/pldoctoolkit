@@ -14,8 +14,7 @@ import subprocess
 import time
 
 def path2url(path):
-    "Very basic translation"
-    return 'file:///' + path.replace('\\', '/')
+    return QtCore.QUrl.fromLocalFile(path).toString()
 
 # inspired by https://gist.github.com/Tatsh/7131812 
 from os import chdir, getcwd
