@@ -11,6 +11,7 @@ import org.spbu.pldoctoolkit.actions.BasicExportAction;
 import org.spbu.pldoctoolkit.actions.DRLMenuListener;
 import org.spbu.pldoctoolkit.actions.ExtractInsertAfterAction;
 import org.spbu.pldoctoolkit.actions.ExtractInsertBeforeAction;
+import org.spbu.pldoctoolkit.actions.FindAndBrowseVariationsAction;
 import org.spbu.pldoctoolkit.actions.FindClonesInInfElemAction;
 import org.spbu.pldoctoolkit.actions.HandleDIffWithAnotherInfElemAction;
 import org.spbu.pldoctoolkit.actions.InsertTemplateAction;
@@ -70,6 +71,9 @@ public class DrlTextEditor extends TextEditor {
 	private ColorManager colorManager;
 	private DRLMenuListener menuListener = new DRLMenuListener();//minchin
 
+	//dluciv
+	public static final String FIND_AND_BROWSE_VARIATIONS = "find_and_browse_variations";
+	
 	static {
 		if (PLDocToolkitPlugin.getRegistryIndex().getProjectContentCreator() == null)
 			PLDocToolkitPlugin.getRegistryIndex().setProjectContentCreator(new ProjectContentCreator());
@@ -248,6 +252,13 @@ public class DrlTextEditor extends TextEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		// dluciv
+		try {
+			setAction(FIND_AND_BROWSE_VARIATIONS, new FindAndBrowseVariationsAction(this));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public ISourceViewer DrlGetSourceViewer(){
@@ -294,6 +305,10 @@ public class DrlTextEditor extends TextEditor {
 		//shutak
 		addAction(refactMenu, FIND_CLONES_IN_INF_ELEM);
 		//DRLMenuListener.instance.editor = this;
+		
+		//dluciv
+		addAction(refactMenu, FIND_AND_BROWSE_VARIATIONS);
+		
 		menuListener.menuAboutToShow(menu);
 	}
    
