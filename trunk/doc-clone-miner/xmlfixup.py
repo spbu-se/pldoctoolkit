@@ -7,30 +7,42 @@ Simple ad-hoc XML fixed
 
 import xmllexer
 
+
 def shrink_broken_markup_interval(offset, length, all_intervals):
     covered, broken_1st, broken_last = xmllexer.find_covered_intervals(offset, length, all_intervals)
     end = offset + length
 
     if broken_1st:
-        if len(covered) < 2:
-            return None
-        # general text can be broken
         if covered[0].int_type != xmllexer.IntervalType.general:
-            offset = covered[1].offs
+            # general text can be broken
+            if len(covered) < 2:
+                return None
+            else:
+                offset = covered[1].offs
     if broken_last:
-        if len(covered) < 2:
-            return None
-        # general text can be broken
         if covered[-1].int_type != xmllexer.IntervalType.general:
-            end = covered[-2].end
+            # general text can be broken
+            if len(covered) < 2:
+                return None
+            else:
+                end = covered[-2].end
     rlen = end - offset
     if rlen <= 0:
         return None
     return offset, rlen
 
+
 def balance_unbalanced_text(covered_intervals):
-    append = []
-    prepend = []
+    """
+    :param covered_intervals: [xmllexer.XmlInterval] -- correct unbalanced markup
+    :return: ([intervals to prepend to body], [intervals to append to body], [intervals to prepend ref ref], [intervals to append to ref])
+    """
+
+    elem_append = []
+    elem_prepend = []
+
+    ref_append = []
+    ref_prepend = []
 
     # going right
     stack = []
@@ -40,9 +52,9 @@ def balance_unbalanced_text(covered_intervals):
         elif i.int_type == xmllexer.IntervalType.closetag and len(stack):
             stack.pop()
 
-    while len(stack):
-        i = stack.pop()
-        append.append(xmllexer.XmlInterval(xmllexer.IntervalType.closetag, -1, "</" + i.name + ">", i.name))
+    for i in stack:
+        elem_append.insert(0, i.create_opposite_tag())
+        ref_append.append(i)
 
     # going left
     stack = []
@@ -54,19 +66,19 @@ def balance_unbalanced_text(covered_intervals):
         elif i.int_type == xmllexer.IntervalType.opentag and len(stack):
             stack.pop()
 
-    while len(stack):
-        i = stack.pop()
-        prepend.append(xmllexer.XmlInterval(xmllexer.IntervalType.opentag, -1, "<" + i.name + ">", i.name))
+    for i in stack:
+        elem_prepend.append(i.create_opposite_tag())
+        ref_prepend.insert(0, i)
 
-    prepend.reverse()
-
-    return prepend, append
+    return elem_prepend, elem_append, ref_prepend, ref_append
 
 # just a test
 if __name__ == '__main__':
     src = """t0</a>t1</b>t2<c>t3<d>t4"""
     ints = xmllexer.lex(src)
-    p, a = balance_unbalanced_text(ints)
+    p, a, rp, ra = balance_unbalanced_text(ints)
     print("".join([pi.srepr for pi in p]))
     print(src)
     print("".join([ai.srepr for ai in a]))
+    print("============")
+    print("".join([pi.srepr for pi in rp]) + "<REF/>" + "".join([pi.srepr for pi in ra]))

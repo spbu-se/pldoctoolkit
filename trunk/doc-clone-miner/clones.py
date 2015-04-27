@@ -16,11 +16,14 @@ import xml.sax.handler as xsh
 import textwrap
 import string
 import itertools
+
 import numpy
+
 import verbhtml
 import xmllexer
 import xmlfixup
 import semanticfilter
+
 
 # seems reasonable
 # http://stackoverflow.com/questions/3269434/whats-the-most-efficient-way-to-test-two-integer-ranges-for-overlap
@@ -28,12 +31,13 @@ import operator
 
 infty = sys.maxsize
 clonegroups = []
+allow2offset = True
 
-def is_overlapping(x1,x2, y1,y2):
-    return max(x1,y1) <= min(x2,y2)
+def is_overlapping(x1, x2, y1, y2):
+    return max(x1, y1) <= min(x2, y2)
 
 
-def initdata(inputfilesiv = [], clonegroupsiv = []):
+def initdata(inputfilesiv=[], clonegroupsiv=[]):
     global inputfiles
     global clonegroups
     global blacklist
@@ -52,6 +56,9 @@ def initoptions(args, logger):
             minlen = int(args.minimalclonelength)
         except:
             logger.error("Expecting integer minimal clone length")
+
+    global exp_clones
+    exp_clones = args.exp_clones == 'yes'
 
     global mingrppow
     mingrppow = 2
@@ -83,6 +90,12 @@ def initoptions(args, logger):
 
     global cm_inclusiveend
     cm_inclusiveend = args.inclusive_end == 'yes'
+
+    global write_reformatted_sources
+    write_reformatted_sources = args.write_reformatted_sources == 'yes'
+
+    global only_generate_for_ui
+    only_generate_for_ui = args.only_ui == 'yes'
 
     global blacklist
     blacklist = set()
@@ -127,6 +140,7 @@ def initoptions(args, logger):
         except IOError:
             logger.warning("Can't load group ID whitelist form %s" % args.whitelist)
 
+
 # TODO: this should be enum (requires py 3.4+) and should be robably removed and replaced with xmllexer
 class TextZone(object):
     UFO = 0
@@ -136,7 +150,7 @@ class TextZone(object):
     URL = 4
 
     def __init__(self, mode, start, end, content):
-        self.mode = mode # Algol 68 rulez
+        self.mode = mode  # Algol 68 rulez
         self.start = start
         self.end = end
         self.content = content
@@ -150,7 +164,7 @@ class XMLZoneMarker(xsh.ContentHandler):
 
     def lc2offs(self, lc):
         l, c = lc
-        return self.inputfile.anything2offset((l, c+1))
+        return self.inputfile.anything2offset((l, c + 1))
 
     def getoffs(self):
         return self.lc2offs(self.getlc())
@@ -170,16 +184,16 @@ class XMLZoneMarker(xsh.ContentHandler):
         end = offs + len(content) - 1
         content = self.inputfile[offs:end]
 
-        zn = TextZone(TextZone.SPACE if empty else TextZone.TEXT, offs, offs + len(content)-1, content)
+        zn = TextZone(TextZone.SPACE if empty else TextZone.TEXT, offs, offs + len(content) - 1, content)
         self.zones.append(zn)
         if not empty:
             self.textzones.append(zn)
             self.textzoneoffsets.append(offs)
             self.textzoneends.append(offs + len(content))
-        
+
     def ignorableWhitespace(self, content):
         offs = self.getoffs()
-        self.zones.append(TextZone(TextZone.SPACE, offs, offs + len(content)-1, content))
+        self.zones.append(TextZone(TextZone.SPACE, offs, offs + len(content) - 1, content))
 
     def __init__(self, inputfile):
         self.stack = []
@@ -200,21 +214,22 @@ class XMLZoneMarker(xsh.ContentHandler):
         for m in matches:
             cnt = m.groups()[0]
             ofs = m.start()
-            self.urlzones.append(TextZone(TextZone.URL, ofs, ofs + len(cnt)-1, cnt))
+            self.urlzones.append(TextZone(TextZone.URL, ofs, ofs + len(cnt) - 1, cnt))
 
     def discover(self):
         btx = self.src.encode('utf8')
         xs.parseString(btx, self)
 
-        self.zones.sort(key = lambda xz : xz.start)
-        self.rzones = sorted(self.zones, key = lambda xz : xz.end)
+        self.zones.sort(key=lambda xz: xz.start)
+        self.rzones = sorted(self.zones, key=lambda xz: xz.end)
 
         self.discoverURLs()
-        
+
 
 class InputFile(object):
-
     def __init__(self, fileName):
+        global write_reformatted_sources
+
         self.elementZones = []
         self.fileName = fileName
         self.text = None
@@ -225,41 +240,40 @@ class InputFile(object):
             for line in ifs:
                 self.offsets.append(offset)
                 # lst = line.rstrip() + '\n' # leave leading blanks + add separator (we do not need \r, so no os.linesep)
-                lst = line.replace('\r', '').replace('\n', '') + '\n' # leave leading blanks + add separator (we do not need \r, so no os.linesep)
-                lst = lst.replace('\t', '    ') # Clone Miner is very brave to consider TAB equal to 4 spaces
+                lst = line.replace('\r', '').replace('\n',
+                                                     '') + '\n'  # leave leading blanks + add separator (we do not need \r, so no os.linesep)
+                lst = lst.replace('\t', '    ')  # Clone Miner is very brave to consider TAB equal to 4 spaces
                 offset += len(lst)
                 lines.append(lst)
             self.offsets.append(offset)
             self.text = "".join(lines)
+        if write_reformatted_sources:
+            with open(fileName + ".reformatted", 'w+', encoding='utf-8', newline='\n') as ofs:
+                ofs.write(self.text)
+
         # then calculate XML zones
         marker = XMLZoneMarker(self)
-        marker.discover()
-        self.zones, self.rzones = marker.zones, marker.rzones
+
+        global checkmarkup
+        if checkmarkup: # -cmup no and -cmup shrink do not need this
+            marker.discover()
+            self.zones, self.rzones = marker.zones, marker.rzones
+            self.textzoneoffsets = marker.textzoneoffsets
+            self.textzoneends = marker.textzoneends
+            self.textzones = marker.textzones
+        else:
+            marker.discoverURLs()
         self.urlzones = marker.urlzones
 
-        self.textzoneoffsets = marker.textzoneoffsets
-        self.textzoneends = marker.textzoneends
-        self.textzones = marker.textzones
 
         # calculate tag coordinates using pygments lexer (hope correctly)
         self.lexintervals = xmllexer.lex(self.text)
-    
-    def _getsinglechar(self, coord):
-        o = self.anything2offset(coord)
-        return self.text[o]
 
     def __getitem__(self, stst):
-        """
-        left  from (1.1) when (line, col)
-        right inclusive when (line, col)
-        
-        """
-        if not isinstance(stst, slice):
-            return self._getsinglechar(stst)
+        if isinstance(stst, slice): # correct slice
+            return self.text[stst.start : stst.stop+1]
         else:
-            start = self.anything2offset(stst.start)
-            end = self.anything2offset(stst.stop)
-            return self.text[start:end + 1]
+            return self.text[stst]
 
     def __len__(self):
         return len(self.text)
@@ -268,7 +282,7 @@ class InputFile(object):
         line = bisect.bisect_left(self.offsets, offset) - 1
         return (line + 1, offset - self.offsets[line] + 1)
 
-    def linecol2offset(self, linecol):
+    def _linecol2offset(self, linecol):
         """
         Both from 1
         """
@@ -276,16 +290,20 @@ class InputFile(object):
         return self.offsets[line - 1] + col - 1
 
     def anything2linecol(self, coord):
-        return coord if isinstance(coord, tuple) else self.offset2linecol(coord) 
+        return coord if isinstance(coord, tuple) else self.offset2linecol(coord)
 
     def anything2offset(self, coord):
-        return self.linecol2offset(coord) if isinstance(coord, tuple) else coord
+        assert allow2offset
+        return self._linecol2offset(coord) if isinstance(coord, tuple) else coord
+
 
 class InternalException(Exception):
     pass
 
+
 class InternalOkBreak(InternalException):
     pass
+
 
 class CloneGroup(object):
     def __init__(self, id, ntokens, instances):
@@ -301,6 +319,7 @@ class CloneGroup(object):
         self.id = id
         self.ntokens = ntokens
 
+        self.expanded = False
         self.instances = []
         self.significances = []
         self.cloneindicestodel = set()
@@ -310,7 +329,7 @@ class CloneGroup(object):
             ifile = inputfiles[ifilen]
             s, e = ifile.anything2offset(s), ifile.anything2offset(e)
             self.instances.append((ifilen, s, e))
-            self.significances.append(int(len(instances)*(e-s+1)**2))  # from Kopin diploma
+            self.significances.append(int(len(instances) * (e - s + 1) ** 2))  # from Kopin diploma
 
         self.instances.sort(key=lambda i: i[1])  # clones in textual order
         self.instances.sort(key=lambda i: i[0])  # and by file with more weight (sort is stable)
@@ -322,7 +341,7 @@ class CloneGroup(object):
         :return: textual description in form of fileno:begin-end joined by "," ordered by fileno then by begin offset
         """
         return ",".join(
-            ["%d:%d-%d" % inst for inst in sorted(self.instances)] # sorting should work as described above
+            ["%d:%d-%d" % inst for inst in sorted(self.instances)]  # sorting should work as described above
         )
 
     def __hash__(self):  # to add to set
@@ -341,10 +360,10 @@ class CloneGroup(object):
         fileno, start, end = self.instances[inst]
         return inputfiles[fileno][start:end]
 
-    def html(self, inst=0):
-        return "<code>" + verbhtml.escapecode(self.text(inst)) + "</code>"
+    def html(self, inst=0, allow_space_wrap=False):
+        return "<code>" + verbhtml.escapecode(self.text(inst), allow_space_wrap) + "</code>"
 
-    def textwithcontext(self, inst = 0):
+    def textwithcontext(self, inst=0):
         global inputfiles
         global clonegroups
 
@@ -354,48 +373,34 @@ class CloneGroup(object):
         clength = max(min(length, 50), 20)
         cstart = max(0, start - clength)
         cend = min(len(ifl), end + clength)
-        return ifl[cstart : start - 1], ifl[start:end], ifl[end + 1 : cend]
+        return ifl[cstart: start - 1], ifl[start:end], ifl[end + 1: cend]
 
 
-    @classmethod
-    def _inst_distance(cls, inst1, inst2):
-        global inputfiles
-
+    def _inst_distance(inst1, inst2):
         file1, start1, end1 = inst1
         file2, start2, end2 = inst2
         if file1 != file2:
-            return sys.maxsize # 0+1j # LOL
-
-        file1 = inputfiles[file1]
-        file2 = inputfiles[file2]
-        start1 = file1.anything2offset(start1)
-        end1 = file1.anything2offset(end1)
-        start2 = file1.anything2offset(start2)
-        end2 = file1.anything2offset(end2)
+            return sys.maxsize  # 0+1j # LOL
 
         if (start1 <= start2 < end1 or start1 < end2 <= end1 or
-            start2 <= start1 < end2 or start2 < end1 <= end2): # within
+                        start2 <= start1 < end2 or start2 < end1 <= end2):  # within
             return -1
         else:
             return start2 - end1 if start2 >= end1 else start1 - end2
 
-    @classmethod
-    def _cg_distance(cls, cg1, cg2):
-        def sgn(n):
-            if n < 0:
-                return -1
-            elif n > 0:
-                return 1
-            else:
-                return 0
+    def sgn(n):
+        if n < 0:
+            return -1
+        elif n > 0:
+            return 1
+        else:
+            return 0
 
-        global inputfiles
-
+    def _cg_distance(cg1, cg2):
         if len(cg1.instances) != len(cg2.instances):
             return infty
 
         global maxvariantdistance
-        maxdist = 0
         signum = 0
 
         borderdist = max(maxvariantdistance, len(cg1.text()) + len(cg2.text()))
@@ -405,12 +410,11 @@ class CloneGroup(object):
         insts1 = sorted(cg1.instances, key=operator.itemgetter(1))
         insts2 = sorted(cg2.instances, key=operator.itemgetter(1))
 
-        maxdist = 0
         dists = []
 
         for c1i in insts1:
             for c2i in insts2:
-                if CloneGroup.distance(c1i, c2i) < 0:
+                if CloneGroup._inst_distance(c1i, c2i) < 0:
                     return infty
 
         for c1i, c2i in zip(insts1, insts2):
@@ -420,13 +424,13 @@ class CloneGroup(object):
             if fn1 != fn2:  # different files
                 return infty
 
-            newsignum = sgn(c2o-c1o)  # criteria for file only!!!
+            newsignum = CloneGroup.sgn(c2o - c1o)  # criteria for file only!!!
             if newsignum * signum < 0:
                 return infty  # different order
             else:
                 signum = newsignum
 
-            dists.append(CloneGroup.distance(c1i, c2i))
+            dists.append(CloneGroup._inst_distance(c1i, c2i))
 
         m = max(dists)
         if m > borderdist:
@@ -434,6 +438,7 @@ class CloneGroup(object):
 
         global maximalvariance
         import numpy
+
         va = numpy.var(dists)
         # print("variance: %f" % va)
         if va > maximalvariance:
@@ -441,32 +446,31 @@ class CloneGroup(object):
 
         return m
 
-    @classmethod  # was tooooo complicated for multimethod
-    def distance(cls, i1, i2):
+    @staticmethod  # was tooooo complicated for multimethod
+    def distance(i1, i2):
         if type(i1) != type(i2):
             raise NotImplemented("Different types distance")
         elif type(i1) == CloneGroup:
-            return cls._cg_distance(i1, i2)
+            return CloneGroup._cg_distance(i1, i2)
         elif type(i1) == tuple:
-            return cls._inst_distance(i1, i2)
+            return CloneGroup._inst_distance(i1, i2)
         else:
             raise InternalException("What to do with integers here?..")
 
     def _plain_texts_from_intervals(self):
         # detecting on instance[0]
-        ifilen, s, e = self.instances[0]
-        ifile = inputfiles[ifilen]
-        so = ifile.anything2offset(s)
-        sl = ifile.anything2offset(e) - so + 1
-
-        return xmllexer.get_plain_texts(so, sl, ifile.lexintervals)
+        ifilen, so, e = self.instances[0]
+        sl = e - so + 1
+        return xmllexer.get_plain_texts(so, sl, inputfiles[ifilen].lexintervals)
 
     def containsNoSemantic(self):
+        # print("No sema in: " + self.text())
         plaintext = ' '.join(self._plain_texts_from_intervals())
         hs = semanticfilter.does_have_semantic(plaintext)
         return not hs
 
     def containsNoText(self):
+        # print("No text in: " + self.text())
         return len(''.join([s.strip() for s in self._plain_texts_from_intervals()])) == 0
 
     def containsNoText_0(self):
@@ -490,7 +494,7 @@ class CloneGroup(object):
 
             # we can always use bisect_left ast text zones do not intersect
             startinfrontof = bisect.bisect_left(ifile0.textzoneoffsets, s)
-            endafter       = bisect.bisect_right(ifile0.textzoneends, e)
+            endafter = bisect.bisect_right(ifile0.textzoneends, e)
 
             s1i = saturate(startinfrontof - 1, 0, len(ifile0.textzoneoffsets))
             e1i = saturate(endafter + 1, 0, len(ifile0.textzoneoffsets))
@@ -502,7 +506,7 @@ class CloneGroup(object):
                     break
 
             # if self._containsNoText:
-            #     print("only markup {{{%s}}}[%s:%s]" % (ifile0[s:e], str(ifile0.anything2linecol(s)), str(ifile0.anything2linecol(e))))
+            # print("only markup {{{%s}}}[%s:%s]" % (ifile0[s:e], str(ifile0.anything2linecol(s)), str(ifile0.anything2linecol(e))))
 
             return self._containsNoText
 
@@ -516,13 +520,13 @@ class CloneGroup(object):
         for ifl, s, e in self.instances:
             le = e - s + 1
             instlen += le
-            if le < minlen: # too tolerant
-            # text = inputfiles[ifl][s:e].strip()
-            # if len(text) < minlen:
+            if le < minlen:  # too tolerant
+                # text = inputfiles[ifl][s:e].strip()
+                # if len(text) < minlen:
                 # print(s, e, minlen)
                 # print("zoz")
                 return True
-        score = instlen * (1 + 1/len(self.instances))
+        score = instlen * (1 + 1 / len(self.instances))
         return False
 
     def breaks_url(self):
@@ -549,7 +553,8 @@ class CloneGroup(object):
         global inputfiles
         global clonegroups
 
-        rampi = "<fakeroot>"; rampo = "</fakeroot>"
+        rampi = "<fakeroot>";
+        rampo = "</fakeroot>"
         for ifn, s, e in self.instances:
             ntext = self.text(ifn)
             try:
@@ -621,7 +626,7 @@ class CloneGroup(object):
             # logger.debug("group is less than allowed")
             return False
 
-        if self.breaks_url(): #containsBrokenHref(text):
+        if self.breaks_url():  # containsBrokenHref(text):
             # logger.debug("broken url")
             return False
 
@@ -639,6 +644,60 @@ class CloneGroup(object):
 
         return True
 
+    def try_expand_clones(self):
+        def alnumu(s):
+            return s.isalnum() or s == '_'
+
+        tryexp = 0
+        lastsepexp = 0
+        mingap = min(len(inputfiles[fn]) - last for (fn, first, last) in self.instances)
+        expandedwith = ""
+        while True:
+            if mingap - tryexp <= 1:
+                break
+
+            lastsyms = [inputfiles[fn][last + tryexp + 1] for (fn, first, last) in self.instances]
+
+            sls = set(lastsyms)
+            if len(sls) == 1: # all are identical
+                slsn = lastsyms[0]
+                tryexp += 1
+                expandedwith += slsn
+                if not alnumu(slsn):
+                    lastsepexp = tryexp
+                if not slsn.isspace():
+                    self.expanded = True
+            else:
+                # if different symbol is alphanumeric for any instance, then we stopped in the middle of the token
+                for c in sls:
+                    if alnumu(c):
+                        tryexp = lastsepexp
+                        if tryexp == 0:
+                            self.expanded = False
+                break
+
+        if self.expanded:
+            self.instances = [(fn, first, last + tryexp) for (fn, first, last) in self.instances]
+
+    def try_shrink_broken_markup(self):
+        def shrink_broken_instance(ifilen, i1_stoffs, ilastoffs):
+            """
+            leave tags unbalanced, but truncate clone instances to complete tags
+            """
+            ifile = inputfiles[ifilen]
+            ilen = ilastoffs - i1_stoffs + 1
+            shrinked = xmlfixup.shrink_broken_markup_interval(i1_stoffs, ilen, ifile.lexintervals)
+            if shrinked:
+                i1_stoffs, ilen = shrinked
+                ilastoffs = i1_stoffs + ilen - 1
+                return ifilen, i1_stoffs, ilastoffs
+            else:
+                return None
+
+        newinstances = [shrink_broken_instance(ifn, beg, fin) for ifn, beg, fin in self.instances]
+        self.instances = [inst for inst in newinstances if inst is not None]
+        return len(self.instances)
+
 
 def loadinputs(logger):
     global inputfiles
@@ -648,6 +707,10 @@ def loadinputs(logger):
     with open(os.path.join("Input", "InputFiles.txt")) as ifi:
         for line in ifi:
             sl = line.strip()
+            if os.name == "posix" and sl.startswith("z:\\"):
+                # then clone miner was ran using wine, if it ever was
+                # and posix root was marked as z:\
+                sl = sl.replace("z:\\", "/").replace("\\", "/")
             if len(sl):
                 inputfiles.append(InputFile(sl))
 
@@ -661,24 +724,48 @@ def loadinputs(logger):
                         black_descriptor_list.add(segm.strip())
 
     # process clones and initialize groups & instances
-    with open(os.path.join("Output", "Clones.txt")) as clotx:
+    with open(os.path.join("Output", "Clones.txt")) as clotf:
         grid = None
         ntoks = None
         insts = []
         grpdesc = re.compile('(\\d+);(\\d+);(\\d+)')
         instdesc = re.compile('(\\d+):(\\d+)\.(\\d+)-(\\d+)\.(\\d+)')
+
+        clotx = clotf.readlines()
+        counter = 0
+        ttyn = '\r' if sys.stdout.isatty() else '\n'
+
+        print("Reading and analyzing input data...")
+
+        onceper = max(1, len(clotx) // 500)
         for line in clotx:
+            counter += 1
+            if not counter % onceper:
+                print("~ %d / %d = %03.1f%%" % (counter, len(clotx), 100.0 * counter / len(clotx)), end=ttyn, flush=True)
+
             sl = line.strip()
-            if sl == '': # empty line => group end
+            if sl == '':  # empty line => group end
                 if grid is not None:
-                    if len(insts): # all instances can be filtered out due to broken markup
-                        clonegroups.append(CloneGroup(grid, ntoks, insts))
+                    if len(insts):  # all instances can be filtered out due to broken markup
+                        gr = CloneGroup(grid, ntoks, insts)
+                        if exp_clones:
+                            gr.try_expand_clones()
+
+                        # xml fixup here if needed
+                        keepit = True
+                        if shrink_broken_markup:
+                            keepit = gr.try_shrink_broken_markup()
+
+                        # finally append it to list
+                        if keepit:
+                            clonegroups.append(gr)
+
                     grid = None
                     ntoks = None
                     insts = []
                     # logger.debug("Pushed group")
                 else:
-                    pass # logger.debug("empy line seq")
+                    pass  # logger.debug("empy line seq")
             else:
                 gdm = grpdesc.match(sl)
                 if gdm:
@@ -697,30 +784,22 @@ def loadinputs(logger):
                         ifilen = mg[0]
                         ifile = inputfiles[ifilen]
 
-                        # xml fixup here if needed
-                        if shrink_broken_markup:
-                            # leave tags unbalanced, but truncate clone instances to complete tags
-                            i1_stoffs = ifile.anything2offset((mg[1], mg[2]))
-                            ilastoffs = ifile.anything2offset((mg[3], mg[4]))
-                            ilen = ilastoffs - i1_stoffs + 1
-                            shrinked = xmlfixup.shrink_broken_markup_interval(i1_stoffs, ilen, ifile.lexintervals)
-                            if shrinked is not None:
-                                i1_stoffs, ilen = shrinked
-                                ilastoffs = i1_stoffs + ilen - 1
-
-                                insts.append((
-                                    ifilen,
-                                    ifile.anything2linecol(i1_stoffs),
-                                    ifile.anything2linecol(ilastoffs - (0 if cm_inclusiveend else 1))
-                                ))
-                        else:
-                            insts.append((
-                                mg[0],
-                                (mg[1], mg[2]),
-                                (mg[3], mg[4]) if cm_inclusiveend else ifile.anything2linecol(ifile.anything2offset((mg[3], mg[4])) - 1)
-                            ))
+                        # cm_inclusiveend is important.
+                        # Clone Miner likes to include one symbol of next word into the clone,
+                        # or it does not like "]]>" CDATA closing. What does CloneMiner mean exactly?
+                        # Who knows?.. So having this setting...
+                        endoff = ifile.anything2offset((mg[3], mg[4]))
+                        insts.append((
+                            mg[0],
+                            ifile.anything2offset((mg[1], mg[2])),
+                            endoff if cm_inclusiveend else endoff - 1
+                        ))
                     else:
                         logger.warning("Garbage in input!!")
+
+        # then everything should be stored in offset form, so disable anything2offset
+        global allow2offset
+        allow2offset = False
 
 class VariativeElement(object):
     def __init__(self, clone_groups: 'list(CloneGroup)'):
@@ -731,7 +810,8 @@ class VariativeElement(object):
             return ost
 
         self.clone_groups = sorted(clone_groups, key=grorder)
-        self.htmlvcolors = itertools.cycle(['yellow', 'lightgreen', 'cyan'])
+        self.htmlvcolors = itertools.cycle(['yellow', 'lightgreen'])
+        self.htmlccolors = itertools.cycle(['hotpink', 'cyan'])
 
     @property
     def textdescriptor(self):
@@ -762,7 +842,7 @@ class VariativeElement(object):
             if g1file != g2file:
                 raise InternalException("Different files in variation groups")
 
-            result.append(inputfiles[g1file][g1end + 1 : g2start - 1])
+            result.append(inputfiles[g1file][g1end + 1: g2start - 1])
 
         return result
 
@@ -772,36 +852,40 @@ class VariativeElement(object):
             if len(s.strip()) == 0:
                 return """<span style="font-weight: bold; color: red;">&#x3b5;</span>"""
             else:
-                return verbhtml.escapecode(s)
+                return verbhtml.escapecode(s, allow_space_wrap=True)
 
         templ = string.Template(textwrap.dedent("""
             <tr class="${cssclass} variative" data-groups="${desc}">
-            <td class="qwebview_only" data-groups="${desc}">
-              <input type="button" data-rel="create_inf" value="Inf"></input><br/>
-              <input type="button" data-rel="create_dic" value="Dic"></input>
-            </td>
-            <td>${ngrp}</td>
-            <td>${grps}</td>
-            <td>${clgr}</td>
-            <td>${varel}</td>
-            <td>${varnc}</td>
-            <td><tt>${text}</tt></td>
+            <!-- <td>${ngrp}</td> -->
+            <!-- <td>${grps}</td> -->
+            <td class="fxd">${clgr}</td>
+            <td class="fxd">${varel}</td>
+            <!-- <td>${varnc}</td> -->
+            <td class="tka"><tt>${text}</tt></td>
             </tr>"""))
 
-        vtext = esc(self.clone_groups[0].text())
+        vtext = ""
         vnc = 0
 
         startgrp = self.clone_groups[0]
-        endgrp = self.clone_groups[-1]
+        starts = [s for (fno, s, e) in startgrp.instances]
 
-        starts = [ s for (fno, s, e) in startgrp.instances ]
-        ends = [ e for (fno, s, e) in endgrp.instances ]
+        if self.power <= 1:  # == 1 in fact
+            startends = [e for (fno, s, e) in startgrp.instances]
+            vvtext = '<wbr/>'.join([
+                """<span class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">{%d}</span>"""
+                % (cstart, cend, cstart, cend, clr, no)
+                for cstart, cend, clr, no in zip(starts, startends, self.htmlccolors, itertools.count(1))
+            ])
+            vtext = self.clone_groups[0].html(allow_space_wrap=True) + vvtext
+        else:
+            endgrp = self.clone_groups[-1]
+            ends = [e for (fno, s, e) in endgrp.instances]
 
-        if self.power > 1:
             variations = self.getvariations(0)  # may be more in the future
 
             # was """<pre style="font-weight: bold; color: red; background-color: pink;">||</pre>"""
-            vvtext = ''.join([
+            vvtext = '<wbr/>'.join([
                 (
                     """<code class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
                 ) % (hlstart, hlend, hlstart, hlend, clr, esc(t))
@@ -810,17 +894,18 @@ class VariativeElement(object):
 
             vnc = numpy.var([len(v) for v in variations])
 
-            vtext = self.clone_groups[0].html() + vvtext + self.clone_groups[1].html()
+            vtext = self.clone_groups[0].html(allow_space_wrap=True) + vvtext + self.clone_groups[1].html(
+                allow_space_wrap=True)
 
         return templ.substitute(
-            cssclass = "multiple" if len(self.clone_groups) > 1 else "single",
-            ngrp = self.power,
-            grps = ",".join([str(grp.id) for grp in self.clone_groups]) + ",",
-            clgr = len(self.clone_groups[0].instances),
-            varel = len(self.clone_groups) - 1,
-            varnc = vnc,
-            text = vtext,
-            desc = self.textdescriptor
+            cssclass="multiple" if len(self.clone_groups) > 1 else "single",
+            ngrp=self.power,
+            grps=",".join([str(grp.id) for grp in self.clone_groups]) + ",",
+            clgr=len(self.clone_groups[0].instances),
+            varel=len(self.clone_groups) - 1,
+            varnc=vnc,
+            text=vtext,
+            desc=self.textdescriptor
         )
 
     @staticmethod
@@ -831,40 +916,72 @@ class VariativeElement(object):
         <title>Variative elements</title>
         <!-- link href="https://raw.githubusercontent.com/jcubic/jquery.splitter/master/css/jquery.splitter.css" rel="stylesheet"/ -->
         <style type="text/css">
+        body
+        {
+            background-color: #dddddd;
+            margin: 0px;
+        }
         table
         {
-            border-width: 0 0 1px 1px;
+            border-width: 1px 1px 0 0;
             border-spacing: 0;
             border-collapse: collapse;
             border-style: solid;
         }
+        
+        thead {
+            height: 30px;
+        }
+        thead > tr {
+            display: block;
+            height: 30px;
+        }
+        
+        tbody {
+            background-color: #ffffff;
+            display: block;
+            overflow-y: scroll;
+            /* height: calc(50vh - 30px); handle it with JS =( */ 
+        }
+        
         td, th
         {
             margin: 0;
             padding: 4px;
-            border-width: 1px 1px 0 0;
+            border-width: 0 0 1px 1px;
             border-style: solid;
         }
         th
         {
-            transform: rotate(-90deg);
-            height: 150px;
+            vertical-align: bottom;
         }
-        div #table, #source {
-            overflow: auto;
-            height: 50%;
-            border: 1px black;
+        td
+        {
+            vertical-align: top;
         }
+        
+        th.fxd, td.fxd {
+            width: 100px;
+        }
+        
+        div #source {
+            overflow-y: scroll;
+            background-color: #ffffff;
+            border: 1px solid black;
+        }
+        
+        div #table {
+            overflow: hidden;
+        }
+        div #blgd {
+            display: none;
+        }
+        
         span.highlight {
             background-color: lightgreen;
         }
-
+        
         tr.multiple input[data-rel="create_dic"] {
-            display: none;
-        }
-        </style>
-        <style id="removeforqwebview">
-        .qwebview_only {
             display: none;
         }
         </style>
@@ -883,28 +1000,22 @@ class VariativeElement(object):
         </menu>
 
         <div id="content">
-        <div id="source">
-        <code>""")
-
-        middle = textwrap.dedent("""</code>
-        </div>
         <div id="table">
         <table>
         <thead>
         <tr>
-        <th class="qwebview_only">Create</th>
-        <th>Participating groups</th>
-        <th>e.g.</th>
-        <th>Clones/group</th>
-        <th>Num of variants</th>
-        <th>Variance of variants</th>
-        <th>Element:</th>
+        <!-- <th>Participating groups</th> -->
+        <!-- <th>e.g.</th> -->
+        <th class="fxd">Num. of clones in group</th>
+        <th class="fxd">Num. of extension points</th>
+        <!-- <th>Variance of variants</th> -->
+        <th class="tka">Element:</th>
         </tr>
         </thead>
         <tbody>""")
 
-        finish = textwrap.dedent("""
-        </tbody></table>
+        middle = textwrap.dedent("""</tbody></table>
+        <div id="blgd">
         Blacklisted group descriptors:
         <textarea style="width:100%; height:100px;" id="black_descriptor_list"></textarea>
         2dict group descriptors:
@@ -913,8 +1024,17 @@ class VariativeElement(object):
         <textarea style="width:100%; height:100px;" id="toelem_descriptor_list"></textarea>
         </div>
         </div>
+        <span id="srclabel" style="height: 30px; vertical-align: bottom;">Source code:</span>
+        <div id="source">
+        <code>""")
+
+        finish = textwrap.dedent("""
+        </code>
+        </div>
+        </div>
         </body></html>""")
 
-        source = verbhtml.escapecode(inputfiles[0].text)
+        global only_generate_for_ui
+        source = "** generated for standalone UI **" if only_generate_for_ui else verbhtml.escapecode(inputfiles[0].text)
 
-        return start + source + middle + (os.linesep.join([e.html for e in elements])) + finish
+        return start + (os.linesep.join([e.html for e in elements])) + middle + source + finish

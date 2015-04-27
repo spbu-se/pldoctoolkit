@@ -10,6 +10,7 @@ import os
 meaningless_strings = None
 meaningless_sets = None
 
+
 def initialize():
     global meaningless_strings
     global meaningless_sets
@@ -17,7 +18,9 @@ def initialize():
         meaningless_strings = [l.strip() for l in sf.readlines() if len(l.strip()) and not l.startswith("#")]
         meaningless_sets = [set(ms.split()) for ms in meaningless_strings]
 
+
 if not meaningless_sets: initialize()
+
 
 def wordset(s):
     # cleanup text
@@ -35,6 +38,7 @@ def wordset(s):
 
     return set(cleaned_words)
 
+
 def does_have_semantic(s):
     # print("Checking semantic of " + repr(s))
     ws = wordset(s)
@@ -48,8 +52,8 @@ def does_have_semantic(s):
 # just a test
 if __name__ == '__main__':
     tests = [
-    'is a', 'is this', 'is that', 'is the', 'I am', 'he is',
-    'thi2s, \tis', """"""
+        'is a', 'is this', 'is that', 'is the', 'I am', 'he is',
+        'thi2s, \tis', """"""
     ]
     for s in tests:
         print(s, does_have_semantic(s))
