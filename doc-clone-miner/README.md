@@ -14,6 +14,7 @@ Everything other is licensed under LGPL v3.
 * PyContracts
 * pygments
 * NumPy
+* on UN*Xes - [https://www.winehq.org/](Wine) to run CloneMiner
 
 Not exact versions, but preferrably most recent ones
 
