@@ -57,7 +57,7 @@ Document Clone Miner -- легковесный инструмент, котор�
 * pygments
 * NumPy
 
-Not exact versions, but preferrably most recent ones
+Версии пакетов -- актуальные, совместимые с Python 3.4
 
 ### Системные ###
 
