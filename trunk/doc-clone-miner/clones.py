@@ -353,6 +353,9 @@ class CloneGroup(object):
     def __ne__(self, other):
         return type(self) != type(other) or self.id != other.id
 
+    def totalsymbols(self):
+        return sum(ie - ib  + 1 for fn, ib, ie in self.instances)
+
     def text(self, inst=0):
         global inputfiles
         global clonegroups

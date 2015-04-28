@@ -5,7 +5,7 @@
 
 import logging
 
-logging.basicConfig(filename='clones2html.log', level=logging.ERROR)
+logging.basicConfig(filename='clones2html.log', level=logging.INFO)
 global logger
 # logger = logging.Logger('clones.reporter')
 logger = logging  # use it this way
@@ -178,6 +178,12 @@ def countunbalanced():
 
     return brokenmarkup, unbalancedcg
 
+def totalsymbolsingroups(groups):
+    """
+    To measure reuse potential
+    """
+    return sum(g.totalsymbols() for g in groups)
+
 # ----------------------------------------------------
 # brokenmarkup, unbalancedcg = countunbalanced()
 #
@@ -193,6 +199,8 @@ clones.clonegroups = [kg for kg in clones.clonegroups if kg.isCorrect()]
 #     allcglen, brokenmarkup, unbalancedcg, len(clones.clonegroups), semagarbage, markuponly, allcglen - semagarbage - markuponly))
 
 # print("Filtered %d of %d groups, good = %d" % (allcglen - goodcglen, allcglen, goodcglen))
+
+# print("Total symbols in intersecting groups: %d" % (totalsymbolsingroups(clones.clonegroups),))
 # -----------------------------------------------------
 
 # filter self-intersections
@@ -255,6 +263,9 @@ if filterintersections:
     clones.clonegroups = [g for g in clones.clonegroups if len(g.instances) > 1]
 
     logging.info("after removing intersections having %d groups" % len(clones.clonegroups))
+
+    # print("Total symbols in non-intersecting groups: %d" % (totalsymbolsingroups(clones.clonegroups),))
+
 
     """
     # considered tested
