@@ -611,6 +611,13 @@ class CloneGroup(object):
         else:
             return self.id in blacklist
 
+    # filtered by:
+    by_breaking_url = 0
+    by_no_text = 0
+    by_too_short = 0
+    by_no_semantic = 0
+    by_broken_markup = 0
+
     def isCorrect(self):
         global inputfiles
         global clonegroups
@@ -619,30 +626,29 @@ class CloneGroup(object):
             # logger.debug("blacklisted")
             return False
 
-        # check if whitespace
-        for i in range(0, len(self.instances)):
-            if len(self.text(i).strip()) == 0:
-                # logger.debug("group has empty clone")
-                return False
-
         if self.isLessThanAllowed():
             # logger.debug("group is less than allowed")
-            return False
-
-        if self.breaks_url():  # containsBrokenHref(text):
-            # logger.debug("broken url")
+            CloneGroup.by_too_short += 1
             return False
 
         if self.containsNoText():
             # logger.debug("no text in group")
-            return False
-
-        if checkmarkup and self.containsBrokenMarkup():
-            # logger.info("broken markup")
+            CloneGroup.by_no_text += 1
             return False
 
         if checksemanticspresence and self.containsNoSemantic():
             # logger.info("no semantic")
+            CloneGroup.by_no_semantic += 1
+            return False
+
+        if checkmarkup and self.containsBrokenMarkup():
+            # logger.info("broken markup")
+            CloneGroup.by_broken_markup += 1
+            return False
+
+        if self.breaks_url():  # containsBrokenHref(text):
+            # logger.debug("broken url")
+            CloneGroup.by_breaking_url += 1
             return False
 
         return True
@@ -1012,7 +1018,7 @@ class VariativeElement(object):
         <th class="fxd">Num. of clones in group</th>
         <th class="fxd">Num. of extension points</th>
         <!-- <th>Variance of variants</th> -->
-        <th class="tka">Element:</th>
+        <th class="tka">Candidate text:</th>
         </tr>
         </thead>
         <tbody>""")

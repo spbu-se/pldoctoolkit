@@ -69,7 +69,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Elements:</string>
+          <string>Refactoring candidates:</string>
          </property>
         </widget>
        </item>

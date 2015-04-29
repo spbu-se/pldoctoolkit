@@ -73,9 +73,9 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.webView.customContextMenuRequested.connect(self.web_context_menu)
 
         self.menu = QtWidgets.QMenu()
-        self.menu_create_ie = self.menu.addAction("Create Information Element")
+        self.menu_create_ie = self.menu.addAction("Create information element")
         self.menu_create_ie.triggered.connect(lambda: self.eval_js("window.some2elem();"))
-        self.menu_create_di = self.menu.addAction("Add Dictionary Entry")
+        self.menu_create_di = self.menu.addAction("Add dictionary entry")
         self.menu_create_di.triggered.connect(lambda: self.eval_js("window.single2dict();"))
 
         self.bindEvents()

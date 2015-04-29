@@ -187,16 +187,23 @@ def totalsymbolsingroups(groups):
 # ----------------------------------------------------
 # brokenmarkup, unbalancedcg = countunbalanced()
 #
-# semagarbage = sum(1 for kg in clones.clonegroups if not kg.containsNoText() and kg.containsNoSemantic())
-# markuponly =  sum(1 for kg in clones.clonegroups if kg.containsNoText())
 
 # expanded = sum(1 for kg in clones.clonegroups if kg.expanded)
 # print("Total expanded groups: %d" % (expanded, ))
 
 clones.clonegroups = [kg for kg in clones.clonegroups if kg.isCorrect()]
 
-# print("Total: %d, broken markup: %d, balancing markup: %d, total correct: %d; no semantic: %d, no text: %d, filtered by sema ank mkup: %d" % (
-#     allcglen, brokenmarkup, unbalancedcg, len(clones.clonegroups), semagarbage, markuponly, allcglen - semagarbage - markuponly))
+# by_no_semantic, by_no_text, by_too_short, burl =\
+# clones.CloneGroup.by_no_semantic, clones.CloneGroup.by_no_text, clones.CloneGroup.by_too_short, clones.CloneGroup.by_breaking_url
+
+# print(
+#     ("Total: %d, broken markup: %d, balancing markup: %d, total correct: %d; " +
+#      "no semantic: %d, no text: %d, <5: %d, burl: %d filtered by sema ank mkup or <5: %d") % (
+#      allcglen, brokenmarkup, unbalancedcg, len(clones.clonegroups),
+#      by_no_semantic, by_no_text, by_too_short, burl,
+#      allcglen - by_no_semantic - by_no_text - by_too_short))
+# print("<5: %.1f, no text %.1f, no sense %.1f, totl: %.1f" % (100 * by_too_short / allcglen, 100 * by_no_text / allcglen, 100 * by_no_semantic / allcglen,
+#                                                 100 * (by_too_short + by_no_text + by_no_semantic) / allcglen))
 
 # print("Filtered %d of %d groups, good = %d" % (allcglen - goodcglen, allcglen, goodcglen))
 
