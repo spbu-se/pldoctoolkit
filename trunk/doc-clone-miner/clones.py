@@ -331,8 +331,7 @@ class CloneGroup(object):
             self.instances.append((ifilen, s, e))
             self.significances.append(int(len(instances) * (e - s + 1) ** 2))  # from Kopin diploma
 
-        self.instances.sort(key=lambda i: i[1])  # clones in textual order
-        self.instances.sort(key=lambda i: i[0])  # and by file with more weight (sort is stable)
+        self.instances.sort(key=operator.itemgetter(0,1))
         # now instances are sorted by file then by appearance
 
     @property
@@ -383,7 +382,7 @@ class CloneGroup(object):
         file1, start1, end1 = inst1
         file2, start2, end2 = inst2
         if file1 != file2:
-            return sys.maxsize  # 0+1j # LOL
+            return infty  # 0+1j # LOL
 
         if (start1 <= start2 < end1 or start1 < end2 <= end1 or
                         start2 <= start1 < end2 or start2 < end1 <= end2):  # within
@@ -409,35 +408,35 @@ class CloneGroup(object):
         borderdist = max(maxvariantdistance, len(cg1.text()) + len(cg2.text()))
         # print("borderdist = %d" % borderdist)
 
-        # sort by offset
-        insts1 = sorted(cg1.instances, key=operator.itemgetter(1))
-        insts2 = sorted(cg2.instances, key=operator.itemgetter(1))
+        # sort already by file then by offset (see CloneGroup constructor)
+        insts1 = cg1.instances
+        insts2 = cg2.instances
 
         dists = []
-
-        for c1i in insts1:
-            for c2i in insts2:
-                if CloneGroup._inst_distance(c1i, c2i) < 0:
-                    return infty
 
         for c1i, c2i in zip(insts1, insts2):
             fn1, c1o, _ = c1i
             fn2, c2o, _ = c2i
 
-            if fn1 != fn2:  # different files
+            d = CloneGroup._inst_distance(c1i, c2i)
+            if d > borderdist:
                 return infty
 
-            newsignum = CloneGroup.sgn(c2o - c1o)  # criteria for file only!!!
+            newsignum = c2o - c1o # no need for sgn here... CloneGroup.sgn(c2o - c1o)  # criteria for file only!!!
             if newsignum * signum < 0:
                 return infty  # different order
             else:
                 signum = newsignum
 
-            dists.append(CloneGroup._inst_distance(c1i, c2i))
+            dists.append(d)
 
-        m = max(dists)
-        if m > borderdist:
-            return infty
+        # more seldom case, so checking afterwards
+        for c1i in insts1:
+            for c2i in insts2:
+                if CloneGroup._inst_distance(c1i, c2i) < 0:
+                    return infty
+
+        m = max(dists) # known to be <= borderdist
 
         global maximalvariance
         import numpy
