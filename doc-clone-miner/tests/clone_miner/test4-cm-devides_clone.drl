@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook"><d:InfElement id="root" name="test">
+	   <para>
+	   This is indicated by ICRC bit in the ERROR register and
+	   means that corruption occurred during data transfer.  Up to
+	   ATA/ATAPI-7, the standard specifies that this bit is only
+	   applicable to UDMA transfers but ATA/ATAPI-8 draft revision
+	   1f says that the bit may be applicable to multiword DMA and
+	   PIO.
+	   </para>
+	   <para>
+	   Up to ATA/ATAPI-7, the standard specifies that ABRT could be
+	   set on ICRC errors and on cases where a device is not able
+	   to complete a command.  Combined with the fact that MWDMA
+	   and PIO transfer errors aren't allowed to use ICRC bit up to
+	   ATA/ATAPI-7, it seems to imply that ABRT bit alone could
+	   indicate transfer errors.
+	   </para>
+	   <para>
+	   However, ATA/ATAPI-8 draft revision 1f removes the part
+	   that ICRC errors can turn on ABRT.  So, this is kind of
+	   gray area.  Some heuristics are needed here.
+	   </para>
+</d:InfElement></d:DocumentationCore>
