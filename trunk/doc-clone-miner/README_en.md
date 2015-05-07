@@ -1,5 +1,5 @@
 ﻿Documentation Refactoring Toolkit -- standalone clone mining and
-document refactoring tool withing DocLine project.
+document refactoring tool within DocLine project.
 
 Overview
 ========
@@ -52,8 +52,8 @@ Not exact versions, but preferrably most recent ones
 System
 ------
 
-* `x86` or `x86_64` architecture PC to run Clone Miner, Windows or UN*X.
-* on UN*Xes - [https://www.winehq.org/](Wine) to run CloneMiner
+* `x86` or `x86_64` architecture PC to run Clone Miner, Windows or UN*X
+* on UN*Xes - [Wine](https://www.winehq.org/) to run CloneMiner
 
 License
 =======

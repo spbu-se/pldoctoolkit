@@ -54,8 +54,8 @@ Python
 ---------
 
 * Компьютер архитектуры `x86` или `x86_64` для запуска Clone Miner, Windows
-  или UN*X.
-* для UN*X-подобных систем -- [https://www.winehq.org/](Wine) для запуска
+  или UN*X
+* для UN*X-подобных систем -- [Wine](https://www.winehq.org/) для запуска
   CloneMiner
 
 Лицензии
