@@ -1,1 +1,1 @@
-Coursework (`Курсовые`) folder contents moved [here](../../stuff/courseworks).
+Coursework (`Курсовые`) folder contents moved [here](../stuff/courseworks).
