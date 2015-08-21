@@ -69,6 +69,8 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
 
+        self.additionalInfo.setHidden(True)
+
         self.webView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.webView.customContextMenuRequested.connect(self.web_context_menu)
 
@@ -259,7 +261,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
         options += ["-cmup", ["no", "yes", "shrink"][self.cbCheckMup.currentIndex()]]
         options += ["-fint", "no" if self.cbAllowInt.checkState() else "yes"]
-        options += ["-csp", "yes" if self.cbCheckSemantics.checkState() else "no"]
+        options += ["-csp", ["no", "yes", "nltk"][self.cbxCheckSemantics.currentIndex()]]
 
         if dovariations and self.cbMaxVar.checkState():
             options += ["-mv", str(self.sbMaxVar.value())]
@@ -382,6 +384,7 @@ if __name__ == '__main__':
     initargs()
     global app
     app = QtWidgets.QApplication(sys.argv)
+    app.setWindowIcon(QtGui.QIcon(QtGui.QPixmap(os.path.join(scriptdir, 'qtui', 'icon.png'))))
 
     d = SetupDialog()
     d.show()

@@ -86,7 +86,9 @@ def initoptions(args, logger):
             logger.note("not a number in -nb <...>")
 
     global checksemanticspresence
-    checksemanticspresence = args.check_semantics_presence == 'yes'
+    checksemanticspresence = args.check_semantics_presence != 'no'
+    global use_nltk_to_check_semantics
+    use_nltk_to_check_semantics = args.check_semantics_presence == 'nltk'
 
     global cm_inclusiveend
     cm_inclusiveend = args.inclusive_end == 'yes'
@@ -468,7 +470,7 @@ class CloneGroup(object):
     def containsNoSemantic(self):
         # print("No sema in: " + self.text())
         plaintext = ' '.join(self._plain_texts_from_intervals())
-        hs = semanticfilter.does_have_semantic(plaintext)
+        hs = semanticfilter.does_have_semantic(plaintext, use_nltk_to_check_semantics)
         return not hs
 
     def containsNoText(self):

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>499</width>
-    <height>369</height>
+    <height>391</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -201,14 +201,50 @@
          </layout>
         </item>
         <item>
-         <widget class="QCheckBox" name="cbCheckSemantics">
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Like &lt;span style=&quot; font-weight:600;&quot;&gt;this is&lt;/span&gt; or &lt;span style=&quot; font-weight:600;&quot;&gt;suppose that&lt;/span&gt;, etc.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="text">
-           <string>filter common sentences</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Check semantic presence</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cbxCheckSemantics">
+            <property name="currentText">
+             <string>no</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>no</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>filter common sentences</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>NLTK filter</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <spacer name="verticalSpacer">

@@ -22,7 +22,7 @@ def initialize():
 if not meaningless_sets: initialize()
 
 
-def wordset(s):
+def cleanwords(s):
     # cleanup text
     sw = s.split()
 
@@ -35,25 +35,39 @@ def wordset(s):
         return sw2
 
     cleaned_words = [w for w in map(cleanup, sw) if w != ""]
+    
+    return cleaned_words
 
-    return set(cleaned_words)
 
+#condition for the patterns, I will think how I can improve it. Which patterns should we filter.
+def does_pattern(fword, sword):
+    if ((fword == 'MD') and (sword == 'VB') or (fword == 'MD') and (sword == 'DT')  or (fword == 'MD') and (sword == 'WDT')):
+        return True
 
-def does_have_semantic(s):
-    # print("Checking semantic of " + repr(s))
-    ws = wordset(s)
-    for ms in meaningless_sets:
-        if ws.issubset(ms):
-            # print("Dummy")
-            return False
-    # print("Meaningful")
+def does_have_semantic(s, use_nltk=False):
+    cw = cleanwords(s)
+    if use_nltk:
+        import nltk
+        tagged = nltk.pos_tag(cw)
+        for i in range(0, len(tagged) - 1): #in tagged:
+            if (does_pattern(tagged[i][1], tagged[i + 1][1])):
+                print(tagged[i][0], tagged[i + 1][0])
+                return False
+    else:
+        ws = set(cw)
+        for ms in meaningless_sets:
+            if ws.issubset(ms):
+                return False
     return True
-
+    
 # just a test
 if __name__ == '__main__':
     tests = [
         'is a', 'is this', 'is that', 'is the', 'I am', 'he is',
         'thi2s, \tis', """"""
     ]
+    #print(meaningless_sets)
+    #print('\n')
+    
     for s in tests:
         print(s, does_have_semantic(s))

@@ -45,7 +45,7 @@ def initargs():
     argpar.add_argument("-ph", "--printheader", help="Print header for stats line")
     argpar.add_argument("-mv", "--maximalvariance",
                         help="Maximal variance of variative insertion sizes, defaults to 2000", default=2000)
-    argpar.add_argument("-csp", "--check-semantics-presence", help="Filter clones without textual semantics",
+    argpar.add_argument("-csp", "--check-semantics-presence", help="Filter clones without textual semantics (no, yes, nltk)",
                         default="no")
     argpar.add_argument("-ie", "--inclusive-end",
                         help="Clone Miner last clone symbol is assumed to be included in the clone", default="no")
