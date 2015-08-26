@@ -1,4 +1,4 @@
-﻿Documentation Refactoring Toolkit -- standalone clone mining and
+Documentation Refactoring Toolkit -- standalone clone mining and
 document refactoring tool within DocLine project.
 
 Overview

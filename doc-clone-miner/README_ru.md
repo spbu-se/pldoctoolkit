@@ -1,4 +1,4 @@
-﻿Documentation Refactoring Toolkit -- инструмент поиска клонов и рефакторинга
+Documentation Refactoring Toolkit -- инструмент поиска клонов и рефакторинга
 документации в рамках проекта DocLine.
 
 Общая информация

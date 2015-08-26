@@ -1,4 +1,4 @@
-﻿Documentation Refactoring Toolkit
+Documentation Refactoring Toolkit
 =================================
 
 README is available in [English](README_en.md) and [Russian](README_ru.md).
