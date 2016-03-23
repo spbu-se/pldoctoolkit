@@ -59,7 +59,7 @@ def initargs():
     argpar.add_argument("-mxcsvgt", "--max-csv-group-tokens", type=int,
                         help="Max tokens of group in CSV report", default=3)
     argpar.add_argument("-mncsvgi", "--min-csv-group-instances", type=int,
-                        help="Min clones in group in CSV report", default=3)
+                        help="Min clones in group in CSV report", default=2)
 
     args = argpar.parse_args()
 
@@ -553,8 +553,8 @@ def log_short_repetitions(maxtokens, minrepetitions):
                     numf(len(cg.instances)),
                     numf(int(cg.containsNoSemantic())),
                     words,
-                    cg.plain_text(),
-                    cg.text().strip(),
+                    cg.plain_text().replace('\r', '').replace('\n', ' '),
+                    cg.text().strip().replace('\r', '').replace('\n', ' ')
                 ])
 
 def combine_gruops():
