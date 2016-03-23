@@ -30,7 +30,7 @@ import semanticfilter
 import operator
 
 infty = sys.maxsize
-clonegroups = []
+clonegroups = [] # type: List[CloneGroup]
 allow2offset = True
 
 def is_overlapping(x1, x2, y1, y2):

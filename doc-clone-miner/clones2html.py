@@ -20,6 +20,7 @@ import argparse
 import shutil
 import time
 import errno
+import csv
 
 import intertree
 import clones
@@ -55,6 +56,10 @@ def initargs():
                         help="Only generate data needed by standalone [Qt] UI", default="no")
     argpar.add_argument("-ecl", "--exp-clones",
                         help="Try to expand clones (Clone Miner skips last tokens sometimes)", default="yes")
+    argpar.add_argument("-mxcsvgt", "--max-csv-group-tokens", type=int,
+                        help="Max tokens of group in CSV report", default=3)
+    argpar.add_argument("-mncsvgi", "--min-csv-group-instances", type=int,
+                        help="Min clones in group in CSV report", default=5)
 
     args = argpar.parse_args()
 
@@ -86,6 +91,12 @@ def initargs():
     filterintersections = True
     if args.filterintersections and args.filterintersections == 'no':
         filterintersections = False
+
+    global max_csv_group_tokens
+    max_csv_group_tokens = args.max_csv_group_tokens
+
+    global min_csv_group_instances
+    min_csv_group_instances = args.min_csv_group_instances
 
     clones.initoptions(args, logger)
 
@@ -522,6 +533,23 @@ def findnearby201312():
 
     logger.info("Done.")
 
+def log_short_repetitions(maxtokens, minrepetitions):
+    numf = lambda num: (("%d" if type(num) is int else "%0.20f") % num).replace(',', '.')
+    numl = lambda vl: list(map(numf, list(vl)))
+
+    with open(os.path.join("Output", subdir, "shortterms.csv"), 'w', encoding='utf-8') as csvfile:
+        fwtr = csv.writer(csvfile, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+        fwtr.writerow(['N tokens', 'Occurs times', 'Common Phrase', 'Phrase'])
+
+        for cg in clones.clonegroups:
+            if cg.ntokens <= maxtokens and len(cg.instances) >= minrepetitions:
+                fwtr.writerow([
+                    cg.ntokens,
+                    len(cg.instances),
+                    int(cg.containsNoSemantic()),
+                    cg.text()
+                ])
 
 def combine_gruops():
     import combine_grp
@@ -550,6 +578,9 @@ def combine_gruops():
         os.path.join("Output", subdir, "interactivity.js")
     )
 
+
+if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
+    log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)
 
 # findnearby201312()
 combine_gruops()
