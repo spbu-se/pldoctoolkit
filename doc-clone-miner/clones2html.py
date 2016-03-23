@@ -59,7 +59,7 @@ def initargs():
     argpar.add_argument("-mxcsvgt", "--max-csv-group-tokens", type=int,
                         help="Max tokens of group in CSV report", default=3)
     argpar.add_argument("-mncsvgi", "--min-csv-group-instances", type=int,
-                        help="Min clones in group in CSV report", default=5)
+                        help="Min clones in group in CSV report", default=3)
 
     args = argpar.parse_args()
 
@@ -534,21 +534,27 @@ def findnearby201312():
     logger.info("Done.")
 
 def log_short_repetitions(maxtokens, minrepetitions):
+    import semanticfilter
+
     numf = lambda num: (("%d" if type(num) is int else "%0.20f") % num).replace(',', '.')
     numl = lambda vl: list(map(numf, list(vl)))
 
-    with open(os.path.join("Output", subdir, "shortterms.csv"), 'w', encoding='utf-8') as csvfile:
-        fwtr = csv.writer(csvfile, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    with open(os.path.join("Output", subdir, "shortterms.csv"), 'w') as csvfile:
+        fwtr = csv.writer(csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
 
-        fwtr.writerow(['N tokens', 'Occurs times', 'Common Phrase', 'Phrase'])
+        fwtr.writerow(['Total groups:', numf(len(clones.clonegroups))])
+        fwtr.writerow(['N tokens', 'Occurs times', 'Common Phrase', 'Words', 'Plain Text', 'Text'])
 
         for cg in clones.clonegroups:
-            if cg.ntokens <= maxtokens and len(cg.instances) >= minrepetitions:
+            if cg.ntokens <= maxtokens and len(cg.instances) >= minrepetitions and not cg.containsNoWords():
+                words = ' '.join(semanticfilter.cleanwords(cg.plain_text(), True))
                 fwtr.writerow([
-                    cg.ntokens,
-                    len(cg.instances),
-                    int(cg.containsNoSemantic()),
-                    cg.text()
+                    numf(cg.ntokens),
+                    numf(len(cg.instances)),
+                    numf(int(cg.containsNoSemantic())),
+                    words,
+                    cg.plain_text(),
+                    cg.text().strip(),
                 ])
 
 def combine_gruops():

@@ -6,6 +6,7 @@ Simple clone semantic filter
 """
 
 import os
+import re
 
 meaningless_strings = None
 meaningless_sets = None
@@ -21,10 +22,11 @@ def initialize():
 
 if not meaningless_sets: initialize()
 
+_splitre = re.compile(r"[\w']+", re.UNICODE)
 
-def cleanwords(s):
+def cleanwords(s, usere = False):
     # cleanup text
-    sw = s.split()
+    sw = re.findall(_splitre, s) if usere else s.split()
 
     def cleanup(word):
         # spaces and register

@@ -461,21 +461,31 @@ class CloneGroup(object):
         else:
             raise InternalException("What to do with integers here?..")
 
-    def _plain_texts_from_intervals(self):
+    def _plain_texts_from_intervals(self, instance_no=0):
         # detecting on instance[0]
-        ifilen, so, e = self.instances[0]
+        ifilen, so, e = self.instances[instance_no]
         sl = e - so + 1
         return xmllexer.get_plain_texts(so, sl, inputfiles[ifilen].lexintervals)
 
+    def plain_text(self, instance_no=0):
+        return ' '.join(self._plain_texts_from_intervals(instance_no))
+
     def containsNoSemantic(self):
         # print("No sema in: " + self.text())
-        plaintext = ' '.join(self._plain_texts_from_intervals())
-        hs = semanticfilter.does_have_semantic(plaintext, use_nltk_to_check_semantics)
+        hs = semanticfilter.does_have_semantic(self.plain_text(), use_nltk_to_check_semantics)
         return not hs
 
     def containsNoText(self):
         # print("No text in: " + self.text())
         return len(''.join([s.strip() for s in self._plain_texts_from_intervals()])) == 0
+
+    def containsNoWords(self):
+        if self.containsNoText():
+            return True
+        elif len(semanticfilter.cleanwords(self.plain_text())) == 0:
+            return True
+        else:
+            return False
 
     def containsNoText_0(self):
         """
