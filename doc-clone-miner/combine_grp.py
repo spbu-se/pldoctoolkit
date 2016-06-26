@@ -27,7 +27,7 @@ def combine_gruops_par_20140819(available_groups):
             best_dist = clones.infty
             for g2 in current_available_groups:
                 if g2 != g1:
-                    d = clones.CloneGroup.distance(g1, g2)
+                    d = clones.ExactCloneGroup.distance(g1, g2)
                     if d < best_dist:
                         best_dist = d
                         best_g2 = g2

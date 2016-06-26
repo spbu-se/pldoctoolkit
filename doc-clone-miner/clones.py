@@ -24,6 +24,7 @@ import xmllexer
 import xmlfixup
 import semanticfilter
 
+from abc import ABC, abstractmethod
 
 # seems reasonable
 # http://stackoverflow.com/questions/3269434/whats-the-most-efficient-way-to-test-two-integer-ranges-for-overlap
@@ -307,7 +308,30 @@ class InternalOkBreak(InternalException):
     pass
 
 
-class CloneGroup(object):
+class CloneGroup(ABC):
+    def __init__(self, id):
+        self.id = id
+
+    @abstractmethod
+    def text(self, inst=0):
+        pass
+
+    @abstractmethod
+    def html(self, inst=0, allow_space_wrap=False):
+        pass
+
+class FuzzyCloneGroup(CloneGroup):
+    def __init__(self, id, clones):
+        super().__init__(id)
+        self._instances = clones
+
+    def text(self, inst=0):
+        pass #TODO
+
+    def html(self, inst=0, allow_space_wrap=False):
+        pass #TODO
+
+class ExactCloneGroup(CloneGroup):
     def __init__(self, id, ntokens, instances):
         """
         instances -- [ (filenum, (sl, sc), (el, ec)) ]
@@ -316,9 +340,10 @@ class CloneGroup(object):
         global inputfiles
         global clonegroups
 
+        super().__init__(id)
+
         if ntokens == 0 or len(instances) == 0:
             raise Exception("bad args")
-        self.id = id
         self.ntokens = ntokens
 
         self.expanded = False
@@ -410,7 +435,7 @@ class CloneGroup(object):
         borderdist = max(maxvariantdistance, len(cg1.text()) + len(cg2.text()))
         # print("borderdist = %d" % borderdist)
 
-        # sort already by file then by offset (see CloneGroup constructor)
+        # sort already by file then by offset (see ExactCloneGroup constructor)
         insts1 = cg1.instances
         insts2 = cg2.instances
 
@@ -420,11 +445,11 @@ class CloneGroup(object):
             fn1, c1o, _ = c1i
             fn2, c2o, _ = c2i
 
-            d = CloneGroup._inst_distance(c1i, c2i)
+            d = ExactCloneGroup._inst_distance(c1i, c2i)
             if d > borderdist:
                 return infty
 
-            newsignum = c2o - c1o # no need for sgn here... CloneGroup.sgn(c2o - c1o)  # criteria for file only!!!
+            newsignum = c2o - c1o # no need for sgn here... ExactCloneGroup.sgn(c2o - c1o)  # criteria for file only!!!
             if newsignum * signum < 0:
                 return infty  # different order
             else:
@@ -435,7 +460,7 @@ class CloneGroup(object):
         # more seldom case, so checking afterwards
         for c1i in insts1:
             for c2i in insts2:
-                if CloneGroup._inst_distance(c1i, c2i) < 0:
+                if ExactCloneGroup._inst_distance(c1i, c2i) < 0:
                     return infty
 
         m = max(dists) # known to be <= borderdist
@@ -454,10 +479,10 @@ class CloneGroup(object):
     def distance(i1, i2):
         if type(i1) != type(i2):
             raise NotImplemented("Different types distance")
-        elif type(i1) == CloneGroup:
-            return CloneGroup._cg_distance(i1, i2)
+        elif type(i1) == ExactCloneGroup:
+            return ExactCloneGroup._cg_distance(i1, i2)
         elif type(i1) == tuple:
-            return CloneGroup._inst_distance(i1, i2)
+            return ExactCloneGroup._inst_distance(i1, i2)
         else:
             raise InternalException("What to do with integers here?..")
 
@@ -639,27 +664,27 @@ class CloneGroup(object):
 
         if self.isLessThanAllowed():
             # logger.debug("group is less than allowed")
-            CloneGroup.by_too_short += 1
+            ExactCloneGroup.by_too_short += 1
             return False
 
         if self.containsNoText():
             # logger.debug("no text in group")
-            CloneGroup.by_no_text += 1
+            ExactCloneGroup.by_no_text += 1
             return False
 
         if checksemanticspresence and self.containsNoSemantic():
             # logger.info("no semantic")
-            CloneGroup.by_no_semantic += 1
+            ExactCloneGroup.by_no_semantic += 1
             return False
 
         if checkmarkup and self.containsBrokenMarkup():
             # logger.info("broken markup")
-            CloneGroup.by_broken_markup += 1
+            ExactCloneGroup.by_broken_markup += 1
             return False
 
         if self.breaks_url():  # containsBrokenHref(text):
             # logger.debug("broken url")
-            CloneGroup.by_breaking_url += 1
+            ExactCloneGroup.by_breaking_url += 1
             return False
 
         return True
@@ -767,7 +792,7 @@ def loadinputs(logger):
             if sl == '':  # empty line => group end
                 if grid is not None:
                     if len(insts):  # all instances can be filtered out due to broken markup
-                        gr = CloneGroup(grid, ntoks, insts)
+                        gr = ExactCloneGroup(grid, ntoks, insts)
                         if exp_clones:
                             gr.try_expand_clones()
 

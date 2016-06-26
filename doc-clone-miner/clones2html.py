@@ -205,7 +205,7 @@ def totalsymbolsingroups(groups):
 clones.clonegroups = [kg for kg in clones.clonegroups if kg.isCorrect()]
 
 # by_no_semantic, by_no_text, by_too_short, burl =\
-# clones.CloneGroup.by_no_semantic, clones.CloneGroup.by_no_text, clones.CloneGroup.by_too_short, clones.CloneGroup.by_breaking_url
+# clones.ExactCloneGroup.by_no_semantic, clones.ExactCloneGroup.by_no_text, clones.ExactCloneGroup.by_too_short, clones.ExactCloneGroup.by_breaking_url
 
 # print(
 #     ("Total: %d, broken markup: %d, balancing markup: %d, total correct: %d; " +
@@ -489,7 +489,7 @@ def findnearby201312():
     def c1gc2gdist(g1g2):
         cg1, cg2 = g1g2
         cg1, cg2 = clones.clonegroups[cg1], clones.clonegroups[cg2]
-        return clones.CloneGroup.distance(cg1, cg2)
+        return clones.ExactCloneGroup.distance(cg1, cg2)
 
     # sequential
     for g1g2 in uniqp:
