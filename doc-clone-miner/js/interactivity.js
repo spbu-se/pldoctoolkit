@@ -162,7 +162,7 @@ $(document).ready(function() {
 
         if (!window.qtab) {
             src.parent().scrollXY(0, 0); // to calculate $('span.highlight').offset().top later properly
-            src.parent().scrollXY(0, $('span.highlight').offset().top)
+            src.parent().scrollXY(0, $('span.highlight').offset().top - $('#source').offset().top)
         }
     });
 

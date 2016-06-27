@@ -311,25 +311,53 @@ class InternalOkBreak(InternalException):
 class CloneGroup(ABC):
     def __init__(self, id):
         self.id = id
+        self.instances = None
 
-    @abstractmethod
     def text(self, inst=0):
-        pass
+        global inputfiles
+        global clonegroups
 
-    @abstractmethod
+        fileno, start, end = self.instances[inst]
+        return inputfiles[fileno][start:end]
+
     def html(self, inst=0, allow_space_wrap=False):
-        pass
+        return "<code>" + verbhtml.escapecode(self.text(inst), allow_space_wrap) + "</code>"
+
+    @property
+    def textdescriptor(self):
+        """
+        :return: textual description in form of fileno:begin-end joined by "," ordered by fileno then by begin offset
+        """
+        return ",".join(
+            ["%d:%d-%d" % inst for inst in sorted(self.instances)]  # sorting should work as described above
+        )
+
+
+    def __hash__(self):  # to add to set
+        return hash(self.id) ^ 445051238233  # fast, but not very safe, better to only add CloneGroups to sets
+
+
+    def __eq__(self, other):
+        return type(self) == type(other) and self.id == other.id
+
+
+    def __ne__(self, other):
+        return type(self) != type(other) or self.id != other.id
+
+
+    def totalsymbols(self):
+        return sum(ie - ib + 1 for fn, ib, ie in self.instances)
 
 class FuzzyCloneGroup(CloneGroup):
-    def __init__(self, id, clones):
+    def __init__(self, id, clones, clonetexts, clonewords):
         super().__init__(id)
-        self._instances = clones
+        self.instances = clones
+        self.instancetexts = clonetexts
+        self.instancewords = clonewords
+
 
     def text(self, inst=0):
-        pass #TODO
-
-    def html(self, inst=0, allow_space_wrap=False):
-        pass #TODO
+        return self.instancewords[0]
 
 class ExactCloneGroup(CloneGroup):
     def __init__(self, id, ntokens, instances):
@@ -360,37 +388,6 @@ class ExactCloneGroup(CloneGroup):
 
         self.instances.sort(key=operator.itemgetter(0,1))
         # now instances are sorted by file then by appearance
-
-    @property
-    def textdescriptor(self):
-        """
-        :return: textual description in form of fileno:begin-end joined by "," ordered by fileno then by begin offset
-        """
-        return ",".join(
-            ["%d:%d-%d" % inst for inst in sorted(self.instances)]  # sorting should work as described above
-        )
-
-    def __hash__(self):  # to add to set
-        return hash(self.id) ^ 445051238233  # fast, but not very safe, better to only add CloneGroups to sets
-
-    def __eq__(self, other):
-        return type(self) == type(other) and self.id == other.id
-
-    def __ne__(self, other):
-        return type(self) != type(other) or self.id != other.id
-
-    def totalsymbols(self):
-        return sum(ie - ib  + 1 for fn, ib, ie in self.instances)
-
-    def text(self, inst=0):
-        global inputfiles
-        global clonegroups
-
-        fileno, start, end = self.instances[inst]
-        return inputfiles[fileno][start:end]
-
-    def html(self, inst=0, allow_space_wrap=False):
-        return "<code>" + verbhtml.escapecode(self.text(inst), allow_space_wrap) + "</code>"
 
     def textwithcontext(self, inst=0):
         global inputfiles
@@ -955,9 +952,10 @@ class VariativeElement(object):
 
     @staticmethod
     def summaryhtml(elements: 'list(VariativeElement)'):
-        start = textwrap.dedent("""
-        <html>
+        start = textwrap.dedent("""<!DOCTYPE html>
+        <html lang="en">
         <head>
+        <meta charset="utf-8">
         <title>Variative elements</title>
         <!-- link href="https://raw.githubusercontent.com/jcubic/jquery.splitter/master/css/jquery.splitter.css" rel="stylesheet"/ -->
         <style type="text/css">
