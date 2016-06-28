@@ -4,13 +4,14 @@
 """
 Element miner UI. Licensed under GPL v3 after PyQt5 which is used here.
 """
-
+import locale
 import sys
 import os
 import argparse
 import subprocess
 import time
 
+import shutil
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebKit, uic
 
 scriptdir = os.path.dirname(os.path.realpath(__file__))
@@ -55,6 +56,7 @@ def initargs():
     # TODO: run Clone Miner with Wine if needed =)
     # And it is hardcoded not only here (and here it is hardcoded optionally =)).
     argpar.add_argument("-ct", "--clone-tool", help="Full path to clones.exe", default= os.path.join(scriptdir, "clone_miner", "clones.exe"))
+    argpar.add_argument("-fft", "--fuzzy-finder-tool", help="Full path to CloneFinder.exe", default= os.path.join(scriptdir, "fuzzy_finder", "CloneFinder.exe"))
     argpar.add_argument("-if", "--input-file", help="Input file to analyze")
     global clargs
     clargs = argpar.parse_args()
@@ -250,14 +252,75 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
             print("Wont find label for slider: " + slName)
 
     def dialog_ok(self):
-        global elbrui
-
         infile = self.inFile.text()
-        lengths = [int(self.lbClLen.text())]
-
         pui = ElemMinerProgressUI()
+
+        methodIdx = self.cbMethod.currentIndex()
+        if methodIdx == 0: # Clone Miner
+            numparams = [int(self.lbClLen.text())]
+        elif methodIdx == 1:  # Fuzzy Finder
+            numparams = [slider.value() for slider in [self.slFfClLen, self.slFfEd, self.slFfHd]]
+        else:
+            raise NotImplementedError("Unknown method: " + methodIdx)
+
         self.hide()
         pui.show()
+
+        wt = None
+        if methodIdx == 0: # Clone Miner
+            wt = self.launch_with_clone_miner(pui, infile, numparams)
+        elif methodIdx == 1:  # Fuzzy Finder
+            wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
+        else:
+            raise NotImplementedError("Unknown method: " + methodIdx)
+
+        self.timer = QtCore.QTimer()  # preserve from GC
+
+        def wait_for_result_show_results():
+            if wt.isFinished():
+                self.timer.stop()
+                self.elbrui = ElemBrowserUI()  # preserve from GC... Again...
+                self.elbrui.show()
+                pui.hide()
+
+                srcfn = os.path.join(ffworkfolder, os.path.split(infile + ".reformatted")[-1])
+                # read input file
+                srctext = ""
+                with open(srcfn, encoding='utf-8') as ifh:
+                    srctext = ifh.read()
+
+                if methodIdx == 0: # Clone Miner
+                    # something sensible later
+                    for l, o in zip(numparams, wt.outs):
+                        ht = path2url(
+                            os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l, "pyvarelements.html"))
+                        self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn)
+                elif methodIdx == 1: # Fuzzy Finder
+                    ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
+                    self.elbrui.addbrTab(ht, str(numparams), wt.ffstdout, srctext, srcfn)
+                else:
+                    raise NotImplementedError("Unknown method: " + methodIdx)
+
+        self.timer.timeout.connect(wait_for_result_show_results)
+        self.timer.start(500)
+
+    def launch_with_fuzzy_finder(self, pui, infile, numparams):
+        global elbrui
+
+        ffworkfolder = os.path.join(
+            os.path.dirname(infile),
+            "_analysis",
+            os.path.split(infile)[-1],
+            "-".join(map(str, numparams))
+        )
+        os.makedirs(ffworkfolder, exist_ok=True)
+        shutil.copy(infile, ffworkfolder)
+
+        wt = run_fuzzy_finder_thread(pui, infile, numparams, ffworkfolder)
+        return wt, ffworkfolder
+
+    def launch_with_clone_miner(self, pui, infile, lengths):
+        global elbrui
 
         # easter egg -- maxvar = 0 & unchecked maxvar should avoid it from
         # combining (only single clones, no variations in output)
@@ -284,36 +347,81 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
             options += ["-mv", str(self.sbMaxVar.value())]
 
         wt = run_clone_miner_thread(pui, infile, lengths, options)
-
-        self.timer = QtCore.QTimer()  # preserve from GC
-
-        def wait_for_result_show_results():
-            if wt.isFinished():
-                self.timer.stop()
-                self.elbrui = ElemBrowserUI()  # preserve from GC... Again...
-                self.elbrui.show()
-                pui.hide()
-
-                srcfn = infile + ".reformatted"
-                # read input file
-                srctext = ""
-                with open(srcfn, encoding='utf-8') as ifh:
-                    srctext = ifh.read()
-
-                # something sensible later
-                for l, o in zip(lengths, wt.outs):
-                    ht = path2url(
-                        os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l, "pyvarelements.html"))
-                    self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn)
-
-        self.timer.timeout.connect(wait_for_result_show_results)
-        self.timer.start(500)
+        return wt
 
     def select_file(self):
         print("Selecting file...")
         infname = str(QtWidgets.QFileDialog.getOpenFileName(self, "Select File to Analyze")[0])
         self.inFile.setText(infname)
 
+def run_fuzzy_finder_thread(pui, inputfile, numparams, workingfolder):
+    global clargs, app
+    inputfile = inputfile.replace('/', os.sep)
+
+    pui.progressChanged.emit(2, 0, "Preparing...")
+    app.processEvents()
+
+    class FuzzyWorkThread(QtCore.QThread):
+        def __init__(self):
+            QtCore.QThread.__init__(self)
+            self.ffstdout = ""
+
+        def run(self):
+            outdec = locale.getpreferredencoding(False)
+
+            inputfilename = os.path.split(inputfile)[-1]
+            popen_args = [clargs.fuzzy_finder_tool] + [inputfilename] + list(map(str, numparams)) + ['1'] # 1 thread
+            if os.name == 'posix': popen_args = ["mono"] + popen_args
+            print("Finding fuzzy clones with: " + ' '.join(popen_args))
+
+            pui.progressChanged.emit(2, 0, "Finding fuzzy clones...")
+            app.processEvents()
+            ffpr = subprocess.Popen(popen_args,
+                                    stdout=subprocess.PIPE,
+                                    stdin=subprocess.PIPE,
+                                    stderr=subprocess.STDOUT,
+                                    cwd=workingfolder)
+            oe = ffpr.communicate(input=b'\n')
+            ffrc = ffpr.returncode
+            self.ffstdout = oe[0].decode(outdec)
+            if ffrc != 0:
+                print("Returned: " + str(ffrc))
+                for oem in list(oe):
+                    print(oem.decode(outdec))
+
+            reformattedfilename = inputfilename + '.reformatted'
+            fuzzyclonesfilename = inputfilename + '.fuzzyclones.xml'
+
+            pui.progressChanged.emit(2, 1, "Preparing report...")
+            app.processEvents()
+
+            popen_args = [
+                sys.executable, os.path.join(scriptdir, "fuzzyclones2html.py"),
+                '-oui', 'yes', # gen only for ui
+                '-sx', reformattedfilename,
+                '-fx', fuzzyclonesfilename,
+                '-od', workingfolder]
+            print("Browsing fuzzy clones with: " + ' '.join(popen_args))
+
+            cbpr = subprocess.Popen(popen_args,
+                                    stdout=subprocess.PIPE,
+                                    stdin=subprocess.PIPE,
+                                    stderr=subprocess.STDOUT,
+                                    cwd=workingfolder)
+
+            oe = cbpr.communicate(input=b'\n')
+            cbrc = cbpr.returncode
+            if cbrc != 0:
+                print("Returned: " + str(cbrc))
+                for oem in list(oe):
+                    print(oem.decode(outdec))
+
+            pui.progressChanged.emit(2, 2, "Done")
+            app.processEvents()
+
+    wt = FuzzyWorkThread()
+    wt.start()
+    return wt
 
 def run_clone_miner_thread(pui, inputfile, lengths, options):
     global clargs, app
