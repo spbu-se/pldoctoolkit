@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
+    <width>514</width>
     <height>392</height>
    </rect>
   </property>
@@ -391,10 +391,10 @@
                <number>10</number>
               </property>
               <property name="maximum">
-               <number>25</number>
+               <number>30</number>
               </property>
               <property name="value">
-               <number>15</number>
+               <number>20</number>
               </property>
               <property name="tracking">
                <bool>true</bool>
@@ -425,7 +425,7 @@
                </size>
               </property>
               <property name="text">
-               <string>15</string>
+               <string>20</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
