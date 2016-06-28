@@ -63,7 +63,6 @@ def initargs():
 def ui_class(name):
     return uic.loadUiType(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'qtui', name))[0]
 
-
 class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     def __init__(self, parent, uri, stats, src="", fn=""):
         QtWidgets.QWidget.__init__(self, parent)
@@ -223,14 +222,32 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         self.buttonBox.accepted.connect(self.dialog_ok)
         self.buttonBox.rejected.connect(lambda: sys.exit(0))
         self.btSelectFolder.clicked.connect(self.select_file)
-        self.slClLen.valueChanged.connect(self.slider_moved)
         self.cbMaxVar.stateChanged.connect(self.cbMaxVar_checked)
+        self.cbMethod.currentIndexChanged.connect(self.methodSelected)
+
+        for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd]:
+            slider.valueChanged.connect(self.slider_moved)
+
+    @QtCore.pyqtSlot(int)
+    def methodSelected(self, idx):
+        # print("method: ", idx)
+        self.analyzerOptions.setCurrentIndex(idx)
 
     def cbMaxVar_checked(self, val):
         self.sbMaxVar.setEnabled(val)
 
+    @QtCore.pyqtSlot(int)
     def slider_moved(self, val):
-        self.lbClLen.setText(str(val))
+        slName = self.sender().objectName()
+        if slName.startswith("sl"):
+            lbName = "lb" + slName[2:]
+            lbl = getattr(self, lbName, None)
+            if lbl:
+                lbl.setText(str(val))
+            else:
+                print("Cant find label for slider: " + slName + " -> " + lbName)
+        else:
+            print("Wont find label for slider: " + slName)
 
     def dialog_ok(self):
         global elbrui
