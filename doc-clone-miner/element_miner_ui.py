@@ -279,11 +279,21 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         def wait_for_result_show_results():
             if wt.isFinished():
                 self.timer.stop()
-                self.elbrui = ElemBrowserUI()  # preserve from GC... Again...
-                self.elbrui.show()
                 pui.hide()
 
-                srcfn = os.path.join(ffworkfolder, os.path.split(infile + ".reformatted")[-1])
+                if wt.fatal_error:
+                    raise Exception("Error in analysis tool!")
+
+                self.elbrui = ElemBrowserUI()  # preserve from GC... Again...
+                self.elbrui.show()
+
+                if methodIdx == 0: # Clone Miner
+                    srcfn = infile + ".reformatted"
+                elif methodIdx == 1:  # Fuzzy Finder
+                    srcfn = os.path.join(ffworkfolder, os.path.split(infile + ".reformatted")[-1])
+                else:
+                    raise NotImplementedError("Unknown method: " + methodIdx)
+
                 # read input file
                 srctext = ""
                 with open(srcfn, encoding='utf-8') as ifh:
@@ -297,7 +307,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                         self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn)
                 elif methodIdx == 1: # Fuzzy Finder
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
-                    self.elbrui.addbrTab(ht, str(numparams), wt.ffstdout, srctext, srcfn)
+                    self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn)
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -364,7 +374,8 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, workingfolder):
     class FuzzyWorkThread(QtCore.QThread):
         def __init__(self):
             QtCore.QThread.__init__(self)
-            self.ffstdout = ""
+            self.ffstdoutstderr = ""
+            self.fatal_error = False
 
         def run(self):
             outdec = locale.getpreferredencoding(False)
@@ -376,18 +387,22 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, workingfolder):
 
             pui.progressChanged.emit(2, 0, "Finding fuzzy clones...")
             app.processEvents()
+
             ffpr = subprocess.Popen(popen_args,
                                     stdout=subprocess.PIPE,
                                     stdin=subprocess.PIPE,
-                                    stderr=subprocess.STDOUT,
+                                    stderr=subprocess.PIPE,
                                     cwd=workingfolder)
             oe = ffpr.communicate(input=b'\n')
             ffrc = ffpr.returncode
-            self.ffstdout = oe[0].decode(outdec)
-            if ffrc != 0:
+            ffstdout = oe[0].decode(outdec)
+            ffstderr = oe[1].decode(outdec)
+            self.ffstdoutstderr = ffstdout + os.linesep + ffstderr
+            if ffrc != 0 or "Exception was thrown:" in ffstderr:
+                self.fatal_error = True
                 print("Returned: " + str(ffrc))
-                for oem in list(oe):
-                    print(oem.decode(outdec))
+                print(self.ffstdoutstderr)
+                return
 
             reformattedfilename = inputfilename + '.reformatted'
             fuzzyclonesfilename = inputfilename + '.fuzzyclones.xml'
@@ -412,9 +427,9 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, workingfolder):
             oe = cbpr.communicate(input=b'\n')
             cbrc = cbpr.returncode
             if cbrc != 0:
+                self.fatal_error = True
                 print("Returned: " + str(cbrc))
-                for oem in list(oe):
-                    print(oem.decode(outdec))
+                print(oe[0].decode(outdec))
 
             pui.progressChanged.emit(2, 2, "Done")
             app.processEvents()
@@ -434,6 +449,7 @@ def run_clone_miner_thread(pui, inputfile, lengths, options):
         def __init__(self):
             QtCore.QThread.__init__(self)
             self.outs = []
+            self.fatal_error = False
 
         def run(self):
             cnt = 0
