@@ -168,13 +168,16 @@ $(document).ready(function() {
 
     window.source0 = $('div#source code').get(0).textContent; // unescapes
 
+    window.qt = false;
     window.adaptToQWebView = function() {
+        window.qt = true;
         clog("Adapting to QWebView!");
         $("#removeforqwebview").remove();
         // window.qtab.src_text(window.source0) // Qt will load source itself
         $('span#srclabel').remove();
-        $('div#source code').empty();
-        $('div#source').hide();
+        $('div#source code').remove();
+        $('div#source').remove();
+        $('div#blgd').remove();
         $('body').css({
             'overflow': 'hidden'
         });
@@ -191,16 +194,14 @@ $(document).ready(function() {
 
         var thh = $('div#table thead').height();
 
-        if (window.qtab) {
-            // thh += 4; // impirically
-            $("tbody").height(wh - thh);
+        if (window.qt) {
             $("div#table").height(wh);
         } else {
             var sh = $('span#srclabel').height();
-            $("tbody").height(wh * 0.6 - thh - sh);
             $("div#table").height(wh * 0.6 - thh);
             $("div#source").height(wh * 0.4);
         }
+        $("tbody").height($("div#table").height() - thh);
 
         $("th.fxd, td.fxd").width(fxd);
 
@@ -214,5 +215,5 @@ $(document).ready(function() {
     $(window).resize(correct_sizes);
     correct_sizes();
 
-    // window.adaptToQWebView(); // uncomment to debug in browser
+    // window.adaptToQWebView(); // uncomment debug in browser
 });
