@@ -174,6 +174,7 @@ $(document).ready(function() {
         clog("Adapting to QWebView!");
         $("#removeforqwebview").remove();
         // window.qtab.src_text(window.source0) // Qt will load source itself
+        $('menu').remove();
         $('span#srclabel').remove();
         $('div#source code').remove();
         $('div#source').remove();
