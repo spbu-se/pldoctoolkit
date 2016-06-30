@@ -1,4 +1,4 @@
-`CloneFinder.exe` expected here.
+`CloneFinder.exe` is here.
 
 Command line parameters:
 
