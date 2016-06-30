@@ -320,8 +320,9 @@ class CloneGroup(ABC):
         fileno, start, end = self.instances[inst]
         return inputfiles[fileno][start:end]
 
+    @abstractmethod
     def html(self, inst=0, allow_space_wrap=False):
-        return "<code>" + verbhtml.escapecode(self.text(inst), allow_space_wrap) + "</code>"
+        pass
 
     @property
     def textdescriptor(self):
@@ -355,9 +356,26 @@ class FuzzyCloneGroup(CloneGroup):
         self.instancetexts = clonetexts
         self.instancewords = clonewords
 
-
     def text(self, inst=0):
         return self.instancewords[0]
+
+    def html(self, inst=None, allow_space_wrap=False):
+        import worddiff
+        if inst is None: # all
+            resultlist = worddiff.get_htmls(self.instancewords)
+            resulttexts = []
+            for r in resultlist:
+                resulttexts.append(
+                    """<code id="%s" class="fuzzycode" style="display: %s;">%s</code>""" % (
+                        "g" + str(self.id) + "-c" + str(len(resulttexts)),
+                        "inline" if len(resulttexts) == 0 else "none",
+                        r
+                    )
+                )
+            return os.linesep.join(resulttexts)
+        else:
+            return "<code>" + verbhtml.escapecode(self.text(inst), allow_space_wrap) + "</code>"
+
 
 class ExactCloneGroup(CloneGroup):
     def __init__(self, id, ntokens, instances):
@@ -388,6 +406,9 @@ class ExactCloneGroup(CloneGroup):
 
         self.instances.sort(key=operator.itemgetter(0,1))
         # now instances are sorted by file then by appearance
+
+    def html(self, inst=0, allow_space_wrap=False):
+        return "<code>" + verbhtml.escapecode(self.text(inst), allow_space_wrap) + "</code>"
 
     def textwithcontext(self, inst=0):
         global inputfiles
@@ -867,6 +888,10 @@ class VariativeElement(object):
         return sum([len(g.text()) * len(g.instances) for g in self.clone_groups])
 
     @property
+    def fuzzy(self):
+        return isinstance(self.clone_groups[0], FuzzyCloneGroup)
+
+    @property
     def power(self):
         return len(self.clone_groups)
 
@@ -912,13 +937,14 @@ class VariativeElement(object):
         startgrp = self.clone_groups[0]
         starts = [s for (fno, s, e) in startgrp.instances]
 
-        if self.power <= 1:  # == 1 in fact
+        if self.power <= 1:  # == 1 in fact =)
             startends = [e for (fno, s, e) in startgrp.instances]
             vvtext = '<wbr/>'.join([
                 """<span class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">{%d}</span>"""
                 % (cstart, cend, cstart, cend, clr, no)
                 for cstart, cend, clr, no in zip(starts, startends, self.htmlccolors, itertools.count(1))
             ])
+
             vtext = self.clone_groups[0].html(allow_space_wrap=True) + vvtext
         else:
             endgrp = self.clone_groups[-1]

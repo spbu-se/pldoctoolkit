@@ -53,7 +53,10 @@ System
 ------
 
 * `x86` or `x86_64` architecture PC to run Clone Miner, Windows or UN*X
-* on UN*Xes - [Wine](https://www.winehq.org/) to run CloneMiner
+* on UN*Xes:
+    * [Wine](https://www.winehq.org/) to run Clone Miner
+    * [Mono](http://www.mono-project.com/) to run Fuzzy Finder
+
 
 License
 =======

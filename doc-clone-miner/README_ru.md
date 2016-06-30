@@ -55,8 +55,10 @@ Python
 
 * Компьютер архитектуры `x86` или `x86_64` для запуска Clone Miner, Windows
   или UN*X
-* для UN*X-подобных систем -- [Wine](https://www.winehq.org/) для запуска
-  CloneMiner
+* для UN*X-подобных систем:
+    * [Wine](https://www.winehq.org/) для запуска Clone Miner
+    * [Mono](http://www.mono-project.com/) для запуска Fuzzy Finder
+
 
 Лицензии
 ========

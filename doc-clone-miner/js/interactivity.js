@@ -164,6 +164,25 @@ $(document).ready(function() {
             src.parent().scrollXY(0, 0); // to calculate $('span.highlight').offset().top later properly
             src.parent().scrollXY(0, $('span.highlight').offset().top - $('#source').offset().top)
         }
+
+        // fuzzy tricks
+        var tt = $(this).parent();
+        var codes = $(tt).find("code.fuzzycode");
+        var ct = $(this).text();
+        if(codes.length > 0) {
+            var links = $(tt).find("span.variationclick");
+            var idx = -1;
+            links.each(function(nidx){
+                if($(this).text() == ct)
+                    idx = nidx;
+            });
+            codes.each(function(nidx){
+                if(nidx == idx)
+                    $(this).show();
+                else
+                    $(this).hide();
+            });
+        }
     });
 
     window.source0 = $('div#source code').get(0).textContent; // unescapes
