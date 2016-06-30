@@ -583,7 +583,10 @@ def combine_gruops():
         os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'interactivity.js'),
         os.path.join("Output", subdir, "interactivity.js")
     )
-
+    shutil.copyfile(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'jquery-2.0.3.min.js'),
+        os.path.join("Output", subdir, "jquery-2.0.3.min.js")
+    )
 
 if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
     log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)

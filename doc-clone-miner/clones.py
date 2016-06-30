@@ -1054,7 +1054,7 @@ class VariativeElement(object):
             display: none;
         }
         </style>
-        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script src="jquery-2.0.3.min.js"></script>
         <!-- script src="https://raw.githubusercontent.com/jcubic/jquery.splitter/master/js/jquery.splitter-0.14.0.js"></script --> 
         <script src="interactivity.js"></script>
         </head>

@@ -66,6 +66,10 @@ def report(logger):
         os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'interactivity.js'),
         os.path.join(outdir, "interactivity.js")
     )
+    shutil.copyfile(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'jquery-2.0.3.min.js'),
+        os.path.join(outdir, "jquery-2.0.3.min.js")
+    )
 
 if __name__ == '__main__':
     initargs()
