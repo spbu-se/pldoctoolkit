@@ -53,9 +53,11 @@ System
 ------
 
 * `x86` or `x86_64` architecture PC to run Clone Miner, Windows or UN*X
+* on Windows:
+    * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) to run Fuzzy Finder
 * on UN*Xes:
     * [Wine](https://www.winehq.org/) to run Clone Miner
-    * [Mono](http://www.mono-project.com/) to run Fuzzy Finder
+    * [Mono](http://www.mono-project.com/) 4.4.0+ to run Fuzzy Finder
 
 
 License

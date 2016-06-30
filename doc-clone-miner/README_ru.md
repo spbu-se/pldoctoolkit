@@ -55,9 +55,11 @@ Python
 
 * Компьютер архитектуры `x86` или `x86_64` для запуска Clone Miner, Windows
   или UN*X
+* для Windows:
+    * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) для запуска Fuzzy Finder
 * для UN*X-подобных систем:
     * [Wine](https://www.winehq.org/) для запуска Clone Miner
-    * [Mono](http://www.mono-project.com/) для запуска Fuzzy Finder
+    * [Mono](http://www.mono-project.com/) 4.4.0+ для запуска Fuzzy Finder
 
 
 Лицензии
