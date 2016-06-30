@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book SYSTEM "schema/tdg.dtd" [
 
 <!-- Build the expanded version by default -->
@@ -7,8 +8,6 @@
 <!ENTITY % content SYSTEM "entities/content.ent">
 %content;
 ]>
-
-<?xml version="1.0" encoding="UTF-8"?>
 <d:DocumentationCore xmlns:d="http://math.spbu.ru/drl" xmlns="http://docbook.org/ns/docbook"><d:InfElement id="root" name="test">
 
 <appendix id="app-install">
@@ -17952,7 +17951,7 @@ document.</para>
 <index id="index"/>
 
 
-<?xml version='1.0' encoding='utf-8'?> <!-- -*- nxml -*- -->
+<!-- ?xml version='1.0' encoding='utf-8'? --> <!-- -*- nxml -*- -->
 
 <!-- This file should be changed EVERY TIME a new draft is published! -->
 
