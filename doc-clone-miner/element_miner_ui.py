@@ -326,7 +326,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         os.makedirs(ffworkfolder, exist_ok=True)
         shutil.copy(infile, ffworkfolder)
 
-        wt = run_fuzzy_finder_thread(pui, infile, numparams, ffworkfolder)
+        wt = run_fuzzy_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
 
     def launch_with_clone_miner(self, pui, infile, lengths):
@@ -364,7 +364,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         infname = str(QtWidgets.QFileDialog.getOpenFileName(self, "Select File to Analyze")[0])
         self.inFile.setText(infname)
 
-def run_fuzzy_finder_thread(pui, inputfile, numparams, workingfolder):
+def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
     global clargs, app
     inputfile = inputfile.replace('/', os.sep)
 
@@ -380,8 +380,19 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, workingfolder):
         def run(self):
             outdec = locale.getpreferredencoding(False)
 
+            [frgamentsize, maxeditdist, maxhashdist] = numparams
+            threads = 1
             inputfilename = os.path.split(inputfile)[-1]
-            popen_args = [clargs.fuzzy_finder_tool] + [inputfilename] + list(map(str, numparams)) + ['1'] # 1 thread
+
+            popen_args = [clargs.fuzzy_finder_tool] + [
+                "-document", inputfilename,
+                "-frgamentsize", str(frgamentsize),
+                "-maxeditdist", str(maxeditdist),
+                "-maxhashdist", str(maxhashdist),
+                "-threads", str(threads),
+                "-language", language
+            ]
+
             if os.name == 'posix': popen_args = ["mono"] + popen_args
             print("Finding fuzzy clones with: " + ' '.join(popen_args))
 
