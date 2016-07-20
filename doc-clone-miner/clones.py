@@ -362,7 +362,7 @@ class FuzzyCloneGroup(CloneGroup):
     def html(self, inst=None, allow_space_wrap=False):
         import worddiff
         if inst is None: # all
-            resultlist = worddiff.get_htmls(self.instancewords)
+            resultlist = worddiff.get_htmls(self.instancetexts)
             resulttexts = []
             for r in resultlist:
                 resulttexts.append(
