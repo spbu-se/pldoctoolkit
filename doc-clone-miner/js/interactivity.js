@@ -153,6 +153,9 @@ $(document).ready(function() {
     $("#multiple2elem").click(multiple2elem);
 
     $('.variationclick').click(function() {
+        $('.variationclick').css('border', '');
+        $(this).css('border', 'solid');
+
         var hlrange = $(this).attr("data-hlrange").split('-');
         var hls = +hlrange[0];
         var hle = +hlrange[1];
@@ -217,9 +220,10 @@ $(document).ready(function() {
         if (window.qt) {
             $("div#table").height(wh);
         } else {
+            $("html").height(wh);
             var sh = $('span#srclabel').height();
-            $("div#table").height(wh * 0.6 - thh);
-            $("div#source").height(wh * 0.4);
+            $("div#table").height((wh-sh) * 0.6);
+            $("div#source").height((wh-sh) * 0.4);
         }
         $("tbody").height($("div#table").height() - thh);
 

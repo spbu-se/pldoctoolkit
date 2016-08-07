@@ -357,7 +357,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
             # for this Qt UI
             "-wrs", "yes",
-            "-oui", "yes"
+            "-oui", "no" # for ui and export
         ]
         if dovariations:
             options += ["-nb", "100"]
@@ -436,7 +436,7 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
 
             popen_args = [
                 sys.executable, os.path.join(scriptdir, "fuzzyclones2html.py"),
-                '-oui', 'yes', # gen only for ui
+                '-oui', 'no' # gen for ui and export
                 '-sx', reformattedfilename,
                 '-fx', fuzzyclonesfilename,
                 '-od', workingfolder]

@@ -985,10 +985,15 @@ class VariativeElement(object):
         <title>Variative elements</title>
         <!-- link href="https://raw.githubusercontent.com/jcubic/jquery.splitter/master/css/jquery.splitter.css" rel="stylesheet"/ -->
         <style type="text/css">
+        menu
+        {
+            display: none;
+        }
         body
         {
             background-color: #dddddd;
             margin: 0px;
+            overflow: hidden;
         }
         table
         {
