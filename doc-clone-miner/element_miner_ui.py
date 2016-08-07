@@ -185,15 +185,28 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
 
 class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, path=None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
+        self.path = path if path else os.path.curdir
+        self.bindEvents()
 
     def addbrTab(self, uri, heading, stats, text = "", fn = ""):
         ntab = ElemBrowserTab(self, uri, stats, text, fn)
         self.browserTabs.addTab(ntab, heading if heading else uri)
         self.browserTabs.tabBar().setVisible(self.browserTabs.count() > 1)
 
+    def bindEvents(self):
+        self.actionE_xport.triggered.connect(self.exportReport)
+
+    @QtCore.pyqtSlot()
+    def exportReport(self):
+        dlg = QtWidgets.QFileDialog(self)
+        sfn = dlg.getSaveFileName(self, 'Save Report to File', self.path, 'HTML files (*.html)')
+        if sfn and isinstance(sfn, tuple) and len(sfn[0]):
+            fn = sfn[0]
+            tab = self.browserTabs.currentWidget() # type: ElemBrowserTab
+            shutil.copyfile(tab.fn, fn)
 
 class ElemMinerProgressUI(QtWidgets.QDialog, ui_class('element_miner_progress.ui')):
     progressChanged = QtCore.pyqtSignal(int, int, str)
@@ -284,7 +297,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                 if wt.fatal_error:
                     raise Exception("Error in analysis tool!")
 
-                self.elbrui = ElemBrowserUI()  # preserve from GC... Again...
+                self.elbrui = ElemBrowserUI(path=os.path.split(infile)[0])  # preserve from GC... Again...
                 self.elbrui.show()
 
                 if methodIdx == 0: # Clone Miner
