@@ -19,6 +19,9 @@ scriptdir = os.path.dirname(os.path.realpath(__file__))
 def path2url(path):
     return QtCore.QUrl.fromLocalFile(path).toString()
 
+def url2path(url):
+    return QtCore.QUrl(url).toLocalFile()
+
 # inspired by https://gist.github.com/Tatsh/7131812 
 from os import chdir, getcwd
 from os.path import realpath
@@ -90,6 +93,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
             # self.eval_js("qtab.inf_dic_descs('123', '456');") test Python -> JS -> Python -- works ok, great!
             self.eval_js("window.adaptToQWebView();")
 
+        self.uri = uri
         self.webView.settings().setAttribute(QtWebKit.QWebSettings.CSSGridLayoutEnabled, True)
         self.webView.loadFinished.connect(loaded)
         self.webView.load(QtCore.QUrl(uri))
@@ -206,7 +210,7 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
         if sfn and isinstance(sfn, tuple) and len(sfn[0]):
             fn = sfn[0]
             tab = self.browserTabs.currentWidget() # type: ElemBrowserTab
-            shutil.copyfile(tab.fn, fn)
+            shutil.copyfile(url2path(tab.uri), fn)
 
 class ElemMinerProgressUI(QtWidgets.QDialog, ui_class('element_miner_progress.ui')):
     progressChanged = QtCore.pyqtSignal(int, int, str)
@@ -436,7 +440,7 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
 
             popen_args = [
                 sys.executable, os.path.join(scriptdir, "fuzzyclones2html.py"),
-                '-oui', 'no' # gen for ui and export
+                '-oui', 'no', # gen for ui and export
                 '-sx', reformattedfilename,
                 '-fx', fuzzyclonesfilename,
                 '-od', workingfolder]
