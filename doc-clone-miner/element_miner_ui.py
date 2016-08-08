@@ -9,7 +9,7 @@ import sys
 import os
 import argparse
 import subprocess
-import time
+import re
 
 import shutil
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebKit, uic
@@ -210,7 +210,22 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
         if sfn and isinstance(sfn, tuple) and len(sfn[0]):
             fn = sfn[0]
             tab = self.browserTabs.currentWidget() # type: ElemBrowserTab
-            shutil.copyfile(url2path(tab.uri), fn)
+            htmlpath = url2path(tab.uri)
+            with open(htmlpath, encoding='utf-8') as htmlsrc:
+                htmlcontent = htmlsrc.read()
+
+                def replace_ref_with_script(match): # want normal lambdas here...
+                    jsfilename = os.path.join(
+                        os.path.split(htmlpath)[0], # html dorectory
+                        match.group(1) + ".js"
+                    )
+                    with open(jsfilename) as jsfile:
+                        js = jsfile.read()
+                        return """<script>%s</script>""" % js
+
+                htmlcontent = re.sub("""<script src="(.*)\\.js"></script>""", replace_ref_with_script, htmlcontent)
+                with open(fn, "w", encoding='utf-8') as ofl:
+                    ofl.write(htmlcontent)
 
 class ElemMinerProgressUI(QtWidgets.QDialog, ui_class('element_miner_progress.ui')):
     progressChanged = QtCore.pyqtSignal(int, int, str)
