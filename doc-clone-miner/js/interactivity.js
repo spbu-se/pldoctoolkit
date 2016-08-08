@@ -165,9 +165,11 @@ $(document).ready(function() {
 
         if (!window.qtab) {
             src.parent().scrollXY(0, 0); // to calculate $('span.highlight').offset().top later properly
-            var shot = $('#source span.highlight').offset().top;
-            var sot = $('#source').offset().top;
-            src.parent().scrollXY(0, shot - sot);
+            var sho = $('#source span.highlight').offset();
+            var shot = sho.top; var shol = sho.left;
+            var so = $('#source').offset();
+            var sot = so.top; var sol = so.left;
+            src.parent().scrollXY(shol-sol, shot - sot);
         }
 
         // fuzzy tricks
