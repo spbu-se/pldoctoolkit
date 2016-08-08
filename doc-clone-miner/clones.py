@@ -866,11 +866,12 @@ def loadinputs(logger):
 
 class VariativeElement(object):
     count = 0
+
     def __init__(self, clone_groups: 'list(CloneGroup)'):
         global inputfiles
 
-        self.__class__.count += 1
         self.idx = self.__class__.count
+        self.__class__.count += 1
 
         def grorder(group):  # no normal lambdas in Python...
             file0, ost, oen = group.instances[0]  # first clone appearance
@@ -1093,7 +1094,7 @@ class VariativeElement(object):
         </thead>
         <tbody>""")).substitute(**(
             {
-                'colh1': "Candidate #", 'colh2': "Num. of clones in group"
+                'colh1': "Candidate No", 'colh2': "Num. of clones in group"
             } if fuzzy else {
                 'colh1': "Num. of clones in group", 'colh2': "Num. of extension points"
             }
