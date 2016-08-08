@@ -575,7 +575,7 @@ def combine_gruops():
     combinations += [clones.VariativeElement([gr]) for gr in remaining_groups]
     combinations.sort(key=lambda ve: ve.size, reverse=True)
 
-    cohtml = clones.VariativeElement.summaryhtml(combinations)
+    cohtml = clones.VariativeElement.summaryhtml(combinations, False)
     with open(os.path.join("Output", subdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:
         htmlfile.write(cohtml)
 

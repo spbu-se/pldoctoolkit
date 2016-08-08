@@ -865,8 +865,12 @@ def loadinputs(logger):
         allow2offset = False
 
 class VariativeElement(object):
+    count = 0
     def __init__(self, clone_groups: 'list(CloneGroup)'):
         global inputfiles
+
+        self.__class__.count += 1
+        self.idx = self.__class__.count
 
         def grorder(group):  # no normal lambdas in Python...
             file0, ost, oen = group.instances[0]  # first clone appearance
@@ -969,16 +973,16 @@ class VariativeElement(object):
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
             ngrp=self.power,
             grps=",".join([str(grp.id) for grp in self.clone_groups]) + ",",
-            clgr=len(self.clone_groups[0].instances),
-            varel=len(self.clone_groups) - 1,
+            clgr=self.idx + 1 if self.fuzzy else len(self.clone_groups[0].instances),
+            varel=len(self.clone_groups[0].instances) if self.fuzzy else len(self.clone_groups) - 1,
             varnc=vnc,
             text=vtext,
             desc=self.textdescriptor
         )
 
     @staticmethod
-    def summaryhtml(elements: 'list(VariativeElement)'):
-        start = textwrap.dedent("""<!DOCTYPE html>
+    def summaryhtml(elements: 'list(VariativeElement)', fuzzy: 'bool'):
+        start = string.Template(textwrap.dedent("""<!DOCTYPE html>
         <html lang="en">
         <head>
         <meta charset="utf-8">
@@ -1051,10 +1055,11 @@ class VariativeElement(object):
             display: none;
         }
         
-        span.highlight {
-            background-color: lightgreen;
+        code.highlight, span.highlight {
+            background-color: blue !important;
+            color: white !important;
         }
-        
+
         tr.multiple input[data-rel="create_dic"] {
             display: none;
         }
@@ -1080,13 +1085,19 @@ class VariativeElement(object):
         <tr>
         <!-- <th>Participating groups</th> -->
         <!-- <th>e.g.</th> -->
-        <th class="fxd">Num. of clones in group</th>
-        <th class="fxd">Num. of extension points</th>
+        <th class="fxd">${colh1}</th>
+        <th class="fxd">${colh2}</th>
         <!-- <th>Variance of variants</th> -->
         <th class="tka">Candidate text:</th>
         </tr>
         </thead>
-        <tbody>""")
+        <tbody>""")).substitute(**(
+            {
+                'colh1': "Candidate #", 'colh2': "Num. of clones in group"
+            } if fuzzy else {
+                'colh1': "Num. of clones in group", 'colh2': "Num. of extension points"
+            }
+        ))
 
         middle = textwrap.dedent("""</tbody></table>
         <div id="blgd">

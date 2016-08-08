@@ -27,12 +27,12 @@ $.fn.highlightRange = function(start, end) {
         "</span>" +
         doX(unhtml.substr(offset + length));
     el.innerHTML = vre;
-    return $(this);
+    // return $(this); very slow
 }
 
 $.fn.lowlight = function() {
     $(this).html(window.source0);
-    return $(this);
+    // return $(this); very slow
 }
 
 $.fn.scrollXY = function(scx, scy) {
@@ -153,8 +153,8 @@ $(document).ready(function() {
     $("#multiple2elem").click(multiple2elem);
 
     $('.variationclick').click(function() {
-        $('.variationclick').css('border', '');
-        $(this).css('border', 'solid');
+        $('.variationclick').removeClass('highlight');
+        $(this).addClass('highlight');
 
         var hlrange = $(this).attr("data-hlrange").split('-');
         var hls = +hlrange[0];
@@ -165,7 +165,9 @@ $(document).ready(function() {
 
         if (!window.qtab) {
             src.parent().scrollXY(0, 0); // to calculate $('span.highlight').offset().top later properly
-            src.parent().scrollXY(0, $('span.highlight').offset().top - $('#source').offset().top)
+            var shot = $('#source span.highlight').offset().top;
+            var sot = $('#source').offset().top;
+            src.parent().scrollXY(0, shot - sot);
         }
 
         // fuzzy tricks
