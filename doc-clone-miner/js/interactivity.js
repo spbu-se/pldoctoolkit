@@ -14,6 +14,13 @@ var unX = function(s) {
     return unx;
 }
 
+// http://blog.stevenlevithan.com/archives/faster-than-innerhtml
+var replaceHtml = function (el, html) {
+    var oldEl = el;
+    var newEl = oldEl.cloneNode(false);
+    newEl.innerHTML = html;
+    oldEl.parentNode.replaceChild(newEl, oldEl);
+};
 
 $.fn.highlightRange = function(start, end) {
     var e = $(this); //= document.getElementById($(this).attr('id')); // I don't know why... but $(this) don't want to work today :-/
@@ -26,13 +33,13 @@ $.fn.highlightRange = function(start, end) {
         doX(unhtml.substr(offset, length)) +
         "</span>" +
         doX(unhtml.substr(offset + length));
-    el.innerHTML = vre;
-    // return $(this); very slow
+
+    replaceHtml(el, vre);
 }
 
 $.fn.lowlight = function() {
-    $(this).html(window.source0);
-    // return $(this); very slow
+    var el = $(this).get(0);
+    replaceHtml(el, window.source0);
 }
 
 $.fn.scrollXY = function(scx, scy) {
@@ -160,8 +167,9 @@ $(document).ready(function() {
         var hls = +hlrange[0];
         var hle = +hlrange[1];
         var src = $('div#source code');
-        lowlight();
+        // lowlight();
         highlightRange(hls, hle);
+        src = $('div#source code');
 
         if (!window.qtab) {
             src.parent().scrollXY(0, 0); // to calculate $('span.highlight').offset().top later properly
