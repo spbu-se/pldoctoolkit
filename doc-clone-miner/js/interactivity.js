@@ -163,6 +163,9 @@ $(document).ready(function() {
         $('.variationclick').removeClass('highlight');
         $(this).addClass('highlight');
 
+        $('tr.variative').removeClass("active");
+        $(this).closest('tr').addClass("active");
+
         var hlrange = $(this).attr("data-hlrange").split('-');
         var hls = +hlrange[0];
         var hle = +hlrange[1];

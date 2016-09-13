@@ -1064,6 +1064,10 @@ class VariativeElement(object):
         tr.multiple input[data-rel="create_dic"] {
             display: none;
         }
+
+        tr.active  {
+            background-color: #ffff88;
+        }
         </style>
         <script src="jquery-2.0.3.min.js"></script>
         <!-- script src="https://raw.githubusercontent.com/jcubic/jquery.splitter/master/js/jquery.splitter-0.14.0.js"></script --> 
