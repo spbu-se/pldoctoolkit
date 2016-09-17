@@ -66,3 +66,10 @@ License
 Sources with PyQt mentioned are licensed under GPL v3.
 Documentation in tests folder is licensed under the terms of its initial sources licenses.
 Everything other is licensed under LGPL v3.
+
+Portable Distribution
+=====================
+
+With `build_dist/dcm_pack_windows.sh` you can create SFX archive.
+This script is dedicated to use wih Windows and contains settings in itself.
+Contact us to get actual portable distribution.
