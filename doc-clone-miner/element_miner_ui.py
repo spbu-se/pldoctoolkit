@@ -12,7 +12,9 @@ import subprocess
 import re
 
 import shutil
-from PyQt5 import QtCore, QtGui, QtWidgets, QtWebKit, uic
+from PyQt5 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets, uic
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+
 
 scriptdir = os.path.dirname(os.path.realpath(__file__))
 
@@ -89,12 +91,12 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
         def loaded(ok):
             print("URI loaded: " + str(ok))
-            self.webView.page().mainFrame().addToJavaScriptWindowObject("qtab", self)
+            self.webView.page().addToJavaScriptWindowObject("qtab", self)
             # self.eval_js("qtab.inf_dic_descs('123', '456');") test Python -> JS -> Python -- works ok, great!
             self.eval_js("window.adaptToQWebView();")
 
         self.uri = uri
-        self.webView.settings().setAttribute(QtWebKit.QWebSettings.CSSGridLayoutEnabled, True)
+        # self.webView.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.CSSGridLayoutEnabled, True)
         self.webView.loadFinished.connect(loaded)
         self.webView.load(QtCore.QUrl(uri))
 
@@ -185,7 +187,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     @QtCore.pyqtSlot(str)
     def eval_js(self, js):
-        self.webView.page().mainFrame().evaluateJavaScript(js)
+        self.webView.page().evaluateJavaScript(js)
 
 
 class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')):
