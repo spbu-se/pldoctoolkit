@@ -42,11 +42,11 @@ Documentation Refactoring Toolkit -- легковесный инструмент
 Python
 ------
 
-* Python 3.4+
-* PyQt5
-* PyContracts
-* pygments
-* NumPy
+* [Python 3.4.x](https://www.python.org/downloads/release/python-344/)
+* [PyQt5 5.5.x](https://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/)
+* PyContracts -- `pip install PyContracts`
+* pygments -- `pip install pygments`
+* NumPy -- `pip install NumPy`
 
 Версии пакетов -- любые актуальные, совместимые с Python 3.4
 
