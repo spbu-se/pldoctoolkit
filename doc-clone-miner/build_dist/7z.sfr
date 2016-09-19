@@ -1,0 +1,4 @@
+;!@Install@!UTF-8!
+BeginPrompt="Please allow VC++ redistributable package installation after extraction"
+RunProgram="vcredist_x86.exe /q"
+;!@InstallEnd@!
