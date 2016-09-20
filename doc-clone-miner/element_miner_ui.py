@@ -90,15 +90,21 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.textBrowser.setText(stats)
 
         def loaded(ok):
-            print("URI loaded: " + str(ok))
-            page = self.webView.page() #.addToJavaScriptWindowObject("qtab", self)
-            self.webChannel = QWebChannel(page)
+            u = self.webView.page().url()
+            if u.scheme() == 'about':
+                return
+            print("URI loaded: " + str(ok) + " > " + str(u))
             self.webChannel.registerObject("qtab", self)
             # self.eval_js("qtab.inf_dic_descs('123', '456');") test Python -> JS -> Python -- works ok, great!
             self.eval_js("window.adaptToQWebView();")
 
         self.uri = uri
         # self.webView.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.CSSGridLayoutEnabled, True)
+
+        page = self.webView.page() #.addToJavaScriptWindowObject("qtab", self)
+        self.webChannel = QWebChannel(page)
+        page.setWebChannel(self.webChannel)
+
         self.webView.loadFinished.connect(loaded)
         self.webView.load(QtCore.QUrl(uri))
 

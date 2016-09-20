@@ -50,7 +50,7 @@ $.fn.scrollXY = function(scx, scy) {
     return th;
 }
 
-$(document).ready(function() {
+window.doc_ready = function() {
 
     var clog = function(msg) {
         if(window.qtab)
@@ -205,9 +205,7 @@ $(document).ready(function() {
 
     window.source0 = $('div#source code').get(0).textContent; // unescapes
 
-    window.qt = false;
     window.adaptToQWebView = function() {
-        window.qt = true;
         clog("Adapting to QWebView!");
         $("#removeforqwebview").remove();
         // window.qtab.src_text(window.source0) // Qt will load source itself
@@ -232,7 +230,7 @@ $(document).ready(function() {
 
         var thh = $('div#table thead').height();
 
-        if (window.qt) {
+        if (window.qtab) {
             $("div#table").height(wh);
         } else {
             $("html").height(wh);
@@ -254,5 +252,7 @@ $(document).ready(function() {
     $(window).resize(correct_sizes);
     correct_sizes();
 
-    // window.adaptToQWebView(); // uncomment debug in browser
-});
+    window.adaptToQWebView();
+};
+
+$(document).ready(function() { setTimeout(window.doc_ready, 5000);}); // to let qtab there
