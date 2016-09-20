@@ -1,0 +1,4 @@
+;!@Install@!UTF-8!
+ExecuteFile="vcredist_x86.exe"
+ExecuteParameters="/?"
+;!@InstallEnd@!

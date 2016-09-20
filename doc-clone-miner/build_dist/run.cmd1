@@ -1,0 +1,7 @@
+@echo off
+if exist %~dp0\vcredist_x86.exe (
+  echo Please allow VC++ redistributable installation when asked
+  pause
+  %~dp0vcredist_x86.exe /q
+  rename %~dp0vcredist_x86.exe vcredist_x86.reinstall.exe
+)
