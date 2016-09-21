@@ -106,7 +106,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         page.setWebChannel(self.webChannel)
 
         self.webView.loadFinished.connect(loaded)
-        self.webView.load(QtCore.QUrl(uri))
+        self.webView.load(QtCore.QUrl(uri)) # not available in 5.7 due to bug: https://bugreports.qt.io/browse/QTBUG-53411
 
         try:
             qf = QtGui.QFont("monospace")

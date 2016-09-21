@@ -989,6 +989,7 @@ class VariativeElement(object):
         <meta charset="utf-8">
         <title>Variative elements</title>
         <!-- link href="https://raw.githubusercontent.com/jcubic/jquery.splitter/master/css/jquery.splitter.css" rel="stylesheet"/ -->
+        <script type="text/javascript" src="qrc:///qtwebchannel/qwebchannel.js"></script>
         <style type="text/css">
         menu
         {
