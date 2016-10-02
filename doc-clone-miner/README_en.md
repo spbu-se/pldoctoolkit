@@ -46,8 +46,9 @@ Python
 * PyContracts -- `pip install PyContracts`
 * pygments -- `pip install pygments`
 * NumPy -- `pip install NumPy`
+* intervaltree -- `pip install intervaltree`
 
-Not exact versions, but preferrably most recent ones
+Package versions -- most recent ones compatible with Python 3.4
 
 System
 ------

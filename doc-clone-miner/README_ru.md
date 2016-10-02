@@ -47,6 +47,7 @@ Python
 * PyContracts -- `pip install PyContracts`
 * pygments -- `pip install pygments`
 * NumPy -- `pip install NumPy`
+* intervaltree -- `pip install intervaltree`
 
 Версии пакетов -- любые актуальные, совместимые с Python 3.4
 

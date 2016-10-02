@@ -60,6 +60,8 @@ def initargs():
                         help="Max tokens of group in CSV report", default=3)
     argpar.add_argument("-mncsvgi", "--min-csv-group-instances", type=int,
                         help="Min clones in group in CSV report", default=2)
+    argpar.add_argument("-gca", "--group-combining-algorithm",
+                        help="Group combining algorithm", type=str, default="interval-n-ext")
 
     args = argpar.parse_args()
 
@@ -97,6 +99,9 @@ def initargs():
 
     global min_csv_group_instances
     min_csv_group_instances = args.min_csv_group_instances
+
+    global group_combining_algorithm_name
+    group_combining_algorithm_name = args.group_combining_algorithm
 
     clones.initoptions(args, logger)
 
@@ -457,6 +462,7 @@ with open(os.path.join("Output", subdir, "pygroups.html"), 'w', encoding='utf-8'
 
 # measure distances
 
+# TODO: move to combine_grp.py
 def findnearby201312():
     mkdir_p(os.path.join("Output", subdir, "variations"))
 
@@ -565,8 +571,16 @@ def combine_gruops():
                               key=lambda gr: len(gr.text()),
                               reverse=True)
 
+    group_combinators = {
+        "full-square": combine_grp.combine_gruops_par_20140819,
+        "interval-n-ext": combine_grp.combine_groups_n_ext_with_int_tree, # default
+        # TODO: "interval-2-ext": findnearby201312 # first try, 2013 -- port or delete it
+    }
+
+    group_combinator = group_combinators[group_combining_algorithm_name]
+
     if nearby:
-        combinations, remaining_groups = combine_grp.combine_gruops_par_20140819(available_groups)
+        combinations, remaining_groups = group_combinator(available_groups)
     else:
         combinations, remaining_groups = [], available_groups
 
