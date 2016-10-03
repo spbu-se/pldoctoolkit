@@ -57,8 +57,25 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             end += l // 2
             group_intervals.append(Interval(start, end, (fileno, g, instno)))
 
+    # load all intervals into IntervalTree
     clone_intervals = IntervalTree(group_intervals)
     # then to test, search who intersects with clone_intervals[i.begin:i.end]
+    combining_algoritm = """
+    AG = available_groups
+    AVG = available_variative_groups
+    1. for each G1 in AG find G2 in AG which it best combines with (closest non-intersecting)
+    2. each successful G1, G2 combination is:
+    2.1. removed from AG,
+    2.2. VG1 <- [G1, G2]
+    2.3. AVG += VG1
+    3. for each VG1 in AVG find G2 in AG which it best combines with
+    4. each successful VG1, G' combination is:
+    4.1. removed from AVG and AG correspondingly
+    4.2. for VG1 = [G1, G2, .. Gk] do VG2 <- [G1, G2, ..Gk, G']
+    4.3. AVG += VG1
+    5. if there were any successful combinations in (4), continue from (3)
+    6. else stop and return AVG and AG
+    """
 
     return combine_gruops_par_20140819(available_groups) # fallback then -- it is now fake, does noting =)
 
