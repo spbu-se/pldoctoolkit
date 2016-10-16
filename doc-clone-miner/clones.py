@@ -881,17 +881,33 @@ class VariativeElement(object):
         self.htmlvcolors = itertools.cycle(['yellow', 'lightgreen'])
         self.htmlccolors = itertools.cycle(['hotpink', 'cyan'])
 
-    @property
-    def connected_clone_expanded_masks(self):
+    def get_connected_clonewise_masks(self, expanded = True):
         """
         :return:
         """
-        # TODO: What does it return?.. Possibly incorrect!
-        cg_b = self.clone_groups[0] # considering it leftmost group
-        cg_e = self.clone_groups[-1] # considering it rightmost group
-        mbegs = [b - (e - b) // 2 for fn, b, e in cg_b.instances]
-        mends = [e + (e - b) // 2 for fn, b, e in cg_e.instances]
+        em = 1 if expanded else 0
+        cg_b = self.clone_groups[0]  # considering it leftmost group
+        cg_e = self.clone_groups[-1]  # considering it rightmost group
+        mbegs = [b - em * (e - b) // 2 for fn, b, e in cg_b.instances]
+        mends = [e + em * (e - b) // 2 for fn, b, e in cg_e.instances]
         return zip(mbegs, mends)
+
+    @staticmethod  # was tooooo complicated for multimethod
+    def distance(i1 : 'VariativeElement', i2 : 'VariativeElement') -> 'int':
+        if len(i1.clone_groups[0].instances) != len(i2.clone_groups[0].instances):
+            return sys.maxsize
+        i1masks = i1.get_connected_clonewise_masks(False)
+        i2masks = i2.get_connected_clonewise_masks(False)
+
+        i1b = min(i1masks, key=lambda im: im[0])
+        i1e = max(i1masks, key=lambda im: im[1])
+
+        i2b = min(i2masks, key=lambda im: im[0])
+        i2e = max(i2masks, key=lambda im: im[1])
+
+        # Only working with file #0 here
+        return ExactCloneGroup._inst_distance((0, i1b, i1e), (0, i2b, i2e))
+
 
     def __add__(self, other: 'list(CloneGroup) | VariativeElement'):
         """

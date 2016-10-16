@@ -65,16 +65,20 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     """
 
     # TODO -- just continue...
-    avg = [clones.VariativeElement([cg]) for cg in available_groups]
+    avg = set([clones.VariativeElement([cg]) for cg in available_groups])
     group_intervals = []
     for ve in avg:
-        for (fileno, start, end), instno in zip(g.instances, itertools.count(0)):
-            # data is file no, group reference and index in the group
-            # extend them twice
-            l = end - start
-            start -= l // 2
-            end += l // 2
-            group_intervals.append(Interval(start, end, (fileno, g, instno)))
+        for g in ve.clone_groups:
+            for (fileno, start, end), instno in zip(g.instances, itertools.count(0)):
+                # data is file no, group reference and index in the group
+                # extend them twice
+                l = end - start
+                start -= l // 2
+                end += l // 2
+                group_intervals.append(Interval(
+                    start, end,
+                    (fileno, ve, g, instno)  # data
+                ))
 
     # load all intervals into IntervalTree
     clone_intervals = IntervalTree(group_intervals)
