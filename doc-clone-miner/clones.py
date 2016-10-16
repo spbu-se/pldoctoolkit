@@ -874,12 +874,32 @@ class VariativeElement(object):
         self.__class__.count += 1
 
         def grorder(group):  # no normal lambdas in Python...
-            file0, ost, oen = group.instances[0]  # first clone appearance
+            file0, ost, oen = group.instances[0]  # first clone appearance (fn then begin then end)
             return ost
 
         self.clone_groups = sorted(clone_groups, key=grorder)
         self.htmlvcolors = itertools.cycle(['yellow', 'lightgreen'])
         self.htmlccolors = itertools.cycle(['hotpink', 'cyan'])
+
+    @property
+    def connected_clone_expanded_masks(self):
+        """
+        :return:
+        """
+        # TODO: What does it return?.. Possibly incorrect!
+        cg_b = self.clone_groups[0] # considering it leftmost group
+        cg_e = self.clone_groups[-1] # considering it rightmost group
+        mbegs = [b - (e - b) // 2 for fn, b, e in cg_b.instances]
+        mends = [e + (e - b) // 2 for fn, b, e in cg_e.instances]
+        return zip(mbegs, mends)
+
+    def __add__(self, other: 'list(CloneGroup) | VariativeElement'):
+        """
+        :param other: VariativeElement to Union with left argument or list of CloneGroup
+        :return: *new* VariativeElement containing clone groups from both
+        """
+        og = other.clone_groups if isinstance(other, VariativeElement) else other
+        return VariativeElement(self.clone_groups + og)
 
     @property
     def textdescriptor(self):

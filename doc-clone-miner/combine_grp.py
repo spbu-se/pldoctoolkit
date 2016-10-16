@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 __author__ = 'dluciv'
 
+import clones
+
 def combine_gruops_par_20140819(available_groups):
     # import multiprocessing
     # pool = multiprocessing.Pool()
@@ -47,19 +49,6 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     from intervaltree import Interval, IntervalTree
     ttyn = '\r' if sys.stdout.isatty() else '\n'
 
-    group_intervals = []
-    for g in available_groups:
-        for (fileno, start, end), instno in zip(g.instances, itertools.count(0)):
-            # data is file no, group reference and index in the group
-            # extend them twice
-            l = end - start
-            start -= l // 2
-            end += l // 2
-            group_intervals.append(Interval(start, end, (fileno, g, instno)))
-
-    # load all intervals into IntervalTree
-    clone_intervals = IntervalTree(group_intervals)
-    # then to test, search who intersects with clone_intervals[i.begin:i.end]
     combining_algoritm = """
     AG = available_groups
     AVG = available_variative_groups
@@ -74,6 +63,28 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     4. AVG -> AVG, AG
     5. return AVG, AG
     """
+
+    # TODO -- just continue...
+    avg = [clones.VariativeElement([cg]) for cg in available_groups]
+    group_intervals = []
+    for ve in avg:
+        for (fileno, start, end), instno in zip(g.instances, itertools.count(0)):
+            # data is file no, group reference and index in the group
+            # extend them twice
+            l = end - start
+            start -= l // 2
+            end += l // 2
+            group_intervals.append(Interval(start, end, (fileno, g, instno)))
+
+    # load all intervals into IntervalTree
+    clone_intervals = IntervalTree(group_intervals)
+    # then to test, search who intersects with clone_intervals[i.begin:i.end]
+
+    # 0
+
+    # 1
+    # for g in available_groups
+
 
     return combine_gruops_par_20140819(available_groups) # fallback then -- it is now fake, does noting =)
 
