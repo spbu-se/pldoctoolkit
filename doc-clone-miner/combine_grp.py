@@ -83,7 +83,10 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         for g1 in avg:
             if g1 in skip:
                 continue
-            probable_g2_intervals = [vg_intervals[g1mb:g1me] for (g1mb, g1me) in g1.get_connected_clonewise_masks(True)]
+            probable_g2_intervals = [
+                vg_intervals[g1mb:g1me] for (g1mb, g1me) in
+                g1._get_connected_clonewise_masks(expanded=True)
+            ]
             probable_g2s = [
                 clones.VariativeElement.from_tree_interval(i)
                 for i in itertools.chain.from_iterable(probable_g2_intervals)
@@ -92,7 +95,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             g2sdists = [
                 (g, d)
                 for (g, d) in zip(probable_g2s, probable_g2_dists)
-                if 0 <= d < clones.infty and g not in skip
+                if 0 < d < clones.infty and g not in skip
             ]
             if len(g2sdists) > 0:
                 best_g2_d = min(g2sdists, key=lambda gd: gd[1])
@@ -128,6 +131,18 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             var_groups.append(ve)
         else:
             uni_groups.append(ve.clone_groups[0])
+
+    # print stats
+    def pstats():
+        import collections
+        print("Single groups: 1 -> ", len(uni_groups))
+        vgs =  collections.defaultdict(lambda : 0)
+        for vg in var_groups:
+            vgs[len(vg.clone_groups)] += 1
+        print("Variative groups:")
+        for gc in vgs.keys():
+            print(" - %d -> %d" % (gc, vgs[gc]))
+    pstats()
 
     return var_groups, uni_groups
     # return combine_gruops_par_20140819(available_groups) # fallback then -- it is now fake, does noting =)

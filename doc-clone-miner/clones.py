@@ -16,7 +16,6 @@ import xml.sax.handler as xsh
 import textwrap
 import string
 import itertools
-import collections
 
 import numpy
 
@@ -886,6 +885,9 @@ class VariativeElement(object):
         self.htmlvcolors = itertools.cycle(['yellow', 'lightgreen'])
         self.htmlccolors = itertools.cycle(['hotpink', 'cyan'])
 
+        self.calculated_tree_intervals = None
+        self.calculated_expanded_tree_intervals = None
+
     @staticmethod
     def from_tree_interval(interval: 'intervaltree.Interval') -> 'VariativeElement':
         """
@@ -898,57 +900,75 @@ class VariativeElement(object):
         """
         :return: Interval(begin, end, data=(this_variative_element, index of interval in this elevemnt))
         """
-        return [intervaltree.Interval(
-            b, e, data=(self, idx)
-        ) for (b, e), idx in zip(self.get_connected_clonewise_masks(expanded), itertools.count(0))]
 
-    def get_connected_clonewise_masks(self, expanded=True):
+        def cce():
+            return [intervaltree.Interval(
+                b, e, data=(self, idx)
+            ) for (b, e), idx in zip(self._get_connected_clonewise_masks(expanded), itertools.count(0))]
+
+        if expanded:
+            if not self.calculated_expanded_tree_intervals:
+                self.calculated_expanded_tree_intervals = cce()
+
+            return self.calculated_expanded_tree_intervals
+        else:
+            if not self.calculated_tree_intervals:
+                self.calculated_tree_intervals = cce()
+
+            return self.calculated_tree_intervals
+
+
+    def _get_connected_clonewise_masks(self, expanded=True):
         """
-        :return:
+        :return: connected masks of all groups, clone by clone
         """
         em = 1 if expanded else 0
 
         def mask_g_c(group_no, clone_no):
             f, b, e = self.clone_groups[group_no].instances[clone_no]
-            return b - em * (e - b) // 2, e + em * (e - b) // 2
+            expansion = max(em * (e - b), maxvariantdistance) // 2
+            return b - expansion, e + expansion
 
         tot_grp = len(self.clone_groups)
-        tot_cln = len(self.clone_groups[0].instances)
+        grp_cln = len(self.clone_groups[0].instances)
 
         mbeginings = [min(
             [mask_g_c(gi, ci)[0] for gi in range(tot_grp)]
-        ) for ci in range(tot_cln)]
+        ) for ci in range(grp_cln)]
 
         mendings   = [max(
             [mask_g_c(gi, ci)[1] for gi in range(tot_grp)]
-        ) for ci in range(tot_cln)]
+        ) for ci in range(grp_cln)]
 
-        return list(zip(mbeginings, mendings))
+        r = list(zip(mbeginings, mendings))
+        r.sort(key=lambda be: (be[0] + be[1]) // 2)  # in order of appearance
+        return r
 
     @staticmethod  # was tooooo complicated for multimethod
     def distance(i1: 'VariativeElement', i2: 'VariativeElement') -> 'int':
+        if i1 is i2:
+            return 0
+
         # check num of clones
         if len(i1.clone_groups[0].instances) != len(i2.clone_groups[0].instances):
             return infty
 
-        i1masks = i1.get_connected_clonewise_masks(False)
-        i2masks = i2.get_connected_clonewise_masks(False)
+        i1masks = i1._get_connected_clonewise_masks(False)
+        i2masks = i2._get_connected_clonewise_masks(False)
 
         # Check ordering. All i1 masks should be before or after corresponding i2 masks
-        accum = 0
-        for ((i1b, i1e), (i2b, i2e)) in zip(i1masks, i2masks):
-            nacc = accum
-            if i1e < i2b:
-                nacc += 1
-            elif i2e < i1b:
-                nacc -= 1
+        one_two = None
+        for (i1b, i1e), (i2b, i2e) in zip(i1masks, i2masks):
+            if i1e <= i2b:  # 1st then 2nd
+                if one_two is False:
+                    return -1
+                one_two = True
+            elif i2e <= i1b:  # 2nd then 1st
+                if one_two is True:
+                    return -1
+                one_two = False
             else:
                 return -1
-
-            if abs(nacc) < abs(accum):  # went in opposite direction
-                return -1
-
-            accum = nacc
 
         # calculate distance
 
