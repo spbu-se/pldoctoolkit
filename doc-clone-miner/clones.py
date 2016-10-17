@@ -16,6 +16,7 @@ import xml.sax.handler as xsh
 import textwrap
 import string
 import itertools
+import collections
 
 import numpy
 
@@ -867,6 +868,24 @@ def loadinputs(logger):
 class VariativeElement(object):
     count = 0
 
+    def __init__(self, clone_groups: 'list[CloneGroup]'):
+        global inputfiles
+
+        self.idx = self.__class__.count
+        self.__class__.count += 1
+
+        group_powers = set([len(g.instances) for g in clone_groups])
+        if len(group_powers) > 1:
+            raise ValueError("VariativeElement got groups with different power")
+
+        def grorder(group):  # no normal lambdas in Python...
+            file0, ost, oen = group.instances[0]  # first clone appearance (fn then begin then end)
+            return ost
+
+        self.clone_groups = sorted(clone_groups, key=grorder)
+        self.htmlvcolors = itertools.cycle(['yellow', 'lightgreen'])
+        self.htmlccolors = itertools.cycle(['hotpink', 'cyan'])
+
     @staticmethod
     def from_tree_interval(interval: 'intervaltree.Interval') -> 'VariativeElement':
         """
@@ -883,30 +902,28 @@ class VariativeElement(object):
             b, e, data=(self, idx)
         ) for (b, e), idx in zip(self.get_connected_clonewise_masks(expanded), itertools.count(0))]
 
-    def __init__(self, clone_groups: 'list[CloneGroup]'):
-        global inputfiles
-
-        self.idx = self.__class__.count
-        self.__class__.count += 1
-
-        def grorder(group):  # no normal lambdas in Python...
-            file0, ost, oen = group.instances[0]  # first clone appearance (fn then begin then end)
-            return ost
-
-        self.clone_groups = sorted(clone_groups, key=grorder)
-        self.htmlvcolors = itertools.cycle(['yellow', 'lightgreen'])
-        self.htmlccolors = itertools.cycle(['hotpink', 'cyan'])
-
     def get_connected_clonewise_masks(self, expanded=True):
         """
         :return:
         """
         em = 1 if expanded else 0
-        cg_b = self.clone_groups[0]  # considering it leftmost group
-        cg_e = self.clone_groups[-1]  # considering it rightmost group
-        mbegs = [b - em * (e - b) // 2 for fn, b, e in cg_b.instances]
-        mends = [e + em * (e - b) // 2 for fn, b, e in cg_e.instances]
-        return zip(mbegs, mends)
+
+        def mask_g_c(group_no, clone_no):
+            f, b, e = self.clone_groups[group_no].instances[clone_no]
+            return b - em * (e - b) // 2, e + em * (e - b) // 2
+
+        tot_grp = len(self.clone_groups)
+        tot_cln = len(self.clone_groups[0].instances)
+
+        mbeginings = [min(
+            [mask_g_c(gi, ci)[0] for gi in range(tot_grp)]
+        ) for ci in range(tot_cln)]
+
+        mendings   = [max(
+            [mask_g_c(gi, ci)[1] for gi in range(tot_grp)]
+        ) for ci in range(tot_cln)]
+
+        return list(zip(mbeginings, mendings))
 
     @staticmethod  # was tooooo complicated for multimethod
     def distance(i1: 'VariativeElement', i2: 'VariativeElement') -> 'int':
@@ -928,7 +945,7 @@ class VariativeElement(object):
             else:
                 return -1
 
-            if abs(nacc) < abs(accum): # went in opposite direction
+            if abs(nacc) < abs(accum):  # went in opposite direction
                 return -1
 
             accum = nacc

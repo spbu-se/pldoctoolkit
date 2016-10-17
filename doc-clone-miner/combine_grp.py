@@ -94,7 +94,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
                 for (g, d) in zip(probable_g2s, probable_g2_dists)
                 if 0 <= d < clones.infty and g not in skip
             ]
-            if len(g2sdists) >= 0:
+            if len(g2sdists) > 0:
                 best_g2_d = min(g2sdists, key=lambda gd: gd[1])
                 tojoin.add((g1, best_g2_d[0]))
                 skip.add(g1)
