@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 __author__ = 'dluciv'
 
-import clones
 
 def combine_gruops_par_20140819(available_groups):
     # import multiprocessing
@@ -10,7 +9,7 @@ def combine_gruops_par_20140819(available_groups):
     import clones
     import sys
 
-    participated_groups = set()
+    # participated_groups = set() not used
     combinations = []
 
     print("Combining groups, %d total..." % len(available_groups))
@@ -42,55 +41,96 @@ def combine_gruops_par_20140819(available_groups):
 
     return combinations, current_available_groups
 
-def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup]"):
-    import sys
-    import clones
-    import itertools
-    from intervaltree import Interval, IntervalTree
-    ttyn = '\r' if sys.stdout.isatty() else '\n'
 
-    combining_algoritm = """
+def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup]"):
+    """
+    Algorithm:
     AG = available_groups
     AVG = available_variative_groups
-    0. AVG += AG, AG := []
+    0. AVG += AG, AG := []; interval tree is built
     1. for each G1 in AVG find G2 in AVG which it best combines with (closest non-intersecting)
     2. each successful G1, G2 combination is:
-    2.1. removed from AG,
+    2.1. ACG -= [G1, G2]
     2.2. VG1 <- [G1, G2]
     2.3. AVG += [VG1]
-    2.4. ACG -= [G1, G2]
+    2.4. interval tree is modified
     3. if there were any successful combinations in (2), continue from (1), else go ahead
     4. AVG -> AVG, AG
     5. return AVG, AG
+
+    :param available_groups:
+    :return:
     """
+    import itertools
+    import clones
+    from intervaltree import IntervalTree
+    # ttyn = '\r' if sys.stdout.isatty() else '\n'
 
-    # TODO -- just continue...
+    # (0)
     avg = set([clones.VariativeElement([cg]) for cg in available_groups])
-    group_intervals = []
+    vg_interval_list = []
     for ve in avg:
-        for g in ve.clone_groups:
-            for (fileno, start, end), instno in zip(g.instances, itertools.count(0)):
-                # data is file no, group reference and index in the group
-                # extend them twice
-                l = end - start
-                start -= l // 2
-                end += l // 2
-                group_intervals.append(Interval(
-                    start, end,
-                    (fileno, ve, g, instno)  # data
-                ))
+        vg_interval_list += ve.get_tree_intervals(expanded=True)
 
-    # load all intervals into IntervalTree
-    clone_intervals = IntervalTree(group_intervals)
-    # then to test, search who intersects with clone_intervals[i.begin:i.end]
+    vg_intervals = IntervalTree(vg_interval_list)  # to search who intersects with clone_intervals[i.begin:i.end]
 
-    # 0
+    # (1)
+    cycle = True
+    while cycle:
+        cycle = False
+        skip = set()
+        tojoin = set()
+        for g1 in avg:
+            if g1 in skip:
+                continue
+            probable_g2_intervals = [vg_intervals[g1mb:g1me] for (g1mb, g1me) in g1.get_connected_clonewise_masks(True)]
+            probable_g2s = [
+                clones.VariativeElement.from_tree_interval(i)
+                for i in itertools.chain.from_iterable(probable_g2_intervals)
+            ]
+            probable_g2_dists = [clones.VariativeElement.distance(g1, g2) for g2 in probable_g2s]
+            g2sdists = [
+                (g, d)
+                for (g, d) in zip(probable_g2s, probable_g2_dists)
+                if 0 <= d < clones.infty and g not in skip
+            ]
+            if len(g2sdists) >= 0:
+                best_g2_d = min(g2sdists, key=lambda gd: gd[1])
+                tojoin.add((g1, best_g2_d[0]))
+                skip.add(g1)
+                skip.add(best_g2_d[0])
 
-    # 1
-    # for g in available_groups
+        # (2)
+        for g1, g2 in tojoin:
+            cycle = True  # check for (3)
 
+            # (2.1)
+            avg.remove(g1)
+            avg.remove(g2)
+            # (2.2)
+            new_ve = g1 + g2
+            # (2.3)
+            avg.add(new_ve)
 
-    return combine_gruops_par_20140819(available_groups) # fallback then -- it is now fake, does noting =)
+            # (2.4)
+            for itvl in g1.get_tree_intervals(expanded=True):
+                vg_intervals.remove(itvl)
+            for itvl in g2.get_tree_intervals(expanded=True):
+                vg_intervals.remove(itvl)
+            for itvl in new_ve.get_tree_intervals(expanded=True):
+                vg_intervals.add(itvl)
+
+    # then split unary groups away
+    var_groups = []
+    uni_groups = []
+    for ve in avg:
+        if len(ve.clone_groups) > 1:
+            var_groups.append(ve)
+        else:
+            uni_groups.append(ve.clone_groups[0])
+
+    return var_groups, uni_groups
+    # return combine_gruops_par_20140819(available_groups) # fallback then -- it is now fake, does noting =)
 
 if __name__ == '__main__':
     pass

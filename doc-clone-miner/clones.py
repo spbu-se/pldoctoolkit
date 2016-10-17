@@ -23,6 +23,7 @@ import verbhtml
 import xmllexer
 import xmlfixup
 import semanticfilter
+import intervaltree
 
 from abc import ABC, abstractmethod
 
@@ -422,7 +423,6 @@ class ExactCloneGroup(CloneGroup):
         cend = min(len(ifl), end + clength)
         return ifl[cstart: start - 1], ifl[start:end], ifl[end + 1: cend]
 
-
     def _inst_distance(inst1, inst2):
         file1, start1, end1 = inst1
         file2, start2, end2 = inst2
@@ -481,7 +481,7 @@ class ExactCloneGroup(CloneGroup):
                 if ExactCloneGroup._inst_distance(c1i, c2i) < 0:
                     return infty
 
-        m = max(dists) # known to be <= borderdist
+        m = max(dists)  # known to be <= borderdist
 
         global maximalvariance
         import numpy
@@ -867,7 +867,23 @@ def loadinputs(logger):
 class VariativeElement(object):
     count = 0
 
-    def __init__(self, clone_groups: 'list(CloneGroup)'):
+    @staticmethod
+    def from_tree_interval(interval: 'intervaltree.Interval') -> 'VariativeElement':
+        """
+        :param interval: Interval(begin, end, data=(this_variative_element, index of interval in this elevemnt))
+        :return: this_variative_element
+        """
+        return interval.data[0]
+
+    def get_tree_intervals(self, expanded=True) -> 'list[intervaltree.Interval]':
+        """
+        :return: Interval(begin, end, data=(this_variative_element, index of interval in this elevemnt))
+        """
+        return [intervaltree.Interval(
+            b, e, data=(self, idx)
+        ) for (b, e), idx in zip(self.get_connected_clonewise_masks(expanded), itertools.count(0))]
+
+    def __init__(self, clone_groups: 'list[CloneGroup]'):
         global inputfiles
 
         self.idx = self.__class__.count
@@ -881,7 +897,7 @@ class VariativeElement(object):
         self.htmlvcolors = itertools.cycle(['yellow', 'lightgreen'])
         self.htmlccolors = itertools.cycle(['hotpink', 'cyan'])
 
-    def get_connected_clonewise_masks(self, expanded = True):
+    def get_connected_clonewise_masks(self, expanded=True):
         """
         :return:
         """
@@ -893,23 +909,52 @@ class VariativeElement(object):
         return zip(mbegs, mends)
 
     @staticmethod  # was tooooo complicated for multimethod
-    def distance(i1 : 'VariativeElement', i2 : 'VariativeElement') -> 'int':
+    def distance(i1: 'VariativeElement', i2: 'VariativeElement') -> 'int':
+        # check num of clones
         if len(i1.clone_groups[0].instances) != len(i2.clone_groups[0].instances):
-            return sys.maxsize
+            return infty
+
         i1masks = i1.get_connected_clonewise_masks(False)
         i2masks = i2.get_connected_clonewise_masks(False)
 
-        i1b = min(i1masks, key=lambda im: im[0])
-        i1e = max(i1masks, key=lambda im: im[1])
+        # Check ordering. All i1 masks should be before or after corresponding i2 masks
+        accum = 0
+        for ((i1b, i1e), (i2b, i2e)) in zip(i1masks, i2masks):
+            nacc = accum
+            if i1e < i2b:
+                nacc += 1
+            elif i2e < i1b:
+                nacc -= 1
+            else:
+                return -1
 
-        i2b = min(i2masks, key=lambda im: im[0])
-        i2e = max(i2masks, key=lambda im: im[1])
+            if abs(nacc) < abs(accum): # went in opposite direction
+                return -1
+
+            accum = nacc
+
+        # calculate distance
+
+
+        dists = [
+            ExactCloneGroup._inst_distance((0, b1, e1), (0, b2, e2))
+            for (b1, e1) in i1masks for (b2, e2) in i2masks
+        ]
+
+        global maximalvariance
+        import numpy
+
+        va = numpy.var(dists)
+        # print("variance: %f" % va)
+        if va > maximalvariance:
+            return infty
+
+        d = max(dists)
 
         # Only working with file #0 here
-        return ExactCloneGroup._inst_distance((0, i1b, i1e), (0, i2b, i2e))
+        return d
 
-
-    def __add__(self, other: 'list(CloneGroup) | VariativeElement'):
+    def __add__(self, other: 'list(CloneGroup) | VariativeElement') -> 'VariativeElement':
         """
         :param other: VariativeElement to Union with left argument or list of CloneGroup
         :return: *new* VariativeElement containing clone groups from both
