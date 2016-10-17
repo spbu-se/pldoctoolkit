@@ -956,19 +956,20 @@ class VariativeElement(object):
         i1masks = i1._get_connected_clonewise_masks(False)
         i2masks = i2._get_connected_clonewise_masks(False)
 
-        # Check ordering. All i1 masks should be before or after corresponding i2 masks
-        one_two = None
-        for (i1b, i1e), (i2b, i2e) in zip(i1masks, i2masks):
-            if i1e <= i2b:  # 1st then 2nd
-                if one_two is False:
+        if False:
+            # Check ordering. All i1 masks should be before or after corresponding i2 masks
+            one_two = None
+            for (i1b, i1e), (i2b, i2e) in zip(i1masks, i2masks):
+                if i1e <= i2b:  # 1st then 2nd
+                    if one_two is False:
+                        return -1
+                    one_two = True
+                elif i2e <= i1b:  # 2nd then 1st
+                    if one_two is True:
+                        return -1
+                    one_two = False
+                else:
                     return -1
-                one_two = True
-            elif i2e <= i1b:  # 2nd then 1st
-                if one_two is True:
-                    return -1
-                one_two = False
-            else:
-                return -1
 
         # calculate distance
 
@@ -1073,20 +1074,23 @@ class VariativeElement(object):
             endgrp = self.clone_groups[-1]
             ends = [e for (fno, s, e) in endgrp.instances]
 
-            variations = self.getvariations(0)  # may be more in the future
+            nextpoints = len(self.clone_groups) - 1
+
+            vvariations = [self.getvariations(i) for i in range(nextpoints)]
 
             # was """<pre style="font-weight: bold; color: red; background-color: pink;">||</pre>"""
-            vvtext = '<wbr/>'.join([
+            vvtexts = ['<wbr/>'.join([
                 (
                     """<code class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
                 ) % (hlstart, hlend, hlstart, hlend, clr, esc(t))
                 for (hlstart, hlend, clr, t) in zip(starts, ends, self.htmlvcolors, variations)
-            ])
+            ]) for variations in vvariations]
 
-            vnc = numpy.var([len(v) for v in variations])
+            vnc = max([numpy.var([len(v) for v in variations]) for variations in vvariations])
 
-            vtext = self.clone_groups[0].html(allow_space_wrap=True) + vvtext + self.clone_groups[1].html(
-                allow_space_wrap=True)
+            vtext = self.clone_groups[0].html(allow_space_wrap=True)
+            for n in range(len(self.clone_groups) - 1):
+                vtext += vvtexts[n] + self.clone_groups[n+1].html(allow_space_wrap=True)
 
         return templ.substitute(
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",

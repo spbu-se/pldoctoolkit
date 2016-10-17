@@ -84,8 +84,8 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             if g1 in skip:
                 continue
             probable_g2_intervals = [
-                vg_intervals[g1mb:g1me] for (g1mb, g1me) in
-                g1._get_connected_clonewise_masks(expanded=True)
+                vg_intervals.search(interval.begin, interval.end) for interval in
+                g1.get_tree_intervals(expanded=True)
             ]
             probable_g2s = [
                 clones.VariativeElement.from_tree_interval(i)
@@ -134,14 +134,15 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
 
     # print stats
     def pstats():
+        import logging
         import collections
-        print("Single groups: 1 -> ", len(uni_groups))
+        logging.info("Single groups: 1 -> %d" %(len(uni_groups),))
         vgs =  collections.defaultdict(lambda : 0)
         for vg in var_groups:
             vgs[len(vg.clone_groups)] += 1
-        print("Variative groups:")
+        logging.info("Variative groups:")
         for gc in vgs.keys():
-            print(" - %d -> %d" % (gc, vgs[gc]))
+            logging.info(" - %d -> %d" % (gc, vgs[gc]))
     pstats()
 
     return var_groups, uni_groups
