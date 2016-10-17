@@ -62,22 +62,34 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     :return:
     """
     import itertools
+    import logging
     import clones
     from intervaltree import IntervalTree
     # ttyn = '\r' if sys.stdout.isatty() else '\n'
 
     # (0)
     avg = set([clones.VariativeElement([cg]) for cg in available_groups])
-    vg_interval_list = []
-    for ve in avg:
-        vg_interval_list += ve.get_tree_intervals(expanded=True)
 
-    vg_intervals = IntervalTree(vg_interval_list)  # to search who intersects with clone_intervals[i.begin:i.end]
+    def build_interval_tree():
+        vg_interval_list = []
+        for ve in avg:
+            vg_interval_list += ve.get_tree_intervals(expanded=True)
+        logging.debug("(re)building interval tree...")
+        itree = IntervalTree(vg_interval_list)  # to search who intersects with clone_intervals[i.begin:i.end]
+        logging.debug("(re)built interval tree of %d intervals." % (len(vg_interval_list),))
+        return itree
 
     # (1)
+    maxiterations = 10  # TODO: !!! this should not be constrained!!!
+    maxdist = 2000 # clones.infty
     cycle = True
-    while cycle:
+    while cycle and maxiterations:
+        maxiterations -= 1
+        logging.debug("Iterations left: %d" % (maxiterations,))
         cycle = False
+
+        vg_intervals = build_interval_tree()  # TODO: why does it crash when used incrementally as in (2)?..
+
         skip = set()
         tojoin = set()
         for g1 in avg:
@@ -95,7 +107,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             g2sdists = [
                 (g, d)
                 for (g, d) in zip(probable_g2s, probable_g2_dists)
-                if 0 < d < clones.infty and g not in skip
+                if 0 < d < maxdist and g not in skip
             ]
             if len(g2sdists) > 0:
                 best_g2_d = min(g2sdists, key=lambda gd: gd[1])
@@ -107,6 +119,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         for g1, g2 in tojoin:
             cycle = True  # check for (3)
 
+            logging.debug("AVG %d ->" % (len(avg),))
             # (2.1)
             avg.remove(g1)
             avg.remove(g2)
@@ -114,14 +127,15 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             new_ve = g1 + g2
             # (2.3)
             avg.add(new_ve)
+            logging.debug("AVG %d <-" % (len(avg),))
 
             # (2.4)
-            for itvl in g1.get_tree_intervals(expanded=True):
-                vg_intervals.remove(itvl)
-            for itvl in g2.get_tree_intervals(expanded=True):
-                vg_intervals.remove(itvl)
-            for itvl in new_ve.get_tree_intervals(expanded=True):
-                vg_intervals.add(itvl)
+            # for itvl in g1.get_tree_intervals(expanded=True):
+            #     vg_intervals.remove(itvl)
+            # for itvl in g2.get_tree_intervals(expanded=True):
+            #     vg_intervals.remove(itvl)
+            # for itvl in new_ve.get_tree_intervals(expanded=True):
+            #     vg_intervals.add(itvl)
 
     # then split unary groups away
     var_groups = []
@@ -134,7 +148,6 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
 
     # print stats
     def pstats():
-        import logging
         import collections
         logging.info("Single groups: 1 -> %d" %(len(uni_groups),))
         vgs =  collections.defaultdict(lambda : 0)
