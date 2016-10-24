@@ -960,38 +960,36 @@ class VariativeElement(object):
         i1masks = i1._get_connected_clonewise_masks(False)
         i2masks = i2._get_connected_clonewise_masks(False)
 
+        dists = []
         if True:
-            # Check ordering. All i1 masks should be before or after corresponding i2 masks
+            # Check ordering and calculate distances
+            # All i1 masks should be before or after corresponding i2 masks
             one_two = None
             for (i1b, i1e), (i2b, i2e) in zip(i1masks, i2masks):
-                if i1e <= i2b:  # 1st then 2nd
+                if i1e < i2b:  # 1st then 2nd
                     if one_two is False:
                         return -1
                     one_two = True
-                elif i2e <= i1b:  # 2nd then 1st
+                    dists.append(i2b - i1e)
+                elif i2e < i1b:  # 2nd then 1st
                     if one_two is True:
                         return -1
                     one_two = False
+                    dists.append(i1b - i2e)
                 else:  # intersects
                     return -1
 
-        # calculate distance
+        d = max(dists)
 
-        dists = [
-            ExactCloneGroup._inst_distance((0, b1, e1), (0, b2, e2))
-            for (b1, e1) in i1masks for (b2, e2) in i2masks
-        ]
+        logging.info("dists: " + repr(dists) + " <= " + str(d))
 
-        if False:  # TODO -- reconsider variance normalization
-            global maximalvariance
+        global maximalvariance
+        if maximalvariance > 0:
             import numpy
             va = numpy.var(dists)
-            # print("variance: %f" % va)
+            logging.info("variance: " + str(va))
             if va > maximalvariance:
-                print("Variance: ", va)
                 return infty
-
-        d = max(dists)
 
         # Only working with file #0 here
         return d
