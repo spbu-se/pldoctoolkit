@@ -896,6 +896,10 @@ class VariativeElement(object):
         """
         return interval.data[0]
 
+    def __repr__(self):
+        return "[" + str(len(self.clone_groups[0].instances)) + "] " +\
+               "... ".join([cg.text().strip() for cg in self.clone_groups])
+
     def get_tree_intervals(self, expanded=True) -> 'list[intervaltree.Interval]':
         """
         :return: Interval(begin, end, data=(this_variative_element, index of interval in this elevemnt))
@@ -926,7 +930,7 @@ class VariativeElement(object):
 
         def mask_g_c(group_no, clone_no):
             f, b, e = self.clone_groups[group_no].instances[clone_no]
-            expansion = max(em * (e - b), maxvariantdistance) // 2
+            expansion = em * max(e - b, maxvariantdistance) // 2
             return b - expansion, e + expansion
 
         tot_grp = len(self.clone_groups)
@@ -968,11 +972,10 @@ class VariativeElement(object):
                     if one_two is True:
                         return -1
                     one_two = False
-                else:
+                else:  # intersects
                     return -1
 
         # calculate distance
-
 
         dists = [
             ExactCloneGroup._inst_distance((0, b1, e1), (0, b2, e2))
