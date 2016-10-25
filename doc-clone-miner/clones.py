@@ -667,7 +667,7 @@ class ExactCloneGroup(CloneGroup):
 
     # filtered by:
     by_breaking_url = 0
-    by_no_text = 0
+    by_no_words = 0
     by_too_short = 0
     by_no_semantic = 0
     by_broken_markup = 0
@@ -685,9 +685,9 @@ class ExactCloneGroup(CloneGroup):
             ExactCloneGroup.by_too_short += 1
             return False
 
-        if self.containsNoText():
-            # logger.debug("no text in group")
-            ExactCloneGroup.by_no_text += 1
+        if self.containsNoWords():  # also implies countainsNoText() check
+            # logger.debug("no words in group")
+            ExactCloneGroup.by_no_words += 1
             return False
 
         if checksemanticspresence and self.containsNoSemantic():
