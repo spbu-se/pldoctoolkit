@@ -408,8 +408,18 @@ class ExactCloneGroup(CloneGroup):
         self.instances.sort(key=operator.itemgetter(0,1))
         # now instances are sorted by file then by appearance
 
+    _spacesre = re.compile(" +")
+    _nlinesre = re.compile("\n+")
+
     def html(self, inst=0, allow_space_wrap=False):
-        return "<code>" + verbhtml.escapecode(self.text(inst), allow_space_wrap) + "</code>"
+        ptext = self.plain_text(inst)
+
+        ptext = ExactCloneGroup._spacesre.sub(" ", ptext)
+        ptext = ExactCloneGroup._nlinesre.sub(" ", ptext)
+
+        # text = self.text(inst)
+        text = ptext
+        return "<code>" + verbhtml.escapecode(text, allow_space_wrap) + "</code>"
 
     def textwithcontext(self, inst=0):
         global inputfiles
