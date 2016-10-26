@@ -409,16 +409,25 @@ class ExactCloneGroup(CloneGroup):
 
     _spacesre = re.compile(" +")
     _nlinesre = re.compile("\n+")
+    _whspcsre = re.compile("\\s+")
 
-    def html(self, inst=0, allow_space_wrap=False):
-        ptext = self.plain_text(inst)
+    def html(self, instance_no=0, allow_space_wrap=False):
+        # ptext = self.plain_text(inst)
+        # text = ptext
 
-        ptext = ExactCloneGroup._spacesre.sub(" ", ptext)
-        ptext = ExactCloneGroup._nlinesre.sub(" ", ptext)
+        ifilen, so, e = self.instances[instance_no]
+        sl = e - so + 1
+        parts = xmllexer.get_texts_and_markups(so, sl, inputfiles[ifilen].lexintervals)
 
-        # text = self.text(inst)
-        text = ptext
-        return "<code>" + verbhtml.escapecode(text, allow_space_wrap) + "</code>"
+        hparts = [
+            ("<code>" if k == xmllexer.IntervalType.general else '<code class="xmlmarkup">') +
+            verbhtml.escapecode(
+                ExactCloneGroup._spacesre.sub(" ", ExactCloneGroup._nlinesre.sub(" ", t)),
+                allow_space_wrap) + "</code>"
+            for t, k in parts if not ExactCloneGroup._whspcsre.match(t)
+        ]
+
+        return "<wbr/>".join(hparts)  # can break line here
 
     def textwithcontext(self, inst=0):
         global inputfiles
@@ -1065,7 +1074,11 @@ class VariativeElement(object):
         div #blgd {
             display: none;
         }
-        
+
+        code.xmlmarkup {
+            color: grey;
+        }
+
         code.highlight, span.highlight {
             background-color: blue !important;
             color: white !important;
