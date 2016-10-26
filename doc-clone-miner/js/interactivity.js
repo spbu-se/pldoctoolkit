@@ -155,6 +155,16 @@ $(document).ready(function() {
             multiple2elem();
     }
 
+    window.mupvisible = true;
+    window.toggleclonebrowsermarkup = function(newval) {
+        clonebrowsermarkup = $("code.xmlmarkup");
+        window.mupvisible = !window.mupvisible;
+        if(window.mupvisible)
+            clonebrowsermarkup.show();
+        else
+            clonebrowsermarkup.hide();
+    }
+
     $("#single2dict").click(single2dict);
     $("#single2elem").click(single2elem);
     $("#multiple2elem").click(multiple2elem);
