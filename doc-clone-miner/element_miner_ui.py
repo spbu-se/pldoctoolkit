@@ -28,6 +28,8 @@ def url2path(url):
 from os import chdir, getcwd
 from os.path import realpath
 
+# optverb = "-v"  # uncomment for debugging
+optverb = "-OO"   # uncomment for production
 
 class pushd_c:
     cwd = None
@@ -123,6 +125,11 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     def bindEvents(self):
         self.closeButton.clicked.connect(self.close_tab)
+        self.showClonesMarkup.toggled.connect(self.show_clones_markup_toggled)
+
+    @QtCore.pyqtSlot(bool)
+    def show_clones_markup_toggled(self, v):
+        self.eval_js("window.toggleclonebrowsermarkup(%s);" % ('true' if v else 'false',))
 
     @QtCore.pyqtSlot(bool)
     def enable_dict(self, e):
@@ -144,7 +151,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     @QtCore.pyqtSlot(str)
     def refactor_create_inf_elt(self, dicdesc):
         print("refactor_create_inf_elt", dicdesc)
-        parms = [sys.executable, os.path.join(scriptdir, "refactor.py"),
+        parms = [sys.executable, optverb, os.path.join(scriptdir, "refactor.py"),
                  "-idf", self.fn,
                  "-odf", self.fn + ".refactored",
                  "--create-infelement", dicdesc
@@ -161,7 +168,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     @QtCore.pyqtSlot(str)
     def refactor_create_dic_entry(self, dicdesc):
         print("refactor_create_dic_entry", dicdesc)
-        parms = [sys.executable, os.path.join(scriptdir, "refactor.py"),
+        parms = [sys.executable, optverb, os.path.join(scriptdir, "refactor.py"),
                  "-idf", self.fn,
                  "-odf", self.fn + ".refactored",
                  "--create-dictionary-entry", dicdesc
@@ -462,7 +469,7 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
             app.processEvents()
 
             popen_args = [
-                sys.executable, os.path.join(scriptdir, "fuzzyclones2html.py"),
+                sys.executable, optverb, os.path.join(scriptdir, "fuzzyclones2html.py"),
                 '-oui', 'no', # gen for ui and export
                 '-sx', reformattedfilename,
                 '-fx', fuzzyclonesfilename,
@@ -531,7 +538,7 @@ def run_clone_miner_thread(pui, inputfile, lengths, options):
                     # pyrcom="/cygdrive/d/Python3/python.exe D:/VCSWF/docs.git/myprogs/python/CloneVisualizer/clones2html.py"
                     # cline="nice -n 20 $pyrcom -nb 100 -mv 2000 -sd $t $bl -minl 5 -cmup yes -fint no -wv yes -ph $head"
                     popen_args = [
-                                     sys.executable, os.path.join(scriptdir, "clones2html.py"),
+                                     sys.executable, optverb, os.path.join(scriptdir, "clones2html.py"),
                                      "-sd", str(l)
                                  ] + options
                     print("Reporting with: " + ' '.join(popen_args))

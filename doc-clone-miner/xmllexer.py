@@ -169,21 +169,29 @@ def find_covered_intervals(offset, length, all_intervals):
     return all_intervals[i1i:i2i + 1], i1.offs < offset, offset + length < i2.end
 
 
-def get_plain_texts(offset, length, all_intervals):
+def get_texts_and_markups(offset, length, all_intervals):
+    """
+    :param offset: start character
+    :param length: how many
+    :param all_intervals: all lexed intervals
+    :return: pairs of ("text", IntervalType)
+    """
     covered, broken_1st, broken_last = find_covered_intervals(offset, length, all_intervals)
     # broken 1st and last intervals are ok because we filter them as tags before
     end = offset + length
-    text_intervals = [i for i in covered if i.int_type == IntervalType.general]
-    text = []
+    result = []
     for ti in covered:
-        if ti.int_type == IntervalType.general:
-            sr = ti.srepr
-            if ti.end > end:
-                sr = sr[:end - ti.end]
-            if ti.offs < offset:
-                sr = sr[offset - ti.offs:]
-            text.append(sr)
-    return text
+        sr = ti.srepr
+        if ti.end > end:
+            sr = sr[:end - ti.end]
+        if ti.offs < offset:
+            sr = sr[offset - ti.offs:]
+        result.append((sr, ti.int_type))
+    return result
+
+
+def get_plain_texts(offset, length, all_intervals):
+    return [rpr for rpr, typ in get_texts_and_markups(offset, length, all_intervals) if typ == IntervalType.general]
 
 
 # just for testing purposes, TODO: remove it completely
