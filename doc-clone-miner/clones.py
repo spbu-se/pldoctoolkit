@@ -240,7 +240,7 @@ class InputFile(object):
         self.offsets = []
         offset = 0
         with open(fileName, encoding='utf-8') as ifs:
-            lines = []
+            self.lines = []
             for line in ifs:
                 self.offsets.append(offset)
                 # lst = line.rstrip() + '\n' # leave leading blanks + add separator (we do not need \r, so no os.linesep)
@@ -248,9 +248,9 @@ class InputFile(object):
                                                      '') + '\n'  # leave leading blanks + add separator (we do not need \r, so no os.linesep)
                 lst = lst.replace('\t', '    ')  # Clone Miner is very brave to consider TAB equal to 4 spaces
                 offset += len(lst)
-                lines.append(lst)
+                self.lines.append(lst)
             self.offsets.append(offset)
-            self.text = "".join(lines)
+            self.text = "".join(self.lines)
         if write_reformatted_sources:
             with open(fileName + ".reformatted", 'w+', encoding='utf-8', newline='\n') as ofs:
                 ofs.write(self.text)
@@ -259,7 +259,7 @@ class InputFile(object):
         marker = XMLZoneMarker(self)
 
         global checkmarkup
-        if checkmarkup: # -cmup no and -cmup shrink do not need this
+        if checkmarkup:  # -cmup no and -cmup shrink do not need this
             marker.discover()
             self.zones, self.rzones = marker.zones, marker.rzones
             self.textzoneoffsets = marker.textzoneoffsets
@@ -386,6 +386,7 @@ class ExactCloneGroup(CloneGroup):
         """
         global inputfiles
         global clonegroups
+        global cm_inclusiveend
 
         super().__init__(id)
 
@@ -402,6 +403,14 @@ class ExactCloneGroup(CloneGroup):
             ifilen, s, e = i
             ifile = inputfiles[ifilen]
             s, e = ifile.anything2offset(s), ifile.anything2offset(e)
+
+            # cm_inclusiveend is important.
+            # Clone Miner likes to include one symbol of next word into the clone,
+            # or it does not like "]]>" CDATA closing. What does CloneMiner mean exactly?
+            # Who knows?.. So having this setting...
+            if not cm_inclusiveend:
+                e -= 1
+
             self.instances.append((ifilen, s, e))
             self.significances.append(int(len(instances) * (e - s + 1) ** 2))  # from Kopin diploma
 
@@ -796,6 +805,61 @@ def loadinputs(logger):
             if len(sl):
                 inputfiles.append(InputFile(sl))
 
+    def correct_utf8_instances(insts):
+        """
+        Corrects instance data. Clone Miner reports bytes, we can check here if input file line is UTF-8 or
+        ASCII and convert bytes to symbols
+        :param insts: instances with byte column numbers
+        :return: instances with symbol column numbers
+        """
+
+        def scesb2c(seb: 'int', roundwith: 'int', ust: 'str'):
+            """
+            :param seb: starting/ending byte (round up/down)
+            :param roundwith: +1 for starting byte, -1 for ending
+            :return: output starting/ending char
+            """
+            try:
+                ust.encode('ascii')  # if ok, no unicode, leave as is
+                return seb
+            except UnicodeEncodeError:  # Then UTF-8. Here work should be done.
+                bst = b''
+                for c, ci in zip(ust, itertools.count()):
+                    if len(bst) == seb:
+                        return ci
+                    elif len(bst) > seb:
+                        # input clone starts/ends in some byte of this symbol =>
+                        # start/end it from/in next/previous symbol
+                        return ci + roundwith
+
+                    bst += c.encode('utf-8')
+
+        correctedinsts = []
+        for fn, st, en in insts:
+            sl, sb = inputfiles[fn].anything2linecol(st)
+            el, eb = inputfiles[fn].anything2linecol(en)
+
+            slt = inputfiles[fn].lines[sl - 1]
+            elt = inputfiles[fn].lines[el - 1]
+
+            sls = scesb2c(sb - 1, +1, slt)
+            els = scesb2c(eb - 1, -1, elt)
+
+            correctedinsts.append((fn, (sl, sls + 1), (el, els + 1)))
+
+            # # debug:
+            # sts = slt[sls:]
+            # sbs = slt.encode('utf-8')[sb-1:].decode('utf-8', 'ignore')
+            # if sts != sbs:
+            #     logging.error("US: {{" + sts + "}} <- {{" + sbs + "}} ...")
+            # ets = elt[:els]
+            # ebs = elt.encode('utf-8')[:eb-1].decode('utf-8', 'ignore')
+            # if ets != ebs:
+            #     logging.error("UE: ... {{" + ets + "}} <- {{" + ebs + "}}")
+
+        return correctedinsts
+
+
     if os.path.exists(os.path.join("Output", "black_descriptor_list.txt")):
         with open(os.path.join("Output", "black_descriptor_list.txt")) as blst:
             global black_descriptor_list
@@ -829,7 +893,10 @@ def loadinputs(logger):
             if sl == '':  # empty line => group end
                 if grid is not None:
                     if len(insts):  # all instances can be filtered out due to broken markup
-                        gr = ExactCloneGroup(grid, ntoks, insts)
+
+                        cinsts = correct_utf8_instances(insts)
+
+                        gr = ExactCloneGroup(grid, ntoks, cinsts)
                         if exp_clones:
                             gr.try_expand_clones()
 
@@ -858,7 +925,6 @@ def loadinputs(logger):
                 else:
                     idm = instdesc.match(sl)
 
-                    global cm_inclusiveend
                     if idm:
                         # logger.debug("Matched clone instance: " + sl)
                         mg = [int(n) for n in idm.groups()]
@@ -866,15 +932,10 @@ def loadinputs(logger):
                         ifilen = mg[0]
                         ifile = inputfiles[ifilen]
 
-                        # cm_inclusiveend is important.
-                        # Clone Miner likes to include one symbol of next word into the clone,
-                        # or it does not like "]]>" CDATA closing. What does CloneMiner mean exactly?
-                        # Who knows?.. So having this setting...
-                        endoff = ifile.anything2offset((mg[3], mg[4]))
                         insts.append((
                             mg[0],
-                            ifile.anything2offset((mg[1], mg[2])),
-                            endoff if cm_inclusiveend else endoff - 1
+                            (mg[1], mg[2]),
+                            (mg[3], mg[4])
                         ))
                     else:
                         logger.warning("Garbage in input!!")
