@@ -385,6 +385,7 @@ class ExactCloneGroup(CloneGroup):
         """
         global inputfiles
         global clonegroups
+        global cm_inclusiveend
 
         super().__init__(id)
 
@@ -401,6 +402,14 @@ class ExactCloneGroup(CloneGroup):
             ifilen, s, e = i
             ifile = inputfiles[ifilen]
             s, e = ifile.anything2offset(s), ifile.anything2offset(e)
+
+            # cm_inclusiveend is important.
+            # Clone Miner likes to include one symbol of next word into the clone,
+            # or it does not like "]]>" CDATA closing. What does CloneMiner mean exactly?
+            # Who knows?.. So having this setting...
+            if not cm_inclusiveend:
+                e -= 1
+
             self.instances.append((ifilen, s, e))
             self.significances.append(int(len(instances) * (e - s + 1) ** 2))  # from Kopin diploma
 
@@ -834,7 +843,7 @@ def loadinputs(logger):
             elt = inputfiles[fn].lines[el - 1]
 
             sls = scesb2c(sb - 1, +1, slt)
-            els = scesb2c(eb - 1, +1, elt)
+            els = scesb2c(eb - 1, -1, elt)
 
             correctedinsts.append((fn, (sl, sls + 1), (el, els + 1)))
 
@@ -842,11 +851,11 @@ def loadinputs(logger):
             sts = slt[sls:]
             sbs = slt.encode('utf-8')[sb-1:].decode('utf-8', 'ignore')
             if sts != sbs:
-                logging.error("US: {{" + sts + "}} <- {{" + sbs + "}}")
+                logging.error("US: {{" + sts + "}} <- {{" + sbs + "}} ...")
             ets = slt[:els]
             ebs = slt.encode('utf-8')[:eb-1].decode('utf-8', 'ignore')
             if ets != ebs:
-                logging.error("UE: {{" + ets + "}} <- {{" + ebs + "}}")
+                logging.error("UE: ... {{" + ets + "}} <- {{" + ebs + "}}")
 
         return correctedinsts
 
@@ -916,7 +925,6 @@ def loadinputs(logger):
                 else:
                     idm = instdesc.match(sl)
 
-                    global cm_inclusiveend
                     if idm:
                         # logger.debug("Matched clone instance: " + sl)
                         mg = [int(n) for n in idm.groups()]
@@ -924,15 +932,10 @@ def loadinputs(logger):
                         ifilen = mg[0]
                         ifile = inputfiles[ifilen]
 
-                        # cm_inclusiveend is important.
-                        # Clone Miner likes to include one symbol of next word into the clone,
-                        # or it does not like "]]>" CDATA closing. What does CloneMiner mean exactly?
-                        # Who knows?.. So having this setting...
-                        endoff = ifile.anything2offset((mg[3], mg[4]))
                         insts.append((
                             mg[0],
                             (mg[1], mg[2]),
-                            endoff if cm_inclusiveend else endoff - 1
+                            (mg[3], mg[4])
                         ))
                     else:
                         logger.warning("Garbage in input!!")
