@@ -847,15 +847,15 @@ def loadinputs(logger):
 
             correctedinsts.append((fn, (sl, sls + 1), (el, els + 1)))
 
-            # debug:
-            sts = slt[sls:]
-            sbs = slt.encode('utf-8')[sb-1:].decode('utf-8', 'ignore')
-            if sts != sbs:
-                logging.error("US: {{" + sts + "}} <- {{" + sbs + "}} ...")
-            ets = slt[:els]
-            ebs = slt.encode('utf-8')[:eb-1].decode('utf-8', 'ignore')
-            if ets != ebs:
-                logging.error("UE: ... {{" + ets + "}} <- {{" + ebs + "}}")
+            # # debug:
+            # sts = slt[sls:]
+            # sbs = slt.encode('utf-8')[sb-1:].decode('utf-8', 'ignore')
+            # if sts != sbs:
+            #     logging.error("US: {{" + sts + "}} <- {{" + sbs + "}} ...")
+            # ets = elt[:els]
+            # ebs = elt.encode('utf-8')[:eb-1].decode('utf-8', 'ignore')
+            # if ets != ebs:
+            #     logging.error("UE: ... {{" + ets + "}} <- {{" + ebs + "}}")
 
         return correctedinsts
 
