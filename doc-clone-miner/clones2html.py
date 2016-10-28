@@ -61,6 +61,7 @@ def initargs():
     argpar.add_argument("-mncsvgi", "--min-csv-group-instances", type=int,
                         help="Min clones in group in CSV report", default=2)
     argpar.add_argument("-gca", "--group-combining-algorithm",
+                        choices=["interval-n-ext", "full-square"],
                         help="Group combining algorithm", type=str, default="interval-n-ext")
 
     args = argpar.parse_args()

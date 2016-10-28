@@ -63,6 +63,8 @@ def initargs():
     argpar.add_argument("-ct", "--clone-tool", help="Full path to clones.exe", default= os.path.join(scriptdir, "clone_miner", "clones.exe"))
     argpar.add_argument("-fft", "--fuzzy-finder-tool", help="Full path to CloneFinder.exe", default= os.path.join(scriptdir, "fuzzy_finder", "CloneFinder.exe"))
     argpar.add_argument("-if", "--input-file", help="Input file to analyze")
+    argpar.add_argument("-gca", "--group-combining-algorithm", help="Group combining algorithm for Clone Miner",
+                        choices=["interval-n-ext", "full-square"], type=str, default="interval-n-ext")
     global clargs
     clargs = argpar.parse_args()
 
@@ -391,6 +393,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         options += ["-cmup", ["no", "yes", "shrink"][self.cbCheckMup.currentIndex()]]
         options += ["-fint", "no" if self.cbAllowInt.checkState() else "yes"]
         options += ["-csp", ["no", "yes", "nltk"][self.cbxCheckSemantics.currentIndex()]]
+        options += ["-gca", clargs.group_combining_algorithm]
 
         if dovariations and self.cbMaxVar.checkState():
             options += ["-mv", str(self.sbMaxVar.value())]

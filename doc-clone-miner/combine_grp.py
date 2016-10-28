@@ -61,11 +61,15 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     :param available_groups:
     :return:
     """
+    import sys
     import itertools
     import logging
     import clones
     from intervaltree import IntervalTree
-    # ttyn = '\r' if sys.stdout.isatty() else '\n'
+
+    ttyn = '\r' if sys.stdout.isatty() else '\n'
+
+    print("Combining groups, %d total..." % len(available_groups))
 
     # (0)
     avg = set([clones.VariativeElement([cg]) for cg in available_groups])
@@ -80,12 +84,14 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         return itree
 
     # (1)
-    maxiterations = 10  # TODO: !!! this should not be constrained!!!
-    maxdist = 2000 # clones.infty
+    maxdist = clones.infty  # 2000
     cycle = True
-    while cycle and maxiterations:
-        maxiterations -= 1
-        logging.debug("Iterations left: %d" % (maxiterations,))
+    iterations_passed = 0
+    while cycle:
+        ptotal = 100
+        pready = int(100 * (1.0 - 2**(-iterations_passed)))  # very approximately
+        print("~ %d / %d = %03.1f%%" % (pready, ptotal, 100.0 * pready / ptotal), end=ttyn, flush=True)
+
         cycle = False
 
         vg_intervals = build_interval_tree()  # TODO: why does it crash when used incrementally as in (2)?..
@@ -137,6 +143,8 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             # for itvl in new_ve.get_tree_intervals(expanded=True):
             #     vg_intervals.add(itvl)
 
+        iterations_passed += 1
+
     # then split unary groups away
     var_groups = []
     uni_groups = []
@@ -156,7 +164,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         logging.info("Variative groups:")
         for gc in vgs.keys():
             logging.info(" - %d -> %d" % (gc, vgs[gc]))
-    pstats()
+    # pstats()
 
     return var_groups, uni_groups
     # return combine_gruops_par_20140819(available_groups) # fallback then -- it is now fake, does noting =)
