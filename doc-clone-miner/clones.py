@@ -417,9 +417,8 @@ class ExactCloneGroup(CloneGroup):
         self.instances.sort(key=operator.itemgetter(0,1))
         # now instances are sorted by file then by appearance
 
-    _spacesre = re.compile(" +")
-    _nlinesre = re.compile("\n+")
-    _whspcsre = re.compile("\\s+")
+    two_or_more_spaces_re = re.compile(" {2,}")
+    two_or_more_nlines_re = re.compile("\n{2,}")
 
     def html(self, instance_no=0, allow_space_wrap=False):
         # ptext = self.plain_text(inst)
@@ -432,9 +431,10 @@ class ExactCloneGroup(CloneGroup):
         hparts = [
             ("<code>" if k == xmllexer.IntervalType.general else '<code class="xmlmarkup">') +
             verbhtml.escapecode(
-                ExactCloneGroup._spacesre.sub(" ", ExactCloneGroup._nlinesre.sub(" ", t)),
-                allow_space_wrap) + "</code>"
-            for t, k in parts if not ExactCloneGroup._whspcsre.match(t)
+                ExactCloneGroup.two_or_more_spaces_re.sub(" ", ExactCloneGroup.two_or_more_nlines_re.sub(" ", t)),
+                allow_space_wrap) +
+            ("</code> " if k == xmllexer.IntervalType.general else '</code>')  # spaces after texts to separate them
+            for t, k in parts if len(t.strip())  # not only whitespaces
         ]
 
         return "<wbr/>".join(hparts)  # can break line here
@@ -1147,9 +1147,9 @@ class VariativeElement(object):
 
             hparts = [
                 ("<code>" if k == xmllexer.IntervalType.general else '<code class="xmlmarkup">') +
-                esc(ExactCloneGroup._spacesre.sub(" ", ExactCloneGroup._nlinesre.sub(" ", t))) +
+                esc(ExactCloneGroup.two_or_more_spaces_re.sub(" ", ExactCloneGroup.two_or_more_nlines_re.sub(" ", t))) +
                 "</code>"
-                for t, k in parts if not ExactCloneGroup._whspcsre.match(t)
+                for t, k in parts if len(t.strip())  # not only whitespaces
                 ]
 
             result.append(" " + "<wbr/>".join(hparts) + " ")  # can break line here
