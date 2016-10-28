@@ -1119,14 +1119,46 @@ class VariativeElement(object):
 
         return result
 
-    @property
-    def html(self):
+    def getvariationhtmls(self, position):
+        global inputfiles
+
         def esc(s):
             if len(s.strip()) == 0:
                 return """<span style="font-weight: bold; color: red;">&#x3b5;</span>"""
             else:
                 return verbhtml.escapecode(s, allow_space_wrap=True)
 
+        g1 = self.clone_groups[position]
+        g2 = self.clone_groups[position + 1]
+
+        result = []
+
+        for ii in range(len(g1.instances)):
+            g1file, g1start, g1end = g1.instances[ii]
+            g2file, g2start, g2end = g2.instances[ii]
+
+            if g1file != g2file:
+                raise InternalException("Different files in variation groups")
+
+            s = g1end + 1
+            e = g2start - 1  # non-inclusive
+            l = e - s  # non-inclusive above
+            parts = xmllexer.get_texts_and_markups(s, l, inputfiles[g1file].lexintervals)
+
+            hparts = [
+                ("<code>" if k == xmllexer.IntervalType.general else '<code class="xmlmarkup">') +
+                esc(ExactCloneGroup._spacesre.sub(" ", ExactCloneGroup._nlinesre.sub(" ", t))) +
+                "</code>"
+                for t, k in parts if not ExactCloneGroup._whspcsre.match(t)
+                ]
+
+            result.append(" " + "<wbr/>".join(hparts) + " ")  # can break line here
+
+        return result
+
+
+    @property
+    def html(self):
         templ = string.Template(textwrap.dedent("""
             <tr class="${cssclass} variative" data-groups="${desc}">
             <!-- <td>${ngrp}</td> -->
@@ -1158,13 +1190,12 @@ class VariativeElement(object):
 
             nextpoints = len(self.clone_groups) - 1
 
-            vvariations = [self.getvariations(i) for i in range(nextpoints)]
+            vvariations = [self.getvariationhtmls(i) for i in range(nextpoints)]
 
-            # was """<pre style="font-weight: bold; color: red; background-color: pink;">||</pre>"""
             vvtexts = ['<wbr/>'.join([
                 (
                     """<code class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
-                ) % (hlstart, hlend, hlstart, hlend, clr, esc(t))
+                ) % (hlstart, hlend, hlstart, hlend, clr, t)
                 for (hlstart, hlend, clr, t) in zip(starts, ends, self.htmlvcolors, variations)
             ]) for variations in vvariations]
 
