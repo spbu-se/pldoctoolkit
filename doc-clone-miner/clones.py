@@ -1061,13 +1061,13 @@ class VariativeElement(object):
 
         d = max(dists)
 
-        logging.info("dists: " + repr(dists) + " <= " + str(d))
+        logging.debug("dists: " + repr(dists) + " <= " + str(d))
 
         global maximalvariance
         if maximalvariance > 0:
             import numpy
             va = numpy.var(dists)
-            logging.info("variance: " + str(va))
+            logging.debug("variance: " + str(va))
             if va > maximalvariance:
                 return infty
 

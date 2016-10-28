@@ -39,6 +39,14 @@ def combine_gruops_par_20140819(available_groups):
         pcounter += 1
         print("~ %d / %d = %03.1f%%" % (pcounter, ptotal, 100.0 * pcounter / ptotal), end=ttyn, flush=True)
 
+    # print stats
+    def pstats():
+        import logging
+        logging.getLogger("cloneminer.combine.square").info("Source single groups: %d" %(len(available_groups),))
+        logging.getLogger("cloneminer.combine.square").info("Single groups: %d" %(len(current_available_groups),))
+        logging.getLogger("cloneminer.combine.square").info("Variative groups: %d" %(len(combinations),))
+    pstats()
+
     return combinations, current_available_groups
 
 
@@ -157,14 +165,15 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     # print stats
     def pstats():
         import collections
-        logging.info("Single groups: 1 -> %d" %(len(uni_groups),))
+        logging.getLogger("cloneminer.combine.n_ext_points").info("Source single groups: %d" %(len(available_groups),))
+        logging.getLogger("cloneminer.combine.n_ext_points").info("Single groups: 1 -> %d" %(len(uni_groups),))
         vgs =  collections.defaultdict(lambda : 0)
         for vg in var_groups:
             vgs[len(vg.clone_groups)] += 1
-        logging.info("Variative groups:")
+        logging.getLogger("cloneminer.combine.n_ext_points").info("Variative groups:")
         for gc in vgs.keys():
-            logging.info(" - %d -> %d" % (gc, vgs[gc]))
-    # pstats()
+            logging.getLogger("cloneminer.combine.n_ext_points").info(" - %d -> %d" % (gc, vgs[gc]))
+    pstats()
 
     return var_groups, uni_groups
     # return combine_gruops_par_20140819(available_groups) # fallback then -- it is now fake, does noting =)
