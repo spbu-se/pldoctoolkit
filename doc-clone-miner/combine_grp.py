@@ -91,22 +91,26 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         logging.debug("(re)built interval tree of %d intervals." % (len(vg_interval_list),))
         return itree
 
+    def pprogress(stepsready, stepprogress):
+        ptotal = len(available_groups)
+        spready = 1.0 - 2**(-stepsready)  # very optimistic: next step is 2 times shorter than next
+        aready = 2**(-1 - stepsready) * stepprogress
+        tready = int((spready + aready) * ptotal)
+        print("~ %d / %d = %03.1f%%" % (tready, ptotal, 100.0 * tready / ptotal), end=ttyn, flush=True)
+
     # (1)
     maxdist = clones.infty  # 2000
     cycle = True
     iterations_passed = 0
     while cycle:
-        ptotal = 100
-        pready = int(100 * (1.0 - 2**(-iterations_passed)))  # very approximately
-        print("~ %d / %d = %03.1f%%" % (pready, ptotal, 100.0 * pready / ptotal), end=ttyn, flush=True)
-
         cycle = False
-
         vg_intervals = build_interval_tree()  # TODO: why does it crash when used incrementally as in (2)?..
+
+        pprogress(iterations_passed, 0)
 
         skip = set()
         tojoin = set()
-        for g1 in avg:
+        for g1, g1i in zip(avg, itertools.count()):
             if g1 in skip:
                 continue
             probable_g2_intervals = [
@@ -128,6 +132,9 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
                 tojoin.add((g1, best_g2_d[0]))
                 skip.add(g1)
                 skip.add(best_g2_d[0])
+
+            if not g1i % 10:
+                pprogress(iterations_passed, g1i / len(avg))
 
         # (2)
         for g1, g2 in tojoin:
