@@ -429,12 +429,12 @@ class ExactCloneGroup(CloneGroup):
         parts = xmllexer.get_texts_and_markups(so, sl, inputfiles[ifilen].lexintervals)
 
         hparts = [
-            ("<code>" if k == xmllexer.IntervalType.general else '<code class="xmlmarkup">') +
+            "<code>" +
             verbhtml.escapecode(
                 ExactCloneGroup.two_or_more_spaces_re.sub(" ", ExactCloneGroup.two_or_more_nlines_re.sub(" ", t)),
                 allow_space_wrap) +
-            ("</code> " if k == xmllexer.IntervalType.general else '</code>')  # spaces after texts to separate them
-            for t, k in parts if len(t.strip())  # not only whitespaces
+            "</code>"
+            for t, k in parts if k == xmllexer.IntervalType.general and len(t) and not t.isspace()
         ]
 
         return "<wbr/>".join(hparts)  # can break line here
@@ -1122,9 +1122,9 @@ class VariativeElement(object):
     def getvariationhtmls(self, position):
         global inputfiles
 
-        def esc(s):
+        def esceps(s):
             if len(s.strip()) == 0:
-                return """<span style="font-weight: bold; color: red;">&#x3b5;</span>"""
+                return """<span style="font-weight: bold; color: red;">&epsilon;</span>"""
             else:
                 return verbhtml.escapecode(s, allow_space_wrap=True)
 
@@ -1146,13 +1146,11 @@ class VariativeElement(object):
             parts = xmllexer.get_texts_and_markups(s, l, inputfiles[g1file].lexintervals)
 
             hparts = [
-                ("<code>" if k == xmllexer.IntervalType.general else '<code class="xmlmarkup">') +
-                esc(ExactCloneGroup.two_or_more_spaces_re.sub(" ", ExactCloneGroup.two_or_more_nlines_re.sub(" ", t))) +
-                "</code>"
-                for t, k in parts if len(t.strip())  # not only whitespaces
+                ExactCloneGroup.two_or_more_spaces_re.sub(" ", ExactCloneGroup.two_or_more_nlines_re.sub(" ", t))
+                for t, k in parts if k == xmllexer.IntervalType.general and len(t) and not t.isspace()
                 ]
 
-            result.append(" " + "<wbr/>".join(hparts) + " ")  # can break line here
+            result.append(" " + esceps(" ".join(hparts)) + " ")
 
         return result
 

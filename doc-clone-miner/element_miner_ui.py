@@ -117,11 +117,14 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     def bindEvents(self):
         self.closeButton.clicked.connect(self.close_tab)
-        self.showClonesMarkup.toggled.connect(self.show_clones_markup_toggled)
+        # self.showClonesMarkup.toggled.connect(self.show_clones_markup_toggled)
 
-    @QtCore.pyqtSlot(bool)
-    def show_clones_markup_toggled(self, v):
-        self.eval_js("window.toggleclonebrowsermarkup(%s);" % ('true' if v else 'false',))
+    # No more option to show/hide markup in element browser, always hide it.
+    # Markup should be highlighted in the source code.
+    # Use git blame to see changes.
+    # @QtCore.pyqtSlot(bool)
+    # def show_clones_markup_toggled(self, v):
+    #     self.eval_js("window.toggleclonebrowsermarkup(%s);" % ('true' if v else 'false',))
 
     @QtCore.pyqtSlot(bool)
     def enable_dict(self, e):
