@@ -57,6 +57,9 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     AVG = available_variative_groups
     0. AVG += AG, AG := []; interval tree is built
     1. for each G1 in AVG find G2 in AVG which it best combines with (closest non-intersecting)
+    1.1. during 2nd and further iterations only consider G1 of 2 and more groups above. Reason:
+         all combinable single groups were combined during 1st iteration, so no new variative
+         ones can appear, only existing can be extended
     2. each successful G1, G2 combination is:
     2.1. ACG -= [G1, G2]
     2.2. VG1 <- [G1, G2]
@@ -113,6 +116,13 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         for g1, g1i in zip(avg, itertools.count()):
             if g1 in skip:
                 continue
+
+            # on second and further iterations no new single groups
+            # will be combined with each other, so only consider variative ones
+            # TODO: test better
+            if iterations_passed and g1.power == 1:
+                continue
+
             probable_g2_intervals = [
                 vg_intervals.search(interval.begin, interval.end) for interval in
                 g1.get_tree_intervals(expanded=True)
@@ -133,7 +143,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
                 skip.add(g1)
                 skip.add(best_g2_d[0])
 
-            if not g1i % 10:
+            if not g1i % 100:
                 pprogress(iterations_passed, g1i / len(avg))
 
         # (2)
