@@ -1154,16 +1154,18 @@ class VariativeElement(object):
 
         return result
 
+    _html_idx = 0
 
     @property
     def html(self):
+
+        VariativeElement._html_idx += 1
+
         templ = string.Template(textwrap.dedent("""
             <tr class="${cssclass} variative" data-groups="${desc}">
-            <!-- <td>${ngrp}</td> -->
-            <!-- <td>${grps}</td> -->
+            <td class="fxd">${idx}</td>
             <td class="fxd">${clgr}</td>
-            <td class="fxd">${varel}</td>
-            <!-- <td>${varnc}</td> -->
+            ${eptsl}
             <td class="tka"><tt>${text}</tt></td>
             </tr>"""))
 
@@ -1205,13 +1207,11 @@ class VariativeElement(object):
 
         return templ.substitute(
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
-            ngrp=self.power,
-            grps=",".join([str(grp.id) for grp in self.clone_groups]) + ",",
-            clgr=self.idx + 1 if self.fuzzy else len(self.clone_groups[0].instances),
-            varel=len(self.clone_groups[0].instances) if self.fuzzy else len(self.clone_groups) - 1,
-            varnc=vnc,
-            text=vtext,
-            desc=self.textdescriptor
+            idx=VariativeElement._html_idx,
+            eptsl="" if self.fuzzy else ('<td class ="fxd" >' + str(self.power - 1) + '</td>'),
+            clgr=len(self.clone_groups[0].instances),
+            desc=self.textdescriptor,
+            text=vtext
         )
 
     @staticmethod
@@ -1273,7 +1273,7 @@ class VariativeElement(object):
         }
         
         th.fxd, td.fxd {
-            width: 100px;
+            width: 75px;
         }
         
         div #source {
@@ -1326,18 +1326,16 @@ class VariativeElement(object):
         <thead>
         <tr>
         <!-- <th>Participating groups</th> -->
-        <!-- <th>e.g.</th> -->
+        <th class="fxd">${colh0}</th>
         <th class="fxd">${colh1}</th>
-        <th class="fxd">${colh2}</th>
+        ${epts}
         <!-- <th>Variance of variants</th> -->
         <th class="tka">Candidate text:</th>
         </tr>
         </thead>
         <tbody>""")).substitute(**(
             {
-                'colh1': "Candidate No", 'colh2': "Num. of clones in group"
-            } if fuzzy else {
-                'colh1': "Num. of clones in group", 'colh2': "Num. of extension points"
+                'colh0': "#", 'colh1': "Clns/Grp", 'epts': "" if fuzzy else '<th class="fxd">Ext pts</th>'
             }
         ))
 
