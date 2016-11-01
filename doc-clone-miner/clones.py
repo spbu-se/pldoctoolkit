@@ -1262,9 +1262,12 @@ class VariativeElement(object):
             padding: 4px;
             border-width: 0 0 1px 1px;
             border-style: solid;
+            font-family: sans-serif;
         }
         th
         {
+            font-weight: normal;
+            font-size: 10pt;
             vertical-align: bottom;
         }
         td
@@ -1273,7 +1276,7 @@ class VariativeElement(object):
         }
         
         th.fxd, td.fxd {
-            width: 75px;
+            width: 65px;
         }
         
         div #source {
@@ -1330,7 +1333,7 @@ class VariativeElement(object):
         <th class="fxd">${colh1}</th>
         ${epts}
         <!-- <th>Variance of variants</th> -->
-        <th class="tka">Candidate text:</th>
+        <th class="tka">Candidate text</th>
         </tr>
         </thead>
         <tbody>""")).substitute(**(
