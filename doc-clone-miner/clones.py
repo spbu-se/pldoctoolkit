@@ -1192,12 +1192,18 @@ class VariativeElement(object):
 
             vvariations = [self.getvariationhtmls(i) for i in range(nextpoints)]
 
-            vvtexts = ['<wbr/>'.join([
-                (
-                    """<code class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
-                ) % (hlstart, hlend, hlstart, hlend, clr, t)
-                for (hlstart, hlend, clr, t) in zip(starts, ends, self.htmlvcolors, variations)
-            ]) for variations in vvariations]
+            vvtexts = [
+                ('<span style="background-color: silver; color:red; font-weight:bold;">&#x25c0;(%d)&#x25c0;</span><wbr/>' % (vn,) +
+                    '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">|</span><wbr/>'.join([
+                    (
+                        """<code class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
+                    ) % (hlstart, hlend, hlstart, hlend, clr, ' ' + t.strip() + ' ')
+                    for (hlstart, hlend, clr, t) in zip(starts, ends, self.htmlvcolors, variations)
+                    ]) +
+                    '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">&#x25b6;(%d)&#x25b6;</span>' % (vn,)
+                )
+                for variations, vn in zip(vvariations, itertools.count(1))
+            ]
 
             vnc = max([numpy.var([len(v) for v in variations]) for variations in vvariations])
 
