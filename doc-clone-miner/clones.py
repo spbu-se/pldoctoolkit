@@ -1174,50 +1174,38 @@ class VariativeElement(object):
 
         startgrp = self.clone_groups[0]
         starts = [s for (fno, s, e) in startgrp.instances]
+        endgrp = self.clone_groups[-1]
+        ends = [e for (fno, s, e) in endgrp.instances]
 
-        if self.power <= 1:  # == 1 in fact =)
-            startends = [e for (fno, s, e) in startgrp.instances]
-            vvtext = '<wbr/>'.join([
-                """<span class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">{%d}</span>"""
-                % (cstart, cend, cstart, cend, clr, no)
-                for cstart, cend, clr, no in zip(starts, startends, self.htmlccolors, itertools.count(1))
-            ])
+        nextpoints = len(self.clone_groups) - 1
+        vvariations = [self.getvariationhtmls(i) for i in range(nextpoints)]
 
-            vtext = self.clone_groups[0].html(allow_space_wrap=True) + vvtext
-        else:
-            endgrp = self.clone_groups[-1]
-            ends = [e for (fno, s, e) in endgrp.instances]
+        vvtexts = [
+            ('<span style="background-color: silver; color:red; font-weight:bold;">&#x25c0;%d&#x25c0;</span><wbr/>' % (vn,) +
+                '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">|</span><wbr/>'.join([
+                (
+                    """<code class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
+                ) % (hlstart, hlend, hlstart, hlend, clr, ' ' + t.strip() + ' ')
+                for (hlstart, hlend, clr, t) in zip(starts, ends, self.htmlvcolors, variations)
+                ]) +
+                '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">&#x25b6;%d&#x25b6;</span>' % (vn,)
+            )
+            for variations, vn in zip(vvariations, itertools.count(1))
+        ]
 
-            nextpoints = len(self.clone_groups) - 1
+        vltexts = '<wbr/>'.join([
+            """<span class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">{%d}</span>"""
+            % (cstart, cend, cstart, cend, clr, no)
+            for cstart, cend, clr, no in zip(starts, ends, self.htmlccolors, itertools.count(1))
+        ])
 
-            vvariations = [self.getvariationhtmls(i) for i in range(nextpoints)]
+        # vnc = max([numpy.var([len(v) for v in variations]) for variations in vvariations])
 
-            vvtexts = [
-                ('<span style="background-color: silver; color:red; font-weight:bold;">&#x25c0;%d&#x25c0;</span><wbr/>' % (vn,) +
-                    '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">|</span><wbr/>'.join([
-                    (
-                        """<code class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
-                    ) % (hlstart, hlend, hlstart, hlend, clr, ' ' + t.strip() + ' ')
-                    for (hlstart, hlend, clr, t) in zip(starts, ends, self.htmlvcolors, variations)
-                    ]) +
-                    '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">&#x25b6;%d&#x25b6;</span>' % (vn,)
-                )
-                for variations, vn in zip(vvariations, itertools.count(1))
-            ]
+        vtext = self.clone_groups[0].html(allow_space_wrap=True)
+        for n in range(len(self.clone_groups) - 1):
+            vtext += vvtexts[n] + self.clone_groups[n+1].html(allow_space_wrap=True)
 
-            vltexts = '<wbr/>'.join([
-                """<span class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">{%d}</span>"""
-                % (cstart, cend, cstart, cend, clr, no)
-                for cstart, cend, clr, no in zip(starts, ends, self.htmlccolors, itertools.count(1))
-            ])
-
-            vnc = max([numpy.var([len(v) for v in variations]) for variations in vvariations])
-
-            vtext = self.clone_groups[0].html(allow_space_wrap=True)
-            for n in range(len(self.clone_groups) - 1):
-                vtext += vvtexts[n] + self.clone_groups[n+1].html(allow_space_wrap=True)
-
-            vtext += '<wbr/>' + vltexts
+        vtext += '<wbr/>' + vltexts
 
         return templ.substitute(
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
