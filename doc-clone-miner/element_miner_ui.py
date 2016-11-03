@@ -55,6 +55,18 @@ def adapt_path_2_win(path):
         return path
 
 
+def adapt_filename_enc_2_win():
+    import locale
+    loc2wincp = {
+        'en': 'ibm437',
+        'ru': 'windows-1251'
+    }
+    loc = locale.getlocale()
+    lng = loc[0][:2]
+    wincp = loc2wincp[lng]
+    return wincp
+
+
 def initargs():
     argpar = argparse.ArgumentParser()
     # Windows one...
@@ -511,8 +523,20 @@ def run_clone_miner_thread(pui, inputfile, lengths, options):
             cnt = 0
             for l in lengths:
                 with pushd_c(os.path.dirname(clargs.clone_tool)):
-                    with open(os.path.join("Input", "InputFiles.txt"), 'w+') as iftxt:
-                        print(adapt_path_2_win(inputfile), end='', file=iftxt)
+                    def write_inputfiles_txt(posix2win):
+                        if posix2win:
+                            with open(os.path.join("Input", "InputFiles.txt"), 'wb+') as iftxt:
+                                # Clone Miner is non-unicode windows program,
+                                # under UN*X it it uses default encoding for specified
+                                # language given to wine
+                                iftxt.write(
+                                    adapt_path_2_win(inputfile).encode(adapt_filename_enc_2_win())
+                                )
+                        else:
+                            with open(os.path.join("Input", "InputFiles.txt"), 'w+') as iftxt:
+                                print(adapt_path_2_win(inputfile), end='', file=iftxt)
+
+                    write_inputfiles_txt(os.name == 'posix')
 
                     cplus = 0
                     smsg = "Mining clones of >= %d tokens..." % l
@@ -529,6 +553,10 @@ def run_clone_miner_thread(pui, inputfile, lengths, options):
                     cmrc = cmpr.returncode
 
                     cplus = 25
+
+                    # rewrite InputFiles.txt again because ...
+                    write_inputfiles_txt(False)  # ... because clones2html expects utf-8 there =)
+
                     smsg = "Analyzing clones of >= %d tokens..." % l
                     pui.progressChanged.emit(len(lengths) * 150, cnt * 150 + cplus, smsg)
 
