@@ -524,7 +524,14 @@ def combine_gruops():
         os.path.join("Output", subdir, "jquery-2.0.3.min.js")
     )
 
-if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
-    log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)
+if __name__ == '__main__':  #
+    if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
+        log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)
 
-combine_gruops()
+    combine_gruops()
+
+    if not nearby:
+        with open(os.path.join("Output", subdir, "densityreport.html"), 'w', encoding='utf-8') as htmlfile:
+            import densityreport
+            dr = densityreport.report_densities(clones.clonegroups, clones.inputfiles)
+            htmlfile.write(dr)
