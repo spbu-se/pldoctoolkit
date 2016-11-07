@@ -461,85 +461,6 @@ with open(os.path.join("Output", subdir, "pygroups.html"), 'w', encoding='utf-8'
     htmlfile.write(html)
 
 
-# measure distances
-
-# TODO: move to combine_grp.py
-def findnearby201312():
-    mkdir_p(os.path.join("Output", subdir, "variations"))
-
-    # clones.clonegroups = [ kg for kg in clones.clonegroups if kg.isCorrect() ]
-
-    print("Measuring distances...")
-
-    global nearby
-    minborderdist = nearby
-
-    def sgn(n):
-        if n < 0:
-            return -1
-        elif n > 0:
-            return 1
-        else:
-            return 0
-
-    dists = {}
-
-    print("Combibibg groups...")
-    uniqp = list([gp for gp in uniqpairs(clones.clonegroups, lambda i, j: len(clones.clonegroups[i].instances) == len(
-        clones.clonegroups[j].instances))])
-    ttu = len(uniqp)
-
-    print("Filtering %d group combinations..." % ttu)
-
-    participatedgroups = set()
-
-    def c1gc2gdist(g1g2):
-        cg1, cg2 = g1g2
-        cg1, cg2 = clones.clonegroups[cg1], clones.clonegroups[cg2]
-        return clones.ExactCloneGroup.distance(cg1, cg2)
-
-    # sequential
-    for g1g2 in uniqp:
-        if ttu % 5000 == 0:
-            print("%d group pairs left" % ttu, end="       \r", flush=True)
-        ttu -= 1
-
-        d = c1gc2gdist(g1g2)
-        if 0 <= d < clones.infty:
-            dists[g1g2] = d
-            participatedgroups.add(g1g2[0])
-            participatedgroups.add(g1g2[1])
-
-    """
-    # Parallel. Does not work =)
-    print("In parellel...")
-    with cunfu.ThreadPoolExecutor() as exc:
-        parresults = exc.map(c1gc2gdist, uniqp)
-
-    print("Joining threads...")
-    parresults = list(parresults)
-
-    print("Filtering distances...")
-    for k, v in zip(uniqp, parresults):
-        if not v is None:
-            dists[k] = v
-    """
-
-    print("Participated %d groups" % len(participatedgroups))
-
-    with open(os.path.join("Output", subdir, "nearby.txt"), 'w') as nearby:
-        for gp in dists:
-            cg1 = clones.clonegroups[gp[0]]
-            cg2 = clones.clonegroups[gp[1]]
-            nearby.write("=============================\n")
-            nearby.write(cg1.text() + '\n')
-            nearby.write("---- ^^ %d ^^   | | not farther than %d chars from | | vv %d vv ----\n" % (
-                len(cg1.instances), dists[gp], len(cg2.instances)))
-            nearby.write(cg2.text() + '\n\n')
-        nearby.flush()
-
-    logger.info("Done.")
-
 def log_short_repetitions(maxtokens, minrepetitions):
     import semanticfilter
 
@@ -606,5 +527,4 @@ def combine_gruops():
 if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
     log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)
 
-# findnearby201312()
 combine_gruops()
