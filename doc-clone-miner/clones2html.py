@@ -10,7 +10,7 @@ global logger
 # logger = logging.Logger('clones.reporter')
 logger = logging  # use it this way
 
-import traceback
+import textwrap
 import os
 import sys
 import cgi
@@ -534,4 +534,31 @@ if __name__ == '__main__':  #
         with open(os.path.join("Output", subdir, "densityreport.html"), 'w', encoding='utf-8') as htmlfile:
             import densityreport
             dr = densityreport.report_densities(clones.clonegroups, clones.inputfiles)
-            htmlfile.write(dr)
+            h = textwrap.dedent("""<!DOCTYPE html>
+            <html lang="en">
+            <head>
+            <meta charset="utf-8">
+            <style type="text/css">
+            table
+            {
+            border-width: 1px 1px 0 0;
+            border-spacing: 0;
+            border-collapse: collapse;
+            border-style: solid;
+            }
+            td, th
+            {
+                margin: 0;
+                padding: 4px;
+                border-width: 0 0 1px 1px;
+                border-style: solid;
+                font-family: sans-serif;
+            }
+            </style>
+            </head>
+            <body>
+            %s
+            </body>
+            </html>""") % (dr,)
+
+            htmlfile.write(h)
