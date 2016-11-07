@@ -524,41 +524,60 @@ def combine_gruops():
         os.path.join("Output", subdir, "jquery-2.0.3.min.js")
     )
 
-if __name__ == '__main__':  #
-    if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
-        log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)
 
-    combine_gruops()
-
-    if not nearby:
-        with open(os.path.join("Output", subdir, "densityreport.html"), 'w', encoding='utf-8') as htmlfile:
-            import densityreport
-            dr = densityreport.report_densities(clones.clonegroups, clones.inputfiles)
-            h = textwrap.dedent("""<!DOCTYPE html>
-            <html lang="en">
-            <head>
-            <meta charset="utf-8">
-            <style type="text/css">
-            table
-            {
+def write_density_report():
+    with \
+        open(os.path.join("Output", subdir, "densityreport.html"), 'w', encoding='utf-8') as density_table_file,\
+        open(os.path.join("Output", subdir, "densitymap.html"), 'w', encoding='utf-8') as density_map_file:
+        import densityreport
+        dr = densityreport.report_densities(clones.clonegroups, clones.inputfiles)
+        h0 = textwrap.dedent("""<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        table
+        {
+            border-color: grey;
             border-width: 1px 1px 0 0;
             border-spacing: 0;
             border-collapse: collapse;
             border-style: solid;
-            }
-            td, th
-            {
-                margin: 0;
-                padding: 4px;
-                border-width: 0 0 1px 1px;
-                border-style: solid;
-                font-family: sans-serif;
-            }
-            </style>
-            </head>
-            <body>
-            %s
-            </body>
-            </html>""") % (dr,)
+        }
+        td, th
+        {
+            border-color: grey;
+            margin: 0;
+            padding: 4px;
+            border-width: 0 0 1px 1px;
+            border-style: solid;
+            font-family: sans-serif;
+        }
+        </style>
+        </head>
+        <body>
+        %s
+        </body>
+        </html>""") % (dr[0],)
 
-            htmlfile.write(h)
+        h1 = textwrap.dedent("""<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        </style>
+        </head>
+        <body>
+        %s
+        </body>
+        </html>""") % (dr[1],)
+
+        density_table_file.write(h0)
+        density_map_file.write(h1)
+
+if __name__ == '__main__':  #
+    if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
+        log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)
+
+    write_density_report()
+    combine_gruops()
