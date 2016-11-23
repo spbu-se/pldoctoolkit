@@ -24,6 +24,7 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
 
     reports_table = []
     reports_map = []
+    reports_heat = []
 
     maxrd = max([max(ifld) for ifld in repetition_densities])
     maxcd = max([max(ifld) for ifld in clone_densities])
@@ -31,31 +32,63 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
     tr_template = string.Template(textwrap.dedent("""
         <tr>
         <td style="background-color: rgb(255, 255, ${rf});">${crd}</td>
-        <td style="background-color: rgb(255, 255, ${cf});">${ccd}</td>
+        <td style="background-color: rgb(255, 255, ${cbf});">${ccd}</td>
         <td>${tx}</td>
         </tr>
         """
     ))
 
     span_template = string.Template(textwrap.dedent(
-        """<span style="background-color: rgb(255, 255, ${cf});" title="Clones coverage: ${rfd}; GRP Power: ${cfd}">${tx}</span>"""
+        """<span id="co-${n}-${co}" style="background-color: rgb(${crf}, ${cgf}, ${cbf});" title="Clones coverage: ${rfd}; GRP Power: ${cfd}">${tx}</span>"""
     ))
 
-    def format_crd_ccd_tx(crd, ccd, tx):
+    heat_template = string.Template(
+        """<a href="densitymap.html#co-${n}-${co}" target="densitymap">""" +
+        """<div style="position: absolute; top: ${t}px; height: ${h}px; background-color: rgb(${crf}, ${cgf}, ${cbf}); width: 100%"></div>"""
+        """</a>"""
+    )
+
+    _old_div_b = 0
+    def format_crd_ccd_tx(crd, ccd, tx, fn, begofs, endofs):
+        nonlocal _old_div_b
+
         rf = 255 - int(crd / maxrd * 255)
-        cf = 255 - int(ccd / maxcd * 255)
+        cf = int(ccd / maxcd * 255)
+        if ccd == 0:
+            crf = 255
+            cgf = 255
+            cbf = 255
+        else:
+            crf = 255
+            cgf = 255 - cf
+            cbf = 0
+
         cfd = "%d%% = %d / %d" % (int(100*ccd/maxcd), ccd, maxcd)
         rfd = "%d%%" % (int(100*crd/maxrd),)
 
         tr = tr_template.substitute({
-            'rf': rf, 'crd': crd, 'cf': cf, 'ccd': ccd, 'tx': tx
+            'rf': rf, 'crd': crd, 'cbf': cbf, 'ccd': ccd, 'tx': tx
         })
 
         span = span_template.substitute({
-            'cf': cf, 'tx': tx, 'cfd': cfd, 'rfd': rfd
+            'crf': crf, 'cgf': cgf, 'cbf': cbf, 'tx': tx, 'cfd': cfd, 'rfd': rfd, 'co': begofs, 'n': str(fn)
         })
 
-        return tr, span
+        heatscale = 100
+        divh = (endofs - begofs) // heatscale
+        divt = begofs // heatscale
+        divb = endofs // heatscale
+
+        if divh > 0 or divb > _old_div_b:
+            heat = heat_template.substitute({
+                'crf': crf, 'cgf': cgf, 'cbf': cbf, 'h': str(max(1, divh)),
+                'co': str(begofs), 'n': str(fn), 't': str(begofs // heatscale)
+            })
+        else:
+            heat = ""  # save space in heatmap file
+
+        _old_div_b = divb
+        return tr, span, heat
 
     for ifl, cd, rd, fileno in zip(input_files, clone_densities, repetition_densities, itertools.count(1)):
         reports_table.append(
@@ -89,13 +122,12 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
 
         def release_portion(o):
             nonlocal prev_offset, ccd, crd
-            # tx = ifl.text[prev_offset:o]
             tx = get_without_markup(ifl, prev_offset, o)
+            section = format_crd_ccd_tx(crd, ccd, tx, fileno, prev_offset, o)
             prev_offset = o
-            # if crd > 0 or ccd > 0:
-            section = format_crd_ccd_tx(crd, ccd, tx)
             reports_table.append(section[0])
             reports_map.append(section[1])
+            reports_heat.append(section[2])
 
         for o in range(len(ifl.text)):
             if ccd != cd[o] or crd != rd[o]:
@@ -109,4 +141,4 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
         reports_table.append("</table><br/>\n")
         reports_map.append("<br/>\n")
 
-    return "".join(reports_table), " ".join(reports_map)
+    return "".join(reports_table), " ".join(reports_map), "\n".join(reports_heat)

@@ -528,7 +528,10 @@ def combine_gruops():
 def write_density_report():
     with \
         open(os.path.join("Output", subdir, "densityreport.html"), 'w', encoding='utf-8') as density_table_file,\
-        open(os.path.join("Output", subdir, "densitymap.html"), 'w', encoding='utf-8') as density_map_file:
+        open(os.path.join("Output", subdir, "densitymap.html"), 'w', encoding='utf-8') as density_map_file,\
+        open(os.path.join("Output", subdir, "heatmap.html"), 'w', encoding='utf-8') as heat_map_file,\
+        open(os.path.join("Output", subdir, "densitybrowser.html"), 'w', encoding='utf-8') as density_browser_file:
+
         import densityreport
         dr = densityreport.report_densities(clones.clonegroups, clones.inputfiles)
         h0 = textwrap.dedent("""<!DOCTYPE html>
@@ -572,8 +575,36 @@ def write_density_report():
         </body>
         </html>""") % (dr[1],)
 
+        h3 = textwrap.dedent("""<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        </style>
+        </head>
+        <body>
+        %s
+        </body>
+        </html>""") % (dr[2],)
+
         density_table_file.write(h0)
         density_map_file.write(h1)
+        heat_map_file.write(h3)
+
+        density_browser_file.write(textwrap.dedent(
+            """<!DOCTYPE html>
+            <html lang="en">
+            <head>
+            <meta charset="utf-8">
+            <style type="text/css">
+            </style>
+            </head>
+            <body style="margin: 0px; padding: 0px;">
+            <iframe name="densitymap" src="densitymap.html" style="border: 0; position:absolute; height: 100%; width: calc(100% - 200px);"></iframe>
+            <iframe name="heatmap" src="heatmap.html" style="overflow-x: hidden; border: 0; position:absolute; height: 100%; left: calc(100% - 200px); width: 200px;"></iframe>
+            </body>
+            </html>"""
+        ))
 
 if __name__ == '__main__':  #
     if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
