@@ -54,14 +54,14 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
 
         rf = 255 - int(crd / maxrd * 255)
         cf = int(ccd / maxcd * 255)
-        if ccd == 0:
+        if ccd == 0:  # white
             crf = 255
             cgf = 255
             cbf = 255
-        else:
+        else:  # white -> red
             crf = 255
             cgf = 255 - cf
-            cbf = 0
+            cbf = 255 - cf
 
         cfd = "%d%% = %d / %d" % (int(100*ccd/maxcd), ccd, maxcd)
         rfd = "%d%%" % (int(100*crd/maxrd),)
