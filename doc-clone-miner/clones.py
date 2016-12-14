@@ -351,11 +351,12 @@ class CloneGroup(ABC):
         return sum(ie - ib + 1 for fn, ib, ie in self.instances)
 
 class FuzzyCloneGroup(CloneGroup):
-    def __init__(self, id, clones, clonetexts, clonewords):
+    def __init__(self, id, clones, clonetexts, clonewords, ratio=None):
         super().__init__(id)
         self.instances = clones
         self.instancetexts = clonetexts
         self.instancewords = clonewords
+        self.ratio = ratio # how much clones are like to each other/pattern
 
     def text(self, inst=0):
         return self.instancewords[0]
@@ -1206,6 +1207,15 @@ class VariativeElement(object):
             vtext += vvtexts[n] + self.clone_groups[n+1].html(allow_space_wrap=True)
 
         vtext += '<wbr/>' + vltexts
+
+        # ratio
+        gratios = []
+        for g in self.clone_groups:
+            if isinstance(g, FuzzyCloneGroup) and g.ratio is not None:
+                gratios.append(g.ratio)
+
+        if len(gratios) != 0:
+            vtext += " %0.3f" % min(gratios)
 
         return templ.substitute(
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
