@@ -230,6 +230,8 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
         ntab = ElemBrowserTab(self, uri, stats, text, fn)
         self.browserTabs.addTab(ntab, heading if heading else uri)
         self.browserTabs.tabBar().setVisible(self.browserTabs.count() > 1)
+        self.hide()
+        self.show()
 
     def bindEvents(self):
         self.actionE_xport.triggered.connect(self.exportReport)
@@ -355,7 +357,6 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                     raise Exception("Error in analysis tool!")
 
                 self.elbrui = ElemBrowserUI(path=os.path.split(infile)[0])  # preserve from GC... Again...
-                self.elbrui.show()
 
                 if methodIdx == 0 or methodIdx == 2: # Clone Miner or Fuzzy Heat
                     srcfn = infile + ".reformatted"
@@ -375,7 +376,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                         ht = path2url(
                             os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l, "pyvarelements.html"))
                         self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn)
-                elif methodIdx == 1: # Fuzzy Finder
+                elif methodIdx == 1:  # Fuzzy Finder
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
                     self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn)
                 elif methodIdx == 2:  # Fuzzy Heat
@@ -562,6 +563,24 @@ def do_fuzzy_pattern_search(inputfilename, ui, minsim, text, srctext):
         "Fuzzy Search results", "", srctext, inputfilename
     )
 
+
+class StoppableThread(threading.Thread):
+    """Thread class with a stop() method. The thread itself has to check
+    regularly for the stopped() condition.
+    http://stackoverflow.com/a/325528/539470
+    """
+
+    def __init__(self, **kwargs):
+        super(StoppableThread, self).__init__(**kwargs)
+        self._stop = threading.Event()
+
+    def stop(self):
+        self._stop.set()  # TODO: make this work...
+
+    def stopped(self):
+        return self._stop.isSet()
+
+
 def serve(inputfilename, ui, srctext):
     @bottle.route('/fuzzysearch')
     def fuzzysearch():
@@ -570,14 +589,14 @@ def serve(inputfilename, ui, srctext):
 
         def shut():
             do_fuzzy_pattern_search(inputfilename, ui, msim, text, srctext)
-            # Shutdownable.instance.shutdown()  # TODO: make it work...
+            st.stop()
         sdt = threading.Thread(target=shut)
         sdt.start()
 
         return "Searching for text <<<%s>>> with min similarity %s..." % (text, msim)
 
     # some other thread:
-    st = threading.Thread(target=lambda: bottle.run(host='127.0.0.1', port=49999, server=Shutdownable))
+    st = StoppableThread(target=lambda: bottle.run(host='127.0.0.1', port=49999, server=Shutdownable))
     st.daemon = True
     st.start()
 
