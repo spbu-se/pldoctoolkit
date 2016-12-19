@@ -10,9 +10,13 @@ import os
 import argparse
 import subprocess
 import re
-
+import bottle
+import threading
+import time
 import shutil
+
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebKit, uic
+from PyQt5.QtCore import pyqtSignal
 
 scriptdir = os.path.dirname(os.path.realpath(__file__))
 
@@ -219,6 +223,9 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
         self.path = path if path else os.path.curdir
         self.bindEvents()
 
+    shouldAddTab = pyqtSignal(str, str, str, str, str, name='shouldAddTab')
+
+    @QtCore.pyqtSlot(str, str, str, str, str)
     def addbrTab(self, uri, heading, stats, text = "", fn = ""):
         ntab = ElemBrowserTab(self, uri, stats, text, fn)
         self.browserTabs.addTab(ntab, heading if heading else uri)
@@ -226,6 +233,7 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
 
     def bindEvents(self):
         self.actionE_xport.triggered.connect(self.exportReport)
+        self.shouldAddTab.connect(self.addbrTab)
 
     @QtCore.pyqtSlot()
     def exportReport(self):
@@ -264,6 +272,7 @@ class ElemMinerProgressUI(QtWidgets.QDialog, ui_class('element_miner_progress.ui
         QtWidgets.QDialog.__init__(self, parent)
         self.setupUi(self)
         self.progressChanged.connect(self._change_progress)
+
 
 
 class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
@@ -373,6 +382,8 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                     ht = path2url(os.path.join(
                         os.path.dirname(clargs.clone_tool), "Output", "001", "densitybrowser.html"
                     ))
+
+                    serve(srcfn, self.elbrui, srctext)  # start server
                     webbrowser.open_new_tab(ht)
                     # then elbrui should wait until user selects fragment to search
                 else:
@@ -527,6 +538,48 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
     wt.start()
     return wt
 
+
+class Shutdownable(bottle.WSGIRefServer):
+    instance = None
+
+    def run(self, *args, **kw):
+        Shutdownable.instance = self
+        super(Shutdownable, self).run(*args, **kw)
+
+def do_fuzzy_pattern_search(inputfilename, ui, minsim, text, srctext):
+    outdir = inputfilename + ".fuzzypattern"
+    os.makedirs(outdir, exist_ok=True)
+    args = [
+        sys.executable, optverb, os.path.join(scriptdir, "onefuzzyclone2html.py"),
+        "-ms", minsim,
+        "-pn", text,
+        "-id", inputfilename,
+        "-od", outdir
+    ]
+    subprocess.call(args)
+    ui.shouldAddTab.emit(
+        path2url(os.path.join(outdir, "pyvarelements.html")),
+        "Fuzzy Search results", "", srctext, inputfilename
+    )
+
+def serve(inputfilename, ui, srctext):
+    @bottle.route('/fuzzysearch')
+    def fuzzysearch():
+        msim = bottle.request.query.minsim
+        text = bottle.request.query.text
+
+        def shut():
+            do_fuzzy_pattern_search(inputfilename, ui, msim, text, srctext)
+            # Shutdownable.instance.shutdown()  # TODO: make it work...
+        sdt = threading.Thread(target=shut)
+        sdt.start()
+
+        return "Searching for text <<<%s>>> with min similarity %s..." % (text, msim)
+
+    # some other thread:
+    st = threading.Thread(target=lambda: bottle.run(host='127.0.0.1', port=49999, server=Shutdownable))
+    st.daemon = True
+    st.start()
 
 class CloneMinerWorkThread(QtCore.QThread):
     def __init__(self, pui, inputfile, lengths, options):

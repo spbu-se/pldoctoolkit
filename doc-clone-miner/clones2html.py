@@ -569,6 +569,18 @@ def write_density_report():
         <meta charset="utf-8">
         <style type="text/css">
         </style>
+        <script>
+        function selctionfuzzysearch(evt) {
+          var seltext = window.getSelection().toString();
+          var minsim = window.prompt("Minimal similarity", "0.5");
+          // alert([minsim, seltext]);
+          var nloc = "http://127.0.0.1:49999/fuzzysearch?minsim=" + encodeURIComponent(minsim) +
+            "&text=" + encodeURIComponent(seltext);
+          window.location = nloc;
+        }
+        document.addEventListener("keypress", selctionfuzzysearch, false);
+        </script>
+
         </head>
         <body>
         %s
