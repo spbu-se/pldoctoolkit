@@ -23,6 +23,7 @@ import verbhtml
 import xmllexer
 import xmlfixup
 import semanticfilter
+import intervaltree
 
 from abc import ABC, abstractmethod
 
@@ -350,11 +351,12 @@ class CloneGroup(ABC):
         return sum(ie - ib + 1 for fn, ib, ie in self.instances)
 
 class FuzzyCloneGroup(CloneGroup):
-    def __init__(self, id, clones, clonetexts, clonewords):
+    def __init__(self, id, clones, clonetexts, clonewords, ratio=None):
         super().__init__(id)
         self.instances = clones
         self.instancetexts = clonetexts
         self.instancewords = clonewords
+        self.ratio = ratio # how much clones are like to each other/pattern
 
     def text(self, inst=0):
         return self.instancewords[0]
@@ -416,9 +418,8 @@ class ExactCloneGroup(CloneGroup):
         self.instances.sort(key=operator.itemgetter(0,1))
         # now instances are sorted by file then by appearance
 
-    _spacesre = re.compile(" +")
-    _nlinesre = re.compile("\n+")
-    _whspcsre = re.compile("\\s+")
+    two_or_more_spaces_re = re.compile(" {2,}")
+    two_or_more_nlines_re = re.compile("\n{2,}")
 
     def html(self, instance_no=0, allow_space_wrap=False):
         # ptext = self.plain_text(inst)
@@ -429,11 +430,12 @@ class ExactCloneGroup(CloneGroup):
         parts = xmllexer.get_texts_and_markups(so, sl, inputfiles[ifilen].lexintervals)
 
         hparts = [
-            ("<code>" if k == xmllexer.IntervalType.general else '<code class="xmlmarkup">') +
+            "<code>" +
             verbhtml.escapecode(
-                ExactCloneGroup._spacesre.sub(" ", ExactCloneGroup._nlinesre.sub(" ", t)),
-                allow_space_wrap) + "</code>"
-            for t, k in parts if not ExactCloneGroup._whspcsre.match(t)
+                ExactCloneGroup.two_or_more_spaces_re.sub(" ", ExactCloneGroup.two_or_more_nlines_re.sub(" ", t)),
+                allow_space_wrap) +
+            "</code>"
+            for t, k in parts if k == xmllexer.IntervalType.general and len(t) and not t.isspace()
         ]
 
         return "<wbr/>".join(hparts)  # can break line here
@@ -449,7 +451,6 @@ class ExactCloneGroup(CloneGroup):
         cstart = max(0, start - clength)
         cend = min(len(ifl), end + clength)
         return ifl[cstart: start - 1], ifl[start:end], ifl[end + 1: cend]
-
 
     def _inst_distance(inst1, inst2):
         file1, start1, end1 = inst1
@@ -509,7 +510,7 @@ class ExactCloneGroup(CloneGroup):
                 if ExactCloneGroup._inst_distance(c1i, c2i) < 0:
                     return infty
 
-        m = max(dists) # known to be <= borderdist
+        m = max(dists)  # known to be <= borderdist
 
         global maximalvariance
         import numpy
@@ -947,19 +948,140 @@ def loadinputs(logger):
 class VariativeElement(object):
     count = 0
 
-    def __init__(self, clone_groups: 'list(CloneGroup)'):
+    def __init__(self, clone_groups: 'list[CloneGroup]'):
         global inputfiles
 
         self.idx = self.__class__.count
         self.__class__.count += 1
 
+        group_powers = set([len(g.instances) for g in clone_groups])
+        if len(group_powers) > 1:
+            raise ValueError("VariativeElement got groups with different power")
+
         def grorder(group):  # no normal lambdas in Python...
-            file0, ost, oen = group.instances[0]  # first clone appearance
+            file0, ost, oen = group.instances[0]  # first clone appearance (fn then begin then end)
             return ost
 
         self.clone_groups = sorted(clone_groups, key=grorder)
         self.htmlvcolors = itertools.cycle(['yellow', 'lightgreen'])
         self.htmlccolors = itertools.cycle(['hotpink', 'cyan'])
+
+        self.calculated_tree_intervals = None
+        self.calculated_expanded_tree_intervals = None
+
+    @staticmethod
+    def from_tree_interval(interval: 'intervaltree.Interval') -> 'VariativeElement':
+        """
+        :param interval: Interval(begin, end, data=(this_variative_element, index of interval in this elevemnt))
+        :return: this_variative_element
+        """
+        return interval.data[0]
+
+    def __repr__(self):
+        return "[" + str(len(self.clone_groups[0].instances)) + "] " +\
+               "... ".join([cg.text().strip() for cg in self.clone_groups])
+
+    def get_tree_intervals(self, expanded=True) -> 'list[intervaltree.Interval]':
+        """
+        :return: Interval(begin, end, data=(this_variative_element, index of interval in this elevemnt))
+        """
+
+        def cce():
+            return [intervaltree.Interval(
+                b, e, data=(self, idx)
+            ) for (b, e), idx in zip(self._get_connected_clonewise_masks(expanded), itertools.count(0))]
+
+        if expanded:
+            if not self.calculated_expanded_tree_intervals:
+                self.calculated_expanded_tree_intervals = cce()
+
+            return self.calculated_expanded_tree_intervals
+        else:
+            if not self.calculated_tree_intervals:
+                self.calculated_tree_intervals = cce()
+
+            return self.calculated_tree_intervals
+
+
+    def _get_connected_clonewise_masks(self, expanded=True):
+        """
+        :return: connected masks of all groups, clone by clone
+        """
+        em = 1 if expanded else 0
+
+        def mask_g_c(group_no, clone_no):
+            f, b, e = self.clone_groups[group_no].instances[clone_no]
+            expansion = em * max(e - b, maxvariantdistance) // 2
+            return b - expansion, e + expansion
+
+        tot_grp = len(self.clone_groups)
+        grp_cln = len(self.clone_groups[0].instances)
+
+        mbeginings = [min(
+            [mask_g_c(gi, ci)[0] for gi in range(tot_grp)]
+        ) for ci in range(grp_cln)]
+
+        mendings   = [max(
+            [mask_g_c(gi, ci)[1] for gi in range(tot_grp)]
+        ) for ci in range(grp_cln)]
+
+        r = list(zip(mbeginings, mendings))
+        r.sort(key=lambda be: (be[0] + be[1]) // 2)  # in order of appearance
+        return r
+
+    @staticmethod  # was tooooo complicated for multimethod
+    def distance(i1: 'VariativeElement', i2: 'VariativeElement') -> 'int':
+        if i1 is i2:
+            return 0
+
+        # check num of clones
+        if len(i1.clone_groups[0].instances) != len(i2.clone_groups[0].instances):
+            return infty
+
+        i1masks = i1._get_connected_clonewise_masks(False)
+        i2masks = i2._get_connected_clonewise_masks(False)
+
+        dists = []
+        if True:
+            # Check ordering and calculate distances
+            # All i1 masks should be before or after corresponding i2 masks
+            one_two = None
+            for (i1b, i1e), (i2b, i2e) in zip(i1masks, i2masks):
+                if i1e < i2b:  # 1st then 2nd
+                    if one_two is False:
+                        return -1
+                    one_two = True
+                    dists.append(i2b - i1e)
+                elif i2e < i1b:  # 2nd then 1st
+                    if one_two is True:
+                        return -1
+                    one_two = False
+                    dists.append(i1b - i2e)
+                else:  # intersects
+                    return -1
+
+        d = max(dists)
+
+        logging.debug("dists: " + repr(dists) + " <= " + str(d))
+
+        global maximalvariance
+        if maximalvariance > 0:
+            import numpy
+            va = numpy.var(dists)
+            logging.debug("variance: " + str(va))
+            if va > maximalvariance:
+                return infty
+
+        # Only working with file #0 here
+        return d
+
+    def __add__(self, other: 'list(CloneGroup) | VariativeElement') -> 'VariativeElement':
+        """
+        :param other: VariativeElement to Union with left argument or list of CloneGroup
+        :return: *new* VariativeElement containing clone groups from both
+        """
+        og = other.clone_groups if isinstance(other, VariativeElement) else other
+        return VariativeElement(self.clone_groups + og)
 
     @property
     def textdescriptor(self):
@@ -998,21 +1120,53 @@ class VariativeElement(object):
 
         return result
 
-    @property
-    def html(self):
-        def esc(s):
+    def getvariationhtmls(self, position):
+        global inputfiles
+
+        def esceps(s):
             if len(s.strip()) == 0:
-                return """<span style="font-weight: bold; color: red;">&#x3b5;</span>"""
+                return """<span style="font-weight: bold; color: red;">&epsilon;</span>"""
             else:
                 return verbhtml.escapecode(s, allow_space_wrap=True)
 
+        g1 = self.clone_groups[position]
+        g2 = self.clone_groups[position + 1]
+
+        result = []
+
+        for ii in range(len(g1.instances)):
+            g1file, g1start, g1end = g1.instances[ii]
+            g2file, g2start, g2end = g2.instances[ii]
+
+            if g1file != g2file:
+                raise InternalException("Different files in variation groups")
+
+            s = g1end + 1
+            e = g2start - 1  # non-inclusive
+            l = e - s  # non-inclusive above
+            parts = xmllexer.get_texts_and_markups(s, l, inputfiles[g1file].lexintervals)
+
+            hparts = [
+                ExactCloneGroup.two_or_more_spaces_re.sub(" ", ExactCloneGroup.two_or_more_nlines_re.sub(" ", t))
+                for t, k in parts if k == xmllexer.IntervalType.general and len(t) and not t.isspace()
+                ]
+
+            result.append(" " + esceps(" ".join(hparts)) + " ")
+
+        return result
+
+    _html_idx = 0
+
+    @property
+    def html(self):
+
+        VariativeElement._html_idx += 1
+
         templ = string.Template(textwrap.dedent("""
             <tr class="${cssclass} variative" data-groups="${desc}">
-            <!-- <td>${ngrp}</td> -->
-            <!-- <td>${grps}</td> -->
+            <td class="fxd">${idx}</td>
             <td class="fxd">${clgr}</td>
-            <td class="fxd">${varel}</td>
-            <!-- <td>${varnc}</td> -->
+            ${eptsl}
             <td class="tka"><tt>${text}</tt></td>
             </tr>"""))
 
@@ -1021,44 +1175,55 @@ class VariativeElement(object):
 
         startgrp = self.clone_groups[0]
         starts = [s for (fno, s, e) in startgrp.instances]
+        endgrp = self.clone_groups[-1]
+        ends = [e for (fno, s, e) in endgrp.instances]
 
-        if self.power <= 1:  # == 1 in fact =)
-            startends = [e for (fno, s, e) in startgrp.instances]
-            vvtext = '<wbr/>'.join([
-                """<span class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">{%d}</span>"""
-                % (cstart, cend, cstart, cend, clr, no)
-                for cstart, cend, clr, no in zip(starts, startends, self.htmlccolors, itertools.count(1))
-            ])
+        nextpoints = len(self.clone_groups) - 1
+        vvariations = [self.getvariationhtmls(i) for i in range(nextpoints)]
 
-            vtext = self.clone_groups[0].html(allow_space_wrap=True) + vvtext
-        else:
-            endgrp = self.clone_groups[-1]
-            ends = [e for (fno, s, e) in endgrp.instances]
-
-            variations = self.getvariations(0)  # may be more in the future
-
-            # was """<pre style="font-weight: bold; color: red; background-color: pink;">||</pre>"""
-            vvtext = '<wbr/>'.join([
+        vvtexts = [
+            ('<span style="background-color: silver; color:red; font-weight:bold;">&#x25c0;%d&#x25c0;</span><wbr/>' % (vn,) +
+                '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">|</span><wbr/>'.join([
                 (
                     """<code class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
-                ) % (hlstart, hlend, hlstart, hlend, clr, esc(t))
+                ) % (hlstart, hlend, hlstart, hlend, clr, ' ' + t.strip() + ' ')
                 for (hlstart, hlend, clr, t) in zip(starts, ends, self.htmlvcolors, variations)
-            ])
+                ]) +
+                '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">&#x25b6;%d&#x25b6;</span>' % (vn,)
+            )
+            for variations, vn in zip(vvariations, itertools.count(1))
+        ]
 
-            vnc = numpy.var([len(v) for v in variations])
+        vltexts = '<wbr/>'.join([
+            """<span class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">{%d}</span>"""
+            % (cstart, cend, cstart, cend, clr, no)
+            for cstart, cend, clr, no in zip(starts, ends, self.htmlccolors, itertools.count(1))
+        ])
 
-            vtext = self.clone_groups[0].html(allow_space_wrap=True) + vvtext + self.clone_groups[1].html(
-                allow_space_wrap=True)
+        # vnc = max([numpy.var([len(v) for v in variations]) for variations in vvariations])
+
+        vtext = self.clone_groups[0].html(allow_space_wrap=True)
+        for n in range(len(self.clone_groups) - 1):
+            vtext += vvtexts[n] + self.clone_groups[n+1].html(allow_space_wrap=True)
+
+        vtext += '<wbr/>' + vltexts
+
+        # ratio
+        gratios = []
+        for g in self.clone_groups:
+            if isinstance(g, FuzzyCloneGroup) and g.ratio is not None:
+                gratios.append(g.ratio)
+
+        if len(gratios) != 0:
+            vtext += " %0.3f" % min(gratios)
 
         return templ.substitute(
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
-            ngrp=self.power,
-            grps=",".join([str(grp.id) for grp in self.clone_groups]) + ",",
-            clgr=self.idx + 1 if self.fuzzy else len(self.clone_groups[0].instances),
-            varel=len(self.clone_groups[0].instances) if self.fuzzy else len(self.clone_groups) - 1,
-            varnc=vnc,
-            text=vtext,
-            desc=self.textdescriptor
+            idx=VariativeElement._html_idx,
+            eptsl="" if self.fuzzy else ('<td class ="fxd" >' + str(self.power - 1) + '</td>'),
+            clgr=len(self.clone_groups[0].instances),
+            desc=self.textdescriptor,
+            text=vtext
         )
 
     @staticmethod
@@ -1110,9 +1275,12 @@ class VariativeElement(object):
             padding: 4px;
             border-width: 0 0 1px 1px;
             border-style: solid;
+            font-family: sans-serif;
         }
         th
         {
+            font-weight: normal;
+            font-size: 10pt;
             vertical-align: bottom;
         }
         td
@@ -1121,7 +1289,7 @@ class VariativeElement(object):
         }
         
         th.fxd, td.fxd {
-            width: 100px;
+            width: 65px;
         }
         
         div #source {
@@ -1174,18 +1342,16 @@ class VariativeElement(object):
         <thead>
         <tr>
         <!-- <th>Participating groups</th> -->
-        <!-- <th>e.g.</th> -->
+        <th class="fxd">${colh0}</th>
         <th class="fxd">${colh1}</th>
-        <th class="fxd">${colh2}</th>
+        ${epts}
         <!-- <th>Variance of variants</th> -->
-        <th class="tka">Candidate text:</th>
+        <th class="tka">Candidate text</th>
         </tr>
         </thead>
         <tbody>""")).substitute(**(
             {
-                'colh1': "Candidate No", 'colh2': "Num. of clones in group"
-            } if fuzzy else {
-                'colh1': "Num. of clones in group", 'colh2': "Num. of extension points"
+                'colh0': "№", 'colh1': "Clns/Grp", 'epts': "" if fuzzy else '<th class="fxd">Ext.pts</th>'
             }
         ))
 

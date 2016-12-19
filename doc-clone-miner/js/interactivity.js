@@ -234,7 +234,7 @@ window.doc_ready = function() {
         var tb = $("tbody")[0];
         var scrollbarw = tb.offsetWidth - tb.clientWidth;
         // alert(scrollbarw);
-        var fxd = 100
+        var fxd = 65
         var wh = window.innerHeight;
         var ww = window.innerWidth;
 

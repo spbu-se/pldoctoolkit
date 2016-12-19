@@ -10,7 +10,7 @@ global logger
 # logger = logging.Logger('clones.reporter')
 logger = logging  # use it this way
 
-import traceback
+import textwrap
 import os
 import sys
 import cgi
@@ -60,6 +60,9 @@ def initargs():
                         help="Max tokens of group in CSV report", default=3)
     argpar.add_argument("-mncsvgi", "--min-csv-group-instances", type=int,
                         help="Min clones in group in CSV report", default=2)
+    argpar.add_argument("-gca", "--group-combining-algorithm",
+                        choices=["interval-n-ext", "full-square"],
+                        help="Group combining algorithm", type=str, default="interval-n-ext")
 
     args = argpar.parse_args()
 
@@ -97,6 +100,9 @@ def initargs():
 
     global min_csv_group_instances
     min_csv_group_instances = args.min_csv_group_instances
+
+    global group_combining_algorithm_name
+    group_combining_algorithm_name = args.group_combining_algorithm
 
     clones.initoptions(args, logger)
 
@@ -455,84 +461,6 @@ with open(os.path.join("Output", subdir, "pygroups.html"), 'w', encoding='utf-8'
     htmlfile.write(html)
 
 
-# measure distances
-
-def findnearby201312():
-    mkdir_p(os.path.join("Output", subdir, "variations"))
-
-    # clones.clonegroups = [ kg for kg in clones.clonegroups if kg.isCorrect() ]
-
-    print("Measuring distances...")
-
-    global nearby
-    minborderdist = nearby
-
-    def sgn(n):
-        if n < 0:
-            return -1
-        elif n > 0:
-            return 1
-        else:
-            return 0
-
-    dists = {}
-
-    print("Combibibg groups...")
-    uniqp = list([gp for gp in uniqpairs(clones.clonegroups, lambda i, j: len(clones.clonegroups[i].instances) == len(
-        clones.clonegroups[j].instances))])
-    ttu = len(uniqp)
-
-    print("Filtering %d group combinations..." % ttu)
-
-    participatedgroups = set()
-
-    def c1gc2gdist(g1g2):
-        cg1, cg2 = g1g2
-        cg1, cg2 = clones.clonegroups[cg1], clones.clonegroups[cg2]
-        return clones.ExactCloneGroup.distance(cg1, cg2)
-
-    # sequential
-    for g1g2 in uniqp:
-        if ttu % 5000 == 0:
-            print("%d group pairs left" % ttu, end="       \r", flush=True)
-        ttu -= 1
-
-        d = c1gc2gdist(g1g2)
-        if 0 <= d < clones.infty:
-            dists[g1g2] = d
-            participatedgroups.add(g1g2[0])
-            participatedgroups.add(g1g2[1])
-
-    """
-    # Parallel. Does not work =)
-    print("In parellel...")
-    with cunfu.ThreadPoolExecutor() as exc:
-        parresults = exc.map(c1gc2gdist, uniqp)
-
-    print("Joining threads...")
-    parresults = list(parresults)
-
-    print("Filtering distances...")
-    for k, v in zip(uniqp, parresults):
-        if not v is None:
-            dists[k] = v
-    """
-
-    print("Participated %d groups" % len(participatedgroups))
-
-    with open(os.path.join("Output", subdir, "nearby.txt"), 'w') as nearby:
-        for gp in dists:
-            cg1 = clones.clonegroups[gp[0]]
-            cg2 = clones.clonegroups[gp[1]]
-            nearby.write("=============================\n")
-            nearby.write(cg1.text() + '\n')
-            nearby.write("---- ^^ %d ^^   | | not farther than %d chars from | | vv %d vv ----\n" % (
-                len(cg1.instances), dists[gp], len(cg2.instances)))
-            nearby.write(cg2.text() + '\n\n')
-        nearby.flush()
-
-    logger.info("Done.")
-
 def log_short_repetitions(maxtokens, minrepetitions):
     import semanticfilter
 
@@ -565,8 +493,16 @@ def combine_gruops():
                               key=lambda gr: len(gr.text()),
                               reverse=True)
 
+    group_combinators = {
+        "full-square": combine_grp.combine_gruops_par_20140819,
+        "interval-n-ext": combine_grp.combine_groups_n_ext_with_int_tree, # default
+        # TODO: "interval-2-ext": findnearby201312 # first try, 2013 -- port or delete it
+    }
+
+    group_combinator = group_combinators[group_combining_algorithm_name]
+
     if nearby:
-        combinations, remaining_groups = combine_grp.combine_gruops_par_20140819(available_groups)
+        combinations, remaining_groups = group_combinator(available_groups)
     else:
         combinations, remaining_groups = [], available_groups
 
@@ -588,8 +524,103 @@ def combine_gruops():
         os.path.join("Output", subdir, "jquery-2.0.3.min.js")
     )
 
-if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
-    log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)
 
-# findnearby201312()
-combine_gruops()
+def write_density_report():
+    with \
+        open(os.path.join("Output", subdir, "densityreport.html"), 'w', encoding='utf-8') as density_table_file,\
+        open(os.path.join("Output", subdir, "densitymap.html"), 'w', encoding='utf-8') as density_map_file,\
+        open(os.path.join("Output", subdir, "heatmap.html"), 'w', encoding='utf-8') as heat_map_file,\
+        open(os.path.join("Output", subdir, "densitybrowser.html"), 'w', encoding='utf-8') as density_browser_file:
+
+        import densityreport
+        dr = densityreport.report_densities(clones.clonegroups, clones.inputfiles)
+        h0 = textwrap.dedent("""<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        table
+        {
+            border-color: grey;
+            border-width: 1px 1px 0 0;
+            border-spacing: 0;
+            border-collapse: collapse;
+            border-style: solid;
+        }
+        td, th
+        {
+            border-color: grey;
+            margin: 0;
+            padding: 4px;
+            border-width: 0 0 1px 1px;
+            border-style: solid;
+            font-family: sans-serif;
+        }
+        </style>
+        </head>
+        <body>
+        %s
+        </body>
+        </html>""") % (dr[0],)
+
+        h1 = textwrap.dedent("""<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        </style>
+        <script>
+        function selctionfuzzysearch(evt) {
+          var seltext = window.getSelection().toString();
+          var minsim = window.prompt("Minimal similarity", "0.5");
+          // alert([minsim, seltext]);
+          var nloc = "http://127.0.0.1:49999/fuzzysearch?minsim=" + encodeURIComponent(minsim) +
+            "&text=" + encodeURIComponent(seltext);
+          window.location = nloc;
+        }
+        document.addEventListener("keypress", selctionfuzzysearch, false);
+        </script>
+
+        </head>
+        <body>
+        %s
+        </body>
+        </html>""") % (dr[1],)
+
+        h3 = textwrap.dedent("""<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        </style>
+        </head>
+        <body>
+        %s
+        </body>
+        </html>""") % (dr[2],)
+
+        density_table_file.write(h0)
+        density_map_file.write(h1)
+        heat_map_file.write(h3)
+
+        density_browser_file.write(textwrap.dedent(
+            """<!DOCTYPE html>
+            <html lang="en">
+            <head>
+            <meta charset="utf-8">
+            <style type="text/css">
+            </style>
+            </head>
+            <body style="margin: 0px; padding: 0px;">
+            <iframe name="densitymap" src="densitymap.html" style="border: 0; position:absolute; height: 100%; width: calc(100% - 200px);"></iframe>
+            <iframe name="heatmap" src="heatmap.html" style="overflow-x: hidden; border: 0; position:absolute; height: 100%; left: calc(100% - 200px); width: 200px;"></iframe>
+            </body>
+            </html>"""
+        ))
+
+if __name__ == '__main__':  #
+    if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
+        log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)
+
+    write_density_report()
+    combine_gruops()

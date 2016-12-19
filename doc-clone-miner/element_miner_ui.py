@@ -10,11 +10,15 @@ import os
 import argparse
 import subprocess
 import re
-
+import bottle
+import threading
+import time
 import shutil
+
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets, uic
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWebChannel import QWebChannel
+from PyQt5.QtCore import pyqtSignal
 
 scriptdir = os.path.dirname(os.path.realpath(__file__))
 
@@ -57,6 +61,18 @@ def adapt_path_2_win(path):
         return path
 
 
+def adapt_filename_enc_2_win():
+    import locale
+    loc2wincp = {
+        'en': 'ibm437',
+        'ru': 'windows-1251'
+    }
+    loc = locale.getlocale()
+    lng = loc[0][:2]
+    wincp = loc2wincp[lng]
+    return wincp
+
+
 def initargs():
     argpar = argparse.ArgumentParser()
     # Windows one...
@@ -65,6 +81,8 @@ def initargs():
     argpar.add_argument("-ct", "--clone-tool", help="Full path to clones.exe", default= os.path.join(scriptdir, "clone_miner", "clones.exe"))
     argpar.add_argument("-fft", "--fuzzy-finder-tool", help="Full path to CloneFinder.exe", default= os.path.join(scriptdir, "fuzzy_finder", "CloneFinder.exe"))
     argpar.add_argument("-if", "--input-file", help="Input file to analyze")
+    argpar.add_argument("-gca", "--group-combining-algorithm", help="Group combining algorithm for Clone Miner",
+                        choices=["interval-n-ext", "full-square"], type=str, default="interval-n-ext")
     global clargs
     clargs = argpar.parse_args()
 
@@ -125,11 +143,14 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     def bindEvents(self):
         self.closeButton.clicked.connect(self.close_tab)
-        self.showClonesMarkup.toggled.connect(self.show_clones_markup_toggled)
+        # self.showClonesMarkup.toggled.connect(self.show_clones_markup_toggled)
 
-    @QtCore.pyqtSlot(bool)
-    def show_clones_markup_toggled(self, v):
-        self.eval_js("window.toggleclonebrowsermarkup(%s);" % ('true' if v else 'false',))
+    # No more option to show/hide markup in element browser, always hide it.
+    # Markup should be highlighted in the source code.
+    # Use git blame to see changes.
+    # @QtCore.pyqtSlot(bool)
+    # def show_clones_markup_toggled(self, v):
+    #     self.eval_js("window.toggleclonebrowsermarkup(%s);" % ('true' if v else 'false',))
 
     @QtCore.pyqtSlot(bool)
     def enable_dict(self, e):
@@ -210,6 +231,9 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
         self.path = path if path else os.path.curdir
         self.bindEvents()
 
+    shouldAddTab = pyqtSignal(str, str, str, str, str, name='shouldAddTab')
+
+    @QtCore.pyqtSlot(str, str, str, str, str)
     def addbrTab(self, uri, heading, stats, text = "", fn = ""):
         ntab = ElemBrowserTab(self, uri, stats, text, fn)
         self.browserTabs.addTab(ntab, heading if heading else uri)
@@ -217,6 +241,7 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
 
     def bindEvents(self):
         self.actionE_xport.triggered.connect(self.exportReport)
+        self.shouldAddTab.connect(self.addbrTab)
 
     @QtCore.pyqtSlot()
     def exportReport(self):
@@ -255,6 +280,7 @@ class ElemMinerProgressUI(QtWidgets.QDialog, ui_class('element_miner_progress.ui
         QtWidgets.QDialog.__init__(self, parent)
         self.setupUi(self)
         self.progressChanged.connect(self._change_progress)
+
 
 
 class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
@@ -307,6 +333,8 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
             numparams = [int(self.lbClLen.text())]
         elif methodIdx == 1:  # Fuzzy Finder
             numparams = [slider.value() for slider in [self.slFfClLen, self.slFfEd, self.slFfHd]]
+        elif methodIdx == 2: # Fuzzy Heat
+            numparams = []
         else:
             raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -318,12 +346,15 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
             wt = self.launch_with_clone_miner(pui, infile, numparams)
         elif methodIdx == 1:  # Fuzzy Finder
             wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
+        elif methodIdx == 2:  # Fuzzy Heat
+            wt = self.launch_fuzzyheat_with_clone_miner(pui, infile)
         else:
             raise NotImplementedError("Unknown method: " + methodIdx)
 
         self.timer = QtCore.QTimer()  # preserve from GC
 
         def wait_for_result_show_results():
+            import webbrowser
             if wt.isFinished():
                 self.timer.stop()
                 pui.hide()
@@ -334,7 +365,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                 self.elbrui = ElemBrowserUI(path=os.path.split(infile)[0])  # preserve from GC... Again...
                 self.elbrui.show()
 
-                if methodIdx == 0: # Clone Miner
+                if methodIdx == 0 or methodIdx == 2: # Clone Miner or Fuzzy Heat
                     srcfn = infile + ".reformatted"
                 elif methodIdx == 1:  # Fuzzy Finder
                     srcfn = os.path.join(ffworkfolder, os.path.split(infile + ".reformatted")[-1])
@@ -355,6 +386,14 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                 elif methodIdx == 1: # Fuzzy Finder
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
                     self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn)
+                elif methodIdx == 2:  # Fuzzy Heat
+                    ht = path2url(os.path.join(
+                        os.path.dirname(clargs.clone_tool), "Output", "001", "densitybrowser.html"
+                    ))
+
+                    serve(srcfn, self.elbrui, srctext)  # start server
+                    webbrowser.open_new_tab(ht)
+                    # then elbrui should wait until user selects fragment to search
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -376,9 +415,19 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         wt = run_fuzzy_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
 
-    def launch_with_clone_miner(self, pui, infile, lengths):
-        global elbrui
+    def launch_fuzzyheat_with_clone_miner(self, pui, infile):
+        options = [
+            "-wv", "no",
+            "-minl", "5",
+            "-cmup", "no",
+            "-fint", "no",
+            "-csp", "no"
+        ]
 
+        wt = run_fuzzyheat_with_clone_miner_thread(pui, infile, options)
+        return wt
+
+    def launch_with_clone_miner(self, pui, infile, lengths):
         # easter egg -- maxvar = 0 & unchecked maxvar should avoid it from
         # combining (only single clones, no variations in output)
         # needed for debugging...
@@ -399,6 +448,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         options += ["-cmup", ["no", "yes", "shrink"][self.cbCheckMup.currentIndex()]]
         options += ["-fint", "no" if self.cbAllowInt.checkState() else "yes"]
         options += ["-csp", ["no", "yes", "nltk"][self.cbxCheckSemantics.currentIndex()]]
+        options += ["-gca", clargs.group_combining_algorithm]
 
         if dovariations and self.cbMaxVar.checkState():
             options += ["-mv", str(self.sbMaxVar.value())]
@@ -496,6 +546,140 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
     wt.start()
     return wt
 
+
+class Shutdownable(bottle.WSGIRefServer):
+    instance = None
+
+    def run(self, *args, **kw):
+        Shutdownable.instance = self
+        super(Shutdownable, self).run(*args, **kw)
+
+def do_fuzzy_pattern_search(inputfilename, ui, minsim, text, srctext):
+    outdir = inputfilename + ".fuzzypattern"
+    os.makedirs(outdir, exist_ok=True)
+    args = [
+        sys.executable, optverb, os.path.join(scriptdir, "onefuzzyclone2html.py"),
+        "-ms", minsim,
+        "-pn", text,
+        "-id", inputfilename,
+        "-od", outdir
+    ]
+    subprocess.call(args)
+    ui.shouldAddTab.emit(
+        path2url(os.path.join(outdir, "pyvarelements.html")),
+        "Fuzzy Search results", "", srctext, inputfilename
+    )
+
+def serve(inputfilename, ui, srctext):
+    @bottle.route('/fuzzysearch')
+    def fuzzysearch():
+        msim = bottle.request.query.minsim
+        text = bottle.request.query.text
+
+        def shut():
+            do_fuzzy_pattern_search(inputfilename, ui, msim, text, srctext)
+            # Shutdownable.instance.shutdown()  # TODO: make it work...
+        sdt = threading.Thread(target=shut)
+        sdt.start()
+
+        return "Searching for text <<<%s>>> with min similarity %s..." % (text, msim)
+
+    # some other thread:
+    st = threading.Thread(target=lambda: bottle.run(host='127.0.0.1', port=49999, server=Shutdownable))
+    st.daemon = True
+    st.start()
+
+class CloneMinerWorkThread(QtCore.QThread):
+    def __init__(self, pui, inputfile, lengths, options):
+        QtCore.QThread.__init__(self)
+        self.pui = pui
+        self.inputfile = inputfile
+        self.lengths = lengths
+        self.options = options
+
+        self.outs = []
+        self.fatal_error = False
+
+    def run(self):
+        cnt = 0
+        for l in self.lengths:
+            with pushd_c(os.path.dirname(clargs.clone_tool)):
+                def write_inputfiles_txt(posix2win):
+                    if posix2win:
+                        with open(os.path.join("Input", "InputFiles.txt"), 'wb+') as iftxt:
+                            # Clone Miner is non-unicode windows program,
+                            # under UN*X it it uses default encoding for specified
+                            # language given to wine
+                            iftxt.write(
+                                adapt_path_2_win(self.inputfile).encode(adapt_filename_enc_2_win())
+                            )
+                    else:
+                        with open(os.path.join("Input", "InputFiles.txt"), 'w+') as iftxt:
+                            print(adapt_path_2_win(self.inputfile), end='', file=iftxt)
+
+                write_inputfiles_txt(os.name == 'posix')
+
+                cplus = 0
+                smsg = "Mining clones of >= %d tokens..." % l
+                self.pui.progressChanged.emit(len(self.lengths) * 150, cnt * 150 + cplus, smsg)
+
+                # run clone miner
+                popen_args = [clargs.clone_tool, str(l), '0', '0']
+                if os.name == 'posix': popen_args = ["wine"] + popen_args
+                print("Mining clones with: " + ' '.join(popen_args))
+
+                cmpr = subprocess.Popen(popen_args, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
+                                        stderr=subprocess.STDOUT)
+                cmpr.communicate(input=b'\n')
+                cmrc = cmpr.returncode
+
+                cplus = 25
+
+                # rewrite InputFiles.txt again because ...
+                write_inputfiles_txt(False)  # ... because clones2html expects utf-8 there =)
+
+                smsg = "Analyzing clones of >= %d tokens..." % l
+                self.pui.progressChanged.emit(len(self.lengths) * 150, cnt * 150 + cplus, smsg)
+
+                # run clone stats
+                # pyrcom="/cygdrive/d/Python3/python.exe D:/VCSWF/docs.git/myprogs/python/CloneVisualizer/clones2html.py"
+                # cline="nice -n 20 $pyrcom -nb 100 -mv 2000 -sd $t $bl -minl 5 -cmup yes -fint no -wv yes -ph $head"
+                popen_args = [
+                                 sys.executable, optverb, os.path.join(scriptdir, "clones2html.py"),
+                                 "-sd", str(l)
+                             ] + self.options
+                print("Reporting with: " + ' '.join(popen_args))
+
+                reppr = subprocess.Popen(popen_args, stdout=subprocess.PIPE)
+                repout = ""
+                repoutc = 0
+
+                while reppr.poll() is None:
+                    pcn = 0
+                    ln = reppr.stdout.readline().decode('utf-8').strip()
+                    if repoutc == 1:
+                        repoutc = 2
+                        repout += ln
+                        cplus = 50
+                        smsg = "Combining groups..."
+                    elif repoutc == 0 and ln.startswith("=> Ntok"): # stats line
+                        repoutc = 1
+                        repout += ln + "\n"
+                    elif ln.endswith("%"):
+                        try:
+                            pcn0 = float(ln.split(" ")[-1][:-1])
+                            pcn = pcn0 if repoutc else pcn0 / 4
+                            pcn = int(pcn)
+                        except Exception as e:
+                            print("Error analyzing progress output: <<" + ln + ">> -- " + str(e))
+                        self.pui.progressChanged.emit(len(self.lengths) * 150, cnt * 150 + pcn + cplus, smsg)
+                reprc = reppr.returncode
+
+                self.outs.append(repout)
+
+                cnt += 1
+                self.pui.progressChanged.emit(len(self.lengths) * 150, cnt * 150, "Done")
+
 def run_clone_miner_thread(pui, inputfile, lengths, options):
     global clargs, app
     inputfile = inputfile.replace('/', os.sep)
@@ -503,80 +687,23 @@ def run_clone_miner_thread(pui, inputfile, lengths, options):
     pui.progressChanged.emit(len(lengths), 0, "")
     app.processEvents()
 
-    class WorkThread(QtCore.QThread):
-        def __init__(self):
-            QtCore.QThread.__init__(self)
-            self.outs = []
-            self.fatal_error = False
 
-        def run(self):
-            cnt = 0
-            for l in lengths:
-                with pushd_c(os.path.dirname(clargs.clone_tool)):
-                    with open(os.path.join("Input", "InputFiles.txt"), 'w+') as iftxt:
-                        print(adapt_path_2_win(inputfile), end='', file=iftxt)
-
-                    cplus = 0
-                    smsg = "Mining clones of >= %d tokens..." % l
-                    pui.progressChanged.emit(len(lengths) * 150, cnt * 150 + cplus, smsg)
-
-                    # run clone miner
-                    popen_args = [clargs.clone_tool, str(l), '0', '0']
-                    if os.name == 'posix': popen_args = ["wine"] + popen_args
-                    print("Mining clones with: " + ' '.join(popen_args))
-
-                    cmpr = subprocess.Popen(popen_args, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
-                                            stderr=subprocess.STDOUT)
-                    cmpr.communicate(input=b'\n')
-                    cmrc = cmpr.returncode
-
-                    cplus = 25
-                    smsg = "Analyzing clones of >= %d tokens..." % l
-                    pui.progressChanged.emit(len(lengths) * 150, cnt * 150 + cplus, smsg)
-
-                    # run clone stats
-                    # pyrcom="/cygdrive/d/Python3/python.exe D:/VCSWF/docs.git/myprogs/python/CloneVisualizer/clones2html.py"
-                    # cline="nice -n 20 $pyrcom -nb 100 -mv 2000 -sd $t $bl -minl 5 -cmup yes -fint no -wv yes -ph $head"
-                    popen_args = [
-                                     sys.executable, optverb, os.path.join(scriptdir, "clones2html.py"),
-                                     "-sd", str(l)
-                                 ] + options
-                    print("Reporting with: " + ' '.join(popen_args))
-
-                    reppr = subprocess.Popen(popen_args, stdout=subprocess.PIPE)
-                    repout = ""
-                    repoutc = 0
-
-                    while reppr.poll() is None:
-                        pcn = 0
-                        ln = reppr.stdout.readline().decode('utf-8').strip()
-                        if repoutc == 1:
-                            repoutc = 2
-                            repout += ln
-                            cplus = 50
-                            smsg = "Combining groups..."
-                        elif repoutc == 0 and ln.startswith("=> Ntok"): # stats line
-                            repoutc = 1
-                            repout += ln + "\n"
-                        elif ln.endswith("%"):
-                            try:
-                                pcn0 = float(ln.split(" ")[-1][:-1])
-                                pcn = pcn0 if repoutc else pcn0 / 4
-                                pcn = int(pcn)
-                            except Exception as e:
-                                print("Error analyzing progress output: <<" + ln + ">> -- " + str(e))
-                            pui.progressChanged.emit(len(lengths) * 150, cnt * 150 + pcn + cplus, smsg)
-                    reprc = reppr.returncode
-
-                    self.outs.append(repout)
-
-                    cnt += 1
-                    pui.progressChanged.emit(len(lengths) * 150, cnt * 150, "Done")
-
-    wt = WorkThread()
+    wt = CloneMinerWorkThread(pui, inputfile, lengths, options)
     wt.start()
     return wt
 
+
+def run_fuzzyheat_with_clone_miner_thread(pui, inputfile, options):
+    global clargs, app
+    inputfile = inputfile.replace('/', os.sep)
+
+    pui.progressChanged.emit(1, 0, "")
+    app.processEvents()
+
+
+    wt = CloneMinerWorkThread(pui, inputfile, [1], options)
+    wt.start()
+    return wt
 
 if __name__ == '__main__':
     print("Script Dir = " + scriptdir)
