@@ -582,7 +582,7 @@ def write_density_report():
         </script>
 
         </head>
-        <body>
+        <body style="overflow-x: hidden;">
         %s
         </body>
         </html>""") % (dr[1],)
@@ -594,7 +594,7 @@ def write_density_report():
         <style type="text/css">
         </style>
         </head>
-        <body>
+        <body style="overflow-x: hidden;">
         %s
         </body>
         </html>""") % (dr[2],)
