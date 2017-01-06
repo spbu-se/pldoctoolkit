@@ -12,12 +12,13 @@ import subprocess
 import re
 import bottle
 import threading
-import time
 import shutil
 
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebKit, uic
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QAction
+
+import sourcemarkers
 
 scriptdir = os.path.dirname(os.path.realpath(__file__))
 
@@ -105,6 +106,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.menu_create_di = self.menu.addAction("Add dictionary entry")
         self.menu_create_di.triggered.connect(lambda: self.eval_js("window.single2dict();"))
 
+        # TODO: only for Fuzzy Heat
         self.acceptRangeAction = QAction("&Accept", self)
         self.ignoreRangeAction = QAction("&Ignore", self)
         self.tbSrcCode.addAction(self.acceptRangeAction)
@@ -112,6 +114,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
         self.bindEvents()
         self.textBrowser.setText(stats)
+        self.editCoordinateCorrections = dict()
 
         def loaded(ok):
             print("URI loaded: " + str(ok))
@@ -147,12 +150,26 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     def acceptRange(self):
         cursor = self.tbSrcCode.textCursor()
         se = cursor.selectionStart(), cursor.selectionEnd()
+        sm = sourcemarkers.AcceptRangeMarker(se[0], se[1])
+        pt = self.tbSrcCode.toPlainText()
+        l1 = len(pt)
+        pt = sm.apply(pt)
+        dl = len(pt) - l1
+        self.editCoordinateCorrections[se[0]] = dl
+        self.tbSrcCode.setPlainText(pt)
         print("Accept range: " + repr(se))
 
     @QtCore.pyqtSlot()
     def ignoreRange(self):
         cursor = self.tbSrcCode.textCursor()
         se = cursor.selectionStart(), cursor.selectionEnd()
+        sm = sourcemarkers.IgnoreRangeMarker(se[0], se[1])
+        pt = self.tbSrcCode.toPlainText()
+        l1 = len(pt)
+        pt = sm.apply(pt)
+        dl = len(pt) - l1
+        self.editCoordinateCorrections[se[0]] = dl
+        self.tbSrcCode.setPlainText(pt)
         print("Ignore range: " + repr(se))
 
     # No more option to show/hide markup in element browser, always hide it.
@@ -213,8 +230,19 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
             global app
             app.exit(rc)
 
+    def correct_coordinate(self, b, e):
+        db = 0
+        de = 0
+        for k, v in self.editCoordinateCorrections.items():
+            if b > k:
+                db += v
+            if e >= k:
+                de += v
+        return b + db, e + de
+
     @QtCore.pyqtSlot(int, int)
-    def src_select(self, start, finish):
+    def src_select(self, start0, finish0):
+        start, finish = self.correct_coordinate(start0, finish0)
         c = self.tbSrcCode.textCursor()
         c.setPosition(start)
         c.setPosition(finish + 1, QtGui.QTextCursor.KeepAnchor)

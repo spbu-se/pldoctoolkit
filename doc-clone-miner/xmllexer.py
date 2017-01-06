@@ -11,7 +11,7 @@ import logging
 import pygments.token as ptok
 from pygments.lexers import XmlLexer
 
-
+#  TODO change this to Python 3.5+ enum when porting to PyQt 5.7+
 @enum.unique
 class IntervalType(enum.IntEnum):
     general = 0
