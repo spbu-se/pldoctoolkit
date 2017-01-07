@@ -109,8 +109,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         # TODO: only for Fuzzy Heat
         self.acceptRangeAction = QAction("&Accept", self)
         self.ignoreRangeAction = QAction("&Ignore", self)
+        self.saveSourceAction = QAction("&Save", self)
         self.tbSrcCode.addAction(self.acceptRangeAction)
         self.tbSrcCode.addAction(self.ignoreRangeAction)
+        self.tbSrcCode.addAction(self.saveSourceAction)
 
         self.bindEvents()
         self.textBrowser.setText(stats)
@@ -144,6 +146,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.closeButton.clicked.connect(self.close_tab)
         self.acceptRangeAction.triggered.connect(self.acceptRange)
         self.ignoreRangeAction.triggered.connect(self.ignoreRange)
+        self.saveSourceAction.triggered.connect(self.saveSource)
         # self.showClonesMarkup.toggled.connect(self.show_clones_markup_toggled)
 
     @QtCore.pyqtSlot()
@@ -171,6 +174,11 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.editCoordinateCorrections[se[0]] = dl
         self.tbSrcCode.setPlainText(pt)
         print("Ignore range: " + repr(se))
+
+    @QtCore.pyqtSlot()
+    def saveSource(self):
+        with open(self.fn, "w", encoding='utf8') as sf:
+            sf.write(self.tbSrcCode.toPlainText())
 
     # No more option to show/hide markup in element browser, always hide it.
     # Markup should be highlighted in the source code.

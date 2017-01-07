@@ -18,6 +18,7 @@ class IntervalType(enum.IntEnum):
     opentag = 1
     closetag = 2
     emptytag = 3
+    comment = 4  # only achieved with additional analysis
 
 
 class XmlInterval(object):
@@ -193,6 +194,26 @@ def get_texts_and_markups(offset, length, all_intervals):
 def get_plain_texts(offset, length, all_intervals):
     return [rpr for rpr, typ in get_texts_and_markups(offset, length, all_intervals) if typ == IntervalType.general]
 
+def separate_comments(intervals):
+    inside_comment = False
+    current_comment = ""
+    current_comment_offs = 0
+    for i in intervals:
+        if not inside_comment:
+            if i.int_type == IntervalType.general and not i.name and i.srepr == '<!--':
+                current_comment = i.srepr
+                current_comment_offs = i.offs
+                inside_comment = True
+            else:
+                yield i
+        else:  # inside comment
+            if i.int_type == IntervalType.general and not i.name and i.srepr == '-->':
+                current_comment += i.srepr
+                inside_comment = False
+                yield XmlInterval(IntervalType.comment, current_comment_offs, current_comment)
+                current_comment_offs = 0
+            else:
+                current_comment += i.srepr
 
 # just for testing purposes, TODO: remove it completely
 if __name__ == '__main__':
@@ -217,4 +238,15 @@ if __name__ == '__main__':
     cints, bf, bl = find_covered_intervals(1, 41, ints)
     print(bf, bl)
     for i in cints:
+        print(repr(i))
+
+
+    s = """<xml> <t>  </t><!-- comment1 -->
+    <!-- comment2 <t></t> -->
+    </xml>"""
+    ints = lex(s)
+    for i in ints:
+        print(repr(i))
+    ints = separate_comments(ints)
+    for i in ints:
         print(repr(i))
