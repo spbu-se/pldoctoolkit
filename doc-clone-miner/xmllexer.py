@@ -151,16 +151,16 @@ def lex(xmlstring):
     except Exception as e:
         logging.fatal("XML lexing:" + repr(e))
 
-offs_cache = dict()
+_offs_cache = dict()
 
 def find_covered_intervals(offset, length, all_intervals):
     """returns: [intervals], breaks_first, breaks_last"""
 
-    if not offs_cache.get(id(all_intervals)):
+    if not _offs_cache.get(id(all_intervals)):
         # This comprehension takes really long => caching. Thanks to stupid bisect which all it is for.
-        offs_cache[id(all_intervals)] = [i.offs for i in all_intervals]
+        _offs_cache[id(all_intervals)] = [i.offs for i in all_intervals]
 
-    all_offs = offs_cache[id(all_intervals)]
+    all_offs = _offs_cache[id(all_intervals)]
     i1i = bisect.bisect(all_offs, offset) - 1
     i2i = bisect.bisect(all_offs, offset + length - 1) - 1
 
@@ -198,6 +198,7 @@ def separate_comments(intervals):
     inside_comment = False
     current_comment = ""
     current_comment_offs = 0
+    idx = 0
     for i in intervals:
         if not inside_comment:
             if i.int_type == IntervalType.general and not i.name and i.srepr == '<!--':
@@ -205,12 +206,14 @@ def separate_comments(intervals):
                 current_comment_offs = i.offs
                 inside_comment = True
             else:
-                yield i
+                yield XmlInterval(i.int_type, i.offs, i.srepr, i.name, idx)
+                idx += 1
         else:  # inside comment
             if i.int_type == IntervalType.general and not i.name and i.srepr == '-->':
                 current_comment += i.srepr
                 inside_comment = False
-                yield XmlInterval(IntervalType.comment, current_comment_offs, current_comment)
+                yield XmlInterval(IntervalType.comment, current_comment_offs, current_comment, None, idx)
+                idx += 1
                 current_comment_offs = 0
             else:
                 current_comment += i.srepr

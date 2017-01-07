@@ -7,7 +7,7 @@ import textwrap
 import itertools
 import xmllexer
 import string
-
+import sourcemarkers
 
 def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: 'list(clones.InputFile)') -> 'str':
     repetition_densities = [[0] * len(ifl.text) for ifl in input_files]
@@ -109,20 +109,36 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
         ccd = cd[0]
         crd = rd[0]
 
-        def get_without_markup(ifl, b, e):
+        separated_intervals = list(xmllexer.separate_comments(ifl.lexintervals))
+
+        intervals_in_work = []
+        inig = False
+        for p in separated_intervals:
+            oit = sourcemarkers.open_marker_type(p)
+            cit = sourcemarkers.close_marker_type(p)
+            if oit:
+                inig = False
+            if cit:
+                inig = True
+            if not inig:
+                intervals_in_work.append(p)
+
+        def get_without_markup(b, e):
             l = e - b  # non-inclusive above
-            parts = xmllexer.get_texts_and_markups(b, l, ifl.lexintervals)
+
+            parts = xmllexer.get_texts_and_markups(b, l, intervals_in_work)
 
             hparts = [
                 clones.ExactCloneGroup.two_or_more_spaces_re.sub(" ", clones.ExactCloneGroup.two_or_more_nlines_re.sub("\n", t))
-                for t, k in parts if k == xmllexer.IntervalType.general and len(t) and not t.isspace()
+                for t, k in parts
+                if k in {xmllexer.IntervalType.general, xmllexer.IntervalType.comment} and len(t) and not t.isspace()
                 ]
 
             return verbhtml.escapecode(" ".join(hparts), allow_space_wrap=True)
 
         def release_portion(o):
             nonlocal prev_offset, ccd, crd
-            tx = get_without_markup(ifl, prev_offset, o)
+            tx = get_without_markup(prev_offset, o)
             section = format_crd_ccd_tx(crd, ccd, tx, fileno, prev_offset, o)
             prev_offset = o
             reports_table.append(section[0])
