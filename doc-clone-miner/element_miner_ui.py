@@ -91,7 +91,7 @@ def ui_class(name):
     return uic.loadUiType(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'qtui', name))[0]
 
 class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
-    def __init__(self, parent, uri, stats, src="", fn=""):
+    def __init__(self, parent, uri, stats, src="", fn="", save_fn=""):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
 
@@ -106,7 +106,8 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.menu_create_di = self.menu.addAction("Add dictionary entry")
         self.menu_create_di.triggered.connect(lambda: self.eval_js("window.single2dict();"))
 
-        # TODO: only for Fuzzy Heat
+        if save_fn == "":
+            self.tbSrcCode.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.acceptRangeAction = QAction("&Accept", self)
         self.ignoreRangeAction = QAction("&Ignore", self)
         self.saveSourceAction = QAction("&Save", self)
@@ -137,6 +138,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
             print("Error setting font: " + str(e))
 
         self.fn = fn
+        self.save_fn = save_fn
         self.tbSrcCode.setPlainText(src)
 
     def close_tab(self):
@@ -177,7 +179,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     @QtCore.pyqtSlot()
     def saveSource(self):
-        with open(self.fn, "w", encoding='utf8') as sf:
+        with open(self.save_fn, "w", encoding='utf8') as sf:
             sf.write(self.tbSrcCode.toPlainText())
 
     # No more option to show/hide markup in element browser, always hide it.
@@ -279,11 +281,11 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
         self.path = path if path else os.path.curdir
         self.bindEvents()
 
-    shouldAddTab = pyqtSignal(str, str, str, str, str, name='shouldAddTab')
+    shouldAddTab = pyqtSignal(str, str, str, str, str, str, name='shouldAddTab')
 
-    @QtCore.pyqtSlot(str, str, str, str, str)
-    def addbrTab(self, uri, heading, stats, text = "", fn = ""):
-        ntab = ElemBrowserTab(self, uri, stats, text, fn)
+    @QtCore.pyqtSlot(str, str, str, str, str, str)
+    def addbrTab(self, uri, heading, stats, text = "", fn = "", save_fn = ""):
+        ntab = ElemBrowserTab(self, uri, stats, text, fn, save_fn)
         self.browserTabs.addTab(ntab, heading if heading else uri)
         self.browserTabs.tabBar().setVisible(self.browserTabs.count() > 1)
         self.hide()
@@ -614,9 +616,15 @@ def do_fuzzy_pattern_search(inputfilename, ui, minsim, text, srctext):
         "-od", outdir
     ]
     subprocess.call(args)
+    savefilename = inputfilename
+    if savefilename.endswith(".reformatted"):
+        savefilename = savefilename[:-12]
+    else:
+        print("WARNING! inputfilename", inputfilename, "does not end with .reformatted")
     ui.shouldAddTab.emit(
         path2url(os.path.join(outdir, "pyvarelements.html")),
-        "Fuzzy Search results", "", srctext, inputfilename
+        "Fuzzy Search results", "", srctext, inputfilename,
+        savefilename
     )
 
 
