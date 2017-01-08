@@ -54,11 +54,19 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
 
         rf = 255 - int(crd / maxrd * 255)
         cf = int(ccd / maxcd * 255)
-        if ccd == 0:  # white
+        if ccd == -2:  # IGNORE, yellow
+            crf = 255
+            cgf = 255
+            cbf = 0
+        elif ccd == -1:  # ACCEPT, cyan
+            crf = 0
+            cgf = 255
+            cbf = 255
+        elif ccd == 0:  # density 0, white
             crf = 255
             cgf = 255
             cbf = 255
-        else:  # white -> red
+        else:  # density > 0, white -> red
             crf = 255
             cgf = 255 - cf
             cbf = 255 - cf
@@ -111,22 +119,32 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
 
         separated_intervals = list(xmllexer.separate_comments(ifl.lexintervals))
 
-        intervals_in_work = []
-        inig = False
-        for p in separated_intervals:
-            oit = sourcemarkers.open_marker_type(p)
-            cit = sourcemarkers.close_marker_type(p)
-            if oit:
-                inig = False
-            if cit:
-                inig = True
-            if not inig:
-                intervals_in_work.append(p)
+        def set_clone_density_to(xmlinterval, value):
+            be = xmlinterval.offs
+            en = xmlinterval.end
+            cd[be:en] = [value] * (en-be)
+
+        current_ignore_mode = None
+        for si in separated_intervals:
+            if si.int_type == xmllexer.IntervalType.comment:
+                omt = sourcemarkers.open_marker_type(si)
+                cmt = sourcemarkers.close_marker_type(si)
+                if omt or cmt:
+                    set_clone_density_to(si, 0)
+                if omt:
+                    current_ignore_mode = omt
+                elif cmt:
+                    current_ignore_mode = None
+            else:  # between or outside comments
+                if current_ignore_mode == 'ACCEPT':
+                    set_clone_density_to(si, -1)
+                elif current_ignore_mode == 'IGNORE':
+                    set_clone_density_to(si, -2)
 
         def get_without_markup(b, e):
             l = e - b  # non-inclusive above
 
-            parts = xmllexer.get_texts_and_markups(b, l, intervals_in_work)
+            parts = xmllexer.get_texts_and_markups(b, l, separated_intervals)
 
             hparts = [
                 clones.ExactCloneGroup.two_or_more_spaces_re.sub(" ", clones.ExactCloneGroup.two_or_more_nlines_re.sub("\n", t))
