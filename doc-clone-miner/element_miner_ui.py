@@ -445,7 +445,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                     self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn)
                 elif methodIdx == 2:  # Fuzzy Heat
                     ht = path2url(os.path.join(
-                        os.path.dirname(clargs.clone_tool), "Output", "001", "densitybrowser.html"
+                        os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0], "densitybrowser.html"
                     ))
 
                     serve(srcfn, self.elbrui, srctext)  # start server
