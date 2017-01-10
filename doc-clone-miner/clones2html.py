@@ -63,6 +63,8 @@ def initargs():
     argpar.add_argument("-gca", "--group-combining-algorithm",
                         choices=["interval-n-ext", "full-square"],
                         help="Group combining algorithm", type=str, default="interval-n-ext")
+    argpar.add_argument("-maxctl", "--max-clone-token-length", type=int, help="MAX clone length inn tokens",
+                        default=sys.maxsize)
 
     args = argpar.parse_args()
 

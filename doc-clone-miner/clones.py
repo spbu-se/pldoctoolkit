@@ -144,6 +144,9 @@ def initoptions(args, logger):
         except IOError:
             logger.warning("Can't load group ID whitelist form %s" % args.whitelist)
 
+    global max_clone_token_length
+    max_clone_token_length = args.max_clone_token_length
+
 
 # TODO: this should be enum (requires py 3.4+) and should be robably removed and replaced with xmllexer
 class TextZone(object):
@@ -681,6 +684,9 @@ class ExactCloneGroup(CloneGroup):
         # logging.info("Bad XML " + self.text())
         return True
 
+    def isTooLong(self):
+        return self.ntokens > max_clone_token_length
+
     def isBlacklisted(self):
         global inputfiles
         global clonegroups
@@ -700,6 +706,7 @@ class ExactCloneGroup(CloneGroup):
     by_too_short = 0
     by_no_semantic = 0
     by_broken_markup = 0
+    by_too_long = 0
 
     def isCorrect(self):
         global inputfiles
@@ -707,6 +714,10 @@ class ExactCloneGroup(CloneGroup):
 
         if self.isBlacklisted():
             # logger.debug("blacklisted")
+            return False
+
+        if self.isTooLong():
+            ExactCloneGroup.by_too_long += 1
             return False
 
         if self.isLessThanAllowed():
