@@ -352,7 +352,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         self.cbMaxVar.stateChanged.connect(self.cbMaxVar_checked)
         self.cbMethod.currentIndexChanged.connect(self.methodSelected)
 
-        for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd]:
+        for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd, self.slClLen_f]:
             slider.valueChanged.connect(self.slider_moved)
 
     @QtCore.pyqtSlot(int)
@@ -386,7 +386,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         elif methodIdx == 1:  # Fuzzy Finder
             numparams = [slider.value() for slider in [self.slFfClLen, self.slFfEd, self.slFfHd]]
         elif methodIdx == 2: # Fuzzy Heat
-            numparams = []
+            numparams = [int(self.lbClLen_f.text())]
         else:
             raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -399,7 +399,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         elif methodIdx == 1:  # Fuzzy Finder
             wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
         elif methodIdx == 2:  # Fuzzy Heat
-            wt = self.launch_fuzzyheat_with_clone_miner(pui, infile)
+            wt = self.launch_fuzzyheat_with_clone_miner(pui, infile, numparams)
         else:
             raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -466,16 +466,16 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         wt = run_fuzzy_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
 
-    def launch_fuzzyheat_with_clone_miner(self, pui, infile):
+    def launch_fuzzyheat_with_clone_miner(self, pui, infile, numparamps):
         options = [
             "-wv", "no",
             "-minl", "5",
             "-cmup", "no",
             "-fint", "no",
-            "-csp", "no"
+            "-csp", "no",
         ]
 
-        wt = run_fuzzyheat_with_clone_miner_thread(pui, infile, options)
+        wt = run_fuzzyheat_with_clone_miner_thread(pui, infile, options, numparamps)
         return wt
 
     def launch_with_clone_miner(self, pui, infile, lengths):
@@ -768,15 +768,14 @@ def run_clone_miner_thread(pui, inputfile, lengths, options):
     return wt
 
 
-def run_fuzzyheat_with_clone_miner_thread(pui, inputfile, options):
+def run_fuzzyheat_with_clone_miner_thread(pui, inputfile, options, numparams):
     global clargs, app
     inputfile = inputfile.replace('/', os.sep)
 
     pui.progressChanged.emit(1, 0, "")
     app.processEvents()
 
-
-    wt = CloneMinerWorkThread(pui, inputfile, [1], options)
+    wt = CloneMinerWorkThread(pui, inputfile, numparams, options)
     wt.start()
     return wt
 
