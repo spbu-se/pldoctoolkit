@@ -73,7 +73,7 @@ def find_like_pattern(inputfile, pattern, ms):
         tp = jt(inputfile_token_texts[o:o+len(pattern_tokens)])
         r = lratio(jp, tp)
         if r >= ms:
-            found.append((o, r))
+            found.append((o + 1, r))  # TODO: why +1 makes better there?..
 
     # detect peaks
     peaks = []
