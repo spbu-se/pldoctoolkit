@@ -106,8 +106,9 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.menu_create_di = self.menu.addAction("Add dictionary entry")
         self.menu_create_di.triggered.connect(lambda: self.eval_js("window.single2dict();"))
 
-        if save_fn == "":
+        if save_fn == "":  # NOT fuzzy pattern search scenario
             self.tbSrcCode.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
+
         self.acceptRangeAction = QAction("&Accept", self)
         self.ignoreRangeAction = QAction("&Ignore", self)
         self.saveSourceAction = QAction("&Save", self)
@@ -139,7 +140,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
         self.fn = fn
         self.save_fn = save_fn
-        self.tbSrcCode.setPlainText(src)
+        if save_fn == "":  # NOT fuzzy pattern search scenario
+            self.tbSrcCode.setPlainText(src)
+        else:
+            self.tbSrcCode.setHtml(sourcemarkers.source_text_to_html(src))
 
     def close_tab(self):
         self.parent().removeWidget(self)

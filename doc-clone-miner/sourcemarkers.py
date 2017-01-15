@@ -9,6 +9,7 @@ from abc import ABCMeta, abstractmethod
 import uuid
 import re
 import xmllexer
+import verbhtml
 
 class RangeMarker(metaclass=ABCMeta):
     id = None
@@ -75,6 +76,27 @@ def close_marker_type(str_or_xi):
         for m in _close_marker_re.finditer(text):
             return m.groups(1)[0]  # ACCEPT|IGNORE
     return None
+
+def source_text_to_html(src):
+    begins = [m.span()[0] for m in  _open_marker_re.finditer(src)]
+    ends   = [m.span()[1] for m in  _close_marker_re.finditer(src)]
+    if len(begins) != len(ends):
+        import sys
+        print(
+            "Source contains", len(begins), "opening markes and", len(ends), "closing",
+            file=sys.stderr)
+        return verbhtml.escapecode(src)
+    else:
+        result = ""
+        curoff = 0
+        for b, e in zip(begins, ends):
+            result += verbhtml.escapecode(src[curoff:b]) + \
+                """<span style="color: grey;">""" + \
+                verbhtml.escapecode(src[b:e]) + \
+                """</span>"""
+            curoff = e
+        result += verbhtml.escapecode(src[curoff:])
+        return result
 
 if __name__ == '__main__':  # tests
     xi = xmllexer.XmlInterval(xmllexer.IntervalType.comment, 100,
