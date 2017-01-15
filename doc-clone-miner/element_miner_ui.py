@@ -158,10 +158,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         sm = sourcemarkers.AcceptRangeMarker(se[0], se[1])
         pt = self.tbSrcCode.toPlainText()
         l1 = len(pt)
-        pt = sm.apply(pt)
+        sm.apply(pt, cursor)
         dl = len(pt) - l1
         self.editCoordinateCorrections[se[0]] = dl
-        self.tbSrcCode.setPlainText(pt)
+        # self.tbSrcCode.setPlainText(pt)
         print("Accept range: " + repr(se))
 
     @QtCore.pyqtSlot()
@@ -171,10 +171,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         sm = sourcemarkers.IgnoreRangeMarker(se[0], se[1])
         pt = self.tbSrcCode.toPlainText()
         l1 = len(pt)
-        pt = sm.apply(pt)
+        sm.apply(pt, cursor)
         dl = len(pt) - l1
         self.editCoordinateCorrections[se[0]] = dl
-        self.tbSrcCode.setPlainText(pt)
+        # self.tbSrcCode.setPlainText(pt)
         print("Ignore range: " + repr(se))
 
     @QtCore.pyqtSlot()
@@ -246,7 +246,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         for k, v in self.editCoordinateCorrections.items():
             if b > k:
                 db += v
-            if e >= k:
+            if e > k:
                 de += v
         return b + db, e + de
 

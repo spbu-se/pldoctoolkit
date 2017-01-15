@@ -23,13 +23,22 @@ class RangeMarker(metaclass=ABCMeta):
     def marker_type(self):
         pass
 
-    def apply(self, text):
+    def apply(self, text, qtCursor=None):
         tt = self.marker_type()
         u = str(RangeMarker.id)
-        return """%s<!-- %s <=< %s -->%s<!-- %s >=> %s -->%s""" % (
-            text[:self.begin], u, tt,
-            text[self.begin:self.end],
-            tt, u, text[self.end:])
+        if qtCursor:
+            col = "cyan" if self.marker_type() == "ACCEPT" else "yellow"
+            qtCursor.insertHtml(
+                """<span style="background-color: %s">&lt;!-- %s &lt;=&lt; %s --&gt;<b>%s</b>&lt;!-- %s &gt;=&gt; %s --&gt;</span>""" % (
+                col, u, tt,
+                text[self.begin:self.end],
+                tt, u))
+            return None
+        else:
+            return """%s<!-- %s <=< %s -->%s<!-- %s >=> %s -->%s""" % (
+                text[:self.begin], u, tt,
+                text[self.begin:self.end],
+                tt, u, text[self.end:])
 
 class AcceptRangeMarker(RangeMarker):
     def __init__(self, begin, end):
