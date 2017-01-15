@@ -7,11 +7,13 @@
 def escape(s):
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')  # html.escape(s)
 
+def escapen(s):
+    # not os.linesep to be more precise on length
+    return escape(s).replace('\n', '<br/>\n')
 
 def escapecode(s, allow_space_wrap=False):
-    s = escape(s)
+    s = escapen(s)
     # s = s.replace('\r', '') # should not be there already
-    s = s.replace('\n', '<br/>\n')  # not os.linesep to be more precise on length
     if not allow_space_wrap:
         s = s.replace(' ', '&nbsp;')
     s = s.replace('\t', '&nbsp;&nbsp;&nbsp;&nbsp;')

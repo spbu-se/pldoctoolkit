@@ -140,9 +140,9 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
         self.fn = fn
         self.save_fn = save_fn
-        if save_fn == "":  # NOT fuzzy pattern search scenario
+        if True:  # save_fn == "":  # NOT fuzzy pattern search scenario
             self.tbSrcCode.setPlainText(src)
-        else:
+        else:  # Not implemented correctly yet...
             self.tbSrcCode.setHtml(sourcemarkers.source_text_to_html(src))
 
     def close_tab(self):

@@ -9,6 +9,8 @@ import os
 import shutil
 import re
 import Levenshtein
+import sourcemarkers
+import intervaltree
 
 from xmllexer import IntervalType
 
@@ -42,6 +44,13 @@ def tokens(text):
 
 
 def find_like_pattern(inputfile, pattern, ms):
+    # Support ignored/accepted ranges
+    marked = sourcemarkers.find_marked_intervals(inputfile.text)
+    marked_tree = intervaltree.IntervalTree([
+        intervaltree.Interval(b, e)  # include e here to simulate closed interval
+        for b, e, t in marked
+    ])
+
     # Tokenize both document and pattern
     textintervals = [i for i in inputfile.lexintervals if i.int_type == IntervalType.general]
 
@@ -98,9 +107,11 @@ def find_like_pattern(inputfile, pattern, ms):
     for bo, clr in fpeaks:
         cb = inputfile_tokens[bo][0]
         ce = inputfile_tokens[bo + len(pattern_tokens) - 1][1]
-        cwords = inputfile_token_texts[bo:bo+len(pattern_tokens)]
-        ctext = inputfile.text[cb:ce]
-        results.append((cb, ce - 1, clr, ctext, cwords))
+
+        if not marked_tree.search(cb, ce):  # skip results intersecting with already marked
+            cwords = inputfile_token_texts[bo:bo+len(pattern_tokens)]
+            ctext = inputfile.text[cb:ce]
+            results.append((cb, ce - 1, clr, ctext, cwords))
 
     return results
 

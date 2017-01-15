@@ -10,6 +10,7 @@ import uuid
 import re
 import xmllexer
 import verbhtml
+import sys
 
 class RangeMarker(metaclass=ABCMeta):
     id = None
@@ -55,7 +56,6 @@ class IgnoreRangeMarker(RangeMarker):
     def marker_type(self):
         return "IGNORE"
 
-
 # http://stackoverflow.com/a/12843265/539470
 _uuid_re_text = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
 _open_marker_re = re.compile("<!-- %s <=< (ACCEPT|IGNORE) -->" % (_uuid_re_text,))
@@ -77,26 +77,40 @@ def close_marker_type(str_or_xi):
             return m.groups(1)[0]  # ACCEPT|IGNORE
     return None
 
-def source_text_to_html(src):
-    begins = [m.span()[0] for m in  _open_marker_re.finditer(src)]
-    ends   = [m.span()[1] for m in  _close_marker_re.finditer(src)]
-    if len(begins) != len(ends):
-        import sys
+def find_marked_intervals(src):
+    obes = [m.span() for m in  _open_marker_re.finditer(src)]
+    cbes = [m.span() for m in  _close_marker_re.finditer(src)]
+
+    if len(obes) != len(cbes):
         print(
-            "Source contains", len(begins), "opening markes and", len(ends), "closing",
+            "Source contains", len(obes), "opening markes and", len(cbes), "closing",
             file=sys.stderr)
-        return verbhtml.escapecode(src)
-    else:
-        result = ""
-        curoff = 0
-        for b, e in zip(begins, ends):
-            result += verbhtml.escapecode(src[curoff:b]) + \
-                """<span style="color: grey;">""" + \
-                verbhtml.escapecode(src[b:e]) + \
-                """</span>"""
-            curoff = e
-        result += verbhtml.escapecode(src[curoff:])
-        return result
+        return []
+
+    intervals = []
+    for (ob, oe), (cb, ce) in zip(obes, cbes):
+        mt = open_marker_type(src[ob:oe])
+        if mt != close_marker_type(src[cb:ce]):
+            print("UNBALANCED MARKERS:", src[ob:ce], file=sys.stderr)
+            continue
+        intervals.append((ob, ce, mt))
+
+    return intervals
+
+def source_text_to_html(src):
+    raise NotImplementedError()  # TODO: try to implement it...
+
+    intervals = find_marked_intervals(src)
+    result = ""
+    curoff = 0
+    for b, e, t in intervals:
+        result += verbhtml.escapen(src[curoff:b]) + \
+            """<span style="color: grey;">""" + \
+            verbhtml.escapen(src[b:e]) + \
+            """</span>"""
+        curoff = e
+    result += verbhtml.escapen(src[curoff:])
+    return result
 
 if __name__ == '__main__':  # tests
     xi = xmllexer.XmlInterval(xmllexer.IntervalType.comment, 100,
