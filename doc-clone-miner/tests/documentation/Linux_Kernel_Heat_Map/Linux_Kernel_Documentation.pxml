@@ -7326,7 +7326,7 @@ The wrapper functions and interfaces are written by Thomas Gleixner.
 Many users have provided bugfixes, improvements and helping hands for testing.
 Thanks a lot.
 
-The following people have contributed to this document:
+<!-- 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 <=< ACCEPT -->The following people have contributed to this document:<!-- ACCEPT >=> 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 -->
 
 Thomas Gleixnertglx@linutronix.de
 Linux Security Modules:  General Security Hooks for LinuxStephenSmalleyNAI Labsssmalley@nai.comTimothyFraserNAI Labstfraser@nai.comChrisVanceNAI Labscvance@nai.comIntroduction
@@ -8081,6 +8081,7 @@ read into the spare area then the calling function must provide a
 buffer. The buffer size per page is determined by the oobfree array in
 the nand_oobinfo structure.
 
+<!-- 6a93603b-1564-47fd-b497-140110e1d139 <=< IGNORE -->
 If the spare area buffer is NULL then only the ECC placement is
 done according to the default builtin scheme.
 Spare area autoplacement default schemes256 byte pagesizeOffsetContentComment0x00ECC byte 0Error correction code byte 00x01ECC byte 1Error correction code byte 10x02ECC byte 2Error correction code byte 20x03Autoplace 00x04Autoplace 10x05Bad block markerIf any bit in this byte is zero, then this block is bad.
@@ -8120,6 +8121,8 @@ data in this page0x3DECC byte 21Error correction code byte 0 of the eighth 256 B
 in this page0x3EECC byte 22Error correction code byte 1 of the eighth 256 Bytes of data
 in this page0x3FECC byte 23Error correction code byte 2 of the eighth 256 Bytes of data
 in this pageFilesystem support
+<!-- IGNORE >=> 6a93603b-1564-47fd-b497-140110e1d139 -->
+
 The NAND driver provides all neccecary functions for a
 filesystem via the MTD interface.
 
@@ -8258,12 +8261,12 @@ The functions marked with [DEFAULT] might be relevant for a board driver develop
 X!Idrivers/mtd/nand/nand_ecc.c
 --&gt;
 Credits
-The following people have contributed to the NAND driver:
+<!-- 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 <=< IGNORE -->The following people have contributed to the NAND driver:<!-- IGNORE >=> 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 -->
 Steven J. Hillsjhill@realitydiluted.comDavid Woodhousedwmw2@infradead.orgThomas Gleixnertglx@linutronix.de
 A lot of users have provided bugfixes, improvements and helping hands for testing.
 Thanks a lot.
 
-The following people have contributed to this document:
+<!-- 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 <=< ACCEPT -->The following people have contributed to this document:<!-- ACCEPT >=> 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 -->
 Thomas Gleixnertglx@linutronix.de
 Linux Networking and Network Devices APIs
 <!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
@@ -8346,7 +8349,7 @@ The following people have contributed to the RapidIO
 subsystem directly or indirectly:
 Matt Portermporter@kernel.crashing.orgRandy Vinsonrvinson@mvista.comDan Malekdan@embeddedalley.com
 
-The following people have contributed to this document:
+<!-- 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 <=< ACCEPT -->The following people have contributed to this document:<!-- ACCEPT >=> 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 -->
 Matt Portermporter@kernel.crashing.org
 Voltage and current regulator APILiamGirdwoodlrg@slimlogic.co.ukMarkBrownWolfson Microelectronicsbroonie@opensource.wolfsonmicro.com2007-2008Wolfson Microelectronics2008Liam Girdwood
 <!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->
@@ -8568,7 +8571,7 @@ indirectly using basic infrastructure in the common I/O layer.
 One example is the support for adapter interrupts.
 
 SCSI Interfaces GuideJamesBottomleyJames.Bottomley@hansenpartnership.comRobLandleyrob@landley.net2007Linux Foundation
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2.
 
@@ -8576,7 +8579,7 @@ This program is distributed in the hope that it will be
 useful, but WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 IntroductionProtocol vs bus
 Once upon a time, the Small Computer Systems Interface defined both
 a parallel I/O bus and a data protocol to connect a wide variety of
