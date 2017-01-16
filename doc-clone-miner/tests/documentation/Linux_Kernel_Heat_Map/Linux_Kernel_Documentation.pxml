@@ -9690,26 +9690,26 @@ so the driver can start whenever it&#39;s needed.
 The mount options for usbfs, usable in /etc/fstab or
 in command line invocations of mount, are:
 
-busgid=NNNNNControls the GID used for the
+<!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->busgid=NNNNNControls the GID used for the
 /proc/bus/usb/BBB
-directories.  (Default: 0)busmode=MMMControls the file mode used for the
+directories.  (Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->busmode=MMMControls the file mode used for the
 /proc/bus/usb/BBB
-directories.  (Default: 0555)
-busuid=NNNNNControls the UID used for the
+directories.  (Default: 0555)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 -->
+<!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->busuid=NNNNNControls the UID used for the
 /proc/bus/usb/BBB
-directories.  (Default: 0)devgid=NNNNNControls the GID used for the
+directories.  (Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->devgid=NNNNNControls the GID used for the
 /proc/bus/usb/BBB/DDD
-files.  (Default: 0)devmode=MMMControls the file mode used for the
+files.  (Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->devmode=MMMControls the file mode used for the
 /proc/bus/usb/BBB/DDD
-files.  (Default: 0644)devuid=NNNNNControls the UID used for the
+files.  (Default: 0644)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --<!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->>devuid=NNNNNControls the UID used for the
 /proc/bus/usb/BBB/DDD
-files.  (Default: 0)listgid=NNNNNControls the GID used for the
+files.  (Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->listgid=NNNNNControls the GID used for the
 /proc/bus/usb/devices and drivers files.
-(Default: 0)listmode=MMMControls the file mode used for the
+(Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->listmode=MMMControls the file mode used for the
 /proc/bus/usb/devices and drivers files.
-(Default: 0444)listuid=NNNNNControls the UID used for the
+(Default: 0444)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->listuid=NNNNNControls the UID used for the
 /proc/bus/usb/devices and drivers files.
-(Default: 0)
+(Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 -->
 
 Note that many Linux distributions hard-wire the mount options
 for usbfs in their init scripts, such as
@@ -9862,7 +9862,7 @@ struct usbdevfs_connectinfo {
 unsigned int   devnum;
 unsigned char  slow;
 };
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 You can&#39;t tell whether a &quot;not slow&quot;
 device is connected at high speed (480 MBit/sec)
 or just full speed (12 MBit/sec).
@@ -9901,7 +9901,7 @@ wrapper.data = param;
 
 return ioctl (fd, USBDEVFS_IOCTL, &amp;amp;wrapper);
 }
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 
 This request lets kernel drivers talk to user mode code
 through filesystem operations even when they don&#39;t create
@@ -10088,16 +10088,16 @@ time reflects when the request was initiated.
 This contrasts with their use with the synchronous requests,
 where it reflects when requests complete.
 USBDEVFS_DISCARDURBTBS
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 
 USBDEVFS_DISCSIGNALTBS
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 
 USBDEVFS_REAPURBTBS
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 
 USBDEVFS_REAPURBNDELAYTBS
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 
 USBDEVFS_SUBMITURBTBS
 &lt;!-- vim:syntax=sgml:sw=4
