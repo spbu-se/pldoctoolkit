@@ -2,7 +2,7 @@
 <plainxml>The 802.11 subsystems &amp;ndash; for kernel developers
 Explaining wireless 802.11 networking in the Linux kernel
 2007-2009Johannes BergJohannesBergjohannes@sipsolutions.net
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -17,7 +17,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 
 These books attempt to give a description of the
 various subsystems that play a role in 802.11 wireless
@@ -144,7 +144,7 @@ Aggregation
 SynchronisationTBDLocking, lots of RCUThe 802.11 subsystems &amp;ndash; for kernel developers
 Explaining wireless 802.11 networking in the Linux kernel
 2007-2009Johannes BergJohannesBergjohannes@sipsolutions.net
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -159,7 +159,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 
 These books attempt to give a description of the
 various subsystems that play a role in 802.11 wireless
@@ -317,7 +317,7 @@ Jack Abstraction Layer API
 ISA DMA Helpers
 Other Helper Macros
 Debug objects life timeThomasGleixnertglx@linutronix.de2008Thomas Gleixner
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -332,7 +332,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 debugobjects is a generic infrastructure to track the life time
 of kernel objects and validate the operations on those.
@@ -581,7 +581,7 @@ a real fixup.
 Known Bugs And Assumptions
 None (knock on wood).
 Linux Device Drivers
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -598,7 +598,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Driver BasicsDriver Entry and Exit points
 Atomic and pointer manipulation
 Delaying, scheduling, and timer routines
@@ -801,7 +801,7 @@ low-latency and full duplex communication.
 
 
 Bus-Independent Device AccessesMatthewWilcoxmatthew@wil.cxAlanCoxalan@lxorguk.ukuu.org.uk2001Matthew Wilcox
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -818,7 +818,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 Linux provides an API which abstracts performing IO across all busses
 and devices, allowing device drivers to be written independently of
@@ -831,7 +831,7 @@ That is, a part of the CPU&#39;s address space is interpreted
 not as accesses to memory, but as accesses to a device.  Some
 architectures define devices to be at a fixed address, but most
 have some method of discovering devices.  The PCI bus walk is a
-good example of such a scheme.	This document does not cover how
+good example of such a scheme.    This document does not cover how
 to receive such an address, but assumes you are starting with one.
 Physical addresses are of type unsigned long.
 
@@ -847,7 +847,7 @@ address space each time you call ioremap, and
 they can run out unless you call iounmap.
 Accessing the device
 The part of the interface most used by drivers is reading and
-writing memory-mapped registers on the device.	Linux provides
+writing memory-mapped registers on the device.    Linux provides
 interfaces to read and write 8-bit, 16-bit, 32-bit and 64-bit
 quantities.  Due to a historical accident, these are named byte,
 word, long and quad accesses.  Both read and write accesses are
@@ -2737,7 +2737,7 @@ _DRM_PRE_MODESET command, so that the counter won&#39;t go backwards
 Include auto-generated API reference here (need to reference it
 from paragraphs above too).
 Linux Filesystems API
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -2754,7 +2754,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 The Linux VFSThe Filesystem types
 The Directory Cache
 Inode Handling
@@ -2952,7 +2952,7 @@ Pipe interfaces are all for in-kernel (builtin image) use.
 They are not exported for use by modules.
 
 USB Gadget API for Linux20 August 200420 August 2004
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -2969,7 +2969,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 2003-2004David BrownellDavidBrownelldbrownell@users.sourceforge.netIntroductionThis document presents a Linux-USB &quot;Gadget&quot;
 kernel mode
 API, for use within peripherals and other USB devices
@@ -3483,7 +3483,7 @@ to HNP or SRP protocols.
 &lt;!--
 vim:syntax=sgml:sw=4
 --&gt;Linux generic IRQ handlingThomasGleixnertglx@linutronix.deIngoMolnarmingo@elte.hu2005-2010Thomas Gleixner2005-2006Ingo Molnar
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -3498,7 +3498,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 The generic interrupt handling layer is designed to provide a
 complete abstraction of interrupt handling for device drivers.
@@ -3725,7 +3725,7 @@ enable_irq() the pending bit is checked and if it is set, the
 interrupt is resent either via hardware or by a software resend
 mechanism. (It&#39;s necessary to enable CONFIG_HARDIRQS_SW_RESEND when
 you want to use the delayed interrupt disable feature and your
-hardware is not capable of retriggering	an interrupt.)
+hardware is not capable of retriggering    an interrupt.)
 The delayed interrupt disable is not configurable.
 Chip-level hardware encapsulation
 The chip-level hardware descriptor structure irq_chip
@@ -3770,7 +3770,7 @@ Credits
 The following people have contributed to this document:
 Thomas Gleixnertglx@linutronix.deIngo Molnarmingo@elte.hu
 The Linux Kernel API
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -3787,7 +3787,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Data TypesDoubly Linked Lists
 Basic C Library Functions
 When writing drivers, you cannot in general use routines which are
@@ -3882,7 +3882,7 @@ for interface clocking.
 
 
 Unreliable Guide To Hacking The Linux KernelRustyRussellrusty@rustcorp.com.au2005Rusty Russell
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -3899,7 +3899,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 
 This is the first release of this document as part of the kernel tarball.
 Introduction
@@ -4584,7 +4584,7 @@ Arcangeli added caveats. Michael Elizabeth Chastain for checking
 and adding to the Configure section. &lt;!-- Rusty insisted on this
 bit; I didn&#39;t do it! --&gt; Telsa Gwynne for teaching me DocBook.
 Unreliable Guide To LockingRustyRussellrusty@rustcorp.com.au2003Rusty Russell
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -4601,7 +4601,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 Welcome, to Rusty&#39;s Remarkably Unreliable Guide to Kernel
 Locking issues.  This document describes the locking systems in
@@ -4978,8 +4978,8 @@ The change is shown below, in standard patch format: the
 - are lines which are taken away, and the
 + are lines which are added.
 
---- cache.c.usercontext	2003-12-09 13:58:54.000000000 +1100
-+++ cache.c.interrupt	2003-12-09 14:07:49.000000000 +1100
+--- cache.c.usercontext    2003-12-09 13:58:54.000000000 +1100
++++ cache.c.interrupt    2003-12-09 14:07:49.000000000 +1100
 @@ -12,7 +12,7 @@
 int popularity;
 };
@@ -5076,8 +5076,8 @@ Whoever drops it to zero knows it is unused, and can actually delete it.
 
 Here is the code:
 
---- cache.c.interrupt	2003-12-09 14:25:43.000000000 +1100
-+++ cache.c.refcnt	2003-12-09 14:33:05.000000000 +1100
+--- cache.c.interrupt    2003-12-09 14:25:43.000000000 +1100
++++ cache.c.refcnt    2003-12-09 14:33:05.000000000 +1100
 @@ -7,6 +7,7 @@
 struct object
 {
@@ -5186,8 +5186,8 @@ atomic_dec_and_test are used instead of the
 standard increment and decrement operators, and the lock is no longer
 used to protect the reference count itself.
 
---- cache.c.refcnt	2003-12-09 15:00:35.000000000 +1100
-+++ cache.c.refcnt-atomic	2003-12-11 15:49:42.000000000 +1100
+--- cache.c.refcnt    2003-12-09 15:00:35.000000000 +1100
++++ cache.c.refcnt-atomic    2003-12-11 15:49:42.000000000 +1100
 @@ -7,7 +7,7 @@
 struct object
 {
@@ -5293,8 +5293,8 @@ chain), possibly with a separate per-object lock.
 
 Here is the &quot;lock-per-object&quot; implementation:
 
---- cache.c.refcnt-atomic	2003-12-11 15:50:54.000000000 +1100
-+++ cache.c.perobjectlock	2003-12-11 17:15:03.000000000 +1100
+--- cache.c.refcnt-atomic    2003-12-11 15:50:54.000000000 +1100
++++ cache.c.perobjectlock    2003-12-11 17:15:03.000000000 +1100
 @@ -6,11 +6,17 @@
 
 struct object
@@ -5597,8 +5597,8 @@ callback is triggered.  The real Read Copy Update code is a
 little more optimized than this, but this is the fundamental
 idea.
 
---- cache.c.perobjectlock	2003-12-11 17:15:03.000000000 +1100
-+++ cache.c.rcupdate	2003-12-11 17:55:14.000000000 +1100
+--- cache.c.perobjectlock    2003-12-11 17:15:03.000000000 +1100
++++ cache.c.rcupdate    2003-12-11 17:55:14.000000000 +1100
 @@ -1,15 +1,18 @@
 #include &amp;lt;linux/list.h&amp;gt;
 #include &amp;lt;linux/slab.h&amp;gt;
@@ -7157,7 +7157,7 @@ method, ata_pio_devchk, and in general all the early probing was
 based on extensive study of Hale Landis&#39;s probe/reset code in his
 ATADRVR driver (www.ata-atapi.com).
 Reed-Solomon Library Programming InterfaceThomasGleixnertglx@linutronix.de2004Thomas Gleixner
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -7172,7 +7172,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 The generic Reed-Solomon Library provides encoding, decoding
 and error correction functions.
@@ -7543,7 +7543,7 @@ MauroChehabCarvalhomchehab@redhat.comInitial version.2009-2012Mauro Carvalho Che
 &amp;sub-fdl-appendix;
 
 MTD NAND Driver Programming InterfaceThomasGleixnertglx@linutronix.de2004Thomas Gleixner
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -7558,7 +7558,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 The generic NAND driver supports almost all NAND and AG-AND based
 chips and connects them to the Memory Technology Devices (MTD)
@@ -8028,10 +8028,10 @@ is used instead of the default placement scheme.
 Placement schemes are defined by a nand_oobinfo structure
 
 struct nand_oobinfo {
-int	useecc;
-int	eccbytes;
-int	eccpos[24];
-int	oobfree[8][2];
+int    useecc;
+int    eccbytes;
+int    eccpos[24];
+int    oobfree[8][2];
 };
 
 useecc
@@ -8150,19 +8150,19 @@ These constants are defined in nand.h. They are ored together to describe
 the chip functionality.
 
 /* Buswitdh is 16 bit */
-#define NAND_BUSWIDTH_16	0x00000002
+#define NAND_BUSWIDTH_16    0x00000002
 /* Device supports partial programming without padding */
-#define NAND_NO_PADDING		0x00000004
+#define NAND_NO_PADDING        0x00000004
 /* Chip has cache program function */
-#define NAND_CACHEPRG		0x00000008
+#define NAND_CACHEPRG        0x00000008
 /* Chip has copy back function */
-#define NAND_COPYBACK		0x00000010
+#define NAND_COPYBACK        0x00000010
 /* AND Chip which has 4 banks and a confusing page / block
 * assignment. See Renesas datasheet for further information */
-#define NAND_IS_AND		0x00000020
+#define NAND_IS_AND        0x00000020
 /* Chip has a array of 4 pages which can be read without
 * additional ready /busy waits */
-#define NAND_4PAGE_ARRAY	0x00000040
+#define NAND_4PAGE_ARRAY    0x00000040
 
 Constants for runtime options
 These constants are defined in nand.h. They are ored together to describe
@@ -8171,44 +8171,44 @@ the functionality.
 /* The hw ecc generator provides a syndrome instead a ecc value on read
 * This can only work if we have the ecc bytes directly behind the
 * data bytes. Applies for DOC and AG-AND Renesas HW Reed Solomon generators */
-#define NAND_HWECC_SYNDROME	0x00020000
+#define NAND_HWECC_SYNDROME    0x00020000
 
 ECC selection constants
 Use these constants to select the ECC algorithm.
 
 /* No ECC. Usage is not recommended ! */
-#define NAND_ECC_NONE		0
+#define NAND_ECC_NONE        0
 /* Software ECC 3 byte ECC per 256 Byte data */
-#define NAND_ECC_SOFT		1
+#define NAND_ECC_SOFT        1
 /* Hardware ECC 3 byte ECC per 256 Byte data */
-#define NAND_ECC_HW3_256	2
+#define NAND_ECC_HW3_256    2
 /* Hardware ECC 3 byte ECC per 512 Byte data */
-#define NAND_ECC_HW3_512	3
+#define NAND_ECC_HW3_512    3
 /* Hardware ECC 6 byte ECC per 512 Byte data */
-#define NAND_ECC_HW6_512	4
+#define NAND_ECC_HW6_512    4
 /* Hardware ECC 6 byte ECC per 512 Byte data */
-#define NAND_ECC_HW8_512	6
+#define NAND_ECC_HW8_512    6
 
 Hardware control related constants
 These constants describe the requested hardware access function when
 the boardspecific hardware control function is called
 
 /* Select the chip by setting nCE to low */
-#define NAND_CTL_SETNCE 	1
+#define NAND_CTL_SETNCE     1
 /* Deselect the chip by setting nCE to high */
-#define NAND_CTL_CLRNCE		2
+#define NAND_CTL_CLRNCE        2
 /* Select the command latch by setting CLE to high */
-#define NAND_CTL_SETCLE		3
+#define NAND_CTL_SETCLE        3
 /* Deselect the command latch by setting CLE to low */
-#define NAND_CTL_CLRCLE		4
+#define NAND_CTL_CLRCLE        4
 /* Select the address latch by setting ALE to high */
-#define NAND_CTL_SETALE		5
+#define NAND_CTL_SETALE        5
 /* Deselect the address latch by setting ALE to low */
-#define NAND_CTL_CLRALE		6
+#define NAND_CTL_CLRALE        6
 /* Set write protection by setting WP to high. Not used! */
-#define NAND_CTL_SETWP		7
+#define NAND_CTL_SETWP        7
 /* Clear write protection by setting WP to low. Not used! */
-#define NAND_CTL_CLRWP		8
+#define NAND_CTL_CLRWP        8
 
 Bad block table related constants
 These constants describe the options used for bad block
@@ -8217,25 +8217,25 @@ table descriptors.
 /* Options for the bad block table descriptors */
 
 /* The number of bits used per block in the bbt on the device */
-#define NAND_BBT_NRBITS_MSK	0x0000000F
-#define NAND_BBT_1BIT		0x00000001
-#define NAND_BBT_2BIT		0x00000002
-#define NAND_BBT_4BIT		0x00000004
-#define NAND_BBT_8BIT		0x00000008
+#define NAND_BBT_NRBITS_MSK    0x0000000F
+#define NAND_BBT_1BIT        0x00000001
+#define NAND_BBT_2BIT        0x00000002
+#define NAND_BBT_4BIT        0x00000004
+#define NAND_BBT_8BIT        0x00000008
 /* The bad block table is in the last good block of the device */
-#define	NAND_BBT_LASTBLOCK	0x00000010
+#define    NAND_BBT_LASTBLOCK    0x00000010
 /* The bbt is at the given page, else we must scan for the bbt */
-#define NAND_BBT_ABSPAGE	0x00000020
+#define NAND_BBT_ABSPAGE    0x00000020
 /* bbt is stored per chip on multichip devices */
-#define NAND_BBT_PERCHIP	0x00000080
+#define NAND_BBT_PERCHIP    0x00000080
 /* bbt has a version counter at offset veroffs */
-#define NAND_BBT_VERSION	0x00000100
+#define NAND_BBT_VERSION    0x00000100
 /* Create a bbt if none axists */
-#define NAND_BBT_CREATE		0x00000200
+#define NAND_BBT_CREATE        0x00000200
 /* Write bbt if neccecary */
-#define NAND_BBT_WRITE		0x00001000
+#define NAND_BBT_WRITE        0x00001000
 /* Read and write back block contents when writing bbt */
-#define NAND_BBT_SAVECONTENT	0x00002000
+#define NAND_BBT_SAVECONTENT    0x00002000
 
 Structures
 This chapter contains the autogenerated documentation of the structures which are
@@ -8298,7 +8298,7 @@ PHY Support
 X!Enet/core/wireless.c
 &lt;/sect1&gt;
 --&gt;RapidIO Subsystem GuideMattPortermporter@kernel.crashing.orgmporter@mvista.com2005MontaVista Software, Inc.
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -8313,7 +8313,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 RapidIO is a high speed switched fabric interconnect with
 features aimed at the embedded market.  RapidIO provides
@@ -8487,7 +8487,7 @@ existing layout of the source code the entire regulator API is
 documented here.
 
 Writing s390 channel device driversCorneliaHuckcornelia.huck@de.ibm.com2007IBM Corp.
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -8504,7 +8504,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 This document describes the interfaces available for device drivers that
 drive s390 based channel attached I/O devices. This includes interfaces for
@@ -8529,7 +8529,7 @@ a s390 system. Named after the channel command word (ccw), the basic
 command structure used to address its devices, the ccw bus contains
 so-called channel attached devices. They are addressed via I/O
 subchannels, visible on the css bus. A device driver for
-channel-attached devices, however, will never interact	with the
+channel-attached devices, however, will never interact    with the
 subchannel directly, but only via the I/O device on the ccw bus,
 the ccw device.
 I/O functions for channel-attached devices
@@ -8761,7 +8761,7 @@ http://sg.danny.cz/sg/sdebug26.html
 SAS, Fibre Channel, FireWire, ATAPI devices, Infiniband,
 I20, iSCSI, Parallel ports, netlink...
 SuperH Interfaces GuidePaulMundtlethal@linux-sh.org2008-2010Paul Mundt2008-2010Renesas Technology Corp.2010Renesas Electronics Corp.
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -8776,7 +8776,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Memory ManagementSH-4Store Queue API
 SH-5TLB Interfaces
 Machine Specific Interfacesmach-dreamcast
@@ -9107,7 +9107,7 @@ struct uio_port! It is used internally by the UIO
 framework to set up sysfs files for this region. Simply leave it alone.
 Adding an interrupt handler
 What you need to do in your interrupt handler depends on your
-hardware and on how you want to	handle it. You should try to
+hardware and on how you want to    handle it. You should try to
 keep the amount of code in your kernel interrupt handler low.
 If your hardware requires no action that you
 have to perform after each interrupt,
@@ -9433,7 +9433,7 @@ return errno;
 Further information
 OSADL homepage.
 Linutronix homepage.The Linux-USB Host Side API
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -9450,7 +9450,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction to USB on LinuxA Universal Serial Bus (USB) is used to connect a host,
 such as a PC or workstation, to a number of peripheral
 devices.  USB uses a tree structure, with the host as the
@@ -9892,7 +9892,7 @@ void    *data;
 static int
 usbdev_ioctl (int fd, int ifno, unsigned request, void *param)
 {
-struct usbdevfs_ioctl	wrapper;
+struct usbdevfs_ioctl    wrapper;
 
 wrapper.ifno = ifno;
 wrapper.ioctl_code = request;
@@ -10106,7 +10106,7 @@ Sound Architecture) driver.
 
 Copyright (c) 2002-2005  Takashi Iwai tiwai@suse.de
 
-This document is free; you can redistribute it and/or modify it
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This document is free; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
@@ -10120,7 +10120,7 @@ for more details.
 You should have received a copy of the GNU General Public
 License along with this program; if not, write to the Free
 Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-MA 02111-1307 USA
+MA 02111-1307 USA<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 &lt;!-- ****************************************************** --&gt;&lt;!-- Preface  --&gt;&lt;!-- ****************************************************** --&gt;Preface
 This document describes how to write an
 
@@ -11603,23 +11603,23 @@ the contents of this file:
 struct _snd_pcm_runtime {
 /* -- Status -- */
 struct snd_pcm_substream *trigger_master;
-snd_timestamp_t trigger_tstamp;	/* trigger timestamp */
+snd_timestamp_t trigger_tstamp;    /* trigger timestamp */
 int overrange;
 snd_pcm_uframes_t avail_max;
-snd_pcm_uframes_t hw_ptr_base;	/* Position at buffer restart */
+snd_pcm_uframes_t hw_ptr_base;    /* Position at buffer restart */
 snd_pcm_uframes_t hw_ptr_interrupt; /* Position at interrupt time*/
 
 /* -- HW params -- */
-snd_pcm_access_t access;	/* access mode */
-snd_pcm_format_t format;	/* SNDRV_PCM_FORMAT_* */
-snd_pcm_subformat_t subformat;	/* subformat */
-unsigned int rate;		/* rate in Hz */
-unsigned int channels;		/* channels */
-snd_pcm_uframes_t period_size;	/* period size */
-unsigned int periods;		/* periods */
-snd_pcm_uframes_t buffer_size;	/* buffer size */
-unsigned int tick_time;		/* tick time */
-snd_pcm_uframes_t min_align;	/* Min alignment for the format */
+snd_pcm_access_t access;    /* access mode */
+snd_pcm_format_t format;    /* SNDRV_PCM_FORMAT_* */
+snd_pcm_subformat_t subformat;    /* subformat */
+unsigned int rate;        /* rate in Hz */
+unsigned int channels;        /* channels */
+snd_pcm_uframes_t period_size;    /* period size */
+unsigned int periods;        /* periods */
+snd_pcm_uframes_t buffer_size;    /* buffer size */
+unsigned int tick_time;        /* tick time */
+snd_pcm_uframes_t min_align;    /* Min alignment for the format */
 size_t byte_align;
 unsigned int frame_bits;
 unsigned int sample_bits;
@@ -11628,20 +11628,20 @@ unsigned int rate_num;
 unsigned int rate_den;
 
 /* -- SW params -- */
-struct timespec tstamp_mode;	/* mmap timestamp is updated */
+struct timespec tstamp_mode;    /* mmap timestamp is updated */
 unsigned int period_step;
-unsigned int sleep_min;		/* min ticks to sleep */
+unsigned int sleep_min;        /* min ticks to sleep */
 snd_pcm_uframes_t start_threshold;
 snd_pcm_uframes_t stop_threshold;
 snd_pcm_uframes_t silence_threshold; /* Silence filling happens when
 noise is nearest than this */
-snd_pcm_uframes_t silence_size;	/* Silence filling size */
-snd_pcm_uframes_t boundary;	/* pointers wrap point */
+snd_pcm_uframes_t silence_size;    /* Silence filling size */
+snd_pcm_uframes_t boundary;    /* pointers wrap point */
 
 snd_pcm_uframes_t silenced_start;
 snd_pcm_uframes_t silenced_size;
 
-snd_pcm_sync_id_t sync;		/* hardware synchronization ID */
+snd_pcm_sync_id_t sync;        /* hardware synchronization ID */
 
 /* -- mmap -- */
 volatile struct snd_pcm_mmap_status *status;
@@ -11667,14 +11667,14 @@ void (*transfer_ack_begin)(struct snd_pcm_substream *substream);
 void (*transfer_ack_end)(struct snd_pcm_substream *substream);
 
 /* -- timer -- */
-unsigned int timer_resolution;	/* timer resolution */
+unsigned int timer_resolution;    /* timer resolution */
 
 /* -- DMA -- */
-unsigned char *dma_area;	/* DMA area */
-dma_addr_t dma_addr;		/* physical bus address (not accessible from main CPU) */
-size_t dma_bytes;		/* size of DMA area */
+unsigned char *dma_area;    /* DMA area */
+dma_addr_t dma_addr;        /* physical bus address (not accessible from main CPU) */
+size_t dma_bytes;        /* size of DMA area */
 
-struct snd_dma_buffer *dma_buffer_p;	/* allocated buffer */
+struct snd_dma_buffer *dma_buffer_p;    /* allocated buffer */
 
 #if defined(CONFIG_SND_PCM_OSS) || defined(CONFIG_SND_PCM_OSS_MODULE)
 /* -- OSS things -- */
@@ -14326,7 +14326,7 @@ DocBook format.
 Giuliano Pochini corrected typos and contributed the example codes
 in the hardware constraints section.
 Writing USB Device DriversGregKroah-Hartmangreg@kroah.com2001-2002Greg Kroah-Hartman
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -14343,7 +14343,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 
 This documentation is based on an article published in
 Linux Journal Magazine, October 2001, Issue 90.
@@ -14632,7 +14632,7 @@ Programming Guide for Linux USB Device Drivers: http://usb.cs.tum.edu/usbdoc
 
 USB Home Page: http://www.usb.org
 Z8530 Programming GuideAlanCoxalan@lxorguk.ukuu.org.uk2000Alan Cox
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -14649,7 +14649,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 The Z85x30 family synchronous/asynchronous controller chips are
 used on a large number of cheap network interface cards. The
@@ -14813,7 +14813,7 @@ the network device and the channel. Typically this is called from
 your network device open callback. On a failure a non zero error
 status is returned. The z8530_sync_close
 function shuts down a PIO channel. This must be done before the
-channel is opened again	and before the driver shuts down
+channel is opened again    and before the driver shuts down
 and unloads.
 
 The ideal mode of operation is dual channel DMA mode. Here the
@@ -14828,7 +14828,7 @@ function matching the open mode you used.
 
 The final supported mode uses a single DMA channel to drive the
 transmit side. As the Z85C30 has a larger FIFO on the receive
-channel	this tends to increase the maximum speed a little.
+channel    this tends to increase the maximum speed a little.
 This is activated by calling the z8530_sync_txdma_open
 . This returns a non zero error code on failure. The
 z8530_sync_txdma_close function closes down
