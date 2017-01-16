@@ -162,10 +162,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         sm = sourcemarkers.AcceptRangeMarker(se[0], se[1])
         pt = self.tbSrcCode.toPlainText()
         l1 = len(pt)
-        sm.apply(pt, cursor)
+        pt = sm.apply(pt)
         dl = len(pt) - l1
         self.editCoordinateCorrections[se[0]] = dl
-        # self.tbSrcCode.setPlainText(pt)
+        self.tbSrcCode.setPlainText(pt)
         print("Accept range: " + repr(se))
 
     @QtCore.pyqtSlot()
@@ -175,10 +175,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         sm = sourcemarkers.IgnoreRangeMarker(se[0], se[1])
         pt = self.tbSrcCode.toPlainText()
         l1 = len(pt)
-        sm.apply(pt, cursor)
+        pt = sm.apply(pt)
         dl = len(pt) - l1
         self.editCoordinateCorrections[se[0]] = dl
-        # self.tbSrcCode.setPlainText(pt)
+        self.tbSrcCode.setPlainText(pt)
         print("Ignore range: " + repr(se))
 
     @QtCore.pyqtSlot()
