@@ -370,10 +370,10 @@ usage of the internal tracking objects and the state of the
 internal tracking objects pool.
 Debug functionsDebug object function reference
 debug_object_init
-This function is called whenever the initialization function
-of a real object is called.
+<!-- e46b9eea-dfab-44cd-9478-c5fbbec04463 <=< ACCEPT -->This function is called whenever the initialization function
+of a real object is called.<!-- ACCEPT >=> e46b9eea-dfab-44cd-9478-c5fbbec04463 -->
 
-When the real object is already tracked by debugobjects it is
+<!-- ca5d405c-94c8-471c-b04e-fbea762b78e3 <=< ACCEPT -->When the real object is already tracked by debugobjects it is
 checked, whether the object can be initialized.  Initializing
 is not allowed for active and destroyed objects. When
 debugobjects detects an error, then it calls the fixup_init
@@ -381,7 +381,7 @@ function of the object type description structure if provided
 by the caller. The fixup function can correct the problem
 before the real initialization of the object happens. E.g. it
 can deactivate an active object in order to prevent damage to
-the subsystem.
+the subsystem.<!-- ACCEPT >=> ca5d405c-94c8-471c-b04e-fbea762b78e3 -->
 
 When the real object is not yet tracked by debugobjects,
 debugobjects allocates a tracker object for the real object
@@ -393,10 +393,10 @@ must use debug_object_init_on_stack() and remove the object
 before leaving the function which allocated it. See next
 section.
 debug_object_init_on_stack
-This function is called whenever the initialization function
-of a real object which resides on the stack is called.
+<!-- e46b9eea-dfab-44cd-9478-c5fbbec04463 <=< ACCEPT -->This function is called whenever the initialization function
+of a real object which resides on the stack is called.<!-- ACCEPT >=> e46b9eea-dfab-44cd-9478-c5fbbec04463 -->
 
-When the real object is already tracked by debugobjects it is
+<!-- ca5d405c-94c8-471c-b04e-fbea762b78e3 <=< ACCEPT -->When the real object is already tracked by debugobjects it is
 checked, whether the object can be initialized. Initializing
 is not allowed for active and destroyed objects. When
 debugobjects detects an error, then it calls the fixup_init
@@ -404,7 +404,7 @@ function of the object type description structure if provided
 by the caller. The fixup function can correct the problem
 before the real initialization of the object happens. E.g. it
 can deactivate an active object in order to prevent damage to
-the subsystem.
+the subsystem.<!-- ACCEPT >=> ca5d405c-94c8-471c-b04e-fbea762b78e3 -->
 
 When the real object is not yet tracked by debugobjects
 debugobjects allocates a tracker object for the real object
@@ -416,10 +416,10 @@ tracker by calling debug_object_free() before the function
 which allocates the object returns. Otherwise we keep track of
 stale objects.
 debug_object_activate
-This function is called whenever the activation function of a
-real object is called.
+<!-- e46b9eea-dfab-44cd-9478-c5fbbec04463 <=< ACCEPT -->This function is called whenever the activation function of a
+real object is called.<!-- ACCEPT >=> e46b9eea-dfab-44cd-9478-c5fbbec04463 -->
 
-When the real object is already tracked by debugobjects it is
+<!-- ca5d405c-94c8-471c-b04e-fbea762b78e3 <=< ACCEPT -->When the real object is already tracked by debugobjects it is
 checked, whether the object can be activated.  Activating is
 not allowed for active and destroyed objects. When
 debugobjects detects an error, then it calls the
@@ -427,7 +427,7 @@ fixup_activate function of the object type description
 structure if provided by the caller. The fixup function can
 correct the problem before the real activation of the object
 happens. E.g. it can deactivate an active object in order to
-prevent damage to the subsystem.
+prevent damage to the subsystem.<!-- ACCEPT >=> ca5d405c-94c8-471c-b04e-fbea762b78e3 -->
 
 When the real object is not yet tracked by debugobjects then
 the fixup_activate function is called if available. This is
@@ -439,8 +439,8 @@ function to initialize the tracking of this object.
 When the activation is legitimate, then the state of the
 associated tracker object is set to ODEBUG_STATE_ACTIVE.
 debug_object_deactivate
-This function is called whenever the deactivation function of
-a real object is called.
+<!-- e46b9eea-dfab-44cd-9478-c5fbbec04463 <=< ACCEPT -->This function is called whenever the deactivation function of
+a real object is called.<!-- ACCEPT >=> e46b9eea-dfab-44cd-9478-c5fbbec04463 -->
 
 When the real object is tracked by debugobjects it is checked,
 whether the object can be deactivated. Deactivating is not
@@ -454,28 +454,28 @@ useful to prevent the usage of invalid objects, which are
 still available in memory: either statically allocated objects
 or objects which are freed later.
 
-When the real object is tracked by debugobjects it is checked,
+<!-- ca5d405c-94c8-471c-b04e-fbea762b78e3 <=< ACCEPT -->When the real object is tracked by debugobjects it is checked,
 whether the object can be destroyed. Destruction is not
 allowed for active and destroyed objects. When debugobjects
 detects an error, then it calls the fixup_destroy function of
 the object type description structure if provided by the
 caller. The fixup function can correct the problem before the
 real destruction of the object happens. E.g. it can deactivate
-an active object in order to prevent damage to the subsystem.
+an active object in order to prevent damage to the subsystem.<!-- ACCEPT >=> ca5d405c-94c8-471c-b04e-fbea762b78e3 -->
 
 When the destruction is legitimate, then the state of the
 associated tracker object is set to ODEBUG_STATE_DESTROYED.
 debug_object_free
 This function is called before an object is freed.
 
-When the real object is tracked by debugobjects it is checked,
+<!-- ca5d405c-94c8-471c-b04e-fbea762b78e3 <=< ACCEPT -->When the real object is tracked by debugobjects it is checked,
 whether the object can be freed. Free is not allowed for
 active objects. When debugobjects detects an error, then it
 calls the fixup_free function of the object type description
 structure if provided by the caller. The fixup function can
 correct the problem before the real free of the object
 happens. E.g. it can deactivate an active object in order to
-prevent damage to the subsystem.
+prevent damage to the subsystem.<!-- ACCEPT >=> ca5d405c-94c8-471c-b04e-fbea762b78e3 -->
 
 Note that debug_object_free removes the object from the
 tracker. Later usage of the object is detected by the other
