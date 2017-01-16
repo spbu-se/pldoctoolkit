@@ -97,7 +97,7 @@ def find_like_pattern(inputfile, pattern, ms):
         for i2 in range(len(peaks)):
             o1, r1 = peaks[i1]
             o2, r2 = peaks[i2]
-            if peaks[i1] in fpeaks and peaks[i2] in fpeaks and abs(o1 - o2) < len(pattern) and r2 < r1:
+            if peaks[i1] in fpeaks and peaks[i2] in fpeaks and abs(o1 - o2) < len(pattern_tokens) and r2 < r1:
                 fpeaks.remove(peaks[i2])
 
     # -------------------------------
