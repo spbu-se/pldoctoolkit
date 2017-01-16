@@ -9701,7 +9701,7 @@ directories.  (Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 -
 /proc/bus/usb/BBB/DDD
 files.  (Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->devmode=MMMControls the file mode used for the
 /proc/bus/usb/BBB/DDD
-files.  (Default: 0644)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --<!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->>devuid=NNNNNControls the UID used for the
+files.  (Default: 0644)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->>devuid=NNNNNControls the UID used for the
 /proc/bus/usb/BBB/DDD
 files.  (Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->listgid=NNNNNControls the GID used for the
 /proc/bus/usb/devices and drivers files.

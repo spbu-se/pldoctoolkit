@@ -13,6 +13,7 @@ import re
 import bottle
 import threading
 import shutil
+import verbhtml
 
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebKit, uic
 from PyQt5.QtCore import pyqtSignal
@@ -670,7 +671,7 @@ def serve(inputfilename, ui, srctext):
         sdt = threading.Thread(target=shut)
         sdt.start()
 
-        return "Searching for text <<<%s>>> with min similarity %s..." % (text, msim)
+        return "Searching for text <<<%s>>> with min similarity %s..." % (verbhtml.escapen(text), msim)
 
     # some other thread:
     st = StoppableThread(target=lambda: bottle.run(host='127.0.0.1', port=49999, server=Shutdownable))
