@@ -9855,7 +9855,7 @@ automatically claimed by usbfs.
 
 This claim will be released by a RELEASEINTERFACE ioctl,
 or by closing the file descriptor.
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 USBDEVFS_CONNECTINFOSays whether the device is lowspeed.
 The ioctl parameter points to a structure like this:
 struct usbdevfs_connectinfo {
