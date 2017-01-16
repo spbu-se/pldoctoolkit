@@ -4227,15 +4227,15 @@ other variation is the &quot;in-situ&quot; family, such as
 cpu_to_be32s(), which convert value referred
 to by the pointer, and return void.
 local_irq_save()/local_irq_restore()include/asm/system.h
-These routines disable hard interrupts on the local CPU, and
-restore them.  They are reentrant; saving the previous state in
+<!-- 8310e538-583d-485b-abfd-aa491af61a9f <=< ACCEPT -->These routines disable hard interrupts on the local CPU, and
+restore them.  They are reentrant;<!-- ACCEPT >=> 8310e538-583d-485b-abfd-aa491af61a9f --> saving the previous state in
 their one unsigned long flags argument.  If you
 know that interrupts are enabled, you can simply use
 local_irq_disable() and
 local_irq_enable().
 local_bh_disable()/local_bh_enable()include/linux/interrupt.h
-These routines disable soft interrupts on the local CPU, and
-restore them.  They are reentrant; if soft interrupts were
+<!-- 8310e538-583d-485b-abfd-aa491af61a9f <=< ACCEPT -->These routines disable soft interrupts on the local CPU, and
+restore them.  They are reentrant;<!-- ACCEPT >=> 8310e538-583d-485b-abfd-aa491af61a9f --> if soft interrupts were
 disabled before, they will still be disabled after this pair
 of functions has been called.  They prevent softirqs and tasklets
 from running on the current CPU.
