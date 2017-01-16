@@ -19,6 +19,7 @@ MA 02111-1307 USA
 For more details see the file COPYING in the source
 distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 
+<!-- 7eec4b69-b4da-4bf3-9d0e-74a1af7a7786 <=< IGNORE -->
 These books attempt to give a description of the
 various subsystems that play a role in 802.11 wireless
 networking in Linux. Since these books are for kernel
@@ -141,6 +142,8 @@ Key handlingKey handling basics
 MORE TBDTBDReceive processingTBDTransmit processingTBDStation info handlingProgramming information
 STA information lifetime rules
 Aggregation
+<!-- IGNORE >=> STA 7eec4b69-b4da-4bf3-9d0e-74a1af7a7786 -->
+
 SynchronisationTBDLocking, lots of RCUThe 802.11 subsystems &amp;ndash; for kernel developers
 Explaining wireless 802.11 networking in the Linux kernel
 2007-2009Johannes BergJohannesBergjohannes@sipsolutions.net
@@ -161,6 +164,7 @@ MA 02111-1307 USA
 For more details see the file COPYING in the source
 distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 
+<!-- 7eec4b69-b4da-4bf3-9d0e-74a1af7a7786 <=< IGNORE -->
 These books attempt to give a description of the
 various subsystems that play a role in 802.11 wireless
 networking in Linux. Since these books are for kernel
@@ -283,6 +287,7 @@ Key handlingKey handling basics
 MORE TBDTBDReceive processingTBDTransmit processingTBDStation info handlingProgramming information
 STA information lifetime rules
 Aggregation
+<!-- IGNORE >=> 7eec4b69-b4da-4bf3-9d0e-74a1af7a7786 -->
 SynchronisationTBDLocking, lots of RCU&lt;!-- ****************************************************** --&gt;&lt;!-- Header  --&gt;&lt;!-- ****************************************************** --&gt;The ALSA Driver API
 <!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This document is free; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by
