@@ -360,7 +360,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd, self.slClLen_f]:
             slider.valueChanged.connect(self.slider_moved)
 
-        self.dlClMaxLen_f.valueChanged.connect(self.slClMaxLenRotated)
+        self.slClMaxLen_f.valueChanged.connect(self.slClMaxLenRotated)
 
     @QtCore.pyqtSlot(int)
     def slClMaxLenRotated(self, value):
@@ -486,8 +486,8 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
             "-csp", "no",
         ]
 
-        if self.dlClMaxLen_f.value() <= 200:
-            options += ['-maxctl', str(self.dlClMaxLen_f.value())]
+        if self.slClMaxLen_f.value() <= 200:
+            options += ['-maxctl', str(self.slClMaxLen_f.value())]
 
         wt = run_fuzzyheat_with_clone_miner_thread(pui, infile, options, numparamps)
         return wt
