@@ -22,6 +22,7 @@ from PyQt5.QtWidgets import QAction
 import sourcemarkers
 
 scriptdir = os.path.dirname(os.path.realpath(__file__))
+scriptname = os.path.basename(os.path.realpath(__file__))
 
 def path2url(path):
     return QtCore.QUrl.fromLocalFile(path).toString()
@@ -284,6 +285,7 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.path = path if path else os.path.curdir
+        # bindings
         self.bindEvents()
 
     shouldAddTab = pyqtSignal(str, str, str, str, str, str, name='shouldAddTab')
@@ -346,6 +348,14 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         self.setupUi(self)
         self.setFixedSize(self.size())
         self.bindEvents()
+
+        # restricted UI customizations
+        if scriptname == 'duplicate-finder.py':
+            self.setWindowTitle("Duplicate Finder")
+            self.methodWidget.setHidden(True)
+            self.fuzzyHeatSettings.setTitle("Settings")
+            self.methodSelected(2)
+
         if clargs.input_file:
             ifn = os.path.realpath(clargs.input_file)
             self.inFile.setText(ifn.replace("\\", "/"))
