@@ -354,7 +354,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
             self.setWindowTitle("Duplicate Finder")
             self.methodWidget.setHidden(True)
             self.fuzzyHeatSettings.setTitle("Settings")
-            self.methodSelected(2)
+            self.cbMethod.setCurrentIndex(2)
 
         if clargs.input_file:
             ifn = os.path.realpath(clargs.input_file)
