@@ -937,13 +937,13 @@
             instance methods, one for each option.
          
             The available configuration options include:
-             tableName : This is the name of the database table that contains the authentication
-                        credentials, and against which the database authentication query is performed.
-                     identityColumn : This is the name of the database table column used to represent the
-                        identity. The identity column must contain unique values, such as a username or e-mail address.
-                     credentialColumn : This is the name of the database table column used to represent
+            <!-- c2a80f3b-da51-407e-b964-6f52fb3c0b9e <=< ACCEPT --> tableName : This is the name of the database table that contains the authentication
+                        credentials, and against which the database authentication query is performed.<!-- ACCEPT >=> c2a80f3b-da51-407e-b964-6f52fb3c0b9e -->
+                     <!-- c2a80f3b-da51-407e-b964-6f52fb3c0b9e <=< ACCEPT -->identityColumn : This is the name of the database table column used to represent the
+                        identity. The identity column must contain unique values, such as a username or e-mail address.<!-- ACCEPT >=> c2a80f3b-da51-407e-b964-6f52fb3c0b9e -->
+                     <!-- c2a80f3b-da51-407e-b964-6f52fb3c0b9e <=< ACCEPT -->credentialColumn : This is the name of the database table column used to represent
                         the credential. Under a simple identity and password authentication scheme, the credential value
-                        corresponds to the password. See also the  credentialTreatment  option.
+                        corresponds to the password. See also the  credentialTreatment  option.<!-- ACCEPT >=> c2a80f3b-da51-407e-b964-6f52fb3c0b9e -->
                      credentialTreatment : In many cases, passwords and other sensitive data are
                         encrypted, hashed, encoded, obscured, or otherwise treated through some function or algorithm.
                         By specifying a parameterized treatment string with this method, such as  &#39;MD5(?)&#39; 
@@ -1268,9 +1268,9 @@
                          EXAMPLE\username  with an AD server but to
                          username@example.com  with an OpenLDAP server, that may be awkward for the
                         application&#39;s high-level logic).
-                     accountDomainName 
+                     <!-- 0a97d757-97c4-4e57-938e-04dd06fb1427 <=< ACCEPT -->accountDomainName 
                         The FQDN domain name for which the target LDAP server is an authority (e.g.,
-                         example.com ). This option is used to canonicalize names so that the username
+                         example.com ).<!-- ACCEPT >=> 0a97d757-97c4-4e57-938e-04dd06fb1427 --> This option is used to canonicalize names so that the username
                         supplied by the user can be converted as necessary for binding. It is also used to determine if
                         the server is an authority for the supplied username (e.g., if
                          accountDomainName  is  foo.net  and the
@@ -1279,9 +1279,9 @@
                         name form (e.g.,  alice@foo.net ) are not supported. It is strongly
                         recommended that you supply this option, as there are many use-cases that require generating
                         the principal name form.
-                     accountDomainNameShort 
+                     <!-- 0a97d757-97c4-4e57-938e-04dd06fb1427 <=< ACCEPT -->accountDomainNameShort 
                         The &#39;short&#39; domain for which the target LDAP server is an authority (e.g.,
-                         FOO ). Note that there is a 1:1 mapping between the
+                         FOO ).<!-- ACCEPT >=> 0a97d757-97c4-4e57-938e-04dd06fb1427 --> Note that there is a 1:1 mapping between the
                          accountDomainName  and
                          accountDomainNameShort . This option should be used to
                         specify the NetBIOS domain name for Windows networks but may also be used by non-AD servers
@@ -6059,15 +6059,15 @@ $contextSwitch-&gt;initContext();
                              isLater() isLater($date, $part = null, $locale = null) 
                                 returns true, if  $part  of this object&#39;s date is later than
                                  $part  of  $date  having a locale  $locale 
-                             isToday() isToday() 
+                             <!-- 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 <=< ACCEPT -->isToday() isToday() 
                                 Tests if today&#39;s year, month, and day match this object&#39;s date value, using this
-                                object&#39;s timezone.
-                             isTomorrow() isTomorrow() 
+                                object&#39;s timezone.<!-- ACCEPT >=> 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 -->
+                             <!-- 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 <=< ACCEPT -->isTomorrow() isTomorrow() 
                                 Tests if tomorrow&#39;s year, month, and day match this object&#39;s date value, using this
-                                object&#39;s timezone.
-                             isYesterday() isYesterday() 
+                                object&#39;s timezone.<!-- ACCEPT >=> 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 -->
+                             <!-- 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 <=< ACCEPT -->isYesterday() isYesterday() 
                                 Tests if yesterday&#39;s year, month, and day match this object&#39;s date value, using this
-                                object&#39;s timezone.
+                                object&#39;s timezone.<!-- ACCEPT >=> 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 -->
                              isLeapYear() isLeapYear() 
                                 Use  isLeapYear()  to determine if the current object is a leap year, or use
                                 Zend_Date::checkLeapYear($year) to check $year, which can be a string, integer, or
@@ -6582,7 +6582,7 @@ $contextSwitch-&gt;initContext();
                     value generated by another client could be reported to your
                     client&#39;s connection as the last value generated.
                  Updating Data 
-                You can update rows in a database table using the
+                <!-- 22ba0507-82eb-41ad-b5fe-63b226a56955 <=< ACCEPT -->You can update rows in a database table using the
                  update()  method of an Adapter.  This method takes
                 three arguments:  the first is the name of the table; the
                 second is an associative array mapping columns to change to new
@@ -6596,7 +6596,7 @@ $contextSwitch-&gt;initContext();
                 that is used as criteria for the rows to change.  The values
                 and identifiers in this argument are not quoted or escaped.
                 You are responsible for ensuring that any dynamic content is
-                interpolated into this string safely.
+                interpolated into this string safely.<!-- ACCEPT >=> 22ba0507-82eb-41ad-b5fe-63b226a56955 -->
                 See  
                 for methods to help you do this.
              
@@ -6610,7 +6610,7 @@ $contextSwitch-&gt;initContext();
                 strings are joined together as terms in an expression separated
                 by  AND  operators.
              Updating rows using an array of expressions Deleting Data 
-                You can delete rows from a database table using the
+                <!-- 22ba0507-82eb-41ad-b5fe-63b226a56955 <=< ACCEPT -->You can delete rows from a database table using the
                  delete()  method.  This method takes two arguments:
                 the first is a string naming the table.
              
@@ -6623,7 +6623,7 @@ $contextSwitch-&gt;initContext();
                 for methods to help you do this.
              
                 The return value is the number of rows affected by the delete
-                operation.
+                operation.<!-- ACCEPT >=> 22ba0507-82eb-41ad-b5fe-63b226a56955 -->
              Deleting rows 
                 If you omit the second argument, the result is that all rows in
                 the database table are deleted.
@@ -6867,6 +6867,7 @@ $contextSwitch-&gt;initContext();
                      
                         This Adapter uses the PHP extension ibm_db2.
                      
+                        <!-- 3f0f1eb1-028e-484b-a502-00541d40cd78 <=< ACCEPT -->
                         IBM DB2 supports both sequences and auto-incrementing
                         keys.  Therefore the arguments to
                          lastInsertId()  are optional.  If you give
@@ -6875,6 +6876,7 @@ $contextSwitch-&gt;initContext();
                         arguments, the Adapter returns the last value generated
                         by the sequence named according to the convention
                         &#39; table _ column _seq&#39;.
+                        <!-- ACCEPT >=> 3f0f1eb1-028e-484b-a502-00541d40cd78 -->
                      MySQLi 
                         Specify this Adapter to the  factory() 
                         method with the name &#39;Mysqli&#39;.
@@ -6967,6 +6969,7 @@ $contextSwitch-&gt;initContext();
                      
                         This Adapter uses the PHP extensions pdo and pdo_pgsql.
                      
+                        <!-- 3f0f1eb1-028e-484b-a502-00541d40cd78 <=< ACCEPT -->
                         PostgreSQL supports both sequences and auto-incrementing
                         keys.  Therefore the arguments to
                          lastInsertId()  are optional.  If you give
@@ -6975,6 +6978,7 @@ $contextSwitch-&gt;initContext();
                         arguments, the Adapter returns the last value generated
                         by the sequence named according to the convention
                         &#39; table _ column _seq&#39;.
+                        <!-- ACCEPT >=> 3f0f1eb1-028e-484b-a502-00541d40cd78 -->
                      PDO SQLite 
                         Specify this Adapter to the  factory() 
                         method with the name &#39;Pdo_Sqlite&#39;.
@@ -8023,15 +8027,15 @@ $contextSwitch-&gt;initContext();
             RDBMS. There are three ways of specifying the database adapter to a Table class, and
             these three ways are described below:
          Specifying a Database Adapter 
-                The first way to provide a database adapter to a Table class is by passing it as an
+               <!-- 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c <=< ACCEPT --> The first way to provide a database adapter to a Table class is by passing it as an
                 object of type Zend_Db_Adapter_Abstract in the options array, identified by the key
-                 &#39;db&#39; .
+                 &#39;db&#39; .<!-- ACCEPT >=> 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c -->
              Example of constructing a Table using an Adapter object Setting a Default Database Adapter 
-                The second way to provide a database adapter to a Table class is by declaring an
+                <!-- 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c <=< ACCEPT -->The second way to provide a database adapter to a Table class is by declaring an
                 object of type Zend_Db_Adapter_Abstract to be a default database adapter for all
                 subsequent instances of Tables in your application. You can do this with the static
                 method  Zend_Db_Table_Abstract::setDefaultAdapter() . The argument is an
-                object of type Zend_Db_Adapter_Abstract.
+                object of type Zend_Db_Adapter_Abstract.<!-- ACCEPT >=> 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c -->
              Example of constructing a Table using a the Default Adapter 
                 It can be convenient to create the database adapter object in a central place of
                 your application, such as the bootstrap, and then store it as the default adapter.
@@ -8039,10 +8043,10 @@ $contextSwitch-&gt;initContext();
                 your application. However, setting a default adapter is limited to a single adapter
                 instance.
              Storing a Database Adapter in the Registry 
-                The third way to provide a database adapter to a Table class is by passing a string
+                <!-- 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c <=< ACCEPT -->The third way to provide a database adapter to a Table class is by passing a string
                 in the options array, also identified by the  &#39;db&#39;  key. The string is
                 used as a key to the static Zend_Registry instance, where the entry at that key is
-                an object of type Zend_Db_Adapter_Abstract.
+                an object of type Zend_Db_Adapter_Abstract.<!-- ACCEPT >=> 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c -->
              Example of constructing a Table using a Registry key 
                 Like setting the default adapter, this gives you the means to ensure that the same
                 adapter instance is used throughout your application. Using the registry is more
@@ -10120,13 +10124,13 @@ $contextSwitch-&gt;initContext();
                 using  Zend_View_Helper_FormLabel , and wraps it in a &lt;dt&gt;
                 tag. If no label is provided, just the definition term tag is
                 rendered.
-             Default Decorators Do Not Need to Be Loaded 
+             <!-- a85c9f1e-075e-4979-b7ba-53afd930f0db <=< ACCEPT -->Default Decorators Do Not Need to Be Loaded 
                 By default, the default decorators are loaded during object
                 initialization. You can disable this by passing the
                 &#39;disableLoadDefaultDecorators&#39; option to the constructor:
              
                 This option may be mixed with any other options you pass,
-                both as array options or in a  Zend_Config  object.
+                both as array options or in a  Zend_Config  object.<!-- ACCEPT >=> a85c9f1e-075e-4979-b7ba-53afd930f0db -->
              
             Since the order in which decorators are registered matters -- first
             decorator registered is executed first -- you will need to make
@@ -10470,14 +10474,14 @@ $form-&gt;setElementFilters(array(&#39;StringTrim&#39;));
             You can access display groups using the
              getDisplayGroup()  method, or via overloading using the
             display group&#39;s name:
-         Default Decorators Do Not Need to Be Loaded 
+         <!-- a85c9f1e-075e-4979-b7ba-53afd930f0db <=< ACCEPT -->Default Decorators Do Not Need to Be Loaded 
                 By default, the default decorators are loaded during object
                 initialization. You can disable this by passing the
                 &#39;disableLoadDefaultDecorators&#39; option when creating a display
                 group:
              
                 This option may be mixed with any other options you pass,
-                both as array options or in a  Zend_Config  object.
+                both as array options or in a  Zend_Config  object.<!-- ACCEPT >=> a85c9f1e-075e-4979-b7ba-53afd930f0db -->
              Global Operations 
                 Just as with elements, there are some operations which might
                 affect all display groups; these include setting decorators and
@@ -10604,13 +10608,13 @@ $form-&gt;setElementFilters(array(&#39;StringTrim&#39;));
          
             Any attributes set on the form object will be used as HTML
             attributes of the  &lt;form&gt;  tag.
-         Default Decorators Do Not Need to Be Loaded 
+         <!-- a85c9f1e-075e-4979-b7ba-53afd930f0db <=< ACCEPT -->Default Decorators Do Not Need to Be Loaded 
                 By default, the default decorators are loaded during object
                 initialization. You can disable this by passing the
                 &#39;disableLoadDefaultDecorators&#39; option to the constructor:
              
                 This option may be mixed with any other options you pass,
-                both as array options or in a  Zend_Config  object.
+                both as array options or in a  Zend_Config  object.<!-- ACCEPT >=> a85c9f1e-075e-4979-b7ba-53afd930f0db -->
              Using Multiple Decorators of the Same Type 
                 Internally,  Zend_Form  uses a decorator&#39;s
                 class as the lookup mechanism when retrieving decorators. As a
@@ -12974,18 +12978,18 @@ $gdata-&gt;deleteEmailList(&#39;friends&#39;);
              
                 Alternatively, you could just retrieve the feed using the
                 URL:
-             Retrieving videos uploaded by a user 
+             <!-- ff04542f-c241-43f9-9419-581943a0fc5c <=< ACCEPT -->Retrieving videos uploaded by a user 
                 You can retrieve a list of videos uploaded by a particular user
                 using a simple helper method. This example retrieves videos 
-                uploaded by the user &#39;liz&#39;.
-             Retrieving videos favorited by a user 
+                uploaded by the user &#39;liz&#39;.<!-- ACCEPT >=> ff04542f-c241-43f9-9419-581943a0fc5c -->
+             <!-- ff04542f-c241-43f9-9419-581943a0fc5c <=< ACCEPT -->Retrieving videos favorited by a user 
                 You can retrieve a list of a user&#39;s favorite videos
                 using a simple helper method. This example retrieves videos 
-                favorited by the user &#39;liz&#39;.
-             Retrieving video responses for a video 
+                favorited by the user &#39;liz&#39;.<!-- ACCEPT >=> ff04542f-c241-43f9-9419-581943a0fc5c -->
+             <!-- ff04542f-c241-43f9-9419-581943a0fc5c <=< ACCEPT -->Retrieving video responses for a video 
                 You can retrieve a list of a video&#39;s video responses
                 using a simple helper method. This example retrieves video
-                response for a video with the ID &#39;abc123813abc&#39;.
+                response for a video with the ID &#39;abc123813abc&#39;.<!-- ACCEPT >=> ff04542f-c241-43f9-9419-581943a0fc5c -->
              Retrieving video comments 
             The comments for each YouTube video can be retrieved in 
             several ways.  To retrieve the comments for the video with 
@@ -14138,10 +14142,10 @@ $gdata-&gt;deleteEmailList(&#39;friends&#39;);
                          accountCanonicalForm 
                             A small integer indicating the form to which account names should be canonicalized. See the
                              Account Name Canonicalization  section below.
-                         accountDomainName 
-                            The FQDN domain for which the target LDAP server is an authority (e.g., example.com).
-                         accountDomainNameShort 
-                            The &#39;short&#39; domain for which the target LDAP server is an authority. This is usually used
+                         <!-- 0a97d757-97c4-4e57-938e-04dd06fb1427 <=< ACCEPT -->accountDomainName 
+                            The FQDN domain for which the target LDAP server is an authority (e.g., example.com).<!-- ACCEPT >=> 0a97d757-97c4-4e57-938e-04dd06fb1427 -->
+                         <!-- 0a97d757-97c4-4e57-938e-04dd06fb1427 <=< ACCEPT -->accountDomainNameShort 
+                            The &#39;short&#39; domain for which the target LDAP server is an authority.<!-- ACCEPT >=> 0a97d757-97c4-4e57-938e-04dd06fb1427 --> This is usually used
                             to specify the NetBIOS domain name for Windows networks but may also be used by non-AD
                             servers.
                          accountFilterFormat 
@@ -14639,20 +14643,20 @@ $gdata-&gt;deleteEmailList(&#39;friends&#39;);
                              Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->DefaultMonth Returns the default format for months which is used within the given
                             calendar. If you omit the value the &#39;gregorian&#39; calendar will be used. Use
                              Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> Month Returns a translation for a month. You have to give the number of the month
-                            as integer value. It has to be between 1 and 12. If you want to receive data for
+                            as integer value. It has to be between 1 and 12. <!-- 19abd82e-f603-43ca-a9fa-2a40f2cffde4 <=< ACCEPT -->If you want to receive data for
                             other calendars, contexts or formats, then you must give an array instead of an
-                            integer with the expected values. The array has to look like this:  Zend_Date  for simplicity <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->DayContext Returns the default context for Â´days which is used within the given
+                            integer with the expected values.<!-- ACCEPT >=> 19abd82e-f603-43ca-a9fa-2a40f2cffde4 --> The array has to look like this:  Zend_Date  for simplicity <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->DayContext Returns the default context for Â´days which is used within the given
                             calendar. If you omit the value the &#39;gregorian&#39; calendar will be used. Use
                              Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->DefaultDay Returns the default format for days which is used within the given
                             calendar. If you omit the value the &#39;gregorian&#39; calendar will be used. Use
                              Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> Day Returns a translation for a day. You have to give the english abbreviation
-                            of the day as string value (&#39;sun&#39;, &#39;mon&#39;, etc.). If you want to receive data
+                            of the day as string value (&#39;sun&#39;, &#39;mon&#39;, etc.). <!-- 19abd82e-f603-43ca-a9fa-2a40f2cffde4 <=< ACCEPT -->If you want to receive data
                             for other calendars, contexts or format, then you must give an array instead of
-                            an integer with the expected values. The array has to look like this:
+                            an integer with the expected values.<!-- ACCEPT >=> 19abd82e-f603-43ca-a9fa-2a40f2cffde4 --> The array has to look like this:
                              Zend_Date  for simplicity Quarter Returns a translation for a quarter. You have to give the number of the
-                            quarter as integer and it has to be between 1 and 4. If you want to receive
+                            quarter as integer and it has to be between 1 and 4. <!-- 19abd82e-f603-43ca-a9fa-2a40f2cffde4 <=< ACCEPT -->If you want to receive
                             data for other calendars, contexts or formats, then you must give an array
-                            instead of an integer with the expected values. The array has to look like this:
+                            instead of an integer with the expected values.<!-- ACCEPT >=> 19abd82e-f603-43ca-a9fa-2a40f2cffde4 --> The array has to look like this:
                              <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->Am Returns a translation for &#39;AM&#39; in a expected locale. If you want to receive
                             data for other calendars an string with the expected calendar. If you omit the
                             value then the &#39;gregorian&#39; calendar will be used. Use
@@ -14660,9 +14664,9 @@ $gdata-&gt;deleteEmailList(&#39;friends&#39;);
                             data for other calendars an string with the expected calendar. If you omit the<!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT --><!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc -->
                             value then the &#39;gregorian&#39; calendar will be used. Use
                              Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> Era Returns a translation for an era within a locale. You have to give the era
-                            number as string or integer. If you want to receive data for other calendars or
+                            number as string or integer. <!-- 19abd82e-f603-43ca-a9fa-2a40f2cffde4 <=< ACCEPT -->If you want to receive data for other calendars or
                             formats, then you must give an array instead of the era number with the expected
-                            values. The array has to look like this:
+                            values.<!-- ACCEPT >=> 19abd82e-f603-43ca-a9fa-2a40f2cffde4 --> The array has to look like this:
                              <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->DefaultDate Returns the default date format which is used within the given
                             calendar. If you omit the value the &#39;gregorian&#39; calendar will be used. Use
                              Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> Date Returns the date format for an given calendar or format within a locale.
