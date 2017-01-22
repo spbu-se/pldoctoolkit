@@ -786,11 +786,11 @@ BrowserMatch &quot;^WebDAVFS/1.[012]&quot; redirect-carefully
           install davfs2, you can mount a WebDAV network share using
           the usual Linux mount command: 
 $ mount.davfs http://host/repos /mnt/dav
- Version Control with Subversion [DRAFT] For Subversion 1.8 (Compiled from  ) Ben Collins-Sussman Brian W. Fitzpatrick C. Michael Pilato Tatiana Apandi 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 Ben Collins-Sussman Brian W. Fitzpatrick C. Michael Pilato This work is licensed under the Creative
+ Version Control with Subversion [DRAFT] For Subversion 1.8 (Compiled from  ) <!-- 26e0a8b2-4887-4a9f-9ec7-24332a65e540 <=< ACCEPT -->Ben Collins-Sussman Brian W. Fitzpatrick C. Michael Pilato Tatiana Apandi 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 Ben Collins-Sussman Brian W. Fitzpatrick C. Michael Pilato This work is licensed under the Creative
       Commons Attribution License.  To view a copy of this license,
       visit  
       or send a letter to Creative Commons, 559 Nathan Abbott Way,
-      Stanford, California 94305, USA. 
+      Stanford, California 94305, USA.<!-- ACCEPT >=> 26e0a8b2-4887-4a9f-9ec7-24332a65e540 --> 
 
    
    
@@ -2550,8 +2550,8 @@ Status against revision:   46
 $ svn diff
 Index: bar.c
 ===================================================================
---- bar.c	(revision 3)
-+++ bar.c	(working copy)
+--- bar.c    (revision 3)
++++ bar.c    (working copy)
 @@ -1,7 +1,12 @@
 +#include &lt;sys/types.h&gt;
 +#include &lt;sys/stat.h&gt;
@@ -2567,22 +2567,22 @@ Index: bar.c
 
 Index: README
 ===================================================================
---- README	(revision 3)
-+++ README	(working copy)
+--- README    (revision 3)
++++ README    (working copy)
 @@ -193,3 +193,4 @@
 +Note to self:  pick up laundry.
 
 Index: stuff/fish.c
 ===================================================================
---- stuff/fish.c	(revision 1)
-+++ stuff/fish.c	(working copy)
+--- stuff/fish.c    (revision 1)
++++ stuff/fish.c    (working copy)
 -Welcome to the file known as &#39;fish&#39;.
 -Information on fish will be here soon.
 
 Index: stuff/things/bloo.h
 ===================================================================
---- stuff/things/bloo.h	(revision 8)
-+++ stuff/things/bloo.h	(working copy)
+--- stuff/things/bloo.h    (revision 8)
++++ stuff/things/bloo.h    (working copy)
 +Here is a new file to describe
 +things about bloo.
  svn subcommands patch patches patch file patches The  svn diff  command produces this
@@ -2687,9 +2687,9 @@ Updating &#39;.&#39;:
 U    INSTALL
 G    README
 Conflict discovered in &#39;bar.c&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: 
+        (s) show all options: <!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a -->
  The  U  (which stands for
          Updated ) and  G 
         (for  merGed ) codes are no cause for concern;
@@ -2714,9 +2714,9 @@ Select: (p) postpone, (df) diff-full, (e) edit,
         you can see all of the options by
         typing  s : 
  
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: s
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a --> s
 
   (e)  edit             - change merged file in an editor
   (df) diff-full        - show all changes made to merged file
@@ -2733,9 +2733,9 @@ Select: (p) postpone, (df) diff-full, (e) edit,
   (l)  launch           - launch external tool to resolve conflict
   (s)  show all         - show this list
 
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options:
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a -->
  Let&#39;s briefly review each of these options before we go
         into detail on what each option means. (e)  edit Open the file in conflict with your favorite editor,
               as set in the environment variable
@@ -2769,9 +2769,9 @@ Select: (p) postpone, (df) diff-full, (e) edit,
           modifications to the file in question plus any conflict
           regions: 
  
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: df
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a --> df
 --- .svn/text-base/sandwich.txt.svn-base      Tue Dec 11 21:33:57 2007
 +++ .svn/tmp/tempfile.32.tmp     Tue Dec 11 21:34:33 2007
 @@ -1 +1,5 @@
@@ -2892,9 +2892,9 @@ Select: (p) postpone, (df) diff-full, (e) edit,
 $ svn update
 Updating &#39;.&#39;:
 Conflict discovered in &#39;sandwich.txt&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: p
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a --> p
 C    sandwich.txt
 Updated to revision 2.
 Summary of conflicts:
@@ -3045,9 +3045,9 @@ $ svn commit -m &quot;Go ahead and use my sandwich, discarding Sally&#39;s edits
 $ svn update
 Updating &#39;.&#39;:
 Conflict discovered in &#39;sandwich.txt&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: p
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a --> p
 C    sandwich.txt
 Updated to revision 2.
 Summary of conflicts:
@@ -3155,8 +3155,8 @@ svn: E155011: File &#39;/home/sally/svn-work/sandwich.txt&#39; is out of date
 $ svn diff
 Index: rules.txt
 ===================================================================
---- rules.txt	(revision 3)
-+++ rules.txt	(working copy)
+--- rules.txt    (revision 3)
++++ rules.txt    (working copy)
 @@ -1,4 +1,5 @@
  Be kind to others
  Freedom = Responsibility
@@ -3172,8 +3172,8 @@ $
 $ svn diff -r 3 rules.txt
 Index: rules.txt
 ===================================================================
---- rules.txt	(revision 3)
-+++ rules.txt	(working copy)
+--- rules.txt    (revision 3)
++++ rules.txt    (working copy)
 @@ -1,4 +1,5 @@
  Be kind to others
  Freedom = Responsibility
@@ -3189,8 +3189,8 @@ $
 $ svn diff -r 2:3 rules.txt
 Index: rules.txt
 ===================================================================
---- rules.txt	(revision 2)
-+++ rules.txt	(revision 3)
+--- rules.txt    (revision 2)
++++ rules.txt    (revision 3)
 @@ -1,4 +1,4 @@
  Be kind to others
 -Freedom = Chocolate Ice Cream
@@ -3204,8 +3204,8 @@ $
 $ svn diff -c 3 rules.txt
 Index: rules.txt
 ===================================================================
---- rules.txt	(revision 2)
-+++ rules.txt	(revision 3)
+--- rules.txt    (revision 2)
++++ rules.txt    (revision 3)
 @@ -1,4 +1,4 @@
  Be kind to others
 -Freedom = Chocolate Ice Cream
@@ -3603,8 +3603,8 @@ $
 $ svn diff
 Index: code/foo.c
 ===================================================================
---- code/foo.c	(revision 13)
-+++ code/foo.c	(working copy)
+--- code/foo.c    (revision 13)
++++ code/foo.c    (working copy)
 @@ -3,5 +3,5 @@
  int main(int argc, char *argv[])
  {
@@ -3614,8 +3614,8 @@ Index: code/foo.c
  }
 Index: code/bar.c
 ===================================================================
---- code/bar.c	(revision 13)
-+++ code/bar.c	(working copy)
+--- code/bar.c    (revision 13)
++++ code/bar.c    (working copy)
 @@ -1,4 +1,4 @@
  const char *bar(void)
  {
@@ -3734,8 +3734,8 @@ $ svn diff code/bar.c &gt; PATCHFILE
 $ cat PATCHFILE
 Index: code/bar.c
 ===================================================================
---- code/bar.c	(working copy)
-+++ code/bar.c	(working copy)
+--- code/bar.c    (working copy)
++++ code/bar.c    (working copy)
 @@ -1,4 +1,4 @@
  const char *bar(void)
  {
@@ -3746,8 +3746,8 @@ $ ### Edit PATCHFILE to refer to code/baz.c instead of code/bar.c
 $ cat PATCHFILE
 Index: code/baz.c
 ===================================================================
---- code/baz.c	(working copy)
-+++ code/baz.c	(working copy)
+--- code/baz.c    (working copy)
++++ code/baz.c    (working copy)
 @@ -1,4 +1,4 @@
  const char *bar(void)
  {
@@ -3813,8 +3813,8 @@ M       Makefile
 $ svn diff
 Index: code/foo.c
 ===================================================================
---- code/foo.c	(revision 14)
-+++ code/foo.c	(working copy)
+--- code/foo.c    (revision 14)
++++ code/foo.c    (working copy)
 @@ -3,5 +3,5 @@
  int main(int argc, char *argv[])
  {
@@ -3824,8 +3824,8 @@ Index: code/foo.c
  }
 Index: code/bar.c
 ===================================================================
---- code/bar.c	(revision 14)
-+++ code/bar.c	(working copy)
+--- code/bar.c    (revision 14)
++++ code/bar.c    (working copy)
 @@ -1,4 +1,4 @@
  const char *bar(void)
  {
@@ -3834,8 +3834,8 @@ Index: code/bar.c
  }
 Index: code/baz.c
 ===================================================================
---- code/baz.c	(revision 14)
-+++ code/baz.c	(working copy)
+--- code/baz.c    (revision 14)
++++ code/baz.c    (working copy)
 @@ -1,4 +0,0 @@
 -const char *bar(void)
 -{
@@ -3843,12 +3843,12 @@ Index: code/baz.c
 -}
 Index: Makefile
 ===================================================================
---- Makefile	(revision 14)
-+++ Makefile	(working copy)
+--- Makefile    (revision 14)
++++ Makefile    (working copy)
 @@ -1,2 +1,2 @@
  foo: 
--	$(CC) -o $@ code/foo.c code/baz.c
-+	$(CC) -o $@ code/foo.c code/bar.c
+-    $(CC) -o $@ code/foo.c code/baz.c
++    $(CC) -o $@ code/foo.c code/bar.c
  You&#39;ve now resolved your first tree conflict!  You can
         commit your changes and tell Harry during tea break about all
         the extra work he caused for you. Summary Now we&#39;ve covered most of the Subversion client commands.
@@ -4203,11 +4203,11 @@ svn: E195012: Unable to find repository location for &#39;concept/IDEA&#39; in r
        concepts/IDEA  at the time?  We&#39;ll use an
       explicit peg revision to help us out. 
 $ svn cat concept/IDEA@1
-The idea behind this project is to come up with a piece of software
+<!-- 36b1eddf-494c-49f5-b7c9-d180eb3fa50f <=< ACCEPT -->The idea behind this project is to come up with a piece of software
 that can frab a naggily wort.  Frabbing naggily worts is tricky
 business, and doing it incorrectly can have serious ramifications, so
 we need to employ over-the-top input validation and data verification
-mechanisms.
+mechanisms.<!-- ACCEPT >=> 36b1eddf-494c-49f5-b7c9-d180eb3fa50f -->
  Notice that we didn&#39;t provide an operative revision this
       time.  That&#39;s because when no operative revision is specified,
       Subversion assumes a default operative revision that&#39;s the same
@@ -4224,11 +4224,11 @@ mechanisms.
        frabnaggilywort/IDEA  looked in revision
       1. 
 $ svn cat -r 1 frabnaggilywort/IDEA@HEAD
-The idea behind this project is to come up with a piece of software
+<!-- 36b1eddf-494c-49f5-b7c9-d180eb3fa50f <=< ACCEPT -->The idea behind this project is to come up with a piece of software
 that can frab a naggily wort.  Frabbing naggily worts is tricky
 business, and doing it incorrectly can have serious ramifications, so
 we need to employ over-the-top input validation and data verification
-mechanisms.
+mechanisms.<!-- ACCEPT >=> 36b1eddf-494c-49f5-b7c9-d180eb3fa50f -->
  And the peg and operative revisions need not be so trivial,
       either.  For example, say  frabnaggilywort 
       had been deleted from  HEAD , but we know it
@@ -4241,19 +4241,19 @@ mechanisms.
 $ svn diff -r 4:10 http://svn.red-bean.com/projects/frabnaggilywort/IDEA@20
 Index: frabnaggilywort/IDEA
 ===================================================================
---- frabnaggilywort/IDEA	(revision 4)
-+++ frabnaggilywort/IDEA	(revision 10)
+--- frabnaggilywort/IDEA    (revision 4)
++++ frabnaggilywort/IDEA    (revision 10)
 @@ -1,5 +1,5 @@
--The idea behind this project is to come up with a piece of software
+<!-- 36b1eddf-494c-49f5-b7c9-d180eb3fa50f <=< ACCEPT -->-The idea behind this project is to come up with a piece of software
 -that can frab a naggily wort.  Frabbing naggily worts is tricky
 -business, and doing it incorrectly can have serious ramifications, so
 -we need to employ over-the-top input validation and data verification
--mechanisms.
-+The idea behind this project is to come up with a piece of
+-mechanisms.<!-- ACCEPT >=> 36b1eddf-494c-49f5-b7c9-d180eb3fa50f -->
+<!-- 36b1eddf-494c-49f5-b7c9-d180eb3fa50f <=< ACCEPT -->+The idea behind this project is to come up with a piece of
 +client-server software that can remotely frab a naggily wort.
 +Frabbing naggily worts is tricky business, and doing it incorrectly
 +can have serious ramifications, so we need to employ over-the-top
-+input validation and data verification mechanisms.
++input validation and data verification mechanisms.<!-- ACCEPT >=> 36b1eddf-494c-49f5-b7c9-d180eb3fa50f -->
  Fortunately, most folks aren&#39;t faced with such complex
       situations.  But when you are, remember that peg revisions are
       that extra hint Subversion needs to clear up ambiguity. Properties We&#39;ve already covered in detail how Subversion stores and
@@ -4722,10 +4722,10 @@ $
          : 
 $ svn pg svn:auto-props --verbose -R .
 Properties on &#39;.&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
 Properties on &#39;site&#39;:
   svn:auto-props
@@ -4739,10 +4739,10 @@ Properties on &#39;site&#39;:
 $ svn pg svn:auto-props --verbose --show-inherited-props site
 Inherited properties on &#39;site&#39;,
 from &#39;.&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
 Properties on &#39;site&#39;:
   svn:auto-props
@@ -4772,10 +4772,10 @@ $ cd site-wc
 $ svn pg svn:auto-props --verbose --show-inherited-props publish
 Inherited properties on &#39;publish&#39;,
 from &#39;http://svn.example.com/repos&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
 Inherited properties on &#39;publish&#39;,
 from &#39;.&#39;:
@@ -4795,10 +4795,10 @@ from &#39;.&#39;:
 $ svnlook pg repos svn:auto-props /site/publish --show-inherited-props -v
 Inherited properties on &#39;/site/publish&#39;,
 from &#39;/&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
 Inherited properties on &#39;/site/publish&#39;,
 from &#39;/site&#39;:
@@ -4964,10 +4964,10 @@ Properties on &#39;calc/data.c&#39;:
 $ svn propget svn:auto-props --show-inherited-props -v calc
 Inherited properties on &#39;calc&#39;,
 from &#39;http://svn.example.com/repos&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
  Unlike the  svn:global-ignores  property and
         its analogous runtime configuration
          global-ignores , which are combined, the
@@ -5013,10 +5013,10 @@ $ svn st
 $ svn propget svn:auto-props -v --show-inherited-props calc
 Inherited properties on &#39;calc&#39;,
 from &#39;http://svn.example.com/repos&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
 Inherited properties on &#39;calc&#39;,
 from &#39;.&#39;:
@@ -5169,19 +5169,19 @@ Properties on &#39;calc/data.c&#39;:
                 observed when such an operation is active or when
                 an  svnrdump  command failed to cleanly
                 disconnect from the repository.  (This property is only
-                relevant when it appears on revision 0.) svn:sync-currently-copying Contains the revision number from the source
+                relevant when it appears on revision 0.) <!-- b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 <=< ACCEPT -->svn:sync-currently-copying Contains the revision number from the source
                 repository which is currently being mirrored to this one
                 by the  svnsync  tool.  (This property
-                is only relevant when it appears on revision 0.) svn:sync-from-uuid Contains the UUID of the repository of which this
+                is only relevant when it appears on revision 0.)<!-- ACCEPT >=> b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 --> <!-- b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 <=< ACCEPT -->svn:sync-from-uuid Contains the UUID of the repository of which this
                 repository has been initialized as a mirror by
                 the  svnsync  tool.  (This property is
-                only relevant when it appears on revision 0.) svn:sync-from-url Contains the URL of the repository directory of
+                only relevant when it appears on revision 0.)<!-- ACCEPT >=> b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 --> <!-- b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 <=< ACCEPT -->svn:sync-from-url Contains the URL of the repository directory of
                 which this repository has been initialized as a mirror
                 by the  svnsync  tool.  (This property
-                is only relevant when it appears on revision 0.) svn:sync-last-merged-rev Contains the revision of the source repository which
+                is only relevant when it appears on revision 0.)<!-- ACCEPT >=> b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 --> <!-- b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 <=< ACCEPT -->svn:sync-last-merged-rev Contains the revision of the source repository which
                 was most recently and successfully mirrored to this one.
                 (This property is only relevant when it appears on
-                revision 0.) svn:sync-lock Used to temporarily enforce mutually exclusive
+                revision 0.)<!-- ACCEPT >=> b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 --> svn:sync-lock Used to temporarily enforce mutually exclusive
                 access to the repository by  svnsync 
                 mirroring operations.  This property is generally only
                 observed when such an operation is active or when
@@ -7242,13 +7242,13 @@ $
 $ svn diff integer.c mathops.c
 Index: integer.c
 ===================================================================
---- integer.c	(revision 1157)
-+++ integer.c	(working copy)
+--- integer.c    (revision 1157)
++++ integer.c    (working copy)
  
 Index: mathops.c
 ===================================================================
---- mathops.c	(revision 1157)
-+++ mathops.c	(working copy)
+--- mathops.c    (revision 1157)
++++ mathops.c    (working copy)
  
 $
  That works okay for a few files, but what if Harry&#39;s
@@ -7260,13 +7260,13 @@ $
 $ svn diff --changelist math-fixes
 Index: integer.c
 ===================================================================
---- integer.c	(revision 1157)
-+++ integer.c	(working copy)
+--- integer.c    (revision 1157)
++++ integer.c    (working copy)
  
 Index: mathops.c
 ===================================================================
---- mathops.c	(revision 1157)
-+++ mathops.c	(working copy)
+--- mathops.c    (revision 1157)
++++ mathops.c    (working copy)
  
 $
  And when it&#39;s time to commit, Harry can again use the
@@ -9573,8 +9573,8 @@ C    Makefile
 Summary of conflicts:
   Text conflicts: 1
 Conflict discovered in file &#39;Makefile&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
-        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options: p
+<!-- ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
+        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options:<!-- ACCEPT >=> ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 --> p
 
 $ svn st
  M      .
@@ -10780,9 +10780,9 @@ U    libcomplex-custom/README
 Summary of conflicts:
   Text conflicts: 1
 Conflict discovered in file &#39;libcomplex-custom/src/code.c&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
-        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options: 
- As you can see,  svn merge  has merged
+<!-- ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
+        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options: <!-- ACCEPT >=> ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 -->
+ <!-- 5371b479-35f5-4e1d-9c4d-f844e4e57794 <=< ACCEPT -->As you can see,  svn merge  has merged
         the changes required to make libcomplex 1.0.0 look like
         libcomplex 1.0.1 into our working copy.  In our example, it has
         even noticed and flagged a conflict on one file.   It seems
@@ -10793,7 +10793,7 @@ Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
         make sense.  (See  
         for more on resolving conflicts of this sort.) Once we&#39;ve resolved the conflicts and performed any
         testing or review we need, we can commit the changes to our
-        vendor branch. 
+        vendor branch.<!-- ACCEPT >=> 5371b479-35f5-4e1d-9c4d-f844e4e57794 --> 
 $ svn status libcomplex-custom
 M       libcomplex-custom/src/code.h
 M       libcomplex-custom/src/code.c
@@ -11002,9 +11002,9 @@ U    README
 Summary of conflicts:
   Text conflicts: 1
 Conflict discovered in file &#39;src/code.c&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
-        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options: 
- As you can see,  svn merge  has merged
+<!-- ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
+        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options:<!-- ACCEPT >=> ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 --> 
+ <!-- 5371b479-35f5-4e1d-9c4d-f844e4e57794 <=< ACCEPT -->As you can see,  svn merge  has merged
         the requisite changes into our working copy, flagging a
         conflict where the vendor modified the same region of one of
         the files as we did during our customizations.  Subversion
@@ -11014,7 +11014,7 @@ Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
         customizations to what is now libcomplex 1.0.1 continue to
         make sense.  Once we&#39;ve resolved the conflicts and performed
         any testing or review we need, we can commit the changes to
-        our vendor branch. 
+        our vendor branch.<!-- ACCEPT >=> 5371b479-35f5-4e1d-9c4d-f844e4e57794 --> 
 $ svn status
 M       src/code.h
 M       src/code.c
@@ -18646,12 +18646,12 @@ if __name__ == &#39;__main__&#39;:
       hook scripts, to integrations between Subversion and some other
       application, to completely different version control systems.
       What unique itch will  you  scratch with
-      it? Copyright Copyright (c) 2002-2013 Ben Collins-Sussman, Brian
+      it? Copyright <!-- 26e0a8b2-4887-4a9f-9ec7-24332a65e540 <=< ACCEPT -->Copyright (c) 2002-2013 Ben Collins-Sussman, Brian
     W. Fitzpatrick, C. Michael Pilato. This work is licensed under the Creative Commons Attribution
     License.  To view a copy of this license, visit
       or
     send a letter to Creative Commons, 559 Nathan Abbott Way,
-    Stanford, California 94305, USA. A summary of the license is given below, followed by the full
+    Stanford, California 94305, USA.<!-- ACCEPT >=> 26e0a8b2-4887-4a9f-9ec7-24332a65e540 --> A summary of the license is given below, followed by the full
     legal text. 
 You are free:
 
@@ -18660,7 +18660,7 @@ You are free:
     * to make commercial use of the work
 
 Under the following conditions:
-	
+    
 Attribution. You must give the original author credit.
 
     * For any reuse or distribution, you must make clear to others the
@@ -19346,17 +19346,17 @@ $
             -45  is equivalent to  -r
             45:44 . --changelist  ( --cl )  ARG Instructs Subversion to operate only on members of the changelist named
              ARG .  You can use this option
-            multiple times to specify sets of changelists. --config-dir DIR Instructs Subversion to read configuration
+            multiple times to specify sets of changelists. <!-- 2b8af518-b034-4497-ac5a-aa3ad3292793 <=< ACCEPT -->--config-dir DIR Instructs Subversion to read configuration
             information from the specified directory instead of the
             default location ( .subversion  in
-            the user&#39;s home directory). This option is accepted by
+            the user&#39;s home directory).<!-- ACCEPT >=> 2b8af518-b034-4497-ac5a-aa3ad3292793 --> This option is accepted by
               all  svn  subcommands. --config-option CONFSPEC Sets, for the duration of the command, the value of
             a runtime configuration
             option.   CONFSPEC  is a string
             which specifies the configuration option namespace, name
             and value that you&#39;d like to assign, formatted as
              FILE : SECTION : OPTION =[ VALUE ].
-            In this syntax,  FILE 
+            <!-- 86601698-b1e1-4572-82bf-888f9433e234 <=< ACCEPT -->In this syntax,  FILE 
             and  SECTION  are the runtime
             configuration file (either  config 
             or  servers ) and the section thereof,
@@ -19369,7 +19369,7 @@ $
             setting feature,
             use  --config-option=config:miscellany:enable-auto-props=no .
             You can use this option multiple times to change
-            multiple option values simultaneously. This option is accepted by
+            multiple option values simultaneously.<!-- ACCEPT >=> 86601698-b1e1-4572-82bf-888f9433e234 --> This option is accepted by
               all  svn  subcommands. --depth ARG Instructs Subversion to limit the scope of an
             operation to a particular tree
             depth.   ARG  is one of
@@ -19720,8 +19720,8 @@ Commit the results of &#39;double-space-after-period.sh&#39;.
 $ svn diff -c 5 http://svn.red-bean.com/repos/test/readme.txt
 Index: http://svn.red-bean.com/repos/test/readme.txt
 ===================================================================
---- http://svn.red-bean.com/repos/test/readme.txt	(revision 4)
-+++ http://svn.red-bean.com/repos/test/readme.txt	(revision 5)
+--- http://svn.red-bean.com/repos/test/readme.txt    (revision 4)
++++ http://svn.red-bean.com/repos/test/readme.txt    (revision 5)
 @@ -1,5 +1,5 @@
  This is a README file.
 -Don&#39;t bother reading it. The boss is a knucklehead.
@@ -19951,8 +19951,8 @@ M       project/lib/file.c
 $ svn diff wc
 Index: project/lib/file.c
 ===================================================================
---- project/lib/file.c	(revision 1)
-+++ project/lib/file.c	(working copy)
+--- project/lib/file.c    (revision 1)
++++ project/lib/file.c    (working copy)
 @@ -3 +0,0 @@
 -/* file.c: Code for acting file-ishly. */
 -#include &lt;stdio.h&gt;
@@ -20266,24 +20266,24 @@ $
 $ svn diff COMMITTERS 
 Index: COMMITTERS
 ===================================================================
---- COMMITTERS	(revision 4404)
-+++ COMMITTERS	(working copy)
+--- COMMITTERS    (revision 4404)
++++ COMMITTERS    (working copy)
  
  See what changed in the file
          COMMITTERS  revision 9115: 
 $ svn diff -c 9115 COMMITTERS 
 Index: COMMITTERS
 ===================================================================
---- COMMITTERS	(revision 3900)
-+++ COMMITTERS	(working copy)
+--- COMMITTERS    (revision 3900)
++++ COMMITTERS    (working copy)
  
  See how your working copy&#39;s modifications compare
         against an older revision: 
 $ svn diff -r 3900 COMMITTERS 
 Index: COMMITTERS
 ===================================================================
---- COMMITTERS	(revision 3900)
-+++ COMMITTERS	(working copy)
+--- COMMITTERS    (revision 3900)
++++ COMMITTERS    (working copy)
  
  Compare revision 3000 to revision 3500 using  @ 
         syntax: 
@@ -20291,8 +20291,8 @@ $ svn diff http://svn.collab.net/repos/svn/trunk/COMMITTERS@3000 \
            http://svn.collab.net/repos/svn/trunk/COMMITTERS@3500
 Index: COMMITTERS
 ===================================================================
---- COMMITTERS	(revision 3000)
-+++ COMMITTERS	(revision 3500)
+--- COMMITTERS    (revision 3000)
++++ COMMITTERS    (revision 3500)
  
  Compare revision 3000 to revision 3500 using range
         notation (pass only the one URL in this
@@ -20300,8 +20300,8 @@ Index: COMMITTERS
 $ svn diff -r 3000:3500 http://svn.collab.net/repos/svn/trunk/COMMITTERS
 Index: COMMITTERS
 ===================================================================
---- COMMITTERS	(revision 3000)
-+++ COMMITTERS	(revision 3500)
+--- COMMITTERS    (revision 3000)
++++ COMMITTERS    (revision 3500)
  
  Compare revision 3000 to revision 3500 of all the files in
          trunk  using range notation: 
@@ -20316,8 +20316,8 @@ $ svn diff -r 3000:3500 --old http://svn.collab.net/repos/svn/trunk \
 $ svn diff -r 3000:3500 COMMITTERS 
 Index: COMMITTERS
 ===================================================================
---- COMMITTERS	(revision 3000)
-+++ COMMITTERS	(revision 3500)
+--- COMMITTERS    (revision 3000)
++++ COMMITTERS    (revision 3500)
  
  Use  --diff-cmd 
          CMD   --extensions 
@@ -20783,8 +20783,8 @@ Made a change.
 
 Index: touched.txt
 ===================================================================
---- touched.txt	(revision 19)
-+++ touched.txt	(revision 20)
+--- touched.txt    (revision 19)
++++ touched.txt    (revision 20)
 @@ -1 +1,2 @@
  This is the file &#39;touched.txt&#39;.
 +We add such exciting text to files around here!
@@ -21096,14 +21096,14 @@ Committed revision 27.
          PATCH ): 
 Index: deleted-file
 ===================================================================
---- deleted-file	(revision 3)
-+++ deleted-file	(working copy)
+--- deleted-file    (revision 3)
++++ deleted-file    (working copy)
 @@ -1 +0,0 @@
 -This file will be deleted.
 Index: changed-file
 ===================================================================
---- changed-file	(revision 4)
-+++ changed-file	(working copy)
+--- changed-file    (revision 4)
++++ changed-file    (working copy)
 @@ -1,6 +1,6 @@
  The letters in a line of text
  Could make your day much better.
@@ -21120,8 +21120,8 @@ Added: propname
 +propvalue
 Index: added-file
 ===================================================================
---- added-file	(revision 0)
-+++ added-file	(working copy)
+--- added-file    (revision 0)
++++ added-file    (working copy)
 @@ -0,0 +1 @@
 +This is an added file.
  We can apply the previous patch file to another
@@ -21136,14 +21136,14 @@ A         added-file
 $ svn diff
 Index: deleted-file
 ===================================================================
---- deleted-file	(revision 3)
-+++ deleted-file	(working copy)
+--- deleted-file    (revision 3)
++++ deleted-file    (working copy)
 @@ -1 +0,0 @@
 -This file will be deleted.
 Index: changed-file
 ===================================================================
---- changed-file	(revision 4)
-+++ changed-file	(working copy)
+--- changed-file    (revision 4)
++++ changed-file    (working copy)
 @@ -1,6 +1,6 @@
  The letters in a line of text
  Could make your day much better.
@@ -21160,8 +21160,8 @@ Added: propname
 +propvalue
 Index: added-file
 ===================================================================
---- added-file	(revision 0)
-+++ added-file	(working copy)
+--- added-file    (revision 0)
++++ added-file    (working copy)
 @@ -0,0 +1 @@
 +This is an added file.
 $
@@ -21179,8 +21179,8 @@ $ svn diff &gt; PATCH
 $ cat PATCH
 Index: foo.c
 ===================================================================
---- foo.c	(revision 128)
-+++ foo.c	(working copy)
+--- foo.c    (revision 128)
++++ foo.c    (working copy)
 @@ -1003,7 +1003,7 @@
      return ERROR_ON_THE_G_STRING;
  
@@ -21511,9 +21511,9 @@ $
 $ svn update
 Updating &#39;.&#39;:
 Conflict discovered in &#39;foo.c&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: p
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a --> p
 C    foo.c
 Updated to revision 5.
 Summary of conflicts:
@@ -21932,10 +21932,10 @@ $
              DB_TXN_NOSYNC  enabled (which improves
             speed but has some risks associated with it). --bypass-hooks Bypass the repository hook system. --bypass-prop-validation When loading a dump file, disable the logic which
             validates property values. --clean-logs Remove unused Berkeley DB logs. --compatible-version ARG Use repository format compatible with Subversion version
-             ARG . --config-dir DIR Instructs Subversion to read configuration
+             ARG . <!-- 2b8af518-b034-4497-ac5a-aa3ad3292793 <=< ACCEPT -->--config-dir DIR Instructs Subversion to read configuration
             information from the specified directory instead of the
             default location ( .subversion  in
-            the user&#39;s home directory). --deltas When creating a repository dump file, specify
+            the user&#39;s home directory).<!-- ACCEPT >=> 2b8af518-b034-4497-ac5a-aa3ad3292793 --> --deltas When creating a repository dump file, specify
             changes in versioned properties and file contents as
             deltas against their previous state. --file  ( -F )  FILENAME Uses the contents of the named file for the
             specified subcommand. --fs-type ARG When creating a repository,
@@ -21957,15 +21957,15 @@ $
             is used for FSFS-backed repositories only.) --parent-dir DIR When loading a dump file, root paths at
              DIR  instead of
              / . --pre-1.4-compatible Deprecated .  See option
-             --compatible-version .  When creating a new
+             --compatible-version .  <!-- 4315caba-8a72-4f84-998d-885ebb99dd86 <=< ACCEPT -->When creating a new
             repository, use a format that is compatible with versions of
             Subversion earlier than Subversion 1.4. --pre-1.5-compatible Deprecated .  See option
-             --compatible-version .  When creating a new
+             --compatible-version .<!-- ACCEPT >=> 4315caba-8a72-4f84-998d-885ebb99dd86 -->  <!-- 4315caba-8a72-4f84-998d-885ebb99dd86 <=< ACCEPT -->When creating a new
             repository, use a format that is compatible with versions of
             Subversion earlier than Subversion 1.5. --pre-1.6-compatible Deprecated .  See option
-             --compatible-version .  When creating a new
+             --compatible-version .<!-- ACCEPT >=> 4315caba-8a72-4f84-998d-885ebb99dd86 -->  <!-- 4315caba-8a72-4f84-998d-885ebb99dd86 <=< ACCEPT -->When creating a new
             repository, use a format that is compatible with versions of
-            Subversion earlier than Subversion 1.6. --revision  ( -r )  ARG Specify a particular revision to operate
+            Subversion earlier than Subversion 1.6.<!-- ACCEPT >=> 4315caba-8a72-4f84-998d-885ebb99dd86 --> --revision  ( -r )  ARG Specify a particular revision to operate
             on. --quiet  ( -q ) Do not show normal progress show only
             errors. --use-post-commit-hook When loading a dump file, runs the repository&#39;s
              post-commit  hook after finalizing each newly loaded
@@ -22595,15 +22595,15 @@ $ svnlook date -r 40 /var/svn/repos/
 $ svnlook diff -r 40 /var/svn/repos
 Copied: trunk/relish.txt (from rev 39, trunk/vendors/deli/pickle.txt)
 ===================================================================
---- trunk/relish.txt	                        (rev 0)
-+++ trunk/relish.txt	2013-01-29 20:39:17 UTC (rev 40)
+--- trunk/relish.txt                            (rev 0)
++++ trunk/relish.txt    2013-01-29 20:39:17 UTC (rev 40)
 @@ -0,0 +1 @@
 +Pickle relish is mostly made from cucumbers.
 
 Deleted: trunk/vendors/deli/pickle.txt
 ===================================================================
---- trunk/vendors/deli/pickle.txt	                        (rev 39)
-+++ trunk/vendors/deli/pickle.txt	2013-01-29 20:39:17 UTC (rev 49)
+--- trunk/vendors/deli/pickle.txt                            (rev 39)
++++ trunk/vendors/deli/pickle.txt    2013-01-29 20:39:17 UTC (rev 49)
 @@ -1 +0,0 @@
 -Pickles are mostly made from cucumbers.
 
@@ -22627,16 +22627,16 @@ $
 $ svnlook diff -r 40 /var/svn/repos --diff-copy-from
 Copied: trunk/relish.txt (from rev 39, trunk/vendors/deli/pickle.txt)
 ===================================================================
---- trunk/vendors/deli/pickle.txt	2013-01-29 20:39:17 UTC (rev 39)
-+++ trunk/relish.txt	2013-01-29 20:47:40 UTC (rev 3)
+--- trunk/vendors/deli/pickle.txt    2013-01-29 20:39:17 UTC (rev 39)
++++ trunk/relish.txt    2013-01-29 20:47:40 UTC (rev 3)
 @@ -1 +1 @@
 -Pickles are mostly made from cucumbers.
 +Pickle relish is mostly made from cucumbers.
 
 Deleted: trunk/vendors/deli/pickle.txt
 ===================================================================
---- trunk/vendors/deli/pickle.txt	(rev 39)
-+++ trunk/vendors/deli/pickle.txt	2013-01-29 20:39:17 UTC (rev 40)
+--- trunk/vendors/deli/pickle.txt    (rev 39)
++++ trunk/vendors/deli/pickle.txt    2013-01-29 20:39:17 UTC (rev 40)
 @@ -1 +0,0 @@
 -Pickles are mostly made from cucumbers.
 
@@ -22652,8 +22652,8 @@ $
 $ svnlook diff -r 40 /var/svn/repos --no-diff-deleted
 Copied: trunk/relish.txt (from rev 39, trunk/vendors/deli/pickle.txt)
 ===================================================================
---- trunk/relish.txt	                        (rev 0)
-+++ trunk/relish.txt	2013-01-29 20:39:17 UTC (rev 40)
+--- trunk/relish.txt                            (rev 0)
++++ trunk/relish.txt    2013-01-29 20:39:17 UTC (rev 40)
 @@ -0,0 +1 @@
 +Pickle relish is mostly made from cucumbers.
 
@@ -22755,10 +22755,10 @@ mustard
 $ svnlook pg repos svn:auto-props trunk --show-inherited-props -v -r14
 Inherited properties on &#39;/trunk&#39;,
 from &#39;/&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
  svnlook subcommands proplist svnlook proplist (plist, pl) Print the names and values of versioned file and
         directory properties. svnlook proplist REPOS_PATH [PATH_IN_REPOS] Description List the properties of a path in the repository.  With
          --verbose  ( -v ), show the
@@ -22778,10 +22778,10 @@ $ svnlook -v proplist /var/svn/repos /trunk/README
 $ svnlook pl /var/svn/repos branches --show-inherited-props -v
 Inherited properties on &#39;/branches&#39;,
 from &#39;/&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
   svn:global-ignores
     *.diff
@@ -22916,17 +22916,17 @@ $ svnlook youngest /var/svn/repos/
               from the target  URL . Options Options specified on the  svnmucc 
         command line are global to all actions performed by that
         command line.  The following is a list of the options
-        supported by this tool: --config-dir DIR Read configuration information from the specified
+        supported by this tool: <!-- 2b8af518-b034-4497-ac5a-aa3ad3292793 <=< ACCEPT -->--config-dir DIR Read configuration information from the specified
               directory instead of the default location
               ( .subversion  in the user&#39;s home
-              directory). --config-option CONFSPEC Set, for the duration of the command, the value
+              directory).<!-- ACCEPT >=> 2b8af518-b034-4497-ac5a-aa3ad3292793 --> --config-option CONFSPEC Set, for the duration of the command, the value
               of a runtime configuration option.
                CONFSPEC  is a
               string which specifies the configuration option
               namespace, name and value that you&#39;d like to assign,
               formatted as
                FILE : SECTION : OPTION =[ VALUE ].
-              In this syntax,  FILE 
+              <!-- 86601698-b1e1-4572-82bf-888f9433e234 <=< ACCEPT -->In this syntax,  FILE 
               and  SECTION  are the runtime
               configuration file (either  config 
               or  servers ) and the section
@@ -22940,7 +22940,7 @@ $ svnlook youngest /var/svn/repos/
               property setting feature,
               use  --config-option=config:miscellany:enable-auto-props=no .
               You can use this option multiple times to change
-              multiple option values simultaneously. --extra-args  ( -X )
+              multiple option values simultaneously.<!-- ACCEPT >=> 86601698-b1e1-4572-82bf-888f9433e234 --> --extra-args  ( -X )
              ARGFILE Read additional would-be command-line arguments
               from  ARGFILE , one argument
               per line.  As a special consideration,
@@ -23072,12 +23072,12 @@ $
       and  svnrdump  in
        . Options in  svnrdump  are global, just
       as they are in  svn  and
-       svnadmin : svnrdump Options --config-dir DIR Instructs Subversion to read configuration
+       svnadmin : svnrdump Options <!-- 2b8af518-b034-4497-ac5a-aa3ad3292793 <=< ACCEPT -->--config-dir DIR Instructs Subversion to read configuration
             information from the specified directory instead of the
             default location ( .subversion  in
-            the user&#39;s home directory). --config-option FILE : SECTION : OPTION =[ VALUE ] Sets, for the duration of the command, the value of
+            the user&#39;s home directory).<!-- ACCEPT >=> 2b8af518-b034-4497-ac5a-aa3ad3292793 --> --config-option FILE : SECTION : OPTION =[ VALUE ] Sets, for the duration of the command, the value of
             a runtime configuration
-            option.   FILE 
+            option.   <!-- 86601698-b1e1-4572-82bf-888f9433e234 <=< ACCEPT -->FILE 
             and  SECTION  are the runtime
             configuration file (either  config 
             or  servers ) and the section thereof,
@@ -23090,7 +23090,7 @@ $
             setting feature,
             use  --config-option=servers:global:http-library=serf .
             You can use this option multiple times to change
-            multiple option values simultaneously. --incremental Dump a revision or revision range only as a diff
+            multiple option values simultaneously.<!-- ACCEPT >=> 86601698-b1e1-4572-82bf-888f9433e234 --> --incremental Dump a revision or revision range only as a diff
             against the previous revision, instead of the default,
             which is begin a dumped revision range with a complete
             expansion of all contents of the repository as of that
@@ -23267,16 +23267,16 @@ $ svnadmin dump -q /var/svn/repos/new-project | \
        svnadmin : svnsync Options --allow-non-empty Disables the verification (which  svnsync
             initialize  performs by default) that the
             repository being initialized is empty of history
-            version. --config-dir DIR Instructs Subversion to read configuration
+            version. <!-- 2b8af518-b034-4497-ac5a-aa3ad3292793 <=< ACCEPT -->--config-dir DIR Instructs Subversion to read configuration
             information from the specified directory instead of the
             default location ( .subversion  in
-            the user&#39;s home directory). --config-option CONFSPEC Sets, for the duration of the command, the value of
+            the user&#39;s home directory).<!-- ACCEPT >=> 2b8af518-b034-4497-ac5a-aa3ad3292793 --> --config-option CONFSPEC Sets, for the duration of the command, the value of
             a runtime configuration
             option.   CONFSPEC  is a string
             which specifies the configuration option namespace, name
             and value that you&#39;d like to assign, formatted as
              FILE : SECTION : OPTION =[ VALUE ].
-            In this syntax,  FILE 
+            <!-- 86601698-b1e1-4572-82bf-888f9433e234 <=< ACCEPT -->In this syntax,  FILE 
             and  SECTION  are the runtime
             configuration file (either  config 
             or  servers ) and the section thereof,
@@ -23289,7 +23289,7 @@ $ svnadmin dump -q /var/svn/repos/new-project | \
             setting feature,
             use  --config-option=servers:global:http-library=serf .
             You can use this option multiple times to change
-            multiple option values simultaneously. --disable-locking Causes  svnsync  to bypass its own
+            multiple option values simultaneously.<!-- ACCEPT >=> 86601698-b1e1-4572-82bf-888f9433e234 --> --disable-locking Causes  svnsync  to bypass its own
             exclusive access mechanisms and operate on the
             assumption that its exclusive access to the mirror
             repository is being guaranteed through some other,
