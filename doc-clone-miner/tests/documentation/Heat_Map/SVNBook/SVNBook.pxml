@@ -19509,10 +19509,10 @@ $ svn commit -m &quot;They don&#39;t make Sunday.&quot;
             of an operation.  This is useful for automatically
             creating multiple subdirectories where none currently
             exist.  If performed on a URL, all the directories will
-            be created in a single commit. --password PASSWD Specifies the password to use when authenticating
+            be created in a single commit. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--password PASSWD Specifies the password to use when authenticating
             against a Subversion server.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. This option is accepted by
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> This option is accepted by
               all  svn  subcommands. --quiet  ( -q ) Requests that the client print only essential
             information while performing an operation. --record-only Enables a special mode of  svn
           merge  in which the specified merge operation is
@@ -19618,10 +19618,10 @@ $ svn log -r 1729:{2002-02-17}
             and the network path between it and your client is known
             to be trustworthy. This option is accepted by
               all  svn  subcommands. --use-merge-history  ( -g ) Uses or displays additional information from merge
-            history. --username NAME Specifies the username to use when authenticating
+            history. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--username NAME Specifies the username to use when authenticating
             against a Subversion server.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. This option is accepted by
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> This option is accepted by
               all  svn  subcommands. --verbose  ( -v ) Requests that the client print out as much
             information as it can while running any subcommand.
             This may result in Subversion printing out additional
@@ -22969,14 +22969,14 @@ $ svnlook youngest /var/svn/repos/
               as might be reported by  svn info ).
               It can be any URL common to the various targets which
               are specified in the  svnmucc 
-              actions. --password  ( -p )
+              actions. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--password  ( -p )
              PASSWD Use  PASSWD  as the
               password when authenticating against a Subversion
               server.  If not provided, or if incorrect, Subversion
-              will prompt you for this information as needed. --username NAME Use  USERNAME  as the
+              will prompt you for this information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--username NAME Use  USERNAME  as the
               username when authenticating against a Subversion
               server.  If not provided, or if incorrect, Subversion
-              will prompt you for this information as needed. --version Display the program&#39;s version information and
+              will prompt you for this information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> --version Display the program&#39;s version information and
               exit. --with-revprop NAME = VALUE Set the value of the revision property
                NAME  to
                VALUE  on the committed
@@ -23101,17 +23101,17 @@ $
             credentials (e.g., username or password).  This is useful
             if you&#39;re running Subversion inside an automated
             script and it&#39;s more appropriate to have Subversion fail
-            than to prompt for more information. --password PASSWD Specifies the password to use when authenticating
+            than to prompt for more information. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--password PASSWD Specifies the password to use when authenticating
             against a Subversion server.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. --quiet  ( -q ) Requests that the client print only essential
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> --quiet  ( -q ) Requests that the client print only essential
             information while performing an operation. --revision  ( -r )  ARG Used by  svnsync copy-revprops  to
             specify a particular revision or revision range on which
             to operate. --trust-server-cert Used with  --non-interactive  to accept
-            any unknown SSL server certificates without prompting. --username NAME Specifies the username to use when authenticating
+            any unknown SSL server certificates without prompting. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--username NAME Specifies the username to use when authenticating
             against a Subversion server.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. svnrdump subcommands dump svnrdump dump svnrdump dump SOURCE_URL Description Dump that is, generate a repository dump stream
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> svnrdump subcommands dump svnrdump dump svnrdump dump SOURCE_URL Description Dump that is, generate a repository dump stream
         of revisions of the repository item located
         at  SOURCE_URL , printing the
         information to standard output.  By default, the entire
@@ -23303,31 +23303,31 @@ $ svnadmin dump -q /var/svn/repos/new-project | \
             than to prompt for more information. --quiet  ( -q ) Requests that the client print only essential
             information while performing an operation. --revision  ( -r )  ARG Used by  svnsync copy-revprops  to
             specify a particular revision or revision range on which
-            to operate. --source-password PASSWD Specifies the password for the Subversion server
+            to operate. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--source-password PASSWD Specifies the password for the Subversion server
             from which you are syncing.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. --source-prop-encoding  ARG Instructs  svnsync  to assume that
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> --source-prop-encoding  ARG Instructs  svnsync  to assume that
             translatable Subversion revision properties found in the
             source repository are stored using the character
             encoding  ARG  and to transcode
             those into UTF-8 when copying them into the mirror
-            repository. --source-username NAME Specifies the username for the Subversion server
+            repository. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--source-username NAME Specifies the username for the Subversion server
             from which you are syncing.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. --steal-lock Causes  svnsync  to steal, as
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> --steal-lock Causes  svnsync  to steal, as
             necessary, the lock which it uses on the mirror
             repository to ensure exclusive repository access.  (This
             option should only be used when a lock exists in the
             mirror repository and is known to be stale that
             is, when you are certain that there are no
             other  svnsync  processes accessing
-            that repository.) --sync-password PASSWD Specifies the password for the Subversion server to
+            that repository.) <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--sync-password PASSWD Specifies the password for the Subversion server to
             which you are syncing.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. --sync-username NAME Specifies the username for the Subversion server to
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--sync-username NAME Specifies the username for the Subversion server to
             which you are syncing.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. --trust-server-cert Used with  --non-interactive  to accept
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> --trust-server-cert Used with  --non-interactive  to accept
             any unknown SSL server certificates without prompting. svnsync subcommands copy-revprops svnsync copy-revprops Copy all revision properties for a particular
         revision (or range of revisions) from the source
         repository to the mirror repository. svnsync copy-revprops DEST_URL
