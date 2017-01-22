@@ -9791,7 +9791,7 @@ r3 | bill | 2013-01-17 09:07:04 -0500 (Thu, 17 Jan 2013)
         results of merging changes from the trunk.  If you look at one
         of these logs in detail, the multiple trunk changesets that
         comprised the branch change are nowhere to be seen: 
-$ svn log ^/calc/branches/my-calc-branch -r352 -v
+<!-- 1bad7ceb-9b2d-4f19-ab76-0ee2f69fbce9 <=< ACCEPT -->$ svn log ^/calc/branches/my-calc-branch -r352 -v
 ------------------------------------------------------------------------
 r352 | user | 2013-02-16 09:35:18 -0500 (Sat, 16 Feb 2013) | 1 line
 Changed paths:
@@ -9802,14 +9802,14 @@ Changed paths:
    M /calc/branches/my-calc-branch/src/real.c
 
 Sync latest trunk changes to my-calc-branch.
-------------------------------------------------------------------------
+------------------------------------------------------------------------<!-- ACCEPT >=> 1bad7ceb-9b2d-4f19-ab76-0ee2f69fbce9 -->
  We happen to know that this merge to the branch was
         nothing but a merge of trunk changes.  How can we see those
         trunk changes as well?  The answer is to use the
          --use-merge-history  ( -g )
         option.  This option expands those  child 
         changes that were part of the merge. 
-$ svn log ^/calc/branches/my-calc-branch -r352 -v -g
+<!-- 1bad7ceb-9b2d-4f19-ab76-0ee2f69fbce9 <=< ACCEPT -->$ svn log ^/calc/branches/my-calc-branch -r352 -v -g
 ------------------------------------------------------------------------
 r352 | user | 2013-02-16 09:35:18 -0500 (Sat, 16 Feb 2013) | 1 line
 Changed paths:
@@ -9820,7 +9820,7 @@ Changed paths:
    M /calc/branches/my-calc-branch/src/real.c
 
 Sync latest trunk changes to my-calc-branch.
-------------------------------------------------------------------------
+------------------------------------------------------------------------<!-- ACCEPT >=> 1bad7ceb-9b2d-4f19-ab76-0ee2f69fbce9 -->
 r351 | sally | 2013-02-16 08:04:22 -0500 (Sat, 16 Feb 2013) | 2 lines
 Changed paths:
    M /calc/trunk/src/real.c
@@ -16916,12 +16916,12 @@ REGEDIT4
           tasks.  Valid options in this section are: diff-cmd This specifies the absolute path of a differencing
                 program, used when Subversion generates
                  diff  output (such as when using the
-                 svn diff  command).  By default,
+                 svn diff  command).  <!-- ed0e4a37-04e2-466b-8c39-0c41850a85e4 <=< ACCEPT -->By default,
                 Subversion uses an internal differencing
                 library setting this option will cause it to
                 perform this task using an external program.  See
                   for
-                more details on using such programs. diff-extensions Like the  --extensions 
+                more details on using such programs.<!-- ACCEPT >=> ed0e4a37-04e2-466b-8c39-0c41850a85e4 --> diff-extensions Like the  --extensions 
                 ( -x ) command-line option, this
                 specifies additional options passed to the file
                 content differencing engine.  The set of meaningful
@@ -16933,11 +16933,11 @@ REGEDIT4
                 is  -u . diff3-cmd This specifies the absolute path of a three-way
                 differencing program.  Subversion uses this program to
                 merge changes made by the user with those received
-                from the repository.  By default, Subversion uses an
+                from the repository.  <!-- ed0e4a37-04e2-466b-8c39-0c41850a85e4 <=< ACCEPT -->By default, Subversion uses an
                 internal differencing library setting this
                 option will cause it to perform this task using an
                 external program.  See   for more
-                details on using such programs. diff3-has-program-arg This flag should be set to  true 
+                details on using such programs.<!-- ACCEPT >=> ed0e4a37-04e2-466b-8c39-0c41850a85e4 --> diff3-has-program-arg This flag should be set to  true 
                 if the program specified by the
                  diff3-cmd  option accepts a
                  --diff-program  command-line
@@ -19038,7 +19038,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
       simply  start-commit . This reference guide describes the various hooks which
       Subversion offers to administrators, detailing when the hook is
       invoked, its input parameters, and how its behavior affects the
-      Subversion workflow. hook scripts start-commit start-commit Notification of the beginning of a commit. start-commit
+      Subversion workflow. <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts start-commit start-commit Notification of the beginning of a commit. start-commit
          REPOS-PATH 
          USER 
          CAPABILITIES 
@@ -19070,7 +19070,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
              mergeinfo , and
              log-revprops  (new in Subversion 1.5) Commit transaction name (new in Subversion 1.8) Common uses Access control (e.g., temporarily lock out commits for
         some reason). A means to allow access only from clients that have
-        certain capabilities. hook scripts pre-commit pre-commit Notification just prior to commit completion. pre-commit
+        certain capabilities.<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts pre-commit pre-commit Notification just prior to commit completion. pre-commit
          REPOS-PATH 
          TXN-NAME Description The  pre-commit  hook is run just
         before a commit transaction is promoted to a new revision.
@@ -19091,7 +19091,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         lock token information line consists of the URI-escaped
         repository filesystem path associated with the lock,
         followed by the pipe ( | ) separator
-        character, and finally the lock token string. Common uses Change validation and control hook scripts post-commit post-commit Notification of a successful commit. post-commit
+        character, and finally the lock token string.<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Change validation and control <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts post-commit post-commit Notification of a successful commit. post-commit
          REPOS-PATH 
          REVISION Description The  post-commit  hook is run after the
         transaction is committed and a new revision is created.  Most
@@ -19104,7 +19104,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         completed.  However, anything that the hook printed
         to  stderr  will be marshalled back to the
         client, making it easier to diagnose hook failures. Input parameter(s) The command-line arguments passed to the hook program,
-        in order, are: Repository path Revision number created by the commit Common uses Commit notification; tool integration hook scripts pre-revprop-change pre-revprop-change Notification of a revision property change
+        in order, are: Repository path Revision number created by the commit Common uses Commit notification; tool integration<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts pre-revprop-change pre-revprop-change Notification of a revision property change
         attempt. pre-revprop-change
          REPOS-PATH 
          REVISION 
@@ -19125,7 +19125,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
              D  (deleted), or  M 
             (modified) Additionally, Subversion passes the intended new value
          of the property to the hook program via standard
-         input. Common uses Access control; change validation and control hook scripts post-revprop-change post-revprop-change Notification of a successful revision property 
+         input. Common uses Access control; change validation and control<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts post-revprop-change post-revprop-change Notification of a successful revision property 
         change. post-revprop-change
          REPOS-PATH 
          REVISION 
@@ -19148,7 +19148,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         in order, are: Repository path Revision whose property was modified Authenticated username of the person making the change Name of the property changed Change description:  A  (added),
              D  (deleted), or  M 
             (modified) Additionally, Subversion passes to the hook program, via
-        standard input, the previous value of the property. Common uses Property change notification hook scripts pre-lock pre-lock Notification of a path lock attempt. pre-lock
+        standard input, the previous value of the property.<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Property change notification <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts pre-lock pre-lock Notification of a path lock attempt. pre-lock
          REPOS-PATH 
          PATH 
          USER 
@@ -19176,7 +19176,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         in order, are: Repository path Versioned path that is to be locked Authenticated username of the person attempting the 
             lock Comment provided when the lock was created 1  if the user is attempting to
             steal an existing lock;  0 
-            otherwise Common uses Access control hook scripts post-lock post-lock Notification of a successful path lock. post-lock
+            otherwise<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Access control <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts post-lock post-lock Notification of a successful path lock. post-lock
          REPOS-PATH 
          USER Description The  post-lock  hook runs after one or
         more paths have been locked.  It is typically used to send
@@ -19188,7 +19188,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         client, making it easier to diagnose hook failures. Input parameter(s) The command-line arguments passed to the hook program,
         in order, are: Repository path Authenticated username of the person who locked the 
             paths Additionally, the list of paths locked is passed to the
-        hook program via standard input, one path per line. Common uses Lock notification hook scripts pre-unlock pre-unlock Notification of a path unlock attempt. pre-unlock
+        hook program via standard input, one path per line.<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Lock notification <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts pre-unlock pre-unlock Notification of a path unlock attempt. pre-unlock
          REPOS-PATH 
          PATH 
          USER 
@@ -19207,7 +19207,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         in order, are: Repository path Versioned path which is to be unlocked Authenticated username of the person attempting the 
             unlock Lock token associated with the lock which is to be
             removed 1  if the user is attempting to
-            break the lock;  0  otherwise Common uses Access control hook scripts post-unlock post-unlock Notification of a successful path unlock. post-unlock
+            break the lock;  0  otherwise<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Access control <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts post-unlock post-unlock Notification of a successful path unlock. post-unlock
          REPOS-PATH 
          USER Description The  post-unlock  hook runs after one
         or more paths have been unlocked.  It is typically used to
@@ -19219,7 +19219,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         client, making it easier to diagnose hook failures. Input parameter(s) The command-line arguments passed to the hook program,
         in order, are: Repository path Authenticated username of the person who unlocked the 
             paths Additionally, the list of paths unlocked is passed to the
-        hook program via standard input, one path per line. Common uses Unlock notification svn Reference Subversion Command-Line Client svn  is the official command-line client
+        hook program via standard input, one path per line.<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Unlock notification svn Reference Subversion Command-Line Client svn  is the official command-line client
       of Subversion.  Its functionality is offered via a collection of
       task-specific subcommands, most of which accept a number of
       options for fine-grained control of the program&#39;s
@@ -21094,7 +21094,7 @@ Committed revision 27.
         third&#39;s contents and properties.  Here&#39;s the patch file
         itself (which we&#39;ll assume is creatively named
          PATCH ): 
-Index: deleted-file
+<!-- 097bf3ff-7ed0-430a-9585-ccf57c89716d <=< ACCEPT -->Index: deleted-file
 ===================================================================
 --- deleted-file    (revision 3)
 +++ deleted-file    (working copy)
@@ -21123,7 +21123,7 @@ Index: added-file
 --- added-file    (revision 0)
 +++ added-file    (working copy)
 @@ -0,0 +1 @@
-+This is an added file.
++This is an added file.<!-- ACCEPT >=> 097bf3ff-7ed0-430a-9585-ccf57c89716d -->
  We can apply the previous patch file to another
         working copy from our repository using  svn
         patch , and verify that it did the right thing by
@@ -21134,7 +21134,7 @@ D         deleted-file
 UU        changed-file
 A         added-file
 $ svn diff
-Index: deleted-file
+<!-- 097bf3ff-7ed0-430a-9585-ccf57c89716d <=< ACCEPT -->Index: deleted-file
 ===================================================================
 --- deleted-file    (revision 3)
 +++ deleted-file    (working copy)
@@ -21163,7 +21163,7 @@ Index: added-file
 --- added-file    (revision 0)
 +++ added-file    (working copy)
 @@ -0,0 +1 @@
-+This is an added file.
++This is an added file.<!-- ACCEPT >=> 097bf3ff-7ed0-430a-9585-ccf57c89716d -->
 $
  Sometimes you might need Subversion to interpret a
         patch  in reverse where added things
@@ -23344,7 +23344,7 @@ $ svnadmin dump -q /var/svn/repos/new-project | \
         source and mirror repositories.   svnsync
         copy-revprops  is the answer to this problem.
         Use it to resynchronize the revision properties for a
-        particular revision or range of revisions. When  SOURCE_URL  is
+        particular revision or range of revisions. <!-- 61afa2d8-6976-4de9-b02a-24a883a17cc5 <=< ACCEPT -->When  SOURCE_URL  is
         provided,  svnsync  will use it as the
         repository URL which the destination repository is
         mirroring. Generally,  SOURCE_URL 
@@ -23359,7 +23359,7 @@ $ svnadmin dump -q /var/svn/repos/new-project | \
           have write access to the revision 0 properties
           which  svnsync  uses to coordinate its
           efforts. Options Examples Resynchronize the revision properties associated with
-        a single revision (r6): 
+        a single revision (r6):<!-- ACCEPT >=> 61afa2d8-6976-4de9-b02a-24a883a17cc5 --> 
 $ svnsync copy-revprops -r 6 file:///var/svn/repos-mirror \
                              http://svn.example.com/repos
 Copied properties for revision 6.
@@ -23436,7 +23436,7 @@ $
         see which revisions have already been copied into it, it
         then begins to copy any not-yet-mirrored revisions from
         the source repository. svnsync synchronize  can be
-        gracefully canceled and restarted. When  SOURCE_URL  is
+        gracefully canceled and restarted. <!-- 61afa2d8-6976-4de9-b02a-24a883a17cc5 <=< ACCEPT -->When  SOURCE_URL  is
         provided,  svnsync  will use it as the
         repository URL which the destination repository is
         mirroring. Generally,  SOURCE_URL 
@@ -23451,7 +23451,7 @@ $
           have write access to the revision 0 properties
           which  svnsync  uses to coordinate its
           efforts. Options Examples Copy unsynchronized revisions from the source
-        repository to the mirror repository: 
+        repository to the mirror repository:<!-- ACCEPT >=> 61afa2d8-6976-4de9-b02a-24a883a17cc5 --> 
 $ svnsync synchronize file:///var/svn/repos-mirror \
                       http://svn.example.com/repos
 Committed revision 1.
