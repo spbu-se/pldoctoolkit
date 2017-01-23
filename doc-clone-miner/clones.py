@@ -147,6 +147,9 @@ def initoptions(args, logger):
     global max_clone_token_length
     max_clone_token_length = args.max_clone_token_length
 
+    global min_group_power
+    min_group_power = args.min_group_power
+
 
 # TODO: this should be enum (requires py 3.4+) and should be robably removed and replaced with xmllexer
 class TextZone(object):
@@ -687,6 +690,9 @@ class ExactCloneGroup(CloneGroup):
     def isTooLong(self):
         return self.ntokens > max_clone_token_length
 
+    def isTooPoor(self):
+        return len(self.instances) < min_group_power
+
     def isBlacklisted(self):
         global inputfiles
         global clonegroups
@@ -707,6 +713,7 @@ class ExactCloneGroup(CloneGroup):
     by_no_semantic = 0
     by_broken_markup = 0
     by_too_long = 0
+    by_too_poor = 0
 
     def isCorrect(self):
         global inputfiles
@@ -718,6 +725,10 @@ class ExactCloneGroup(CloneGroup):
 
         if self.isTooLong():
             ExactCloneGroup.by_too_long += 1
+            return False
+
+        if self.isTooPoor():
+            ExactCloneGroup.by_too_poor += 1
             return False
 
         if self.isLessThanAllowed():

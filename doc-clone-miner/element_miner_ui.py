@@ -367,7 +367,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         self.cbMaxVar.stateChanged.connect(self.cbMaxVar_checked)
         self.cbMethod.currentIndexChanged.connect(self.methodSelected)
 
-        for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd, self.slClLen_f]:
+        for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd, self.slClLen_f, self.slGrpMinPow]:
             slider.valueChanged.connect(self.slider_moved)
 
         self.slClMaxLen_f.valueChanged.connect(self.slClMaxLenRotated)
@@ -407,7 +407,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         elif methodIdx == 1:  # Fuzzy Finder
             numparams = [slider.value() for slider in [self.slFfClLen, self.slFfEd, self.slFfHd]]
         elif methodIdx == 2: # Fuzzy Heat
-            numparams = [int(self.lbClLen_f.text())]
+            numparams = [slider.value() for slider in [self.slClLen_f]]
         else:
             raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -487,7 +487,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         wt = run_fuzzy_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
 
-    def launch_fuzzyheat_with_clone_miner(self, pui, infile, numparamps):
+    def launch_fuzzyheat_with_clone_miner(self, pui, infile, numparams):
         options = [
             "-wv", "no",
             "-minl", "5",
@@ -499,7 +499,10 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         if self.slClMaxLen_f.value() <= 200:
             options += ['-maxctl', str(self.slClMaxLen_f.value())]
 
-        wt = run_fuzzyheat_with_clone_miner_thread(pui, infile, options, numparamps)
+        if self.slGrpMinPow.value() > 2:
+            options += ['-mingpow', str(self.slGrpMinPow.value())]
+
+        wt = run_fuzzyheat_with_clone_miner_thread(pui, infile, options, numparams)
         return wt
 
     def launch_with_clone_miner(self, pui, infile, lengths):

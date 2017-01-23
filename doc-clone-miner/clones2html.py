@@ -65,6 +65,8 @@ def initargs():
                         help="Group combining algorithm", type=str, default="interval-n-ext")
     argpar.add_argument("-maxctl", "--max-clone-token-length", type=int, help="MAX clone length inn tokens",
                         default=sys.maxsize)
+    argpar.add_argument("-mingpow", "--min-group-power", type=int, help="MIN clone group power in clones",
+                        default=2)
 
     args = argpar.parse_args()
 
