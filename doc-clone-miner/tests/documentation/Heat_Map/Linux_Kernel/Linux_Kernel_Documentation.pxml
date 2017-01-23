@@ -141,8 +141,8 @@ This part of the book describes mac80211 internals.
 Key handlingKey handling basics
 MORE TBDTBDReceive processingTBDTransmit processingTBDStation info handlingProgramming information
 STA information lifetime rules
-Aggregation
-<!-- IGNORE >=> STA 7eec4b69-b4da-4bf3-9d0e-74a1af7a7786 -->
+Aggregation STA
+<!-- IGNORE >=> 7eec4b69-b4da-4bf3-9d0e-74a1af7a7786 -->
 
 SynchronisationTBDLocking, lots of RCUThe 802.11 subsystems &amp;ndash; for kernel developers
 Explaining wireless 802.11 networking in the Linux kernel
