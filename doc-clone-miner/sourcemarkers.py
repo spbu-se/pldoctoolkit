@@ -11,6 +11,7 @@ import re
 import xmllexer
 import verbhtml
 import sys
+import logging
 
 class RangeMarker(metaclass=ABCMeta):
     id = None
@@ -83,7 +84,7 @@ def find_marked_intervals(src):
 
     if len(obes) != len(cbes):
         print(
-            "Source contains", len(obes), "opening markes and", len(cbes), "closing",
+            "Source contains", len(obes), "opening markers and", len(cbes), "closing",
             file=sys.stderr)
         return []
 
@@ -91,9 +92,16 @@ def find_marked_intervals(src):
     for (ob, oe), (cb, ce) in zip(obes, cbes):
         mt = open_marker_type(src[ob:oe])
         if mt != close_marker_type(src[cb:ce]):
-            print("UNBALANCED MARKERS:", src[ob:ce], file=sys.stderr)
+            print("UNBALANCED MARKERS: <=<=<", src[ob:ce], ">=>=>", file=sys.stderr)
             continue
         intervals.append((ob, ce, mt))
+
+    # statistics output
+    markerlen = 56
+    src_wo_mcoms_len = len(src) - len(intervals) * 2 * markerlen
+    marked_len = sum([e - b for b, e, t in intervals if t == 'ACCEPT'])
+    msg = "Source length: %d, marked for reuse: %d" % (src_wo_mcoms_len, marked_len)
+    logging.getLogger("fuzzyheat.sourcemarkers").info(msg)
 
     return intervals
 
