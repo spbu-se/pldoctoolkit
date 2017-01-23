@@ -289,6 +289,15 @@ if filterintersections:
     clones.clonegroups = [g for g in clones.clonegroups if len(g.instances) > 1]
 
     logging.info("after removing intersections having %d groups" % len(clones.clonegroups))
+    logging.info("REUSE AMOUNT STATS:")
+    tot_length = 0
+    reuse_length = 0
+    for ifl in clones.inputfiles:
+        tot_length += len(ifl.text)
+    for g in clones.clonegroups:
+        for f, b, e in g.instances:
+            reuse_length += e - b
+    logging.info("Total: " + str(tot_length) + " Reusable: " + str(reuse_length) + " AMOUNT: " + str(reuse_length/tot_length))
 
     # print("Total symbols in non-intersecting groups: %d" % (totalsymbolsingroups(clones.clonegroups),))
 
