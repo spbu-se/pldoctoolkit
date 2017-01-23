@@ -183,14 +183,14 @@ stylesheet distribution . testing DSSSL stylesheets installation HTML stylesheet
 
 Test the installation by processing  test.sgm 
 (from the previous section) with Jade: jade -t rtf -d d:\where-you-unpacked-the-stylesheets\docbook\print\docbook.dsl test.sgm
- This command should silently produce  
+ <!-- 1ae7f103-6108-4195-8c6b-f9a17971513a <=< ACCEPT -->This command should silently produce  
 test.rtf . If not, and the preceding test succeeded, something
 has gone wrong contact
-the maintainer . To test the HTML stylesheet, run: jade -t sgml -d d:\where-you-unpacked-the-stylesheets\docbook\html\docbook.dsl test.sgm
- This command should silently produce  
+the maintainer .<!-- ACCEPT >=> 1ae7f103-6108-4195-8c6b-f9a17971513a --> To test the HTML stylesheet, run: jade -t sgml -d d:\where-you-unpacked-the-stylesheets\docbook\html\docbook.dsl test.sgm
+ <!-- 1ae7f103-6108-4195-8c6b-f9a17971513a <=< ACCEPT -->This command should silently produce  
 c01.htm . If not, and the preceding test succeeded, something
 has gone wrong contact
-the maintainer . $Date: 2001-08-02 14:27:50 +0400 (Чт, 02 авг 2001) $ $Revision: 546 $ DocBook and  DocBook DTD XML XML DocBook and SGML XML and XML SGML, processing 
+the maintainer .<!-- ACCEPT >=> 1ae7f103-6108-4195-8c6b-f9a17971513a --> $Date: 2001-08-02 14:27:50 +0400 (Чт, 02 авг 2001) $ $Revision: 546 $ DocBook and  DocBook DTD XML XML DocBook and SGML XML and XML SGML, processing 
 
  , the  Extensible
 Markup Language , is a simple dialect of  . In the words of the
@@ -588,10 +588,10 @@ This document describes  OASIS  catalog files.
  The   Declaration The   Declaration,  by Wayne Wholer.
  Table Interoperability: Issues for the   Table Model
  OASIS 
-Technical Research Paper 9501:1995 . Exchange Table Model Document Type Definition OASIS 
-Technical Resolution  TR  9503:1995 .  Table Model Document Type Definition OASIS 
-Technical Memorandum  TM  9502:1995 XML Exchange Table Model Document Type Definition OASIS
-Technical Memorandum TM 9901:1999 . Internet  RFC s RFC s ( Request for Comments ) are standards documents
+Technical Research Paper 9501:1995 . <!-- 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 <=< ACCEPT -->Exchange Table Model Document Type Definition OASIS 
+Technical Resolution  TR  9503:1995 .<!-- ACCEPT >=> 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 -->  <!-- 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 <=< ACCEPT -->Table Model Document Type Definition OASIS 
+Technical Memorandum  TM  9502:1995<!-- ACCEPT >=> 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 --> <!-- 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 <=< ACCEPT -->XML Exchange Table Model Document Type Definition OASIS
+Technical Memorandum TM 9901:1999 .<!-- ACCEPT >=> 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 --> Internet  RFC s RFC s ( Request for Comments ) are standards documents
 produced by the Internet Engineering Task Force ( IETF ).
  RFC  1630 Universal Resource Identifiers in  WWW . RFC  1736 Functional recommendations for Internet Resource Locators. RFC  1737 Functional requirements for Uniform Resource Names. RFC  1738 Uniform Resource Locators ( URL ). RFC  3066 Tags for the identification of languages Specifications Here are pointers to the specifications. The   Specification
  The  W3C  technical recommendation that defines   1.0. Namespaces
@@ -1911,30 +1911,30 @@ the   used will be the one identified by the public identifier
  -//OASIS//DTD DocBook V3.1//EN . See   later in this chapter.
  An Internal Subset internal subset SGML document declarations 
 
-It&#39;s also possible to provide additional declarations in a document
-by placing them in the document type declaration: &lt;!DOCTYPE book PUBLIC &quot;-//OASIS//DTD DocBook V3.1//EN&quot; [
+<!-- c6634a9d-8a86-451e-961c-e096ec101a8c <=< ACCEPT -->It&#39;s also possible to provide additional declarations in a document
+by placing them in the document type declaration:<!-- ACCEPT >=> c6634a9d-8a86-451e-961c-e096ec101a8c --> &lt;!DOCTYPE book PUBLIC &quot;-//OASIS//DTD DocBook V3.1//EN&quot; [
 &lt;!ENTITY nwalsh &quot;Norman Walsh&quot;&gt;
 &lt;!ENTITY chap1 SYSTEM &quot;chap1.sgm&quot;&gt;
 &lt;!ENTITY chap2 SYSTEM &quot;chap2.sgm&quot;&gt;
 ]&gt; external subset SGML document declarations public identifiers SGML system identifiers SGML 
 
-These declarations form what is known as the
+<!-- 0afc9570-f04d-4889-afeb-3278fa34da59 <=< ACCEPT -->These declarations form what is known as the
  internal subset . The declarations stored in the
 file referenced by the public or system identifier in the 
  DOCTYPE  declaration is called the  external
 subset  and it is technically optional.
 It is legal to put the   in the internal
 subset and to have no external subset, but for a   as large
-as DocBook that wouldn&#39;t make much sense.
+as DocBook that wouldn&#39;t make much sense.<!-- ACCEPT >=> 0afc9570-f04d-4889-afeb-3278fa34da59 -->
  parsing order 
-The internal subset is parsed  first 
+<!-- 375983ab-b788-4d49-849a-a9e0b0b41e7e <=< ACCEPT -->The internal subset is parsed  first 
 and, if multiple declarations for an entity occur, the first
-declaration is used.  Declarations in the internal subset
+declaration is used. Declarations in the internal subset
 override declarations in the external subset. The Document (or Root) Element elements root element root element placement 
 
 Although comments and processing instructions may occur between the
 document type declaration and the root element, the root element usually
-immediately follows the document type declaration: &lt;!DOCTYPE book PUBLIC &quot;-//OASIS//DTD DocBook V3.1//EN&quot; [
+immediately follows the document type declaration:<!-- ACCEPT >=> 375983ab-b788-4d49-849a-a9e0b0b41e7e --> &lt;!DOCTYPE book PUBLIC &quot;-//OASIS//DTD DocBook V3.1//EN&quot; [
 &lt;!ENTITY nwalsh &quot;Norman Walsh&quot;&gt;
 &lt;!ENTITY chap1 SYSTEM &quot;chap1.sgm&quot;&gt;
 &lt;!ENTITY chap2 SYSTEM &quot;chap2.sgm&quot;&gt;
@@ -1967,9 +1967,9 @@ If attribute values contain spaces or punctuation characters, you must
 quote them. You are not required to quote attribute values if they
 consist of a single word or number, although it is not wrong to do so.
  straight single quotes (attribute values) straight double quotes (attribute values) curly quotes (attribute values) 
-When quoting attribute values, you can use either a straight single
+<!-- 975a7f56-0ff9-4bae-b18f-0a88d7463b57 <=< ACCEPT -->When quoting attribute values, you can use either a straight single
 quote (&#39;), or a straight double quote (&quot;).  Don&#39;t use the
- curly  quotes (  and  ) in your editing tool.
+ curly  quotes (  and  ) in your editing tool.<!-- ACCEPT >=> 975a7f56-0ff9-4bae-b18f-0a88d7463b57 -->
  compatibility, SGML/XML conversion attribute values, quoting 
 If you are interested in future   compatibility, always
 quote all attribute values.
@@ -2078,9 +2078,9 @@ System identifiers in   must be  URI s. Many
 systems may accept filenames and interpret them locally as
  file:   URL s, but it&#39;s always
 correct to fully qualify them.
- An Internal Subset declarations document type declaration XML document type declaration internal subset internal subset XML document type declarations XML document type declarations internal subset 
+ An Internal Subset declarations document type declaration XML document type declaration internal subset internal subset XML document type declarations XML document type declarations internal subset <!-- c6634a9d-8a86-451e-961c-e096ec101a8c <=< ACCEPT -->
 It&#39;s also possible to provide additional declarations in a document by
-placing them in the document type declaration:
+placing them in the document type declaration:<!-- ACCEPT >=> c6634a9d-8a86-451e-961c-e096ec101a8c -->
  &lt;?xml version=&#39;1.0&#39;?&gt;
 &lt;!DOCTYPE book PUBLIC &quot;-//Norman Walsh//DTD DocBk XML V3.1.4/EN&quot;
                          &quot;http://nwalsh.com/docbook/xml/3.1.4/db3xml.dtd&quot; [
@@ -2088,21 +2088,21 @@ placing them in the document type declaration:
 &lt;!ENTITY chap1 SYSTEM &quot;chap1.sgm&quot;&gt;
 &lt;!ENTITY chap2 SYSTEM &quot;chap2.sgm&quot;&gt;
 ]&gt; 
-These declarations form what is known as the internal subset. The
+<!-- 0afc9570-f04d-4889-afeb-3278fa34da59 <=< ACCEPT -->These declarations form what is known as the internal subset. The
 declarations stored in the file referenced by the public or system
 identifier in the  DOCTYPE  declaration is called the
 external subset, which is technically optional.  It is legal to put
 the   in the internal subset and to have no external subset, but
-for a   as large as DocBook, that would make very little sense.
+for a   as large as DocBook, that would make very little sense.<!-- ACCEPT >=> 0afc9570-f04d-4889-afeb-3278fa34da59 -->
  parsing order XML document declarations 
 
-The internal subset is parsed  first  in   and,
+<!-- 375983ab-b788-4d49-849a-a9e0b0b41e7e <=< ACCEPT -->The internal subset is parsed  first  in   and,
 if multiple declarations for an entity occur, the first declaration is used.
 Declarations in the internal subset override declarations in the external
 subset. The Document (or Root) Element root element elements root element 
 Although comments and processing instructions may occur between the
 document type declaration and the root element, the root element usually
-immediately follows the document type declaration: &lt;?xml version=&#39;1.0&#39;?&gt;
+immediately follows the document type declaration:<!-- ACCEPT >=> 375983ab-b788-4d49-849a-a9e0b0b41e7e --> &lt;?xml version=&#39;1.0&#39;?&gt;
 &lt;!DOCTYPE book PUBLIC &quot;-//Norman Walsh//DTD DocBk XML V3.1.4//EN&quot;
                          &quot;http://nwalsh.com/docbook/xml/3.1.4/db3xml.dtd&quot; [
 &lt;!ENTITY nwalsh &quot;Norman Walsh&quot;&gt;
@@ -2127,9 +2127,9 @@ attribute, and entity names in lowercase.
 You are required to quote all attribute values in  .
  quotes attribute values 
 
-When quoting attribute values, you can use either a straight single
+<!-- 975a7f56-0ff9-4bae-b18f-0a88d7463b57 <=< ACCEPT -->When quoting attribute values, you can use either a straight single
 quote (&#39;), or a straight double quote (&quot;).  Don&#39;t use the
- curly  quotes (  and  ) in your editing tool.
+ curly  quotes (  and  ) in your editing tool.<!-- ACCEPT >=> 975a7f56-0ff9-4bae-b18f-0a88d7463b57 -->
  empty elements markup syntax 
 
 Empty elements in   are marked with a distinctive syntax:
@@ -3240,7 +3240,7 @@ online form of the glossary in this book.
 
 There are two ways to set up a bibliography in DocBook: you can have
 the data  raw  or
- cooked . Here&#39;s an example of a raw
+ cooked . <!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< ACCEPT -->Here&#39;s an example of<!-- ACCEPT >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> a raw
 bibliographical item, wrapped in the  Biblioentry  element:
  
 &lt;biblioentry xreflabel=&quot;Kites75&quot;&gt;
@@ -3715,7 +3715,7 @@ currently pursuing that effort.
 
 
 
-By way of comparison, here&#39;s an example of each of the standard style
+<!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< IGNORE -->By way of comparison, here&#39;s an example of<!-- IGNORE >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> each of the standard style
 languages. In each case, the stylesheet fragment shown contains the
 rules that reasonably formatted the following paragraph:
  &lt;para&gt;
@@ -4633,7 +4633,7 @@ java  com.jclark.xsl.sax.Driver  filename.xml   docbook/html/docbook.xsl  &gt;  
    formatting object processor available for free from the
    Apache   Project (
     http://xml.apache.org ).
-   Here is an example of that two stage processing: CLASSPATH=xt.jar:xp.jar:sax.jar:fop.jar
+   <!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< ACCEPT -->Here is an example of<!-- ACCEPT >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> that two stage processing: CLASSPATH=xt.jar:xp.jar:sax.jar:fop.jar
 export CLASSPATH
 java  com.jclark.xsl.sax.Driver  filename.xml   docbook/fo/docbook.xsl  &gt;  output.fo 
 java  org.apache.fop.apps.CommandLine  output.fo   output.pdf As of this writing, some other XSLT processors to
@@ -4670,7 +4670,7 @@ java  org.apache.fop.apps.CommandLine  output.fo   output.pdf As of this writing
   , any XSL elements that are not empty will require a
  closing tag. And some XSL elements have specific attributes
  that control their behavior. It helps to keep a good XSL
- reference book handy. Here is an example of a simple XSL stylesheet applied
+ reference book handy. <!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< ACCEPT -->Here is an example of<!-- ACCEPT >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> a simple XSL stylesheet applied
  to a simple   file to generate HTML output. Simple   file Simple XSL stylesheet HTML output XSL processing model XSL is a template language, not a procedural
 language. That means a stylesheet specifies a sample of the
 output, not a sequence of programming steps to generate it.
@@ -4869,7 +4869,7 @@ That&#39;s because the called template must be expecting the
 parameter by defining it using
 a  &lt;xsl:param&gt;  element with the same
 parameter name. Any passed parameters whose names are not
-defined in the called template are ignored. Here is an example of parameter passing
+defined in the called template are ignored. <!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< ACCEPT -->Here is an example of<!-- ACCEPT >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> parameter passing
 from  docbook.xsl : Here a template
 named  head.content  is being called and
 passed a parameter named  node  whose
@@ -5041,8 +5041,8 @@ include all the modules. That single import instruction
 gives the new stylesheet the complete set of DocBook
 templates to start with. After the
 import,  xtchunk.xsl  redefines some of
-the templates and adds some new ones. Here is one example
-of a redefined template: The new template handles the more complex processing
+the templates and adds some new ones. <!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< ACCEPT -->Here is one example
+of<!-- ACCEPT >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> a redefined template: The new template handles the more complex processing
 of HREFs when the output is split into many HTML files.
 Where the old template could simply
 output  # object.id ,
