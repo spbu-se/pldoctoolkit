@@ -23136,9 +23136,9 @@ possible from your image border. The action of this filter is not
 registered in Undo History and can't be deleted with
 Ctrl + Z  :
 it doesn't modify the image.
-8.29.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.29.2. Activating the filter 
 This filter is found in the image window menu under
-Colors + Info  →  Border Average .
+Colors + Info  →  Border Average .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.29.3. Options Figure 16.178. Options of the  “ Border Average Filter ” Border Size 
 You can set there the border  Thickness  in
 pixels.
@@ -23188,9 +23188,9 @@ luminosity and you can set light direction. See
 Emboss  for more information
 about embossing. You can bump map any type of image, unlike the Emboss
 filter.
-12.2.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->12.2.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Map  →  Bump Map .
+Filters  →  Map  →  Bump Map .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 12.2.3. Options Figure 17.247.  “ Bump Map ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview.  Scroll bars allow you to move around the image.
@@ -23482,9 +23482,9 @@ on  Luminosity ).
 The resulted color is the product of this average value and the
 “ colorify color ” .
 Hence, this filter works only on images in RGB mode.
-8.33.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.33.2. Activate the filter 
 This filter is found in the image window menu under
-Colors  →  Colorify .
+Colors  →  Colorify .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.33.3. Options Figure 16.186.  “ Colorify ”  filter options 
 A color palette is available containing especially the
 RGB  colors Red, Green, Blue and the
@@ -23620,9 +23620,9 @@ intelligent routine that replaces weak color information with
 weak alpha information. In this way, areas that contain an
 element of the selected color will maintain a blended appearance
 with their surrounding pixels.
-8.34.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.34.2. Activate the filter 
 This filter is found in the image window menu under
-Colors  →  Color to Alpha .
+Colors  →  Color to Alpha .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.34.3. Options Figure 16.188.  “ Color to Alfa ”  command options Color 
 Clicking on the  From  color swatch
 provides a color selection dialog where you can select a
@@ -23699,9 +23699,9 @@ and added results. The initial pixel has become 42:
 (40*0)+(42*1)+(46*0) + (46*0)+(50*0)+(55*0) + (52*0)+(56*0)+(58*0) = 42.
 (the filter doesn't work on the image but on a copy). As a graphical
 result, the initial pixel moved a pixel downwards.
-8.2.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.2.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Generic  →  Convolution Matrix .
+Filters  →  Generic  →  Convolution Matrix .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.2.3. Options Figure 17.150.  “ Convolution matrix ”  options Matrix 
 This is the 5x5 kernel matrix: you enter wanted values directly
 into boxes.
@@ -23930,9 +23930,9 @@ Command  “ Decompose ”  applied (RGB decomposition) with
 Decompose to layers  checked.
 This command separates the channels (RGB, HSV, CMYK...) of an image
 into separated images or layers.
-8.16.2. Activate the command 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.16.2. Activate the command 
 You can find this command in the image window menu under
-Colors  →  Components  →  Decompose… .
+Colors  →  Components  →  Decompose… .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.16.3. Options Figure 16.156.  “ Decompose ”  command options Extract Channels 
 Following options are described with
 Decompose to
@@ -24188,9 +24188,9 @@ to writing down the theory behind it, or explaining what the parameters
 mean. The best approach, then, is just to twiddle things and see what
 happens. Fortunately, almost anything you do seems to produce
 interesting results.
-13.10.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.10.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Pattern  →  Diffraction Patterns .
+Filters  →  Render  →  Pattern  →  Diffraction Patterns .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.10.3. Options Figure 17.308.  “ Diffraction Patterns ”  filter options     13.9. CML Explorer     13.11. Grid 
 Report an error in Bugzilla
 
@@ -24212,9 +24212,9 @@ On more complex images, dark areas are widened and enhanced the same,
 and somewhat pixellated. Here, the filter was applied 3 times:
 Of course, if background is darker than foreground, it will cover the
 whole image.
-8.3.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.3.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Generic  →  Dilate .
+Filters  →  Generic  →  Dilate .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.3.3. Examples Figure 17.157. Dilate text Figure 17.158. Dilate neon effect     8.2. Convolution Matrix     8.4. Erode 
 Report an error in Bugzilla
 
@@ -24486,9 +24486,9 @@ The  “ Engrave ”  filter operates only on floating selections
 and layers with an alpha channel. If the active layer does not have an
 alpha channel please  add
 it  first.
-4.5.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->4.5.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Distorts  →  Engrave .
+Filters  →  Distorts  →  Engrave .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 4.5.3. Options Figure 17.42.  “ Engrave ”  options Preview 
 The result of your settings will appear in the Preview without
 affecting the image until you click on  OK .
@@ -24519,9 +24519,9 @@ Filters  →  Generic  →  Erode .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-defff
 8.3. Dilate     9. Combine Filters 
 Report an error in Bugzilla
 
-8.22. Color Exchange 8.22. Color Exchange 8. The  “ Colors ”  Menu   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 8.22. Color Exchange 8.22.1. Overview Figure 16.165.  “ Color Exchange ”  filter example Original image Filter applied This filter replaces a color with another one. 8.22.2. Activate the filter 
+8.22. Color Exchange 8.22. Color Exchange 8. The  “ Colors ”  Menu   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 8.22. Color Exchange 8.22.1. Overview Figure 16.165.  “ Color Exchange ”  filter example Original image Filter applied This filter replaces a color with another one. <!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.22.2. Activate the filter 
 This filter is found in the image window menu under
-Colors  →  Map  →  Color Exchange .
+Colors  →  Map  →  Color Exchange .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.22.3. Options Figure 16.166. Option of the  “ Two color exchange ”  filter Preview 
 In this preview, a part of the Image is displayed. A selection
 smaller than preview will be complete in preview. A bigger one
@@ -24607,9 +24607,9 @@ Saturation)
 This tool offers you a collection of unified filters to treat the image.
 Of course, same functions can be performed by particular filters, but
 you have here an interesting, intuitive, overview.
-8.35.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.35.2. Activate the filter 
 You can find this filter in the image window menu under
-Colors  →  Filter Pack .
+Colors  →  Filter Pack .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.35.3. Options Figure 16.190. All the options for filter  “ Filter Pack ” Original and Current previews 
 Two previews display respectively before treatment and after
 treatment images.
@@ -24790,9 +24790,9 @@ Report an error in Bugzilla
 12.4. Fractal Trace 12.4. Fractal Trace 12. Map Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 12.4. Fractal Trace 12.4.1. Overview Figure 17.253. Fractal Trace Original image Filter  “ Fractal Trace ”  applied 
 This filter transforms the image with the Mandelbrot fractal: it maps
 the image to the fractal.
-12.4.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->12.4.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Map  →  Fractal trace .
+Filters  →  Map  →  Fractal trace .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 12.4.3. Options Figure 17.254.  “ Fractal trace ”  filter options Mandelbrot parameters X1,  X2,  Y1,  Y2,  Depth 
 These parameters are similar to X/YMIN, X/YMAX and ITER
 parameters of the
@@ -25068,9 +25068,9 @@ photograph of a blinding light source, with a halo and radiations around
 the source.  The Gradient Flare image has three components:
 Glow  which is the big central fireball,
 Rays  and  Second Flares 
-5.2.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->5.2.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Light and Shadow  →  Gradient Flare 
+Filters  →  Light and Shadow  →  Gradient Flare <!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 5.2.3. Options 
 The  Settings  tab allows you to set manually the
 parameters while the  Selector  tab let you choose
@@ -25565,9 +25565,9 @@ was used to create demonstration images for many of the other plug-ins.)
 Tip 
 If you set the grid line widths to 0, then only the intersections
 will be drawn, as plus-marks.
-13.11.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.11.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Pattern  →  Grid .
+Filters  →  Render  →  Pattern  →  Grid .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.11.3. Options Figure 17.310.  “ Grid ”  filter options 
 There are separate options for controlling the horizontal grid
 lines, vertical grid lines, and intersections.  By default, the
@@ -25679,9 +25679,9 @@ you're doing, and end up with the pattern you had in mind).
 For a brief introduction to IFS's see Foley and van Dam, et
 al,.  Computer Graphics, Principles and
 Practice [ FOLEY01 ] .
-13.7.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.7.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Nature  →  IFS Fractal .
+Filters  →  Render  →  Nature  →  IFS Fractal .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.7.3. Options Figure 17.292.  “ IFS Fractal ”  filter options 
 The plug-in interface consists of the compose area to the left, a
 preview screen to the right, and some tabs and option buttons at the
@@ -25806,9 +25806,9 @@ Report an error in Bugzilla
 With this filter, your image (active layer or selection) looks like
 a kaleidoscope. This filter duplicates your image in many copies, more
 or less dimmed and split, and puts them around the center of the image.
-12.5.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->12.5.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Map  →  Illusion .
+Filters  →  Map  →  Illusion .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 12.5.3. Options Figure 17.256.  “ Illusion ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview.  Scroll bars allow you to move around the image.
@@ -26048,9 +26048,9 @@ separate layer filled with solid white, and set the layer mode
 to Multiply.  You can then select puzzle pieces using the
 magic wand  (fuzzy
 select) tool on the new jigsaw layer.
-13.12.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.12.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Pattern  →  Jigsaw .
+Filters  →  Render  →  Pattern  →  Jigsaw .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.12.3. Options Figure 17.313.  “ Jigsaw ”  filter options Number of Tiles 
 How many tiles across the image is, horizontally and
 vertically.
@@ -26084,9 +26084,9 @@ Report an error in Bugzilla
 This filter lets you simulate but also correct the typical distortion
 effect introduced in photo images by the glasses contained in the camera
 lenses.
-4.8.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->4.8.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Distorts  →  Lens Distortion .
+Filters  →  Distorts  →  Lens Distortion .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 4.8.3. Options Figure 17.50.  “ Lens Distortion ”  options 
 The allowed range of all options is from -100.0 to 100.0.
 Preview 
@@ -26214,9 +26214,9 @@ Report an error in Bugzilla
 This filter simulates the effect you get when you light up a wall with
 a spot. It doesn't produce any drop shadows and, of course, doesn't
 reveal any new details in dark zones.
-5.4.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->5.4.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Light and Shadow  →  Lighting Effects .
+Filters  →  Light and Shadow  →  Lighting Effects .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 5.4.3. Options Figure 17.100.  “ Lighting ”  filter options Preview 
 When  Interactive  is checked, parameter
 setting results are interactively displayed in preview without
@@ -26353,9 +26353,9 @@ The  “ Map Object ”  filter applied to a photograph
 Original “ Map Object ”  applied 
 This filter maps a picture to an object (plane, sphere, box or
 cylinder).
-12.7.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->12.7.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Map  →  Map Object .
+Filters  →  Map  →  Map Object .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 12.7.3. Options 12.7.3.1. Preview This preview has several possibilities: Preview! 
 Preview is automatic for some options but you will have to press
 this button to update Preview after modifying many other
@@ -26463,9 +26463,9 @@ Report an error in Bugzilla
 For every pixel of the image, this filter holds the channel with the
 maximal/minimal intensity. The result is an image with only three
 colors, red, green and blue, and possibly pure gray.
-8.37.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.37.2. Activate the filter 
 This filter is found in the image window menu under
-Colors  →  Max RGB .
+Colors  →  Max RGB .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.37.3. Options Figure 16.197.  “ Max RGB ”  options Preview 
 This preview displays, in real time, the resulting image after
 treatment by filter.
@@ -26490,9 +26490,9 @@ This filter generates a random black and white maze
 pattern.  The result completely overwrites the previous
 contents of the active layer.  A typical example is shown
 below.  Can you find the route from the center to the edge?
-13.13.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.13.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Pattern  →  Maze .
+Filters  →  Render  →  Pattern  →  Maze .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.13.3. Options Figure 17.315.  “ Maze ”  filter options Maze Size Width,  Height 
 These sliders control how many pathways the maze should have. The
 lower the values for width and height, the more paths you will
@@ -26866,9 +26866,9 @@ Report an error in Bugzilla
 This filter creates a big star reminding a super-nova. It works with
 RGB and GRAY images. Light effect decreases according to 1/r where r
 is the distance from star center.
-5.6.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->5.6.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Light and Shadow  →  Supernova .
+Filters  →  Light and Shadow  →  Supernova .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 5.6.3. Parameter Settings Figure 17.109.  “ Supernova ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview. Scroll bars allow you to move around the image.
@@ -26908,9 +26908,9 @@ the image less detail, as if you had used a larger brush.
 Tip 
 The GIMPressionist filter can produce similar effects, but
 allows a much wider variety of options.
-10.7.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->10.7.2. Activate the filter 
 This filter is found in the image menu through
-Filters  →  Artistic  →  Oilify... .
+Filters  →  Artistic  →  Oilify... .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 10.7.3. Options Figure 17.192.  “ Oilify ”  filter options Mask size 
 Mask size selects the size of the brush mask used to paint the
 oily render. Larger values here produce an oilier render.
@@ -26974,9 +26974,9 @@ kind of cornet showing the underlying layer in the cleared area. A new
 “ Curl Layer ”  and a new Alpha channel are created. The part
 of the initial layer corresponding to this cleared area is also
 transparent.
-4.11.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->4.11.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Distorts  →  Page Curl .
+Filters  →  Distorts  →  Page Curl .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 4.11.3. Options Figure 17.62. Options Curl Location 
 You have there four radio buttons to select the corner you want
 raise. The Preview is redundant and doesn't respond to other
@@ -27140,9 +27140,9 @@ Sometimes the strong colors may be distracting, and a more
 interesting surface will appear when you desaturate the image
 using
 Colors  →  Desaturate .
-13.4.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.4.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Clouds  →  Plasma .
+Filters  →  Render  →  Clouds  →  Plasma .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.4.3. Options Figure 17.285.  “ Plasma ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview.
@@ -27237,9 +27237,9 @@ Report an error in Bugzilla
 13.14. Qbist 13.14. Qbist 13. Rendering Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 13.14. Qbist 13.14.1. Overview Figure 17.316. Applying examples for the Qbist filter 
 The Qbist filter generates random textures containing geometric figures
 and color gradients.
-13.14.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.14.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Pattern  →  Qbist 
+Filters  →  Render  →  Pattern  →  Qbist <!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.14.3. Options Figure 17.317.  “ Qbist ”  filter options 
 The Qbist filter generates random textures. A starting texture is
 displayed in the middle square, and different variations surround it. If
@@ -27268,7 +27268,7 @@ possible values are assigned with the same probability. The original
 values are not taken into account. All or only some pixels in an active
 layer or selection are affected, the percentage of affected pixels is
 determined by the  Randomization (%)  option.
-6.3.2. Options Figure 17.129.  “ Hurl ”  options Random seed 
+6.3.2. Options Figure 17.129.  <!-- 0510a8f1-a645-4476-ba42-9e01769fb319 <=< ACCEPT -->“ Hurl ”  options Random seed 
 Controls randomness of hurl.  If the same random seed in the
 same situation is used, the filter produces exactly the same
 results. A different random seed produces different
@@ -27277,7 +27277,7 @@ randomly by pressing  New Seed  button.
 When the  Randomize  option is checked, random
 seed cannot be entered manually, but is randomly generated each
 time the filter is run. If it is not checked, the filter remembers
-the last random seed used.
+the last random seed used.<!-- ACCEPT >=> 0510a8f1-a645-4476-ba42-9e01769fb319 -->
 Randomization (%) 
 This slider represents the percentage of pixels of the active
 layer or selection which will be hurled. The higher value, the
@@ -27299,7 +27299,7 @@ Randomization (%)  option.
 <!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->6.4.2. Activate the filter 
 You can find this filter through
 Filters  →  Noise  →  Pick .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
-6.4.3. Options Figure 17.131.  “ Pick ”  filter options Random seed 
+6.4.3. Options Figure 17.131.  <!-- 0510a8f1-a645-4476-ba42-9e01769fb319 <=< ACCEPT -->“ Pick ”  filter options Random seed 
 Controls randomness of picking.  If the same random seed in the
 same situation is used, the filter produces exactly the same
 results. A different random seed produces different
@@ -27308,7 +27308,7 @@ randomly by pressing  New Seed  button.
 When the  Randomize  option is checked, random
 seed cannot be entered manually, but is randomly generated each
 time the filter is run. If it is not checked, the filter remembers
-the last random seed used.
+the last random seed used.<!-- ACCEPT >=> 0510a8f1-a645-4476-ba42-9e01769fb319 -->
 Randomization (%) 
 This slider represents the percentage of pixels of the active
 layer or selection which will be picked. The higher value, the
@@ -27331,7 +27331,7 @@ option.
 <!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->6.6.2. Activate the filter 
 You can find this filter through
 Filters  →  Noise  →  Slur .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
-6.6.3. Options Figure 17.135. Slur filter options Random seed 
+6.6.3. Options Figure 17.135. <!-- 0510a8f1-a645-4476-ba42-9e01769fb319 <=< ACCEPT -->Slur filter options Random seed 
 It controls randomness of slurring.  If the same random seed in
 the same situation is used, the filter produces exactly the
 same results. A different random seed produces different
@@ -27340,7 +27340,7 @@ randomly by pressing  New Seed  button.
 When the  Randomize  option is checked, random
 seed cannot be entered manually, but is randomly generated each
 time the filter is run. If it is not checked, the filter remembers
-the last random seed used.
+the last random seed used.<!-- ACCEPT >=> 0510a8f1-a645-4476-ba42-9e01769fb319 -->
 Randomization (%) 
 This slider represents the percentage of pixels of the active
 layer or selection which will be slurred. The higher value, the
@@ -27359,10 +27359,10 @@ Report an error in Bugzilla
 This command reconstructs an image from its RGB, HSV... components
 directly, unlike the  Compose 
 command which uses a dialog.
-8.17.2. Activate the command 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.17.2. Activate the command 
 This command is found in the image window menu under
 Colors  →  Components  →  Recompose :
-This command is active after using Decompose.
+This command is active after using Decompose.<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.16. 
 Decompose 
 8.18. The  “ Map ”  Submenu 
@@ -27376,9 +27376,9 @@ iris of the eye(s) having a red pupil. After only you can apply the
 filter on this selection. If you don't make this selection, the filter
 inform you that :
 “ Manually selecting the eyes may improve the results ” .
-3.7.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->3.7.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Enhance  →  Red Eye Removal .
+Filters  →  Enhance  →  Red Eye Removal .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 3.7.3. Options Figure 17.28.  “ Red Eye Removal ”  options Preview 
 If you check  “ Preview ” 
 you can see the modifications in real-time in the preview
@@ -27401,9 +27401,9 @@ itself to these conditions. Retinex stands for Retina + cortex.
 Besides digital photography, Retinex algorithm is used to make the
 information in astronomical photos visible and detect, in medicine,
 poorly visible structures in X-rays or scanners.
-8.38.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.38.2. Activate the filter 
 This filter is found in the image window menu under
-Colors  →  Retinex .
+Colors  →  Retinex .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.38.3. Options Figure 16.199.  “ Retinex ”  filter options 
 These options call for notions that only mathematicians and imagery
 engineers can understand. In actual practice, the user has to grope
@@ -27636,9 +27636,9 @@ a color source image or a gradient against it.
 Caution 
 Your gray-tone image must be changed to RGB before using this
 filter (Image/Image&amp;gt;Mode&amp;gt;RGB).
-8.26.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.26.2. Activate the filter 
 This filter is found in the image window menu under
-Colors  →  Map  →  Sample Colorize .
+Colors  →  Map  →  Sample Colorize .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.26.3. Options Figure 16.175. Options of the  “ Sample Colorize ”  filter 
 The filter window is divided into two parts: Destination on the left,
 Sampling on the right.
@@ -27737,9 +27737,9 @@ proportionally to corresponding alpha values, and will rebuild correct
 anti-aliasing. Completely transparent pixels will not take the color.
 Very transparent pixels will take a few color and weakly transparent
 will take much color.
-14.3.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->14.3.2. Activate the filter 
 You can access this filter in the image window menu through
-Filters  →  Web  →  Semi-Flatten .
+Filters  →  Web  →  Semi-Flatten .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 It is available if your image holds an Alpha channel
 (see  Section 7.33, “Add Alpha Channel” ).
 Otherwise, it is greyed out.
@@ -27818,7 +27818,7 @@ Complexity
 This controls how the two colors interact with each other
 (the amount of interplay or repetition).
 Calculation Settings Random seed 
-This option controls the random
+<!-- 0510a8f1-a645-4476-ba42-9e01769fb319 <=< ACCEPT -->This option controls the random
 behaviour of the filter. If the same random seed in the
 same situation is used, the filter produces exactly the
 same results. A different random seed produces different
@@ -27828,7 +27828,7 @@ button.
 When the  Randomize  option is checked,
 random seed cannot be entered manually, but is randomly
 generated each time the filter is run. If it is not
-checked, the filter remembers the last random seed used.
+checked, the filter remembers the last random seed used.<!-- ACCEPT >=> 0510a8f1-a645-4476-ba42-9e01769fb319 -->
 Force tiling? 
 If you check this, you'll get a pattern that can be
 used for tiling. For example, you can use it as a
@@ -27898,9 +27898,9 @@ Report an error in Bugzilla
 It creates a striped palette from colors in active layer or selection.
 The main purpose of this filter is to create color-maps to be used with
 the  Flame  filter.
-8.31.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->8.31.2. Activating the filter 
 This filter is found in the image window menu under
-Colors  →  Info  →  Smooth Palette .
+Colors  →  Info  →  Smooth Palette .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 8.31.3. Options Figure 16.184.  “ Smooth Palette ”  options Parameter Settings 
 You can set palette dimensions for  Width  and
 Height . Dimensions are linked when chain is
@@ -27967,7 +27967,7 @@ Filters  →  Render  →  Clouds  →  Solid noise .<!-- ACCEPT >=> fbbb760e-92
 If checked, parameter setting results are interactively displayed
 in preview.
 Random seed 
-This option controls random behaviour of the filter. If the same
+<!-- 0510a8f1-a645-4476-ba42-9e01769fb319 <=< ACCEPT -->This option controls random behaviour of the filter. If the same
 random seed in the same situation is used, the filter produces
 exactly the same results. A different random seed produces
 different results. Random seed can be entered manually or
@@ -27976,7 +27976,7 @@ button.
 When the  Randomize  option is checked, random
 seed cannot be entered manually, but is randomly generated each
 time the filter is run. If it is not checked, the filter remembers
-the last random seed used.
+the last random seed used.<!-- ACCEPT >=> 0510a8f1-a645-4476-ba42-9e01769fb319 -->
 Turbulent 
 If you check this, you'll get very interesting effects,
 often something that looks much like oil on water, or
@@ -28004,9 +28004,9 @@ This filter adds sparkles to your image. It uses the lightest points
 according to a threshold you have determined. It is difficult to foresee
 where sparkles will appear. But you can put white points on your image
 where you want sparkles to be.
-5.5.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->5.5.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Light and Shadow  →  Sparkle .
+Filters  →  Light and Shadow  →  Sparkle .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 5.5.3. Parameter Settings Figure 17.107.  “ Sparkle ”  filter options 
 Sliders and input boxes allow you to set values.
 Preview 
@@ -28402,9 +28402,9 @@ Report an error in Bugzilla
 4.15. Value Propagate 4.15. Value Propagate 4. Distort Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 4.15. Value Propagate 4.15.1. Overview Figure 17.71. Example for the Value Propagate filter Original image Filter  “ Value Propagate ”  applied 
 This filter works on color borders. It spreads pixels that differ in a
 specified way from their neighbouring pixels.
-4.15.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->4.15.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Distorts  →  Value Propagate .
+Filters  →  Distorts  →  Value Propagate .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 4.15.3. Options Figure 17.72.  “ Value propagate ”  filter options Preview 
 The result of your settings will appear in the Preview without
 affecting the image until you click on  OK .
@@ -28501,9 +28501,9 @@ Solid Noise
 filter can create, gives a swirl effect.
 This filter offers the possibility of masking a part of the image to
 protect it against filter action.
-12.11.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->12.11.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Map  →  Warp .
+Filters  →  Map  →  Warp .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 This filter has no Preview.
 12.11.3. Options Figure 17.275. Warp filter options Basic Options Step size “ Step ”  is displacement distance for every filter
 iteration. A 10 value is necessary to get a one pixel
@@ -28745,9 +28745,9 @@ Report an error in Bugzilla
 This filter adds a new layer with some clouds to the image that look
 like fog or smoke. The clouds are created with the
 Plasma  texture.
-13.3.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.3.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Clouds  →  Fog .
+Filters  →  Render  →  Clouds  →  Fog .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.3.3. Options Figure 17.283.  “ Fog ”  options 
 Among the few filter options, only  “ Turbulence ”  is
 somewhat important, because you can't change it later and have to undo
@@ -28798,9 +28798,9 @@ Tip
 The  ImageMap  filter is a much
 more powerful and sophisticated tool for creating sensitive images.
 (But it is also much more complex...)
-14.4.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->14.4.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Web  →  Slice .
+Filters  →  Web  →  Slice .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 14.4.3. Options Figure 17.353.  “ Slice ”  options 
 Most options are self-explanatory, but nevertheless:
 Path for HTML export 
@@ -28927,9 +28927,9 @@ more edges and thus the filter effect will be applied to these edges
 too.
 Figure 17.371. Example based on multicolored layer mask With an layer mask (alpha) like this ... ... you will get this. Warning 
 The image will always be resized to the active layer's size.
-16.2.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.2.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  3D Outline .
+Filters  →  Alpha to Logo  →  3D Outline .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 The filter only works if the active layer has an alpha channel.
 Otherwise, the menu entry is insensitive and grayed out.
 16.2.3. Options Figure 17.372.  “ 3D Outline ”  options Pattern 
@@ -28998,9 +28998,9 @@ You can specify the thickness of the border as well as the color. The
 four sides of the border are colored in different shades, so the image
 area will appear raised.
 The image will be enlarged by the border size, it won't be painted over.
-11.3.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->11.3.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Decor  →  Add Border .
+Filters  →  Decor  →  Add Border .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 11.3.3. Options Figure 17.220.  “ Add Border ”  options Border X size,  Border Y size 
 Here you can select the thickness of the added border, in pixels.
 X size (left an right) and Y size (top and bottom) may be
@@ -29075,9 +29075,9 @@ Report an error in Bugzilla
 
 16.4. Alien Neon 16.4. Alien Neon 16. Alpha to Logo Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 16.4. Alien Neon 16.4.1. Overview Figure 17.378. Example for the  “ Alien Neon ”  filter “ Alien Neon ”  applied Caution 
 Sorry, there is no documentation for this filter as yet.
-16.4.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.4.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  Alien Neon .
+Filters  →  Alpha to Logo  →  Alien Neon .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.4.3. Options Figure 17.379.  “ Alien Neon ”  options Glow color 
 TODO
 Background color 
@@ -29103,11 +29103,11 @@ The filters are derived from the  “ Basic I ”  and
 “ Basic II ”  logo scripts
 (see  File  →  Create  →  Logos ),
 which draw a text with the filter effect, e.g.
-The  “ Basic I ”  logo script. 16.5.2. Activate the filter 
+The  “ Basic I ”  logo script. <!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.5.2. Activate the filter 
 You can find the filter in the image window menu under
 Filters  →  Alpha to Logo  →  Basic I 
 and
-Filters  →  Alpha to Logo  →  Basic II .
+Filters  →  Alpha to Logo  →  Basic II .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.5.3. Options Figure 17.381.  “ Basic ”  filter options “ Basic I ”  options “ Basic II ”  options Background color 
 This color is used to fill the background layer created by the
 filter. It defaults to white. When you click on the color swatch
@@ -29134,9 +29134,9 @@ Example for the  “ Blend ”  filter: original image
 4 frames of 5 frames (white background layer omitted) Figure 17.356. 
 Example for the  “ Blend ”  filter: filter applied
 First 8 (of 16) frames 
-15.2.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->15.2.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Animation  →  Blend .
+Filters  →  Animation  →  Blend .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 15.2.3. Options 
 Figure 17.357.  “ Blend ”  options Intermediate frames 
 TODO
@@ -29149,9 +29149,9 @@ Report an error in Bugzilla
 
 16.6. Blended 16.6. Blended 16. Alpha to Logo Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 16.6. Blended 16.6.1. Overview Figure 17.382. Example for the  “ Blended ”  filter “ Blended ”  applied Caution 
 Sorry, there is no documentation for this filter as yet.
-16.6.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.6.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  Blended .
+Filters  →  Alpha to Logo  →  Blended .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.6.3. Options Figure 17.383.  “ Blended ”  options Offset (pixels) 
 TODO
 Backgroundcolor 
@@ -29212,9 +29212,9 @@ Opaque background layer and foreground layer with transparency
 Figure 17.359. 
 Example for the  “ Burn-In ”  filter: filter applied
 Resulting image with 8 frames (depending on size and speed)
-15.3.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->15.3.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Animation  →  Burn-In .
+Filters  →  Animation  →  Burn-In .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 15.3.3. Options 
 Figure 17.360.  “ Burn-In ”  options Glow color 
 TODO
@@ -29242,9 +29242,9 @@ channel.  This layer is used as selection mask and will work as stencil
 for the carving effect. The image to be carved (the target image) can
 be an RGB color or grayscale image, also with a single layer. This
 target image must have the same size as the source image.
-11.9.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->11.9.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Decor  →  Stencil Carve .
+Filters  →  Decor  →  Stencil Carve .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 Tip 
 If this command remains grayed out although the image is grayscale,
 check for an Alpha channel and delete it.
@@ -29316,9 +29316,9 @@ The image will always be resized to the active layer's size.
 The filter is derived from the  “ Chip Away ”  Script-Fu script
 ( File  →  Create  →  Logos  →  Chip Away ),
 which creates a text logo with the effect shown above.
-16.9.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.9.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  Chip Away .
+Filters  →  Alpha to Logo  →  Chip Away .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.9.3. Options Figure 17.390.  “ Chip Away ”  options Chip amount 
 This option lets you vary the size of chipping area. But note that
 “ Chip amount ”  is not the size of this area in pixels.
@@ -29387,9 +29387,9 @@ Offset  value; see the examples
 below .
 Warning 
 The image will always be resized to the active layer's size.
-16.10.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.10.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  Chrome .
+Filters  →  Alpha to Logo  →  Chrome .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.10.3. Options Figure 17.395.  “ Chrome ”  options Offset (pixels * 2) 
 This option is used when creating the chrome effect and for
 placing the drop shadow:
@@ -29424,9 +29424,9 @@ and unavailable.
 Note 
 This filter creates a grey level image in  RGB  mode.
 The resulting image doesn't depend on the original image.
-13.16.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.16.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Circuit... .
+Filters  →  Render  →  Circuit... .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.16.3. Options Figure 17.323.  “ Circuit ”  filter options 
 Oilify mask size 
 With this option you can set the option value of the
@@ -29488,9 +29488,9 @@ Finally do  bump map  on the
 original image by the working image with parameters
 Azimuth ,  Elevation , and
 Depth .
-10.4.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->10.4.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Artistic  →  Clothify... .
+Filters  →  Artistic  →  Clothify... .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 10.4.3. Options Figure 17.173.  “ Clothify ”  filter options Azimuth ,  Elevation , and
 Depth  come from
 Bump Map  filter.
@@ -29521,9 +29521,9 @@ randomly moved to let the stains spread out (at the end you may see the
 boundary of the moved top layer). So after applying the filter you can
 easily edit (e.g., move, scale, remove) the coffee stains, or create
 additional stains using the filter again.
-11.4.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->11.4.2. Activate the filter 
 The filter is found in the image window menu under
-Filters  →  Decor  →  Coffee Stain .
+Filters  →  Decor  →  Coffee Stain .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 11.4.3. Options Figure 17.223.  “ Coffee Stain ”  options Stains The number of the coffee stains (1-10). Darken only 
 Since every stain is created in a layer of its own, all layers
 have to be merged to make the appearance of the image. If
@@ -29542,9 +29542,9 @@ Report an error in Bugzilla
 
 16.11. Comic Book 16.11. Comic Book 16. Alpha to Logo Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 16.11. Comic Book 16.11.1. Overview Figure 17.397. Example for the  “ Comic Book ”  filter “ Comic Book ”  applied Caution 
 Sorry, there is no documentation for this filter as yet.
-16.11.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.11.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  Comic Book .
+Filters  →  Alpha to Logo  →  Comic Book .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.11.3. Options Figure 17.398.  “ Comic Book ”  options Gradient 
 TODO
 Gradient reverse 
@@ -29564,9 +29564,9 @@ the mirrored ground, and an interesting drop shadow.
 The filter is derived from the  “ Cool Metal ”  script
 ( File  →  Create  →  Logos  →  Cool Metal  in the image window),
 which creates a logo from a text as shown above.
-16.12.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.12.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  Cool Metal .
+Filters  →  Alpha to Logo  →  Cool Metal .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.12.3. Options Figure 17.400.  “ Cool Metal ”  options Effect size (pixels) 
 This is actually the font size option of the
 “ Cool Metal ”  Script-Fu script. Some internal values
@@ -29628,9 +29628,9 @@ Before merging the layer, this script opens the dialog of the Solid
 Noise plug-in which allows to control its effect.
 If the image is in indexed colors, this menu entry is grayed out and
 unavailable.
-13.2.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.2.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Clouds  →  Difference Clouds... .
+Filters  →  Render  →  Clouds  →  Difference Clouds... .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.2.3. Options 
 This script does not have its own dialog window but invokes the
 Solid Noise  filter's dialog.
@@ -29724,9 +29724,9 @@ Example for the  “ Erase Every Other row ”  filter
 Original image “ Erase Every Other row ”  applied 
 This filter not only can erase each other row or column of the active
 layer but also can change them to the background color.
-4.6.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->4.6.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Distorts  →  Erase Every Other Row .
+Filters  →  Distorts  →  Erase Every Other Row .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 4.6.3. Options Figure 17.45.  “ Erase Every Other row ”  options 
 These options are self-explanatory. Only one remark: if the active
 layer has an Alpha channel, erased rows or
@@ -29748,9 +29748,9 @@ Note
 Unlike the most alpha to logo filters, the  “ Frosty ” 
 filter will  not  resize the image to the active
 layer's size.
-16.13.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.13.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  Frosty .
+Filters  →  Alpha to Logo  →  Frosty .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.13.3. Options Figure 17.402.  “ Frosty ”  options Effect size (pixels) Figure 17.403.  “ Effect size ”  examples Effect size 10 Effect size 200 Effect size 400 Background color 
 This color is used to fill the background layer created by the
 filter. It defaults to white. When you click on the color button,
@@ -29817,9 +29817,9 @@ This filter only works if the active layer has an alpha channel.
 Otherwise, the menu entry is insensitive and grayed out.
 Warning 
 The image will always be resized to the active layer's size.
-16.14.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.14.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  Glossy .
+Filters  →  Alpha to Logo  →  Glossy .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.14.3. Options Figure 17.405.  “ Glossy ”  options Blend gradient (text) 
 By default, the filter will fill the alpha with a
 gradient blend . Clicking on
@@ -29910,9 +29910,9 @@ each color representing a different metal temperature -; the alpha's
 outline shines through the glowing.
 Warning 
 The image will always be resized to the active layer's size.
-16.15.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.15.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  Glowing Hot .
+Filters  →  Alpha to Logo  →  Glowing Hot .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 The filter only works if the active layer has an alpha channel.
 Otherwise, the menu entry is insensitive and grayed out.
 16.15.3. Options Figure 17.407.  “ Glowing Hot ”  options Effect size (pixels * 3) 
@@ -29947,9 +29947,9 @@ Report an error in Bugzilla
 
 16.16. Gradient Bevel 16.16. Gradient Bevel 16. Alpha to Logo Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 16.16. Gradient Bevel 16.16.1. Overview Figure 17.410. Example for the  “ Gradient Bevel ”  filter “ Gradient Bevel ”  applied Caution 
 Sorry, there is no documentation for this filter as yet.
-16.16.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.16.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  Gradient Bevel .
+Filters  →  Alpha to Logo  →  Gradient Bevel .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.16.3. Options Figure 17.411.  “ Gradient Bevel ”  options Border size (pixels) 
 TODO
 Bevel height (sharpness) 
@@ -30036,9 +30036,9 @@ Image  →  Guides  →  Remove all guides .<!-- ACCEPT >=> cc4ec6d9-307c-4b2e-a
 Report an error in Bugzilla
 
 13.19. Lava 13.19. Lava 13. Rendering Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 13.19. Lava 13.19.1. Overview Figure 17.332. Example for the  “ Lava ”  filter Original image “ Lava ”  applied (on a selection) 
-13.19.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.19.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Lava .
+Filters  →  Render  →  Lava .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.19.3. Options 
 Figure 17.333.  “ Lava ”  options Seed 
 TODO
@@ -30068,9 +30068,9 @@ center point of lines.  If you need adjust the place of the radial
 lines where you want, create another transparent image and apply this
 filter on it, then add it on your image.  Setting large size for the
 new nova image may help you not to break lines inside of your image.
-13.20.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.20.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Line Nova .
+Filters  →  Render  →  Line Nova .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.20.3. Options Figure 17.335.  “ Line Nova ”  options Number of lines 
 By using this option you can set the number of lines between 40
 to 1000. The default is 200.
@@ -30153,9 +30153,9 @@ Report an error in Bugzilla
 This filter makes an image look like an old photo: blurred, with a
 jagged  border, toned with a brown shade, and marked
 with spots.
-11.6.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->11.6.2. Activate the filter 
 The filter is found in the image window menu under
-Filters  →  Decor  →  Old Photo .
+Filters  →  Decor  →  Old Photo .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 11.6.3. Options Figure 17.231.  “ Old Photo ”  options Defocus 
 If checked, a  Gaussian blur 
 will be applied to the image, making it less clear.
@@ -30270,9 +30270,9 @@ If there is an active selection, the filter effect will be applied to
 the selected region, otherwise to the alpha channel (the filter will
 add an alpha channel, if necessary). The filter works best on colorful
 RGB images.
-10.9.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->10.9.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Artistic  →  Predator .
+Filters  →  Artistic  →  Predator .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 10.9.3. Options Figure 17.196.  “ Predator ”  options Edge amount 
 The  “ predator ”  filter will detect edges using the
 Sobel  edge detector . The
@@ -30323,9 +30323,9 @@ Layers  →  Stack  →  Reverse Layer Order .
 Report an error in Bugzilla
 
 15.4. Rippling 15.4. Rippling 15. Animation Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 15.4. Rippling 15.4.1. Overview Figure 17.361. Example for the  “ Rippling ”  filter Original image A  “ Rippled ”  frame 
-15.4.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->15.4.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Animation  →  Rippling .
+Filters  →  Animation  →  Rippling .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 15.4.3. Options 
 Figure 17.362.  “ Rippling ”  options Rippling strength 
 TODO
@@ -30343,9 +30343,9 @@ The filter works on RGB and grayscale images that contain only one
 layer. It creates a copy of the image or can optionally work on the
 original. It uses the current background color to create a background
 layer.
-11.7.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->11.7.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Decor  →  Round Corners .
+Filters  →  Decor  →  Round Corners .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 11.7.3. Options Figure 17.235.  “ Round Corners ”  options Edge radius 
 Rounding corners is done by selecting a quarter of a circle at
 every corner and removing the area not covered by this selection.
@@ -30439,9 +30439,9 @@ the color as well as the font of the text appearing on the frames. The
 current background color will be used for drawing the holes.
 The script only works on RGB and grayscale images that contain one
 layer. Otherwise the menu entry is insensitive and grayed out.
-11.8.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->11.8.2. Activate the filter 
 The filter is found in the image window menu under
-Filters  →  Decor  →  Slide .
+Filters  →  Decor  →  Slide .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 11.8.3. Options Figure 17.239.  “ Slide ”  options Text 
 A short label that will be displayed in the top and bottom (or
 the left and right) of the frame. The text must be really short.
@@ -30471,9 +30471,9 @@ the chrome effect.
 The filter creates a new image with the chrome effect applied to the
 source image or, if a selection exists, to the selection of the source
 image (a nice background is added too).
-11.10.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->11.10.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Decor  →  Stencil Chrome .
+Filters  →  Decor  →  Stencil Chrome .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 Tip 
 If this command remains grayed out although the image is in grayscale
 mode, check for an Alpha channel and delete it.
@@ -30561,9 +30561,9 @@ Original image Figure 17.364.
 Example for the  “ Spinning Globe ”  filter: filter applied
 3 (of 10)  “ Spinning Globe ”  frames (on a white
 background)
-15.5.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->15.5.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Animation  →  Spinning Globe .
+Filters  →  Animation  →  Spinning Globe .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 15.5.3. Options 
 Figure 17.365.  “ Spinning Globe ”  options Frames 
 TODO
@@ -30579,9 +30579,9 @@ TODO
 Report an error in Bugzilla
 
 13.22. Spyrogimp 13.22. Spyrogimp 13. Rendering Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 13.22. Spyrogimp 13.22.1. Overview Figure 17.341. Example for the  “ Spyrogimp ”  filter Original image “ Spyrogimp ”  applied 
-13.22.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->13.22.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Spyrogimp .
+Filters  →  Render  →  Spyrogimp .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 13.22.3. Options 
 Figure 17.342.  “ Spyrogimp ”  options Type 
 TODO
@@ -30669,9 +30669,9 @@ Report an error in Bugzilla
 
 16.19. Textured 16.19. Textured 16. Alpha to Logo Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 16.19. Textured 16.19.1. Overview Figure 17.418. Example for the  “ Textured ”  filter “ Textured ”  applied Caution 
 Sorry, there is no documentation for this filter as yet.
-16.19.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->16.19.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Alpha to Logo  →  Textured .
+Filters  →  Alpha to Logo  →  Textured .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.19.3. Options Figure 17.419.  “ Textured ”  options Border size (pixels) 
 TODO
 Pattern 
@@ -30724,9 +30724,9 @@ Blur type Choose the algorithm to be applied: IIR for photographic or scanned im
 Report an error in Bugzilla
 
 15.6. Waves 15.6. Waves 15. Animation Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 15.6. Waves 15.6.1. Overview Figure 17.366. Example for the  “ Waves ”  filter Original image A  “ Wave ”  frame 
-15.6.2. Activating the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->15.6.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Animation  →  Waves .
+Filters  →  Animation  →  Waves .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 15.6.3. Options 
 Figure 17.367.  “ Waves ”  options Amplitude 
 TODO
@@ -30750,9 +30750,9 @@ unavailable.
 This filter adds a  “ Multiply ”  mode layer upon the layer
 where you activate this command. The weave texture is rendered in gray
 levels.
-10.12.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->10.12.2. Activate the filter 
 This filter is found in the image window menu under
-Filters  →  Artistic  →  Weave... .
+Filters  →  Artistic  →  Weave... .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 10.12.3. Options Figure 17.214.  “ Weave ”  filter options 
 For to make coarse mesh texture, increase the ribbon spacing and/or
 decrease the ribbon width.
@@ -30819,9 +30819,9 @@ Creating a  drop shadow
 at the bottom right side of the selection.
 You may vary these default settings, for example select different colors
 for highlight or shadow and change amount and directions of offsets.
-5.9.2. Activate the filter 
+<!-- 5c7aa88d-42a9-4c46-b912-214418a2f0d2 <=< ACCEPT -->5.9.2. Activate the filter 
 The filter is found in the image window menu under
-Filters  →  Light and Shadow  →  Xach-Effect .
+Filters  →  Light and Shadow  →  Xach-Effect .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 5.9.3. Options 
 There are two groups of options, each controlling the highlight or the
 shadow, and a checkbox for the selection behaviour.
