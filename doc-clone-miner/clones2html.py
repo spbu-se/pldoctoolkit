@@ -480,7 +480,7 @@ def log_short_repetitions(maxtokens, minrepetitions):
     numf = lambda num: (("%d" if type(num) is int else "%0.20f") % num).replace(',', '.')
     numl = lambda vl: list(map(numf, list(vl)))
 
-    with open(os.path.join("Output", subdir, "shortterms.csv"), 'w') as csvfile:
+    with open(os.path.join("Output", subdir, "shortterms.csv"), 'w', encoding='utf-8') as csvfile:
         fwtr = csv.writer(csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
 
         fwtr.writerow(['Total groups:', numf(len(clones.clonegroups))])
