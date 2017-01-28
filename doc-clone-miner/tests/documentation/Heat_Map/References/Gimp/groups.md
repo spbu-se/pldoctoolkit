@@ -54,3 +54,6 @@ Original image with the layer stack The layers have been moved horizontally so t
 
     04a94cf1-f65a-42d0-b475-211e6541271e
 Report an error in Bugzilla
+
+    6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee
+When you click on the color swatch, you bring a dialog up where you can select the light source color.

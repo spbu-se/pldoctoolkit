@@ -26259,8 +26259,8 @@ indicates the direction of light.
 None 
 This deletes the light source (light may persist...).
 Color 
-When you click on the color swatch, you bring a dialog up
-where you can select the light source color.
+<!-- 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee <=< ACCEPT -->When you click on the color swatch, you bring a dialog up
+where you can select the light source color.<!-- ACCEPT >=> 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee -->
 Intensity 
 With this option, you can set light intensity.
 Position 
@@ -29110,9 +29110,9 @@ and
 Filters  →  Alpha to Logo  →  Basic II .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.5.3. Options Figure 17.381.  “ Basic ”  filter options “ Basic I ”  options “ Basic II ”  options Background color 
 This color is used to fill the background layer created by the
-filter. It defaults to white. When you click on the color swatch
+filter. It defaults to white. <!-- 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee <=< ACCEPT -->When you click on the color swatch
 button, a color selector pops up where you can select any other
-color.
+color.<!-- ACCEPT >=> 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee -->
 Text color 
 The name of this option refers to the text color of the logo
 scripts that were mentioned above. Here this color — by
@@ -29286,8 +29286,8 @@ Filters  →  Alpha to Logo  →  Chalk .<!-- ACCEPT >=> fbbb760e-9207-412f-a518
 16.8.3. Options Figure 17.388.  “ Chalk ”  option Background color 
 The background color is the color of the
 “ blackboard ”  you are drawing on with chalk, and of
-course it's black. When you click on the color button, the color
-selector pops up and you may select any other color.
+course it's black. <!-- 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee <=< ACCEPT -->When you click on the color button, the color
+selector pops up and you may select any other color.<!-- ACCEPT >=> 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee -->
 16.8.4. Filter details The  “ Chalk ”  filter 
 applies a  Gaussian blur  to the
 layer,  spreads  the pixels, and
@@ -29406,9 +29406,9 @@ specified offset) and are also feathered by 50% offset. So the
 appearance of the alpha too is determined by the offset value.
 Background Color 
 This color is used to fill the background layer created by the
-filter. It defaults to light gray. When you click on the color
+filter. It defaults to light gray. <!-- 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee <=< ACCEPT -->When you click on the color
 button, a color selector pops up where you can select any other
-color.
+color.<!-- ACCEPT >=> 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee -->
 16.9. Chip Away     16.11. Comic Book 
 <!-- 04a94cf1-f65a-42d0-b475-211e6541271e <=< ACCEPT -->Report an error in Bugzilla<!-- ACCEPT >=> 04a94cf1-f65a-42d0-b475-211e6541271e -->
 
@@ -29573,11 +29573,11 @@ This is actually the font size option of the
 will be set in relation to this size, for feathering, blurring,
 embossing, and creating ripple patterns.
 Background color 
-The color of the background layer added by the filter. When you
+The color of the background layer added by the filter. <!-- 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee <=< ACCEPT -->When you
 click in the color swatch button, the color select dialog pops up.
 Gradient 
 The default gradient to create the cool metal is
-“ Horizon 1 ” . Clicking in the gradient button will
+“ Horizon 1 ” .<!-- ACCEPT >=> 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee --> Clicking in the gradient button will
 open a simplified  gradient
 dialog , where you can select any other gradient.
 Gradient reverse 
@@ -29753,8 +29753,8 @@ This filter is found in the image window menu under
 Filters  →  Alpha to Logo  →  Frosty .<!-- ACCEPT >=> 5c7aa88d-42a9-4c46-b912-214418a2f0d2 -->
 16.13.3. Options Figure 17.402.  “ Frosty ”  options Effect size (pixels) Figure 17.403.  “ Effect size ”  examples Effect size 10 Effect size 200 Effect size 400 Background color 
 This color is used to fill the background layer created by the
-filter. It defaults to white. When you click on the color button,
-a color selector pops up where you can select any other color.
+filter. It defaults to white. <!-- 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee <=< ACCEPT -->When you click on the color button,
+a color selector pops up where you can select any other color.<!-- ACCEPT >=> 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee -->
 16.12. Cool Metal     16.14. Glossy 
 <!-- 04a94cf1-f65a-42d0-b475-211e6541271e <=< ACCEPT -->Report an error in Bugzilla<!-- ACCEPT >=> 04a94cf1-f65a-42d0-b475-211e6541271e -->
 
@@ -29859,10 +29859,10 @@ Default bumpmap settings
 This option does nothing, the filter will always apply a
 bump map .
 Background color 
-The color of the background layer added by the filter. When you
+The color of the background layer added by the filter. <!-- 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee <=< ACCEPT -->When you
 click on the color button, a
 color select dialog  pops
-up.
+up.<!-- ACCEPT >=> 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee -->
 Shadow 
 Optionally the filter creates a layer containing a
 drop shadow . The
@@ -30121,9 +30121,9 @@ starting point here. ( “ pixels * 5 ”  is nonsense,
 ignore it.)
 Background color 
 This is the color used to fill the  “ Background ” 
-layer; it defaults to black. When you click on the color swatch
+layer; it defaults to black. <!-- 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee <=< ACCEPT -->When you click on the color swatch
 button, you can choose any other color in the color selector
-dialog.
+dialog.<!-- ACCEPT >=> 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee -->
 Glow color 
 This is the color of the glowing neon tubes. The default is a
 typical neon-like light blue (38,211,255). Again, a click on the
@@ -30647,17 +30647,17 @@ alpha channel only and the area of the alpha channel will be
 cleared.
 “ Edge only ”  activated Base color 
 This color is used to fill the area defined by the active layer's
-alpha channel. It defaults to a very dark green. As usual,
+alpha channel. It defaults to a very dark green. <!-- 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee <=< ACCEPT -->As usual,
 clicking on the color swatch button opens a color selector where
-you can choose any other color.
+you can choose any other color.<!-- ACCEPT >=> 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee -->
 Background color 
 This color is used to fill a new background layer. Note that above
 the background layer there is a white shadow layer which has
 opacity set to 90%, so you will see the background color only
 partially. If the  “ Edge only ”  option is enabled, the
 area of the alpha channel will be cleared and you will see the
-background color. Again, when you click on the color swatch
-button, a color selector pops up where you can select any color.
+background color. <!-- 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee <=< ACCEPT -->Again, when you click on the color swatch
+button, a color selector pops up where you can select any color.<!-- ACCEPT >=> 6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee -->
 The active layer (top) and the filter layers below
 16.18.4. Filter details 
 The filter adds  noise  to the
