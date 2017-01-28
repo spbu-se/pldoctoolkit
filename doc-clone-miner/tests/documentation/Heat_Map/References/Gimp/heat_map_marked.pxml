@@ -13667,12 +13667,12 @@ Report an error in Bugzilla
 3.9. Airbrush 3.9. Airbrush 3. Paint Tools   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 3.9. Airbrush Figure 14.76. The Airbrush tool in Toolbox 
 The Airbrush tool emulates a traditional airbrush. This tool is suitable
 for painting soft areas of color.
-3.9.1. Activating the Tool You can activate the Airbrush tool in several ways : 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->3.9.1. Activating the Tool You can activate the Airbrush tool in several ways : 
 From the image-menu, through :
 Tools  →  PaintTools  →  Airbrush 
 By clicking on the tool icon:
 in the Toolbox,
-By using the  A  keyboard shortcut.
+By using the  A  keyboard shortcut.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 3.9.2. Key modifiers (Defaults) Ctrl Ctrl  changes the airbrush to a
 Color Picker .
 Shift Shift  places the airbrush into straight
@@ -13680,11 +13680,11 @@ line mode. Holding  Shift  while clicking
 Button 1  will generate a straight
 line. Consecutive clicks will continue drawing straight lines
 that originate from the end of the last line.
-3.9.3. Options Figure 14.77. Airbrush options 
+3.9.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.77. Airbrush options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Mode; Opacity; Brush; Size; Dynamics; Dynamic Options; Fade Options; 
 Color Options; Apply Jitter
 See the  Common Paint Tool
@@ -13730,11 +13730,11 @@ Now every layer, which is completely inside the dragged
 rectangle, is selected.
 Note that now there is no target  “ first item ”  the
 selected layers can be aligned on.
-4.2.3. Tool Options Figure 14.107. Tool Options for the Align tool 
+4.2.3. Tool Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.107. Tool Options for the Align tool 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Align Relative to: 
 This is the target - the image object the selected layer
 will be aligned on.
@@ -13833,11 +13833,11 @@ By clicking the tool icon
 By clicking on the  L  keyboard shortcut.
 3.5.2. Key modifiers (Defaults) Ctrl Ctrl  is used to create straight lines that are
 constrained to 15 degree absolute angles.
-3.5.3. Options Figure 14.63.  “ Blend ”  tool options 
+3.5.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.63.  “ Blend ”  tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Mode; Opacity 
 See the  Common Paint Tool
 Options  for a description of tool options that apply to many or all
@@ -14008,11 +14008,11 @@ Shift + B  keys.
 Color Fill on the fly.
 Shift  toggles the use of Fill Similar Color or
 Fill Whole Selection on the fly.
-3.4.3. Options Figure 14.59.  “ Bucket Fill ”  tool options 
+3.4.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.59.  “ Bucket Fill ”  tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Mode; Opacity 
 See  Paint Tools 
 for help with options that are common to all these tools. Only
@@ -14110,14 +14110,14 @@ all parts connected to the starting point by paths containing no
 large gaps; while the Select by Color tool selects all pixels that
 are sufficiently similar in color to the pixel you click on,
 regardless of where they are located.
-2.6.1. Activating the tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->2.6.1. Activating the tool 
 You can access the Select by Color Tool in different ways:
 From the image menu bar
 Tools  →  Selection Tools  →  By Color Select ,
 by clicking on the tool icon
 in the ToolBox,
 by using the keyboard shortcut  Shift
-+ O .
++ O .<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 2.6.2. Key modifiers (Defaults) 
 The select by color tool does not have any special key modifiers,
 only the ones that affect all selection tools in the same way.
@@ -14130,11 +14130,11 @@ reference is the first clicked pixel. If you click and drag, you can
 change the threshold by the same way as with the fuzzy tool.
 To move the selection see
 Moving selections .
-2.6.4. Options Figure 14.26. Tool Options for the Select by Color tool 
+2.6.4. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.26. Tool Options for the Select by Color tool 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Note 
 See  Selection Tools 
 for help with options that are common to all these tools. Only
@@ -14153,20 +14153,20 @@ transforming area by setting anchor points by free hand drawing similar
 to the way you do it with the Free Selection (Lasso) tool. The tool adds 
 nothing to the image until you confirm the transformation by pressing the 
 Enter  key.
-4.10.1. 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->4.10.1. 
 Activating the Tool 
 You can activate the Cage tool in several ways:
 From the image-menu, through:
 Tools  →  Transform Tools  →  Cage Transform 
 by clicking on the tool icon:
 in the toolbox
-or by using the  Shift   G  keyboard shortcut.
-4.10.2. Tool Options Figure 14.136. Cage Tool options 
+or by using the  Shift   G  keyboard shortcut.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
+4.10.2. Tool Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.136. Cage Tool options 
 Normally, tool options are displayed in a window attached under the 
 Toolbox as soon as you activate a tool. If they are not, you can access 
 them from the image menu bar through 
 Windows  →  Dockable Windows  →  Tool Options 
-which opens the option window of the selected tool.
+which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Create or adjust the cage 
 When activating the Cage Tool this option is selected. You can now 
 click in the image to make anchor points around the desired area. 
@@ -14254,11 +14254,11 @@ point will be used when you first begin painting with the Clone
 tool. In source-selection mode, the cursor changes to a reticle
 cross symbol
 .
-3.11.3. Options Figure 14.81. Tool Options for the Clone tool 
+3.11.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.81. Tool Options for the Clone tool 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Mode; Opacity; Brush; Dynamics; Dynamics Options; 
 Fade Options; Apply Jitter; Smooth Stroke; Hard Edge
 See the  Common Paint Tool
@@ -14388,13 +14388,13 @@ Report an error in Bugzilla
 The color balance tool modifies the color balance of the active selection
 or layer. Changes are not drastic. This tool is suitable to correct
 predominant colors in digital photos.
-5.2.1. Activating the Tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->5.2.1. Activating the Tool 
 You can get to the Color balance tool in several ways :
 In the image-menu through:
 Tools  →  Color Tools  →  Color Balance , or
 Colors  →  Color Balance ,
 by clicking the tool icon:
-in Toolbox, provided that you have installed color tools in Toolbox.
+in Toolbox, provided that you have installed color tools in Toolbox.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 For this, please refer to  Section 1.7, “Toolbox” .
 5.2.2. Options Figure 14.140. Color Balance options Presets 
 You can save the color settings of your image by clicking the
@@ -14468,11 +14468,11 @@ The  Pointer
 Information  gives you the same information permanently.
 But be warned, it defaults to  Sample
 merged .
-6.3.3. Options Figure 14.181. Color Picker Options 
+6.3.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.181. Color Picker Options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Sample Merged 
 The Sample Merged check-box when enabled will take color
 information as a composite from all the visible layers.
@@ -14510,14 +14510,14 @@ The Colorize tool renders the active layer or selection into a greyscale
 image seen through a colored glass. You can use it to give a
 “ Sepia ”  effect to your image. See
 Color model  for Hue, Saturation, Luminosity.
-5.4.1. Activating tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->5.4.1. Activating tool 
 You can get to the Colorize tool in two ways:
 In the image-menu through:
 Tools  →  Color Tools  →  Colorize 
 or
 Colors  →  Colorize ,
 or by clicking the tool icon:
-in Toolbox, provided that you have installed color tools in Toolbox.
+in Toolbox, provided that you have installed color tools in Toolbox.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 For this, please refer to  Section 1.7, “Toolbox” .
 5.4.2. Options Figure 14.147. Colorize options Presets 
 You can save the color settings of your image by clicking the
@@ -14589,11 +14589,11 @@ Ctrl
 Holding down the  Ctrl  key toggles between Blur
 and Sharpen
 modes; it reverses the setting shown in the Tool Options.
-3.14.3. Options Figure 14.94. Tool Options for the Blur/Sharpen tool 
+3.14.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.94. Tool Options for the Blur/Sharpen tool 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Opacity; Brush; Dynamics; Dynamics Options; 
 Apply Jitter; Hard Edges
 See the  Common Paint Tool
@@ -14640,14 +14640,14 @@ View  →  Snap to Guides
 option is checked.
 Note 
 You can see the aspect ratio in the status bar:
-4.4.1. Activating the Tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->4.4.1. Activating the Tool 
 You can activate this tool in different ways:
 From the image menu bar
 Tools  →  Transform tools  →  Crop ,
 by clicking the tool icon:
 in the ToolBox,
 by using the keyboard shortcut
-Shift + C .
+Shift + C .<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 4.4.2. Key modifiers (Defaults) 
 When you maintain click on the crop rectangle, handles
 disappear and
@@ -14656,11 +14656,11 @@ Extend from Center  option,
 holding down the  Shift  key toggles to the
 Fixed  option, which makes some
 dimensions fixed.
-4.4.3. Tool Options Figure 14.116. Tool Options for the  “ Crop ”  tool 
+4.4.3. Tool Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.116. Tool Options for the  “ Crop ”  tool 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Current Layer Only 
 This option will make crop affect only the active layer.
 Allow Growing 
@@ -14737,12 +14737,12 @@ brightness, contrast or transparency of the active layer or a selection.
 While the Levels tool allows you to work on Shadows and Highlights, the
 Curves tool allows you to work on any tonal range. It works on RGB
 images.
-5.8.1. Activating the Tool You can get to this tool in several ways: 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->5.8.1. Activating the Tool You can get to this tool in several ways: 
 In the image menu through
 Tools  →  Color Tools  →  Curves  or
 Colors  →  Curves .
 By clicking on the tool icon
-in Toolbox, if this tool has been installed there. For this, please
+in Toolbox, if this tool has been installed there.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 --> For this, please
 refer to  Section 1.7, “Toolbox” .
 5.8.2.  “ Adjust Color Curves ”  options Figure 14.168. The  “ Adjust Color Curves ”  dialog Presets 
 You can save the color settings of your image by clicking the
@@ -14947,11 +14947,11 @@ Button1  will Dodge or Burn in a
 straight line. Consecutive clicks will continue Dodge or
 Burn in straight lines that originate from the end of the
 last line.
-3.16.3. Options Figure 14.98.  “ Dodge/Burn ”  tool options 
+3.16.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.98.  “ Dodge/Burn ”  tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Opacity; Brush; Dynamics; Dynamics Options; 
 Apply Jitter; Hard Edge
 See the  Common Paint Tool
@@ -15275,13 +15275,13 @@ selections with different sizes, subtracting the inner one from the outer
 one; however this is not always easy to get right. The command
 Select  →  Border... 
 makes it easy.
-2.3.1. Activating the tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->2.3.1. Activating the tool 
 You can access the Ellipse Selection Tool in different ways:
 From the image menu bar
 Tools  →  Selection Tools  →  Ellipse Select ;
 By clicking on the tool icon
 in the ToolBox,
-By using the keyboard shortcut  E .
+By using the keyboard shortcut  E .<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 2.3.2. Key modifiers Note 
 See  Selection Tools  for
 help with modifier keys that affect all these tools in the same
@@ -15317,11 +15317,11 @@ aspects change. You can change the size of the selection by using
 handles. See
 Tool handling  within
 the rectangular chapter.
-2.3.4. Options Figure 14.16. Tool Options for the Ellipse Select tool 
+2.3.4. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.16. Tool Options for the Ellipse Select tool 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Note 
 See  Selection Tools 
 for help with options that are common to all these tools. Only
@@ -15360,13 +15360,13 @@ Because each end of the stylus is treated as a separate input device,
 and each input device has its own separate tool assignment, the reverse
 end will then continue to function as an Eraser as long as you don't
 select a different tool with it.
-3.8.1. Activating the tool You can activate this tool in several ways: 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->3.8.1. Activating the tool You can activate this tool in several ways: 
 From the image menu through
 Tools  →  Paint Tools  →  Eraser ;
 from the Toolbox by clicking on the tool icon
 ;
 or from the keyboard using the shortcut
-Shift + E .
+Shift + E .<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 3.8.2. Key modifiers 
 See the  Section 3.1, “Common Features”  for a description of key
 modifiers that have the same effect on all paint tools.
@@ -15386,11 +15386,11 @@ Alt  key is trapped by the Window Manager. If this
 happens to you, you may be able to use
 Alt + Shift 
 instead.
-3.8.3. Tool Options Figure 14.75. Tool Options for the Eraser tool 
+3.8.3. Tool Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.75. Tool Options for the Eraser tool 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Brush; Size; Brush Dynamics; Dynamic Options; Apply Jitter; Incremental
 See the  Common Paint Tool
 Options  for a description of tool options that apply to many or all
@@ -15430,7 +15430,7 @@ The Flip tool provides the ability to flip layers or selections either
 horizontally or vertically. When a selection is flipped, a new layer with
 a Floating Selection is created. You can use this tool to create
 reflections.
-4.9.1. Activating the Tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->4.9.1. Activating the Tool 
 You can access the Flip Tool in different ways:
 From the image menu bar
 Tools /
@@ -15440,14 +15440,14 @@ By clicking the tool icon:
 in Toolbox,
 by using the
 Shift + F  key
-combination.
+combination.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 4.9.2. Key modifiers (Defaults) Ctrl Ctrl  lets you change the modes between
 horizontal and vertical flipping.
-4.9.3. Options Figure 14.134.  “ Flip Tool ”  Options 
+4.9.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.134.  “ Flip Tool ”  Options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Affect Note 
 These options are described in
 Transform tools common options .
@@ -15507,11 +15507,11 @@ Edit  →  Preferences  →  Interface  →  Configure Keyboard Shortcuts  →  
 2.8.3. Key modifiers (Defaults) Ctrl 
 By pressing the  Ctrl  key, you can switching
 between foreground and background selection painting.
-2.8.4. Options Figure 14.35.  “ Foreground Select ”  tool options 
+2.8.4. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.35.  “ Foreground Select ”  tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Mode; Antialiasing; Feather edges Note 
 See  Selection Tools 
 for help with options that are common to all these tools. Only
@@ -15586,13 +15586,13 @@ Clicking again anchors this point and creates a segment. By pressing
 the  Ctrl  keyboard key while moving the mouse pointer
 contrains moving angles to 15°.
 So, you can mix free hand segments and polygonal segments.
-Figure 14.18. Mixing free hand segments and polygonal segments 2.4.1. Activating the tool 
+Figure 14.18. Mixing free hand segments and polygonal segments <!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->2.4.1. Activating the tool 
 You can access the Lasso Tool in different ways:
 From the image menu bar
 Tools  →  Selection Tools  →  Free Select ,
 by clicking on the tool icon
 in the ToolBox,
-by using the keyboard shortcut  F .
+by using the keyboard shortcut  F .<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 2.4.2. Key modifiers 
 The Free Select tool does not have any special key modifiers,
 only the ones that affect all selection tools in the same way.
@@ -15601,11 +15601,11 @@ help with these.
 2.4.3. Tool handling 
 To move the selection, see
 Moving selections .
-Figure 14.19. Rough selection with the Free Selection tool.  2.4.4. Options Figure 14.20. Tool Options for the Lasso tool 
+Figure 14.19. Rough selection with the Free Selection tool.  2.4.4. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.20. Tool Options for the Lasso tool 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 The Free Select tool has no special tool options,
 only the ones that affect all selection tools in the same way.
 See  Selection Tools  for
@@ -15636,13 +15636,13 @@ jumping over small gaps, depending on  Threshold  option.
 To increase/decrease Threshold, during the use of Fuzzy Selection, after the
 first button-press, dragging the pointer downward (or to the right) or
 upward (or to the left).
-2.5.1. Activating the tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->2.5.1. Activating the tool 
 You can access the Magic Wand Tool in different ways:
 From the image menu bar
 Tools  →  Selection Tools  →  Fuzzy Select ,
 by clicking on the tool icon
 in the ToolBox,
-by using the keyboard shortcut  U .
+by using the keyboard shortcut  U .<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 2.5.2. Key modifiers (Defaults) 
 The Fuzzy Select tool does not have any special key modifiers, only the
 ones that affect all selection tools in the same way. See
@@ -15657,11 +15657,11 @@ right: the farther you drag it, the larger you get the selected region.
 And you can reduce the selection by dragging upwards or to the left.
 To move the selection see
 Moving selections .
-2.5.4. Options Figure 14.23. Tool Options for the Magic Wand tool 
+2.5.4. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.23. Tool Options for the Magic Wand tool 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Note 
 See  Selection Tools 
 for help with options that are common to all these tools. Only
@@ -15819,11 +15819,11 @@ thin line connecting the previously clicked point with the current
 pointer location. If you click again, while going on holding
 the  Shift  key down, the tool will
 “ heal ”  along this line.
-3.12.3. Options Figure 14.88. Heal Tool options 
+3.12.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.88. Heal Tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Mode; Opacity; Brush; Dynamics; Dynamics Options; Apply Jitter; Smoot 
 Stroke; Hard Edge
 See the  Common Paint Tool
@@ -15848,12 +15848,12 @@ Report an error in Bugzilla
 5.3. Hue-Saturation 5.3. Hue-Saturation 5. Color Tools   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 5.3. Hue-Saturation 
 The Hue-Saturation tool is used to adjust hue, saturation and lightness
 levels on a range of color weights for the selected area or active layer.
-5.3.1. Activating the Tool You can get to the Hue-Saturation tool in two ways : 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->5.3.1. Activating the Tool You can get to the Hue-Saturation tool in two ways : 
 In the image-menu through:
 Tools  →  Color Tools  →  Hue-Saturation , or
 Colors  →  Hue-Saturation 
 By clicking the tool icon:
-in Toolbox, provided that you have installed color tools in Toolbox.
+in Toolbox, provided that you have installed color tools in Toolbox.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 For this, please refer to  Section 1.7, “Toolbox” .
 5.3.2. Options Figure 14.143. Hue-Saturation tool options Presets 
 You can save the color settings of your image by clicking the
@@ -15919,20 +15919,20 @@ Report an error in Bugzilla
 The Ink tool uses a simulation of an ink pen with a controllable nib to
 paint solid brush strokes with an antialiased edge. The size, shape and
 angle of the nib can be set to determine how the strokes will be rendered.
-3.10.1. Activating the Tool You can find the Ink tool in several ways : 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->3.10.1. Activating the Tool You can find the Ink tool in several ways : 
 In the image-menu through:
 Tools  →  Paint Tools  →  Ink .
 By clicking on the tool icon:
 in Toolbox,
-or by using the  K  keyboard shortcut.
+or by using the  K  keyboard shortcut.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 3.10.2. Key modifiers (Defaults) Ctrl 
 This key changes the nib to a
 Color Picker .
-3.10.3. Options Figure 14.79. Ink Tool options 
+3.10.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.79. Ink Tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Mode; Opacity 
 See the  Common Paint Tool
 Options  for a description of tool options that apply to many or all
@@ -15986,13 +15986,13 @@ most people find the Path tool to be more useful than the Scissors,
 because, even though it does not have the intelligent edge-finding
 capability, the paths it produces persist until you delete them, and can
 be altered at any time.
-2.7.1. Activating the tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->2.7.1. Activating the tool 
 You can access the Intelligent Scissors Tool in different ways:
 From the image menu bar
 Tools  →  Selection Tools  →  Intelligent Scissors ,
 by clicking on the tool icon
 in the ToolBox,
-by using the keyboard shortcut  I .
+by using the keyboard shortcut  I <!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->.
 2.7.2. Key modifiers 
 The default behavior of the  Shift ,
 Ctrl , and   Alt  keys is described in
@@ -16044,11 +16044,11 @@ control nodes will be lost. (But you still can transform your
 selection into a path and work it with the Path tool.)
 To move the selection, see
 Moving selections .
-2.7.4. Options Figure 14.29. Tool Options for the Intelligent Scissors 
+2.7.4. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.29. Tool Options for the Intelligent Scissors 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Modes; Antialiasing; Feather edges Note 
 See  Selection Tools 
 for help with options that are common to all these tools. Only
@@ -16305,13 +16305,13 @@ Report an error in Bugzilla
 4.3. Move 4.3. Move 4. Transform Tools   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 4.3. Move Figure 14.113. The Move tool in Toolbox 
 The Move Tool is used to move layers, selections, paths or guides. It
 works also on texts.
-4.3.1. Activating the Tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->4.3.1. Activating the Tool 
 You can access the Move Tool in different ways:
 From the image menu bar
 Tools  →  Transform Tools  →  Move ,
 By clicking the tool icon:
 .
-By using the keyboard shortcut  M .
+By using the keyboard shortcut  M .<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 The Move tool is automatically activated when you create a
 guide.
 Note 
@@ -16322,11 +16322,11 @@ after releasing the space bar. This behaviour exists only if the
 Switch to Move tool  option is
 enabled in
 Edit  →  Preferences  →  Image Windows  →  Space Bar .
-4.3.2. Options Figure 14.114. Move Tool options 
+4.3.2. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.114. Move Tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Move Note 
 These options are described in
 Transform tools common options .
@@ -16419,11 +16419,11 @@ line mode. Holding  Shift  while clicking
 Button 1  will generate a straight
 line. Consecutive clicks will continue drawing straight lines
 that originate from the end of the last line.
-3.7.3. Options Figure 14.72. Paintbrush tool options 
+3.7.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.72. Paintbrush tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Mode; Opacity; Brush; Dynamics; Dynamics Options; 
 Apply Jitter; Smoot Stroke; Incremental:
 See the  Common Paint Tool
@@ -16458,11 +16458,11 @@ and  Move .   Ctrl  key
 toggles between Design and Edit.   Alt  (or
 Ctrl + Alt )
 key toggles between Design and Move.
-6.2.3. Options Figure 14.179.  “ Path ”  tool options 
+6.2.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.179.  “ Path ”  tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Design Mode 
 By default, this tool is in  Design  mode.
 You draw the path by clicking successively. You can move
@@ -16608,11 +16608,11 @@ line mode. Holding  Shift  while clicking
 Button 1  will generate a straight
 line. Consecutive clicks will continue drawing straight lines
 that originate from the end of the last line.
-3.6.3. Options Figure 14.70.  “ Pencil ”  Tool options 
+3.6.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.70.  “ Pencil ”  Tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Mode; Opacity; Brush; Dynamics; Dynamics Options; 
 Apply Jitter; Smooth Stroke; Incremental
 See the  Common Paint Tool
@@ -16640,11 +16640,11 @@ line connecting the previously clicked point with the current
 pointer location. If you click again, while continuing to hold
 down the  Shift  key, the tool will clone along
 this line. Particularly useful when cloning from a pattern.
-3.13.3. Options Figure 14.91. Perspective Clone tool options 
+3.13.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.91. Perspective Clone tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Operating mode 
 When using this tool you first have to choose
 Modify Perspective . This works like the tool
@@ -16683,7 +16683,7 @@ click-and-drag.
 Note 
 This tool is not actually a perspective tool, as it doesn't impose
 perspective rules. It is better described as a distort tool.
-4.8.1. Activating the Tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->4.8.1. Activating the Tool 
 You can access the Perspective tool in different ways:
 From the image menu bar
 Tools /
@@ -16693,12 +16693,12 @@ By clicking the tool icon:
 in Toolbox,
 By using the
 Shift + P  key
-combination.
-4.8.2. Options Figure 14.131.  “ Perspective ”  tool options 
+combination.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
+4.8.2. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.131.  “ Perspective ”  tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Transform; Interpolation; Direction; Clipping; Preview; Guides
 Note 
 These options are described in
@@ -16719,12 +16719,12 @@ Report an error in Bugzilla
 This tool is designed to intelligently weigh the pixel colors of the
 selection or active layer and reduce the number of colors while
 maintaining a semblance of the original image characteristics.
-5.9.1. Activating the Tool You can get to this tool in several ways: 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->5.9.1. Activating the Tool You can get to this tool in several ways: 
 In the image menu through
 Tools  →  Color Tools  →  Posterize  or
 Colors  →  Posterize .
 By clicking on the tool icon
-in Toolbox, if this tool has been installed there. For this, please
+in Toolbox, if this tool has been installed there.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 --> For this, please
 refer to  Section 1.7, “Toolbox” .
 5.9.2. Options Figure 14.173. Posterize tool options Posterize Levels 
 This slider and the input boxes with arrow-heads allow you
@@ -16754,13 +16754,13 @@ the  Bucket Fill tool .
 To create a rectangular outline, the simplest and most flexible approach
 is to create a rectangular selection and then
 stroke  it.
-2.2.1. Activating the tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->2.2.1. Activating the tool 
 You can access the Selection Tool in different ways:
 from the image menu bar
 Tools  →  Selection Tools  →  Rectangle Select ,
 by clicking on the tool icon
 in the ToolBox,
-by using the keyboard shortcut  R .
+by using the keyboard shortcut  R .<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 2.2.2. Key modifiers Note 
 See  Selection Tools  for
 help with modifier keys that affect all these tools in the same
@@ -16840,11 +16840,11 @@ editing mode (and commit any changes). You can do this with a single
 click inside the selection or by pressing the  Enter 
 key. Or you can just use a non-selection tool and, for example, fill or
 paint the selection.
-2.2.4. Tool Options Figure 14.13. Tool Options for the Rectangle Select tool 
+2.2.4. Tool Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.13. Tool Options for the Rectangle Select tool 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Note 
 See  Selection Tools 
 for help with options that are common to all these tools. Only
@@ -16919,7 +16919,7 @@ Rotation Information  dialog is opened.
 There, you can set the rotation axis, marked with a point, and the
 rotation angle. You can do the same by  dragging the mouse pointer on
 the image or the rotation point.
-4.5.2. Activating the Tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->4.5.2. Activating the Tool 
 You can access the Selection Tool in different ways:
 from the image menu bar
 Tools  →  Transform Tools  →  Rotate ,
@@ -16927,15 +16927,15 @@ by clicking the tool icon:
 in the Toolbox,
 by using the
 Shift + R 
-key combination.
+key combination.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 4.5.3. Key modifiers (Defaults) Ctrl 
 Holding  Ctrl  will constrain the rotation
 angle to 15 degrees increments.
-4.5.4. Options Figure 14.120. Rotation tool options 
+4.5.4. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.120. Rotation tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Transform; Direction, Interpolation; Clipping; Preview; Guides
 Note 
 These options are described in
@@ -16983,7 +16983,7 @@ At the same time a Preview (possibly with a grid or an outline) is
 superimposed on the object and handles appear on corners and borders
 that you can click and drag to change dimensions. A small circle
 appears at center of the Preview allowing to move this preview.
-4.6.2. Activating the Tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->4.6.2. Activating the Tool 
 You can access the Scale Tool in different ways:
 from the image menu bar
 Tools  →  Transform Tools  →  Scale ,
@@ -16991,15 +16991,15 @@ by clicking the tool icon:
 in the Toolbox,
 by using the
 Shift + T 
-key combination.
+key combination.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
 4.6.3. Key modifiers (Defaults) Ctrl 
 Holding the  Ctrl  key down
 will toggle the  Keep Aspect  option.
-4.6.4. Tool Options Figure 14.124. Tool options for the Scale tool 
+4.6.4. Tool Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.124. Tool options for the Scale tool 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Transform; Interpolation; Direction; Clipping; Preview; Guides 
 Note 
 These options are described in
@@ -17038,7 +17038,7 @@ the  Shear  button in the info dialog to validate.
 Figure 14.127. Shear example Note 
 You can't shear both ways at the same time, you have to use the
 shear tool twice on end.
-4.7.1. Activating the Tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->4.7.1. Activating the Tool 
 You can access the Shear Tool in different ways:
 from the image menu bar
 Tools  →  Transform Tools  →  Shear ,
@@ -17046,12 +17046,12 @@ by clicking on the tool icon:
 in Toolbox,
 by using the
 Shift + S  key
-combination.
-4.7.2. Options Figure 14.128. Shear tool options 
+combination.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
+4.7.2. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.128. Shear tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Transform Direction; Interpolation; Clippping; Preview; Guides
 Note 
 These options are described in
@@ -17086,11 +17086,11 @@ Ctrl
 Using  Ctrl  with  Shift , you can
 constrain the angle between two successive lines to vary by steps
 of 15°.
-3.15.3. Options Figure 14.96. The Smudge tool in Toolbox 
+3.15.3. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.96. The Smudge tool in Toolbox 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Opacity; Brush; Dynamics; Dynamics Options; Fade Options; 
 Apply Jitter; Hard Edge; Rate
 See the  Common Paint Tool
@@ -17115,18 +17115,18 @@ adapted to the frame size. You can enlarge this frame as you do with
 rectangular selections.
 To move the text on canvas, you have to select the Move tool and click 
 on a character to drag the frame and its text.
-6.6.1. Activating the Tool 
+<!-- 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 <=< ACCEPT -->6.6.1. Activating the Tool 
 You can access this tool in several ways:
 In the image menu through
 Tools  →  Text ,
 by clicking the tool icon
 in Toolbox,
-or by using the  T  keyboard shortcut.
-6.6.2. Options Figure 14.188. Text tool options 
+or by using the  T  keyboard shortcut.<!-- ACCEPT >=> 4c8e3bcc-3fb8-4d8c-b809-35cf10211338 -->
+6.6.2. Options Figure <!-- 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 <=< ACCEPT -->14.188. Text tool options 
 Normally, tool options are displayed in a window attached under the
 Toolbox as soon as you activate a tool. If they are not, you can access
 them from the image menu bar through
-Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.
+Windows  →  Dockable Windows  →  Tool Options  which opens the option window of the selected tool.<!-- ACCEPT >=> 8799dc2c-a1f0-47a2-b9d5-450cb1983f52 -->
 Font 
 Click on the fonts button  Aα  to open
 the font selector of this tool, which offers you a list of
