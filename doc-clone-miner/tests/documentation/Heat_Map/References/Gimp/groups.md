@@ -5,3 +5,9 @@ Català Dansk Deutsch Ελληνικά English British Español Français Italia
 cc4ec6d9-307c-4b2e-a2a3-8f68cc36f923
 Activate / Activating command ... You can ...
     with or without alternative methods and shortcuts descriptions
+
+d5104572-892a-42b7-a1cc-3ea21563acf5
+Activating the dialog The ...  dialog is a dockable dialog; see the section ... for help on manipulating it. You can access it: from the image menu: ...
+
+fbbb760e-9207-412f-a518-deffff829db3
+Activating the filter You can find this filter through Filtres  →  Edge-Detect  →  Laplace .

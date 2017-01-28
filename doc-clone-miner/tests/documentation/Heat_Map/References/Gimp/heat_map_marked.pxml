@@ -924,7 +924,7 @@ comes now with 56 brushes, different from each other, because the
 size, the ratio and the angle of every brush can be set in the tool
 options dialog. You can also create custom brushes using the Brush Editor,
 or by saving images in a special brush file format.
-3.2.1. Activating the Dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->3.2.1. Activating the Dialog 
 The  “ Brushes ”  dialog is a dockable dialog; see the
 section  Section 2.3, “Dialogs and Docking”  for help on manipulating
 it.
@@ -935,7 +935,7 @@ From an image menu:
 Windows  →  Dockable Dialogs  →  Brushes ;
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Brushes .
+Add Tab  →  Brushes .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 from the Tool Options dialog for any of the paint tools, by
 clicking on the Brush icon button, you get a popup with similar
 functionality that permits you to quickly choose a brush from the
@@ -1314,7 +1314,7 @@ white is always white because all the colors are present and black is
 black. The red hat is visible in the red channel but quite invisible in
 the other channels. This is the same for plain green and blue which are
 visible only in their own channels and invisible in others.
-2.2.1. Activating the Dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->2.2.1. Activating the Dialog 
 The  “ Channels ”  dialog is a dockable dialog; see
 Section 2.3, “Dialogs and Docking”  for help on manipulating it.
 You can access it:
@@ -1322,7 +1322,7 @@ from an image menu:
 Windows  →  Dockable Dialogs  →  Channels ;
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Channels .
+Add Tab  →  Channels .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 In the  Windows  menu, there is a list of
 detached windows  which exists
 only if at least one dialog remains open. In this case, you can raise
@@ -3115,14 +3115,14 @@ The  “ Save device status ”  button
 at the bottom of the
 window, seems to have the same action as the  “ Record device
 status now ”  option in the Input Devices section in preferences.
-5.3.1. Activating the Dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->5.3.1. Activating the Dialog 
 The device status dialog is a dockable dialog; see the section
 Section 2.3, “Dialogs and Docking” 
 for help on manipulating it. It can be activated in two ways:
 From an image menu :
 Windows  →  Dockable Dialogs  →  Device Status .
 From the Tab menu in any dialog :
-Add a Dock  →  Device Status 
+Add a Dock  →  Device Status <!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 5.2. Tool Preset Editor     5.4. Error Console 
 Report an error in Bugzilla
 
@@ -3138,7 +3138,7 @@ twelve buttons show the last used colors. You may choose
 a color by clicking on one of these buttons or add the current FG
 or BG color to this history list.
 This dialog works either on the foreground or the background color.
-3.1.1. Activating the Dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->3.1.1. Activating the Dialog 
 The  “ Colors ”  dialog is a dockable dialog; see the
 section  Section 2.3, “Dialogs and Docking”  for help on manipulating
 it.
@@ -3149,7 +3149,7 @@ from the Tab menu in any dockable dialog by clicking on
 and selecting
 Add Tab  →  Colors ,
 from the toolbox: click on the current Foreground or Background
-color.
+color.<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 In the  Windows  menu, there is a list of
 detached windows  which exists
 only if at least one dialog remains open. In this case, you can raise
@@ -3240,7 +3240,7 @@ is merely a display: you can't do anything with it.
 Caution 
 Named buffers are not saved across sessions. The only way to save their
 contents is to paste them into images.
-4.1.1. Activating the Dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->4.1.1. Activating the Dialog 
 This dialog is a dockable dialog; see the
 section  Section 2.3, “Dialogs and Docking”  for help on manipulating
 it.
@@ -3249,7 +3249,7 @@ from an image menu:
 Windows  →  Dockable Dialogs  →  Buffers ;
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Buffers .
+Add Tab  →  Buffers .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 In the  Windows  menu, there is a list of
 detached windows  which exists
 only if at least one dialog remains open. In this case, you can raise
@@ -3317,7 +3317,7 @@ options dialog... if you had not disabled this button bar in the Tab menu
 to make place on your desk! Now, with  GIMP -2.8, a
 dockable Tool Presets Dialog is available where you just have to click on a
 preset to open the corresponding tool with its saved options.
-Figure 15.72. The Tool Presets Dialog 5.1.1. Activating the Dialog 
+Figure 15.72. The Tool Presets Dialog <!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->5.1.1. Activating the Dialog 
 The  “ Tool Presets Dialog ”  is a dockable dialog; see the
 section  Section 2.3, “Dialogs and Docking”  for help on manipulating
 it.
@@ -3325,7 +3325,7 @@ You can access it:
 from an image menu:
 Windows  →  Dockable Dialogs  →  Tool Presets ;
 or, as a tab in Toolbox window, through
-Tab Menu  →  Add Tab  →  Tool Presets .
+Tab Menu  →  Add Tab  →  Tool Presets .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 5.1.2. Using the Tool Presets Dialog 
 This dialog comes with a list of predefined presets. Each of them has an
 icon representing the tool presets will be applied to and a name.
@@ -3385,7 +3385,7 @@ conceptual parts, each of which can be manipulated without affecting any
 other part of the image. Layers are stacked on top of each other. The
 bottom layer is the background of the image, and the components in the
 foreground of the image come above it.
-Figure 15.2. An image with layers Layers of the image Resulting image 2.1.1. Activating the dialog 
+Figure 15.2. An image with layers Layers of the image Resulting image <!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->2.1.1. Activating the dialog 
 The  “ Layers ”  dialog is a dockable dialog; see the section
 Section 2.3, “Dialogs and Docking” 
 for help on manipulating it.
@@ -3396,7 +3396,7 @@ from the Tab menu in any dockable dialog by clicking on
 and selecting
 Add Tab  →  Layers ,
 from the (default) shortcut:
-Ctrl + L .
+Ctrl + L .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 In the  Windows  menu, there is a list of
 detached windows  which exists
 only if at least one dialog remains open. In this case, you can raise
@@ -3757,7 +3757,7 @@ Report an error in Bugzilla
 The History Dialog displays the list of the documents you have opened in
 previous sessions. It is more complete than the list you get with the
 “ Open Recent ”  command.
-4.3.1. Activating the Dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->4.3.1. Activating the Dialog 
 The  “ History ”  dialog is a dockable dialog; see the
 section  Section 2.3, “Dialogs and Docking”  for help on manipulating
 it.
@@ -3768,7 +3768,7 @@ From the Tab menu in any dockable dialog by clicking on
 and selecting
 Add Tab  →  Document History .
 From the image Menu bar through:
-File  →  Open Recent  →  Document History .
+File  →  Open Recent  →  Document History .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 4.3.2. Using the Document History dialog 
 The scroll bar allows you to browse all images you have opened before.
 In the Tab menu for the  “ Document History ”  dialog, you can
@@ -4207,7 +4207,7 @@ The  Error console  offers more possibilities than
 the single  “ GIMP Message ” . This is a log of all errors
 occurring while GIMP is running. You can save all this log or only a
 selected part.
-5.4.1. Activating the Dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->5.4.1. Activating the Dialog 
 The  “ Error Console ”  dialog is a dockable dialog; see the
 section  Section 2.3, “Dialogs and Docking”  for help on manipulating
 it.
@@ -4216,7 +4216,7 @@ from an image menu:
 Windows  →  Dockable Dialogs  →  Error Console ;
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Error Console .
+Add Tab  →  Error Console .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 5.4.2. The  “ Error Console ”  Dialog Figure 15.75.  “ Error Console ”  Dialog window Clear errors 
 This button lets you delete all errors in the log.
 Warning 
@@ -5378,7 +5378,7 @@ The  “ Fonts ”  dialog is used for selecting fonts for the
 Text tool .
 It also allows you to refresh the list of available fonts, if you add
 new ones to your system while GIMP is running.
-3.7.1. Activating the Dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->3.7.1. Activating the Dialog 
 The  “ Fonts ”  dialog is a dockable dialog; see the section
 Section 2.3, “Dialogs and Docking”  for help on manipulating it.
 You can access it:
@@ -5387,7 +5387,7 @@ Windows  →  Dockable Dialogs  →  Fonts ;
 from the Tab menu in any dockable dialog by clicking on
 and selecting
 Add Tab  →  Fonts ,
-from the Tool Options for the Text tool. If you click on the
+from the Tool Options for the Text tool.<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 --> If you click on the
 “ Font ”  button, a Font-selector pops up. In the lower
 right corner is a button that, if pressed, brings up the
 “ Fonts ”  dialog.
@@ -5602,7 +5602,7 @@ FG to Transparent : only uses one color (the
 Foreground color) from complete opacity to complete transparency.
 This gradient is very useful when you work with softly blended
 collages or fog effects.
-3.4.1. Activating the Dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->3.4.1. Activating the Dialog 
 The  “ Gradients ”  dialog is a dockable dialog; see the
 section  Section 2.3, “Dialogs and Docking” 
 for help on manipulating it.
@@ -5614,7 +5614,7 @@ and selecting
 Add Tab  →  Gradients ,
 from the Toolbox, by clicking on the current gradient in the
 Brush/Pattern/Gradient area,
-From the image by using the  Ctrl + G  shortcut.
+From the image by using the  Ctrl + G  shortcut.<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 In the  Windows  menu, there is a list of
 detached windows  which exists
 only if at least one dialog remains open. In this case, you can raise
@@ -6028,7 +6028,7 @@ an image. However, the Histogram dialog is purely informational: nothing
 you do with it will cause any change to the image. If you want to perform
 a histogram-based color correction, use the
 Levels  tool.
-2.5.1. Activating the dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->2.5.1. Activating the dialog 
 The  “ Histogram ”  dialog is a dockable dialog; see the section
 Section 2.3, “Dialogs and Docking” 
 for help on manipulating it.
@@ -6039,7 +6039,7 @@ from the Tab menu in any dockable dialog by clicking on
 and selecting
 Add Tab  →  Histogram ,
 from the image menu:
-Colors  →  Info  →  Histogram .
+Colors  →  Info  →  Histogram .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 In the  Windows  menu, there is a list of
 detached windows  which exists
 only if at least one dialog remains open. In this case, you can raise
@@ -6489,7 +6489,7 @@ The  “ Images ”  Dialog displays the list of open images on your
 screen; each of them is represented with a thumbnail. This dialog is
 useful when you have many overlapping images on your screen: thus, you
 can raise the wanted image to foreground.
-4.2.1. Activating the dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->4.2.1. Activating the dialog 
 The  “ Images ”  dialog is a dockable dialog; see the section
 Section 2.3, “Dialogs and Docking”  for help on manipulating it.
 You can access it:
@@ -6497,7 +6497,7 @@ from the image menu:
 Windows  →  Dockable Dialogs  →  Images ;
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Images .
+Add Tab  →  Images .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 In the  Windows  menu, there is a list of
 detached windows  which exists
 only if at least one dialog remains open. In this case, you can raise
@@ -8530,7 +8530,7 @@ or Grayscale instead of Indexed, the dialog is empty and unusable.) This
 is a dockable dialog; see the section on
 Dialogs and Docking 
 for help on manipulating it.
-2.4.1. Activating the dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->2.4.1. Activating the dialog 
 The  “ Colormap ”  dialog is a dockable dialog; see the section
 Section 2.3, “Dialogs and Docking”  for help on manipulating it.
 You can access it:
@@ -8538,7 +8538,7 @@ from the image menu:
 Windows  →  Dockable Dialogs  →  Colormap ;
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Colormap .
+Add Tab  →  Colormap .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 In the  Windows  menu, there is a list of
 detached windows  which exists
 only if at least one dialog remains open. In this case, you can raise
@@ -11017,7 +11017,7 @@ Use  Shift  and mouse-wheel to move horizontally,
 Alt  and mouse-wheel to move vertically. The mouse
 pointer must be on the rectangular area in the shape of a grabbing
 hand.
-2.6.1. Activating the dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->2.6.1. Activating the dialog 
 The  “ Navigation ”  dialog is a dockable dialog; see the section
 Section 2.3, “Dialogs and Docking” 
 for help on manipulating it.
@@ -11028,7 +11028,7 @@ from the Tab menu in any dockable dialog by clicking on
 and selecting
 Add Tab  →  Navigation ,
 from the image-menu:
-View  →  Navigation window .
+View  →  Navigation window .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 You can access more quickly to it (but without the zoom functions)
 by clicking on the icon at the right bottom corner of the image window:
 2.6.2. Using the Navigation Dialog The slider 
@@ -11194,7 +11194,7 @@ The  “ Palettes ”  dialog is not the same thing as the
 Index Palette
 dialog ,
 which is used to manipulate the colormaps of indexed images.
-3.5.1. Activating the dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->3.5.1. Activating the dialog 
 The  “ Palettes ”  dialog is a dockable dialog; see the section
 Section 2.3, “Dialogs and Docking”  for help on manipulating it.
 You can access it:
@@ -11202,7 +11202,7 @@ from the image menu:
 Windows  →  Dockable Dialogs  →  Palettes ;
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Palettes .
+Add Tab  →  Palettes .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 3.5.2. Using the Palettes dialog 
 Clicking on a palette in the dialog selects this palette and brings up
 the  Palette Editor ,
@@ -11503,7 +11503,7 @@ path is.
 Figure 15.12. The  “ Paths ”  dialog 
 The  “ Paths ”  dialog is used to manage paths, allowing you to
 create or delete them, save them, convert them to and from selections, etc.
-2.3.1. Activating the dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->2.3.1. Activating the dialog 
 The  “ Paths ”  dialog is a dockable dialog; see the section
 Section 2.3, “Dialogs and Docking” 
 for help on manipulating it.
@@ -11512,7 +11512,7 @@ from the image menu:
 Windows  →  Dockable Dialogs  →  Paths .
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Paths ,
+Add Tab  →  Paths ,<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 In the  Windows  menu, there is a list of
 detached windows  which exists
 only if at least one dialog remains open. In this case, you can raise
@@ -11835,7 +11835,7 @@ clicking on it in a list or grid view: the selected pattern will then be
 shown in the Brush/Pattern/Gradient area of the Toolbox. A few dozen more
 or less randomly chosen patterns are supplied with GIMP, and you can
 easily add new patterns of your own.
-3.3.1. Activating the dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->3.3.1. Activating the dialog 
 The  “ Patterns ”  dialog is a dockable dialog; see the section
 Section 2.3, “Dialogs and Docking” 
 for help on manipulating it.
@@ -11846,7 +11846,7 @@ from the image menu:
 Windows  →  Dockable Dialogs  →  Patterns ;
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Patterns .
+Add Tab  →  Patterns .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 From the Tool Options dialog of the
 Clone tool  and the
 Bucket Fill tool , by
@@ -12607,7 +12607,7 @@ Report an error in Bugzilla
 This dialog offers you, in a same window, in real time, the position of
 the mouse pointer, and the channel values of the pointed pixel, in the
 chosen color model.
-5.8.1. Activating the dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->5.8.1. Activating the dialog 
 The  “ Pointer ”  dialog is a dockable dialog; see the section
 Section 2.3, “Dialogs and Docking” 
 for help on manipulating it.
@@ -12616,7 +12616,7 @@ from the image menu:
 Windows  →  Dockable Dialogs  →  Pointer .
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Pointer .
+Add Tab  →  Pointer .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 5.8.2.  “ Pointer ”  dialog options Pixels 
 Shows the position of the pointed pixel, in X (horizontal) and Y
 (vertical) coordinates, stated in pixels from the origin (the
@@ -12693,7 +12693,7 @@ can display color information about one pixel, the
 the active layer or the image, at the same time. Another important
 difference is that the values of these points are changed in real time
 as you are working on the image.
-5.7.1. Activating the dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->5.7.1. Activating the dialog 
 The  “ Sample Points ”  dialog is a dockable dialog; see the
 section  Section 2.3, “Dialogs and Docking”  for help on manipulating
 it.
@@ -12702,7 +12702,7 @@ from the image menu:
 Windows  →  Dockable Dialogs  →  Sample Points .
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Sample Points .
+Add Tab  →  Sample Points <!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->.
 5.7.2. Using sample points 
 To create a sample point,  Ctrl -click on one of the
 two measure rules of the image window and drag the mouse pointer.
@@ -13501,7 +13501,7 @@ a lot of templates and you can create your owns. When you create a New
 image, you can access to the list of existing templates but you can't
 manage them. The  “ Templates ” 
 dialog allows you to manage all these templates.
-4.4.1. Activating the dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->4.4.1. Activating the dialog 
 The  “ Templates ”  dialog is a dockable dialog; see the
 section  Section 2.3, “Dialogs and Docking”  for help on manipulating
 it.
@@ -13510,7 +13510,7 @@ from the image menu:
 Windows  →  Dockable Dialogs  →  Templates .
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Templates .
+Add Tab  →  Templates .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 4.4.2. Using the Templates dialog 
 You select a template by clicking on its icon. Right clicking reveals a
 local menu that offers the same functions as buttons.
@@ -18517,7 +18517,7 @@ changes produced by each. You can revert the image to any point in its
 Undo History simply by clicking on the right entry in the list. For more
 information on GIMP's Undo mechanism and how it works, see the section on
 Undoing .
-2.7.1. Activating the dialog 
+<!-- d5104572-892a-42b7-a1cc-3ea21563acf5 <=< ACCEPT -->2.7.1. Activating the dialog 
 The  “ Undo History ”  dialog is a dockable dialog; see the
 section  Section 2.3, “Dialogs and Docking”  for help on manipulating
 it.
@@ -18526,7 +18526,7 @@ from the image menu:
 Windows  →  Dockable Dialogs  →  Undo History .
 from the Tab menu in any dockable dialog by clicking on
 and selecting
-Add Tab  →  Undo History .
+Add Tab  →  Undo History .<!-- ACCEPT >=> d5104572-892a-42b7-a1cc-3ea21563acf5 -->
 2.7.2. Using the Undo History dialog 
 The most basic thing you can do is to select a point in the Undo History
 by clicking on it in the list. You can go back and forth between states
@@ -22794,9 +22794,9 @@ Report an error in Bugzilla
 This filter renders very modified colors by applying trigonometric
 functions. Alien Map can work on images having
 RGB and HSV  color models.
-8.21.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->8.21.2. Activate the filter 
 You can find this filter in the image window menu under
-Colors  →  Map  →  Alien Map .
+Colors  →  Map  →  Alien Map .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 8.21.3. Options Figure 16.164. Options for the  “ Alien Map ”  filter Preview 
 This preview displays results of filter application interactively.
 Mode 
@@ -22935,9 +22935,9 @@ Report an error in Bugzilla
 15.8. Playback 15.8. Playback 15. Animation Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 15.8. Playback 15.8.1. Overview 
 This plug-in lets you play an animation from a multi-layers image (that
 could be saved in the GIF, MNG or even XCF format), to test it.
-15.8.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->15.8.2. Activate the filter 
 You can find this filter through
-Filters  →  Animation  →  Playback 
+Filters  →  Animation  →  Playback <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 15.8.3. Options Figure 17.368.  “ Playback ”  filter options This dialog has: Preview 
 This preview of the animation automatically fits the frame size.
 The number of the displayed frame is shown below the preview.
@@ -22967,9 +22967,9 @@ according to the Scale3X algorithm, using the colors of the pixel
 and its 8 adjacent pixels (extrapolation);
 then the filter subsamples the new pixels to a weighted average
 pixel.
-3.2.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->3.2.2. Activating the filter 
 You can find this filter through
-Filters  →  Enhance  →  Antialias .
+Filters  →  Enhance  →  Antialias .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 3.2.3. Examples 
 The following examples illustrate the effect on some patterns. The
 small squares are one pixel in size (zoom 16:1).
@@ -22981,9 +22981,9 @@ Report an error in Bugzilla
 10.2. Apply Canvas 10.2. Apply Canvas 10. Artistic Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 10.2. Apply Canvas 10.2.1. Overview Figure 17.168. Example for the  “ Apply Canvas ”  filter Original image Filter  “ Apply Canvas ”  applied 
 This filter applies a canvas-like effect to the current layer or
 selection. It textures the image as if it were an artist's canvas.
-10.2.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->10.2.2. Activate the filter 
 You can find this filter through
-Filters  →  Artistic  →  Apply Canvas... .
+Filters  →  Artistic  →  Apply Canvas... .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 10.2.3. Options Figure 17.169.  “ Apply Canvas ”  options Preview 
 Your changes are displayed in this preview before being applied
 to your image.
@@ -23000,9 +23000,9 @@ Report an error in Bugzilla
 5.10. Apply Lens 5.10. Apply Lens 5. Light and Shadow Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 5.10. Apply Lens 5.10.1. Overview Figure 17.122. The same image, before and after applying lens effect. Original image Filter  “ Apply lens ”  applied 
 After applying this filter, a part of the active layer is rendered as
 through a spherical lens.
-5.10.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->5.10.2. Activate the filter 
 You can find this filter in the image window menu through
-Filters  →  Light and Shadow  →  Apply Lens 
+Filters  →  Light and Shadow  →  Apply Lens <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 5.10.3. Options Figure 17.123.  “ Apply Lens ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview. Scroll bars allow you to move around the image.
@@ -23090,9 +23090,9 @@ Report an error in Bugzilla
 4.2. Blinds 4.2. Blinds 4. Distort Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 4.2. Blinds 4.2.1. Overview Figure 17.35. Applying example for the Blinds filter Original image Filter  “ Blinds ”  applied 
 It generates a blind effect with horizontal or vertical battens. You can
 lift or close these battens, but not lift the whole blind up.
-4.2.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.2.2. Activating the filter 
 You can find this filter through
-Filters  →  Distort  →  Blinds .
+Filters  →  Distort  →  Blinds .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.2.3. Options Figure 17.36.  “ Blinds ”  filter options Preview 
 All your setting changes will appear in the Preview without
 affecting the image until you click on  OK .
@@ -23120,9 +23120,9 @@ sets the present pixel to that average value.
 Filter advantage is its calculation speed. It suits big images.
 Filter disadvantage is that its action is hardly perceptible on big
 images, but very strong on small images.
-2.2.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->2.2.2. Activate the filter 
 You can find this filter through:
-Filters  →  Blur  →  Blur 
+Filters  →  Blur  →  Blur<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 --> 
 2. Blur Filters     2.3. Gaussian Blur 
 Report an error in Bugzilla
 
@@ -23287,9 +23287,9 @@ The Cartoon filter modifies the active layer or selection so that it
 looks like a cartoon drawing. Its result is similar to a black felt pen
 drawing subsequently shaded with color. This is achieved by darkening
 areas that are already distinctly darker than their neighborhood.
-10.3.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->10.3.2. Activate the filter 
 You can find this filter in
-Filters  →  Artistic  →  Cartoon .
+Filters  →  Artistic  →  Cartoon .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 10.3.3. Options Figure 17.171.  “ Cartoon ”  filter options Mask radius 
 This parameter controls the size of areas the filter works with.
 Large values result in very thick black areas and much less detail
@@ -23309,9 +23309,9 @@ Report an error in Bugzilla
 Filter  “ Colorcube Analysis ”  applied
 Information is reduced since GIMP 2.4: size and color number of the
 active layer.
-8.30.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->8.30.2. Activating the filter 
 You can find this filter in the image window menu under
-Colors  →  Info  →  Colorcube Analysis .
+Colors  →  Info  →  Colorcube Analysis .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 8.29. Border Average     8.31. Smooth Palette 
 Report an error in Bugzilla
 
@@ -23335,9 +23335,9 @@ Filter  “ CML Explorer ”  applied with default options
 This filter is the king of texture creating filters. It is extremely
 efficient but very complex. It uses a mathematical method named Cellular
 Automata  [ WKPD-CA ] .
-13.9.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->13.9.2. Activating the filter 
 You can find this filter from the image menu through
-Filters  →  Render  →  Pattern  →  CML Explorer .
+Filters  →  Render  →  Pattern  →  CML Explorer .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 13.9.3. Options General Options 
 Filter options are distributed among
 Hue , Saturation ,
@@ -23750,9 +23750,9 @@ Tip
 If setting possibilities of this filter are not enough for you, see
 GIMPressionist  filter
 which offers more options.
-10.5.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->10.5.2. Activate the filter 
 You can find this filter through
-Filters  →  Artistic  →  Cubism 
+Filters  →  Artistic  →  Cubism <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 10.5.3. Options Figure 17.175.  “ Cubism ”  filter options Preview 
 Your changes are displayed in this preview before being applied
 to your image.
@@ -23807,9 +23807,9 @@ Report an error in Bugzilla
 This filter allows you to create a curve that will be used to distort
 the active layer or selection. The distortion is applied gradually
 from an image or selection border to the other.
-4.3.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.3.2. Activating the filter 
 You can find this filter through
-Filters  →  Distorts  →  Curve Bend .
+Filters  →  Distorts  →  Curve Bend .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.3.3. Options Figure 17.38.  “ Curve bend ”  filter options Preview 
 The preview displays changes to image or selection without
 modifying the image until you press  OK .
@@ -24040,9 +24040,9 @@ resulting image, or selection, will be somewhat blurred, but can be
 improved by enhance filters
 You can find interlaced images at
 [ WKPD-DEINTERLACE ] .
-3.3.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->3.3.2. Activating the filter 
 You can find this filter through
-Filters  →  Enhance  →  Deinterlace .
+Filters  →  Enhance  →  Deinterlace .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 3.3.3. Options Figure 17.21. Deinterlace filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview.
@@ -24078,9 +24078,9 @@ All images to be selected must be present on screen.
 You can also use this filter on an image with several layers. All
 layers will appear in the drop-down lists used to select images.
 These layers must have the same size.
-9.2.2. Accessing this Filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->9.2.2. Accessing this Filter 
 You can find this filter through
-Filters  →  Combine  →  Depth Merge 
+Filters  →  Combine  →  Depth Merge<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 --> 
 9.2.3. Options Figure 17.162.  “ Depth Merge ”  filter options Source 1,  Source 2 
 Defines the source images to use for the blending.
 Depth map 
@@ -24121,9 +24121,9 @@ magazine.  You should select isolated defects before applying this
 filter, in order to avoid unwanted changes in other areas of your image.
 The filter replaces each pixel with the median value of the pixels within
 the specified radius.
-3.4.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->3.4.2. Activating the filter 
 You can find this filter through
-Filters  →  Enhance  →  Despeckle .
+Filters  →  Enhance  →  Despeckle .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 3.4.3. Options Figure 17.23.  “ Despeckle ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview.
@@ -24156,9 +24156,9 @@ preview of an image that has none. And if pattern
 If, after a first pass, a stripe persists, rectangular-select it
 and apply filter again (all other selection type may worsen the
 result).
-3.5.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->3.5.2. Activating the filter 
 You can find this filter through
-Filters  →  Enhance  →  Destripe .
+Filters  →  Enhance  →  Destripe .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 3.5.3. Options Figure 17.24.  “ Destripe ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview. Scroll bars allow you to move around the image.
@@ -24233,9 +24233,9 @@ intensity of the corresponding pixel in the 'displace map' drawables.
 Both X and Y displace maps should be gray-scale images and have the
 same size as the drawable
 . This filter allows interesting distortion effects.
-12.3.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->12.3.2. Activating the filter 
 You can find this filter through
-Filters  →  Map  →  Displace 
+Filters  →  Map  →  Displace <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 12.3.3. Options Figure 17.249. Displace filter options Preview 
 Uncheck this option if your processor is slow.
 Displacement Mode 
@@ -24396,9 +24396,9 @@ for recognizing something as an edge. In most cases you will get nicer
 results if Radius 2 is smaller than Radius 1, but nothing prevents you
 from reversing them, and in situations where you have a light figure on
 the dark background, reversing them may actually improve the result.
-7.2.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->7.2.2. Activating the filter 
 You can find this filter through
-Filters  →  Edge-Detect  →  Difference of Gaussians .
+Filters  →  Edge-Detect  →  Difference of Gaussians .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 7.2.3. Options Figure 17.139. 
 Gaussian Difference filter options
 Smoothing Parameters Radius 1  and  Radius 2 
@@ -24422,9 +24422,9 @@ drawing.
 7. Edge-Detect Filters     7.3. Edge 
 Report an error in Bugzilla
 
-7.3. Edge 7.3. Edge 7. Edge-Detect Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 7.3. Edge 7.3.1. Overview Figure 17.140. Applying example for the Edge filter Original image After applying the filter (Sobel option) Figure 17.141. Applying examples for the Edge filter After applying the filter (Prewitt compass option) After applying the filter (Gradient option) Figure 17.142. Applying example for the Edge filter After applying the filter (Roberts option) After applying the filter (Differential option) Figure 17.143. Applying example for the Edge filter After applying the filter (Laplace option) 7.3.2. Activating the filter 
+7.3. Edge 7.3. Edge 7. Edge-Detect Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 7.3. Edge 7.3.1. Overview Figure 17.140. Applying example for the Edge filter Original image After applying the filter (Sobel option) Figure 17.141. Applying examples for the Edge filter After applying the filter (Prewitt compass option) After applying the filter (Gradient option) Figure 17.142. Applying example for the Edge filter After applying the filter (Roberts option) After applying the filter (Differential option) Figure 17.143. Applying example for the Edge filter After applying the filter (Laplace option) <!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->7.3.2. Activating the filter 
 You can find this filter through
-Filters  →  Edge-Detect  →  Edge... .
+Filters  →  Edge-Detect  →  Edge... .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 7.3.3. Options Figure 17.144. Edge filter options Algorithm Edge detector offers several detection methods: Sobel 
 Here, this method has no options and so is less interesting
 than the specific Sobel.
@@ -24450,9 +24450,9 @@ relief with bumps and hollows. Bright areas are raised and dark ones are
 carved. You can vary the lighting.
 You can use the filter only with RGB images. If your image is grayscale,
 it will be grayed out in the menu.
-4.4.2. Starting filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.4.2. Starting filter 
 You can find this filter through
-Filters  →  Distorts  →  Emboss .
+Filters  →  Distorts  →  Emboss .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.4.3. Options Figure 17.40.  “ Emboss ”  filter options Preview 
 All your setting changes will appear in the Preview without
 affecting the image until you click on  OK .
@@ -24513,9 +24513,9 @@ will dilate by one pixel in all directions.
 On complex images, bright areas are widened and enhanced the same, and
 somewhat pixellated.
 On a solid background, this filter can delete noise:
-Figure 17.160.  “ Erode noise ”  example 8.4.2. Activating the filter 
+Figure 17.160.  “ Erode noise ”  example <!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->8.4.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Generic  →  Erode .
+Filters  →  Generic  →  Erode .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 8.3. Dilate     9. Combine Filters 
 Report an error in Bugzilla
 
@@ -24555,9 +24555,9 @@ Note
 This filter does not invert colors, so it does not imitate negative
 film like the ones used to produce prints. Instead you should think of
 the result as an imitation of slide film or cinema film.
-9.3.2. Accessing this Filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->9.3.2. Accessing this Filter 
 You can find this filter through
-Filters  →  Combine  →  Film .
+Filters  →  Combine  →  Film .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 9.3.3. Options 9.3.3.1. Selection Figure 17.166.  “ Film ”  filter options (Selection) Film Fit height to images 
 Applies the height of original pictures to the resulting one.
 Height 
@@ -24690,9 +24690,9 @@ This plug-in was given to GIMP by Scott Draves in 1997. He also holds
 the copyright for the plug-in. An descriptive page for the plug-in,
 provided by the author can be found in the internet
 [ PLUGIN-FLAMES ] .
-13.6.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->13.6.2. Activating the filter 
 You can find this filter through
-Filters  →  Render  →  Nature  →  Flame .
+Filters  →  Render  →  Nature  →  Flame .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 13.6.3. Options Figure 17.289.  “ Flame ”  filter options 
 In the main window, you can set Rendering and Camera
 parameters. The first three parameters in the Render display are
@@ -24765,9 +24765,9 @@ This filter gives the impression that sun hit the objective when taking
 a shot. You can locate the reflection with a reticule you can move, but
 you have not the possibilities that the
 Gradient Flare  filter offers.
-5.3.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->5.3.2. Activate the filter 
 You can find this filter in the image menu menu through
-Filters  →  Light and Shadow  →  Lens Flare .
+Filters  →  Light and Shadow  →  Lens Flare .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 5.3.3. Options Figure 17.98.  “ Lens Flare ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview. Scroll bars allow you to move around the image.
@@ -24815,9 +24815,9 @@ verging to chaos. Unlike the
 IFS Fractal  filter, with which you
 can fix the fractal structure precisely, this filter lets you perform
 fractals simply.
-13.17.2. Starting filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->13.17.2. Starting filter 
 You can find this filter through
-Filters  →  Render  →  Fractal Explorer .
+Filters  →  Render  →  Fractal Explorer .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 13.17.3. Options Figure 17.325.  “ Fractal Explorer ”  filter options 
 The Fractal Explorer window contains two panes: on the left there is the
 Preview pane with a Zoom feature, on the right you find the main options
@@ -24920,9 +24920,9 @@ the other by clicking the Chain Button so that it is broken, and
 altering the radius. GIMP supports two implementations of Gaussian Blur:
 IIR G.B. and RLE G.B. They both produce the same results, but each one
 can be faster in some cases.
-2.3.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->2.3.2. Activate the filter 
 You can find this filter in the image menu under
-Filters  →  Blur  →  Gaussian Blur 
+Filters  →  Blur  →  Gaussian Blur <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 2.3.3. Options Figure 17.10.  “ Gaussian ”  filter parameters settings Blur Radius 
 Here you can set the blur intensity. By altering the ratio of
 horizontal to vertical blur, you can give the effect of a motion
@@ -24944,9 +24944,9 @@ the image. It is very complex. I hope this paper will help you.
 When using this filter, elements inserted in the image will be placed in
 a new layer. So the image will not be modified, all modifications
 occurring in this layer.
-13.18.2. Starting filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->13.18.2. Starting filter 
 You can find this filter through
-Filters  →  Render  →  Gfig 
+Filters  →  Render  →  Gfig <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 13.18.3. Options Figure 17.331.  “ Gfig ”  filter options 
 The Preview (with a horizontal and a vertical ruler) on the left of the
 main window actually is your working area where you are adding your
@@ -25205,9 +25205,9 @@ Apply Canvas  do and much
 more. It gives your image the look of a painting. All is going as if
 your image was painted again on a paper and with a brush you'd have
 chosen. It works on the active layer or selection.
-10.6.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->10.6.2. Activating the filter 
 You can find this filter via the image menu through
-Filters  →  Artistic  →  GIMPressionist .
+Filters  →  Artistic  →  GIMPressionist .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 10.6.3. Options Figure 17.180. GIMPressionist options 
 The dialog window consists of a small Preview area on the left, which is
 always visible, and a huge amount of GIMPressionist options organized in
@@ -25521,9 +25521,9 @@ The same image, before and after applying glass tile effect.
 Original image Filter  “ Glass Tile ”  applied 
 After applying this filter, the active layer or selection is rendered
 as through a glass brick wall.
-5.11.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->5.11.2. Activate the filter 
 You can find this filter through
-Filters  →  Light and Shadow  →  Glass Tile 
+Filters  →  Light and Shadow  →  Glass Tile <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 5.11.3. Options Figure 17.125.  “ Glass Tile ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview. Scroll bars allow you to move around the image.
@@ -25550,9 +25550,9 @@ color intensities (0 - 255), mapping the darkest pixels to
 the left end color from the gradient, and the lightest pixels to
 the right end color from the gradient. Intermediate values are set
 to the corresponding intermediate colors.
-8.23.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->8.23.2. Activate the filter 
 You can find this filter in the image window menu under
-Colors  →  Map  →  Gradient Map .
+Colors  →  Map  →  Gradient Map .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 8.22. Color Exchange     8.24. Palette Map 
 Report an error in Bugzilla
 
@@ -25637,9 +25637,9 @@ Report an error in Bugzilla
 6.2. HSV Noise 6.2. HSV Noise 6. Noise Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 6.2. HSV Noise 6.2.1. Overview Figure 17.126. Example of applying the  “ HSV Noise ”  filter Original image Filter  “ HSV Noise ”  applied 
 The HSV Noise filter creates noise in the active layer or selection by
 using the Hue, Saturation, Value (luminosity) color model.
-6.2.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->6.2.2. Activate the filter 
 You can find this filter through
-Filters  →  Noise  →  HSV Noise .
+Filters  →  Noise  →  HSV Noise .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 6.2.3. Options Figure 17.127.  “ HSV Noise ”  filter options Preview 
 This preview displays interactively changes before they are
 applied to the image.
@@ -25843,9 +25843,9 @@ we want to describe here some of the most current handlings. If you
 want, you can find a more complete descriptions in Grokking the GIMP
 with the
 link  [ GROKKING02 ] .
-14.2.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->14.2.2. Activate the filter 
 From an image window, you can find this filter through
-Filters  →  Web  →  ImageMap 
+Filters  →  Web  →  ImageMap <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 The window is a small one, but you can magnify it.
 The main useful areas are:
 completely on the left are vertically displayed icons, one for
@@ -25976,9 +25976,9 @@ in/fade out animation between the original image and the deformed one,
 that you can play and use in a Web page.
 To use it, first select a deform type then click on the Preview and drag
 the mouse pointer.
-4.7.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.7.2. Activating the filter 
 You can find this filter through
-Filters  →  Distort  →  Iwarp .
+Filters  →  Distort  →  Iwarp .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.7.3. Options 
 The options of this filter are so numerous that they come in two tabs.
 The first tab contains general options. The second tab holds animation
@@ -26074,9 +26074,9 @@ Report an error in Bugzilla
 7.4. Laplace 7.4. Laplace 7. Edge-Detect Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 7.4. Laplace 7.4.1. Overview Figure 17.145. Applying example for the Laplace filter Original image Filter  “ Laplace ”  applied 
 This filter detects edges in the image using Laplacian method,
 which produces thin, pixel wide borders.
-7.4.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->7.4.2. Activating the filter 
 You can find this filter through
-Filtres  →  Edge-Detect  →  Laplace .
+Filtres  →  Edge-Detect  →  Laplace .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 7.3. Edge     7.5. Neon 
 Report an error in Bugzilla
 
@@ -26135,9 +26135,9 @@ It uses a blur map. Unlike other maps, this filter doesn't use grey
 levels of this blur map.  Filter takes in account only
 gradient direction(s) . Image pixels corresponding to
 solid areas of the map are ignored.
-10.11.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->10.11.2. Activate the filter 
 You can find this filter through
-Filters  →  Artistic  →  Van Gogh (LIC) .
+Filters  →  Artistic  →  Van Gogh (LIC) .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 10.11.3. Options Figure 17.203.  “ Van Gogh (LIC) ”  filter options Tip 
 To create a blur, check  With Source Image .
 Only Filter Length slider and perhaps Integration Steps slider,
@@ -26342,9 +26342,9 @@ Report an error in Bugzilla
 This filter modifies the image for tiling by creating seamless edges.
 Such an image can be used as a pattern for a web-page. This filter has
 no option, and result may need correction.
-12.6.2. Activation 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->12.6.2. Activation 
 You can find this filter through
-Filters  →  Map  →  Make Seamless 
+Filters  →  Map  →  Make Seamless <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 12.5. Illusion     12.7. Map Object 
 Report an error in Bugzilla
 
@@ -26518,9 +26518,9 @@ Report an error in Bugzilla
 The Motion Blur filter creates a movement blur. The filter is capable of
 Linear, Radial, and Zoom movements. Each of these movements can be
 further adjusted, with Length, or Angle settings available.
-2.5.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->2.5.2. Activate the filter 
 You can find this filter in the image menu under
-Filters  →  Blur  →  Motion Blur 
+Filters  →  Blur  →  Motion Blur <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 2.5.3. Options Figure 17.15.  “ Motion Blur ”  filter options Blur Type Linear 
 Is a blur that travels in a single direction,
 horizontally, for example. In this case, Length means as
@@ -26569,9 +26569,9 @@ Report an error in Bugzilla
 It cuts the active layer or selection into many squares or polygons
 which are slightly raised and separated by joins, giving so an aspect
 of mosaic.
-4.9.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.9.2. Activating the filter 
 You can find this filter through
-Filters  →  Distorts  →  Mosaic .
+Filters  →  Distorts  →  Mosaic .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.9.3. Options Figure 17.57.  “ Mosaic ”  filter options Preview 
 All your setting changes will appear in the Preview without
 affecting the image until you click on  OK .
@@ -26627,9 +26627,9 @@ You will find in  GIMP  a Script-Fu also named Neon,
 which works in a different manner. The Script-Fu is an easy shortcut to
 construct logo-like letters outlined with a configurable neon-effect.
 See  Section 16.17, “Neon”  for details.
-7.5.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->7.5.2. Activating the filter 
 You can find this filter through
-Filters  →  Edge-Detect  →  Neon... .
+Filters  →  Edge-Detect  →  Neon... .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 7.5.3. Options Figure 17.147. Neon filter options Radius 
 This option lets you determine how wide the detected edge will be.
 Amount 
@@ -26662,9 +26662,9 @@ diamond shaped. This change in shape is controlled by a
 Spot function . By using different spot
 functions, the evolution in the shape of the spots as the cell goes from
 fully black to fully white may be controlled.
-4.10.2. Starting filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.10.2. Starting filter 
 You can find this filter through
-Filters  →  Distorts  →  Newsprint .
+Filters  →  Distorts  →  Newsprint .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.10.3. Options Figure 17.59.  “ Newsprint ”  filter options Preview 
 All your setting changes will appear in the Preview without
 affecting the image until you click on  OK .
@@ -26731,9 +26731,9 @@ operating modes. In all of the modes each pixel in the image is examined
 and processed according to it and its surrounding pixels values. Rather
 than using 9 pixels in a 3x3 block, it uses an hexagonal block whose
 size can be set with the Radius option.
-3.6.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->3.6.2. Activating the filter 
 You can find this filter through
-Filters  →  Enhance  →  NL Filter .
+Filters  →  Enhance  →  NL Filter .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 The filter does not work if the active layer has an alpha channel. Then
 the menu entry is insensitive and grayed out.
 3.6.3. Options Figure 17.26.  “ NL Filter ”  options Preview 
@@ -27022,9 +27022,9 @@ Filter  “ Papertile ”  applied
 This filter cuts the image (active layer or selection) into several
 pieces, with square form, and then slides them so that they, more or
 less, overlap or move apart. They can go out image borders a little.
-12.8.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->12.8.2. Activate the filter 
 You can find this filter through
-Filters  →  Map  →  Paper Tile .
+Filters  →  Map  →  Paper Tile .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 12.8.3. Options Figure 17.267.  “ Paper Tile ”  filter options Division X ,  Y  and  
 Size  parameters are linked, because filter starts
 cutting image before it displaces pieces; so, piece size and
@@ -27121,9 +27121,9 @@ The Pixelize filter renders the image using large color blocks. It is
 very similar to the effect seen on television when obscuring a
 criminal during trial. It is used for the  “ Abraham Lincoln
 effect ” : see  [ BACH04 ] .
-2.6.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->2.6.2. Activate the filter 
 You can find this filter in the image menu through
-Filters  →  Blur  →  Pixelise 
+Filters  →  Blur  →  Pixelise <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 2.6.3. Options Figure 17.17.  “ Pixelize ”  filter options Pixel width,  Pixel height 
 Here you can set the desired width and height of the blocks.
 By default, width and height are linked, indicated by the chain
@@ -27206,9 +27206,9 @@ Report an error in Bugzilla
 4.12. Polar Coords 4.12. Polar Coords 4. Distort Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 4.12. Polar Coords 4.12.1. Overview Figure 17.63. Example for Polar Coords filter Original image “ Polar Coords ”  filter applied 
 It gives a circular or a rectangular representation of your image with
 all the possible intermediates between both.
-4.12.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.12.2. Activating the filter 
 You can find this filter through
-Filters  →  Distorts  →  Polar Coords .
+Filters  →  Distorts  →  Polar Coords .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.12.3. Options Figure 17.64.  “ Polar Coords ”  filter options Preview 
 The result of your settings will appear in the Preview without
 affecting the image until you click on  OK .
@@ -27296,9 +27296,9 @@ chosen from its eight neighbours and itself (from a 3×3 square the pixel
 is center of). All or only some pixels in an active layer or selection
 are affected, the percentage of affected pixels is determined by the
 Randomization (%)  option.
-6.4.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->6.4.2. Activate the filter 
 You can find this filter through
-Filters  →  Noise  →  Pick .
+Filters  →  Noise  →  Pick .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 6.4.3. Options Figure 17.131.  “ Pick ”  filter options Random seed 
 Controls randomness of picking.  If the same random seed in the
 same situation is used, the filter produces exactly the same
@@ -27328,9 +27328,9 @@ to the left or right of the one above is used. All or only some pixels
 in an active layer or selection are affected, the percentage of affected
 pixels is determined by the  Randomization (%) 
 option.
-6.6.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->6.6.2. Activate the filter 
 You can find this filter through
-Filters  →  Noise  →  Slur .
+Filters  →  Noise  →  Slur .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 6.6.3. Options Figure 17.135. Slur filter options Random seed 
 It controls randomness of slurring.  If the same random seed in
 the same situation is used, the filter produces exactly the
@@ -27457,9 +27457,9 @@ color and then look at its histogram, you will see a classic bell-shaped
 Gaussian curve.)
 The result is very naturally looking noise.
 This filter does not work with indexed images.
-6.5.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->6.5.2. Activate the filter 
 You can find this filter through
-Filters  →  Noise  →  RGB Noise .
+Filters  →  Noise  →  RGB Noise .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 6.5.3. Options Figure 17.133.  “ RGB Noise ”  filter options Preview 
 This preview displays interactively changes before they are
 applied to the image.
@@ -27491,9 +27491,9 @@ Report an error in Bugzilla
 4.13. Ripple 4.13. Ripple 4. Distort Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 4.13. Ripple 4.13.1. Overview Figure 17.67.  “ Ripple ”  filter example Original image Filter  “ Ripple ”  applied 
 It displaces the pixels of the active layer or selection to waves or
 ripples reminding a reflection on disturbed water.
-4.13.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.13.2. Activating the filter 
 You can find this filter through
-Filters  →  Distorts  →  Ripple .
+Filters  →  Distorts  →  Ripple .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.13.3. Options Figure 17.68.  “ Ripple ”  filter options Preview 
 The result of your settings will appear in the Preview without
 affecting the image until you click on  OK .
@@ -27534,9 +27534,9 @@ Report an error in Bugzilla
 8.25. Rotate Colors 8.25. Rotate Colors 8. The  “ Colors ”  Menu   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 8.25. Rotate Colors 8.25.1. Overview Figure 16.169. Example for the  “ Rotate Colors ”  filter Original image 
 Filter  “ Rotate Colors ”  applied
 Colormap Rotation lets you exchange one color range to another range.
-8.25.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->8.25.2. Activating the filter 
 This filter is found in the image window menu under
-Colors  →  Map  →  Rotate Colors .
+Colors  →  Map  →  Rotate Colors .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 8.25.3. Main Options Figure 16.170. 
 Main Options of the  “ Color Map Rotation ”  filter
 You have there two color circles, one for the  “ From ” 
@@ -27705,9 +27705,9 @@ defined Delta value. So, contrasts are preserved because difference is
 high on contrast limits. It is used to blur a background so that the
 foreground subject will stand out better. This add a sense of depth to
 the image with only a single operation.
-2.4.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->2.4.2. Activate the filter 
 You can find this filter in the image menu under
-Filters  →  Blur  →  Selective Gaussian Blur 
+Filters  →  Blur  →  Selective Gaussian Blur <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 2.4.3. Options Figure 17.12. 
 “ Selective Gaussian ”  filter parameters settings
 Blur radius 
@@ -27766,9 +27766,9 @@ The Sharpen filter accentuates edges but also any noise or blemish and
 it may create noise in graduated color areas like the sky or a water
 surface. It competes with the Unsharp Mask filter, which is more
 sophisticated and renders more natural results.
-Figure 17.29. Applying example for the Sharpen filter Original image Filter  “ Sharpen ”  applied 3.8.2. Activating the filter 
+Figure 17.29. Applying example for the Sharpen filter Original image Filter  “ Sharpen ”  applied <!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->3.8.2. Activating the filter 
 You can find this filter through
-Filters  →  Enhance  →  Sharpen .
+Filters  →  Enhance  →  Sharpen .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 3.8.3. Options Figure 17.30.  “ Sharpen ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview. Scroll bars allow you to move around the image.
@@ -27783,9 +27783,9 @@ Report an error in Bugzilla
 4.14. Shift 4.14. Shift 4. Distort Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 4.14. Shift 4.14.1. Overview Figure 17.69. Example for the Shift filter Original image Filter  “ Shift ”  applied 
 It shifts all pixel rows, horizontally or vertically, in the current
 layer or selection, on a random distance and within determined limits.
-4.14.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.14.2. Activating the filter 
 You can find this filter through
-Filters  →  Distorts  →  Shift .
+Filters  →  Distorts  →  Shift .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.14.3. Options Figure 17.70.  “ Shift ”  filter options Preview 
 The result of your settings will appear in the Preview without
 affecting the image until you click on  OK .
@@ -27863,9 +27863,9 @@ Report an error in Bugzilla
 12.9. Small Tiles 12.9. Small Tiles 12. Map Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 12.9. Small Tiles 12.9.1. Overview Figure 17.268. Example for the  “ Small Tiles ”  filter Original image 
 This filter reduces the image (active layer or selection) and
 displays it in many copies inside the original image.
-12.9.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->12.9.2. Activate the filter 
 You can find this filter through
-Filters  →  Map  →  Small Tiles .
+Filters  →  Map  →  Small Tiles .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 12.9.3. Options Figure 17.269.  “ Small Tiles ”  filter options Flip 
 You can flip tiles according to the
 Horizontal  or/and
@@ -27916,9 +27916,9 @@ Sobel's filter detects horizontal and vertical edges separately on a
 scaled image. Color images are turned into RGB scaled images. As with
 the Laplace filter, the result is a transparent image with black lines
 and some rest of colors.
-7.6.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->7.6.2. Activating the filter 
 You can find this filter through
-Filters  →  Edge-Detect  →  Sobel .
+Filters  →  Edge-Detect  →  Sobel .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 7.6.3. Options Figure 17.149. Sobel filter options Preview 
 If checked, changes in the image are displayed in the Preview in
 real time before being applied to the image.
@@ -27960,9 +27960,9 @@ the  Warp  plug-in or for the
 Bump Map  plug-in. With the
 "turbulence" setting active, the results look quite a bit like real
 clouds.
-13.5.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->13.5.2. Activating the filter 
 This filter is found in the image window menu under
-Filters  →  Render  →  Clouds  →  Solid noise .
+Filters  →  Render  →  Clouds  →  Solid noise .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 13.5.3. Options Figure 17.287.  “ Solid Noise ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview.
@@ -28069,9 +28069,9 @@ The same image, before and after the application of
 Original image Filter  “ Sphere Designer ”  applied 
 This filter creates a three dimensional sphere with different textures.
 It replaces the original image.
-13.21.2. Activating Sphere Designer 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->13.21.2. Activating Sphere Designer 
 You can find this filter through
-Filters  →  Render  →  Sphere Designer .
+Filters  →  Render  →  Sphere Designer .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 13.21.3. Options Figure 17.340.  “ Sphere Designer ”  filter parameters Preview 
 All your setting changes will appear in the Preview without
 affecting the image until you click on  OK .
@@ -28145,9 +28145,9 @@ Report an error in Bugzilla
 The Spread filter swaps each pixel in the active layer or selection with
 another randomly chosen pixel by a user specified amount. It works on
 color transitions, not on plain color areas. No new color is introduced.
-6.7.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->6.7.2. Activate the filter 
 You can find this filter through
-Filters  →  Noise  →  Spread .
+Filters  →  Noise  →  Spread .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 6.7.3. Options Figure 17.137.  “ Spread ”  filter options Preview 
 This preview displays interactively changes before they are
 applied to the image.
@@ -28193,9 +28193,9 @@ Report an error in Bugzilla
 12.10. Tile 12.10. Tile 12. Map Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 12.10. Tile 12.10.1. Overview Figure 17.270. The same image, before and after applying Tile filter Original image (We have reduced image size intentionally) 
 This filter makes several copies of the original image, in a same or
 reduced size, into a bigger (new) image.
-12.10.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->12.10.2. Activate the filter 
 You can find this filter through
-Filters  →  Map  →  Tile .
+Filters  →  Map  →  Tile .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 12.10.3. Options Figure 17.271.  “ Tile ”  filter options Tile to New Size Width,  Height 
 Input boxes and their arrow-heads allow you to enter the
 dimensions for the new image. Both directions are linked by
@@ -28298,9 +28298,9 @@ with that same layer selected, reverse the process. Go to
 Colors  →  Components  →  Compose... .
 Again choose HSV and click OK. You will get back your original image
 except that it will have been sharpened in the Value component.
-3.9.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->3.9.2. Activating the filter 
 You can find this filter through
-Filters  →  Enhance  →  Unsharp Mask .
+Filters  →  Enhance  →  Unsharp Mask .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 3.9.3. Options Figure 17.32.  “ Unsharp Mask ”  filter options Preview 
 If checked, parameter setting results are interactively displayed
 in preview. Scroll bars allow you to move around the image.
@@ -28364,9 +28364,9 @@ Report an error in Bugzilla
 
 4.16. Video 4.16. Video 4. Distort Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 4.16. Video 4.16.1. Overview Figure 17.80. Applying example for the  “ Video ”  filter Original image Filter  “ Video ”  applied 
 Apply low dot-pitch RGB simulation to the specified drawable.
-4.16.2. Activating the filter  
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.16.2. Activating the filter  
 You can find this filter through
-Filters  →  Distorts  →  Video .
+Filters  →  Distorts  →  Video .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.16.3. Options Figure 17.81.  “ Video ”  filter options Preview 
 This preview is unusual: Changes appear always on the same image
 which is not yours.
@@ -28393,9 +28393,9 @@ this filter twice in a row and get back the image you started with.
 Figure 16.123. Example of using this filter twice Original image First application of the filter 
 Second application: the image is not exactly the same as the
 original one.
-8.4.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->8.4.2. Activate the filter 
 You can access this command from the image menu bar through
-Colors  →  Value Invert .
+Colors  →  Value Invert .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 8.3. Invert     8.5. Use GEGL 
 Report an error in Bugzilla
 
@@ -28611,9 +28611,9 @@ Report an error in Bugzilla
 4.17. Waves 4.17. Waves 4. Distort Filters   <!-- 2bc5806e-2c42-477a-8ef4-91f85f6f306c <=< ACCEPT -->Català Dansk Deutsch Ελληνικά English British Español Français Italiano 日本語(Japanese) 한국어(Korean) Nederlands Norwegian Português Pусский 中文<!-- ACCEPT >=> 2bc5806e-2c42-477a-8ef4-91f85f6f306c --> 4.17. Waves 4.17.1. Overview Figure 17.82. Example for the Waves filter Original image Filter  “ Waves ”  applied 
 With this filter you get the same effect as a stone thrown in a quiet
 pond, giving concentric waves.
-4.17.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.17.2. Activating the filter 
 You can find this filter through
-Filters  →  Distorts  →  Waves .
+Filters  →  Distorts  →  Waves .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.17.3. Options Figure 17.83.  “ Waves ”  filter options Preview 
 All your setting changes will appear in the Preview without
 affecting the image until you click on  OK .
@@ -28645,9 +28645,9 @@ Tip
 The  “ pinch ”  effect can sometimes be used to compensate
 for image distortion produced by telephoto or fish-eye lenses
 ( “ barrel distortion ” ).
-Figure 17.85. Illustration Original Whirled Pinched 4.18.2. Activating the filter 
+Figure 17.85. Illustration Original Whirled Pinched <!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.18.2. Activating the filter 
 You can find this filter through
-Filters  →  Distorts  →  Whirl and Pinch 
+Filters  →  Distorts  →  Whirl and Pinch <!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.18.3. Parameter Settings Figure 17.86.  “ Whirl and Pinch ”  filter options Preview 
 Changes to parameters are immediately displayed into the
 Preview . The whirlpool is focused around the
@@ -28677,9 +28677,9 @@ lines. Wind will detect the edges in the image, and stretch out
 thin white or black lines from that edge. This is why you can
 create the illusion of motion, because the edges are what will
 be blurred in a photograph of a moving object.
-4.19.2. Activating the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->4.19.2. Activating the filter 
 You can find this filter through
-Filters  →  Distorts  →  Wind .
+Filters  →  Distorts  →  Wind .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 4.19.3. Options Figure 17.88.  “ Wind ”  filter options 
 The interface is quite simple. You can set the
 Strength  of the wind and a
@@ -28976,9 +28976,9 @@ Original image, the colored rectangle is selected
 This filter adds a slight bevel to an image using a
 bump map  (see below). If there is a
 selection, it is bevelled, otherwise the filter has no effect.
-Figure 17.217. Another  “ Add Bevel ”  example, with bumpmap Original image Bumpmap Filter applied 11.2.2. Activate the filter 
+Figure 17.217. Another  “ Add Bevel ”  example, with bumpmap Original image Bumpmap Filter applied <!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->11.2.2. Activate the filter 
 You can find this filter in the image window menu under
-Filters  →  Decor  →  Add Bevel .
+Filters  →  Decor  →  Add Bevel .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 11.2.3. Options Figure 17.218.  “ Add Bevel ”  options Thickness 
 You can specify the thickness of the bevel, in pixels. Maximal
 thickness is 30 pixels.
@@ -29038,9 +29038,9 @@ The filter is derived from the  “ Alien Glow ”  script
 which creates a logo with the above text effect.
 Warning 
 The image will always be resized to the active layer's size.
-16.3.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->16.3.2. Activate the filter 
 You can find this filter in the image window menu under
-Filters  →  Alpha to Logo  →  Alien Glow .
+Filters  →  Alpha to Logo  →  Alien Glow .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 16.3.3. Options Figure 17.377.  “ Alien Glow ”  options Glow size (pixels * 4) 
 This is actually the font size option of the
 “ Alien Glow ”  Script-Fu script. However, two values
@@ -29174,9 +29174,9 @@ This filter adds  “ cow spots ”  to the active layer alpha
 channel.
 Warning 
 The image will always be resized to the active layer's size.
-16.7.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->16.7.2. Activate the filter 
 You can find this filter in the image window menu under
-Filters  →  Alpha to Logo  →  Bovination .
+Filters  →  Alpha to Logo  →  Bovination .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 16.7.3. Options Figure 17.385.  “ Bovination ”  options Spots density X,  Spots density Y 
 The horizontal (X) and vertical (Y) spots density will be used by
 the  Solid Noise  filter
@@ -29280,9 +29280,9 @@ It is derived from the  “ Chalk ”  script
 which creates a logo from a text of your choice, for instance:
 The  “ Chalk ”  logo Warning 
 The image will always be resized to the active layer's size.
-16.8.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->16.8.2. Activate the filter 
 You can find this filter in the image window menu under
-Filters  →  Alpha to Logo  →  Chalk .
+Filters  →  Alpha to Logo  →  Chalk .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 16.8.3. Options Figure 17.388.  “ Chalk ”  option Background color 
 The background color is the color of the
 “ blackboard ”  you are drawing on with chalk, and of
@@ -29762,9 +29762,9 @@ Report an error in Bugzilla
 This filter adds a cool fading border to an image. The border will look
 jagged and fuzzy, and you can specify color and thickness of the fading
 border. Optionally you may add a shadow to the image.
-11.5.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->11.5.2. Activate the filter 
 You can find this filter in the image window menu through
-Filters  →  Decor  →  Fuzzy Border .
+Filters  →  Decor  →  Fuzzy Border .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 11.5.3. Options Figure 17.225.  “ Fuzzy Border ”  options Color 
 Clicking on this button brings up the color selector dialog that
 allows you to choose the border color.
@@ -30109,9 +30109,9 @@ It is derived from the  “ Neon ”  Script-Fu script
 which creates a text effect that simulates neon lighting.
 Warning 
 The image will always be resized to the active layer's size.
-16.17.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->16.17.2. Activate the filter 
 You can find this filter in the image window menu under
-Filters  →  Alpha to Logo  →  Neon .
+Filters  →  Alpha to Logo  →  Neon .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 16.17.3. Options Figure 17.413.  “ Neon ”  options Effect size (pixels * 5) 
 This is actually the font size option of the Neon Script-Fu
 script. Some internal values will be set in relation to this font
@@ -30621,9 +30621,9 @@ The image will always be resized to the active layer's size.
 The filter is derived from the  “ Particle Trace ”  logo script
 ( File  →  Create  →  Logos  →  Particle Trace ),
 which creates the text effect shown in the example above.
-16.18.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->16.18.2. Activate the filter 
 You can find this filter in the image window menu under
-Filters  →  Alpha to Logo  →  Particle Trace .
+Filters  →  Alpha to Logo  →  Particle Trace .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 16.18.3. Options Figure 17.416.  “ Particle Trace ”  options Border size (pixels) 
 Actually this option is the text layer's border of the
 “ Particle Trace ”  Script-Fu Logo (hence the misleading
@@ -30711,9 +30711,9 @@ Delete selection with
 Ctrl + K .
 Merge layers with
 Layer  →  Merge down .
-2.7.2. Activate the filter 
+<!-- fbbb760e-9207-412f-a518-deffff829db3 <=< ACCEPT -->2.7.2. Activate the filter 
 You can find this filter in the image menu under
-Filters  →  Blur  →  Tileable Blur .
+Filters  →  Blur  →  Tileable Blur .<!-- ACCEPT >=> fbbb760e-9207-412f-a518-deffff829db3 -->
 2.7.3. Options Figure 17.19.  “ Tileable Blur ”  filter options Radius 
 The bigger the radius, the more marked is the blur. By selecting
 Horizontal  and  Vertical ,
