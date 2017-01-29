@@ -85,6 +85,10 @@ def initargs():
     argpar.add_argument("-if", "--input-file", help="Input file to analyze")
     argpar.add_argument("-gca", "--group-combining-algorithm", help="Group combining algorithm for Clone Miner",
                         choices=["interval-n-ext", "full-square"], type=str, default="interval-n-ext")
+    argpar.add_argument("-faais", "--force-allow-acccept-ignore-save",
+                        help="Allow Accept/Ignore/Save in all modes",
+                        action='store_true'
+                        )
     global clargs
     clargs = argpar.parse_args()
 
@@ -428,6 +432,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
         def wait_for_result_show_results():
             import webbrowser
+            global clargs
             if wt.isFinished():
                 self.timer.stop()
                 pui.hide()
@@ -449,15 +454,17 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                 with open(srcfn, encoding='utf-8') as ifh:
                     srctext = ifh.read()
 
+                forced_save_fn = infile if clargs.force_allow_acccept_ignore_save else ""
+
                 if methodIdx == 0: # Clone Miner
                     # something sensible later
                     for l, o in zip(numparams, wt.outs):
                         ht = path2url(
                             os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l, "pyvarelements.html"))
-                        self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn)
+                        self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn, forced_save_fn)
                 elif methodIdx == 1:  # Fuzzy Finder
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
-                    self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn)
+                    self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn)
                 elif methodIdx == 2:  # Fuzzy Heat
                     ht = path2url(os.path.join(
                         os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0], "densitybrowser.html"

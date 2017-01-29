@@ -5081,7 +5081,7 @@ Whoever drops it to zero knows it is unused, and can actually delete it.
 
 Here is the code:
 
---- cache.c.interrupt    2003-12-09 14:25:43.000000000 +1100
+<!-- 38fd18ec-7151-42a5-9731-4ac7815dca1c <=< ACCEPT -->--- cache.c.interrupt    2003-12-09 14:25:43.000000000 +1100
 +++ cache.c.refcnt    2003-12-09 14:33:05.000000000 +1100
 @@ -7,6 +7,7 @@
 struct object
@@ -5139,7 +5139,7 @@ cache_num--;
 strlcpy(obj-&amp;gt;name, name, sizeof(obj-&amp;gt;name));
 obj-&amp;gt;id = id;
 obj-&amp;gt;popularity = 0;
-+        obj-&amp;gt;refcnt = 1; /* The cache holds a reference */
++        obj-&amp;gt;refcnt = 1; /* The cache holds a reference */<!-- ACCEPT >=> 38fd18ec-7151-42a5-9731-4ac7815dca1c -->
 
 spin_lock_irqsave(&amp;amp;cache_lock, flags);
 __cache_add(obj);
@@ -5191,7 +5191,7 @@ atomic_dec_and_test are used instead of the
 standard increment and decrement operators, and the lock is no longer
 used to protect the reference count itself.
 
---- cache.c.refcnt    2003-12-09 15:00:35.000000000 +1100
+<!-- 38fd18ec-7151-42a5-9731-4ac7815dca1c <=< ACCEPT -->--- cache.c.refcnt    2003-12-09 15:00:35.000000000 +1100
 +++ cache.c.refcnt-atomic    2003-12-11 15:49:42.000000000 +1100
 @@ -7,7 +7,7 @@
 struct object
@@ -5253,7 +5253,7 @@ strlcpy(obj-&amp;gt;name, name, sizeof(obj-&amp;gt;name));
 obj-&amp;gt;id = id;
 obj-&amp;gt;popularity = 0;
 -        obj-&amp;gt;refcnt = 1; /* The cache holds a reference */
-+        atomic_set(&amp;amp;obj-&amp;gt;refcnt, 1); /* The cache holds a reference */
++        atomic_set(&amp;amp;obj-&amp;gt;refcnt, 1); /* The cache holds a reference */<!-- ACCEPT >=> 38fd18ec-7151-42a5-9731-4ac7815dca1c -->
 
 spin_lock_irqsave(&amp;amp;cache_lock, flags);
 __cache_add(obj);
