@@ -12083,6 +12083,7 @@ Microsoft SharePoint Services, or a web server folder. Participants must have re
 specify. Ask your network administrator to provide a suitable server location for storing comments. No additional
 software is required to set up a server.
 Note: Web server folders are not available for form distribution.
+<!-- 31ebf6fe-f66c-4b94-8507-d4cbbf58ebc3 <=< ACCEPT -->
 Network folders
 If all recipients are within a local area network, network folders and SharePoint servers are the best choices for a
 comment server. Network folders are generally the cheapest and most reliable.
@@ -12094,6 +12095,7 @@ WebDAV servers
 WebDAV servers (web servers that use the WebDAV protocol) are best used only if your reviewers are outside a firewall
 or a local area network. For more information on how to configure Acrobat to use a WebDAV service, see Hosting a
 Shared Review: An Alternative to Acrobat.com.
+<!-- 31ebf6fe-f66c-4b94-8507-d4cbbf58ebc3 >=> ACCEPT -->
 
 More Help topics
 Starting a review
@@ -12122,6 +12124,7 @@ Note: If prompted, select a PDF file that you want to send for shared review.
 3 Select the way you want to collect comments from your reviewer and click Next.
 4 Select how you would like to host the shared review file and specify the location.
 
+<!-- 31ebf6fe-f66c-4b94-8507-d4cbbf58ebc3 <=< ACCEPT -->
 Network folders
 If all recipients are within a local area network, network folders and SharePoint servers are the best choices for a
 comment server. Network folders are generally the cheapest and most reliable.
@@ -12133,6 +12136,7 @@ WebDAV servers
 WebDAV servers (web servers that use the WebDAV protocol) are best used only if your reviewers are outside a
 firewall or a local area network. For more information on how to configure Acrobat to use a WebDAV service, see
 Hosting a Shared Review: An Alternative to Acrobat.com.
+<!-- 31ebf6fe-f66c-4b94-8507-d4cbbf58ebc3 >=> ACCEPT -->
 
 5 Choose a delivery and collection method. Click Next.
 6 Enter a new profile name and click Next, or click Next to use the default.
@@ -14516,6 +14520,7 @@ for Acrobat X and later.
 size.
 • Acrobat X And Later (PDF 1.7) encrypts the document using 256-bit AES. To apply 256-bit AES encryption to
 documents created in Acrobat 8 and 9, select Acrobat X And Later.
+<!-- 8dfb2426-cc97-4bac-a16a-742a7132c65f <=< ACCEPT -->
 5 Select an encryption option:
 Encrypt All Document Contents Encrypts the document and the document metadata. If this option is selected,
 
@@ -14536,6 +14541,7 @@ Encrypt Only File Attachments Requires a password to open file attachments. User
 a password. Use this option to create security envelopes.
 
 6 Click OK. At the prompt to confirm the password, retype the appropriate password in the box and click OK.
+<!-- ACCEPT >=> 8dfb2426-cc97-4bac-a16a-742a7132c65f -->
 
 Restrict editing of a PDF
 You can prevent users from changing PDFs. The Restrict Editing option prohibits users from editing text, moving
@@ -14616,6 +14622,7 @@ Security
 size.
 • Acrobat X And Later (PDF 1.7) encrypts the document using 256-bit AES. To apply 256-bit AES encryption to
 documents created in Acrobat 8 and 9, select Acrobat X And Later.
+<!-- 8dfb2426-cc97-4bac-a16a-742a7132c65f <=< ACCEPT -->
 9 Select what you want to encrypt:
 Encrypt All Document Contents Encrypts the document and the document metadata. If this option is selected,
 
@@ -14630,6 +14637,7 @@ Encrypt Only File Attachments Requires a password to open file attachments. User
 a password. Use this option to create security envelopes.
 
 10 Click OK. At the prompt to confirm the password, retype the appropriate password in the box and click OK.
+<!-- ACCEPT >=> 8dfb2426-cc97-4bac-a16a-742a7132c65f -->
 
 Remove password security
 You can remove security from an open PDF if you have the permissions to do so. If the PDF is secured with a serverbased security policy, only the policy author or a server administrator can change it.
@@ -16932,6 +16940,7 @@ Portfolio as a whole, you cannot add signatures to the component documents. Howe
 signatures to the cover sheet.
 <!-- ACCEPT >=> ebaf3e4f-83c3-402d-8bac-e9ce3ba7624e -->
 
+<!-- ab3b49a2-5d5b-444f-bc81-f2bd9ac63bad <=< ACCEPT -->
 Digital signatures on attachments to component PDFs
 You can add signatures to attachments before signing the cover sheet. To apply signatures to attached PDFs, open the
 PDF in a separate window. Right-click the attachment, and choose Open File from the context menu. To view
@@ -16955,6 +16964,7 @@ If the PDF Portfolio approval or certification is invalid or has a problem, the 
 view an explanation of the problem, hover the pointer over a Signature Badge with a warning icon. Different warning
 icons appear for different situations.
 For a list and explanation of each warning, see the DigSig Admin Guide at www.adobe.com/go/acrodigsig.
+<!-- ACCEPT >=> ab3b49a2-5d5b-444f-bc81-f2bd9ac63bad -->
 
 <!-- a63003c8-3510-44af-aa64-53617301e458 <=< ACCEPT -->
 XML data signatures
@@ -17004,6 +17014,7 @@ Electronic signatures
 If all the elements of the certificate chain are available, the information is added to the PDF automatically. If a
 timestamp server has been configured, the timestamp is also added.
 
+<!-- de626fa6-f210-4608-8207-12cde26591fa <=< ACCEPT -->
 Add verification information after signing
 In some workflows, signature validation information is unavailable at signing, but can be obtained later. For example,
 a company official may sign a contract using a laptop while traveling by air. The computer cannot communicate with
@@ -17020,6 +17031,7 @@ of the ETSI 102 778 PDF Advanced Electronic Signatures (PAdES) standard. For mor
 blogs.adobe.com/security/2009/09/eliminating_the_penone_step_at.html. The command is unavailable if the
 signature is invalid, or is signed with a self-signed certificate. The command is also unavailable in case the verification
 time equals the current time.
+<!-- ACCEPT >=> de626fa6-f210-4608-8207-12cde26591fa -->
 
 More Help topics
 Certificate-based signatures
@@ -17404,6 +17416,7 @@ Portfolio as a whole, you cannot add signatures to the component documents. Howe
 signatures to the cover sheet.
 <!-- ACCEPT >=> ebaf3e4f-83c3-402d-8bac-e9ce3ba7624e -->
 
+<!-- ab3b49a2-5d5b-444f-bc81-f2bd9ac63bad <=< ACCEPT -->
 Certificate-based signatures on attachments to component PDFs
 You can add signatures to attachments before signing the cover sheet. To apply signatures to attached PDFs, open the
 PDF in a separate window. Right-click the attachment, and choose Open File from the context menu. To view
@@ -17421,6 +17434,7 @@ If the PDF Portfolio approval or certification is invalid or has a problem, the 
 view an explanation of the problem, hover the pointer over a Signature Badge with a warning icon. Different warning
 icons appear for different situations.
 For a list and explanation of each warning, see the DigSig Admin Guide at www.adobe.com/go/learn_acr_security_en.
+<!-- ACCEPT >=> ab3b49a2-5d5b-444f-bc81-f2bd9ac63bad -->
 
 Last updated 5/10/2016
 
@@ -17476,6 +17490,7 @@ Last updated 5/10/2016
 403
 Electronic signatures
 
+<!-- de626fa6-f210-4608-8207-12cde26591fa <=< ACCEPT -->
 Add verification information after signing
 In some workflows, signature validation information is unavailable at signing, but can be obtained later. For example,
 a company official may sign a contract using a laptop while traveling by air. The computer cannot communicate with
@@ -17492,6 +17507,7 @@ of the ETSI 102 778 PDF Advanced Electronic Signatures (PAdES) standard. For mor
 blogs.adobe.com/security/2009/09/eliminating_the_penone_step_at.html. The command is unavailable if the
 signature is invalid, or is signed with a self-signed certificate. The command is also unavailable in case the verification
 time equals the current time.
+<!-- ACCEPT >=> de626fa6-f210-4608-8207-12cde26591fa -->
 
 More Help topics
 Digital IDs

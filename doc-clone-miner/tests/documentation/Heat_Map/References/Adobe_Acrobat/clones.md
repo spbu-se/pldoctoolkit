@@ -154,3 +154,31 @@ page orientation is restored the next time you open the PDF.
 
 ---
 
+<!-- de626fa6-f210-4608-8207-12cde26591fa <=< ACCEPT --><!-- ACCEPT >=> de626fa6-f210-4608-8207-12cde26591fa -->
+Add verification information after signing
+...
+The command is also unavailable in case the verification time equals the current time.
+
+---
+
+<!-- ab3b49a2-5d5b-444f-bc81-f2bd9ac63bad <=< ACCEPT --><!-- ACCEPT >=> ab3b49a2-5d5b-444f-bc81-f2bd9ac63bad -->
+Digital signatures on attachments to component PDFs
+...
+For a list and explanation of each warning, see the DigSig Admin Guide at www.adobe.com/go/acrodigsig.
+
+---
+
+<!-- 31ebf6fe-f66c-4b94-8507-d4cbbf58ebc3 <=< ACCEPT --><!-- 31ebf6fe-f66c-4b94-8507-d4cbbf58ebc3 >=> ACCEPT -->
+Network folders
+...
+Hosting a Shared Review: An Alternative to Acrobat.com.
+
+---
+
+<!-- 8dfb2426-cc97-4bac-a16a-742a7132c65f <=< ACCEPT --><!-- ACCEPT >=> 8dfb2426-cc97-4bac-a16a-742a7132c65f -->
+# Select an encryption option:
+Encrypt All Document Contents Encrypts the document and the document metadata. If this option is selected,
+...
+# Click OK. At the prompt to confirm the password, retype the appropriate password in the box and click OK.
+
+---
