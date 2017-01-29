@@ -130,3 +130,27 @@ Setting up digital signature validation
 When you receive a signed document, you may want to validate its signature(s) to verify the signer and the signed
 
 ---
+
+<!-- ddc2ba64-8ecc-4b93-ac84-a374dbd045eb <=< ACCEPT -->
+Extract pages
+Extraction is the process of reusing selected pages of one PDF in a different PDF. Extracted pages contain not only the
+
+---
+
+<!-- 6cdb3b8f-8c1f-4521-b712-d7496fa3122a <=< ACCEPT -->
+3 Drag or double-click to select the area on the page where you want the video or sound to appear. The Insert dialog
+
+---
+
+<!-- 5b9cfb64-aa51-4c87-a4ac-00f2005adf69 <=< ACCEPT -->
+All multimedia that are H.264 compliant can be played back in Adobe Reader 9 and later.
+
+---
+
+<!-- d64e68df-51cc-4806-a567-e7eacf798709 <=< ACCEPT --><!-- ACCEPT >=> d64e68df-51cc-4806-a567-e7eacf798709 -->
+Rotate, move, delete, and renumber PDF pages
+...
+page orientation is restored the next time you open the PDF.
+
+---
+

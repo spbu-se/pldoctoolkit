@@ -6201,6 +6201,8 @@ one of its corners.
 More Help topics
 Edit images or objects in a PDF
 Edit scanned PDFs
+
+<!-- d64e68df-51cc-4806-a567-e7eacf798709 <=< ACCEPT -->
 Rotate, move, delete, and renumber PDF pages
 Add headers, footers, and Bates numbering to PDFs
 Edit document structure with the Content and Tags panels (Acrobat Pro DC)
@@ -6405,7 +6407,8 @@ Editing PDFs
 
 To temporarily change your view of the page, choose View &amp;gt; Rotate View &amp;gt; Clockwise or Counterclockwise. The
 original page orientation is restored the next time you open the PDF.
-
+<!-- ACCEPT >=> d64e68df-51cc-4806-a567-e7eacf798709 -->
+<!-- ddc2ba64-8ecc-4b93-ac84-a374dbd045eb <=< ACCEPT -->
 Extract pages
 Extraction is the process of reusing selected pages of one PDF in a different PDF. Extracted pages contain not only the
 content but also all form fields, comments, and links associated with the original page content.
@@ -6529,7 +6532,7 @@ You cannot delete all pages; at least one page must remain in the document.
 If you select Use Logical Page Numbers in the Page Display panel of the Preferences dialog box, you can enter a page
 number in parentheses to delete the logical equivalent of the page number. For example, if the first page in the
 document is numbered i, you can enter (1) in the Enter Page Range drop-down list, and the page is deleted.
-
+<!-- ACCEPT >=> ddc2ba64-8ecc-4b93-ac84-a374dbd045eb -->
 Last updated 5/10/2016
 
 152
@@ -6704,6 +6707,7 @@ More Help topics
 Enhance document photos captured using a mobile camera
 Edit text in PDFs
 Edit images or objects in a PDF
+<!-- d64e68df-51cc-4806-a567-e7eacf798709 <=< ACCEPT -->
 Rotate, move, delete, and renumber PDF pages
 Add headers, footers, and Bates numbering to PDFs
 
@@ -10817,12 +10821,13 @@ buttons displayed in the page thumbnail view.
 
 To temporarily change your view of the page, choose View &amp;gt; Rotate View &amp;gt; Clockwise or Counterclockwise. The
 original page orientation is restored the next time you open the PDF.
-
+<!-- ACCEPT >=> d64e68df-51cc-4806-a567-e7eacf798709 -->
 Last updated 5/10/2016
 
 245
 Combining files
 
+<!-- ddc2ba64-8ecc-4b93-ac84-a374dbd045eb <=< ACCEPT -->
 Extract pages
 Extraction is the process of reusing selected pages of one PDF in a different PDF. Extracted pages contain not only the
 content but also all form fields, comments, and links associated with the original page content.
@@ -10947,6 +10952,7 @@ You cannot delete all pages; at least one page must remain in the document.
 If you select Use Logical Page Numbers in the Page Display panel of the Preferences dialog box, you can enter a page
 number in parentheses to delete the logical equivalent of the page number. For example, if the first page in the
 document is numbered i, you can enter (1) in the Enter Page Range drop-down list, and the page is deleted.
+<!-- ACCEPT >=> ddc2ba64-8ecc-4b93-ac84-a374dbd045eb -->
 
 Last updated 5/10/2016
 
@@ -21730,6 +21736,7 @@ increase interest and engagement in your documents.
 Acrobat Pro automatically converts video to FLV files. This format ensures both high-quality viewing and compatibility
 across computer platforms. FLV files are also compact, so converting multimedia to this format is helps reduce the size
 of multimedia PDFs.
+<!-- 5b9cfb64-aa51-4c87-a4ac-00f2005adf69 <=< ACCEPT -->
 All multimedia that are H.264 compliant can be played back in Adobe Reader 9 and later. (H.264, also known as MPEG4 part 10, is a video compression standard that provides high-quality video without substantially increasing file size.)
 Video files of varying formats and filename extensions can be H.264 compliant.
 Media files in other formats can be played back in earlier versions of Adobe Reader. However, users must install the
@@ -21811,6 +21818,7 @@ Poster Image To use an image that is not part of the file you are adding, select
 to find the image you want to be displayed when the video, sound, or interactive content is not activated.
 Resources tab Use this tab to list all files that are required to run a SWF file. When a file is displayed in the list of added
 files, you can click it to set the file properties.
+<!-- ACCEPT >=> 5b9cfb64-aa51-4c87-a4ac-00f2005adf69 -->
 
 Last updated 5/10/2016
 
@@ -22522,6 +22530,7 @@ Reader. If you're using Acrobat XI, see Acrobat XI Help .
 Multimedia and PDFs (Acrobat Pro DC)
 Adding video, sound, and interactive content transforms PDFs into multidimensional communication tools that
 increase interest and engagement in your documents.
+<!-- 5b9cfb64-aa51-4c87-a4ac-00f2005adf69 <=< ACCEPT -->
 All multimedia that are H.264 compliant can be played back in Adobe Reader 9 and later. (H.264, also known as MPEG4 part 10, is a video compression standard that provides high-quality video without substantially increasing file size.)
 Video files of varying formats and filename extensions can be H.264 compliant.
 Media files in other formats can be played back in earlier versions of Adobe Reader. However, users must install the
@@ -22600,6 +22609,8 @@ to find the image you want to be displayed when the video, sound, or interactive
 Resources tab Use this tab to list all files that are required to run a SWF file. When a file is displayed in the list of added
 
 files, you can click it to set the file properties.
+<!-- ACCEPT >=> 5b9cfb64-aa51-4c87-a4ac-00f2005adf69 -->
+
 <!-- 4da634ab-b179-479c-8240-6105bd45448a <=< ACCEPT -->Properties When you click a filename in the Resources list, the full filename (including the path) is displayed in the
 Name field. You can rename the resources to ensure that scripts run properly.
 Controls tab Use to set up which playback controls (skins) are available.
