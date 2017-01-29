@@ -182,3 +182,12 @@ Encrypt All Document Contents Encrypts the document and the document metadata. I
 # Click OK. At the prompt to confirm the password, retype the appropriate password in the box and click OK.
 
 ---
+
+<!-- 3b8b59d5-13aa-4fea-8c0e-2353dfd8aa39 <=< ACCEPT -->Preserve Black Preserves any black objects drawn in CMYK, RGB, or grayscale during conversion. This option
+prevents text in RGB black from being converted to rich black when converted to CMYK.
+Promote Gray To CMYK Black Converts device gray to CMYK.
+Preserve CMYK Primaries When transforming colors to prepare CMYK documents for a different target print
+profile, preserves primaries. For colors with just one colorant, Acrobat uses that colorant. For colors with more than
+one colorant, Acrobat finds the color with the smallest color difference.<!-- ACCEPT >=> 3b8b59d5-13aa-4fea-8c0e-2353dfd8aa39 -->
+
+---

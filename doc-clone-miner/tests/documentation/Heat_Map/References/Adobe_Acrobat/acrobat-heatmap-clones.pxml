@@ -23514,13 +23514,14 @@ Print production tools (Acrobat Pro DC)
 
 8 Specify the pages to convert.
 9 Select any additional conversion options:
-Preserve Black Preserves any black objects drawn in CMYK, RGB, or grayscale during conversion. This option
+
+<!-- 3b8b59d5-13aa-4fea-8c0e-2353dfd8aa39 <=< ACCEPT -->Preserve Black Preserves any black objects drawn in CMYK, RGB, or grayscale during conversion. This option
 prevents text in RGB black from being converted to rich black when converted to CMYK.
 Promote Gray To CMYK Black Converts device gray to CMYK.
 Preserve CMYK Primaries When transforming colors to prepare CMYK documents for a different target print
-
 profile, preserves primaries. For colors with just one colorant, Acrobat uses that colorant. For colors with more than
-one colorant, Acrobat finds the color with the smallest color difference.
+one colorant, Acrobat finds the color with the smallest color difference.<!-- ACCEPT >=> 3b8b59d5-13aa-4fea-8c0e-2353dfd8aa39 -->
+
 10 Click Document Colors to see a list of color spaces and spot colors in your document.
 11 Click Ink Manager to specify the ink settings and create an ink alias. If an alias is set up in the Ink Manager, the alias
 
@@ -23553,13 +23554,14 @@ Different color spaces for multiple objects aren’t shown.
 6 From the Rendering Intent menu, choose the translation method appropriate for the object.
 7 (Optional) Select any of the following conversion options:
 Embed Profile Embeds the color profile with the object.
-Preserve Black Preserves any black objects drawn in CMYK, RGB, or grayscale during conversion. This option
+
+<!-- 3b8b59d5-13aa-4fea-8c0e-2353dfd8aa39 <=< ACCEPT -->Preserve Black Preserves any black objects drawn in CMYK, RGB, or grayscale during conversion. This option
 prevents text in RGB black from being converted to rich black when converted to CMYK.
 Promote Gray To CMYK Black Converts device gray to CMYK.
 Preserve CMYK Primaries When transforming colors to prepare CMYK documents for a different target print
-
 profile, preserves primaries. For colors with just one colorant, Acrobat uses that colorant. For colors with more than
-one colorant, Acrobat finds the color with the smallest color difference.
+one colorant, Acrobat finds the color with the smallest color difference.<!-- ACCEPT >=> 3b8b59d5-13aa-4fea-8c0e-2353dfd8aa39 -->
+
 8 Click Convert Colors.
 
 Last updated 5/10/2016
