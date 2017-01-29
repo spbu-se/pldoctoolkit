@@ -2,9 +2,7 @@
 
 PDF 16193138 bytes, 586 pages
 
-1342802 bytes of plain text
-
-% of reuse
+1342802 bytes of plain text, marked for reuse: 315140, reuse ratio: 24.0%
 
 ---
 
