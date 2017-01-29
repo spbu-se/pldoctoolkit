@@ -77,3 +77,56 @@ Update the headers and footers Updating applies to the most recently added heade
 
 ---
 
+    0bdd11f3-f31e-47ef-8ebf-b5371df4688f
+
+More Help topics
+Overview of creating PDFs
+Creating simple PDFs with Acrobat
+Adobe PDF conversion settings
+Scan documents to PDF
+Using the Adobe PDF printer
+Converting web pages to PDF
+Creating PDFs with PDFMaker (Windows)
+Customize Adobe PDF settings
+
+---
+
+    7f78623c-7ff7-49fa-b53e-89fda94613ba
+
+Scan a paper document to PDF using a preset (Windows)
+1 Choose Tools &amp;gt; Create PDF &amp;gt; Scanner &amp;gt; [document preset]. ...
+
+---
+
+    94d8a145-fd99-4675-9f55-b3cc52131634
+
+Delete pages, using page thumbnails
+1 Choose Tools &amp;gt; Organize Pages or choose Organize Pages from the right pane.
+...
+*2 cheaty clones*
+
+---
+
+<!-- a63003c8-3510-44af-aa64-53617301e458 <=< ACCEPT -->
+XML data signatures
+Acrobat and Reader support XML data signatures that are used to sign data in XML Forms Architectures (XFA) forms.
+*2 cheaty clones*
+
+---
+
+<!-- 8ca3935e-8fb6-4e28-8b1c-13ff7866df27 <=< ACCEPT -->
+Opacity Sets the degree of transparency for the playback controls.
+
+---
+
+<!-- ebaf3e4f-83c3-402d-8bac-e9ce3ba7624e <=< ACCEPT -->
+Validate a certificate-based signature
+If the signature status is unknown or unverified, validate the signature manually to determine the problem and possible
+
+---
+
+<!-- 378c4e2b-47cb-4275-82df-a79e6c053702 <=< ACCEPT -->
+Setting up digital signature validation
+When you receive a signed document, you may want to validate its signature(s) to verify the signer and the signed
+
+---

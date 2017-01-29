@@ -4090,7 +4090,7 @@ Note: When some but not all of the available Word headings and styles are select
 marker in the corresponding check boxes at the top of the tab change. If all elements of the type are selected, a check mark
 appears. If only some of the elements of that type are selected, a colored square appears. Otherwise, the check box is empty.
 
-More Help topics
+<!-- 0bdd11f3-f31e-47ef-8ebf-b5371df4688f <=< ACCEPT -->More Help topics
 Overview of PDF creation
 Create PDFs with Acrobat
 Adobe PDF conversion settings
@@ -4098,7 +4098,7 @@ Scan documents to PDF
 Using the Adobe PDF printer
 Converting web pages to PDF
 Customize Adobe PDF settings
-Adobe PDF conversion settings
+Adobe PDF conversion settings<!-- ACCEPT >=> 0bdd11f3-f31e-47ef-8ebf-b5371df4688f -->
 
 Last updated 5/10/2016
 
@@ -4148,7 +4148,7 @@ Creating PDFs
 To scan a paper document to PDF using Acrobat DC, go to Tools &amp;gt; Create PDF. The Create a PDF from any format
 interface is displayed. Choose Scanner to see the options available.
 
-Scan a paper document to PDF using Autodetect Color Mode (Windows)
+<!-- 7f78623c-7ff7-49fa-b53e-89fda94613ba <=< ACCEPT -->Scan a paper document to PDF using Autodetect Color Mode (Windows)
 1 Choose Tools &amp;gt; Create PDF &amp;gt; Scanner &amp;gt; Autodetect Color Mode.
 
 If you want to append the document, which you'll scan, to an existing file, do the following:
@@ -4157,9 +4157,9 @@ If you want to append the document, which you'll scan, to an existing file, do t
 
 select an appropriate file.
 3 Click Scan.
-4 If prompted to scan more pages, select Scan More Pages, Scan Reverse Sides, or Scan Is Complete, and click OK.
+4 If prompted to scan more pages, select Scan More Pages, Scan Reverse Sides, or Scan Is Complete, and click OK.<!-- ACCEPT >=> 7f78623c-7ff7-49fa-b53e-89fda94613ba -->
 
-Scan a paper document to PDF using a preset (Windows)
+<!-- 7f78623c-7ff7-49fa-b53e-89fda94613ba <=< ACCEPT -->Scan a paper document to PDF using a preset (Windows)
 1 Choose Tools &amp;gt; Create PDF &amp;gt; Scanner &amp;gt; [document preset].
 
 Last updated 5/10/2016
@@ -4173,9 +4173,9 @@ If you want to append the document, which you'll scan, to an existing file, do t
 
 select an appropriate file.
 3 Click Scan.
-4 If prompted to scan more pages, select Scan More Pages, Scan Reverse Sides, or Scan Is Complete, and click OK.
+4 If prompted to scan more pages, select Scan More Pages, Scan Reverse Sides, or Scan Is Complete, and click OK.<!-- ACCEPT >=> 7f78623c-7ff7-49fa-b53e-89fda94613ba -->
 
-Scan a paper document to PDF without presets
+<!-- 7f78623c-7ff7-49fa-b53e-89fda94613ba <=< ACCEPT -->Scan a paper document to PDF without presets
 1 Choose Tools &amp;gt; Create PDF &amp;gt; Scanner &amp;gt; Default Settings or My Custom Settings.
 
 If you want to append the document, which you'll scan, to an existing file, do the following:
@@ -4193,7 +4193,7 @@ icon. The Custom Scan interface is displayed.
 Note: If you specify that you want to use the Show scanner's user interface instead of the Acrobat user interface, other
 windows or dialog boxes appear. Consult the scanner documentation information on available options. In Mac OS, the
 scanner user interface is always shown.
-4 If prompted to scan more pages, select Scan More Pages, Scan Reverse Sides, or Scan Is Complete, and click OK.
+4 If prompted to scan more pages, select Scan More Pages, Scan Reverse Sides, or Scan Is Complete, and click OK.<!-- ACCEPT >=> 7f78623c-7ff7-49fa-b53e-89fda94613ba -->
 
 Enhance or optimize a scanned PDF
 1 Open a PDF created from a scanned document.
@@ -4555,14 +4555,14 @@ For scanned documents, you can choose from Autodetect Color Mode or several scan
 for scanning documents and images in color or black and white. You can modify these presets, or use your own custom
 scanning settings.
 
-More Help topics
+<!-- 0bdd11f3-f31e-47ef-8ebf-b5371df4688f <=< ACCEPT -->More Help topics
 Creating simple PDFs with Acrobat
 Adobe PDF conversion settings
 Creating PDFs with Acrobat Distiller
 Scan documents to PDF
 Using the Adobe PDF printer
 Converting web pages to PDF
-Creating PDFs with PDFMaker (Windows)
+Creating PDFs with PDFMaker (Windows)<!-- ACCEPT >=> 0bdd11f3-f31e-47ef-8ebf-b5371df4688f -->
 
 Using the Adobe PDF printer
 Create PDFs by printing to file
@@ -4737,7 +4737,7 @@ Use the custom page size
 2 Click the Page Setup button.
 3 Select the new custom page size from the Paper Size menu.
 
-More Help topics
+<!-- 0bdd11f3-f31e-47ef-8ebf-b5371df4688f <=< ACCEPT -->More Help topics
 Overview of creating PDFs
 Creating simple PDFs with Acrobat DC
 Adobe PDF conversion settings
@@ -4745,7 +4745,7 @@ Creating PDFs with Acrobat Distiller
 Creating PDFs with PDFMaker (Windows)
 Scan documents to PDF
 Converting web pages to PDF
-Creating accessible PDFs
+Creating accessible PDFs<!-- ACCEPT >=> 0bdd11f3-f31e-47ef-8ebf-b5371df4688f -->
 
 Converting web pages to PDF
 Web pages and PDFs
@@ -5244,7 +5244,7 @@ processing all the files in the folder before you remove it.
 Note: When you remove a watched folder, Distiller does not delete the In and Out folders, their contents, or the
 folder.joboptions file. You can delete these manually when appropriate.
 
-More Help topics
+<!-- 0bdd11f3-f31e-47ef-8ebf-b5371df4688f <=< ACCEPT -->More Help topics
 Overview of creating PDFs
 Creating simple PDFs with Acrobat
 Adobe PDF conversion settings
@@ -5252,7 +5252,7 @@ Scan documents to PDF
 Using the Adobe PDF printer
 Converting web pages to PDF
 Creating PDFs with PDFMaker (Windows)
-Customize Adobe PDF settings
+Customize Adobe PDF settings<!-- ACCEPT >=> 0bdd11f3-f31e-47ef-8ebf-b5371df4688f -->
 
 Adobe PDF conversion settings
 Choose an Adobe PDF preset for converting files
@@ -6535,6 +6535,7 @@ Last updated 5/10/2016
 152
 Editing PDFs
 
+<!-- 94d8a145-fd99-4675-9f55-b3cc52131634 <=< ACCEPT -->
 Delete pages, using page thumbnails
 1 Choose Tools &amp;gt; Organize Pages or choose Organize Pages from the right pane.
 
@@ -6587,6 +6588,7 @@ The page numbers on the document pages do not always match the page numbers that
 thumbnails and in the Page Navigation toolbar. Pages are numbered with integers, starting with page 1 for the first page
 of the document. Because some PDFs may contain front matter, such as a copyright page and table of contents, their
 body pages may not follow the numbering shown in the Page Navigation toolbar.
+<!-- ACCEPT >=> 94d8a145-fd99-4675-9f55-b3cc52131634 -->
 
 Last updated 5/10/2016
 
@@ -10951,6 +10953,7 @@ Last updated 5/10/2016
 249
 Combining files
 
+<!-- 94d8a145-fd99-4675-9f55-b3cc52131634 <=< ACCEPT -->
 Delete pages, using page thumbnails
 1 Choose Tools &amp;gt; Organize Pages or choose Organize Pages from the right pane.
 
@@ -11003,6 +11006,7 @@ The page numbers on the document pages do not always match the page numbers that
 thumbnails and in the Page Navigation toolbar. Pages are numbered with integers, starting with page 1 for the first page
 of the document. Because some PDFs may contain front matter, such as a copyright page and table of contents, their
 body pages may not follow the numbering shown in the Page Navigation toolbar.
+<!-- ACCEPT >=> 94d8a145-fd99-4675-9f55-b3cc52131634 -->
 
 Last updated 5/10/2016
 
@@ -16649,6 +16653,7 @@ Last updated 5/10/2016
 386
 Electronic signatures
 
+<!-- 378c4e2b-47cb-4275-82df-a79e6c053702 <=< ACCEPT -->
 Setting up digital signature validation
 When you receive a signed document, you may want to validate its signature(s) to verify the signer and the signed
 content. Depending on how you have configured your application, validation may occur automatically. Signature
@@ -16749,6 +16754,7 @@ Choose View &amp;gt; Show/Hide &amp;gt; Navigation Panes &amp;gt; Signatures, or
 message bar.
 You can right-click a signature field in the Signatures panel to do most signature-related tasks, including adding,
 clearing, and validating signatures. In some cases, however, the signature field becomes locked after you sign it.
+<!-- ACCEPT >=> 378c4e2b-47cb-4275-82df-a79e6c053702 -->
 
 Sign in Preview Document mode
 When document integrity is critical for your signature workflow, use the Preview Document feature to sign documents.
@@ -16824,6 +16830,7 @@ For more information on PAdES, see blogs.adobe.com/security/2009/09/eliminating_
 default timestamp server.
 4 Click Next, and then save the document with the timestamp.
 
+<!-- ebaf3e4f-83c3-402d-8bac-e9ce3ba7624e <=< ACCEPT -->
 Validate a digital signature
 If the signature status is unknown or unverified, validate the signature manually to determine the problem and possible
 solution. If the signature status is invalid, contact the signer about the problem.
@@ -16917,6 +16924,7 @@ PDFs simultaneously.
 • To sign a PDF Portfolio as a whole, sign the cover sheet (View &amp;gt; Portfolio &amp;gt; Cover Sheet). Once you sign the PDF
 Portfolio as a whole, you cannot add signatures to the component documents. However, you can add more
 signatures to the cover sheet.
+<!-- ACCEPT >=> ebaf3e4f-83c3-402d-8bac-e9ce3ba7624e -->
 
 Digital signatures on attachments to component PDFs
 You can add signatures to attachments before signing the cover sheet. To apply signatures to attached PDFs, open the
@@ -16942,6 +16950,7 @@ view an explanation of the problem, hover the pointer over a Signature Badge wit
 icons appear for different situations.
 For a list and explanation of each warning, see the DigSig Admin Guide at www.adobe.com/go/acrodigsig.
 
+<!-- a63003c8-3510-44af-aa64-53617301e458 <=< ACCEPT -->
 XML data signatures
 Acrobat and Reader support XML data signatures that are used to sign data in XML Forms Architectures (XFA) forms.
 The form author provides XML signing, validating, or clearing instructions for form events, such as button click, file
@@ -16979,6 +16988,7 @@ Add verification information at signing
 
 &amp; Appearances: More). This preference is selected by default.
 3 Sign the PDF.
+<!-- ACCEPT >=> a63003c8-3510-44af-aa64-53617301e458 -->
 
 Last updated 5/10/2016
 
@@ -17188,6 +17198,7 @@ a PDF and verification details appear with the signature. See Set signature veri
 When certificate-based signatures are validated, an icon appears in the document message bar to indicate the signature
 status. Additional status details appear in the Signatures panel and in the Signature Properties dialog box.
 
+<!-- 378c4e2b-47cb-4275-82df-a79e6c053702 <=< ACCEPT -->
 Setting up validation for certificate-based signatures
 When you receive a signed document, you may want to validate its signature(s) to verify the signer and the signed
 content. Depending on how you have configured your application, validation may occur automatically. Signature
@@ -17299,7 +17310,9 @@ Choose View &amp;gt; Show/Hide &amp;gt; Navigation Panes &amp;gt; Signatures, or
 message bar.
 You can right-click a signature field in the Signatures panel to do most signature-related tasks, including adding,
 clearing, and validating signatures. In some cases, however, the signature field becomes locked after you sign it.
+<!-- ACCEPT >=> 378c4e2b-47cb-4275-82df-a79e6c053702 -->
 
+<!-- ebaf3e4f-83c3-402d-8bac-e9ce3ba7624e <=< ACCEPT -->
 Validate a certificate-based signature
 If the signature status is unknown or unverified, validate the signature manually to determine the problem and possible
 solution. If the signature status is invalid, contact the signer about the problem.
@@ -17383,6 +17396,7 @@ PDFs simultaneously.
 • To sign a PDF Portfolio as a whole, sign the cover sheet (View &amp;gt; Portfolio &amp;gt; Cover Sheet). Once you sign the PDF
 Portfolio as a whole, you cannot add signatures to the component documents. However, you can add more
 signatures to the cover sheet.
+<!-- ACCEPT >=> ebaf3e4f-83c3-402d-8bac-e9ce3ba7624e -->
 
 Certificate-based signatures on attachments to component PDFs
 You can add signatures to attachments before signing the cover sheet. To apply signatures to attached PDFs, open the
@@ -17407,6 +17421,7 @@ Last updated 5/10/2016
 402
 Electronic signatures
 
+<!-- a63003c8-3510-44af-aa64-53617301e458 <=< ACCEPT -->
 XML data signatures
 Acrobat and Reader support XML data signatures that are used to sign data in XML Forms Architectures (XFA) forms.
 The form author provides XML signing, validating, or clearing instructions for form events, such as button click, file
@@ -17445,6 +17460,7 @@ Add verification information at signing
 
 &amp; Appearances: More). This preference is selected by default.
 3 Sign the PDF.
+<!-- ACCEPT >=> a63003c8-3510-44af-aa64-53617301e458 -->
 
 If all the elements of the certificate chain are available, the information is added to the PDF automatically. If a
 timestamp server has been configured, the timestamp is also added.
@@ -21807,6 +21823,7 @@ Name field. You can rename the resources to ensure that scripts run properly.
 Controls tab Use to set up which playback controls (skins) are available.
 Skin Select the set of playback controls (skin) you want to be displayed on the video.
 Color Click to open the color palette and choose a color for the controls.<!-- ACCEPT >=> 4da634ab-b179-479c-8240-6105bd45448a -->
+<!-- 8ca3935e-8fb6-4e28-8b1c-13ff7866df27 <=< ACCEPT -->
 Opacity Sets the degree of transparency for the playback controls.
 Autohide controls When selected, hides the play controls when the mouse pointer is not over the multimedia.
 Video tab Available when you are adding a video.
@@ -21862,6 +21879,7 @@ are invisible.
 • Delete the clip by selecting it and pressing Delete.
 • Resize the clip by dragging one of the corners of the frame until it is the desired size. Hold down Shift to retain
 the correct proportions for video clips.
+<!-- ACCEPT >=> 8ca3935e-8fb6-4e28-8b1c-13ff7866df27 -->
 
 <!-- 77f2b27d-4250-449c-9fa6-de12d8845043 <=< ACCEPT -->More Help topics
 Playing video, audio, and multimedia formats in PDFs
@@ -22593,6 +22611,7 @@ Last updated 5/10/2016
 505
 Multimedia and 3D models
 
+<!-- 8ca3935e-8fb6-4e28-8b1c-13ff7866df27 <=< ACCEPT -->
 Opacity Sets the degree of transparency for the playback controls.
 Autohide controls When selected, hides the play controls when the mouse pointer is not over the multimedia.
 Video tab Available when you are adding a video.
@@ -22649,6 +22668,7 @@ Multimedia and 3D models
 
 • Resize the clip by dragging one of the corners of the frame until it is the desired size. Hold down Shift to retain
 the correct proportions for video clips.
+<!-- ACCEPT >=> 8ca3935e-8fb6-4e28-8b1c-13ff7866df27 -->
 
 <!-- 77f2b27d-4250-449c-9fa6-de12d8845043 <=< ACCEPT -->More Help topics
 Playing video, audio, and multimedia formats in PDFs
