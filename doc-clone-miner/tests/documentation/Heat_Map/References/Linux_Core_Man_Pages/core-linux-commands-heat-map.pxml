@@ -5611,18 +5611,18 @@ DESCRIPTION
 
        If a FILE is '-' or missing, read standard input.  Exit status is 0 if inputs are the same, 1 if different, 2 if trouble.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Torbjorn Granlund and David MacKenzie.
 
 REPORTING BUGS
        Report bugs to: bug-diffutils@gnu.org
        GNU diffutils home page: &amp;lt;http://www.gnu.org/software/diffutils/&amp;gt;
-       General help using GNU software: &amp;lt;http://www.gnu.org/gethelp/&amp;gt;
+       General help using GNU software: &amp;lt;http://www.gnu.org/gethelp/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3    or    later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        diff(1), diff3(1), sdiff(1)
@@ -8008,18 +8008,18 @@ DESCRIPTION
        restrictions on FILE(s).  If a FILE is '-', read standard input.  Exit status is 0 if inputs are the same, 1  if  differ‐
        ent, 2 if trouble.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Paul Eggert, Mike Haertel, David Hayes, Richard Stallman, and Len Tower.
 
 REPORTING BUGS
        Report bugs to: bug-diffutils@gnu.org
        GNU diffutils home page: &amp;lt;http://www.gnu.org/software/diffutils/&amp;gt;
-       General help using GNU software: &amp;lt;http://www.gnu.org/gethelp/&amp;gt;
+       General help using GNU software: &amp;lt;http://www.gnu.org/gethelp/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        wdiff(1), cmp(1), diff3(1), sdiff(1), patch(1)
@@ -8817,10 +8817,10 @@ REPORTING BUGS
        Ed home page: http://www.gnu.org/software/ed/ed.html
        General help using GNU software: http://www.gnu.org/gethelp
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright © 1994 Andrew L. Moore.
        Copyright © 2017 Antonio Diaz Diaz.  License GPLv3+: GNU GPL version 3 or later &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        The full documentation for ed is maintained as a Texinfo manual.  If the info and ed programs are properly  installed  at
@@ -16679,11 +16679,11 @@ REPORTING BUGS
        GNU M4 home page: &amp;lt;http://www.gnu.org/software/m4/&amp;gt;
        General help using GNU software: &amp;lt;http://www.gnu.org/gethelp/&amp;gt;
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
        This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
-
+<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 SEE ALSO
        The full documentation for m4 is maintained as a Texinfo manual.  If the info and m4 programs are properly  installed  at
        your site, the command
@@ -21918,17 +21918,17 @@ DESCRIPTION
        --version
               output version information and exit
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by David M. Ihnat and David MacKenzie.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report paste translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report paste translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        Full documentation at: &amp;lt;http://www.gnu.org/software/coreutils/paste&amp;gt;
@@ -22517,17 +22517,17 @@ DESCRIPTION
        --version
               output version information and exit
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Paul Eggert, David MacKenzie, and Jim Meyering.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report pathchk translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report pathchk translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        Full documentation at: &amp;lt;http://www.gnu.org/software/coreutils/pathchk&amp;gt;
@@ -24436,17 +24436,17 @@ DESCRIPTION
        --version
               output version information and exit
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Pete TerMaat and Roland Huebner.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report pr translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report pr translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        Full documentation at: &amp;lt;http://www.gnu.org/software/coreutils/pr&amp;gt;
@@ -24516,17 +24516,17 @@ DESCRIPTION
        NOTE:  your  shell may have its own version of printf, which usually supersedes the version described here.  Please refer
        to your shell's documentation for details about the options it supports.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by David MacKenzie.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
        Report printf translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
-
-COPYRIGHT
+<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3    or    later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        printf(3)
@@ -25762,17 +25762,17 @@ DESCRIPTION
        NOTE:  your  shell may have its own version of pwd, which usually supersedes the version described here.  Please refer to
        your shell's documentation for details about the options it supports.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Jim Meyering.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report pwd translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report pwd translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3    or    later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        getcwd(3)
@@ -29278,17 +29278,17 @@ OPTIONS
        Note  that  if you use rm to remove a file, it might be possible to recover some of its contents, given sufficient exper‐
        tise and/or time.  For greater assurance that the contents are truly unrecoverable, consider using shred.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Paul Rubin, David MacKenzie, Richard M. Stallman, and Jim Meyering.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report rm translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report rm translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3    or    later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        unlink(1), unlink(2), chattr(1), shred(1)
@@ -29453,17 +29453,17 @@ DESCRIPTION
        --version
               output version information and exit
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by David MacKenzie.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report rmdir translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report rmdir translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        rmdir(2)
@@ -30074,10 +30074,10 @@ AUTHOR
        Written by Jay Fenlason, Tom Lord, Ken  Pizzini,  and  Paolo  Bonzini.   GNU  sed  home  page:  &amp;lt;http://www.gnu.org/soft‐
        ware/sed/&amp;gt;.  General help using GNU software: &amp;lt;http://www.gnu.org/gethelp/&amp;gt;.  E-mail bug reports to: &amp;lt;bug-sed@gnu.org&amp;gt;.
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        awk(1), ed(1), grep(1), tr(1), perlre(1), sed.info, any of various books on sed, the sed FAQ (http://sed.sf.net/grab‐
@@ -31418,17 +31418,17 @@ DESCRIPTION
        --version
               output version information and exit
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Jim Meyering and Paul Eggert.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report sleep translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report sleep translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        sleep(3)
@@ -31560,17 +31560,17 @@ DESCRIPTION
        ***  WARNING  ***  The  locale specified by the environment affects sort order.  Set LC_ALL=C to get the traditional sort
        order that uses native byte values.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Mike Haertel and Paul Eggert.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report sort translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report sort translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3    or    later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        shuf(1), uniq(1)
@@ -31653,17 +31653,17 @@ DESCRIPTION
 
        r/K/N  likewise but only output Kth of N to stdout
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Torbjorn Granlund and Richard M. Stallman.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report split translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report split translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3    or    later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        Full documentation at: &amp;lt;http://www.gnu.org/software/coreutils/split&amp;gt;
@@ -32337,17 +32337,17 @@ DESCRIPTION
        from stty sane.  In settings, CHAR is taken literally, or coded as in ^c, 0x37, 0177 or 127; special values ^-  or  undef
        used to disable special characters.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by David MacKenzie.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report stty translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report stty translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        Full documentation at: &amp;lt;http://www.gnu.org/software/coreutils/stty&amp;gt;
@@ -32512,17 +32512,17 @@ DESCRIPTION
        name  of  the  file,  not the file descriptor (e.g., log rotation).  Use --follow=name in that case.  That causes tail to
        track the named file in a way that accommodates renaming, removal and creation.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Paul Rubin, David MacKenzie, Ian Lance Taylor, and Jim Meyering.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report tail translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report tail translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3    or    later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        head(1)
@@ -32557,10 +32557,10 @@ AUTHOR
 REPORTING BUGS
        Report bugs to &amp;lt;bug-inetutils@gnu.org&amp;gt;.
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2015   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        talkd(1)
@@ -32614,17 +32614,17 @@ DESCRIPTION
        The  default  MODE for the -p option is 'warn-nopipe'.  The default operation when --output-error is not specified, is to
        exit immediately on error writing to a pipe, and diagnose errors writing to non pipe outputs.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Mike Parker, Richard M. Stallman, and David MacKenzie.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report tee translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report tee translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3    or    later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        Full documentation at: &amp;lt;http://www.gnu.org/software/coreutils/tee&amp;gt;
@@ -32774,17 +32774,17 @@ DESCRIPTION
        NOTE:  your shell may have its own version of test and/or [, which usually supersedes the version described here.  Please
        refer to your shell's documentation for details about the options it supports.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Kevin Braunsdorf and Matthew Bradburn.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report [ translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report [ translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3    or    later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        Full documentation at: &amp;lt;http://www.gnu.org/software/coreutils/[&amp;gt;
@@ -33113,17 +33113,17 @@ DATE STRING
        time zone, day of week, relative time, relative date, and numbers.  An empty string indicates the beginning of  the  day.
        The date string format is more complex than is easily documented here but is fully described in the info documentation.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Paul Rubin, Arnold Robbins, Jim Kingdon, David MacKenzie, and Randy Smith.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report touch translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report touch translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        Full documentation at: &amp;lt;http://www.gnu.org/software/coreutils/touch&amp;gt;
@@ -33499,17 +33499,17 @@ DESCRIPTION
        [:lower:] and [:upper:] are guaranteed to expand in ascending order; used in SET2 while translating,  they  may  only  be
        used in pairs to specify case conversion.  -s uses the last specified SET, and occurs after translation or deletion.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Jim Meyering.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report tr translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report tr translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright    ©    2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
-       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 
 SEE ALSO
        Full documentation at: &amp;lt;http://www.gnu.org/software/coreutils/tr&amp;gt;
@@ -33736,18 +33736,18 @@ DESCRIPTION
        NOTE:  your shell may have its own version of true, which usually supersedes the version described here.  Please refer to
        your shell's documentation for details about the options it supports.
 
-AUTHOR
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
        Written by Jim Meyering.
 
 REPORTING BUGS
        GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
-       Report true translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;
+       Report true translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
 
-COPYRIGHT
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
        Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3    or    later
        &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt;.
        This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
-
+<!-- ACCEPT >=> 6d11e7c3-8cce-4efb-857d-3586edc62088 -->
 SEE ALSO
        Full documentation at: &amp;lt;http://www.gnu.org/software/coreutils/true&amp;gt;
        or available locally via: info '(coreutils) true invocation'

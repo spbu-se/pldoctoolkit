@@ -79,3 +79,19 @@ abe2db19-57fb-4798-903e-2c3f39e18554 <=< ACCEPT -->     unfwdretain
 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The  qselect  utility  shall  conform to the Base Definitions volume of POSIX.1 2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
 ---
+
+<!-- c513bc34-2f2b-475d-8cf1-d329ea6b2b4b <=< ACCEPT -->AUTHOR
+       Written by Kevin Braunsdorf and Matthew Bradburn.
+
+REPORTING BUGS
+       GNU coreutils online help: &amp;lt;http://www.gnu.org/software/coreutils/&amp;gt;
+       Report [ translation bugs to &amp;lt;http://translationproject.org/team/&amp;gt;<!-- ACCEPT >=> c513bc34-2f2b-475d-8cf1-d329ea6b2b4b -->
+
+---
+
+<!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
+       Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL
+
+...
+
+---
