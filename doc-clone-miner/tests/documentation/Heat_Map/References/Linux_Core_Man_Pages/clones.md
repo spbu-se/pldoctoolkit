@@ -1,7 +1,8 @@
 Linux Core Man Pages
 ====================
 
-2100514 bytes in plaintext, see source archive
+173 pages
+Source length: 2089102, marked for reuse: 314515, reuse ratio: 15.1%
 
 ---
 
@@ -71,7 +72,7 @@ LOGNAME   Determine the login name of the user.
 ---
 
 abe2db19-57fb-4798-903e-2c3f39e18554 <=< ACCEPT -->     unfwdretain
-              Removes the header field names from the list of retained fields for the forward command.  The special name ‘*’
+              Removes the header field names from the list of retained fields for the forward command.  The special name вЂ*вЂ™
               will remove all fields.
 
 ---
@@ -90,7 +91,7 @@ REPORTING BUGS
 ---
 
 <!-- 6d11e7c3-8cce-4efb-857d-3586edc62088 <=< ACCEPT -->COPYRIGHT
-       Copyright   ©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL
+       Copyright   В©   2016   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL
 
 ...
 
@@ -125,7 +126,7 @@ RATIONALE
 
 ---
 
-<!-- bc4430eb-05c9-45ef-9ca4-962d2a9e19b5 <=< ACCEPT -->       −e path_name
+<!-- bc4430eb-05c9-45ef-9ca4-962d2a9e19b5 <=< ACCEPT -->       в€’e path_name
                  Define the path to be used for the standard error stream of the batch job.
 
 ---
@@ -139,7 +140,7 @@ RATIONALE
 
 ---
 
-<!-- 8bfc654a-34b8-45df-92b7-77763e59a308 <=< ACCEPT -->       The  −c  option  allows  users  to  alter the checkpointing interval of a batch job.
+<!-- 8bfc654a-34b8-45df-92b7-77763e59a308 <=< ACCEPT -->       The  в€’c  option  allows  users  to  alter the checkpointing interval of a batch job.
 
 ---
 
@@ -153,5 +154,58 @@ RATIONALE
 ---
 
 <!-- 450db201-10a5-4c70-8648-3d6f79786a4b <=< ACCEPT -->              The value may be a simple command name or a command with arguments,
+
+---
+
+<!-- 48b5cfab-f91a-478a-bdf0-a08f57e43b67 <=< ACCEPT -->OPERANDS
+       The following operands shall be supported:
+
+       file      A  pathname 
+
+---
+
+<!-- db2b0138-19b6-4001-891e-41200ea817ae <=< ACCEPT -->ENVIRONMENT VARIABLES
+       The following environment variables affect the behaviour of ex:
+...
+              preservation directory
+<!-- ACCEPT >=> db2b0138-19b6-4001-891e-41200ea817ae -->
+
+---
+
+<!-- e65d7116-89b2-4f54-b70b-33d86eeb6367 <=< ACCEPT -->       target="text" is a target string for client‐side imagemaps and SVG,
+...
+
+---
+
+<!-- 779aaf05-1f70-475d-93e3-34079d85b56f <=< ACCEPT -->       tooltip="text"  is  a  tooltip  string  for  client‐side imagemaps and SVG, effective when nodes have a URL.
+...
+
+---
+
+<!-- 0942027e-01ac-4774-a486-107bb8649182 <=< ACCEPT -->       −O optlevel
+                 Specify  the  level  of  code  optimization.
+
+---
+
+<!-- 8387e0a3-7070-44f1-bb32-19afd89c59dd <=< ACCEPT -->       −L directory
+                 Change the algorithm of
+
+---
+
+<!-- 0942027e-01ac-4774-a486-107bb8649183 <=< ACCEPT -->       −o outfile
+                 Use the pathname outfile, instead of the default a.out, for the executable file produced. If the −o  option  is
+
+---
+
+<!-- af9d2a35-17e8-4f0d-9dcf-ec672b435416 <=< ACCEPT -->       file.c    Files  with basenames ending
+
+---
+
+<!-- de3197e1-3d0f-4eb1-b0ca-fb57e2507f42 <=< ACCEPT -->       [count]|  Move  to  the  countth  character  position on the current command line.
+
+---
+
+<!-- d552a943-f865-4cbb-b316-da949f4afb78 <=< ACCEPT -->       [count]&amp;lt;space&amp;gt;
+                 Move the current cursor position to the next character position.
 
 ---

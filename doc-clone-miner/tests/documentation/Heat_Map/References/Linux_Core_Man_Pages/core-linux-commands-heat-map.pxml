@@ -159,7 +159,7 @@ OPTIONS
        −z        Recompute the SCCS file checksum and store it in the first line of the SCCS file (see  the  −h  option  above).
                  Note that use of this option on a truly corrupted file may prevent future detection of the corruption.
 
-OPERANDS
+<!-- 48b5cfab-f91a-478a-bdf0-a08f57e43b67 <=< ACCEPT -->OPERANDS
        The following operands shall be supported:
 
        file      A  pathname  of an existing SCCS file or a directory. If file is a directory, the admin utility shall behave as
@@ -170,7 +170,7 @@ OPERANDS
 
        If  exactly  one file or newfile operand appears, and it is '−', the standard input shall be read; each line of the stan‐
        dard input shall be taken to be the name of an SCCS file to be processed. Non-SCCS files and unreadable  files  shall  be
-       silently ignored.
+       silently ignored.<!-- ACCEPT >=> 48b5cfab-f91a-478a-bdf0-a08f57e43b67 -->
 
 STDIN
        The  standard  input shall be a text file used only if −i is specified without an option-argument or if a file or newfile
@@ -1643,7 +1643,7 @@ EXTENDED DESCRIPTION
        be made using the locale-specific collation sequence. The value of the comparison expression shall be 1 if  the  relation
        is true, or 0 if the relation is false.
 
-   Variables and Special Variables
+       Variables and Special Variables
        Variables  can be used in an awk program by referencing them. With the exception of function parameters (see User-Defined
        Functions), they are not explicitly declared. Function parameter names shall be local to the function; all other variable
        names shall be global. The same name shall not be used as both a function parameter name and as the name of a function or
@@ -4190,14 +4190,14 @@ OPTIONS
                  specify a directory that is one of the usual places searched by default, the results are unspecified. Implemen‐
                  tations shall support at least ten instances of this option in a single c99 command invocation.
 
-       −L directory
+<!-- 8387e0a3-7070-44f1-bb32-19afd89c59dd <=< ACCEPT -->       −L directory
                  Change  the  algorithm of searching for the libraries named in the −l objects to look in the directory named by
                  the directory pathname before looking in the usual places. Directories named in −L options shall be searched in
                  the  order  specified. If the −L option is used to specify a directory that is one of the usual places searched
                  by default, the results are unspecified. Implementations shall support at least ten instances of this option in
                  a  single  c99  command  invocation. If a directory specified by a −L option contains files with names starting
                  with any of the strings  "libc.",  "libl.",  "libpthread.",  "libm.",  "librt.",  "libtrace.",  "libxnet.",  or
-                 "liby.", the results are unspecified.
+                 "liby.", the results are unspecified.<!-- ACCEPT >=> 8387e0a3-7070-44f1-bb32-19afd89c59dd -->
 
        −l library
                  Search the library named liblibrary.a.  A library shall be searched when its name is encountered, so the place‐
@@ -4205,16 +4205,16 @@ OPTIONS
                  the  EXTENDED  DESCRIPTION section. Implementations may recognize implementation-defined suffixes other than .a
                  as denoting libraries.
 
-       −O optlevel
+<!-- 0942027e-01ac-4774-a486-107bb8649182 <=< ACCEPT -->       −O optlevel
                  Specify the level of code optimization. If the optlevel option-argument is the  digit  '0',  all  special  code
                  optimizations  shall be disabled. If it is the digit '1', the nature of the optimization is unspecified. If the
                  −O option is omitted, the nature of the system's default optimization is unspecified. It is unspecified whether
                  code  generated  in  the  presence  of  the −O 0 option is the same as that generated when −O is omitted. Other
-                 optlevel values may be supported.
+                 optlevel values may be supported.<!-- ACCEPT >=> 0942027e-01ac-4774-a486-107bb8649182 -->
 
-       −o outfile
+<!-- 0942027e-01ac-4774-a486-107bb8649183 <=< ACCEPT -->       −o outfile
                  Use the pathname outfile, instead of the default a.out, for the executable file produced. If the −o  option  is
-                 present with −c or −E, the result is unspecified.
+                 present with −c or −E, the result is unspecified.<!-- ACCEPT >=> 0942027e-01ac-4774-a486-107bb8649183 -->
 
        −s        Produce  object or executable files, or both, from which symbolic and other information not required for proper
                  execution using the exec family defined in the System  Interfaces  volume  of  POSIX.1‐2008  has  been  removed
@@ -6704,14 +6704,14 @@ OPTIONS
 OPERANDS
        The following pathname operands are supported:
 
-       file.c    Files  with basenames ending with the .c suffix shall be treated as C-language source code. Such files that are
-                 not valid input to c99 produce unspecified results.
+<!-- af9d2a35-17e8-4f0d-9dcf-ec672b435416 <=< ACCEPT -->       file.c    Files  with basenames ending with the .c suffix shall be treated as C-language source code. Such files that are
+                 not valid input to c99 produce unspecified results.<!-- ACCEPT >=> af9d2a35-17e8-4f0d-9dcf-ec672b435416 -->
 
-       file.h    Files with basenames ending with the .h suffix shall be treated as C-language source code. Such files that  are
-                 not valid input to c99 produce unspecified results.
+<!-- af9d2a35-17e8-4f0d-9dcf-ec672b435416 <=< ACCEPT -->       file.h    Files with basenames ending with the .h suffix shall be treated as C-language source code. Such files that  are
+                 not valid input to c99 produce unspecified results.<!-- ACCEPT >=> af9d2a35-17e8-4f0d-9dcf-ec672b435416 -->
 
-       file.f    Files  with  basenames  ending  with the .f suffix shall be treated as FORTRAN-language source code. Such files
-                 that are not valid input to fort77 produce unspecified results.
+<!-- af9d2a35-17e8-4f0d-9dcf-ec672b435416 <=< ACCEPT -->       file.f    Files  with  basenames  ending  with the .f suffix shall be treated as FORTRAN-language source code. Such files
+                 that are not valid input to fort77 produce unspecified results.<!-- ACCEPT >=> af9d2a35-17e8-4f0d-9dcf-ec672b435416 -->
 
        The handling of other files is implementation-defined.
 
@@ -7565,7 +7565,7 @@ OPTIONS
        −p        Write (to standard output) the SCCS file differences before and after the delta is applied in diff format;  see
                  diff.
 
-OPERANDS
+<!-- 48b5cfab-f91a-478a-bdf0-a08f57e43b67 <=< ACCEPT -->OPERANDS
        The following operand shall be supported:
 
        file      A  pathname  of an existing SCCS file or a directory. If file is a directory, the delta utility shall behave as
@@ -7574,7 +7574,7 @@ OPERANDS
 
                  If exactly one file operand appears, and it is '−', the standard input shall be read; each line of the standard
                  input shall be taken to be the name of an SCCS file to be processed. Non-SCCS files and unreadable files  shall
-                 be silently ignored.
+                 be silently ignored.<!-- ACCEPT >=> 48b5cfab-f91a-478a-bdf0-a08f57e43b67 -->
 
 STDIN
        The standard input shall be a text file used only in the following cases:
@@ -8340,10 +8340,10 @@ GRAPH, NODE AND EDGE ATTRIBUTES
        attribute is included in the output.  The substrings '\N' and '\G' are substituted in the same manner  as  for  the  node
        label attribute.  Additionally the substring '\L' is substituted with the node label string.
 
-       tooltip="text"  is  a  tooltip  string  for  client‐side imagemaps and SVG, effective when nodes have a URL.  The tooltip
+<!-- 779aaf05-1f70-475d-93e3-34079d85b56f <=< ACCEPT -->       tooltip="text"  is  a  tooltip  string  for  client‐side imagemaps and SVG, effective when nodes have a URL.  The tooltip
        string defaults to be the same as the label string, but this  attribute  permits  nodes  without  labels  to  still  have
        tooltips  thus permitting denser graphs.  The substrings '\N' and '\G' are substituted in the same manner as for the node
-       label attribute.  Additionally the substring '\L' is substituted with the node label string.
+       label attribute.  Additionally the substring '\L' is substituted with the node label string.<!-- ACCEPT >=> 779aaf05-1f70-475d-93e3-34079d85b56f -->
 
        The following attributes apply only to polygon shape nodes:
 
@@ -8390,14 +8390,14 @@ GRAPH, NODE AND EDGE ATTRIBUTES
 
        tailclip,headclip=false disables endpoint shape clipping.
 
-       target="text" is a target string for client‐side imagemaps and SVG, effective when edges  have  a  URL.   If  the  target
+<!-- e65d7116-89b2-4f54-b70b-33d86eeb6367 <=< ACCEPT -->       target="text" is a target string for client‐side imagemaps and SVG, effective when edges  have  a  URL.   If  the  target
        string  is  empty,  the default, then no target attribute is included in the output.  The substrings '\T', '\H', '\E' and
        '\G' are substituted in the same manner as for the edge label attribute.  Additionally the substring '\L' is  substituted
        with the edge label string.
-
-       tooltip="text"  is  a  tooltip  string  for  client‐side  imagemaps  effective when edges have a URL.  The tooltip string
+<!-- ACCEPT >=> e65d7116-89b2-4f54-b70b-33d86eeb6367 -->
+<!-- 779aaf05-1f70-475d-93e3-34079d85b56f <=< ACCEPT -->       tooltip="text"  is  a  tooltip  string  for  client‐side  imagemaps  effective when edges have a URL.  The tooltip string
        defaults to be the same as the edge label string.  The substrings '\T', '\H', '\E' and '\G' are substituted in  the  same
-       manner as for the edge label attribute.  Additionally the substring '\L' is substituted with the edge label string.
+       manner as for the edge label attribute.  Additionally the substring '\L' is substituted with the edge label string.<!-- ACCEPT >=> 779aaf05-1f70-475d-93e3-34079d85b56f -->
 
        arrowhead,arrowtail=none,  normal,  inv, dot, odot, invdot, invodot, tee, empty, invempty, open, halfopen, diamond, odia‐
        mond, box, obox, crow.  Specifies the shape of the glyph occurring where the edge touches the head or tail node,  respec‐
@@ -8416,15 +8416,15 @@ GRAPH, NODE AND EDGE ATTRIBUTES
 
        headURL="url" (headURL is a synonym for headhref.)
 
-       headtarget="headtarget" is a target string for client‐side imagemaps and SVG, effective when edge heads have a URL.   The
+<!-- e65d7116-89b2-4f54-b70b-33d86eeb6367 <=< ACCEPT -->       headtarget="headtarget" is a target string for client‐side imagemaps and SVG, effective when edge heads have a URL.   The
        headtarget  string  is  used  to  determine which window of the browser is used for the URL.  If the headtarget string is
        empty, the default, then headtarget defaults to the same value as target for the edge.  The substrings '\T',  '\H',  '\E'
        and  '\G' are substituted in the same manner as for the edge label attribute.  Additionally the substring '\L' is substi‐
-       tuted with the edge label string.
+       tuted with the edge label string.<!-- ACCEPT >=> e65d7116-89b2-4f54-b70b-33d86eeb6367 -->
 
-       headtooltip="tooltip" is a tooltip string for client‐side imagemaps effective when head ports have a  URL.   The  tooltip
+<!-- 779aaf05-1f70-475d-93e3-34079d85b56f <=< ACCEPT -->       headtooltip="tooltip" is a tooltip string for client‐side imagemaps effective when head ports have a  URL.   The  tooltip
        string  defaults to be the same as the headlabel string.  The substrings '\T', '\H', and '\E' are substituted in the same
-       manner as for the edge label attribute.  Additionally the substring '\L' is substituted with the edge label string.
+       manner as for the edge label attribute.  Additionally the substring '\L' is substituted with the edge label string.<!-- ACCEPT >=> 779aaf05-1f70-475d-93e3-34079d85b56f -->
 
        tailhref="url" sets the url for the tail port in imagemap, PostScript and SVG files.  The substrings '\T', '\H', '\E' and
        '\G'  are substituted in the same manner as for the edge label attribute.  Additionally the substring '\L' is substituted
@@ -8432,11 +8432,11 @@ GRAPH, NODE AND EDGE ATTRIBUTES
 
        tailURL="url" (tailURL is a synonym for tailhref.)
 
-       tailtarget="tailtarget" is a target string for client‐side imagemaps and SVG, effective when edge tails have a URL.   The
+<!-- e65d7116-89b2-4f54-b70b-33d86eeb6367 <=< ACCEPT -->       tailtarget="tailtarget" is a target string for client‐side imagemaps and SVG, effective when edge tails have a URL.   The
        tailtarget  string  is  used  to  determine which window of the browser is used for the URL.  If the tailtarget string is
        empty, the default, then tailtarget defaults to the same value as target for the edge.  The substrings '\T',  '\H',  '\E'
        and  '\G' are substituted in the same manner as for the edge label attribute.  Additionally the substring '\L' is substi‐
-       tuted with the edge label string.
+       tuted with the edge label string.<!-- ACCEPT >=> e65d7116-89b2-4f54-b70b-33d86eeb6367 -->
 
        tailtooltip="tooltip" is a tooltip string for client‐side imagemaps effective when tail ports have a  URL.   The  tooltip
        string  defaults to be the same as the taillabel string.  The substrings '\T', '\H', '\E' and '\G' are substituted in the
@@ -9783,7 +9783,7 @@ DESCRIPTION
               Inhibit the checks normally made before write commands, allowing a write to any file which the  system  protection
               mechanism will allow.
 
-ENVIRONMENT VARIABLES
+<!-- db2b0138-19b6-4001-891e-41200ea817ae <=< ACCEPT -->ENVIRONMENT VARIABLES
        The following environment variables affect the behaviour of ex:
 
        COLUMNS
@@ -9834,7 +9834,7 @@ FILES
 
        /var/lib/ex
               preservation directory
-
+<!-- ACCEPT >=> db2b0138-19b6-4001-891e-41200ea817ae -->
 DOCUMENTATION
        The  document  Edit:  A tutorial (USD:14) provides a comprehensive introduction to edit assuming no previous knowledge of
        computers or the UNIX system.
@@ -12413,22 +12413,22 @@ OPTIONS
                  execution using the exec family of functions defined in the System Interfaces volume of POSIX.1‐2008  has  been
                  removed (stripped).  If both −g and −s options are present, the action taken is unspecified.
 
-       −o outfile
+<!-- 0942027e-01ac-4774-a486-107bb8649183 <=< ACCEPT -->       −o outfile
                  Use  the  pathname outfile, instead of the default a.out, for the executable file produced. If the −o option is
-                 present with −c, the result is unspecified.
+                 present with −c, the result is unspecified.<!-- ACCEPT >=> 0942027e-01ac-4774-a486-107bb8649183 -->
 
-       −L directory
+<!-- 8387e0a3-7070-44f1-bb32-19afd89c59dd <=< ACCEPT -->       −L directory
                  Change the algorithm of searching for the libraries named in −l operands to look in the directory named by  the
                  directory pathname before looking in the usual places. Directories named in −L options shall be searched in the
                  specified order. At least ten instances of this option shall be supported in a single  fort77  command  invoca‐
-                 tion. If a directory specified by a −L option contains a file named libf.a, the results are unspecified.
+                 tion. If a directory specified by a −L option contains a file named libf.a, the results are unspecified.<!-- ACCEPT >=> 8387e0a3-7070-44f1-bb32-19afd89c59dd -->
 
-       −O optlevel
+<!-- 0942027e-01ac-4774-a486-107bb8649182 <=< ACCEPT -->       −O optlevel
                  Specify  the  level  of  code  optimization. If the optlevel option-argument is the digit '0', all special code
                  optimizations shall be disabled. If it is the digit '1', the nature of the optimization is unspecified. If  the
                  −O option is omitted, the nature of the system's default optimization is unspecified. It is unspecified whether
                  code generated in the presence of the −O 0 option is the same as that  generated  when  −O  is  omitted.  Other
-                 optlevel values may be supported.
+                 optlevel values may be supported.<!-- ACCEPT >=> 0942027e-01ac-4774-a486-107bb8649182 -->
 
        −w        Suppress warnings.
 
@@ -24590,7 +24590,7 @@ OPTIONS
        −a        Request  writing  of information for both removed—that is, delta type=R (see rmdel)—and existing—that is, delta
                  type=D,—deltas. If the −a option is not specified, information for existing deltas only shall be provided.
 
-OPERANDS
+<!-- 48b5cfab-f91a-478a-bdf0-a08f57e43b67 <=< ACCEPT -->OPERANDS
        The following operand shall be supported:
 
        file      A pathname of an existing SCCS file or a directory. If file is a directory, the prs  utility  shall  behave  as
@@ -24600,7 +24600,7 @@ OPERANDS
                  If exactly one file operand appears, and it is '−', the standard input shall be read; each line of the standard
                  input  shall be taken to be the name of an SCCS file to be processed. Non-SCCS files and unreadable files shall
                  be silently ignored.
-
+<!-- ACCEPT >=> 48b5cfab-f91a-478a-bdf0-a08f57e43b67 -->
 STDIN
        The standard input shall be a text file used only when the file operand is specified as '−'.  Each line of the text  file
        shall be interpreted as an SCCS pathname.
@@ -29331,7 +29331,7 @@ OPTIONS
 
        −r SID    Specify the SCCS identification string (SID) of the delta to be deleted.
 
-OPERANDS
+<!-- 48b5cfab-f91a-478a-bdf0-a08f57e43b67 <=< ACCEPT -->OPERANDS
        The following operand shall be supported:
 
        file      A pathname of an existing SCCS file or a directory. If file is a directory, the rmdel utility shall  behave  as
@@ -29340,7 +29340,7 @@ OPERANDS
 
                  If exactly one file operand appears, and it is '−', the standard input shall be read; each line of the standard
                  input  is  taken  to  be the name of an SCCS file to be processed. Non-SCCS files and unreadable files shall be
-                 silently ignored.
+                 silently ignored.<!-- ACCEPT >=> 48b5cfab-f91a-478a-bdf0-a08f57e43b67 -->
 
 STDIN
        The standard input shall be a text file used only when the file operand is specified as '−'.  Each line of the text  file
@@ -29493,7 +29493,7 @@ DESCRIPTION
 OPTIONS
        None.
 
-OPERANDS
+<!-- 48b5cfab-f91a-478a-bdf0-a08f57e43b67 <=< ACCEPT -->OPERANDS
        The following operand shall be supported:
 
        file      A  pathname  of  an existing SCCS file or a directory. If file is a directory, the sact utility shall behave as
@@ -29502,7 +29502,7 @@ OPERANDS
 
                  If exactly one file operand appears, and it is '−', the standard input shall be read; each line of the standard
                  input shall be taken to be the name of an SCCS file to be processed. Non-SCCS files and unreadable files  shall
-                 be silently ignored.
+                 be silently ignored.<!-- ACCEPT >=> 48b5cfab-f91a-478a-bdf0-a08f57e43b67 -->
 
 STDIN
        The  standard input shall be a text file used only when the file operand is specified as '−'.  Each line of the text file
@@ -30869,46 +30869,46 @@ EXTENDED DESCRIPTION
 
        [count]l   (ell)
 
-       [count]&amp;lt;space&amp;gt;
+<!-- d552a943-f865-4cbb-b316-da949f4afb78 <=< ACCEPT -->       [count]&amp;lt;space&amp;gt;
                  Move the current cursor position to the next character position. If the cursor was positioned on the last char‐
                  acter of the line, the terminal shall be alerted and the cursor shall not be advanced. If the count  is  larger
                  than the number of characters after the cursor, this shall not be considered an error; the cursor shall advance
-                 to the last character on the line.
+                 to the last character on the line.<!-- ACCEPT >=> d552a943-f865-4cbb-b316-da949f4afb78 -->
 
-       [count]h  Move the current cursor position to the countth (default 1) previous character  position.  If  the  cursor  was
+<!-- d552a943-f865-4cbb-b316-da949f4afb78 <=< ACCEPT -->       [count]h  Move the current cursor position to the countth (default 1) previous character  position.  If  the  cursor  was
                  positioned on the first character of the line, the terminal shall be alerted and the cursor shall not be moved.
                  If the count is larger than the number of characters before the cursor, this shall not be considered an  error;
-                 the cursor shall move to the first character on the line.
+                 the cursor shall move to the first character on the line.<!-- ACCEPT >=> d552a943-f865-4cbb-b316-da949f4afb78 -->
 
-       [count]w  Move  to the start of the next word. If the cursor was positioned on the last character of the line, the termi‐
+<!-- d552a943-f865-4cbb-b316-da949f4afb78 <=< ACCEPT -->       [count]w  Move  to the start of the next word. If the cursor was positioned on the last character of the line, the termi‐
                  nal shall be alerted and the cursor shall not be advanced. If the count is larger  than  the  number  of  words
                  after  the cursor, this shall not be considered an error; the cursor shall advance to the last character on the
-                 line.
+                 line.<!-- ACCEPT >=> d552a943-f865-4cbb-b316-da949f4afb78 -->
 
-       [count]W  Move to the start of the next bigword. If the cursor was positioned on the last character of the line, the ter‐
+<!-- d552a943-f865-4cbb-b316-da949f4afb78 <=< ACCEPT -->       [count]W  Move to the start of the next bigword. If the cursor was positioned on the last character of the line, the ter‐
                  minal shall be alerted and the cursor shall not be advanced. If the count is larger than the number of bigwords
                  after the cursor, this shall not be considered an error; the cursor shall advance to the last character on  the
-                 line.
+                 line.<!-- ACCEPT >=> d552a943-f865-4cbb-b316-da949f4afb78 -->
 
-       [count]e  Move  to  the end of the current word. If at the end of a word, move to the end of the next word. If the cursor
+<!-- d552a943-f865-4cbb-b316-da949f4afb78 <=< ACCEPT -->       [count]e  Move  to  the end of the current word. If at the end of a word, move to the end of the next word. If the cursor
                  was positioned on the last character of the line, the terminal shall be alerted and the  cursor  shall  not  be
                  advanced.  If  the  count  is larger than the number of words after the cursor, this shall not be considered an
-                 error; the cursor shall advance to the last character on the line.
+                 error; the cursor shall advance to the last character on the line.<!-- ACCEPT >=> d552a943-f865-4cbb-b316-da949f4afb78 -->
 
-       [count]E  Move to the end of the current bigword. If at the end of a bigword, move to the end of the next bigword. If the
+<!-- d552a943-f865-4cbb-b316-da949f4afb78 <=< ACCEPT -->       [count]E  Move to the end of the current bigword. If at the end of a bigword, move to the end of the next bigword. If the
                  cursor was positioned on the last character of the line, the terminal shall be alerted and the cursor shall not
                  be advanced. If the count is larger than the number of bigwords after the cursor, this shall not be  considered
-                 an error; the cursor shall advance to the last character on the line.
+                 an error; the cursor shall advance to the last character on the line.<!-- ACCEPT >=> d552a943-f865-4cbb-b316-da949f4afb78 -->
 
-       [count]b  Move to the beginning of the current word. If at the beginning of a word, move to the beginning of the previous
+<!-- d552a943-f865-4cbb-b316-da949f4afb78 <=< ACCEPT -->       [count]b  Move to the beginning of the current word. If at the beginning of a word, move to the beginning of the previous
                  word. If the cursor was positioned on the first character of the line, the terminal shall be  alerted  and  the
                  cursor shall not be moved. If the count is larger than the number of words preceding the cursor, this shall not
                  be considered an error; the cursor shall return to the first character on the line.
-
-       [count]B  Move to the beginning of the current bigword. If at the beginning of a bigword, move to the  beginning  of  the
+<!-- ACCEPT >=> d552a943-f865-4cbb-b316-da949f4afb78 -->
+<!-- d552a943-f865-4cbb-b316-da949f4afb78 <=< ACCEPT -->       [count]B  Move to the beginning of the current bigword. If at the beginning of a bigword, move to the  beginning  of  the
                  previous  bigword.  If  the  cursor  was  positioned  on the first character of the line, the terminal shall be
                  alerted and the cursor shall not be moved. If the count is larger than the number  of  bigwords  preceding  the
-                 cursor, this shall not be considered an error; the cursor shall return to the first character on the line.
+                 cursor, this shall not be considered an error; the cursor shall return to the first character on the line.<!-- ACCEPT >=> d552a943-f865-4cbb-b316-da949f4afb78 -->
 
        ^         Move the current cursor position to the first character on the input line that is not a &amp;lt;blank&amp;gt;.
 
@@ -30916,30 +30916,30 @@ EXTENDED DESCRIPTION
 
        0         (Zero.) Move to the first character position on the current command line.
 
-       [count]|  Move  to  the  countth  character  position on the current command line. If no number is specified, move to the
+<!-- de3197e1-3d0f-4eb1-b0ca-fb57e2507f42 <=< ACCEPT -->       [count]|  Move  to  the  countth  character  position on the current command line. If no number is specified, move to the
                  first position. The first character position shall be numbered 1. If the count is larger  than  the  number  of
                  characters on the line, this shall not be considered an error; the cursor shall be placed on the last character
-                 on the line.
+                 on the line.<!-- ACCEPT >=> de3197e1-3d0f-4eb1-b0ca-fb57e2507f42 -->
 
-       [count]fc Move to the first occurrence of the character 'c' that occurs after the current cursor position. If the  cursor
+<!-- de3197e1-3d0f-4eb1-b0ca-fb57e2507f42 <=< ACCEPT -->       [count]fc Move to the first occurrence of the character 'c' that occurs after the current cursor position. If the  cursor
                  was  positioned  on  the  last character of the line, the terminal shall be alerted and the cursor shall not be
                  advanced. If the character 'c' does not occur in the line after the current cursor position, the terminal shall
-                 be alerted and the cursor shall not be moved.
+                 be alerted and the cursor shall not be moved.<!-- ACCEPT >=> de3197e1-3d0f-4eb1-b0ca-fb57e2507f42 -->
 
-       [count]Fc Move to the first occurrence of the character 'c' that occurs before the current cursor position. If the cursor
+<!-- de3197e1-3d0f-4eb1-b0ca-fb57e2507f42 <=< ACCEPT -->       [count]Fc Move to the first occurrence of the character 'c' that occurs before the current cursor position. If the cursor
                  was positioned on the first character of the line, the terminal shall be alerted and the cursor  shall  not  be
                  moved.  If  the character 'c' does not occur in the line before the current cursor position, the terminal shall
-                 be alerted and the cursor shall not be moved.
+                 be alerted and the cursor shall not be moved.<!-- ACCEPT >=> de3197e1-3d0f-4eb1-b0ca-fb57e2507f42 -->
 
-       [count]tc Move to the character before the first occurrence of the character 'c' that occurs  after  the  current  cursor
+<!-- de3197e1-3d0f-4eb1-b0ca-fb57e2507f42 <=< ACCEPT -->       [count]tc Move to the character before the first occurrence of the character 'c' that occurs  after  the  current  cursor
                  position. If the cursor was positioned on the last character of the line, the terminal shall be alerted and the
                  cursor shall not be advanced. If the character 'c' does not occur in the line after the  current  cursor  posi‐
-                 tion, the terminal shall be alerted and the cursor shall not be moved.
+                 tion, the terminal shall be alerted and the cursor shall not be moved.<!-- ACCEPT >=> de3197e1-3d0f-4eb1-b0ca-fb57e2507f42 -->
 
-       [count]Tc Move  to  the  character  after the first occurrence of the character 'c' that occurs before the current cursor
+<!-- de3197e1-3d0f-4eb1-b0ca-fb57e2507f42 <=< ACCEPT -->       [count]Tc Move  to  the  character  after the first occurrence of the character 'c' that occurs before the current cursor
                  position. If the cursor was positioned on the first character of the line, the terminal shall  be  alerted  and
                  the  cursor shall not be moved. If the character 'c' does not occur in the line before the current cursor posi‐
-                 tion, the terminal shall be alerted and the cursor shall not be moved.
+                 tion, the terminal shall be alerted and the cursor shall not be moved.<!-- ACCEPT >=> de3197e1-3d0f-4eb1-b0ca-fb57e2507f42 -->
 
        [count];  Repeat the most recent f, F, t, or T command. Any number argument on that previous command  shall  be  ignored.
                  Errors are those described for the repeated command.
@@ -34675,7 +34675,7 @@ OPTIONS
 
        −n        Retain the file that was obtained by get, which would normally be removed from the current directory.
 
-OPERANDS
+<!-- 48b5cfab-f91a-478a-bdf0-a08f57e43b67 <=< ACCEPT -->OPERANDS
        The following operands shall be supported:
 
        file      A  pathname  of an existing SCCS file or a directory. If file is a directory, the unget utility shall behave as
@@ -34684,7 +34684,7 @@ OPERANDS
 
                  If exactly one file operand appears, and it is '−', the standard input shall be read; each line of the standard
                  input shall be taken to be the name of an SCCS file to be processed. Non-SCCS files and unreadable files  shall
-                 be silently ignored.
+                 be silently ignored.<!-- ACCEPT >=> 48b5cfab-f91a-478a-bdf0-a08f57e43b67 -->
 
 STDIN
        The  standard input shall be a text file used only when the file operand is specified as '−'.  Each line of the text file
@@ -36464,7 +36464,7 @@ DESCRIPTION
        ^? (DEL)
               Interrupts the editor, returning it to command accepting state (1.6, 7.5).
 
-ENVIRONMENT VARIABLES
+<!-- db2b0138-19b6-4001-891e-41200ea817ae <=< ACCEPT -->ENVIRONMENT VARIABLES
        The following environment variables affect the behaviour of vi:
 
        COLUMNS
@@ -36514,7 +36514,7 @@ FILES
               named buffer temporary
 
        /var/lib/ex
-              preservation directory
+              preservation directory<!-- ACCEPT >=> db2b0138-19b6-4001-891e-41200ea817ae -->
 
 SEE ALSO
        ex(1), edit(1), “Vi Quick Reference” card, “An Introduction to Display Editing with Vi”.
