@@ -59,3 +59,23 @@ LOGNAME   Determine the login name of the user.
 ...
 
 ---
+
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.
+
+---
+
+544d7ff3-a3f2-4279-9986-04f2debda26d <=< ACCEPT -->COPYRIGHT
+        Copyright (c) 1991-2016 Free Software Foundation, Inc....
+
+---
+
+abe2db19-57fb-4798-903e-2c3f39e18554 <=< ACCEPT -->     unfwdretain
+              Removes the header field names from the list of retained fields for the forward command.  The special name ‘*’
+              will remove all fields.
+
+---
+
+569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The  qselect  utility  shall  conform to the Base Definitions volume of POSIX.1 2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
+
+---

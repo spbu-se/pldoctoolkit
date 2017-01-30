@@ -39,8 +39,8 @@ DESCRIPTION
        to the SCCS file; see get.
 
 OPTIONS
-       The admin utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax  Guidelines,
-       except  that the −i, −t, and −y options have optional option-arguments. These optional option-arguments shall not be pre‐
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The admin utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax  Guidelines,
+       except  that the −i, −t, and −y options have optional option-arguments.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b --> These optional option-arguments shall not be pre‐
        sented as separate arguments. The following options are supported:
 
        −n        Create a new SCCS file. When −n is used without −i, the SCCS file shall be created with control information but
@@ -208,8 +208,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        Not used.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        Any  SCCS  files created shall be text files of an unspecified format.  During processing of a file, a locking z-file, as
@@ -334,8 +334,8 @@ STDOUT
        The value string shall be written with appropriate quoting so that it is suitable for  reinput  to  the  shell.  See  the
        description of shell quoting in Section 2.2, Quoting.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -626,14 +626,14 @@ OPTIONS
 SEE ALSO
        nm(1), ranlib(1), and the Info entries for binutils.
 
-COPYRIGHT
+<!-- 544d7ff3-a3f2-4279-9986-04f2debda26d <=< ACCEPT -->COPYRIGHT
        Copyright (c) 1991-2016 Free Software Foundation, Inc.
 
        Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation
        License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, with no
        Front-Cover Texts, and with no Back-Cover Texts.  A copy of the license is included in the section entitled "GNU Free
        Documentation License".
-
+<!-- ACCEPT >=> 544d7ff3-a3f2-4279-9986-04f2debda26d -->
 binutils-2.27                                              2016-08-06                                                      AR(1)
 ASA(1P)                                             POSIX Programmer's Manual                                            ASA(1P)
 
@@ -822,7 +822,7 @@ DESCRIPTION
        shall be permitted. The at.allow and at.deny files shall consist of one user name per line.
 
 OPTIONS
-       The at utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The at utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -1266,7 +1266,7 @@ DESCRIPTION
        Assigning to $0 shall reset the values of all other fields and the NF built-in variable.
 
 OPTIONS
-       The awk utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The awk utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -1382,8 +1382,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        The nature of the output files depends on the awk program.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        The nature of the output files depends on the awk program.
@@ -3933,9 +3933,9 @@ STDOUT
 
        &amp;lt;command&amp;gt; The associated command that was given to the shell.
 
-STDERR
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
        The standard error shall be used only for diagnostic messages.
-
+<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 OUTPUT FILES
        None.
 
@@ -4153,8 +4153,8 @@ DESCRIPTION
        and the bits specified by the umask of the process shall be cleared.
 
 OPTIONS
-       The c99 utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guidelines,
-       except that:
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The c99 utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guidelines,
+       except that:<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
         *  Options can be interspersed with operands.
 
@@ -4283,8 +4283,8 @@ STDOUT
        If the −E option is specified, the standard output shall be a text file that represents the results of the  preprocessing
        stage of the language; it may contain extra information appropriate for subsequent compilation passes.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.  If more than one pathname operand ending in .c (or possi‐
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->  If more than one pathname operand ending in .c (or possi‐
        bly other unspecified suffixes) is given, for each such file:
 
            "%s:\n", &amp;lt;pathname&amp;gt;
@@ -4904,7 +4904,7 @@ DESCRIPTION
        call to cd).
 
 OPTIONS
-       The cd utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The cd utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported by the implementation:
 
@@ -4976,8 +4976,8 @@ STDOUT
 
        Otherwise, there shall be no output.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -5087,9 +5087,9 @@ DESCRIPTION
        attempt to build a graph, written to standard output, charting the external references.
 
 OPTIONS
-       The cflow utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax  Guidelines,
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The cflow utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax  Guidelines,
        except that the order of the −D, −I, and −U options (which are identical to their interpretation by c99) is significant.
-
+<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
        The following options shall be supported:
 
        −d num    Indicate  the  depth at which the flowgraph is cut off. The application shall ensure that the argument num is a
@@ -5162,8 +5162,8 @@ STDOUT
        Once a definition of a name has been written, subsequent references to that name contain only the reference number of the
        line where the definition can be found. For undefined references, only "&amp;lt;&amp;gt;" shall be written.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -5829,8 +5829,8 @@ DESCRIPTION
        preted by the shell.
 
 OPTIONS
-       The command utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section  12.2,  Utility  Syntax  Guide‐
-       lines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The command utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section  12.2,  Utility  Syntax  Guide‐
+       lines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -5919,8 +5919,8 @@ STDOUT
 
            "%s\n", &amp;lt;unspecified&amp;gt;
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -6128,8 +6128,8 @@ DESCRIPTION
        dard output.
 
 OPTIONS
-       The compress utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guide‐
-       lines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The compress utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guide‐
+       lines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -6689,7 +6689,7 @@ DESCRIPTION
        definition. The objects that shall be recognized are specified in the EXTENDED DESCRIPTION section.
 
 OPTIONS
-       The ctags utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The ctags utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -6756,8 +6756,8 @@ STDOUT
 
        where &amp;lt;text&amp;gt; is the text of line &amp;lt;line-number&amp;gt; of file &amp;lt;filename&amp;gt;.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        When the −x option is not specified, the format of the output file shall be:
@@ -7029,8 +7029,8 @@ DESCRIPTION
        contain an &amp;lt;asterisk&amp;gt; before the declaring reference.
 
 OPTIONS
-       The cxref utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax  Guidelines,
-       except  that the order of the −D, −I, and −U options (which are identical to their interpretation by c99) is significant.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The cxref utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax  Guidelines,
+       except  that the order of the −D, −I, and −U options (which are identical to their interpretation by c99) is significant.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
        The following options shall be supported:
 
        −c        Write a combined cross-reference of all input files.
@@ -7098,8 +7098,8 @@ STDOUT
         *  Each line number may be preceded by an &amp;lt;asterisk&amp;gt; ('*') flag, meaning that this is  the  declaring  reference.  Other
            single-character flags, with implementation-defined meanings, may be included.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        The output file named by the −o option shall be used instead of standard output.
@@ -7517,8 +7517,8 @@ DESCRIPTION
        retrieved by get (called the g-files, or generated files).
 
 OPTIONS
-       The delta utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax  Guidelines,
-       except that the −y option has an optional option-argument. This optional option-argument shall not be presented as a sep‐
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The delta utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax  Guidelines,
+       except that the −y option has an optional option-argument.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b --> This optional option-argument shall not be presented as a sep‐
        arate argument.
 
        The following options shall be supported:
@@ -7631,8 +7631,8 @@ STDOUT
                    &amp;lt;number of lines inserted&amp;gt;, &amp;lt;number of lines deleted&amp;gt;,
                    &amp;lt;number of lines unchanged&amp;gt;
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        Any SCCS files updated shall be files of an unspecified format.
@@ -10161,8 +10161,8 @@ DESCRIPTION
        to be in the environment of subsequently executed commands. If the name of a variable is  followed  by  =word,  then  the
        value of that variable shall be set to word.
 
-       The  export  special  built-in  shall  support  the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax
-       Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The  export  special  built-in  shall  support  the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax
+       Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        When −p is specified, export shall write to the standard output the names and values of all exported  variables,  in  the
        following format:
@@ -10454,7 +10454,7 @@ DESCRIPTION
        reinvokes the previous command, suppressing standard error for both fc and the previous command.
 
 OPTIONS
-       The fc utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The fc utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -10586,8 +10586,8 @@ STDOUT
 
            "\t%s\n", &amp;lt;continued-command&amp;gt;
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -10756,8 +10756,8 @@ STDOUT
 
            "%s\n", &amp;lt;command&amp;gt;
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -12391,8 +12391,8 @@ DESCRIPTION
        and that the bits specified by the umask of the process shall be cleared.
 
 OPTIONS
-       The fort77 utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines,
-       except that:
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The fort77 utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines,
+       except that:<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
         *  The −l library operands have the format of options, but their position within a list of operands affects the order in
            which libraries are searched.
@@ -12496,8 +12496,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        Not used.
 
-STDERR
-       The  standard  error shall be used only for diagnostic messages.  If more than one file operand ending in .f (or possibly
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The  standard  error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->  If more than one file operand ending in .f (or possibly
        other unspecified suffixes) is given, for each such file:
 
            "%s:\n", &amp;lt;file&amp;gt;
@@ -12876,8 +12876,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        The standard output shall not be used unless the catfile operand is specified as '−'.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -13154,9 +13154,9 @@ STDOUT
 
        If the variable name is invalid or an error occurs, nothing shall be written to standard output.
 
-STDERR
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
        The standard error shall be used only for diagnostic messages.
-
+<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 OUTPUT FILES
        None.
 
@@ -13973,7 +13973,7 @@ DESCRIPTION
        Utilities provided as built-ins to the shell shall not be reported by hash.
 
 OPTIONS
-       The hash utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The hash utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option shall be supported:
 
@@ -14021,8 +14021,8 @@ STDOUT
        of those utilities named in previous hash invocations that have been invoked, and may contain  those  invoked  and  found
        through the normal command search process.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -14431,7 +14431,7 @@ DESCRIPTION
        in the current shell execution environment''; see Section 2.9.3.1, Examples.
 
 OPTIONS
-       The jobs utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The jobs utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -14532,8 +14532,8 @@ STDOUT
        If the −l option is specified, a field containing the process group ID shall be inserted before the &amp;lt;state&amp;gt; field.  Also,
        more processes in a process group may be output on separate lines, using only the process ID and &amp;lt;command&amp;gt; fields.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -14823,8 +14823,8 @@ DESCRIPTION
        exit status. See the EXTENDED DESCRIPTION section for a complete description of the lex input language.
 
 OPTIONS
-       The lex utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guidelines,
-       except for Guideline 9.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The lex utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guidelines,
+       except for Guideline 9.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -18145,18 +18145,18 @@ COMMANDS
 
      unflag   Takes a message list and marks each message as not being flagged.
 
-     unfwdignore
+<!-- abe2db19-57fb-4798-903e-2c3f39e18554 <=< ACCEPT -->     unfwdignore
               Removes the header field names from the list of ignored fields for the forward command.  The special name ‘*’ will
-              remove all fields.
+              remove all fields.<!-- ACCEPT >=> abe2db19-57fb-4798-903e-2c3f39e18554 -->
 
-     unfwdretain
+<!-- abe2db19-57fb-4798-903e-2c3f39e18554 <=< ACCEPT -->     unfwdretain
               Removes the header field names from the list of retained fields for the forward command.  The special name ‘*’
-              will remove all fields.
+              will remove all fields.<!-- ACCEPT >=> abe2db19-57fb-4798-903e-2c3f39e18554 -->
 
      unghost  Remove all the given command ghosts.  The special name ‘*’ will remove all ghosts.
 
-     unignore
-              Removes the header field names from the list of ignored fields.  The special name ‘*’ will remove all fields.
+<!-- abe2db19-57fb-4798-903e-2c3f39e18554 <=< ACCEPT -->     unignore
+              Removes the header field names from the list of ignored fields.  The special name ‘*’ will remove all fields.<!-- ACCEPT >=> abe2db19-57fb-4798-903e-2c3f39e18554 -->
 
      unmimetype
               Delete all given MIME types, e.g., ‘unmimetype text/plain’ will remove all registered specifications for the MIME
@@ -18173,16 +18173,16 @@ COMMANDS
 
      unread   Takes a message list and marks each message as not having been read.
 
-     unretain
+<!-- abe2db19-57fb-4798-903e-2c3f39e18554 <=< ACCEPT -->     unretain
               Removes the header field names from the list of retained fields.  The special name ‘*’ will remove all fields.
-
-     unsaveignore
+<!-- ACCEPT >=> abe2db19-57fb-4798-903e-2c3f39e18554 -->
+<!-- abe2db19-57fb-4798-903e-2c3f39e18554 <=< ACCEPT -->     unsaveignore
               Removes the header field names from the list of ignored fields for saving.  The special name ‘*’ will remove all
-              fields.
+              fields.<!-- ACCEPT >=> abe2db19-57fb-4798-903e-2c3f39e18554 -->
 
-     unsaveretain
+<!-- abe2db19-57fb-4798-903e-2c3f39e18554 <=< ACCEPT -->     unsaveretain
               Removes the header field names from the list of retained fields for saving.  The special name ‘*’ will remove all
-              fields.
+              fields.<!-- ACCEPT >=> abe2db19-57fb-4798-903e-2c3f39e18554 -->
 
      unset    (uns) Takes a list of option names and discards their remembered values; the inverse of set.
 
@@ -21701,13 +21701,13 @@ OPTIONS
 SEE ALSO
        ar(1), objdump(1), ranlib(1), and the Info entries for binutils.
 
-COPYRIGHT
+<!-- 544d7ff3-a3f2-4279-9986-04f2debda26d <=< ACCEPT -->COPYRIGHT
        Copyright (c) 1991-2016 Free Software Foundation, Inc.
 
        Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation
        License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, with no
        Front-Cover Texts, and with no Back-Cover Texts.  A copy of the license is included in the section entitled "GNU Free
-       Documentation License".
+       Documentation License".<!-- ACCEPT >=> 544d7ff3-a3f2-4279-9986-04f2debda26d -->
 
 binutils-2.27                                              2016-08-06                                                      NM(1)
 NOHUP(1)                                                  User Commands                                                 NOHUP(1)
@@ -22626,8 +22626,8 @@ DESCRIPTION
        standard error and shall terminate.
 
 OPTIONS
-       The pax utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guidelines,
-       except that the order of presentation of the −o, −p, and −s options is significant.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The pax utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guidelines,
+       except that the order of presentation of the −o, −p, and −s options is significant.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -24556,8 +24556,8 @@ DESCRIPTION
        The prs utility shall write to standard output parts or all of an SCCS file in a user-supplied format.
 
 OPTIONS
-       The  prs  utility  shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines,
-       except that the −r option has an optional option-argument. This optional option-argument cannot be presented as  a  sepa‐
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The  prs  utility  shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines,
+       except that the −r option has an optional option-argument<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->. This optional option-argument cannot be presented as  a  sepa‐
        rate argument. The following options shall be supported:
 
        −d dataspec
@@ -24723,8 +24723,8 @@ STDOUT
        ***   The  line  statistics  are capped at 99999. For example, if 100000 lines were unchanged in a certain revision, :Lu:
              shall produce the value 99999.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -25826,7 +25826,7 @@ DESCRIPTION
        defined.
 
 OPTIONS
-       The qalter utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The qalter utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported by the implementation:
 
@@ -26163,8 +26163,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        None.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -26359,8 +26359,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        An implementation of the qdel utility may write informative messages to standard output.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -26463,7 +26463,7 @@ DESCRIPTION
        cessed batch job_identifier.
 
 OPTIONS
-       The qhold utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The qhold utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option shall be supported by the implementation:
 
@@ -26539,8 +26539,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        None.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -26678,8 +26678,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        None.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -26773,7 +26773,7 @@ DESCRIPTION
        corresponds to each successfully processed batch job_identifier.
 
 OPTIONS
-       The qmsg utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The qmsg utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported by the implementation:
 
@@ -26831,8 +26831,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        None.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -26972,8 +26972,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        None.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -27064,7 +27064,7 @@ DESCRIPTION
        processed batch job_identifier.
 
 OPTIONS
-       The qrls utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The qrls utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option shall be supported by the implementation:
 
@@ -27140,9 +27140,9 @@ ASYNCHRONOUS EVENTS
 STDOUT
        None.
 
-STDERR
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
        The standard error shall be used only for diagnostic messages.
-
+<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 OUTPUT FILES
        None.
 
@@ -27263,8 +27263,8 @@ DESCRIPTION
                ment.
 
 OPTIONS
-       The  qselect  utility  shall  conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guide‐
-       lines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The  qselect  utility  shall  conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guide‐
+       lines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported by the implementation:
 
@@ -27575,8 +27575,8 @@ STDOUT
 
            sequence_number.server_name@server
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -27704,7 +27704,7 @@ DESCRIPTION
        Signal Job Request sent to a batch server at the time the utility exits.
 
 OPTIONS
-       The qsig utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The qsig utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option shall be supported by the implementation:
 
@@ -27756,8 +27756,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        An implementation of the qsig utility may write informative messages to standard output.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -27861,7 +27861,7 @@ DESCRIPTION
        ity shall acquire server status information by sending a Server Status Request to a batch server.
 
 OPTIONS
-       The qstat utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The qstat utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported by the implementation:
 
@@ -28021,8 +28021,8 @@ STDOUT
 
         *  Additional implementation-defined information, if any, about the server
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -28128,7 +28128,7 @@ DESCRIPTION
        PBS_O_HOST    The name of the host on which the qsub utility is running.
 
 OPTIONS
-       The qsub utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The qsub utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported by the implementation:
 
@@ -28582,8 +28582,8 @@ STDOUT
        The  qsub  utility  writes the batch job_identifier assigned to the batch job to standard output, unless the −z option is
        specified.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -28804,7 +28804,7 @@ DESCRIPTION
        it shall not affect the shell variables in the caller's environment.
 
 OPTIONS
-       The read utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The read utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option is supported:
 
@@ -29325,7 +29325,7 @@ DESCRIPTION
         3. The owner of the directory containing the SCCS file
 
 OPTIONS
-       The rmdel utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The rmdel utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option shall be supported:
 
@@ -29373,8 +29373,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        Not used.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        The  SCCS  files  shall  be files of unspecified format. During processing of a file, a temporary x-file, as described in
@@ -29553,9 +29553,9 @@ STDOUT
 
            "\n%s:\n", &amp;lt;pathname&amp;gt;
 
-STDERR
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
        The standard error shall be used only for optional informative messages concerning SCCS files with no  impending  deltas,
-       and for diagnostic messages.
+       and for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -29629,8 +29629,8 @@ DESCRIPTION
        sact, unget, val, or what) or one of the pseudo-utilities listed in the EXTENDED DESCRIPTION section.
 
 OPTIONS
-       The sccs utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility  Syntax  Guidelines,
-       except  that options operands are actually options to be passed to the utility named by command.  When the portion of the
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The sccs utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility  Syntax  Guidelines,
+       except  that options operands are actually options to be passed to the utility named by command.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->  When the portion of the
        command:
 
            command [options ... ] [operands ... ]
@@ -30498,8 +30498,8 @@ DESCRIPTION
        description.
 
 OPTIONS
-       The sh utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section  12.2,  Utility  Syntax  Guidelines,
-       with an extension for support of a leading &amp;lt;plus-sign&amp;gt; ('+') as noted below.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The sh utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section  12.2,  Utility  Syntax  Guidelines,
+       with an extension for support of a leading &amp;lt;plus-sign&amp;gt; ('+') as noted below.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The  −a,  −b,  −C,  −e, −f, −m, −n, −o option, −u, −v, and −x options are described as part of the set utility in Section
        2.14, Special Built-In Utilities.  The option letters derived from the set special built-in shall also be accepted with a
@@ -31775,13 +31775,13 @@ OPTIONS
 SEE ALSO
        ar(1), nm(1), objdump(1), ranlib(1), readelf(1) and the Info entries for binutils.
 
-COPYRIGHT
+<!-- 544d7ff3-a3f2-4279-9986-04f2debda26d <=< ACCEPT -->COPYRIGHT
        Copyright (c) 1991-2016 Free Software Foundation, Inc.
 
        Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation
        License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, with no
        Front-Cover Texts, and with no Back-Cover Texts.  A copy of the license is included in the section entitled "GNU Free
-       Documentation License".
+       Documentation License".<!-- ACCEPT >=> 544d7ff3-a3f2-4279-9986-04f2debda26d -->
 
 binutils-2.27                                              2016-08-06                                                 STRINGS(1)
 STRIP(1)                                              GNU Development Tools                                             STRIP(1)
@@ -31974,13 +31974,13 @@ OPTIONS
 SEE ALSO
        the Info entries for binutils.
 
-COPYRIGHT
+<!-- 544d7ff3-a3f2-4279-9986-04f2debda26d <=< ACCEPT -->COPYRIGHT
        Copyright (c) 1991-2016 Free Software Foundation, Inc.
 
        Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation
        License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, with no
        Front-Cover Texts, and with no Back-Cover Texts.  A copy of the license is included in the section entitled "GNU Free
-       Documentation License".
+       Documentation License".<!-- ACCEPT >=> 544d7ff3-a3f2-4279-9986-04f2debda26d -->
 
 binutils-2.27                                              2016-08-06                                                   STRIP(1)
 STTY(1)                                                   User Commands                                                  STTY(1)
@@ -33594,8 +33594,8 @@ DESCRIPTION
 
        15    SIGTERM
 
-       The trap special built-in shall conform to the Base Definitions volume of  POSIX.1‐2008,  Section  12.2,  Utility  Syntax
-       Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The trap special built-in shall conform to the Base Definitions volume of  POSIX.1‐2008,  Section  12.2,  Utility  Syntax
+       Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
 OPTIONS
        None.
@@ -33883,8 +33883,8 @@ STDOUT
        typically  identifies the operand as a shell built-in, function, alias, or keyword, and where applicable, may display the
        operand's pathname.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -33959,7 +33959,7 @@ DESCRIPTION
        processes (files of any size may be read). Only a process with appropriate privileges can increase the limit.
 
 OPTIONS
-       The ulimit utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The ulimit utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option shall be supported:
 
@@ -34008,8 +34008,8 @@ STDOUT
 
            "unlimited\n"
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -34099,7 +34099,7 @@ DESCRIPTION
        ation mask of the invoking process.
 
 OPTIONS
-       The umask utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The umask utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option shall be supported:
 
@@ -34172,8 +34172,8 @@ STDOUT
 
        If a mask operand is specified, there shall be no output written to standard output.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -34301,8 +34301,8 @@ DESCRIPTION
        The aliases shall be removed from the current shell execution environment; see Section 2.12, Shell Execution Environment.
 
 OPTIONS
-       The unalias utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section  12.2,  Utility  Syntax  Guide‐
-       lines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The unalias utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section  12.2,  Utility  Syntax  Guide‐
+       lines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option shall be supported:
 
@@ -34344,8 +34344,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        Not used.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -34489,8 +34489,8 @@ DESCRIPTION
        implementation-defined whether values of −b greater than 14 are supported.
 
 OPTIONS
-       The uncompress utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax  Guide‐
-       lines, except that Guideline 1 does apply since the utility name has ten letters.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The uncompress utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax  Guide‐
+       lines, except that Guideline 1 does apply since the utility name has ten letters.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -34663,7 +34663,7 @@ DESCRIPTION
        The unget utility shall reverse the effect of a get −e done prior to creating the intended new delta.
 
 OPTIONS
-       The unget utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The unget utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -34724,8 +34724,8 @@ STDOUT
 
            "\n%s:\n", &amp;lt;pathname&amp;gt;
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        Any  SCCS  files  updated  shall  be  files  of an unspecified format.  During processing of a file, a locking z-file, as
@@ -35156,8 +35156,8 @@ DESCRIPTION
        tem, the results of uudecode are unspecified.
 
 OPTIONS
-       The uudecode utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guide‐
-       lines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The uudecode utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guide‐
+       lines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option shall be supported by the implementation:
 
@@ -35202,9 +35202,9 @@ STDOUT
        the standard output shall be in the same format as the file originally encoded by uuencode.  Otherwise, the standard out‐
        put shall not be used.
 
-STDERR
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
        The standard error shall be used only for diagnostic messages.
-
+<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 OUTPUT FILES
        The output file shall be in the same format as the file originally encoded by uuencode.
 
@@ -35287,8 +35287,8 @@ DESCRIPTION
        for re-creation of the file on another system that conforms to this volume of POSIX.1‐2008.
 
 OPTIONS
-       The uuencode utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guide‐
-       lines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The uuencode utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guide‐
+       lines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option shall be supported by the implementation:
 
@@ -35431,8 +35431,8 @@ STDOUT
        the  local  character  set  as  described  above,  followed by the encoded characters. The maximum number of octets to be
        encoded on each line shall be 45.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -35886,9 +35886,9 @@ DESCRIPTION
        options.
 
 OPTIONS
-       The val utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guidelines,
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The val utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2,  Utility  Syntax  Guidelines,
        except  that the usage of the '−' operand is not strictly as intended by the guidelines (that is, reading options and op‐
-       erands from standard input).
+       erands from standard input).<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following options shall be supported:
 
@@ -36618,8 +36618,8 @@ ASYNCHRONOUS EVENTS
 STDOUT
        Not used.
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
@@ -36829,7 +36829,7 @@ DESCRIPTION
            "   &amp;gt;   newline   \   NUL
 
 OPTIONS
-       The what utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.
+       <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The what utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
 
        The following option shall be supported:
 
@@ -36872,8 +36872,8 @@ STDOUT
 
            "%s:\n\t%s\n", &amp;lt;pathname&amp;gt;, &amp;lt;identification string&amp;gt;
 
-STDERR
-       The standard error shall be used only for diagnostic messages.
+<!-- 69b9765f-24ad-418f-ace0-31173ecdcdfd <=< ACCEPT -->STDERR
+       The standard error shall be used only for diagnostic messages.<!-- ACCEPT >=> 69b9765f-24ad-418f-ace0-31173ecdcdfd -->
 
 OUTPUT FILES
        None.
