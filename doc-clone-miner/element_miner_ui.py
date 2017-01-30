@@ -117,9 +117,11 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
         self.acceptRangeAction = QAction("&Accept", self)
         self.ignoreRangeAction = QAction("&Ignore", self)
+        self.newUUIDAction = QAction("&New UUID", self)
         self.saveSourceAction = QAction("&Save", self)
         self.tbSrcCode.addAction(self.acceptRangeAction)
         self.tbSrcCode.addAction(self.ignoreRangeAction)
+        self.tbSrcCode.addAction(self.newUUIDAction)
         self.tbSrcCode.addAction(self.saveSourceAction)
 
         self.bindEvents()
@@ -158,6 +160,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.closeButton.clicked.connect(self.close_tab)
         self.acceptRangeAction.triggered.connect(self.acceptRange)
         self.ignoreRangeAction.triggered.connect(self.ignoreRange)
+        self.newUUIDAction.triggered.connect(self.newUUID)
         self.saveSourceAction.triggered.connect(self.saveSource)
         # self.showClonesMarkup.toggled.connect(self.show_clones_markup_toggled)
 
@@ -186,6 +189,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.editCoordinateCorrections[se[0]] = dl
         self.tbSrcCode.setPlainText(pt)
         print("Ignore range: " + repr(se))
+
+    @QtCore.pyqtSlot()
+    def newUUID(self):
+        sourcemarkers.RangeMarker.forceNewUUID()
 
     @QtCore.pyqtSlot()
     def saveSource(self):

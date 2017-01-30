@@ -26,6 +26,11 @@ class RangeMarker(metaclass=ABCMeta):
     def marker_type(self):
         pass
 
+    def forceNewUUID():
+        oid = RangeMarker.id
+        RangeMarker.id = uuid.uuid4()
+        print("UUID: %s -> %s" % (str(oid), str(RangeMarker.id)), file=sys.stderr)
+
     def apply(self, text, qtCursor=None):
         tt = self.marker_type()
         u = str(RangeMarker.id)
