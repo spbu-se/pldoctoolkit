@@ -815,11 +815,11 @@ DESCRIPTION
 
        User notification and the processing of the job's standard output and standard error are described under the −m option.
 
-       Users  shall  be  permitted  to  use at if their name appears in the file at.allow which is located in an implementation-
+<!-- 78dff809-38f3-4a82-8467-cacb2657b443 <=< ACCEPT -->       Users  shall  be  permitted  to  use at if their name appears in the file at.allow which is located in an implementation-
        defined directory.  If that file does not exist, the file at.deny, which is located in an  implementation-defined  direc‐
        tory,  shall  be  checked  to  determine  whether  the user shall be denied access to at.  If neither file exists, only a
        process with appropriate privileges shall be allowed to submit a job. If only at.deny exists and is empty,  global  usage
-       shall be permitted. The at.allow and at.deny files shall consist of one user name per line.
+       shall be permitted. The at.allow and at.deny files shall consist of one user name per line.<!-- ACCEPT >=> 78dff809-38f3-4a82-8467-cacb2657b443 -->
 
 OPTIONS
        <!-- 569fb937-7213-40d6-a379-c90135f40c8b <=< ACCEPT -->The at utility shall conform to the Base Definitions volume of POSIX.1‐2008, Section 12.2, Utility Syntax Guidelines.<!-- ACCEPT >=> 569fb937-7213-40d6-a379-c90135f40c8b -->
@@ -1886,14 +1886,14 @@ EXTENDED DESCRIPTION
        same string value shall simply append output to the file. The file remains open until the close function (see  Input/Out‐
        put and General Functions) is called with an expression that evaluates to the same string value.
 
-       The third form shall write output onto a stream piped to the input of a command. The stream shall be created if no stream
+<!-- e3a247bc-6ddd-4e9a-be92-a4b70a1d0aad <=< ACCEPT -->       The third form shall write output onto a stream piped to the input of a command. The stream shall be created if no stream
        is currently open with the value of expression as its command name. The stream created shall be equivalent to one created
        by a call to the popen() function defined in the System Interfaces volume of POSIX.1‐2008 with the value of expression as
        the command argument and a value of w as the mode argument. As long as the stream remains open, subsequent calls in which
        expression  evaluates  to  the  same string value shall write output to the existing stream. The stream shall remain open
        until the close function (see Input/Output and General Functions) is called with an expression that evaluates to the same
        string  value.   At  that time, the stream shall be closed as if by a call to the pclose() function defined in the System
-       Interfaces volume of POSIX.1‐2008.
+       Interfaces volume of POSIX.1‐2008.<!-- ACCEPT >=> e3a247bc-6ddd-4e9a-be92-a4b70a1d0aad -->
 
        As described in detail by the grammar in Grammar, these output statements shall take a &amp;lt;comma&amp;gt;-separated list of  expres‐
        sions  referred  to  in the grammar by the non-terminal symbols expr_list, print_expr_list, or print_expr_list_opt.  This
@@ -2050,7 +2050,7 @@ EXTENDED DESCRIPTION
                  successful, the function shall return zero; otherwise, it shall return non-zero.
 
        expression | getline [var]
-                 Read  a  record  of  input  from a stream piped from the output of a command. The stream shall be created if no
+<!-- e3a247bc-6ddd-4e9a-be92-a4b70a1d0aad <=< ACCEPT -->                 Read  a  record  of  input  from a stream piped from the output of a command. The stream shall be created if no
                  stream is currently open with the value of expression as its command name. The stream created shall be  equiva‐
                  lent  to one created by a call to the popen() function with the value of expression as the command argument and
                  a value of r as the mode argument. As long as the stream remains open, subsequent  calls  in  which  expression
@@ -2058,7 +2058,7 @@ EXTENDED DESCRIPTION
                  until the close function is called with an expression that evaluates to the same string value.  At  that  time,
                  the stream shall be closed as if by a call to the pclose() function. If var is omitted, $0 and NF shall be set;
                  otherwise, var shall be set and, if appropriate, it shall be considered a numeric string  (see  Expressions  in
-                 awk).
+                 awk).<!-- ACCEPT >=> e3a247bc-6ddd-4e9a-be92-a4b70a1d0aad -->
 
                  The getline operator can form ambiguous constructs when there are unparenthesized operators (including concate‐
                  nate) to the left of the '|' (to the beginning of the expression containing getline).  In the  context  of  the
@@ -3097,11 +3097,11 @@ DESCRIPTION
        no  time  constraints  and  shall be run by the system using algorithms, based on unspecified factors, that may vary with
        each invocation of batch.
 
-       Users shall be permitted to use batch if their name appears in the file at.allow which is located in  an  implementation-
+<!-- 78dff809-38f3-4a82-8467-cacb2657b443 <=< ACCEPT -->       Users shall be permitted to use batch if their name appears in the file at.allow which is located in  an  implementation-
        defined  directory.   If that file does not exist, the file at.deny, which is located in an implementation-defined direc‐
        tory, shall be checked to determine whether the user shall be denied access to batch.  If neither  file  exists,  only  a
        process  with  appropriate privileges shall be allowed to submit a job. If only at.deny exists and is empty, global usage
-       shall be permitted. The at.allow and at.deny files shall consist of one user name per line.
+       shall be permitted. The at.allow and at.deny files shall consist of one user name per line.<!-- ACCEPT >=> 78dff809-38f3-4a82-8467-cacb2657b443 -->
 
 OPTIONS
        None.
@@ -3975,7 +3975,7 @@ APPLICATION USAGE
        each bg operates in a different environment and does not share its parent shell's understanding of jobs. For this reason,
        bg is generally implemented as a shell regular built-in.
 
-EXAMPLES
+<!-- 807a3da9-433a-49d1-8bd6-a36ad1587262 <=< ACCEPT -->EXAMPLES
        None.
 
 RATIONALE
@@ -3983,7 +3983,7 @@ RATIONALE
        KornShell. The job control features provided by bg, fg, and jobs are also based on the KornShell. The standard developers
        examined the characteristics of the C shell versions of these utilities and found that differences exist.  Despite  wide‐
        spread  use  of the C shell, the KornShell versions were selected for this volume of POSIX.1‐2008 to maintain a degree of
-       uniformity with the rest of the KornShell features selected (such as the very popular command line editing features).
+       uniformity with the rest of the KornShell features selected (such as the very popular command line editing features).<!-- ACCEPT >=> 807a3da9-433a-49d1-8bd6-a36ad1587262 -->
 
        The bg utility is expected to wrap its output if the output exceeds the number of display columns.
 
@@ -10641,12 +10641,12 @@ RATIONALE
                  Because of the difficulties of synchronization over a network, the exact nature of the interaction is  unspeci‐
                  fied.
 
-       The  initialization  process for the history file can be dependent on the system start-up files, in that they may contain
+<!-- eb8590b8-38e3-47ba-ae58-bcabb6e7d33f <=< ACCEPT -->       The  initialization  process for the history file can be dependent on the system start-up files, in that they may contain
        commands that effectively preempt the settings the user has for HISTFILE and HISTSIZE.  For example, function  definition
        commands  are  recorded  in  the  history  file. If the system administrator includes function definitions in some system
        start-up file called before the ENV file, the history file is initialized before the user can influence its  characteris‐
        tics.  In  some historical shells, the history file is initialized just after the ENV file has been processed. Because of
-       these situations, the text requires the initialization process to be implementation-defined.
+       these situations, the text requires the initialization process to be implementation-defined.<!-- ACCEPT >=> eb8590b8-38e3-47ba-ae58-bcabb6e7d33f -->
 
        Consideration was given to omitting the fc utility in favor of the command line editing feature in sh.  For  example,  in
        vi editing mode, typing "&amp;lt;ESC&amp;gt;v" is equivalent to:
@@ -10782,7 +10782,7 @@ APPLICATION USAGE
        ronment has no applicable jobs to manipulate. See the APPLICATION USAGE section for bg.  For this reason, fg is generally
        implemented as a shell regular built-in.
 
-EXAMPLES
+<!-- 807a3da9-433a-49d1-8bd6-a36ad1587262 <=< ACCEPT -->EXAMPLES
        None.
 
 RATIONALE
@@ -10790,7 +10790,7 @@ RATIONALE
        KornShell. The job control features provided by bg, fg, and jobs are also based on the KornShell. The standard developers
        examined  the  characteristics of the C shell versions of these utilities and found that differences exist. Despite wide‐
        spread use of the C shell, the KornShell versions were selected for this volume of POSIX.1‐2008 to maintain a  degree  of
-       uniformity with the rest of the KornShell features selected (such as the very popular command line editing features).
+       uniformity with the rest of the KornShell features selected (such as the very popular command line editing features).<!-- ACCEPT >=> 807a3da9-433a-49d1-8bd6-a36ad1587262 -->
 
 FUTURE DIRECTIONS
        None.
@@ -11582,11 +11582,11 @@ EXPRESSION
        -perm +mode
               This is no longer supported (and has been deprecated since 2005).  Use -perm /mode instead.
 
-       -readable
+<!-- 8eb14179-8c68-493f-b0e7-cc3b1f4596db <=< ACCEPT -->       -readable
               Matches files which are readable.  This takes into account access control lists and  other  permissions  artefacts
               which  the  -perm  test  ignores.   This  test makes use of the access(2) system call, and so can be fooled by NFS
               servers which do UID mapping (or root-squashing), since many systems implement access(2) in  the  client's  kernel
-              and so cannot make use of the UID mapping information held on the server.
+              and so cannot make use of the UID mapping information held on the server.<!-- ACCEPT >=> 8eb14179-8c68-493f-b0e7-cc3b1f4596db -->
 
        -regex pattern
               File  name  matches regular expression pattern.  This is a match on the whole path, not a search.  For example, to
@@ -11651,11 +11651,11 @@ EXPRESSION
        -wholename pattern
               See -path.  This alternative is less portable than -path.
 
-       -writable
+<!-- 8eb14179-8c68-493f-b0e7-cc3b1f4596db <=< ACCEPT -->       -writable
               Matches  files  which  are writable.  This takes into account access control lists and other permissions artefacts
               which the -perm test ignores.  This test makes use of the access(2) system call, and  so  can  be  fooled  by  NFS
               servers  which  do  UID mapping (or root-squashing), since many systems implement access(2) in the client's kernel
-              and so cannot make use of the UID mapping information held on the server.
+              and so cannot make use of the UID mapping information held on the server.<!-- ACCEPT >=> 8eb14179-8c68-493f-b0e7-cc3b1f4596db -->
 
        -xtype c
               The same as -type unless the file is a symbolic link.  For symbolic links: if the -H or -P option  was  specified,
@@ -14324,9 +14324,9 @@ NOTES
 SEE ALSO
        ipcs(1), ipcmk(1), msgctl(2), msgget(2), semctl(2), semget(2), shmctl(2), shmdt(2), shmget(2), ftok(3)
 
-AVAILABILITY
+<!-- 9bb4bd49-308a-46f3-9482-2650cecdb8e7 <=< ACCEPT -->AVAILABILITY
        The  ipcrm command is part of the util-linux package and is available from Linux Kernel Archive ⟨ftp://ftp.kernel.org/pub
-       /linux/utils/util-linux/⟩.
+       /linux/utils/util-linux/⟩.<!-- ACCEPT >=> 9bb4bd49-308a-46f3-9482-2650cecdb8e7 -->
 
 util-linux                                                  July 2014                                                   IPCRM(1)
 IPCS(1)                                                   User Commands                                                  IPCS(1)
@@ -14405,9 +14405,9 @@ CONFORMING TO
 AUTHOR
        Krishna Balasubramanian ⟨balasub@cis.ohio-state.edu⟩
 
-AVAILABILITY
+<!-- 9bb4bd49-308a-46f3-9482-2650cecdb8e7 <=< ACCEPT -->AVAILABILITY
        The  ipcs  command is part of the util-linux package and is available from Linux Kernel Archive ⟨ftp://ftp.kernel.org/pub
-       /linux/utils/util-linux/⟩.
+       /linux/utils/util-linux/⟩.<!-- ACCEPT >=> 9bb4bd49-308a-46f3-9482-2650cecdb8e7 -->
 
 util-linux                                                  July 2014                                                    IPCS(1)
 JOBS(1P)                                            POSIX Programmer's Manual                                           JOBS(1P)
@@ -14796,9 +14796,9 @@ AUTHORS
 
        The original version was taken from BSD 4.4.
 
-AVAILABILITY
+<!-- 9bb4bd49-308a-46f3-9482-2650cecdb8e7 <=< ACCEPT -->AVAILABILITY
        The kill command is part of the util-linux package and is available from Linux Kernel  Archive  ⟨ftp://ftp.kernel.org/pub
-       /linux/utils/util-linux/⟩.
+       /linux/utils/util-linux/⟩.<!-- ACCEPT >=> 9bb4bd49-308a-46f3-9482-2650cecdb8e7 -->
 
 util-linux                                                  July 2014                                                    KILL(1)
 LEX(1P)                                             POSIX Programmer's Manual                                            LEX(1P)
@@ -16126,9 +16126,9 @@ SEE ALSO
 STANDARDS
        The logger command is expected to be IEEE Std 1003.2 ("POSIX.2") compatible.
 
-AVAILABILITY
+<!-- 9bb4bd49-308a-46f3-9482-2650cecdb8e7 <=< ACCEPT -->AVAILABILITY
        The logger command is part of the util-linux package and is available from Linux Kernel Archive ⟨ftp://ftp.kernel.org/pub
-       /linux/utils/util-linux/⟩.
+       /linux/utils/util-linux/⟩.<!-- ACCEPT >=> 9bb4bd49-308a-46f3-9482-2650cecdb8e7 -->
 
 util-linux                                                November 2015                                                LOGGER(1)
 LOGNAME(1)                                                User Commands                                               LOGNAME(1)
@@ -20730,9 +20730,9 @@ OPTIONS
               Specify which output pager to use.  By default, man uses less.  This option overrides  the  $MANPAGER  environment
               variable, which in turn overrides the $PAGER environment variable.  It is not used in conjunction with -f or -k.
 
-              The value may be a simple command name or a command with arguments, and may use shell quoting (backslashes, single
+<!-- 450db201-10a5-4c70-8648-3d6f79786a4b <=< ACCEPT -->              The value may be a simple command name or a command with arguments, and may use shell quoting (backslashes, single
               quotes, or double quotes).  It may not use pipes to connect multiple commands; if you need  that,  use  a  wrapper
-              script, which may take the file to display either as an argument or on standard input.
+              script, which may take the file to display either as an argument or on standard input.<!-- ACCEPT >=> 450db201-10a5-4c70-8648-3d6f79786a4b -->
 
        -r prompt, --prompt=prompt
               If  a  recent  version of less is used as the pager, man will attempt to set its prompt and some sensible options.
@@ -20874,9 +20874,9 @@ ENVIRONMENT
               If $MANPAGER or $PAGER is set ($MANPAGER is used in preference), its value is used as the name of the program used
               to display the manual page.  By default, less is used.
 
-              The value may be a simple command name or a command with arguments, and may use shell quoting (backslashes, single
+<!-- 450db201-10a5-4c70-8648-3d6f79786a4b <=< ACCEPT -->              The value may be a simple command name or a command with arguments, and may use shell quoting (backslashes, single
               quotes,  or  double  quotes).   It may not use pipes to connect multiple commands; if you need that, use a wrapper
-              script, which may take the file to display either as an argument or on standard input.
+              script, which may take the file to display either as an argument or on standard input.<!-- ACCEPT >=> 450db201-10a5-4c70-8648-3d6f79786a4b -->
 
        MANLESS
               If $MANLESS is set, its value will be used as the default prompt string for the less pager,  as  if  it  had  been
@@ -21220,9 +21220,9 @@ HISTORY
        use in the Linux community.  Documentation was produced using several other versions  of  the  man  page,  and  extensive
        inspection of the source code.
 
-AVAILABILITY
+<!-- 9bb4bd49-308a-46f3-9482-2650cecdb8e7 <=< ACCEPT -->AVAILABILITY
        The  more  command is part of the util-linux package and is available from Linux Kernel Archive ⟨ftp://ftp.kernel.org/pub
-       /linux/utils/util-linux/⟩.
+       /linux/utils/util-linux/⟩.<!-- ACCEPT >=> 9bb4bd49-308a-46f3-9482-2650cecdb8e7 -->
 
 util-linux                                                February 2014                                                  MORE(1)
 MV(1)                                                     User Commands                                                    MV(1)
@@ -21689,14 +21689,14 @@ OPTIONS
        --target=bfdname
            Specify an object code format other than your system's default format.
 
-       @file
+<!-- 2ea27dfd-7fa3-4495-92bd-e38a71a7bead <=< ACCEPT -->       @file
            Read command-line options from file.  The options read are inserted in place of the original @file option.  If file
            does not exist, or cannot be read, then the option will be treated literally, and not removed.
 
            Options in file are separated by whitespace.  A whitespace character may be included in an option by surrounding the
            entire option in either single or double quotes.  Any character (including a backslash) may be included by prefixing
            the character to be included with a backslash.  The file may itself contain additional @file options; any such
-           options will be processed recursively.
+           options will be processed recursively.<!-- ACCEPT >=> 2ea27dfd-7fa3-4495-92bd-e38a71a7bead -->
 
 SEE ALSO
        ar(1), objdump(1), ranlib(1), and the Info entries for binutils.
@@ -22471,7 +22471,7 @@ BUGS
        Computing  how  to merge a hunk is significantly harder than using the standard fuzzy algorithm.  Bigger hunks, more con‐
        text, a bigger offset from the original location, and a worse match all slow the algorithm down.
 
-COPYING
+<!-- 3c01cbc4-c9ad-4663-b92e-e905e3d9e4e5 <=< ACCEPT -->COPYING
        Copyright (C) 1984, 1985, 1986, 1988 Larry Wall.
        Copyright (C) 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,  2001,  2002,  2009  Free  Software
        Foundation, Inc.
@@ -22485,7 +22485,7 @@ COPYING
 
        Permission is granted to copy and distribute translations of this manual into another language, under  the  above  condi‐
        tions for modified versions, except that this permission notice may be included in translations approved by the copyright
-       holders instead of in the original English.
+       holders instead of in the original English.<!-- ACCEPT >=> 3c01cbc4-c9ad-4663-b92e-e905e3d9e4e5 -->
 
 AUTHORS
        Larry Wall wrote the original version of patch.  Paul Eggert removed patch's arbitrary limits; added support  for  binary
@@ -25349,7 +25349,7 @@ STANDARD FORMAT SPECIFIERS
 
        cgroup      CGROUP    display control groups to which the process belongs.
 
-       class       CLS       scheduling class of the process.  (alias policy, cls).  Field's possible values are:
+<!-- 2ccf1bb3-0f86-418a-966b-eb7b9ec36d86 <=< ACCEPT -->       class       CLS       scheduling class of the process.  (alias policy, cls).  Field's possible values are:
 
                                       -   not reported
                                       TS  SCHED_OTHER
@@ -25359,8 +25359,8 @@ STANDARD FORMAT SPECIFIERS
                                       ISO SCHED_ISO
                                       IDL SCHED_IDLE
                                       ?   unknown value
-
-       cls         CLS       scheduling class of the process.  (alias policy, cls).  Field's possible values are:
+<!-- ACCEPT >=> 2ccf1bb3-0f86-418a-966b-eb7b9ec36d86 -->
+<!-- 2ccf1bb3-0f86-418a-966b-eb7b9ec36d86 <=< ACCEPT -->       cls         CLS       scheduling class of the process.  (alias policy, cls).  Field's possible values are:
 
                                       -   not reported
                                       TS  SCHED_OTHER
@@ -25369,7 +25369,7 @@ STANDARD FORMAT SPECIFIERS
                                       B   SCHED_BATCH
                                       ISO SCHED_ISO
                                       IDL SCHED_IDLE
-                                      ?   unknown value
+                                      ?   unknown value<!-- ACCEPT >=> 2ccf1bb3-0f86-418a-966b-eb7b9ec36d86 -->
 
        cmd         CMD       see args.  (alias args, command).
 
@@ -25490,7 +25490,7 @@ STANDARD FORMAT SPECIFIERS
 
        pmem        %MEM      see %mem.  (alias %mem).
 
-       policy      POL       scheduling class of the process.  (alias class, cls).  Possible values are:
+<!-- 2ccf1bb3-0f86-418a-966b-eb7b9ec36d86 <=< ACCEPT -->       policy      POL       scheduling class of the process.  (alias class, cls).  Possible values are:
 
                                       -   not reported
                                       TS  SCHED_OTHER
@@ -25499,7 +25499,7 @@ STANDARD FORMAT SPECIFIERS
                                       B   SCHED_BATCH
                                       ISO SCHED_ISO
                                       IDL SCHED_IDLE
-                                      ?   unknown value
+                                      ?   unknown value<!-- ACCEPT >=> 2ccf1bb3-0f86-418a-966b-eb7b9ec36d86 -->
 
        ppid        PPID      parent process ID.
 
@@ -26221,12 +26221,12 @@ RATIONALE
        port of the −A option assures users of a consistent interface and allows them to control accounting on servers that  sup‐
        port accounting.
 
-       The  −c  option  allows  users  to  alter the checkpointing interval of a batch job. A checkpointing system, which is not
+<!-- 8bfc654a-34b8-45df-92b7-77763e59a308 <=< ACCEPT -->       The  −c  option  allows  users  to  alter the checkpointing interval of a batch job. A checkpointing system, which is not
        defined by POSIX.1‐2008, allows recovery of a batch job at the most recent checkpoint in the event  of  a  crash.  Check‐
        pointing  is typically used for jobs that consume expensive computing time or must meet a critical schedule. Users should
        be allowed to make the tradeoff between the overhead of checkpointing and the risk to the timely completion of the  batch
        job;  therefore,  this  volume  of  POSIX.1‐2008 provides the checkpointing interval option. Support for checkpointing is
-       optional for servers.
+       optional for servers.<!-- ACCEPT >=> 8bfc654a-34b8-45df-92b7-77763e59a308 -->
 
        The −e option allows users to alter the name and location of the standard error stream written by a batch  job.  However,
        the path of the standard error stream is meaningless if the value of the Join_Path attribute of the batch job is TRUE.
@@ -28207,7 +28207,7 @@ OPTIONS
                  the  qsub  utility, then the value of the PBS_DPREFIX environment variable is used. If the environment variable
                  is not defined, then #PBS encoded in the portable character set is the default.
 
-       −e path_name
+<!-- bc4430eb-05c9-45ef-9ca4-962d2a9e19b5 <=< ACCEPT -->       −e path_name
                  Define the path to be used for the standard error stream of the batch job.
 
                  The qsub utility shall accept a path_name option-argument which can be preceded by a host name element  of  the
@@ -28233,7 +28233,7 @@ OPTIONS
 
                  The default filename for standard error has the following format:
 
-                     job_name.esequence_number
+                     job_name.esequence_number<!-- ACCEPT >=> bc4430eb-05c9-45ef-9ca4-962d2a9e19b5 -->
 
        −h        Specify that a USER hold is applied to the batch job.
 
@@ -28390,7 +28390,7 @@ OPTIONS
                  If  the −N option is not presented to the qsub utility, and the script is read from standard input, the utility
                  shall set the Job_Name attribute of the batch job to the value STDIN.
 
-       −o path_name
+<!-- bc4430eb-05c9-45ef-9ca4-962d2a9e19b5 <=< ACCEPT -->       −o path_name
                  Define the path for the standard output of the batch job.
 
                  The qsub utility shall accept a path_name option-argument that conforms to the syntax of the path_name  element
@@ -28417,7 +28417,7 @@ OPTIONS
 
                  The default filename for standard output has the following format:
 
-                     job_name.osequence_number
+                     job_name.osequence_number<!-- ACCEPT >=> bc4430eb-05c9-45ef-9ca4-962d2a9e19b5 -->
 
        −p priority
                  Define the priority the batch job should have relative to other batch jobs owned by the batch server.
@@ -28666,12 +28666,12 @@ RATIONALE
        The  −C  option allows users to prescribe the prefix for directives within the script file. The default prefix "#PBS" may
        be inappropriate if the script will be interpreted with an alternate shell, as specified by the −S option.
 
-       The −c option allows users to establish the checkpointing interval for their jobs. A checkpointing system, which  is  not
+<!-- 8bfc654a-34b8-45df-92b7-77763e59a308 <=< ACCEPT -->       The −c option allows users to establish the checkpointing interval for their jobs. A checkpointing system, which  is  not
        defined  by  this  volume of POSIX.1‐2008, allows recovery of a batch job at the most recent checkpoint in the event of a
        crash. Checkpointing is typically used for jobs that consume expensive computing time or must meet a  critical  schedule.
        Users  should be allowed to make the tradeoff between the overhead of checkpointing and the risk to the timely completion
        of the batch job; therefore, this volume of POSIX.1‐2008 provides the checkpointing interval option. Support  for  check‐
-       pointing is optional for batch servers.
+       pointing is optional for batch servers.<!-- ACCEPT >=> 8bfc654a-34b8-45df-92b7-77763e59a308 -->
 
        The  −e  option  allows users to redirect the standard error streams of their jobs to a non-default path. For example, if
        the submitted script generally produces a great deal of useless error output, a user might redirect  the  standard  error
@@ -29111,9 +29111,9 @@ BUGS
 HISTORY
        The renice command appeared in 4.0BSD.
 
-AVAILABILITY
+<!-- 9bb4bd49-308a-46f3-9482-2650cecdb8e7 <=< ACCEPT -->AVAILABILITY
        The renice command is part of the util-linux package and is available from Linux Kernel Archive ⟨ftp://ftp.kernel.org/pub
-       /linux/utils/util-linux/⟩.
+       /linux/utils/util-linux/⟩.<!-- ACCEPT >=> 9bb4bd49-308a-46f3-9482-2650cecdb8e7 -->
 
 util-linux                                                  July 2014                                                  RENICE(1)
 RETURN(1P)                                          POSIX Programmer's Manual                                         RETURN(1P)
@@ -31228,13 +31228,13 @@ RATIONALE
 
        Note:     There are other problems with set-user-ID scripts that the two approaches described here do not resolve.
 
-       The initialization process for the history file can be dependent on the system start-up files, in that they  may  contain
+<!-- eb8590b8-38e3-47ba-ae58-bcabb6e7d33f <=< ACCEPT -->       The initialization process for the history file can be dependent on the system start-up files, in that they  may  contain
        commands  that  effectively  preempt the user's settings of HISTFILE and HISTSIZE.  For example, function definition com‐
        mands are recorded in the history file, unless the set −o nolog option is set. If the system administrator includes func‐
        tion definitions in some system start-up file called before the ENV file, the history file is initialized before the user
        gets a chance to influence its characteristics. In some historical shells, the history file is initialized just after the
        ENV  file  has been processed. Therefore, it is implementation-defined whether changes made to HISTFILE after the history
-       file has been initialized are effective.
+       file has been initialized are effective.<!-- ACCEPT >=> eb8590b8-38e3-47ba-ae58-bcabb6e7d33f -->
 
        The default messages for the various MAIL-related messages are unspecified  because  they  vary  across  implementations.
        Typical messages are:
@@ -31763,14 +31763,14 @@ OPTIONS
            By default, output strings are delimited by a new-line. This option allows you to supply any string to be used as the
            output record separator.  Useful with --include-all-whitespace where strings may contain new-lines internally.
 
-       @file
+<!-- 2ea27dfd-7fa3-4495-92bd-e38a71a7bead <=< ACCEPT -->       @file
            Read command-line options from file.  The options read are inserted in place of the original @file option.  If file
            does not exist, or cannot be read, then the option will be treated literally, and not removed.
 
            Options in file are separated by whitespace.  A whitespace character may be included in an option by surrounding the
            entire option in either single or double quotes.  Any character (including a backslash) may be included by prefixing
            the character to be included with a backslash.  The file may itself contain additional @file options; any such
-           options will be processed recursively.
+           options will be processed recursively.<!-- ACCEPT >=> 2ea27dfd-7fa3-4495-92bd-e38a71a7bead -->
 
 SEE ALSO
        ar(1), nm(1), objdump(1), ranlib(1), readelf(1) and the Info entries for binutils.
@@ -37608,7 +37608,7 @@ BUGS
        In some rare cases, the --best option gives worse compression than the default compression level  (-6).  On  some  highly
        redundant files, compress compresses better than gzip.
 
-COPYRIGHT NOTICE
+<!-- 3c01cbc4-c9ad-4663-b92e-e905e3d9e4e5 <=< ACCEPT -->COPYRIGHT NOTICE
        Copyright © 1998-1999, 2001-2002, 2012, 2015-2016 Free Software Foundation, Inc.
        Copyright © 1992, 1993 Jean-loup Gailly
 
@@ -37621,7 +37621,7 @@ COPYRIGHT NOTICE
 
        Permission is granted to copy and distribute translations of this manual into another language, under  the  above  condi‐
        tions  for  modified  versions, except that this permission notice may be stated in a translation approved by the Founda‐
-       tion.
+       tion.<!-- ACCEPT >=> 3c01cbc4-c9ad-4663-b92e-e905e3d9e4e5 -->
 
                                                               local                                                      GZIP(1)
 
