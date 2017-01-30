@@ -53,3 +53,9 @@ LOGNAME   Determine the login name of the user.
 ...
 
 ---
+
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
+        Not used.
+...
+
+---

@@ -4034,7 +4034,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -4066,7 +4066,7 @@ EXIT STATUS
 CONSEQUENCES OF ERRORS
        Default.
 
-       The following sections are informative.
+       The following sections are informative.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
 APPLICATION USAGE
        None.
@@ -5658,7 +5658,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -5687,7 +5687,7 @@ EXIT STATUS
 
 CONSEQUENCES OF ERRORS
        Default.
-
+<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
        The following sections are informative.
 
 APPLICATION USAGE
@@ -6286,7 +6286,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -6318,7 +6318,7 @@ EXIT STATUS
 CONSEQUENCES OF ERRORS
        Default.
 
-       The following sections are informative.
+       The following sections are informative.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
 APPLICATION USAGE
        None.
@@ -8900,7 +8900,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -8933,7 +8933,7 @@ EXIT STATUS
 CONSEQUENCES OF ERRORS
        Default.
 
-       The following sections are informative.
+       The following sections are informative.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
 APPLICATION USAGE
        Since  eval  is not required to recognize the "--" end of options delimiter, in cases where the argument(s) to eval might
@@ -9906,7 +9906,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -9938,7 +9938,7 @@ EXIT STATUS
        wise, exec shall return a zero exit status.
 
 CONSEQUENCES OF ERRORS
-       Default.
+       Default.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
        The following sections are informative.
 
@@ -10018,7 +10018,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -10048,7 +10048,7 @@ EXIT STATUS
        that executed immediately preceding the trap action.
 
 CONSEQUENCES OF ERRORS
-       Default.
+       Default.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
        The following sections are informative.
 
@@ -10194,7 +10194,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -10224,7 +10224,7 @@ EXIT STATUS
 CONSEQUENCES OF ERRORS
        Default.
 
-       The following sections are informative.
+       The following sections are informative.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
 APPLICATION USAGE
        None.
@@ -28976,7 +28976,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -29006,7 +29006,7 @@ EXIT STATUS
 CONSEQUENCES OF ERRORS
        Default.
 
-       The following sections are informative.
+       The following sections are informative.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
 APPLICATION USAGE
        None.
@@ -29139,7 +29139,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -29170,7 +29170,7 @@ EXIT STATUS
        action.
 
 CONSEQUENCES OF ERRORS
-       Default.
+       Default.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
        The following sections are informative.
 
@@ -30280,7 +30280,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -30310,7 +30310,7 @@ EXIT STATUS
 CONSEQUENCES OF ERRORS
        Default.
 
-       The following sections are informative.
+       The following sections are informative.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
 APPLICATION USAGE
        Application writers should avoid relying on set −e within functions. For example, in the following script:
@@ -31334,7 +31334,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -31366,7 +31366,7 @@ EXIT STATUS
 CONSEQUENCES OF ERRORS
        Default.
 
-       The following sections are informative.
+       The following sections are informative.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
 APPLICATION USAGE
        None.
@@ -32992,7 +32992,7 @@ OPTIONS
 OPERANDS
        None.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -33020,7 +33020,7 @@ EXIT STATUS
        Zero.
 
 CONSEQUENCES OF ERRORS
-       Default.
+       Default.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
        The following sections are informative.
 
@@ -33603,7 +33603,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -33633,7 +33633,7 @@ EXIT STATUS
        do not cause the shell to abort.
 
 CONSEQUENCES OF ERRORS
-       Default.
+       Default.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
        The following sections are informative.
 
@@ -34932,7 +34932,7 @@ OPTIONS
 OPERANDS
        See the DESCRIPTION.
 
-STDIN
+<!-- fe96d119-27ce-4a62-99a9-ff5840fe1a84 <=< ACCEPT -->STDIN
        Not used.
 
 INPUT FILES
@@ -34962,7 +34962,7 @@ EXIT STATUS
        &amp;gt;0    At least one name could not be unset.
 
 CONSEQUENCES OF ERRORS
-       Default.
+       Default.<!-- ACCEPT >=> fe96d119-27ce-4a62-99a9-ff5840fe1a84 -->
 
        The following sections are informative.
 
