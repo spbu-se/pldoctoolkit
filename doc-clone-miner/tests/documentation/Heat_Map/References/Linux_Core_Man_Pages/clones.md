@@ -209,3 +209,8 @@ RATIONALE
                  Move the current cursor position to the next character position.
 
 ---
+
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
+       These commands are defined in the SQL standard, except for the
+
+---

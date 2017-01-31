@@ -2234,10 +2234,10 @@ EXAMPLES
 
            ALTER SEQUENCE serial RESTART WITH 105;
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        ALTER SEQUENCE conforms to the SQL standard, except for the START WITH,
        OWNED BY, OWNER TO, RENAME TO, and SET SCHEMA clauses, which are
-       PostgreSQL extensions.
+       PostgreSQL extensions.<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 
 SEE ALSO
        CREATE SEQUENCE (CREATE_SEQUENCE(7)), DROP SEQUENCE (DROP_SEQUENCE(7))
@@ -4428,9 +4428,9 @@ EXAMPLES
 
            DROP COLLATION german;
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        The DROP COLLATION command conforms to the SQL standard, apart from the
-       IF EXISTS option, which is a PostgreSQL extension.
+       IF EXISTS option, which is a PostgreSQL extension.<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 
 SEE ALSO
        ALTER COLLATION (ALTER_COLLATION(7)), CREATE COLLATION
@@ -9277,13 +9277,13 @@ EXAMPLES
                ON CONFLICT (did) WHERE is_active DO NOTHING;
 
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        INSERT conforms to the SQL standard, except that the RETURNING clause
        is a PostgreSQL extension, as is the ability to use WITH with INSERT,
        and the ability to specify an alternative action with ON CONFLICT.
        Also, the case in which a column name list is omitted, but not all the
        columns are filled from the VALUES clause or query, is disallowed by
-       the standard.
+       the standard.<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 
        Possible limitations of the query clause are documented under
        SELECT(7).
@@ -9532,11 +9532,11 @@ EXAMPLES
 
            DROP VIEW kinds;
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        This command conforms to the SQL standard, except that the standard
        only allows one view to be dropped per command, and apart from the IF
        EXISTS option, which is a PostgreSQL extension.
-
+<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 SEE ALSO
        ALTER VIEW (ALTER_VIEW(7)), CREATE VIEW (CREATE_VIEW(7))
 
@@ -11202,12 +11202,12 @@ EXAMPLES
 
        (This cast is already predefined in the system.)
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        The CREATE CAST command conforms to the SQL standard, except that SQL
        does not make provisions for binary-coercible types or extra arguments
        to implementation functions.  AS IMPLICIT is a PostgreSQL extension,
        too.
-
+<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 SEE ALSO
        CREATE FUNCTION (CREATE_FUNCTION(7)), CREATE TYPE (CREATE_TYPE(7)),
        DROP CAST (DROP_CAST(7))
@@ -11250,10 +11250,10 @@ EXAMPLES
 
            DROP DOMAIN box;
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        This command conforms to the SQL standard, except for the IF EXISTS
        option, which is a PostgreSQL extension.
-
+<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 SEE ALSO
        CREATE DOMAIN (CREATE_DOMAIN(7)), ALTER DOMAIN (ALTER_DOMAIN(7))
 
@@ -11775,9 +11775,9 @@ EXAMPLES
                FROM SERVER film_server INTO films;
 
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        The IMPORT FOREIGN SCHEMA command conforms to the SQL standard, except
-       that the OPTIONS clause is a PostgreSQL extension.
+       that the OPTIONS clause is a PostgreSQL extension.<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 
 SEE ALSO
        CREATE FOREIGN TABLE (CREATE_FOREIGN_TABLE(7)), CREATE SERVER
@@ -11941,11 +11941,11 @@ EXAMPLES
 
            DROP TABLE films, distributors;
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        This command conforms to the SQL standard, except that the standard
        only allows one table to be dropped per command, and apart from the IF
        EXISTS option, which is a PostgreSQL extension.
-
+<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 SEE ALSO
        ALTER TABLE (ALTER_TABLE(7)), CREATE TABLE (CREATE_TABLE(7))
 
@@ -13640,10 +13640,10 @@ EXAMPLES
 
            DROP SCHEMA mystuff CASCADE;
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        DROP SCHEMA is fully conforming with the SQL standard, except that the
        standard only allows one schema to be dropped per command, and apart
-       from the IF EXISTS option, which is a PostgreSQL extension.
+       from the IF EXISTS option, which is a PostgreSQL extension.<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 
 SEE ALSO
        ALTER SCHEMA (ALTER_SCHEMA(7)), CREATE SCHEMA (CREATE_SCHEMA(7))
@@ -15321,10 +15321,10 @@ EXAMPLES
 
            UPDATE films SET kind = 'Dramatic' WHERE CURRENT OF c_films;
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        This command conforms to the SQL standard, except that the FROM and
        RETURNING clauses are PostgreSQL extensions, as is the ability to use
-       WITH with UPDATE.
+       WITH with UPDATE.<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 
        Some other database systems offer a FROM option in which the target
        table is supposed to be listed again within FROM. That is not how
@@ -15481,10 +15481,10 @@ EXAMPLES
 
            DELETE FROM tasks WHERE CURRENT OF c_tasks;
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        This command conforms to the SQL standard, except that the USING and
        RETURNING clauses are PostgreSQL extensions, as is the ability to use
-       WITH with DELETE.
+       WITH with DELETE.<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 
 
 
@@ -17378,7 +17378,7 @@ EXAMPLES
            SELECT setval('serial', max(id)) FROM distributors;
            END;
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        CREATE SEQUENCE conforms to the SQL standard, with the following
        exceptions:
 
@@ -17387,7 +17387,7 @@ COMPATIBILITY
        o   Obtaining the next value is done using the nextval() function
            instead of the standard's NEXT VALUE FOR expression.
 
-       o   The OWNED BY clause is a PostgreSQL extension.
+       o   The OWNED BY clause is a PostgreSQL extension.<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 
 SEE ALSO
        ALTER SEQUENCE (ALTER_SEQUENCE(7)), DROP SEQUENCE (DROP_SEQUENCE(7))
@@ -17854,10 +17854,10 @@ EXAMPLES
            BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
            SET TRANSACTION SNAPSHOT '000003A1-1';
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        These commands are defined in the SQL standard, except for the
        DEFERRABLE transaction mode and the SET TRANSACTION SNAPSHOT form,
-       which are PostgreSQL extensions.
+       which are PostgreSQL extensions.<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 
        SERIALIZABLE is the default transaction isolation level in the
        standard. In PostgreSQL the default is ordinarily READ COMMITTED, but
@@ -19749,11 +19749,11 @@ EXAMPLES
 
            ALTER DOMAIN zipcode SET SCHEMA customers;
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        ALTER DOMAIN conforms to the SQL standard, except for the OWNER,
        RENAME, SET SCHEMA, and VALIDATE CONSTRAINT variants, which are
        PostgreSQL extensions. The NOT VALID clause of the ADD CONSTRAINT
-       variant is also a PostgreSQL extension.
+       variant is also a PostgreSQL extension.<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 
 SEE ALSO
        CREATE DOMAIN (CREATE_DOMAIN(7)), DROP DOMAIN (DROP_DOMAIN(7))
@@ -20266,11 +20266,11 @@ EXAMPLES
 
        The above transaction will insert both 3 and 4.<!-- ACCEPT >=> 01216d86-5036-4c40-bcfc-62c9554a3012 -->
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        This command conforms to the SQL standard. The standard specifies that
        the key word SAVEPOINT is mandatory, but PostgreSQL allows it to be
        omitted.
-
+<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 SEE ALSO
        BEGIN(7), COMMIT(7), ROLLBACK(7), ROLLBACK TO SAVEPOINT
        (ROLLBACK_TO_SAVEPOINT(7)), SAVEPOINT(7)
@@ -21137,10 +21137,10 @@ EXAMPLES
 
            DROP SEQUENCE serial;
 
-COMPATIBILITY
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
        DROP SEQUENCE conforms to the SQL standard, except that the standard
        only allows one sequence to be dropped per command, and apart from the
-       IF EXISTS option, which is a PostgreSQL extension.
+       IF EXISTS option, which is a PostgreSQL extension.<!-- ACCEPT >=> b7cebe8e-833c-4245-8805-df18754b45e9 -->
 
 SEE ALSO
        CREATE SEQUENCE (CREATE_SEQUENCE(7)), ALTER SEQUENCE
