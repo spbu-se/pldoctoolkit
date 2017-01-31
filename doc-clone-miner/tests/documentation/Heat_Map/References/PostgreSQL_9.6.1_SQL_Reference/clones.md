@@ -225,3 +225,20 @@
        When VERBOSE is specified,
 
 ---
+
+<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
+       These commands are defined in the SQL standard, except for the
+
+---
+
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                     DROP SEQUENCE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+
+---
+
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP SEQUENCE(7)        PostgreSQL 9.6.1 Documentation        DROP SEQUENCE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
+
+---
+
+<!-- 92371cd6-53c8-48df-9168-5b64fcd8be51 <=< ACCEPT -->           ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT SELECT ON TABLES TO PUBLIC;
+
+---

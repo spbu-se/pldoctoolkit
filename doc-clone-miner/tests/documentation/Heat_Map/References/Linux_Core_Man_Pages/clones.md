@@ -2,7 +2,8 @@ Linux Core Man Pages
 ====================
 
 173 pages
-Source length: 2089102, marked for reuse: 314515, reuse ratio: 15.1%
+
+length: 916177, marked for reuse: 153615, reuse ratio: 16.8%
 
 ---
 
@@ -207,10 +208,5 @@ RATIONALE
 
 <!-- d552a943-f865-4cbb-b316-da949f4afb78 <=< ACCEPT -->       [count]&amp;lt;space&amp;gt;
                  Move the current cursor position to the next character position.
-
----
-
-<!-- b7cebe8e-833c-4245-8805-df18754b45e9 <=< ACCEPT -->COMPATIBILITY
-       These commands are defined in the SQL standard, except for the
 
 ---

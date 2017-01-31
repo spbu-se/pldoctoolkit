@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<plainxml>RESET(7)                PostgreSQL 9.6.1 Documentation                RESET(7)
+<plainxml>
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->RESET(7)                PostgreSQL 9.6.1 Documentation                RESET(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -53,8 +54,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                             RESET(7)
-ALTER EXTENSION(7)      PostgreSQL 9.6.1 Documentation      ALTER EXTENSION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                             RESET(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER EXTENSION(7)      PostgreSQL 9.6.1 Documentation      ALTER EXTENSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -214,8 +215,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                   ALTER EXTENSION(7)
-SET CONSTRAINTS(7)      PostgreSQL 9.6.1 Documentation      SET CONSTRAINTS(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   ALTER EXTENSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->SET CONSTRAINTS(7)      PostgreSQL 9.6.1 Documentation      SET CONSTRAINTS(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -286,8 +287,8 @@ COMPATIBILITY
 
 
 
-PostgreSQL 9.6.1                     2016                   SET CONSTRAINTS(7)
-SECURITY LABEL(7)       PostgreSQL 9.6.1 Documentation       SECURITY LABEL(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   SET CONSTRAINTS(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->SECURITY LABEL(7)       PostgreSQL 9.6.1 Documentation       SECURITY LABEL(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -400,8 +401,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    SECURITY LABEL(7)
-DO(7)                   PostgreSQL 9.6.1 Documentation                   DO(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    SECURITY LABEL(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DO(7)                   PostgreSQL 9.6.1 Documentation                   DO(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -460,8 +461,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                                DO(7)
-CREATE DOMAIN(7)        PostgreSQL 9.6.1 Documentation        CREATE DOMAIN(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                                DO(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE DOMAIN(7)        PostgreSQL 9.6.1 Documentation        CREATE DOMAIN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -603,7 +604,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                     CREATE DOMAIN(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                     CREATE DOMAIN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 ALTER DEFAULT PRIVILEGESPostgreSQL 9.6.1 DocumentatALTER DEFAULT PRIVILEGES(7)
 
 
@@ -715,14 +716,14 @@ EXAMPLES
        subsequently create in schema myschema, and allow role webuser to
        INSERT into them too:
 
-           ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT SELECT ON TABLES TO PUBLIC;
-           ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT INSERT ON TABLES TO webuser;
+<!-- 92371cd6-53c8-48df-9168-5b64fcd8be51 <=< ACCEPT -->           ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT SELECT ON TABLES TO PUBLIC;
+           ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT INSERT ON TABLES TO webuser;<!-- ACCEPT >=> 92371cd6-53c8-48df-9168-5b64fcd8be51 -->
 
        Undo the above, so that subsequently-created tables won't have any more
        permissions than normal:
 
-           ALTER DEFAULT PRIVILEGES IN SCHEMA myschema REVOKE SELECT ON TABLES FROM PUBLIC;
-           ALTER DEFAULT PRIVILEGES IN SCHEMA myschema REVOKE INSERT ON TABLES FROM webuser;
+<!-- 92371cd6-53c8-48df-9168-5b64fcd8be51 <=< ACCEPT -->           ALTER DEFAULT PRIVILEGES IN SCHEMA myschema REVOKE SELECT ON TABLES FROM PUBLIC;
+           ALTER DEFAULT PRIVILEGES IN SCHEMA myschema REVOKE INSERT ON TABLES FROM webuser;<!-- ACCEPT >=> 92371cd6-53c8-48df-9168-5b64fcd8be51 -->
 
        Remove the public EXECUTE permission that is normally granted on
        functions, for all functions subsequently created by role admin:
@@ -737,8 +738,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016          ALTER DEFAULT PRIVILEGES(7)
-ALTER EVENT TRIGGER(7)  PostgreSQL 9.6.1 Documentation  ALTER EVENT TRIGGER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016          ALTER DEFAULT PRIVILEGES(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER EVENT TRIGGER(7)  PostgreSQL 9.6.1 Documentation  ALTER EVENT TRIGGER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -780,8 +781,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016               ALTER EVENT TRIGGER(7)
-DISCARD(7)              PostgreSQL 9.6.1 Documentation              DISCARD(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016               ALTER EVENT TRIGGER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DISCARD(7)              PostgreSQL 9.6.1 Documentation              DISCARD(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -837,8 +838,8 @@ COMPATIBILITY
 
 
 
-PostgreSQL 9.6.1                     2016                           DISCARD(7)
-SAVEPOINT(7)            PostgreSQL 9.6.1 Documentation            SAVEPOINT(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                           DISCARD(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->SAVEPOINT(7)            PostgreSQL 9.6.1 Documentation            SAVEPOINT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -909,8 +910,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                         SAVEPOINT(7)
-ALTER TABLE(7)          PostgreSQL 9.6.1 Documentation          ALTER TABLE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                         SAVEPOINT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER TABLE(7)          PostgreSQL 9.6.1 Documentation          ALTER TABLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -1638,8 +1639,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       ALTER TABLE(7)
-NOTIFY(7)               PostgreSQL 9.6.1 Documentation               NOTIFY(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       ALTER TABLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->NOTIFY(7)               PostgreSQL 9.6.1 Documentation               NOTIFY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -1784,8 +1785,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                            NOTIFY(7)
-DROP ACCESS METHOD(7)   PostgreSQL 9.6.1 Documentation   DROP ACCESS METHOD(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                            NOTIFY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP ACCESS METHOD(7)   PostgreSQL 9.6.1 Documentation   DROP ACCESS METHOD(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -1830,8 +1831,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                DROP ACCESS METHOD(7)
-CREATE TRANSFORM(7)     PostgreSQL 9.6.1 Documentation     CREATE TRANSFORM(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                DROP ACCESS METHOD(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE TRANSFORM(7)     PostgreSQL 9.6.1 Documentation     CREATE TRANSFORM(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -1946,7 +1947,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                  CREATE TRANSFORM(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                  CREATE TRANSFORM(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 DROP TEXT SEARCH PARSER(PostgreSQL 9.6.1 DocumentatiDROP TEXT SEARCH PARSER(7)
 
 
@@ -1997,8 +1998,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016           DROP TEXT SEARCH PARSER(7)
-ALTER USER MAPPING(7)   PostgreSQL 9.6.1 Documentation   ALTER USER MAPPING(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016           DROP TEXT SEARCH PARSER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER USER MAPPING(7)   PostgreSQL 9.6.1 Documentation   ALTER USER MAPPING(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -2052,7 +2053,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                ALTER USER MAPPING(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                ALTER USER MAPPING(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 ALTER TEXT SEARCH TEMPLAPostgreSQL 9.6.1 DocumentALTER TEXT SEARCH TEMPLATE(7)
 
 
@@ -2092,8 +2093,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016        ALTER TEXT SEARCH TEMPLATE(7)
-ALTER SEQUENCE(7)       PostgreSQL 9.6.1 Documentation       ALTER SEQUENCE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016        ALTER TEXT SEARCH TEMPLATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER SEQUENCE(7)       PostgreSQL 9.6.1 Documentation       ALTER SEQUENCE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -2244,7 +2245,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    ALTER SEQUENCE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    ALTER SEQUENCE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 DROP TEXT SEARCH DICTIONPostgreSQL 9.6.1 DocumenDROPoTEXT SEARCH DICTIONARY(7)
 
 
@@ -2295,7 +2296,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016       DROP TEXT SEARCH DICTIONARY(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016       DROP TEXT SEARCH DICTIONARY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 
 CREATE FOREIGN DATA WRAPPostgreSQL 9.6.1 DocumenCREATE FOREIGN DATA WRAPPER(7)
 
@@ -2391,8 +2392,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016       CREATE FOREIGN DATA WRAPPER(7)
-ALTER TYPE(7)           PostgreSQL 9.6.1 Documentation           ALTER TYPE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016       CREATE FOREIGN DATA WRAPPER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER TYPE(7)           PostgreSQL 9.6.1 Documentation           ALTER TYPE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -2549,8 +2550,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                        ALTER TYPE(7)
-COPY(7)                 PostgreSQL 9.6.1 Documentation                 COPY(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                        ALTER TYPE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->COPY(7)                 PostgreSQL 9.6.1 Documentation                 COPY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -3155,7 +3156,7 @@ COMPATIBILITY
 
 
 
-PostgreSQL 9.6.1                     2016                              COPY(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                              COPY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 ALTER FOREIGN DATA WRAPPPostgreSQL 9.6.1 DocumentALTER FOREIGN DATA WRAPPER(7)
 
 
@@ -3245,8 +3246,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016        ALTER FOREIGN DATA WRAPPER(7)
-CREATE OPERATOR(7)      PostgreSQL 9.6.1 Documentation      CREATE OPERATOR(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016        ALTER FOREIGN DATA WRAPPER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE OPERATOR(7)      PostgreSQL 9.6.1 Documentation      CREATE OPERATOR(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -3399,8 +3400,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                   CREATE OPERATOR(7)
-CREATE EXTENSION(7)     PostgreSQL 9.6.1 Documentation     CREATE EXTENSION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   CREATE OPERATOR(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE EXTENSION(7)     PostgreSQL 9.6.1 Documentation     CREATE EXTENSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -3529,8 +3530,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                  CREATE EXTENSION(7)
-DROP USER MAPPING(7)    PostgreSQL 9.6.1 Documentation    DROP USER MAPPING(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                  CREATE EXTENSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP USER MAPPING(7)    PostgreSQL 9.6.1 Documentation    DROP USER MAPPING(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -3575,8 +3576,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                 DROP USER MAPPING(7)
-LISTEN(7)               PostgreSQL 9.6.1 Documentation               LISTEN(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                 DROP USER MAPPING(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->LISTEN(7)               PostgreSQL 9.6.1 Documentation               LISTEN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -3640,7 +3641,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                            LISTEN(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                            LISTEN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 ALTER TEXT SEARCH CONFIGPostgreSQL 9.6.1 DocALTERaTEXT SEARCH CONFIGURATION(7)
 
 
@@ -3731,8 +3732,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016   ALTER TEXT SEARCH CONFIGURATION(7)
-DROP CAST(7)            PostgreSQL 9.6.1 Documentation            DROP CAST(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016   ALTER TEXT SEARCH CONFIGURATION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP CAST(7)            PostgreSQL 9.6.1 Documentation            DROP CAST(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -3777,7 +3778,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                         DROP CAST(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                         DROP CAST(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 DROP MATERIALIZED VIEW(7PostgreSQL 9.6.1 DocumentatioDROP MATERIALIZED VIEW(7)
 
 
@@ -3826,8 +3827,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016            DROP MATERIALIZED VIEW(7)
-CREATE RULE(7)          PostgreSQL 9.6.1 Documentation          CREATE RULE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016            DROP MATERIALIZED VIEW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE RULE(7)          PostgreSQL 9.6.1 Documentation          CREATE RULE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -3996,8 +3997,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       CREATE RULE(7)
-ALTER TABLESPACE(7)     PostgreSQL 9.6.1 Documentation     ALTER TABLESPACE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       CREATE RULE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER TABLESPACE(7)     PostgreSQL 9.6.1 Documentation     ALTER TABLESPACE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -4057,8 +4058,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                  ALTER TABLESPACE(7)
-ALTER FOREIGN TABLE(7)  PostgreSQL 9.6.1 Documentation  ALTER FOREIGN TABLE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                  ALTER TABLESPACE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER FOREIGN TABLE(7)  PostgreSQL 9.6.1 Documentation  ALTER FOREIGN TABLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -4336,8 +4337,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016               ALTER FOREIGN TABLE(7)
-ALTER CONVERSION(7)     PostgreSQL 9.6.1 Documentation     ALTER CONVERSION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016               ALTER FOREIGN TABLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER CONVERSION(7)     PostgreSQL 9.6.1 Documentation     ALTER CONVERSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -4390,8 +4391,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                  ALTER CONVERSION(7)
-DROP COLLATION(7)       PostgreSQL 9.6.1 Documentation       DROP COLLATION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                  ALTER CONVERSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP COLLATION(7)       PostgreSQL 9.6.1 Documentation       DROP COLLATION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -4438,8 +4439,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    DROP COLLATION(7)
-CREATE USER(7)          PostgreSQL 9.6.1 Documentation          CREATE USER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    DROP COLLATION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE USER(7)          PostgreSQL 9.6.1 Documentation          CREATE USER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -4483,8 +4484,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       CREATE USER(7)
-CREATE USER MAPPING(7)  PostgreSQL 9.6.1 Documentation  CREATE USER MAPPING(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       CREATE USER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE USER MAPPING(7)  PostgreSQL 9.6.1 Documentation  CREATE USER MAPPING(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -4539,8 +4540,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016               CREATE USER MAPPING(7)
-CREATE TRIGGER(7)       PostgreSQL 9.6.1 Documentation       CREATE TRIGGER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016               CREATE USER MAPPING(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE TRIGGER(7)       PostgreSQL 9.6.1 Documentation       CREATE TRIGGER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -4869,8 +4870,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    CREATE TRIGGER(7)
-VACUUM(7)               PostgreSQL 9.6.1 Documentation               VACUUM(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    CREATE TRIGGER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->VACUUM(7)               PostgreSQL 9.6.1 Documentation               VACUUM(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -5042,8 +5043,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                            VACUUM(7)
-REVOKE(7)               PostgreSQL 9.6.1 Documentation               REVOKE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                            VACUUM(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->REVOKE(7)               PostgreSQL 9.6.1 Documentation               REVOKE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -5258,8 +5259,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                            REVOKE(7)
-DROP POLICY(7)          PostgreSQL 9.6.1 Documentation          DROP POLICY(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                            REVOKE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP POLICY(7)          PostgreSQL 9.6.1 Documentation          DROP POLICY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -5308,8 +5309,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       DROP POLICY(7)
-VALUES(7)               PostgreSQL 9.6.1 Documentation               VALUES(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       DROP POLICY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->VALUES(7)               PostgreSQL 9.6.1 Documentation               VALUES(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -5441,8 +5442,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                            VALUES(7)
-DECLARE(7)              PostgreSQL 9.6.1 Documentation              DECLARE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                            VALUES(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DECLARE(7)              PostgreSQL 9.6.1 Documentation              DECLARE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -5633,8 +5634,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                           DECLARE(7)
-CLOSE(7)                PostgreSQL 9.6.1 Documentation                CLOSE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                           DECLARE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CLOSE(7)                PostgreSQL 9.6.1 Documentation                CLOSE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -5687,8 +5688,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                             CLOSE(7)
-CREATE SERVER(7)        PostgreSQL 9.6.1 Documentation        CREATE SERVER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                             CLOSE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE SERVER(7)        PostgreSQL 9.6.1 Documentation        CREATE SERVER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -5759,8 +5760,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                     CREATE SERVER(7)
-ALTER VIEW(7)           PostgreSQL 9.6.1 Documentation           ALTER VIEW(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                     CREATE SERVER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER VIEW(7)           PostgreSQL 9.6.1 Documentation           ALTER VIEW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -5851,8 +5852,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                        ALTER VIEW(7)
-ALTER OPERATOR(7)       PostgreSQL 9.6.1 Documentation       ALTER OPERATOR(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                        ALTER VIEW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER OPERATOR(7)       PostgreSQL 9.6.1 Documentation       ALTER OPERATOR(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -5925,7 +5926,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    ALTER OPERATOR(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    ALTER OPERATOR(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 CREATE TEXT SEARCH DICTIPostgreSQL 9.6.1 DocumCREATEoTEXT SEARCH DICTIONARY(7)
 
 
@@ -5995,8 +5996,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016     CREATE TEXT SEARCH DICTIONARY(7)
-BEGIN(7)                PostgreSQL 9.6.1 Documentation                BEGIN(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016     CREATE TEXT SEARCH DICTIONARY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->BEGIN(7)                PostgreSQL 9.6.1 Documentation                BEGIN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -6076,8 +6077,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                             BEGIN(7)
-ALTER USER(7)           PostgreSQL 9.6.1 Documentation           ALTER USER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                             BEGIN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER USER(7)           PostgreSQL 9.6.1 Documentation           ALTER USER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -6125,8 +6126,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                        ALTER USER(7)
-CREATE INDEX(7)         PostgreSQL 9.6.1 Documentation         CREATE INDEX(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                        ALTER USER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE INDEX(7)         PostgreSQL 9.6.1 Documentation         CREATE INDEX(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -6515,8 +6516,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                      CREATE INDEX(7)
-ALTER DATABASE(7)       PostgreSQL 9.6.1 Documentation       ALTER DATABASE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                      CREATE INDEX(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER DATABASE(7)       PostgreSQL 9.6.1 Documentation       ALTER DATABASE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -6635,8 +6636,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    ALTER DATABASE(7)
-DROP DATABASE(7)        PostgreSQL 9.6.1 Documentation        DROP DATABASE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    ALTER DATABASE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP DATABASE(7)        PostgreSQL 9.6.1 Documentation        DROP DATABASE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -6678,8 +6679,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                     DROP DATABASE(7)
-ALTER TRIGGER(7)        PostgreSQL 9.6.1 Documentation        ALTER TRIGGER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                     DROP DATABASE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER TRIGGER(7)        PostgreSQL 9.6.1 Documentation        ALTER TRIGGER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -6736,7 +6737,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                     ALTER TRIGGER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                     ALTER TRIGGER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 DROP FOREIGN DATA WRAPPEPostgreSQL 9.6.1 DocumentaDROP FOREIGN DATA WRAPPER(7)
 
 
@@ -6785,7 +6786,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016         DROP FOREIGN DATA WRAPPER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016         DROP FOREIGN DATA WRAPPER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 CREATE TEXT SEARCH TEMPLPostgreSQL 9.6.1 DocumenCREATE TEXT SEARCH TEMPLATE(7)
 
 
@@ -6847,7 +6848,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016       CREATE TEXT SEARCH TEMPLATE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016       CREATE TEXT SEARCH TEMPLATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 ALTER MATERIALIZED VIEW(PostgreSQL 9.6.1 DocumentatiALTER MATERIALIZED VIEW(7)
 
 
@@ -6943,8 +6944,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016           ALTER MATERIALIZED VIEW(7)
-DROP FUNCTION(7)        PostgreSQL 9.6.1 Documentation        DROP FUNCTION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016           ALTER MATERIALIZED VIEW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP FUNCTION(7)        PostgreSQL 9.6.1 Documentation        DROP FUNCTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -7011,8 +7012,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                     DROP FUNCTION(7)
-DROP FOREIGN TABLE(7)   PostgreSQL 9.6.1 Documentation   DROP FOREIGN TABLE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                     DROP FUNCTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP FOREIGN TABLE(7)   PostgreSQL 9.6.1 Documentation   DROP FOREIGN TABLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -7060,8 +7061,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                DROP FOREIGN TABLE(7)
-ALTER LANGUAGE(7)       PostgreSQL 9.6.1 Documentation       ALTER LANGUAGE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                DROP FOREIGN TABLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER LANGUAGE(7)       PostgreSQL 9.6.1 Documentation       ALTER LANGUAGE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -7095,8 +7096,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    ALTER LANGUAGE(7)
-DROP RULE(7)            PostgreSQL 9.6.1 Documentation            DROP RULE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    ALTER LANGUAGE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP RULE(7)            PostgreSQL 9.6.1 Documentation            DROP RULE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -7144,7 +7145,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                         DROP RULE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                         DROP RULE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 ROLLBACK TO SAVEPOINT(7)PostgreSQL 9.6.1 DocumentationROLLBACK TO SAVEPOINT(7)
 
 
@@ -7229,8 +7230,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016             ROLLBACK TO SAVEPOINT(7)
-CREATE LANGUAGE(7)      PostgreSQL 9.6.1 Documentation      CREATE LANGUAGE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016             ROLLBACK TO SAVEPOINT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE LANGUAGE(7)      PostgreSQL 9.6.1 Documentation      CREATE LANGUAGE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -7414,8 +7415,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                   CREATE LANGUAGE(7)
-CREATE FUNCTION(7)      PostgreSQL 9.6.1 Documentation      CREATE FUNCTION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   CREATE LANGUAGE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE FUNCTION(7)      PostgreSQL 9.6.1 Documentation      CREATE FUNCTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -7928,8 +7929,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                   CREATE FUNCTION(7)
-DROP TRANSFORM(7)       PostgreSQL 9.6.1 Documentation       DROP TRANSFORM(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   CREATE FUNCTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP TRANSFORM(7)       PostgreSQL 9.6.1 Documentation       DROP TRANSFORM(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -7979,7 +7980,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    DROP TRANSFORM(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    DROP TRANSFORM(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 CREATE OPERATOR CLASS(7)PostgreSQL 9.6.1 DocumentationCREATE OPERATOR CLASS(7)
 
 
@@ -8151,8 +8152,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016             CREATE OPERATOR CLASS(7)
-DROP ROLE(7)            PostgreSQL 9.6.1 Documentation            DROP ROLE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016             CREATE OPERATOR CLASS(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP ROLE(7)            PostgreSQL 9.6.1 Documentation            DROP ROLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -8209,8 +8210,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                         DROP ROLE(7)
-CREATE TYPE(7)          PostgreSQL 9.6.1 Documentation          CREATE TYPE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                         DROP ROLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE TYPE(7)          PostgreSQL 9.6.1 Documentation          CREATE TYPE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -8793,7 +8794,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       CREATE TYPE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       CREATE TYPE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 ALTER OPERATOR CLASS(7) PostgreSQL 9.6.1 Documentation ALTER OPERATOR CLASS(7)
 
 
@@ -8849,8 +8850,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016              ALTER OPERATOR CLASS(7)
-DROP EXTENSION(7)       PostgreSQL 9.6.1 Documentation       DROP EXTENSION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016              ALTER OPERATOR CLASS(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP EXTENSION(7)       PostgreSQL 9.6.1 Documentation       DROP EXTENSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -8903,8 +8904,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    DROP EXTENSION(7)
-INSERT(7)               PostgreSQL 9.6.1 Documentation               INSERT(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    DROP EXTENSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->INSERT(7)               PostgreSQL 9.6.1 Documentation               INSERT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -9290,8 +9291,8 @@ EXAMPLES
 
 
 
-PostgreSQL 9.6.1                     2016                            INSERT(7)
-EXECUTE(7)              PostgreSQL 9.6.1 Documentation              EXECUTE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                            INSERT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->EXECUTE(7)              PostgreSQL 9.6.1 Documentation              EXECUTE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -9345,8 +9346,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                           EXECUTE(7)
-LOCK(7)                 PostgreSQL 9.6.1 Documentation                 LOCK(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                           EXECUTE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->LOCK(7)                 PostgreSQL 9.6.1 Documentation                 LOCK(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -9495,8 +9496,8 @@ COMPATIBILITY
 
 
 
-PostgreSQL 9.6.1                     2016                              LOCK(7)
-DROP VIEW(7)            PostgreSQL 9.6.1 Documentation            DROP VIEW(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                              LOCK(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP VIEW(7)            PostgreSQL 9.6.1 Documentation            DROP VIEW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -9542,8 +9543,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                         DROP VIEW(7)
-CREATE TABLESPACE(7)    PostgreSQL 9.6.1 Documentation    CREATE TABLESPACE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                         DROP VIEW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE TABLESPACE(7)    PostgreSQL 9.6.1 Documentation    CREATE TABLESPACE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -9626,7 +9627,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                 CREATE TABLESPACE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                 CREATE TABLESPACE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 DROP TEXT SEARCH TEMPLATPostgreSQL 9.6.1 DocumentaDROP TEXT SEARCH TEMPLATE(7)
 
 
@@ -9677,8 +9678,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016         DROP TEXT SEARCH TEMPLATE(7)
-ALTER COLLATION(7)      PostgreSQL 9.6.1 Documentation      ALTER COLLATION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016         DROP TEXT SEARCH TEMPLATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER COLLATION(7)      PostgreSQL 9.6.1 Documentation      ALTER COLLATION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -9731,8 +9732,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                   ALTER COLLATION(7)
-CREATE TABLE AS(7)      PostgreSQL 9.6.1 Documentation      CREATE TABLE AS(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   ALTER COLLATION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE TABLE AS(7)      PostgreSQL 9.6.1 Documentation      CREATE TABLE AS(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -9891,8 +9892,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                   CREATE TABLE AS(7)
-DROP EVENT TRIGGER(7)   PostgreSQL 9.6.1 Documentation   DROP EVENT TRIGGER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   CREATE TABLE AS(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP EVENT TRIGGER(7)   PostgreSQL 9.6.1 Documentation   DROP EVENT TRIGGER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -9937,7 +9938,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                DROP EVENT TRIGGER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                DROP EVENT TRIGGER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 ALTER OPERATOR FAMILY(7)PostgreSQL 9.6.1 DocumentationALTER OPERATOR FAMILY(7)
 
 
@@ -10144,8 +10145,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016             ALTER OPERATOR FAMILY(7)
-START TRANSACTION(7)    PostgreSQL 9.6.1 Documentation    START TRANSACTION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016             ALTER OPERATOR FAMILY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->START TRANSACTION(7)    PostgreSQL 9.6.1 Documentation    START TRANSACTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -10193,8 +10194,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                 START TRANSACTION(7)
-ALTER POLICY(7)         PostgreSQL 9.6.1 Documentation         ALTER POLICY(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                 START TRANSACTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER POLICY(7)         PostgreSQL 9.6.1 Documentation         ALTER POLICY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -10252,9 +10253,9 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                      ALTER POLICY(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                      ALTER POLICY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 
-DROP LANGUAGE(7)        PostgreSQL 9.6.1 Documentation        DROP LANGUAGE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP LANGUAGE(7)        PostgreSQL 9.6.1 Documentation        DROP LANGUAGE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -10307,8 +10308,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                     DROP LANGUAGE(7)
-COMMENT(7)              PostgreSQL 9.6.1 Documentation              COMMENT(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                     DROP LANGUAGE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->COMMENT(7)              PostgreSQL 9.6.1 Documentation              COMMENT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -10515,8 +10516,8 @@ COMPATIBILITY
 
 
 
-PostgreSQL 9.6.1                     2016                           COMMENT(7)
-ALTER RULE(7)           PostgreSQL 9.6.1 Documentation           ALTER RULE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                           COMMENT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER RULE(7)           PostgreSQL 9.6.1 Documentation           ALTER RULE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -10558,8 +10559,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                        ALTER RULE(7)
-DROP AGGREGATE(7)       PostgreSQL 9.6.1 Documentation       DROP AGGREGATE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                        ALTER RULE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP AGGREGATE(7)       PostgreSQL 9.6.1 Documentation       DROP AGGREGATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -10639,8 +10640,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    DROP AGGREGATE(7)
-EXPLAIN(7)              PostgreSQL 9.6.1 Documentation              EXPLAIN(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    DROP AGGREGATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->EXPLAIN(7)              PostgreSQL 9.6.1 Documentation              EXPLAIN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -10913,8 +10914,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                           EXPLAIN(7)
-DROP TYPE(7)            PostgreSQL 9.6.1 Documentation            DROP TYPE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                           EXPLAIN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP TYPE(7)            PostgreSQL 9.6.1 Documentation            DROP TYPE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -10962,8 +10963,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                         DROP TYPE(7)
-CREATE CAST(7)          PostgreSQL 9.6.1 Documentation          CREATE CAST(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                         DROP TYPE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE CAST(7)          PostgreSQL 9.6.1 Documentation          CREATE CAST(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -11214,8 +11215,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       CREATE CAST(7)
-DROP DOMAIN(7)          PostgreSQL 9.6.1 Documentation          DROP DOMAIN(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       CREATE CAST(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP DOMAIN(7)          PostgreSQL 9.6.1 Documentation          DROP DOMAIN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -11259,7 +11260,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       DROP DOMAIN(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       DROP DOMAIN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 SET SESSION AUTHORIZATIOPostgreSQL 9.6.1 DocumentaSETnSESSION AUTHORIZATION(7)
 
 
@@ -11334,8 +11335,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016         SET SESSION AUTHORIZATION(7)
-MOVE(7)                 PostgreSQL 9.6.1 Documentation                 MOVE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016         SET SESSION AUTHORIZATION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->MOVE(7)                 PostgreSQL 9.6.1 Documentation                 MOVE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -11406,7 +11407,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                              MOVE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                              MOVE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 DROP TEXT SEARCH CONFIGUPostgreSQL 9.6.1 DocuDROPaTEXT SEARCH CONFIGURATION(7)
 
 
@@ -11459,8 +11460,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016    DROP TEXT SEARCH CONFIGURATION(7)
-END(7)                  PostgreSQL 9.6.1 Documentation                  END(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016    DROP TEXT SEARCH CONFIGURATION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->END(7)                  PostgreSQL 9.6.1 Documentation                  END(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -11501,8 +11502,8 @@ SEE ALSO
 <!-- ACCEPT >=> c2d6965b-f6d0-4554-8583-9d3eb0a21ddf -->
 
 
-PostgreSQL 9.6.1                     2016                               END(7)
-REINDEX(7)              PostgreSQL 9.6.1 Documentation              REINDEX(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                               END(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->REINDEX(7)              PostgreSQL 9.6.1 Documentation              REINDEX(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -11646,7 +11647,7 @@ COMPATIBILITY
 
 
 
-PostgreSQL 9.6.1                     2016                           REINDEX(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                           REINDEX(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 CREATE OPERATOR FAMILY(7PostgreSQL 9.6.1 DocumentatioCREATE OPERATOR FAMILY(7)
 
 
@@ -11707,7 +11708,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016            CREATE OPERATOR FAMILY(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016            CREATE OPERATOR FAMILY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 IMPORT FOREIGN SCHEMA(7)PostgreSQL 9.6.1 DocumentationIMPORT FOREIGN SCHEMA(7)
 
 
@@ -11785,7 +11786,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016             IMPORT FOREIGN SCHEMA(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016             IMPORT FOREIGN SCHEMA(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 CREATE TEXT SEARCH PARSEPostgreSQL 9.6.1 DocumentaCREATE TEXT SEARCH PARSER(7)
 
 
@@ -11857,8 +11858,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016         CREATE TEXT SEARCH PARSER(7)
-LOAD(7)                 PostgreSQL 9.6.1 Documentation                 LOAD(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016         CREATE TEXT SEARCH PARSER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->LOAD(7)                 PostgreSQL 9.6.1 Documentation                 LOAD(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -11896,8 +11897,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                              LOAD(7)
-DROP TABLE(7)           PostgreSQL 9.6.1 Documentation           DROP TABLE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                              LOAD(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP TABLE(7)           PostgreSQL 9.6.1 Documentation           DROP TABLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -11951,8 +11952,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                        DROP TABLE(7)
-CREATE POLICY(7)        PostgreSQL 9.6.1 Documentation        CREATE POLICY(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                        DROP TABLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE POLICY(7)        PostgreSQL 9.6.1 Documentation        CREATE POLICY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -12200,8 +12201,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                     CREATE POLICY(7)
-GRANT(7)                PostgreSQL 9.6.1 Documentation                GRANT(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                     CREATE POLICY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->GRANT(7)                PostgreSQL 9.6.1 Documentation                GRANT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -12639,8 +12640,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                             GRANT(7)
-PREPARE TRANSACTION(7)  PostgreSQL 9.6.1 Documentation  PREPARE TRANSACTION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                             GRANT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->PREPARE TRANSACTION(7)  PostgreSQL 9.6.1 Documentation  PREPARE TRANSACTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -12743,8 +12744,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016               PREPARE TRANSACTION(7)
-REASSIGN OWNED(7)       PostgreSQL 9.6.1 Documentation       REASSIGN OWNED(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016               PREPARE TRANSACTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->REASSIGN OWNED(7)       PostgreSQL 9.6.1 Documentation       REASSIGN OWNED(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -12798,8 +12799,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    REASSIGN OWNED(7)
-CLUSTER(7)              PostgreSQL 9.6.1 Documentation              CLUSTER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    REASSIGN OWNED(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CLUSTER(7)              PostgreSQL 9.6.1 Documentation              CLUSTER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -12920,8 +12921,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                           CLUSTER(7)
-DROP USER(7)            PostgreSQL 9.6.1 Documentation            DROP USER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                           CLUSTER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP USER(7)            PostgreSQL 9.6.1 Documentation            DROP USER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -12943,7 +12944,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                         DROP USER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                         DROP USER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 CREATE FOREIGN TABLE(7) PostgreSQL 9.6.1 Documentation CREATE FOREIGN TABLE(7)
 
 
@@ -13133,8 +13134,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016              CREATE FOREIGN TABLE(7)
-ANALYZE(7)              PostgreSQL 9.6.1 Documentation              ANALYZE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016              CREATE FOREIGN TABLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ANALYZE(7)              PostgreSQL 9.6.1 Documentation              ANALYZE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -13268,7 +13269,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                           ANALYZE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                           ANALYZE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 REFRESH MATERIALIZED VIEPostgreSQL 9.6.1 DocumentaREFRESH MATERIALIZED VIEW(7)
 
 
@@ -13342,7 +13343,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016         REFRESH MATERIALIZED VIEW(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016         REFRESH MATERIALIZED VIEW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 <!-- 46125e7b-f5a2-4727-b5b1-3cd97452e8b1 <=< ACCEPT -->COMMIT PREPARED(7)      PostgreSQL 9.6.1 Documentation      COMMIT PREPARED(7)
 
 
@@ -13390,8 +13391,8 @@ SEE ALSO
 <!-- ACCEPT >=> 46125e7b-f5a2-4727-b5b1-3cd97452e8b1 -->
 
 
-PostgreSQL 9.6.1                     2016                   COMMIT PREPARED(7)
-ALTER ROLE(7)           PostgreSQL 9.6.1 Documentation           ALTER ROLE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   COMMIT PREPARED(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER ROLE(7)           PostgreSQL 9.6.1 Documentation           ALTER ROLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -13594,8 +13595,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                        ALTER ROLE(7)
-DROP SCHEMA(7)          PostgreSQL 9.6.1 Documentation          DROP SCHEMA(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                        ALTER ROLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP SCHEMA(7)          PostgreSQL 9.6.1 Documentation          DROP SCHEMA(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -13650,8 +13651,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       DROP SCHEMA(7)
-UNLISTEN(7)             PostgreSQL 9.6.1 Documentation             UNLISTEN(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       DROP SCHEMA(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->UNLISTEN(7)             PostgreSQL 9.6.1 Documentation             UNLISTEN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -13709,8 +13710,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                          UNLISTEN(7)
-ALTER INDEX(7)          PostgreSQL 9.6.1 Documentation          ALTER INDEX(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                          UNLISTEN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER INDEX(7)          PostgreSQL 9.6.1 Documentation          ALTER INDEX(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -13826,7 +13827,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       ALTER INDEX(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       ALTER INDEX(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 CREATE MATERIALIZED VIEWPostgreSQL 9.6.1 DocumentatCREATE MATERIALIZED VIEW(7)
 
 
@@ -13904,7 +13905,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016          CREATE MATERIALIZED VIEW(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016          CREATE MATERIALIZED VIEW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 CREATE TEXT SEARCH CONFIPostgreSQL)9.6.1 DoCREATEaTEXT SEARCH CONFIGURATION(7)
 
 
@@ -13965,8 +13966,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016  CREATE TEXT SEARCH CONFIGURATION(7)
-SET(7)                  PostgreSQL 9.6.1 Documentation                  SET(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016  CREATE TEXT SEARCH CONFIGURATION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->SET(7)                  PostgreSQL 9.6.1 Documentation                  SET(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -14125,8 +14126,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                               SET(7)
-CREATE SCHEMA(7)        PostgreSQL 9.6.1 Documentation        CREATE SCHEMA(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                               SET(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE SCHEMA(7)        PostgreSQL 9.6.1 Documentation        CREATE SCHEMA(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -14248,8 +14249,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                     CREATE SCHEMA(7)
-FETCH(7)                PostgreSQL 9.6.1 Documentation                FETCH(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                     CREATE SCHEMA(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->FETCH(7)                PostgreSQL 9.6.1 Documentation                FETCH(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -14449,8 +14450,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                             FETCH(7)
-DROP SERVER(7)          PostgreSQL 9.6.1 Documentation          DROP SERVER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                             FETCH(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP SERVER(7)          PostgreSQL 9.6.1 Documentation          DROP SERVER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -14495,7 +14496,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       DROP SERVER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       DROP SERVER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 <!-- 46125e7b-f5a2-4727-b5b1-3cd97452e8b1 <=< ACCEPT -->ROLLBACK PREPARED(7)    PostgreSQL 9.6.1 Documentation    ROLLBACK PREPARED(7)
 
 
@@ -14544,8 +14545,8 @@ SEE ALSO
 <!-- ACCEPT >=> 46125e7b-f5a2-4727-b5b1-3cd97452e8b1 -->
 
 
-PostgreSQL 9.6.1                     2016                 ROLLBACK PREPARED(7)
-CHECKPOINT(7)           PostgreSQL 9.6.1 Documentation           CHECKPOINT(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                 ROLLBACK PREPARED(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CHECKPOINT(7)           PostgreSQL 9.6.1 Documentation           CHECKPOINT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -14579,8 +14580,8 @@ COMPATIBILITY
 
 
 
-PostgreSQL 9.6.1                     2016                        CHECKPOINT(7)
-CREATE ROLE(7)          PostgreSQL 9.6.1 Documentation          CREATE ROLE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                        CHECKPOINT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE ROLE(7)          PostgreSQL 9.6.1 Documentation          CREATE ROLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -14845,8 +14846,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       CREATE ROLE(7)
-ROLLBACK(7)             PostgreSQL 9.6.1 Documentation             ROLLBACK(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       CREATE ROLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ROLLBACK(7)             PostgreSQL 9.6.1 Documentation             ROLLBACK(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -14885,8 +14886,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                          ROLLBACK(7)
-CREATE CONVERSION(7)    PostgreSQL 9.6.1 Documentation    CREATE CONVERSION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                          ROLLBACK(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE CONVERSION(7)    PostgreSQL 9.6.1 Documentation    CREATE CONVERSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -14961,7 +14962,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                 CREATE CONVERSION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                 CREATE CONVERSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 DROP OPERATOR FAMILY(7) PostgreSQL 9.6.1 Documentation DROP OPERATOR FAMILY(7)
 
 
@@ -15024,8 +15025,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016              DROP OPERATOR FAMILY(7)
-DROP OPERATOR CLASS(7)  PostgreSQL 9.6.1 Documentation  DROP OPERATOR CLASS(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016              DROP OPERATOR FAMILY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP OPERATOR CLASS(7)  PostgreSQL 9.6.1 Documentation  DROP OPERATOR CLASS(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -15092,8 +15093,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016               DROP OPERATOR CLASS(7)
-UPDATE(7)               PostgreSQL 9.6.1 Documentation               UPDATE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016               DROP OPERATOR CLASS(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->UPDATE(7)               PostgreSQL 9.6.1 Documentation               UPDATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -15340,8 +15341,8 @@ EXAMPLES
 
 
 
-PostgreSQL 9.6.1                     2016                            UPDATE(7)
-DELETE(7)               PostgreSQL 9.6.1 Documentation               DELETE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                            UPDATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DELETE(7)               PostgreSQL 9.6.1 Documentation               DELETE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -15488,8 +15489,8 @@ EXAMPLES
 
 
 
-PostgreSQL 9.6.1                     2016                            DELETE(7)
-ALTER LARGE OBJECT(7)   PostgreSQL 9.6.1 Documentation   ALTER LARGE OBJECT(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                            DELETE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER LARGE OBJECT(7)   PostgreSQL 9.6.1 Documentation   ALTER LARGE OBJECT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -15519,8 +15520,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                ALTER LARGE OBJECT(7)
-DROP GROUP(7)           PostgreSQL 9.6.1 Documentation           DROP GROUP(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                ALTER LARGE OBJECT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP GROUP(7)           PostgreSQL 9.6.1 Documentation           DROP GROUP(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -15541,8 +15542,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                        DROP GROUP(7)
-SELECT(7)               PostgreSQL 9.6.1 Documentation               SELECT(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                        DROP GROUP(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->SELECT(7)               PostgreSQL 9.6.1 Documentation               SELECT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -16830,7 +16831,7 @@ COMPATIBILITY
 
 
 
-PostgreSQL 9.6.1                     2016                            SELECT(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                            SELECT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 ALTER TEXT SEARCH PARSERPostgreSQL 9.6.1 DocumentatALTER TEXT SEARCH PARSER(7)
 
 
@@ -16870,8 +16871,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016          ALTER TEXT SEARCH PARSER(7)
-DROP TABLESPACE(7)      PostgreSQL 9.6.1 Documentation      DROP TABLESPACE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016          ALTER TEXT SEARCH PARSER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP TABLESPACE(7)      PostgreSQL 9.6.1 Documentation      DROP TABLESPACE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -16917,8 +16918,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                   DROP TABLESPACE(7)
-ALTER AGGREGATE(7)      PostgreSQL 9.6.1 Documentation      ALTER AGGREGATE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   DROP TABLESPACE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER AGGREGATE(7)      PostgreSQL 9.6.1 Documentation      ALTER AGGREGATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -17020,8 +17021,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                   ALTER AGGREGATE(7)
-ALTER SERVER(7)         PostgreSQL 9.6.1 Documentation         ALTER SERVER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   ALTER AGGREGATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER SERVER(7)         PostgreSQL 9.6.1 Documentation         ALTER SERVER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -17083,8 +17084,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                      ALTER SERVER(7)
-DROP TRIGGER(7)         PostgreSQL 9.6.1 Documentation         DROP TRIGGER(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                      ALTER SERVER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP TRIGGER(7)         PostgreSQL 9.6.1 Documentation         DROP TRIGGER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -17135,8 +17136,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                      DROP TRIGGER(7)
-DROP INDEX(7)           PostgreSQL 9.6.1 Documentation           DROP INDEX(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                      DROP TRIGGER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP INDEX(7)           PostgreSQL 9.6.1 Documentation           DROP INDEX(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -17195,8 +17196,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                        DROP INDEX(7)
-CREATE SEQUENCE(7)      PostgreSQL 9.6.1 Documentation      CREATE SEQUENCE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                        DROP INDEX(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE SEQUENCE(7)      PostgreSQL 9.6.1 Documentation      CREATE SEQUENCE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -17394,8 +17395,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                   CREATE SEQUENCE(7)
-CREATE VIEW(7)          PostgreSQL 9.6.1 Documentation          CREATE VIEW(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   CREATE SEQUENCE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE VIEW(7)          PostgreSQL 9.6.1 Documentation          CREATE VIEW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -17687,8 +17688,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       CREATE VIEW(7)
-DEALLOCATE(7)           PostgreSQL 9.6.1 Documentation           DEALLOCATE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       CREATE VIEW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DEALLOCATE(7)           PostgreSQL 9.6.1 Documentation           DEALLOCATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -17724,8 +17725,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                        DEALLOCATE(7)
-SET TRANSACTION(7)      PostgreSQL 9.6.1 Documentation      SET TRANSACTION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                        DEALLOCATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->SET TRANSACTION(7)      PostgreSQL 9.6.1 Documentation      SET TRANSACTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -17873,8 +17874,8 @@ EXAMPLES
 
 
 
-PostgreSQL 9.6.1                     2016                   SET TRANSACTION(7)
-DROP OWNED(7)           PostgreSQL 9.6.1 Documentation           DROP OWNED(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   SET TRANSACTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP OWNED(7)           PostgreSQL 9.6.1 Documentation           DROP OWNED(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -17931,8 +17932,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                        DROP OWNED(7)
-SET ROLE(7)             PostgreSQL 9.6.1 Documentation             SET ROLE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                        DROP OWNED(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->SET ROLE(7)             PostgreSQL 9.6.1 Documentation             SET ROLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -18015,8 +18016,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                          SET ROLE(7)
-PREPARE(7)              PostgreSQL 9.6.1 Documentation              PREPARE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                          SET ROLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->PREPARE(7)              PostgreSQL 9.6.1 Documentation              PREPARE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -18160,7 +18161,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                           PREPARE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                           PREPARE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 ALTER TEXT SEARCH DICTIOPostgreSQL 9.6.1 DocumeALTERoTEXT SEARCH DICTIONARY(7)
 
 
@@ -18242,8 +18243,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016      ALTER TEXT SEARCH DICTIONARY(7)
-ALTER GROUP(7)          PostgreSQL 9.6.1 Documentation          ALTER GROUP(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016      ALTER TEXT SEARCH DICTIONARY(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER GROUP(7)          PostgreSQL 9.6.1 Documentation          ALTER GROUP(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -18306,8 +18307,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       ALTER GROUP(7)
-CREATE COLLATION(7)     PostgreSQL 9.6.1 Documentation     CREATE COLLATION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       ALTER GROUP(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE COLLATION(7)     PostgreSQL 9.6.1 Documentation     CREATE COLLATION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -18389,8 +18390,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                  CREATE COLLATION(7)
-CREATE GROUP(7)         PostgreSQL 9.6.1 Documentation         CREATE GROUP(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                  CREATE COLLATION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE GROUP(7)         PostgreSQL 9.6.1 Documentation         CREATE GROUP(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -18427,8 +18428,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                      CREATE GROUP(7)
-CREATE TABLE(7)         PostgreSQL 9.6.1 Documentation         CREATE TABLE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                      CREATE GROUP(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE TABLE(7)         PostgreSQL 9.6.1 Documentation         CREATE TABLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -19344,8 +19345,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                      CREATE TABLE(7)
-ALTER FUNCTION(7)       PostgreSQL 9.6.1 Documentation       ALTER FUNCTION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                      CREATE TABLE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER FUNCTION(7)       PostgreSQL 9.6.1 Documentation       ALTER FUNCTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -19522,8 +19523,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                    ALTER FUNCTION(7)
-SELECT INTO(7)          PostgreSQL 9.6.1 Documentation          SELECT INTO(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                    ALTER FUNCTION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->SELECT INTO(7)          PostgreSQL 9.6.1 Documentation          SELECT INTO(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -19598,8 +19599,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                       SELECT INTO(7)
-ALTER DOMAIN(7)         PostgreSQL 9.6.1 Documentation         ALTER DOMAIN(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                       SELECT INTO(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER DOMAIN(7)         PostgreSQL 9.6.1 Documentation         ALTER DOMAIN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -19760,8 +19761,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                      ALTER DOMAIN(7)
-CREATE AGGREGATE(7)     PostgreSQL 9.6.1 Documentation     CREATE AGGREGATE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                      ALTER DOMAIN(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE AGGREGATE(7)     PostgreSQL 9.6.1 Documentation     CREATE AGGREGATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -20215,8 +20216,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                  CREATE AGGREGATE(7)
-RELEASE SAVEPOINT(7)    PostgreSQL 9.6.1 Documentation    RELEASE SAVEPOINT(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                  CREATE AGGREGATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->RELEASE SAVEPOINT(7)    PostgreSQL 9.6.1 Documentation    RELEASE SAVEPOINT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -20277,8 +20278,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                 RELEASE SAVEPOINT(7)
-ABORT(7)                PostgreSQL 9.6.1 Documentation                ABORT(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                 RELEASE SAVEPOINT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ABORT(7)                PostgreSQL 9.6.1 Documentation                ABORT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -20319,8 +20320,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                             ABORT(7)
-ALTER SYSTEM(7)         PostgreSQL 9.6.1 Documentation         ALTER SYSTEM(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                             ABORT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER SYSTEM(7)         PostgreSQL 9.6.1 Documentation         ALTER SYSTEM(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -20392,8 +20393,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                      ALTER SYSTEM(7)
-DROP CONVERSION(7)      PostgreSQL 9.6.1 Documentation      DROP CONVERSION(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                      ALTER SYSTEM(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP CONVERSION(7)      PostgreSQL 9.6.1 Documentation      DROP CONVERSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -20438,8 +20439,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                   DROP CONVERSION(7)
-ALTER SCHEMA(7)         PostgreSQL 9.6.1 Documentation         ALTER SCHEMA(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   DROP CONVERSION(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->ALTER SCHEMA(7)         PostgreSQL 9.6.1 Documentation         ALTER SCHEMA(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -20478,8 +20479,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                      ALTER SCHEMA(7)
-SHOW(7)                 PostgreSQL 9.6.1 Documentation                 SHOW(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                      ALTER SCHEMA(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->SHOW(7)                 PostgreSQL 9.6.1 Documentation                 SHOW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -20573,7 +20574,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                              SHOW(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                              SHOW(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 CREATE ACCESS METHOD(7) PostgreSQL 9.6.1 Documentation CREATE ACCESS METHOD(7)
 
 
@@ -20629,8 +20630,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016              CREATE ACCESS METHOD(7)
-CREATE DATABASE(7)      PostgreSQL 9.6.1 Documentation      CREATE DATABASE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016              CREATE ACCESS METHOD(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->CREATE DATABASE(7)      PostgreSQL 9.6.1 Documentation      CREATE DATABASE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -20797,7 +20798,7 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                   CREATE DATABASE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                   CREATE DATABASE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 CREATE EVENT TRIGGER(7) PostgreSQL 9.6.1 Documentation CREATE EVENT TRIGGER(7)
 
 
@@ -20876,8 +20877,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016              CREATE EVENT TRIGGER(7)
-TRUNCATE(7)             PostgreSQL 9.6.1 Documentation             TRUNCATE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016              CREATE EVENT TRIGGER(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->TRUNCATE(7)             PostgreSQL 9.6.1 Documentation             TRUNCATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -20996,8 +20997,8 @@ COMPATIBILITY
 
 
 
-PostgreSQL 9.6.1                     2016                          TRUNCATE(7)
-COMMIT(7)               PostgreSQL 9.6.1 Documentation               COMMIT(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                          TRUNCATE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->COMMIT(7)               PostgreSQL 9.6.1 Documentation               COMMIT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -21037,8 +21038,8 @@ SEE ALSO
 <!-- ACCEPT >=> c2d6965b-f6d0-4554-8583-9d3eb0a21ddf -->
 
 
-PostgreSQL 9.6.1                     2016                            COMMIT(7)
-DROP OPERATOR(7)        PostgreSQL 9.6.1 Documentation        DROP OPERATOR(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                            COMMIT(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP OPERATOR(7)        PostgreSQL 9.6.1 Documentation        DROP OPERATOR(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -21100,8 +21101,8 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                     DROP OPERATOR(7)
-DROP SEQUENCE(7)        PostgreSQL 9.6.1 Documentation        DROP SEQUENCE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                     DROP OPERATOR(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a37 <=< ACCEPT -->DROP SEQUENCE(7)        PostgreSQL 9.6.1 Documentation        DROP SEQUENCE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a37 -->
 
 
 
@@ -21148,6 +21149,6 @@ SEE ALSO
 
 
 
-PostgreSQL 9.6.1                     2016                     DROP SEQUENCE(7)
+<!-- e543d50d-72c8-4011-a4c0-176901ce1a36 <=< ACCEPT -->PostgreSQL 9.6.1                     2016                     DROP SEQUENCE(7)<!-- ACCEPT >=> e543d50d-72c8-4011-a4c0-176901ce1a36 -->
 
 </plainxml>
