@@ -2,7 +2,7 @@
 <plainxml>The 802.11 subsystems &amp;ndash; for kernel developers
 Explaining wireless 802.11 networking in the Linux kernel
 2007-2009Johannes BergJohannesBergjohannes@sipsolutions.net
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -17,9 +17,9 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 
-
+<!-- 7eec4b69-b4da-4bf3-9d0e-74a1af7a7786 <=< IGNORE -->
 These books attempt to give a description of the
 various subsystems that play a role in 802.11 wireless
 networking in Linux. Since these books are for kernel
@@ -142,12 +142,12 @@ Key handlingKey handling basics
 MORE TBDTBDReceive processingTBDTransmit processingTBDStation info handlingProgramming information
 STA information lifetime rules
 Aggregation STA
-
+<!-- IGNORE >=> 7eec4b69-b4da-4bf3-9d0e-74a1af7a7786 -->
 
 SynchronisationTBDLocking, lots of RCUThe 802.11 subsystems &amp;ndash; for kernel developers
 Explaining wireless 802.11 networking in the Linux kernel
 2007-2009Johannes BergJohannesBergjohannes@sipsolutions.net
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -162,9 +162,9 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 
-
+<!-- 7eec4b69-b4da-4bf3-9d0e-74a1af7a7786 <=< IGNORE -->
 These books attempt to give a description of the
 various subsystems that play a role in 802.11 wireless
 networking in Linux. Since these books are for kernel
@@ -287,9 +287,9 @@ Key handlingKey handling basics
 MORE TBDTBDReceive processingTBDTransmit processingTBDStation info handlingProgramming information
 STA information lifetime rules
 Aggregation
-
+<!-- IGNORE >=> 7eec4b69-b4da-4bf3-9d0e-74a1af7a7786 -->
 SynchronisationTBDLocking, lots of RCU&lt;!-- ****************************************************** --&gt;&lt;!-- Header  --&gt;&lt;!-- ****************************************************** --&gt;The ALSA Driver API
-This document is free; you can redistribute it and/or modify it
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This document is free; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
@@ -303,7 +303,7 @@ for more details.
 You should have received a copy of the GNU General Public
 License along with this program; if not, write to the Free
 Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-MA 02111-1307 USA
+MA 02111-1307 USA<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Management of Cards and DevicesCard Management
 Device Components
 Module requests and Device File Entries
@@ -322,7 +322,7 @@ Jack Abstraction Layer API
 ISA DMA Helpers
 Other Helper Macros
 Debug objects life timeThomasGleixnertglx@linutronix.de2008Thomas Gleixner
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -337,7 +337,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 debugobjects is a generic infrastructure to track the life time
 of kernel objects and validate the operations on those.
@@ -375,10 +375,10 @@ usage of the internal tracking objects and the state of the
 internal tracking objects pool.
 Debug functionsDebug object function reference
 debug_object_init
-This function is called whenever the initialization function
-of a real object is called.
+<!-- e46b9eea-dfab-44cd-9478-c5fbbec04463 <=< ACCEPT -->This function is called whenever the initialization function
+of a real object is called.<!-- ACCEPT >=> e46b9eea-dfab-44cd-9478-c5fbbec04463 -->
 
-When the real object is already tracked by debugobjects it is
+<!-- ca5d405c-94c8-471c-b04e-fbea762b78e3 <=< ACCEPT -->When the real object is already tracked by debugobjects it is
 checked, whether the object can be initialized.  Initializing
 is not allowed for active and destroyed objects. When
 debugobjects detects an error, then it calls the fixup_init
@@ -386,7 +386,7 @@ function of the object type description structure if provided
 by the caller. The fixup function can correct the problem
 before the real initialization of the object happens. E.g. it
 can deactivate an active object in order to prevent damage to
-the subsystem.
+the subsystem.<!-- ACCEPT >=> ca5d405c-94c8-471c-b04e-fbea762b78e3 -->
 
 When the real object is not yet tracked by debugobjects,
 debugobjects allocates a tracker object for the real object
@@ -398,10 +398,10 @@ must use debug_object_init_on_stack() and remove the object
 before leaving the function which allocated it. See next
 section.
 debug_object_init_on_stack
-This function is called whenever the initialization function
-of a real object which resides on the stack is called.
+<!-- e46b9eea-dfab-44cd-9478-c5fbbec04463 <=< ACCEPT -->This function is called whenever the initialization function
+of a real object which resides on the stack is called.<!-- ACCEPT >=> e46b9eea-dfab-44cd-9478-c5fbbec04463 -->
 
-When the real object is already tracked by debugobjects it is
+<!-- ca5d405c-94c8-471c-b04e-fbea762b78e3 <=< ACCEPT -->When the real object is already tracked by debugobjects it is
 checked, whether the object can be initialized. Initializing
 is not allowed for active and destroyed objects. When
 debugobjects detects an error, then it calls the fixup_init
@@ -409,7 +409,7 @@ function of the object type description structure if provided
 by the caller. The fixup function can correct the problem
 before the real initialization of the object happens. E.g. it
 can deactivate an active object in order to prevent damage to
-the subsystem.
+the subsystem.<!-- ACCEPT >=> ca5d405c-94c8-471c-b04e-fbea762b78e3 -->
 
 When the real object is not yet tracked by debugobjects
 debugobjects allocates a tracker object for the real object
@@ -421,10 +421,10 @@ tracker by calling debug_object_free() before the function
 which allocates the object returns. Otherwise we keep track of
 stale objects.
 debug_object_activate
-This function is called whenever the activation function of a
-real object is called.
+<!-- e46b9eea-dfab-44cd-9478-c5fbbec04463 <=< ACCEPT -->This function is called whenever the activation function of a
+real object is called.<!-- ACCEPT >=> e46b9eea-dfab-44cd-9478-c5fbbec04463 -->
 
-When the real object is already tracked by debugobjects it is
+<!-- ca5d405c-94c8-471c-b04e-fbea762b78e3 <=< ACCEPT -->When the real object is already tracked by debugobjects it is
 checked, whether the object can be activated.  Activating is
 not allowed for active and destroyed objects. When
 debugobjects detects an error, then it calls the
@@ -432,7 +432,7 @@ fixup_activate function of the object type description
 structure if provided by the caller. The fixup function can
 correct the problem before the real activation of the object
 happens. E.g. it can deactivate an active object in order to
-prevent damage to the subsystem.
+prevent damage to the subsystem.<!-- ACCEPT >=> ca5d405c-94c8-471c-b04e-fbea762b78e3 -->
 
 When the real object is not yet tracked by debugobjects then
 the fixup_activate function is called if available. This is
@@ -444,8 +444,8 @@ function to initialize the tracking of this object.
 When the activation is legitimate, then the state of the
 associated tracker object is set to ODEBUG_STATE_ACTIVE.
 debug_object_deactivate
-This function is called whenever the deactivation function of
-a real object is called.
+<!-- e46b9eea-dfab-44cd-9478-c5fbbec04463 <=< ACCEPT -->This function is called whenever the deactivation function of
+a real object is called.<!-- ACCEPT >=> e46b9eea-dfab-44cd-9478-c5fbbec04463 -->
 
 When the real object is tracked by debugobjects it is checked,
 whether the object can be deactivated. Deactivating is not
@@ -459,28 +459,28 @@ useful to prevent the usage of invalid objects, which are
 still available in memory: either statically allocated objects
 or objects which are freed later.
 
-When the real object is tracked by debugobjects it is checked,
+<!-- ca5d405c-94c8-471c-b04e-fbea762b78e3 <=< ACCEPT -->When the real object is tracked by debugobjects it is checked,
 whether the object can be destroyed. Destruction is not
 allowed for active and destroyed objects. When debugobjects
 detects an error, then it calls the fixup_destroy function of
 the object type description structure if provided by the
 caller. The fixup function can correct the problem before the
 real destruction of the object happens. E.g. it can deactivate
-an active object in order to prevent damage to the subsystem.
+an active object in order to prevent damage to the subsystem.<!-- ACCEPT >=> ca5d405c-94c8-471c-b04e-fbea762b78e3 -->
 
 When the destruction is legitimate, then the state of the
 associated tracker object is set to ODEBUG_STATE_DESTROYED.
 debug_object_free
 This function is called before an object is freed.
 
-When the real object is tracked by debugobjects it is checked,
+<!-- ca5d405c-94c8-471c-b04e-fbea762b78e3 <=< ACCEPT -->When the real object is tracked by debugobjects it is checked,
 whether the object can be freed. Free is not allowed for
 active objects. When debugobjects detects an error, then it
 calls the fixup_free function of the object type description
 structure if provided by the caller. The fixup function can
 correct the problem before the real free of the object
 happens. E.g. it can deactivate an active object in order to
-prevent damage to the subsystem.
+prevent damage to the subsystem.<!-- ACCEPT >=> ca5d405c-94c8-471c-b04e-fbea762b78e3 -->
 
 Note that debug_object_free removes the object from the
 tracker. Later usage of the object is detected by the other
@@ -508,9 +508,9 @@ recorded in the tracker.
 Called from debug_object_init when the object state is:
 ODEBUG_STATE_ACTIVE
 
-The function returns 1 when the fixup was successful,
+<!-- 92c00941-51a5-46db-bdd4-fd681657228e <=< ACCEPT -->The function returns 1 when the fixup was successful,
 otherwise 0. The return value is used to update the
-statistics.
+statistics.<!-- ACCEPT >=> 92c00941-51a5-46db-bdd4-fd681657228e -->
 
 Note, that the function needs to call the debug_object_init()
 function again, after the damage has been repaired in order to
@@ -522,9 +522,9 @@ in debug_object_activate is detected.
 Called from debug_object_activate when the object state is:
 ODEBUG_STATE_NOTAVAILABLEODEBUG_STATE_ACTIVE
 
-The function returns 1 when the fixup was successful,
+<!-- 92c00941-51a5-46db-bdd4-fd681657228e <=< ACCEPT -->The function returns 1 when the fixup was successful,
 otherwise 0. The return value is used to update the
-statistics.
+statistics.<!-- ACCEPT >=> 92c00941-51a5-46db-bdd4-fd681657228e -->
 
 Note that the function needs to call the debug_object_activate()
 function again after the damage has been repaired in order to
@@ -546,9 +546,9 @@ in debug_object_destroy is detected.
 Called from debug_object_destroy when the object state is:
 ODEBUG_STATE_ACTIVE
 
-The function returns 1 when the fixup was successful,
+<!-- 92c00941-51a5-46db-bdd4-fd681657228e <=< ACCEPT -->The function returns 1 when the fixup was successful,
 otherwise 0. The return value is used to update the
-statistics.
+statistics.<!-- ACCEPT >=> 92c00941-51a5-46db-bdd4-fd681657228e -->
 fixup_free
 This function is called from the debug code whenever a problem
 in debug_object_free is detected. Further it can be called
@@ -559,9 +559,9 @@ Called from debug_object_free() or debug_check_no_obj_freed()
 when the object state is:
 ODEBUG_STATE_ACTIVE
 
-The function returns 1 when the fixup was successful,
+<!-- 92c00941-51a5-46db-bdd4-fd681657228e <=< ACCEPT -->The function returns 1 when the fixup was successful,
 otherwise 0. The return value is used to update the
-statistics.
+statistics.<!-- ACCEPT >=> 92c00941-51a5-46db-bdd4-fd681657228e -->
 fixup_assert_init
 This function is called from the debug code whenever a problem
 in debug_object_assert_init is detected.
@@ -570,9 +570,9 @@ Called from debug_object_assert_init() with a hardcoded state
 ODEBUG_STATE_NOTAVAILABLE when the object is not found in the
 debug bucket.
 
-The function returns 1 when the fixup was successful,
+<!-- 92c00941-51a5-46db-bdd4-fd681657228e <=< ACCEPT -->The function returns 1 when the fixup was successful,
 otherwise 0. The return value is used to update the
-statistics.
+statistics.<!-- ACCEPT >=> 92c00941-51a5-46db-bdd4-fd681657228e -->
 
 Note, this function should make sure debug_object_init() is
 called before returning.
@@ -586,7 +586,7 @@ a real fixup.
 Known Bugs And Assumptions
 None (knock on wood).
 Linux Device Drivers
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -603,7 +603,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Driver BasicsDriver Entry and Exit points
 Atomic and pointer manipulation
 Delaying, scheduling, and timer routines
@@ -806,7 +806,7 @@ low-latency and full duplex communication.
 
 
 Bus-Independent Device AccessesMatthewWilcoxmatthew@wil.cxAlanCoxalan@lxorguk.ukuu.org.uk2001Matthew Wilcox
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -823,7 +823,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 Linux provides an API which abstracts performing IO across all busses
 and devices, allowing device drivers to be written independently of
@@ -2214,7 +2214,7 @@ device-specific operations required before setting the new mode.
 int (*mode_set)(struct drm_crtc *crtc, struct drm_display_mode *mode,
 struct drm_display_mode *adjusted_mode, int x, int y,
 struct drm_framebuffer *old_fb);
-Set a new mode, position and frame buffer. Depending on the device
+<!-- 345790bf-0e45-4448-8c12-0acd7301df9b <=< ACCEPT -->Set a new mode, position and frame buffer. Depending on the device
 requirements, the mode can be stored internally by the driver and
 applied in the commit operation, or
 programmed to the hardware immediately.
@@ -2224,7 +2224,7 @@ or a negative error code if an error occurs.
 void (*commit)(struct drm_crtc *crtc);
 Commit a mode. This operation is called after setting the new mode.
 Upon return the device must use the new mode and be fully
-operational.
+operational.<!-- ACCEPT >=> 345790bf-0e45-4448-8c12-0acd7301df9b -->
 Encoder Helper Operationsbool (*mode_fixup)(struct drm_encoder *encoder,
 const struct drm_display_mode *mode,
 struct drm_display_mode *adjusted_mode);
@@ -2240,14 +2240,14 @@ device-specific operations required before setting the new mode.
 void (*mode_set)(struct drm_encoder *encoder,
 struct drm_display_mode *mode,
 struct drm_display_mode *adjusted_mode);
-Set a new mode. Depending on the device requirements, the mode can
+<!-- 345790bf-0e45-4448-8c12-0acd7301df9b <=< ACCEPT -->Set a new mode. Depending on the device requirements, the mode can
 be stored internally by the driver and applied in the
 commit operation, or programmed to the
 hardware immediately.
 void (*commit)(struct drm_encoder *encoder);
 Commit a mode. This operation is called after setting the new mode.
 Upon return the device must use the new mode and be fully
-operational.
+operational.<!-- ACCEPT >=> 345790bf-0e45-4448-8c12-0acd7301df9b -->
 Connector Helper Operationsstruct drm_encoder *(*best_encoder)(struct drm_connector *connector);
 Return a pointer to the best encoder for the connecter. Device that
 map connectors to encoders 1:1 simply return the pointer to the
@@ -2742,7 +2742,7 @@ _DRM_PRE_MODESET command, so that the counter won&#39;t go backwards
 Include auto-generated API reference here (need to reference it
 from paragraphs above too).
 Linux Filesystems API
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -2759,7 +2759,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 The Linux VFSThe Filesystem types
 The Directory Cache
 Inode Handling
@@ -2957,7 +2957,7 @@ Pipe interfaces are all for in-kernel (builtin image) use.
 They are not exported for use by modules.
 
 USB Gadget API for Linux20 August 200420 August 2004
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -2974,7 +2974,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 2003-2004David BrownellDavidBrownelldbrownell@users.sourceforge.netIntroductionThis document presents a Linux-USB &quot;Gadget&quot;
 kernel mode
 API, for use within peripherals and other USB devices
@@ -3488,7 +3488,7 @@ to HNP or SRP protocols.
 &lt;!--
 vim:syntax=sgml:sw=4
 --&gt;Linux generic IRQ handlingThomasGleixnertglx@linutronix.deIngoMolnarmingo@elte.hu2005-2010Thomas Gleixner2005-2006Ingo Molnar
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -3503,7 +3503,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 The generic interrupt handling layer is designed to provide a
 complete abstraction of interrupt handling for device drivers.
@@ -3761,21 +3761,21 @@ generic chip fits their needs before implementing the same
 functionality slightly differently themselves.
 
 Structures
-This chapter contains the autogenerated documentation of the structures which are
-used in the generic IRQ layer.
+<!-- d4065f0e-8019-48a2-b63c-067e454c84da <=< ACCEPT -->This chapter contains the autogenerated documentation of the structures which are
+used in the generic IRQ layer.<!-- ACCEPT >=> d4065f0e-8019-48a2-b63c-067e454c84da -->
 
 Public Functions Provided
-This chapter contains the autogenerated documentation of the kernel API functions
-which are exported.
+<!-- d4065f0e-8019-48a2-b63c-067e454c84da <=< ACCEPT -->This chapter contains the autogenerated documentation of the kernel API functions
+which are exported.<!-- ACCEPT >=> d4065f0e-8019-48a2-b63c-067e454c84da -->
 
 Internal Functions Provided
-This chapter contains the autogenerated documentation of the internal functions.
+<!-- d4065f0e-8019-48a2-b63c-067e454c84da <=< ACCEPT -->This chapter contains the autogenerated documentation of the internal functions.<!-- ACCEPT >=> d4065f0e-8019-48a2-b63c-067e454c84da -->
 
 Credits
 The following people have contributed to this document:
 Thomas Gleixnertglx@linutronix.deIngo Molnarmingo@elte.hu
 The Linux Kernel API
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -3792,7 +3792,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Data TypesDoubly Linked Lists
 Basic C Library Functions
 When writing drivers, you cannot in general use routines which are
@@ -3887,7 +3887,7 @@ for interface clocking.
 
 
 Unreliable Guide To Hacking The Linux KernelRustyRussellrusty@rustcorp.com.au2005Rusty Russell
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -3904,7 +3904,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 
 This is the first release of this document as part of the kernel tarball.
 Introduction
@@ -4227,15 +4227,15 @@ other variation is the &quot;in-situ&quot; family, such as
 cpu_to_be32s(), which convert value referred
 to by the pointer, and return void.
 local_irq_save()/local_irq_restore()include/asm/system.h
-These routines disable hard interrupts on the local CPU, and
-restore them.  They are reentrant; saving the previous state in
+<!-- 8310e538-583d-485b-abfd-aa491af61a9f <=< ACCEPT -->These routines disable hard interrupts on the local CPU, and
+restore them.  They are reentrant;<!-- ACCEPT >=> 8310e538-583d-485b-abfd-aa491af61a9f --> saving the previous state in
 their one unsigned long flags argument.  If you
 know that interrupts are enabled, you can simply use
 local_irq_disable() and
 local_irq_enable().
 local_bh_disable()/local_bh_enable()include/linux/interrupt.h
-These routines disable soft interrupts on the local CPU, and
-restore them.  They are reentrant; if soft interrupts were
+<!-- 8310e538-583d-485b-abfd-aa491af61a9f <=< ACCEPT -->These routines disable soft interrupts on the local CPU, and
+restore them.  They are reentrant;<!-- ACCEPT >=> 8310e538-583d-485b-abfd-aa491af61a9f --> if soft interrupts were
 disabled before, they will still be disabled after this pair
 of functions has been called.  They prevent softirqs and tasklets
 from running on the current CPU.
@@ -4589,7 +4589,7 @@ Arcangeli added caveats. Michael Elizabeth Chastain for checking
 and adding to the Configure section. &lt;!-- Rusty insisted on this
 bit; I didn&#39;t do it! --&gt; Telsa Gwynne for teaching me DocBook.
 Unreliable Guide To LockingRustyRussellrusty@rustcorp.com.au2003Rusty Russell
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -4606,7 +4606,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 Welcome, to Rusty&#39;s Remarkably Unreliable Guide to Kernel
 Locking issues.  This document describes the locking systems in
@@ -4768,13 +4768,13 @@ performance.  If you&#39;re going so far as to use a softirq,
 you probably care about scalable performance enough
 to justify the extra complexity.
 
-You&#39;ll need to use spin_lock() and
-spin_unlock() for shared data.
+<!-- ddcae088-409a-482d-8e35-0e654d74fd0d <=< ACCEPT -->You&#39;ll need to use spin_lock() and
+spin_unlock() for shared data.<!-- ACCEPT >=> ddcae088-409a-482d-8e35-0e654d74fd0d -->
 Different Softirqs
-You&#39;ll need to use spin_lock() and
+<!-- ddcae088-409a-482d-8e35-0e654d74fd0d <=< ACCEPT -->You&#39;ll need to use spin_lock() and
 spin_unlock() for shared data, whether it
 be a timer, tasklet, different softirq or the same or another
-softirq: any of them could be running on a different CPU.
+softirq: any of them could be running on a different CPU.<!-- ACCEPT >=> ddcae088-409a-482d-8e35-0e654d74fd0d -->
 Hard IRQ Context
 Hardware interrupts usually communicate with a
 tasklet or softirq.  Frequently this involves putting work in a
@@ -5081,7 +5081,7 @@ Whoever drops it to zero knows it is unused, and can actually delete it.
 
 Here is the code:
 
---- cache.c.interrupt    2003-12-09 14:25:43.000000000 +1100
+<!-- 38fd18ec-7151-42a5-9731-4ac7815dca1c <=< ACCEPT -->--- cache.c.interrupt    2003-12-09 14:25:43.000000000 +1100
 +++ cache.c.refcnt    2003-12-09 14:33:05.000000000 +1100
 @@ -7,6 +7,7 @@
 struct object
@@ -5139,7 +5139,7 @@ cache_num--;
 strlcpy(obj-&amp;gt;name, name, sizeof(obj-&amp;gt;name));
 obj-&amp;gt;id = id;
 obj-&amp;gt;popularity = 0;
-+        obj-&amp;gt;refcnt = 1; /* The cache holds a reference */
++        obj-&amp;gt;refcnt = 1; /* The cache holds a reference */<!-- ACCEPT >=> 38fd18ec-7151-42a5-9731-4ac7815dca1c -->
 
 spin_lock_irqsave(&amp;amp;cache_lock, flags);
 __cache_add(obj);
@@ -5191,7 +5191,7 @@ atomic_dec_and_test are used instead of the
 standard increment and decrement operators, and the lock is no longer
 used to protect the reference count itself.
 
---- cache.c.refcnt    2003-12-09 15:00:35.000000000 +1100
+<!-- 38fd18ec-7151-42a5-9731-4ac7815dca1c <=< ACCEPT -->--- cache.c.refcnt    2003-12-09 15:00:35.000000000 +1100
 +++ cache.c.refcnt-atomic    2003-12-11 15:49:42.000000000 +1100
 @@ -7,7 +7,7 @@
 struct object
@@ -5253,7 +5253,7 @@ strlcpy(obj-&amp;gt;name, name, sizeof(obj-&amp;gt;name));
 obj-&amp;gt;id = id;
 obj-&amp;gt;popularity = 0;
 -        obj-&amp;gt;refcnt = 1; /* The cache holds a reference */
-+        atomic_set(&amp;amp;obj-&amp;gt;refcnt, 1); /* The cache holds a reference */
++        atomic_set(&amp;amp;obj-&amp;gt;refcnt, 1); /* The cache holds a reference */<!-- ACCEPT >=> 38fd18ec-7151-42a5-9731-4ac7815dca1c -->
 
 spin_lock_irqsave(&amp;amp;cache_lock, flags);
 __cache_add(obj);
@@ -7162,7 +7162,7 @@ method, ata_pio_devchk, and in general all the early probing was
 based on extensive study of Hale Landis&#39;s probe/reset code in his
 ATADRVR driver (www.ata-atapi.com).
 Reed-Solomon Library Programming InterfaceThomasGleixnertglx@linutronix.de2004Thomas Gleixner
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -7177,7 +7177,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 The generic Reed-Solomon Library provides encoding, decoding
 and error correction functions.
@@ -7313,12 +7313,12 @@ if the caller is the last user of the decoder.
 /* Release resources */
 free_rs(rs_decoder);
 Structures
-This chapter contains the autogenerated documentation of the structures which are
-used in the Reed-Solomon Library and are relevant for a developer.
+<!-- d4065f0e-8019-48a2-b63c-067e454c84da <=< ACCEPT -->This chapter contains the autogenerated documentation of the structures which are
+used in the Reed-Solomon Library and are relevant for a developer.<!-- ACCEPT >=> d4065f0e-8019-48a2-b63c-067e454c84da -->
 
 Public Functions Provided
-This chapter contains the autogenerated documentation of the Reed-Solomon functions
-which are exported.
+<!-- d4065f0e-8019-48a2-b63c-067e454c84da <=< ACCEPT -->This chapter contains the autogenerated documentation of the Reed-Solomon functions
+which are exported.<!-- ACCEPT >=> d4065f0e-8019-48a2-b63c-067e454c84da -->
 
 Credits
 The library code for encoding and decoding was written by Phil Karn.
@@ -7331,7 +7331,7 @@ The wrapper functions and interfaces are written by Thomas Gleixner.
 Many users have provided bugfixes, improvements and helping hands for testing.
 Thanks a lot.
 
-The following people have contributed to this document:
+<!-- 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 <=< ACCEPT -->The following people have contributed to this document:<!-- ACCEPT >=> 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 -->
 
 Thomas Gleixnertglx@linutronix.de
 Linux Security Modules:  General Security Hooks for LinuxStephenSmalleyNAI Labsssmalley@nai.comTimothyFraserNAI Labstfraser@nai.comChrisVanceNAI Labscvance@nai.comIntroduction
@@ -7548,7 +7548,7 @@ MauroChehabCarvalhomchehab@redhat.comInitial version.2009-2012Mauro Carvalho Che
 &amp;sub-fdl-appendix;
 
 MTD NAND Driver Programming InterfaceThomasGleixnertglx@linutronix.de2004Thomas Gleixner
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -7563,7 +7563,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 The generic NAND driver supports almost all NAND and AG-AND based
 chips and connects them to the Memory Technology Devices (MTD)
@@ -8086,7 +8086,7 @@ read into the spare area then the calling function must provide a
 buffer. The buffer size per page is determined by the oobfree array in
 the nand_oobinfo structure.
 
-
+<!-- 6a93603b-1564-47fd-b497-140110e1d139 <=< IGNORE -->
 If the spare area buffer is NULL then only the ECC placement is
 done according to the default builtin scheme.
 Spare area autoplacement default schemes256 byte pagesizeOffsetContentComment0x00ECC byte 0Error correction code byte 00x01ECC byte 1Error correction code byte 10x02ECC byte 2Error correction code byte 20x03Autoplace 00x04Autoplace 10x05Bad block markerIf any bit in this byte is zero, then this block is bad.
@@ -8126,7 +8126,7 @@ data in this page0x3DECC byte 21Error correction code byte 0 of the eighth 256 B
 in this page0x3EECC byte 22Error correction code byte 1 of the eighth 256 Bytes of data
 in this page0x3FECC byte 23Error correction code byte 2 of the eighth 256 Bytes of data
 in this pageFilesystem support
-
+<!-- IGNORE >=> 6a93603b-1564-47fd-b497-140110e1d139 -->
 
 The NAND driver provides all neccecary functions for a
 filesystem via the MTD interface.
@@ -8246,35 +8246,35 @@ table descriptors.
 #define NAND_BBT_SAVECONTENT    0x00002000
 
 Structures
-This chapter contains the autogenerated documentation of the structures which are
+<!-- cc12f3a0-07a8-4442-9cb5-bade952eb39e <=< ACCEPT -->This chapter contains the autogenerated documentation of the structures which are
 used in the NAND driver and might be relevant for a driver developer. Each
 struct member has a short description which is marked with an [XXX] identifier.
-See the chapter &quot;Documentation hints&quot; for an explanation.
+See the chapter &quot;Documentation hints&quot; for an explanation.<!-- ACCEPT >=> cc12f3a0-07a8-4442-9cb5-bade952eb39e -->
 
 Public Functions Provided
-This chapter contains the autogenerated documentation of the NAND kernel API functions
+<!-- cc12f3a0-07a8-4442-9cb5-bade952eb39e <=< ACCEPT -->This chapter contains the autogenerated documentation of the NAND kernel API functions
 which are exported. Each function has a short description which is marked with an [XXX] identifier.
-See the chapter &quot;Documentation hints&quot; for an explanation.
+See the chapter &quot;Documentation hints&quot; for an explanation.<!-- ACCEPT >=> cc12f3a0-07a8-4442-9cb5-bade952eb39e -->
 
 Internal Functions Provided
-This chapter contains the autogenerated documentation of the NAND driver internal functions.
+<!-- cc12f3a0-07a8-4442-9cb5-bade952eb39e <=< ACCEPT -->This chapter contains the autogenerated documentation of the NAND driver internal functions.
 Each function has a short description which is marked with an [XXX] identifier.
 See the chapter &quot;Documentation hints&quot; for an explanation.
-The functions marked with [DEFAULT] might be relevant for a board driver developer.
+The functions marked with [DEFAULT] might be relevant for a board driver developer.<!-- ACCEPT >=> cc12f3a0-07a8-4442-9cb5-bade952eb39e -->
 
 &lt;!-- No internal functions for kernel-doc:
 X!Idrivers/mtd/nand/nand_ecc.c
 --&gt;
 Credits
-The following people have contributed to the NAND driver:
+<!-- 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 <=< IGNORE -->The following people have contributed to the NAND driver:<!-- IGNORE >=> 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 -->
 Steven J. Hillsjhill@realitydiluted.comDavid Woodhousedwmw2@infradead.orgThomas Gleixnertglx@linutronix.de
 A lot of users have provided bugfixes, improvements and helping hands for testing.
 Thanks a lot.
 
-The following people have contributed to this document:
+<!-- 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 <=< ACCEPT -->The following people have contributed to this document:<!-- ACCEPT >=> 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 -->
 Thomas Gleixnertglx@linutronix.de
 Linux Networking and Network Devices APIs
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -8291,7 +8291,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Linux NetworkingNetworking Base Types
 Socket Buffer Functions
 Socket Filter
@@ -8306,7 +8306,7 @@ PHY Support
 X!Enet/core/wireless.c
 &lt;/sect1&gt;
 --&gt;RapidIO Subsystem GuideMattPortermporter@kernel.crashing.orgmporter@mvista.com2005MontaVista Software, Inc.
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -8321,7 +8321,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 RapidIO is a high speed switched fabric interconnect with
 features aimed at the embedded market.  RapidIO provides
@@ -8341,8 +8341,8 @@ on devices, request/map memory region resources,
 and manage mailboxes/doorbells.
 Functions
 Internals
-This chapter contains the autogenerated documentation of the RapidIO
-subsystem.
+<!-- d4065f0e-8019-48a2-b63c-067e454c84da <=< ACCEPT -->This chapter contains the autogenerated documentation of the RapidIO
+subsystem.<!-- ACCEPT >=> d4065f0e-8019-48a2-b63c-067e454c84da -->
 Structures
 Enumeration and Discovery
 Driver functionality
@@ -8354,10 +8354,10 @@ The following people have contributed to the RapidIO
 subsystem directly or indirectly:
 Matt Portermporter@kernel.crashing.orgRandy Vinsonrvinson@mvista.comDan Malekdan@embeddedalley.com
 
-The following people have contributed to this document:
+<!-- 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 <=< ACCEPT -->The following people have contributed to this document:<!-- ACCEPT >=> 0ebc4e55-09c3-429f-87e6-f4267cfcfbe0 -->
 Matt Portermporter@kernel.crashing.org
 Voltage and current regulator APILiamGirdwoodlrg@slimlogic.co.ukMarkBrownWolfson Microelectronicsbroonie@opensource.wolfsonmicro.com2007-2008Wolfson Microelectronics2008Liam Girdwood
-
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->
 This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
@@ -8373,7 +8373,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 This framework is designed to provide a standard kernel
 interface to control voltage and current regulators.
@@ -8496,7 +8496,7 @@ existing layout of the source code the entire regulator API is
 documented here.
 
 Writing s390 channel device driversCorneliaHuckcornelia.huck@de.ibm.com2007IBM Corp.
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -8513,7 +8513,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 This document describes the interfaces available for device drivers that
 drive s390 based channel attached I/O devices. This includes interfaces for
@@ -8576,7 +8576,7 @@ indirectly using basic infrastructure in the common I/O layer.
 One example is the support for adapter interrupts.
 
 SCSI Interfaces GuideJamesBottomleyJames.Bottomley@hansenpartnership.comRobLandleyrob@landley.net2007Linux Foundation
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2.
 
@@ -8584,7 +8584,7 @@ This program is distributed in the hope that it will be
 useful, but WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 IntroductionProtocol vs bus
 Once upon a time, the Small Computer Systems Interface defined both
 a parallel I/O bus and a data protocol to connect a wide variety of
@@ -8770,7 +8770,7 @@ http://sg.danny.cz/sg/sdebug26.html
 SAS, Fibre Channel, FireWire, ATAPI devices, Infiniband,
 I20, iSCSI, Parallel ports, netlink...
 SuperH Interfaces GuidePaulMundtlethal@linux-sh.org2008-2010Paul Mundt2008-2010Renesas Technology Corp.2010Renesas Electronics Corp.
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License version 2 as published by the Free Software Foundation.
 
@@ -8785,7 +8785,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Memory ManagementSH-4Store Queue API
 SH-5TLB Interfaces
 Machine Specific Interfacesmach-dreamcast
@@ -8793,7 +8793,7 @@ mach-x3proto
 BussesSuperHyway
 Maple
 The Linux Kernel Tracepoint APIJasonBaronjbaron@redhat.comWilliamCohenwcohen@redhat.com
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -8810,7 +8810,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 Tracepoints are static probe points that are located in strategic points
 throughout the kernel. &#39;Probes&#39; register/unregister with tracepoints
@@ -9442,7 +9442,7 @@ return errno;
 Further information
 OSADL homepage.
 Linutronix homepage.The Linux-USB Host Side API
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -9459,7 +9459,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction to USB on LinuxA Universal Serial Bus (USB) is used to connect a host,
 such as a PC or workstation, to a number of peripheral
 devices.  USB uses a tree structure, with the host as the
@@ -9698,26 +9698,26 @@ so the driver can start whenever it&#39;s needed.
 The mount options for usbfs, usable in /etc/fstab or
 in command line invocations of mount, are:
 
-busgid=NNNNNControls the GID used for the
+<!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->busgid=NNNNNControls the GID used for the
 /proc/bus/usb/BBB
-directories.  (Default: 0)busmode=MMMControls the file mode used for the
+directories.  (Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->busmode=MMMControls the file mode used for the
 /proc/bus/usb/BBB
-directories.  (Default: 0555)
-busuid=NNNNNControls the UID used for the
+directories.  (Default: 0555)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 -->
+<!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->busuid=NNNNNControls the UID used for the
 /proc/bus/usb/BBB
-directories.  (Default: 0)devgid=NNNNNControls the GID used for the
+directories.  (Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->devgid=NNNNNControls the GID used for the
 /proc/bus/usb/BBB/DDD
-files.  (Default: 0)devmode=MMMControls the file mode used for the
+files.  (Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->devmode=MMMControls the file mode used for the
 /proc/bus/usb/BBB/DDD
-files.  (Default: 0644)>devuid=NNNNNControls the UID used for the
+files.  (Default: 0644)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->>devuid=NNNNNControls the UID used for the
 /proc/bus/usb/BBB/DDD
-files.  (Default: 0)listgid=NNNNNControls the GID used for the
+files.  (Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->listgid=NNNNNControls the GID used for the
 /proc/bus/usb/devices and drivers files.
-(Default: 0)listmode=MMMControls the file mode used for the
+(Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->listmode=MMMControls the file mode used for the
 /proc/bus/usb/devices and drivers files.
-(Default: 0444)listuid=NNNNNControls the UID used for the
+(Default: 0444)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 --><!-- 0cce7955-9606-4b49-b827-1371909f1266 <=< ACCEPT -->listuid=NNNNNControls the UID used for the
 /proc/bus/usb/devices and drivers files.
-(Default: 0)
+(Default: 0)<!-- ACCEPT >=> 0cce7955-9606-4b49-b827-1371909f1266 -->
 
 Note that many Linux distributions hard-wire the mount options
 for usbfs in their init scripts, such as
@@ -9863,14 +9863,14 @@ automatically claimed by usbfs.
 
 This claim will be released by a RELEASEINTERFACE ioctl,
 or by closing the file descriptor.
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 USBDEVFS_CONNECTINFOSays whether the device is lowspeed.
 The ioctl parameter points to a structure like this:
 struct usbdevfs_connectinfo {
 unsigned int   devnum;
 unsigned char  slow;
 };
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 You can&#39;t tell whether a &quot;not slow&quot;
 device is connected at high speed (480 MBit/sec)
 or just full speed (12 MBit/sec).
@@ -9883,7 +9883,7 @@ struct usbdevfs_getdriver {
 unsigned int  interface;
 char          driver[USBDEVFS_MAXDRIVERNAME + 1];
 };
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 USBDEVFS_IOCTLPasses a request from userspace through
 to a kernel driver that has an ioctl entry in the
 struct usb_driver it registered.
@@ -9909,7 +9909,7 @@ wrapper.data = param;
 
 return ioctl (fd, USBDEVFS_IOCTL, &amp;amp;wrapper);
 }
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 
 This request lets kernel drivers talk to user mode code
 through filesystem operations even when they don&#39;t create
@@ -9926,7 +9926,7 @@ USBDEVFS_CLAIMINTERFACE call, before the file
 descriptor is closed.
 The ioctl parameter is an integer holding the number of
 the interface (bInterfaceNumber from descriptor);
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 No security check is made to ensure
 that the task which made the claim is the one
 which is releasing it.
@@ -10014,11 +10014,11 @@ not OK to get a short read back from the device.
 USBDEVFS_RESETDoes a USB level device reset.
 The ioctl parameter is ignored.
 After the reset, this rebinds all device interfaces.
-File modification time is not updated by this request.
-Avoid using this call
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
+<!-- 0fef3653-0688-4cde-8644-8bce083eddcc <=< ACCEPT -->Avoid using this call
 until some usbcore bugs get fixed,
 since it does not fully synchronize device, interface,
-and driver (not just usbfs) state.
+and driver (not just usbfs) state.<!-- ACCEPT >=> 0fef3653-0688-4cde-8644-8bce083eddcc -->
 USBDEVFS_SETINTERFACESets the alternate setting for an
 interface.  The ioctl parameter is a pointer to a
 structure like this:
@@ -10026,7 +10026,7 @@ struct usbdevfs_setinterface {
 unsigned int  interface;
 unsigned int  altsetting;
 };
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 
 Those struct members are from some interface descriptor
 applying to the current configuration.
@@ -10038,11 +10038,11 @@ usb_set_configuration call
 for the device.
 The parameter is an integer holding the number of
 a configuration (bConfigurationValue from descriptor).
-File modification time is not updated by this request.
-Avoid using this call
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
+<!-- 0fef3653-0688-4cde-8644-8bce083eddcc <=< ACCEPT -->Avoid using this call
 until some usbcore bugs get fixed,
 since it does not fully synchronize device, interface,
-and driver (not just usbfs) state.
+and driver (not just usbfs) state.<!-- ACCEPT >=> 0fef3653-0688-4cde-8644-8bce083eddcc -->
 Asynchronous I/O SupportAs mentioned above, there are situations where it may be
 important to initiate concurrent operations from user mode code.
 This is particularly important for periodic transfers
@@ -10096,16 +10096,16 @@ time reflects when the request was initiated.
 This contrasts with their use with the synchronous requests,
 where it reflects when requests complete.
 USBDEVFS_DISCARDURBTBS
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 
 USBDEVFS_DISCSIGNALTBS
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 
 USBDEVFS_REAPURBTBS
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 
 USBDEVFS_REAPURBNDELAYTBS
-File modification time is not updated by this request.
+<!-- 71be5ba8-17b5-4251-a6ad-965a514720b1 <=< ACCEPT -->File modification time is not updated by this request.<!-- ACCEPT >=> 71be5ba8-17b5-4251-a6ad-965a514720b1 -->
 
 USBDEVFS_SUBMITURBTBS
 &lt;!-- vim:syntax=sgml:sw=4
@@ -10115,7 +10115,7 @@ Sound Architecture) driver.
 
 Copyright (c) 2002-2005  Takashi Iwai tiwai@suse.de
 
-This document is free; you can redistribute it and/or modify it
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This document is free; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
@@ -10129,7 +10129,7 @@ for more details.
 You should have received a copy of the GNU General Public
 License along with this program; if not, write to the Free
 Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-MA 02111-1307 USA
+MA 02111-1307 USA<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 &lt;!-- ****************************************************** --&gt;&lt;!-- Preface  --&gt;&lt;!-- ****************************************************** --&gt;Preface
 This document describes how to write an
 
@@ -11257,7 +11257,7 @@ PCM Example Code
 ....
 
 /* hardware definition */
-static struct snd_pcm_hardware snd_mychip_playback_hw = {
+<!-- 24761f84-d434-4527-be68-3d71e3e90657 <=< ACCEPT -->static struct snd_pcm_hardware snd_mychip_playback_hw = {
 .info = (SNDRV_PCM_INFO_MMAP |
 SNDRV_PCM_INFO_INTERLEAVED |
 SNDRV_PCM_INFO_BLOCK_TRANSFER |
@@ -11273,10 +11273,10 @@ SNDRV_PCM_INFO_MMAP_VALID),
 .period_bytes_max = 32768,
 .periods_min =      1,
 .periods_max =      1024,
-};
+};<!-- ACCEPT >=> 24761f84-d434-4527-be68-3d71e3e90657 -->
 
 /* hardware definition */
-static struct snd_pcm_hardware snd_mychip_capture_hw = {
+<!-- 24761f84-d434-4527-be68-3d71e3e90657 <=< ACCEPT -->static struct snd_pcm_hardware snd_mychip_capture_hw = {
 .info = (SNDRV_PCM_INFO_MMAP |
 SNDRV_PCM_INFO_INTERLEAVED |
 SNDRV_PCM_INFO_BLOCK_TRANSFER |
@@ -11292,7 +11292,7 @@ SNDRV_PCM_INFO_MMAP_VALID),
 .period_bytes_max = 32768,
 .periods_min =      1,
 .periods_max =      1024,
-};
+};<!-- ACCEPT >=> 24761f84-d434-4527-be68-3d71e3e90657 -->
 
 /* open callback */
 static int snd_mychip_playback_open(struct snd_pcm_substream *substream)
@@ -11727,7 +11727,7 @@ runtime-&amp;gt;hw.channels_max = 1;
 
 Typically, you&#39;ll have a hardware descriptor as below:
 
-static struct snd_pcm_hardware snd_mychip_playback_hw = {
+<!-- 24761f84-d434-4527-be68-3d71e3e90657 <=< ACCEPT -->static struct snd_pcm_hardware snd_mychip_playback_hw = {
 .info = (SNDRV_PCM_INFO_MMAP |
 SNDRV_PCM_INFO_INTERLEAVED |
 SNDRV_PCM_INFO_BLOCK_TRANSFER |
@@ -11743,7 +11743,7 @@ SNDRV_PCM_INFO_MMAP_VALID),
 .period_bytes_max = 32768,
 .periods_min =      1,
 .periods_max =      1024,
-};
+};<!-- ACCEPT >=> 24761f84-d434-4527-be68-3d71e3e90657 -->
 
 
 
@@ -14335,7 +14335,7 @@ DocBook format.
 Giuliano Pochini corrected typos and contributed the example codes
 in the hardware constraints section.
 Writing USB Device DriversGregKroah-Hartmangreg@kroah.com2001-2002Greg Kroah-Hartman
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -14352,7 +14352,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 
 This documentation is based on an article published in
 Linux Journal Magazine, October 2001, Issue 90.
@@ -14641,7 +14641,7 @@ Programming Guide for Linux USB Device Drivers: http://usb.cs.tum.edu/usbdoc
 
 USB Home Page: http://www.usb.org
 Z8530 Programming GuideAlanCoxalan@lxorguk.ukuu.org.uk2000Alan Cox
-This documentation is free software; you can redistribute
+<!-- ec80fad0-5659-41d3-ae3a-28bf4339809e <=< ACCEPT -->This documentation is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later
@@ -14658,7 +14658,7 @@ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA
 
 For more details see the file COPYING in the source
-distribution of Linux.
+distribution of Linux.<!-- ACCEPT >=> ec80fad0-5659-41d3-ae3a-28bf4339809e -->
 Introduction
 The Z85x30 family synchronous/asynchronous controller chips are
 used on a large number of cheap network interface cards. The

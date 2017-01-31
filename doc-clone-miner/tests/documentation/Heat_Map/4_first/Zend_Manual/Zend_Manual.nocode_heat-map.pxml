@@ -367,11 +367,11 @@
             later.  There are important security and performance improvements
             available in the newer version of PHP.
          PHP Extensions 
-            Below is a table that lists all extensions typically found in PHP,
+            <!-- ef6e1b60-96fb-4ccd-890f-cc9789fdb4a8 <=< ACCEPT -->Below is a table that lists all extensions typically found in PHP,
             and how they are used in Zend Framework.  This can help guide you
             to know which extensions are required for your application.
             Not all extensions used by Zend Framework are required for every
-            application.
+            application.<!-- ACCEPT >=> ef6e1b60-96fb-4ccd-890f-cc9789fdb4a8 -->
          
             A usage type of &quot;Dependency&quot; means that the components or classes
             are not usable if the respective extension is not available.  A
@@ -422,11 +422,11 @@
                              Zend_Translate_Adapter_Tmx ,
                              Zend_Translate_Adapter_Xliff XMLReader --- xmlrpc --- XMLWriter --- xsl --- zip --- zlib Dependency Zend_Pdf ,
                              Memcache Zend Framework Components 
-            Below is a table that lists all available Zend Framework Components
+            <!-- ef6e1b60-96fb-4ccd-890f-cc9789fdb4a8 <=< ACCEPT -->Below is a table that lists all available Zend Framework Components
             and which PHP extension they need. This can help guide you
             to know which extensions are required for your application.
             Not all extensions used by Zend Framework are required for every
-            application.
+            application.<!-- ACCEPT >=> ef6e1b60-96fb-4ccd-890f-cc9789fdb4a8 -->
          Zend Framework Components and the PHP Extensions they use Zend Framework Components PHP Extension ( Subclass / Usage Type ) All Components pcre 
                             ( Dependency )
                              SPL 
@@ -840,8 +840,8 @@
              authenticate()  in order to represent the results of an authentication attempt. Adapters
             populate the  Zend_Auth_Result  object upon construction, so that the following four methods
             provide a basic set of user-facing operations that are common to the results of Zend_Auth adapters:
-             isValid()  - returns true if and only if the result represents a
-                        successful authentication attempt
+             isValid()  - <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->returns true if and only if the result represents a
+                        successful authentication attempt<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 -->
                      getCode()  - returns a  Zend_Auth_Result  constant identifier for
                         determining the type of authentication failure or whether success has occurred. This may be
                         used in situations where the developer wishes to distinguish among several authentication
@@ -937,13 +937,13 @@
             instance methods, one for each option.
          
             The available configuration options include:
-             tableName : This is the name of the database table that contains the authentication
-                        credentials, and against which the database authentication query is performed.
-                     identityColumn : This is the name of the database table column used to represent the
-                        identity. The identity column must contain unique values, such as a username or e-mail address.
-                     credentialColumn : This is the name of the database table column used to represent
+            <!-- c2a80f3b-da51-407e-b964-6f52fb3c0b9e <=< ACCEPT --> tableName : This is the name of the database table that contains the authentication
+                        credentials, and against which the database authentication query is performed.<!-- ACCEPT >=> c2a80f3b-da51-407e-b964-6f52fb3c0b9e -->
+                     <!-- c2a80f3b-da51-407e-b964-6f52fb3c0b9e <=< ACCEPT -->identityColumn : This is the name of the database table column used to represent the
+                        identity. The identity column must contain unique values, such as a username or e-mail address.<!-- ACCEPT >=> c2a80f3b-da51-407e-b964-6f52fb3c0b9e -->
+                     <!-- c2a80f3b-da51-407e-b964-6f52fb3c0b9e <=< ACCEPT -->credentialColumn : This is the name of the database table column used to represent
                         the credential. Under a simple identity and password authentication scheme, the credential value
-                        corresponds to the password. See also the  credentialTreatment  option.
+                        corresponds to the password. See also the  credentialTreatment  option.<!-- ACCEPT >=> c2a80f3b-da51-407e-b964-6f52fb3c0b9e -->
                      credentialTreatment : In many cases, passwords and other sensitive data are
                         encrypted, hashed, encoded, obscured, or otherwise treated through some function or algorithm.
                         By specifying a parameterized treatment string with this method, such as  &#39;MD5(?)&#39; 
@@ -1268,9 +1268,9 @@
                          EXAMPLE\username  with an AD server but to
                          username@example.com  with an OpenLDAP server, that may be awkward for the
                         application&#39;s high-level logic).
-                     accountDomainName 
+                     <!-- 0a97d757-97c4-4e57-938e-04dd06fb1427 <=< ACCEPT -->accountDomainName 
                         The FQDN domain name for which the target LDAP server is an authority (e.g.,
-                         example.com ). This option is used to canonicalize names so that the username
+                         example.com ).<!-- ACCEPT >=> 0a97d757-97c4-4e57-938e-04dd06fb1427 --> This option is used to canonicalize names so that the username
                         supplied by the user can be converted as necessary for binding. It is also used to determine if
                         the server is an authority for the supplied username (e.g., if
                          accountDomainName  is  foo.net  and the
@@ -1279,9 +1279,9 @@
                         name form (e.g.,  alice@foo.net ) are not supported. It is strongly
                         recommended that you supply this option, as there are many use-cases that require generating
                         the principal name form.
-                     accountDomainNameShort 
+                     <!-- 0a97d757-97c4-4e57-938e-04dd06fb1427 <=< ACCEPT -->accountDomainNameShort 
                         The &#39;short&#39; domain for which the target LDAP server is an authority (e.g.,
-                         FOO ). Note that there is a 1:1 mapping between the
+                         FOO ).<!-- ACCEPT >=> 0a97d757-97c4-4e57-938e-04dd06fb1427 --> Note that there is a 1:1 mapping between the
                          accountDomainName  and
                          accountDomainNameShort . This option should be used to
                         specify the NetBIOS domain name for Windows networks but may also be used by non-AD servers
@@ -1857,13 +1857,13 @@
             however, by changing the  $options  key  &#39;nestSeparator&#39;  when constructing the
              Zend_Config_Ini  object. For example:
              Using Zend_Config_Ini 
-            This example illustrates a basic use of  Zend_Config_Ini  for loading configuration data from an
+            <!-- 98827db0-acbe-413b-82f9-5e0bc02e1e92 <=< ACCEPT -->This example illustrates a basic use of  Zend_Config_Ini  for loading configuration data from an
             INI file. In this example there are configuration data for both a production system and for a staging
             system. Because the staging system configuration data are very similar to those for production, the staging
             section inherits from the production section. In this case, the decision is arbitrary and could have been
             written conversely, with the production section inheriting from the staging section, though this may not be
             the case for more complex situations. Suppose, then, that the following configuration data are contained in
-             /path/to/config.ini :
+             /path/to/config.ini :<!-- ACCEPT >=> 98827db0-acbe-413b-82f9-5e0bc02e1e92 -->
          
             Next, assume that the application developer needs the staging configuration data from the INI file. It is a
             simple matter to load these data by specifying the INI file and the staging section:
@@ -1882,13 +1882,13 @@
             Configuration data read into  Zend_Config_Xml  are always returned as strings.
             Conversion of data from strings to other types is left to developers to suit their particular needs.
          Using Zend_Config_Xml 
-            This example illustrates a basic use of  Zend_Config_Xml  for loading configuration data from an
+            <!-- 98827db0-acbe-413b-82f9-5e0bc02e1e92 <=< ACCEPT -->This example illustrates a basic use of  Zend_Config_Xml  for loading configuration data from an
             XML file. In this example there are configuration data for both a production system and for a staging
             system. Because the staging system configuration data are very similar to those for production, the staging
             section inherits from the production section. In this case, the decision is arbitrary and could have been
             written conversely, with the production section inheriting from the staging section, though this may not be
             the case for more complex situations. Suppose, then, that the following configuration data are contained in
-             /path/to/config.xml :
+             /path/to/config.xml :<!-- ACCEPT >=> 98827db0-acbe-413b-82f9-5e0bc02e1e92 -->
          
             Next, assume that the application developer needs the staging configuration data from the XML file. It is a
             simple matter to load these data by specifying the XML file and the staging section:
@@ -2622,9 +2622,9 @@
      
         What this will do is:
      
-                Set the &#39;Content-Type&#39; response header to &#39;text/xml&#39;.
+                <!-- 5adee098-648a-461e-a0d8-b93a41585036 <=< ACCEPT -->Set the &#39;Content-Type&#39; response header to &#39;text/xml&#39;.
          
-                Change the view suffix to &#39;xml.phtml&#39; (or, if you use an
+                Change the view suffix to &#39;xml.phtml&#39;<!-- ACCEPT >=> 5adee098-648a-461e-a0d8-b93a41585036 --> (or, if you use an
                 alternate view suffix, &#39;xml.[your suffix]&#39;).
          
         Now, you&#39;ll need to create a new view script, &#39;news/list.xml.phtml&#39;,
@@ -2648,9 +2648,9 @@
      Default Contexts Available 
             By default, two contexts are available to the
              ContextSwitch  helper: json and xml.
-         JSON . The JSON context sets the
+         JSON . <!-- 5adee098-648a-461e-a0d8-b93a41585036 <=< ACCEPT -->The JSON context sets the
                     &#39;Content-Type&#39; response header to &#39;application/json&#39;, and
-                    the view script suffix to &#39;json.phtml&#39;.
+                    the view script suffix to &#39;json.phtml&#39;.<!-- ACCEPT >=> 5adee098-648a-461e-a0d8-b93a41585036 -->
                  
                     By default, however, no view script is required. It will
                     simply serialize all view variables, and emit the JSON
@@ -2660,9 +2660,9 @@
                     serialization:
                  &lt;?php
 $this-&gt;_helper-&gt;contextSwitch()-&gt;setAutoJsonSerialization(false);
-?&gt; XML . The XML context sets the
+?&gt; XML . <!-- 5adee098-648a-461e-a0d8-b93a41585036 <=< ACCEPT -->The XML context sets the
                     &#39;Content-Type&#39; response header to &#39;text/xml&#39;, and the view
-                    script suffix to &#39;xml.phtml&#39;. You will need to create a new
+                    script suffix to &#39;xml.phtml&#39;.<!-- ACCEPT >=> 5adee098-648a-461e-a0d8-b93a41585036 --> You will need to create a new
                     view script for the context.
                  Creating Custom Contexts 
             Sometimes, the default contexts are not enough. For instance, you
@@ -4506,20 +4506,20 @@ $contextSwitch-&gt;initContext();
                     finishes routing the request.
                  dispatchLoopStartup()  is called before
                      Zend_Controller_Front  enters its dispatch loop.
-                 preDispatch()  is called before an action is
+                 <!-- 9208c047-8361-4b54-8180-4f6e2eb2cbfe <=< ACCEPT -->preDispatch()  is called before an action is
                     dispatched by  the
                         dispatcher . This callback allows for proxy or
                     filter behavior. By altering the request and resetting its
                     dispatched flag (via
                      Zend_Controller_Request_Abstract::setDispatched(false) ),
-                    the current action may be skipped and/or replaced.
-                 postDispatch()  is called after an action is
+                    the current action may be skipped and/or replaced.<!-- ACCEPT >=> 9208c047-8361-4b54-8180-4f6e2eb2cbfe -->
+                 <!-- 9208c047-8361-4b54-8180-4f6e2eb2cbfe <=< ACCEPT -->postDispatch()  is called after an action is
                     dispatched by  the
                         dispatcher . This callback allows for proxy or
                     filter behavior. By altering the request and resetting its
                     dispatched flag (via
                      Zend_Controller_Request_Abstract::setDispatched(false) ),
-                    a new action may be specified for dispatching.
+                    a new action may be specified for dispatching.<!-- ACCEPT >=> 9208c047-8361-4b54-8180-4f6e2eb2cbfe -->
                  dispatchLoopShutdown()  is called after
                      Zend_Controller_Front  exits its dispatch loop.
                  Writing Plugins 
@@ -6013,7 +6013,7 @@ $contextSwitch-&gt;initContext();
             the units of the  $date  operand, when  $date  is a string or integer.
          List of Date Parts Date Parts Date Part Explanation Timestamp 
                             UNIX timestamp, expressed in seconds elapsed since January 1st, 1970 00:00:00 GMT/UTC.
-                         Year Gregorian calendar year (e.g. 2006) Month Gregorian calendar month (1-12, localized names supported) 24 hour clock Hours of the day (0-23) denote the hours elapsed, since the start of the day. minute Minutes of the hour (0-59) denote minutes elapsed, since the start of the hour. Second Seconds of the minute (0-59) denote the elapsed seconds, since the start of the minute. millisecond Milliseconds denote thousandths of a second (0-999).  Zend_Date  supports two additional methods for working with time units smaller than seconds. By default,  Zend_Date  instances use a precision defaulting to milliseconds, as seen using  getFractionalPrecision() . To change the precision use  setFractionalPrecision($precision) .  However, precision is limited practically to microseconds, since  Zend_Date  uses  microtime() . Day Zend_Date::DAY_SHORT  is extracted from  $date  if the  $date  operand is an instance of  Zend_Date  or a numeric string.  Otherwise, an attempt is made to extract the day according to the conventions documented for these constants:  Zend_Date::WEEKDAY_NARROW ,  Zend_Date::WEEKDAY_NAME ,  Zend_Date::WEEKDAY_SHORT ,  Zend_Date::WEEKDAY  (Gregorian calendar assumed) Week Zend_Date::WEEK  is extracted from  $date  if the  $date  operand is an instance of  Zend_Date  or a numeric string. Otherwise an exception is raised. (Gregorian calendar assumed) Date Zend_Date::DAY_MEDIUM  is extracted from  $date  if the  $date  operand is an instance of  Zend_Date .  Otherwise, an attempt is made to normalize the  $date  string into a Zend_Date::DATE_MEDIUM formatted date. The format of  Zend_Date::DAY_MEDIUM  depends on the object&#39;s locale. Weekday Weekdays are represented numerically as 0 (for Sunday) through 6 (for Saturday).   Zend_Date::WEEKDAY_DIGIT  is extracted from  $date , if the  $date  operand is an instance of  Zend_Date  or a numeric string.  Otherwise, an attempt is made to extract the day according to the conventions documented for these constants:  Zend_Date::WEEKDAY_NARROW ,  Zend_Date::WEEKDAY_NAME ,  Zend_Date::WEEKDAY_SHORT ,  Zend_Date::WEEKDAY  (Gregorian calendar assumed) DayOfYear In  Zend_Date , the day of the year represents the number of calendar days elapsed since the start of the year (0-365).  As with other units above, fractions are rounded down to the nearest whole number. (Gregorian calendar assumed)
+                         Year Gregorian calendar year (e.g. 2006) Month Gregorian calendar month (1-12, localized names supported) 24 hour clock Hours of the day (0-23) denote the hours elapsed, since the start of the day. minute Minutes of the hour (0-59) denote minutes elapsed, since the start of the hour. Second Seconds of the minute (0-59) denote the elapsed seconds, since the start of the minute. millisecond Milliseconds denote thousandths of a second (0-999).  Zend_Date  supports two additional methods for working with time units smaller than seconds. By default,  Zend_Date  instances use a precision defaulting to milliseconds, as seen using  getFractionalPrecision() . To change the precision use  setFractionalPrecision($precision) .  However, precision is limited practically to microseconds, since  Zend_Date  uses  microtime() . <!-- 52ad9b94-4fa6-4bfe-b178-e0fd7da934da <=< ACCEPT -->Day Zend_Date::DAY_SHORT  is extracted from  $date  if the  $date  operand is an instance of  Zend_Date  or a numeric string.  Otherwise, an attempt is made to extract the day according to the conventions documented for these constants:  Zend_Date::WEEKDAY_NARROW ,  Zend_Date::WEEKDAY_NAME ,  Zend_Date::WEEKDAY_SHORT ,  Zend_Date::WEEKDAY  (Gregorian calendar assumed)<!-- ACCEPT >=> 52ad9b94-4fa6-4bfe-b178-e0fd7da934da --> Week <!-- 52ad9b94-4fa6-4bfe-b178-e0fd7da934da <=< ACCEPT -->Zend_Date::WEEK  is extracted from  $date  if the  $date  operand is an instance of  Zend_Date  or a numeric string. Otherwise an exception is raised. (Gregorian calendar assumed)<!-- ACCEPT >=> 52ad9b94-4fa6-4bfe-b178-e0fd7da934da --> Date Zend_Date::DAY_MEDIUM  is extracted from  $date  if the  $date  operand is an instance of  Zend_Date .  Otherwise, an attempt is made to normalize the  $date  string into a Zend_Date::DATE_MEDIUM formatted date. The format of  Zend_Date::DAY_MEDIUM  depends on the object&#39;s locale. Weekday Weekdays are represented numerically as 0 (for Sunday) through 6 (for Saturday).   <!-- 52ad9b94-4fa6-4bfe-b178-e0fd7da934da <=< ACCEPT -->Zend_Date::WEEKDAY_DIGIT  is extracted from  $date , if the  $date  operand is an instance of  Zend_Date  or a numeric string.  Otherwise, an attempt is made to extract the day according to the conventions documented for these constants:  Zend_Date::WEEKDAY_NARROW ,  Zend_Date::WEEKDAY_NAME ,  Zend_Date::WEEKDAY_SHORT ,  Zend_Date::WEEKDAY  (Gregorian calendar assumed)<!-- ACCEPT >=> 52ad9b94-4fa6-4bfe-b178-e0fd7da934da --> DayOfYear In  Zend_Date , the day of the year represents the number of calendar days elapsed since the start of the year (0-365).  As with other units above, fractions are rounded down to the nearest whole number. (Gregorian calendar assumed)
                          Arpa Arpa dates (i.e. RFC 822 formatted dates) are supported. Output uses either a &quot;GMT&quot; or &quot;Local differential hours+min&quot; format (see section 5 of RFC 822).  Before PHP 5.2.2, using the DATE_RFC822 constant with PHP date functions sometimes produces  incorrect results .  Zend_Date&#39;s results are correct.  Example:  Iso Only complete ISO 8601 dates are supported for output. Example:  2009-02-14T00:31:30+01:00 
                              List of Date Operations 
                 The basic operations below can be used instead of the convenience operations for specific date parts, if
@@ -6059,15 +6059,15 @@ $contextSwitch-&gt;initContext();
                              isLater() isLater($date, $part = null, $locale = null) 
                                 returns true, if  $part  of this object&#39;s date is later than
                                  $part  of  $date  having a locale  $locale 
-                             isToday() isToday() 
+                             <!-- 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 <=< ACCEPT -->isToday() isToday() 
                                 Tests if today&#39;s year, month, and day match this object&#39;s date value, using this
-                                object&#39;s timezone.
-                             isTomorrow() isTomorrow() 
+                                object&#39;s timezone.<!-- ACCEPT >=> 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 -->
+                             <!-- 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 <=< ACCEPT -->isTomorrow() isTomorrow() 
                                 Tests if tomorrow&#39;s year, month, and day match this object&#39;s date value, using this
-                                object&#39;s timezone.
-                             isYesterday() isYesterday() 
+                                object&#39;s timezone.<!-- ACCEPT >=> 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 -->
+                             <!-- 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 <=< ACCEPT -->isYesterday() isYesterday() 
                                 Tests if yesterday&#39;s year, month, and day match this object&#39;s date value, using this
-                                object&#39;s timezone.
+                                object&#39;s timezone.<!-- ACCEPT >=> 4b98cf11-f7d0-4d1b-8488-6732f5b7f557 -->
                              isLeapYear() isLeapYear() 
                                 Use  isLeapYear()  to determine if the current object is a leap year, or use
                                 Zend_Date::checkLeapYear($year) to check $year, which can be a string, integer, or
@@ -6582,7 +6582,7 @@ $contextSwitch-&gt;initContext();
                     value generated by another client could be reported to your
                     client&#39;s connection as the last value generated.
                  Updating Data 
-                You can update rows in a database table using the
+                <!-- 22ba0507-82eb-41ad-b5fe-63b226a56955 <=< ACCEPT -->You can update rows in a database table using the
                  update()  method of an Adapter.  This method takes
                 three arguments:  the first is the name of the table; the
                 second is an associative array mapping columns to change to new
@@ -6596,7 +6596,7 @@ $contextSwitch-&gt;initContext();
                 that is used as criteria for the rows to change.  The values
                 and identifiers in this argument are not quoted or escaped.
                 You are responsible for ensuring that any dynamic content is
-                interpolated into this string safely.
+                interpolated into this string safely.<!-- ACCEPT >=> 22ba0507-82eb-41ad-b5fe-63b226a56955 -->
                 See  
                 for methods to help you do this.
              
@@ -6610,7 +6610,7 @@ $contextSwitch-&gt;initContext();
                 strings are joined together as terms in an expression separated
                 by  AND  operators.
              Updating rows using an array of expressions Deleting Data 
-                You can delete rows from a database table using the
+                <!-- 22ba0507-82eb-41ad-b5fe-63b226a56955 <=< ACCEPT -->You can delete rows from a database table using the
                  delete()  method.  This method takes two arguments:
                 the first is a string naming the table.
              
@@ -6623,7 +6623,7 @@ $contextSwitch-&gt;initContext();
                 for methods to help you do this.
              
                 The return value is the number of rows affected by the delete
-                operation.
+                operation.<!-- ACCEPT >=> 22ba0507-82eb-41ad-b5fe-63b226a56955 -->
              Deleting rows 
                 If you omit the second argument, the result is that all rows in
                 the database table are deleted.
@@ -6867,7 +6867,7 @@ $contextSwitch-&gt;initContext();
                      
                         This Adapter uses the PHP extension ibm_db2.
                      
-                        
+                        <!-- 3f0f1eb1-028e-484b-a502-00541d40cd78 <=< ACCEPT -->
                         IBM DB2 supports both sequences and auto-incrementing
                         keys.  Therefore the arguments to
                          lastInsertId()  are optional.  If you give
@@ -6876,20 +6876,20 @@ $contextSwitch-&gt;initContext();
                         arguments, the Adapter returns the last value generated
                         by the sequence named according to the convention
                         &#39; table _ column _seq&#39;.
-                        
+                        <!-- ACCEPT >=> 3f0f1eb1-028e-484b-a502-00541d40cd78 -->
                      MySQLi 
                         Specify this Adapter to the  factory() 
                         method with the name &#39;Mysqli&#39;.
                      
                         This Adapter utilizes the PHP extension mysqli.
                      
-                        MySQL does not support sequences, so
+                        <!-- 230684d3-00ac-4429-86af-cb7ffe14180a <=< ACCEPT -->MySQL does not support sequences, so
                          lastInsertId()  ignores its arguments and
                         always returns the last value generated for an
                         auto-increment key.  The  lastSequenceId() 
-                        method returns  null .
+                        method returns  null .<!-- ACCEPT >=> 230684d3-00ac-4429-86af-cb7ffe14180a -->
                      Oracle 
-                        Specify this Adapter to the  factory() 
+                        Specify this Adapter to the  factory() <!-- 230684d3-00ac-4429-86af-cb7ffe14180a <=< ACCEPT --><!-- ACCEPT >=> 230684d3-00ac-4429-86af-cb7ffe14180a -->
                         method with the name &#39;Oracle&#39;.
                      
                         This Adapter uses the PHP extension oci8.
@@ -6920,11 +6920,11 @@ $contextSwitch-&gt;initContext();
                      
                         This Adapter uses the PHP extensions pdo and pdo_mssql.
                      
-                        Microsoft SQL Server does not support sequences, so
+                        <!-- 230684d3-00ac-4429-86af-cb7ffe14180a <=< ACCEPT -->Microsoft SQL Server does not support sequences, so
                          lastInsertId()  ignores its arguments and
                         always returns the last value generated for an
                         auto-increment key.  The  lastSequenceId() 
-                        method returns  null .
+                        method returns  null .<!-- ACCEPT >=> 230684d3-00ac-4429-86af-cb7ffe14180a -->
                      
                         Zend_Db_Adapter_Pdo_Mssql sets  &quot; ) instead of the
                         proprietary square-brackets syntax SQL Server uses for
@@ -6948,11 +6948,11 @@ $contextSwitch-&gt;initContext();
                      
                         This Adapter uses the PHP extensions pdo and pdo_mysql.
                      
-                        MySQL does not support sequences, so
+                        <!-- 230684d3-00ac-4429-86af-cb7ffe14180a <=< ACCEPT -->MySQL does not support sequences, so
                          lastInsertId()  ignores its arguments and
                         always returns the last value generated for an
                         auto-increment key.  The  lastSequenceId() 
-                        method returns  null .
+                        method returns  null .<!-- ACCEPT >=> 230684d3-00ac-4429-86af-cb7ffe14180a -->
                      PDO Oracle 
                         Specify this Adapter to the  factory() 
                         method with the name &#39;Pdo_Oci&#39;.
@@ -6969,7 +6969,7 @@ $contextSwitch-&gt;initContext();
                      
                         This Adapter uses the PHP extensions pdo and pdo_pgsql.
                      
-                        
+                        <!-- 3f0f1eb1-028e-484b-a502-00541d40cd78 <=< ACCEPT -->
                         PostgreSQL supports both sequences and auto-incrementing
                         keys.  Therefore the arguments to
                          lastInsertId()  are optional.  If you give
@@ -6978,18 +6978,18 @@ $contextSwitch-&gt;initContext();
                         arguments, the Adapter returns the last value generated
                         by the sequence named according to the convention
                         &#39; table _ column _seq&#39;.
-                        
+                        <!-- ACCEPT >=> 3f0f1eb1-028e-484b-a502-00541d40cd78 -->
                      PDO SQLite 
                         Specify this Adapter to the  factory() 
                         method with the name &#39;Pdo_Sqlite&#39;.
                      
                         This Adapter uses the PHP extensions pdo and pdo_sqlite.
                      
-                        SQLite does not support sequences, so
+                        <!-- 230684d3-00ac-4429-86af-cb7ffe14180a <=< ACCEPT -->SQLite does not support sequences, so
                          lastInsertId()  ignores its arguments and
                         always returns the last value generated for an
                         auto-increment key.  The  lastSequenceId() 
-                        method returns  null .
+                        method returns  null .<!-- ACCEPT >=> 230684d3-00ac-4429-86af-cb7ffe14180a -->
                      
                         To connect to an SQLite2 database, specify
                          &#39;dsnprefix&#39;=&gt;&#39;sqlite2&#39;  in the array of
@@ -7394,9 +7394,9 @@ $contextSwitch-&gt;initContext();
              
                 In Zend_Db_Select, you can specify conditions for restricting groups using the
                  having()  method. Its usage is similar to that of the
-                 where()  method. The first argument is a string containing a SQL
+                 where()  method. <!-- 1af4bc5f-73a3-4930-91a7-1d5f552f06a4 <=< ACCEPT -->The first argument is a string containing a SQL
                 expression. The optional second argument is a value that is used to replace a
-                positional parameter placeholder in the SQL expression. Expressions given in
+                positional parameter placeholder in the SQL expression.<!-- ACCEPT >=> 1af4bc5f-73a3-4930-91a7-1d5f552f06a4 --> Expressions given in
                 multiple invocations of the  having()  method are combined using the
                 Boolean  AND  operator, or the  OR  operator if you use the
                  orHaving()  method.
@@ -7507,9 +7507,9 @@ $contextSwitch-&gt;initContext();
             Typically, a statement object is returned by the
              query()  method of the database Adapter class.
             This method is a general way to prepare any SQL statement.
-            The first argument is a string containing an SQL statement.
+            <!-- 1af4bc5f-73a3-4930-91a7-1d5f552f06a4 <=< ACCEPT -->The first argument is a string containing an SQL statement.
             The optional second argument is an array of values to bind
-            to parameter placeholders in the SQL string.
+            to parameter placeholders in the SQL string.<!-- ACCEPT >=> 1af4bc5f-73a3-4930-91a7-1d5f552f06a4 -->
          Creating a SQL statement object with query() 
             The statement object corresponds to a SQL statement that has been
             prepared, and executed once with the bind-values specified.
@@ -7709,8 +7709,8 @@ $contextSwitch-&gt;initContext();
             table by its class name. You can also specify the dependent table by using an object of
             that table class.
          Fetching a Dependent Rowset 
-                This example shows getting a Row object from the table  Accounts , and
-                finding the  Bugs  reported by that account.
+                <!-- aad8b94d-e749-46d2-81d5-fb0784472eb3 <=< ACCEPT -->This example shows getting a Row object from the table  Accounts , and
+                finding the  Bugs  reported by that account.<!-- ACCEPT >=> aad8b94d-e749-46d2-81d5-fb0784472eb3 -->
              
             The second argument  $rule  is optional. It is a string that names the rule
             key in the  $_referenceMap  array of the dependent table class. If you don&#39;t
@@ -7721,10 +7721,10 @@ $contextSwitch-&gt;initContext();
             is the first one that matches the parent table. This is the rule
              &#39;Reporter&#39; .
          Fetching a Dependent Rowset By a Specific Rule 
-                This example shows getting a Row object from the table  Accounts , and
+                <!-- aad8b94d-e749-46d2-81d5-fb0784472eb3 <=< ACCEPT -->This example shows getting a Row object from the table  Accounts , and
                 finding the  Bugs  assigned to be fixed by the user of that account. The
                 rule key string that corresponds to this reference relationship in this example is
-                 &#39;Engineer&#39; .
+                 &#39;Engineer&#39; .<!-- ACCEPT >=> aad8b94d-e749-46d2-81d5-fb0784472eb3 -->
              
             You can also add criteria, ordering and limits to your relationships using the parent
             row&#39;s select object.
@@ -7761,9 +7761,9 @@ $contextSwitch-&gt;initContext();
             by its class name. You can also specify the parent table by using an object of that
             table class.
          Fetching the Parent Row 
-                This example shows getting a Row object from the table  Bugs  (for
+                <!-- aad8b94d-e749-46d2-81d5-fb0784472eb3 <=< ACCEPT -->This example shows getting a Row object from the table  Bugs  (for
                 example one of those bugs with status &#39;NEW&#39;), and finding the row in the
-                 Accounts  table for the user who reported the bug.
+                 Accounts  table for the user who reported the bug.<!-- ACCEPT >=> aad8b94d-e749-46d2-81d5-fb0784472eb3 -->
              
             The second argument  $rule  is optional. It is a string that names the rule
             key in the  $_referenceMap  array of the dependent table class. If you don&#39;t
@@ -7773,10 +7773,10 @@ $contextSwitch-&gt;initContext();
             In the example above, the rule key is not specified, so the rule used by default is the
             first one that matches the parent table. This is the rule  &#39;Reporter&#39; .
          Fetching a Parent Row By a Specific Rule 
-                This example shows getting a Row object from the table  Bugs , and
+                <!-- aad8b94d-e749-46d2-81d5-fb0784472eb3 <=< ACCEPT -->This example shows getting a Row object from the table  Bugs , and
                 finding the account for the engineer assigned to fix that bug. The rule key string
                 that corresponds to this reference relationship in this example is
-                 &#39;Engineer&#39; .
+                 &#39;Engineer&#39; .<!-- ACCEPT >=> aad8b94d-e749-46d2-81d5-fb0784472eb3 -->
              
             Alternatively, you can query rows from a parent table using a &quot;magic method&quot;.
             Zend_Db_Table_Row_Abstract invokes the method:
@@ -7811,9 +7811,9 @@ $contextSwitch-&gt;initContext();
             class name. You can also specify the intersection table by using an object of that
             table class.
          Fetching a Rowset with the Many-to-many Method 
-                This example shows geting a Row object from from the origin table
+                <!-- aad8b94d-e749-46d2-81d5-fb0784472eb3 <=< ACCEPT -->This example shows geting a Row object from from the origin table
                  Bugs , and finding rows from the destination table
-                 Products , representing products related to that bug.
+                 Products , representing products related to that bug.<!-- ACCEPT >=> aad8b94d-e749-46d2-81d5-fb0784472eb3 -->
              
             The third and fourth arguments  $rule1  and  $rule2  are
             optional. These are strings that name the rule keys in the  $_referenceMap 
@@ -7836,9 +7836,9 @@ $contextSwitch-&gt;initContext();
             are the first ones that match. In this case,  $rule1  is
              &#39;Reporter&#39;  and  $rule2  is  &#39;Product&#39; .
          Fetching a Rowset with the Many-to-many Method By a Specific Rule 
-                This example shows geting a Row object from from the origin table
+                <!-- aad8b94d-e749-46d2-81d5-fb0784472eb3 <=< ACCEPT -->This example shows geting a Row object from from the origin table
                  Bugs , and finding rows from the destination table
-                 Products , representing products related to that bug.
+                 Products , representing products related to that bug.<!-- ACCEPT >=> aad8b94d-e749-46d2-81d5-fb0784472eb3 -->
              
             Alternatively, you can query rows from the destination table in a many-to-many
             relationship using a &quot;magic method.&quot; Zend_Db_Table_Row_Abstract invokes the method:
@@ -8027,15 +8027,15 @@ $contextSwitch-&gt;initContext();
             RDBMS. There are three ways of specifying the database adapter to a Table class, and
             these three ways are described below:
          Specifying a Database Adapter 
-                The first way to provide a database adapter to a Table class is by passing it as an
+               <!-- 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c <=< ACCEPT --> The first way to provide a database adapter to a Table class is by passing it as an
                 object of type Zend_Db_Adapter_Abstract in the options array, identified by the key
-                 &#39;db&#39; .
+                 &#39;db&#39; .<!-- ACCEPT >=> 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c -->
              Example of constructing a Table using an Adapter object Setting a Default Database Adapter 
-                The second way to provide a database adapter to a Table class is by declaring an
+                <!-- 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c <=< ACCEPT -->The second way to provide a database adapter to a Table class is by declaring an
                 object of type Zend_Db_Adapter_Abstract to be a default database adapter for all
                 subsequent instances of Tables in your application. You can do this with the static
                 method  Zend_Db_Table_Abstract::setDefaultAdapter() . The argument is an
-                object of type Zend_Db_Adapter_Abstract.
+                object of type Zend_Db_Adapter_Abstract.<!-- ACCEPT >=> 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c -->
              Example of constructing a Table using a the Default Adapter 
                 It can be convenient to create the database adapter object in a central place of
                 your application, such as the bootstrap, and then store it as the default adapter.
@@ -8043,10 +8043,10 @@ $contextSwitch-&gt;initContext();
                 your application. However, setting a default adapter is limited to a single adapter
                 instance.
              Storing a Database Adapter in the Registry 
-                The third way to provide a database adapter to a Table class is by passing a string
+                <!-- 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c <=< ACCEPT -->The third way to provide a database adapter to a Table class is by passing a string
                 in the options array, also identified by the  &#39;db&#39;  key. The string is
                 used as a key to the static Zend_Registry instance, where the entry at that key is
-                an object of type Zend_Db_Adapter_Abstract.
+                an object of type Zend_Db_Adapter_Abstract.<!-- ACCEPT >=> 22b42e63-574c-4c9d-88fd-4e7ba1ad0b8c -->
              Example of constructing a Table using a Registry key 
                 Like setting the default adapter, this gives you the means to ensure that the same
                 adapter instance is used throughout your application. Using the registry is more
@@ -10124,13 +10124,13 @@ $contextSwitch-&gt;initContext();
                 using  Zend_View_Helper_FormLabel , and wraps it in a &lt;dt&gt;
                 tag. If no label is provided, just the definition term tag is
                 rendered.
-             Default Decorators Do Not Need to Be Loaded 
+             <!-- a85c9f1e-075e-4979-b7ba-53afd930f0db <=< ACCEPT -->Default Decorators Do Not Need to Be Loaded 
                 By default, the default decorators are loaded during object
                 initialization. You can disable this by passing the
                 &#39;disableLoadDefaultDecorators&#39; option to the constructor:
              
                 This option may be mixed with any other options you pass,
-                both as array options or in a  Zend_Config  object.
+                both as array options or in a  Zend_Config  object.<!-- ACCEPT >=> a85c9f1e-075e-4979-b7ba-53afd930f0db -->
              
             Since the order in which decorators are registered matters -- first
             decorator registered is executed first -- you will need to make
@@ -10474,14 +10474,14 @@ $form-&gt;setElementFilters(array(&#39;StringTrim&#39;));
             You can access display groups using the
              getDisplayGroup()  method, or via overloading using the
             display group&#39;s name:
-         Default Decorators Do Not Need to Be Loaded 
+         <!-- a85c9f1e-075e-4979-b7ba-53afd930f0db <=< ACCEPT -->Default Decorators Do Not Need to Be Loaded 
                 By default, the default decorators are loaded during object
                 initialization. You can disable this by passing the
                 &#39;disableLoadDefaultDecorators&#39; option when creating a display
                 group:
              
                 This option may be mixed with any other options you pass,
-                both as array options or in a  Zend_Config  object.
+                both as array options or in a  Zend_Config  object.<!-- ACCEPT >=> a85c9f1e-075e-4979-b7ba-53afd930f0db -->
              Global Operations 
                 Just as with elements, there are some operations which might
                 affect all display groups; these include setting decorators and
@@ -10608,13 +10608,13 @@ $form-&gt;setElementFilters(array(&#39;StringTrim&#39;));
          
             Any attributes set on the form object will be used as HTML
             attributes of the  &lt;form&gt;  tag.
-         Default Decorators Do Not Need to Be Loaded 
+         <!-- a85c9f1e-075e-4979-b7ba-53afd930f0db <=< ACCEPT -->Default Decorators Do Not Need to Be Loaded 
                 By default, the default decorators are loaded during object
                 initialization. You can disable this by passing the
                 &#39;disableLoadDefaultDecorators&#39; option to the constructor:
              
                 This option may be mixed with any other options you pass,
-                both as array options or in a  Zend_Config  object.
+                both as array options or in a  Zend_Config  object.<!-- ACCEPT >=> a85c9f1e-075e-4979-b7ba-53afd930f0db -->
              Using Multiple Decorators of the Same Type 
                 Internally,  Zend_Form  uses a decorator&#39;s
                 class as the lookup mechanism when retrieving decorators. As a
@@ -11829,9 +11829,9 @@ $element-&gt;setOrder(10);
          http://code.google.com/apis/calendar/overview.html 
         for more information about the Google Calendar API.
      Connecting To The Calendar Service 
-            The Google Calendar API, like all GData APIs, is based off of the Atom Publishing Protoco (APP),
+            <!-- de70b989-9e86-48cd-995a-bcb859e63449 <=< ACCEPT -->The Google Calendar API, like all GData APIs, is based off of the Atom Publishing Protoco (APP),
             an XML based format for managing web-based resources. Traffic between a client and the Google
-            Calendar servers occurs over HTTP and allows for both authenticated and unauthenticated connections.
+            Calendar servers occurs over HTTP and allows for both authenticated and unauthenticated connections.<!-- ACCEPT >=> de70b989-9e86-48cd-995a-bcb859e63449 -->
          
             Before any transactions can occur, this connection needs to be made. Creating a connection to the
             calendar servers involves two steps: creating an HTTP client and binding a
@@ -11866,13 +11866,13 @@ $element-&gt;setOrder(10);
                 The
                  Zend_Gdata 
                 library provides support for all three authentication schemes.
-                The rest of this chapter will assume that you are familiar the
+                <!-- 4f1abeaf-fefc-4382-a681-1612472a9925 <=< ACCEPT -->The rest of this chapter will assume that you are familiar the
                 authentication schemes available and how to create an
                 appropriate authenticated connection. For more information,
                 please see section the
                  Authentication section 
                 of this manual or the
-                 Authentication Overview in the Google Data API Developer&#39;s Guide .
+                 Authentication Overview in the Google Data API Developer&#39;s Guide .<!-- ACCEPT >=> 4f1abeaf-fefc-4382-a681-1612472a9925 -->
              Creating A Service Instance 
                 In order to interact with Google Calendar, this library provides the
                  Zend_Gdata_Calendar  service class. This class provides a common interface to the
@@ -12557,7 +12557,7 @@ $gdata-&gt;deleteEmailList(&#39;friends&#39;);
         See  http://code.google.com/apis/base 
         for more information about the Google Base API.
      Connect To The Base Service 
-            The Google Base API, like all GData APIs, is based off of the Atom Publishing Protocol (APP), an XML based format for managing web-based resources. Traffic between a client and the Google Base servers occurs over HTTP and allows for both authenticated and unauthenticated connections.
+            <!-- de70b989-9e86-48cd-995a-bcb859e63449 <=< ACCEPT -->The Google Base API, like all GData APIs, is based off of the Atom Publishing Protocol (APP), an XML based format for managing web-based resources. Traffic between a client and the Google Base servers occurs over HTTP and allows for both authenticated and unauthenticated connections.<!-- ACCEPT >=> de70b989-9e86-48cd-995a-bcb859e63449 -->
          
             Before any transactions can occur, this connection needs to be made. Creating a connection to the base servers involves two steps: creating an HTTP client and binding a
              Zend_Gdata_Gbase  service instance to that client.
@@ -12569,9 +12569,9 @@ $gdata-&gt;deleteEmailList(&#39;friends&#39;);
                         allows authentication to the base servers via a Google proxy server. This provides the same level of convenience as ClientAuth but without the security risk, making this an ideal choice for web-based applications.
                      
                 The  Zend_Gdata 
-                library provides support for all three authentication schemes. The rest of this chapter will assume that you are familiar the authentication schemes available and how to create an appropriate authenticated connection. For more information, please see section  .
+                library provides support for all three authentication schemes. <!-- 4f1abeaf-fefc-4382-a681-1612472a9925 <=< ACCEPT -->The rest of this chapter will assume that you are familiar the authentication schemes available and how to create an appropriate authenticated connection. For more information, please see section  .
                 or the
-                 Authentication Overview in the Google Data API Developer&#39;s Guide .
+                 Authentication Overview in the Google Data API Developer&#39;s Guide .<!-- ACCEPT >=> 4f1abeaf-fefc-4382-a681-1612472a9925 -->
              Create A Service Instance 
                 In order to interact with Google Base, this library provides the
                  Zend_Gdata_Gbase 
@@ -12638,9 +12638,9 @@ $gdata-&gt;deleteEmailList(&#39;friends&#39;);
             and ClientAuth. HTTP connections must be authenticated for write
             support, but non-authenticated connections have read-only access.
          Connecting To The Service 
-            The Picasa Web Albums API, like all GData APIs, is based off of the Atom Publishing Protocol (APP),
+            <!-- de70b989-9e86-48cd-995a-bcb859e63449 <=< ACCEPT -->The Picasa Web Albums API, like all GData APIs, is based off of the Atom Publishing Protocol (APP),
             an XML based format for managing web-based resources. Traffic between a client and the
-            servers occurs over HTTP and allows for both authenticated and unauthenticated connections.
+            servers occurs over HTTP and allows for both authenticated and unauthenticated connections.<!-- ACCEPT >=> de70b989-9e86-48cd-995a-bcb859e63449 -->
          
             Before any transactions can occur, this connection needs to be made. Creating a connection to the
             Picasa servers involves two steps: creating an HTTP client and binding a
@@ -12667,13 +12667,13 @@ $gdata-&gt;deleteEmailList(&#39;friends&#39;);
                 The
                  Zend_Gdata 
                 library provides support for both authentication schemes.
-                The rest of this chapter will assume that you are familiar the
+                <!-- 4f1abeaf-fefc-4382-a681-1612472a9925 <=< ACCEPT -->The rest of this chapter will assume that you are familiar the
                 authentication schemes available and how to create an
                 appropriate authenticated connection. For more information,
                 please see section the
                  Authentication section 
                 of this manual or the
-                 Authentication Overview in the Google Data API Developer&#39;s Guide .
+                 Authentication Overview in the Google Data API Developer&#39;s Guide .<!-- ACCEPT >=> 4f1abeaf-fefc-4382-a681-1612472a9925 -->
              Creating A Service Instance 
                 In order to interact with the servers, this library provides the
                  Zend_Gdata_Photos  service class. This class provides a common interface to the
@@ -12978,18 +12978,18 @@ $gdata-&gt;deleteEmailList(&#39;friends&#39;);
              
                 Alternatively, you could just retrieve the feed using the
                 URL:
-             Retrieving videos uploaded by a user 
+             <!-- ff04542f-c241-43f9-9419-581943a0fc5c <=< ACCEPT -->Retrieving videos uploaded by a user 
                 You can retrieve a list of videos uploaded by a particular user
                 using a simple helper method. This example retrieves videos 
-                uploaded by the user &#39;liz&#39;.
-             Retrieving videos favorited by a user 
+                uploaded by the user &#39;liz&#39;.<!-- ACCEPT >=> ff04542f-c241-43f9-9419-581943a0fc5c -->
+             <!-- ff04542f-c241-43f9-9419-581943a0fc5c <=< ACCEPT -->Retrieving videos favorited by a user 
                 You can retrieve a list of a user&#39;s favorite videos
                 using a simple helper method. This example retrieves videos 
-                favorited by the user &#39;liz&#39;.
-             Retrieving video responses for a video 
+                favorited by the user &#39;liz&#39;.<!-- ACCEPT >=> ff04542f-c241-43f9-9419-581943a0fc5c -->
+             <!-- ff04542f-c241-43f9-9419-581943a0fc5c <=< ACCEPT -->Retrieving video responses for a video 
                 You can retrieve a list of a video&#39;s video responses
                 using a simple helper method. This example retrieves video
-                response for a video with the ID &#39;abc123813abc&#39;.
+                response for a video with the ID &#39;abc123813abc&#39;.<!-- ACCEPT >=> ff04542f-c241-43f9-9419-581943a0fc5c -->
              Retrieving video comments 
             The comments for each YouTube video can be retrieved in 
             several ways.  To retrieve the comments for the video with 
@@ -14142,10 +14142,10 @@ $gdata-&gt;deleteEmailList(&#39;friends&#39;);
                          accountCanonicalForm 
                             A small integer indicating the form to which account names should be canonicalized. See the
                              Account Name Canonicalization  section below.
-                         accountDomainName 
-                            The FQDN domain for which the target LDAP server is an authority (e.g., example.com).
-                         accountDomainNameShort 
-                            The &#39;short&#39; domain for which the target LDAP server is an authority. This is usually used
+                         <!-- 0a97d757-97c4-4e57-938e-04dd06fb1427 <=< ACCEPT -->accountDomainName 
+                            The FQDN domain for which the target LDAP server is an authority (e.g., example.com).<!-- ACCEPT >=> 0a97d757-97c4-4e57-938e-04dd06fb1427 -->
+                         <!-- 0a97d757-97c4-4e57-938e-04dd06fb1427 <=< ACCEPT -->accountDomainNameShort 
+                            The &#39;short&#39; domain for which the target LDAP server is an authority.<!-- ACCEPT >=> 0a97d757-97c4-4e57-938e-04dd06fb1427 --> This is usually used
                             to specify the NetBIOS domain name for Windows networks but may also be used by non-AD
                             servers.
                          accountFilterFormat 
@@ -14635,47 +14635,47 @@ $gdata-&gt;deleteEmailList(&#39;friends&#39;);
                              getCountryTranslation($value)  method. Variant Returns a translation for a script variant. To select the wished variant
                             you must give the variant code as value Key Returns translation for a known keys. This keys are generic values used
                             in translation. These are normally calendar, collation and currency. To
-                            select the wished key you must give the key code as value DateChars Returns a character table which contains all characters used when displaying
+                            select the wished key you must give the key code as value <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->DateChars Returns a character table which contains all characters used when displaying
                             dates DefaultCalendar Returns the default calendar for the given locale. For most locales this
                             will be &#39;gregorian&#39;. Use
-                             Zend_Date  for simplicity MonthContext Returns the default context for months which is used within the given
+                             Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->MonthContext Returns the default context for months which is used within the given
                             calendar. If you omit the value the &#39;gregorian&#39; calendar will be used. Use
-                             Zend_Date  for simplicity DefaultMonth Returns the default format for months which is used within the given
+                             Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->DefaultMonth Returns the default format for months which is used within the given
                             calendar. If you omit the value the &#39;gregorian&#39; calendar will be used. Use
-                             Zend_Date  for simplicity Month Returns a translation for a month. You have to give the number of the month
-                            as integer value. It has to be between 1 and 12. If you want to receive data for
+                             Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> Month Returns a translation for a month. You have to give the number of the month
+                            as integer value. It has to be between 1 and 12. <!-- 19abd82e-f603-43ca-a9fa-2a40f2cffde4 <=< ACCEPT -->If you want to receive data for
                             other calendars, contexts or formats, then you must give an array instead of an
-                            integer with the expected values. The array has to look like this:  Zend_Date  for simplicity DayContext Returns the default context for Â´days which is used within the given
+                            integer with the expected values.<!-- ACCEPT >=> 19abd82e-f603-43ca-a9fa-2a40f2cffde4 --> The array has to look like this:  Zend_Date  for simplicity <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->DayContext Returns the default context for Â´days which is used within the given
                             calendar. If you omit the value the &#39;gregorian&#39; calendar will be used. Use
-                             Zend_Date  for simplicity DefaultDay Returns the default format for days which is used within the given
+                             Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->DefaultDay Returns the default format for days which is used within the given
                             calendar. If you omit the value the &#39;gregorian&#39; calendar will be used. Use
-                             Zend_Date  for simplicity Day Returns a translation for a day. You have to give the english abbreviation
-                            of the day as string value (&#39;sun&#39;, &#39;mon&#39;, etc.). If you want to receive data
+                             Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> Day Returns a translation for a day. You have to give the english abbreviation
+                            of the day as string value (&#39;sun&#39;, &#39;mon&#39;, etc.). <!-- 19abd82e-f603-43ca-a9fa-2a40f2cffde4 <=< ACCEPT -->If you want to receive data
                             for other calendars, contexts or format, then you must give an array instead of
-                            an integer with the expected values. The array has to look like this:
+                            an integer with the expected values.<!-- ACCEPT >=> 19abd82e-f603-43ca-a9fa-2a40f2cffde4 --> The array has to look like this:
                              Zend_Date  for simplicity Quarter Returns a translation for a quarter. You have to give the number of the
-                            quarter as integer and it has to be between 1 and 4. If you want to receive
+                            quarter as integer and it has to be between 1 and 4. <!-- 19abd82e-f603-43ca-a9fa-2a40f2cffde4 <=< ACCEPT -->If you want to receive
                             data for other calendars, contexts or formats, then you must give an array
-                            instead of an integer with the expected values. The array has to look like this:
-                             Am Returns a translation for &#39;AM&#39; in a expected locale. If you want to receive
+                            instead of an integer with the expected values.<!-- ACCEPT >=> 19abd82e-f603-43ca-a9fa-2a40f2cffde4 --> The array has to look like this:
+                             <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->Am Returns a translation for &#39;AM&#39; in a expected locale. If you want to receive
                             data for other calendars an string with the expected calendar. If you omit the
                             value then the &#39;gregorian&#39; calendar will be used. Use
-                             Zend_Date  for simplicity Pm Returns a translation for &#39;PM&#39; in a expected locale. If you want to receive
-                            data for other calendars an string with the expected calendar. If you omit the
+                             Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->Pm Returns a translation for &#39;PM&#39; in a expected locale. If you want to receive
+                            data for other calendars an string with the expected calendar. If you omit the<!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT --><!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc -->
                             value then the &#39;gregorian&#39; calendar will be used. Use
-                             Zend_Date  for simplicity Era Returns a translation for an era within a locale. You have to give the era
-                            number as string or integer. If you want to receive data for other calendars or
+                             Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> Era Returns a translation for an era within a locale. You have to give the era
+                            number as string or integer. <!-- 19abd82e-f603-43ca-a9fa-2a40f2cffde4 <=< ACCEPT -->If you want to receive data for other calendars or
                             formats, then you must give an array instead of the era number with the expected
-                            values. The array has to look like this:
-                             DefaultDate Returns the default date format which is used within the given
+                            values.<!-- ACCEPT >=> 19abd82e-f603-43ca-a9fa-2a40f2cffde4 --> The array has to look like this:
+                             <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->DefaultDate Returns the default date format which is used within the given
                             calendar. If you omit the value the &#39;gregorian&#39; calendar will be used. Use
-                             Zend_Date  for simplicity Date Returns the date format for an given calendar or format within a locale.
+                             Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> Date Returns the date format for an given calendar or format within a locale.
                             If you omit the value then the &#39;gregorian&#39; calendar will be used with the
                             &#39;medium&#39; format. If you give a string then the &#39;gregorian&#39; calendar will be
                             used with the given format. Or you can also give an array which will have to
-                            look like this:  Zend_Date  for simplicity DefaultTime Returns the default time format which is used within the given
+                            look like this:  Zend_Date  for simplicity <!-- f9fb6396-00fa-49de-bcd6-cd13956953fc <=< ACCEPT -->DefaultTime Returns the default time format which is used within the given
                             calendar. If you omit the value the &#39;gregorian&#39; calendar will be used. Use
-                             Zend_Date  for simplicity Time Returns the time format for an given calendar or format within a locale.
+                             Zend_Date  for simplicity<!-- ACCEPT >=> f9fb6396-00fa-49de-bcd6-cd13956953fc --> Time Returns the time format for an given calendar or format within a locale.
                             If you omit the value then the &#39;gregorian&#39; calendar will be used with the
                             &#39;medium&#39; format. If you give a string then the &#39;gregorian&#39; calendar will be
                             used with the given format. Or you can also give an array which will have to
@@ -18324,45 +18324,45 @@ regardless of the directions in which the circles are drawn.
             In order to retrieve information for a specific user, the  setUser()  method is first used to
             select the user for which data are to be retrieved.  Zend_Service_Audioscrobbler  provides
             several methods for retrieving data specific to a single user:
-             userGetProfileInformation() : Returns a SimpleXML object containing the current
-                        user&#39;s profile information.
-                     userGetTopArtists() : Returns a SimpleXML object containing a list of the current
-                        user&#39;s most listened to artists.
-                     userGetTopAlbums() : Returns a SimpleXML object containing a list of the current
-                        user&#39;s most listened to albums.
-                     userGetTopTracks() : Returns a SimpleXML object containing a list of the current
-                        user&#39;s most listened to tracks.
-                     userGetTopTags() : Returns a SimpleXML object containing a list of tags most applied
-                        by the current user.
-                     userGetTopTagsForArtist() : Requires that an artist be set via
+             <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetProfileInformation() : Returns a SimpleXML object containing the current
+                        user&#39;s profile information.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetTopArtists() : Returns a SimpleXML object containing a list of the current
+                        user&#39;s most listened to artists.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetTopAlbums() : Returns a SimpleXML object containing a list of the current
+                        user&#39;s most listened to albums.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetTopTracks() : Returns a SimpleXML object containing a list of the current
+                        user&#39;s most listened to tracks.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetTopTags() : Returns a SimpleXML object containing a list of tags most applied
+                        by the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetTopTagsForArtist() : Requires that an artist be set via
                          setArtist() . Returns a SimpleXML object containing the tags most applied to the
-                        current artist by the current user.
-                     userGetTopTagsForAlbum() : Requires that an album be set via
+                        current artist by the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetTopTagsForAlbum() : Requires that an album be set via
                          setAlbum() . Returns a SimpleXML object containing the tags most applied to the
-                        current album by the current user.
-                     userGetTopTagsForTrack() : Requires that a track be set via
+                        current album by the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetTopTagsForTrack() : Requires that a track be set via
                          setTrack() . Returns a SimpleXML object containing the tags most applied to the
-                        current track by the current user.
-                     userGetFriends() : Returns a SimpleXML object containing the user names of the
-                        current user&#39;s friends.
-                     userGetNeighbours() : Returns a SimpleXML object containing the user names of
-                        people with similar listening habits to the current user.
-                     userGetRecentTracks() : Returns a SimpleXML object containing the 10 tracks most
-                        recently played by the current user.
-                     userGetRecentBannedTracks() : Returns a SimpleXML object containing a list of the 10
-                        tracks most recently banned by the current user.
-                     userGetRecentLovedTracks() : Returns a SimpleXML object containing a list of the 10
-                        tracks most recently loved by the current user.
-                     userGetRecentJournals() : Returns a SimpleXML object containing a list of the
-                        current user&#39;s most recent journal entries.
-                     userGetWeeklyChartList() : Returns a SimpleXML object containing a list of weeks for
-                        which there exist Weekly Charts for the current user.
-                     userGetRecentWeeklyArtistChart() : Returns a SimpleXML object containing the most
-                        recent Weekly Artist Chart for the current user.
-                     userGetRecentWeeklyAlbumChart() : Returns a SimpleXML object containing the most
-                        recent Weekly Album Chart for the current user.
-                     userGetRecentWeeklyTrackChart() : Returns a SimpleXML object containing the most
-                        recent Weekly Track Chart for the current user.
+                        current track by the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetFriends() : Returns a SimpleXML object containing the user names of the
+                        current user&#39;s friends.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetNeighbours() : Returns a SimpleXML object containing the user names of
+                        people with similar listening habits to the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetRecentTracks() : Returns a SimpleXML object containing the 10 tracks most
+                        recently played by the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetRecentBannedTracks() : Returns a SimpleXML object containing a list of the 10
+                        tracks most recently banned by the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetRecentLovedTracks() : Returns a SimpleXML object containing a list of the 10
+                        tracks most recently loved by the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetRecentJournals() : Returns a SimpleXML object containing a list of the
+                        current user&#39;s most recent journal entries.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetWeeklyChartList() : Returns a SimpleXML object containing a list of weeks for
+                        which there exist Weekly Charts for the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetRecentWeeklyArtistChart() : Returns a SimpleXML object containing the most
+                        recent Weekly Artist Chart for the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetRecentWeeklyAlbumChart() : Returns a SimpleXML object containing the most
+                        recent Weekly Album Chart for the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->userGetRecentWeeklyTrackChart() : Returns a SimpleXML object containing the most
+                        recent Weekly Track Chart for the current user.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
                      $fromDate  to  $toDate  for the
                         current user.
                      $fromDate  to  $toDate  for the
@@ -18375,16 +18375,16 @@ regardless of the directions in which the circles are drawn.
                 to retrieve a specific user&#39;s profile information:
              Retrieving a User&#39;s Weekly Artist Chart Artists Zend_Service_Audioscrobbler  provides several methods for retrieving data about a specific
             artist, specified via the  setArtist()  method:
-             artistGetRelatedArtists() : Returns a SimpleXML object containing a list of
-                        Artists similar to the current Artist.
-                     artistGetTopFans() : Returns a SimpleXML object containing a list of Users who
-                        listen most to the current Artist.
-                     artistGetTopTracks() : Returns a SimpleXML object containing a list of the current
-                        Artist&#39;s top-rated Tracks.
-                     artistGetTopAlbums() : Returns a SimpleXML object containing a list of the current
-                        Artist&#39;s top-rated Albums.
-                     artistGetTopTags() : Returns a SimpleXML object containing a list of the Tags most
-                        frequently applied to current Artist.
+             <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->artistGetRelatedArtists() : Returns a SimpleXML object containing a list of
+                        Artists similar to the current Artist.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->artistGetTopFans() : Returns a SimpleXML object containing a list of Users who
+                        listen most to the current Artist.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->artistGetTopTracks() : Returns a SimpleXML object containing a list of the current
+                        Artist&#39;s top-rated Tracks.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->artistGetTopAlbums() : Returns a SimpleXML object containing a list of the current
+                        Artist&#39;s top-rated Albums.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
+                     <!-- 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f <=< ACCEPT -->artistGetTopTags() : Returns a SimpleXML object containing a list of the Tags most
+                        frequently applied to current Artist.<!-- ACCEPT >=> 41e8c6f9-ab2e-42b4-bba7-8128c4938b3f -->
                      
          Retrieving Related Artists Tracks Zend_Service_Audioscrobbler  provides two methods for retrieving data specific to a single
             track, specified via the  setTrack()  method:
@@ -19264,21 +19264,21 @@ regardless of the directions in which the circles are drawn.
             For full details, please see the
              Yahoo! Local Search
             Documentation .
-         Finding Local Businesses and Services with Yahoo! Searching Yahoo! News 
+         Finding Local Businesses and Services with Yahoo! <!-- f459f975-efa7-4dbe-aca4-92f4e52aa092 <=< ACCEPT -->Searching Yahoo! News 
             Searching Yahoo! News is simple; just use the  newsSearch()  method, as in the following
             example. For full details, please see the
              Yahoo! News Search
-            Documentation .
+            Documentation .<!-- ACCEPT >=> f459f975-efa7-4dbe-aca4-92f4e52aa092 -->
          Searching Yahoo! News Searching Yahoo! Site Explorer Inbound Links 
-            Searching Yahoo! Site Explorer Inbound Links is simple; just use the  inlinkDataSearch() 
+            <!-- f459f975-efa7-4dbe-aca4-92f4e52aa092 <=< ACCEPT -->Searching Yahoo! Site Explorer Inbound Links is simple; just use the  inlinkDataSearch() 
             method, as in the following example. For full details, please see the
              Yahoo!
-            Site Explorer Inbound Links Documentation .
+            Site Explorer Inbound Links Documentation .<!-- ACCEPT >=> f459f975-efa7-4dbe-aca4-92f4e52aa092 -->
          Searching Yahoo! Site Explorer Inbound Links Searching Yahoo! Site Explorer&#39;s PageData 
-            Searching Yahoo! Site Explorer&#39;s PageData is simple; just use the  pageDataSearch() 
+            <!-- f459f975-efa7-4dbe-aca4-92f4e52aa092 <=< ACCEPT -->Searching Yahoo! Site Explorer&#39;s PageData is simple; just use the  pageDataSearch() 
             method, as in the following example. For full details, please see the
              Yahoo!
-            Site Explorer PageData Documentation .
+            Site Explorer PageData Documentation .<!-- ACCEPT >=> f459f975-efa7-4dbe-aca4-92f4e52aa092 -->
          Searching Yahoo! Site Explorer&#39;s PageData Zend_Service_Yahoo Classes 
             The following classes are all returned by the various Yahoo! searches. Each search type returns a
             type-specific result set which can be easily iterated, with each result being contained in a type result
@@ -19762,30 +19762,30 @@ regardless of the directions in which the circles are drawn.
             Use this method to determine if a session namespace exists, or if a particular index exists in a particular
             namespace.
          Throws 
-                An exception will be thrown if  Zend_Session  is not marked as readable (e.g., before  namespaceUnset($namespace) 
+                <!-- 5b46dfa3-be8d-4023-a833-6b32eef058a2 <=< ACCEPT -->An exception will be thrown if  Zend_Session  is not marked as readable (e.g., before  namespaceUnset($namespace) 
             Use  Zend_Session::namespaceUnset($namespace)  to efficiently remove an entire namespace and its
             contents. As with all arrays in PHP, if a variable containing an array is unset, and the array contains
             other objects, those objects will remain available, if they were also stored by reference in other
             array/objects that remain accessible via other variables. So  namespaceUnset()  does not perform
             a &quot;deep&quot; unsetting/deleting of the contents of the entries in the namespace. For a more detailed
             explanation, please see  References Explained  in the PHP
-            manual.
+            manual.<!-- ACCEPT >=> 5b46dfa3-be8d-4023-a833-6b32eef058a2 -->
          Throws 
-                An exception will be thrown if the namespace is not writable (e.g., after  destroy() ).
+               <!-- 5b46dfa3-be8d-4023-a833-6b32eef058a2 <=< ACCEPT --> An exception will be thrown if the namespace is not writable (e.g., after  destroy() ).
              namespaceGet($namespace) 
             DEPRECATED: Use  getIterator()  in  Zend_Session_Namespace . This method returns an
             array of the contents of  $namespace . If you have logical reasons to keep this method publicly
             accessible, please provide feedback to the
              fw-auth@lists.zend.com  mail list. Actually, all
-            participation on any relevant topic is welcome :)
+            participation on any relevant topic is welcome :)<!-- ACCEPT >=> 5b46dfa3-be8d-4023-a833-6b32eef058a2 -->
          Throws 
-                An exception will be thrown if  Zend_Session  is not marked as readable (e.g., before
+                <!-- 5b46dfa3-be8d-4023-a833-6b32eef058a2 <=< ACCEPT -->An exception will be thrown if  Zend_Session  is not marked as readable (e.g., before
                  Zend_Session  has been started).
              getIterator() 
-            Use  getIterator()  to obtain an array containing the names of all namespaces.
+            Use  getIterator()  to obtain an array containing the names of all namespaces.<!-- ACCEPT >=> 5b46dfa3-be8d-4023-a833-6b32eef058a2 -->
          Throws 
-                An exception will be thrown if  Zend_Session  is not marked as readable (e.g., before
-                 Zend_Session  has been started).
+                <!-- 5b46dfa3-be8d-4023-a833-6b32eef058a2 <=< ACCEPT -->An exception will be thrown if  Zend_Session  is not marked as readable (e.g., before
+                 Zend_Session  has been started).<!-- ACCEPT >=> 5b46dfa3-be8d-4023-a833-6b32eef058a2 -->
              Introduction 
         The Zend Framework Auth team greatly appreciates your feedback and contributions on our email list:
          fw-auth@lists.zend.com 
@@ -20060,9 +20060,9 @@ regardless of the directions in which the circles are drawn.
                 of already translated and pre translated source strings. When you
                 use this adapter you have to be sure that all your needed source
                 string are translated.
-                TBX is a XML file based format and a completly new format.
+                <!-- 21c40b54-c2bb-4110-9b33-4d9638e137f4 <=< ACCEPT -->TBX is a XML file based format and a completly new format.
                 XML files are human-readable, but the parsing is not as fast
-                as with gettext files.
+                as with gettext files.<!-- ACCEPT >=> 21c40b54-c2bb-4110-9b33-4d9638e137f4 -->
              
                 This adapter is perfect for companies when pre translated
                 source files already exist.
@@ -20072,19 +20072,19 @@ regardless of the directions in which the circles are drawn.
                 customers which have multiple systems which use the same
                 translation source, or when the translation source must be
                 system-independent.
-                TMX is a XML file based format, which is announced to be the
+                <!-- 21c40b54-c2bb-4110-9b33-4d9638e137f4 <=< ACCEPT -->TMX is a XML file based format, which is announced to be the
                 next industry standard.
                 XML files are human-readable, but the parsing is not as fast
-                as with gettext files.
+                as with gettext files.<!-- ACCEPT >=> 21c40b54-c2bb-4110-9b33-4d9638e137f4 -->
              
                 Most medium to large companies use this adapter.
                 The files are human readable and system-independent.
              Zend_Translate_Adapter_Qt 
                 The Qt Adapter is for all customers which have TS files as their
                 translation source which are made by QtLinguist.
-                QT is a XML file based format.
+                <!-- 21c40b54-c2bb-4110-9b33-4d9638e137f4 <=< ACCEPT -->QT is a XML file based format.
                 XML files are human-readable, but the parsing is not as fast
-                as with gettext files.
+                as with gettext files.<!-- ACCEPT >=> 21c40b54-c2bb-4110-9b33-4d9638e137f4 -->
              
                 Several big players have build software upon the QT framework.
                 The files are human readable and system-independent.
@@ -20092,10 +20092,10 @@ regardless of the directions in which the circles are drawn.
                 The Xliff Adapter is the Adapter which will be used by most
                 customers which want to have XML files but do not have tools
                 for TMX.
-                XLIFF is a XML file based format, which is related to TMX but
+                <!-- 21c40b54-c2bb-4110-9b33-4d9638e137f4 <=< ACCEPT -->XLIFF is a XML file based format, which is related to TMX but
                 simpler as it does not support all possibilities of it.
                 XML files are human-readable, but the parsing is not as fast
-                as with gettext files.
+                as with gettext files.<!-- ACCEPT >=> 21c40b54-c2bb-4110-9b33-4d9638e137f4 -->
              
                 Most medium companies use this adapter.
                 The files are human readable and system-independent.
@@ -20275,42 +20275,42 @@ regardless of the directions in which the circles are drawn.
             With Zend_Translate you are not bound to any restriction.
             The following structures are preferable:
          
-                    Single structured source
+                    <!-- ccc6343d-9532-4c33-a3fb-c1d6fc0375fa <=< ACCEPT -->Single structured source
                  
                     Positive: All source files for every languages can be
-                    found in one directory.  No splitting of related files.
+                    found in one directory.  No splitting of related files.<!-- ACCEPT >=> ccc6343d-9532-4c33-a3fb-c1d6fc0375fa -->
                  
-                    Language structured source
+                    <!-- ccc6343d-9532-4c33-a3fb-c1d6fc0375fa <=< ACCEPT -->Language structured source
                  
                     Positive: Every language is based in one directory.
                     Easy translation as only one directory has to be
                     translated by a language team.
-                    Also the usage of multiple files is transparent.
+                    Also the usage of multiple files is transparent.<!-- ACCEPT >=> ccc6343d-9532-4c33-a3fb-c1d6fc0375fa -->
                  
-                    Application structured source
+                    <!-- ccc6343d-9532-4c33-a3fb-c1d6fc0375fa <=< ACCEPT -->Application structured source
                  
                     Positive: All source files for every languages can be
                     found in one directory.  No splitting of related files.
                  
                     Negative: Having multiple files for the same language is
-                    problematic.
+                    problematic.<!-- ACCEPT >=> ccc6343d-9532-4c33-a3fb-c1d6fc0375fa -->
                  
-                    Gettext structured source
+                    <!-- ccc6343d-9532-4c33-a3fb-c1d6fc0375fa <=< ACCEPT -->Gettext structured source
                  
                     Positive: Old gettext sources can be used without changing
                     structure.
                  
                     Negative: Having sub-sub directories may be confusing
-                    for people who have not used gettext before.
+                    for people who have not used gettext before.<!-- ACCEPT >=> ccc6343d-9532-4c33-a3fb-c1d6fc0375fa -->
                  
-                   File structured source
+                   <!-- ccc6343d-9532-4c33-a3fb-c1d6fc0375fa <=< ACCEPT -->File structured source
                  
                     Positive: Every file is related to its own translation
                     source.
                  
                     Negative: Multiple small translation source files make
                     it harder to translate.
-                    Also every file has to be added as translation source.
+                    Also every file has to be added as translation source.<!-- ACCEPT >=> ccc6343d-9532-4c33-a3fb-c1d6fc0375fa -->
                  
             Single structured and language structured source files are most
             usable for Zend_Translate.
@@ -20724,10 +20724,10 @@ regardless of the directions in which the circles are drawn.
      Standard Validation Classes 
         The Zend Framework comes with a standard set of validation classes, which are ready for you to use.
      Alnum 
-            Returns  true  if and only if  $value  contains only alphabetic and digit characters.
+            <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->Returns  true  if and only if  $value  contains only alphabetic and digit characters.<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 -->
             This validator includes an option to also consider white space characters as valid.
          Alpha 
-            Returns  true  if and only if  $value  contains only alphabetic characters. This
+            <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->Returns  true  if and only if  $value  contains only alphabetic characters.<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 --> This
             validator includes an option to also consider white space characters as valid.
          Barcode 
             This validator is instantiated with a barcode type against which you wish to validate a barcode value.
@@ -20736,8 +20736,8 @@ regardless of the directions in which the circles are drawn.
             successfully validates against the barcode validation algorithm. You should remove all characters other
             than the digits zero through nine (0-9) from the input value before passing it on to the validator.
          Between 
-            Returns  true  if and only if  $value  is between the minimum and maximum boundary
-            values. The comparison is inclusive by default ( $value  may equal a boundary value), though
+            <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->Returns  true  if and only if  $value  is between the minimum and maximum boundary
+            values.<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 --> The comparison is inclusive by default ( $value  may equal a boundary value), though
             this may be overridden in order to do a strict comparison, where  $value  must be strictly
             greater than the minimum and strictly less than the maximum.
          Ccnum 
@@ -20752,28 +20752,28 @@ regardless of the directions in which the circles are drawn.
          Digits 
             Returns  true  if and only if  $value  only contains digit characters.
          Float 
-            Returns  true  if and only if  $value  is a floating-point value.
+            <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->Returns  true  if and only if  $value  is a floating-point value.<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 -->
          GreaterThan 
             Returns  true  if and only if  $value  is greater than the minimum boundary.
          Hex 
-            Returns  true  if and only if  $value  contains only hexadecimal digit characters.
+            <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT --><!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->Returns  true  if and only if  $value  contains only hexadecimal digit characters.<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 --><!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 -->
          InArray 
-            Returns  true  if and only if a &quot;needle&quot;  $value  is contained in a &quot;haystack&quot;
-            array. If the strict option is  true , then the type of  $value  is also checked.
+            <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->Returns  true  if and only if a &quot;needle&quot;  $value  is contained in a &quot;haystack&quot;
+            array.<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 --> If the strict option is  true , then the type of  $value  is also checked.
          Int 
-            Returns  true  if and only if  $value  is a valid integer.
+            <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->Returns  true  if and only if  $value  is a valid integer.<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 -->
          Ip 
-            Returns  true  if and only if  $value  is a valid IP address.
+            <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->Returns  true  if and only if  $value  is a valid IP address.<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 -->
          LessThan 
             Returns  true  if and only if  $value  is less than the maximum boundary.
          NotEmpty 
-            Returns  true  if and only if  $value  is not an empty value.
+            <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->Returns  true  if and only if  $value  is not an empty value.<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 -->
          Regex 
-            Returns  true  if and only if  $value  matches against a regular expression
-            pattern.
+            <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->Returns  true  if and only if  $value  matches against a regular expression
+            pattern.<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 -->
          StringLength 
-            Returns  true  if and only if the string length of  $value  is at least a minimum
-            and no greater than a maximum (when the max option is not  null ). Since version 1.5.0, the
+            <!-- 737222c6-7943-42da-b328-d3eb386f9613 <=< ACCEPT -->Returns  true  if and only if the string length of  $value  is at least a minimum
+            and no greater than a maximum (when the max option is not  null ).<!-- ACCEPT >=> 737222c6-7943-42da-b328-d3eb386f9613 --> Since version 1.5.0, the
              setMin()  method throws an exception if the minimum length is set to a value greater than the
             set maximum length, and the  setMax()  method throws an exception if the maximum length is set
             to a value less than than the set minimum length. Since version 1.0.2, this class supports UTF-8 and other
@@ -21247,11 +21247,11 @@ regardless of the directions in which the circles are drawn.
         The  HeadScript  helper is a concrete implementation of the 
          Placeholder
             helper .
-     Use InlineScript for HTML Body Scripts HeadScript &#39;s sibling helper,  InlineScript , 
+     <!-- 151ec719-8811-42a3-80bd-6cbff560c560 <=< ACCEPT -->Use InlineScript for HTML Body Scripts HeadScript &#39;s sibling helper,  InlineScript , 
             should be used when you wish to include scripts inline in the HTML
              body . Placing scripts at the end of your document is a
             good practice for speeding up delivery of your page, particularly
-            when using 3rd party analytics scripts.
+            when using 3rd party analytics scripts.<!-- ACCEPT >=> 151ec719-8811-42a3-80bd-6cbff560c560 -->
          Arbitrary Attributes are Disabled by Default 
             By default,  HeadScript  only will render
              &lt;script&gt;  attributes that are blessed by the W3C.
@@ -21381,10 +21381,10 @@ $this-&gt;headScript()-&gt;setAllowArbitraryAttributes(true);
         and any method of that helper is available; however, use the
          inlineScript()  method in place of
          headScript() .
-     Use InlineScript for HTML Body Scripts InlineScript , should be used when you wish to include
+     <!-- 151ec719-8811-42a3-80bd-6cbff560c560 <=< ACCEPT -->Use InlineScript for HTML Body Scripts InlineScript , should be used when you wish to include
             scripts inline in the HTML  body . Placing scripts at the
             end of your document is a good practice for speeding up delivery of
-            your page, particularly when using 3rd party analytics scripts.
+            your page, particularly when using 3rd party analytics scripts.<!-- ACCEPT >=> 151ec719-8811-42a3-80bd-6cbff560c560 -->
          
             Some JS libraries need to be included in the HTML  head ;
             use  HeadScript 

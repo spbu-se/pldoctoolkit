@@ -786,11 +786,11 @@ BrowserMatch &quot;^WebDAVFS/1.[012]&quot; redirect-carefully
           install davfs2, you can mount a WebDAV network share using
           the usual Linux mount command: 
 $ mount.davfs http://host/repos /mnt/dav
- Version Control with Subversion [DRAFT] For Subversion 1.8 (Compiled from  ) Ben Collins-Sussman Brian W. Fitzpatrick C. Michael Pilato Tatiana Apandi 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 Ben Collins-Sussman Brian W. Fitzpatrick C. Michael Pilato This work is licensed under the Creative
+ Version Control with Subversion [DRAFT] For Subversion 1.8 (Compiled from  ) <!-- 26e0a8b2-4887-4a9f-9ec7-24332a65e540 <=< ACCEPT -->Ben Collins-Sussman Brian W. Fitzpatrick C. Michael Pilato Tatiana Apandi 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 Ben Collins-Sussman Brian W. Fitzpatrick C. Michael Pilato This work is licensed under the Creative
       Commons Attribution License.  To view a copy of this license,
       visit  
       or send a letter to Creative Commons, 559 Nathan Abbott Way,
-      Stanford, California 94305, USA. 
+      Stanford, California 94305, USA.<!-- ACCEPT >=> 26e0a8b2-4887-4a9f-9ec7-24332a65e540 --> 
 
    
    
@@ -2687,9 +2687,9 @@ Updating &#39;.&#39;:
 U    INSTALL
 G    README
 Conflict discovered in &#39;bar.c&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: 
+        (s) show all options: <!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a -->
  The  U  (which stands for
          Updated ) and  G 
         (for  merGed ) codes are no cause for concern;
@@ -2714,9 +2714,9 @@ Select: (p) postpone, (df) diff-full, (e) edit,
         you can see all of the options by
         typing  s : 
  
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: s
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a --> s
 
   (e)  edit             - change merged file in an editor
   (df) diff-full        - show all changes made to merged file
@@ -2733,9 +2733,9 @@ Select: (p) postpone, (df) diff-full, (e) edit,
   (l)  launch           - launch external tool to resolve conflict
   (s)  show all         - show this list
 
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options:
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a -->
  Let&#39;s briefly review each of these options before we go
         into detail on what each option means. (e)  edit Open the file in conflict with your favorite editor,
               as set in the environment variable
@@ -2769,9 +2769,9 @@ Select: (p) postpone, (df) diff-full, (e) edit,
           modifications to the file in question plus any conflict
           regions: 
  
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: df
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a --> df
 --- .svn/text-base/sandwich.txt.svn-base      Tue Dec 11 21:33:57 2007
 +++ .svn/tmp/tempfile.32.tmp     Tue Dec 11 21:34:33 2007
 @@ -1 +1,5 @@
@@ -2892,9 +2892,9 @@ Select: (p) postpone, (df) diff-full, (e) edit,
 $ svn update
 Updating &#39;.&#39;:
 Conflict discovered in &#39;sandwich.txt&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: p
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a --> p
 C    sandwich.txt
 Updated to revision 2.
 Summary of conflicts:
@@ -3045,9 +3045,9 @@ $ svn commit -m &quot;Go ahead and use my sandwich, discarding Sally&#39;s edits
 $ svn update
 Updating &#39;.&#39;:
 Conflict discovered in &#39;sandwich.txt&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: p
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a --> p
 C    sandwich.txt
 Updated to revision 2.
 Summary of conflicts:
@@ -4203,11 +4203,11 @@ svn: E195012: Unable to find repository location for &#39;concept/IDEA&#39; in r
        concepts/IDEA  at the time?  We&#39;ll use an
       explicit peg revision to help us out. 
 $ svn cat concept/IDEA@1
-The idea behind this project is to come up with a piece of software
+<!-- 36b1eddf-494c-49f5-b7c9-d180eb3fa50f <=< ACCEPT -->The idea behind this project is to come up with a piece of software
 that can frab a naggily wort.  Frabbing naggily worts is tricky
 business, and doing it incorrectly can have serious ramifications, so
 we need to employ over-the-top input validation and data verification
-mechanisms.
+mechanisms.<!-- ACCEPT >=> 36b1eddf-494c-49f5-b7c9-d180eb3fa50f -->
  Notice that we didn&#39;t provide an operative revision this
       time.  That&#39;s because when no operative revision is specified,
       Subversion assumes a default operative revision that&#39;s the same
@@ -4224,11 +4224,11 @@ mechanisms.
        frabnaggilywort/IDEA  looked in revision
       1. 
 $ svn cat -r 1 frabnaggilywort/IDEA@HEAD
-The idea behind this project is to come up with a piece of software
+<!-- 36b1eddf-494c-49f5-b7c9-d180eb3fa50f <=< ACCEPT -->The idea behind this project is to come up with a piece of software
 that can frab a naggily wort.  Frabbing naggily worts is tricky
 business, and doing it incorrectly can have serious ramifications, so
 we need to employ over-the-top input validation and data verification
-mechanisms.
+mechanisms.<!-- ACCEPT >=> 36b1eddf-494c-49f5-b7c9-d180eb3fa50f -->
  And the peg and operative revisions need not be so trivial,
       either.  For example, say  frabnaggilywort 
       had been deleted from  HEAD , but we know it
@@ -4244,16 +4244,16 @@ Index: frabnaggilywort/IDEA
 --- frabnaggilywort/IDEA    (revision 4)
 +++ frabnaggilywort/IDEA    (revision 10)
 @@ -1,5 +1,5 @@
--The idea behind this project is to come up with a piece of software
+<!-- 36b1eddf-494c-49f5-b7c9-d180eb3fa50f <=< ACCEPT -->-The idea behind this project is to come up with a piece of software
 -that can frab a naggily wort.  Frabbing naggily worts is tricky
 -business, and doing it incorrectly can have serious ramifications, so
 -we need to employ over-the-top input validation and data verification
--mechanisms.
-+The idea behind this project is to come up with a piece of
+-mechanisms.<!-- ACCEPT >=> 36b1eddf-494c-49f5-b7c9-d180eb3fa50f -->
+<!-- 36b1eddf-494c-49f5-b7c9-d180eb3fa50f <=< ACCEPT -->+The idea behind this project is to come up with a piece of
 +client-server software that can remotely frab a naggily wort.
 +Frabbing naggily worts is tricky business, and doing it incorrectly
 +can have serious ramifications, so we need to employ over-the-top
-+input validation and data verification mechanisms.
++input validation and data verification mechanisms.<!-- ACCEPT >=> 36b1eddf-494c-49f5-b7c9-d180eb3fa50f -->
  Fortunately, most folks aren&#39;t faced with such complex
       situations.  But when you are, remember that peg revisions are
       that extra hint Subversion needs to clear up ambiguity. Properties We&#39;ve already covered in detail how Subversion stores and
@@ -4722,10 +4722,10 @@ $
          : 
 $ svn pg svn:auto-props --verbose -R .
 Properties on &#39;.&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
 Properties on &#39;site&#39;:
   svn:auto-props
@@ -4739,10 +4739,10 @@ Properties on &#39;site&#39;:
 $ svn pg svn:auto-props --verbose --show-inherited-props site
 Inherited properties on &#39;site&#39;,
 from &#39;.&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
 Properties on &#39;site&#39;:
   svn:auto-props
@@ -4772,10 +4772,10 @@ $ cd site-wc
 $ svn pg svn:auto-props --verbose --show-inherited-props publish
 Inherited properties on &#39;publish&#39;,
 from &#39;http://svn.example.com/repos&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
 Inherited properties on &#39;publish&#39;,
 from &#39;.&#39;:
@@ -4795,10 +4795,10 @@ from &#39;.&#39;:
 $ svnlook pg repos svn:auto-props /site/publish --show-inherited-props -v
 Inherited properties on &#39;/site/publish&#39;,
 from &#39;/&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
 Inherited properties on &#39;/site/publish&#39;,
 from &#39;/site&#39;:
@@ -4964,10 +4964,10 @@ Properties on &#39;calc/data.c&#39;:
 $ svn propget svn:auto-props --show-inherited-props -v calc
 Inherited properties on &#39;calc&#39;,
 from &#39;http://svn.example.com/repos&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
  Unlike the  svn:global-ignores  property and
         its analogous runtime configuration
          global-ignores , which are combined, the
@@ -5013,10 +5013,10 @@ $ svn st
 $ svn propget svn:auto-props -v --show-inherited-props calc
 Inherited properties on &#39;calc&#39;,
 from &#39;http://svn.example.com/repos&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
 Inherited properties on &#39;calc&#39;,
 from &#39;.&#39;:
@@ -5169,19 +5169,19 @@ Properties on &#39;calc/data.c&#39;:
                 observed when such an operation is active or when
                 an  svnrdump  command failed to cleanly
                 disconnect from the repository.  (This property is only
-                relevant when it appears on revision 0.) svn:sync-currently-copying Contains the revision number from the source
+                relevant when it appears on revision 0.) <!-- b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 <=< ACCEPT -->svn:sync-currently-copying Contains the revision number from the source
                 repository which is currently being mirrored to this one
                 by the  svnsync  tool.  (This property
-                is only relevant when it appears on revision 0.) svn:sync-from-uuid Contains the UUID of the repository of which this
+                is only relevant when it appears on revision 0.)<!-- ACCEPT >=> b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 --> <!-- b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 <=< ACCEPT -->svn:sync-from-uuid Contains the UUID of the repository of which this
                 repository has been initialized as a mirror by
                 the  svnsync  tool.  (This property is
-                only relevant when it appears on revision 0.) svn:sync-from-url Contains the URL of the repository directory of
+                only relevant when it appears on revision 0.)<!-- ACCEPT >=> b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 --> <!-- b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 <=< ACCEPT -->svn:sync-from-url Contains the URL of the repository directory of
                 which this repository has been initialized as a mirror
                 by the  svnsync  tool.  (This property
-                is only relevant when it appears on revision 0.) svn:sync-last-merged-rev Contains the revision of the source repository which
+                is only relevant when it appears on revision 0.)<!-- ACCEPT >=> b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 --> <!-- b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 <=< ACCEPT -->svn:sync-last-merged-rev Contains the revision of the source repository which
                 was most recently and successfully mirrored to this one.
                 (This property is only relevant when it appears on
-                revision 0.) svn:sync-lock Used to temporarily enforce mutually exclusive
+                revision 0.)<!-- ACCEPT >=> b00d1bc3-6d24-4691-9e4b-db7757a6b8e6 --> svn:sync-lock Used to temporarily enforce mutually exclusive
                 access to the repository by  svnsync 
                 mirroring operations.  This property is generally only
                 observed when such an operation is active or when
@@ -9573,8 +9573,8 @@ C    Makefile
 Summary of conflicts:
   Text conflicts: 1
 Conflict discovered in file &#39;Makefile&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
-        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options: p
+<!-- ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
+        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options:<!-- ACCEPT >=> ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 --> p
 
 $ svn st
  M      .
@@ -9791,7 +9791,7 @@ r3 | bill | 2013-01-17 09:07:04 -0500 (Thu, 17 Jan 2013)
         results of merging changes from the trunk.  If you look at one
         of these logs in detail, the multiple trunk changesets that
         comprised the branch change are nowhere to be seen: 
-$ svn log ^/calc/branches/my-calc-branch -r352 -v
+<!-- 1bad7ceb-9b2d-4f19-ab76-0ee2f69fbce9 <=< ACCEPT -->$ svn log ^/calc/branches/my-calc-branch -r352 -v
 ------------------------------------------------------------------------
 r352 | user | 2013-02-16 09:35:18 -0500 (Sat, 16 Feb 2013) | 1 line
 Changed paths:
@@ -9802,14 +9802,14 @@ Changed paths:
    M /calc/branches/my-calc-branch/src/real.c
 
 Sync latest trunk changes to my-calc-branch.
-------------------------------------------------------------------------
+------------------------------------------------------------------------<!-- ACCEPT >=> 1bad7ceb-9b2d-4f19-ab76-0ee2f69fbce9 -->
  We happen to know that this merge to the branch was
         nothing but a merge of trunk changes.  How can we see those
         trunk changes as well?  The answer is to use the
          --use-merge-history  ( -g )
         option.  This option expands those  child 
         changes that were part of the merge. 
-$ svn log ^/calc/branches/my-calc-branch -r352 -v -g
+<!-- 1bad7ceb-9b2d-4f19-ab76-0ee2f69fbce9 <=< ACCEPT -->$ svn log ^/calc/branches/my-calc-branch -r352 -v -g
 ------------------------------------------------------------------------
 r352 | user | 2013-02-16 09:35:18 -0500 (Sat, 16 Feb 2013) | 1 line
 Changed paths:
@@ -9820,7 +9820,7 @@ Changed paths:
    M /calc/branches/my-calc-branch/src/real.c
 
 Sync latest trunk changes to my-calc-branch.
-------------------------------------------------------------------------
+------------------------------------------------------------------------<!-- ACCEPT >=> 1bad7ceb-9b2d-4f19-ab76-0ee2f69fbce9 -->
 r351 | sally | 2013-02-16 08:04:22 -0500 (Sat, 16 Feb 2013) | 2 lines
 Changed paths:
    M /calc/trunk/src/real.c
@@ -10780,9 +10780,9 @@ U    libcomplex-custom/README
 Summary of conflicts:
   Text conflicts: 1
 Conflict discovered in file &#39;libcomplex-custom/src/code.c&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
-        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options: 
- As you can see,  svn merge  has merged
+<!-- ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
+        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options: <!-- ACCEPT >=> ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 -->
+ <!-- 5371b479-35f5-4e1d-9c4d-f844e4e57794 <=< ACCEPT -->As you can see,  svn merge  has merged
         the changes required to make libcomplex 1.0.0 look like
         libcomplex 1.0.1 into our working copy.  In our example, it has
         even noticed and flagged a conflict on one file.   It seems
@@ -10793,7 +10793,7 @@ Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
         make sense.  (See  
         for more on resolving conflicts of this sort.) Once we&#39;ve resolved the conflicts and performed any
         testing or review we need, we can commit the changes to our
-        vendor branch. 
+        vendor branch.<!-- ACCEPT >=> 5371b479-35f5-4e1d-9c4d-f844e4e57794 --> 
 $ svn status libcomplex-custom
 M       libcomplex-custom/src/code.h
 M       libcomplex-custom/src/code.c
@@ -11002,9 +11002,9 @@ U    README
 Summary of conflicts:
   Text conflicts: 1
 Conflict discovered in file &#39;src/code.c&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
-        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options: 
- As you can see,  svn merge  has merged
+<!-- ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
+        (mc) mine-conflict, (tc) theirs-conflict, (s) show all options:<!-- ACCEPT >=> ecb4a7f2-5d8b-42b5-8c7f-2f6d7bd7dc20 --> 
+ <!-- 5371b479-35f5-4e1d-9c4d-f844e4e57794 <=< ACCEPT -->As you can see,  svn merge  has merged
         the requisite changes into our working copy, flagging a
         conflict where the vendor modified the same region of one of
         the files as we did during our customizations.  Subversion
@@ -11014,7 +11014,7 @@ Select: (p) postpone, (df) diff-full, (e) edit, (m) merge,
         customizations to what is now libcomplex 1.0.1 continue to
         make sense.  Once we&#39;ve resolved the conflicts and performed
         any testing or review we need, we can commit the changes to
-        our vendor branch. 
+        our vendor branch.<!-- ACCEPT >=> 5371b479-35f5-4e1d-9c4d-f844e4e57794 --> 
 $ svn status
 M       src/code.h
 M       src/code.c
@@ -16916,12 +16916,12 @@ REGEDIT4
           tasks.  Valid options in this section are: diff-cmd This specifies the absolute path of a differencing
                 program, used when Subversion generates
                  diff  output (such as when using the
-                 svn diff  command).  By default,
+                 svn diff  command).  <!-- ed0e4a37-04e2-466b-8c39-0c41850a85e4 <=< ACCEPT -->By default,
                 Subversion uses an internal differencing
                 library setting this option will cause it to
                 perform this task using an external program.  See
                   for
-                more details on using such programs. diff-extensions Like the  --extensions 
+                more details on using such programs.<!-- ACCEPT >=> ed0e4a37-04e2-466b-8c39-0c41850a85e4 --> diff-extensions Like the  --extensions 
                 ( -x ) command-line option, this
                 specifies additional options passed to the file
                 content differencing engine.  The set of meaningful
@@ -16933,11 +16933,11 @@ REGEDIT4
                 is  -u . diff3-cmd This specifies the absolute path of a three-way
                 differencing program.  Subversion uses this program to
                 merge changes made by the user with those received
-                from the repository.  By default, Subversion uses an
+                from the repository.  <!-- ed0e4a37-04e2-466b-8c39-0c41850a85e4 <=< ACCEPT -->By default, Subversion uses an
                 internal differencing library setting this
                 option will cause it to perform this task using an
                 external program.  See   for more
-                details on using such programs. diff3-has-program-arg This flag should be set to  true 
+                details on using such programs.<!-- ACCEPT >=> ed0e4a37-04e2-466b-8c39-0c41850a85e4 --> diff3-has-program-arg This flag should be set to  true 
                 if the program specified by the
                  diff3-cmd  option accepts a
                  --diff-program  command-line
@@ -18646,12 +18646,12 @@ if __name__ == &#39;__main__&#39;:
       hook scripts, to integrations between Subversion and some other
       application, to completely different version control systems.
       What unique itch will  you  scratch with
-      it? Copyright Copyright (c) 2002-2013 Ben Collins-Sussman, Brian
+      it? Copyright <!-- 26e0a8b2-4887-4a9f-9ec7-24332a65e540 <=< ACCEPT -->Copyright (c) 2002-2013 Ben Collins-Sussman, Brian
     W. Fitzpatrick, C. Michael Pilato. This work is licensed under the Creative Commons Attribution
     License.  To view a copy of this license, visit
       or
     send a letter to Creative Commons, 559 Nathan Abbott Way,
-    Stanford, California 94305, USA. A summary of the license is given below, followed by the full
+    Stanford, California 94305, USA.<!-- ACCEPT >=> 26e0a8b2-4887-4a9f-9ec7-24332a65e540 --> A summary of the license is given below, followed by the full
     legal text. 
 You are free:
 
@@ -19038,7 +19038,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
       simply  start-commit . This reference guide describes the various hooks which
       Subversion offers to administrators, detailing when the hook is
       invoked, its input parameters, and how its behavior affects the
-      Subversion workflow. hook scripts start-commit start-commit Notification of the beginning of a commit. start-commit
+      Subversion workflow. <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts start-commit start-commit Notification of the beginning of a commit. start-commit
          REPOS-PATH 
          USER 
          CAPABILITIES 
@@ -19070,7 +19070,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
              mergeinfo , and
              log-revprops  (new in Subversion 1.5) Commit transaction name (new in Subversion 1.8) Common uses Access control (e.g., temporarily lock out commits for
         some reason). A means to allow access only from clients that have
-        certain capabilities. hook scripts pre-commit pre-commit Notification just prior to commit completion. pre-commit
+        certain capabilities.<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts pre-commit pre-commit Notification just prior to commit completion. pre-commit
          REPOS-PATH 
          TXN-NAME Description The  pre-commit  hook is run just
         before a commit transaction is promoted to a new revision.
@@ -19091,7 +19091,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         lock token information line consists of the URI-escaped
         repository filesystem path associated with the lock,
         followed by the pipe ( | ) separator
-        character, and finally the lock token string. Common uses Change validation and control hook scripts post-commit post-commit Notification of a successful commit. post-commit
+        character, and finally the lock token string.<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Change validation and control <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts post-commit post-commit Notification of a successful commit. post-commit
          REPOS-PATH 
          REVISION Description The  post-commit  hook is run after the
         transaction is committed and a new revision is created.  Most
@@ -19104,7 +19104,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         completed.  However, anything that the hook printed
         to  stderr  will be marshalled back to the
         client, making it easier to diagnose hook failures. Input parameter(s) The command-line arguments passed to the hook program,
-        in order, are: Repository path Revision number created by the commit Common uses Commit notification; tool integration hook scripts pre-revprop-change pre-revprop-change Notification of a revision property change
+        in order, are: Repository path Revision number created by the commit Common uses Commit notification; tool integration<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts pre-revprop-change pre-revprop-change Notification of a revision property change
         attempt. pre-revprop-change
          REPOS-PATH 
          REVISION 
@@ -19125,7 +19125,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
              D  (deleted), or  M 
             (modified) Additionally, Subversion passes the intended new value
          of the property to the hook program via standard
-         input. Common uses Access control; change validation and control hook scripts post-revprop-change post-revprop-change Notification of a successful revision property 
+         input. Common uses Access control; change validation and control<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts post-revprop-change post-revprop-change Notification of a successful revision property 
         change. post-revprop-change
          REPOS-PATH 
          REVISION 
@@ -19148,7 +19148,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         in order, are: Repository path Revision whose property was modified Authenticated username of the person making the change Name of the property changed Change description:  A  (added),
              D  (deleted), or  M 
             (modified) Additionally, Subversion passes to the hook program, via
-        standard input, the previous value of the property. Common uses Property change notification hook scripts pre-lock pre-lock Notification of a path lock attempt. pre-lock
+        standard input, the previous value of the property.<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Property change notification <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts pre-lock pre-lock Notification of a path lock attempt. pre-lock
          REPOS-PATH 
          PATH 
          USER 
@@ -19176,7 +19176,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         in order, are: Repository path Versioned path that is to be locked Authenticated username of the person attempting the 
             lock Comment provided when the lock was created 1  if the user is attempting to
             steal an existing lock;  0 
-            otherwise Common uses Access control hook scripts post-lock post-lock Notification of a successful path lock. post-lock
+            otherwise<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Access control <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts post-lock post-lock Notification of a successful path lock. post-lock
          REPOS-PATH 
          USER Description The  post-lock  hook runs after one or
         more paths have been locked.  It is typically used to send
@@ -19188,7 +19188,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         client, making it easier to diagnose hook failures. Input parameter(s) The command-line arguments passed to the hook program,
         in order, are: Repository path Authenticated username of the person who locked the 
             paths Additionally, the list of paths locked is passed to the
-        hook program via standard input, one path per line. Common uses Lock notification hook scripts pre-unlock pre-unlock Notification of a path unlock attempt. pre-unlock
+        hook program via standard input, one path per line.<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Lock notification <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts pre-unlock pre-unlock Notification of a path unlock attempt. pre-unlock
          REPOS-PATH 
          PATH 
          USER 
@@ -19207,7 +19207,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         in order, are: Repository path Versioned path which is to be unlocked Authenticated username of the person attempting the 
             unlock Lock token associated with the lock which is to be
             removed 1  if the user is attempting to
-            break the lock;  0  otherwise Common uses Access control hook scripts post-unlock post-unlock Notification of a successful path unlock. post-unlock
+            break the lock;  0  otherwise<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Access control <!-- ce8e152a-f536-4e70-8721-08517db0af33 <=< ACCEPT -->hook scripts post-unlock post-unlock Notification of a successful path unlock. post-unlock
          REPOS-PATH 
          USER Description The  post-unlock  hook runs after one
         or more paths have been unlocked.  It is typically used to
@@ -19219,7 +19219,7 @@ Creative Commons may be contacted at http://creativecommons.org/.
         client, making it easier to diagnose hook failures. Input parameter(s) The command-line arguments passed to the hook program,
         in order, are: Repository path Authenticated username of the person who unlocked the 
             paths Additionally, the list of paths unlocked is passed to the
-        hook program via standard input, one path per line. Common uses Unlock notification svn Reference Subversion Command-Line Client svn  is the official command-line client
+        hook program via standard input, one path per line.<!-- ACCEPT >=> ce8e152a-f536-4e70-8721-08517db0af33 --> Common uses Unlock notification svn Reference Subversion Command-Line Client svn  is the official command-line client
       of Subversion.  Its functionality is offered via a collection of
       task-specific subcommands, most of which accept a number of
       options for fine-grained control of the program&#39;s
@@ -19346,17 +19346,17 @@ $
             -45  is equivalent to  -r
             45:44 . --changelist  ( --cl )  ARG Instructs Subversion to operate only on members of the changelist named
              ARG .  You can use this option
-            multiple times to specify sets of changelists. --config-dir DIR Instructs Subversion to read configuration
+            multiple times to specify sets of changelists. <!-- 2b8af518-b034-4497-ac5a-aa3ad3292793 <=< ACCEPT -->--config-dir DIR Instructs Subversion to read configuration
             information from the specified directory instead of the
             default location ( .subversion  in
-            the user&#39;s home directory). This option is accepted by
+            the user&#39;s home directory).<!-- ACCEPT >=> 2b8af518-b034-4497-ac5a-aa3ad3292793 --> This option is accepted by
               all  svn  subcommands. --config-option CONFSPEC Sets, for the duration of the command, the value of
             a runtime configuration
             option.   CONFSPEC  is a string
             which specifies the configuration option namespace, name
             and value that you&#39;d like to assign, formatted as
              FILE : SECTION : OPTION =[ VALUE ].
-            In this syntax,  FILE 
+            <!-- 86601698-b1e1-4572-82bf-888f9433e234 <=< ACCEPT -->In this syntax,  FILE 
             and  SECTION  are the runtime
             configuration file (either  config 
             or  servers ) and the section thereof,
@@ -19369,7 +19369,7 @@ $
             setting feature,
             use  --config-option=config:miscellany:enable-auto-props=no .
             You can use this option multiple times to change
-            multiple option values simultaneously. This option is accepted by
+            multiple option values simultaneously.<!-- ACCEPT >=> 86601698-b1e1-4572-82bf-888f9433e234 --> This option is accepted by
               all  svn  subcommands. --depth ARG Instructs Subversion to limit the scope of an
             operation to a particular tree
             depth.   ARG  is one of
@@ -19509,10 +19509,10 @@ $ svn commit -m &quot;They don&#39;t make Sunday.&quot;
             of an operation.  This is useful for automatically
             creating multiple subdirectories where none currently
             exist.  If performed on a URL, all the directories will
-            be created in a single commit. --password PASSWD Specifies the password to use when authenticating
+            be created in a single commit. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--password PASSWD Specifies the password to use when authenticating
             against a Subversion server.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. This option is accepted by
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> This option is accepted by
               all  svn  subcommands. --quiet  ( -q ) Requests that the client print only essential
             information while performing an operation. --record-only Enables a special mode of  svn
           merge  in which the specified merge operation is
@@ -19618,10 +19618,10 @@ $ svn log -r 1729:{2002-02-17}
             and the network path between it and your client is known
             to be trustworthy. This option is accepted by
               all  svn  subcommands. --use-merge-history  ( -g ) Uses or displays additional information from merge
-            history. --username NAME Specifies the username to use when authenticating
+            history. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--username NAME Specifies the username to use when authenticating
             against a Subversion server.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. This option is accepted by
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> This option is accepted by
               all  svn  subcommands. --verbose  ( -v ) Requests that the client print out as much
             information as it can while running any subcommand.
             This may result in Subversion printing out additional
@@ -21094,7 +21094,7 @@ Committed revision 27.
         third&#39;s contents and properties.  Here&#39;s the patch file
         itself (which we&#39;ll assume is creatively named
          PATCH ): 
-Index: deleted-file
+<!-- 097bf3ff-7ed0-430a-9585-ccf57c89716d <=< ACCEPT -->Index: deleted-file
 ===================================================================
 --- deleted-file    (revision 3)
 +++ deleted-file    (working copy)
@@ -21123,7 +21123,7 @@ Index: added-file
 --- added-file    (revision 0)
 +++ added-file    (working copy)
 @@ -0,0 +1 @@
-+This is an added file.
++This is an added file.<!-- ACCEPT >=> 097bf3ff-7ed0-430a-9585-ccf57c89716d -->
  We can apply the previous patch file to another
         working copy from our repository using  svn
         patch , and verify that it did the right thing by
@@ -21134,7 +21134,7 @@ D         deleted-file
 UU        changed-file
 A         added-file
 $ svn diff
-Index: deleted-file
+<!-- 097bf3ff-7ed0-430a-9585-ccf57c89716d <=< ACCEPT -->Index: deleted-file
 ===================================================================
 --- deleted-file    (revision 3)
 +++ deleted-file    (working copy)
@@ -21163,7 +21163,7 @@ Index: added-file
 --- added-file    (revision 0)
 +++ added-file    (working copy)
 @@ -0,0 +1 @@
-+This is an added file.
++This is an added file.<!-- ACCEPT >=> 097bf3ff-7ed0-430a-9585-ccf57c89716d -->
 $
  Sometimes you might need Subversion to interpret a
         patch  in reverse where added things
@@ -21511,9 +21511,9 @@ $
 $ svn update
 Updating &#39;.&#39;:
 Conflict discovered in &#39;foo.c&#39;.
-Select: (p) postpone, (df) diff-full, (e) edit,
+<!-- 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a <=< ACCEPT -->Select: (p) postpone, (df) diff-full, (e) edit,
         (mc) mine-conflict, (tc) theirs-conflict,
-        (s) show all options: p
+        (s) show all options:<!-- ACCEPT >=> 9ccaf7f1-848d-4ce5-bfbe-a980da8c9f4a --> p
 C    foo.c
 Updated to revision 5.
 Summary of conflicts:
@@ -21932,10 +21932,10 @@ $
              DB_TXN_NOSYNC  enabled (which improves
             speed but has some risks associated with it). --bypass-hooks Bypass the repository hook system. --bypass-prop-validation When loading a dump file, disable the logic which
             validates property values. --clean-logs Remove unused Berkeley DB logs. --compatible-version ARG Use repository format compatible with Subversion version
-             ARG . --config-dir DIR Instructs Subversion to read configuration
+             ARG . <!-- 2b8af518-b034-4497-ac5a-aa3ad3292793 <=< ACCEPT -->--config-dir DIR Instructs Subversion to read configuration
             information from the specified directory instead of the
             default location ( .subversion  in
-            the user&#39;s home directory). --deltas When creating a repository dump file, specify
+            the user&#39;s home directory).<!-- ACCEPT >=> 2b8af518-b034-4497-ac5a-aa3ad3292793 --> --deltas When creating a repository dump file, specify
             changes in versioned properties and file contents as
             deltas against their previous state. --file  ( -F )  FILENAME Uses the contents of the named file for the
             specified subcommand. --fs-type ARG When creating a repository,
@@ -21957,15 +21957,15 @@ $
             is used for FSFS-backed repositories only.) --parent-dir DIR When loading a dump file, root paths at
              DIR  instead of
              / . --pre-1.4-compatible Deprecated .  See option
-             --compatible-version .  When creating a new
+             --compatible-version .  <!-- 4315caba-8a72-4f84-998d-885ebb99dd86 <=< ACCEPT -->When creating a new
             repository, use a format that is compatible with versions of
             Subversion earlier than Subversion 1.4. --pre-1.5-compatible Deprecated .  See option
-             --compatible-version .  When creating a new
+             --compatible-version .<!-- ACCEPT >=> 4315caba-8a72-4f84-998d-885ebb99dd86 -->  <!-- 4315caba-8a72-4f84-998d-885ebb99dd86 <=< ACCEPT -->When creating a new
             repository, use a format that is compatible with versions of
             Subversion earlier than Subversion 1.5. --pre-1.6-compatible Deprecated .  See option
-             --compatible-version .  When creating a new
+             --compatible-version .<!-- ACCEPT >=> 4315caba-8a72-4f84-998d-885ebb99dd86 -->  <!-- 4315caba-8a72-4f84-998d-885ebb99dd86 <=< ACCEPT -->When creating a new
             repository, use a format that is compatible with versions of
-            Subversion earlier than Subversion 1.6. --revision  ( -r )  ARG Specify a particular revision to operate
+            Subversion earlier than Subversion 1.6.<!-- ACCEPT >=> 4315caba-8a72-4f84-998d-885ebb99dd86 --> --revision  ( -r )  ARG Specify a particular revision to operate
             on. --quiet  ( -q ) Do not show normal progress show only
             errors. --use-post-commit-hook When loading a dump file, runs the repository&#39;s
              post-commit  hook after finalizing each newly loaded
@@ -22755,10 +22755,10 @@ mustard
 $ svnlook pg repos svn:auto-props trunk --show-inherited-props -v -r14
 Inherited properties on &#39;/trunk&#39;,
 from &#39;/&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
  svnlook subcommands proplist svnlook proplist (plist, pl) Print the names and values of versioned file and
         directory properties. svnlook proplist REPOS_PATH [PATH_IN_REPOS] Description List the properties of a path in the repository.  With
          --verbose  ( -v ), show the
@@ -22778,10 +22778,10 @@ $ svnlook -v proplist /var/svn/repos /trunk/README
 $ svnlook pl /var/svn/repos branches --show-inherited-props -v
 Inherited properties on &#39;/branches&#39;,
 from &#39;/&#39;:
-  svn:auto-props
+  <!-- b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 <=< ACCEPT -->svn:auto-props
     *.py = svn:eol-style=native
     *.c = svn:eol-style=native
-    *.h = svn:eol-style=native
+    *.h = svn:eol-style=native<!-- ACCEPT >=> b6c62b25-31e2-4f4f-8fcc-e55c8a5bd022 -->
 
   svn:global-ignores
     *.diff
@@ -22916,17 +22916,17 @@ $ svnlook youngest /var/svn/repos/
               from the target  URL . Options Options specified on the  svnmucc 
         command line are global to all actions performed by that
         command line.  The following is a list of the options
-        supported by this tool: --config-dir DIR Read configuration information from the specified
+        supported by this tool: <!-- 2b8af518-b034-4497-ac5a-aa3ad3292793 <=< ACCEPT -->--config-dir DIR Read configuration information from the specified
               directory instead of the default location
               ( .subversion  in the user&#39;s home
-              directory). --config-option CONFSPEC Set, for the duration of the command, the value
+              directory).<!-- ACCEPT >=> 2b8af518-b034-4497-ac5a-aa3ad3292793 --> --config-option CONFSPEC Set, for the duration of the command, the value
               of a runtime configuration option.
                CONFSPEC  is a
               string which specifies the configuration option
               namespace, name and value that you&#39;d like to assign,
               formatted as
                FILE : SECTION : OPTION =[ VALUE ].
-              In this syntax,  FILE 
+              <!-- 86601698-b1e1-4572-82bf-888f9433e234 <=< ACCEPT -->In this syntax,  FILE 
               and  SECTION  are the runtime
               configuration file (either  config 
               or  servers ) and the section
@@ -22940,7 +22940,7 @@ $ svnlook youngest /var/svn/repos/
               property setting feature,
               use  --config-option=config:miscellany:enable-auto-props=no .
               You can use this option multiple times to change
-              multiple option values simultaneously. --extra-args  ( -X )
+              multiple option values simultaneously.<!-- ACCEPT >=> 86601698-b1e1-4572-82bf-888f9433e234 --> --extra-args  ( -X )
              ARGFILE Read additional would-be command-line arguments
               from  ARGFILE , one argument
               per line.  As a special consideration,
@@ -22969,14 +22969,14 @@ $ svnlook youngest /var/svn/repos/
               as might be reported by  svn info ).
               It can be any URL common to the various targets which
               are specified in the  svnmucc 
-              actions. --password  ( -p )
+              actions. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--password  ( -p )
              PASSWD Use  PASSWD  as the
               password when authenticating against a Subversion
               server.  If not provided, or if incorrect, Subversion
-              will prompt you for this information as needed. --username NAME Use  USERNAME  as the
+              will prompt you for this information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--username NAME Use  USERNAME  as the
               username when authenticating against a Subversion
               server.  If not provided, or if incorrect, Subversion
-              will prompt you for this information as needed. --version Display the program&#39;s version information and
+              will prompt you for this information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> --version Display the program&#39;s version information and
               exit. --with-revprop NAME = VALUE Set the value of the revision property
                NAME  to
                VALUE  on the committed
@@ -23072,12 +23072,12 @@ $
       and  svnrdump  in
        . Options in  svnrdump  are global, just
       as they are in  svn  and
-       svnadmin : svnrdump Options --config-dir DIR Instructs Subversion to read configuration
+       svnadmin : svnrdump Options <!-- 2b8af518-b034-4497-ac5a-aa3ad3292793 <=< ACCEPT -->--config-dir DIR Instructs Subversion to read configuration
             information from the specified directory instead of the
             default location ( .subversion  in
-            the user&#39;s home directory). --config-option FILE : SECTION : OPTION =[ VALUE ] Sets, for the duration of the command, the value of
+            the user&#39;s home directory).<!-- ACCEPT >=> 2b8af518-b034-4497-ac5a-aa3ad3292793 --> --config-option FILE : SECTION : OPTION =[ VALUE ] Sets, for the duration of the command, the value of
             a runtime configuration
-            option.   FILE 
+            option.   <!-- 86601698-b1e1-4572-82bf-888f9433e234 <=< ACCEPT -->FILE 
             and  SECTION  are the runtime
             configuration file (either  config 
             or  servers ) and the section thereof,
@@ -23090,7 +23090,7 @@ $
             setting feature,
             use  --config-option=servers:global:http-library=serf .
             You can use this option multiple times to change
-            multiple option values simultaneously. --incremental Dump a revision or revision range only as a diff
+            multiple option values simultaneously.<!-- ACCEPT >=> 86601698-b1e1-4572-82bf-888f9433e234 --> --incremental Dump a revision or revision range only as a diff
             against the previous revision, instead of the default,
             which is begin a dumped revision range with a complete
             expansion of all contents of the repository as of that
@@ -23101,17 +23101,17 @@ $
             credentials (e.g., username or password).  This is useful
             if you&#39;re running Subversion inside an automated
             script and it&#39;s more appropriate to have Subversion fail
-            than to prompt for more information. --password PASSWD Specifies the password to use when authenticating
+            than to prompt for more information. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--password PASSWD Specifies the password to use when authenticating
             against a Subversion server.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. --quiet  ( -q ) Requests that the client print only essential
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> --quiet  ( -q ) Requests that the client print only essential
             information while performing an operation. --revision  ( -r )  ARG Used by  svnsync copy-revprops  to
             specify a particular revision or revision range on which
             to operate. --trust-server-cert Used with  --non-interactive  to accept
-            any unknown SSL server certificates without prompting. --username NAME Specifies the username to use when authenticating
+            any unknown SSL server certificates without prompting. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--username NAME Specifies the username to use when authenticating
             against a Subversion server.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. svnrdump subcommands dump svnrdump dump svnrdump dump SOURCE_URL Description Dump that is, generate a repository dump stream
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> svnrdump subcommands dump svnrdump dump svnrdump dump SOURCE_URL Description Dump that is, generate a repository dump stream
         of revisions of the repository item located
         at  SOURCE_URL , printing the
         information to standard output.  By default, the entire
@@ -23267,16 +23267,16 @@ $ svnadmin dump -q /var/svn/repos/new-project | \
        svnadmin : svnsync Options --allow-non-empty Disables the verification (which  svnsync
             initialize  performs by default) that the
             repository being initialized is empty of history
-            version. --config-dir DIR Instructs Subversion to read configuration
+            version. <!-- 2b8af518-b034-4497-ac5a-aa3ad3292793 <=< ACCEPT -->--config-dir DIR Instructs Subversion to read configuration
             information from the specified directory instead of the
             default location ( .subversion  in
-            the user&#39;s home directory). --config-option CONFSPEC Sets, for the duration of the command, the value of
+            the user&#39;s home directory).<!-- ACCEPT >=> 2b8af518-b034-4497-ac5a-aa3ad3292793 --> --config-option CONFSPEC Sets, for the duration of the command, the value of
             a runtime configuration
             option.   CONFSPEC  is a string
             which specifies the configuration option namespace, name
             and value that you&#39;d like to assign, formatted as
              FILE : SECTION : OPTION =[ VALUE ].
-            In this syntax,  FILE 
+            <!-- 86601698-b1e1-4572-82bf-888f9433e234 <=< ACCEPT -->In this syntax,  FILE 
             and  SECTION  are the runtime
             configuration file (either  config 
             or  servers ) and the section thereof,
@@ -23289,7 +23289,7 @@ $ svnadmin dump -q /var/svn/repos/new-project | \
             setting feature,
             use  --config-option=servers:global:http-library=serf .
             You can use this option multiple times to change
-            multiple option values simultaneously. --disable-locking Causes  svnsync  to bypass its own
+            multiple option values simultaneously.<!-- ACCEPT >=> 86601698-b1e1-4572-82bf-888f9433e234 --> --disable-locking Causes  svnsync  to bypass its own
             exclusive access mechanisms and operate on the
             assumption that its exclusive access to the mirror
             repository is being guaranteed through some other,
@@ -23303,31 +23303,31 @@ $ svnadmin dump -q /var/svn/repos/new-project | \
             than to prompt for more information. --quiet  ( -q ) Requests that the client print only essential
             information while performing an operation. --revision  ( -r )  ARG Used by  svnsync copy-revprops  to
             specify a particular revision or revision range on which
-            to operate. --source-password PASSWD Specifies the password for the Subversion server
+            to operate. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--source-password PASSWD Specifies the password for the Subversion server
             from which you are syncing.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. --source-prop-encoding  ARG Instructs  svnsync  to assume that
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> --source-prop-encoding  ARG Instructs  svnsync  to assume that
             translatable Subversion revision properties found in the
             source repository are stored using the character
             encoding  ARG  and to transcode
             those into UTF-8 when copying them into the mirror
-            repository. --source-username NAME Specifies the username for the Subversion server
+            repository. <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--source-username NAME Specifies the username for the Subversion server
             from which you are syncing.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. --steal-lock Causes  svnsync  to steal, as
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> --steal-lock Causes  svnsync  to steal, as
             necessary, the lock which it uses on the mirror
             repository to ensure exclusive repository access.  (This
             option should only be used when a lock exists in the
             mirror repository and is known to be stale that
             is, when you are certain that there are no
             other  svnsync  processes accessing
-            that repository.) --sync-password PASSWD Specifies the password for the Subversion server to
+            that repository.) <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--sync-password PASSWD Specifies the password for the Subversion server to
             which you are syncing.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. --sync-username NAME Specifies the username for the Subversion server to
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> <!-- 0b44f71b-551a-4566-a55e-a98bd01e4c3b <=< ACCEPT -->--sync-username NAME Specifies the username for the Subversion server to
             which you are syncing.  If not provided, or if
             incorrect, Subversion will prompt you for this
-            information as needed. --trust-server-cert Used with  --non-interactive  to accept
+            information as needed.<!-- ACCEPT >=> 0b44f71b-551a-4566-a55e-a98bd01e4c3b --> --trust-server-cert Used with  --non-interactive  to accept
             any unknown SSL server certificates without prompting. svnsync subcommands copy-revprops svnsync copy-revprops Copy all revision properties for a particular
         revision (or range of revisions) from the source
         repository to the mirror repository. svnsync copy-revprops DEST_URL
@@ -23344,7 +23344,7 @@ $ svnadmin dump -q /var/svn/repos/new-project | \
         source and mirror repositories.   svnsync
         copy-revprops  is the answer to this problem.
         Use it to resynchronize the revision properties for a
-        particular revision or range of revisions. When  SOURCE_URL  is
+        particular revision or range of revisions. <!-- 61afa2d8-6976-4de9-b02a-24a883a17cc5 <=< ACCEPT -->When  SOURCE_URL  is
         provided,  svnsync  will use it as the
         repository URL which the destination repository is
         mirroring. Generally,  SOURCE_URL 
@@ -23359,7 +23359,7 @@ $ svnadmin dump -q /var/svn/repos/new-project | \
           have write access to the revision 0 properties
           which  svnsync  uses to coordinate its
           efforts. Options Examples Resynchronize the revision properties associated with
-        a single revision (r6): 
+        a single revision (r6):<!-- ACCEPT >=> 61afa2d8-6976-4de9-b02a-24a883a17cc5 --> 
 $ svnsync copy-revprops -r 6 file:///var/svn/repos-mirror \
                              http://svn.example.com/repos
 Copied properties for revision 6.
@@ -23436,7 +23436,7 @@ $
         see which revisions have already been copied into it, it
         then begins to copy any not-yet-mirrored revisions from
         the source repository. svnsync synchronize  can be
-        gracefully canceled and restarted. When  SOURCE_URL  is
+        gracefully canceled and restarted. <!-- 61afa2d8-6976-4de9-b02a-24a883a17cc5 <=< ACCEPT -->When  SOURCE_URL  is
         provided,  svnsync  will use it as the
         repository URL which the destination repository is
         mirroring. Generally,  SOURCE_URL 
@@ -23451,7 +23451,7 @@ $
           have write access to the revision 0 properties
           which  svnsync  uses to coordinate its
           efforts. Options Examples Copy unsynchronized revisions from the source
-        repository to the mirror repository: 
+        repository to the mirror repository:<!-- ACCEPT >=> 61afa2d8-6976-4de9-b02a-24a883a17cc5 --> 
 $ svnsync synchronize file:///var/svn/repos-mirror \
                       http://svn.example.com/repos
 Committed revision 1.

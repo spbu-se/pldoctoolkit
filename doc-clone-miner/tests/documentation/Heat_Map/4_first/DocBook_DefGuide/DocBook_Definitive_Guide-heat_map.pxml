@@ -183,14 +183,14 @@ stylesheet distribution . testing DSSSL stylesheets installation HTML stylesheet
 
 Test the installation by processing  test.sgm 
 (from the previous section) with Jade: jade -t rtf -d d:\where-you-unpacked-the-stylesheets\docbook\print\docbook.dsl test.sgm
- This command should silently produce  
+ <!-- 1ae7f103-6108-4195-8c6b-f9a17971513a <=< ACCEPT -->This command should silently produce  
 test.rtf . If not, and the preceding test succeeded, something
 has gone wrong contact
-the maintainer . To test the HTML stylesheet, run: jade -t sgml -d d:\where-you-unpacked-the-stylesheets\docbook\html\docbook.dsl test.sgm
- This command should silently produce  
+the maintainer .<!-- ACCEPT >=> 1ae7f103-6108-4195-8c6b-f9a17971513a --> To test the HTML stylesheet, run: jade -t sgml -d d:\where-you-unpacked-the-stylesheets\docbook\html\docbook.dsl test.sgm
+ <!-- 1ae7f103-6108-4195-8c6b-f9a17971513a <=< ACCEPT -->This command should silently produce  
 c01.htm . If not, and the preceding test succeeded, something
 has gone wrong contact
-the maintainer . $Date: 2001-08-02 14:27:50 +0400 (Чт, 02 авг 2001) $ $Revision: 546 $ DocBook and  DocBook DTD XML XML DocBook and SGML XML and XML SGML, processing 
+the maintainer .<!-- ACCEPT >=> 1ae7f103-6108-4195-8c6b-f9a17971513a --> $Date: 2001-08-02 14:27:50 +0400 (Чт, 02 авг 2001) $ $Revision: 546 $ DocBook and  DocBook DTD XML XML DocBook and SGML XML and XML SGML, processing 
 
  , the  Extensible
 Markup Language , is a simple dialect of  . In the words of the
@@ -242,7 +242,7 @@ probably a half dozen or so more exotic
 examples of minimization that you have used. They&#39;re all illegal. The
 easiest way to remove these minimizations is probably with a tool like  
 sgmlnorm  (included in the  SP  and Jade distributions, on
-the  CD-ROM ). The result will be something like this: Attribute Default Values attributes default values 
+the  CD-ROM ). <!-- 4f515ba8-7696-4978-9559-a51eee72af89 <=< ACCEPT -->The result will be something like this:<!-- ACCEPT >=> 4f515ba8-7696-4978-9559-a51eee72af89 --> Attribute Default Values attributes default values 
 
 Correct processing of this document may require access to the default
 attributes: Address  expresses
@@ -252,7 +252,7 @@ uses elements that have attributes with default values. The default values
 are expressed in the  , but may not be expressed in your instance. In the
 case of DocBook, there are relatively few of these, and your stylesheet can
 probably be constructed to do the right thing in either case. (It essentially
-treats the attributes as if they had implied values.) The result will be something like this: Character and  SDATA  Entities characters entities SDATA entities entities characters entities SDATA XML SDATA entities, not allowing ISO standards entity sets SDATA entities, problems with (XML) Unicode character set ISO standard entity sets and 
+treats the attributes as if they had implied values.) <!-- 4f515ba8-7696-4978-9559-a51eee72af89 <=< ACCEPT -->The result will be something like this:<!-- ACCEPT >=> 4f515ba8-7696-4978-9559-a51eee72af89 --> Character and  SDATA  Entities characters entities SDATA entities entities characters entities SDATA XML SDATA entities, not allowing ISO standards entity sets SDATA entities, problems with (XML) Unicode character set ISO standard entity sets and 
 
 The DocBook   defines all of the standard  ISO 
 entities automatically, but the  ISO  definitions use
@@ -268,7 +268,7 @@ for them in the internal subset of each instance, because some
   browsers are going to parse the internal subset but not the external subset.
 If the entity declarations are in your  , and the browser does not parse
 the external subset, the browser won&#39;t know how to display the entities in
-your document. The result will be something like this: Case-Sensitivity case sensitivity DocBook SGML declaration elements case sensitivity (DocBook) attributes case sensitivity (DocBook) XML case sensitivity 
+your document. <!-- 4f515ba8-7696-4978-9559-a51eee72af89 <=< ACCEPT -->The result will be something like this:<!-- ACCEPT >=> 4f515ba8-7696-4978-9559-a51eee72af89 --> Case-Sensitivity case sensitivity DocBook SGML declaration elements case sensitivity (DocBook) attributes case sensitivity (DocBook) XML case sensitivity 
 
 With the standard DocBook   declaration, DocBook instances are not
 case-sensitive with respect to element and attribute names.   is always
@@ -292,7 +292,7 @@ para  and  PARA  as distinct names is as legitimate
 as using  foo  and  bar , as long as they
 are properly nested.
  Para element PARA vs. (XML) 
- The result will be something like this: No #CONREF Attributes #CONREF attributes Startref attribute IndexTerm element OtherTerm attribute GlossSee element GlossSeeAlso element empty tags #CONREF attributes 
+ <!-- 4f515ba8-7696-4978-9559-a51eee72af89 <=< ACCEPT -->The result will be something like this:<!-- ACCEPT >=> 4f515ba8-7696-4978-9559-a51eee72af89 --> No #CONREF Attributes #CONREF attributes Startref attribute IndexTerm element OtherTerm attribute GlossSee element GlossSeeAlso element empty tags #CONREF attributes 
 
 The  StartRef  attribute on  
 indexterm  and the  OtherTerm 
@@ -303,7 +303,7 @@ the attribute.  If you
 have used these attributes, your instance will contain both empty and non-empty
 versions of these tags. Your best bet is to transform the  #CONREF 
 version into an empty tag and let your stylesheet deal with it appropriately.
- The result will be something like this: Only Explicit CDATA-Marked Sections Are Allowed parameter entities XML document body XML parameter entities internal subset parameter entities (XML) 
+ <!-- 4f515ba8-7696-4978-9559-a51eee72af89 <=< ACCEPT -->The result will be something like this:<!-- ACCEPT >=> 4f515ba8-7696-4978-9559-a51eee72af89 --> Only Explicit CDATA-Marked Sections Are Allowed parameter entities XML document body XML parameter entities internal subset parameter entities (XML) 
 
 Parameter entities are not
 allowed in the body of   documents (they are allowed in the internal subset).
@@ -319,14 +319,14 @@ RCDATA  marked sections.
 must use the  CDATA  keyword literally because
 parameter entities are not allowed.
  CDATA marked sections 
- The result will be something like this: No SUBDOC or CDATA External Entities external general entities XML restrictions XML external entities, restrictions CDATA XML instances, restrictions 
+ <!-- 4f515ba8-7696-4978-9559-a51eee72af89 <=< ACCEPT -->The result will be something like this:<!-- ACCEPT >=> 4f515ba8-7696-4978-9559-a51eee72af89 --> No SUBDOC or CDATA External Entities external general entities XML restrictions XML external entities, restrictions CDATA XML instances, restrictions 
   instances cannot use  CDATA  or  SUBDOC
   external entities. One option for integrating external  
 CDATA  content into a document is to employ a pre-processing pass
 that inserts the content inline, wrapped in a  CDATA  marked
 section. SUBDOC entities namespaces SUBDOC  entities may be more problematic. If you do
 not require validation, it may be sufficient to simply put them inline.  
-namespaces may offer another possible solution. The result will be something like this: No Data Attributes on Notations They&#39;re not allowed in  , so don&#39;t add any.
+namespaces may offer another possible solution. <!-- 4f515ba8-7696-4978-9559-a51eee72af89 <=< ACCEPT -->The result will be something like this:<!-- ACCEPT >=> 4f515ba8-7696-4978-9559-a51eee72af89 --> No Data Attributes on Notations They&#39;re not allowed in  , so don&#39;t add any.
  data attributes, notations (XML prohibiting) 
 
  No Attribute Value Specifications on Entity Declarations attributes values specifying (entity declarations) declarations entities attribute values, prohibiting (XML) entities declarations, attribute values (XML) 
@@ -588,10 +588,10 @@ This document describes  OASIS  catalog files.
  The   Declaration The   Declaration,  by Wayne Wholer.
  Table Interoperability: Issues for the   Table Model
  OASIS 
-Technical Research Paper 9501:1995 . Exchange Table Model Document Type Definition OASIS 
-Technical Resolution  TR  9503:1995 .  Table Model Document Type Definition OASIS 
-Technical Memorandum  TM  9502:1995 XML Exchange Table Model Document Type Definition OASIS
-Technical Memorandum TM 9901:1999 . Internet  RFC s RFC s ( Request for Comments ) are standards documents
+Technical Research Paper 9501:1995 . <!-- 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 <=< ACCEPT -->Exchange Table Model Document Type Definition OASIS 
+Technical Resolution  TR  9503:1995 .<!-- ACCEPT >=> 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 -->  <!-- 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 <=< ACCEPT -->Table Model Document Type Definition OASIS 
+Technical Memorandum  TM  9502:1995<!-- ACCEPT >=> 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 --> <!-- 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 <=< ACCEPT -->XML Exchange Table Model Document Type Definition OASIS
+Technical Memorandum TM 9901:1999 .<!-- ACCEPT >=> 5ece2e37-fe8b-4247-a8b0-8e2151b077c1 --> Internet  RFC s RFC s ( Request for Comments ) are standards documents
 produced by the Internet Engineering Task Force ( IETF ).
  RFC  1630 Universal Resource Identifiers in  WWW . RFC  1736 Functional recommendations for Internet Resource Locators. RFC  1737 Functional requirements for Uniform Resource Names. RFC  1738 Uniform Resource Locators ( URL ). RFC  3066 Tags for the identification of languages Specifications Here are pointers to the specifications. The   Specification
  The  W3C  technical recommendation that defines   1.0. Namespaces
@@ -697,11 +697,11 @@ where and how must text be generated in order for the documents to make sense?
 information regarding its format and version? How did you create tables of contents,
 lists of titles, and indexes? Are they stored in DocBook form? If so,
 did you generate them (and according to what rules) or create them by
-hand? If you used the  Lang  common attribute, why, and to what
-effect? If you used the  Remap  common attribute, why, and to what
-effect? If you used the  Role  common attribute, why, and to what
-effect? If you used the effectivity
-attributes, which did you use, why, and to what effect? What values did you give to the  Label  attribute and how are they to be
+hand? <!-- b35e861f-a8a6-4c57-97ed-98f5cbd38789 <=< ACCEPT -->If you used the  Lang  common attribute, why, and to what
+effect?<!-- ACCEPT >=> b35e861f-a8a6-4c57-97ed-98f5cbd38789 --> <!-- b35e861f-a8a6-4c57-97ed-98f5cbd38789 <=< ACCEPT -->If you used the  Remap  common attribute, why, and to what
+effect?<!-- ACCEPT >=> b35e861f-a8a6-4c57-97ed-98f5cbd38789 --> <!-- b35e861f-a8a6-4c57-97ed-98f5cbd38789 <=< ACCEPT -->If you used the  Role  common attribute, why, and to what
+effect?<!-- ACCEPT >=> b35e861f-a8a6-4c57-97ed-98f5cbd38789 --> <!-- b35e861f-a8a6-4c57-97ed-98f5cbd38789 <=< ACCEPT -->If you used the effectivity
+attributes, which did you use, why, and to what effect?<!-- ACCEPT >=> b35e861f-a8a6-4c57-97ed-98f5cbd38789 --> What values did you give to the  Label  attribute and how are they to be
 interpreted for rendering? What
 values did you give to the  Mark 
 and  Override  attributes for lists
@@ -1911,30 +1911,30 @@ the   used will be the one identified by the public identifier
  -//OASIS//DTD DocBook V3.1//EN . See   later in this chapter.
  An Internal Subset internal subset SGML document declarations 
 
-It&#39;s also possible to provide additional declarations in a document
-by placing them in the document type declaration: &lt;!DOCTYPE book PUBLIC &quot;-//OASIS//DTD DocBook V3.1//EN&quot; [
+<!-- c6634a9d-8a86-451e-961c-e096ec101a8c <=< ACCEPT -->It&#39;s also possible to provide additional declarations in a document
+by placing them in the document type declaration:<!-- ACCEPT >=> c6634a9d-8a86-451e-961c-e096ec101a8c --> &lt;!DOCTYPE book PUBLIC &quot;-//OASIS//DTD DocBook V3.1//EN&quot; [
 &lt;!ENTITY nwalsh &quot;Norman Walsh&quot;&gt;
 &lt;!ENTITY chap1 SYSTEM &quot;chap1.sgm&quot;&gt;
 &lt;!ENTITY chap2 SYSTEM &quot;chap2.sgm&quot;&gt;
 ]&gt; external subset SGML document declarations public identifiers SGML system identifiers SGML 
 
-These declarations form what is known as the
+<!-- 0afc9570-f04d-4889-afeb-3278fa34da59 <=< ACCEPT -->These declarations form what is known as the
  internal subset . The declarations stored in the
 file referenced by the public or system identifier in the 
  DOCTYPE  declaration is called the  external
 subset  and it is technically optional.
 It is legal to put the   in the internal
 subset and to have no external subset, but for a   as large
-as DocBook that wouldn&#39;t make much sense.
+as DocBook that wouldn&#39;t make much sense.<!-- ACCEPT >=> 0afc9570-f04d-4889-afeb-3278fa34da59 -->
  parsing order 
-The internal subset is parsed  first 
+<!-- 375983ab-b788-4d49-849a-a9e0b0b41e7e <=< ACCEPT -->The internal subset is parsed  first 
 and, if multiple declarations for an entity occur, the first
 declaration is used. Declarations in the internal subset
 override declarations in the external subset. The Document (or Root) Element elements root element root element placement 
 
 Although comments and processing instructions may occur between the
 document type declaration and the root element, the root element usually
-immediately follows the document type declaration: &lt;!DOCTYPE book PUBLIC &quot;-//OASIS//DTD DocBook V3.1//EN&quot; [
+immediately follows the document type declaration:<!-- ACCEPT >=> 375983ab-b788-4d49-849a-a9e0b0b41e7e --> &lt;!DOCTYPE book PUBLIC &quot;-//OASIS//DTD DocBook V3.1//EN&quot; [
 &lt;!ENTITY nwalsh &quot;Norman Walsh&quot;&gt;
 &lt;!ENTITY chap1 SYSTEM &quot;chap1.sgm&quot;&gt;
 &lt;!ENTITY chap2 SYSTEM &quot;chap2.sgm&quot;&gt;
@@ -1967,9 +1967,9 @@ If attribute values contain spaces or punctuation characters, you must
 quote them. You are not required to quote attribute values if they
 consist of a single word or number, although it is not wrong to do so.
  straight single quotes (attribute values) straight double quotes (attribute values) curly quotes (attribute values) 
-When quoting attribute values, you can use either a straight single
+<!-- 975a7f56-0ff9-4bae-b18f-0a88d7463b57 <=< ACCEPT -->When quoting attribute values, you can use either a straight single
 quote (&#39;), or a straight double quote (&quot;).  Don&#39;t use the
- curly  quotes (  and  ) in your editing tool.
+ curly  quotes (  and  ) in your editing tool.<!-- ACCEPT >=> 975a7f56-0ff9-4bae-b18f-0a88d7463b57 -->
  compatibility, SGML/XML conversion attribute values, quoting 
 If you are interested in future   compatibility, always
 quote all attribute values.
@@ -2078,9 +2078,9 @@ System identifiers in   must be  URI s. Many
 systems may accept filenames and interpret them locally as
  file:   URL s, but it&#39;s always
 correct to fully qualify them.
- An Internal Subset declarations document type declaration XML document type declaration internal subset internal subset XML document type declarations XML document type declarations internal subset 
+ An Internal Subset declarations document type declaration XML document type declaration internal subset internal subset XML document type declarations XML document type declarations internal subset <!-- c6634a9d-8a86-451e-961c-e096ec101a8c <=< ACCEPT -->
 It&#39;s also possible to provide additional declarations in a document by
-placing them in the document type declaration:
+placing them in the document type declaration:<!-- ACCEPT >=> c6634a9d-8a86-451e-961c-e096ec101a8c -->
  &lt;?xml version=&#39;1.0&#39;?&gt;
 &lt;!DOCTYPE book PUBLIC &quot;-//Norman Walsh//DTD DocBk XML V3.1.4/EN&quot;
                          &quot;http://nwalsh.com/docbook/xml/3.1.4/db3xml.dtd&quot; [
@@ -2088,21 +2088,21 @@ placing them in the document type declaration:
 &lt;!ENTITY chap1 SYSTEM &quot;chap1.sgm&quot;&gt;
 &lt;!ENTITY chap2 SYSTEM &quot;chap2.sgm&quot;&gt;
 ]&gt; 
-These declarations form what is known as the internal subset. The
+<!-- 0afc9570-f04d-4889-afeb-3278fa34da59 <=< ACCEPT -->These declarations form what is known as the internal subset. The
 declarations stored in the file referenced by the public or system
 identifier in the  DOCTYPE  declaration is called the
 external subset, which is technically optional.  It is legal to put
 the   in the internal subset and to have no external subset, but
-for a   as large as DocBook, that would make very little sense.
+for a   as large as DocBook, that would make very little sense.<!-- ACCEPT >=> 0afc9570-f04d-4889-afeb-3278fa34da59 -->
  parsing order XML document declarations 
 
-The internal subset is parsed  first  in   and,
+<!-- 375983ab-b788-4d49-849a-a9e0b0b41e7e <=< ACCEPT -->The internal subset is parsed  first  in   and,
 if multiple declarations for an entity occur, the first declaration is used.
 Declarations in the internal subset override declarations in the external
 subset. The Document (or Root) Element root element elements root element 
 Although comments and processing instructions may occur between the
 document type declaration and the root element, the root element usually
-immediately follows the document type declaration: &lt;?xml version=&#39;1.0&#39;?&gt;
+immediately follows the document type declaration:<!-- ACCEPT >=> 375983ab-b788-4d49-849a-a9e0b0b41e7e --> &lt;?xml version=&#39;1.0&#39;?&gt;
 &lt;!DOCTYPE book PUBLIC &quot;-//Norman Walsh//DTD DocBk XML V3.1.4//EN&quot;
                          &quot;http://nwalsh.com/docbook/xml/3.1.4/db3xml.dtd&quot; [
 &lt;!ENTITY nwalsh &quot;Norman Walsh&quot;&gt;
@@ -2127,9 +2127,9 @@ attribute, and entity names in lowercase.
 You are required to quote all attribute values in  .
  quotes attribute values 
 
-When quoting attribute values, you can use either a straight single
+<!-- 975a7f56-0ff9-4bae-b18f-0a88d7463b57 <=< ACCEPT -->When quoting attribute values, you can use either a straight single
 quote (&#39;), or a straight double quote (&quot;).  Don&#39;t use the
- curly  quotes (  and  ) in your editing tool.
+ curly  quotes (  and  ) in your editing tool.<!-- ACCEPT >=> 975a7f56-0ff9-4bae-b18f-0a88d7463b57 -->
  empty elements markup syntax 
 
 Empty elements in   are marked with a distinctive syntax:
@@ -3240,7 +3240,7 @@ online form of the glossary in this book.
 
 There are two ways to set up a bibliography in DocBook: you can have
 the data  raw  or
- cooked . Here&#39;s an example of a raw
+ cooked . <!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< ACCEPT -->Here&#39;s an example of<!-- ACCEPT >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> a raw
 bibliographical item, wrapped in the  Biblioentry  element:
  
 &lt;biblioentry xreflabel=&quot;Kites75&quot;&gt;
@@ -3715,7 +3715,7 @@ currently pursuing that effort.
 
 
 
-By way of comparison, here&#39;s an example of each of the standard style
+<!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< IGNORE -->By way of comparison, here&#39;s an example of<!-- IGNORE >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> each of the standard style
 languages. In each case, the stylesheet fragment shown contains the
 rules that reasonably formatted the following paragraph:
  &lt;para&gt;
@@ -3979,32 +3979,32 @@ In order to do this, you must be able to select other elements in the
 tree for processing.  DSSSL  provides a number of
 functions that select other elements.  These functions all return a
 list of nodes.
- (current-node) Returns the current node. (children  nd ) Returns the children of  nd .  (descendants  nd ) 
+ <!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT -->(current-node) Returns the current node.<!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 --> <!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT -->(children  nd ) Returns the children of  nd .<!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 --> <!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT --> (descendants  nd ) 
 Returns the descendants of  nd  (the children of
- nd  and all their children&#39;s children, and so on). 
- (parent  nd ) Returns the parent of  nd .  (ancestor &quot; name &quot;  nd ) 
+ nd  and all their children&#39;s children, and so on).<!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 --> <!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT -->
+ (parent  nd ) Returns the parent of  nd . <!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 --> <!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT -->(ancestor &quot; name &quot;  nd ) 
 Returns the first ancestor of  nd  named
- name . 
+ name .<!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 --> <!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT -->
  (element-with-id &quot; id &quot;) 
 Returns the element in the document with the  ID 
- id , if such an element exists. 
+ id , if such an element exists.<!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 --> <!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT -->
  (select-elements  node-list  &quot; name &quot;) 
 Returns all of the elements of the  node-list  that have
 the name  name . For example,  (select-elements
 (descendants (current-node)) &quot;para&quot;)  returns a list of all
-the paragraphs that are descendants of the current node. 
+the paragraphs that are descendants of the current node.<!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 --> <!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT -->
  (empty-node-list) 
-Returns a node list that contains no nodes. 
+Returns a node list that contains no nodes.<!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 --> 
 Other functions allow you to manipulate node lists.
- (node-list-empty?  nl ) 
+<!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT --> (node-list-empty?  nl ) 
 Returns true if (and only if)  nl  is an empty node
-list. 
- (node-list-length  nl ) Returns the number of nodes in  nl .  (node-list-first  nl ) 
+list.<!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 --> <!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT -->
+ (node-list-length  nl ) Returns the number of nodes in  nl . <!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 --> <!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT -->(node-list-first  nl ) 
 Returns a node list that consists of the single node that is the first
-node in  nl . 
+node in  nl .<!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 --> <!-- 8f04d451-e341-4442-83d8-302f69ea65b3 <=< ACCEPT -->
  (node-list-rest  nl ) 
 Returns a node list that contains all of the nodes in
- nl  except the first node.
+ nl  except the first node.<!-- ACCEPT >=> 8f04d451-e341-4442-83d8-302f69ea65b3 -->
  expressions (DSSSL) nodes and node lists, manipulating elements element expressions (DSSSL) lists nodes, manipulating 
 
 There are many other expressions for manipulating nodes and node
@@ -4633,7 +4633,7 @@ java  com.jclark.xsl.sax.Driver  filename.xml   docbook/html/docbook.xsl  &gt;  
    formatting object processor available for free from the
    Apache   Project (
     http://xml.apache.org ).
-   Here is an example of that two stage processing: CLASSPATH=xt.jar:xp.jar:sax.jar:fop.jar
+   <!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< ACCEPT -->Here is an example of<!-- ACCEPT >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> that two stage processing: CLASSPATH=xt.jar:xp.jar:sax.jar:fop.jar
 export CLASSPATH
 java  com.jclark.xsl.sax.Driver  filename.xml   docbook/fo/docbook.xsl  &gt;  output.fo 
 java  org.apache.fop.apps.CommandLine  output.fo   output.pdf As of this writing, some other XSLT processors to
@@ -4670,7 +4670,7 @@ java  org.apache.fop.apps.CommandLine  output.fo   output.pdf As of this writing
   , any XSL elements that are not empty will require a
  closing tag. And some XSL elements have specific attributes
  that control their behavior. It helps to keep a good XSL
- reference book handy. Here is an example of a simple XSL stylesheet applied
+ reference book handy. <!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< ACCEPT -->Here is an example of<!-- ACCEPT >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> a simple XSL stylesheet applied
  to a simple   file to generate HTML output. Simple   file Simple XSL stylesheet HTML output XSL processing model XSL is a template language, not a procedural
 language. That means a stylesheet specifies a sample of the
 output, not a sequence of programming steps to generate it.
@@ -4869,7 +4869,7 @@ That&#39;s because the called template must be expecting the
 parameter by defining it using
 a  &lt;xsl:param&gt;  element with the same
 parameter name. Any passed parameters whose names are not
-defined in the called template are ignored. Here is an example of parameter passing
+defined in the called template are ignored. <!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< ACCEPT -->Here is an example of<!-- ACCEPT >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> parameter passing
 from  docbook.xsl : Here a template
 named  head.content  is being called and
 passed a parameter named  node  whose
@@ -5041,8 +5041,8 @@ include all the modules. That single import instruction
 gives the new stylesheet the complete set of DocBook
 templates to start with. After the
 import,  xtchunk.xsl  redefines some of
-the templates and adds some new ones. Here is one example
-of a redefined template: The new template handles the more complex processing
+the templates and adds some new ones. <!-- fa17215f-4dc1-4d9a-afa3-27172b1ae214 <=< ACCEPT -->Here is one example
+of<!-- ACCEPT >=> fa17215f-4dc1-4d9a-afa3-27172b1ae214 --> a redefined template: The new template handles the more complex processing
 of HREFs when the output is split into many HTML files.
 Where the old template could simply
 output  # object.id ,
@@ -5409,14 +5409,14 @@ list, you generally want to change its module marked section to
  IGNORE  and possibly add a new definition for it in
 your customization layer.
  *.element *.element parameter entities parameter entities *.element 
-The  *.element  parameter
+<!-- d16ac8ba-7c8f-4d72-b8fc-64d61043f657 <=< ACCEPT -->The  *.element  parameter
 entities were introduced in DocBook  V3.1 ; they
-control marked sections around individual element declarations.
+control marked sections around individual element declarations.<!-- ACCEPT >=> d16ac8ba-7c8f-4d72-b8fc-64d61043f657 -->
  *.attlist parameter entities *.attlist *.attlist parameter entities attributes parameter entities, controlling 
 
-The  *.attlist  parameter
+<!-- d16ac8ba-7c8f-4d72-b8fc-64d61043f657 <=< ACCEPT -->The  *.attlist  parameter
 entities were introduced in DocBook  V3.1 ; they
-control marked sections around individual attribute list declarations.
+control marked sections around individual attribute list declarations.<!-- ACCEPT >=> d16ac8ba-7c8f-4d72-b8fc-64d61043f657 -->
  *.inclusion *.exclusion elements declarations parameter entities, controlling parameter entities *.inclusion parameter entities *.exclusion *.inclusion parameter entities *.exclusion parameter entities 
 
 These parameter entities control the inclusion and exclusion
@@ -5785,23 +5785,23 @@ placeholders in DocBook:
 
  rdbmods Inserted in  docbook.dtd , between
  dbpool.mod  and
- dbhier.mod . This placeholder is controlled by the
+ dbhier.mod . <!-- fb518ec2-def9-4782-b7da-a0cf1a983087 <=< ACCEPT -->This placeholder is controlled by the
  intermod.redecl.module  marked
 section. rdbpool %rdbpool.mod parameter entity 
 
 Inserted in the middle of  dbpool.mod ,
-between the  *.class  and  *.mix  entity declarations. This placeholder is
+between the  *.class  and  *.mix  entity declarations.<!-- ACCEPT >=> fb518ec2-def9-4782-b7da-a0cf1a983087 --> <!-- fb518ec2-def9-4782-b7da-a0cf1a983087 <=< ACCEPT -->This placeholder is
 controlled by the  dbpool.redecl.module 
 marked section. rdbhier %rdbhier parameter entity 
 
 Inserted in the middle of  dbhier.mod ,
-between the  *.class  and  *.mix  entity declarations. This placeholder is
+between the  *.class  and  *.mix  entity declarations.<!-- ACCEPT >=> fb518ec2-def9-4782-b7da-a0cf1a983087 --> <!-- fb518ec2-def9-4782-b7da-a0cf1a983087 <=< ACCEPT -->This placeholder is
 controlled by the  dbhier.redecl.module  marked
 section. rdbhier2 Also inserted into  dbhier.mod , after the
- *.mix  entity declarations. This
+ *.mix  entity declarations.<!-- ACCEPT >=> fb518ec2-def9-4782-b7da-a0cf1a983087 --><!-- fb518ec2-def9-4782-b7da-a0cf1a983087 <=< ACCEPT --> This
 placeholder is controlled by the  dbhier.redecl2.module  marked
 section. Use the redeclaration placeholder that it occurs nearest to, but
-before the entity that you want to redeclare. In our case, this is
+before the entity that you want to redeclare.<!-- ACCEPT >=> fb518ec2-def9-4782-b7da-a0cf1a983087 --> In our case, this is
  rdbpool , as seen in  .
  Removing Admonitions (Third Attempt: Correct, if confusing) 
  escape sequences (parameter entities)  uses numeric character entity
