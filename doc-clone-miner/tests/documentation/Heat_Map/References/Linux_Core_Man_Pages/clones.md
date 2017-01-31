@@ -3,7 +3,7 @@ Linux Core Man Pages
 
 173 pages
 
-length: 916177, marked for reuse: 153615, reuse ratio: 16.8%
+Source length: 2089102, marked for reuse: 314515, reuse ratio: 15.1%
 
 ---
 
