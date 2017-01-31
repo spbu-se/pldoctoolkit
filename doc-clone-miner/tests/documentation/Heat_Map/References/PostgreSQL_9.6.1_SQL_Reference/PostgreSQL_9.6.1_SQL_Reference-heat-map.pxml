@@ -160,7 +160,7 @@ PARAMETERS
        target_type
            The name of the target data type of the cast.
 
-       argmode
+<!-- e06c3d92-4723-4dc4-a00a-ed8adc236e70 <=< ACCEPT -->       argmode
            The mode of a function or aggregate argument: IN, OUT, INOUT, or
            VARIADIC. If omitted, the default is IN. Note that ALTER EXTENSION
            does not actually pay any attention to OUT arguments, since only
@@ -175,9 +175,9 @@ PARAMETERS
            function's identity.
 
        argtype
-           The data type of a function or aggregate argument.
+           The data type of a function or aggregate argument.<!-- ACCEPT >=> e06c3d92-4723-4dc4-a00a-ed8adc236e70 -->
 
-       left_type
+<!-- 475300f3-c025-4674-80e5-f48559d8b392 <=< ACCEPT -->       left_type
        right_type
            The data type(s) of the operator's arguments (optionally
            schema-qualified). Write NONE for the missing argument of a prefix
@@ -190,7 +190,7 @@ PARAMETERS
            The name of the data type of the transform.
 
        lang_name
-           The name of the language of the transform.
+           The name of the language of the transform.<!-- ACCEPT >=> 475300f3-c025-4674-80e5-f48559d8b392 -->
 
 EXAMPLES
        To update the hstore extension to version 2.0:
@@ -359,7 +359,7 @@ PARAMETERS
            labeling operation. If exactly one provider is loaded, the provider
            name may be omitted for brevity.
 
-       argmode
+<!-- e06c3d92-4723-4dc4-a00a-ed8adc236e70 <=< ACCEPT -->       argmode
            The mode of a function or aggregate argument: IN, OUT, INOUT, or
            VARIADIC. If omitted, the default is IN. Note that SECURITY LABEL
            does not actually pay any attention to OUT arguments, since only
@@ -374,7 +374,7 @@ PARAMETERS
            identity.
 
        argtype
-           The data type of a function or aggregate argument.
+           The data type of a function or aggregate argument.<!-- ACCEPT >=> e06c3d92-4723-4dc4-a00a-ed8adc236e70 -->
 
        large_object_oid
            The OID of the large object.
@@ -499,8 +499,8 @@ DESCRIPTION
        underlying type.
 
 PARAMETERS
-       name
-           The name (optionally schema-qualified) of a domain to be created.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of a domain to be created.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        data_type
            The underlying data type of the domain. This can include array
@@ -883,7 +883,7 @@ EXAMPLES
 
        The above transaction will insert the values 1 and 3, but not 2.
 
-       To establish and later destroy a savepoint:
+<!-- 01216d86-5036-4c40-bcfc-62c9554a3012 <=< ACCEPT -->       To establish and later destroy a savepoint:
 
            BEGIN;
                INSERT INTO table1 VALUES (3);
@@ -892,7 +892,7 @@ EXAMPLES
                RELEASE SAVEPOINT my_savepoint;
            COMMIT;
 
-       The above transaction will insert both 3 and 4.
+       The above transaction will insert both 3 and 4.<!-- ACCEPT >=> 01216d86-5036-4c40-bcfc-62c9554a3012 -->
 
 COMPATIBILITY
        SQL requires a savepoint to be destroyed automatically when another
@@ -933,7 +933,7 @@ SYNOPSIS
 
        where action is one of:
 
-           ADD [ COLUMN ] [ IF NOT EXISTS ] column_name data_type [ COLLATE collation ] [ column_constraint [ ... ] ]
+<!-- e6c7b41c-88f9-487b-85aa-3e2fa5db760d <=< ACCEPT -->           ADD [ COLUMN ] [ IF NOT EXISTS ] column_name data_type [ COLLATE collation ] [ column_constraint [ ... ] ]
            DROP [ COLUMN ] [ IF EXISTS ] column_name [ RESTRICT | CASCADE ]
            ALTER [ COLUMN ] column_name [ SET DATA ] TYPE data_type [ COLLATE collation ] [ USING expression ]
            ALTER [ COLUMN ] column_name SET DEFAULT expression
@@ -951,7 +951,7 @@ SYNOPSIS
            DISABLE TRIGGER [ trigger_name | ALL | USER ]
            ENABLE TRIGGER [ trigger_name | ALL | USER ]
            ENABLE REPLICA TRIGGER trigger_name
-           ENABLE ALWAYS TRIGGER trigger_name
+           ENABLE ALWAYS TRIGGER trigger_name<!-- ACCEPT >=> e6c7b41c-88f9-487b-85aa-3e2fa5db760d -->
            DISABLE RULE rewrite_rule_name
            ENABLE RULE rewrite_rule_name
            ENABLE REPLICA RULE rewrite_rule_name
@@ -993,13 +993,13 @@ DESCRIPTION
            CREATE TABLE (CREATE_TABLE(7)). If IF NOT EXISTS is specified and a
            column already exists with this name, no error is thrown.
 
-       DROP COLUMN [ IF EXISTS ]
+<!-- 22ad55db-b1ff-4e76-b5e1-fb83846a2309 <=< ACCEPT -->       DROP COLUMN [ IF EXISTS ]
            This form drops a column from a table. Indexes and table
            constraints involving the column will be automatically dropped as
            well. You will need to say CASCADE if anything outside the table
            depends on the column, for example, foreign key references or
            views. If IF EXISTS is specified and the column does not exist, no
-           error is thrown. In this case a notice is issued instead.
+           error is thrown. In this case a notice is issued instead.<!-- ACCEPT >=> 22ad55db-b1ff-4e76-b5e1-fb83846a2309 -->
 
        SET DATA TYPE
            This form changes the type of a column of a table. Indexes and
@@ -1145,10 +1145,10 @@ DESCRIPTION
            being altered. If the constraint is a foreign key then a ROW SHARE
            lock is also required on the table referenced by the constraint.
 
-       DROP CONSTRAINT [ IF EXISTS ]
+<!-- bc77072c-0c6a-4f8a-a915-bdad0da8a78b <=< ACCEPT -->       DROP CONSTRAINT [ IF EXISTS ]
            This form drops the specified constraint on a table. If IF EXISTS
            is specified and the constraint does not exist, no error is thrown.
-           In this case a notice is issued instead.
+           In this case a notice is issued instead.<!-- ACCEPT >=> bc77072c-0c6a-4f8a-a915-bdad0da8a78b -->
 
        DISABLE/ENABLE [ REPLICA | ALWAYS ] TRIGGER
            These forms configure the firing of trigger(s) belonging to the
@@ -1211,7 +1211,7 @@ DESCRIPTION
 
            Changing cluster options acquires a SHARE UPDATE EXCLUSIVE lock.
 
-       SET WITH OIDS
+<!-- f322b4c2-95d3-444c-9ad5-8e8d3b56ac03 <=< ACCEPT -->       SET WITH OIDS
            This form adds an oid system column to the table (see Section 5.4,
            "System Columns", in the documentation). It does nothing if the
            table already has OIDs.
@@ -1223,9 +1223,9 @@ DESCRIPTION
        SET WITHOUT OIDS
            This form removes the oid system column from the table. This is
            exactly equivalent to DROP COLUMN oid RESTRICT, except that it will
-           not complain if there is already no oid column.
+           not complain if there is already no oid column.<!-- ACCEPT >=> f322b4c2-95d3-444c-9ad5-8e8d3b56ac03 -->
 
-       SET TABLESPACE
+<!-- 2b006584-429f-4021-86e0-99ef3a6619e6 <=< ACCEPT -->       SET TABLESPACE
            This form changes the table's tablespace to the specified
            tablespace and moves the data file(s) associated with the table to
            the new tablespace. Indexes on the table, if any, are not moved;
@@ -1240,7 +1240,7 @@ DESCRIPTION
            command, use ALTER DATABASE or explicit ALTER TABLE invocations
            instead if desired. The information_schema relations are not
            considered part of the system catalogs and will be moved. See also
-           CREATE TABLESPACE (CREATE_TABLESPACE(7)).
+           CREATE TABLESPACE (CREATE_TABLESPACE(7)).<!-- ACCEPT >=> 2b006584-429f-4021-86e0-99ef3a6619e6 -->
 
        SET { LOGGED | UNLOGGED }
            This form changes the table from unlogged to logged or vice-versa
@@ -1354,15 +1354,15 @@ PARAMETERS
            Do not throw an error if the table does not exist. A notice is
            issued in this case.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing table to
            alter. If ONLY is specified before the table name, only that table
            is altered. If ONLY is not specified, the table and all its
            descendant tables (if any) are altered. Optionally, * can be
            specified after the table name to explicitly indicate that
            descendant tables are included.
-
-       column_name
+<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
+<!-- 33010bc7-9edf-43c5-8a0d-ff696a0fbab8 <=< ACCEPT -->       column_name
            Name of a new or existing column.
 
        new_column_name
@@ -1405,7 +1405,7 @@ PARAMETERS
            Disable or enable all triggers belonging to the table except for
            internally generated constraint triggers such as those that are
            used to implement foreign key constraints or deferrable uniqueness
-           and exclusion constraints.
+           and exclusion constraints.<!-- ACCEPT >=> 33010bc7-9edf-43c5-8a0d-ff696a0fbab8 -->
 
        index_name
            The name of an existing index.
@@ -1622,7 +1622,7 @@ EXAMPLES
            ALTER TABLE distributors DROP CONSTRAINT distributors_pkey,
                ADD CONSTRAINT distributors_pkey PRIMARY KEY USING INDEX dist_id_temp_idx;
 
-COMPATIBILITY
+<!-- 6f26919a-f964-4174-8c8d-6ec22f5e2be4 <=< ACCEPT -->COMPATIBILITY
        The forms ADD (without USING INDEX), DROP, SET DEFAULT, and SET DATA
        TYPE (without USING) conform with the SQL standard. The other forms are
        PostgreSQL extensions of the SQL standard. Also, the ability to specify
@@ -1632,7 +1632,7 @@ COMPATIBILITY
        ALTER TABLE DROP COLUMN can be used to drop the only column of a table,
        leaving a zero-column table. This is an extension of SQL, which
        disallows zero-column tables.
-
+<!-- ACCEPT >=> 6f26919a-f964-4174-8c8d-6ec22f5e2be4 -->
 SEE ALSO
        CREATE TABLE (CREATE_TABLE(7))
 
@@ -1966,9 +1966,9 @@ PARAMETERS
            Do not throw an error if the text search parser does not exist. A
            notice is issued in this case.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing text search
-           parser.
+           parser.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the text search parser,
@@ -2073,10 +2073,10 @@ DESCRIPTION
        You must be a superuser to use ALTER TEXT SEARCH TEMPLATE.
 
 PARAMETERS
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing text search
            template.
-
+<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
        new_name
            The new name of the text search template.
 
@@ -2116,17 +2116,17 @@ DESCRIPTION
        generator. Any parameters not specifically set in the ALTER SEQUENCE
        command retain their prior settings.
 
-       You must own the sequence to use ALTER SEQUENCE. To change a sequence's
+<!-- ad137a5f-7fa1-4b53-a38d-4827f1ccde6e <=< ACCEPT -->       You must own the sequence to use ALTER SEQUENCE. To change a sequence's
        schema, you must also have CREATE privilege on the new schema. To alter
        the owner, you must also be a direct or indirect member of the new
        owning role, and that role must have CREATE privilege on the sequence's
        schema. (These restrictions enforce that altering the owner doesn't do
        anything you couldn't do by dropping and recreating the sequence.
-       However, a superuser can alter ownership of any sequence anyway.)
+       However, a superuser can alter ownership of any sequence anyway.)<!-- ACCEPT >=> ad137a5f-7fa1-4b53-a38d-4827f1ccde6e -->
 
 PARAMETERS
-       name
-           The name (optionally schema-qualified) of a sequence to be altered.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of a sequence to be altered.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        IF EXISTS
            Do not throw an error if the sequence does not exist. A notice is
@@ -2169,7 +2169,7 @@ PARAMETERS
            recorded by CREATE SEQUENCE or last set by ALTER SEQUENCE START
            WITH.
 
-       cache
+<!-- 876beccf-ebcb-4002-ae74-553e963fc807 <=< ACCEPT -->       cache
            The clause CACHE cache enables sequence numbers to be preallocated
            and stored in memory for faster access. The minimum value is 1
            (only one value can be generated at a time, i.e., no cache). If
@@ -2198,7 +2198,7 @@ PARAMETERS
            have the same owner and be in the same schema as the sequence.
            Specifying OWNED BY NONE removes any existing association, making
            the sequence "free-standing".
-
+<!-- ACCEPT >=> 876beccf-ebcb-4002-ae74-553e963fc807 -->
        new_owner
            The user name of the new owner of the sequence.
 
@@ -2264,9 +2264,9 @@ PARAMETERS
            Do not throw an error if the text search dictionary does not exist.
            A notice is issued in this case.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing text search
-           dictionary.
+           dictionary.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the text search
@@ -2463,7 +2463,7 @@ DESCRIPTION
        example, it is possible to add several attributes and/or alter the type
        of several attributes in a single command.
 
-       You must own the type to use ALTER TYPE. To change the schema of a
+<!-- ad137a5f-7fa1-4b53-a38d-4827f1ccde6e <=< ACCEPT -->       You must own the type to use ALTER TYPE. To change the schema of a
        type, you must also have CREATE privilege on the new schema. To alter
        the owner, you must also be a direct or indirect member of the new
        owning role, and that role must have CREATE privilege on the type's
@@ -2471,7 +2471,7 @@ DESCRIPTION
        anything you couldn't do by dropping and recreating the type. However,
        a superuser can alter ownership of any type anyway.) To add an
        attribute or alter an attribute type, you must also have USAGE
-       privilege on the data type.
+       privilege on the data type.<!-- ACCEPT >=> ad137a5f-7fa1-4b53-a38d-4827f1ccde6e -->
 
 PARAMETERS
        name
@@ -3112,7 +3112,7 @@ COMPATIBILITY
        The following syntax was used before PostgreSQL version 9.0 and is
        still supported:
 
-           COPY table_name [ ( column_name [, ...] ) ]
+<!-- 54430814-a150-43f0-80b2-fb24d9ee7a80 <=< ACCEPT -->           COPY table_name [ ( column_name [, ...] ) ]
                FROM { 'filename' | STDIN }
                [ [ WITH ]
                      [ BINARY ]
@@ -3122,9 +3122,9 @@ COMPATIBILITY
                      [ CSV [ HEADER ]
                            [ QUOTE [ AS ] 'quote' ]
                            [ ESCAPE [ AS ] 'escape' ]
-                           [ FORCE NOT NULL column_name [, ...] ] ] ]
+                           [ FORCE NOT NULL column_name [, ...] ] ] ]<!-- ACCEPT >=> 54430814-a150-43f0-80b2-fb24d9ee7a80 -->
 
-           COPY { table_name [ ( column_name [, ...] ) ] | ( query ) }
+<!-- 54430814-a150-43f0-80b2-fb24d9ee7a80 <=< ACCEPT -->           COPY { table_name [ ( column_name [, ...] ) ] | ( query ) }
                TO { 'filename' | STDOUT }
                [ [ WITH ]
                      [ BINARY ]
@@ -3135,7 +3135,7 @@ COMPATIBILITY
                            [ QUOTE [ AS ] 'quote' ]
                            [ ESCAPE [ AS ] 'escape' ]
                            [ FORCE QUOTE { column_name [, ...] | * } ] ] ]
-
+<!-- ACCEPT >=> 54430814-a150-43f0-80b2-fb24d9ee7a80 -->
        Note that in this syntax, BINARY and CSV are treated as independent
        keywords, not as arguments of a FORMAT option.
 
@@ -3673,9 +3673,9 @@ DESCRIPTION
        CONFIGURATION.
 
 PARAMETERS
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing text search
-           configuration.
+           configuration.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        token_type
            The name of a token type that is emitted by the configuration's
@@ -3797,9 +3797,9 @@ PARAMETERS
            Do not throw an error if the materialized view does not exist. A
            notice is issued in this case.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of the materialized view to
-           remove.
+           remove.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the materialized view
@@ -4029,7 +4029,7 @@ PARAMETERS
        new_owner
            The new owner of the tablespace.
 
-       tablespace_option
+<!-- 0dcf2f4d-9a93-47a8-b9b7-a97b18cef24c <=< ACCEPT -->       tablespace_option
            A tablespace parameter to be set or reset. Currently, the only
            available parameters are seq_page_cost and random_page_cost.
            Setting either value for a particular tablespace will override the
@@ -4037,7 +4037,7 @@ PARAMETERS
            in that tablespace, as established by the configuration parameters
            of the same name (see seq_page_cost, random_page_cost). This may be
            useful if one tablespace is located on a disk which is faster or
-           slower than the remainder of the I/O subsystem.
+           slower than the remainder of the I/O subsystem.<!-- ACCEPT >=> 0dcf2f4d-9a93-47a8-b9b7-a97b18cef24c -->
 
 EXAMPLES
        Rename tablespace index_space to fast_raid:
@@ -4077,7 +4077,7 @@ SYNOPSIS
 
        where action is one of:
 
-           ADD [ COLUMN ] column_name data_type [ COLLATE collation ] [ column_constraint [ ... ] ]
+<!-- e6c7b41c-88f9-487b-85aa-3e2fa5db760d <=< ACCEPT -->           ADD [ COLUMN ] column_name data_type [ COLLATE collation ] [ column_constraint [ ... ] ]
            DROP [ COLUMN ] [ IF EXISTS ] column_name [ RESTRICT | CASCADE ]
            ALTER [ COLUMN ] column_name [ SET DATA ] TYPE data_type [ COLLATE collation ]
            ALTER [ COLUMN ] column_name SET DEFAULT expression
@@ -4094,7 +4094,7 @@ SYNOPSIS
            DISABLE TRIGGER [ trigger_name | ALL | USER ]
            ENABLE TRIGGER [ trigger_name | ALL | USER ]
            ENABLE REPLICA TRIGGER trigger_name
-           ENABLE ALWAYS TRIGGER trigger_name
+           ENABLE ALWAYS TRIGGER trigger_name<!-- ACCEPT >=> e6c7b41c-88f9-487b-85aa-3e2fa5db760d -->
            SET WITH OIDS
            SET WITHOUT OIDS
            INHERIT parent_table
@@ -4113,11 +4113,11 @@ DESCRIPTION
            to the underlying storage: this action simply declares that some
            new column is now accessible through the foreign table.
 
-       DROP COLUMN [ IF EXISTS ]
+<!-- 22ad55db-b1ff-4e76-b5e1-fb83846a2309 <=< ACCEPT -->       DROP COLUMN [ IF EXISTS ]
            This form drops a column from a foreign table. You will need to say
            CASCADE if anything outside the table depends on the column; for
            example, views. If IF EXISTS is specified and the column does not
-           exist, no error is thrown. In this case a notice is issued instead.
+           exist, no error is thrown. In this case a notice is issued instead.<!-- ACCEPT >=> 22ad55db-b1ff-4e76-b5e1-fb83846a2309 -->
 
        SET DATA TYPE
            This form changes the type of a column of a foreign table. Again,
@@ -4166,17 +4166,17 @@ DESCRIPTION
            NOT VALID. No action is taken to verify the constraint, but future
            queries will assume that it holds.
 
-       DROP CONSTRAINT [ IF EXISTS ]
+<!-- bc77072c-0c6a-4f8a-a915-bdad0da8a78b <=< ACCEPT -->       DROP CONSTRAINT [ IF EXISTS ]
            This form drops the specified constraint on a foreign table. If IF
            EXISTS is specified and the constraint does not exist, no error is
-           thrown. In this case a notice is issued instead.
+           thrown. In this case a notice is issued instead.<!-- ACCEPT >=> bc77072c-0c6a-4f8a-a915-bdad0da8a78b -->
 
        DISABLE/ENABLE [ REPLICA | ALWAYS ] TRIGGER
            These forms configure the firing of trigger(s) belonging to the
            foreign table. See the similar form of ALTER TABLE (ALTER_TABLE(7))
            for more details.
 
-       SET WITH OIDS
+<!-- f322b4c2-95d3-444c-9ad5-8e8d3b56ac03 <=< ACCEPT -->       SET WITH OIDS
            This form adds an oid system column to the table (see Section 5.4,
            "System Columns", in the documentation). It does nothing if the
            table already has OIDs. Unless the table's foreign-data wrapper
@@ -4189,7 +4189,7 @@ DESCRIPTION
        SET WITHOUT OIDS
            This form removes the oid system column from the table. This is
            exactly equivalent to DROP COLUMN oid RESTRICT, except that it will
-           not complain if there is already no oid column.
+           not complain if there is already no oid column.<!-- ACCEPT >=> f322b4c2-95d3-444c-9ad5-8e8d3b56ac03 -->
 
        INHERIT parent_table
            This form adds the target foreign table as a new child of the
@@ -4228,7 +4228,7 @@ DESCRIPTION
        foreign table does not exist, no error is thrown. A notice is issued in
        this case.
 
-       You must own the table to use ALTER FOREIGN TABLE. To change the schema
+<!-- ad137a5f-7fa1-4b53-a38d-4827f1ccde6e <=< ACCEPT -->       You must own the table to use ALTER FOREIGN TABLE. To change the schema
        of a foreign table, you must also have CREATE privilege on the new
        schema. To alter the owner, you must also be a direct or indirect
        member of the new owning role, and that role must have CREATE privilege
@@ -4236,7 +4236,7 @@ DESCRIPTION
        owner doesn't do anything you couldn't do by dropping and recreating
        the table. However, a superuser can alter ownership of any table
        anyway.) To add a column or alter a column type, you must also have
-       USAGE privilege on the data type.
+       USAGE privilege on the data type.<!-- ACCEPT >=> ad137a5f-7fa1-4b53-a38d-4827f1ccde6e -->
 
 PARAMETERS
        name
@@ -4247,7 +4247,7 @@ PARAMETERS
            specified after the table name to explicitly indicate that
            descendant tables are included.
 
-       column_name
+<!-- 33010bc7-9edf-43c5-8a0d-ff696a0fbab8 <=< ACCEPT -->       column_name
            Name of a new or existing column.
 
        new_column_name
@@ -4288,7 +4288,7 @@ PARAMETERS
        USER
            Disable or enable all triggers belonging to the foreign table
            except for internally generated triggers.
-
+<!-- ACCEPT >=> 33010bc7-9edf-43c5-8a0d-ff696a0fbab8 -->
        parent_table
            A parent table to associate or de-associate with this foreign
            table.
@@ -4320,7 +4320,7 @@ EXAMPLES
 
            ALTER FOREIGN TABLE myschema.distributors OPTIONS (ADD opt1 'value', SET opt2 'value2', DROP opt3 'value3');
 
-COMPATIBILITY
+<!-- 6f26919a-f964-4174-8c8d-6ec22f5e2be4 <=< ACCEPT -->COMPATIBILITY
        The forms ADD, DROP, and SET DATA TYPE conform with the SQL standard.
        The other forms are PostgreSQL extensions of the SQL standard. Also,
        the ability to specify more than one manipulation in a single ALTER
@@ -4328,7 +4328,7 @@ COMPATIBILITY
 
        ALTER FOREIGN TABLE DROP COLUMN can be used to drop the only column of
        a foreign table, leaving a zero-column table. This is an extension of
-       SQL, which disallows zero-column foreign tables.
+       SQL, which disallows zero-column foreign tables.<!-- ACCEPT >=> 6f26919a-f964-4174-8c8d-6ec22f5e2be4 -->
 
 SEE ALSO
        CREATE FOREIGN TABLE (CREATE_FOREIGN_TABLE(7)), DROP FOREIGN TABLE
@@ -4360,8 +4360,8 @@ DESCRIPTION
        However, a superuser can alter ownership of any conversion anyway.)
 
 PARAMETERS
-       name
-           The name (optionally schema-qualified) of an existing conversion.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of an existing conversion.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        new_name
            The new name of the conversion.
@@ -4443,7 +4443,7 @@ CREATE USER(7)          PostgreSQL 9.6.1 Documentation          CREATE USER(7)
 
 
 
-NAME
+<!-- 335d3487-bfbb-463c-9629-fa78cfc1d1e1 <=< ACCEPT -->NAME
        CREATE_USER - define a new database role
 
 SYNOPSIS
@@ -4467,7 +4467,7 @@ SYNOPSIS
            | ADMIN role_name [, ...]
            | USER role_name [, ...]
            | SYSID uid
-
+<!-- ACCEPT >=> 335d3487-bfbb-463c-9629-fa78cfc1d1e1 -->
 DESCRIPTION
        CREATE USER is now an alias for CREATE ROLE (CREATE_ROLE(7)). The only
        difference is that when the command is spelled CREATE USER, LOGIN is
@@ -4952,14 +4952,14 @@ PARAMETERS
            The name (optionally schema-qualified) of a specific table to
            vacuum. Defaults to all tables in the current database.
 
-       column_name
+<!-- 30ab03c8-2539-4230-9ec4-441dc3a63e60 <=< ACCEPT -->       column_name
            The name of a specific column to analyze. Defaults to all columns.
-           If a column list is specified, ANALYZE is implied.
+           If a column list is specified, ANALYZE is implied.<!-- ACCEPT >=> 30ab03c8-2539-4230-9ec4-441dc3a63e60 -->
 
-OUTPUTS
+<!-- 46b261de-260a-4534-b162-b5163af74a4b <=< ACCEPT -->OUTPUTS
        When VERBOSE is specified, VACUUM emits progress messages to indicate
        which table is currently being processed. Various statistics about the
-       tables are printed as well.
+       tables are printed as well.<!-- ACCEPT >=> 46b261de-260a-4534-b162-b5163af74a4b -->
 
 NOTES
        To vacuum a table, one must ordinarily be the table's owner or a
@@ -5197,7 +5197,7 @@ NOTES
        own grant but not B's grant, so C will still effectively have the
        privilege.
 
-       When a non-owner of an object attempts to REVOKE privileges on the
+<!-- 2aae4b53-bcdf-4cea-9b45-c301bef902cf <=< ACCEPT -->       When a non-owner of an object attempts to REVOKE privileges on the
        object, the command will fail outright if the user has no privileges
        whatsoever on the object. As long as some privilege is available, the
        command will proceed, but it will revoke only those privileges for
@@ -5207,7 +5207,7 @@ NOTES
        specifically named in the command are not held. (In principle these
        statements apply to the object owner as well, but since the owner is
        always treated as holding all grant options, the cases can never
-       occur.)
+       occur.)<!-- ACCEPT >=> 2aae4b53-bcdf-4cea-9b45-c301bef902cf -->
 
        If a superuser chooses to issue a GRANT or REVOKE command, the command
        is performed as though it were issued by the owner of the affected
@@ -5780,17 +5780,17 @@ DESCRIPTION
        ALTER VIEW changes various auxiliary properties of a view. (If you want
        to modify the view's defining query, use CREATE OR REPLACE VIEW.)
 
-       You must own the view to use ALTER VIEW. To change a view's schema, you
+<!-- ad137a5f-7fa1-4b53-a38d-4827f1ccde6e <=< ACCEPT -->       You must own the view to use ALTER VIEW. To change a view's schema, you
        must also have CREATE privilege on the new schema. To alter the owner,
        you must also be a direct or indirect member of the new owning role,
        and that role must have CREATE privilege on the view's schema. (These
        restrictions enforce that altering the owner doesn't do anything you
        couldn't do by dropping and recreating the view. However, a superuser
        can alter ownership of any view anyway.)
-
+<!-- ACCEPT >=> ad137a5f-7fa1-4b53-a38d-4827f1ccde6e -->
 PARAMETERS
-       name
-           The name (optionally schema-qualified) of an existing view.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of an existing view.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        IF EXISTS
            Do not throw an error if the view does not exist. A notice is
@@ -5882,8 +5882,8 @@ DESCRIPTION
        superuser can alter ownership of any operator anyway.)
 
 PARAMETERS
-       name
-           The name (optionally schema-qualified) of an existing operator.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of an existing operator.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        left_type
            The data type of the operator's left operand; write NONE if the
@@ -6081,7 +6081,7 @@ ALTER USER(7)           PostgreSQL 9.6.1 Documentation           ALTER USER(7)
 
 
 
-NAME
+<!-- 10034cb1-0a09-4f3b-a034-a986f6882838 <=< ACCEPT -->NAME
        ALTER_USER - change a database role
 
 SYNOPSIS
@@ -6111,7 +6111,7 @@ SYNOPSIS
 
            [ GROUP ] role_name
          | CURRENT_USER
-         | SESSION_USER
+         | SESSION_USER<!-- ACCEPT >=> 10034cb1-0a09-4f3b-a034-a986f6882838 -->
 
 DESCRIPTION
        ALTER USER is now an alias for ALTER ROLE (ALTER_ROLE(7)).
@@ -6602,7 +6602,7 @@ PARAMETERS
        new_tablespace
            The new default tablespace of the database.
 
-       configuration_parameter
+<!-- 253cd41f-793d-492d-acb3-228e37ef29bb <=< ACCEPT -->       configuration_parameter
        value
            Set this database's session default for the specified configuration
            parameter to the given value. If value is DEFAULT or, equivalently,
@@ -6610,7 +6610,7 @@ PARAMETERS
            system-wide default setting will be inherited in new sessions. Use
            RESET ALL to clear all database-specific settings.  SET FROM
            CURRENT saves the session's current value of the parameter as the
-           database-specific value.
+           database-specific value.<!-- ACCEPT >=> 253cd41f-793d-492d-acb3-228e37ef29bb -->
 
            See SET(7) and Chapter 19, Server Configuration, in the
            documentation for more information about allowed parameter names
@@ -6886,14 +6886,14 @@ DESCRIPTION
        ALTER MATERIALIZED VIEW changes various auxiliary properties of an
        existing materialized view.
 
-       You must own the materialized view to use ALTER MATERIALIZED VIEW. To
+<!-- ad137a5f-7fa1-4b53-a38d-4827f1ccde6e <=< ACCEPT -->       You must own the materialized view to use ALTER MATERIALIZED VIEW. To
        change a materialized view's schema, you must also have CREATE
        privilege on the new schema. To alter the owner, you must also be a
        direct or indirect member of the new owning role, and that role must
        have CREATE privilege on the materialized view's schema. (These
        restrictions enforce that altering the owner doesn't do anything you
        couldn't do by dropping and recreating the materialized view. However,
-       a superuser can alter ownership of any view anyway.)
+       a superuser can alter ownership of any view anyway.)<!-- ACCEPT >=> ad137a5f-7fa1-4b53-a38d-4827f1ccde6e -->
 
        The DEPENDS ON EXTENSION form marks the materialized view as dependent
        on an extension, such that the materialized view will automatically be
@@ -6905,9 +6905,9 @@ DESCRIPTION
        ALTER TABLE (ALTER_TABLE(7)) for details.
 
 PARAMETERS
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing materialized
-           view.
+           view.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        column_name
            Name of a new or existing column.
@@ -6967,10 +6967,10 @@ PARAMETERS
            Do not throw an error if the function does not exist. A notice is
            issued in this case.
 
-       name
-           The name (optionally schema-qualified) of an existing function.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of an existing function.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
-       argmode
+<!-- e966425d-370d-4dbd-b6cc-15b15457e983 <=< ACCEPT -->       argmode
            The mode of an argument: IN, OUT, INOUT, or VARIADIC. If omitted,
            the default is IN. Note that DROP FUNCTION does not actually pay
            any attention to OUT arguments, since only the input arguments are
@@ -6984,7 +6984,7 @@ PARAMETERS
 
        argtype
            The data type(s) of the function's arguments (optionally
-           schema-qualified), if any.
+           schema-qualified), if any.<!-- ACCEPT >=> e966425d-370d-4dbd-b6cc-15b15457e983 -->
 
        CASCADE
            Automatically drop objects that depend on the function (such as
@@ -7031,9 +7031,9 @@ PARAMETERS
            Do not throw an error if the foreign table does not exist. A notice
            is issued in this case.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of the foreign table to
-           drop.
+           drop.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the foreign table (such
@@ -7482,8 +7482,8 @@ DESCRIPTION
        argument types and the return type.
 
 PARAMETERS
-       name
-           The name (optionally schema-qualified) of the function to create.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of the function to create.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        argmode
            The mode of an argument: IN, OUT, INOUT, or VARIADIC. If omitted,
@@ -8051,7 +8051,7 @@ PARAMETERS
            to. If not specified, a family named the same as the operator class
            is used (creating it, if it doesn't already exist).
 
-       strategy_number
+<!-- 28d4dc75-98b1-41fd-b697-d30923dc9e5c <=< ACCEPT -->       strategy_number
            The index method's strategy number for an operator associated with
            the operator class.
 
@@ -8067,14 +8067,14 @@ PARAMETERS
 
            In a FUNCTION clause, the operand data type(s) the function is
            intended to support, if different from the input data type(s) of
-           the function (for B-tree comparison functions and hash functions)
+           the function<!-- ACCEPT >=> 28d4dc75-98b1-41fd-b697-d30923dc9e5c --> (for B-tree comparison functions and hash functions)
            or the class's data type (for B-tree sort support functions and all
            functions in GiST, SP-GiST, GIN and BRIN operator classes). These
            defaults are correct, and so op_type need not be specified in
            FUNCTION clauses, except for the case of a B-tree sort support
            function that is meant to support cross-data-type comparisons.
 
-       sort_family_name
+<!-- 9c2021b2-ea26-4764-9eb3-17e12de3ff8f <=< ACCEPT -->       sort_family_name
            The name (optionally schema-qualified) of an existing btree
            operator family that describes the sort ordering associated with an
            ordering operator.
@@ -8091,7 +8091,7 @@ PARAMETERS
            index method support procedure for the operator class.
 
        argument_type
-           The parameter data type(s) of the function.
+           The parameter data type(s) of the function.<!-- ACCEPT >=> 9c2021b2-ea26-4764-9eb3-17e12de3ff8f -->
 
        storage_type
            The data type actually stored in the index. Normally this is the
@@ -8103,7 +8103,7 @@ PARAMETERS
        The OPERATOR, FUNCTION, and STORAGE clauses can appear in any order.
 
 NOTES
-       Because the index machinery does not check access permissions on
+<!-- 09520cdb-499e-46bf-946d-3cfcacaa96e0 <=< ACCEPT -->       Because the index machinery does not check access permissions on
        functions before using them, including a function or operator in an
        operator class is tantamount to granting public execute permission on
        it. This is usually not an issue for the sorts of functions that are
@@ -8117,7 +8117,7 @@ NOTES
        option. This is no longer supported because whether an index operator
        is "lossy" is now determined on-the-fly at run time. This allows
        efficient handling of cases where an operator might or might not be
-       lossy.
+       lossy.<!-- ACCEPT >=> 09520cdb-499e-46bf-946d-3cfcacaa96e0 -->
 
 EXAMPLES
        The following example command defines a GiST index operator class for
@@ -8351,12 +8351,12 @@ DESCRIPTION
        string, the second argument is the type's own OID (except for array
        types, which instead receive their element type's OID), and the third
        is the typmod of the destination column, if known (-1 will be passed if
-       not). The input function must return a value of the data type itself.
+       not). <!-- 69f11ee9-be93-4a7c-a3a7-95a505dfe57c <=< ACCEPT -->The input function must return a value of the data type itself.
        Usually, an input function should be declared STRICT; if it is not, it
        will be called with a NULL first parameter when reading a NULL input
        value. The function must still return NULL in this case, unless it
        raises an error. (This case is mainly meant to support domain input
-       functions, which might need to reject NULL inputs.) The output function
+       functions, which might need to reject NULL inputs.)<!-- ACCEPT >=> 69f11ee9-be93-4a7c-a3a7-95a505dfe57c --> The output function
        must be declared as taking one argument of the new data type. The
        output function must return type cstring. Output functions are not
        invoked for NULL values.
@@ -8373,13 +8373,13 @@ DESCRIPTION
        declared as taking one argument of type internal, or as taking three
        arguments of types internal, oid, integer. The first argument is a
        pointer to a StringInfo buffer holding the received byte string; the
-       optional arguments are the same as for the text input function. The
+       optional arguments are the same as for the text input function. <!-- 69f11ee9-be93-4a7c-a3a7-95a505dfe57c <=< ACCEPT -->The
        receive function must return a value of the data type itself. Usually,
        a receive function should be declared STRICT; if it is not, it will be
        called with a NULL first parameter when reading a NULL input value. The
        function must still return NULL in this case, unless it raises an
        error. (This case is mainly meant to support domain receive functions,
-       which might need to reject NULL inputs.) Similarly, the optional
+       which might need to reject NULL inputs.)<!-- ACCEPT >=> 69f11ee9-be93-4a7c-a3a7-95a505dfe57c --> Similarly, the optional
        send_function converts from the internal representation to the external
        binary representation. If this function is not supplied, the type
        cannot participate in binary output. The send function must be declared
@@ -8552,8 +8552,8 @@ DESCRIPTION
        than from one as for variable-length arrays.
 
 PARAMETERS
-       name
-           The name (optionally schema-qualified) of a type to be created.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of a type to be created.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        attribute_name
            The name of an attribute (column) for the composite type.
@@ -8823,9 +8823,9 @@ DESCRIPTION
        operator class anyway.)
 
 PARAMETERS
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing operator
-           class.
+           class.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        index_method
            The name of the index method this operator class is for.
@@ -9411,13 +9411,13 @@ DESCRIPTION
        found in Section 13.3, "Explicit Locking", in the documentation.
 
 PARAMETERS
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing table to
            lock. If ONLY is specified before the table name, only that table
            is locked. If ONLY is not specified, the table and all its
            descendant tables (if any) are locked. Optionally, * can be
            specified after the table name to explicitly indicate that
-           descendant tables are included.
+           descendant tables are included.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
            The command LOCK TABLE a, b; is equivalent to LOCK TABLE a; LOCK
            TABLE b;. The tables are locked one-by-one in the order specified
@@ -9515,8 +9515,8 @@ PARAMETERS
            Do not throw an error if the view does not exist. A notice is
            issued in this case.
 
-       name
-           The name (optionally schema-qualified) of the view to remove.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of the view to remove.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the view (such as other
@@ -9590,7 +9590,7 @@ PARAMETERS
            should be empty and must be owned by the PostgreSQL system user.
            The directory must be specified by an absolute path name.
 
-       tablespace_option
+<!-- 0dcf2f4d-9a93-47a8-b9b7-a97b18cef24c <=< ACCEPT -->       tablespace_option
            A tablespace parameter to be set or reset. Currently, the only
            available parameters are seq_page_cost, random_page_cost and
            effective_io_concurrency. Setting either value for a particular
@@ -9599,7 +9599,7 @@ PARAMETERS
            the configuration parameters of the same name (see seq_page_cost,
            random_page_cost, effective_io_concurrency). This may be useful if
            one tablespace is located on a disk which is faster or slower than
-           the remainder of the I/O subsystem.
+           the remainder of the I/O subsystem.<!-- ACCEPT >=> 0dcf2f4d-9a93-47a8-b9b7-a97b18cef24c -->
 
 NOTES
        Tablespaces are only supported on systems that support symbolic links.
@@ -9646,9 +9646,9 @@ PARAMETERS
            Do not throw an error if the text search template does not exist. A
            notice is issued in this case.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing text search
-           template.
+           template.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the text search template,
@@ -9766,13 +9766,13 @@ PARAMETERS
            Ignored for compatibility. Use of these keywords is deprecated;
            refer to CREATE TABLE (CREATE_TABLE(7)) for details.
 
-       TEMPORARY or TEMP
+<!-- af018221-d9ea-4be4-9e81-715f0e7548b6 <=< ACCEPT -->       TEMPORARY or TEMP
            If specified, the table is created as a temporary table. Refer to
            CREATE TABLE (CREATE_TABLE(7)) for details.
 
        UNLOGGED
            If specified, the table is created as an unlogged table. Refer to
-           CREATE TABLE (CREATE_TABLE(7)) for details.
+           CREATE TABLE (CREATE_TABLE(7)) for details.<!-- ACCEPT >=> af018221-d9ea-4be4-9e81-715f0e7548b6 -->
 
        IF NOT EXISTS
            Do not throw an error if a relation with the same name already
@@ -9794,7 +9794,7 @@ PARAMETERS
            them, or OIDS=FALSE to specify that the rows should not have OIDs.
            See CREATE TABLE (CREATE_TABLE(7)) for more information.
 
-       WITH OIDS
+<!-- 1882732d-ffcd-4a0a-a937-5764449f0507 <=< ACCEPT -->       WITH OIDS
        WITHOUT OIDS
            These are obsolescent syntaxes equivalent to WITH (OIDS) and WITH
            (OIDS=FALSE), respectively. If you wish to give both an OIDS
@@ -9821,7 +9821,7 @@ PARAMETERS
        TABLESPACE tablespace_name
            The tablespace_name is the name of the tablespace in which the new
            table is to be created. If not specified, default_tablespace is
-           consulted, or temp_tablespaces if the table is temporary.
+           consulted, or temp_tablespaces if the table is temporary.<!-- ACCEPT >=> 1882732d-ffcd-4a0a-a937-5764449f0507 -->
 
        query
            A SELECT(7), TABLE, or VALUES(7) command, or an EXECUTE(7) command
@@ -10002,14 +10002,14 @@ DESCRIPTION
        documentation for further information.
 
 PARAMETERS
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing operator
            family.
-
+<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
        index_method
            The name of the index method this operator family is for.
 
-       strategy_number
+<!-- 28d4dc75-98b1-41fd-b697-d30923dc9e5c <=< ACCEPT -->       strategy_number
            The index method's strategy number for an operator associated with
            the operator family.
 
@@ -10025,7 +10025,7 @@ PARAMETERS
 
            In an ADD FUNCTION clause, the operand data type(s) the function is
            intended to support, if different from the input data type(s) of
-           the function. For B-tree comparison functions and hash functions it
+           the function<!-- ACCEPT >=> 28d4dc75-98b1-41fd-b697-d30923dc9e5c -->. For B-tree comparison functions and hash functions it
            is not necessary to specify op_type since the function's input data
            type(s) are always the correct ones to use. For B-tree sort support
            functions and all functions in GiST, SP-GiST and GIN operator
@@ -10035,7 +10035,7 @@ PARAMETERS
            In a DROP FUNCTION clause, the operand data type(s) the function is
            intended to support must be specified.
 
-       sort_family_name
+<!-- 9c2021b2-ea26-4764-9eb3-17e12de3ff8f <=< ACCEPT -->       sort_family_name
            The name (optionally schema-qualified) of an existing btree
            operator family that describes the sort ordering associated with an
            ordering operator.
@@ -10049,7 +10049,7 @@ PARAMETERS
 
        function_name
            The name (optionally schema-qualified) of a function that is an
-           index method support procedure for the operator family.
+           index method support procedure for the operator family.<!-- ACCEPT >=> 9c2021b2-ea26-4764-9eb3-17e12de3ff8f -->
 
        argument_type
            The parameter data type(s) of the function.
@@ -10074,7 +10074,7 @@ NOTES
        might have nothing to do with the actual input argument types of the
        function.
 
-       Because the index machinery does not check access permissions on
+<!-- 09520cdb-499e-46bf-946d-3cfcacaa96e0 <=< ACCEPT -->       Because the index machinery does not check access permissions on
        functions before using them, including a function or operator in an
        operator family is tantamount to granting public execute permission on
        it. This is usually not an issue for the sorts of functions that are
@@ -10088,7 +10088,7 @@ NOTES
        option. This is no longer supported because whether an index operator
        is "lossy" is now determined on-the-fly at run time. This allows
        efficient handling of cases where an operator might or might not be
-       lossy.
+       lossy.<!-- ACCEPT >=> 09520cdb-499e-46bf-946d-3cfcacaa96e0 -->
 
 EXAMPLES
        The following example command adds cross-data-type operators and
@@ -10414,7 +10414,7 @@ PARAMETERS
        target_type
            The name of the target data type of the cast.
 
-       argmode
+<!-- e06c3d92-4723-4dc4-a00a-ed8adc236e70 <=< ACCEPT -->       argmode
            The mode of a function or aggregate argument: IN, OUT, INOUT, or
            VARIADIC. If omitted, the default is IN. Note that COMMENT does not
            actually pay any attention to OUT arguments, since only the input
@@ -10428,12 +10428,12 @@ PARAMETERS
            identity.
 
        argtype
-           The data type of a function or aggregate argument.
+           The data type of a function or aggregate argument.<!-- ACCEPT >=> e06c3d92-4723-4dc4-a00a-ed8adc236e70 -->
 
        large_object_oid
            The OID of the large object.
 
-       left_type
+<!-- 475300f3-c025-4674-80e5-f48559d8b392 <=< ACCEPT -->       left_type
        right_type
            The data type(s) of the operator's arguments (optionally
            schema-qualified). Write NONE for the missing argument of a prefix
@@ -10446,7 +10446,7 @@ PARAMETERS
            The name of the data type of the transform.
 
        lang_name
-           The name of the language of the transform.
+           The name of the language of the transform.<!-- ACCEPT >=> 475300f3-c025-4674-80e5-f48559d8b392 -->
 
        text
            The new comment, written as a string literal; or NULL to drop the
@@ -10584,11 +10584,11 @@ PARAMETERS
            Do not throw an error if the aggregate does not exist. A notice is
            issued in this case.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing aggregate
-           function.
+           function.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
-       argmode
+<!-- 4621cdbd-9d59-444b-9354-d5b42500378a <=< ACCEPT -->       argmode
            The mode of an argument: IN or VARIADIC. If omitted, the default is
            IN.
 
@@ -10602,7 +10602,7 @@ PARAMETERS
            reference a zero-argument aggregate function, write * in place of
            the list of argument specifications. To reference an ordered-set
            aggregate function, write ORDER BY between the direct and
-           aggregated argument specifications.
+           aggregated argument specifications.<!-- ACCEPT >=> 4621cdbd-9d59-444b-9354-d5b42500378a -->
 
        CASCADE
            Automatically drop objects that depend on the aggregate function
@@ -10933,8 +10933,8 @@ PARAMETERS
            Do not throw an error if the type does not exist. A notice is
            issued in this case.
 
-       name
-           The name (optionally schema-qualified) of the data type to remove.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of the data type to remove.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the type (such as table
@@ -11233,8 +11233,8 @@ PARAMETERS
            Do not throw an error if the domain does not exist. A notice is
            issued in this case.
 
-       name
-           The name (optionally schema-qualified) of an existing domain.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of an existing domain.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the domain (such as table
@@ -11339,7 +11339,7 @@ MOVE(7)                 PostgreSQL 9.6.1 Documentation                 MOVE(7)
 
 
 
-NAME
+<!-- 6e8bff88-7e24-4615-8efc-03f9ef2f30b3 <=< ACCEPT -->NAME
        MOVE - position a cursor
 
 SYNOPSIS
@@ -11360,7 +11360,7 @@ SYNOPSIS
            FORWARD ALL
            BACKWARD
            BACKWARD count
-           BACKWARD ALL
+           BACKWARD ALL<!-- ACCEPT >=> 6e8bff88-7e24-4615-8efc-03f9ef2f30b3 -->
 
 DESCRIPTION
        MOVE repositions a cursor without retrieving any data.  MOVE works
@@ -11427,9 +11427,9 @@ PARAMETERS
            Do not throw an error if the text search configuration does not
            exist. A notice is issued in this case.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing text search
-           configuration.
+           configuration.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the text search
@@ -11464,7 +11464,7 @@ END(7)                  PostgreSQL 9.6.1 Documentation                  END(7)
 
 
 
-NAME
+<!-- c2d6965b-f6d0-4554-8583-9d3eb0a21ddf <=< ACCEPT -->NAME
        END - commit the current transaction
 
 SYNOPSIS
@@ -11498,7 +11498,7 @@ COMPATIBILITY
 
 SEE ALSO
        BEGIN(7), COMMIT(7), ROLLBACK(7)
-
+<!-- ACCEPT >=> c2d6965b-f6d0-4554-8583-9d3eb0a21ddf -->
 
 
 PostgreSQL 9.6.1                     2016                               END(7)
@@ -11924,8 +11924,8 @@ PARAMETERS
            Do not throw an error if the table does not exist. A notice is
            issued in this case.
 
-       name
-           The name (optionally schema-qualified) of the table to drop.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of the table to drop.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the table (such as
@@ -12101,7 +12101,7 @@ PARAMETERS
            expression defines which modified rows are allowed to be stored
            back into the relation.
 
-           When an UPDATE command is used with a WHERE clause or a RETURNING
+<!-- 78c95a50-2d11-4eec-a2e2-2c93c1108925 <=< ACCEPT -->           When an UPDATE command is used with a WHERE clause or a RETURNING
            clause, SELECT rights are also required on the relation being
            updated and the appropriate SELECT and ALL policies will be
            combined (using OR for any overlapping SELECT related policies
@@ -12109,7 +12109,7 @@ PARAMETERS
            Therefore, in order for a user to be able to UPDATE specific rows,
            the user must have access to the row(s) through a SELECT or ALL
            policy and the row(s) must pass the UPDATE policy's USING
-           expression.
+           expression.<!-- ACCEPT >=> 78c95a50-2d11-4eec-a2e2-2c93c1108925 -->
 
            Any rows whose updated values do not pass the WITH CHECK expression
            will cause an error, and the entire command will be aborted. If
@@ -12134,7 +12134,7 @@ PARAMETERS
            are not available for deletion, if they do not pass the USING
            expression for the DELETE policy.
 
-           When a DELETE command is used with a WHERE clause or a RETURNING
+<!-- 78c95a50-2d11-4eec-a2e2-2c93c1108925 <=< ACCEPT -->           When a DELETE command is used with a WHERE clause or a RETURNING
            clause, SELECT rights are also required on the relation being
            updated and the appropriate SELECT and ALL policies will be
            combined (using OR for any overlapping SELECT related policies
@@ -12143,7 +12143,7 @@ PARAMETERS
            the user must have access to the row(s) through a SELECT or ALL
            policy and the row(s) must pass the DELETE policy's USING
            expression.
-
+<!-- ACCEPT >=> 78c95a50-2d11-4eec-a2e2-2c93c1108925 -->
            A DELETE policy cannot have a WITH CHECK expression, as it only
            applies in cases where records are being deleted from the relation,
            so that there is no new row to check.
@@ -12478,7 +12478,7 @@ NOTES
        will not do what one might wish: the table-level grant is unaffected by
        a column-level operation.
 
-       When a non-owner of an object attempts to GRANT privileges on the
+<!-- 2aae4b53-bcdf-4cea-9b45-c301bef902cf <=< ACCEPT -->       When a non-owner of an object attempts to GRANT privileges on the
        object, the command will fail outright if the user has no privileges
        whatsoever on the object. As long as some privilege is available, the
        command will proceed, but it will grant only those privileges for which
@@ -12488,7 +12488,7 @@ NOTES
        specifically named in the command are not held. (In principle these
        statements apply to the object owner as well, but since the owner is
        always treated as holding all grant options, the cases can never
-       occur.)
+       occur.)<!-- ACCEPT >=> 2aae4b53-bcdf-4cea-9b45-c301bef902cf -->
 
        It should be noted that database superusers can access all objects
        regardless of object privilege settings. This is comparable to the
@@ -12995,16 +12995,16 @@ DESCRIPTION
        in the table.
 
 PARAMETERS
-       IF NOT EXISTS
+<!-- c6acb2a0-d8a1-44cd-b054-cf74edbb706e <=< ACCEPT -->       IF NOT EXISTS
            Do not throw an error if a relation with the same name already
            exists. A notice is issued in this case. Note that there is no
            guarantee that the existing relation is anything like the one that
            would have been created.
 
        table_name
-           The name (optionally schema-qualified) of the table to be created.
+           The name (optionally schema-qualified) of the table to be created.<!-- ACCEPT >=> c6acb2a0-d8a1-44cd-b054-cf74edbb706e -->
 
-       column_name
+<!-- 03dd7c3c-cec6-415e-9bd2-60cabe0e09e6 <=< ACCEPT -->       column_name
            The name of a column to be created in the new table.
 
        data_type
@@ -13021,9 +13021,9 @@ PARAMETERS
            The optional INHERITS clause specifies a list of tables from which
            the new foreign table automatically inherits all columns. Parent
            tables can be plain tables or foreign tables. See the similar form
-           of CREATE TABLE (CREATE_TABLE(7)) for more details.
+           of CREATE TABLE (CREATE_TABLE(7)) for more details.<!-- ACCEPT >=> 03dd7c3c-cec6-415e-9bd2-60cabe0e09e6 -->
 
-       CONSTRAINT constraint_name
+<!-- 83d0f615-1ce7-4189-9231-c298168f3608 <=< ACCEPT -->       CONSTRAINT constraint_name
            An optional name for a column or table constraint. If the
            constraint is violated, the constraint name is present in error
            messages, so constraint names like col must be positive can be used
@@ -13052,12 +13052,12 @@ PARAMETERS
 
            Currently, CHECK expressions cannot contain subqueries nor refer to
            variables other than columns of the current row. The system column
-           tableoid may be referenced, but not any other system column.
+           tableoid may be referenced, but not any other system column.<!-- ACCEPT >=> 83d0f615-1ce7-4189-9231-c298168f3608 -->
 
            A constraint marked with NO INHERIT will not propagate to child
            tables.
 
-       DEFAULT default_expr
+<!-- a91e8e3e-cfc3-46e2-bb0f-77bd6c82afbe <=< ACCEPT -->       DEFAULT default_expr
            The DEFAULT clause assigns a default data value for the column
            whose column definition it appears within. The value is any
            variable-free expression (subqueries and cross-references to other
@@ -13066,7 +13066,7 @@ PARAMETERS
 
            The default expression will be used in any insert operation that
            does not specify a value for the column. If there is no default for
-           a column, then the default is null.
+           a column, then the default is null.<!-- ACCEPT >=> a91e8e3e-cfc3-46e2-bb0f-77bd6c82afbe -->
 
        server_name
            The name of an existing foreign server to use for the foreign
@@ -13164,14 +13164,14 @@ PARAMETERS
            analyze. If omitted, all regular tables (but not foreign tables) in
            the current database are analyzed.
 
-       column_name
+<!-- 30ab03c8-2539-4230-9ec4-441dc3a63e60 <=< ACCEPT -->       column_name
            The name of a specific column to analyze. Defaults to all columns.
-
-OUTPUTS
+<!-- ACCEPT >=> 30ab03c8-2539-4230-9ec4-441dc3a63e60 -->
+<!-- 46b261de-260a-4534-b162-b5163af74a4b <=< ACCEPT -->OUTPUTS
        When VERBOSE is specified, ANALYZE emits progress messages to indicate
        which table is currently being processed. Various statistics about the
        tables are printed as well.
-
+<!-- ACCEPT >=> 46b261de-260a-4534-b162-b5163af74a4b -->
 NOTES
        Foreign tables are analyzed only when explicitly selected. Not all
        foreign data wrappers support ANALYZE. If the table's wrapper does not
@@ -13310,9 +13310,9 @@ PARAMETERS
            Even with this option only one REFRESH at a time may run against
            any one materialized view.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of the materialized view to
-           refresh.
+           refresh.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
 NOTES
        While the default index for future CLUSTER(7) operations is retained,
@@ -13343,7 +13343,7 @@ SEE ALSO
 
 
 PostgreSQL 9.6.1                     2016         REFRESH MATERIALIZED VIEW(7)
-COMMIT PREPARED(7)      PostgreSQL 9.6.1 Documentation      COMMIT PREPARED(7)
+<!-- 46125e7b-f5a2-4727-b5b1-3cd97452e8b1 <=< ACCEPT -->COMMIT PREPARED(7)      PostgreSQL 9.6.1 Documentation      COMMIT PREPARED(7)
 
 
 
@@ -13387,7 +13387,7 @@ COMPATIBILITY
 SEE ALSO
        PREPARE TRANSACTION (PREPARE_TRANSACTION(7)), ROLLBACK PREPARED
        (ROLLBACK_PREPARED(7))
-
+<!-- ACCEPT >=> 46125e7b-f5a2-4727-b5b1-3cd97452e8b1 -->
 
 
 PostgreSQL 9.6.1                     2016                   COMMIT PREPARED(7)
@@ -13395,7 +13395,7 @@ ALTER ROLE(7)           PostgreSQL 9.6.1 Documentation           ALTER ROLE(7)
 
 
 
-NAME
+<!-- 10034cb1-0a09-4f3b-a034-a986f6882838 <=< ACCEPT -->NAME
        ALTER_ROLE - change a database role
 
 SYNOPSIS
@@ -13425,7 +13425,7 @@ SYNOPSIS
 
            [ GROUP ] role_name
          | CURRENT_USER
-         | SESSION_USER
+         | SESSION_USER<!-- ACCEPT >=> 10034cb1-0a09-4f3b-a034-a986f6882838 -->
 
 DESCRIPTION
        ALTER ROLE changes the attributes of a PostgreSQL role.
@@ -13512,7 +13512,7 @@ PARAMETERS
            The name of the database the configuration variable should be set
            in.
 
-       configuration_parameter
+<!-- 253cd41f-793d-492d-acb3-228e37ef29bb <=< ACCEPT -->       configuration_parameter
        value
            Set this role's session default for the specified configuration
            parameter to the given value. If value is DEFAULT or, equivalently,
@@ -13520,7 +13520,7 @@ PARAMETERS
            the role will inherit the system-wide default setting in new
            sessions. Use RESET ALL to clear all role-specific settings.  SET
            FROM CURRENT saves the session's current value of the parameter as
-           the role-specific value. If IN DATABASE is specified, the
+           the role-specific value.<!-- ACCEPT >=> 253cd41f-793d-492d-acb3-228e37ef29bb --> If IN DATABASE is specified, the
            configuration parameter is set or removed for the given role and
            database only.
 
@@ -13734,7 +13734,7 @@ DESCRIPTION
            The RENAME form changes the name of the index. There is no effect
            on the stored data.
 
-       SET TABLESPACE
+<!-- 2b006584-429f-4021-86e0-99ef3a6619e6 <=< ACCEPT -->       SET TABLESPACE
            This form changes the index's tablespace to the specified
            tablespace and moves the data file(s) associated with the index to
            the new tablespace. To change the tablespace of an index, you must
@@ -13747,7 +13747,7 @@ DESCRIPTION
            unable to acquire all of the locks required immediately. Note that
            system catalogs will not be moved by this command, use ALTER
            DATABASE or explicit ALTER INDEX invocations instead if desired.
-           See also CREATE TABLESPACE (CREATE_TABLESPACE(7)).
+           See also CREATE TABLESPACE (CREATE_TABLESPACE(7)).<!-- ACCEPT >=> 2b006584-429f-4021-86e0-99ef3a6619e6 -->
 
        DEPENDS ON EXTENSION
            This form marks the index as dependent on the extension, such that
@@ -14253,7 +14253,7 @@ FETCH(7)                PostgreSQL 9.6.1 Documentation                FETCH(7)
 
 
 
-NAME
+<!-- 6e8bff88-7e24-4615-8efc-03f9ef2f30b3 <=< ACCEPT -->NAME
        FETCH - retrieve rows from a query using a cursor
 
 SYNOPSIS
@@ -14274,7 +14274,7 @@ SYNOPSIS
            FORWARD ALL
            BACKWARD
            BACKWARD count
-           BACKWARD ALL
+           BACKWARD ALL<!-- ACCEPT >=> 6e8bff88-7e24-4615-8efc-03f9ef2f30b3 -->
 
 DESCRIPTION
        FETCH retrieves rows using a previously-created cursor.
@@ -14496,7 +14496,7 @@ SEE ALSO
 
 
 PostgreSQL 9.6.1                     2016                       DROP SERVER(7)
-ROLLBACK PREPARED(7)    PostgreSQL 9.6.1 Documentation    ROLLBACK PREPARED(7)
+<!-- 46125e7b-f5a2-4727-b5b1-3cd97452e8b1 <=< ACCEPT -->ROLLBACK PREPARED(7)    PostgreSQL 9.6.1 Documentation    ROLLBACK PREPARED(7)
 
 
 
@@ -14541,7 +14541,7 @@ COMPATIBILITY
 SEE ALSO
        PREPARE TRANSACTION (PREPARE_TRANSACTION(7)), COMMIT PREPARED
        (COMMIT_PREPARED(7))
-
+<!-- ACCEPT >=> 46125e7b-f5a2-4727-b5b1-3cd97452e8b1 -->
 
 
 PostgreSQL 9.6.1                     2016                 ROLLBACK PREPARED(7)
@@ -14584,7 +14584,7 @@ CREATE ROLE(7)          PostgreSQL 9.6.1 Documentation          CREATE ROLE(7)
 
 
 
-NAME
+<!-- 335d3487-bfbb-463c-9629-fa78cfc1d1e1 <=< ACCEPT -->NAME
        CREATE_ROLE - define a new database role
 
 SYNOPSIS
@@ -14607,7 +14607,7 @@ SYNOPSIS
            | ROLE role_name [, ...]
            | ADMIN role_name [, ...]
            | USER role_name [, ...]
-           | SYSID uid
+           | SYSID uid<!-- ACCEPT >=> 335d3487-bfbb-463c-9629-fa78cfc1d1e1 -->
 
 DESCRIPTION
        CREATE ROLE adds a new role to a PostgreSQL database cluster. A role is
@@ -14850,7 +14850,7 @@ ROLLBACK(7)             PostgreSQL 9.6.1 Documentation             ROLLBACK(7)
 
 
 
-NAME
+<!-- 6126dfe3-ecb1-43b1-a66d-676cc2167246 <=< ACCEPT -->NAME
        ROLLBACK - abort the current transaction
 
 SYNOPSIS
@@ -14881,7 +14881,7 @@ COMPATIBILITY
        WORK. Otherwise, this command is fully conforming.
 
 SEE ALSO
-       BEGIN(7), COMMIT(7), ROLLBACK TO SAVEPOINT (ROLLBACK_TO_SAVEPOINT(7))
+       BEGIN(7), COMMIT(7), ROLLBACK TO SAVEPOINT (ROLLBACK_TO_SAVEPOINT(7))<!-- ACCEPT >=> 6126dfe3-ecb1-43b1-a66d-676cc2167246 -->
 
 
 
@@ -14987,9 +14987,9 @@ PARAMETERS
            Do not throw an error if the operator family does not exist. A
            notice is issued in this case.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing operator
-           family.
+           family.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        index_method
            The name of the index access method the operator family is for.
@@ -15049,9 +15049,9 @@ PARAMETERS
            Do not throw an error if the operator class does not exist. A
            notice is issued in this case.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing operator
-           class.
+           class.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        index_method
            The name of the index access method the operator class is for.
@@ -15117,7 +15117,7 @@ DESCRIPTION
        mentioned in the SET clause; columns not explicitly modified retain
        their previous values.
 
-       There are two ways to modify a table using information contained in
+<!-- 9688183a-583d-4145-b5b2-c14a30bbc157 <=< ACCEPT -->       There are two ways to modify a table using information contained in
        other tables in the database: using sub-selects, or specifying
        additional tables in the FROM clause. Which technique is more
        appropriate depends on the specific circumstances.
@@ -15132,9 +15132,9 @@ DESCRIPTION
        You must have the UPDATE privilege on the table, or at least on the
        column(s) that are listed to be updated. You must also have the SELECT
        privilege on any column whose values are read in the expressions or
-       condition.
+       condition.<!-- ACCEPT >=> 9688183a-583d-4145-b5b2-c14a30bbc157 -->
 
-PARAMETERS
+<!-- 976289e4-3610-460f-aade-c0eca46f7d89 <=< ACCEPT -->PARAMETERS
        with_query
            The WITH clause allows you to specify one or more subqueries that
            can be referenced by name in the UPDATE query. See Section 7.8,
@@ -15153,7 +15153,7 @@ PARAMETERS
            A substitute name for the target table. When an alias is provided,
            it completely hides the actual name of the table. For example,
            given UPDATE foo AS f, the remainder of the UPDATE statement must
-           refer to this table as f not foo.
+           refer to this table as f not foo.<!-- ACCEPT >=> 976289e4-3610-460f-aade-c0eca46f7d89 -->
 
        column_name
            The name of a column in the table named by table_name. The column
@@ -15187,7 +15187,7 @@ PARAMETERS
            appear in the from_list, unless you intend a self-join (in which
            case it must appear with an alias in the from_list).
 
-       condition
+<!-- 5a6e1d61-f0db-408d-bc82-0bf54d5f8493 <=< ACCEPT -->       condition
            An expression that returns a value of type boolean. Only rows for
            which this expression returns true will be updated.
 
@@ -15207,8 +15207,8 @@ PARAMETERS
 
        output_name
            A name to use for a returned column.
-
-OUTPUTS
+<!-- ACCEPT >=> 5a6e1d61-f0db-408d-bc82-0bf54d5f8493 -->
+<!-- 8705f146-554e-4aaf-8291-fc9e613642ec <=< ACCEPT -->OUTPUTS
        On successful completion, an UPDATE command returns a command tag of
        the form
 
@@ -15223,7 +15223,7 @@ OUTPUTS
        If the UPDATE command contains a RETURNING clause, the result will be
        similar to that of a SELECT statement containing the columns and values
        defined in the RETURNING list, computed over the row(s) updated by the
-       command.
+       command.<!-- ACCEPT >=> 8705f146-554e-4aaf-8291-fc9e613642ec -->
 
 NOTES
        When a FROM clause is present, what essentially happens is that the
@@ -15364,7 +15364,7 @@ DESCRIPTION
            TRUNCATE(7) is a PostgreSQL extension that provides a faster
            mechanism to remove all rows from a table.
 
-       There are two ways to delete rows in a table using information
+<!-- 9688183a-583d-4145-b5b2-c14a30bbc157 <=< ACCEPT -->       There are two ways to delete rows in a table using information
        contained in other tables in the database: using sub-selects, or
        specifying additional tables in the USING clause. Which technique is
        more appropriate depends on the specific circumstances.
@@ -15377,9 +15377,9 @@ DESCRIPTION
 
        You must have the DELETE privilege on the table to delete from it, as
        well as the SELECT privilege for any table in the USING clause or whose
-       values are read in the condition.
+       values are read in the condition.<!-- ACCEPT >=> 9688183a-583d-4145-b5b2-c14a30bbc157 -->
 
-PARAMETERS
+<!-- 976289e4-3610-460f-aade-c0eca46f7d89 <=< ACCEPT -->PARAMETERS
        with_query
            The WITH clause allows you to specify one or more subqueries that
            can be referenced by name in the DELETE query. See Section 7.8,
@@ -15398,7 +15398,7 @@ PARAMETERS
            A substitute name for the target table. When an alias is provided,
            it completely hides the actual name of the table. For example,
            given DELETE FROM foo AS f, the remainder of the DELETE statement
-           must refer to this table as f not foo.
+           must refer to this table as f not foo.<!-- ACCEPT >=> 976289e4-3610-460f-aade-c0eca46f7d89 -->
 
        using_list
            A list of table expressions, allowing columns from other tables to
@@ -15408,7 +15408,7 @@ PARAMETERS
            specified. Do not repeat the target table in the using_list, unless
            you wish to set up a self-join.
 
-       condition
+<!-- 5a6e1d61-f0db-408d-bc82-0bf54d5f8493 <=< ACCEPT -->       condition
            An expression that returns a value of type boolean. Only rows for
            which this expression returns true will be deleted.
 
@@ -15427,9 +15427,9 @@ PARAMETERS
            * to return all columns.
 
        output_name
-           A name to use for a returned column.
+           A name to use for a returned column.<!-- ACCEPT >=> 5a6e1d61-f0db-408d-bc82-0bf54d5f8493 -->
 
-OUTPUTS
+<!-- 8705f146-554e-4aaf-8291-fc9e613642ec <=< ACCEPT -->OUTPUTS
        On successful completion, a DELETE command returns a command tag of the
        form
 
@@ -15443,7 +15443,7 @@ OUTPUTS
        If the DELETE command contains a RETURNING clause, the result will be
        similar to that of a SELECT statement containing the columns and values
        defined in the RETURNING list, computed over the row(s) deleted by the
-       command.
+       command.<!-- ACCEPT >=> 8705f146-554e-4aaf-8291-fc9e613642ec -->
 
 NOTES
        PostgreSQL lets you reference columns of other tables in the WHERE
@@ -15549,7 +15549,7 @@ SELECT(7)               PostgreSQL 9.6.1 Documentation               SELECT(7)
 NAME
        SELECT, TABLE, WITH - retrieve rows from a table or view
 
-SYNOPSIS
+<!-- 10920879-62f7-43a7-9948-f2c56af2ce2c <=< ACCEPT -->SYNOPSIS
        [ WITH [ RECURSIVE ] with_query [, ...] ]
        SELECT [ ALL | DISTINCT [ ON ( expression [, ...] ) ] ]
            [ * | expression [ [ AS ] output_name ] [, ...] ]
@@ -15563,7 +15563,7 @@ SYNOPSIS
            [ LIMIT { count | ALL } ]
            [ OFFSET start [ ROW | ROWS ] ]
            [ FETCH { FIRST | NEXT } [ count ] { ROW | ROWS } ONLY ]
-           [ FOR { UPDATE | NO KEY UPDATE | SHARE | KEY SHARE } [ OF table_name [, ...] ] [ NOWAIT | SKIP LOCKED ] [...] ]
+           [ FOR { UPDATE | NO KEY UPDATE | SHARE | KEY SHARE } [ OF table_name [, ...] ] [ NOWAIT | SKIP LOCKED ] [...] ]<!-- ACCEPT >=> 10920879-62f7-43a7-9948-f2c56af2ce2c -->
 
        where from_item can be one of:
 
@@ -16230,7 +16230,7 @@ PARAMETERS
 
            select_statement INTERSECT [ ALL | DISTINCT ] select_statement
 
-       select_statement is any SELECT statement without an ORDER BY, LIMIT,
+<!-- 5869e4a5-2ca3-4a5e-bd41-e2a2cae0e58e <=< ACCEPT -->       select_statement is any SELECT statement without an ORDER BY, LIMIT,
        FOR NO KEY UPDATE, FOR UPDATE, FOR SHARE, or FOR KEY SHARE clause.
 
        The INTERSECT operator computes the set intersection of the rows
@@ -16245,7 +16245,7 @@ PARAMETERS
 
        Multiple INTERSECT operators in the same SELECT statement are evaluated
        left to right, unless parentheses dictate otherwise.  INTERSECT binds
-       more tightly than UNION. That is, A UNION B INTERSECT C will be read as
+       more tightly than UNION.<!-- ACCEPT >=> 5869e4a5-2ca3-4a5e-bd41-e2a2cae0e58e --> That is, A UNION B INTERSECT C will be read as
        A UNION (B INTERSECT C).
 
        Currently, FOR NO KEY UPDATE, FOR UPDATE, FOR SHARE and FOR KEY SHARE
@@ -16257,7 +16257,7 @@ PARAMETERS
 
            select_statement EXCEPT [ ALL | DISTINCT ] select_statement
 
-       select_statement is any SELECT statement without an ORDER BY, LIMIT,
+<!-- 5869e4a5-2ca3-4a5e-bd41-e2a2cae0e58e <=< ACCEPT -->       select_statement is any SELECT statement without an ORDER BY, LIMIT,
        FOR NO KEY UPDATE, FOR UPDATE, FOR SHARE, or FOR KEY SHARE clause.
 
        The EXCEPT operator computes the set of rows that are in the result of
@@ -16271,7 +16271,7 @@ PARAMETERS
 
        Multiple EXCEPT operators in the same SELECT statement are evaluated
        left to right, unless parentheses dictate otherwise.  EXCEPT binds at
-       the same level as UNION.
+       the same level as UNION.<!-- ACCEPT >=> 5869e4a5-2ca3-4a5e-bd41-e2a2cae0e58e -->
 
        Currently, FOR NO KEY UPDATE, FOR UPDATE, FOR SHARE and FOR KEY SHARE
        cannot be specified either for an EXCEPT result or for any input of an
@@ -16851,9 +16851,9 @@ DESCRIPTION
        You must be a superuser to use ALTER TEXT SEARCH PARSER.
 
 PARAMETERS
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing text search
-           parser.
+           parser.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        new_name
            The new name of the text search parser.
@@ -16940,21 +16940,21 @@ SYNOPSIS
 DESCRIPTION
        ALTER AGGREGATE changes the definition of an aggregate function.
 
-       You must own the aggregate function to use ALTER AGGREGATE. To change
+<!-- ad137a5f-7fa1-4b53-a38d-4827f1ccde6e <=< ACCEPT -->       You must own the aggregate function to use ALTER AGGREGATE. To change
        the schema of an aggregate function, you must also have CREATE
        privilege on the new schema. To alter the owner, you must also be a
        direct or indirect member of the new owning role, and that role must
        have CREATE privilege on the aggregate function's schema. (These
        restrictions enforce that altering the owner doesn't do anything you
        couldn't do by dropping and recreating the aggregate function. However,
-       a superuser can alter ownership of any aggregate function anyway.)
+       a superuser can alter ownership of any aggregate function anyway.)<!-- ACCEPT >=> ad137a5f-7fa1-4b53-a38d-4827f1ccde6e -->
 
 PARAMETERS
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing aggregate
-           function.
+           function.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
-       argmode
+<!-- 4621cdbd-9d59-444b-9354-d5b42500378a <=< ACCEPT -->       argmode
            The mode of an argument: IN or VARIADIC. If omitted, the default is
            IN.
 
@@ -16969,7 +16969,7 @@ PARAMETERS
            reference a zero-argument aggregate function, write * in place of
            the list of argument specifications. To reference an ordered-set
            aggregate function, write ORDER BY between the direct and
-           aggregated argument specifications.
+           aggregated argument specifications.<!-- ACCEPT >=> 4621cdbd-9d59-444b-9354-d5b42500378a -->
 
        new_name
            The new name of the aggregate function.
@@ -17169,8 +17169,8 @@ PARAMETERS
            Do not throw an error if the index does not exist. A notice is
            issued in this case.
 
-       name
-           The name (optionally schema-qualified) of an index to remove.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of an index to remove.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the index, and in turn
@@ -17251,9 +17251,9 @@ PARAMETERS
            guarantee that the existing relation is anything like the sequence
            that would have been created - it might not even be a sequence.
 
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of the sequence to be
-           created.
+           created.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        increment
            The optional clause INCREMENT BY increment specifies which value is
@@ -17280,7 +17280,7 @@ PARAMETERS
            anywhere. The default starting value is minvalue for ascending
            sequences and maxvalue for descending ones.
 
-       cache
+<!-- 876beccf-ebcb-4002-ae74-553e963fc807 <=< ACCEPT -->       cache
            The optional clause CACHE cache specifies how many sequence numbers
            are to be preallocated and stored in memory for faster access. The
            minimum value is 1 (only one value can be generated at a time,
@@ -17304,7 +17304,7 @@ PARAMETERS
            table) is dropped, the sequence will be automatically dropped as
            well. The specified table must have the same owner and be in the
            same schema as the sequence.  OWNED BY NONE, the default, specifies
-           that there is no such association.
+           that there is no such association.<!-- ACCEPT >=> 876beccf-ebcb-4002-ae74-553e963fc807 -->
 
 NOTES
        Use DROP SEQUENCE to remove a sequence.
@@ -17450,8 +17450,8 @@ PARAMETERS
 
            A view column name list must be specified for a recursive view.
 
-       name
-           The name (optionally schema-qualified) of a view to be created.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of a view to be created.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        column_name
            An optional list of names to be used for columns of the view. If
@@ -18186,10 +18186,10 @@ DESCRIPTION
        DICTIONARY.
 
 PARAMETERS
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of an existing text search
            dictionary.
-
+<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
        option
            The name of a template-specific option to be set for this
            dictionary.
@@ -18558,7 +18558,7 @@ PARAMETERS
            servers. Any indexes created on an unlogged table are automatically
            unlogged as well.
 
-       IF NOT EXISTS
+<!-- c6acb2a0-d8a1-44cd-b054-cf74edbb706e <=< ACCEPT -->       IF NOT EXISTS
            Do not throw an error if a relation with the same name already
            exists. A notice is issued in this case. Note that there is no
            guarantee that the existing relation is anything like the one that
@@ -18566,7 +18566,7 @@ PARAMETERS
 
        table_name
            The name (optionally schema-qualified) of the table to be created.
-
+<!-- ACCEPT >=> c6acb2a0-d8a1-44cd-b054-cf74edbb706e -->
        OF type_name
            Creates a typed table, which takes its structure from the specified
            composite type (name optionally schema-qualified). A typed table is
@@ -18579,7 +18579,7 @@ PARAMETERS
            can add defaults and constraints to the table and can specify
            storage parameters.
 
-       column_name
+<!-- 03dd7c3c-cec6-415e-9bd2-60cabe0e09e6 <=< ACCEPT -->       column_name
            The name of a column to be created in the new table.
 
        data_type
@@ -18595,7 +18595,7 @@ PARAMETERS
        INHERITS ( parent_table [, ... ] )
            The optional INHERITS clause specifies a list of tables from which
            the new table automatically inherits all columns. Parent tables can
-           be plain tables or foreign tables.
+           be plain tables or foreign tables.<!-- ACCEPT >=> 03dd7c3c-cec6-415e-9bd2-60cabe0e09e6 -->
 
            Use of INHERITS creates a persistent relationship between the new
            child table and its parent table(s). Schema modifications to the
@@ -18681,7 +18681,7 @@ PARAMETERS
            views, foreign tables, or composite types. Inapplicable options
            (e.g., INCLUDING INDEXES from a view) are ignored.
 
-       CONSTRAINT constraint_name
+<!-- 83d0f615-1ce7-4189-9231-c298168f3608 <=< ACCEPT -->       CONSTRAINT constraint_name
            An optional name for a column or table constraint. If the
            constraint is violated, the constraint name is present in error
            messages, so constraint names like col must be positive can be used
@@ -18713,7 +18713,7 @@ PARAMETERS
            Currently, CHECK expressions cannot contain subqueries nor refer to
            variables other than columns of the current row. The system column
            tableoid may be referenced, but not any other system column.
-
+<!-- ACCEPT >=> 83d0f615-1ce7-4189-9231-c298168f3608 -->
            A constraint marked with NO INHERIT will not propagate to child
            tables.
 
@@ -18722,7 +18722,7 @@ PARAMETERS
            constraints. (PostgreSQL versions before 9.5 did not honor any
            particular firing order for CHECK constraints.)
 
-       DEFAULT default_expr
+<!-- a91e8e3e-cfc3-46e2-bb0f-77bd6c82afbe <=< ACCEPT -->       DEFAULT default_expr
            The DEFAULT clause assigns a default data value for the column
            whose column definition it appears within. The value is any
            variable-free expression (subqueries and cross-references to other
@@ -18731,7 +18731,7 @@ PARAMETERS
 
            The default expression will be used in any insert operation that
            does not specify a value for the column. If there is no default for
-           a column, then the default is null.
+           a column, then the default is null.<!-- ACCEPT >=> a91e8e3e-cfc3-46e2-bb0f-77bd6c82afbe -->
 
        UNIQUE (column constraint)
        UNIQUE ( column_name [, ... ] ) (table constraint)
@@ -18915,7 +18915,7 @@ PARAMETERS
            To remove OIDs from a table after it has been created, use ALTER
            TABLE (ALTER_TABLE(7)).
 
-       WITH OIDS
+<!-- 1882732d-ffcd-4a0a-a937-5764449f0507 <=< ACCEPT -->       WITH OIDS
        WITHOUT OIDS
            These are obsolescent syntaxes equivalent to WITH (OIDS) and WITH
            (OIDS=FALSE), respectively. If you wish to give both an OIDS
@@ -18942,7 +18942,7 @@ PARAMETERS
        TABLESPACE tablespace_name
            The tablespace_name is the name of the tablespace in which the new
            table is to be created. If not specified, default_tablespace is
-           consulted, or temp_tablespaces if the table is temporary.
+           consulted, or temp_tablespaces if the table is temporary.<!-- ACCEPT >=> 1882732d-ffcd-4a0a-a937-5764449f0507 -->
 
        USING INDEX TABLESPACE tablespace_name
            This clause allows selection of the tablespace in which the index
@@ -19380,19 +19380,19 @@ SYNOPSIS
 DESCRIPTION
        ALTER FUNCTION changes the definition of a function.
 
-       You must own the function to use ALTER FUNCTION. To change a function's
+<!-- ad137a5f-7fa1-4b53-a38d-4827f1ccde6e <=< ACCEPT -->       You must own the function to use ALTER FUNCTION. To change a function's
        schema, you must also have CREATE privilege on the new schema. To alter
        the owner, you must also be a direct or indirect member of the new
        owning role, and that role must have CREATE privilege on the function's
        schema. (These restrictions enforce that altering the owner doesn't do
        anything you couldn't do by dropping and recreating the function.
-       However, a superuser can alter ownership of any function anyway.)
+       However, a superuser can alter ownership of any function anyway.)<!-- ACCEPT >=> ad137a5f-7fa1-4b53-a38d-4827f1ccde6e -->
 
 PARAMETERS
-       name
-           The name (optionally schema-qualified) of an existing function.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of an existing function.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
-       argmode
+<!-- e966425d-370d-4dbd-b6cc-15b15457e983 <=< ACCEPT -->       argmode
            The mode of an argument: IN, OUT, INOUT, or VARIADIC. If omitted,
            the default is IN. Note that ALTER FUNCTION does not actually pay
            any attention to OUT arguments, since only the input arguments are
@@ -19406,7 +19406,7 @@ PARAMETERS
 
        argtype
            The data type(s) of the function's arguments (optionally
-           schema-qualified), if any.
+           schema-qualified), if any.<!-- ACCEPT >=> e966425d-370d-4dbd-b6cc-15b15457e983 -->
 
        new_name
            The new name of the function.
@@ -19530,7 +19530,7 @@ SELECT INTO(7)          PostgreSQL 9.6.1 Documentation          SELECT INTO(7)
 NAME
        SELECT_INTO - define a new table from the results of a query
 
-SYNOPSIS
+<!-- 10920879-62f7-43a7-9948-f2c56af2ce2c <=< ACCEPT -->SYNOPSIS
        [ WITH [ RECURSIVE ] with_query [, ...] ]
        SELECT [ ALL | DISTINCT [ ON ( expression [, ...] ) ] ]
            * | expression [ [ AS ] output_name ] [, ...]
@@ -19545,7 +19545,7 @@ SYNOPSIS
            [ LIMIT { count | ALL } ]
            [ OFFSET start [ ROW | ROWS ] ]
            [ FETCH { FIRST | NEXT } [ count ] { ROW | ROWS } ONLY ]
-           [ FOR { UPDATE | SHARE } [ OF table_name [, ...] ] [ NOWAIT ] [...] ]
+           [ FOR { UPDATE | SHARE } [ OF table_name [, ...] ] [ NOWAIT ] [...] ]<!-- ACCEPT >=> 10920879-62f7-43a7-9948-f2c56af2ce2c -->
 
 DESCRIPTION
        SELECT INTO creates a new table and fills it with data computed by a
@@ -19553,14 +19553,14 @@ DESCRIPTION
        SELECT. The new table's columns have the names and data types
        associated with the output columns of the SELECT.
 
-PARAMETERS
+<!-- af018221-d9ea-4be4-9e81-715f0e7548b6 <=< ACCEPT -->PARAMETERS
        TEMPORARY or TEMP
            If specified, the table is created as a temporary table. Refer to
            CREATE TABLE (CREATE_TABLE(7)) for details.
 
        UNLOGGED
            If specified, the table is created as an unlogged table. Refer to
-           CREATE TABLE (CREATE_TABLE(7)) for details.
+           CREATE TABLE (CREATE_TABLE(7)) for details.<!-- ACCEPT >=> af018221-d9ea-4be4-9e81-715f0e7548b6 -->
 
        new_table
            The name (optionally schema-qualified) of the table to be created.
@@ -19674,13 +19674,13 @@ DESCRIPTION
            This form changes the schema of the domain. Any constraints
            associated with the domain are moved into the new schema as well.
 
-       You must own the domain to use ALTER DOMAIN. To change the schema of a
+<!-- ad137a5f-7fa1-4b53-a38d-4827f1ccde6e <=< ACCEPT -->       You must own the domain to use ALTER DOMAIN. To change the schema of a
        domain, you must also have CREATE privilege on the new schema. To alter
        the owner, you must also be a direct or indirect member of the new
        owning role, and that role must have CREATE privilege on the domain's
        schema. (These restrictions enforce that altering the owner doesn't do
        anything you couldn't do by dropping and recreating the domain.
-       However, a superuser can alter ownership of any domain anyway.)
+       However, a superuser can alter ownership of any domain anyway.)<!-- ACCEPT >=> ad137a5f-7fa1-4b53-a38d-4827f1ccde6e -->
 
 PARAMETERS
        name
@@ -19770,7 +19770,7 @@ NAME
 
 SYNOPSIS
        CREATE AGGREGATE name ( [ argmode ] [ argname ] arg_data_type [ , ... ] ) (
-           SFUNC = sfunc,
+<!-- 499063f0-7d67-4f88-baa6-b419f3bb2525 <=< ACCEPT -->           SFUNC = sfunc,
            STYPE = state_data_type
            [ , SSPACE = state_data_size ]
            [ , FINALFUNC = ffunc ]
@@ -19786,7 +19786,7 @@ SYNOPSIS
            [ , MFINALFUNC = mffunc ]
            [ , MFINALFUNC_EXTRA ]
            [ , MINITCOND = minitial_condition ]
-           [ , SORTOP = sort_operator ]
+           [ , SORTOP = sort_operator ]<!-- ACCEPT >=> 499063f0-7d67-4f88-baa6-b419f3bb2525 -->
            [ , PARALLEL = { SAFE | RESTRICTED | UNSAFE } ]
        )
 
@@ -19806,7 +19806,7 @@ SYNOPSIS
 
        CREATE AGGREGATE name (
            BASETYPE = base_type,
-           SFUNC = sfunc,
+<!-- 499063f0-7d67-4f88-baa6-b419f3bb2525 <=< ACCEPT -->           SFUNC = sfunc,
            STYPE = state_data_type
            [ , SSPACE = state_data_size ]
            [ , FINALFUNC = ffunc ]
@@ -19822,7 +19822,7 @@ SYNOPSIS
            [ , MFINALFUNC = mffunc ]
            [ , MFINALFUNC_EXTRA ]
            [ , MINITCOND = minitial_condition ]
-           [ , SORTOP = sort_operator ]
+           [ , SORTOP = sort_operator ]<!-- ACCEPT >=> 499063f0-7d67-4f88-baa6-b419f3bb2525 -->
        )
 
 DESCRIPTION
@@ -19959,9 +19959,9 @@ DESCRIPTION
        type, as well as EXECUTE privilege on the supporting functions.
 
 PARAMETERS
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of the aggregate function to
-           create.
+           create.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        argmode
            The mode of an argument: IN or VARIADIC. (Aggregate functions do
@@ -20255,7 +20255,7 @@ NOTES
        recently defined is released.
 
 EXAMPLES
-       To establish and later destroy a savepoint:
+<!-- 01216d86-5036-4c40-bcfc-62c9554a3012 <=< ACCEPT -->       To establish and later destroy a savepoint:
 
            BEGIN;
                INSERT INTO table1 VALUES (3);
@@ -20264,7 +20264,7 @@ EXAMPLES
                RELEASE SAVEPOINT my_savepoint;
            COMMIT;
 
-       The above transaction will insert both 3 and 4.
+       The above transaction will insert both 3 and 4.<!-- ACCEPT >=> 01216d86-5036-4c40-bcfc-62c9554a3012 -->
 
 COMPATIBILITY
        This command conforms to the SQL standard. The standard specifies that
@@ -20282,7 +20282,7 @@ ABORT(7)                PostgreSQL 9.6.1 Documentation                ABORT(7)
 
 
 
-NAME
+<!-- 6126dfe3-ecb1-43b1-a66d-676cc2167246 <=< ACCEPT -->NAME
        ABORT - abort the current transaction
 
 SYNOPSIS
@@ -20315,7 +20315,7 @@ COMPATIBILITY
        ROLLBACK is the equivalent standard SQL command.
 
 SEE ALSO
-       BEGIN(7), COMMIT(7), ROLLBACK(7)
+       BEGIN(7), COMMIT(7), ROLLBACK(7)<!-- ACCEPT >=> 6126dfe3-ecb1-43b1-a66d-676cc2167246 -->
 
 
 
@@ -20896,14 +20896,14 @@ DESCRIPTION
        This is most useful on large tables.
 
 PARAMETERS
-       name
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
            The name (optionally schema-qualified) of a table to truncate. If
            ONLY is specified before the table name, only that table is
            truncated. If ONLY is not specified, the table and all its
            descendant tables (if any) are truncated. Optionally, * can be
            specified after the table name to explicitly indicate that
            descendant tables are included.
-
+<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
        RESTART IDENTITY
            Automatically restart sequences owned by columns of the truncated
            table(s).
@@ -21001,7 +21001,7 @@ COMMIT(7)               PostgreSQL 9.6.1 Documentation               COMMIT(7)
 
 
 
-NAME
+<!-- c2d6965b-f6d0-4554-8583-9d3eb0a21ddf <=< ACCEPT -->NAME
        COMMIT - commit the current transaction
 
 SYNOPSIS
@@ -21034,7 +21034,7 @@ COMPATIBILITY
 
 SEE ALSO
        BEGIN(7), ROLLBACK(7)
-
+<!-- ACCEPT >=> c2d6965b-f6d0-4554-8583-9d3eb0a21ddf -->
 
 
 PostgreSQL 9.6.1                     2016                            COMMIT(7)
@@ -21057,8 +21057,8 @@ PARAMETERS
            Do not throw an error if the operator does not exist. A notice is
            issued in this case.
 
-       name
-           The name (optionally schema-qualified) of an existing operator.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of an existing operator.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        left_type
            The data type of the operator's left operand; write NONE if the
@@ -21120,8 +21120,8 @@ PARAMETERS
            Do not throw an error if the sequence does not exist. A notice is
            issued in this case.
 
-       name
-           The name (optionally schema-qualified) of a sequence.
+<!-- 9a81ecef-0629-4cac-91f0-1b9bb173355e <=< ACCEPT -->       name
+           The name (optionally schema-qualified) of a sequence.<!-- ACCEPT >=> 9a81ecef-0629-4cac-91f0-1b9bb173355e -->
 
        CASCADE
            Automatically drop objects that depend on the sequence, and in turn
