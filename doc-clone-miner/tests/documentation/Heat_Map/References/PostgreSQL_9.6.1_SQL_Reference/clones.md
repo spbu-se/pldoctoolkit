@@ -1,4 +1,5 @@
-﻿Total 937329, 169 files
+﻿169 files
+length: 916177, marked for reuse: 153615, reuse ratio: 16.8%
 
 ---
 
