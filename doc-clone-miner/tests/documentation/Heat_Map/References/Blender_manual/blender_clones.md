@@ -190,3 +190,27 @@ Compositor, Backdrop and Split Viewer Node.
 <!-- e00886c6-c264-4da9-8896-8f8b6ec569a0 <=< ACCEPT -->Lower values give a result that is closer to the drawing stroke,
 
 ---
+
+<!-- b190a250-34ce-45bf-95ef-bceaebc2e582 <=< ACCEPT -->Ctrl-clicking when the active element is a tip.
+
+---
+
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
+Mode: Edit Mode
+Menu: Curve --
+
+---
+
+<!-- 37ae592a-498b-4e8b-b3a3-f69587cd1e09 <=< ACCEPT -->Spline IK is a constraint which aligns a chain of bones
+
+---
+
+<!-- b8f7f778-596f-4466-91cf-04d70f73c867 <=< ACCEPT -->Energy and Color
+
+---
+
+<!-- 41c6a1fc-a631-4c55-bb8a-20981886a78c <=< ACCEPT -->This guide covers the following topics:
+
+---
+
+<!-- 4b7a7d74-ebaf-4c52-ba0b-d6c7ffe1fd83 <=< ACCEPT -->A black and white alpha mask of the key.

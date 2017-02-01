@@ -90,10 +90,10 @@ Workboard for tasks.
 Install
 This section documents how to install the software used to generate the manual. The installation is different for each operating system, instructions have been written for:
 Installation on Linux
-This guide covers the following topics:
+<!-- 41c6a1fc-a631-4c55-bb8a-20981886a78c <=< ACCEPT -->This guide covers the following topics:
 1. Installing Dependencies_
 2. Downloading the Repository_
-3. Setting up the Build Environment_
+3. Setting up the Build Environment_<!-- ACCEPT >=> 41c6a1fc-a631-4c55-bb8a-20981886a78c -->
 Installing Dependencies
 Below are listed the installation commands for popular Linux distributions.
 For the appropriate system, run the command in a terminal:
@@ -119,10 +119,10 @@ sudo pip install -r requirements.txt --upgrade<!-- ACCEPT >=> b69c2f69-6f43-4ec5
 
 Continue with the next step: Building &amp;lt;/about/contribute/build/linux&amp;gt; .. highlight:: sh
 Installation on macOS
-This guide covers the following topics:
+<!-- 41c6a1fc-a631-4c55-bb8a-20981886a78c <=< ACCEPT -->This guide covers the following topics:
 1. Installing Dependencies_
 2. Downloading the Repository_
-3. Setting up the Build Environment_
+3. Setting up the Build Environment_<!-- ACCEPT >=> 41c6a1fc-a631-4c55-bb8a-20981886a78c -->
 note
 This guide relies heavily on command-line tools. It assumes you are the least familiar with the macOS Terminal application.
 Installing Dependencies
@@ -146,10 +146,10 @@ sudo pip install -r requirements.txt --upgrade<!-- ACCEPT >=> b69c2f69-6f43-4ec5
 
 Continue with the next step: Building &amp;lt;/about/contribute/build/macos&amp;gt;
 Installation on MS-Windows
-This guide covers the following topics:
+<!-- 41c6a1fc-a631-4c55-bb8a-20981886a78c <=< ACCEPT -->This guide covers the following topics:
 1. Installing Python_ (used to "convert" the source files to HTML)
 2. Installing SVN and Downloading the Repository_
-3. Setting up the Build Environment_
+3. Setting up the Build Environment_<!-- ACCEPT >=> 41c6a1fc-a631-4c55-bb8a-20981886a78c -->
 Installing Python
 1. Download the Python installation package for MS-Windows. In this guide version 3.5.x is used.
 2. Install Python with the installation wizard. In this guide the default settings are used.
@@ -3430,11 +3430,11 @@ Outputs
 Image
 Image with an alpha channel adjusted for the keyed selection.
 Matte
-A black and white alpha mask of the key.
+<!-- 4b7a7d74-ebaf-4c52-ba0b-d6c7ffe1fd83 <=< ACCEPT -->A black and white alpha mask of the key.
 Chroma Key Node
 Chroma Key Node.
 Chroma Key Node.
-The Chroma Key node determines if a pixel is a foreground or background (and thereby should be transparent) based on its chroma values.
+The Chroma Key node determines if a pixel is a foreground or background (and thereby should be transparent) based on its chroma values.<!-- ACCEPT >=> 4b7a7d74-ebaf-4c52-ba0b-d6c7ffe1fd83 -->
 Use this, for example, to composite images that have been shot in front of a green or blue screen.
 Inputs
 Image
@@ -3452,11 +3452,11 @@ Outputs
 Image
 Image with its alpha channel adjusted for the keyed selection.
 Matte
-A black and white alpha mask of the key.
+<!-- 4b7a7d74-ebaf-4c52-ba0b-d6c7ffe1fd83 <=< ACCEPT -->A black and white alpha mask of the key.
 Color Key Node
 Color Key Node.
 Color Key Node.
-The color key node creates a matte based on a specified color of the input image.
+The color key node creates a matte based on a specified color of the input image.<!-- ACCEPT >=> 4b7a7d74-ebaf-4c52-ba0b-d6c7ffe1fd83 -->
 Inputs
 Image
 Standard image input.
@@ -3468,11 +3468,11 @@ Outputs
 Image
 Image with its alpha channel adjusted for the keyed selection.
 Matte
-A black and white alpha mask of the key.
+<!-- 4b7a7d74-ebaf-4c52-ba0b-d6c7ffe1fd83 <=< ACCEPT -->A black and white alpha mask of the key.
 Color Spill Node
 Color Spill Node.
 Color Spill Node.
-The Color Spill node reduces one of the RGB channels so that it is not greater then any of the others.
+The Color Spill node reduces one of the RGB channels so that it is not greater then any of the others.<!-- ACCEPT >=> 4b7a7d74-ebaf-4c52-ba0b-d6c7ffe1fd83 -->
 This is common when compositing images that were shot in front of a green or blue screen. In some cases, if the foreground object is reflective, it will show the green or blue color; that color has "spilled" onto the foreground object. If there is light from the side or back, and the foreground actor is wearing white, it is possible to get "spill" green (or blue) light from the background onto the foreground objects, coloring them with a tinge of green or blue. To remove the green (or blue) light, you use this fancy node.
 Inputs
 Image
@@ -3514,11 +3514,11 @@ Outputs
 Image
 Image with its alpha channel adjusted for the keyed selection.
 Matte
-A black and white alpha mask of the key.
+<!-- 4b7a7d74-ebaf-4c52-ba0b-d6c7ffe1fd83 <=< ACCEPT -->A black and white alpha mask of the key.
 Distance Key Node
 Distance Key Node.
 Distance Key Node.
-The Distance Key node determines a pixel's alpha value based on the three-dimensional distance between the image pixel color and the key color in a 3D color space.
+The Distance Key node determines a pixel's alpha value based on the three-dimensional distance between the image pixel color and the key color in a 3D color space.<!-- ACCEPT >=> 4b7a7d74-ebaf-4c52-ba0b-d6c7ffe1fd83 -->
 This key works well when trying to single out a specific color in a background (not necessarily green).
 Inputs
 Image
@@ -14452,20 +14452,20 @@ Radius is used for beveling.
 Tilt
 ToDo.
 Tools
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Curve --&amp;gt; Transform
+Menu: Curve --&amp;gt; Transform<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 The To Sphere, Shear, Warp and Push/Pull transform tools are described in the Transformations &amp;lt;/modeling/meshes/editing/transform/index&amp;gt; sections. The two other tools, Tilt and Shrink/Fatten Radius are related to Curve Extrusion &amp;lt;/modeling/curves/properties/geometry&amp;gt;.
 Mirror
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Curve --&amp;gt; Mirror
+Menu: Curve --&amp;gt; Mirror<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Ctrl-M
 The Mirror tool is also available, behaving exactly as with mesh vertices &amp;lt;/modeling/meshes/editing/transform/mirror&amp;gt;.
 Snap
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Curve --&amp;gt; Snap
+Menu: Curve --&amp;gt; Snap<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Shift-S
 Mesh snapping &amp;lt;/editors/3dview/object/transform/control/precision/snap&amp;gt; also works with curve components. Both control points and their handles will be affected by snapping, except for within itself (other components of the active curve). Snapping works with 2D curves but points will be constrained to the local XY axes.
 Extrude Curve and Move
@@ -14490,15 +14490,15 @@ Menu: Curve --&amp;gt; Add Duplicate
 Hotkey: Shift-D
 This command duplicates the selected control points, along with the curve segments implicitly selected (if any). If only a handle is selected, the full point will be duplicated too. The copy is selected and placed in Grab mode, so you can move it to another place.
 Separate
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Curve --&amp;gt; Separate
+Menu: Curve --&amp;gt; Separate<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: P
 Curve objects that are made of multiple distinct curves can be separated into their own objects by selecting the desired segments and pressing P. Note, if there is only one curve in a Curve object, Separate will create a new Curve object with no control points.
 Make Segment
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Curve --&amp;gt; Make Segment
+Menu: Curve --&amp;gt; Make Segment<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: F
 Connects two disconnected control points. The selection must be loose points, or the first/last point of a curve, then press F. If the points belong to different curves, these are joined by a segment to become a single curve.
 Curves before and after joining.
@@ -14548,9 +14548,9 @@ Handle types are a property of B?zier curves &amp;lt;/modeling/curves/bezier&amp
 Toggle Free/Align V-T
 Additionally, the this shortcut can be used to toggle between Free and Aligned handle types.
 Set Goal Weight
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Specials --&amp;gt; Set Goal Weight
+Menu: Specials --&amp;gt; Set Goal Weight<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 This sets the "goal weight" of selected control points, which is used when a curve has Soft Body &amp;lt;/physics/soft_body/index&amp;gt; physics, forcing the curve to "stick" to their original positions, based on the weight.
 Smooth
 Reference
@@ -14565,9 +14565,9 @@ Entire curve smoothed over 200 times by holding Shift-R to repeat last step.
 Only three control points in the center smoothed over 200 times.
 Only three control points in the center smoothed over 200 times.
 Hooks
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Curve --&amp;gt; Control Points --&amp;gt; Hooks
+Menu: Curve --&amp;gt; Control Points --&amp;gt; Hooks<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Ctrl-H
 Hooks &amp;lt;/modeling/modifiers/deform/hooks&amp;gt; can be added to control one or more points with other objects.
 Segments
@@ -14834,21 +14834,21 @@ All these options have the same meaning and behavior as in Object Mode &amp;lt;/
 Select Linked
 L (or Ctrl-L for all) will add to the selection the cursor's nearest control point, and all the linked ones, i.e. all points belonging to the same curve. Note that for B?zier, using L with a handle selected will select the whole control point and all the linked ones.
 Select/Deselect First/Last
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Select --&amp;gt; Select/Deselect First, Select --&amp;gt; Select/Deselect Last
+Menu: Select --&amp;gt; Select/Deselect First, Select --&amp;gt; Select/Deselect Last<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: None
 These commands will toggle the selection of the first or last control point(s) of the curve(s) in the object. This is useful to quickly find the start of a curve (e.g. when using it as path...).
 Select Next/Previous
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Select --&amp;gt; Select Next, Select --&amp;gt; Select Previous
+Menu: Select --&amp;gt; Select Next, Select --&amp;gt; Select Previous<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: None
 These commands will select the next or previous control point(s), based on the current selection (i.e. the control points following or preceding the selected ones along the curve). In case of a cyclic curve, the first and last points are not considered as neighbors.
 Select More/Less
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Select --&amp;gt; More/Less
+Menu: Select --&amp;gt; More/Less<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Ctrl-NumpadPlus/Ctrl-NumpadMinus
 <!-- 5c2f4185-aca2-460e-b981-e338d9e3ce9d <=< ACCEPT -->Their purpose, based on the currently selected control points, is to reduce or enlarge this selection.
 More
@@ -15317,9 +15317,9 @@ If vertices are selected while doing an extrude, but they do not form an edge or
 When a selection of vertices forms an edge or face, it will extrude as if the edge was selected. Likewise for edges that form a face.
 To force a vertex or edge selection to extrude as a vertex or edge, respectively, use Alt-E to access the Extrude Edges Only and Vertices Only.
 Extrude Repeat Mesh
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Operator Search --&amp;gt; Extrude Repeat Mesh
+Menu: Operator Search --&amp;gt; Extrude Repeat Mesh<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 This tool has to be called from /interface/controls/templates/operator_search. If the selection is not manifold it's extruded the specified number of times, else it behaves similar to the /modeling/modifiers/generate/array. The extrusion is aligned along the Z axis of the view.
 Offset
 Distance between the instances.
@@ -16180,9 +16180,9 @@ hint
 You can turn the bend angle through multiple rotations potentially forming a spiral shape.
 Transformation
 Mirror
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Mesh --&amp;gt; Mirror --&amp;gt; Desired Axis
+Menu: Mesh --&amp;gt; Mirror --&amp;gt; Desired Axis<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Ctrl-M
 The mirror tool mirrors a selection across a selected axis.
 The mirror tool in Edit Mode is similar to Mirroring in Object Mode &amp;lt;/editors/3dview/object/transform/mirror&amp;gt;. It is exactly equivalent to scaling by -1 vertices, edges or faces around one chosen pivot point and in the direction of one chosen axis, only it is faster/handier.
@@ -16198,9 +16198,9 @@ In Fig. fig-mesh-deform-mirror-cursor the pivot point is the 3D Cursor, the tran
 Transformation Orientations
 Transformation Orientations &amp;lt;/editors/3dview/object/transform/control/orientations&amp;gt; are found on the 3D View header, next to the Widget buttons. They decide which coordinate system will rule the mirroring.
 Mirror Vertex Group
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Mesh --&amp;gt; Mirror --&amp;gt; Mirror Vertex Group
+Menu: Mesh --&amp;gt; Mirror --&amp;gt; Mirror Vertex Group<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 This tool works only with a perfectly symmetrical mesh (along the local X axis). Those vertices that have no corresponding vertex on the other side will not be affected.
 Mirror Weights
 With this option checked, every selected vertex receives the group/weight information of its symmetrical counterpart. If both vertices are selected, it will be a group/weight information exchange; if only one is selected, information from the unselected will be copied into the selected one, that loses its own information. Information on group/weight is passed for the active group only, unless All Groups is checked, in which case it is passed for all groups.
@@ -16280,9 +16280,9 @@ The number of smoothing iterations
 Axes
 Limit the effect to certain axes.
 Laplacian Smooth
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Specials --&amp;gt; Laplacian Smooth
+Menu: Specials --&amp;gt; Laplacian Smooth<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 See the Laplacian Smooth Modifier &amp;lt;/modeling/modifiers/deform/laplacian_smooth&amp;gt; for details.
 Laplacian smooth is uses an alternative smoothing algorithm that better preserves the overall mesh shape. Laplacian smooth exists as a mesh operation and as a non-destructive modifier.
 note
@@ -16486,9 +16486,9 @@ It's equivalent to the Reset button of the specific Hook Modifier (chosen from t
 Recenter Hook
 It's equivalent to the Recenter button of the specific Hook Modifier (chosen from the hook list).
 Blend From Shape, Propagate Shapes
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: (Vertex) Specials --&amp;gt; Blend From Shape and Mesh --&amp;gt; Vertices --&amp;gt; Shape Propagate
+Menu: (Vertex) Specials --&amp;gt; Blend From Shape and Mesh --&amp;gt; Vertices --&amp;gt; Shape Propagate<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 These are options regarding shape keys &amp;lt;/animation/shape_keys/index&amp;gt;.
 Shape Propagate
 Apply selected vertex locations to all other shape keys.
@@ -16982,9 +16982,9 @@ Selects all vertices on the mesh in a single axis relative to the active vertex.
 Linked
 Selects all components that are connected to the current selection. (see Select Linked_)
 Checker Deselect
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Select --&amp;gt; Checker Deselect
+Menu: Select --&amp;gt; Checker Deselect<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: None
 This tool applies a alternating selected/deselected checker pattern. This only works if you already have more than one mesh element selected.
 Nth Selection
@@ -17017,18 +17017,18 @@ Select all vertices or edges that do not form part of a face.
 Ungrouped Vertices
 ToDo.
 Select Linked
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Select --&amp;gt; Linked
+Menu: Select --&amp;gt; Linked<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Ctrl-L
 Select geometry connected to already selected elements. This is often useful when a mesh has disconnected, overlapping parts, where isolating it any other way would be tedious.
 To give more control, you can also enable delimiters in the Operator panel, so the selection is constrained by seams, sharp-edges, materials or UV islands.
 With Pick Linked you can also select connected geometry directly under the cursor, using the L shortcut to select or Shift-L to deselect linked.
 This works differently in that it uses the geometry under the cursor instead of the existing selection.
 Select Similar
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Select --&amp;gt; Similar...
+Menu: Select --&amp;gt; Similar...<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Shift-G
 Select geometry that have similar certain properties to the ones selected, based on a threshold that can be set in tool properties after activating the tool. Tool options change depending on the selection mode:
 Vertex Selection Mode:
@@ -17116,9 +17116,9 @@ Mode: Edit Mode --&amp;gt; Vertex or Edge select modes
 Hotkey: Alt-RMB
 Loop-select on edge boundaries. To extend the selection to all boundaries if the current boundary is already selected use Alt-RMB again.
 Edge Ring
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Select --&amp;gt; Edge Ring
+Menu: Select --&amp;gt; Edge Ring<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Ctrl-Alt-RMB
 In Edge select mode, holding Ctrl-Alt while selecting an edge (or two vertices) selects a sequence of edges that are not connected, but on opposite sides to each other continuing along a face loop &amp;lt;/modeling/meshes/structure&amp;gt;.
 As with edge loops, you can also select edge rings based on current selection, using either Select --&amp;gt; Edge Ring, or the Edge Ring Select option of the Edge Specials menu Ctrl-E.
@@ -17216,9 +17216,9 @@ Introduction
 There are many ways to select elements, and it depends on what Mesh Select Mode you are in as to what selection tools are available. First we will go through these modes and after that a look is taken at basic selection tools.
 Selection Mode
 Select Mode Header Widgets
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: 3D View Header --&amp;gt; Select Mode
+Menu: 3D View Header --&amp;gt; Select Mode<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Ctrl-Tab
 Edit Mode selection buttons.
 Edit Mode selection buttons.
@@ -19410,18 +19410,18 @@ Strands when they are generated instantly die when created so for the Path butto
 Editing
 Surface editing has even fewer tools and options than its curve counterpart, but has many common points with it... So this page covers (or tries to cover) all the subjects, from the basics of surface editing to more advanced topics, like retopology.
 Translation, Rotation, Scale
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Surface --&amp;gt; Transform --&amp;gt; Grab/Move, Rotate, Scale, ...
+Menu: Surface --&amp;gt; Transform --&amp;gt; Grab/Move, Rotate, Scale, ...<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: G, R, S
 Once you have a selection of one or more control points, you can grab/move G, rotate R or scale S them, like many other things in Blender, as described in the Manipulation in 3D Space &amp;lt;/editors/3dview/object/transform/introduction&amp;gt; section.
 You also have in Edit Mode an extra option when using these basic manipulations: the proportional editing &amp;lt;/editors/3dview/object/transform/control/proportional_edit&amp;gt;.
 Transform Panel
 See modeling-curves-transform-panel.
 Advanced Transform Tools
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Surface --&amp;gt; Transform
+Menu: Surface --&amp;gt; Transform<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 The To Sphere, Shear, Warp and Push/Pull transform tools are described in the Mesh Transformation &amp;lt;/modeling/meshes/editing/transform/index&amp;gt; section. Surfaces have no specific transform tools.
 NURBS Control Points Settings
 Reference
@@ -19429,9 +19429,9 @@ Mode: Edit Mode
 Panel: Curve Tools (Edit Mode) and Transform
 We saw in a previous page &amp;lt;modeling-surfaces-weight&amp;gt; that NURBS control points have a weight, which is the influence of this point on the surface. You set it either using the big Set Weight button in the Curve Tools panel (after having defined the weight in the number button to the right), or by directly typing a value in the W number button of the Transform panel.
 Adding or Extruding
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Surface --&amp;gt; Extrude
+Menu: Surface --&amp;gt; Extrude<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: E, Ctrl-LMB
 Unlike meshes or curves, you cannot generally directly add new control points to a surface (with Ctrl-LMB clicks), as you can only extend a surface by adding a whole U- or V-row at once. The only exception is when working on a NURBS surface curve, i.e. a surface with only one control point on each U- or V-row. In this special case, all works exactly as with curves &amp;lt;modeling-curves-extrude&amp;gt;.
 Most of the time, only extrusion is available. As usual, once the tool is activated the extrusion happens immediately and you are placed into Grab mode, ready to drag the new extruded surface to its destination.
@@ -19449,9 +19449,9 @@ Extruding.
 By moving the new section away from the area, the surface begins to "unbunch".
 You can continue this process of extruding or adding new surface sections until you have reached the final shape for your model.
 Opening or Closing a Surface
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Surface --&amp;gt; Toggle Cyclic
+Menu: Surface --&amp;gt; Toggle Cyclic<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Alt-C
 As in curves &amp;lt;modeling-curves-toggle-cyclic&amp;gt;, surfaces can be closed (cyclic) or open. However, as surfaces are 2D, you can control this property independently along the U and V axes.
 To toggle the cyclic property of a surface along one axis, use Alt-C and choose either cyclic U or cyclic V from the pop-up menu. The corresponding surface's outer edges will join together to form a "closed" surface.
@@ -19459,9 +19459,9 @@ note
 Inner and Outer
 Surfaces have an "inner" and "outer" face, the first being black whereas the latter is correctly shaded. (There does not seem to be any "double sided" shading option for surfaces...). When you close a surface in one or two directions, you might get an entirely black object! In this case, just Switch Direction_ of your surface...
 Duplication
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Curve --&amp;gt; Duplicate
+Menu: Curve --&amp;gt; Duplicate<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Shift-D
 Well, as with meshes and curves, this command just duplicates the selection. As usual, the copy is selected and placed in Grab mode, so you can move it to another place.
 However, with surfaces there are some selections that cannot be duplicated, in which case they will just be placed in Grab mode... In fact, only selections forming a single valid sub-grid are copyable; let us see this in practice:
@@ -19471,9 +19471,9 @@ You can copy a single whole sub-grid.
 note
 Trying to duplicate several valid "sub-grids" (even being single points) at once will not work; you will have to do it one after the other...
 Deleting Elements
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Curve --&amp;gt; Delete...
+Menu: Curve --&amp;gt; Delete...<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: X, Delete
 The Erase pop-up menu of surfaces offers you two options:
 Selected
@@ -19488,9 +19488,9 @@ Before and after.
 Before and after.
 In Fig. Before and after (left) a row of control points has been selected by initially selecting the one control point and using Shift-R to select the remaining control points. Then, using the Delete Menu X, the selected row of control points is erased, resulting in Fig. Before and after (right).
 Joining or Merging Surfaces
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Surface --&amp;gt; Make Segment
+Menu: Surface --&amp;gt; Make Segment<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: F
 Just like curves &amp;lt;modeling-curves-make-segment&amp;gt;, merging two surfaces requires that a single edge, a border row of control points, from two separate surfaces are selected. This means that the surfaces must be part of the same object. For example, you cannot join two surfaces while in Object Mode - but you can of course, as with any objects of the same type, join two or more Surface objects into one object Ctrl-J - they just will not be "linked" or merged in a single one... Yes, it's a bit confusing!
 This command is equivalent to creating edges or F aces for meshes (hence its shortcut), and so it only works in Edit Mode. The selection must contains only border rows of the same resolution (with the same number of control points), else Blender will try to do its best to guess what to merge with what, or the merge will fail (either silently, or stating that Resolution does not match if rows with different number of points are selected, or that there is Too few selections to merge if you only selected points in one surface...). To select control points of different surfaces, in the same object, you must use either border select or circle select. Holding down Ctrl while LMB will not work.
@@ -19512,14 +19512,14 @@ Panel: Curve Tools
 This tool is a bit similar to its mesh counterpart &amp;lt;/modeling/meshes/editing/duplicating/spin&amp;gt; but with less control and options (in fact, there is none!).
 It only works on selected "surfaces" made of one U-row (and not with one V-row), so-called "surface curves", by "extruding" this "cross section" in a square pattern, automatically adjusting the weights of control points to get a perfect circular extrusion (this also implies closing the surface along the V axis), following exactly the same principle as for the NURBS Tube or NURBS Donut primitives.
 Switch Direction
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Surface --&amp;gt; Segments --&amp;gt; Switch Direction, Specials --&amp;gt; Switch Direction
+Menu: Surface --&amp;gt; Segments --&amp;gt; Switch Direction, Specials --&amp;gt; Switch Direction<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 This command will "reverse" the direction of any curve with at least one selected element (i.e. the start point will become the end one, and vice versa). Mainly useful when using a curve as path, or the bevel and taper options...
 Other Specials Options
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Specials
+Menu: Specials<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: W
 The Specials menu contains exactly the same additional options as for curves, except for Set Radius and Smooth Radius.
 Conversion
@@ -19596,15 +19596,15 @@ All these options have the same meaning and behavior as in Object Mode &amp;lt;/
 Select Linked
 L, Ctrl-L will add to the selection the mouse cursor's nearest control point, and all the linked ones, i.e. all points belonging to the same surface.
 Control Point Row
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Select --&amp;gt; Control Point Row
+Menu: Select --&amp;gt; Control Point Row<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Shift-R
 This option works a bit like edge loop selection &amp;lt;modeling-meshes-selecting-edge-loops&amp;gt; for meshes, inasmuch it selects a whole row &amp;lt;modeling-surfaces-rows-grids&amp;gt; of control points, based on the active (the last selected) one. The first time you press Shift-R, the V-row passing through (containing) the active point will be added to the current selection. If you use again this shortcut, you will toggle between the U- and V-row of this point, removing everything else from the selection.
 More and Less
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Select --&amp;gt; More/Less
+Menu: Select --&amp;gt; More/Less<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Ctrl-NumpadPlus / Ctrl-NumpadMinus
 <!-- 5c2f4185-aca2-460e-b981-e338d9e3ce9d <=< ACCEPT -->These two options are complementary and very similar to those for meshes &amp;lt;/modeling/meshes/selecting/introduction&amp;gt;. Their purpose, based on current selected control points, is to reduce or enlarge this selection.
 The algorithm is the same as with meshes:
@@ -19656,9 +19656,9 @@ Delete all text
 To completely erase or delete all text, use Ctrl-Backspace.
 The text buffer is in sync with the desktop clipboard. But if it is used within Blender the text formatting will be copied as well. For other ways of inserting a text, see Inserting Text_ below.
 Special Characters
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Text --&amp;gt; Special Characters
+Menu: Text --&amp;gt; Special Characters<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 If you need special characters (such as accented chars, which are not on your keyboard) you can produce many of them using a combination of two other characters. To do so, type the main char, press Alt-Backspace, and then press the desired "modifier" to produce the special character. Some examples are given below:
 Cursor &amp; Selection
 Text in Edit Mode.
@@ -23967,11 +23967,11 @@ Point lamp.
 The Point lamp is an omni-directional point of light, that is, a point radiating the same amount of light in all directions. It's visualized by a plain, circled dot. Being a point light source, the direction of the light hitting an object's surface is determined by the line joining the lamp and the point on the surface of the object itself.
 Light intensity/energy decays based on (among other variables) distance from the Point lamp to the object. In other words, surfaces that are further away are rendered darker.
 Lamp Options
-Distance, Energy and Color
+Distance, <!-- b8f7f778-596f-4466-91cf-04d70f73c867 <=< ACCEPT -->Energy and Color
 These settings are common to most types of lamps, and are described in Light Properties &amp;lt;/render/blender_render/lighting/lights/lamp_panel&amp;gt;.
 Negative, This Layer Only, Specular, and Diffuse
 These settings control what the lamp affects, as described in What Light Affects &amp;lt;bi-lamp-influence&amp;gt;.
-Falloff and Sphere
+<!-- ACCEPT >=> b8f7f778-596f-4466-91cf-04d70f73c867 -->Falloff and Sphere
 These settings control how the light of the Lamp decays with distance. See Light Attenuation &amp;lt;/render/blender_render/lighting/lights/light_attenuation&amp;gt; for details.
 Shadows
 Without ray shadows.
@@ -24145,11 +24145,11 @@ This direction can be changed by rotating the Sun lamp, like any other object, b
 Sun lamp panel.
 Sun lamp panel.
 Lamp options
-Energy and Color
+<!-- b8f7f778-596f-4466-91cf-04d70f73c867 <=< ACCEPT -->Energy and Color
 These settings are common to most types of lamps, and are described in Light Properties &amp;lt;/render/blender_render/lighting/lights/lamp_panel&amp;gt;.
 Negative, This Layer Only, Specular, and Diffuse
 These settings control what the lamp affects, as described in What Light Affects &amp;lt;bi-lamp-influence&amp;gt;.
-The Sun lamp has no light falloff settings: it always uses a constant attenuation (i.e. no attenuation!).
+<!-- ACCEPT >=> b8f7f778-596f-4466-91cf-04d70f73c867 -->The Sun lamp has no light falloff settings: it always uses a constant attenuation (i.e. no attenuation!).
 Sky &amp; Atmosphere
 Sky &amp; Atmosphere panel.
 Sky &amp; Atmosphere panel.
@@ -31250,9 +31250,9 @@ Ctrl-LMB clicks,
 fill between joints,
 duplication.
 Add Menu
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Add
+Menu: Add<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Shift-A
 In the 3D View, Shift-A to add a new bone to your armature.
 This bone will be:
@@ -31261,9 +31261,9 @@ oriented towards the global Z axis,
 with its root placed at the 3D cursor position,
 with no relationship with any other bone of the armature.
 Extrusion
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; Extrude
+Menu: Armature --&amp;gt; Extrude<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: E, Shift-E
 When you press E, for each selected tip (either explicitly or implicitly), a new bone is created. This bone will be the child of "its" tip owner, and connected to it. As usual, once extrusion is done, only the new bones' tips are selected, and in grab mode, so you can place them to your liking. See Fig. fig-rig-bones-extrusion.
 You also can use the rotating/scaling extrusions, as with meshes, by pressing respectively E-R and E-S --as well as locked &amp;lt;/editors/3dview/object/transform/control/precision/axis_locking&amp;gt; extrusion along a global or local axis.
@@ -31281,33 +31281,33 @@ after you Ctrl-LMB -clicked it becomes the active element in the armature,
 it appears to be right where you clicked, but...
 ...(as in mesh editing) it will be on the plane parallel to the view and passing through the 3D cursor.
 The position of the root and the parenting of the new bone depends on the active element:
-Ctrl-clicking when the active element is a bone.
-Ctrl-clicking when the active element is a bone.
+<!-- b190a250-34ce-45bf-95ef-bceaebc2e582 <=< ACCEPT -->Ctrl-clicking when the active element is a bone.<!-- ACCEPT >=> b190a250-34ce-45bf-95ef-bceaebc2e582 -->
+<!-- b190a250-34ce-45bf-95ef-bceaebc2e582 <=< ACCEPT -->Ctrl-clicking when the active element is a bone.<!-- ACCEPT >=> b190a250-34ce-45bf-95ef-bceaebc2e582 -->
 If the active element is a bone
 the new bone's root is placed on the active bone's tip
 the new bone is parented and connected to the active bone (check the Outliner in Fig. fig-rig-bone-active-tip).
-Ctrl-clicking when the active element is a tip.
-Ctrl-clicking when the active element is a tip.
+<!-- b190a250-34ce-45bf-95ef-bceaebc2e582 <=< ACCEPT -->Ctrl-clicking when the active element is a tip.<!-- ACCEPT >=> b190a250-34ce-45bf-95ef-bceaebc2e582 -->
+<!-- b190a250-34ce-45bf-95ef-bceaebc2e582 <=< ACCEPT -->Ctrl-clicking when the active element is a tip.<!-- ACCEPT >=> b190a250-34ce-45bf-95ef-bceaebc2e582 -->
 If the active element is a tip :
 the new bone's root is placed on the active tip
 the new bone is parented and connected to the bone owning the active tip (check the Outliner in Fig. fig-rig-bone-active-tip).
-Ctrl-clicking when the active element is a disconnected root.
-Ctrl-clicking when the active element is a disconnected root.
+<!-- b190a250-34ce-45bf-95ef-bceaebc2e582 <=< ACCEPT -->Ctrl-clicking when the active element is a disconnected root.<!-- ACCEPT >=> b190a250-34ce-45bf-95ef-bceaebc2e582 -->
+<!-- b190a250-34ce-45bf-95ef-bceaebc2e582 <=< ACCEPT -->Ctrl-clicking when the active element is a disconnected root.<!-- ACCEPT >=> b190a250-34ce-45bf-95ef-bceaebc2e582 -->
 If the active element is a disconnected root :
 the new bone's root is placed on the active root
 the new bone is not parented to the bone owning the active root (check the Outliner in Fig. fig-rig-bone-disconnected-tip).
 And hence the new bone will not be connected to any bone.
-Ctrl-clicking when the active element is a connected root.
-Ctrl-clicking when the active element is a connected root.
+<!-- b190a250-34ce-45bf-95ef-bceaebc2e582 <=< ACCEPT -->Ctrl-clicking when the active element is a connected root.<!-- ACCEPT >=> b190a250-34ce-45bf-95ef-bceaebc2e582 -->
+<!-- b190a250-34ce-45bf-95ef-bceaebc2e582 <=< ACCEPT -->Ctrl-clicking when the active element is a connected root.<!-- ACCEPT >=> b190a250-34ce-45bf-95ef-bceaebc2e582 -->
 If the active element is a connected root :
 the new bone's root is placed on the active root
 the new bone is parented and connected to the parent of the bone owning the active root (check the Outliner in Fig. fig-rig-bone-connected-root).
 This should be obvious because if the active element is a connected root then the active element is also the tip of the parent bone, so it is the same as the second case.
 As the tip of the new bone becomes the active element, you can repeat these Ctrl-RMB several times, to consecutively add several bones to the end of the same chain.
 Fill between joints
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; Fill Between Joints
+Menu: Armature --&amp;gt; Fill Between Joints<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: F
 The main use of this tool is to create one bone between two selected joints by pressing F, similar to how in mesh editing you can "create edges/faces".
 If you have one root and one tip selected, the new bone:
@@ -31329,9 +31329,9 @@ You will get an error when:
 trying to fill two joints of the same bone, or
 trying to fill more than two bone joints.
 Duplication
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; Duplicate
+Menu: Armature --&amp;gt; Duplicate<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Shift-D
 note
 This tool works on selected bones; selected joints are ignored.
@@ -31341,17 +31341,17 @@ the duplicates become the selected elements and they are placed in grab mode, so
 If you select part of a chain, by duplicating it you will get a copy of the selected chain, so the copied bones are interconnected exactly like the original ones.
 The duplicate of a bone which is parented to another bone will also be parented to the same bone, even if the root bone is not selected for the duplication. Be aware, though, that if a bone is parented and connected to an unselected bone, its copy will be parented, but not connected to the unselected bone (see Fig. fig-rig-bone-duplication).
 Split
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; Split
+Menu: Armature --&amp;gt; Split<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Y
 Disconnects the selection and clears the parent at the start and end. ToDo.
 Deleting Bones
 You have two ways to remove bones from an armature: the standard deletion, and merging several bones in one.
 Standard deletion
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; Delete
+Menu: Armature --&amp;gt; Delete<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: X
 note
 This tool works on selected bones: selected joints are ignored.
@@ -31360,9 +31360,9 @@ press X and confirm, or
 use the menu Armature --&amp;gt; Delete and confirm.
 If you delete a bone in a chain, its child(ren) will be automatically re-parented to its own parent, but not connected, to avoid deforming the whole armature.
 Dissolve
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: none
+Menu: none<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Ctrl-X
 ToDo.
 Merge
@@ -31375,9 +31375,9 @@ Confirm by clicking on Merge Selected Bones --&amp;gt; Within Chains.
 If another (non-selected) chain origins from inside of the merged chain of bones, it will be parented to the resultant merged bone. If they were connected, it will be connected to the new bone.
 Here is a strange subtlety (see Fig. fig-rig-bone-merge): even though connected (the root bone of the unmerged chain has no root sphere), the bones are not visually connected. This will be done as soon as you edit one bone, differently depending in which chain is the edited bone (compare the bottom two images of the example to understand this better).
 Subdividing Bones
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; Subdivide, Specials --&amp;gt; Subdivide
+Menu: Armature --&amp;gt; Subdivide, Specials --&amp;gt; Subdivide<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 You can subdivide bones, to get two or more bones where there was just one bone. The tool will subdivide all selected bones, preserving the existing relationships: the bones created from a subdivision always form a connected chain of bones.
 To create two bones out of each selected bone:
 Press W Specials --&amp;gt; Subdivide, or
@@ -31436,14 +31436,14 @@ Note that all examples above are also valid with the left/right part placed befo
 3. Before Blender handles an armature for mirroring or flipping, it first removes the number extension, e.g. ".001".
 4. You can copy a bone named "bla.L" and flip it over using Specials --&amp;gt; Flip Left-Right Names. Blender will name the copy "bla.L.001" and flipping the name will give you "bla.R".
 Flip Name
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; Flip Name, Specials --&amp;gt; Flip Name
+Menu: Armature --&amp;gt; Flip Name, Specials --&amp;gt; Flip Name<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 You can flip left/right markers (see above) in selected bone names, using Armature --&amp;gt; Flip Name. This can be useful if you have constructed half of a symmetrical rig (marked for a left or right side) and duplicated and mirrored it, and want to update the names for the new side. Blender will swap text in bone names according to the above naming conventions, and remove number extensions if possible.
 AutoName
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; AutoName Left/Right, Armature --&amp;gt; AutoName Front/Back, Armature --&amp;gt; AutoName Top/Bottom
+Menu: Armature --&amp;gt; AutoName Left/Right, Armature --&amp;gt; AutoName Front/Back, Armature --&amp;gt; AutoName Top/Bottom<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 The three AutoName entries of the Armature and Specials menu W allows you to automatically add a suffix to all selected bones, based on the position of their root relative to the armature center and its local coordinates:
 AutoName Left/Right
 will add the ".L" suffix to all bones with a positive X-coordinate root, and the ".R" suffix to all bones with a negative X-coordinate root. If the root is exactly at 0.0 on the X-axis, the X-coordinate of the tip is used. If both joints are at 0.0 on the X-axis, the bone will just get a period suffix, with no "L"/ "R" (as Blender cannot decide whether it is a left or right bone...).
@@ -31470,9 +31470,9 @@ In a 3D View, select the desired bones, and press Alt-P (or Armature --&amp;gt; 
 In the Properties editor, Bones tab, for each selected bone, you can select no parent in the Parent data-ID of its Relations panel, to free it completely. If you just want to disconnect it from its parent, disable the Connected checkbox.
 Note that relationships with non-selected children are never modified. .. TODO/Review: {{review|copy=X}}.
 Properties
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; Bone Settings --&amp;gt; ...
+Menu: Armature --&amp;gt; Bone Settings --&amp;gt; ...<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Shift-W, Ctrl-Shift-W, Alt-W
 Most bones' properties (excepted the transform ones) are regrouped in each bone's panels, in the Bones tab in Edit Mode. Let us detail them.
 Note that some of them are also available in the 3D Views, through the three pop-up menus within the same entry:
@@ -31635,15 +31635,15 @@ Bone Roll
 In Edit Mode, you can control of the bones roll (i.e. the rotation around the Y axis of the bone).
 However, after editing the armature, or when using euler rotation, you may want to set the bone roll.
 Set Bone Roll
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; Bone Roll --&amp;gt; Set
+Menu: Armature --&amp;gt; Bone Roll --&amp;gt; Set<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Ctrl-R
 This is a transform mode where you can edit the roll of all selected bones.
 Recalculate Bone Roll
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; Bone Roll --&amp;gt; Recalculate
+Menu: Armature --&amp;gt; Bone Roll --&amp;gt; Recalculate<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Ctrl-N
 Axis Orientation
 Local Tangent
@@ -31663,9 +31663,9 @@ Reverse the axis direction.
 Shortest Rotation
 Avoids rolling the bone over 90 degrees from its current value.
 Switch Direction
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Armature --&amp;gt; Switch Direction, Specials --&amp;gt; Switch Direction
+Menu: Armature --&amp;gt; Switch Direction, Specials --&amp;gt; Switch Direction<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Alt-F
 This tool is not available from the Armature menu, but only from the Specials pop-up menu W. It allows you to switch the direction of the selected bones (i.e. their root will become their tip, and vice versa).
 Switching the direction of a bone will generally break the chain(s) it belongs to. However, if you switch a whole (part of a) chain, the switched bones will still be parented/connected, but in "reversed order". See the Fig. fig-rig-properties-switch.
@@ -31889,9 +31889,9 @@ After Shift-RMB -clicking "Bone.003":
 "Bone.003" 's tip (which is same as "Bone.004" 's root) is deselected.
 "Bone" is "Bone.003" 's parent. Therefore "Bone.003" 's root is same as the tip of "Bone". Since "Bone" is still selected, its tip is selected. Thus the root of "Bone.003" remains selected.
 More/Less
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Select
+Menu: Select<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 More :kbd;`Ctrl-Numpad+`
 ToDo.
 Less :kbd;`Ctrl-Numpad-`
@@ -31901,9 +31901,9 @@ You can deselect the active bone and select its immediate parent or one of its c
 Extend Parent Shift-[, Extend Child Shift-]
 Similar to Parent/Child but it keeps the active bone in the selection.
 Similar
-Reference
+<!-- b23c80b3-062f-40b0-babe-a6965f0a2b28 <=< ACCEPT -->Reference
 Mode: Edit Mode
-Menu: Select --&amp;gt; Similar
+Menu: Select --&amp;gt; Similar<!-- ACCEPT >=> b23c80b3-062f-40b0-babe-a6965f0a2b28 -->
 Hotkey: Shift-G
 Children
 Extends the selection to all hierarchical descendant bones.
@@ -32024,7 +32024,7 @@ IK Arm Example..
 IK Arm Example..
 Note that, if a Pole Target is used, IK locking will not work on the root boot. .. TODO/Review: {{review|partial=X|text=Need example &amp; img}}.
 Spline IK
-Spline IK is a constraint which aligns a chain of bones along a curve. By leveraging the ease and flexibility of achieving aesthetically pleasing shapes offered by curves and the predictability and well integrated control offered by bones, Spline IK is an invaluable tool in the riggers' toolbox. It is particularly well suited for rigging flexible body parts such as tails, tentacles, and spines, as well as inorganic items such as ropes.
+<!-- 37ae592a-498b-4e8b-b3a3-f69587cd1e09 <=< ACCEPT -->Spline IK is a constraint which aligns a chain of bones along a curve. By leveraging the ease and flexibility of achieving aesthetically pleasing shapes offered by curves and the predictability and well integrated control offered by bones, Spline IK is an invaluable tool in the riggers' toolbox. It is particularly well suited for rigging flexible body parts such as tails, tentacles, and spines, as well as inorganic items such as ropes.<!-- ACCEPT >=> 37ae592a-498b-4e8b-b3a3-f69587cd1e09 -->
 Full description of the settings for the spline IK are detailed on the Spline IK &amp;lt;/rigging/constraints/tracking/spline_ik&amp;gt; page.
 Basic Setup
 The Spline IK Constraint is not strictly an 'Inverse Kinematics' method (i.e. IK Constraint), but rather a 'Forward Kinematics' method (i.e. normal bone posing). However, it still shares some characteristics of the IK Constraint, such as operating on multiple bones not being usable for Objects, and being evaluated after all other constraints have been evaluated. It should be noted that if a Standard IK chain and a Spline IK chain both affect a bone at the same time the Standard IK chain takes priority. Such setups are best avoided though, since the results may be difficult to control.
@@ -32986,7 +32986,7 @@ The locked local axis, i.e. the owner's axis which cannot be re-oriented to trac
 warning
 If you choose the same axis for To and Lock, the constraint will no longer be functional (red state).
 Spline IK Constraint
-The Spline IK constraint aligns a chain of bones along a curve. By leveraging the ease and flexibility of achieving aesthetically pleasing shapes offered by curves and the predictability and well-integrated control offered by bones, Spline IK is an invaluable tool in the riggers' toolbox. It is particularly well suited for rigging flexible body parts such as tails, tentacles, and spines, as well as inorganic items such as ropes.
+<!-- 37ae592a-498b-4e8b-b3a3-f69587cd1e09 <=< ACCEPT -->The Spline IK constraint aligns a chain of bones along a curve. By leveraging the ease and flexibility of achieving aesthetically pleasing shapes offered by curves and the predictability and well-integrated control offered by bones, Spline IK is an invaluable tool in the riggers' toolbox. It is particularly well suited for rigging flexible body parts such as tails, tentacles, and spines, as well as inorganic items such as ropes.<!-- ACCEPT >=> 37ae592a-498b-4e8b-b3a3-f69587cd1e09 -->
 <!-- fd3f458a-c9f5-47de-aea2-d49d7045b2a8 <=< ACCEPT -->To set up Spline IK, it is necessary to have a chain of connected bones and a curve to constrain these bones to:
 With the last bone in the chain selected, add a Spline IK constraint from the Bone Constraints tab in the Properties Editor.
 Set the 'Chain Length' setting to the number of bones in the chain (starting from and including the selected bone) that should be influenced by the curve.
