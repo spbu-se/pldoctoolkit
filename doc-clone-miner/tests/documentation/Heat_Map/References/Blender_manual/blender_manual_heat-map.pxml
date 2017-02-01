@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <plainxml>Build
 The building process is different for each operating system, instructions have been written for:
-Building on Linux
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Building on Linux
 Converting the rst files into pretty html pages.
 Open a terminal to the folder ~/blender_docs and simply run:
 make
@@ -16,8 +16,8 @@ make &amp;lt;chapter name&amp;gt;
 For example, to build only the documentation for the modifiers, use make modifiers. You can then view this quick build by opening build/html/contents_quicky.html.
 This will build very quickly, but it will mean your next complete build of all the chapters will be slow.
 
-Continue with the next step: Editing &amp;lt;/about/contribute/editing&amp;gt; .. highlight:: sh
-Building on macOS
+Continue with the next step: Editing &amp;lt;/about/contribute/editing&amp;gt; .. highlight:: sh<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Building on macOS
 Converting the rst files into pretty html pages.
 Open a terminal to the folder ~/blender_docs and simply run:
 make
@@ -32,7 +32,7 @@ make &amp;lt;chapter name&amp;gt;
 For example, to build only the documentation for the modifiers, use make modifiers. You can then view this quick build by opening build/html/contents_quicky.html.
 This will build very quickly, but it will mean your next complete build of all the chapters will be slow.
 
-Continue with the next step: Editing &amp;lt;/about/contribute/editing&amp;gt; .. highlight:: sh
+Continue with the next step: Editing &amp;lt;/about/contribute/editing&amp;gt; .. highlight:: sh<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Building on MS-Windows
 Converting the rst files into pretty html pages. There are two ways to run the build process.
 File browser
@@ -103,7 +103,7 @@ Redhat/Fedora
 sudo yum install python python-pip
 Arch Linux
 sudo pacman -S python python-pip subversion
-Downloading the Repository
+<!-- b69c2f69-6f43-4ec5-85e9-5dcd20f4ab45 <=< ACCEPT -->Downloading the Repository
 Simply check out the blender-manual repository using:
 cd ~
 svn checkout https://svn.blender.org/svnroot/bf-manual/trunk/blender_docs
@@ -115,7 +115,7 @@ Inside that folder is a file called requirements.txt which contains a list of al
 sudo pip install -r requirements.txt
 note
 Every now and then you may want to make sure your lib dependencies are up to date using:
-sudo pip install -r requirements.txt --upgrade
+sudo pip install -r requirements.txt --upgrade<!-- ACCEPT >=> b69c2f69-6f43-4ec5-85e9-5dcd20f4ab45 -->
 
 Continue with the next step: Building &amp;lt;/about/contribute/build/linux&amp;gt; .. highlight:: sh
 Installation on macOS
@@ -130,7 +130,7 @@ Install those packages or make sure you have them in your system.
 Python
 PIP
 Subversion
-Downloading the Repository
+<!-- b69c2f69-6f43-4ec5-85e9-5dcd20f4ab45 <=< ACCEPT -->Downloading the Repository
 Simply check out the blender-manual repository using:
 cd ~
 svn checkout https://svn.blender.org/svnroot/bf-manual/trunk/blender_docs
@@ -142,7 +142,7 @@ Inside that folder is a file called requirements.txt which contains a list of al
 sudo pip install -r requirements.txt
 note
 Every now and then you may want to make sure your dependencies are up to date using:
-sudo pip install -r requirements.txt --upgrade
+sudo pip install -r requirements.txt --upgrade<!-- ACCEPT >=> b69c2f69-6f43-4ec5-85e9-5dcd20f4ab45 -->
 
 Continue with the next step: Building &amp;lt;/about/contribute/build/macos&amp;gt;
 Installation on MS-Windows
@@ -2382,10 +2382,10 @@ Outputs
 Image
 Stereo 3D image output.
 Example
-Compositor, Backdrop and Split Viewer Node.
+<!-- c2fa8a62-3ac3-4335-8224-805e04ab00b7 <=< ACCEPT -->Compositor, Backdrop and Split Viewer Node.
 Compositor, Backdrop and Split Viewer Node.
 The views to render are defined in the current scene views, in a similar way as you define the composite output resolution in the current scene render panel, regardless of the Image nodes resolutions or Render Layers from different scenes.
-Corner Pin Node
+<!-- ACCEPT >=> c2fa8a62-3ac3-4335-8224-805e04ab00b7 -->Corner Pin Node
 Corner Pin Node.
 Corner Pin Node.
 The Corner Pin node uses explicit corner values for a plane warp transformation. It works like the Plane Track Deform node, but without using "plane track" data from the Movie Clip Editor.
@@ -3374,7 +3374,7 @@ Switch state may be animated by adding a keyframe &amp;lt;/animation/keyframes/i
 Box Mask Node
 Box Mask Node.
 Box Mask Node.
-The Box Mask node creates an image suitable for use as a simple matte.
+<!-- 907d4039-ad6b-48ad-85b4-2da21cbf9cc8 <=< ACCEPT -->The Box Mask node creates an image suitable for use as a simple matte.
 Inputs
 Mask
 An optional mask to use as the base for mask operations.
@@ -3403,7 +3403,7 @@ Outputs
 Mask
 A generated rectangular mask merged with the input mask. The created mask is the size of the current scene render dimensions.
 tip
-For soft edges, pass the output mask through a slight blur node &amp;lt;/compositing/types/filter/blur_node&amp;gt;.
+For soft edges, pass the output mask through a slight blur node &amp;lt;/compositing/types/filter/blur_node&amp;gt;.<!-- ACCEPT >=> 907d4039-ad6b-48ad-85b4-2da21cbf9cc8 -->
 Channel Key Node
 Channel Key Node.
 Channel Key Node.
@@ -3565,7 +3565,7 @@ Demo Video
 Ellipse Mask Node
 Ellipse Mask Node.
 Ellipse Mask Node.
-The Ellipse Mask node creates an image suitable for use as a simple matte or vignette mask.
+<!-- 907d4039-ad6b-48ad-85b4-2da21cbf9cc8 <=< ACCEPT -->The Ellipse Mask node creates an image suitable for use as a simple matte or vignette mask.
 Inputs
 Mask
 An optional mask to use as the base for mask operations.
@@ -3594,7 +3594,7 @@ Outputs
 Mask
 A generated elliptical mask merged with the input mask. The created mask is the size of the current scene render dimensions.
 tip
-For soft edges, pass the output mask through a slight blur node &amp;lt;/compositing/types/filter/blur_node&amp;gt;. For a vignette, pass the output of this through a heavy blur.
+For soft edges, pass the output mask through a slight blur node &amp;lt;/compositing/types/filter/blur_node&amp;gt;. For a vignette, pass the output of this through a heavy blur.<!-- ACCEPT >=> 907d4039-ad6b-48ad-85b4-2da21cbf9cc8 -->
 Matte Nodes
 These nodes give you the essential tools for creating a Matte for images that do not already have their own Alpha Channel. One usage scenario is blue-screen or green-screen footage, where live action is shot in front of a blue or green backdrop for replacement by a matte painting or virtual background.
 In general, hook up these nodes to a viewer, set your UV/Image Editor to show the viewer node, and play with the sliders in real-time using a sample image from the footage, to get the settings right. In some cases, small adjustments can eliminate artifacts or foreground image degradation. Taking out too much green can result in foreground actors looking flat or blueish/purplish.
@@ -7494,12 +7494,12 @@ Feather Reset Animation: Resets the feather offset across all animated frames.
 - Re-Key Points of Selected Shapes:
 Re-interpolate selected points on across the range of keys selected in the dope sheet.
 Movie Clip Properties
-Proxy/Timecode Panel
+<!-- 3c1b642d-1715-48c3-97db-515cbbd3502a <=< ACCEPT -->Proxy/Timecode Panel
 Once you have chosen the Proxy/Timecode parameters, you need to use Clip --&amp;gt; Proxy --&amp;gt; Rebuild Proxy and Timecode indices to generate the proxy clip and it will be available after Blender makes it.
 Proxy
 
 A proxy is a smaller image (faster to load) that stands in for the main image. When you rebuild proxies Blender computes small images (like thumbnails) for the big images and may take some time. After computing them, though, editing functions like scrubbing and scrolling is much faster but gives a low-res result. Make sure to disable proxies before final rendering.
-Build Original
+<!-- ACCEPT >=> 3c1b642d-1715-48c3-97db-515cbbd3502a -->Build Original
 Used to define which resolutions of proxy images should be built.
 Build Undistorted
 Builds images from undistorted original images for the sizes set above. This helps provide faster playback of undistorted footage.
@@ -7513,7 +7513,7 @@ Timecode
 See Timecode_.
 Proxy Render Size
 defines which proxy image resolution is used for display. If Render Undistorted is set, then images created from undistorted frames are used. If there is no generated proxies, render size is set to "No proxy, full render", and render undistorted is enabled, undistortion will happen automatically on frame draw.
-Timecode
+<!-- 9058eb35-d32f-45a3-8440-f3591c092be2 <=< ACCEPT -->Timecode
 When you are working with footage directly copied from a camera without pre-processing it, there might be bunch of artifacts, mostly due to seeking a given frame in sequence. This happens because such footage usually does not have correct frame rate values in their headers. So, for Blender to calculate the position of a needed frame in the stream works inaccurately and can give errant result. There are two possible ways to avoid this:
 Preprocess your video with, say, mencoder to repair file header and insert correct keyframes.
 Use Proxy/Timecode option in Blender.
@@ -7528,7 +7528,7 @@ Free Run (rec date)
 Record Run No Gaps
 note
 Record Run is the timecode which usually is best to use, but if the clip's file is totally damaged, Record Run No Gaps will be the only chance of getting acceptable result.
-Clip View
+<!-- ACCEPT >=> 9058eb35-d32f-45a3-8440-f3591c092be2 -->Clip View
 Introduction
 The clip view is used is the main part of the of the movie clip editor. Almost all motion tracking tools are concentrated in the Movie Clip Editor.
 It should be mentioned that the camera solver consists of three quite separate steps:
@@ -8623,9 +8623,9 @@ Example image.
 Example image.
 Example of Histogram Preview.
 Example of Histogram Preview.
-This mode displays a graph showing the distribution of color information in the pixels of the currently displayed image. The X-axis represents values of pixel, from 0 to 1 (or 0 to 255), while the Y-axis represents the number of pixels in that tonal range. A predominantly dark image would have most of its information toward the left side of the graph.
+<!-- e056d612-892d-429c-89dd-e2adac7b5039 <=< ACCEPT -->This mode displays a graph showing the distribution of color information in the pixels of the currently displayed image. The X-axis represents values of pixel, from 0 to 1 (or 0 to 255), while the Y-axis represents the number of pixels in that tonal range. A predominantly dark image would have most of its information toward the left side of the graph.
 Use this mode to balance out the tonal range in an image. A well balanced image should a nice smooth distribution of color values.
-Editing
+<!-- ACCEPT >=> e056d612-892d-429c-89dd-e2adac7b5039 -->Editing
 Moving and Modifying Strips
 G Moves the selected strip(s) in time or in channels. Move your mouse horizontally (left/right) to change the strip's position in time. Move vertically (up/down) to change channels.
 To snap while dragging hold Ctrl
@@ -8905,12 +8905,12 @@ Tone Map
 Used to map one set of colors to another in order to approximate the appearance of high dynamic range images in a medium that has a more limited dynamic range.
 note
 This modifier works the same as the Tone Map Node &amp;lt;/compositing/types/color/tone_map&amp;gt;
-Proxy/Timecode Panel
+<!-- 3c1b642d-1715-48c3-97db-515cbbd3502a <=< ACCEPT -->Proxy/Timecode Panel
 Once you have chosen the Proxy/Timecode parameters, you need to use Strip --&amp;gt; Rebuild Proxy and Timecode indices to generate the proxy clip and it will be available after Blender makes it.
 Proxy
 
 A proxy is a smaller image (faster to load) that stands in for the main image. When you Rebuild proxy Blender computes small images (like thumbnails) for the big images and may take some time. After computing them, though, editing functions like scrubbing and scrolling and compositing functions like cross using these proxies is much faster but gives a low-res result. Disable proxies before final rendering.
-In order to actually use the proxies, the proper Proxy Render Size selector value must be selected in the Properties region of the Sequencer View (where the edit plays back).
+<!-- ACCEPT >=> 3c1b642d-1715-48c3-97db-515cbbd3502a -->In order to actually use the proxies, the proper Proxy Render Size selector value must be selected in the Properties region of the Sequencer View (where the edit plays back).
 Proxy Storage
 Defines whether the proxies are for individual strips or the entire sequence.
 Per Strip
@@ -8935,7 +8935,7 @@ Set Selected Strip Proxies
 Same as choosing the Proxy Size and Overwrite.
 Rebuild Proxy and Timecode Indices
 Generates Proxies and Timecodes, same as doing Strip --&amp;gt; Rebuild Proxy and Timecode indices.
-Timecode
+<!-- 9058eb35-d32f-45a3-8440-f3591c092be2 <=< ACCEPT -->Timecode
 When you are working with footage directly copied from a camera without pre-processing it, there might be bunch of artifacts, mostly due to seeking a given frame in sequence. This happens because such footage usually does not have correct frame rate values in their headers. So, for Blender to calculate the position of a needed frame in the stream works inaccurately and can give errant result. There are two possible ways to avoid this:
 Preprocess your video with, say, mencoder to repair file header and insert correct keyframes.
 Use Proxy/Timecode option in Blender.
@@ -8950,7 +8950,7 @@ Free Run (rec date)
 Record Run No Gaps
 note
 Record Run is the timecode which usually is best to use, but if the clip's file is totally damaged, Record Run No Gaps will be the only chance of getting acceptable result.
-Sound Strips
+<!-- ACCEPT >=> 9058eb35-d32f-45a3-8440-f3591c092be2 -->Sound Strips
 As well as images and movies the VSE can also edit audio tracks. You can add WAV, mp3 and other audio formats files from your drive, or from sound encoded within a movie, and mix them using an F-Curve as a volume control.
 Example of Sound Editing.
 Example of Sound Editing.
@@ -9627,9 +9627,9 @@ Red, Green, Blue
 Single Color Channel visualized as a gray-scale image.
 Scopes
 Histogram
-This mode displays a graph showing the distribution of color information in the pixels of the currently displayed image. The X-axis represents values of pixel, from 0 to 1 (or 0 to 255), while the Y-axis represents the number of pixels in that tonal range. A predominantly dark image would have most of its information toward the left side of the graph.
+<!-- e056d612-892d-429c-89dd-e2adac7b5039 <=< ACCEPT -->This mode displays a graph showing the distribution of color information in the pixels of the currently displayed image. The X-axis represents values of pixel, from 0 to 1 (or 0 to 255), while the Y-axis represents the number of pixels in that tonal range. A predominantly dark image would have most of its information toward the left side of the graph.
 Use this mode to balance out the tonal range in an image. A well balanced image should a nice smooth distribution of color values.
-Luma
+<!-- ACCEPT >=> e056d612-892d-429c-89dd-e2adac7b5039 -->Luma
 Shows the luminacity of an image.
 RGB
 Shows the RGB (Red, Green, Blue) channels stacked on top of each other.
@@ -10661,7 +10661,7 @@ Force
 Force value to be used.
 N
 When on, use a horizontal spring force on slopes.
-M/P
+<!-- 164d1689-86ee-4a51-ad16-3e76e76ebd50 <=< ACCEPT -->M/P
 Trigger on another Object will be either Material (M) or Property (P).
 Property
 Property/Material that triggers the Force Field constraint (blank for all Properties/Materials).
@@ -10671,7 +10671,7 @@ Time
 Number of frames for which constraint remains active.
 RotDamp
 Damping factor for rotation.
-Constraint Actuator --&amp;gt; Orientation.
+Constraint Actuator --&amp;gt; Orientation.<!-- ACCEPT >=> 164d1689-86ee-4a51-ad16-3e76e76ebd50 -->
 Constraint Actuator --&amp;gt; Orientation.
 Orientation Constraint
 Constrain the specified axis in the Game to a specified direction in the World axis.
@@ -10703,7 +10703,7 @@ Force Distance
 Distance to be maintained between object and the Material/Property that triggers the Distance Constraint (-2000 to +2000 Blender Units).
 Damping
 Delay (frames) of the constraint response.
-M/P
+<!-- 164d1689-86ee-4a51-ad16-3e76e76ebd50 <=< ACCEPT -->M/P
 Trigger on another Object will be either Material (M) or Property (P).
 Property
 Property/Material that triggers the Force Field constraint (blank for all Properties/Materials).
@@ -10713,7 +10713,7 @@ Time
 Number of frames for which constraint remains active.
 Rotation Damping
 Damping factor for rotation.
-Constraint actuator --&amp;gt; Location.
+Constraint actuator --&amp;gt; Location.<!-- ACCEPT >=> 164d1689-86ee-4a51-ad16-3e76e76ebd50 -->
 Constraint actuator --&amp;gt; Location.
 Location Constraint
 Limit the position of the Game Object within one World Axis direction. To limit movement within an area or volume, use two or three constraints.
@@ -11858,7 +11858,7 @@ This will allow importing into other Bullet-based projects. See the Bullet Wiki 
 Character Physics
 TODO.
 Dynamic Physics
-Dynamic objects in the Game Engine &amp;lt;/game_engine/index&amp;gt; give/receive collisions, but when they do so they themselves do not rotate in response. So, a Dynamic ball will hit a ramp and slide down, while a Rigid Body ball would begin rotating.
+<!-- 5c2842a4-beed-4886-af91-94cd02a0d37b <=< ACCEPT -->Dynamic objects in the Game Engine &amp;lt;/game_engine/index&amp;gt; give/receive collisions, but when they do so they themselves do not rotate in response. So, a Dynamic ball will hit a ramp and slide down, while a Rigid Body ball would begin rotating.
 If you do not need the rotational response the Dynamic type can save the extra computation.
 Note that these objects can still be rotated with Logic Bricks &amp;lt;/game_engine/logic/index&amp;gt; or Python code. Their physics meshes will update when you do these rotations -- so collisions will be based on the new orientations.
 For more documentation, see the Top BGE Physics page &amp;lt;/game_engine/physics/index&amp;gt;.
@@ -11906,9 +11906,9 @@ Lock Rotation
 Same, but for rotation (also with respect to the global coordinates).
 X Python property: obj.game.lock_rotation_x
 Y Python property: obj.game.lock_rotation_y
-Z Python property: obj.game.lock_rotation_z
+Z Python property: obj.game.lock_rotation_z<!-- ACCEPT >=> 5c2842a4-beed-4886-af91-94cd02a0d37b -->
 Collision Bounds
-The first thing you must understand is the idea of the 3D Bounding Box. If you run through all the vertices of a mesh and record the lowest and highest x values, you have found the x min/max the complete boundary for all x values within the mesh. Do this again for y and z, then make a rectangular prism out of these values, and you have a Bounding Box. This box could be oriented relative globally to the world or locally to the object's rotation.
+<!-- b3449e3f-c4bd-4afc-8b58-10fb6b284bb2 <=< ACCEPT -->The first thing you must understand is the idea of the 3D Bounding Box. If you run through all the vertices of a mesh and record the lowest and highest x values, you have found the x min/max the complete boundary for all x values within the mesh. Do this again for y and z, then make a rectangular prism out of these values, and you have a Bounding Box. This box could be oriented relative globally to the world or locally to the object's rotation.
 Demonstration of a Local Bounding Box (left) and a Global Bounding Box (right).
 Demonstration of a Local Bounding Box (left) and a Global Bounding Box (right).
 The x extent, then, is half of the distance between the x min/max.
@@ -11947,7 +11947,7 @@ Margin
 Sometimes 0.06 is the default (such as on the Default Cube), but sometimes it is not. You have to keep an eye on the setting, or else learn the symptoms so you can respond when it gives you trouble. If you are lazy/paranoid/unsure/diligent/bored, you can always run this on the Python Console to bump all 0.0 margins to 0.06: for obj in bpy.data.objects: obj.game.collision_margin = obj.game.collision_margin or 0.06
 Compound
 "Add children to form compound collision object." Basically, if you have a child object and do not have this enabled, the child's collisions will not have an effect on that object "family" (though it will still push other objects around). If you do have it checked, the parent's physics will respond to the child's collision (thus updating the whole family). Python property: obj.game.use_collision_compound
-Create Obstacle
+Create Obstacle<!-- ACCEPT >=> b3449e3f-c4bd-4afc-8b58-10fb6b284bb2 -->
 Todo
 Navigation Mesh Physics
 Path-finding in Blender is based on the concept of navigation meshes &amp;lt;http://en.wikipedia.org/wiki/Navigation_mesh&amp;gt;. Now you can create navigation mesh for your level geometry directly in Blender and use it in Blender Game Engine (BGE) to get your actors to find path to the target and move along it. Besides path following, there are also a few other steering behaviors which can be assigned to the actor: seek and flee. Path-finding with navigation mesh is effective for big static obstacles. To enable actors to avoid small dynamic objects during their movement local obstacle avoidance can be used. If the obstacle simulation is enabled the actor will try to choose direction which is free of collision with obstacles on each frame during execution one of the steering behaviors.
@@ -12002,7 +12002,7 @@ Example: a house full of complex objects. Although occlusion culling will perfor
 - Occluders can be visible graphic objects but beware that too many faces will make the Z Depth buffer creation slow.
 For example, a terrain is not a good candidate for occlusion: too many faces and too many overlap. Occluder can be invisible objects placed inside more complex objects (ex: "in the walls" of a building with complex architecture). Occluders can have "holes" through which you will see objects.
 Rigid Body Physics
-Probably the most common type of object in the Game Engine &amp;lt;/game_engine/index&amp;gt;. It will give/receive collisions and react with a change in its velocity and its rotation. A Rigid Body ball would begin rotating and roll down (where a Dynamic &amp;lt;/game_engine/physics/types/dynamic&amp;gt; ball would only hit and slide down the ramp).
+<!-- 5c2842a4-beed-4886-af91-94cd02a0d37b <=< ACCEPT -->Probably the most common type of object in the Game Engine &amp;lt;/game_engine/index&amp;gt;. It will give/receive collisions and react with a change in its velocity and its rotation. A Rigid Body ball would begin rotating and roll down (where a Dynamic &amp;lt;/game_engine/physics/types/dynamic&amp;gt; ball would only hit and slide down the ramp).
 The idea behind Rigid Body dynamics is that the mesh does not deform. If you need deformation you will need to either go to Soft Body &amp;lt;/game_engine/physics/types/soft_body&amp;gt; or else fake it with animated Actions.
 For more documentation, see the Top BGE Physics page &amp;lt;/game_engine/physics/index&amp;gt;.
 Options
@@ -12048,9 +12048,9 @@ Lock Rotation
 Same, but for rotation (also with respect to the global coordinates).
 X Python property: obj.game.lock_rotation_x
 Y Python property: obj.game.lock_rotation_y
-Z Python property: obj.game.lock_rotation_z
+Z Python property: obj.game.lock_rotation_z<!-- ACCEPT >=> 5c2842a4-beed-4886-af91-94cd02a0d37b -->
 Collision Bounds
-The first thing you must understand is the idea of the 3D Bounding Box. If you run through all the vertices of a mesh and record the lowest and highest x values, you have found the x min/max the complete boundary for all x values within the mesh. Do this again for y and z, then make a rectangular prism out of these values, and you have a Bounding Box. This box could be oriented relative globally to the world or locally to the object's rotation.
+<!-- b3449e3f-c4bd-4afc-8b58-10fb6b284bb2 <=< ACCEPT -->The first thing you must understand is the idea of the 3D Bounding Box. If you run through all the vertices of a mesh and record the lowest and highest x values, you have found the x min/max the complete boundary for all x values within the mesh. Do this again for y and z, then make a rectangular prism out of these values, and you have a Bounding Box. This box could be oriented relative globally to the world or locally to the object's rotation.
 Demonstration of a Local Bounding Box (left) and a Global Bounding Box (right).
 Demonstration of a Local Bounding Box (left) and a Global Bounding Box (right).
 The x extent, then, is half of the distance between the x min/max.
@@ -12089,7 +12089,7 @@ Margin
 Sometimes 0.06 is the default (such as on the Default Cube), but sometimes it is not. You have to keep an eye on the setting, or else learn the symptoms so you can respond when it gives you trouble. If you are lazy/paranoid/unsure/diligent/bored, you can always run this on the Python Console to bump all 0.0 margins to 0.06: for obj in bpy.data.objects: obj.game.collision_margin = obj.game.collision_margin or 0.06
 Compound
 "Add children to form compound collision object." Basically, if you have a child object and do not have this enabled, the child's collisions will not have an effect on that object "family" (though it will still push other objects around). If you do have it checked, the parent's physics will respond to the child's collision (thus updating the whole family). Python property: obj.game.use_collision_compound
-Create Obstacle
+Create Obstacle<!-- ACCEPT >=> b3449e3f-c4bd-4afc-8b58-10fb6b284bb2 -->
 Todo .. TODO/Review: {{review|partial=X|text=sections}}.
 Sensor Physics
 The object detects static and dynamic objects but not other collisions sensors objects. The Sensor is similar to the physics objects that underlie the Near and Radar sensors. Like the Near and Radar object it is:
@@ -12130,7 +12130,7 @@ Soft Body Physics
 The most advanced type of object in the Game Engine &amp;lt;/game_engine/index&amp;gt;. Also, it is the most finicky. If you are used to the fun experimentation that comes from playing around with the non-BGE Soft Body sims (such as Cloth), you will probably find a frustrating lack of options and exciting results. Do not despair, we are here to help you get some reasonable settings.
 Your setup will involve making sure you have sufficient geometry in the Soft Body's mesh to support the deformation, as well as tweaking the options.
 Options
-Actor
+<!-- 6bb34ca6-435a-4886-a7b2-5377be7d6129 <=< ACCEPT -->Actor
 Enables detection by Near and Radar Sensors.
 Default: On.
 Python property: obj.game.use_actor
@@ -12142,7 +12142,7 @@ Invisible
 Does not display, the same as setting the object to unrendered (such as unchecking the "Camera" icon in the Outliner).
 Default: Off.
 Python property: obj.use_render
-Mass
+<!-- ACCEPT >=> 6bb34ca6-435a-4886-a7b2-5377be7d6129 -->Mass
 Affects the reaction due to collision between objects --more massive objects have more inertia. Will also affect material force fields. Will also change behaviors if you are using the suspension and steering portions of Bullet physics.
 Range: 0.01 - 10,000.
 Default: 1.
@@ -12210,7 +12210,7 @@ Options
 note
 bpy Access
 Note that most of these properties are accessible through the non-BGE scripting API via bpy.data.objects["ObjectName"].game, which is of type bpy.types.GameObjectSetting. This is useful so you can, for example, set a range of objects to have gradated values via a for-loop.
-Actor
+<!-- 6bb34ca6-435a-4886-a7b2-5377be7d6129 <=< ACCEPT -->Actor
 Enables detection by Near and Radar Sensors.
 Default: On.
 Python property: obj.game.use_actor
@@ -12222,14 +12222,14 @@ Invisible
 Does not display, the same as setting the object to unrendered (such as unchecking the "Camera" icon in the Outliner).
 Default: Off.
 Python property: obj.use_render
-Radius
+<!-- ACCEPT >=> 6bb34ca6-435a-4886-a7b2-5377be7d6129 -->Radius
 If you have the "Collision Bounds: Sphere" set explicitly (or implicitly through having the Collision Bounds subpanel unchecked), this will multiply with the Object's (unapplied) Scale. Note that none of the other bounds types are affected. Also note that in the 3D View the display will show this for all types, even though it is only actually used with Sphere. Python property: obj.game.radius
 Anisotropic Friction
 Isotropic friction is identical at all angles. Anisotropic is directionally-dependant. Here you can vary the coefficients for the three axes individually, or disable friction entirely. Python properties: obj.game.use_anisotropic_friction (boolean) and obj.game.friction_coefficients (a 3-element array).
 Collision Bounds
 note
 The Static type differs from the others in that it defaults to a Triangle Mesh bounds, instead of a simple sphere.
-The first thing you must understand is the idea of the 3D Bounding Box. If you run through all the vertices of a mesh and record the lowest and highest x values, you have found the x min/max the complete boundary for all x values within the mesh. Do this again for y and z, then make a rectangular prism out of these values, and you have a Bounding Box. This box could be oriented relative globally to the world or locally to the object's rotation.
+<!-- b3449e3f-c4bd-4afc-8b58-10fb6b284bb2 <=< ACCEPT -->The first thing you must understand is the idea of the 3D Bounding Box. If you run through all the vertices of a mesh and record the lowest and highest x values, you have found the x min/max the complete boundary for all x values within the mesh. Do this again for y and z, then make a rectangular prism out of these values, and you have a Bounding Box. This box could be oriented relative globally to the world or locally to the object's rotation.
 Demonstration of a Local Bounding Box (left) and a Global Bounding Box (right).
 Demonstration of a Local Bounding Box (left) and a Global Bounding Box (right).
 The x extent, then, is half of the distance between the x min/max.
@@ -12268,7 +12268,7 @@ Margin
 Sometimes 0.06 is the default (such as on the Default Cube), but sometimes it is not. You have to keep an eye on the setting, or else learn the symptoms so you can respond when it gives you trouble. If you are lazy/paranoid/unsure/diligent/bored, you can always run this on the Python Console to bump all 0.0 margins to 0.06: for obj in bpy.data.objects: obj.game.collision_margin = obj.game.collision_margin or 0.06
 Compound
 "Add children to form compound collision object." Basically, if you have a child object and do not have this enabled, the child's collisions will not have an effect on that object "family" (though it will still push other objects around). If you do have it checked, the parent's physics will respond to the child's collision (thus updating the whole family). Python property: obj.game.use_collision_compound
-Create Obstacle
+Create Obstacle<!-- ACCEPT >=> b3449e3f-c4bd-4afc-8b58-10fb6b284bb2 -->
 Todo
 Vehicle Controller Physics
 Introduction
@@ -12739,7 +12739,7 @@ Horizon Color
 The RGB color at the horizon; i.e. the color and intensity of any areas in the scene which are not filled explicitly.
 Ambient Color
 Ambient light mimics an overall background illumination obtained from diffusing surfaces (see Ambient Light &amp;lt;/render/blender_render/lighting/index&amp;gt;, Exposure &amp;lt;/render/post_process/color_management&amp;gt; and Ambient Occlusion &amp;lt;/render/blender_render/world/ambient_occlusion&amp;gt;). Its general color and intensity are set by these controls.
-Environmental Lighting
+<!-- ca85a818-b8f7-4ac9-81c2-1eeab7ee9038 <=< ACCEPT -->Environmental Lighting
 Environment light provides light coming from all directions.
 Light is calculated with a ray-traced method which is the same as that used by Ambient Occlusion. The difference is that Environment lighting takes into account the "ambient" parameter of the material shading settings, which indicates the amount of ambient light/color that that material receives.
 Also, you can choose the environment color source (white, sky color, sky texture) and the light energy.
@@ -12748,7 +12748,7 @@ Defines the strength of environment light.
 Environment Color
 Defines where the color of the environment light comes from.
 Using both settings simultaneously produces better global lighting.
-It is good for mimicking the sky in outdoor lighting. Environment lighting can be fairly noisy at times.
+It is good for mimicking the sky in outdoor lighting. Environment lighting can be fairly noisy at times.<!-- ACCEPT >=> ca85a818-b8f7-4ac9-81c2-1eeab7ee9038 -->
 Mist
 Mist can greatly enhance the illusion of depth in your rendering. To create mist, Blender makes objects farther away more transparent (decreasing their Alpha value) so that they mix more of the background color with the object color. With Mist enabled, the further the object is away from the camera the less it is alpha value will be. For full details, see Mist &amp;lt;/render/blender_render/world/mist&amp;gt;.
 Mist
@@ -14374,7 +14374,7 @@ Poly
 B?zier Curve with strait line segments (auto handles).
 B?zier
 Tolerance
-Lower values give a result that is closer to the drawing stroke, while higher values give more smoothed results.
+<!-- e00886c6-c264-4da9-8896-8f8b6ec569a0 <=< ACCEPT -->Lower values give a result that is closer to the drawing stroke, while higher values give more smoothed results.
 Method
 Refit
 Incrementally re-fits the curve (gives best results).
@@ -14384,7 +14384,7 @@ Detect Corners
 Detects corners and uses non-aligned handles for them.
 Corner Angle
 Any angles above this are considered corners.
-Pressure Radius
+<!-- ACCEPT >=> e00886c6-c264-4da9-8896-8f8b6ec569a0 -->Pressure Radius
 Min
 Minimum radius when the minimum pressure is applied (also the minimum when tapering)
 Max
@@ -14412,14 +14412,14 @@ Draw Curve panel.
 Draw Curve panel.
 These option can be found in the Redo Last Panel &amp;lt;ui-redo-last&amp;gt;.
 Error
-Error distance in object units. This can be seen similar to a subdivision rate for the curve. Lower values give a result that is closer to the drawing stroke while higher values give more smoothed results.
+Error distance in object units. This can be seen similar to a subdivision rate for the curve. <!-- e00886c6-c264-4da9-8896-8f8b6ec569a0 <=< ACCEPT -->Lower values give a result that is closer to the drawing stroke while higher values give more smoothed results.
 Fit Method
 Refit
 Incrementally re-fits the curve (gives best results).
 Split
 Splits the curve until the tolerance is met (gives better drawing performance).
 Corner Angle
-Any angles above this are considered corners.
+Any angles above this are considered corners.<!-- ACCEPT >=> e00886c6-c264-4da9-8896-8f8b6ec569a0 -->
 Cyclic
 Toggles whether or not the curve is Cyclic.
 Editing
@@ -14850,7 +14850,7 @@ Reference
 Mode: Edit Mode
 Menu: Select --&amp;gt; More/Less
 Hotkey: Ctrl-NumpadPlus/Ctrl-NumpadMinus
-Their purpose, based on the currently selected control points, is to reduce or enlarge this selection.
+<!-- 5c2f4185-aca2-460e-b981-e338d9e3ce9d <=< ACCEPT -->Their purpose, based on the currently selected control points, is to reduce or enlarge this selection.
 More
 For each selected control point, select all its linked points (i.e. one or two...).
 Less
@@ -14858,7 +14858,7 @@ For each selected control point, if all points linked to this point are selected
 This implies two points:
 First, when all control points of a curve are selected, nothing will happen (as for Less, all linked points are always selected, and of course, More cannot add any). Conversely, the same goes when no control points are selected.
 - Second, these tools will never "go outside" of a curve
-(they will never "jump" to another curve in the same object).
+(they will never "jump" to another curve in the same object).<!-- ACCEPT >=> 5c2f4185-aca2-460e-b981-e338d9e3ce9d -->
 Empties
 The "Empty" is a single coordinate point with no additional geometry. Because an Empty has no volume and surface, it cannot be rendered. Still it can be used as a handle for many purposes.
 Editing
@@ -15171,7 +15171,7 @@ Add data layers on destination meshes if needed.
 Vertex Mapping
 Method used to map source vertices to destination ones. Because the options change depending on the Data Type options are explained in Vertex Mapping_ below.
 Vertex Mapping
-Topology
+<!-- a2149700-10d4-4e0f-bf02-9d69be5cc044 <=< ACCEPT -->Topology
 The simplest option, expects both meshes to have identical number of items, and match them by order (indices). Useful e.g. between meshes that were identical copies, and got deformed differently.
 One-To-One Mappings
 Those always select only one source item for each destination one, often based on shortest distance.
@@ -15223,7 +15223,7 @@ Uses point of face on source hit by projection of destination corner along its o
 Faces
 Projected Face Interpolated
 This is a sampling process. Several rays are cast from the whole destination’s face (along its own normal), and if enough of them hit a source’s face, all hit source faces’ data are interpolated into destination one.
-
+<!-- ACCEPT >=> a2149700-10d4-4e0f-bf02-9d69be5cc044 -->
 Auto Transform
 Automatically computes the transformation to get the best possible match between source and destination meshes.
 Object Transform
@@ -15236,7 +15236,7 @@ Ray Radius
 Width of rays. Useful when raycasting against vertices or edges.
 Mix Mode
 How to affect destination elements with source values.
-All
+<!-- 2cb94cf6-379b-4686-93c4-047faf09f80e <=< ACCEPT -->All
 Replaces everything in destination (note that Mix Factor is still used).
 Above Threshold
 Only replaces destination value if it is above given threshold Mix Factor. How that threshold is interpreted depends on data type, note that for boolean values this option fakes a logical AND.
@@ -15246,7 +15246,7 @@ Mix, Add, Subtract, Multiply
 Apply that operation, using mix factor to control how much of source or destination value to use. Only available for a few types (vertex groups, vertex colors).
 Mix Factor
 How much of the transfered data gets mixed into existing one (not supported by all data types).
-Data Layout
+<!-- ACCEPT >=> 2cb94cf6-379b-4686-93c4-047faf09f80e -->Data Layout
 Reference
 Mode: Object Mode
 Panel: Tool Shelf --&amp;gt; Tools --&amp;gt; Edit --&amp;gt; Data Layout
@@ -16253,14 +16253,14 @@ Usage
 Select the elements you want to operate on and activate the Shear transform function. The Shear option can be invoked from the Object/Mesh/Curve/Surface --&amp;gt; Transform --&amp;gt; Shear menu option or by pressing Shift-Ctrl-Alt-S. The amount of movement given to the selection can be determined interactively by moving the mouse or by typing a number. Pressing Return will confirm the transformation. The confirmed transformation can be further edited by pressing F6 or by going into the Tool Shelf and altering the Offset slider provided that no other actions take place between the Shear transform confirmation and accessing the slider.
 Note that the result of the Shear transform is also dependant on the number and type of selected elements (Objects, vertices, faces etc). See below for the result of using Shear on a number of different elements.
 The effects of a Shear transform with different Pivot Points. See the text below for additional information.
-The effects of a Shear transform with different Pivot Points. See the text below for additional information.
+<!-- d13af16c-2df4-4414-b79a-60dab51d9190 <=< ACCEPT -->The effects of a Shear transform with different Pivot Points. See the text below for additional information.
 The three frames of the image above show the effects of shearing on the selected vertices when the pivot point is altered. In frame B, the Pivot Point &amp;lt;/editors/3dview/object/transform/control/pivot_point/index&amp;gt; is set to Median Point (indicated by the yellow line) and the mouse was moved to the left during the transform. In frame C, the Pivot Point is set to the 3D cursor which is located above the mesh (indicated again by the yellow line). When the mouse is moved to the left during a Shear transform the selected vertices are moved to the right as they are below the horizontal axis.
 tip
 Shear transform magnitude
-The magnitude of the Shear transform applied to the selected elements is directly proportional to the distance from the horizontal axis. i.e. the further from the axis, the greater the movement.
+The magnitude of the Shear transform applied to the selected elements is directly proportional to the distance from the horizontal axis.<!-- ACCEPT >=> d13af16c-2df4-4414-b79a-60dab51d9190 --> i.e. the further from the axis, the greater the movement.
+<!-- d13af16c-2df4-4414-b79a-60dab51d9190 <=< ACCEPT -->The effects of a Shear transform on Objects with different Pivot Points. See the text below for additional information.
 The effects of a Shear transform on Objects with different Pivot Points. See the text below for additional information.
-The effects of a Shear transform on Objects with different Pivot Points. See the text below for additional information.
-The three frames of the image above show the effects of shearing on the selected Objects when the Pivot Point is altered. In frame B, the Pivot Point is set to Median Point (indicated by the yellow line) and the mouse was moved to the left during the transform. In frame C, the Pivot Point is set to the 3D cursor which is located above the Objects (indicated again by the yellow line). When the mouse is moved to the left during a Shear transform all of the selected Objects are moved to the right as they are below the horizontal axis. Again, note that the magnitude of the transform is proportional to the distance from the horizontal axis. In this case, the lower Objects move further than the upper ones.
+The three frames of the image above show the effects of shearing on the selected Objects when the Pivot Point is altered. In frame B, the Pivot Point is set to Median Point (indicated by the yellow line) and the mouse was moved to the left during the transform. In frame C, the Pivot Point is set to the 3D cursor which is located above the Objects (indicated again by the yellow line). When the mouse is moved to the left during a Shear transform all of the selected Objects are moved to the right as they are below the horizontal axis. Again, note that the magnitude of the transform is proportional to the distance from the horizontal axis.<!-- ACCEPT >=> d13af16c-2df4-4414-b79a-60dab51d9190 --> In this case, the lower Objects move further than the upper ones.
 Shrink Fatten
 Reference
 Mode: Edit Mode
@@ -18738,7 +18738,7 @@ Ray Radius
 For ray-casting-based mapping methods, the radius of the cast rays. Especially important for 1D and 2D items (i.e. vertices and edges), without some width there would be nearly no ray-casting matches...
 Mix Mode
 Controls how destination data are affected:
-All
+<!-- 2cb94cf6-379b-4686-93c4-047faf09f80e <=< ACCEPT -->All
 Replaces everything in destination (note that Mix Factor is still used).
 Above Threshold
 Only replaces destination value if it’s above given threshold Mix Factor. How that threshold is interpreted depends on data type, note that for boolean values this option fakes a logical AND.
@@ -18748,7 +18748,7 @@ Mix, Add, Subtract, Multiply
 Apply that operation, using mix factor to control how much of source or destination value to use. Only available for a few types (vertex groups, vertex colors).
 Mix Factor
 How much of the transfered data gets mixed into existing one (not supported by all data types).
-Vertex Group
+<!-- ACCEPT >=> 2cb94cf6-379b-4686-93c4-047faf09f80e -->Vertex Group
 Allows per-item fine control of the mix factor. Vertex group influence can be reverted using the small "arrow" button to the right.
 Generate Data Layers
 This modifier cannot generate needed data layers itself. Once the set of source data to transfer is selected, this button shall be used to generate matching destination layers.
@@ -18766,7 +18766,7 @@ Usage
 First key thing to keep in mind when using this modifier is that it will not create destination data layers. Generate Data Layers button shall always be used for this purpose, once set of source data to transfer is selected. It should also be well understood that creating those data layers on destination mesh is not part of the modifier stack, which means e.g. that they will remain even once the modifier is deleted, or if source data selection is modified.
 Geometry Mapping
 Geometry mapping is the process by which a given destination vertex/edge/... knows which part of the source mesh to get its data from. It is crucial to understand this topic well to get good results with this modifier.
-Topology
+<!-- a2149700-10d4-4e0f-bf02-9d69be5cc044 <=< ACCEPT -->Topology
 The simplest option, expects both meshes to have identical number of items, and match them by order (indices). Useful e.g. between meshes that were identical copies, and got deformed differently.
 One-To-One Mappings
 Those always select only one source item for each destination one, often based on shortest distance.
@@ -18818,7 +18818,7 @@ Uses point of face on source hit by projection of destination corner along its o
 Faces
 Projected Face Interpolated
 This is a sampling process. Several rays are cast from the whole destination’s face (along its own normal), and if enough of them hit a source’s face, all hit source faces’ data are interpolated into destination one.
-Mesh Cache Modifier
+<!-- ACCEPT >=> a2149700-10d4-4e0f-bf02-9d69be5cc044 -->Mesh Cache Modifier
 The Mesh Cache Modifier is used so animated mesh data can be applied to a mesh and played back, deforming the mesh.
 This works in a similar way to shape-keys but is aimed at playing back external files and is often used for interchange between applications.
 note
@@ -18869,7 +18869,7 @@ tip
 Both MDD and PC2 depend on the vertex order on the mesh remaining unchanged; this is a limitation with the method used so take care not to add/remove vertices once this modifier is used.
 Mesh Sequence Cache Modifier
 The Mesh Sequence Cache Modifier is used to TODO. Despite its name, this modifier supports meshes and curves. It also handles file sequences, as well as meshes and curves with varying number of vertices/control points.
-Options
+<!-- 8bfba5fe-3e12-4e81-b2f5-39a96d26c8c6 <=< ACCEPT -->Options
 Cache File
 Data-block menu to select the Alembic file.
 File Path
@@ -18881,7 +18881,7 @@ Whether to use a custom frame for looking up data in the cache file, instead of 
 Frame
 The time to use for looking up the data in the cache file, or to determine which to use in a file sequence.
 Manual Transform Scale
-Value by which to enlarge or shrink the object with respect to the world's origin. (only applicable through a Transform Cache Constraint &amp;lt;/rigging/constraints/transform/transform_cache&amp;gt;)
+Value by which to enlarge or shrink the object with respect to the world's origin.<!-- ACCEPT >=> 8bfba5fe-3e12-4e81-b2f5-39a96d26c8c6 --> (only applicable through a Transform Cache Constraint &amp;lt;/rigging/constraints/transform/transform_cache&amp;gt;)
 Object Path
 The path to the Alembic object inside the archive.
 Read Data
@@ -18997,7 +18997,7 @@ Random
 Uses a random value for each vertex.
 Median Step
 Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.
-Influence/Mask Options
+<!-- 2a43b5ec-0cda-4fb1-abca-f0f95ffb416f <=< ACCEPT -->Influence/Mask Options
 Global Influence
 The overall influence of the modifier (0.0 will leave the vertex group's weights untouched, 1.0 is standard influence).
 warning
@@ -19038,7 +19038,7 @@ Uses the saturation value (e.g. pure red's value is 1.0, gray is 0.0)
 note
 All of the channels above are gamma corrected, except for Intensity.
 note
-You can view the modified weights in Weight Paint Mode. This also implies that you will have to disable the Vertex Weight Edit Modifier if you want to see the original weights of the vertex group you are editing.
+You can view the modified weights in Weight Paint Mode. This also implies that you will have to disable the Vertex Weight Edit Modifier if you want to see the original weights of the vertex group you are editing.<!-- ACCEPT >=> 2a43b5ec-0cda-4fb1-abca-f0f95ffb416f -->
 Example
 Using Distance from a Target Object's Geometry
 We are going to illustrate this with a Displace Modifier.
@@ -19097,7 +19097,7 @@ Vertices from both groups
 Affects only vertices belonging to both vertex groups.
 warning
 When using All vertices, Vertices from group B or Vertices from one group, vertices might be added to the affected vertex group.
-Influence/Mask Options
+<!-- 2a43b5ec-0cda-4fb1-abca-f0f95ffb416f <=< ACCEPT -->Influence/Mask Options
 Global Influence
 The overall influence of the modifier (0.0 will leave the vertex group's weights untouched, 1.0 is standard influence).
 warning
@@ -19139,7 +19139,7 @@ note
 All of the channels above are gamma corrected, except for Intensity.
 note
 You can view the modified weights in Weight Paint Mode. This also implies that you will have to disable the Vertex Weight Mix Modifier if you want to see the original weights of the vertex group you are editing.
-Example
+<!-- ACCEPT >=> 2a43b5ec-0cda-4fb1-abca-f0f95ffb416f -->Example
 Using a Texture and the Mapping Curve
 Here we are going to create a sort of strange alien wave (yes, another example with the Wave Modifier... but it is a highly visual one; it is easy to see the vertex group effects on it...).
 So as above, add a 100*100 grid. This time, add a vertex group, but without assigning any vertex to it -- we will do this dynamically.
@@ -19193,7 +19193,7 @@ Random
 Uses a random value for each vertex.
 Median Step
 Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.
-Influence/Mask Options
+<!-- 2a43b5ec-0cda-4fb1-abca-f0f95ffb416f <=< ACCEPT -->Influence/Mask Options
 Global Influence
 The overall influence of the modifier (0.0 will leave the vertex group's weights untouched, 1.0 is standard influence).
 warning
@@ -19235,7 +19235,7 @@ note
 All of the channels above are gamma corrected, except for Intensity.
 note
 You can view the modified weights in Weight Paint Mode. This also implies that you will have to disable the Vertex Weight Proximity Modifier if you want to see the original weights of the vertex group you are editing.
-Example
+<!-- ACCEPT >=> 2a43b5ec-0cda-4fb1-abca-f0f95ffb416f -->Example
 Using Distance from a Target Object
 In this example let us dynamically control a Wave Modifier with a modified vertex group:
 1. Add a Grid mesh with (100*100) x/y subdivisions and a 5 BU Radius.
@@ -19606,7 +19606,7 @@ Reference
 Mode: Edit Mode
 Menu: Select --&amp;gt; More/Less
 Hotkey: Ctrl-NumpadPlus / Ctrl-NumpadMinus
-These two options are complementary and very similar to those for meshes &amp;lt;/modeling/meshes/selecting/introduction&amp;gt;. Their purpose, based on current selected control points, is to reduce or enlarge this selection.
+<!-- 5c2f4185-aca2-460e-b981-e338d9e3ce9d <=< ACCEPT -->These two options are complementary and very similar to those for meshes &amp;lt;/modeling/meshes/selecting/introduction&amp;gt;. Their purpose, based on current selected control points, is to reduce or enlarge this selection.
 The algorithm is the same as with meshes:
 More
 for each selected control point, select all its linked points (i.e. two, three or four).
@@ -19614,7 +19614,7 @@ Less
 for each selected control point, if all points linked to this point are selected, keep it selected. For all other selected control points, de-select them.
 This implies two points:
 First, when all control points of a surface are selected, nothing will happen (as for Less, all linked points are always selected, and of course, More cannot add any). Conversely, the same goes when no control point is selected.
-Second, these tools will never "go outside" of a surface (they will never "jump" to another surface in the same object).
+Second, these tools will never "go outside" of a surface (they will never "jump" to another surface in the same object).<!-- ACCEPT >=> 5c2f4185-aca2-460e-b981-e338d9e3ce9d -->
 Structure
 Many of the concepts from curves &amp;lt;/modeling/curves/introduction&amp;gt;, especially NURBS &amp;lt;/modeling/curves/nurbs&amp;gt; ones, carry directly over to NURBS surfaces, such as control points, Order, Weight, Resolution, etc. Here we will just talk about the differences.
 It is very important to understand the difference between NURBS curves and NURBS surfaces: the first one has one dimension, the latter has two. Blender internally treats NURBS surfaces and NURBS curves completely differently. There are several attributes that separate them but the most important is that a NURBS curve has a single interpolation axis (U) and a NURBS surface has two interpolation axes (U and V).
@@ -20943,7 +20943,7 @@ Emits hair particles from the volume of an enclosed mesh.
 Random
 Hair particles are emitted in a random order.
 Even Distribution
-Hair particle distribution is made even based on surface area of the elements, i.e. small elements emit less particles than large elements, so that the particle density is even.
+<!-- ae998774-c22d-4429-b114-82e58166f00c <=< ACCEPT -->Hair particle distribution is made even based on surface area of the elements, i.e. small elements emit less particles than large elements, so that the particle density is even.
 Distribution
 Jittered
 Particles are placed at jittered intervals on the emitter elements.
@@ -20952,7 +20952,7 @@ Number of emissions per face (0 = automatic).
 Jittering Amount
 Amount of jitter applied to the sampling.
 Random
-Particles are emitted from random locations in the emitter's elements.
+Particles are emitted from random locations in the emitter's elements.<!-- ACCEPT >=> ae998774-c22d-4429-b114-82e58166f00c -->
 Use Modifier Stack
 Take any Modifiers &amp;lt;/modeling/modifiers/introduction&amp;gt; above the Particle Modifier in the modifier stack &amp;lt;modifier-stack&amp;gt; into account when emitting particles.
 note
@@ -21191,12 +21191,12 @@ The settings in the Particle System tab are partially different for each system 
 Cache
 Particles Cache Settings.
 Particles Cache Settings.
-Emitter systems use a unified system for caching and baking (together with softbody and cloth). The results of the simulation are automatically cached to disk when the animation is played, so that the next time it runs, it can play again quickly by reading in the results from the disk. If you Bake the simulation the cache is protected and you will be asked when you are trying to change a setting that will make a recalculating necessary.
+<!-- 4ac2a979-34ca-4c6c-a8b7-fc5a3fc2c00a <=< ACCEPT -->Emitter systems use a unified system for caching and baking (together with softbody and cloth). The results of the simulation are automatically cached to disk when the animation is played, so that the next time it runs, it can play again quickly by reading in the results from the disk. If you Bake the simulation the cache is protected and you will be asked when you are trying to change a setting that will make a recalculating necessary.
 tip
 Beware of the Start and End Settings
 The simulation is only calculated for the positive frames in-between the Start and End frames of the Bake panel, whether you bake or not. So if you want a simulation longer than 250 frames you have to change the End frame!
 Caching
-As animation is played, each physics system writes each frame to disk, between the simulation start and end frames. These files are stored in folders with prefix blendcache, next to the blend-file. Note that for the cache to fill up, one has to start playback before or on the frame that the simulation starts.
+As animation is played, each physics system writes each frame to disk, between the simulation start and end frames. These files are stored in folders with prefix blendcache, next to the blend-file.<!-- ACCEPT >=> 4ac2a979-34ca-4c6c-a8b7-fc5a3fc2c00a --> Note that for the cache to fill up, one has to start playback before or on the frame that the simulation starts.
 The cache is cleared automatically on changes. But not on all changes, so it may be necessary to free it manually e.g. if you change a force field.
 If it is impossible to write in the subdirectory there will be no caching.
 The cache can be freed per physics system with a button in the panels, or with the Ctrl-B shortcut key to free it for all selected objects.
@@ -21360,7 +21360,7 @@ Random
 The emitter element indices are gone through in a random order instead of linearly (one after the other).
 For Faces and Volume, additional options appear:
 Even Distribution
-Particle distribution is made even based on surface area of the elements, i.e. small elements emit less particles than large elements, so that the particle density is even.
+<!-- ae998774-c22d-4429-b114-82e58166f00c <=< ACCEPT -->Particle distribution is made even based on surface area of the elements, i.e. small elements emit less particles than large elements, so that the particle density is even.
 Jittered
 Particles are placed at jittered intervals on the emitter elements.
 Particles/Face
@@ -21368,7 +21368,7 @@ Number of emissions per face (0 = automatic).
 Jittering Amount
 Amount of jitter applied to the sampling.
 Random
-Particles are emitted from random locations in the emitter's elements.
+Particles are emitted from random locations in the emitter's elements.<!-- ACCEPT >=> ae998774-c22d-4429-b114-82e58166f00c -->
 Grid
 Particles are set in a 3D grid and particles near/in the elements are kept.
 Invert Grid
@@ -21935,7 +21935,7 @@ The generic constraint has a lot of available parameters.
 The X, Y, and Z axis constraints can be used to limit the amount of translation between the objects. Clamping the min/max to zero has the same effect as the Point constraint.
 Clamping the relative rotation to zero keeps the objects in alignment. Combining an absolute rotation and translation clamp would behave much like the Fixed constraint.
 Using a non-zero spread on any parameter allows it to rattle around in that range throughout the course of the simulation.
-Limits
+<!-- 24998270-9b97-437d-a84b-83be2e14af9b <=< ACCEPT -->Limits
 X Axis/Y Axis/Z axis
 Enables/disables limit translation on X, Y or Z axis respectively.
 Lower
@@ -21948,12 +21948,12 @@ Lower
 Lower limit of rotation for X, Y or Z axis respectively.
 Upper
 Upper limit of rotation for X, Y or Z axis respectively.
-Generic Spring
+<!-- ACCEPT >=> 24998270-9b97-437d-a84b-83be2e14af9b -->Generic Spring
 Options available to a Generic Spring constraint.
 Options available to a Generic Spring constraint.
 The generic spring constraint adds some spring parameters for the X/Y/Z axes to all the options available on the Generic constraint. Using the spring alone allows the objects to bounce around as if attached with a spring anchored at the constraint object. This is usually a little too much freedom, so most applications will benefit from enabling translation or rotation constraints.
 If the damping on the springs is set to 1, then the spring forces are prevented from realigning the anchor points, leading to strange behavior. If your springs are acting weird, check the damping.
-Limits
+<!-- 24998270-9b97-437d-a84b-83be2e14af9b <=< ACCEPT -->Limits
 X Axis/Y Axis/Z axis
 Enables/disables limit translation on X, Y or Z axis respectively.
 Lower
@@ -21965,7 +21965,7 @@ Enables/disables limit rotation around X, Y or Z axis respectively.
 Lower
 Lower limit of rotation for X, Y or Z axis respectively.
 Upper
-Upper limit of rotation for X, Y or Z axis respectively.
+Upper limit of rotation for X, Y or Z axis respectively.<!-- ACCEPT >=> 24998270-9b97-437d-a84b-83be2e14af9b -->
 Springs
 X/Y/Z
 Enables/disables springs on X, Y or Z axis respectively.
@@ -22467,7 +22467,7 @@ Set Choke to a high enough value (all the way up if necessary) if you have diffi
 Colliding faces are difficult to control and need long calculation times. Try not to use them.
 Often it is better to create a simplified mesh to use as your collision object, however, this may be difficult if you are using an animated mesh.
 Self Collision
-Self Collision is working only if you have activated Use Edges.
+<!-- ffd9c263-2195-4940-8bae-5eae5f2936ca <=< ACCEPT -->Self Collision is working only if you have activated Use Edges.
 When enabled, allows you to control how Blender will prevent the Soft Body from intersecting with itself. Every vertex is surrounded with an elastic virtual ball. Vertices may not penetrate the balls of other vertices. If you want a good result you may have to adjust the size of these balls. Normally it works pretty well with the default options.
 Ball Size Calculation
 Man ("manual")
@@ -22486,7 +22486,7 @@ Default 1.0. How elastic that ball of personal space is.
 Damping
 Default 0.5. How the vertex reacts. A low value just slows down the vertex as it gets too close. A high value repulses it.
 Collisions with other objects are set in the (other) Collision panel &amp;lt;/physics/collision&amp;gt;. To collide with another object they have to share at least one common layer.
-Simple Examples
+<!-- ACCEPT >=> ffd9c263-2195-4940-8bae-5eae5f2936ca -->Simple Examples
 Here are some simple examples showing the power of softbody physics.
 Bouncing Cube
 The Process
@@ -22578,7 +22578,7 @@ Use Edges
 Allow the edges in a Mesh Object to act like springs.
 Pull
 The spring stiffness for edges (how much the edges are allowed to stretch). A low value means very weak springs (a very elastic material), a high value is a strong spring (a stiffer material) that resists being pulled apart. 0.5 is latex, 0.9 is like a sweater, 0.999 is a highly-starched napkin or leather. The Soft Body simulation tends to get unstable if you use a value of 0.999, so you should lower this value a bit if that happens.
-Push
+<!-- 5a836a7c-e214-4690-bf53-5a995a397aa6 <=< ACCEPT -->Push
 How much the Softbody resist being scrunched together, like a compression spring. Low values for fabric, high values for inflated objects and stiff material.
 Damp
 The friction for edge springs. High values (max of 50) dampen the Push / Pull effect and calm down the cloth.
@@ -22591,7 +22591,7 @@ The edges can shrink or been blown up. This value is given in percent, 0 disable
 Stiff Quads
 For quad faces, the diagonal edges are used as springs. This stops quad faces to collapse completely on collisions (what they would do otherwise).
 Shear
-Stiffness of the virtual springs created for quad faces.
+Stiffness of the virtual springs created for quad faces.<!-- ACCEPT >=> 5a836a7c-e214-4690-bf53-5a995a397aa6 -->
 Preventing Collapse
 To show the effect of the different edge settings we will use two cubes (blue: only quads, red: only tris) and let them fall without any goal onto a plane (how to set up collision is shown on the page Collisions &amp;lt;/physics/soft_body/collisions&amp;gt;).
 In Fig. fig-softbody-force-interior-without, the default settings are used (without Stiff Quads). The "quad only" cube will collapse completely, the cube composed of tris keeps its shape, though it will deform temporarily because of the forces created during collision.
@@ -22637,7 +22637,7 @@ You start a Soft Body simulation with Alt-A.
 You pause the simulation with Spacebar, continue with Alt-A.
 You stop the simulation with Esc.
 Simulation Quality
-The settings in the Soft Body Solver panel determine the accuracy of the simulation.
+<!-- 21e0d41c-0afe-4e3e-85b6-104d7e4e36d5 <=< ACCEPT -->The settings in the Soft Body Solver panel determine the accuracy of the simulation.
 Min Step
 Minimum simulation steps per frame. Increase this value, if the Soft Body misses fast moving collision objects.
 Max Step
@@ -22652,17 +22652,17 @@ Choke
 Calms down (reduces the exit velocity of) a vertex or edge once it penetrates a collision mesh.
 Diagnostics
 Print Performance to Console
-Prints on the console how the solver is doing.
+Prints on the console how the solver is doing.<!-- ACCEPT >=> 21e0d41c-0afe-4e3e-85b6-104d7e4e36d5 -->
 Estimate Matrix
 Estimate matrix. Split to COM, ROT, SCALE
 Cache and Bake
-Soft Bodies and other physic simulations use a unified system for caching and baking. See Particle Cache &amp;lt;/physics/particles/properties/cache&amp;gt; for reference.
+<!-- 4ac2a979-34ca-4c6c-a8b7-fc5a3fc2c00a <=< ACCEPT -->Soft Bodies and other physic simulations use a unified system for caching and baking. See Particle Cache &amp;lt;/physics/particles/properties/cache&amp;gt; for reference.
 The results of the simulation are automatically cached to disk when the animation is played, so that the next time it runs, it can play again quickly by reading in the results from the disk. If you Bake the simulation the cache is protected and you will be asked when you are trying to change a setting that will make a recalculating necessary.
 tip
 Beware of the Start and End settings
 The simulation is only calculated for the frames in-between the Start and End frames (Bake panel), even if you do not actually bake the simulation! So if you want a simulation longer than the default setting of 250 frames you have the change the End frame.
 Caching
-As animation is played, each physics system writes each frame to disk, between the simulation start and end frames. These files are stored in folders with prefix blendcache, next to the blend-file.
+As animation is played, each physics system writes each frame to disk, between the simulation start and end frames. These files are stored in folders with prefix blendcache, next to the blend-file.<!-- ACCEPT >=> 4ac2a979-34ca-4c6c-a8b7-fc5a3fc2c00a -->
 The cache is cleared automatically on changes. But not on all changes, so it may be necessary to free it manually, e.g. if you change a force field. Note that for the cache to fill up, one has to start playback before or on the frame that the simulation starts.
 If you are not allowed to write to the required sub-directory caching will not take place.
 The cache can be freed per physics system with a button in the panels, or with the Ctrl-B shortcut key to free it for all selected objects.
@@ -22723,7 +22723,7 @@ Use Edges
 The edges in a Mesh Object can act as springs as well, like threads in fabric.
 Pull
 The spring stiffness for edges (how much the edges are stretched). A low value means very weak springs (a very elastic material), a high value is a strong spring (a stiffer material) that resists being pulled apart. 0.5 is latex, 0.9 is like a sweater, 0.999 is a highly-starched napkin or leather.
-Push
+<!-- 5a836a7c-e214-4690-bf53-5a995a397aa6 <=< ACCEPT -->Push
 How much the Softbody resist being scrunched together, like a compression spring. Low values for fabric, high values for inflated objects and stiff material.
 Damp
 The friction for edge springs. High values (max of 50) dampen the edge stiffness effect and calm down the cloth.
@@ -22737,7 +22737,7 @@ Stiff Quads
 For quad faces, the diagonal edges are used as springs. This stops quad faces to collapse completely on collisions (what they would do otherwise).
 Shear
 Stiffness of the virtual springs for quad faces.
-Aerodynamics
+Aerodynamics<!-- ACCEPT >=> 5a836a7c-e214-4690-bf53-5a995a397aa6 -->
 Simple
 If you turn on Aero the force is not confined to the vertices, but has an effect also on the edges. The angle and the relative speed between medium and edge is used to calculate the force on the edge. This force results that vertices with little connecting edges (front of a plane) fall faster than vertices with more connecting edges (middle of a plane). If all vertices have the same amount of edges in a direction they fall with equal speed. An edge moving in its own direction feels no force, and an edge moving perpendicular to its own direction feels maximum force (think of a straw moving through air). Try it with an Factor of 30 at first.
 Lift Force
@@ -22750,7 +22750,7 @@ Face
 Checks for any portion of the face of the softbody mesh colliding (compute intensive!). While CFace enabled is great, and solves lots of collision errors, there does not seem to be any dampening settings for it, so parts of the softbody object near a collision mesh tend to "jitter" as they bounce off and fall back, even when there is no motion of any meshes. Edge collision has dampening, so that can be controlled, but Deflection dampening value on a collision object does not seem to affect the face collision.
 Soft Body Self Collision
 note
-Self Collision is working only if you have activated Use Edges.
+<!-- ffd9c263-2195-4940-8bae-5eae5f2936ca <=< ACCEPT -->Self Collision is working only if you have activated Use Edges.
 Self Collision
 When enabled, allows you to control how Blender will prevent the Soft Body from intersecting with itself. Every vertex is surrounded with an elastic virtual ball. Vertices may not penetrate the balls of other vertices. If you want a good result you may have to adjust the size of these balls. Normally it works pretty well with the default options.
 Manual
@@ -22768,8 +22768,8 @@ Default 1.0. How elastic that ball of personal space is.
 Dampening
 Default 0.5. How the vertex reacts. A low value just slows down the vertex as it gets too close. A high value repulses it.
 Collisions with other objects are set in the (other) Collision panel &amp;lt;/physics/collision&amp;gt;. To collide with another object they have to share at least one common layer.
-Soft Body Solver
-These settings determine the accurateness of the simulation.
+<!-- ACCEPT >=> ffd9c263-2195-4940-8bae-5eae5f2936ca -->Soft Body Solver
+<!-- 21e0d41c-0afe-4e3e-85b6-104d7e4e36d5 <=< ACCEPT -->These settings determine the accurateness of the simulation.
 Min Step
 Minimum simulation steps per frame. Increase this value, if the Soft Body misses fast moving collision objects.
 Max Step
@@ -22783,7 +22783,7 @@ Fuzziness while on collision, high values make collision handling faster but les
 Choke
 Calms down (reduces the exit velocity of) a vertex or edge once it penetrates a collision mesh.
 Print Performance to Console
-Prints on the console how the solver is doing.
+Prints on the console how the solver is doing.<!-- ACCEPT >=> 21e0d41c-0afe-4e3e-85b6-104d7e4e36d5 -->
 Estimate Matrix
 Estimate matrix... split to COM, ROT, SCALE
 Pipeline
@@ -23622,14 +23622,14 @@ Camera space
 Default method.
 World space
 Normals in world coordinates, dependent on object transformation and deformation.
-Object space
+<!-- cb7f90ff-b6ba-41bd-b36a-5d1565f01651 <=< ACCEPT -->Object space
 Normals in object coordinates, independent of object transformation, but dependent on deformation.
 Tangent space
 Normals in tangent space coordinates, independent of object transformation and deformation. This is the new default, and the right choice in most cases, since then the normal map can be used for animated objects too.
 For materials the same spaces can be chosen as well, in the image texture options, next to the existing Normal Map setting. For correct results, the setting here should match the setting used for baking.
 Textures
 Bakes colors of materials and textures only, without shading.
-Displacement
+<!-- ACCEPT >=> cb7f90ff-b6ba-41bd-b36a-5d1565f01651 -->Displacement
 Similar to baking normal maps, displacement maps can also be baked from a high-res object to an unwrapped low-res object, using the Selected to Active option.
 Displacement.
 Displacement.
@@ -24782,7 +24782,7 @@ Second vector input.
 Properties
 Operation
 Selector of the math function.
-Add
+<!-- e82c44ff-7fe1-4876-a284-afbf36b7e411 <=< ACCEPT -->Add
 Adding input 1 and 2.
 Subtract
 Subtracting input 1 and 2.
@@ -24793,7 +24793,7 @@ Algebraic operation that takes two equal-length sequences of input vectors. The 
 Cross Product
 Geometric binary operation on the two vectors inputs in three-dimensional space. It results in a vector which is perpendicular to both and therefore normal to the plane containing them.
 Normalize
-Normalizing input 1 and 2.
+Normalizing input 1 and 2.<!-- ACCEPT >=> e82c44ff-7fe1-4876-a284-afbf36b7e411 -->
 Outputs
 Vector
 Standard vector output.
@@ -26831,12 +26831,12 @@ Environment Map Sampling.
 Filter
 Box
 Box Filter
-EWA
+<!-- 77bb798e-b050-4934-8cbc-3a281e482da3 <=< ACCEPT -->EWA
 Elliptical Weighted Average. One of the most efficient direct convolution algorithms developed by Paul Heckbert and Ned Greene in the 1980s. For each texel, EWA samples, weights, and accumulates texels within an elliptical footprint and then divides the result by the sum of the weights.
 Eccentricity
 Maximum eccentricity (higher gives less blur at distant/oblique angles, but is also slower)
 FELINE
-FELINE (Fast Elliptical Lines), uses several isotropic probes at several points along a line in texture space to produce an anisotropic filter to reduce aliasing artifacts without considerably increasing rendering time.
+FELINE (Fast Elliptical Lines), uses several isotropic probes at several points along a line in texture space to produce an anisotropic filter to reduce aliasing artifacts without considerably increasing rendering time.<!-- ACCEPT >=> 77bb798e-b050-4934-8cbc-3a281e482da3 -->
 Probes
 Maximum number of samples (higher gives less blur at distant/oblique angles, but is also slower)
 Area
@@ -26912,12 +26912,12 @@ Texture Filter Type
 Texture filter to use for image sampling. Just like a pixel represents a pic ture el ement, a texel represents a tex ture el ement. When a texture (2D texture space) is mapped onto a 3D model (3D model space), different algorithms can be used to compute a value for each pixel based on samplings from several texels.
 Box
 A fast and simple nearest-neighbor interpolation known as Monte Carlo integration
-EWA (Elliptical Weighted Average)
+<!-- 77bb798e-b050-4934-8cbc-3a281e482da3 <=< ACCEPT -->EWA (Elliptical Weighted Average)
 One of the most efficient direct convolution algorithms developed by Paul Heckbert and Ned Greene in the 1980s. For each texel, EWA samples, weights, and accumulates texels within an elliptical footprint and then divides the result by the sum of the weights.
 Eccentricity
 Maximum Eccentricity. Higher values give less blur at distant/oblique angles, but is slower
 FELINE (Fast Elliptical Lines)
-Uses several isotropic probes at several points along a line in texture space to produce an anisotropic filter to reduce aliasing artifacts without considerably increasing rendering time.
+Uses several isotropic probes at several points along a line in texture space to produce an anisotropic filter to reduce aliasing artifacts without considerably increasing rendering time.<!-- ACCEPT >=> 77bb798e-b050-4934-8cbc-3a281e482da3 -->
 Probes
 Number of probes to use. An integer between 1 and 256. Further reading: McCormack, J; Farkas, KI; Perry, R; Jouppi, NP (1999) Simple and Table Feline: Fast Elliptical Lines for Anisotropic Texture Mapping, WRL
 Area
@@ -27336,7 +27336,7 @@ Particle Speed
 Particle speed (absolute magnitude of velocity) mapped as 0.0 - 1.0 intensity. An additional color ramp can be used to convert intensity to RGB colors.
 Scale
 Multiplier to bring particle speed within an acceptable range.
-Particle Velocity
+<!-- 8723dbea-81e1-46d3-a5b1-9d6f6ddc6eed <=< ACCEPT -->Particle Velocity
 XYZ velocity mapped to RGB colors.
 Scale
 Multiplier to bring particle speed within an acceptable range.
@@ -27349,7 +27349,7 @@ Vertex Weight
 Use a weights from a vertex group as intensity values. An additional color ramp can be used to convert intensity to RGB colors.
 Vertex Normals
 Use object-space vertex normals as RGB values.
-Turbulence
+<!-- ACCEPT >=> 8723dbea-81e1-46d3-a5b1-9d6f6ddc6eed -->Turbulence
 Turbulence panel.
 Turbulence panel.
 Adds directed noise to the density at render time.
@@ -27419,7 +27419,7 @@ Repeat
 Cause the image to repeat horizontally and vertically.
 Intensity
 Multiplier for intensity values.
-Environment Lighting
+<!-- ca85a818-b8f7-4ac9-81c2-1eeab7ee9038 <=< ACCEPT -->Environment Lighting
 Environment light provides light coming from all directions.
 Light is calculated with a ray-traced method which is the same as that used by Ambient Occlusion. The difference is that Environment lighting takes into account the "ambient" parameter of the material shading settings, which indicates the amount of ambient light/color that that material receives.
 Environment Lighting panel.
@@ -27430,7 +27430,7 @@ Defines the strength of environment light.
 Environment Color
 Defines where the color of the environment light comes from.
 Using both settings simultaneously produces better global lighting.
-It is good for mimicking the sky in outdoor lighting. Environment lighting can be fairly noisy at times. .. TODO/Review: {{review|}}.
+It is good for mimicking the sky in outdoor lighting. Environment lighting can be fairly noisy at times.<!-- ACCEPT >=> ca85a818-b8f7-4ac9-81c2-1eeab7ee9038 --> .. TODO/Review: {{review|}}.
 Ambient Occlusion
 Ambient Occlusion is a sophisticated ray-tracing calculation which simulates soft global illumination shadows by faking darkness perceived in corners and at mesh intersections, creases, and cracks, where ambient light is occluded, or blocked.
 There is no such thing as AO in real life; AO is a specific not-physically-accurate (but generally nice-looking) rendering trick. It basically samples a hemisphere around each point on the face, sees what proportion of that hemisphere is occluded by other geometry, and shades the pixel accordingly.
@@ -27481,7 +27481,7 @@ Samples
 The number of rays used to detect if an object is occluded. Higher numbers of samples give smoother and more accurate results, at the expense of slower render times. The default value of 5 is usually good for previews. The actual number of rays shot out is the square of this number (i.e. Samples at 5 means 25 rays). Rays are shot at the hemisphere according to a random pattern (determined by the sample methods described above); this causes differences in the occlusion pattern of neighboring pixels unless the number of shot rays is big enough to produce good statistical data.
 Approximate
 The Ambient Occlusion panel, Approximate method.
-The Ambient Occlusion panel, Approximate method.
+<!-- 587432c0-05dc-4b49-999c-0711b767be62 <=< ACCEPT -->The Ambient Occlusion panel, Approximate method.
 The Approximate method gives a much smoother result for the same amount of render time, but as its name states, it is only an approximation of the Raytrace method, which implies it might produce some artifacts and it cannot use the sky's texture as the base color.
 This method seems to tend to "over-occlude" the results. You have two complementary options to reduce this problem:
 Passes
@@ -27491,7 +27491,7 @@ This is the tolerance factor for approximation error (i.e. the max allowed diffe
 Pixel Cache
 When enabled, it will keep values of computed pixels to interpolate it with its neighbors. This further speeds up the render, generally without visible loss in quality...
 Correction
-A correction factor to reduce over-occlusion. Ranges between (0.0 to 1.0) correction.
+A correction factor to reduce over-occlusion. Ranges between (0.0 to 1.0) correction.<!-- ACCEPT >=> 587432c0-05dc-4b49-999c-0711b767be62 -->
 Common Settings
 Falloff
 When activated, the distance to the occluding objects will influence the "depth" of the shadow. This means that the further away the occluding geometry is, the lighter its "shadow" will be. This effect only occurs when the Strength factor is higher than 0.0. It mimics light dispersion in the atmosphere...
@@ -27541,7 +27541,7 @@ Number of indirect diffuse light bounces.
 The Gather panel contains settings for the indirect lighting quality. Note that these settings also apply to Environment Lighting and Ambient Occlusion.
 Approximate
 The Indirect Lighting panel, Approximate method.
-The Indirect Lighting panel, Approximate method.
+<!-- 587432c0-05dc-4b49-999c-0711b767be62 <=< ACCEPT -->The Indirect Lighting panel, Approximate method.
 The Approximate method gives a much smoother result for the same amount of render time, but as its name states, it is only an approximation of the Raytrace method, which implies it might produce some artifacts and it cannot use the sky's texture as the base color.
 This method seems to tend to "over-occlude" the results. You have two complementary options to reduce this problem:
 Passes
@@ -27551,7 +27551,7 @@ This is the tolerance factor for approximation error (i.e. the max allowed diffe
 Pixel Cache
 When enabled, it will keep values of computed pixels to interpolate it with its neighbors. This further speeds up the render, generally without visible loss in quality...
 Correction
-A correction factor to reduce over-occlusion. Ranges between (0.0 to 1.0) correction.
+A correction factor to reduce over-occlusion. Ranges between (0.0 to 1.0) correction.<!-- ACCEPT >=> 587432c0-05dc-4b49-999c-0711b767be62 -->
 Introduction
 World tab.
 World tab.
@@ -27678,7 +27678,7 @@ Normal Pass Options.
 Normal Pass Options.
 Normal Space
 Normals can be baked in different spaces:
-Object space
+<!-- cb7f90ff-b6ba-41bd-b36a-5d1565f01651 <=< ACCEPT -->Object space
 Normals in object coordinates, independent of object transformation, but dependent on deformation.
 Tangent space
 Normals in tangent space coordinates, independent of object transformation and deformation. This is the default, and the right choice in most cases, since then the normal map can be used for animated objects too.
@@ -27687,7 +27687,7 @@ Axis to bake into the red, green and blue channel.
 For materials the same spaces can be chosen in the image texture options next to the existing Normal Map setting. For correct results, the setting here should match the setting used for baking.
 UV
 Bakes colors of materials and textures only, without shading.
-Emit
+<!-- ACCEPT >=> cb7f90ff-b6ba-41bd-b36a-5d1565f01651 -->Emit
 Bakes Emission, or the Glow color of a material.
 Environment
 Bakes the environment as seen from the center of the object.
@@ -27931,7 +27931,7 @@ By default objects with emitting materials use both direct and indirect light sa
 This option will only have an influence if the material contains an emission node; it will be automatically disabled otherwise.
 Transparent Shadows
 Use transparent shadows if it contains a Transparent BSDF &amp;lt;/render/cycles/nodes/types/shaders/transparent&amp;gt;, disabling will render faster but will not give accurate shadows.
-Volume
+<!-- 0fa2becd-c663-4399-b052-9bcaf5020d0c <=< ACCEPT -->Volume
 Sampling Method
 Options are Multiple Importance, Distance, or Equiangular. If you have got a pretty dense volume that is lit from far away then distance sampling is usually more efficient. If you have got a light inside or near the volume then equiangular sampling is better. If you have a combination of both, then the multiple importance sampling will be better.
 Interpolation
@@ -27942,7 +27942,7 @@ Cubic
 Smoothed high quality interpolation, but slower.
 Homogeneous Volume
 Assume volume has the same density everywhere (not using any textures), for faster rendering. For example absorption in a glass object would typically not have any textures, and by knowing this we can avoid taking small steps to sample the volume shader.
-Displacement
+<!-- ACCEPT >=> 0fa2becd-c663-4399-b052-9bcaf5020d0c -->Displacement
 note
 These Options are only available if Experimental Feature Set &amp;lt;cycles-experimental-features&amp;gt; is turned on.
 Displacement Method
@@ -28039,8 +28039,8 @@ Meshes used for volume render should be closed and manifold. That means that the
 Normals must point outside for correct results. The normals are used to determine if a ray enters or exits a volume, and if they point in a wrong direction, or there is a hole in the mesh, then the renderer is unable to decide what is the inside or outside of the volume.
 These rules are the same as for rendering glass refraction correctly.
 Volume World
-A volume shader can also be applied to the entirely world, filling the entire space.
-Currently, this is most useful for night time or other dark scenes, as the world surface shader or sun lamps will have no effect if a volume shader is used. This is because the world background is assumed to be infinitely far away, which is accurate enough for the sun for example. However, for modeling effects such as fog or atmospheric scattering, it is not a good assumption that the volume fills the entire space, as most of the distance between the sun and the earth is empty space. For such effects it is be better to create a volume object surrounding the scene. The size of this object will determine how much light is scattered or absorbed.
+<!-- 025e8904-5f0e-487b-a01d-2e29e0635acf <=< ACCEPT -->A volume shader can also be applied to the entirely world, filling the entire space.
+Currently, this is most useful for night time or other dark scenes, as the world surface shader or sun lamps will have no effect if a volume shader is used. This is because the world background is assumed to be infinitely far away, which is accurate enough for the sun for example. However, for modeling effects such as fog or atmospheric scattering, it is not a good assumption that the volume fills the entire space, as most of the distance between the sun and the earth is empty space. For such effects it is be better to create a volume object surrounding the scene. The size of this object will determine how much light is scattered or absorbed.<!-- ACCEPT >=> 025e8904-5f0e-487b-a01d-2e29e0635acf -->
 Smoke
 Creating a smoke material for cycles can be difficult however the image below shows a good setup on how to do this.
 Smoke and Fire Material.
@@ -28247,7 +28247,7 @@ Input vector 2 (lower). The value can be provided by another node or set manuall
 Properties
 Operation
 Selector the math function for conversion.
-Add
+<!-- e82c44ff-7fe1-4876-a284-afbf36b7e411 <=< ACCEPT -->Add
 Adding input 1 and 2.
 Subtract
 Subtracting input 1 and 2.
@@ -28259,7 +28259,7 @@ Cross Product
 Geometric binary operation on two vectors 1 and 2 in three-dimensional space. It results in a vector which is perpendicular to both and therefore normal to the plane containing them. The Result is a vector.
 Normalize
 Normalizing input 1 and 2.
-Outputs
+Outputs<!-- ACCEPT >=> e82c44ff-7fe1-4876-a284-afbf36b7e411 -->
 Vector
 Output vector, converted by the node.
 Value
@@ -29219,7 +29219,7 @@ Particle Age
 Lifetime mapped as (0.0 - 1.0) intensity.
 Particle Speed
 Particle speed (absolute magnitude of velocity) mapped as (0.0 - 1.0) intensity.
-Particle Velocity
+<!-- 8723dbea-81e1-46d3-a5b1-9d6f6ddc6eed <=< ACCEPT -->Particle Velocity
 XYZ velocity mapped to RGB colors.
 Vertex Color Sources
 Vertex Color
@@ -29230,7 +29230,7 @@ Vertex Weight
 Use a weights from a vertex group as intensity values.
 Vertex Normals
 Use object-space vertex normals as RGB values.
-Outputs
+<!-- ACCEPT >=> 8723dbea-81e1-46d3-a5b1-9d6f6ddc6eed -->Outputs
 Color
 Texture color output.
 Density
@@ -29831,8 +29831,8 @@ The surface shader defines the light emission from the environment into the scen
 Image Based Lighting
 For image based lighting, use the Environment Texture node rather than the Image Texture node for correct mapping. This supports Equirectangular (also known as Lat/Long) for environment maps, and Mirror Ball mapping for converting photos of mirror balls to environment maps.
 Volume Shader
-A volume shader can be applied to the entirely world, filling the entire space.
-Currently this is most useful for night time or other dark scenes, as the world surface shader or sun lamps will have no effect if a volume shader is used. This is because the world background is assumed to be infinitely far away, which is accurate enough for the sun for example. However, for modeling effects such as fog or atmospheric scattering, it is not a good assumption that the volume fills the entire space, as most of the distance between the sun and the earth is empty space. For such effects it is be better to create a volume object surrounding the scene. The size of this object will determine how much light is scattered or absorbed.
+<!-- 025e8904-5f0e-487b-a01d-2e29e0635acf <=< ACCEPT -->A volume shader can be applied to the entirely world, filling the entire space.
+Currently this is most useful for night time or other dark scenes, as the world surface shader or sun lamps will have no effect if a volume shader is used. This is because the world background is assumed to be infinitely far away, which is accurate enough for the sun for example. However, for modeling effects such as fog or atmospheric scattering, it is not a good assumption that the volume fills the entire space, as most of the distance between the sun and the earth is empty space. For such effects it is be better to create a volume object surrounding the scene. The size of this object will determine how much light is scattered or absorbed.<!-- ACCEPT >=> 025e8904-5f0e-487b-a01d-2e29e0635acf -->
 Ambient Occlusion
 Ambient occlusion is a lighting method based on how much a point on a surface is occluded by nearby surfaces. This is a trick that is not physically accurate, but it is useful to emphasize shapes of surfaces, or as a cheap way to get an effect that looks a bit like indirect lighting.
 Factor
@@ -29850,7 +29850,7 @@ Map Resolution
 Sets the resolution of the 'Multiple Importance Sample' map. Higher values may produce less noise when using high-res images, but will take up more memory and render slightly slower.
 Max Bounces
 Maximal number of bounces the background light will contribute to the render.
-Volume
+<!-- 0fa2becd-c663-4399-b052-9bcaf5020d0c <=< ACCEPT -->Volume
 Sampling Method
 Options are Multiple Importance, Distance, or Equiangular. - If you have got a pretty dense volume that is lit from far away then distance sampling is usually more efficient. - If you have got a light inside or near the volume then equiangular sampling is better. - If you have a combination of both, then the multiple importance sampling will be better.
 Interpolation
@@ -29861,7 +29861,7 @@ Cubic
 Smoothed high quality interpolation, but slower.
 Homogeneous Volume
 Assume volume has the same density everywhere (not using any textures), for faster rendering. For example absorption in a glass object would typically not have any textures, and by knowing this we can avoid taking small steps to sample the volume shader.
-Ray Visibility
+<!-- ACCEPT >=> 0fa2becd-c663-4399-b052-9bcaf5020d0c -->Ray Visibility
 As with other objects, Ray Visibility allows you to control which other shaders can "see" the environment.
 Tricks
 Sometimes it may be useful to have a different background that is directly visible versus one that is indirectly lighting the objects. A simple solution to this is to add a Mix node, with the Blend Factor set to Is Camera Ray. The first input color is then the indirect color, and the second the directly visible color. This is useful when using a high-res image for the background and a low-res image for the actual lighting.
@@ -30047,15 +30047,15 @@ In this tab you control the alpha (transparency) of your strokes.
 Base Transparency
 The base alpha for this line style.
 Modifiers
-There are four alpha modifiers available, which can be mixed with the base alpha using a subset of the usual methods (see for example the Mix compositing node &amp;lt;/compositing/types/color/mix&amp;gt; for further discussion of this topic). As with other modifier stacks in Blender, they are applied from top to bottom.
+<!-- f0aa0e7b-bb9a-422b-9014-4f9a3b53f77b <=< ACCEPT -->There are four alpha modifiers available, which can be mixed with the base alpha using a subset of the usual methods (see for example the Mix compositing node &amp;lt;/compositing/types/color/mix&amp;gt; for further discussion of this topic). As with other modifier stacks in Blender, they are applied from top to bottom.
 Influence
 How much the result of this modifier affects the current transparency.
 Along Stroke
 
 The Along Stroke modifier alters the base alpha with a new one from either a linear progression or a custom curve, mapped along each stroke's length. In other words, it applies the selected progression along each stroke.
 Mapping
-Either a linear progression (from 0.0 to 1.0, which may be inverted with the Invert option), or a custom mapping curve.
-Distance from Camera
+Either a linear progression (from 0.0 to 1.0, which may be inverted with the Invert option), or a custom mapping curve.<!-- ACCEPT >=> f0aa0e7b-bb9a-422b-9014-4f9a3b53f77b -->
+<!-- de9d04e6-3fba-4dd7-9c7c-26838a085ed9 <=< ACCEPT -->Distance from Camera
 The Distance from Camera modifier alters the base alpha with a new one from either a linear progression or a custom curve, using the distance to the active camera as parameter.
 
 Mapping
@@ -30081,7 +30081,7 @@ You can use various properties of the materials, among which some are multi-comp
 
 Mapping
 Either a linear progression (from 0.0 to 1.0, which may be inverted with the Invert option), or a custom mapping curve. Note the linear non-inverted option is equivalent to "do nothing", as original values from materials are already in the [0.0, 1.0] range.
-If used with the Split by Material option in the Stroke tab, the result will not be blurred between materials along the strokes.
+If used with the Split by Material option in the Stroke tab, the result will not be blurred between materials along the strokes.<!-- ACCEPT >=> de9d04e6-3fba-4dd7-9c7c-26838a085ed9 -->
 Noise
 The Noise modifier uses a pseudo-random number generator to variably distribute transparency along the stroke.
 
@@ -30100,18 +30100,18 @@ Mapping
 Either a linear progression (from 0.0 to 1.0, which may be inverted with the Invert option), or a custom mapping curve. Note the linear non-inverted option is equivalent to "do nothing", as original values from materials are already in the [0.0, 1.0] range.
 Min Angle and Max Angle
 The range of input values to the mapping. Out-of-range input values will be clamped by the Min and Max angles and their corresponding alpha values.
-3D Curvature
+<!-- 08ab42b6-46b0-4970-b2e7-586e8cbda85c <=< ACCEPT -->3D Curvature
 A modifier based on radial curvatures of the underlying 3D surface. The curvature of a 2D curve at a point is a measure of how quickly the curve turns at the point. The quicker the turn is, the larger the curvature is at the point. The curvature is zero if the curve is a straight line. Radial curvatures are those computed for a 2D curve that appears at the cross-section between the 3D surface and a plane defined by the view point (camera location) and the normal direction of the surface at the point.
 For radial curvatures to be calculated (and therefore for this modifier to have any effect), the Face Smoothness option has to be turned on and the object needs to have Smooth Shading.
 
 Mapping
-Either a linear progression (from 0.0 to 1.0, which may be inverted with the Invert option), or a custom mapping curve. Note the linear non-inverted option is equivalent to "do nothing", as original values from materials are already in the (0.0 to 1.0) range.
+Either a linear progression (from 0.0 to 1.0, which may be inverted with the Invert option), or a custom mapping curve. Note the linear non-inverted option is equivalent to "do nothing", as original values from materials are already in the (0.0 to 1.0) range.<!-- ACCEPT >=> 08ab42b6-46b0-4970-b2e7-586e8cbda85c -->
 Min Curvature and Max Curvature
-The limits of the mapping. If the current point of the stroke is at Min Curvature or less from the target, it will take the start alpha of the mapping, and conversely, if it is at Max Curvature or more from the target, it will take the end alpha of the mapping.
+<!-- 6bc2875e-9a4f-471f-80a7-93255aaf32fd <=< ACCEPT -->The limits of the mapping. If the current point of the stroke is at Min Curvature or less from the target, it will take the start alpha of the mapping, and conversely, if it is at Max Curvature or more from the target, it will take the end alpha of the mapping.
 Crease Angle
 Crease Angle modifier demo by T.K. File:Render_freestyle_modifier_crease_angle.blend.
 Crease Angle modifier demo by T.K. File:Render_freestyle_modifier_crease_angle.blend.
-A modifier based on the Crease Angle (angle between two adjacent faces). If a stroke segment does not lie on a crease (i.e., the edge does not have the Crease Angle nature, its alpha value is not touched by this modifier.
+A modifier based on the Crease Angle (angle between two adjacent faces). If a stroke segment does not lie on a crease (i.e., the edge does not have the Crease Angle nature, its alpha value is not touched by this modifier.<!-- ACCEPT >=> 6bc2875e-9a4f-471f-80a7-93255aaf32fd -->
 
 Mapping
 Either a linear progression (from 0.0 to 1.0, which may be inverted with the Invert option), or a custom mapping curve. Note the linear non-inverted option is equivalent to "do nothing", as original values from materials are already in the (0.0 to 1.0) range.
@@ -30184,11 +30184,11 @@ For radial curvatures to be calculated (and therefore for this modifier to have 
 Color Ramp
 A standard Blender color ramp that maps the radial curvature to a stroke color.
 Min Curvature and Max Curvature
-The limits of the color ramp. If the current point of the stroke is at Min Curvature or less from the target, it will take the start color of the mapping, and conversely, if it is at Max Curvature or more from the target, it will take the end color of the mapping.
+<!-- 6bc2875e-9a4f-471f-80a7-93255aaf32fd <=< ACCEPT -->The limits of the color ramp. If the current point of the stroke is at Min Curvature or less from the target, it will take the start color of the mapping, and conversely, if it is at Max Curvature or more from the target, it will take the end color of the mapping.
 Crease Angle
 Crease Angle modifier demo by T.K. File:Render_freestyle_modifier_crease_angle.blend.
 Crease Angle modifier demo by T.K. File:Render_freestyle_modifier_crease_angle.blend.
-A modifier based on the Crease Angle (angle between two adjacent faces). If a stroke segment does not lie on a crease (i.e., the edge does not have the Crease Angle nature, its color values are not touched by the modifier.
+A modifier based on the Crease Angle (angle between two adjacent faces). If a stroke segment does not lie on a crease (i.e., the edge does not have the Crease Angle nature, its color values are not touched by the modifier.<!-- ACCEPT >=> 6bc2875e-9a4f-471f-80a7-93255aaf32fd -->
 
 Color Ramp
 A standard Blender color ramp that maps the crease angle to a stroke color.
@@ -30423,14 +30423,14 @@ Relative
 This allows you to specify the relative position by a number between 0.0 (inside) and 1.0 (outside), in the Thickness Ratio number button just below.
 The thickness position options are applied only to strokes of edge types Silhouette and Border, since these are the only edge types defined in terms of the object boundary. Strokes of other edge types are always drawn using the Center option.
 Modifiers
-There are five thickness modifiers available, which can be mixed with the base thickness using a subset of the usual methods (see for example the Mix compositing node &amp;lt;/compositing/types/color/mix&amp;gt; for further discussion of this topic). As with other modifier stacks in Blender, they are applied from top to bottom.
+<!-- f0aa0e7b-bb9a-422b-9014-4f9a3b53f77b <=< ACCEPT -->There are five thickness modifiers available, which can be mixed with the base thickness using a subset of the usual methods (see for example the Mix compositing node &amp;lt;/compositing/types/color/mix&amp;gt; for further discussion of this topic). As with other modifier stacks in Blender, they are applied from top to bottom.
 Influence
 How much the result of this modifier affects the current thickness.
 Along Stroke
 The Along Stroke modifier alters the base thickness with a new one from either a linear progression or a custom curve, mapped along each stroke's length. In other words, it applies the selected progression along each stroke.
 
 Mapping
-Either a linear progression (from 0.0 to 1.0 which may be inverted with the Invert option), or a custom mapping curve.
+Either a linear progression (from 0.0 to 1.0 which may be inverted with the Invert option), or a custom mapping curve.<!-- ACCEPT >=> f0aa0e7b-bb9a-422b-9014-4f9a3b53f77b -->
 Calligraphy
 The Calligraphy modifier mimics some broad and flat pens for calligraphy. It generates different thickness based on the orientation of the stroke.
 
@@ -30440,7 +30440,7 @@ Min Thickness and Max Thickness
 The minimum and maximum generated thickness (as explained above, minimum is used when the stroke's direction is perpendicular to the main Orientation, and maximum, when aligned with it).
 Calligraphy modifier demo by T.K. File:Toycar_Calligraphy.zip.
 Calligraphy modifier demo by T.K. File:Toycar_Calligraphy.zip.
-Distance from Camera
+<!-- de9d04e6-3fba-4dd7-9c7c-26838a085ed9 <=< ACCEPT -->Distance from Camera
 The Distance from Camera modifier alters the base thickness with a new one from either a linear progression or a custom curve, using the distance to the active camera as the parameter.
 
 Mapping
@@ -30466,7 +30466,7 @@ You can use various properties of the materials, among which some are multi-comp
 
 Mapping
 Either a linear progression (from 0.0 to 1.0 which may be inverted with the Invert option), or a custom mapping curve. Note the linear non-inverted option is equivalent to "do nothing", as original values from materials are already in the [0.0, 1.0] range...
-If used with the Split by Material option in the Stroke tab, the result will not be blurred between materials along the strokes.
+If used with the Split by Material option in the Stroke tab, the result will not be blurred between materials along the strokes.<!-- ACCEPT >=> de9d04e6-3fba-4dd7-9c7c-26838a085ed9 -->
 Noise
 Effect generated with a noise thickness modifier using asymmetric thickness.
 Effect generated with a noise thickness modifier using asymmetric thickness.
@@ -30485,20 +30485,20 @@ Mapping
 Either a linear progression (from Min Thickness to Max Thickness, which may be inverted with the Invert option), or a custom mapping curve (on the same range).
 Min Angle and Max Angle
 The range of input values to the mapping. Out-of-range input values will be clamped by the Min and Max angles and their corresponding thickness values.
-3D Curvature
+<!-- 08ab42b6-46b0-4970-b2e7-586e8cbda85c <=< ACCEPT -->3D Curvature
 A modifier based on radial curvatures of the underlying 3D surface. The curvature of a 2D curve at a point is a measure of how quickly the curve turns at the point. The quicker the turn is, the larger the curvature is at the point. The curvature is zero if the curve is a straight line. Radial curvatures are those computed for a 2D curve that appears at the cross-section between the 3D surface and a plane defined by the view point (camera location) and the normal direction of the surface at the point.
 For radial curvatures to be calculated (and therefore for this modifier to have any effect), the Face Smoothness option has to be turned on and the object needs to have Smooth Shading.
 
 Min Thickness and Max Thickness
 The minimum and maximum assigned thickness.
 Mapping
-Either a linear progression (from Min Thickness to Max Thickness, which may be inverted with the Invert option), or a custom mapping curve (on the same range).
+Either a linear progression (from Min Thickness to Max Thickness, which may be inverted with the Invert option), or a custom mapping curve (on the same range).<!-- ACCEPT >=> 08ab42b6-46b0-4970-b2e7-586e8cbda85c -->
 Min Curvature and Max Curvature
-The limits of the mapping of the Min and Max Thickness. If the current point of the stroke is at Min Curvature or less from the target, it will take the start thickness of the mapping, and conversely, if it is at Max Curvature or more from the target, it will take the end thickness of the mapping.
+<!-- 6bc2875e-9a4f-471f-80a7-93255aaf32fd <=< ACCEPT -->The limits of the mapping of the Min and Max Thickness. If the current point of the stroke is at Min Curvature or less from the target, it will take the start thickness of the mapping, and conversely, if it is at Max Curvature or more from the target, it will take the end thickness of the mapping.
 Crease Angle
 Crease Angle modifier demo by T.K. File:Render_freestyle_modifier_crease_angle.blend.
 Crease Angle modifier demo by T.K. File:Render_freestyle_modifier_crease_angle.blend.
-A modifier based on the Crease Angle (angle between two adjacent faces). If a stroke segment does not lie on a crease (i.e., the edge does not have the Crease Angle nature, its thickness value is not touched by this modifier.
+A modifier based on the Crease Angle (angle between two adjacent faces). If a stroke segment does not lie on a crease (i.e., the edge does not have the Crease Angle nature, its thickness value is not touched by this modifier.<!-- ACCEPT >=> 6bc2875e-9a4f-471f-80a7-93255aaf32fd -->
 
 Min Thickness and Max Thickness
 The minimum and maximum assigned thickness.
@@ -31226,10 +31226,10 @@ Views Formats and Stereo 3D.
 Views Formats and Stereo 3D.
 Compositor
 The compositor works smoothly with Multi-View. The compositing of a view is completed before the remaining views start to be composited. The pipeline is the same as the single-view workflow, with the difference that you can use Image, Movies or Image Sequences in any of the supported Multi-View formats.
-Compositor, Backdrop and Split Viewer Node.
+<!-- c2fa8a62-3ac3-4335-8224-805e04ab00b7 <=< ACCEPT -->Compositor, Backdrop and Split Viewer Node.
 Compositor, Backdrop and Split Viewer Node.
 The views to render are defined in the current scene views, in a similar way as you define the composite output resolution in the current scene render panel, regardless of the Image nodes resolutions or Render Layers from different scenes.
-note
+<!-- ACCEPT >=> c2fa8a62-3ac3-4335-8224-805e04ab00b7 -->note
 Single-View Images
 If the image from an Image Node does not have the view you are trying to render, the image will be treated as a single-view image.
 Switch View Node
@@ -32028,10 +32028,10 @@ Spline IK is a constraint which aligns a chain of bones along a curve. By levera
 Full description of the settings for the spline IK are detailed on the Spline IK &amp;lt;/rigging/constraints/tracking/spline_ik&amp;gt; page.
 Basic Setup
 The Spline IK Constraint is not strictly an 'Inverse Kinematics' method (i.e. IK Constraint), but rather a 'Forward Kinematics' method (i.e. normal bone posing). However, it still shares some characteristics of the IK Constraint, such as operating on multiple bones not being usable for Objects, and being evaluated after all other constraints have been evaluated. It should be noted that if a Standard IK chain and a Spline IK chain both affect a bone at the same time the Standard IK chain takes priority. Such setups are best avoided though, since the results may be difficult to control.
-To setup Spline IK, it is necessary to have a chain of connected bones and a curve to constrain these bones to:
+<!-- fd3f458a-c9f5-47de-aea2-d49d7045b2a8 <=< ACCEPT -->To setup Spline IK, it is necessary to have a chain of connected bones and a curve to constrain these bones to:
 With the last bone in the chain selected, add a Spline IK &amp;lt;/rigging/constraints/tracking/spline_ik&amp;gt; Constraint from the Bone Constraints tab in the Properties Editor.
 Set the 'Chain Length' setting to the number of bones in the chain (starting from and including the selected bone) that should be influenced by the curve.
-Finally, set the 'Target' field to the curve that should control the curve.
+Finally, set the 'Target' field to the curve that should control the curve.<!-- ACCEPT >=> fd3f458a-c9f5-47de-aea2-d49d7045b2a8 -->
 Congratulations, the bone chain is now controlled by the curve.
 Settings and Controls
 Roll Control
@@ -32987,10 +32987,10 @@ warning
 If you choose the same axis for To and Lock, the constraint will no longer be functional (red state).
 Spline IK Constraint
 The Spline IK constraint aligns a chain of bones along a curve. By leveraging the ease and flexibility of achieving aesthetically pleasing shapes offered by curves and the predictability and well-integrated control offered by bones, Spline IK is an invaluable tool in the riggers' toolbox. It is particularly well suited for rigging flexible body parts such as tails, tentacles, and spines, as well as inorganic items such as ropes.
-To set up Spline IK, it is necessary to have a chain of connected bones and a curve to constrain these bones to:
+<!-- fd3f458a-c9f5-47de-aea2-d49d7045b2a8 <=< ACCEPT -->To set up Spline IK, it is necessary to have a chain of connected bones and a curve to constrain these bones to:
 With the last bone in the chain selected, add a Spline IK constraint from the Bone Constraints tab in the Properties Editor.
 Set the 'Chain Length' setting to the number of bones in the chain (starting from and including the selected bone) that should be influenced by the curve.
-Finally, set Target to the curve that should control the curve.
+Finally, set Target to the curve that should control the curve.<!-- ACCEPT >=> fd3f458a-c9f5-47de-aea2-d49d7045b2a8 -->
 Options
 Spline IK panel.
 Spline IK panel.
@@ -33164,8 +33164,8 @@ Minimum X, Minimum Y, Minimum Z
 These buttons enable the lower boundary for the location of the owner's center along, respectively, the X, Y and Z axes of the chosen Space. The number button below them controls the value of their limit. Note that if a min value is higher than its corresponding max value, the constraint behaves as if it had the same value as the max one.
 Maximum X, Maximum Y, Maximum Z
 These buttons enable the upper boundary for the location of the owner's center along, respectively, the X, Y and Z axes of the chosen Space. Same options as above.
-For Transform
-We saw that by default, even though visually constrained, the owner can still have coordinates out of bounds (as shown by the Transform panel). Well, when you enable this button, this is no longer possible --the owner's transform properties are also limited by the constraint. Note however, that the constraint does not directly modify the coordinates: you have to grab its owner one way or another for this to take effect...
+<!-- 8a46ec39-f0b4-41cf-86db-d715c0ec2778 <=< ACCEPT -->For Transform
+We saw that by default, even though visually constrained, the owner can still have coordinates out of bounds (as shown by the Transform panel). Well, when you enable this button, this is no longer possible --the owner's transform properties are also limited by the constraint. Note however, that the constraint does not directly modify the coordinates: you have to grab its owner one way or another for this to take effect...<!-- ACCEPT >=> 8a46ec39-f0b4-41cf-86db-d715c0ec2778 -->
 Convert
 This constraint allows you to choose in which space to evaluate its owner's transform properties.
 Limit Rotation Constraint
@@ -33182,8 +33182,8 @@ These buttons enable the rotation limit around respectively the X, Y and Z axes 
 Note that:
 If a min value is higher than its corresponding max value, the constraint behaves as if it had the same value as the max one.
 Unlike the Limit Location constraint &amp;lt;/rigging/constraints/transform/limit_location&amp;gt;, you cannot enable separately lower or upper limits...
-For Transform
-We saw that by default, even though visually constrained, the owner can still have rotations out of bounds (as shown by the Transform panel). Well, when you enable this button, this is no more possible --the owner transform properties are also limited by the constraint. Note however, that the constraint does not directly modifies the rotation values: you have to rotate one way or the other its owner, for this to take effect...
+<!-- 8a46ec39-f0b4-41cf-86db-d715c0ec2778 <=< ACCEPT -->For Transform
+We saw that by default, even though visually constrained, the owner can still have rotations out of bounds (as shown by the Transform panel). Well, when you enable this button, this is no more possible --the owner transform properties are also limited by the constraint. Note however, that the constraint does not directly modifies the rotation values: you have to rotate one way or the other its owner, for this to take effect...<!-- ACCEPT >=> 8a46ec39-f0b4-41cf-86db-d715c0ec2778 -->
 Convert
 This constraint allows you to chose in which space evaluate its owner's transform properties.
 Limit Scale Constraint
@@ -33200,8 +33200,8 @@ Minimum/Maximum X, Y, Z
 These buttons enable the lower boundary for the scale of the owner along respectively the X, Y and Z axes of the chosen Space. The Min and Max numeric fields to their right control the value of their lower and upper boundaries, respectively.
 note
 If a min value is higher than its corresponding max value, the constraint behaves as if it had the same value as the max one.
-For Transform
-We saw that by default, even though visually constrained, and except for the negative values, the owner can still have scales out of bounds (as shown by the Transform panel). Well, when you enable this button, this is no longer possible, the owner transform properties are also limited by the constraint. Note however, that the constraint does not directly modify the scale values: you have to scale its owner one way or another for this to take effect.
+<!-- 8a46ec39-f0b4-41cf-86db-d715c0ec2778 <=< ACCEPT -->For Transform
+We saw that by default, even though visually constrained, and except for the negative values, the owner can still have scales out of bounds (as shown by the Transform panel). Well, when you enable this button, this is no longer possible, the owner transform properties are also limited by the constraint. Note however, that the constraint does not directly modify the scale values: you have to scale its owner one way or another for this to take effect.<!-- ACCEPT >=> 8a46ec39-f0b4-41cf-86db-d715c0ec2778 -->
 Convert
 This constraint allows you to choose in which space to evaluate its owner's transform properties.
 Maintain Volume Constraint
@@ -33254,7 +33254,7 @@ Similarly, when using the scale transform properties of the target as input, wha
 When a min value is higher than its corresponding max one, both are considered equal to the max one. This implies you cannot create "reversed" mappings...
 Transform Cache Constraint
 The Transform Cache Constraint is used to stream animations made at the transformation matrix level (for example rigid bodies, or camera movements).
-Options
+<!-- 8bfba5fe-3e12-4e81-b2f5-39a96d26c8c6 <=< ACCEPT -->Options
 Cache File
 Data-block menu to select the Alembic file.
 File Path
@@ -33266,7 +33266,7 @@ Whether to use a custom frame for looking up data in the cache file, instead of 
 Frame
 The time to use for looking up the data in the cache file, or to determine which to use in a file sequence.
 Manual Transform Scale
-Value by which to enlarge or shrink the object with respect to the world's origin.
+Value by which to enlarge or shrink the object with respect to the world's origin.<!-- ACCEPT >=> 8bfba5fe-3e12-4e81-b2f5-39a96d26c8c6 -->
 Object Path
 The path to the Alembic object inside the archive.
 Vertices/Faces/UV/Color
