@@ -103,8 +103,9 @@ def find_marked_intervals(src):
 
     # statistics output
     markerlen = 56
-    src_wo_mcoms_len = len(src) - len(intervals) * 2 * markerlen
-    marked_len = sum([e - b for b, e, t in intervals if t == 'ACCEPT'])
+    all_markers_len = len(intervals) * 2 * markerlen
+    src_wo_mcoms_len = len(src) - all_markers_len
+    marked_len = sum([e - b for b, e, t in intervals if t == 'ACCEPT']) - all_markers_len
     msg = "Source length: %d, marked for reuse: %d, reuse ratio: %.1f%%" % (src_wo_mcoms_len, marked_len, 100 * marked_len / src_wo_mcoms_len)
     logging.getLogger("fuzzyheat.sourcemarkers").info(msg)
 
