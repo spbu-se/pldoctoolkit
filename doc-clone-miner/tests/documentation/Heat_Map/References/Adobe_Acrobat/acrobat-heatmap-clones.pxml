@@ -12095,7 +12095,7 @@ WebDAV servers
 WebDAV servers (web servers that use the WebDAV protocol) are best used only if your reviewers are outside a firewall
 or a local area network. For more information on how to configure Acrobat to use a WebDAV service, see Hosting a
 Shared Review: An Alternative to Acrobat.com.
-<!-- 31ebf6fe-f66c-4b94-8507-d4cbbf58ebc3 >=> ACCEPT -->
+<!-- ACCEPT >=> 31ebf6fe-f66c-4b94-8507-d4cbbf58ebc3 -->
 
 More Help topics
 Starting a review
@@ -12136,7 +12136,7 @@ WebDAV servers
 WebDAV servers (web servers that use the WebDAV protocol) are best used only if your reviewers are outside a
 firewall or a local area network. For more information on how to configure Acrobat to use a WebDAV service, see
 Hosting a Shared Review: An Alternative to Acrobat.com.
-<!-- 31ebf6fe-f66c-4b94-8507-d4cbbf58ebc3 >=> ACCEPT -->
+<!-- ACCEPT >=> 31ebf6fe-f66c-4b94-8507-d4cbbf58ebc3 -->
 
 5 Choose a delivery and collection method. Click Next.
 6 Enter a new profile name and click Next, or click Next to use the default.
