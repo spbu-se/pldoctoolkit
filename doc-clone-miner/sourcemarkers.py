@@ -101,14 +101,6 @@ def find_marked_intervals(src):
             continue
         intervals.append((ob, ce, mt))
 
-    # statistics output
-    markerlen = 56
-    all_markers_len = len(intervals) * 2 * markerlen
-    src_wo_mcoms_len = len(src) - all_markers_len
-    marked_len = sum([e - b for b, e, t in intervals if t == 'ACCEPT']) - all_markers_len
-    msg = "Source length: %d, marked for reuse: %d, reuse ratio: %.1f%%" % (src_wo_mcoms_len, marked_len, 100 * marked_len / src_wo_mcoms_len)
-    logging.getLogger("fuzzyheat.sourcemarkers").info(msg)
-
     return intervals
 
 def source_text_to_html(src):
