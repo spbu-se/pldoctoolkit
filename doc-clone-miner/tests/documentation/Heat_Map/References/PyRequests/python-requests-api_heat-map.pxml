@@ -10,8 +10,8 @@ HTTPS urls by implementing the Transport Adapter interface. This class will
 usually be created by the :class:`Session &amp;lt;Session&amp;gt;` class under the
 covers.
 
-:param pool_connections: The number of urllib3 connection pools to cache.
-:param pool_maxsize: The maximum number of connections to save in the pool.
+<!-- 2acebf81-4457-4ce1-a425-ef5192006366 <=< ACCEPT -->:param pool_connections: The number of urllib3 connection pools to cache.
+:param pool_maxsize: The maximum number of connections to save in the pool.<!-- ACCEPT >=> 2acebf81-4457-4ce1-a425-ef5192006366 -->
 :param int max_retries: The maximum number of retries each connection
 should attempt. Note, this applies only to failed DNS lookups, socket
 connections and connection timeouts, never to requests where data has
@@ -31,30 +31,30 @@ Usage::
 def init_poolmanager(self, connections, maxsize, block=DEFAULT_POOLBLOCK, **pool_kwargs):
 Initializes a urllib3 PoolManager.
 
-This method should not be called from user code, and is only
+<!-- 6285e141-3fc3-4214-91f8-df15673cd165 <=< ACCEPT -->This method should not be called from user code, and is only
 exposed for use when subclassing the
-:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.
+:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.<!-- ACCEPT >=> 6285e141-3fc3-4214-91f8-df15673cd165 -->
 
-:param connections: The number of urllib3 connection pools to cache.
-:param maxsize: The maximum number of connections to save in the pool.
+<!-- 2acebf81-4457-4ce1-a425-ef5192006366 <=< ACCEPT -->:param connections: The number of urllib3 connection pools to cache.
+:param maxsize: The maximum number of connections to save in the pool.<!-- ACCEPT >=> 2acebf81-4457-4ce1-a425-ef5192006366 -->
 :param block: Block when no free connections are available.
 :param pool_kwargs: Extra keyword arguments used to initialize the Pool Manager.
 
 def proxy_manager_for(self, proxy, **proxy_kwargs):
 Return urllib3 ProxyManager for the given proxy.
 
-This method should not be called from user code, and is only
+<!-- 6285e141-3fc3-4214-91f8-df15673cd165 <=< ACCEPT -->This method should not be called from user code, and is only
 exposed for use when subclassing the
-:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.
+:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.<!-- ACCEPT >=> 6285e141-3fc3-4214-91f8-df15673cd165 -->
 
 :param proxy: The proxy to return a urllib3 ProxyManager for.
 :param proxy_kwargs: Extra keyword arguments used to configure the Proxy Manager.
 :returns: ProxyManager
 
 def cert_verify(self, conn, url, verify, cert):
-Verify a SSL certificate. This method should not be called from user
+Verify a SSL certificate. <!-- 6285e141-3fc3-4214-91f8-df15673cd165 <=< ACCEPT -->This method should not be called from user
 code, and is only exposed for use when subclassing the
-:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.
+:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.<!-- ACCEPT >=> 6285e141-3fc3-4214-91f8-df15673cd165 -->
 
 :param conn: The urllib3 connection object associated with the cert.
 :param url: The requested URL.
@@ -63,17 +63,17 @@ code, and is only exposed for use when subclassing the
 
 def build_response(self, req, resp):
 Builds a :class:`Response &amp;lt;requests.Response&amp;gt;` object from a urllib3
-response. This should not be called from user code, and is only exposed
+response. <!-- 367d1bc2-8988-4154-91bf-f4cbf2a72923 <=< ACCEPT -->This should not be called from user code, and is only exposed
 for use when subclassing the
-:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`
+:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`<!-- ACCEPT >=> 367d1bc2-8988-4154-91bf-f4cbf2a72923 -->
 
 :param req: The :class:`PreparedRequest &amp;lt;PreparedRequest&amp;gt;` used to generate the response.
 :param resp: The urllib3 response object.
 
 def get_connection(self, url, proxies=None):
-Returns a urllib3 connection for the given URL. This should not be
+Returns a urllib3 connection for the given URL. <!-- 367d1bc2-8988-4154-91bf-f4cbf2a72923 <=< ACCEPT -->This should not be
 called from user code, and is only exposed for use when subclassing the
-:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.
+:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.<!-- ACCEPT >=> 367d1bc2-8988-4154-91bf-f4cbf2a72923 -->
 
 :param url: The URL to connect to.
 :param proxies: (optional) A Requests-style dictionary of proxies used on this request.
@@ -90,9 +90,9 @@ Obtain the url to use when making the final request.
 If the message is being sent through a HTTP proxy, the full URL has to
 be used. Otherwise, we should only use the path portion of the URL.
 
-This should not be called from user code, and is only exposed for use
+<!-- 367d1bc2-8988-4154-91bf-f4cbf2a72923 <=< ACCEPT -->This should not be called from user code, and is only exposed for use
 when subclassing the
-:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.
+:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.<!-- ACCEPT >=> 367d1bc2-8988-4154-91bf-f4cbf2a72923 -->
 
 :param request: The :class:`PreparedRequest &amp;lt;PreparedRequest&amp;gt;` being sent.
 :param proxies: A dictionary of schemes to proxy URLs.
@@ -102,9 +102,9 @@ Add any headers needed by the connection. As of v2.0 this does
 nothing by default, but is left for overriding by users that subclass
 the :class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.
 
-This should not be called from user code, and is only exposed for use
+<!-- 367d1bc2-8988-4154-91bf-f4cbf2a72923 <=< ACCEPT -->This should not be called from user code, and is only exposed for use
 when subclassing the
-:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.
+:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.<!-- ACCEPT >=> 367d1bc2-8988-4154-91bf-f4cbf2a72923 -->
 
 :param request: The :class:`PreparedRequest &amp;lt;PreparedRequest&amp;gt;` to add headers to.
 :param kwargs: The keyword arguments from the call to send().
@@ -115,9 +115,9 @@ through a proxy. This works with urllib3 magic to ensure that they are
 correctly sent to the proxy, rather than in a tunnelled request if
 CONNECT is being used.
 
-This should not be called from user code, and is only exposed for use
+<!-- 367d1bc2-8988-4154-91bf-f4cbf2a72923 <=< ACCEPT -->This should not be called from user code, and is only exposed for use
 when subclassing the
-:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.
+:class:`HTTPAdapter &amp;lt;requests.adapters.HTTPAdapter&amp;gt;`.<!-- ACCEPT >=> 367d1bc2-8988-4154-91bf-f4cbf2a72923 -->
 
 :param proxies: The url of the proxy being used for this request.
 :param kwargs: Optional additional keyword arguments.
@@ -134,7 +134,7 @@ def request(method, url, **kwargs):
 Constructs and sends a :class:`Request &amp;lt;Request&amp;gt;`.
 Returns :class:`Response &amp;lt;Response&amp;gt;` object.
 
-:param method: method for the new :class:`Request` object.
+<!-- ccaca5c7-c16d-4069-bdba-511db1a95fa8 <=< ACCEPT -->:param method: method for the new :class:`Request` object.
 :param url: URL for the new :class:`Request` object.
 :param params: (optional) Dictionary or bytes to be sent in the query string for the :class:`Request`.
 :param data: (optional) Dictionary, bytes, or file-like object to send in the body of the :class:`Request`.
@@ -151,16 +151,16 @@ before giving up, as a float, or a (`connect timeout, read timeout
 :type allow_redirects: bool
 :param proxies: (optional) Dictionary mapping protocol to the URL of the proxy.
 :param verify: (optional) if ``True``, the SSL cert will be verified. A CA_BUNDLE path can also be provided.
-:param stream: (optional) if ``False``, the response content will be immediately downloaded.
+:param stream: (optional) if ``False``, the response content will be immediately downloaded.<!-- ACCEPT >=> ccaca5c7-c16d-4069-bdba-511db1a95fa8 -->
 :param cert: (optional) if String, path to ssl client cert file (.pem). If Tuple, ('cert', 'key') pair.
 
-Usage::
+<!-- bba91b68-7842-4c91-a085-082f2f36bf17 <=< ACCEPT -->Usage::
 
 &amp;gt;&amp;gt;&amp;gt; import requests
-&amp;gt;&amp;gt;&amp;gt; req = requests.request('GET', 'http://httpbin.org/get')
+&amp;gt;&amp;gt;&amp;gt; req = requests.request('GET', 'http://httpbin.org/get')<!-- ACCEPT >=> bba91b68-7842-4c91-a085-082f2f36bf17 -->
 &amp;lt;Response [200]&amp;gt;
 
-def get(url, **kwargs):
+<!-- a7eee1d9-105a-4e08-8c54-2fa1bb5e2908 <=< ACCEPT -->def get(url, **kwargs):
 Sends a GET request. Returns :class:`Response` object.
 
 :param url: URL for the new :class:`Request` object.
@@ -204,7 +204,7 @@ def delete(url, **kwargs):
 Sends a DELETE request. Returns :class:`Response` object.
 
 :param url: URL for the new :class:`Request` object.
-:param \*\*kwargs: Optional arguments that ``request`` takes.
+:param \*\*kwargs: Optional arguments that ``request`` takes.<!-- ACCEPT >=> a7eee1d9-105a-4e08-8c54-2fa1bb5e2908 -->
 
 requests.auth
 ~~~~~~~~~~~~~
@@ -296,18 +296,18 @@ FileCookieJar.
 
 Caution: dictionary operations that are normally O(1) may be O(n).
 
-Unlike a regular CookieJar, this class is pickleable.
+<!-- 0fb90da6-fdf2-4cf0-b872-fb0682640196 <=< ACCEPT -->Unlike a regular CookieJar, this class is pickleable.<!-- ACCEPT >=> 0fb90da6-fdf2-4cf0-b872-fb0682640196 -->
 
-def get(self, name, default=None, domain=None, path=None):
+<!-- d2d1b740-ec55-4639-b80b-bb83e242e87d <=< ACCEPT -->def get(self, name, default=None, domain=None, path=None):
 Dict-like get() that also supports optional domain and path args in
 order to resolve naming collisions from using one cookie jar over
-multiple domains. Caution: operation is O(n), not O(1).
+multiple domains. Caution: operation is O(n), not O(1).<!-- ACCEPT >=> d2d1b740-ec55-4639-b80b-bb83e242e87d -->
 
-def set(self, name, value, **kwargs):
+<!-- d2d1b740-ec55-4639-b80b-bb83e242e87d <=< ACCEPT -->def set(self, name, value, **kwargs):
 Dict-like set() that also supports optional domain and path args in
 order to resolve naming collisions from using one cookie jar over
 multiple domains.
-
+<!-- ACCEPT >=> d2d1b740-ec55-4639-b80b-bb83e242e87d -->
 def iterkeys(self):
 Dict-like iterkeys() that returns an iterator of names of cookies from the jar.
 See itervalues() and iteritems().
@@ -347,15 +347,15 @@ def get_dict(self, domain=None, path=None):
 Takes as an argument an optional domain and path and returns a plain old
 Python dict of name-value pairs of cookies that meet the requirements.
 
-def __getitem__(self, name):
+<!-- 0ec8ec4c-76d6-4b2a-9444-be61541835bf <=< ACCEPT -->def __getitem__(self, name):
 Dict-like __getitem__() for compatibility with client code. Throws exception
 if there are more than one cookie with name. In that case, use the more
-explicit get() method instead. Caution: operation is O(n), not O(1).
+explicit get() method instead. Caution: operation is O(n), not O(1).<!-- ACCEPT >=> 0ec8ec4c-76d6-4b2a-9444-be61541835bf -->
 
-def __setitem__(self, name, value):
+<!-- 0ec8ec4c-76d6-4b2a-9444-be61541835bf <=< ACCEPT -->def __setitem__(self, name, value):
 Dict-like __setitem__ for compatibility with client code. Throws exception
 if there is already a cookie of that name in the jar. In that case, use the more
-explicit set() method instead.
+explicit set() method instead.<!-- ACCEPT >=> 0ec8ec4c-76d6-4b2a-9444-be61541835bf -->
 
 def __delitem__(self, name):
 Deletes a cookie given a name. Wraps cookielib.CookieJar's remove_cookie_by_name().
@@ -364,10 +364,10 @@ def update(self, other):
 Updates this jar with cookies from another CookieJar or dict-like
 
 def __getstate__(self):
-Unlike a normal CookieJar, this class is pickleable.
+<!-- 0fb90da6-fdf2-4cf0-b872-fb0682640196 <=< ACCEPT -->Unlike a normal CookieJar, this class is pickleable.<!-- ACCEPT >=> 0fb90da6-fdf2-4cf0-b872-fb0682640196 -->
 
 def __setstate__(self, state):
-Unlike a normal CookieJar, this class is pickleable.
+<!-- 0fb90da6-fdf2-4cf0-b872-fb0682640196 <=< ACCEPT -->Unlike a normal CookieJar, this class is pickleable.<!-- ACCEPT >=> 0fb90da6-fdf2-4cf0-b872-fb0682640196 -->
 
 def copy(self):
 Return a copy of this RequestsCookieJar.
@@ -504,10 +504,10 @@ Used to prepare a :class:`PreparedRequest &amp;lt;PreparedRequest&amp;gt;`, whic
 :param cookies: dictionary or CookieJar of cookies to attach to this request.
 :param hooks: dictionary of callback hooks, for internal usage.
 
-Usage::
+<!-- bba91b68-7842-4c91-a085-082f2f36bf17 <=< ACCEPT -->Usage::
 
 &amp;gt;&amp;gt;&amp;gt; import requests
-&amp;gt;&amp;gt;&amp;gt; req = requests.Request('GET', 'http://httpbin.org/get')
+&amp;gt;&amp;gt;&amp;gt; req = requests.Request('GET', 'http://httpbin.org/get')<!-- ACCEPT >=> bba91b68-7842-4c91-a085-082f2f36bf17 -->
 &amp;gt;&amp;gt;&amp;gt; req.prepare()
 &amp;lt;PreparedRequest [GET]&amp;gt;
 
@@ -517,10 +517,10 @@ containing the exact bytes that will be sent to the server.
 
 Generated from either a :class:`Request &amp;lt;Request&amp;gt;` object or manually.
 
-Usage::
+<!-- bba91b68-7842-4c91-a085-082f2f36bf17 <=< ACCEPT -->Usage::
 
 &amp;gt;&amp;gt;&amp;gt; import requests
-&amp;gt;&amp;gt;&amp;gt; req = requests.Request('GET', 'http://httpbin.org/get')
+&amp;gt;&amp;gt;&amp;gt; req = requests.Request('GET', 'http://httpbin.org/get')<!-- ACCEPT >=> bba91b68-7842-4c91-a085-082f2f36bf17 -->
 &amp;gt;&amp;gt;&amp;gt; r = req.prepare()
 &amp;lt;PreparedRequest [GET]&amp;gt;
 
@@ -566,9 +566,9 @@ def apparent_encoding(self):
 The apparent encoding, provided by the chardet library
 
 def iter_content(self, chunk_size=1, decode_unicode=False):
-Iterates over the response data.  When stream=True is set on the
+<!-- 02fcbfd1-32db-4605-930d-4d49b5f8a7b6 <=< ACCEPT -->Iterates over the response data.  When stream=True is set on the
 request, this avoids reading the content at once into memory for
-large responses.  The chunk size is the number of bytes it should
+large responses.<!-- ACCEPT >=> 02fcbfd1-32db-4605-930d-4d49b5f8a7b6 -->  The chunk size is the number of bytes it should
 read into memory.  This is not necessarily the length of each item
 returned as decoding can take place.
 
@@ -576,9 +576,9 @@ If decode_unicode is True, content will be decoded using the best
 available encoding based on the response.
 
 def iter_lines(self, chunk_size=ITER_CHUNK_SIZE, decode_unicode=None, delimiter=None):
-Iterates over the response data, one line at a time.  When
+<!-- 02fcbfd1-32db-4605-930d-4d49b5f8a7b6 <=< ACCEPT -->Iterates over the response data, one line at a time.  When
 stream=True is set on the request, this avoids reading the
-content at once into memory for large responses.
+content at once into memory for large responses.<!-- ACCEPT >=> 02fcbfd1-32db-4605-930d-4d49b5f8a7b6 -->
 
 def content(self):
 Content of the response, in bytes.
@@ -682,7 +682,7 @@ json=None):
 Constructs a :class:`Request &amp;lt;Request&amp;gt;`, prepares it and sends it.
 Returns :class:`Response &amp;lt;Response&amp;gt;` object.
 
-:param method: method for the new :class:`Request` object.
+<!-- ccaca5c7-c16d-4069-bdba-511db1a95fa8 <=< ACCEPT -->:param method: method for the new :class:`Request` object.
 :param url: URL for the new :class:`Request` object.
 :param params: (optional) Dictionary or bytes to be sent in the query
 string for the :class:`Request`.
@@ -707,13 +707,13 @@ timeout &amp;lt;user/advanced.html#timeouts&amp;gt;`_) tuple.
 :param proxies: (optional) Dictionary mapping protocol to the URL of
 the proxy.
 :param stream: (optional) whether to immediately download the response
-content. Defaults to ``False``.
+content. Defaults to ``False``.<!-- ACCEPT >=> ccaca5c7-c16d-4069-bdba-511db1a95fa8 -->
 :param verify: (optional) if ``True``, the SSL cert will be verified.
 A CA_BUNDLE path can also be provided.
 :param cert: (optional) if String, path to ssl client cert file (.pem).
 If Tuple, ('cert', 'key') pair.
 
-def get(self, url, **kwargs):
+<!-- a7eee1d9-105a-4e08-8c54-2fa1bb5e2908 <=< ACCEPT -->def get(self, url, **kwargs):
 Sends a GET request. Returns :class:`Response` object.
 
 :param url: URL for the new :class:`Request` object.
@@ -757,7 +757,7 @@ def delete(self, url, **kwargs):
 Sends a DELETE request. Returns :class:`Response` object.
 
 :param url: URL for the new :class:`Request` object.
-:param \*\*kwargs: Optional arguments that ``request`` takes.
+:param \*\*kwargs: Optional arguments that ``request`` takes.<!-- ACCEPT >=> a7eee1d9-105a-4e08-8c54-2fa1bb5e2908 -->
 
 def send(self, request, **kwargs):
 Send a given PreparedRequest.
@@ -872,12 +872,12 @@ The return value is a standard :class:`list`:
 &amp;gt;&amp;gt;&amp;gt; parse_list_header('token, "quoted value"')
 ['token', 'quoted value']
 
-To create a header from the :class:`list` again, use the
+<!-- 6eb8af5f-ffe3-4f16-ad98-428a0f5ca957 <=< ACCEPT -->To create a header from the :class:`list` again, use the
 :func:`dump_header` function.
 
 :param value: a string with a list header.
 :return: :class:`list`
-
+<!-- ACCEPT >=> 6eb8af5f-ffe3-4f16-ad98-428a0f5ca957 -->
 def parse_dict_header(value):
 Parse lists of key, value pairs as described by RFC 2068 Section 2 and
 convert them into a python dict:
@@ -893,11 +893,11 @@ If there is no value for a key it will be `None`:
 &amp;gt;&amp;gt;&amp;gt; parse_dict_header('key_without_value')
 {'key_without_value': None}
 
-To create a header from the :class:`dict` again, use the
+<!-- 6eb8af5f-ffe3-4f16-ad98-428a0f5ca957 <=< ACCEPT -->To create a header from the :class:`dict` again, use the
 :func:`dump_header` function.
 
 :param value: a string with a dict header.
-:return: :class:`dict`
+:return: :class:`dict`<!-- ACCEPT >=> 6eb8af5f-ffe3-4f16-ad98-428a0f5ca957 -->
 
 def unquote_header_value(value, is_filename=False):
 rUnquotes a header value.  (Reversal of :func:`quote_header_value`).
