@@ -76,7 +76,7 @@ Wraps the ExtTextOut function.
 @param x x position to start rendering
 @param y y position to start rendering
 ------------
-Return ordering and rendering information for the given text.  Wraps the GetFontLanguageInfo
+<!-- 44b94887-5563-4bff-84ee-f9c3546b5aef <=< ACCEPT -->Return ordering and rendering information for the given text.  Wraps the GetFontLanguageInfo
 and GetCharacterPlacement functions.
 &lt;p&gt;
 
@@ -85,7 +85,7 @@ and GetCharacterPlacement functions.
 @param order an array of integers representing the visual position of each character in
 the text array, output parameter
 @param classBuffer an array of integers representing the type (e.g., ARABIC, HEBREW,
-LOCALNUMBER) of each character in the text array, input/output parameter
+LOCALNUMBER) of each character in the text array, input/output parameter<!-- ACCEPT >=> 44b94887-5563-4bff-84ee-f9c3546b5aef -->
 @param dx an array of integers representing the pixel width of each glyph in the returned
 glyph buffer, output parameter
 @param flags an integer representing rendering flag information, input parameter
@@ -93,7 +93,7 @@ glyph buffer, output parameter
 parameter. See org.eclipse.swt.custom.BidiSegmentEvent for details.
 @return buffer with the glyphs that should be rendered for the given text
 ------------
-Return bidi ordering information for the given text.  Does not return rendering
+<!-- 44b94887-5563-4bff-84ee-f9c3546b5aef <=< ACCEPT -->Return bidi ordering information for the given text.  Does not return rendering
 information (e.g., glyphs, glyph distances).  Use this method when you only need
 ordering information.  Doing so will improve performance.  Wraps the
 GetFontLanguageInfo and GetCharacterPlacement functions.
@@ -102,7 +102,7 @@ GetFontLanguageInfo and GetCharacterPlacement functions.
 @param gc the GC to use for measuring of this line, input parameter
 @param text text that bidi data should be calculated for, input parameter
 @param order an array of integers representing the visual position of each character in
-the text array, output parameter
+the text array, output parameter<!-- ACCEPT >=> 44b94887-5563-4bff-84ee-f9c3546b5aef -->
 @param classBuffer an array of integers representing the type (e.g., ARABIC, HEBREW,
 LOCALNUMBER) of each character in the text array, input/output parameter
 @param flags an integer representing rendering flag information, input parameter
@@ -598,7 +598,7 @@ typically bad) when a callback is passed out to the
 operating system (or other code) in such a way that the
 callback is called from a different thread.
 ------------
-Constructs a new instance of this class given an object
+<!-- 3da408da-95e9-44a4-a76d-e39b3b167ee9 <=< ACCEPT -->Constructs a new instance of this class given an object
 to send the message to, a string naming the method to
 invoke and an argument count. Note that, if the object
 is an instance of &lt;code&gt;Class&lt;/code&gt; it is assumed that
@@ -606,13 +606,13 @@ the method is a static method on that class.
 
 &lt;p&gt;Note, do not use this if the method arguments have a double, as arguments will be
 shifted/corrupted. See Bug 510538. Instead use the following constructor: &lt;br&gt;
-&lt;code&gt; Callback (Object, String, Type, Type [])&lt;/code&gt;&lt;/p&gt;
+&lt;code&gt; Callback (Object, String, Type, Type [])&lt;/code&gt;&lt;/p&gt;<!-- ACCEPT >=> 3da408da-95e9-44a4-a76d-e39b3b167ee9 -->
 
 @param object the object to send the message to
 @param method the name of the method to invoke
 @param argCount the number of arguments that the method takes
 ------------
-Constructs a new instance of this class given an object
+<!-- 3da408da-95e9-44a4-a76d-e39b3b167ee9 <=< ACCEPT -->Constructs a new instance of this class given an object
 to send the message to, a string naming the method to
 invoke, an argument count and a flag indicating whether
 or not the arguments will be passed in an array. Note
@@ -622,14 +622,14 @@ class.
 
 &lt;p&gt;Note, do not use this if the method arguments have a double, as arguments will be
 shifted/corrupted. See Bug 510538. Instead use the following constructor: &lt;br&gt;
-&lt;code&gt; Callback (Object, String, Type, Type [])&lt;/code&gt;&lt;/p&gt;
+&lt;code&gt; Callback (Object, String, Type, Type [])&lt;/code&gt;&lt;/p&gt;<!-- ACCEPT >=> 3da408da-95e9-44a4-a76d-e39b3b167ee9 -->
 
 @param object the object to send the message to
 @param method the name of the method to invoke
 @param argCount the number of arguments that the method takes
 @param isArrayBased &lt;code&gt;true&lt;/code&gt; if the arguments should be passed in an array and false otherwise
 ------------
-Constructs a new instance of this class given an object
+<!-- 3da408da-95e9-44a4-a76d-e39b3b167ee9 <=< ACCEPT -->Constructs a new instance of this class given an object
 to send the message to, a string naming the method to
 invoke, an argument count, a flag indicating whether
 or not the arguments will be passed in an array and a value
@@ -640,7 +640,7 @@ class.
 
 &lt;p&gt;Note, do not use this if the method arguments have a double, as arguments will be
 shifted/corrupted. See Bug 510538. Instead use the following constructor: &lt;br&gt;
-&lt;code&gt; Callback (Object, String, Type, Type [])&lt;/code&gt;&lt;/p&gt;
+&lt;code&gt; Callback (Object, String, Type, Type [])&lt;/code&gt;&lt;/p&gt;<!-- ACCEPT >=> 3da408da-95e9-44a4-a76d-e39b3b167ee9 -->
 
 @param object the object to send the message to
 @param method the name of the method to invoke
@@ -1273,7 +1273,7 @@ int alpha = 255;
 
 Prevents uninitialized instances from being created outside the package.
 ------------
-Constructs a new instance of this class given a device and the
+<!-- 78caa1cf-532c-41a4-b59a-fed080c2bd0c <=< ACCEPT -->Constructs a new instance of this class given a device and the
 desired red, green and blue values expressed as ints in the range
 0 to 255 (where 0 is black and 255 is full brightness). On limited
 color devices, the color instance created by this call may not have
@@ -1287,7 +1287,7 @@ You must dispose the color when it is no longer required.
 @param device the device on which to allocate the color
 @param red the amount of red in the color
 @param green the amount of green in the color
-@param blue the amount of blue in the color
+@param blue the amount of blue in the color<!-- ACCEPT >=> 78caa1cf-532c-41a4-b59a-fed080c2bd0c -->
 
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if device is null and there is no current device&lt;/li&gt;
@@ -1296,7 +1296,7 @@ You must dispose the color when it is no longer required.
 
 @see #dispose
 ------------
-Constructs a new instance of this class given a device and the
+<!-- 78caa1cf-532c-41a4-b59a-fed080c2bd0c <=< ACCEPT -->Constructs a new instance of this class given a device and the
 desired red, green, blue &amp; alpha values expressed as ints in the range
 0 to 255 (where 0 is black and 255 is full brightness). On limited
 color devices, the color instance created by this call may not have
@@ -1311,7 +1311,7 @@ You must dispose the color when it is no longer required.
 @param red the amount of red in the color
 @param green the amount of green in the color
 @param blue the amount of blue in the color
-@param alpha the amount of alpha in the color. Currently, SWT only honors extreme values for alpha i.e. 0 (transparent) or 255 (opaque).
+@param alpha the amount of alpha in the color. Currently, SWT only honors extreme values for alpha i.e. 0 (transparent) or 255 (opaque).<!-- ACCEPT >=> 78caa1cf-532c-41a4-b59a-fed080c2bd0c -->
 
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if device is null and there is no current device&lt;/li&gt;
@@ -1321,7 +1321,7 @@ You must dispose the color when it is no longer required.
 @see #dispose
 @since 3.104
 ------------
-Constructs a new instance of this class given a device and an
+<!-- 3499c314-641b-4440-844a-9d6cdc669aa5 <=< ACCEPT -->Constructs a new instance of this class given a device and an
 &lt;code&gt;RGB&lt;/code&gt; describing the desired red, green and blue values.
 On limited color devices, the color instance created by this call
 may not have the same RGB values as the ones specified by the
@@ -1332,7 +1332,7 @@ You must dispose the color when it is no longer required.
 &lt;/p&gt;
 
 @param device the device on which to allocate the color
-@param rgb the RGB values of the desired color
+@param rgb the RGB values of the desired color<!-- ACCEPT >=> 3499c314-641b-4440-844a-9d6cdc669aa5 -->
 
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if device is null and there is no current device&lt;/li&gt;
@@ -1364,7 +1364,7 @@ You must dispose the color when it is no longer required.
 @see #dispose
 @since 3.104
 ------------
-Constructs a new instance of this class given a device, an
+<!-- 3499c314-641b-4440-844a-9d6cdc669aa5 <=< ACCEPT -->Constructs a new instance of this class given a device, an
 &lt;code&gt;RGB&lt;/code&gt; describing the desired red, green and blue values,
 alpha specifying the level of transparency.
 On limited color devices, the color instance created by this call
@@ -1377,7 +1377,7 @@ You must dispose the color when it is no longer required.
 
 @param device the device on which to allocate the color
 @param rgb the RGB values of the desired color
-@param alpha the alpha value of the desired color. Currently, SWT only honors extreme values for alpha i.e. 0 (transparent) or 255 (opaque).
+@param alpha the alpha value of the desired color. Currently, SWT only honors extreme values for alpha i.e. 0 (transparent) or 255 (opaque).<!-- ACCEPT >=> 3499c314-641b-4440-844a-9d6cdc669aa5 -->
 
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if device is null and there is no current device&lt;/li&gt;
@@ -2059,7 +2059,7 @@ display &lt;em&gt;one&lt;/em&gt; of the items in the receiver's list.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns a (possibly empty) array of &lt;code&gt;String&lt;/code&gt;s which are
+<!-- 53d00f48-ad5b-4ce1-970d-883e26f543e3 <=< ACCEPT -->Returns a (possibly empty) array of &lt;code&gt;String&lt;/code&gt;s which are
 the items in the receiver's list.
 &lt;p&gt;
 Note: This is not the actual structure used by the receiver
@@ -2067,7 +2067,7 @@ to maintain its list of items, so modifying the array will
 not affect the receiver.
 &lt;/p&gt;
 
-@return the items in the receiver's list
+@return the items in the receiver's list<!-- ACCEPT >=> 53d00f48-ad5b-4ce1-970d-883e26f543e3 -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -2985,7 +2985,7 @@ a layout due to a resize will not flush any cached information
 (same as &lt;code&gt;layout(false)&lt;/code&gt;).
 &lt;/p&gt;
 &lt;p&gt;
-It is normally more efficient to invoke {@link Control#requestLayout()}
+<!-- a2744d24-4dcc-49ab-b58c-10c5cb5d264f <=< ACCEPT -->It is normally more efficient to invoke {@link Control#requestLayout()}
 on every control which has changed in the layout than it is to invoke
 this method on the layout itself. Clients are encouraged to use
 {@link Control#requestLayout()} where possible instead of calling
@@ -2999,7 +2999,7 @@ affected, the parent will not paint.
 &lt;/p&gt;
 
 @param changed &lt;code&gt;true&lt;/code&gt; if the layout must flush its caches, and &lt;code&gt;false&lt;/code&gt; otherwise
-@param all &lt;code&gt;true&lt;/code&gt; if all children in the receiver's widget tree should be laid out, and &lt;code&gt;false&lt;/code&gt; otherwise
+@param all &lt;code&gt;true&lt;/code&gt; if all children in the receiver's widget tree should be laid out, and &lt;code&gt;false&lt;/code&gt; otherwise<!-- ACCEPT >=> a2744d24-4dcc-49ab-b58c-10c5cb5d264f -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -3018,7 +3018,7 @@ cached about the changed control or any of its ancestors.  The layout may
 peers of the changed control have changed state since the last layout.
 If an ancestor does not have a layout, skip it.
 &lt;p&gt;
-It is normally more efficient to invoke {@link Control#requestLayout()}
+<!-- a2744d24-4dcc-49ab-b58c-10c5cb5d264f <=< ACCEPT -->It is normally more efficient to invoke {@link Control#requestLayout()}
 on every control which has changed in the layout than it is to invoke
 this method on the layout itself. Clients are encouraged to use
 {@link Control#requestLayout()} where possible instead of calling
@@ -3031,7 +3031,7 @@ exposed, then the parent will paint. If no child is
 affected, the parent will not paint.
 &lt;/p&gt;
 
-@param changed a control that has had a state change which requires a recalculation of its size
+@param changed a control that has had a state change which requires a recalculation of its size<!-- ACCEPT >=> a2744d24-4dcc-49ab-b58c-10c5cb5d264f -->
 
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the changed array is null any of its controls are null or have been disposed&lt;/li&gt;
@@ -3603,7 +3603,7 @@ interface.
 @see TraverseListener
 @see #removeTraverseListener
 ------------
-Returns the preferred size (in points) of the receiver.
+<!-- 8b8c43c2-4a1d-4ed5-be49-7909691f8f61 <=< ACCEPT -->Returns the preferred size (in points) of the receiver.
 &lt;p&gt;
 The &lt;em&gt;preferred size&lt;/em&gt; of a control is the size that it would
 best be displayed at. The width hint and height hint arguments
@@ -3611,7 +3611,7 @@ allow the caller to ask a control questions such as "Given a particular
 width, how high does the control need to be to show all of the contents?"
 To indicate that the caller does not wish to constrain a particular
 dimension, the constant &lt;code&gt;SWT.DEFAULT&lt;/code&gt; is passed for the hint.
-&lt;/p&gt;
+&lt;/p&gt;<!-- ACCEPT >=> 8b8c43c2-4a1d-4ed5-be49-7909691f8f61 -->
 
 @param wHint the width hint (can be &lt;code&gt;SWT.DEFAULT&lt;/code&gt;)
 @param hHint the height hint (can be &lt;code&gt;SWT.DEFAULT&lt;/code&gt;)
@@ -3631,7 +3631,7 @@ dimension, the constant &lt;code&gt;SWT.DEFAULT&lt;/code&gt; is passed for the h
 @see #pack(boolean)
 @see "computeTrim, getClientArea for controls that implement them"
 ------------
-Returns the preferred size (in points) of the receiver.
+<!-- 8b8c43c2-4a1d-4ed5-be49-7909691f8f61 <=< ACCEPT -->Returns the preferred size (in points) of the receiver.
 &lt;p&gt;
 The &lt;em&gt;preferred size&lt;/em&gt; of a control is the size that it would
 best be displayed at. The width hint and height hint arguments
@@ -3639,7 +3639,7 @@ allow the caller to ask a control questions such as "Given a particular
 width, how high does the control need to be to show all of the contents?"
 To indicate that the caller does not wish to constrain a particular
 dimension, the constant &lt;code&gt;SWT.DEFAULT&lt;/code&gt; is passed for the hint.
-&lt;/p&gt;&lt;p&gt;
+&lt;/p&gt;&lt;p&gt;<!-- ACCEPT >=> 8b8c43c2-4a1d-4ed5-be49-7909691f8f61 -->
 If the changed flag is &lt;code&gt;true&lt;/code&gt;, it indicates that the receiver's
 &lt;em&gt;contents&lt;/em&gt; have changed, therefore any caches that a layout manager
 containing the control may have been keeping need to be flushed. When the
@@ -4097,7 +4097,7 @@ it may not actually be showing.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Invokes platform specific functionality to allocate a new GC handle.
+<!-- 6a217fdb-a76c-4de8-8453-8d744573c240 <=< ACCEPT -->Invokes platform specific functionality to allocate a new GC handle.
 &lt;p&gt;
 &lt;b&gt;IMPORTANT:&lt;/b&gt; This method is &lt;em&gt;not&lt;/em&gt; part of the public
 API for &lt;code&gt;Control&lt;/code&gt;. It is marked public only so that it
@@ -4123,7 +4123,7 @@ application code.
 @param hDC the platform specific GC handle
 @param data the platform specific GC data
 
-@noreference This method is not intended to be referenced by clients.
+@noreference This method is not intended to be referenced by clients.<!-- ACCEPT >=> 6a217fdb-a76c-4de8-8453-8d744573c240 -->
 ------------
 Returns &lt;code&gt;true&lt;/code&gt; if the receiver is enabled and all
 ancestors up to and including the receiver's nearest ancestor
@@ -5527,14 +5527,14 @@ Convert a "C" multibyte UTF-8 string byte array into a Java UTF-16 Wide characte
 @param buffer - byte buffer with C bytes representing a string.
 @return char array representing the string. Usually used for String construction like: new String(mbcsToWcs(..))
 ------------
-Convert a Java UTF-16 Wide character string into a C UTF-8 Multibyte byte array.
+<!-- b8b71542-7513-4195-946c-e50dca53c0ae <=< ACCEPT -->Convert a Java UTF-16 Wide character string into a C UTF-8 Multibyte byte array.
 
 This algorithm stops when it finds the first NULL character. I.e, if your Java String has embedded NULL
 characters, then the returned string will only go up to the first NULL character.
 
 @param string - a regular Java String
 @param terminate - if &lt;code&gt;true&lt;/code&gt; the byte buffer should be terminated with a null character.
-@return byte array that can be passed to a native function.
+@return byte array that can be passed to a native function.<!-- ACCEPT >=> b8b71542-7513-4195-946c-e50dca53c0ae -->
 ------------
 This method takes a 'C' pointer (char *) or (gchar *), reads characters up to the terminating symbol '\0' and
 converts it into a Java String.
@@ -5546,14 +5546,14 @@ Instead we pass a character pointer from C to java and convert it to a String in
 @param cCharPtr - A char * or a gchar *. Which will be freed up afterwards.
 @return a Java String object.
 ------------
-Convert a Java UTF-16 Wide character array into a C UTF-8 Multibyte byte array.
+<!-- b8b71542-7513-4195-946c-e50dca53c0ae <=< ACCEPT -->Convert a Java UTF-16 Wide character array into a C UTF-8 Multibyte byte array.
 
 This algorithm stops when it finds the first NULL character. I.e, if your Java String has embedded NULL
 characters, then the returned string will only go up to the first NULL character.
 
 @param chars - a regular Java String
 @param terminate - if &lt;code&gt;true&lt;/code&gt; the byte buffer should be terminated with a null character.
-@return byte array that can be passed to a native function.
+@return byte array that can be passed to a native function.<!-- ACCEPT >=> b8b71542-7513-4195-946c-e50dca53c0ae -->
 ------------
 Convert a Java UTF-16 Wide character into a single C UTF-8 Multibyte character
 that you can pass to a native function.
@@ -5661,7 +5661,7 @@ Returns the number of items contained in the receiver.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns an array of zero-relative ints that map
+<!-- 53d00f48-ad5b-4ce1-970d-883e26f543e3 <=< ACCEPT -->Returns an array of zero-relative ints that map
 the creation order of the receiver's items to the
 order in which they are currently being displayed.
 &lt;p&gt;
@@ -5674,7 +5674,7 @@ to maintain its list of items, so modifying the array will
 not affect the receiver.
 &lt;/p&gt;
 
-@return the current visual order of the receiver's items
+@return the current visual order of the receiver's items<!-- ACCEPT >=> 53d00f48-ad5b-4ce1-970d-883e26f543e3 -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -5683,7 +5683,7 @@ not affect the receiver.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns an array of &lt;code&gt;CoolItem&lt;/code&gt;s in the order
+<!-- 53d00f48-ad5b-4ce1-970d-883e26f543e3 <=< ACCEPT -->Returns an array of &lt;code&gt;CoolItem&lt;/code&gt;s in the order
 in which they are currently being displayed.
 &lt;p&gt;
 Note: This is not the actual structure used by the receiver
@@ -5691,7 +5691,7 @@ to maintain its list of items, so modifying the array will
 not affect the receiver.
 &lt;/p&gt;
 
-@return the receiver's items in their current visual order
+@return the receiver's items in their current visual order<!-- ACCEPT >=> 53d00f48-ad5b-4ce1-970d-883e26f543e3 -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -6815,7 +6815,7 @@ IMPORTANT: This class was intended to be abstract and
 should &lt;em&gt;never&lt;/em&gt; be referenced or instantiated.
 Instead, the class &lt;code&gt;Shell&lt;/code&gt; should be used.
 &lt;/p&gt;
-&lt;p&gt;
+<!-- 3bdebb33-5346-401e-9d4b-f38069a3eb11 <=< ACCEPT -->&lt;p&gt;
 Instances are always displayed in one of the maximized,
 minimized or normal states:
 &lt;ul&gt;
@@ -6841,7 +6841,7 @@ distinguished area of the screen, or hidden. Combinations
 of these changes are also possible.
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;
+&lt;/p&gt;<!-- ACCEPT >=> 3bdebb33-5346-401e-9d4b-f38069a3eb11 -->
 Note: The styles supported by this class must be treated
 as &lt;em&gt;HINT&lt;/em&gt;s, since the window manager for the
 desktop on which the instance is visible has ultimate
@@ -6962,7 +6962,7 @@ even if one exists.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns the receiver's images if they had previously been
+<!-- 99dc589a-d0e9-4e3f-b182-64cab1f04c92 <=< ACCEPT -->Returns the receiver's images if they had previously been
 set using &lt;code&gt;setImages()&lt;/code&gt;. Images are typically
 displayed by the window manager when the instance is
 marked as iconified, and may also be displayed somewhere
@@ -6970,7 +6970,7 @@ in the trim when the instance is in normal or maximized
 states. Depending where the icon is displayed, the platform
 chooses the icon with the "best" attributes.  It is expected
 that the array will contain the same icon rendered at different
-sizes, with different depth and transparency attributes.
+sizes, with different depth and transparency attributes.<!-- ACCEPT >=> 99dc589a-d0e9-4e3f-b182-64cab1f04c92 -->
 
 &lt;p&gt;
 Note: This method will return an empty array if called before
@@ -7090,7 +7090,7 @@ instance is in normal or maximized states.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Sets the receiver's images to the argument, which may
+<!-- 99dc589a-d0e9-4e3f-b182-64cab1f04c92 <=< ACCEPT -->Sets the receiver's images to the argument, which may
 be an empty array. Images are typically displayed by the
 window manager when the instance is marked as iconified,
 and may also be displayed somewhere in the trim when the
@@ -7099,7 +7099,7 @@ the icon is displayed, the platform chooses the icon with
 the "best" attributes. It is expected that the array will
 contain the same icon rendered at different sizes, with
 different depth and transparency attributes.
-
+<!-- ACCEPT >=> 99dc589a-d0e9-4e3f-b182-64cab1f04c92 -->
 @param images the new image array
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
@@ -7312,7 +7312,7 @@ You must dispose the device when it is no longer required.
 @see #init
 @see DeviceData
 ------------
-Throws an &lt;code&gt;SWTException&lt;/code&gt; if the receiver can not
+<!-- a866bb99-d458-4aba-ad9c-a235c16c0720 <=< ACCEPT -->Throws an &lt;code&gt;SWTException&lt;/code&gt; if the receiver can not
 be accessed by the caller. This may include both checks on
 the state of the receiver and more generally on the entire
 execution context. This method &lt;em&gt;should&lt;/em&gt; be called by
@@ -7324,7 +7324,7 @@ device that has had its &lt;code&gt;dispose()&lt;/code&gt; method called.
 &lt;/p&gt;&lt;p&gt;
 In future releases of SWT, there may be more or fewer error
 checks and exceptions may be thrown for different reasons.
-&lt;p&gt;
+&lt;p&gt;<!-- ACCEPT >=> a866bb99-d458-4aba-ad9c-a235c16c0720 -->
 
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_WIDGET_DISPOSED - if the receiver has been disposed&lt;/li&gt;
@@ -7568,7 +7568,7 @@ call the &lt;code&gt;super&lt;/code&gt; implementation.
 
 @see #create
 ------------
-Invokes platform specific functionality to allocate a new GC handle.
+<!-- 6a217fdb-a76c-4de8-8453-8d744573c240 <=< ACCEPT -->Invokes platform specific functionality to allocate a new GC handle.
 &lt;p&gt;
 &lt;b&gt;IMPORTANT:&lt;/b&gt; This method is &lt;em&gt;not&lt;/em&gt; part of the public
 API for &lt;code&gt;Device&lt;/code&gt;. It is marked public only so that it
@@ -7594,7 +7594,7 @@ application code.
 @param hDC the platform specific GC handle
 @param data the platform specific GC data
 
-@noreference This method is not intended to be referenced by clients.
+@noreference This method is not intended to be referenced by clients.<!-- ACCEPT >=> 6a217fdb-a76c-4de8-8453-8d744573c240 -->
 ------------
 Returns &lt;code&gt;true&lt;/code&gt; if the device has been disposed,
 and &lt;code&gt;false&lt;/code&gt; otherwise.
@@ -7623,7 +7623,7 @@ present in the list of fonts available to the application.
 Releases any internal resources back to the operating
 system and clears all fields except the device handle.
 &lt;p&gt;
-When a device is destroyed, resources that were acquired
+<!-- 26aedb0b-ac1b-4ce1-8168-d52f973701b7 <=< ACCEPT -->When a device is destroyed, resources that were acquired
 on behalf of the programmer need to be returned to the
 operating system.  For example, if the device allocated a
 font to be used as the system font, this font would be
@@ -7640,7 +7640,7 @@ call the &lt;code&gt;super&lt;/code&gt; implementation.
 &lt;/p&gt;
 
 @see #dispose
-@see #destroy
+@see #destroy<!-- ACCEPT >=> 26aedb0b-ac1b-4ce1-8168-d52f973701b7 -->
 ------------
 If the underlying window system supports printing warning messages
 to the console, setting warnings to &lt;code&gt;false&lt;/code&gt; prevents these
@@ -9132,7 +9132,7 @@ application code.
 
 @noreference This method is not intended to be referenced by clients.
 ------------
-Maps a point from one coordinate system to another.
+<!-- 57ebc961-42ed-4963-9db6-f61393418a87 <=< ACCEPT -->Maps a point from one coordinate system to another.
 When the control is null, coordinates are mapped to
 the display.
 &lt;p&gt;
@@ -9154,7 +9154,7 @@ the corner of the rectangle to be mapped.
 @param from the source &lt;code&gt;Control&lt;/code&gt; or &lt;code&gt;null&lt;/code&gt;
 @param to the destination &lt;code&gt;Control&lt;/code&gt; or &lt;code&gt;null&lt;/code&gt;
 @param point to be mapped
-@return point with mapped coordinates
+@return point with mapped coordinates<!-- ACCEPT >=> 57ebc961-42ed-4963-9db6-f61393418a87 -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
@@ -9203,7 +9203,7 @@ the corner of the rectangle to be mapped.
 
 @since 2.1.2
 ------------
-Maps a point from one coordinate system to another.
+<!-- 57ebc961-42ed-4963-9db6-f61393418a87 <=< ACCEPT -->Maps a point from one coordinate system to another.
 When the control is null, coordinates are mapped to
 the display.
 &lt;p&gt;
@@ -9225,7 +9225,7 @@ the corner of the rectangle to be mapped.
 @param from the source &lt;code&gt;Control&lt;/code&gt; or &lt;code&gt;null&lt;/code&gt;
 @param to the destination &lt;code&gt;Control&lt;/code&gt; or &lt;code&gt;null&lt;/code&gt;
 @param rectangle to be mapped
-@return rectangle with mapped coordinates
+@return rectangle with mapped coordinates<!-- ACCEPT >=> 57ebc961-42ed-4963-9db6-f61393418a87 -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
@@ -9239,7 +9239,7 @@ the corner of the rectangle to be mapped.
 
 @since 2.1.2
 ------------
-Maps a point from one coordinate system to another.
+<!-- 57ebc961-42ed-4963-9db6-f61393418a87 <=< ACCEPT -->Maps a point from one coordinate system to another.
 When the control is null, coordinates are mapped to
 the display.
 &lt;p&gt;
@@ -9264,7 +9264,7 @@ the corner of the rectangle to be mapped.
 @param y coordinates to be mapped
 @param width coordinates to be mapped
 @param height coordinates to be mapped
-@return rectangle with mapped coordinates
+@return rectangle with mapped coordinates<!-- ACCEPT >=> 57ebc961-42ed-4963-9db6-f61393418a87 -->
 
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the Control from or the Control to have been disposed&lt;/li&gt;
@@ -9366,7 +9366,7 @@ After this method has been invoked, all related related shells
 will answer &lt;code&gt;true&lt;/code&gt; when sent the message
 &lt;code&gt;isDisposed()&lt;/code&gt;.
 &lt;/p&gt;&lt;p&gt;
-When a device is destroyed, resources that were acquired
+<!-- 26aedb0b-ac1b-4ce1-8168-d52f973701b7 <=< ACCEPT -->When a device is destroyed, resources that were acquired
 on behalf of the programmer need to be returned to the
 operating system.  For example, if the device allocated a
 font to be used as the system font, this font would be
@@ -9379,7 +9379,7 @@ The handle is needed by &lt;code&gt;destroy&lt;/code&gt;.
 This method is called before &lt;code&gt;destroy&lt;/code&gt;.
 
 @see Device#dispose
-@see #destroy
+@see #destroy<!-- ACCEPT >=> 26aedb0b-ac1b-4ce1-8168-d52f973701b7 -->
 ------------
 Removes the listener from the collection of listeners who will
 be notified when an event of the given type occurs anywhere in
@@ -9562,7 +9562,7 @@ the argument, which can not be null.
 &lt;li&gt;ERROR_FAILED_EXEC - if an exception occurred while running an inter-thread message&lt;/li&gt;
 &lt;/ul&gt;
 ------------
-Sets a callback that will be invoked whenever an exception is thrown by a listener or external
+<!-- bfd08c6a-033d-458f-8bfd-921e1d3c8194 <=< ACCEPT -->Sets a callback that will be invoked whenever an exception is thrown by a listener or external
 callback function. The application may use this to set a global exception handling policy:
 the most common policies are either to log and discard the exception or to re-throw the
 exception.
@@ -9578,9 +9578,9 @@ handler (for example, during a unit test), it is common practice to invoke this 
 to replacing the exception handler so that the old handler may be restored afterward.
 
 @return the current exception handler. Never null.
-@since 3.106
+@since 3.106<!-- ACCEPT >=> bfd08c6a-033d-458f-8bfd-921e1d3c8194 -->
 ------------
-Sets a callback that will be invoked whenever an error is thrown by a listener or external
+<!-- bfd08c6a-033d-458f-8bfd-921e1d3c8194 <=< ACCEPT -->Sets a callback that will be invoked whenever an error is thrown by a listener or external
 callback function. The application may use this to set a global exception handling policy:
 the most common policies are either to log and discard the exception or to re-throw the
 exception.
@@ -9596,7 +9596,7 @@ handler (for example, during a unit test), it is common practice to invoke this 
 to replacing the error handler so that the old handler may be restored afterward.
 
 @return the current error handler. Never null.
-@since 3.106
+@since 3.106<!-- ACCEPT >=> bfd08c6a-033d-458f-8bfd-921e1d3c8194 -->
 ------------
 Causes the user-interface thread to &lt;em&gt;sleep&lt;/em&gt; (that is,
 to be put in a state where it does not consume CPU cycles)
@@ -9919,7 +9919,7 @@ referenced from application code.
 @see Image
 @see GC
 ------------
-Invokes platform specific functionality to allocate a new GC handle.
+<!-- 6a217fdb-a76c-4de8-8453-8d744573c240 <=< ACCEPT -->Invokes platform specific functionality to allocate a new GC handle.
 &lt;p&gt;
 &lt;b&gt;IMPORTANT:&lt;/b&gt; This method is &lt;em&gt;not&lt;/em&gt; part of the public
 API for &lt;code&gt;Drawable&lt;/code&gt;. It is marked public only so that it
@@ -9945,7 +9945,7 @@ application code.
 @param handle the platform specific GC handle
 @param data the platform specific GC data
 
-@noreference This method is not intended to be referenced by clients.
+@noreference This method is not intended to be referenced by clients.<!-- ACCEPT >=> 6a217fdb-a76c-4de8-8453-8d744573c240 -->
 ------------
 Returns &lt;code&gt;true&lt;/code&gt; iff coordinates can be auto-scaled on this
 drawable and &lt;code&gt;false&lt;/code&gt; if not. E.g. a {@link GC} method should not
@@ -10090,7 +10090,7 @@ resulting character will not be correct.
 public char character;
 
 
-depending on the event, the key code of the key that was typed,
+<!-- dafc927f-cea9-47a6-80da-7b1466c2997d <=< ACCEPT -->depending on the event, the key code of the key that was typed,
 as defined by the key code constants in class &lt;code&gt;SWT&lt;/code&gt;.
 When the character field of the event is ambiguous, this field
 contains the unaffected value of the original character.  For
@@ -10124,7 +10124,7 @@ mask.
 *
 @since 3.6
 
-public int keyLocation;
+public int keyLocation;<!-- ACCEPT >=> dafc927f-cea9-47a6-80da-7b1466c2997d -->
 
 
 depending on the event, the state of the keyboard modifier
@@ -10988,7 +10988,7 @@ shell.setLayout(fillLayout);
 type specifies how controls will be positioned
 within the layout.
 *
-The default value is HORIZONTAL.
+<!-- bc085006-2fb1-4686-8b3a-e88885c56ce1 <=< ACCEPT -->The default value is HORIZONTAL.
 *
 Possible values are: &lt;ul&gt;
    &lt;li&gt;HORIZONTAL: Position the controls horizontally from left to right&lt;/li&gt;
@@ -11021,7 +11021,7 @@ public int marginHeight = 0;
 spacing specifies the number of pixels between the edge of one cell
 and the edge of its neighbouring cell.
 *
-The default value is 0.
+The default value is 0.<!-- ACCEPT >=> bc085006-2fb1-4686-8b3a-e88885c56ce1 -->
 *
 @since 3.0
 
@@ -11423,7 +11423,7 @@ Returns the height of the receiver in points.
 
 @see #setHeight(int)
 ------------
-Returns the locale of the receiver.
+<!-- cc812084-4b35-4fb4-acf9-bb31adeb46fe <=< ACCEPT -->Returns the locale of the receiver.
 &lt;p&gt;
 The locale determines which platform character set this
 font is going to use. Widgets and graphics operations that
@@ -11435,7 +11435,7 @@ On platforms where there are multiple character sets for a
 given language/country locale, the variant portion of the
 locale will determine the character set.
 &lt;/p&gt;
-
+<!-- ACCEPT >=> cc812084-4b35-4fb4-acf9-bb31adeb46fe -->
 @return the &lt;code&gt;String&lt;/code&gt; representing a Locale object
 @since 3.0
 ------------
@@ -11476,7 +11476,7 @@ seventy-second of an inch.
 
 @see #getHeight
 ------------
-Sets the locale of the receiver.
+<!-- cc812084-4b35-4fb4-acf9-bb31adeb46fe <=< ACCEPT -->Sets the locale of the receiver.
 &lt;p&gt;
 The locale determines which platform character set this
 font is going to use. Widgets and graphics operations that
@@ -11487,7 +11487,7 @@ character set of the specified locale.
 On platforms where there are multiple character sets for a
 given language/country locale, the variant portion of the
 locale will determine the character set.
-&lt;/p&gt;
+&lt;/p&gt;<!-- ACCEPT >=> cc812084-4b35-4fb4-acf9-bb31adeb46fe -->
 
 @param locale the &lt;code&gt;String&lt;/code&gt; representing a Locale object
 @see java.util.Locale#toString
@@ -12173,7 +12173,7 @@ behavior.  The algorithm will terminate, but the results are undefined.
 
 @since 2.0
 ------------
-marginWidth specifies the number of pixels of horizontal margin
+<!-- 48878f93-1177-4570-bbed-a5be17b1d5fd <=< ACCEPT -->marginWidth specifies the number of pixels of horizontal margin
 that will be placed along the left and right edges of the layout.
 *
 The default value is 0.
@@ -12229,7 +12229,7 @@ The default value is 0.
 public int marginBottom = 0;
 
 
-spacing specifies the number of pixels between the edge of one control
+<!-- ACCEPT >=> 48878f93-1177-4570-bbed-a5be17b1d5fd -->spacing specifies the number of pixels between the edge of one control
 and the edge of its neighbouring control.
 *
 The default value is 0.
@@ -14141,7 +14141,7 @@ values indicate counter-clockwise rotation, and negative values indicate clockwi
 public double rotation;
 
 
-This field is valid when the &lt;code&gt;detail&lt;/code&gt; field is set to &lt;code&gt;GESTURE_SWIPE&lt;/code&gt;
+<!-- c921ad3b-e498-4689-8fc7-d3ae478f883c <=< ACCEPT -->This field is valid when the &lt;code&gt;detail&lt;/code&gt; field is set to &lt;code&gt;GESTURE_SWIPE&lt;/code&gt;
 or &lt;code&gt;GESTURE_PAN&lt;/code&gt;.  Both &lt;code&gt;xDirection&lt;/code&gt; and &lt;code&gt;yDirection&lt;/code&gt;
 can be valid for an individual gesture.  The meaning of this field is dependent on the value
 of the &lt;code&gt;detail&lt;/code&gt; field.
@@ -14153,10 +14153,10 @@ If &lt;code&gt;detail&lt;/code&gt; is &lt;code&gt;GESTURE_PAN&lt;/code&gt; then 
 the right by this field's count of pixels and a negative value indicates a pan to the left
 by this field's count of pixels.
 
-public int xDirection;
+public int xDirection;<!-- ACCEPT >=> c921ad3b-e498-4689-8fc7-d3ae478f883c -->
 
 
-This field is valid when the &lt;code&gt;detail&lt;/code&gt; field is set to &lt;code&gt;GESTURE_SWIPE&lt;/code&gt;
+<!-- c921ad3b-e498-4689-8fc7-d3ae478f883c <=< ACCEPT -->This field is valid when the &lt;code&gt;detail&lt;/code&gt; field is set to &lt;code&gt;GESTURE_SWIPE&lt;/code&gt;
 or &lt;code&gt;GESTURE_PAN&lt;/code&gt;.  Both &lt;code&gt;xDirection&lt;/code&gt; and &lt;code&gt;yDirection&lt;/code&gt;
 can be valid for an individual gesture.  The meaning of this field is dependent on the value
 of the &lt;code&gt;detail&lt;/code&gt; field.
@@ -14168,7 +14168,7 @@ If &lt;code&gt;detail&lt;/code&gt; is &lt;code&gt;GESTURE_PAN&lt;/code&gt; then 
 pan by this field's count of pixels and a negative value indicates an upward pan by this
 field's count of pixels.
 
-public int yDirection;
+public int yDirection;<!-- ACCEPT >=> c921ad3b-e498-4689-8fc7-d3ae478f883c -->
 
 
 This field is valid when the &lt;code&gt;detail&lt;/code&gt; field is set to &lt;code&gt;GESTURE_MAGNIFY&lt;/code&gt;.
@@ -14718,7 +14718,7 @@ This constructor is not recommended.
 
 @param style the GridData style
 ------------
-Constructs a new instance of GridData according to the parameters.
+<!-- c4935646-996d-44a9-a9cb-794c1dee8aa5 <=< ACCEPT -->Constructs a new instance of GridData according to the parameters.
 
 @param horizontalAlignment how control will be positioned horizontally within a cell,
 one of: SWT.BEGINNING (or SWT.LEFT), SWT.CENTER, SWT.END (or SWT.RIGHT), or SWT.FILL
@@ -14727,9 +14727,9 @@ one of: SWT.BEGINNING (or SWT.TOP), SWT.CENTER, SWT.END (or SWT.BOTTOM), or SWT.
 @param grabExcessHorizontalSpace whether cell will be made wide enough to fit the remaining horizontal space
 @param grabExcessVerticalSpace whether cell will be made high enough to fit the remaining vertical space
 
-@since 3.0
+@since 3.0<!-- ACCEPT >=> c4935646-996d-44a9-a9cb-794c1dee8aa5 -->
 ------------
-Constructs a new instance of GridData according to the parameters.
+<!-- c4935646-996d-44a9-a9cb-794c1dee8aa5 <=< ACCEPT -->Constructs a new instance of GridData according to the parameters.
 
 @param horizontalAlignment how control will be positioned horizontally within a cell,
 one of: SWT.BEGINNING (or SWT.LEFT), SWT.CENTER, SWT.END (or SWT.RIGHT), or SWT.FILL
@@ -14740,7 +14740,7 @@ one of: SWT.BEGINNING (or SWT.TOP), SWT.CENTER, SWT.END (or SWT.BOTTOM), or SWT.
 @param horizontalSpan the number of column cells that the control will take up
 @param verticalSpan the number of row cells that the control will take up
 
-@since 3.0
+@since 3.0<!-- ACCEPT >=> c4935646-996d-44a9-a9cb-794c1dee8aa5 -->
 ------------
 Constructs a new instance of GridData according to the parameters.
 A value of SWT.DEFAULT indicates that no minimum width or
@@ -14810,7 +14810,7 @@ The default value is false.
 public boolean makeColumnsEqualWidth = false;
 
 
-marginWidth specifies the number of pixels of horizontal margin
+<!-- 48878f93-1177-4570-bbed-a5be17b1d5fd <=< ACCEPT -->marginWidth specifies the number of pixels of horizontal margin
 that will be placed along the left and right edges of the layout.
 *
 The default value is 5.
@@ -14866,7 +14866,7 @@ The default value is 0.
 public int marginBottom = 0;
 
 
-horizontalSpacing specifies the number of pixels between the right
+<!-- ACCEPT >=> 48878f93-1177-4570-bbed-a5be17b1d5fd -->horizontalSpacing specifies the number of pixels between the right
 edge of one cell and the left edge of its neighbouring cell to
 the right.
 *
@@ -15202,7 +15202,7 @@ static final int DEFAULT_SCANLINE_PAD = 4;
 
 Prevents uninitialized instances from being created outside the package.
 ------------
-Constructs an empty instance of this class with the
+<!-- 9582da8f-3077-406d-a2f4-562f2489276a <=< ACCEPT -->Constructs an empty instance of this class with the
 specified width and height. The result may be drawn upon
 by creating a GC and using any of its drawing operations,
 as shown in the following example:
@@ -15224,7 +15224,7 @@ You must dispose the image when it is no longer required.
 
 @param device the device on which to create the image
 @param width the width of the new image
-@param height the height of the new image
+@param height the height of the new image<!-- ACCEPT >=> 9582da8f-3077-406d-a2f4-562f2489276a -->
 
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if device is null and there is no current device&lt;/li&gt;
@@ -15271,7 +15271,7 @@ You must dispose the image when it is no longer required.
 
 @see #dispose()
 ------------
-Constructs an empty instance of this class with the
+<!-- 9582da8f-3077-406d-a2f4-562f2489276a <=< ACCEPT -->Constructs an empty instance of this class with the
 width and height of the specified rectangle. The result
 may be drawn upon by creating a GC and using any of its
 drawing operations, as shown in the following example:
@@ -15292,7 +15292,7 @@ You must dispose the image when it is no longer required.
 &lt;/p&gt;
 
 @param device the device on which to create the image
-@param bounds a rectangle specifying the image's width and height (must not be null)
+@param bounds a rectangle specifying the image's width and height (must not be null)<!-- ACCEPT >=> 9582da8f-3077-406d-a2f4-562f2489276a -->
 
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if device is null and there is no current device&lt;/li&gt;
@@ -15356,7 +15356,7 @@ You must dispose the image when it is no longer required.
 
 @see #dispose()
 ------------
-Constructs an instance of this class by loading its representation
+<!-- 2f08f393-bd7e-42ac-85dd-80700cc03899 <=< ACCEPT -->Constructs an instance of this class by loading its representation
 from the specified input stream. Throws an error if an error
 occurs while loading the image, or if the result is an image
 of an unsupported type.  Application code is still responsible
@@ -15369,7 +15369,7 @@ one will be loaded. To load multiple images, use
 &lt;/p&gt;&lt;p&gt;
 This constructor may be used to load a resource as follows:
 &lt;/p&gt;
-&lt;pre&gt;
+&lt;pre&gt;<!-- ACCEPT >=> 2f08f393-bd7e-42ac-85dd-80700cc03899 -->
 static Image loadImage (Display display, Class clazz, String string) {
 InputStream stream = clazz.getResourceAsStream (string);
 if (stream == null) return null;
@@ -15603,7 +15603,7 @@ created.
 Note.  These bitmaps must be freed - as they would have to be
 if the regular GetIconInfo had been used.
 ------------
-Invokes platform specific functionality to allocate a new GC handle.
+<!-- 6a217fdb-a76c-4de8-8453-8d744573c240 <=< ACCEPT -->Invokes platform specific functionality to allocate a new GC handle.
 &lt;p&gt;
 &lt;b&gt;IMPORTANT:&lt;/b&gt; This method is &lt;em&gt;not&lt;/em&gt; part of the public
 API for &lt;code&gt;Image&lt;/code&gt;. It is marked public only so that it
@@ -15629,7 +15629,7 @@ application code.
 @param hDC the platform specific GC handle
 @param data the platform specific GC data
 
-@noreference This method is not intended to be referenced by clients.
+@noreference This method is not intended to be referenced by clients.<!-- ACCEPT >=> 6a217fdb-a76c-4de8-8453-8d744573c240 -->
 ------------
 Returns &lt;code&gt;true&lt;/code&gt; if the image has been disposed,
 and &lt;code&gt;false&lt;/code&gt; otherwise.
@@ -15922,7 +15922,7 @@ static final int[][] DITHER_MATRIX = {
 };
 
 
-Constructs a new, empty ImageData with the given width, height,
+<!-- be531e6a-e56d-4fbe-ac92-247f1263642b <=< ACCEPT -->Constructs a new, empty ImageData with the given width, height,
 depth and palette. The data will be initialized to an (all zero)
 array of the appropriate size.
 
@@ -15935,9 +15935,9 @@ array of the appropriate size.
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the width or height is zero or negative, or if the depth is not
 one of 1, 2, 4, 8, 16, 24 or 32&lt;/li&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the palette is null&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ul&gt;<!-- ACCEPT >=> be531e6a-e56d-4fbe-ac92-247f1263642b -->
 ------------
-Constructs a new, empty ImageData with the given width, height,
+<!-- be531e6a-e56d-4fbe-ac92-247f1263642b <=< ACCEPT -->Constructs a new, empty ImageData with the given width, height,
 depth, palette, scanlinePad and data.
 
 @param width the width of the image
@@ -15952,9 +15952,9 @@ depth, palette, scanlinePad and data.
 one of 1, 2, 4, 8, 16, 24 or 32, or the data array is too small to contain the image data&lt;/li&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the palette or data is null&lt;/li&gt;
 &lt;li&gt;ERROR_CANNOT_BE_ZERO - if the scanlinePad is zero&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ul&gt;<!-- ACCEPT >=> be531e6a-e56d-4fbe-ac92-247f1263642b -->
 ------------
-Constructs an &lt;code&gt;ImageData&lt;/code&gt; loaded from the specified
+<!-- 2f08f393-bd7e-42ac-85dd-80700cc03899 <=< ACCEPT -->Constructs an &lt;code&gt;ImageData&lt;/code&gt; loaded from the specified
 input stream. Throws an error if an error occurs while loading
 the image, or if the image has an unsupported type.  Application
 code is still responsible for closing the input stream.
@@ -15966,7 +15966,7 @@ one will be loaded. To load multiple images, use
 &lt;/p&gt;&lt;p&gt;
 This constructor may be used to load a resource as follows:
 &lt;/p&gt;
-&lt;pre&gt;
+&lt;pre&gt;<!-- ACCEPT >=> 2f08f393-bd7e-42ac-85dd-80700cc03899 -->
 static ImageData loadImageData (Class clazz, String string) {
 InputStream stream = clazz.getResourceAsStream (string);
 if (stream == null) return null;
@@ -16102,7 +16102,7 @@ scanline &lt;code&gt;y&lt;/code&gt; in the receiver's data.
 &lt;li&gt;ERROR_UNSUPPORTED_DEPTH if the depth is not one of 1, 2, 4, 8, 16, 24 or 32&lt;/li&gt;
 &lt;/ul&gt;
 ------------
-Returns &lt;code&gt;getWidth&lt;/code&gt; pixel values starting at offset
+<!-- d43842df-4cc7-45cf-b883-8f196def91c5 <=< ACCEPT -->Returns &lt;code&gt;getWidth&lt;/code&gt; pixel values starting at offset
 &lt;code&gt;x&lt;/code&gt; in scanline &lt;code&gt;y&lt;/code&gt; in the receiver's
 data starting at &lt;code&gt;startIndex&lt;/code&gt;.
 
@@ -16121,9 +16121,9 @@ data starting at &lt;code&gt;startIndex&lt;/code&gt;.
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_UNSUPPORTED_DEPTH - if the depth is not one of 1, 2, 4 or 8
 (For higher depths, use the int[] version of this method.)&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ul&gt;<!-- ACCEPT >=> d43842df-4cc7-45cf-b883-8f196def91c5 -->
 ------------
-Returns &lt;code&gt;getWidth&lt;/code&gt; pixel values starting at offset
+<!-- d43842df-4cc7-45cf-b883-8f196def91c5 <=< ACCEPT -->Returns &lt;code&gt;getWidth&lt;/code&gt; pixel values starting at offset
 &lt;code&gt;x&lt;/code&gt; in scanline &lt;code&gt;y&lt;/code&gt; in the receiver's
 data starting at &lt;code&gt;startIndex&lt;/code&gt;.
 
@@ -16141,7 +16141,7 @@ data starting at &lt;code&gt;startIndex&lt;/code&gt;.
 &lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_UNSUPPORTED_DEPTH - if the depth is not one of 1, 2, 4, 8, 16, 24 or 32&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ul&gt;<!-- ACCEPT >=> d43842df-4cc7-45cf-b883-8f196def91c5 -->
 ------------
 Returns an array of &lt;code&gt;RGB&lt;/code&gt;s which comprise the
 indexed color table of the receiver, or null if the receiver
@@ -16223,7 +16223,7 @@ scanline &lt;code&gt;y&lt;/code&gt; in the receiver's data.
 &lt;li&gt;ERROR_UNSUPPORTED_DEPTH if the depth is not one of 1, 2, 4, 8, 16, 24 or 32&lt;/li&gt;
 &lt;/ul&gt;
 ------------
-Sets the pixel values starting at offset &lt;code&gt;x&lt;/code&gt; in
+<!-- 656b6fd7-3986-4aac-b26d-a9a6a698dc2a <=< ACCEPT -->Sets the pixel values starting at offset &lt;code&gt;x&lt;/code&gt; in
 scanline &lt;code&gt;y&lt;/code&gt; in the receiver's data to the
 values from the array &lt;code&gt;pixels&lt;/code&gt; starting at
 &lt;code&gt;startIndex&lt;/code&gt;.
@@ -16243,9 +16243,9 @@ values from the array &lt;code&gt;pixels&lt;/code&gt; starting at
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_UNSUPPORTED_DEPTH if the depth is not one of 1, 2, 4, 8
 (For higher depths, use the int[] version of this method.)&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ul&gt;<!-- ACCEPT >=> 656b6fd7-3986-4aac-b26d-a9a6a698dc2a -->
 ------------
-Sets the pixel values starting at offset &lt;code&gt;x&lt;/code&gt; in
+<!-- 656b6fd7-3986-4aac-b26d-a9a6a698dc2a <=< ACCEPT -->Sets the pixel values starting at offset &lt;code&gt;x&lt;/code&gt; in
 scanline &lt;code&gt;y&lt;/code&gt; in the receiver's data to the
 values from the array &lt;code&gt;pixels&lt;/code&gt; starting at
 &lt;code&gt;startIndex&lt;/code&gt;.
@@ -16264,7 +16264,7 @@ values from the array &lt;code&gt;pixels&lt;/code&gt; starting at
 &lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_UNSUPPORTED_DEPTH if the depth is not one of 1, 2, 4, 8, 16, 24 or 32&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ul&gt;<!-- ACCEPT >=> 656b6fd7-3986-4aac-b26d-a9a6a698dc2a -->
 ------------
 Returns a palette with 2 colors: black &amp; white.
 ------------
@@ -17109,7 +17109,7 @@ sp += (sfx &gt;&gt;&gt; 16);
 break;
 }
 
-* DO SPECIAL PROCESSING IF REQUIRED ***/
+<!-- c3ff0363-f0c7-4d9c-941a-25792ab9bd6c <=< ACCEPT -->* DO SPECIAL PROCESSING IF REQUIRED ***/
 int r = srcReds[index] &amp; 0xff, g = srcGreens[index] &amp; 0xff, b = srcBlues[index] &amp; 0xff;
 switch (alphaMode) {
 case ALPHA_CHANNEL_SEPARATE:
@@ -17238,7 +17238,7 @@ destData[dp &gt;&gt; 3] = (byte)(destData[dp &gt;&gt; 3] &amp; ~(0x01 &lt;&lt; s
 }
 }
 }
-}
+}<!-- ACCEPT >=> c3ff0363-f0c7-4d9c-941a-25792ab9bd6c -->
 
 
 Blits an index palette image into a direct palette image.
@@ -17823,7 +17823,7 @@ a = srcAlphas[(data &amp; srcAlphaMask) &gt;&gt;&gt; srcAlphaShift] &amp; 0xff;
 } break;
 }
 
-* DO SPECIAL PROCESSING IF REQUIRED ***/
+<!-- c3ff0363-f0c7-4d9c-941a-25792ab9bd6c <=< ACCEPT -->* DO SPECIAL PROCESSING IF REQUIRED ***/
 switch (alphaMode) {
 case ALPHA_CHANNEL_SEPARATE:
 alpha = ((alphaData[ap] &amp; 0xff) &lt;&lt; 16) / 255;
@@ -17947,7 +17947,7 @@ destData[dp &gt;&gt; 3] = (byte)(destData[dp &gt;&gt; 3] &amp; ~(0x01 &lt;&lt; s
 }
 }
 }
-
+<!-- ACCEPT >=> c3ff0363-f0c7-4d9c-941a-25792ab9bd6c -->
 
 Computes the required channel shift from a mask.
 ------------
@@ -17959,7 +17959,7 @@ Creates an ImageData containing one band's worth of a gradient filled
 block.  If &lt;code&gt;vertical&lt;/code&gt; is true, the band must be tiled
 horizontally to fill a region, otherwise it must be tiled vertically.
 
-@param width the width of the region to be filled
+<!-- f54fbbe3-e31a-4c2a-b739-390c19ee2225 <=< ACCEPT -->@param width the width of the region to be filled
 @param height the height of the region to be filled
 @param vertical if true sweeps from top to bottom, else
 sweeps from left to right
@@ -17967,7 +17967,7 @@ sweeps from left to right
 @param toRGB the color to end with
 @param redBits the number of significant red bits, 0 for palette modes
 @param greenBits the number of significant green bits, 0 for palette modes
-@param blueBits the number of significant blue bits, 0 for palette modes
+@param blueBits the number of significant blue bits, 0 for palette modes<!-- ACCEPT >=> f54fbbe3-e31a-4c2a-b739-390c19ee2225 -->
 @return the new ImageData
 ------------
 Renders a gradient onto a GC.
@@ -17979,7 +17979,7 @@ This is a GC helper.
 @param device the device the GC belongs to
 @param x the top-left x coordinate of the region to be filled
 @param y the top-left y coordinate of the region to be filled
-@param width the width of the region to be filled
+<!-- f54fbbe3-e31a-4c2a-b739-390c19ee2225 <=< ACCEPT -->@param width the width of the region to be filled
 @param height the height of the region to be filled
 @param vertical if true sweeps from top to bottom, else
 sweeps from left to right
@@ -17987,7 +17987,7 @@ sweeps from left to right
 @param toRGB the color to end with
 @param redBits the number of significant red bits, 0 for palette modes
 @param greenBits the number of significant green bits, 0 for palette modes
-@param blueBits the number of significant blue bits, 0 for palette modes====== ImageDataLoader.java ======
+@param blueBits the number of significant blue bits, 0 for palette modes<!-- ACCEPT >=> f54fbbe3-e31a-4c2a-b739-390c19ee2225 -->====== ImageDataLoader.java ======
 Copyright (c) 2000, 2006 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -18898,7 +18898,7 @@ character will not be correct.
 public char character;
 
 
-the key code of the key that was typed,
+<!-- dafc927f-cea9-47a6-80da-7b1466c2997d <=< ACCEPT -->the key code of the key that was typed,
 as defined by the key code constants in class &lt;code&gt;SWT&lt;/code&gt;.
 When the character field of the event is ambiguous, this field
 contains the unicode value of the original character.  For example,
@@ -18932,7 +18932,7 @@ information about the location of modifiers in the state mask.
 *
 @since 3.6
 
-public int keyLocation;
+public int keyLocation;<!-- ACCEPT >=> dafc927f-cea9-47a6-80da-7b1466c2997d -->
 
 
 the state of the keyboard modifier keys and mouse masks
@@ -19722,11 +19722,11 @@ interface.
 @see #removeSelectionListener
 @see SelectionEvent
 ------------
-Deselects the items at the given zero-relative indices in the receiver.
+<!-- 664cab21-1c93-477d-8239-1dce060411cc <=< ACCEPT -->Deselects the items at the given zero-relative indices in the receiver.
 If the item at the given zero-relative index in the receiver
 is selected, it is deselected.  If the item at the index
 was not selected, it remains deselected. Indices that are out
-of range and duplicate indices are ignored.
+of range and duplicate indices are ignored.<!-- ACCEPT >=> 664cab21-1c93-477d-8239-1dce060411cc -->
 
 @param indices the array of indices for the items to deselect
 
@@ -19754,11 +19754,11 @@ deselected. Indices that are out of range are ignored.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Deselects the items at the given zero-relative indices in the receiver.
+<!-- 664cab21-1c93-477d-8239-1dce060411cc <=< ACCEPT -->Deselects the items at the given zero-relative indices in the receiver.
 If the item at the given zero-relative index in the receiver
 is selected, it is deselected.  If the item at the index
 was not selected, it remains deselected.  The range of the
-indices is inclusive. Indices that are out of range are ignored.
+indices is inclusive. Indices that are out of range are ignored.<!-- ACCEPT >=> 664cab21-1c93-477d-8239-1dce060411cc -->
 
 @param start the start index of the items to deselect
 @param end the end index of the items to deselect
@@ -19830,7 +19830,7 @@ display &lt;em&gt;one&lt;/em&gt; of the items in the list.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns a (possibly empty) array of &lt;code&gt;String&lt;/code&gt;s which
+<!-- 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e <=< ACCEPT -->Returns a (possibly empty) array of &lt;code&gt;String&lt;/code&gt;s which
 are the items in the receiver.
 &lt;p&gt;
 Note: This is not the actual structure used by the receiver
@@ -19838,7 +19838,7 @@ to maintain its list of items, so modifying the array will
 not affect the receiver.
 &lt;/p&gt;
 
-@return the items in the receiver's list
+@return the items in the receiver's list<!-- ACCEPT >=> 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -20067,7 +20067,7 @@ be notified when the user changes the receiver's selection.
 @see SelectionListener
 @see #addSelectionListener
 ------------
-Selects the items at the given zero-relative indices in the receiver.
+<!-- f765c227-d4b7-4668-9fb3-50672a7fe60c <=< ACCEPT -->Selects the items at the given zero-relative indices in the receiver.
 The current selection is not cleared before the new items are selected.
 &lt;p&gt;
 If the item at a given index is not selected, it is selected.
@@ -20075,7 +20075,7 @@ If the item at a given index was already selected, it remains selected.
 Indices that are out of range and duplicate indices are ignored.
 If the receiver is single-select and multiple indices are specified,
 then all indices are ignored.
-
+<!-- ACCEPT >=> f765c227-d4b7-4668-9fb3-50672a7fe60c -->
 @param indices the array of indices for the items to select
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
@@ -20237,7 +20237,7 @@ Indices that are out of range are ignored.
 @see List#deselectAll()
 @see List#select(int)
 ------------
-Selects the items in the range specified by the given zero-relative
+<!-- e69fe9c8-a712-44f1-ad81-e766b6d8285a <=< ACCEPT -->Selects the items in the range specified by the given zero-relative
 indices in the receiver. The range of indices is inclusive.
 The current selection is cleared before the new items are selected,
 and if necessary the receiver is scrolled to make the new selection visible.
@@ -20245,7 +20245,7 @@ and if necessary the receiver is scrolled to make the new selection visible.
 Indices that are out of range are ignored and no items will be selected
 if start is greater than end.
 If the receiver is single-select and there is more than one item in the
-given range, then all indices are ignored.
+given range, then all indices are ignored.<!-- ACCEPT >=> e69fe9c8-a712-44f1-ad81-e766b6d8285a -->
 
 @param start the start index of the items to select
 @param end the end index of the items to select
@@ -20716,7 +20716,7 @@ Returns the number of items contained in the receiver.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns a (possibly empty) array of &lt;code&gt;MenuItem&lt;/code&gt;s which
+<!-- 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e <=< ACCEPT -->Returns a (possibly empty) array of &lt;code&gt;MenuItem&lt;/code&gt;s which
 are the items in the receiver.
 &lt;p&gt;
 Note: This is not the actual structure used by the receiver
@@ -20724,7 +20724,7 @@ to maintain its list of items, so modifying the array will
 not affect the receiver.
 &lt;/p&gt;
 
-@return the items in the receiver
+@return the items in the receiver<!-- ACCEPT >=> 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -21361,7 +21361,7 @@ be notified when the menu item is selected by the user, by sending
 it one of the messages defined in the &lt;code&gt;SelectionListener&lt;/code&gt;
 interface.
 &lt;p&gt;
-When &lt;code&gt;widgetSelected&lt;/code&gt; is called, the stateMask field of the event object is valid.
+<!-- 5a882c8a-ae90-4528-8e3d-13e211fe83b9 <=< ACCEPT -->When &lt;code&gt;widgetSelected&lt;/code&gt; is called, the stateMask field of the event object is valid.
 &lt;code&gt;widgetDefaultSelected&lt;/code&gt; is not called.
 &lt;/p&gt;
 &lt;p&gt;
@@ -21371,7 +21371,7 @@ was selected by the user. During &lt;code&gt;widgetSelected&lt;/code&gt; the app
 &lt;code&gt;getSelection()&lt;/code&gt; to determine the current selected state of the receiver.
 &lt;/p&gt;
 
-@param listener the listener which should be notified when the menu item is selected by the user
+@param listener the listener which should be notified when the menu item is selected by the user<!-- ACCEPT >=> 5a882c8a-ae90-4528-8e3d-13e211fe83b9 -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
@@ -21680,14 +21680,14 @@ it is selected when it is checked.
 Sets the receiver's text. The string may include
 the mnemonic character and accelerator text.
 &lt;p&gt;
-Mnemonics are indicated by an '&amp;amp;' that causes the next
+<!-- bd7152d7-ad9b-4573-8416-8c1bbebb6545 <=< ACCEPT -->Mnemonics are indicated by an '&amp;amp;' that causes the next
 character to be the mnemonic.  When the user presses a
 key sequence that matches the mnemonic, a selection
 event occurs. On most platforms, the mnemonic appears
 underlined but may be emphasised in a platform specific
 manner.  The mnemonic indicator character '&amp;amp;' can be
 escaped by doubling it in the string, causing a single
-'&amp;amp;' to be displayed.
+'&amp;amp;' to be displayed.<!-- ACCEPT >=> bd7152d7-ad9b-4573-8416-8c1bbebb6545 -->
 &lt;/p&gt;
 &lt;p&gt;
 Accelerator text is indicated by the '\t' character.
@@ -22950,7 +22950,7 @@ You must dispose the pattern when it is no longer required.
 
 @see #dispose()
 ------------
-Constructs a new Pattern that represents a linear, two color
+<!-- 5810d218-a9b1-4005-945f-1ad2a3d0f083 <=< ACCEPT -->Constructs a new Pattern that represents a linear, two color
 gradient. Drawing with the pattern will cause the resulting area to be
 tiled with the gradient specified by the arguments.
 &lt;p&gt;
@@ -22968,7 +22968,7 @@ You must dispose the pattern when it is no longer required.
 @param x2 the x coordinate of the ending corner of the gradient
 @param y2 the y coordinate of the ending corner of the gradient
 @param color1 the starting color of the gradient
-@param color2 the ending color of the gradient
+@param color2 the ending color of the gradient<!-- ACCEPT >=> 5810d218-a9b1-4005-945f-1ad2a3d0f083 -->
 
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the device is null and there is no current device,
@@ -22984,7 +22984,7 @@ or if either color1 or color2 is null&lt;/li&gt;
 
 @see #dispose()
 ------------
-Constructs a new Pattern that represents a linear, two color
+<!-- 5810d218-a9b1-4005-945f-1ad2a3d0f083 <=< ACCEPT -->Constructs a new Pattern that represents a linear, two color
 gradient. Drawing with the pattern will cause the resulting area to be
 tiled with the gradient specified by the arguments.
 &lt;p&gt;
@@ -23004,7 +23004,7 @@ You must dispose the pattern when it is no longer required.
 @param color1 the starting color of the gradient
 @param alpha1 the starting alpha value of the gradient
 @param color2 the ending color of the gradient
-@param alpha2 the ending alpha value of the gradient
+@param alpha2 the ending alpha value of the gradient<!-- ACCEPT >=> 5810d218-a9b1-4005-945f-1ad2a3d0f083 -->
 
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the device is null and there is no current device,
@@ -24353,7 +24353,7 @@ IBM Corporation - initial API and implementation
 This class is the abstract superclass of all graphics resource objects.
 Resources created by the application must be disposed.
 &lt;p&gt;
-IMPORTANT: This class is intended to be subclassed &lt;em&gt;only&lt;/em&gt;
+<!-- 8a1e5cee-17d9-40dd-8cd8-692eba2b3c57 <=< ACCEPT -->IMPORTANT: This class is intended to be subclassed &lt;em&gt;only&lt;/em&gt;
 within the SWT implementation. However, it has not been marked
 final to allow those outside of the SWT development team to implement
 patched versions of the class in order to get around specific
@@ -24364,7 +24364,7 @@ may be strongly platform specific. Subclassing should not be attempted
 without an intimate and detailed understanding of the workings of the
 hierarchy. No support is provided for user-written classes which are
 implemented as subclasses of this class.
-&lt;/p&gt;
+&lt;/p&gt;<!-- ACCEPT >=> 8a1e5cee-17d9-40dd-8cd8-692eba2b3c57 -->
 
 @see #dispose
 @see #isDisposed
@@ -24443,7 +24443,7 @@ required, and thus no &lt;code&gt;dispose()&lt;/code&gt; method is provided.
 @see &lt;a href="http://www.eclipse.org/swt/snippets/#color"&gt;Color and RGB snippets&lt;/a&gt;
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 ------------
-the red component of the RGB
+<!-- 1b579bab-9fad-4365-b8e3-ee0109c82f1a <=< ACCEPT -->the red component of the RGB
 
 public int red;
 
@@ -24481,7 +24481,7 @@ hue, saturation, and brightness.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the hue is not between 0 and 360 or
 the saturation or brightness is not between 0 and 1&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ul&gt;<!-- ACCEPT >=> 1b579bab-9fad-4365-b8e3-ee0109c82f1a -->
 
 @since 3.2
 /
@@ -24612,7 +24612,7 @@ required, and thus no &lt;code&gt;dispose()&lt;/code&gt; method is provided.
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 @since 3.104
 ------------
-the RGB component of the RGBA
+<!-- 1b579bab-9fad-4365-b8e3-ee0109c82f1a <=< ACCEPT -->the RGB component of the RGBA
 
 public final RGB rgb;
 
@@ -24648,7 +24648,7 @@ hue, saturation, and brightness.
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the hue is not between 0 and 360 or
 the saturation or brightness is not between 0 and 1 or if the alpha
 is not between 0 and 255&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ul&gt;<!-- ACCEPT >=> 1b579bab-9fad-4365-b8e3-ee0109c82f1a -->
 
 /
 public RGBA(float hue, float saturation, float brightness, float alpha) {
@@ -24827,7 +24827,7 @@ shell.setLayout(new RowLayout());
 type specifies whether the layout places controls in rows or
 columns.
 *
-The default value is HORIZONTAL.
+<!-- bc085006-2fb1-4686-8b3a-e88885c56ce1 <=< ACCEPT -->The default value is HORIZONTAL.
 *
 Possible values are: &lt;ul&gt;
    &lt;li&gt;HORIZONTAL: Position the controls horizontally from left to right&lt;/li&gt;
@@ -24862,7 +24862,7 @@ public int marginHeight = 0;
 spacing specifies the number of pixels between the edge of one cell
 and the edge of its neighbouring cell.
 *
-The default value is 3.
+The default value is 3.<!-- ACCEPT >=> bc085006-2fb1-4686-8b3a-e88885c56ce1 -->
 
 public int spacing = 3;
 
@@ -25472,7 +25472,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
 IBM Corporation - initial API and implementation
 ------------
-Instances of this class are selectable user interface
+<!-- 0e7e76a2-a1ca-489d-b5a5-a6fd0d90aba9 <=< ACCEPT -->Instances of this class are selectable user interface
 objects that represent a range of positive, numeric values.
 &lt;p&gt;
 At any given moment, a given scroll bar will have a
@@ -25503,7 +25503,7 @@ indicate some proportional value such as the ratio of the
 visible area of a document to the total amount of space that
 it would take to display it. SWT supports setting the thumb
 size even if the underlying platform does not, but in this
-case the appearance of the scroll bar will not change.
+case the appearance of the scroll bar will not change.<!-- ACCEPT >=> 0e7e76a2-a1ca-489d-b5a5-a6fd0d90aba9 -->
 &lt;/p&gt;&lt;p&gt;
 Scroll bars are created by specifying either &lt;code&gt;H_SCROLL&lt;/code&gt;,
 &lt;code&gt;V_SCROLL&lt;/code&gt; or both when creating a &lt;code&gt;Scrollable&lt;/code&gt;.
@@ -26247,7 +26247,7 @@ are built using the constructor, which takes a
 as &lt;em&gt;top level&lt;/em&gt; shells. Instances that do have
 a parent are described as &lt;em&gt;secondary&lt;/em&gt; or
 &lt;em&gt;dialog&lt;/em&gt; shells.
-&lt;p&gt;
+<!-- 3bdebb33-5346-401e-9d4b-f38069a3eb11 <=< ACCEPT -->&lt;p&gt;
 Instances are always displayed in one of the maximized,
 minimized or normal states:
 &lt;ul&gt;
@@ -26273,7 +26273,7 @@ distinguished area of the screen, or hidden. Combinations
 of these changes are also possible.
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;&lt;p&gt;
+&lt;/p&gt;<!-- ACCEPT >=> 3bdebb33-5346-401e-9d4b-f38069a3eb11 -->&lt;p&gt;
 The &lt;em&gt;modality&lt;/em&gt; of an instance may be specified using
 style bits. The modality style bits are used to determine
 whether input is blocked for other shells on the display.
@@ -26455,12 +26455,12 @@ and may not be supported in a future release of SWT.&lt;/b&gt;
 Constructs a new instance of this class given only its
 parent. It is created with style &lt;code&gt;SWT.DIALOG_TRIM&lt;/code&gt;.
 &lt;p&gt;
-Note: Currently, null can be passed in for the parent.
+<!-- a7daa7e6-1a28-4506-986c-074e51d0749f <=< ACCEPT -->Note: Currently, null can be passed in for the parent.
 This has the effect of creating the shell on the currently active
 display if there is one. If there is no current display, the
 shell is created on a "default" display. &lt;b&gt;Passing in null as
 the parent is not considered to be good coding style,
-and may not be supported in a future release of SWT.&lt;/b&gt;
+and may not be supported in a future release of SWT.<!-- ACCEPT >=> a7daa7e6-1a28-4506-986c-074e51d0749f -->&lt;/b&gt;
 &lt;/p&gt;
 
 @param parent a shell which will be the parent of the new instance
@@ -26486,12 +26486,12 @@ lists the style constants that are applicable to the class.
 Style bits are also inherited from superclasses
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;&lt;p&gt;
-Note: Currently, null can be passed in for the parent.
+<!-- a7daa7e6-1a28-4506-986c-074e51d0749f <=< ACCEPT -->Note: Currently, null can be passed in for the parent.
 This has the effect of creating the shell on the currently active
 display if there is one. If there is no current display, the
 shell is created on a "default" display. &lt;b&gt;Passing in null as
 the parent is not considered to be good coding style,
-and may not be supported in a future release of SWT.&lt;/b&gt;
+and may not be supported in a future release of SWT.<!-- ACCEPT >=> a7daa7e6-1a28-4506-986c-074e51d0749f -->&lt;/b&gt;
 &lt;/p&gt;
 
 @param parent a shell which will be the parent of the new instance
@@ -27058,7 +27058,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
 IBM Corporation - initial API and implementation
 ------------
-Instances of this class are selectable user interface
+<!-- 0e7e76a2-a1ca-489d-b5a5-a6fd0d90aba9 <=< ACCEPT -->Instances of this class are selectable user interface
 objects that represent a range of positive, numeric values.
 &lt;p&gt;
 At any given moment, a given slider will have a
@@ -27089,7 +27089,7 @@ indicate some proportional value such as the ratio of the
 visible area of a document to the total amount of space that
 it would take to display it. SWT supports setting the thumb
 size even if the underlying platform does not, but in this
-case the appearance of the slider will not change.
+case the appearance of the slider will not change.<!-- ACCEPT >=> 0e7e76a2-a1ca-489d-b5a5-a6fd0d90aba9 -->
 &lt;/p&gt;
 &lt;dl&gt;
 &lt;dt&gt;&lt;b&gt;Styles:&lt;/b&gt;&lt;/dt&gt;
@@ -27471,7 +27471,7 @@ interface.
 @see ModifyListener
 @see #removeModifyListener
 ------------
-Adds the listener to the collection of listeners who will
+<!-- a48cde09-8a35-4e24-ab50-eeb9452fe2d1 <=< ACCEPT -->Adds the listener to the collection of listeners who will
 be notified when the control is selected by the user, by sending
 it one of the messages defined in the &lt;code&gt;SelectionListener&lt;/code&gt;
 interface.
@@ -27481,7 +27481,7 @@ interface.
 &lt;/p&gt;
 
 @param listener the listener which should be notified when the control is selected by the user
-
+<!-- ACCEPT >=> a48cde09-8a35-4e24-ab50-eeb9452fe2d1 -->
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the listener is null &lt;/li&gt;
@@ -29597,7 +29597,7 @@ Style constant for preventing child radio group behavior (value is 1&lt;&lt;22).
 public static final int NO_RADIO_GROUP = 1 &lt;&lt; 22;
 
 
-Style constant for left to right orientation (value is 1&lt;&lt;25).
+<!-- 911ea9ed-4d9b-417f-8a89-eb2496e7e2b8 <=< ACCEPT -->Style constant for left to right orientation (value is 1&lt;&lt;25).
 &lt;p&gt;
 When orientation is not explicitly specified, orientation is
 inherited.  This means that children will be assigned the
@@ -29614,10 +29614,10 @@ of the child when that child is created.
 *
 @since 2.1.2
 
-public static final int LEFT_TO_RIGHT = 1 &lt;&lt; 25;
+public static final int LEFT_TO_RIGHT = 1 &lt;&lt; 25;<!-- ACCEPT >=> 911ea9ed-4d9b-417f-8a89-eb2496e7e2b8 -->
 
 
-Style constant for right to left orientation (value is 1&lt;&lt;26).
+<!-- 911ea9ed-4d9b-417f-8a89-eb2496e7e2b8 <=< ACCEPT -->Style constant for right to left orientation (value is 1&lt;&lt;26).
 &lt;p&gt;
 When orientation is not explicitly specified, orientation is
 inherited.  This means that children will be assigned the
@@ -29634,7 +29634,7 @@ of the child when that child is created.
 *
 @since 2.1.2
 
-public static final int RIGHT_TO_LEFT = 1 &lt;&lt; 26;
+public static final int RIGHT_TO_LEFT = 1 &lt;&lt; 26;<!-- ACCEPT >=> 911ea9ed-4d9b-417f-8a89-eb2496e7e2b8 -->
 
 
 Style constant to indicate coordinate mirroring (value is 1&lt;&lt;27).
@@ -32166,7 +32166,7 @@ Throws an appropriate exception based on the passed in error code.
 
 @param code the SWT error code
 ------------
-Throws an appropriate exception based on the passed in error code.
+<!-- ae57ebc3-fd1d-4a0e-bc2f-4ee4acd28dc0 <=< ACCEPT -->Throws an appropriate exception based on the passed in error code.
 The &lt;code&gt;throwable&lt;/code&gt; argument should be either null, or the
 throwable which caused SWT to throw an exception.
 &lt;p&gt;
@@ -32188,9 +32188,9 @@ and one of the above exceptions.
 
 @see SWTError
 @see SWTException
-@see IllegalArgumentException
+@see IllegalArgumentException<!-- ACCEPT >=> ae57ebc3-fd1d-4a0e-bc2f-4ee4acd28dc0 -->
 ------------
-Throws an appropriate exception based on the passed in error code.
+<!-- ae57ebc3-fd1d-4a0e-bc2f-4ee4acd28dc0 <=< ACCEPT -->Throws an appropriate exception based on the passed in error code.
 The &lt;code&gt;throwable&lt;/code&gt; argument should be either null, or the
 throwable which caused SWT to throw an exception.
 &lt;p&gt;
@@ -32213,7 +32213,7 @@ and one of the above exceptions.
 
 @see SWTError
 @see SWTException
-@see IllegalArgumentException
+@see IllegalArgumentException<!-- ACCEPT >=> ae57ebc3-fd1d-4a0e-bc2f-4ee4acd28dc0 -->
 
 @since 3.0====== SWTError.java ======
 <!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2011 IBM Corporation and others.
@@ -32250,7 +32250,7 @@ human readable strings for SWT error codes.
 @see SWT#error(int)
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 ------------
-The SWT error code, one of SWT.ERROR_*.
+<!-- ba36e3bf-fd81-4559-96df-f3fc455b1a51 <=< ACCEPT -->The SWT error code, one of SWT.ERROR_*.
 /
 public int code;
 
@@ -32309,7 +32309,7 @@ Outputs a printable representation of this error's
 stack trace on the standard error stream.
 &lt;p&gt;
 Note: printStackTrace(PrintStream) and printStackTrace(PrintWriter)
-are not provided in order to maintain compatibility with CLDC.
+are not provided in order to maintain compatibility with CLDC.<!-- ACCEPT >=> ba36e3bf-fd81-4559-96df-f3fc455b1a51 -->
 &lt;/p&gt;====== SWTEventListener.java ======
 Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
@@ -32356,7 +32356,7 @@ reading an Image because the source file was corrupt).
 @see SWTError
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 ------------
-The SWT error code, one of SWT.ERROR_*.
+<!-- ba36e3bf-fd81-4559-96df-f3fc455b1a51 <=< ACCEPT -->The SWT error code, one of SWT.ERROR_*.
 
 public int code;
 
@@ -32415,7 +32415,7 @@ Outputs a printable representation of this exception's
 stack trace on the standard error stream.
 &lt;p&gt;
 Note: printStackTrace(PrintStream) and printStackTrace(PrintWriter)
-are not provided in order to maintain compatibility with CLDC.
+are not provided in order to maintain compatibility with CLDC.<!-- ACCEPT >=> ba36e3bf-fd81-4559-96df-f3fc455b1a51 -->
 &lt;/p&gt;====== Synchronizer.java ======
 Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
@@ -32622,7 +32622,7 @@ Returns the number of items contained in the receiver.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns an array of &lt;code&gt;TabItem&lt;/code&gt;s which are the items
+<!-- 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e <=< ACCEPT -->Returns an array of &lt;code&gt;TabItem&lt;/code&gt;s which are the items
 in the receiver.
 &lt;p&gt;
 Note: This is not the actual structure used by the receiver
@@ -32630,7 +32630,7 @@ to maintain its list of items, so modifying the array will
 not affect the receiver.
 &lt;/p&gt;
 
-@return the items in the receiver
+@return the items in the receiver<!-- ACCEPT >=> 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -32996,10 +32996,10 @@ System.out.println (item.getText ());
 });
 &lt;/pre&gt;&lt;/code&gt;
 &lt;/p&gt;&lt;p&gt;
-Note that although this class is a subclass of &lt;code&gt;Composite&lt;/code&gt;,
+<!-- c7fadad8-4dba-459f-85f8-74a1ffca9a8e <=< ACCEPT -->Note that although this class is a subclass of &lt;code&gt;Composite&lt;/code&gt;,
 it does not normally make sense to add &lt;code&gt;Control&lt;/code&gt; children to
 it, or set a layout on it, unless implementing something like a cell
-editor.
+editor.<!-- ACCEPT >=> c7fadad8-4dba-459f-85f8-74a1ffca9a8e -->
 &lt;/p&gt;&lt;p&gt;
 &lt;dl&gt;
 &lt;dt&gt;&lt;b&gt;Styles:&lt;/b&gt;&lt;/dt&gt;
@@ -33168,11 +33168,11 @@ attributes are requested again as needed.
 
 @since 3.0
 ------------
-Deselects the items at the given zero-relative indices in the receiver.
+<!-- 664cab21-1c93-477d-8239-1dce060411cc <=< ACCEPT -->Deselects the items at the given zero-relative indices in the receiver.
 If the item at the given zero-relative index in the receiver
 is selected, it is deselected.  If the item at the index
 was not selected, it remains deselected. Indices that are out
-of range and duplicate indices are ignored.
+of range and duplicate indices are ignored.<!-- ACCEPT >=> 664cab21-1c93-477d-8239-1dce060411cc -->
 
 @param indices the array of indices for the items to deselect
 
@@ -33200,11 +33200,11 @@ deselected. Indices that are out of range are ignored.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Deselects the items at the given zero-relative indices in the receiver.
+<!-- 664cab21-1c93-477d-8239-1dce060411cc <=< ACCEPT -->Deselects the items at the given zero-relative indices in the receiver.
 If the item at the given zero-relative index in the receiver
 is selected, it is deselected.  If the item at the index
 was not selected, it remains deselected.  The range of the
-indices is inclusive. Indices that are out of range are ignored.
+indices is inclusive. Indices that are out of range are ignored.<!-- ACCEPT >=> 664cab21-1c93-477d-8239-1dce060411cc -->
 
 @param start the start index of the items to deselect
 @param end the end index of the items to deselect
@@ -33431,7 +33431,7 @@ display &lt;em&gt;one&lt;/em&gt; of the items in the receiver.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns a (possibly empty) array of &lt;code&gt;TableItem&lt;/code&gt;s which
+<!-- 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e <=< ACCEPT -->Returns a (possibly empty) array of &lt;code&gt;TableItem&lt;/code&gt;s which
 are the items in the receiver.
 &lt;p&gt;
 Note: This is not the actual structure used by the receiver
@@ -33439,7 +33439,7 @@ to maintain its list of items, so modifying the array will
 not affect the receiver.
 &lt;/p&gt;
 
-@return the items in the receiver
+@return the items in the receiver<!-- ACCEPT >=> 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -33699,7 +33699,7 @@ be notified when the user changes the receiver's selection.
 @see SelectionListener
 @see #addSelectionListener(SelectionListener)
 ------------
-Selects the items at the given zero-relative indices in the receiver.
+<!-- f765c227-d4b7-4668-9fb3-50672a7fe60c <=< ACCEPT -->Selects the items at the given zero-relative indices in the receiver.
 The current selection is not cleared before the new items are selected.
 &lt;p&gt;
 If the item at a given index is not selected, it is selected.
@@ -33707,7 +33707,7 @@ If the item at a given index was already selected, it remains selected.
 Indices that are out of range and duplicate indices are ignored.
 If the receiver is single-select and multiple indices are specified,
 then all indices are ignored.
-&lt;/p&gt;
+<!-- ACCEPT >=> f765c227-d4b7-4668-9fb3-50672a7fe60c -->&lt;/p&gt;
 
 @param indices the array of indices for the items to select
 
@@ -33952,7 +33952,7 @@ and if necessary the receiver is scrolled to make the new selection visible.
 @see Table#deselectAll()
 @see Table#select(int)
 ------------
-Selects the items in the range specified by the given zero-relative
+<!-- e69fe9c8-a712-44f1-ad81-e766b6d8285a <=< ACCEPT -->Selects the items in the range specified by the given zero-relative
 indices in the receiver. The range of indices is inclusive.
 The current selection is cleared before the new items are selected,
 and if necessary the receiver is scrolled to make the new selection visible.
@@ -33960,7 +33960,7 @@ and if necessary the receiver is scrolled to make the new selection visible.
 Indices that are out of range are ignored and no items will be selected
 if start is greater than end.
 If the receiver is single-select and there is more than one item in the
-given range, then all indices are ignored.
+given range, then all indices are ignored.<!-- ACCEPT >=> e69fe9c8-a712-44f1-ad81-e766b6d8285a -->
 &lt;/p&gt;
 
 @param start the start index of the items to select
@@ -35172,7 +35172,7 @@ Returns the receiver's progress state.
 Sets the receiver's pop up menu to the argument. The way the menu is
 shown is platform specific.
 
-&lt;p&gt;
+<!-- 62fd5242-104f-4eec-a1e3-6c9cc8269cf2 <=< ACCEPT -->&lt;p&gt;
 This feature might not be available for the receiver on all
 platforms. The application code can check if it is supported
 by calling the respective get method. When the feature is not
@@ -35182,6 +35182,7 @@ available, the get method will always return the NULL.&lt;/p&gt;
 For better cross platform support, the application code should
 set this feature on the &lt;code&gt;TaskItem&lt;/code&gt; for application.&lt;br&gt;
 On Windows, this feature will only work on RCP applications.&lt;/p&gt;
+<!-- ACCEPT >=> 62fd5242-104f-4eec-a1e3-6c9cc8269cf2 -->
 
 &lt;p&gt;
 The menu should be fully created before this method is called.
@@ -35206,7 +35207,7 @@ indicating that no image should be displayed. The bounds
 for the overlay image is determined by the platform and in
 general it should be a small image.
 
-&lt;p&gt;
+<!-- 62fd5242-104f-4eec-a1e3-6c9cc8269cf2 <=< ACCEPT -->&lt;p&gt;
 This feature might not be available for the receiver on all
 platforms. The application code can check if it is supported
 by calling the respective get method. When the feature is not
@@ -35215,7 +35216,7 @@ available, the get method will always return the NULL.&lt;/p&gt;
 &lt;p&gt;
 For better cross platform support, the application code should
 first try to set this feature on the &lt;code&gt;TaskItem&lt;/code&gt; for the
-main shell then on the &lt;code&gt;TaskItem&lt;/code&gt; for the application.&lt;/p&gt;
+main shell then on the &lt;code&gt;TaskItem&lt;/code&gt; for the application.&lt;/p&gt;<!-- ACCEPT >=> 62fd5242-104f-4eec-a1e3-6c9cc8269cf2 -->
 
 @param overlayImage the new overlay image (may be null)
 
@@ -35233,7 +35234,7 @@ Sets the receiver's overlay text. The space available to display the
 overlay text is platform dependent and in general it should be no longer
 than a few characters.
 
-&lt;p&gt;
+<!-- 62fd5242-104f-4eec-a1e3-6c9cc8269cf2 <=< ACCEPT -->&lt;p&gt;
 This feature might not be available for the receiver on all
 platforms. The application code can check if it is supported
 by calling the respective get method. When the feature is not
@@ -35242,7 +35243,7 @@ available, the get method will always return an empty string.&lt;/p&gt;
 &lt;p&gt;
 For better cross platform support, the application code should
 first try to set this feature on the &lt;code&gt;TaskItem&lt;/code&gt; for the
-main shell then on the &lt;code&gt;TaskItem&lt;/code&gt; for the application.&lt;/p&gt;
+main shell then on the &lt;code&gt;TaskItem&lt;/code&gt; for the application.&lt;/p&gt;<!-- ACCEPT >=> 62fd5242-104f-4eec-a1e3-6c9cc8269cf2 -->
 
 @param overlayText the new overlay text
 
@@ -35261,7 +35262,7 @@ Sets the receiver's progress, the progress represents a percentage and
 should be in range from 0 to 100. The progress is only shown when the progress
 state is different than &lt;code&gt;SWT#DEFAULT&lt;/code&gt;.
 
-&lt;p&gt;
+<!-- 62fd5242-104f-4eec-a1e3-6c9cc8269cf2 <=< ACCEPT -->&lt;p&gt;
 This feature might not be available for the receiver on all
 platforms. The application code can check if it is supported
 by calling the respective get method. When the feature is not
@@ -35270,7 +35271,7 @@ available, the get method will always return zero.&lt;/p&gt;
 &lt;p&gt;
 For better cross platform support, the application code should
 first try to set this feature on the &lt;code&gt;TaskItem&lt;/code&gt; for the
-main shell then on the &lt;code&gt;TaskItem&lt;/code&gt; for the application.&lt;/p&gt;
+main shell then on the &lt;code&gt;TaskItem&lt;/code&gt; for the application.&lt;/p&gt;<!-- ACCEPT >=> 62fd5242-104f-4eec-a1e3-6c9cc8269cf2 -->
 
 @param progress the new progress
 
@@ -35297,7 +35298,7 @@ The percentage of progress shown by the states &lt;code&gt;SWT#NORMAL&lt;/code&g
 &lt;code&gt;SWT#ERROR&lt;/code&gt; is set with &lt;code&gt;setProgress()&lt;/code&gt;. &lt;br&gt;
 The state &lt;code&gt;SWT#DEFAULT&lt;/code&gt; indicates that no progress should be shown.
 
-&lt;p&gt;
+<!-- 62fd5242-104f-4eec-a1e3-6c9cc8269cf2 <=< ACCEPT -->&lt;p&gt;
 This feature might not be available for the receiver on all
 platforms. The application code can check if it is supported
 by calling the respective get method. When the feature is not
@@ -35306,7 +35307,7 @@ available, the get method will always return &lt;code&gt;SWT#DEFAULT&lt;/code&gt
 &lt;p&gt;
 For better cross platform support, the application code should
 first try to set this feature on the &lt;code&gt;TaskItem&lt;/code&gt; for the
-main shell then on the &lt;code&gt;TaskItem&lt;/code&gt; for the application.&lt;/p&gt;
+main shell then on the &lt;code&gt;TaskItem&lt;/code&gt; for the application.&lt;/p&gt;<!-- ACCEPT >=> 62fd5242-104f-4eec-a1e3-6c9cc8269cf2 -->
 
 @param progressState the new progress state
 
@@ -35515,7 +35516,7 @@ way they are stored.
 
 @since 3.8
 ------------
-Adds the listener to the collection of listeners who will
+<!-- a48cde09-8a35-4e24-ab50-eeb9452fe2d1 <=< ACCEPT -->Adds the listener to the collection of listeners who will
 be notified when the control is selected by the user, by sending
 it one of the messages defined in the &lt;code&gt;SelectionListener&lt;/code&gt;
 interface.
@@ -35528,7 +35529,7 @@ Likewise, if the receiver has the &lt;code&gt;SWT.ICON_SEARCH&lt;/code&gt; style
 event object detail field contains the value &lt;code&gt;SWT.ICON_SEARCH&lt;/code&gt;.
 &lt;/p&gt;
 
-@param listener the listener which should be notified when the control is selected by the user
+@param listener the listener which should be notified when the control is selected by the user<!-- ACCEPT >=> a48cde09-8a35-4e24-ab50-eeb9452fe2d1 -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
@@ -36203,7 +36204,7 @@ regular array indexing rules.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Sets the selection to the range specified
+<!-- 82170659-bb88-485f-adfb-d30075749aee <=< ACCEPT -->Sets the selection to the range specified
 by the given start and end indices.
 &lt;p&gt;
 Indexing is zero based.  The range of
@@ -36217,7 +36218,7 @@ positions, ranging from 0..N.  This differs
 from other functions that address character
 position such as getText () that use the
 usual array indexing rules.
-&lt;/p&gt;
+&lt;/p&gt;<!-- ACCEPT >=> 82170659-bb88-485f-adfb-d30075749aee -->
 
 @param start the start of the range
 @param end the end of the range
@@ -36229,7 +36230,7 @@ usual array indexing rules.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Sets the selection to the range specified
+<!-- 82170659-bb88-485f-adfb-d30075749aee <=< ACCEPT -->Sets the selection to the range specified
 by the given point, where the x coordinate
 represents the start index and the y coordinate
 represents the end index.
@@ -36245,7 +36246,7 @@ positions, ranging from 0..N.  This differs
 from other functions that address character
 position such as getText () that use the
 usual array indexing rules.
-&lt;/p&gt;
+&lt;/p&gt;<!-- ACCEPT >=> 82170659-bb88-485f-adfb-d30075749aee -->
 
 @param selection the point
 
@@ -36733,7 +36734,7 @@ type.  The movement is one of &lt;code&gt;SWT.MOVEMENT_CHAR&lt;/code&gt;,
 
 @see #getPreviousOffset(int, int)
 ------------
-Returns the character offset for the specified point.
+<!-- 026c0c92-ebf1-48bf-97cf-b47c95f751e6 <=< ACCEPT -->Returns the character offset for the specified point.
 For a typical character, the trailing argument will be filled in to
 indicate whether the point is closer to the leading edge (0) or
 the trailing edge (1).  When the point is over a cluster composed
@@ -36743,7 +36744,7 @@ the point.
 
 @param point the point
 @param trailing the trailing buffer
-@return the character offset
+@return the character offset<!-- ACCEPT >=> 026c0c92-ebf1-48bf-97cf-b47c95f751e6 -->
 
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the trailing length is less than &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
@@ -36757,7 +36758,7 @@ the point.
 
 @see #getLocation(int, boolean)
 ------------
-Returns the character offset for the specified point.
+<!-- 026c0c92-ebf1-48bf-97cf-b47c95f751e6 <=< ACCEPT -->Returns the character offset for the specified point.
 For a typical character, the trailing argument will be filled in to
 indicate whether the point is closer to the leading edge (0) or
 the trailing edge (1).  When the point is over a cluster composed
@@ -36769,7 +36770,7 @@ the point.
 @param y the y coordinate of the point
 @param trailing the trailing buffer
 @return the character offset
-
+<!-- ACCEPT >=> 026c0c92-ebf1-48bf-97cf-b47c95f751e6 -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the trailing length is less than &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -37564,7 +37565,7 @@ Returns the number of items contained in the receiver.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns an array of &lt;code&gt;ToolItem&lt;/code&gt;s which are the items
+<!-- 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e <=< ACCEPT -->Returns an array of &lt;code&gt;ToolItem&lt;/code&gt;s which are the items
 in the receiver.
 &lt;p&gt;
 Note: This is not the actual structure used by the receiver
@@ -37572,7 +37573,7 @@ to maintain its list of items, so modifying the array will
 not affect the receiver.
 &lt;/p&gt;
 
-@return the items in the receiver
+@return the items in the receiver<!-- ACCEPT >=> 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -37721,7 +37722,7 @@ be notified when the control is selected by the user, by sending
 it one of the messages defined in the &lt;code&gt;SelectionListener&lt;/code&gt;
 interface.
 &lt;p&gt;
-When &lt;code&gt;widgetSelected&lt;/code&gt; is called when the mouse is over the arrow portion of a drop-down tool,
+<!-- 5a882c8a-ae90-4528-8e3d-13e211fe83b9 <=< ACCEPT -->When &lt;code&gt;widgetSelected&lt;/code&gt; is called when the mouse is over the arrow portion of a drop-down tool,
 the event object detail field contains the value &lt;code&gt;SWT.ARROW&lt;/code&gt;.
 &lt;code&gt;widgetDefaultSelected&lt;/code&gt; is not called.
 &lt;/p&gt;
@@ -37732,7 +37733,7 @@ was selected by the user. During &lt;code&gt;widgetSelected&lt;/code&gt; the app
 &lt;code&gt;getSelection()&lt;/code&gt; to determine the current selected state of the receiver.
 &lt;/p&gt;
 
-@param listener the listener which should be notified when the control is selected by the user,
+@param listener the listener which should be notified when the control is selected by the user<!-- ACCEPT >=> 5a882c8a-ae90-4528-8e3d-13e211fe83b9 -->,
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
@@ -37994,14 +37995,14 @@ Sets the receiver's text. The string may include
 the mnemonic character.
 &lt;/p&gt;
 &lt;p&gt;
-Mnemonics are indicated by an '&amp;amp;' that causes the next
+<!-- bd7152d7-ad9b-4573-8416-8c1bbebb6545 <=< ACCEPT -->Mnemonics are indicated by an '&amp;amp;' that causes the next
 character to be the mnemonic.  When the user presses a
 key sequence that matches the mnemonic, a selection
 event occurs. On most platforms, the mnemonic appears
 underlined but may be emphasised in a platform specific
 manner.  The mnemonic indicator character '&amp;amp;' can be
 escaped by doubling it in the string, causing a single
-'&amp;amp;' to be displayed.
+'&amp;amp;' to be displayed.<!-- ACCEPT >=> bd7152d7-ad9b-4573-8416-8c1bbebb6545 -->
 &lt;/p&gt;&lt;p&gt;
 Note: If control characters like '\n', '\t' etc. are used
 in the string, then the behavior is platform dependent.
@@ -39311,7 +39312,7 @@ Returns the number of items contained in the receiver.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns an array of &lt;code&gt;TrayItem&lt;/code&gt;s which are the items
+<!-- 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e <=< ACCEPT -->Returns an array of &lt;code&gt;TrayItem&lt;/code&gt;s which are the items
 in the receiver.
 &lt;p&gt;
 Note: This is not the actual structure used by the receiver
@@ -39320,7 +39321,7 @@ not affect the receiver.
 &lt;/p&gt;
 
 @return the items in the receiver
-
+<!-- ACCEPT >=> 49a9135a-3e22-45c0-8fcf-5c7a8fc2498e -->
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_WIDGET_DISPOSED - if the receiver has been disposed&lt;/li&gt;
@@ -39661,10 +39662,10 @@ item.setItemCount(10);
 });
 &lt;/pre&gt;&lt;/code&gt;
 &lt;/p&gt;&lt;p&gt;
-Note that although this class is a subclass of &lt;code&gt;Composite&lt;/code&gt;,
+<!-- c7fadad8-4dba-459f-85f8-74a1ffca9a8e <=< ACCEPT -->Note that although this class is a subclass of &lt;code&gt;Composite&lt;/code&gt;,
 it does not normally make sense to add &lt;code&gt;Control&lt;/code&gt; children to
 it, or set a layout on it, unless implementing something like a cell
-editor.
+editor.<!-- ACCEPT >=> c7fadad8-4dba-459f-85f8-74a1ffca9a8e -->
 &lt;/p&gt;&lt;p&gt;
 &lt;dl&gt;
 &lt;dt&gt;&lt;b&gt;Styles:&lt;/b&gt;&lt;/dt&gt;
@@ -40014,7 +40015,7 @@ not affect the receiver.
 
 @since 3.2
 ------------
-Returns an array of &lt;code&gt;TreeColumn&lt;/code&gt;s which are the
+<!-- 53d00f48-ad5b-4ce1-970d-883e26f543e3 <=< ACCEPT -->Returns an array of &lt;code&gt;TreeColumn&lt;/code&gt;s which are the
 columns in the receiver. Columns are returned in the order
 that they were created.  If no &lt;code&gt;TreeColumn&lt;/code&gt;s were
 created by the programmer, the array is empty, despite the fact
@@ -40027,7 +40028,7 @@ to maintain its list of items, so modifying the array will
 not affect the receiver.
 &lt;/p&gt;
 
-@return the items in the receiver
+@return the items in the receiver<!-- ACCEPT >=> 53d00f48-ad5b-4ce1-970d-883e26f543e3 -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -40113,7 +40114,7 @@ display &lt;em&gt;one&lt;/em&gt; of the items in the tree.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns a (possibly empty) array of items contained in the
+<!-- 53d00f48-ad5b-4ce1-970d-883e26f543e3 <=< ACCEPT -->Returns a (possibly empty) array of items contained in the
 receiver that are direct item children of the receiver.  These
 are the roots of the tree.
 &lt;p&gt;
@@ -40122,7 +40123,7 @@ to maintain its list of items, so modifying the array will
 not affect the receiver.
 &lt;/p&gt;
 
-@return the items
+@return the items<!-- ACCEPT >=> 53d00f48-ad5b-4ce1-970d-883e26f543e3 -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -41446,7 +41447,7 @@ that are direct item children of the receiver.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 ------------
-Returns a (possibly empty) array of &lt;code&gt;TreeItem&lt;/code&gt;s which
+<!-- 53d00f48-ad5b-4ce1-970d-883e26f543e3 <=< ACCEPT -->Returns a (possibly empty) array of &lt;code&gt;TreeItem&lt;/code&gt;s which
 are the direct item children of the receiver.
 &lt;p&gt;
 Note: This is not the actual structure used by the receiver
@@ -41454,7 +41455,7 @@ to maintain its list of items, so modifying the array will
 not affect the receiver.
 &lt;/p&gt;
 
-@return the receiver's items
+@return the receiver's items<!-- ACCEPT >=> 53d00f48-ad5b-4ce1-970d-883e26f543e3 -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -42063,7 +42064,7 @@ when events occur which affect them.
 &lt;dd&gt;Dispose&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;p&gt;
-IMPORTANT: This class is intended to be subclassed &lt;em&gt;only&lt;/em&gt;
+<!-- 8a1e5cee-17d9-40dd-8cd8-692eba2b3c57 <=< ACCEPT -->IMPORTANT: This class is intended to be subclassed &lt;em&gt;only&lt;/em&gt;
 within the SWT implementation. However, it has not been marked
 final to allow those outside of the SWT development team to implement
 patched versions of the class in order to get around specific
@@ -42074,7 +42075,7 @@ may be strongly platform specific. Subclassing should not be attempted
 without an intimate and detailed understanding of the workings of the
 hierarchy. No support is provided for user-written classes which are
 implemented as subclasses of this class.
-&lt;/p&gt;
+&lt;/p&gt;<!-- ACCEPT >=> 8a1e5cee-17d9-40dd-8cd8-692eba2b3c57 -->
 
 @see #checkSubclass
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
@@ -42215,7 +42216,7 @@ without an intimate and detailed understanding of the hierarchy.
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
 &lt;/ul&gt;
 ------------
-Throws an &lt;code&gt;SWTException&lt;/code&gt; if the receiver can not
+<!-- a866bb99-d458-4aba-ad9c-a235c16c0720 <=< ACCEPT -->Throws an &lt;code&gt;SWTException&lt;/code&gt; if the receiver can not
 be accessed by the caller. This may include both checks on
 the state of the receiver and more generally on the entire
 execution context. This method &lt;em&gt;should&lt;/em&gt; be called by
@@ -42229,7 +42230,7 @@ from the thread that created the widget.
 &lt;/p&gt;&lt;p&gt;
 In future releases of SWT, there may be more or fewer error
 checks and exceptions may be thrown for different reasons.
-&lt;/p&gt;
+&lt;/p&gt;<!-- ACCEPT >=> a866bb99-d458-4aba-ad9c-a235c16c0720 -->
 
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff01 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
@@ -42286,7 +42287,7 @@ uses the code in &lt;code&gt;SWTError.error&lt;/code&gt; to handle the error.
 
 @see SWT#error(int)
 ------------
-Returns the application defined widget data associated
+<!-- 12815e96-aadc-4670-bbba-221b1c623cc5 <=< ACCEPT -->Returns the application defined widget data associated
 with the receiver, or null if it has not been set. The
 &lt;em&gt;widget data&lt;/em&gt; is a single, unnamed field that is
 stored with every widget.
@@ -42305,7 +42306,7 @@ do so.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - when called from the wrong thread&lt;/li&gt;
 &lt;/ul&gt;
 
-@see #setData(Object)
+@see #setData(Object)<!-- ACCEPT >=> 12815e96-aadc-4670-bbba-221b1c623cc5 -->
 ------------
 Returns the application defined property of the receiver
 with the specified name, or null if it has not been set.
@@ -42551,7 +42552,7 @@ The parameter &lt;code&gt;flags&lt;/code&gt; may be either:
 &lt;/ul&gt;
 @since 3.6
 ------------
-Sets the application defined widget data associated
+<!-- 12815e96-aadc-4670-bbba-221b1c623cc5 <=< ACCEPT -->Sets the application defined widget data associated
 with the receiver to be the argument. The &lt;em&gt;widget
 data&lt;/em&gt; is a single, unnamed field that is stored
 with every widget.
@@ -42570,7 +42571,7 @@ do so.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - when called from the wrong thread&lt;/li&gt;
 &lt;/ul&gt;
 
-@see #getData()
+@see #getData()<!-- ACCEPT >=> 12815e96-aadc-4670-bbba-221b1c623cc5 -->
 ------------
 Sets the application defined property of the receiver
 with the specified name to the given value.
