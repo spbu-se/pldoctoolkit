@@ -14957,6 +14957,7 @@ Style bits are also inherited from superclasses
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff02 -->
 &lt;/ul&gt;
 
 @see SWT#SHADOW_ETCHED_IN
