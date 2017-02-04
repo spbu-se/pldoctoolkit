@@ -265,16 +265,16 @@ class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -800,13 +800,15 @@ Prevents uninitialized instances from being created outside the package.
 Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -973,16 +975,15 @@ class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
-&lt;/p&gt;
+Style bits are also inherited from superclasses
+.&lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -1254,6 +1255,7 @@ when those instances are no longer required.
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 ------------
 * the handle to the OS color resource
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -1263,6 +1265,7 @@ when those instances are no longer required.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public int handle;
 int alpha = 255;
@@ -1385,6 +1388,7 @@ You must dispose the color when it is no longer required.
 @see #dispose
 @since 3.104
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -1393,55 +1397,68 @@ specific comparison.
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
 @see #hashCode
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns the amount of alpha in the color, from 0 (transparent) to 255 (opaque).
 
 @return the alpha component of the color
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 @since 3.104
 ------------
 Returns the amount of blue in the color, from 0 to 255.
 
 @return the blue component of the color
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the amount of green in the color, from 0 to 255.
 
 @return the green component of the color
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the amount of red in the color, from 0 to 255.
 
 @return the red component of the color
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns an &lt;code&gt;RGB&lt;/code&gt; representing the receiver.
 
 @return the RGB for the color
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns an &lt;code&gt;RGBA&lt;/code&gt; representing the receiver.
 
 @return the RGBA for the color
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 @since 3.104
 ------------
 Returns an integer hash code for the receiver. Any two
@@ -1564,16 +1581,16 @@ class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -1721,16 +1738,16 @@ class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -2680,13 +2697,15 @@ Prevents uninitialized instances from being created outside the package.
 Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a widget which will be the parent of the new instance (cannot be null)
@@ -3188,6 +3207,7 @@ within the SWT implementation.
 @noextend This class is not intended to be subclassed by clients.
 ------------
 * the handle to the OS resource
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -3197,6 +3217,7 @@ within the SWT implementation.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ handle;
 Composite parent;
@@ -3223,16 +3244,17 @@ class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
+
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -5588,16 +5610,16 @@ class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -5832,13 +5854,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance. The item is added
 to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -5862,13 +5886,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance, and the index
 at which to place it in the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -6193,6 +6219,7 @@ Note: Only one of the above styles may be specified.
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 ------------
 * the handle to the OS cursor resource
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -6202,6 +6229,7 @@ Note: Only one of the above styles may be specified.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ handle;
 
@@ -6393,6 +6421,7 @@ image&lt;/li&gt;
 
 @since 3.0
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -6401,6 +6430,7 @@ specific comparison.
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
 @see #hashCode
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns an integer hash code for the receiver. Any two
 objects that return &lt;code&gt;true&lt;/code&gt; when passed to
@@ -6492,10 +6522,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -6866,16 +6895,16 @@ class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -7196,6 +7225,7 @@ can be drawn on by sending messages to the associated GC.
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 ------------
 * Palette
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -7205,6 +7235,7 @@ can be drawn on by sending messages to the associated GC.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ hPalette = 0;
 int [] colorRefCount;
@@ -7721,13 +7752,15 @@ parent.
 Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 
 @param parent a shell which will be the parent of the new instance
 @param style the style of dialog to construct
@@ -7874,13 +7907,15 @@ Constructs a new instance of this class given only its parent.
 Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a shell which will be the parent of the new instance
@@ -8028,6 +8063,7 @@ IMPORTANT: This class is &lt;em&gt;not&lt;/em&gt; intended to be subclassed.
 @noextend This class is not intended to be subclassed by clients.
 ------------
 * the handle to the OS message queue
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -8037,6 +8073,7 @@ IMPORTANT: This class is &lt;em&gt;not&lt;/em&gt; intended to be subclassed.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public MSG msg = new MSG ();
 
@@ -10278,16 +10315,16 @@ class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -10483,16 +10520,16 @@ class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -10506,13 +10543,15 @@ Constructs a new instance of this class given its parent, a
 style value describing its behavior and appearance, and the index
 at which to place it in the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -10703,13 +10742,15 @@ Constructs a new instance of this class given only its parent.
 Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a shell which will be the parent of the new instance
@@ -11112,6 +11153,7 @@ when those instances are no longer required.
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 ------------
 * the handle to the OS font resource
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -11121,6 +11163,7 @@ when those instances are no longer required.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ handle;
 
@@ -11193,6 +11236,7 @@ You must dispose the font when it is no longer required.
 
 @see #dispose()
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -11201,6 +11245,7 @@ specific comparison.
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
 @see #hashCode
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns an array of &lt;code&gt;FontData&lt;/code&gt;s representing the receiver.
 On Windows, only one FontData will be returned per font. On X however,
@@ -11209,9 +11254,11 @@ fonts. To support this case, we return an array of font data objects.
 
 @return an array of font data objects describing the receiver
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns an integer hash code for the receiver. Any two
 objects that return &lt;code&gt;true&lt;/code&gt; when passed to
@@ -11284,6 +11331,7 @@ required, and thus no &lt;code&gt;dispose()&lt;/code&gt; method is provided.
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 ------------
 * A Win32 LOGFONT struct
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -11293,11 +11341,13 @@ required, and thus no &lt;code&gt;dispose()&lt;/code&gt; method is provided.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public LOGFONT data;
 
 /**
 * The height of the font data in points
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -11307,6 +11357,7 @@ public LOGFONT data;
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public float height;
 
@@ -11355,6 +11406,7 @@ and a font style.
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the height is negative&lt;/li&gt;
 &lt;/ul&gt;
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -11363,6 +11415,7 @@ specific comparison.
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
 @see #hashCode
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns the height of the receiver in points.
 
@@ -11535,13 +11588,15 @@ Constructs a new instance of this class given only its parent.
 Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a shell which will be the parent of the new instance
@@ -11657,6 +11712,7 @@ using the &lt;code&gt;getFontMetrics()&lt;/code&gt; method.
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 ------------
 * On Windows, handle is a Win32 TEXTMETRIC struct
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -11666,12 +11722,14 @@ using the &lt;code&gt;getFontMetrics()&lt;/code&gt; method.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public TEXTMETRIC handle;
 
 /**
 Prevents instances from being created outside the package.
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -11680,6 +11738,7 @@ specific comparison.
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
 @see #hashCode
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns the ascent of the font described by the receiver. A
 font's &lt;em&gt;ascent&lt;/em&gt; is the distance from the baseline to the
@@ -12235,6 +12294,7 @@ Note: Only one of LEFT_TO_RIGHT and RIGHT_TO_LEFT may be specified.
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 ------------
 * the handle to the OS device context
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -12244,6 +12304,7 @@ Note: Only one of LEFT_TO_RIGHT and RIGHT_TO_LEFT may be specified.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ handle;
 
@@ -12341,9 +12402,11 @@ position into the image, which must be of type &lt;code&gt;SWT.BITMAP&lt;/code&g
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the image is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the image is not a bitmap or has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Copies a rectangular area of the receiver at the source
 position onto the receiver at the destination position.
@@ -12355,9 +12418,11 @@ position onto the receiver at the destination position.
 @param destX the x coordinate in the receiver of the area to copy to
 @param destY the y coordinate in the receiver of the area to copy to
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Copies a rectangular area of the receiver at the source
 position onto the receiver at the destination position.
@@ -12370,9 +12435,11 @@ position onto the receiver at the destination position.
 @param destY the y coordinate in the receiver of the area to copy to
 @param paint if &lt;code&gt;true&lt;/code&gt; paint events will be generated for old and obscured areas
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -12408,9 +12475,11 @@ by &lt;code&gt;height + 1&lt;/code&gt; pixels tall.
 @param startAngle the beginning angle
 @param arcAngle the angular extent of the arc, relative to the start angle
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws a rectangle, based on the specified arguments, which has
 the appearance of the platform's &lt;em&gt;focus rectangle&lt;/em&gt; if the
@@ -12422,9 +12491,11 @@ rectangle in the receiver's foreground color.
 @param width the width of the rectangle
 @param height the height of the rectangle
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #drawRectangle(int, int, int, int)
 ------------
@@ -12440,9 +12511,11 @@ coordinates.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the image is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the image has been disposed&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the given coordinates are outside the bounds of the image&lt;/li&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 @exception SWTError &lt;ul&gt;
 &lt;li&gt;ERROR_NO_HANDLES - if no handles are available to perform the operation&lt;/li&gt;
 &lt;/ul&gt;
@@ -12472,9 +12545,11 @@ or height arguments are negative.
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if any of the width or height arguments are negative.
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the source rectangle is not contained within the bounds of the source image&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 @exception SWTError &lt;ul&gt;
 &lt;li&gt;ERROR_NO_HANDLES - if no handles are available to perform the operation&lt;/li&gt;
 &lt;/ul&gt;
@@ -12487,9 +12562,11 @@ Draws a line, using the foreground color, between the points
 @param x2 the second point's x coordinate
 @param y2 the second point's y coordinate
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws the outline of an oval, using the foreground color,
 within the specified rectangular area.
@@ -12507,9 +12584,11 @@ pixels wide and &lt;code&gt;height + 1&lt;/code&gt; pixels tall.
 @param width the width of the oval to be drawn
 @param height the height of the oval to be drawn
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws the path described by the parameter.
 &lt;p&gt;
@@ -12544,9 +12623,11 @@ operation.
 @param x the point's x coordinate
 @param y the point's y coordinate
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.0
 ------------
@@ -12562,9 +12643,11 @@ array.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT if pointArray is null&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws the polyline which is defined by the specified array
 of integer coordinates, using the receiver's foreground color. The array
@@ -12579,9 +12662,11 @@ the array.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the point array is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws the outline of the rectangle specified by the arguments,
 using the receiver's foreground color. The left and right edges
@@ -12593,9 +12678,11 @@ The top and bottom edges are at &lt;code&gt;y&lt;/code&gt; and &lt;code&gt;y + h
 @param width the width of the rectangle to be drawn
 @param height the height of the rectangle to be drawn
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws the outline of the specified rectangle, using the receiver's
 foreground color. The left and right edges of the rectangle are at
@@ -12609,9 +12696,11 @@ and bottom edges are at &lt;code&gt;rect.y&lt;/code&gt; and
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the rectangle is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws the outline of the round-cornered rectangle specified by
 the arguments, using the receiver's foreground color. The left and
@@ -12629,9 +12718,11 @@ the corners.
 @param arcWidth the width of the arc
 @param arcHeight the height of the arc
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws the given string, using the receiver's current font and
 foreground color. No tab expansion or carriage return processing
@@ -12647,9 +12738,11 @@ background color.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the string is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws the given string, using the receiver's current font and
 foreground color. No tab expansion or carriage return processing
@@ -12667,9 +12760,11 @@ receiver's background color.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the string is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws the given string, using the receiver's current font and
 foreground color. Tab expansion and carriage return processing
@@ -12685,9 +12780,11 @@ background color.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the string is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws the given string, using the receiver's current font and
 foreground color. Tab expansion and carriage return processing
@@ -12705,9 +12802,11 @@ receiver's background color.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the string is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Draws the given string, using the receiver's current font and
 foreground color. Tab expansion, line delimiter and mnemonic
@@ -12739,10 +12838,13 @@ The parameter &lt;code&gt;flags&lt;/code&gt; may be a combination of:
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the string is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -12751,6 +12853,7 @@ specific comparison.
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
 @see #hashCode
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Fills the interior of a circular or elliptical arc within
 the specified rectangular area, with the receiver's background
@@ -12777,9 +12880,11 @@ by &lt;code&gt;height + 1&lt;/code&gt; pixels tall.
 @param startAngle the beginning angle
 @param arcAngle the angular extent of the arc, relative to the start angle
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #drawArc
 ------------
@@ -12796,9 +12901,11 @@ from the receiver's foreground color to its background color.
 @param vertical if true sweeps from top to bottom, else
 sweeps from left to right
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #drawRectangle(int, int, int, int)
 ------------
@@ -12811,9 +12918,11 @@ color.
 @param width the width of the oval to be filled
 @param height the height of the oval to be filled
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #drawOval
 ------------
@@ -12852,9 +12961,11 @@ between the first pair and last pair in the array.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT if pointArray is null&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #drawPolygon
 ------------
@@ -12866,9 +12977,11 @@ using the receiver's background color.
 @param width the width of the rectangle to be filled
 @param height the height of the rectangle to be filled
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #drawRectangle(int, int, int, int)
 ------------
@@ -12881,9 +12994,11 @@ background color.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the rectangle is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #drawRectangle(int, int, int, int)
 ------------
@@ -12897,9 +13012,11 @@ the arguments, using the receiver's background color.
 @param arcWidth the width of the arc
 @param arcHeight the height of the arc
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #drawRoundRectangle
 ------------
@@ -12913,9 +13030,11 @@ should move after printing the character in the selected font.
 @param ch the character to measure
 @return the distance in the x direction to move past the character before painting the next
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns &lt;code&gt;true&lt;/code&gt; if receiver is using the operating system's
 advanced graphics subsystem.  Otherwise, &lt;code&gt;false&lt;/code&gt; is returned
@@ -12933,9 +13052,11 @@ to advanced mode and this mode is supported, &lt;code&gt;true&lt;/code&gt; is re
 
 @return the advanced value
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #setAdvanced
 
@@ -12946,9 +13067,11 @@ is between 0 (transparent) and 255 (opaque).
 
 @return the alpha value
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -12959,9 +13082,11 @@ one of &lt;code&gt;SWT.DEFAULT&lt;/code&gt;, &lt;code&gt;SWT.OFF&lt;/code&gt; or
 
 @return the anti-aliasing setting
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #getTextAntialias
 
@@ -12971,18 +13096,22 @@ Returns the background color.
 
 @return the receiver's background color
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the background pattern. The default value is
 &lt;code&gt;null&lt;/code&gt;.
 
 @return the receiver's background pattern
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see Pattern
 
@@ -12999,9 +13128,11 @@ or overhang.
 @param ch the character to measure
 @return the width of the character
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the bounding rectangle of the receiver's clipping
 region. If no clipping region is set, the return value
@@ -13010,9 +13141,11 @@ object the receiver is drawing on.
 
 @return the bounding rectangle of the clipping region
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the region managed by the argument to the current
 clipping region of the receiver.
@@ -13024,18 +13157,22 @@ clipping region of the receiver.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the region is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the region is disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the receiver's fill rule, which will be one of
 &lt;code&gt;SWT.FILL_EVEN_ODD&lt;/code&gt; or &lt;code&gt;SWT.FILL_WINDING&lt;/code&gt;.
 
 @return the receiver's fill rule
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -13044,9 +13181,11 @@ to draw and measure text.
 
 @return the receiver's font
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns a FontMetrics which contains information
 about the font currently being used by the receiver
@@ -13054,26 +13193,32 @@ to draw and measure text.
 
 @return font metrics for the receiver's font
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the receiver's foreground color.
 
 @return the color used for drawing foreground things
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the foreground pattern. The default value is
 &lt;code&gt;null&lt;/code&gt;.
 
 @return the receiver's foreground pattern
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see Pattern
 
@@ -13090,9 +13235,11 @@ application code.
 
 @return the receiver's GCData
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see GCData
 
@@ -13106,9 +13253,11 @@ Returns the receiver's interpolation setting, which will be one of
 
 @return the receiver's interpolation setting
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -13116,9 +13265,11 @@ Returns the receiver's line attributes.
 
 @return the line attributes used for drawing lines
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.3
 ------------
@@ -13128,9 +13279,11 @@ or &lt;code&gt;SWT.CAP_SQUARE&lt;/code&gt;.
 
 @return the cap style used for drawing lines
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -13139,9 +13292,11 @@ Returns the receiver's line dash style. The default value is
 
 @return the line dash style used for drawing lines
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -13151,9 +13306,11 @@ or &lt;code&gt;SWT.JOIN_BEVEL&lt;/code&gt;.
 
 @return the join style used for drawing lines
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -13164,9 +13321,11 @@ of the constants &lt;code&gt;SWT.LINE_SOLID&lt;/code&gt;, &lt;code&gt;SWT.LINE_D
 
 @return the style used for drawing lines
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the width that will be used when drawing lines
 for all of the figure drawing operations (that is,
@@ -13175,9 +13334,11 @@ for all of the figure drawing operations (that is,
 
 @return the receiver's line width
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the receiver's style information.
 &lt;p&gt;
@@ -13190,9 +13351,11 @@ requested styles.
 
 @return the style bits
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 2.1.2
 ------------
@@ -13203,9 +13366,11 @@ which will be one of &lt;code&gt;SWT.DEFAULT&lt;/code&gt;, &lt;code&gt;SWT.OFF&l
 
 @return the anti-aliasing setting
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #getAntialias
 
@@ -13221,9 +13386,11 @@ used by the receiver.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parameter is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the parameter has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see Transform
 
@@ -13238,9 +13405,11 @@ replaced with the source color value.
 
 @return &lt;code&gt;true&lt;/code&gt; true if the receiver is in XOR mode, and false otherwise
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns an integer hash code for the receiver. Any two
 objects that return &lt;code&gt;true&lt;/code&gt; when passed to
@@ -13249,9 +13418,11 @@ method.
 
 @return the receiver's hash
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #equals
 ------------
@@ -13264,9 +13435,11 @@ that can be accessed with &lt;code&gt;getClipping(region)&lt;/code&gt;.
 
 @return &lt;code&gt;true&lt;/code&gt; if the GC has a clipping region, and &lt;code&gt;false&lt;/code&gt; otherwise
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns &lt;code&gt;true&lt;/code&gt; if the GC has been disposed,
 and &lt;code&gt;false&lt;/code&gt; otherwise.
@@ -13301,9 +13474,11 @@ only one graphics subsystem.
 
 @param advanced the new advanced graphics state
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #setAlpha
 @see #setAntialias
@@ -13375,9 +13550,11 @@ is drawn.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the color is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the color has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the background pattern. The default value is &lt;code&gt;null&lt;/code&gt;.
 &lt;p&gt;
@@ -13411,9 +13588,11 @@ by the arguments.
 @param width the width of the clipping rectangle
 @param height the height of the clipping rectangle
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the area of the receiver which can be changed
 by drawing operations to the path specified
@@ -13448,9 +13627,11 @@ original value.
 
 @param rect the clipping rectangle or &lt;code&gt;null&lt;/code&gt;
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the area of the receiver which can be changed
 by drawing operations to the region specified
@@ -13463,9 +13644,11 @@ original value.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the region has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the receiver's fill rule to the parameter, which must be one of
 &lt;code&gt;SWT.FILL_EVEN_ODD&lt;/code&gt; or &lt;code&gt;SWT.FILL_WINDING&lt;/code&gt;.
@@ -13476,9 +13659,11 @@ Sets the receiver's fill rule to the parameter, which must be one of
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the rule is not one of &lt;code&gt;SWT.FILL_EVEN_ODD&lt;/code&gt;
 or &lt;code&gt;SWT.FILL_WINDING&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -13492,9 +13677,11 @@ for the platform will be used instead.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the font has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the foreground color. The foreground color is used
 for drawing operations including when text is drawn.
@@ -13506,9 +13693,11 @@ for drawing operations including when text is drawn.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the color is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the color has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the foreground pattern. The default value is &lt;code&gt;null&lt;/code&gt;.
 &lt;p&gt;
@@ -13590,9 +13779,11 @@ or &lt;code&gt;SWT.CAP_SQUARE&lt;/code&gt;.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the style is not valid&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -13606,9 +13797,11 @@ it is set to &lt;code&gt;SWT.LINE_SOLID&lt;/code&gt;.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if any of the values in the array is less than or equal 0&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -13621,9 +13814,11 @@ or &lt;code&gt;SWT.JOIN_BEVEL&lt;/code&gt;.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the style is not valid&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -13637,9 +13832,11 @@ of the constants &lt;code&gt;SWT.LINE_SOLID&lt;/code&gt;, &lt;code&gt;SWT.LINE_D
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the style is not valid&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the width that will be used when drawing lines
 for all of the figure drawing operations (that is,
@@ -13654,9 +13851,11 @@ output may be different from line width one.
 
 @param lineWidth the width of a line
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 If the argument is &lt;code&gt;true&lt;/code&gt;, puts the receiver
 in a drawing mode where the resulting color in the destination
@@ -13672,9 +13871,11 @@ code to run on all platforms need to avoid this method.
 
 @param xor if &lt;code&gt;true&lt;/code&gt;, then &lt;em&gt;xor&lt;/em&gt; mode is used, otherwise &lt;em&gt;source copy&lt;/em&gt; mode is used
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @deprecated this functionality is not supported on some platforms
 ------------
@@ -13745,9 +13946,11 @@ font (in this case, the current font in the receiver).
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the string is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the extent of the given string. Tab expansion and
 carriage return processing are performed.
@@ -13764,9 +13967,11 @@ font (in this case, the current font in the receiver).
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the string is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the extent of the given string. Tab expansion, line
 delimiter and mnemonic processing are performed according to
@@ -13795,9 +14000,11 @@ font (in this case, the current font in the receiver).
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the string is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns a string containing a concise, human-readable
 description of the receiver.
@@ -14041,6 +14248,7 @@ IBM Corporation - initial API and implementation
 ------------
 Instances of this class represent glyph metrics.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff07 <=< ACCEPT -->
 The hashCode() method in this class uses the values of the public
 fields to compute the hash value. When storing instances of the
 class in hashed collections, do not modify these fields after the
@@ -14051,6 +14259,7 @@ Application code does &lt;em&gt;not&lt;/em&gt; need to explicitly release the
 resources managed by each instance when those instances are no longer
 required, and thus no &lt;code&gt;dispose()&lt;/code&gt; method is provided.
 &lt;/p&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff07 -->
 
 @see TextStyle
 @see TextLayout
@@ -14084,6 +14293,7 @@ ascent, descent and width values.
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the ascent, descent or width argument is negative&lt;/li&gt;
 &lt;/ul&gt;
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -14091,7 +14301,8 @@ specific comparison.
 @param object the object to compare with this object
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
-@see #hashCode()
+@see #hashCode
+()<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns an integer hash code for the receiver. Any two
 objects that return &lt;code&gt;true&lt;/code&gt; when passed to
@@ -14732,21 +14943,21 @@ class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
+
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
 &lt;/ul&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff02 -->
 
 @see SWT#SHADOW_ETCHED_IN
 @see SWT#SHADOW_ETCHED_OUT
@@ -14917,6 +15128,7 @@ public int type;
 
 /**
 * the handle to the OS image resource
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -14926,6 +15138,7 @@ public int type;
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ handle;
 
@@ -15288,6 +15501,7 @@ Refresh the Image based on the zoom level, if required.
 Create a DIB from a DDB without using GetDIBits. Note that
 the DDB should not be selected into a HDC.
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -15296,6 +15510,7 @@ specific comparison.
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
 @see #hashCode
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns the color to which to map the transparent pixel, or null if
 the receiver has no transparent pixel.
@@ -15310,9 +15525,11 @@ in place of transparency. This value may be set with setBackground().
 
 @return the background color of the image, or null if there is no transparency in the image
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the bounds of the receiver. The rectangle will always
 have x and y values of 0, and the width and height of the
@@ -15452,9 +15669,11 @@ pixel value.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the color is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the color has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns a string containing a concise, human-readable
 description of the receiver.
@@ -18182,13 +18401,15 @@ Prevents uninitialized instances from being created outside the package.
 Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a canvas control which will be the parent of the new instance (cannot be null)
@@ -18358,13 +18579,15 @@ Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 The item is added to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a widget which will be the parent of the new instance (cannot be null)
@@ -18386,13 +18609,15 @@ and a style value describing its behavior and appearance,
 and the index at which to place it in the items maintained
 by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a widget which will be the parent of the new instance (cannot be null)
@@ -18824,16 +19049,16 @@ class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -19159,6 +19384,7 @@ Create a new line attributes with the specified arguments.
 @param dashOffset the line dash style offset
 @param miterLimit the line miter limit
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -19166,7 +19392,8 @@ specific comparison.
 @param object the object to compare with this object
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
-@see #hashCode()
+@see #hashCode
+()<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns an integer hash code for the receiver. Any two
 objects that return &lt;code&gt;true&lt;/code&gt; when passed to
@@ -19223,10 +19450,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -19407,10 +19633,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -20183,6 +20408,7 @@ IMPORTANT: This class is &lt;em&gt;not&lt;/em&gt; intended to be subclassed.
 @noextend This class is not intended to be subclassed by clients.
 ------------
 * the handle to the OS resource
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -20192,6 +20418,7 @@ IMPORTANT: This class is &lt;em&gt;not&lt;/em&gt; intended to be subclassed.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ handle;
 
@@ -20249,13 +20476,15 @@ Constructs a new instance of this class given its parent
 (which must be a &lt;code&gt;Decorations&lt;/code&gt;) and a style value
 describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;&lt;p&gt;
 After constructing a menu or menuBar, it can be set into its parent
 using &lt;code&gt;parent.setMenu(menu)&lt;/code&gt; or &lt;code&gt;parent.setMenuBar(menuBar)&lt;/code&gt;.
@@ -21015,13 +21244,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance. The item is added
 to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a menu control which will be the parent of the new instance (cannot be null)
@@ -21049,13 +21280,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance, and the index
 at which to place it in the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a menu control which will be the parent of the new instance (cannot be null)
@@ -21584,13 +21817,15 @@ Constructs a new instance of this class given only its parent.
 Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 
 @param parent a shell which will be the parent of the new instance
 @param style the style of dialog to construct
@@ -21708,6 +21943,7 @@ Instances of this class are descriptions of monitors.
 ------------
 Prevents uninitialized instances from being created outside the package.
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -21715,7 +21951,8 @@ specific comparison.
 @param object the object to compare with this object
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
-@see #hashCode()
+@see #hashCode
+()<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns a rectangle describing the receiver's size and location
 relative to its device. Note that on multi-monitor systems the
@@ -22299,6 +22536,7 @@ which may not be available on some platforms.
 @since 3.1
 ------------
 * the OS resource for the Path
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -22308,6 +22546,7 @@ which may not be available on some platforms.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ handle;
 
@@ -22425,9 +22664,11 @@ by &lt;code&gt;height + 1&lt;/code&gt; pixels tall.
 @param startAngle the beginning angle
 @param arcAngle the angular extent of the arc, relative to the start angle
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Adds to the receiver the path described by the parameter.
 
@@ -22438,9 +22679,11 @@ Adds to the receiver the path described by the parameter.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parameter is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the parameter has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Adds to the receiver the rectangle specified by x, y, width and height.
 
@@ -22449,9 +22692,11 @@ Adds to the receiver the rectangle specified by x, y, width and height.
 @param width the width of the rectangle to add
 @param height the height of the rectangle to add
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Adds to the receiver the pattern of glyphs generated by drawing
 the given string using the given font starting at the point (x, y).
@@ -22466,17 +22711,21 @@ the given string using the given font starting at the point (x, y).
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the font is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the font has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Closes the current sub path by adding to the receiver a line
 from the current point of the path back to the starting point
 of the sub path.
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns &lt;code&gt;true&lt;/code&gt; if the specified point is contained by
 the receiver and false otherwise.
@@ -22497,9 +22746,11 @@ covered by the receiver.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the gc is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the gc has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Adds to the receiver a cubic bezier curve based on the parameters.
 
@@ -22510,9 +22761,11 @@ Adds to the receiver a cubic bezier curve based on the parameters.
 @param x the x coordinate of the end point of the spline
 @param y the y coordinate of the end point of the spline
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Replaces the first four elements in the parameter with values that
 describe the smallest rectangle that will completely contain the
@@ -22525,9 +22778,11 @@ receiver (i.e. the bounding box).
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parameter is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the parameter is too small to hold the bounding box&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Replaces the first two elements in the parameter with values that
 describe the current point of the path.
@@ -22539,17 +22794,21 @@ describe the current point of the path.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parameter is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the parameter is too small to hold the end point&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns a device independent representation of the receiver.
 
 @return the PathData for the receiver
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see PathData
 ------------
@@ -22559,9 +22818,11 @@ the point specified by (x, y).
 @param x the x coordinate of the end of the line to add
 @param y the y coordinate of the end of the line to add
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns &lt;code&gt;true&lt;/code&gt; if the Path has been disposed,
 and &lt;code&gt;false&lt;/code&gt; otherwise.
@@ -22579,9 +22840,11 @@ sub path.
 @param x the x coordinate of the new end point
 @param y the y coordinate of the new end point
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Adds to the receiver a quadratic curve based on the parameters.
 
@@ -22590,9 +22853,11 @@ Adds to the receiver a quadratic curve based on the parameters.
 @param x the x coordinate of the end point of the spline
 @param y the y coordinate of the end point of the spline
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns a string containing a concise, human-readable
 description of the receiver.
@@ -22641,6 +22906,7 @@ which may not be available on some platforms.
 @since 3.1
 ------------
 * the OS resource for the Pattern
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -22650,6 +22916,7 @@ which may not be available on some platforms.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ handle;
 
@@ -23175,6 +23442,7 @@ origin making this the normal, computer graphics oriented notion
 of (x, y) coordinates rather than the strict mathematical one.
 &lt;/p&gt;
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff07 <=< ACCEPT -->
 The hashCode() method in this class uses the values of the public
 fields to compute the hash value. When storing instances of the
 class in hashed collections, do not modify these fields after the
@@ -23185,6 +23453,7 @@ Application code does &lt;em&gt;not&lt;/em&gt; need to explicitly release the
 resources managed by each instance when those instances are no longer
 required, and thus no &lt;code&gt;dispose()&lt;/code&gt; method is provided.
 &lt;/p&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff07 -->
 
 @see Rectangle
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
@@ -23206,6 +23475,7 @@ Constructs a new point with the given x and y coordinates.
 @param x the x coordinate of the new point
 @param y the y coordinate of the new point
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -23213,7 +23483,8 @@ specific comparison.
 @param object the object to compare with this object
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
-@see #hashCode()
+@see #hashCode
+()<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns an integer hash code for the receiver. Any two
 objects that return &lt;code&gt;true&lt;/code&gt; when passed to
@@ -23273,10 +23544,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -23423,6 +23693,7 @@ origin making this the normal, computer graphics oriented notion
 of (x, y) coordinates rather than the strict mathematical one.
 &lt;/p&gt;
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff07 <=< ACCEPT -->
 The hashCode() method in this class uses the values of the public
 fields to compute the hash value. When storing instances of the
 class in hashed collections, do not modify these fields after the
@@ -23433,6 +23704,7 @@ Application code does &lt;em&gt;not&lt;/em&gt; need to explicitly release the
 resources managed by each instance when those instances are no longer
 required, and thus no &lt;code&gt;dispose()&lt;/code&gt; method is provided.
 &lt;/p&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff07 -->
 
 @see Point
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
@@ -23503,6 +23775,7 @@ otherwise.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -23510,7 +23783,8 @@ specific comparison.
 @param object the object to compare with this object
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
-@see #hashCode()
+@see #hashCode
+()<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns an integer hash code for the receiver. Any two
 objects that return &lt;code&gt;true&lt;/code&gt; when passed to
@@ -23646,6 +23920,7 @@ when those instances are no longer required.
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 ------------
 * the OS resource for the region
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -23655,6 +23930,7 @@ when those instances are no longer required.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ handle;
 
@@ -23702,9 +23978,11 @@ the receiver maintains to describe its area.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.0
 ------------
@@ -23718,9 +23996,11 @@ the receiver maintains to describe its area.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the rectangle's width or height is negative&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Adds the given rectangle to the collection of polygons
 the receiver maintains to describe its area.
@@ -23733,9 +24013,11 @@ the receiver maintains to describe its area.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the rectangle's width or height is negative&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -23750,9 +24032,11 @@ maintains to describe its area.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the argument has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns &lt;code&gt;true&lt;/code&gt; if the point specified by the
 arguments is inside the area specified by the receiver,
@@ -23762,9 +24046,11 @@ and &lt;code&gt;false&lt;/code&gt; otherwise.
 @param y the y coordinate of the point to test for containment
 @return &lt;code&gt;true&lt;/code&gt; if the region contains the point and &lt;code&gt;false&lt;/code&gt; otherwise
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns &lt;code&gt;true&lt;/code&gt; if the given point is inside the
 area specified by the receiver, and &lt;code&gt;false&lt;/code&gt;
@@ -23777,10 +24063,13 @@ otherwise.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -23789,6 +24078,7 @@ specific comparison.
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
 @see #hashCode
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns a rectangle which represents the rectangular
 union of the collection of polygons the receiver
@@ -23796,9 +24086,11 @@ maintains to describe its area.
 
 @return a bounding rectangle for the region
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see Rectangle#union
 ------------
@@ -23821,9 +24113,11 @@ the receiver maintains to describe its area.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the rectangle's width or height is negative&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.0
 ------------
@@ -23838,9 +24132,11 @@ the receiver maintains to describe its area.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the rectangle's width or height is negative&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -23855,9 +24151,11 @@ maintains to describe its area.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the argument has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.0
 ------------
@@ -23871,9 +24169,11 @@ maintains to describe its area, and &lt;code&gt;false&lt;/code&gt; otherwise.
 @param height the height of the rectangle
 @return &lt;code&gt;true&lt;/code&gt; if the rectangle intersects with the receiver, and &lt;code&gt;false&lt;/code&gt; otherwise
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see Rectangle#intersects(Rectangle)
 ------------
@@ -23888,9 +24188,11 @@ its area and &lt;code&gt;false&lt;/code&gt; otherwise.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see Rectangle#intersects(Rectangle)
 ------------
@@ -23909,9 +24211,11 @@ the receiver does cover some area in the plane.
 
 @return &lt;code&gt;true&lt;/code&gt; if the receiver is empty, and &lt;code&gt;false&lt;/code&gt; otherwise
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Subtracts the given polygon from the collection of polygons
 the receiver maintains to describe its area.
@@ -23922,9 +24226,11 @@ the receiver maintains to describe its area.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.0
 ------------
@@ -23938,9 +24244,11 @@ the receiver maintains to describe its area.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the rectangle's width or height is negative&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.0
 ------------
@@ -23955,9 +24263,11 @@ the receiver maintains to describe its area.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the rectangle's width or height is negative&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -23972,9 +24282,11 @@ maintains to describe its area.
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;li&gt;ERROR_INVALID_ARGUMENT - if the argument has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.0
 ------------
@@ -23984,9 +24296,11 @@ its area by the specified point.
 @param x the x coordinate of the point to translate
 @param y the y coordinate of the point to translate
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -23999,9 +24313,11 @@ its area by the specified point.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the argument is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.1
 ------------
@@ -24109,6 +24425,7 @@ of each color is specified by a value in the range 0 to 255,
 where 0 indicates no color (blackness) and 255 indicates
 maximum intensity.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff07 <=< ACCEPT -->
 The hashCode() method in this class uses the values of the public
 fields to compute the hash value. When storing instances of the
 class in hashed collections, do not modify these fields after the
@@ -24119,6 +24436,7 @@ Application code does &lt;em&gt;not&lt;/em&gt; need to explicitly release the
 resources managed by each instance when those instances are no longer
 required, and thus no &lt;code&gt;dispose()&lt;/code&gt; method is provided.
 &lt;/p&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff07 -->
 
 @see Color
 @see &lt;a href="http://www.eclipse.org/swt/snippets/#color"&gt;Color and RGB snippets&lt;/a&gt;
@@ -24233,6 +24551,7 @@ Returns the hue, saturation, and brightness of the color.
 
 @since 3.2
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -24240,7 +24559,8 @@ specific comparison.
 @param object the object to compare with this object
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
-@see #hashCode()
+@see #hashCode
+()<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns an integer hash code for the receiver. Any two
 objects that return &lt;code&gt;true&lt;/code&gt; when passed to
@@ -24273,6 +24593,7 @@ where 0 indicates no color (blackness) and 255 indicates
 maximum intensity and for alpha 0 indicates transparent and
 255 indicates opaque.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff07 <=< ACCEPT -->
 The hashCode() method in this class uses the values of the public
 fields to compute the hash value. When storing instances of the
 class in hashed collections, do not modify these fields after the
@@ -24283,6 +24604,7 @@ Application code does &lt;em&gt;not&lt;/em&gt; need to explicitly release the
 resources managed by each instance when those instances are no longer
 required, and thus no &lt;code&gt;dispose()&lt;/code&gt; method is provided.
 &lt;/p&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff07 -->
 
 @see Color
 @see &lt;a href="http://www.eclipse.org/swt/snippets/#color"&gt;Color and RGB snippets&lt;/a&gt;
@@ -24345,6 +24667,7 @@ Returns the hue, saturation, and brightness of the color.
 &lt;/ul&gt;
 @see #RGBA(float, float, float, float)
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -24352,7 +24675,8 @@ specific comparison.
 @param object the object to compare with this object
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
-@see #hashCode()
+@see #hashCode
+()<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns an integer hash code for the receiver. Any two
 objects that return &lt;code&gt;true&lt;/code&gt; when passed to
@@ -24693,10 +25017,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -24800,10 +25123,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -25035,10 +25357,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -25231,10 +25552,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -26029,13 +26349,15 @@ Constructs a new instance of this class given only the style
 value describing its behavior and appearance. This is equivalent
 to calling &lt;code&gt;Shell((Display) null, style)&lt;/code&gt;.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param style the style of control to construct
@@ -26085,13 +26407,15 @@ Constructs a new instance of this class given the display
 to create it on and a style value describing its behavior
 and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;&lt;p&gt;
 Note: Currently, null can be passed in for the display argument.
 This has the effect of creating the shell on the currently active
@@ -26151,13 +26475,15 @@ and may not be supported in a future release of SWT.&lt;/b&gt;
 Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;&lt;p&gt;
 Note: Currently, null can be passed in for the parent.
 This has the effect of creating the shell on the currently active
@@ -26798,10 +27124,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -27110,10 +27435,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -32209,10 +32533,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -32461,13 +32784,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance. The item is added
 to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -32491,13 +32816,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance, and the index
 at which to place it in the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -32706,10 +33033,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -33777,13 +34103,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance. The item is added
 to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -33809,13 +34137,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance, and the index
 at which to place it in the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 &lt;p&gt;
 Note that due to a restriction on some platforms, the first column
@@ -34136,13 +34466,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance. The item is added
 to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -34166,13 +34498,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance, and the index
 at which to place it in the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -34738,13 +35072,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance. The item is added
 to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -35098,10 +35434,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -36087,9 +36422,11 @@ point.
 @param x the x coordinate of the top left corner of the rectangular area where the text is to be drawn
 @param y the y coordinate of the top left corner of the rectangular area where the text is to be drawn
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the gc is null &lt;/li&gt;
@@ -36106,9 +36443,11 @@ point.
 @param selectionForeground selection foreground, or NULL to use the system default color
 @param selectionBackground selection background, or NULL to use the system default color
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the gc is null &lt;/li&gt;
@@ -36131,9 +36470,11 @@ the specified selection behavior to the last line.
 @param selectionBackground selection background, or NULL to use the system default color
 @param flags drawing options
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the gc is null &lt;/li&gt;
@@ -36147,17 +36488,21 @@ of &lt;code&gt;SWT.LEFT&lt;/code&gt;, &lt;code&gt;SWT.CENTER&lt;/code&gt; or
 
 @return the alignment used to positioned text horizontally
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the ascent of the receiver.
 
 @return the ascent
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #getDescent()
 @see #setDescent(int)
@@ -36170,9 +36515,11 @@ To obtain the text bounds of a line use {@link TextLayout#getLineBounds(int)}.
 
 @return the bounds of the receiver
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #setWidth(int)
 @see #getLineBounds(int)
@@ -36186,17 +36533,21 @@ clamped if out of range.
 @param end the end offset
 @return the bounds of the character range
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the descent of the receiver.
 
 @return the descent
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #getAscent()
 @see #setAscent(int)
@@ -36208,17 +36559,21 @@ to draw and measure text.
 
 @return the receiver's font
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the receiver's indent.
 
 @return the receiver's indent
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.2
 /
@@ -36236,9 +36591,11 @@ Returns the receiver's justification.
 
 @return the receiver's justification
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.2
 /
@@ -36280,18 +36637,22 @@ Returns the bounds of the line for the specified line index.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the line index is out of range&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the receiver's line count. This includes lines caused
 by wrapping.
 
 @return the line count
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the index of the line that contains the specified
 character offset.
@@ -36302,9 +36663,11 @@ character offset.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the character offset is out of range&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the font metrics for the specified line index.
 
@@ -36314,9 +36677,11 @@ Returns the font metrics for the specified line index.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the line index is out of range&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the line offsets.  Each value in the array is the
 offset for the first character in a line except for the last
@@ -36324,9 +36689,11 @@ value, which contains the length of the text.
 
 @return the line offsets
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the location for the specified character offset. The
 &lt;code&gt;trailing&lt;/code&gt; argument indicates whether the offset
@@ -36336,9 +36703,11 @@ corresponds to the leading or trailing edge of the cluster.
 @param trailing the trailing flag
 @return the location of the character offset
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #getOffset(Point, int[])
 @see #getOffset(int, int, int[])
@@ -36355,9 +36724,11 @@ type.  The movement is one of &lt;code&gt;SWT.MOVEMENT_CHAR&lt;/code&gt;,
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the offset is out of range&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #getPreviousOffset(int, int)
 ------------
@@ -36377,9 +36748,11 @@ the point.
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the trailing length is less than &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the point is null&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #getLocation(int, boolean)
 ------------
@@ -36399,9 +36772,11 @@ the point.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the trailing length is less than &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #getLocation(int, boolean)
 ------------
@@ -36409,9 +36784,11 @@ Returns the orientation of the receiver.
 
 @return the orientation style
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the previous offset for the specified offset and movement
 type.  The movement is one of &lt;code&gt;SWT.MOVEMENT_CHAR&lt;/code&gt;,
@@ -36425,9 +36802,11 @@ type.  The movement is one of &lt;code&gt;SWT.MOVEMENT_CHAR&lt;/code&gt;,
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the offset is out of range&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #getNextOffset(int, int)
 ------------
@@ -36436,9 +36815,11 @@ Gets the ranges of text that are associated with a &lt;code&gt;TextStyle&lt;/cod
 @return the ranges, an array of offsets representing the start and end of each
 text style.
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #getStyles()
 
@@ -36448,17 +36829,21 @@ Returns the text segments offsets of the receiver.
 
 @return the text segments offsets
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the segments characters of the receiver.
 
 @return the segments characters
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.6
 ------------
@@ -36466,9 +36851,11 @@ Returns the line spacing of the receiver.
 
 @return the line spacing
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Gets the style of the receiver at the specified character offset.
 
@@ -36478,17 +36865,21 @@ Gets the style of the receiver at the specified character offset.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the character offset is out of range&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Gets all styles of the receiver.
 
 @return the styles
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #getRanges()
 
@@ -36498,43 +36889,53 @@ Returns the tab list of the receiver.
 
 @return the tab list
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Gets the receiver's text, which will be an empty
 string if it has never been set.
 
 @return the receiver's text
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the text direction of the receiver.
 
 @return the text direction value
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 @since 3.103
 ------------
 Returns the width of the receiver.
 
 @return the width
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns the receiver's wrap indent.
 
 @return the receiver's wrap indent
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.6
 /
@@ -36569,9 +36970,11 @@ alignment.
 
 @param alignment the new alignment
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #setWidth(int)
 ------------
@@ -36585,9 +36988,11 @@ ascent is calculated from the line fonts.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the ascent is less than &lt;code&gt;-1&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #setDescent(int)
 @see #getLineMetrics(int)
@@ -36602,9 +37007,11 @@ descent is calculated from the line fonts.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the descent is less than &lt;code&gt;-1&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #setAscent(int)
 @see #getLineMetrics(int)
@@ -36620,18 +37027,22 @@ style can override the default font.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the font has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the indent of the receiver. This indent is applied to the first line of
 each paragraph.
 
 @param indent new indent
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #setWrapIndent(int)
 
@@ -36642,9 +37053,11 @@ width must be set in order to use justification.
 
 @param justify new justify
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.2
 ------------
@@ -36653,9 +37066,11 @@ of &lt;code&gt;SWT.LEFT_TO_RIGHT&lt;/code&gt; or &lt;code&gt;SWT.RIGHT_TO_LEFT&l
 
 @param orientation new orientation style
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the offsets of the receiver's text segments. Text segments are used to
 override the default behavior of the bidirectional algorithm.
@@ -36674,9 +37089,11 @@ the characters are inserted in the text.
 
 @param segments the text segments offset
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #setSegmentsChars(char[])
 ------------
@@ -36688,9 +37105,11 @@ accessible by any other API in &lt;code&gt;TextLayout&lt;/code&gt;.
 
 @param segmentsChars the segments characters
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #setSegments(int[])
 
@@ -36704,9 +37123,11 @@ is the space left between lines.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the spacing is negative&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the style of the receiver for the specified range.  Styles previously
 set for that range will be overwritten.  The start and end offsets are
@@ -36716,9 +37137,11 @@ inclusive and will be clamped if out of range.
 @param start the start offset
 @param end the end offset
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the receiver's tab list. Each value in the tab list specifies
 the space in points from the origin of the text layout to the respective
@@ -36726,9 +37149,11 @@ tab stop.  The last tab stop width is repeated continuously.
 
 @param tabs the new tab list
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the receiver's text.
 &lt;p&gt;
@@ -36743,9 +37168,11 @@ the current text.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the text is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Sets the text direction of the receiver, which must be one
 of &lt;code&gt;SWT.LEFT_TO_RIGHT&lt;/code&gt;, &lt;code&gt;SWT.RIGHT_TO_LEFT&lt;/code&gt;
@@ -36758,9 +37185,11 @@ It doesn't set the base text direction on GTK and Cocoa.
 
 @param textDirection the new text direction
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 @since 3.103
 ------------
 Sets the line width of the receiver, which determines how
@@ -36772,9 +37201,11 @@ text should be wrapped and aligned. The default value is
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_INVALID_ARGUMENT - if the width is &lt;code&gt;0&lt;/code&gt; or less than &lt;code&gt;-1&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #setAlignment(int)
 ------------
@@ -36783,9 +37214,11 @@ in the paragraph except the first line.
 
 @param wrapIndent new wrap indent
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @see #setIndent(int)
 
@@ -36807,6 +37240,7 @@ IBM Corporation - initial API and implementation
 &lt;code&gt;TextStyle&lt;/code&gt; defines a set of styles that can be applied
 to a range of text.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff07 <=< ACCEPT -->
 The hashCode() method in this class uses the values of the public
 fields to compute the hash value. When storing instances of the
 class in hashed collections, do not modify these fields after the
@@ -36817,6 +37251,7 @@ Application code does &lt;em&gt;not&lt;/em&gt; need to explicitly release the
 resources managed by each instance when those instances are no longer
 required, and thus no &lt;code&gt;dispose()&lt;/code&gt; method is provided.
 &lt;/p&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff07 -->
 
 @see TextLayout
 @see Font
@@ -36954,6 +37389,7 @@ Create a new text style from an existing text style.
 
 @since 3.4
 ------------
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff08 <=< ACCEPT -->
 Compares the argument to the receiver, and returns true
 if they represent the &lt;em&gt;same&lt;/em&gt; object using a class
 specific comparison.
@@ -36961,7 +37397,8 @@ specific comparison.
 @param object the object to compare with this object
 @return &lt;code&gt;true&lt;/code&gt; if the object is the same as this object and &lt;code&gt;false&lt;/code&gt; otherwise
 
-@see #hashCode()
+@see #hashCode
+()<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff08 -->
 ------------
 Returns an integer hash code for the receiver. Any two
 objects that return &lt;code&gt;true&lt;/code&gt; when passed to
@@ -37063,10 +37500,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -37210,13 +37646,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance. The item is added
 to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -37244,13 +37682,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance, and the index
 at which to place it in the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -37664,10 +38104,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -38157,13 +38596,15 @@ IMPORTANT: This class is &lt;em&gt;not&lt;/em&gt; intended to be subclassed.
 Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a widget which will be the parent of the new instance (cannot be null)
@@ -38190,13 +38631,15 @@ Constructs a new instance of this class given the display
 to create it on and a style value describing its behavior
 and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;&lt;p&gt;
 Note: Currently, null can be passed in for the display argument.
 This has the effect of creating the tracker on the currently active
@@ -38414,6 +38857,7 @@ which may not be available on some platforms.
 @since 3.1
 ------------
 * the OS resource for the Transform
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -38423,6 +38867,7 @@ which may not be available on some platforms.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ handle;
 
@@ -38514,9 +38959,11 @@ that the receiver represents, in the order {m11, m12, m21, m22, dx, dy}.
 
 @param elements array to hold the matrix values
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parameter is null &lt;/li&gt;
@@ -38526,9 +38973,11 @@ that the receiver represents, in the order {m11, m12, m21, m22, dx, dy}.
 Modifies the receiver such that the matrix it represents becomes the
 identity matrix.
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.4
 ------------
@@ -38560,9 +39009,11 @@ argument.
 
 @param matrix the matrix to multiply the receiver by
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parameter is null &lt;/li&gt;
@@ -38577,9 +39028,11 @@ while a negative value indicates a counter-clockwise rotation.
 
 @param angle the angle to rotate the transformation by
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Modifies the receiver so that it represents a transformation that is
 equivalent to its previous transformation scaled by (scaleX, scaleY).
@@ -38587,9 +39040,11 @@ equivalent to its previous transformation scaled by (scaleX, scaleY).
 @param scaleX the amount to scale in the X direction
 @param scaleY the amount to scale in the Y direction
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Modifies the receiver to represent a new transformation given all of
 the elements that represent the matrix that describes that transformation.
@@ -38601,9 +39056,11 @@ the elements that represent the matrix that describes that transformation.
 @param dx the third element of the first row of the matrix
 @param dy the third element of the second row of the matrix
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Modifies the receiver so that it represents a transformation that is
 equivalent to its previous transformation sheared by (shearX, shearY).
@@ -38611,9 +39068,11 @@ equivalent to its previous transformation sheared by (shearX, shearY).
 @param shearX the shear factor in the X direction
 @param shearY the shear factor in the Y direction
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 
 @since 3.4
 ------------
@@ -38627,9 +39086,11 @@ applying the transformation represented by the receiver to that point.
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the point array is null &lt;/li&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Modifies the receiver so that it represents a transformation that is
 equivalent to its previous transformation translated by (offsetX, offsetY).
@@ -38637,9 +39098,11 @@ equivalent to its previous transformation translated by (offsetX, offsetY).
 @param offsetX the distance to translate in the X direction
 @param offsetY the distance to translate in the Y direction
 
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;/ul&gt;
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->
 ------------
 Returns a string containing a concise, human-readable
 description of the receiver.
@@ -38896,13 +39359,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance. The item is added
 to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -39233,10 +39698,9 @@ Style bits are also inherited from superclasses.
 @param parent a composite control which will be the parent of the new instance (cannot be null)
 @param style the style of control to construct
 
-<!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the parent is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
+&lt;/ul&gt;
 @exception SWTException &lt;ul&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent&lt;/li&gt;
 &lt;li&gt;ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass&lt;/li&gt;
@@ -40225,13 +40689,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance. The item is added
 to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a composite control which will be the parent of the new instance (cannot be null)
@@ -40257,13 +40723,15 @@ Constructs a new instance of this class given its parent
 describing its behavior and appearance, and the index
 at which to place it in the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 &lt;p&gt;
 Note that due to a restriction on some platforms, the first column
@@ -40598,6 +41066,7 @@ IMPORTANT: This class is &lt;em&gt;not&lt;/em&gt; intended to be subclassed.
 @noextend This class is not intended to be subclassed by clients.
 ------------
 * the handle to the OS resource
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff05 <=< ACCEPT -->
 * (Warning: This field is platform dependent)
 * &lt;p&gt;
 * &lt;b&gt;IMPORTANT:&lt;/b&gt; This field is &lt;em&gt;not&lt;/em&gt; part of the SWT
@@ -40607,6 +41076,7 @@ IMPORTANT: This class is &lt;em&gt;not&lt;/em&gt; intended to be subclassed.
 * &lt;/p&gt;
 *
 * @noreference This field is not intended to be referenced by clients.
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff05 -->
 */
 public long /*int*/ handle;
 Tree parent;
@@ -40624,13 +41094,15 @@ Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 The item is added to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a tree control which will be the parent of the new instance (cannot be null)
@@ -40654,13 +41126,15 @@ Constructs a new instance of this class given its parent
 a style value describing its behavior and appearance, and the index
 at which to place it in the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a tree control which will be the parent of the new instance (cannot be null)
@@ -40686,13 +41160,15 @@ Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 The item is added to the end of the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parentItem a tree control which will be the parent of the new instance (cannot be null)
@@ -40716,13 +41192,15 @@ Constructs a new instance of this class given its parent
 a style value describing its behavior and appearance, and the index
 at which to place it in the items maintained by its parent.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parentItem a tree control which will be the parent of the new instance (cannot be null)
@@ -41605,13 +42083,15 @@ Prevents uninitialized instances from being created outside the package.
 Constructs a new instance of this class given its parent
 and a style value describing its behavior and appearance.
 &lt;p&gt;
+<!-- db5aa522-d4fb-4357-b7e2-a37b926eff04 <=< ACCEPT -->
 The style value is either one of the style constants defined in
 class &lt;code&gt;SWT&lt;/code&gt; which is applicable to instances of this
 class, or must be built by &lt;em&gt;bitwise OR&lt;/em&gt;'ing together
 (that is, using the &lt;code&gt;int&lt;/code&gt; "|" operator) two or more
 of those &lt;code&gt;SWT&lt;/code&gt; style constants. The class description
 lists the style constants that are applicable to the class.
-Style bits are also inherited from superclasses.
+Style bits are also inherited from superclasses
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff04 -->.
 &lt;/p&gt;
 
 @param parent a widget which will be the parent of the new instance (cannot be null)
