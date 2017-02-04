@@ -19,14 +19,14 @@ Constructs a new instance of this class based on the
 information in the given untyped event.
 
 @param e the untyped event containing the information====== ArmListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 Classes which implement this interface provide a method
@@ -44,7 +44,7 @@ widget is armed, the widgetArmed method will be invoked.
 ------------
 Sent when a widget is armed, or 'about to be selected'.
 
-@param e an event containing information about the arm====== BidiUtil.java ======
+@param e an event containing information about the arm====== BidiUtil.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -53,7 +53,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Adds a language listener. The listener will get notified when the language of
 the keyboard changes (via Alt-Shift on Win platforms).  Do this by creating a
 window proc for the Control so that the window messages for the Control can be
@@ -219,14 +219,14 @@ Run the Control's registered runnable when the keyboard language is switched.
 @param hwnd handle of the control that is listening for the keyboard language
 change event
 @param msg window message====== Button.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Conrad Groth - Bug 23837 [FEEP] Button, do not respect foreground and background color on Windows
 ------------
 Instances of this class represent a selectable user interface object that
@@ -579,14 +579,14 @@ in the string, then the behavior is platform dependent.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== Callback.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent entry points into Java
 which can be invoked from operating system level callback
@@ -765,14 +765,14 @@ and should never be performed by application code.
 Releases the native level resources associated with the callback.
 
 @see #dispose====== Canvas.java ======
-Copyright (c) 2000, 2013 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2013 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class provide a surface for drawing
 arbitrary graphics.
@@ -939,14 +939,14 @@ Sets the receiver's IME.
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 
 @since 3.4====== Caret.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class provide an i-beam that is typically used
 as the insertion point for text.
@@ -1228,14 +1228,14 @@ it visible may not actually cause it to be displayed.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== Color.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class manage the operating system resources that
 implement SWT's RGB color model. To create a color you can either
@@ -1529,14 +1529,14 @@ application code.
 @return a new color object containing the specified device and handle
 
 @noreference This method is not intended to be referenced by clients.====== ColorDialog.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class allow the user to select a color
 from a predefined set of available colors.
@@ -1647,14 +1647,14 @@ a default when open() is called.
 &lt;/ul&gt;
 
 @since 3.8====== Combo.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 483540
 ------------
 Instances of this class are controls that allow the user
@@ -2653,7 +2653,7 @@ called from SWT.
 @param key the key to look up
 @return the message for the given key
 
-@see SWT#getMessage(String)====== Composite.java ======
+@see SWT#getMessage(String)====== Composite.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -2662,7 +2662,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class are controls which are capable
 of containing other controls.
 &lt;dl&gt;
@@ -3173,14 +3173,14 @@ match the order that they occur in the argument list.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== Control.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Stefan Xenos (Google) - bug 468854 - Add a requestLayout method to Control
 ------------
 Control is the abstract superclass of all windowed user interface classes.
@@ -5405,7 +5405,7 @@ Returns &lt;code&gt;true&lt;/code&gt; if the parent is successfully changed.
 &lt;li&gt;ERROR_WIDGET_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== ControlAdapter.java ======
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== ControlAdapter.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -5414,7 +5414,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 This adapter class provides default implementations for the
 methods described by the &lt;code&gt;ControlListener&lt;/code&gt; interface.
 &lt;p&gt;
@@ -5488,14 +5488,14 @@ to its parent (or relative to the display, for &lt;code&gt;Shell&lt;/code&gt;s).
 Sent when the size (width, height) of a control changes.
 
 @param e an event containing information about the resize====== Converter.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 This class implements the conversions between unicode characters
 and the &lt;em&gt;platform supported&lt;/em&gt; representation for characters.
@@ -5564,14 +5564,14 @@ Convert C UTF-8 Multibyte character into a Java UTF-16 Wide character.
 
 @param ch - C Multibyte UTF-8 character
 @return Java UTF-16 Wide character====== CoolBar.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class provide an area for dynamically
 positioning the items they contain.
@@ -5824,14 +5824,14 @@ will be placed on one line.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== CoolItem.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are selectable user interface
 objects that represent the dynamically positionable
@@ -6183,14 +6183,14 @@ will be notified when the control is selected by the user.
 @see #addSelectionListener
 
 @since 2.0====== Cursor.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class manage operating system resources that
 specify the appearance of the on-screen pointer. To create a
@@ -6238,7 +6238,7 @@ boolean isIcon;
 
 data used to create a HAND cursor.
 
-static final byte[] HAND_SOURCE = {
+<!-- 72a7987f-6b5a-42e1-b923-59769bfefd9e <=< IGNORE -->static final byte[] HAND_SOURCE = {
 (byte)0xf9,(byte)0xff,(byte)0xff,(byte)0xff,
 (byte)0xf0,(byte)0xff,(byte)0xff,(byte)0xff,
 (byte)0xf0,(byte)0xff,(byte)0xff,(byte)0xff,
@@ -6312,7 +6312,7 @@ static final byte[] HAND_MASK = {
 (byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,
 (byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00
 };
-
+<!-- IGNORE >=> 72a7987f-6b5a-42e1-b923-59769bfefd9e -->
 
 Prevents uninitialized instances from being created outside the package.
 ------------
@@ -6469,14 +6469,14 @@ application code.
 @return a new cursor object containing the specified device and handle
 
 @noreference This method is not intended to be referenced by clients.====== DateTime.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are selectable user interface
 objects that allow the user to enter and modify date
@@ -6796,14 +6796,14 @@ If the specified year is not valid for the receiver's day and month, then it is 
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 
 @see #setDate====== Decorations.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class provide the appearance and
 behavior of &lt;code&gt;Shells&lt;/code&gt;, but are not top
@@ -7200,14 +7200,14 @@ in the string, then the behavior is platform dependent.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== DefaultExceptionHandler.java ======
-Copyright (c) 2016 Google Inc and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2016 Google Inc and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-Stefan Xenos (Google) - initial API and implementation====== Device.java ======
+Stefan Xenos (Google) - initial API and implementatio<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->n====== Device.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -7216,7 +7216,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 This class is the abstract superclass of all device objects,
 such as the Display device and the Printer device. Devices
 can have a graphics context (GC) created for them, and they
@@ -7865,14 +7865,14 @@ window manager will typically display as the receiver's
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== DirectoryDialog.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class allow the user to navigate
 the file system and select a directory.
@@ -7975,7 +7975,7 @@ visible on the dialog while it is open.
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff03 <=< ACCEPT -->
 @exception IllegalArgumentException &lt;ul&gt;
 &lt;li&gt;ERROR_NULL_ARGUMENT - if the string is null &lt;/li&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;====== Display.java ======
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;====== Display.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -7984,7 +7984,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class are responsible for managing the
 connection between SWT and the underlying operating
 system. Their most important function is to implement
@@ -9695,14 +9695,14 @@ Constructs a new instance of this class based on the
 information in the given untyped event.
 
 @param e the untyped event containing the information====== DisposeListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 Classes which implement this interface provide a method
@@ -9722,14 +9722,14 @@ be invoked.
 Sent when the widget is disposed.
 
 @param e an event containing information about the dispose====== DPIUtil.java ======
-Copyright (c) 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 This class hold common constants and utility functions w.r.t. to SWT high DPI
 functionality.
@@ -9846,14 +9846,14 @@ fall-back to 100% image. If provider or fall-back image is not available,
 throw error.
 ------------
 AutoScale ImageDataProvider.====== DragDetectEvent.java ======
-Copyright (c) 2000, 2008 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2008 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are sent as a result of
 a drag gesture.
@@ -9867,14 +9867,14 @@ Constructs a new instance of this class based on the
 information in the given untyped event.
 
 @param e the untyped event containing the information====== DragDetectListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 Classes which implement this interface provide methods
@@ -9894,7 +9894,7 @@ drag is detected, the drageDetected method will be invoked.
 ------------
 Sent when a drag gesture is detected.
 
-@param e an event containing information about the drag====== Drawable.java ======
+@param e an event containing information about the drag====== Drawable.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -9903,7 +9903,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Implementers of &lt;code&gt;Drawable&lt;/code&gt; can have a graphics context (GC)
 created for them, and then they can be drawn on by sending messages to
 their associated GC. SWT images, and device objects such as the Display
@@ -10236,7 +10236,7 @@ IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-43
 Instances of this class implement a simple
 look up mechanism that maps an event type
 to a listener.  Multiple listeners for the
-same event type are supported.====== ExpandAdapter.java ======
+same event type are supported.====== ExpandAdapter.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -10245,7 +10245,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 This adapter class provides default implementations for the
 methods described by the &lt;code&gt;ExpandListener&lt;/code&gt; interface.
 &lt;p&gt;
@@ -10268,7 +10268,7 @@ The default behavior is to do nothing.
 Sent when an item is expanded.
 The default behavior is to do nothing.
 
-@param e an event containing information about the operation====== ExpandBar.java ======
+@param e an event containing information about the operation====== ExpandBar.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -10277,7 +10277,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class support the layout of selectable
 expand bar items.
 &lt;p&gt;
@@ -10461,14 +10461,14 @@ each item.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== ExpandEvent.java ======
-Copyright (c) 2000, 2008 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2008 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are sent as a result of
 &lt;code&gt;ExpandItem&lt;/code&gt;s being expanded or collapsed.
@@ -10482,14 +10482,14 @@ Constructs a new instance of this class based on the
 information in the given untyped event.
 
 @param e the untyped event containing the information====== ExpandItem.java ======
-Copyright (c) 2000, 2013 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2013 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent a selectable user interface object
 that represents a expandable item in a expand bar.
@@ -10665,14 +10665,14 @@ excluding the height of the header.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== ExpandListener.java ======
-Copyright (c) 2000, 2006 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2006 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Classes which implement this interface provide methods
 that deal with the expanding and collapsing of &lt;code&gt;ExpandItem&lt;/code&gt;s.
@@ -10698,14 +10698,14 @@ Sent when an item is collapsed.
 Sent when an item is expanded.
 
 @param e an event containing information about the operation====== FileDialog.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class allow the user to navigate
 the file system and select or enter a file name.
@@ -10914,14 +10914,14 @@ overwrite if the selected file already exists.
 @param overwrite true if the dialog will prompt for file overwrite, false otherwise
 
 @since 3.4====== FileFormat.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Abstract factory class for loading/unloading images from files or streams
 in various image file formats.
@@ -10940,14 +10940,14 @@ to the specified output stream using the specified file format.
 ------------
 Write the device independent image array stored in the specified loader
 to the specified output stream.====== FillData.java ======
-Copyright (c) 2005 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2005 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation====== FillLayout.java ======
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== FillLayout.java ======
 <!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2011 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -11039,7 +11039,7 @@ Constructs a new instance of this class given the type.
 Returns a string containing a concise, human-readable
 description of the receiver.
 
-@return a string representation of the layout====== FocusAdapter.java ======
+@return a string representation of the layout====== FocusAdapter.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -11048,7 +11048,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 This adapter class provides default implementations for the
 methods described by the &lt;code&gt;FocusListener&lt;/code&gt; interface.
 &lt;p&gt;
@@ -11089,14 +11089,14 @@ Constructs a new instance of this class based on the
 information in the given untyped event.
 
 @param e the untyped event containing the information====== FocusListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 506538
 ------------
 Classes which implement this interface provide methods
@@ -11128,14 +11128,14 @@ Static helper method to create a focus listener for the
 @param c the consumer of the event
 @return FocusListener
 @since 3.106====== Font.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class manage operating system resources that
 define how text looks when it is displayed. Fonts may be constructed
@@ -11297,14 +11297,14 @@ application code.
 @return a new font object containing the specified device and handle
 
 @noreference This method is not intended to be referenced by clients.====== FontData.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class describe operating system fonts.
 &lt;p&gt;
@@ -11547,14 +11547,14 @@ application code.
 @return a new font data object containing the specified &lt;code&gt;LOGFONT&lt;/code&gt; and height
 
 @noreference This method is not intended to be referenced by clients.====== FontDialog.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class allow the user to select a font
 from all available fonts in the system.
@@ -11797,14 +11797,14 @@ application code.
 @return a new font metrics object containing the specified &lt;code&gt;TEXTMETRIC&lt;/code&gt;
 
 @noreference This method is not intended to be referenced by clients.====== FormAttachment.java ======
-Copyright (c) 2000, 2008 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2008 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are used to define the edges of a control
 within a &lt;code&gt;FormLayout&lt;/code&gt;.
@@ -11997,14 +11997,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the FormAttachment====== FormData.java ======
-Copyright (c) 2000, 2008 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2008 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are used to define the attachments
 of a control in a &lt;code&gt;FormLayout&lt;/code&gt;.
@@ -12093,14 +12093,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the FormData object====== FormLayout.java ======
-Copyright (c) 2000, 2008 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2008 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class control the position and size of the
 children of a composite control by using &lt;code&gt;FormAttachments&lt;/code&gt;
@@ -12244,7 +12244,7 @@ Constructs a new instance of this class.
 Returns a string containing a concise, human-readable
 description of the receiver.
 
-@return a string representation of the layout====== GC.java ======
+@return a string representation of the layout====== GC.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -12253,7 +12253,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Class &lt;code&gt;GC&lt;/code&gt; is where all of the drawing capabilities that are
 supported by SWT are located. Instances are used to draw on either an
 &lt;code&gt;Image&lt;/code&gt;, a &lt;code&gt;Control&lt;/code&gt;, or directly on a &lt;code&gt;Display&lt;/code&gt;.
@@ -14058,14 +14058,14 @@ conversion of length * sin (angle).
 @param angle the angle in degrees
 @param length the length of the triangle's hypotenuse
 @return the integer conversion of length * sin (angle)====== GCData.java ======
-Copyright (c) 2000, 2009 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2009 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are descriptions of GCs in terms
 of unallocated platform-specific data fields.
@@ -14077,14 +14077,14 @@ platforms, and should never be called from application code.
 &lt;/p&gt;
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 @noreference This class is not intended to be referenced by clients====== GestureEvent.java ======
-Copyright (c) 2010, 2011 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2010, 2011 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are sent in response to
 touch-based gestures that are triggered by the user.
@@ -14196,14 +14196,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the event====== GestureListener.java ======
-Copyright (c) 2010, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2010, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 Classes which implement this interface provide methods
@@ -14229,14 +14229,14 @@ SWT doesn't send Gesture or Touch events on GTK.
 Sent when a recognized gesture has occurred.
 
 @param e an event containing information about the gesture.====== GIFFileFormat.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation====== GlyphMetrics.java ======
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== GlyphMetrics.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -14245,7 +14245,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class represent glyph metrics.
 &lt;p&gt;
 <!-- db5aa522-d4fb-4357-b7e2-a37b926eff07 <=< ACCEPT -->
@@ -14901,14 +14901,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the layout====== Group.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class provide an etched border
 with an optional title.
@@ -15028,14 +15028,14 @@ Constructs a new instance of this class based on the
 information in the given untyped event.
 
 @param e the untyped event containing the information====== HelpListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 Classes which implement this interface provide a method
@@ -15055,7 +15055,7 @@ will be invoked.
 Sent when help is requested for a control, typically
 when the user presses F1.
 
-@param e an event containing information about the help====== Image.java ======
+@param e an event containing information about the help====== Image.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -15064,7 +15064,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class are graphics which have been prepared
 for display on a specific device. That is, they are ready
 to paint using methods such as &lt;code&gt;GC.drawImage()&lt;/code&gt;
@@ -15695,7 +15695,7 @@ application code.
 @param handle the OS handle for the image
 @return a new image object containing the specified device, type and handle
 
-@noreference This method is not intended to be referenced by clients.====== ImageData.java ======
+@noreference This method is not intended to be referenced by clients.====== ImageData.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -15704,7 +15704,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class are device-independent descriptions
 of images. They are typically used as an intermediate format
 between loading from or writing to streams and creating an
@@ -17988,25 +17988,25 @@ sweeps from left to right
 @param redBits the number of significant red bits, 0 for palette modes
 @param greenBits the number of significant green bits, 0 for palette modes
 @param blueBits the number of significant blue bits, 0 for palette modes<!-- ACCEPT >=> f54fbbe3-e31a-4c2a-b739-390c19ee2225 -->====== ImageDataLoader.java ======
-Copyright (c) 2000, 2006 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2006 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Internal class that separates ImageData from ImageLoader
 to allow removal of ImageLoader from the toolkit.====== ImageDataProvider.java ======
-Copyright (c) 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Interface to provide a callback mechanism to get information about images
 when the application is moved from a low DPI monitor to a high DPI monitor.
@@ -18016,14 +18016,14 @@ This interface needs to be implemented by client code to provide the
 image information on demand.
 
 @since 3.104====== ImageFileNameProvider.java ======
-Copyright (c) 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Interface to provide a callback mechanism to get information about images
 when the application is moved from a low DPI monitor to a high DPI monitor.
@@ -18033,14 +18033,14 @@ This interface needs to be implemented by client code to provide the
 image information on demand.
 
 @since 3.104====== ImageList.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation====== ImageLoader.java ======
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== ImageLoader.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -18049,7 +18049,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class are used to load images from,
 and save images to, a file or stream.
 &lt;p&gt;
@@ -18276,14 +18276,14 @@ Notifies all image loader listeners that an image loader event
 has occurred. Pass the specified event object to each listener.
 
 @param event the &lt;code&gt;ImageLoaderEvent&lt;/code&gt; to send to each &lt;code&gt;ImageLoaderListener&lt;/code&gt;====== ImageLoaderEvent.java ======
-Copyright (c) 2000, 2017 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2017 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are sent as a result of the incremental
 loading of image data.
@@ -18368,14 +18368,14 @@ the format of the image being loaded.
 &lt;/p&gt;
 
 @param e an event containing information about the image loading operation====== IME.java ======
-Copyright (c) 2007, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2007, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent input method editors.
 These are typically in-line pre-edit text areas that allow
@@ -18555,14 +18555,14 @@ offset has changed.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== Item.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 This class is the abstract superclass of all non-windowed
 user interface objects that occur within specific controls.
@@ -18717,7 +18717,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== JPEGDecoder.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -18728,7 +18728,7 @@ and is made available under the terms contained in the about_files/IJG_README
 file accompanying this program.
 
 Contributors:
-IBM Corporation - initial API and implementation====== JPEGEndOfImage.java ======
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== JPEGEndOfImage.java ======
 <!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2011 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -18737,7 +18737,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== JPEGFileFormat.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -18745,7 +18745,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 This source file is based in part on the work of the Independent JPEG Group (IJG)
 and is made available under the terms contained in the about_files/IJG_README
-file accompanying this program.
+file accompanying this program.<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 
 Contributors:
 IBM Corporation - initial API and implementation====== JPEGFixedSizeSegment.java ======
@@ -18829,7 +18829,7 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== KeyAdapter.java ======
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== KeyAdapter.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -18838,7 +18838,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 This adapter class provides default implementations for the
 methods described by the &lt;code&gt;KeyListener&lt;/code&gt; interface.
 &lt;p&gt;
@@ -18961,14 +18961,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the event====== KeyListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 507185
 ------------
 Classes which implement this interface provide methods
@@ -19000,14 +19000,14 @@ Static helper method to create a key listener for the
 @param c the consumer of the event
 @return KeyListener
 @since 3.106====== Label.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent a non-selectable
 user interface object that displays a string or image.
@@ -19404,14 +19404,14 @@ method.
 @return the receiver's hash
 
 @see #equals(Object)====== Link.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Conrad Groth - Bug 401015 - [CSS] Add support for styling hyperlinks in Links
 ------------
 Instances of this class represent a selectable
@@ -19587,7 +19587,7 @@ a single '&amp;amp;' to be displayed.
 &lt;li&gt;ERROR_WIDGET_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== List.java ======
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== List.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -19596,7 +19596,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class represent a selectable user interface
 object that displays a list of strings and issues notification
 when a string is selected.  A list may be single or multi select.
@@ -20378,14 +20378,14 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== Menu.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are user interface objects that contain
 menu items.
@@ -21069,7 +21069,7 @@ it visible may not actually cause it to be displayed.
 &lt;li&gt;ERROR_WIDGET_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== MenuAdapter.java ======
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== MenuAdapter.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -21078,7 +21078,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 This adapter class provides default implementations for the
 methods described by the &lt;code&gt;MenuListener&lt;/code&gt; interface.
 &lt;p&gt;
@@ -21100,14 +21100,14 @@ Sent when a menu is shown.
 The default behavior is to do nothing.
 
 @param e an event containing information about the menu operation====== MenuDetectEvent.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are sent whenever the platform-
 specific trigger for showing a context menu is detected.
@@ -21164,14 +21164,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the event====== MenuDetectListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 Classes which implement this interface provide methods
@@ -21213,14 +21213,14 @@ Constructs a new instance of this class based on the
 information in the given untyped event.
 
 @param e the untyped event containing the information====== MenuItem.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent a selectable user interface object
 that issues notification when pressed and released.
@@ -21771,14 +21771,14 @@ Sent when a menu is hidden.
 Sent when a menu is shown.
 
 @param e an event containing information about the menu operation====== MessageBox.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are used to inform or warn the user.
 &lt;dl&gt;
@@ -21899,14 +21899,14 @@ Constructs a new instance of this class based on the
 information in the given untyped event.
 
 @param e the untyped event containing the information====== ModifyListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 Classes which implement this interface provide a method
@@ -21924,7 +21924,7 @@ text is modified, the modifyText method will be invoked.
 ------------
 Sent when the text is modified.
 
-@param e an event containing information about the modify====== Monitor.java ======
+@param e an event containing information about the modify====== Monitor.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -21933,7 +21933,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class are descriptions of monitors.
 
 @see Display
@@ -21973,7 +21973,7 @@ method.
 
 @return the receiver's hash
 
-@see #equals(Object)====== MouseAdapter.java ======
+@see #equals(Object)====== MouseAdapter.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -21982,7 +21982,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 This adapter class provides default implementations for the
 methods described by the &lt;code&gt;MouseListener&lt;/code&gt; interface.
 &lt;p&gt;
@@ -22013,14 +22013,14 @@ Sent when a mouse button is released.
 The default behavior is to do nothing.
 
 @param e an event containing information about the mouse button release====== MouseEvent.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are sent whenever mouse
 related actions occur. This includes mouse buttons
@@ -22126,14 +22126,14 @@ Sent when a mouse button is pressed.
 Sent when a mouse button is released.
 
 @param e an event containing information about the mouse button release====== MouseMoveListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 Classes which implement this interface provide a method
@@ -22151,7 +22151,7 @@ mouse moves, the mouseMove method will be invoked.
 ------------
 Sent when the mouse moves.
 
-@param e an event containing information about the mouse move====== MouseTrackAdapter.java ======
+@param e an event containing information about the mouse move====== MouseTrackAdapter.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -22160,7 +22160,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 This adapter class provides default implementations for the
 methods described by the &lt;code&gt;MouseTrackListener&lt;/code&gt; interface.
 &lt;p&gt;
@@ -22232,14 +22232,14 @@ for an (operating system specified) period of time) over
 a control.
 
 @param e an event containing information about the hover====== MouseWheelListener.java ======
-Copyright (c) 2000, 2007 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2007 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Classes which implement this interface provide a method
 that deals with the event that is generated as the mouse
@@ -22260,14 +22260,14 @@ will be invoked.
 Sent when the mouse wheel is scrolled.
 
 @param e an event containing information about the mouse wheel action====== OS2BMPFileFormat.java ======
-Copyright (c) 2000, 2008 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2008 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Answer a byte array containing the BMP representation of
 the given device independent palette.
@@ -22342,14 +22342,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the event====== PaintListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 Classes which implement this interface provide methods
@@ -22369,14 +22369,14 @@ invoked.
 Sent when a paint event occurs for the control.
 
 @param e an event containing information about the paint====== PaletteData.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 483460
 ------------
 Instances of this class describe the color data used by an image.
@@ -22506,7 +22506,7 @@ Computes the shift value for a given mask.
 @param mask the mask to compute the shift for
 @return the shift amount
 
-@see PaletteData====== Path.java ======
+@see PaletteData====== Path.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -22515,7 +22515,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class represent paths through the two-dimensional
 coordinate system. Paths do not have to be continuous, and can be
 described using lines, rectangles, arcs, cubic or quadratic bezier curves,
@@ -22864,21 +22864,21 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the receiver====== PathData.java ======
-Copyright (c) 2000, 2008 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2008 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class describe device-independent paths.
 
 @see Path
 @see &lt;a href="http://www.eclipse.org/swt/"&gt;Sample code and further information&lt;/a&gt;
 
-@since 3.1====== Pattern.java ======
+@since 3.1====== Pattern.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -22887,7 +22887,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class represent patterns to use while drawing. Patterns
 can be specified either as bitmaps or gradients.
 &lt;p&gt;
@@ -23147,14 +23147,14 @@ that all of the compressed image data has been read. This
 method will ensure that the next data value is an end of
 block marker. If there are more blocks after this one,
 the method will read them and ensure that they are empty.====== PngDeflater.java ======
-Copyright (c) 2000, 2008 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2008 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation====== PngEncoder.java ======
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== PngEncoder.java ======
 <!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2011 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -23367,14 +23367,14 @@ and bit depth.
 ------------
 Answer the pixel size in bits based on the color type
 and bit depth.====== PngInputStream.java ======
-Copyright (c) 2000, 2006 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2006 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation====== PngLzBlockReader.java ======
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== PngLzBlockReader.java ======
 <!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2011 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -23500,14 +23500,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the point====== ProgressBar.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of the receiver represent an unselectable
 user interface object that is used to display progress,
@@ -23899,14 +23899,14 @@ given rectangles.
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff03 -->&lt;/ul&gt;
 
 @see #add(Rectangle)====== Region.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent areas of an x-y coordinate
 system that are aggregates of the areas covered by a number
@@ -24341,14 +24341,14 @@ application code.
 @return a new region object containing the specified device and handle
 
 @noreference This method is not intended to be referenced by clients.====== Resource.java ======
-Copyright (c) 2000, 2010 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2010 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 This class is the abstract superclass of all graphics resource objects.
 Resources created by the application must be disposed.
@@ -24409,14 +24409,14 @@ When a resource has been disposed, it is an error to
 invoke any other method (except {@link #dispose()}) using the resource.
 
 @return &lt;code&gt;true&lt;/code&gt; when the resource is disposed and &lt;code&gt;false&lt;/code&gt; otherwise====== RGB.java ======
-Copyright (c) 2000, 2013 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2013 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are descriptions of colors in
 terms of the primary additive color model (red, green and
@@ -24576,14 +24576,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the &lt;code&gt;RGB&lt;/code&gt;====== RGBA.java ======
-Copyright (c) 2015, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2015, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are descriptions of colors in
 terms of the primary additive color model (red, green, blue
@@ -24775,14 +24775,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the RowData object====== RowLayout.java ======
-Copyright (c) 2000, 2013 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2013 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class determine the size and position of the
 children of a &lt;code&gt;Composite&lt;/code&gt; by placing them either in
@@ -24973,14 +24973,14 @@ Instances of this class are used to ensure that an
 application cannot interfere with the locking mechanism
 used to implement asynchronous and synchronous communication
 between widgets and background threads.====== Sash.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of the receiver represent a selectable user interface object
 that allows the user to drag a rubber banded outline of the sash within
@@ -25078,14 +25078,14 @@ be notified when the control is selected by the user.
 
 @see SelectionListener
 @see #addSelectionListener====== Scale.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of the receiver represent a selectable user
 interface object that present a range of continuous
@@ -25308,14 +25308,14 @@ to the argument which must be greater than or equal to zero.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== Scrollable.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 This class is the abstract superclass of all classes which
 represent controls that have standard scroll bars.
@@ -25463,14 +25463,14 @@ one, and null if it does not.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== ScrollBar.java ======
-Copyright (c) 2000, 2013 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2013 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 <!-- 0e7e76a2-a1ca-489d-b5a5-a6fd0d90aba9 <=< ACCEPT -->Instances of this class are selectable user interface
 objects that represent a range of positive, numeric values.
@@ -25950,14 +25950,14 @@ it visible may not actually cause it to be displayed.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== SegmentEvent.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 This event is sent to SegmentListeners when a text content is to be modified.
 The segments field can be used in conjunction with the segmentsChars field or
@@ -26012,14 +26012,14 @@ are set, the rules for the segments field are less restrictive:
 &lt;/p&gt;
 
 @since 3.8====== SegmentListener.java ======
-Copyright (c) 2000, 2016s IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016s IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 This listener interface may be implemented in order to receive
@@ -26037,7 +26037,7 @@ The following event fields are used:&lt;ul&gt;
 &lt;/ul&gt;
 
 @param event the given event
-@see SegmentEvent====== SelectionAdapter.java ======
+@see SegmentEvent====== SelectionAdapter.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -26046,7 +26046,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 This adapter class provides default implementations for the
 methods described by the &lt;code&gt;SelectionListener&lt;/code&gt; interface.
 &lt;p&gt;
@@ -26176,14 +26176,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the event====== SelectionListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt;  - Bug 441116
 ------------
 Classes which implement this interface provide methods
@@ -26229,7 +26229,7 @@ Static helper method to create a selection listener for the
 
 @param c the consumer of the event
 @return SelectionListener
-@since 3.106====== Shell.java ======
+@since 3.106====== Shell.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -26238,7 +26238,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class represent the "windows"
 which the desktop or "window manager" is managing.
 Instances that do not have a parent (that is, they
@@ -26929,7 +26929,7 @@ Furthermore, the passed region should not be modified any more.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 
-@since 3.0====== ShellAdapter.java ======
+@since 3.0====== ShellAdapter.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -26938,7 +26938,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 This adapter class provides default implementations for the
 methods described by the &lt;code&gt;ShellListener&lt;/code&gt; interface.
 &lt;p&gt;
@@ -27049,14 +27049,14 @@ Sent when a shell is un-minimized.
 Sent when a shell is minimized.
 
 @param e an event containing information about the minimization====== Slider.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 <!-- 0e7e76a2-a1ca-489d-b5a5-a6fd0d90aba9 <=< ACCEPT -->Instances of this class are selectable user interface
 objects that represent a range of positive, numeric values.
@@ -27370,14 +27370,14 @@ more efficient fashion on some platforms.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== Spinner.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are selectable user interface
 objects that allow the user to enter and modify numeric
@@ -27849,14 +27849,14 @@ more efficient fashion on some platforms.
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 
 @since 3.2====== SWT.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 455263
 ------------
 This class provides access to a small number of SWT system-wide
@@ -32311,14 +32311,14 @@ stack trace on the standard error stream.
 Note: printStackTrace(PrintStream) and printStackTrace(PrintWriter)
 are not provided in order to maintain compatibility with CLDC.<!-- ACCEPT >=> ba36e3bf-fd81-4559-96df-f3fc455b1a51 -->
 &lt;/p&gt;====== SWTEventListener.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 This interface is the cross-platform version of the
 java.util.EventListener interface.
@@ -32417,14 +32417,14 @@ stack trace on the standard error stream.
 Note: printStackTrace(PrintStream) and printStackTrace(PrintWriter)
 are not provided in order to maintain compatibility with CLDC.<!-- ACCEPT >=> ba36e3bf-fd81-4559-96df-f3fc455b1a51 -->
 &lt;/p&gt;====== Synchronizer.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class provide synchronization support
 for displays. A default instance is created automatically
@@ -32479,7 +32479,7 @@ is suspended until the runnable completes.
 &lt;li&gt;ERROR_FAILED_EXEC - if an exception occurred when executing the runnable&lt;/li&gt;
 &lt;/ul&gt;
 
-@see #asyncExec====== TabFolder.java ======
+@see #asyncExec====== TabFolder.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -32488,7 +32488,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class implement the notebook user interface
 metaphor.  It allows the user to select a notebook page from
 set of pages.
@@ -32755,14 +32755,14 @@ selected. Indices that are out of range are ignored.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== TabItem.java ======
-Copyright (c) 2000, 2013 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2013 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent a selectable user interface object
 corresponding to a tab for a page in a tab folder.
@@ -32959,14 +32959,14 @@ escaped by doubling it in the string.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== Table.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Roland Oldenburg &lt;r.oldenburg@hsp-software.de&gt; - Bug 292199
 ------------
 Instances of this class implement a selectable user interface
@@ -34073,14 +34073,14 @@ the selection is visible.
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 
 @see Table#showItem(TableItem)====== TableColumn.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent a column in a table widget.
 &lt;p&gt;&lt;dl&gt;
@@ -34437,14 +34437,14 @@ Sets the width of the receiver.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== TableItem.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent a selectable user interface object
 that represents an item in a table.
@@ -34960,7 +34960,7 @@ in the string, then the behavior is platform dependent.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== TaskBar.java ======
-Copyright (c) 2010, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2010, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -34969,7 +34969,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
 IBM Corporation - initial API and implementation
 Tasktop Technologies - initial API and implementation
-------------
+------------<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Instances of this class represent the system task bar.
 
 &lt;dl&gt;
@@ -35043,7 +35043,7 @@ not affect the receiver.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== TaskItem.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -35051,7 +35051,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-Tasktop Technologies - initial API and implementation
+Tasktop Technologies - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent a task item.
 
@@ -35318,7 +35318,7 @@ main shell then on the &lt;code&gt;TaskItem&lt;/code&gt; for the application.&lt
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 
-#see {@link #setProgress(int)}====== Text.java ======
+#see {@link #setProgress(int)}====== Text.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -35327,7 +35327,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class are selectable user interface
 objects that allow the user to enter and modify text.
 Text controls can be either single or multi-line.
@@ -36377,14 +36377,14 @@ lines are scrolled until the selection is visible.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== TextLayout.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 &lt;code&gt;TextLayout&lt;/code&gt; is a graphic object that represents
 styled text.
@@ -37230,14 +37230,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the receiver====== TextStyle.java ======
-Copyright (c) 2000, 2010 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2010 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 &lt;code&gt;TextStyle&lt;/code&gt; defines a set of styles that can be applied
 to a range of text.
@@ -37415,41 +37415,41 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the &lt;code&gt;TextStyle&lt;/code&gt;====== TIFFDirectory.java ======
-Copyright (c) 2000, 2009 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2009 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation====== TIFFFileFormat.java ======
-Copyright (c) 2000, 2009 IBM Corporation and others.
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== TIFFFileFormat.java ======
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2009 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Baseline TIFF decoder revision 6.0
 Extension T4-encoding CCITT T.4 1D====== TIFFModifiedHuffmanCodec.java ======
-Copyright (c) 2000, 2005 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2005 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation====== TIFFRandomFileAccess.java ======
-Copyright (c) 2000, 2005 IBM Corporation and others.
-All rights reserved. This program and the accompanying materials
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== TIFFRandomFileAccess.java ======
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2005 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation====== ToolBar.java ======
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 --><!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->====== ToolBar.java ======
 Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -37615,14 +37615,14 @@ is found, returns -1.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== ToolItem.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent a selectable user interface object
 that represents a button in a tool bar.
@@ -38057,7 +38057,7 @@ items which will push them out to the extent of the containing ToolBar.
 &lt;li&gt;ERROR_WIDGET_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== ToolTip.java ======
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== ToolTip.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -38066,7 +38066,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class represent popup windows that are used
 to inform or warn the user.
 &lt;p&gt;
@@ -38350,14 +38350,14 @@ it visible may not actually cause it to be displayed.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== Touch.java ======
-Copyright (c) 2010, 2011 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2010, 2011 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are created in response to a
 touch-based input device being touched. They are found
@@ -38421,14 +38421,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the event====== TouchEvent.java ======
-Copyright (c) 2010, 2011 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2010, 2011 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class are sent in response to
 a touch-based input source being touched.
@@ -38478,14 +38478,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the event====== TouchListener.java ======
-Copyright (c) 2010, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2010, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 Classes which implement this interface provide methods
@@ -38511,14 +38511,14 @@ SWT doesn't send Gesture or Touch events on GTK.
 Sent when a touch sequence begins, changes state, or ends.
 
 @param e an event containing information about the touch====== TouchSource.java ======
-Copyright (c) 2010, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2010, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent sources of touch input that generate &lt;code&gt;Touch&lt;/code&gt; objects.
 They also provide information about the input source, which is important for interpreting the
@@ -38564,14 +38564,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the event====== Tracker.java ======
-Copyright (c) 2000, 2013 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2013 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class implement rubber banding rectangles that are
 drawn onto a parent &lt;code&gt;Composite&lt;/code&gt; or &lt;code&gt;Display&lt;/code&gt;.
@@ -38832,14 +38832,14 @@ Changes the appearance of the line used to draw the rectangles.
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== Transform.java ======
-Copyright (c) 2000, 2014 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2014 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent transformation matrices for
 points expressed as (x, y) pairs of floating point numbers.
@@ -39222,13 +39222,13 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the event====== TraverseListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
-Contributors:
+Contributors:<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 IBM Corporation - initial API and implementation
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
@@ -39256,14 +39256,14 @@ in the &lt;code&gt;SWT&lt;/code&gt; class.
 &lt;/p&gt;
 
 @param e an event containing information about the traverse====== Tray.java ======
-Copyright (c) 2000, 2009 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2009 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent the system tray that is part
 of the task bar status area on some operating systems.
@@ -39327,7 +39327,7 @@ not affect the receiver.
 &lt;li&gt;ERROR_WIDGET_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== TrayItem.java ======
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== TrayItem.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -39336,7 +39336,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class represent icons that can be placed on the
 system tray or task bar status area.
 &lt;p&gt;
@@ -39618,7 +39618,7 @@ and makes it invisible otherwise.
 &lt;li&gt;ERROR_WIDGET_DISPOSED - if the receiver has been disposed&lt;/li&gt;
 &lt;li&gt;ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver&lt;/li&gt;
 &lt;/ul&gt;
-<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== Tree.java ======
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->====== Tree.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -39627,7 +39627,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class provide a selectable user interface object
 that displays a hierarchy of items and issues notification when an
 item in the hierarchy is selected.
@@ -40627,7 +40627,7 @@ the selection is visible.
 &lt;/ul&gt;
 <!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926eff01 -->
 
-@see Tree#showItem(TreeItem)====== TreeAdapter.java ======
+@see Tree#showItem(TreeItem)====== TreeAdapter.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -40636,7 +40636,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 This adapter class provides default implementations for the
 methods described by the &lt;code&gt;TreeListener&lt;/code&gt; interface.
 &lt;p&gt;
@@ -40658,14 +40658,14 @@ Sent when a tree branch is expanded.
 The default behavior is to do nothing.
 
 @param e an event containing information about the tree operation====== TreeColumn.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent a column in a tree widget.
 &lt;p&gt;&lt;dl&gt;
@@ -41041,14 +41041,14 @@ Constructs a new instance of this class based on the
 information in the given untyped event.
 
 @param e the untyped event containing the information====== TreeItem.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Instances of this class represent a selectable user interface object
 that represents a hierarchy of tree items in a tree widget.
@@ -41850,14 +41850,14 @@ Sent when a tree branch is collapsed.
 Sent when a tree branch is expanded.
 
 @param e an event containing information about the tree operation====== TypedEvent.java ======
-Copyright (c) 2000, 2017 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2017 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 This is the super class for all typed event classes provided
 by SWT. Typed events contain particular information which is
@@ -41911,7 +41911,7 @@ the class without the package name.
 Returns a string containing a concise, human-readable
 description of the receiver.
 
-@return a string representation of the event====== TypedListener.java ======
+@return a string representation of the event====== TypedListener.java ======<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->
 Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -41920,7 +41920,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
 IBM Corporation - initial API and implementation
-------------
+<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->------------
 Instances of this class are &lt;em&gt;internal SWT implementation&lt;/em&gt;
 objects which provide a mapping between the typed and untyped
 listener mechanisms that SWT supports.
@@ -42012,14 +42012,14 @@ Returns a string containing a concise, human-readable
 description of the receiver.
 
 @return a string representation of the event====== VerifyListener.java ======
-Copyright (c) 2000, 2016 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2016 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 Lars Vogel &lt;Lars.Vogel@vogella.com&gt; - Bug 502576
 ------------
 Classes which implement this interface provide a method
@@ -42045,14 +42045,14 @@ indicates whether or not to modify the text.
 &lt;/p&gt;
 
 @param e an event containing information about the verify====== Widget.java ======
-Copyright (c) 2000, 2015 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2015 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 This class is the abstract superclass of all user interface objects.
 Widgets are created, disposed and issue notification to listeners
@@ -42632,14 +42632,14 @@ Method modified to use the passed data if it is not null.
 ------------
 Unload a DeviceIndependentImage using Windows .BMP format into the given
 byte stream.====== WinICOFileFormat.java ======
-Copyright (c) 2000, 2012 IBM Corporation and others.
+<!-- db5aa522-d4fb-4357-b7e2-a37b926e4a25 <=< ACCEPT -->Copyright (c) 2000, 2012 IBM Corporation and others.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
-IBM Corporation - initial API and implementation
+IBM Corporation - initial API and implementation<!-- ACCEPT >=> db5aa522-d4fb-4357-b7e2-a37b926e4a25 -->
 ------------
 Answer the size in bytes of the file representation of the given
 icon
