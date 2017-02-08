@@ -114,6 +114,8 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
         if save_fn == "":  # NOT fuzzy pattern search scenario
             self.tbSrcCode.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
+        else: # just fuzzy pattern search
+            self.lbTableName.setText("Matches found:")
 
         self.acceptRangeAction = QAction("&Accept", self)
         self.ignoreRangeAction = QAction("&Ignore", self)
@@ -303,10 +305,15 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
 
     @QtCore.pyqtSlot(str, str, str, str, str, str)
     def addbrTab(self, uri, heading, stats, text = "", fn = "", save_fn = ""):
+        self.hide()
+
+        fuzzymatch = save_fn != ""
+        if fuzzymatch:
+            self.setWindowTitle("Near Duplicates")
+
         ntab = ElemBrowserTab(self, uri, stats, text, fn, save_fn)
         self.browserTabs.addTab(ntab, heading if heading else uri)
         self.browserTabs.tabBar().setVisible(self.browserTabs.count() > 1)
-        self.hide()
         self.show()
 
     def bindEvents(self):

@@ -524,7 +524,7 @@ def combine_gruops():
     combinations += [clones.VariativeElement([gr]) for gr in remaining_groups]
     combinations.sort(key=lambda ve: ve.size, reverse=True)
 
-    cohtml = clones.VariativeElement.summaryhtml(combinations, False)
+    cohtml = clones.VariativeElement.summaryhtml(combinations, clones.ReportMode.variative)
     with open(os.path.join("Output", subdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:
         htmlfile.write(cohtml)
 
@@ -585,7 +585,7 @@ def write_density_report():
         <script>
         function selctionfuzzysearch(evt) {
           var seltext = window.getSelection().toString();
-          var minsim = window.prompt("Minimal similarity", "0.5");
+          var minsim = window.prompt("Similarity threshold", "0.5");
           // alert([minsim, seltext]);
           var nloc = "http://127.0.0.1:49999/fuzzysearch?minsim=" + encodeURIComponent(minsim) +
             "&text=" + encodeURIComponent(seltext);

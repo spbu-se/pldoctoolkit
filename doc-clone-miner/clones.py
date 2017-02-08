@@ -16,6 +16,7 @@ import xml.sax.handler as xsh
 import textwrap
 import string
 import itertools
+import enum
 
 import numpy
 
@@ -967,6 +968,15 @@ def loadinputs(logger):
         global allow2offset
         allow2offset = False
 
+
+#  TODO change this to Python 3.5+ enum when porting to PyQt 5.7+
+
+@enum.unique
+class ReportMode(enum.IntEnum):
+    variative = 0
+    fuzzyclones = 1
+    fuzzymatches = 2
+
 class VariativeElement(object):
     count = 0
 
@@ -1184,24 +1194,24 @@ class VariativeElement(object):
 
         VariativeElement._html_idx += 1
 
+        nextpoints = len(self.clone_groups) - 1
+        startgrp = self.clone_groups[0]
+        starts = [s for (fno, s, e) in startgrp.instances]
+        endgrp = self.clone_groups[-1]
+        ends = [e for (fno, s, e) in endgrp.instances]
+
+        vvariations = [self.getvariationhtmls(i) for i in range(nextpoints)]
+
         templ = string.Template(textwrap.dedent("""
             <tr class="${cssclass} variative" data-groups="${desc}">
             <td class="fxd">${idx}</td>
-            <td class="fxd">${clgr}</td>
+            """ + ("""<td class="fxd">${clgr}</td>""" if len(startgrp.instances) > 1 else "") + """
             ${eptsl}
             <td class="tka"><tt>${text}</tt></td>
             </tr>"""))
 
         vtext = ""
         vnc = 0
-
-        startgrp = self.clone_groups[0]
-        starts = [s for (fno, s, e) in startgrp.instances]
-        endgrp = self.clone_groups[-1]
-        ends = [e for (fno, s, e) in endgrp.instances]
-
-        nextpoints = len(self.clone_groups) - 1
-        vvariations = [self.getvariationhtmls(i) for i in range(nextpoints)]
 
         vvtexts = [
             ('<span style="background-color: silver; color:red; font-weight:bold;">&#x25c0;%d&#x25c0;</span><wbr/>' % (vn,) +
@@ -1216,10 +1226,12 @@ class VariativeElement(object):
             for variations, vn in zip(vvariations, itertools.count(1))
         ]
 
+        numberedlinks = map(lambda n: "{%d}" % (n,), itertools.count(1)) if len(startgrp.instances) > 1 else ["&nbsp;&#x25b6;&nbsp;"]
+
         vltexts = '<wbr/>'.join([
-            """<span class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">{%d}</span>"""
+            """<span class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">%s</span>"""
             % (cstart, cend, cstart, cend, clr, no)
-            for cstart, cend, clr, no in zip(starts, ends, self.htmlccolors, itertools.count(1))
+            for cstart, cend, clr, no in zip(starts, ends, self.htmlccolors, numberedlinks)
         ])
 
         # vnc = max([numpy.var([len(v) for v in variations]) for variations in vvariations])
@@ -1249,7 +1261,9 @@ class VariativeElement(object):
         )
 
     @staticmethod
-    def summaryhtml(elements: 'list(VariativeElement)', fuzzy: 'bool'):
+    def summaryhtml(elements: 'list(VariativeElement)', mode: 'ReportMode'):
+        fuzzy = mode in [ReportMode.fuzzyclones, ReportMode.fuzzymatches]
+        clgrp = mode != ReportMode.fuzzymatches
         start = string.Template(textwrap.dedent("""<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -1362,17 +1376,19 @@ class VariativeElement(object):
         <table>
         <thead>
         <tr>
-        <!-- <th>Participating groups</th> -->
         <th class="fxd">${colh0}</th>
-        <th class="fxd">${colh1}</th>
+        ${colh1}
         ${epts}
         <!-- <th>Variance of variants</th> -->
-        <th class="tka">Candidate text</th>
+        ${catexth}
         </tr>
         </thead>
         <tbody>""")).substitute(**(
             {
-                'colh0': "№", 'colh1': "Clns/Grp", 'epts': "" if fuzzy else '<th class="fxd">Ext.pts</th>'
+                'colh0': "№",
+                'colh1': """<th class="fxd">Clns/Grp</th>""" if clgrp else "",
+                'epts': "" if fuzzy else '<th class="fxd">Ext.pts</th>',
+                'catexth': """<th class="tka">""" + ("Matched text" if fuzzy else "Candidate text") + """</th>"""
             }
         ))
 
