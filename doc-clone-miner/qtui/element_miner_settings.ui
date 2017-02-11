@@ -844,6 +844,13 @@
            </layout>
           </item>
           <item>
+           <widget class="QCheckBox" name="cbOnlyShowNearDuplicates">
+            <property name="text">
+             <string>Do not build reuse map, just show existing results</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="verticalSpacer_3">
             <property name="orientation">
              <enum>Qt::Vertical</enum>

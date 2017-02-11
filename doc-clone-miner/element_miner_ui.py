@@ -384,11 +384,17 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         self.btSelectFolder.clicked.connect(self.select_file)
         self.cbMaxVar.stateChanged.connect(self.cbMaxVar_checked)
         self.cbMethod.currentIndexChanged.connect(self.methodSelected)
+        self.cbOnlyShowNearDuplicates.stateChanged.connect(self.onlyShowNDchanged)
 
         for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd, self.slClLen_f, self.slGrpMinPow]:
             slider.valueChanged.connect(self.slider_moved)
 
         self.slClMaxLen_f.valueChanged.connect(self.slClMaxLenRotated)
+
+    @QtCore.pyqtSlot(bool)
+    def onlyShowNDchanged(self, val):
+        for slider in [self.slClLen_f, self.slClMaxLen_f, self.slGrpMinPow]:
+            slider.setEnabled(not val)
 
     @QtCore.pyqtSlot(int)
     def slClMaxLenRotated(self, value):
@@ -437,8 +443,10 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
             wt = self.launch_with_clone_miner(pui, infile, numparams)
         elif methodIdx == 1:  # Fuzzy Finder
             wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
-        elif methodIdx == 2:  # Fuzzy Heat
+        elif methodIdx == 2 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
             wt = self.launch_fuzzyheat_with_clone_miner(pui, infile, numparams)
+        elif methodIdx == 2 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
+            wt, ffworkfolder = self.launch_fuzzyheat_reporting(pui, infile)
         else:
             raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -458,7 +466,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
                 if methodIdx == 0 or methodIdx == 2: # Clone Miner or Fuzzy Heat
                     srcfn = infile + ".reformatted"
-                elif methodIdx == 1:  # Fuzzy Finder
+                elif methodIdx == 1:  # Fuzzy Finder or Near Duplicates report
                     srcfn = os.path.join(ffworkfolder, os.path.split(infile + ".reformatted")[-1])
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
@@ -479,7 +487,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                 elif methodIdx == 1:  # Fuzzy Finder
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
                     self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn)
-                elif methodIdx == 2:  # Fuzzy Heat
+                elif methodIdx == 2 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
                     ht = path2url(os.path.join(
                         os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0], "densitybrowser.html"
                     ))
@@ -487,6 +495,9 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                     serve(srcfn, self.elbrui, srctext)  # start server
                     webbrowser.open_new_tab(ht)
                     # then elbrui should wait until user selects fragment to search
+                elif methodIdx == 2 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Report
+                    ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
+                    self.elbrui.addbrTab(ht, str(numparams), "", srctext, srcfn, forced_save_fn)
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -506,6 +517,10 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         shutil.copy(infile, ffworkfolder)
 
         wt = run_fuzzy_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
+        return wt, ffworkfolder
+
+    def launch_fuzzyheat_reporting(self, pui, infile):
+        wt, ffworkfolder = run_nearduplicate_report_thread(pui, infile)
         return wt, ffworkfolder
 
     def launch_fuzzyheat_with_clone_miner(self, pui, infile, numparams):
@@ -712,6 +727,36 @@ def serve(inputfilename, ui, srctext):
     st.daemon = True
     st.start()
 
+class NearDuplicateWorkThread(QtCore.QThread):
+    def __init__(self, pui, inputfile, workfolder):
+        QtCore.QThread.__init__(self)
+        self.pui = pui
+        self.inputfile = inputfile
+        self.workfolder = workfolder
+        self.fatal_error = False
+
+    def run(self):
+        os.makedirs(self.workfolder, exist_ok=True)
+        # shutil.copy(self.inputfile, self.workfolder)
+        # ifb = os.path.basename(self.inputfile)
+
+        self.pui.progressChanged.emit(1, 2, "Reporting marked duplicates...")
+        app.processEvents()
+
+        popen_args = [
+                         sys.executable, optverb, os.path.join(scriptdir, "nearduplicates2html.py"),
+                         "-sx", self.inputfile,
+                         "-od", self.workfolder
+                     ]
+        print("Reporting with: " + ' '.join(popen_args))
+        reppr = subprocess.Popen(popen_args, stdout=subprocess.PIPE)
+
+        oe = reppr.communicate()
+        ffrc = reppr.returncode
+
+        self.pui.progressChanged.emit(2, 2, "Done")
+        app.processEvents()
+
 class CloneMinerWorkThread(QtCore.QThread):
     def __init__(self, pui, inputfile, lengths, options):
         QtCore.QThread.__init__(self)
@@ -826,6 +871,16 @@ def run_fuzzyheat_with_clone_miner_thread(pui, inputfile, options, numparams):
     wt = CloneMinerWorkThread(pui, inputfile, numparams, options)
     wt.start()
     return wt
+
+def run_nearduplicate_report_thread(pui, infile):
+    workfolder = infile + ".neardups"
+
+    pui.progressChanged.emit(1, 0, "")
+    app.processEvents()
+
+    wt = NearDuplicateWorkThread(pui, infile, workfolder)
+    wt.start()
+    return wt, workfolder
 
 if __name__ == '__main__':
     print("Script Dir = " + scriptdir)

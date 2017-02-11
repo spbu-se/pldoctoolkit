@@ -67,6 +67,13 @@ _uuid_re_text = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-
 _open_marker_re = re.compile("<!-- %s <=< (ACCEPT|IGNORE) -->" % (_uuid_re_text,))
 _close_marker_re = re.compile("<!-- (ACCEPT|IGNORE) >=> %s -->" % (_uuid_re_text,))
 
+uuidlen = 36
+markerlen = 56
+
+def open_marker_id(str_or_xi):
+    text = str_or_xi.srepr if isinstance(str_or_xi, xmllexer.XmlInterval) else str_or_xi
+    id = text[5:5+36]
+    return id
 
 def open_marker_type(str_or_xi):
     text = str_or_xi.srepr if isinstance(str_or_xi, xmllexer.XmlInterval) else str_or_xi
@@ -74,7 +81,6 @@ def open_marker_type(str_or_xi):
         for m in _open_marker_re.finditer(text):
             return m.groups(1)[0]  # ACCEPT|IGNORE
     return None
-
 
 def close_marker_type(str_or_xi):
     text = str_or_xi.srepr if isinstance(str_or_xi, xmllexer.XmlInterval) else str_or_xi
