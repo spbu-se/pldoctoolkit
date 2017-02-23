@@ -391,7 +391,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
         self.slClMaxLen_f.valueChanged.connect(self.slClMaxLenRotated)
 
-    @QtCore.pyqtSlot(bool)
+    # @QtCore.pyqtSlot(bool)
     def onlyShowNDchanged(self, val):
         for slider in [self.slClLen_f, self.slClMaxLen_f, self.slGrpMinPow]:
             slider.setEnabled(not val)
