@@ -1080,7 +1080,7 @@ class VariativeElement(object):
         return r
 
     @staticmethod  # was tooooo complicated for multimethod
-    def distance(i1: 'VariativeElement', i2: 'VariativeElement') -> 'int':
+    def distance(i1: 'VariativeElement', i2: 'VariativeElement', expanded=False) -> 'int':
         if i1 is i2:
             return 0
 
@@ -1088,8 +1088,8 @@ class VariativeElement(object):
         if len(i1.clone_groups[0].instances) != len(i2.clone_groups[0].instances):
             return infty
 
-        i1masks = i1._get_connected_clonewise_masks(False)
-        i2masks = i2._get_connected_clonewise_masks(False)
+        i1masks = i1._get_connected_clonewise_masks(expanded)
+        i2masks = i2._get_connected_clonewise_masks(expanded)
 
         dists = []
         if True:
@@ -1108,7 +1108,7 @@ class VariativeElement(object):
                     one_two = False
                     dists.append(i1b - i2e)
                 else:  # intersects
-                    return -1
+                    return -infty
 
         d = max(dists)
 

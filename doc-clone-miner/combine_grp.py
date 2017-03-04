@@ -135,7 +135,8 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             g2sdists = [
                 (g, d)
                 for (g, d) in zip(probable_g2s, probable_g2_dists)
-                if 0 < d < maxdist and g not in skip
+                if 0 < d < maxdist and g not in skip and \
+                clones.VariativeElement.distance(g1, g, True) == -clones.infty  # expanded masks do intersect
             ]
             if len(g2sdists) > 0:
                 best_g2_d = min(g2sdists, key=lambda gd: gd[1])
