@@ -17,7 +17,7 @@ import textwrap
 import string
 import itertools
 import enum
-
+import math
 import numpy
 
 import verbhtml
@@ -77,8 +77,8 @@ def initoptions(args, logger):
     global shrink_broken_markup
     shrink_broken_markup = args.checkmarkup == 'shrink'
 
-    global maximalvariance
-    maximalvariance = int(args.maximalvariance)
+    global maximalrsd
+    maximalrsd = float(args.maximalrsd)/100.0
 
     global maxvariantdistance
     maxvariantdistance = 100
@@ -151,6 +151,18 @@ def initoptions(args, logger):
     global min_group_power
     min_group_power = args.min_group_power
 
+
+def average(container):
+    return sum(container) / len(container)
+
+def variance(container):
+    a = average(container)
+    return sum([(e - a)**2 for e in container]) / (len(container) - 1)
+
+def coefficient_of_variation(container):
+    a = average(container)
+    ve = sum([(e - a)**2 for e in container]) / (len(container) - 1)
+    return math.sqrt(ve) / a
 
 # TODO: this should be enum (requires py 3.4+) and should be robably removed and replaced with xmllexer
 class TextZone(object):
@@ -519,12 +531,9 @@ class ExactCloneGroup(CloneGroup):
 
         m = max(dists)  # known to be <= borderdist
 
-        global maximalvariance
-        import numpy
-
-        va = numpy.var(dists)
-        # print("variance: %f" % va)
-        if va > maximalvariance:
+        global maximalrsd
+        rsd = coefficient_of_variation(dists)
+        if rsd > maximalrsd:
             return infty
 
         return m
@@ -1096,12 +1105,11 @@ class VariativeElement(object):
 
         logging.debug("dists: " + repr(dists) + " <= " + str(d))
 
-        global maximalvariance
-        if maximalvariance > 0:
-            import numpy
-            va = numpy.var(dists)
-            logging.debug("variance: " + str(va))
-            if va > maximalvariance:
+        global maximalrsd
+        if maximalrsd > 0:
+            rsd = coefficient_of_variation(dists)
+            logging.debug("RSD: " + str(rsd))
+            if rsd > maximalrsd:
                 return infty
 
         # Only working with file #0 here

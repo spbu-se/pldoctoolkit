@@ -565,7 +565,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         options += ["-gca", clargs.group_combining_algorithm]
 
         if dovariations and self.cbMaxVar.checkState():
-            options += ["-mv", str(self.sbMaxVar.value())]
+            options += ["-mr", str(self.sbMaxVar.value())]
 
         wt = run_clone_miner_thread(pui, infile, lengths, options)
         return wt

@@ -242,7 +242,7 @@
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;For element candidates with &lt;span style=&quot; font-style:italic;&quot;&gt;extension points&lt;/span&gt;, maximum allowed &lt;span style=&quot; font-style:italic;&quot;&gt;variance&lt;/span&gt; of &lt;span style=&quot; font-style:italic;&quot;&gt;extension value length&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
-               <string>max. variance</string>
+               <string>max. coeff. of variation</string>
               </property>
               <property name="checked">
                <bool>true</bool>
@@ -273,11 +273,14 @@
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
+              <property name="suffix">
+               <string> %</string>
+              </property>
               <property name="maximum">
-               <number>50000</number>
+               <number>500</number>
               </property>
               <property name="value">
-               <number>2000</number>
+               <number>50</number>
               </property>
              </widget>
             </item>
