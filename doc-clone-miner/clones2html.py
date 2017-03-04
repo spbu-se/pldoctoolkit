@@ -44,6 +44,8 @@ def initargs():
                         default='no')
     argpar.add_argument("-fint", "--filterintersections", help="Filter clone intersections")
     argpar.add_argument("-ph", "--printheader", help="Print header for stats line")
+    argpar.add_argument("-mv", "--maximalvariance",
+                        help = "DEPRECATED. Maximal variance of variative insertion sizes, defaults to 0, was 2000 before", default = 0)
     argpar.add_argument("-mr", "--maximalrsd",
                         help="Maximal coefficient of variation, %, of variative insertion sizes, defaults to 50.0", default="50")
     argpar.add_argument("-csp", "--check-semantics-presence", help="Filter clones without textual semantics (no, yes, nltk)",

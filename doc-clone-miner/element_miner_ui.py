@@ -383,6 +383,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         self.buttonBox.rejected.connect(lambda: sys.exit(0))
         self.btSelectFolder.clicked.connect(self.select_file)
         self.cbMaxVar.stateChanged.connect(self.cbMaxVar_checked)
+        self.cbMaxVar_2.stateChanged.connect(self.cbMaxVar_2_checked)
         self.cbMethod.currentIndexChanged.connect(self.methodSelected)
         self.cbOnlyShowNearDuplicates.stateChanged.connect(self.onlyShowNDchanged)
 
@@ -407,6 +408,9 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
     def cbMaxVar_checked(self, val):
         self.sbMaxVar.setEnabled(val)
+
+    def cbMaxVar_2_checked(self, val):
+        self.sbMaxVar_2.setEnabled(val)
 
     @QtCore.pyqtSlot(int)
     def slider_moved(self, val):
@@ -566,6 +570,9 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
         if dovariations and self.cbMaxVar.checkState():
             options += ["-mr", str(self.sbMaxVar.value())]
+
+        if dovariations and self.cbMaxVar_2.checkState():
+            options += ["-mv", str(self.sbMaxVar_2.value())]
 
         wt = run_clone_miner_thread(pui, infile, lengths, options)
         return wt

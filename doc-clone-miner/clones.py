@@ -77,6 +77,9 @@ def initoptions(args, logger):
     global shrink_broken_markup
     shrink_broken_markup = args.checkmarkup == 'shrink'
 
+    global maximalvariance
+    maximalvariance = int(args.maximalvariance)
+
     global maximalrsd
     maximalrsd = float(args.maximalrsd)/100.0
 
@@ -530,6 +533,12 @@ class ExactCloneGroup(CloneGroup):
                     return infty
 
         m = max(dists)  # known to be <= borderdist
+
+        global maximalvariance
+        if maximalvariance > 0:
+            va = numpy.var(dists)
+            if va > maximalvariance:
+                return infty
 
         global maximalrsd
         rsd = coefficient_of_variation(dists)
@@ -1104,6 +1113,13 @@ class VariativeElement(object):
         d = max(dists)
 
         logging.debug("dists: " + repr(dists) + " <= " + str(d))
+
+        global maximalvariance
+        if maximalvariance > 0:
+            va = numpy.var(dists)
+            if va > maximalvariance:
+                logging.debug("variance: " + str(va))
+                return infty
 
         global maximalrsd
         if maximalrsd > 0:
