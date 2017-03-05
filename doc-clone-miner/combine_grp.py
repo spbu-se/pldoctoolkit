@@ -193,6 +193,10 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         logging.getLogger("cloneminer.combine.n_ext_points").info("Variative groups:")
         for gc in vgs.keys():
             logging.getLogger("cloneminer.combine.n_ext_points").info(" - %d -> %d" % (gc, vgs[gc]))
+        if vgs.keys():
+            avg = sum([vgs[gc]*gc for gc in vgs.keys()]) / sum([vgs[gc] for gc in vgs.keys()])
+            logging.getLogger("cloneminer.combine.n_ext_points").info(" - AVG -> %f" % (avg,))
+
     pstats()
 
     return var_groups, uni_groups

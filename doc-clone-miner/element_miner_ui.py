@@ -386,6 +386,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         self.cbMaxVar_2.stateChanged.connect(self.cbMaxVar_2_checked)
         self.cbMethod.currentIndexChanged.connect(self.methodSelected)
         self.cbOnlyShowNearDuplicates.stateChanged.connect(self.onlyShowNDchanged)
+        # self.swDevSettings.clicked.connect(self.showSwDevSettings)
 
         for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd, self.slClLen_f, self.slGrpMinPow]:
             slider.valueChanged.connect(self.slider_moved)
@@ -549,7 +550,9 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         # easter egg -- maxvar = 0 & unchecked maxvar should avoid it from
         # combining (only single clones, no variations in output)
         # needed for debugging...
-        dovariations = self.cbMaxVar.checkState() or self.sbMaxVar.value() != 0
+        # dovariations = self.cbMaxVar.checkState() or self.sbMaxVar.value() != 0
+
+        dovariations = self.cbCa.currentText() != "None"
 
         options = [
             # default settings
@@ -566,13 +569,19 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         options += ["-cmup", ["no", "yes", "shrink"][self.cbCheckMup.currentIndex()]]
         options += ["-fint", "no" if self.cbAllowInt.checkState() else "yes"]
         options += ["-csp", ["no", "yes", "nltk"][self.cbxCheckSemantics.currentIndex()]]
-        options += ["-gca", clargs.group_combining_algorithm]
+        # options += ["-gca", clargs.group_combining_algorithm]
 
-        if dovariations and self.cbMaxVar.checkState():
-            options += ["-mr", str(self.sbMaxVar.value())]
+        if dovariations:
+            if self.cbCa.currentText() == "NEXT16":
+                options += ["-gca", "interval-n-ext"]
+            else:  # 1EXT14
+                options += ["-gca", "full-square"]
 
-        if dovariations and self.cbMaxVar_2.checkState():
-            options += ["-mv", str(self.sbMaxVar_2.value())]
+            if self.cbMaxVar.checkState():
+                options += ["-mr", str(self.sbMaxVar.value())]
+
+            if self.cbMaxVar_2.checkState():
+                options += ["-mv", str(self.sbMaxVar_2.value())]
 
         wt = run_clone_miner_thread(pui, infile, lengths, options)
         return wt

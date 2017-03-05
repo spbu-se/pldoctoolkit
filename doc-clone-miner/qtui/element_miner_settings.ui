@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>571</width>
-    <height>439</height>
+    <height>436</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -125,7 +125,7 @@
             <item>
              <widget class="QLabel" name="label_2">
               <property name="text">
-               <string>Minimal clone length (number of tokens):</string>
+               <string>Minimal clone length (number of tokens)</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
@@ -183,7 +183,7 @@
                <enum>QFrame::NoFrame</enum>
               </property>
               <property name="text">
-               <string>Check markup:</string>
+               <string>Check markup</string>
               </property>
              </widget>
             </item>
@@ -287,61 +287,6 @@
            </layout>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_12">
-            <item>
-             <widget class="QCheckBox" name="cbMaxVar_2">
-              <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;For element candidates with &lt;span style=&quot; font-style:italic;&quot;&gt;extension points&lt;/span&gt;, maximum allowed &lt;span style=&quot; font-style:italic;&quot;&gt;variance&lt;/span&gt; of &lt;span style=&quot; font-style:italic;&quot;&gt;extension value length&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="text">
-               <string>max. variance (deprecated)</string>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_9">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="sbMaxVar_2">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>75</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-              </property>
-              <property name="suffix">
-               <string/>
-              </property>
-              <property name="maximum">
-               <number>50000</number>
-              </property>
-              <property name="value">
-               <number>2000</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
              <widget class="QLabel" name="label">
@@ -388,14 +333,105 @@
            </layout>
           </item>
           <item>
-           <spacer name="verticalSpacer">
+           <widget class="QStackedWidget" name="swDevSettings">
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
+            <widget class="QWidget" name="pgEmpty">
+             <layout class="QVBoxLayout" name="verticalLayout_4"/>
+            </widget>
+            <widget class="QWidget" name="phDevSettings">
+             <layout class="QGridLayout" name="gridLayout_5">
+              <item row="0" column="2">
+               <widget class="QSpinBox" name="sbMaxVar_2">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+                <property name="suffix">
+                 <string/>
+                </property>
+                <property name="maximum">
+                 <number>50000</number>
+                </property>
+                <property name="value">
+                 <number>2000</number>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="cbMaxVar_2">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;For element candidates with &lt;span style=&quot; font-style:italic;&quot;&gt;extension points&lt;/span&gt;, maximum allowed &lt;span style=&quot; font-style:italic;&quot;&gt;variance&lt;/span&gt; of &lt;span style=&quot; font-style:italic;&quot;&gt;extension value length&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>max. variance:</string>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <spacer name="horizontalSpacer_9">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_12">
+                <property name="text">
+                 <string>Combining Algorithm</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QComboBox" name="cbCa">
+                <item>
+                 <property name="text">
+                  <string>NEXT16</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1EXT14</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>None</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <spacer name="spDevSettings">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
-              <height>40</height>
+              <height>5</height>
              </size>
             </property>
            </spacer>
