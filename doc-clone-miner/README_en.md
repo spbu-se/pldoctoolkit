@@ -44,12 +44,11 @@ Python
 * [Python 3.4.x](https://www.python.org/downloads/release/python-344/)
 * [PyQt5 5.5.x](https://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/)
 * [LXML](https://pypi.python.org/pypi/lxml/3.6.0)
-* PyContracts -- `pip install PyContracts`
-* pygments -- `pip install pygments`
-* NumPy -- `pip install NumPy`
-* intervaltree -- `pip install intervaltree`
+* PyContracts, pygments, NumPy, intervaltree, bottle — `pip install PyContracts pygments NumPy intervaltree bottle`
 
-Package versions -- most recent ones compatible with Python 3.4
+Package versions -- most recent ones compatible with Python 3.4.
+
+*Note: newer PyQt and Python can also be used in case your distribution contains `QtWebkit` as in PyQt 5.5.x*
 
 System
 ------
