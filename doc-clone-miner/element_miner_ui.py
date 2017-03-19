@@ -387,6 +387,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         self.cbMethod.currentIndexChanged.connect(self.methodSelected)
         self.cbOnlyShowNearDuplicates.stateChanged.connect(self.onlyShowNDchanged)
         # self.swDevSettings.clicked.connect(self.showSwDevSettings)
+        self.btAdditionalSettings.clicked.connect(self.showAdditionalSettings)
 
         for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd, self.slClLen_f, self.slGrpMinPow]:
             slider.valueChanged.connect(self.slider_moved)
@@ -406,6 +407,9 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
     def methodSelected(self, idx):
         # print("method: ", idx)
         self.analyzerOptions.setCurrentIndex(idx)
+
+    def showAdditionalSettings(self):
+        self.swDevSettings.setCurrentIndex(1)
 
     def cbMaxVar_checked(self, val):
         self.sbMaxVar.setEnabled(val)

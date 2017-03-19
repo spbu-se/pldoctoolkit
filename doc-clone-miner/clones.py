@@ -1061,7 +1061,7 @@ class VariativeElement(object):
 
         def mask_g_c(group_no, clone_no):
             f, b, e = self.clone_groups[group_no].instances[clone_no]
-            expansion = em * max(e - b, maxvariantdistance) // 2
+            expansion = em * max(e - b, maxvariantdistance) # // 2
             return b - expansion, e + expansion
 
         tot_grp = len(self.clone_groups)
