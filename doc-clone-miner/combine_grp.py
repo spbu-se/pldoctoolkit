@@ -8,11 +8,14 @@ def combine_gruops_par_20140819(available_groups):
     # pool = multiprocessing.Pool()
     import clones
     import sys
+    import time
 
     # participated_groups = set() not used
     combinations = []
 
     print("Combining groups, %d total..." % len(available_groups))
+    t1 = time.process_time()
+
     pcounter = 0
 
     available_groups = set(available_groups)
@@ -39,12 +42,15 @@ def combine_gruops_par_20140819(available_groups):
         pcounter += 1
         print("~ %d / %d = %03.1f%%" % (pcounter, ptotal, 100.0 * pcounter / ptotal), end=ttyn, flush=True)
 
+    t2 = time.process_time()
+
     # print stats
     def pstats():
         import logging
         logging.getLogger("cloneminer.combine.square").info("Source single groups: %d" %(len(available_groups),))
         logging.getLogger("cloneminer.combine.square").info("Single groups: %d" %(len(current_available_groups),))
         logging.getLogger("cloneminer.combine.square").info("Variative groups: %d" %(len(combinations),))
+        logging.getLogger("cloneminer.combine.square").info("Spent time: %f s." % (t2 - t1,))
     pstats()
 
     return combinations, current_available_groups
@@ -76,11 +82,13 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     import itertools
     import logging
     import clones
+    import time
     from intervaltree import IntervalTree
 
     ttyn = '\r' if sys.stdout.isatty() else '\n'
 
     print("Combining groups, %d total..." % len(available_groups))
+    t1 = time.process_time()
 
     # (0)
     avg = set([clones.VariativeElement([cg]) for cg in available_groups])
@@ -182,6 +190,8 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         else:
             uni_groups.append(ve.clone_groups[0])
 
+    t2 = time.process_time()
+
     # print stats
     def pstats():
         import collections
@@ -196,6 +206,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         if vgs.keys():
             avg = sum([vgs[gc]*gc for gc in vgs.keys()]) / sum([vgs[gc] for gc in vgs.keys()])
             logging.getLogger("cloneminer.combine.n_ext_points").info(" - AVG -> %f" % (avg,))
+        logging.getLogger("cloneminer.combine.n_ext_points").info("Spent time: %f s." % (t2 - t1,))
 
     pstats()
 
