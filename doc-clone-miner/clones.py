@@ -1101,7 +1101,7 @@ class VariativeElement(object):
         def mask_g_c(group_no, clone_no):
             f, b, e = self.clone_groups[group_no].instances[clone_no]
             expansion = em * max(
-                (e - b) * bassett_variativity_threshold,
+                (e - b), # * bassett_variativity_threshold,
                 maxvariantdistance
             )
             return b - expansion, e + expansion
