@@ -69,6 +69,8 @@ def initargs():
                         default=sys.maxsize)
     argpar.add_argument("-mingpow", "--min-group-power", type=int, help="MIN clone group power in clones",
                         default=2)
+    argpar.add_argument("-bvt", "--bassett-variativity-threshold", type=float,
+                        default=0.15, help="MAX variations/archetype in symbols for variational groups")
 
     args = argpar.parse_args()
 

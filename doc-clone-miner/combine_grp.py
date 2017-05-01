@@ -66,6 +66,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     1.1. during 2nd and further iterations only consider G1 of 2 and more groups above. Reason:
          all combinable single groups were combined during 1st iteration, so no new variative
          ones can appear, only existing can be extended
+    1.2. we only consider new VG as successful when
     2. each successful G1, G2 combination is:
     2.1. ACG -= [G1, G2]
     2.2. VG1 <- [G1, G2]
@@ -144,8 +145,9 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
                 (g, d)
                 for (g, d) in zip(probable_g2s, probable_g2_dists)
                 if 0 < d < maxdist and g not in skip and \
-                clones.VariativeElement.distance(g1, g, True) == -clones.infty  # expanded masks do intersect
-                # Last condition is very important. It causes only combining with groups
+                clones.VariativeElement.distance(g1, g, True) == -clones.infty
+                # expanded masks do intersect
+                # This condition is very important. It causes only combining with groups
                 # those are close enough to keep archetype bigger than variative part.
             ]
             if len(g2sdists) > 0:
@@ -159,25 +161,32 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
 
         # (2)
         for g1, g2 in tojoin:
-            cycle = True  # check for (3)
-
             logging.debug("AVG %d ->" % (len(avg),))
-            # (2.1)
-            avg.remove(g1)
-            avg.remove(g2)
             # (2.2)
             new_ve = g1 + g2
-            # (2.3)
-            avg.add(new_ve)
-            logging.debug("AVG %d <-" % (len(avg),))
 
-            # (2.4)
-            # for itvl in g1.get_tree_intervals(expanded=True):
-            #     vg_intervals.remove(itvl)
-            # for itvl in g2.get_tree_intervals(expanded=True):
-            #     vg_intervals.remove(itvl)
-            # for itvl in new_ve.get_tree_intervals(expanded=True):
-            #     vg_intervals.add(itvl)
+            basset_variativity_coefficient = new_ve.max_variations_length_in_symbols() / \
+                                             new_ve.archetype_length_in_symbols()
+
+            if basset_variativity_coefficient <= clones.bassett_variativity_threshold:
+                cycle = True  # check for (3)
+
+                # (2.1)
+                avg.remove(g1)
+                avg.remove(g2)
+                # (2.3)
+                avg.add(new_ve)
+                logging.debug("AVG %d <-" % (len(avg),))
+
+                # (2.4)
+                # for itvl in g1.get_tree_intervals(expanded=True):
+                #     vg_intervals.remove(itvl)
+                # for itvl in g2.get_tree_intervals(expanded=True):
+                #     vg_intervals.remove(itvl)
+                # for itvl in new_ve.get_tree_intervals(expanded=True):
+                #     vg_intervals.add(itvl)
+            else:
+                logging.debug("BVC = %f, combination failed" %(basset_variativity_coefficient,))
 
         iterations_passed += 1
 

@@ -154,6 +154,9 @@ def initoptions(args, logger):
     global min_group_power
     min_group_power = args.min_group_power
 
+    global bassett_variativity_threshold
+    bassett_variativity_threshold = args.bassett_variativity_threshold
+
 
 def average(container):
     return sum(container) / len(container)
@@ -995,6 +998,14 @@ class ReportMode(enum.IntEnum):
     fuzzyclones = 1
     fuzzymatches = 2
 
+def transpose(a):
+    """
+    Thanks, http://stackoverflow.com/a/21444360/539470
+    :param a: list of lists (say, lines of a matrix)
+    :return: list of lists (say, lines of transposed matrix)
+    """
+    return [list(x) for x in zip(*a)]
+
 class VariativeElement(object):
     count = 0
 
@@ -1052,16 +1063,47 @@ class VariativeElement(object):
 
             return self.calculated_tree_intervals
 
+    def archetype_length_in_symbols(self):
+        """
+        :return: Count of symbols in archetype, regardless to groups' power.
+        """
+        return sum([g.totalsymbols() for g in self.clone_groups]) / len(self.clone_groups[0].instances)
+
+    def max_variations_length_in_symbols(self):
+        """
+        :return: Maximal (by instance) length of variations in symbols.
+        """
+
+        if len(self.clone_groups) < 2:
+            return 0
+
+        # 1st index -- variation position, 2nd -- instance number
+        posvar = [self.getvariations(pos) for pos in range(len(self.clone_groups) - 1)]
+
+        # Then [instance number, variation position]
+        varpos = transpose(posvar)
+
+        # summary variations length, by instance
+        sumvarl = [sum([len(v) for v in i]) for i in varpos ]
+
+        # maximal summary variation length
+        return max(sumvarl)
+
 
     def _get_connected_clonewise_masks(self, expanded=True):
         """
         :return: connected masks of all groups, clone by clone
         """
+
+        global bassett_variativity_threshold
         em = 1 if expanded else 0
 
         def mask_g_c(group_no, clone_no):
             f, b, e = self.clone_groups[group_no].instances[clone_no]
-            expansion = em * max(e - b, maxvariantdistance) # // 2
+            expansion = em * max(
+                (e - b) * bassett_variativity_threshold,
+                maxvariantdistance
+            )
             return b - expansion, e + expansion
 
         tot_grp = len(self.clone_groups)
@@ -1076,7 +1118,7 @@ class VariativeElement(object):
         ) for ci in range(grp_cln)]
 
         r = list(zip(mbeginings, mendings))
-        r.sort(key=lambda be: (be[0] + be[1]) // 2)  # in order of appearance
+        r.sort(key=lambda be: be[0] + be[1])  # in order of appearance
         return r
 
     @staticmethod  # was tooooo complicated for multimethod
