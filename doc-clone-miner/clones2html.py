@@ -71,6 +71,8 @@ def initargs():
                         default=2)
     argpar.add_argument("-bvt", "--bassett-variativity-threshold", type=float,
                         default=0.15, help="MAX variations/archetype in symbols for variational groups")
+    argpar.add_argument("-minal", "--minimum-archetype-length", type=int,
+                        default=5, help="MIN length of archetype for resulting (variative) elements")
 
     args = argpar.parse_args()
 

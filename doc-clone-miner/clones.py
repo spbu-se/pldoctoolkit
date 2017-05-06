@@ -157,6 +157,9 @@ def initoptions(args, logger):
     global bassett_variativity_threshold
     bassett_variativity_threshold = args.bassett_variativity_threshold
 
+    global minimum_archetype_length
+    minimum_archetype_length = args.minimum_archetype_length
+
 
 def average(container):
     return sum(container) / len(container)

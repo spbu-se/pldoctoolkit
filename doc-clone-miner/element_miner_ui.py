@@ -389,7 +389,8 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         # self.swDevSettings.clicked.connect(self.showSwDevSettings)
         self.btAdditionalSettings.clicked.connect(self.showAdditionalSettings)
 
-        for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd, self.slClLen_f, self.slGrpMinPow]:
+        for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd,
+                       self.slClLen_f, self.slGrpMinPow, self.slArchLen]:
             slider.valueChanged.connect(self.slider_moved)
 
         self.slClMaxLen_f.valueChanged.connect(self.slClMaxLenRotated)
@@ -586,6 +587,9 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
             if self.cbMaxVar_2.checkState():
                 options += ["-mv", str(self.sbMaxVar_2.value())]
+
+        options += ["-minal", self.lbArchLen.text()]
+        options += ["-bvt", str(self.sbMaxDeltaRatio.value() / 100.0)]
 
         wt = run_clone_miner_thread(pui, infile, lengths, options)
         return wt
