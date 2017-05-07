@@ -1054,7 +1054,24 @@ class VariativeElement(object):
         """
 
         if archetype_consolidated:
-            return self.get_archetype_consolidated_clonewise_intervals(expanded)
+            def cce():
+                return [
+                    intervaltree.Interval(b, e, data=(self, idx))
+                    for (b, e), idx in zip(
+                        self._get_archetype_consolidated_clonewise_intervals(expanded),
+                        itertools.count(0)
+                    )
+                ]
+
+            if expanded:
+                if not self._consolidated_expanded_clonewise_intervals:
+                    self._consolidated_expanded_clonewise_intervals = cce()
+                return self._consolidated_expanded_clonewise_intervals
+            else:
+                if not self._consolidated_clonewise_intervals:
+                    self._consolidated_clonewise_intervals = cce()
+                return self._consolidated_clonewise_intervals
+
         else:
             def cce():
                 return [intervaltree.Interval(
@@ -1064,19 +1081,17 @@ class VariativeElement(object):
             if expanded:
                 if not self.calculated_expanded_tree_intervals:
                     self.calculated_expanded_tree_intervals = cce()
-
                 return self.calculated_expanded_tree_intervals
             else:
                 if not self.calculated_tree_intervals:
                     self.calculated_tree_intervals = cce()
-
                 return self.calculated_tree_intervals
 
-    def archetype_length_in_symbols(self):
+    def archetype_length_in_symbols(self) -> int:
         """
         :return: Count of symbols in archetype, regardless to groups' power.
         """
-        return sum([g.totalsymbols() for g in self.clone_groups]) / len(self.clone_groups[0].instances)
+        return int(sum([g.totalsymbols() for g in self.clone_groups]) / len(self.clone_groups[0].instances))
 
     def archetype_length_in_tokens(self):
         """
@@ -1090,7 +1105,7 @@ class VariativeElement(object):
         """
 
         if len(self.clone_groups) < 2:
-            return 0
+            return [0]
 
         # 1st index -- variation position, 2nd -- instance number
         posvar = [self.getvariations(pos) for pos in range(len(self.clone_groups) - 1)]
@@ -1108,14 +1123,7 @@ class VariativeElement(object):
         # maximal summary variation length
         return max(self.variations_length_in_symbols())
 
-    def get_archetype_consolidated_clonewise_intervals(self, expanded=True):
-        # return everything if already calculated
-        if expanded and self._consolidated_expanded_clonewise_intervals:
-            return self._consolidated_expanded_clonewise_intervals
-        elif not expanded and self._consolidated_clonewise_intervals:
-            return self._consolidated_clonewise_intervals
-
-        # not calculated, okay
+    def _get_archetype_consolidated_clonewise_intervals(self, expanded=True):
         global bassett_variativity_threshold
         left_group = self.clone_groups[0]
         right_group = self.clone_groups[-1]
@@ -1124,25 +1132,21 @@ class VariativeElement(object):
         endings = [inst[2] for inst in right_group.instances]
         begends = transpose([beginngings, endings])
 
-        if self._consolidated_clonewise_intervals is None:
-            self._consolidated_clonewise_intervals = [(b, e) for [b, e] in begends]
-
-        if not expanded:
-            return self._consolidated_clonewise_intervals
-        else:
+        if expanded:
             vls = self.variations_length_in_symbols()
             als = self.archetype_length_in_symbols()
             expandings = [
                 1 + # So they can intersect
-                a * bassett_variativity_threshold - v
-                for a, v in zip(als, vls)
+                als * bassett_variativity_threshold - v
+                for v in vls
             ]
             for be, xp in zip(begends, expandings):
                 be[0] -= xp
                 be[1] += xp
+                if be[0] >= be[1]:
+                    assert False
 
-            self._consolidated_expanded_clonewise_intervals = [(b, e) for [b, e] in begends]
-            return self._consolidated_expanded_clonewise_intervals
+        return [(b, e) for [b, e] in begends]
 
     def _get_connected_clonewise_masks(self, expanded=True):
         """
@@ -1195,8 +1199,8 @@ class VariativeElement(object):
         dists = []
 
         if archetype_consolidated:
-            i1masks = i1.get_archetype_consolidated_clonewise_intervals(expanded)
-            i2masks = i2.get_archetype_consolidated_clonewise_intervals(expanded)
+            i1masks = i1._get_archetype_consolidated_clonewise_intervals(expanded)
+            i2masks = i2._get_archetype_consolidated_clonewise_intervals(expanded)
         else:
             i1masks = i1._get_connected_clonewise_masks(expanded)
             i2masks = i2._get_connected_clonewise_masks(expanded)
@@ -1216,7 +1220,10 @@ class VariativeElement(object):
                 one_two = False
                 dists.append(i1b - i2e)
             else:  # intersects
-                return -infty
+                if expanded and archetype_consolidated:
+                    dists.append(-infty)
+                else:
+                    return -infty
 
         d = max(dists)
 
@@ -1230,7 +1237,7 @@ class VariativeElement(object):
                 return infty
 
         global maximalrsd
-        if maximalrsd > 0:
+        if maximalrsd > 0.0:
             rsd = coefficient_of_variation(dists)
             logging.debug("RSD: " + str(rsd))
             if rsd > maximalrsd:

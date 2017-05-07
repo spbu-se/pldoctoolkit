@@ -137,16 +137,16 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             ]
             probable_g2s = [
                 clones.VariativeElement.from_tree_interval(i)
-                for i in probable_g2_intervals # No need, as consolidated. itertools.chain.from_iterable(probable_g2_intervals)
+                for i in itertools.chain.from_iterable(probable_g2_intervals)
             ]
             probable_g2_dists = [
                 clones.VariativeElement.distance(g1, g2, expanded=False, archetype_consolidated=True)
                 for g2 in probable_g2s
             ]
             g2sdists = [
-                (g, d, e)
-                for (g, d, e) in zip(probable_g2s, probable_g2_dists)
-                if d > 0 and e == -clones.infty and g not in skip and \
+                (g, d)
+                for g, d in zip(probable_g2s, probable_g2_dists)
+                if 0 < d < clones.infty and g not in skip and \
                 clones.VariativeElement.distance(g1, g, expanded=True, archetype_consolidated=True) == -clones.infty
                 # expanded masks do intersect
                 # This condition is very important. It causes only combining with groups

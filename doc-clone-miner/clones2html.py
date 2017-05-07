@@ -47,7 +47,7 @@ def initargs():
     argpar.add_argument("-mv", "--maximalvariance",
                         help = "DEPRECATED. Maximal variance of variative insertion sizes, defaults to 0, was 2000 before", default = 0)
     argpar.add_argument("-mr", "--maximalrsd",
-                        help="Maximal coefficient of variation, %, of variative insertion sizes, defaults to 50.0", default="50")
+                        help="Maximal coefficient of variation, %, of variative insertion sizes, defaults to 50.0", default="0")
     argpar.add_argument("-csp", "--check-semantics-presence", help="Filter clones without textual semantics (no, yes, nltk)",
                         default="no")
     argpar.add_argument("-ie", "--inclusive-end",
