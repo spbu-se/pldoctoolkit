@@ -157,9 +157,6 @@ def initoptions(args, logger):
     global bassett_variativity_threshold
     bassett_variativity_threshold = args.bassett_variativity_threshold
 
-    global minimum_archetype_length
-    minimum_archetype_length = args.minimum_archetype_length
-
 
 def average(container):
     return sum(container) / len(container)
@@ -756,20 +753,28 @@ class ExactCloneGroup(CloneGroup):
             ExactCloneGroup.by_too_poor += 1
             return False
 
-        if self.isLessThanAllowed():
-            # logger.debug("group is less than allowed")
-            ExactCloneGroup.by_too_short += 1
-            return False
+        if False:
+            #  Will check it in variative element
+            if self.isLessThanAllowed():
+                # logger.debug("group is less than allowed")
+                ExactCloneGroup.by_too_short += 1
+                return False
 
-        if self.containsNoWords():  # also implies countainsNoText() check
-            # logger.debug("no words in group")
-            ExactCloneGroup.by_no_words += 1
-            return False
+            if self.containsNoWords():  # also implies countainsNoText() check
+                # logger.debug("no words in group")
+                ExactCloneGroup.by_no_words += 1
+                return False
 
-        if checksemanticspresence and self.containsNoSemantic():
-            # logger.info("no semantic")
-            ExactCloneGroup.by_no_semantic += 1
-            return False
+            if checksemanticspresence and self.containsNoSemantic():
+                # logger.info("no semantic")
+                ExactCloneGroup.by_no_semantic += 1
+                return False
+
+        if True:
+            # Check all clones are not empty
+            for filen, b, e in self.instances:
+                if b == e:
+                    return False
 
         if checkmarkup and self.containsBrokenMarkup():
             # logger.info("broken markup")
@@ -1036,6 +1041,29 @@ class VariativeElement(object):
         self._consolidated_clonewise_intervals = None
         self._consolidated_expanded_clonewise_intervals = None
 
+    def _plain_texts_from_intervals(self, instance_no=0):
+        # detecting on instance[0]
+        l_ifilen, l_so, l_e = self.clone_groups[ 0].instances[instance_no]
+        r_ifilen, r_so, r_e = self.clone_groups[-1].instances[instance_no]
+        sl = r_e - l_so + 1
+        assert l_ifilen == r_ifilen
+        return xmllexer.get_plain_texts(l_so, sl, inputfiles[l_ifilen].lexintervals)
+
+    def _plain_text(self, instance_no=0):
+        return ' '.join(self._plain_texts_from_intervals(instance_no))
+
+    def contains_no_text(self):
+        # print("No text in: " + self.text())
+        return len(''.join([s.strip() for s in self._plain_texts_from_intervals()])) == 0
+
+    def contains_no_words(self):
+        if self.contains_no_text():
+            return True
+        elif len(semanticfilter.cleanwords(self._plain_text())) == 0:
+            return True
+        else:
+            return False
+
     @staticmethod
     def from_tree_interval(interval: 'intervaltree.Interval') -> 'VariativeElement':
         """
@@ -1093,7 +1121,7 @@ class VariativeElement(object):
         """
         return int(sum([g.totalsymbols() for g in self.clone_groups]) / len(self.clone_groups[0].instances))
 
-    def archetype_length_in_tokens(self):
+    def archetype_length_in_CM_tokens(self):
         """
         :return: Count of symbols in archetype, regardless to groups' power.
         """

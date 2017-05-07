@@ -71,7 +71,7 @@ def initargs():
                         default=2)
     argpar.add_argument("-bvt", "--bassett-variativity-threshold", type=float,
                         default=0.15, help="MAX variations/archetype in symbols for variational groups")
-    argpar.add_argument("-minal", "--minimum-archetype-length", type=int,
+    argpar.add_argument("-minal", "--minimal-archetype-length", type=int,
                         default=5, help="MIN length of archetype for resulting (variative) elements")
 
     args = argpar.parse_args()
@@ -113,6 +113,9 @@ def initargs():
 
     global group_combining_algorithm_name
     group_combining_algorithm_name = args.group_combining_algorithm
+
+    global minimal_archetype_length
+    minimal_archetype_length = args.minimal_archetype_length
 
     clones.initoptions(args, logger)
 
@@ -493,7 +496,7 @@ def log_short_repetitions(maxtokens, minrepetitions):
         fwtr.writerow(['N tokens', 'Occurs times', 'Common Phrase', 'Words', 'Plain Text', 'Text'])
 
         for cg in clones.clonegroups:
-            if cg.ntokens <= maxtokens and len(cg.instances) >= minrepetitions and not cg.containsNoWords():
+            if cg.ntokens <= maxtokens and len(cg.instances) >= minrepetitions and not cg.contains_no_words():
                 words = ' '.join(semanticfilter.cleanwords(cg.plain_text(), True))
                 fwtr.writerow([
                     numf(cg.ntokens),
@@ -528,6 +531,12 @@ def combine_gruops():
     # print("Offered clones -- total: %d, single: %d, variative: %d" % (len(remaining_groups) + len(combinations), len(remaining_groups), len(combinations)))
 
     combinations += [clones.VariativeElement([gr]) for gr in remaining_groups]
+
+    combinations = list(filter(
+        lambda ve: ve.archetype_length_in_CM_tokens() >= minimal_archetype_length and not ve.contains_no_words(),
+        combinations
+    ))
+
     combinations.sort(key=lambda ve: ve.size, reverse=True)
 
     cohtml = clones.VariativeElement.summaryhtml(combinations, clones.ReportMode.variative)
