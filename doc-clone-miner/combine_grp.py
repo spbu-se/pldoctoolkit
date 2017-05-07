@@ -143,14 +143,17 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
                 clones.VariativeElement.distance(g1, g2, expanded=False, archetype_consolidated=True)
                 for g2 in probable_g2s
             ]
+            probable_g2_xdists = [
+                clones.VariativeElement.distance(g1, g2, expanded=True, archetype_consolidated=True)
+                for g2 in probable_g2s
+            ]
             g2sdists = [
                 (g, d)
-                for g, d in zip(probable_g2s, probable_g2_dists)
-                if 0 < d < clones.infty and g not in skip and \
-                clones.VariativeElement.distance(g1, g, expanded=True, archetype_consolidated=True) == -clones.infty
-                # expanded masks do intersect
+                for g, d, xd in zip(probable_g2s, probable_g2_dists, probable_g2_xdists)
+                if 0 < d < clones.infty and xd == -clones.infty and g not in skip
+                # groups do not intersect, but expanded masks do intersect
                 # This condition is very important. It causes only combining with groups
-                # those are close enough to keep archetype bigger than variative part.
+                # those are close enough to keep variative part less than 15% of archetype
             ]
             if len(g2sdists) > 0:
                 best_g2_d = min(g2sdists, key=lambda gd: gd[1])

@@ -1133,7 +1133,7 @@ class VariativeElement(object):
         """
 
         if len(self.clone_groups) < 2:
-            return [0]
+            return [0] * len(self.clone_groups[0].instances)
 
         # 1st index -- variation position, 2nd -- instance number
         posvar = [self.getvariations(pos) for pos in range(len(self.clone_groups) - 1)]
@@ -1171,8 +1171,7 @@ class VariativeElement(object):
             for be, xp in zip(begends, expandings):
                 be[0] -= xp
                 be[1] += xp
-                if be[0] >= be[1]:
-                    assert False
+                assert be[1] > be[0]
 
         return [(b, e) for [b, e] in begends]
 
@@ -1226,17 +1225,18 @@ class VariativeElement(object):
 
         dists = []
 
-        if archetype_consolidated:
-            i1masks = i1._get_archetype_consolidated_clonewise_intervals(expanded)
-            i2masks = i2._get_archetype_consolidated_clonewise_intervals(expanded)
-        else:
-            i1masks = i1._get_connected_clonewise_masks(expanded)
-            i2masks = i2._get_connected_clonewise_masks(expanded)
+        i1intervals = i1.get_tree_intervals(expanded=expanded, archetype_consolidated=archetype_consolidated)
+        i2intervals = i2.get_tree_intervals(expanded=expanded, archetype_consolidated=archetype_consolidated)
 
         # Check ordering and calculate distances
         # All i1 masks should be before or after corresponding i2 masks
         one_two = None
-        for (i1b, i1e), (i2b, i2e) in zip(i1masks, i2masks):
+        for i1i, i2i in zip(i1intervals, i2intervals):
+            i1b = i1i.begin
+            i1e = i1i.end
+            i2b = i2i.begin
+            i2e = i2i.end
+
             if i1e < i2b:  # 1st then 2nd
                 if one_two is False:
                     return -1

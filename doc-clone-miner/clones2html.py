@@ -496,7 +496,7 @@ def log_short_repetitions(maxtokens, minrepetitions):
         fwtr.writerow(['N tokens', 'Occurs times', 'Common Phrase', 'Words', 'Plain Text', 'Text'])
 
         for cg in clones.clonegroups:
-            if cg.ntokens <= maxtokens and len(cg.instances) >= minrepetitions and not cg.contains_no_words():
+            if cg.ntokens <= maxtokens and len(cg.instances) >= minrepetitions and not cg.containsNoWords():
                 words = ' '.join(semanticfilter.cleanwords(cg.plain_text(), True))
                 fwtr.writerow([
                     numf(cg.ntokens),
