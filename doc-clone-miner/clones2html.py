@@ -533,10 +533,9 @@ def combine_gruops():
     combinations += [clones.VariativeElement([gr]) for gr in remaining_groups]
 
     combinations = list(filter(
-        lambda ve: ve.archetype_length_in_CM_tokens() >= minimal_archetype_length and not ve.contains_no_words(),
+        lambda ve: ve.archetype_length_in_all_words() >= minimal_archetype_length and not ve.contains_no_words(),
         combinations
     ))
-    # or ve.archetype_length_in_human_readable_words() >= minimal_archetype_length ?..
 
     combinations.sort(key=lambda ve: ve.size, reverse=True)
 

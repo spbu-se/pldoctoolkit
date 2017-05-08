@@ -335,6 +335,8 @@ class InternalOkBreak(InternalException):
 
 
 class CloneGroup(ABC):
+    wre = re.compile(r"\w+")
+
     def __init__(self, id):
         self.id = id
         self.instances = None
@@ -343,12 +345,17 @@ class CloneGroup(ABC):
     def plain_text_words(self, inst=0):
         pass
 
+    @abstractmethod
     def text(self, inst=0):
-        global inputfiles
-        global clonegroups
+        pass
 
-        fileno, start, end = self.instances[inst]
-        return inputfiles[fileno][start:end]
+    def all_text_words(self, inst=0):
+        """
+        All words in the both markup and plain text
+        :param inst: instance number
+        :return: list of words
+        """
+        return CloneGroup.wre.findall(self.text(inst=inst))
 
     @abstractmethod
     def html(self, inst=0, allow_space_wrap=False):
@@ -380,8 +387,6 @@ class CloneGroup(ABC):
         return sum(ie - ib + 1 for fn, ib, ie in self.instances)
 
 class FuzzyCloneGroup(CloneGroup):
-    wre = re.compile(r"\w+")
-
     def __init__(self, id, clones, clonetexts, clonewords, ratio=None):
         super().__init__(id)
         self.instances = clones
@@ -393,7 +398,7 @@ class FuzzyCloneGroup(CloneGroup):
         return self.instancewords[0]
 
     def plain_text_words(self, inst=0):
-        return FuzzyCloneGroup.wre.findall(self.instancewords[inst])
+        return CloneGroup.wre.findall(self.instancewords[inst])
 
 
     def html(self, inst=None, allow_space_wrap=False):
@@ -576,6 +581,13 @@ class ExactCloneGroup(CloneGroup):
         ifilen, so, e = self.instances[instance_no]
         sl = e - so + 1
         return xmllexer.get_plain_texts(so, sl, inputfiles[ifilen].lexintervals)
+
+    def text(self, inst=0):
+        global inputfiles
+        global clonegroups
+
+        fileno, start, end = self.instances[inst]
+        return inputfiles[fileno][start:end]
 
     def plain_text(self, instance_no=0):
         return ' '.join(self._plain_texts_from_intervals(instance_no))
@@ -1139,6 +1151,12 @@ class VariativeElement(object):
         :return: Count of symbols in archetype, regardless to groups' power.
         """
         return sum([g.ntokens for g in self.clone_groups])
+
+    def archetype_length_in_all_words(self):
+        """
+        :return: Count of all (markup too) words in archetype, regardless to groups' power.
+        """
+        return sum([len(g.all_text_words()) for g in self.clone_groups])
 
     def archetype_length_in_human_readable_words(self):
         """
