@@ -1420,12 +1420,19 @@ class VariativeElement(object):
 
         return templ.substitute(
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
-            idx=VariativeElement._html_idx,
+            idx=VariativeElement._html_idx
             eptsl="" if self.fuzzy else ('<td class ="fxd" >' + str(self.power - 1) + '</td>'),
             clgr=len(self.clone_groups[0].instances),
             desc=self.textdescriptor,
             text=vtext
         )
+
+    def __hash__(self):
+        """
+        To identify content in unique way
+        :return: VariativeElement's hash code
+        """
+        return hash(tuple([g.id for g in self.clone_groups]))
 
     @staticmethod
     def summaryhtml(elements: 'list(VariativeElement)', mode: 'ReportMode'):
