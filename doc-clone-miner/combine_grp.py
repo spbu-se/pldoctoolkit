@@ -113,6 +113,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     # (1)
     cycle = True
     iterations_passed = 0
+    stats_2_expanded_or_combined = 0
     while cycle:
         cycle = False
         vg_intervals = build_interval_tree()  # TODO: why does it crash when used incrementally as in (2)?..
@@ -180,6 +181,10 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             avg.remove(g2)
             # (2.3)
             avg.add(new_ve)
+
+            if len(g1.clone_groups) == 2:  stats_2_expanded_or_combined += 1
+            if len(g2.clone_groups) == 2:  stats_2_expanded_or_combined += 1
+
             logging.debug("AVG %d <-" % (len(avg),))
 
             # (2.4)
@@ -212,11 +217,16 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         for vg in var_groups:
             vgs[len(vg.clone_groups)] += 1
         logging.getLogger("cloneminer.combine.n_ext_points").info("Variative groups:")
-        for gc in vgs.keys():
+        logging.getLogger("cloneminer.combine.n_ext_points").info(
+            " - expanded or combined pairs: %d" % (stats_2_expanded_or_combined,)
+        )
+        for gc in sorted(vgs.keys()):
             logging.getLogger("cloneminer.combine.n_ext_points").info(" - %d -> %d" % (gc, vgs[gc]))
         if vgs.keys():
             avg = sum([vgs[gc]*gc for gc in vgs.keys()]) / sum([vgs[gc] for gc in vgs.keys()])
             logging.getLogger("cloneminer.combine.n_ext_points").info(" - AVG -> %f" % (avg,))
+        if vgs.values():
+            logging.getLogger("cloneminer.combine.n_ext_points").info(" - Total VGs -> %d" % (sum(vgs.values()),))
         logging.getLogger("cloneminer.combine.n_ext_points").info("Spent time: %f s." % (t2 - t1,))
 
     pstats()

@@ -335,16 +335,27 @@ class InternalOkBreak(InternalException):
 
 
 class CloneGroup(ABC):
+    wre = re.compile(r"\w+")
+
     def __init__(self, id):
         self.id = id
         self.instances = None
 
-    def text(self, inst=0):
-        global inputfiles
-        global clonegroups
+    @abstractmethod
+    def plain_text_words(self, inst=0):
+        pass
 
-        fileno, start, end = self.instances[inst]
-        return inputfiles[fileno][start:end]
+    @abstractmethod
+    def text(self, inst=0):
+        pass
+
+    def all_text_words(self, inst=0):
+        """
+        All words in the both markup and plain text
+        :param inst: instance number
+        :return: list of words
+        """
+        return CloneGroup.wre.findall(self.text(inst=inst))
 
     @abstractmethod
     def html(self, inst=0, allow_space_wrap=False):
@@ -385,6 +396,10 @@ class FuzzyCloneGroup(CloneGroup):
 
     def text(self, inst=0):
         return self.instancewords[0]
+
+    def plain_text_words(self, inst=0):
+        return CloneGroup.wre.findall(self.instancewords[inst])
+
 
     def html(self, inst=None, allow_space_wrap=False):
         import worddiff
@@ -567,6 +582,13 @@ class ExactCloneGroup(CloneGroup):
         sl = e - so + 1
         return xmllexer.get_plain_texts(so, sl, inputfiles[ifilen].lexintervals)
 
+    def text(self, inst=0):
+        global inputfiles
+        global clonegroups
+
+        fileno, start, end = self.instances[inst]
+        return inputfiles[fileno][start:end]
+
     def plain_text(self, instance_no=0):
         return ' '.join(self._plain_texts_from_intervals(instance_no))
 
@@ -579,10 +601,13 @@ class ExactCloneGroup(CloneGroup):
         # print("No text in: " + self.text())
         return len(''.join([s.strip() for s in self._plain_texts_from_intervals()])) == 0
 
+    def plain_text_words(self, inst=0):
+        return semanticfilter.cleanwords(self.plain_text())
+
     def containsNoWords(self):
         if self.containsNoText():
             return True
-        elif len(semanticfilter.cleanwords(self.plain_text())) == 0:
+        elif len(self.plain_text_words()) == 0:
             return True
         else:
             return False
@@ -1126,6 +1151,18 @@ class VariativeElement(object):
         :return: Count of symbols in archetype, regardless to groups' power.
         """
         return sum([g.ntokens for g in self.clone_groups])
+
+    def archetype_length_in_all_words(self):
+        """
+        :return: Count of all (markup too) words in archetype, regardless to groups' power.
+        """
+        return sum([len(g.all_text_words()) for g in self.clone_groups])
+
+    def archetype_length_in_human_readable_words(self):
+        """
+        :return: Count of words in archetype, regardless to groups' power.
+        """
+        return sum([len(g.plain_text_words()) for g in self.clone_groups])
 
     def variations_length_in_symbols(self):
         """

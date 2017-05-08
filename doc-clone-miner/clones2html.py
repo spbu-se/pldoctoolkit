@@ -541,7 +541,7 @@ def combine_gruops():
     ))
 
     combinations = list(filter(
-        lambda ve: ve.archetype_length_in_CM_tokens() >= minimal_archetype_length and not ve.contains_no_words(),
+        lambda ve: ve.archetype_length_in_all_words() >= minimal_archetype_length and not ve.contains_no_words(),
         combinations
     ))
 
