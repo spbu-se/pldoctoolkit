@@ -532,8 +532,13 @@ def combine_gruops():
 
     # ACHTUNG!!!
     # DO NOT COMMIT TO PRODUCTION!!!
-    # Only show variative elements in report
+    # 1. Only show variative elements in report
     # combinations += [clones.VariativeElement([gr]) for gr in remaining_groups]
+    # 2. Only show combinations with delta > 15% of archetype
+    combinations = list(filter(
+        lambda ve: ve.max_variations_length_in_symbols() > 0.15 * ve.archetype_length_in_symbols(),
+        combinations
+    ))
 
     combinations = list(filter(
         lambda ve: ve.archetype_length_in_CM_tokens() >= minimal_archetype_length and not ve.contains_no_words(),
