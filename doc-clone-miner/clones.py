@@ -339,6 +339,10 @@ class CloneGroup(ABC):
         self.id = id
         self.instances = None
 
+    @abstractmethod
+    def plain_text_words(self, inst=0):
+        pass
+
     def text(self, inst=0):
         global inputfiles
         global clonegroups
@@ -376,6 +380,8 @@ class CloneGroup(ABC):
         return sum(ie - ib + 1 for fn, ib, ie in self.instances)
 
 class FuzzyCloneGroup(CloneGroup):
+    wre = re.compile(r"\w+")
+
     def __init__(self, id, clones, clonetexts, clonewords, ratio=None):
         super().__init__(id)
         self.instances = clones
@@ -385,6 +391,10 @@ class FuzzyCloneGroup(CloneGroup):
 
     def text(self, inst=0):
         return self.instancewords[0]
+
+    def plain_text_words(self, inst=0):
+        return FuzzyCloneGroup.wre.findall(self.instancewords[inst])
+
 
     def html(self, inst=None, allow_space_wrap=False):
         import worddiff
@@ -579,10 +589,13 @@ class ExactCloneGroup(CloneGroup):
         # print("No text in: " + self.text())
         return len(''.join([s.strip() for s in self._plain_texts_from_intervals()])) == 0
 
+    def plain_text_words(self, inst=0):
+        return semanticfilter.cleanwords(self.plain_text())
+
     def containsNoWords(self):
         if self.containsNoText():
             return True
-        elif len(semanticfilter.cleanwords(self.plain_text())) == 0:
+        elif len(self.plain_text_words()) == 0:
             return True
         else:
             return False
@@ -1126,6 +1139,12 @@ class VariativeElement(object):
         :return: Count of symbols in archetype, regardless to groups' power.
         """
         return sum([g.ntokens for g in self.clone_groups])
+
+    def archetype_length_in_human_readable_words(self):
+        """
+        :return: Count of words in archetype, regardless to groups' power.
+        """
+        return sum([len(g.plain_text_words()) for g in self.clone_groups])
 
     def variations_length_in_symbols(self):
         """
