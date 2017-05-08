@@ -530,7 +530,10 @@ def combine_gruops():
 
     # print("Offered clones -- total: %d, single: %d, variative: %d" % (len(remaining_groups) + len(combinations), len(remaining_groups), len(combinations)))
 
-    combinations += [clones.VariativeElement([gr]) for gr in remaining_groups]
+    # ACHTUNG!!!
+    # DO NOT COMMIT TO PRODUCTION!!!
+    # Only show variative elements in report
+    # combinations += [clones.VariativeElement([gr]) for gr in remaining_groups]
 
     combinations = list(filter(
         lambda ve: ve.archetype_length_in_CM_tokens() >= minimal_archetype_length and not ve.contains_no_words(),

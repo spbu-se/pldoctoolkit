@@ -170,7 +170,10 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             # (2.2)
             new_ve = g1 + g2
 
-            cycle = True  # check for (3)
+            # ACHTUNG!!!
+            # DO NOT COMMIT TO PRODUCTION!!!
+            # Combining only up to two groups to check for constant
+            # cycle = True  # check for (3)
 
             # (2.1)
             avg.remove(g1)

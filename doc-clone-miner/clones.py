@@ -1420,7 +1420,10 @@ class VariativeElement(object):
 
         return templ.substitute(
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
-            idx=VariativeElement._html_idx
+            # ACHTUNG!!!
+            # DO NOT COMMIT TO PRODUCTION!!!
+            # Show Variative element hash code to compare which of them present
+            idx= ("%d\t%d" % (VariativeElement._html_idx, hash(self))),
             eptsl="" if self.fuzzy else ('<td class ="fxd" >' + str(self.power - 1) + '</td>'),
             clgr=len(self.clone_groups[0].instances),
             desc=self.textdescriptor,
