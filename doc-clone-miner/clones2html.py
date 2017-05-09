@@ -530,20 +530,27 @@ def combine_gruops():
 
     # print("Offered clones -- total: %d, single: %d, variative: %d" % (len(remaining_groups) + len(combinations), len(remaining_groups), len(combinations)))
 
+    combinations = list(filter(
+        lambda ve: ve.archetype_length_in_all_words() >= minimal_archetype_length and not ve.contains_no_words(),
+        combinations
+    ))
+
     # ACHTUNG!!!
     # DO NOT COMMIT TO PRODUCTION!!!
     # 1. Only show variative elements in report
     # combinations += [clones.VariativeElement([gr]) for gr in remaining_groups]
     # 2. Only show combinations with delta > 15% of archetype
+    # 3. Log needed information
+    logging.getLogger("cloneminer.combine.n_ext_points.evaluation.1").info(
+        "Total VG >= 5 tokens: %d" % (len(combinations),)
+    )
     combinations = list(filter(
         lambda ve: ve.max_variations_length_in_symbols() > 0.15 * ve.archetype_length_in_symbols(),
         combinations
     ))
-
-    combinations = list(filter(
-        lambda ve: ve.archetype_length_in_all_words() >= minimal_archetype_length and not ve.contains_no_words(),
-        combinations
-    ))
+    logging.getLogger("cloneminer.combine.n_ext_points.evaluation.1").info(
+        "Total VG >= 5 tokens with D > 15%% A: %d" % (len(combinations),)
+    )
 
     combinations.sort(key=lambda ve: ve.size, reverse=True)
 
