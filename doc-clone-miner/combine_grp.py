@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'dluciv'
 
+minimal_archetype_length = None
 
 def combine_gruops_par_20140819(available_groups):
     # import multiprocessing
@@ -79,6 +80,8 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     :param available_groups:
     :return:
     """
+    global minimal_archetype_length
+
     import sys
     import itertools
     import logging
@@ -113,6 +116,8 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     # (1)
     cycle = True
     iterations_passed = 0
+    stats_2_expanded_or_combined = 0
+    stats_2_total_pairs_appeared = 0
     while cycle:
         cycle = False
         vg_intervals = build_interval_tree()  # TODO: why does it crash when used incrementally as in (2)?..
@@ -178,6 +183,11 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             # (2.3)
             avg.add(new_ve)
 
+            if len(g1.clone_groups) == 2 and g1.archetype_length_in_all_words() >= minimal_archetype_length:  stats_2_expanded_or_combined += 1
+            if len(g2.clone_groups) == 2 and g2.archetype_length_in_all_words() >= minimal_archetype_length:  stats_2_expanded_or_combined += 1
+            if len(new_ve.clone_groups) == 2 and new_ve.archetype_length_in_all_words() >= minimal_archetype_length:  stats_2_total_pairs_appeared += 1
+
+
             logging.debug("AVG %d <-" % (len(avg),))
 
             # (2.4)
@@ -210,6 +220,16 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         for vg in var_groups:
             vgs[len(vg.clone_groups)] += 1
         logging.getLogger("cloneminer.combine.n_ext_points").info("Variative groups:")
+
+        # ACHTUNG!!! DO NOT COMMIT TO PRODUCTION!
+        # How many pairs of total >= 5 tokens were expanded/combined
+        logging.getLogger("cloneminer.combine.n_ext_points.evaluation.2").info(
+            " - total built pairs of >= minimal length in tokens: %d" % (stats_2_total_pairs_appeared,)
+        )
+        logging.getLogger("cloneminer.combine.n_ext_points.evaluation.2").info(
+            " - expanded or combined pairs of >= minimal length in tokens: %d" % (stats_2_expanded_or_combined,)
+        )
+
         for gc in sorted(vgs.keys()):
             logging.getLogger("cloneminer.combine.n_ext_points").info(" - %d -> %d" % (gc, vgs[gc]))
         if vgs.keys():

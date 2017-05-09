@@ -521,6 +521,8 @@ def combine_gruops():
         # TODO: "interval-2-ext": findnearby201312 # first try, 2013 -- port or delete it
     }
 
+    combine_grp.minimal_archetype_length = minimal_archetype_length
+
     group_combinator = group_combinators[group_combining_algorithm_name]
 
     if nearby:
@@ -536,6 +538,12 @@ def combine_gruops():
         lambda ve: ve.archetype_length_in_all_words() >= minimal_archetype_length and not ve.contains_no_words(),
         combinations
     ))
+
+    logging.getLogger("cloneminer.combine.n_ext_points.evaluation.2").info(
+        " - total VGs of >= minimal length in tokens: %d" % (
+            len(list(filter(lambda ve: len(ve.clone_groups) > 1 , combinations))),
+        )
+    )
 
     combinations.sort(key=lambda ve: ve.size, reverse=True)
 
