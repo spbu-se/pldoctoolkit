@@ -1412,7 +1412,7 @@ class VariativeElement(object):
 
         templ = string.Template(textwrap.dedent("""
             <tr class="${cssclass} variative" data-groups="${desc}">
-            <td class="fxd">${idx}</td>
+            <td class="fxd">${idx}</td><!-- IDESC: ${idesc} -->
             """ + ("""<td class="fxd">${clgr}</td>""" if len(startgrp.instances) > 1 else "") + """
             ${eptsl}
             <td class="tka"><tt>${text}</tt></td>
@@ -1462,6 +1462,7 @@ class VariativeElement(object):
         return templ.substitute(
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
             idx=VariativeElement._html_idx,
+            idesc=self.id_descriptor(),
             eptsl="" if self.fuzzy else ('<td class ="fxd" >' + str(self.power - 1) + '</td>'),
             clgr=len(self.clone_groups[0].instances),
             desc=self.textdescriptor,
@@ -1478,6 +1479,9 @@ class VariativeElement(object):
     def obeys_basset_constraint(self):
         return self.max_variations_length_in_symbols() <= \
                bassett_variativity_threshold * self.archetype_length_in_symbols()
+
+    def id_descriptor(self):
+        return '_'.join([str(g.id) for g in self.clone_groups])
 
     def __hash__(self):
         """
