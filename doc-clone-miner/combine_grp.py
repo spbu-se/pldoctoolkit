@@ -185,7 +185,11 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
 
             if len(g1.clone_groups) == 2 and g1.archetype_length_in_all_words() >= minimal_archetype_length:  stats_2_expanded_or_combined += 1
             if len(g2.clone_groups) == 2 and g2.archetype_length_in_all_words() >= minimal_archetype_length:  stats_2_expanded_or_combined += 1
-            if len(new_ve.clone_groups) == 2 and new_ve.archetype_length_in_all_words() >= minimal_archetype_length:  stats_2_total_pairs_appeared += 1
+            if \
+                len(new_ve.clone_groups) == 2 and \
+                new_ve.archetype_length_in_all_words() >= minimal_archetype_length and \
+                new_ve.clone_groups[0].ntokens > 5 and new_ve.clone_groups[1].ntokens > 5:
+                stats_2_total_pairs_appeared += 1
 
 
             logging.debug("AVG %d <-" % (len(avg),))

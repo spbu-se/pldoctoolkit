@@ -545,6 +545,13 @@ def combine_gruops():
         )
     )
 
+    # Then only output combinations whose alone groups have < 5 CM tokens (Q3)
+    combinations = list(filter(
+        lambda ve: len(ve.clone_groups) > 1 and min([g.ntokens for g in ve.clone_groups]) < 5,
+        combinations
+    ))
+
+
     combinations.sort(key=lambda ve: ve.size, reverse=True)
 
     cohtml = clones.VariativeElement.summaryhtml(combinations, clones.ReportMode.variative)
