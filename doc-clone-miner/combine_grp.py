@@ -156,19 +156,20 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
                 # those are close enough to keep variative part less than 15% of archetype
             ]
             if len(g2sdists) > 0:
-                best_g2_d = min(g2sdists, key=lambda gd: gd[1])
-                tojoin.add((g1, best_g2_d[0]))
-                skip.add(g1)
-                skip.add(best_g2_d[0])
+                best_g2, best_d = min(g2sdists, key=lambda gd: gd[1])
+                g1_g2 = g1 + best_g2
+                # In fact, interval expansion is a bit more tolerant than it should be, let's correct it here
+                if g1_g2.obeys_basset_constraint():
+                    tojoin.add((g1, best_g2, g1_g2))
+                    skip.add(g1)
+                    skip.add(best_g2)
 
             if not g1i % 100:
                 pprogress(iterations_passed, g1i / len(avg))
 
         # (2)
-        for g1, g2 in tojoin:
+        for g1, g2, new_ve in tojoin:
             logging.debug("AVG %d ->" % (len(avg),))
-            # (2.2)
-            new_ve = g1 + g2
 
             cycle = True  # check for (3)
 

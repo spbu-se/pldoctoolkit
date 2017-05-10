@@ -157,6 +157,9 @@ def initoptions(args, logger):
     global bassett_variativity_threshold
     bassett_variativity_threshold = args.bassett_variativity_threshold
 
+    global minimal_archetype_length
+    minimal_archetype_length = args.minimal_archetype_length
+
 
 def average(container):
     return sum(container) / len(container)
@@ -762,6 +765,8 @@ class ExactCloneGroup(CloneGroup):
     by_too_long = 0
     by_too_poor = 0
 
+    prefiltering = False
+
     def isCorrect(self):
         global inputfiles
         global clonegroups
@@ -778,7 +783,7 @@ class ExactCloneGroup(CloneGroup):
             ExactCloneGroup.by_too_poor += 1
             return False
 
-        if False:
+        if ExactCloneGroup.prefiltering:
             #  Will check it in variative element
             if self.isLessThanAllowed():
                 # logger.debug("group is less than allowed")
@@ -794,8 +799,7 @@ class ExactCloneGroup(CloneGroup):
                 # logger.info("no semantic")
                 ExactCloneGroup.by_no_semantic += 1
                 return False
-
-        if True:
+        else:
             # Check all clones are not empty
             for filen, b, e in self.instances:
                 if b == e:
@@ -1463,6 +1467,17 @@ class VariativeElement(object):
             desc=self.textdescriptor,
             text=vtext
         )
+
+    postfiltering = False
+    def passes_filter(self):
+        if VariativeElement.postfiltering:
+            return self.archetype_length_in_all_words() >= minimal_archetype_length and not self.contains_no_words()
+        else:
+            return True
+
+    def obeys_basset_constraint(self):
+        return self.max_variations_length_in_symbols() <= \
+               bassett_variativity_threshold * self.archetype_length_in_symbols()
 
     def __hash__(self):
         """
