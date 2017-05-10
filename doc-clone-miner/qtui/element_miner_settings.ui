@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>571</width>
-    <height>535</height>
+    <height>564</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -411,7 +411,7 @@
           <item>
            <widget class="QStackedWidget" name="swDevSettings">
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="pgEmpty">
              <layout class="QVBoxLayout" name="verticalLayout_4">
