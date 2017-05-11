@@ -373,6 +373,8 @@ class CloneGroup(ABC):
             ["%d:%d-%d" % inst for inst in sorted(self.instances)]  # sorting should work as described above
         )
 
+    def id_descriptor(self):
+        return "%08X" % (hash(self.textdescriptor) & 0xffffffff,)
 
     def __hash__(self):  # to add to set
         return hash(self.id) ^ 445051238233  # fast, but not very safe, better to only add CloneGroups to sets
@@ -562,9 +564,10 @@ class ExactCloneGroup(CloneGroup):
                 return infty
 
         global maximalrsd
-        rsd = coefficient_of_variation(dists)
-        if rsd > maximalrsd:
-            return infty
+        if maximalrsd > 0.0:
+            rsd = coefficient_of_variation(dists)
+            if rsd > maximalrsd:
+                return infty
 
         return m
 
@@ -1481,14 +1484,14 @@ class VariativeElement(object):
                bassett_variativity_threshold * self.archetype_length_in_symbols()
 
     def id_descriptor(self):
-        return '_'.join([str(g.id) for g in self.clone_groups])
+        return '_'.join([str(g.id_descriptor()) for g in self.clone_groups])
 
     def __hash__(self):
         """
         To identify content in unique way
         :return: VariativeElement's hash code
         """
-        return hash(tuple([g.id for g in self.clone_groups]))
+        return hash(self.id_descriptor())
 
     @staticmethod
     def summaryhtml(elements: 'list(VariativeElement)', mode: 'ReportMode'):
