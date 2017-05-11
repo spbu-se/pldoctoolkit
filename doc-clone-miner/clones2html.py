@@ -670,4 +670,4 @@ if __name__ == '__main__':  #
     write_density_report()
     combs = combine_gruops()
     log_reuse_amount(combs)
-    extra_report.perform(clones.VariativeElement, combs, logging.getLogger("cloneminer.extra_report"))
+    extra_report.perform(clones, combs, logging.getLogger("cloneminer.extra_report"))
