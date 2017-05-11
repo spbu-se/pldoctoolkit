@@ -536,6 +536,11 @@ def combine_gruops():
 
     combinations.sort(key=lambda ve: ve.size, reverse=True)
 
+    l = logging.getLogger("cloneminer.combine.n_ext_points")
+    l.info("After final filtering, having:")
+    l.info("Exact dup groups: %d" % len(list(filter(lambda ve: len(ve.clone_groups) == 1, combinations))))
+    l.info("Near  dup groups: %d" % len(list(filter(lambda ve: len(ve.clone_groups) >  1, combinations))))
+
     cohtml = clones.VariativeElement.summaryhtml(combinations, clones.ReportMode.variative)
     with open(os.path.join("Output", subdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:
         htmlfile.write(cohtml)
