@@ -108,7 +108,7 @@ def initoptions(args, logger):
 
     global evaluation_2015
     evaluation_2015 = False
-    if args.group_combining_algorithm == "full-square":
+    if args.group_combining_algorithm == "full-square" or not args.findnearby:
         evaluation_2015 = True
         ExactCloneGroup.prefiltering = True
 
