@@ -300,16 +300,6 @@ if filterintersections:
     clones.clonegroups = [g for g in clones.clonegroups if len(g.instances) > 1]
 
     logging.info("after removing intersections having %d groups" % len(clones.clonegroups))
-    logging.info("REUSE AMOUNT STATS:")
-    tot_length = 0
-    reuse_length = 0
-    for ifl in clones.inputfiles:
-        tot_length += len(ifl.text)
-    for g in clones.clonegroups:
-        for f, b, e in g.instances:
-            reuse_length += e - b
-    logging.info("Total: " + str(tot_length) + " Reusable: " + str(reuse_length) + " AMOUNT: " + str(reuse_length/tot_length))
-
     # print("Total symbols in non-intersecting groups: %d" % (totalsymbolsingroups(clones.clonegroups),))
 
 
@@ -559,6 +549,7 @@ def combine_gruops():
         os.path.join("Output", subdir, "jquery-2.0.3.min.js")
     )
 
+    return combinations
 
 def write_density_report():
     with \
@@ -653,9 +644,23 @@ def write_density_report():
             </html>"""
         ))
 
+def log_reuse_amount(candidates: 'list[clones.VariativeElement]'):
+    l = logging.getLogger("cloneminer.combine.n_ext_points")
+    tot_length = 0
+    reuse_length = 0
+    for ifl in clones.inputfiles:
+        tot_length += len(ifl.text)
+    for vg in candidates:
+        for g in vg.clone_groups:
+            for f, b, e in g.instances:
+                reuse_length += e - b
+
+    l.info("Total: " + str(tot_length) + " Reusable: " + str(reuse_length) + " AMOUNT: " + str(reuse_length/tot_length))
+
 if __name__ == '__main__':  #
     if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
         log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)
 
     write_density_report()
-    combine_gruops()
+    combs = combine_gruops()
+    log_reuse_amount(combs)
