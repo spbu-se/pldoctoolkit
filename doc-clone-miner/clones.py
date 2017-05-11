@@ -24,6 +24,8 @@ import xmllexer
 import xmlfixup
 import semanticfilter
 
+import hashlib
+
 
 # seems reasonable
 # http://stackoverflow.com/questions/3269434/whats-the-most-efficient-way-to-test-two-integer-ranges-for-overlap
@@ -344,6 +346,9 @@ class CloneGroup(object):
         return ",".join(
             ["%d:%d-%d" % inst for inst in sorted(self.instances)]  # sorting should work as described above
         )
+
+    def id_descriptor(self):
+        return hashlib.md5(self.textdescriptor.encode('utf-8')).hexdigest()[:8].upper()
 
     def __hash__(self):  # to add to set
         return hash(self.id) ^ 445051238233  # fast, but not very safe, better to only add CloneGroups to sets
@@ -856,6 +861,16 @@ class VariativeElement(object):
 
         return result
 
+    def id_descriptor(self):
+        return '_'.join([str(g.id_descriptor()) for g in self.clone_groups])
+
+    def __hash__(self):
+        """
+        To identify content in unique way
+        :return: VariativeElement's hash code
+        """
+        return hash(self.id_descriptor())
+
     @property
     def html(self):
         def esc(s):
@@ -866,6 +881,7 @@ class VariativeElement(object):
 
         templ = string.Template(textwrap.dedent("""
             <tr class="${cssclass} variative" data-groups="${desc}">
+            <!-- IDESC: ${idesc} -->
             <!-- <td>${ngrp}</td> -->
             <!-- <td>${grps}</td> -->
             <td class="fxd">${clgr}</td>
@@ -910,6 +926,7 @@ class VariativeElement(object):
         return templ.substitute(
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
             ngrp=self.power,
+            idesc=self.id_descriptor(),
             grps=",".join([str(grp.id) for grp in self.clone_groups]) + ",",
             clgr=len(self.clone_groups[0].instances),
             varel=len(self.clone_groups) - 1,
