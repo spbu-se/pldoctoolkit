@@ -105,6 +105,12 @@ def initoptions(args, logger):
     global only_generate_for_ui
     only_generate_for_ui = args.only_ui == 'yes'
 
+    global evaluation_2015
+    evaluation_2015 = False
+    if args.group_combining_algorithm == "full-square":
+        evaluation_2015 = True
+        ExactCloneGroup.prefiltering = True
+
     global blacklist
     blacklist = set()
 
@@ -762,6 +768,7 @@ class ExactCloneGroup(CloneGroup):
     # filtered by:
     by_breaking_url = 0
     by_no_words = 0
+    by_no_text = 0
     by_too_short = 0
     by_no_semantic = 0
     by_broken_markup = 0
@@ -770,9 +777,13 @@ class ExactCloneGroup(CloneGroup):
 
     prefiltering = False
 
+    def __repr__(self):
+        return "%d(%s) [%d]: %s" % (self.id, self.id_descriptor(), len(self.instances), self.text())
+
     def isCorrect(self):
         global inputfiles
         global clonegroups
+        global evaluation_2015
 
         if self.isBlacklisted():
             # logger.debug("blacklisted")
@@ -793,10 +804,15 @@ class ExactCloneGroup(CloneGroup):
                 ExactCloneGroup.by_too_short += 1
                 return False
 
-            if self.containsNoWords():  # also implies countainsNoText() check
-                # logger.debug("no words in group")
-                ExactCloneGroup.by_no_words += 1
-                return False
+            if evaluation_2015:
+                if self.containsNoText():
+                    ExactCloneGroup.by_no_text += 1
+                    return False
+            else:
+                if self.containsNoWords():  # also implies countainsNoText() check
+                    # logger.debug("no words in group")
+                    ExactCloneGroup.by_no_words += 1
+                    return False
 
             if checksemanticspresence and self.containsNoSemantic():
                 # logger.info("no semantic")

@@ -524,10 +524,8 @@ def combine_gruops():
     group_combinator = group_combinators[group_combining_algorithm_name]
 
     if group_combining_algorithm_name == "full-square":
-        clones.ExactCloneGroup.prefiltering = True
         clones.VariativeElement.postfiltering = False
     elif group_combining_algorithm_name == "interval-n-ext":
-        clones.ExactCloneGroup.prefiltering = False
         clones.VariativeElement.postfiltering = True
     else:
         raise Exception("WAT?..")
