@@ -19,6 +19,7 @@ import itertools
 import enum
 import math
 import numpy
+import hashlib
 
 import verbhtml
 import xmllexer
@@ -380,7 +381,7 @@ class CloneGroup(ABC):
         )
 
     def id_descriptor(self):
-        return "%08X" % (hash(self.textdescriptor) & 0xffffffff,)
+        return hashlib.md5(self.textdescriptor.encode('utf-8')).hexdigest()[:8].upper()
 
     def __hash__(self):  # to add to set
         return hash(self.id) ^ 445051238233  # fast, but not very safe, better to only add CloneGroups to sets
