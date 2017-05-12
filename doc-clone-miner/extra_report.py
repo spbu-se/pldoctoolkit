@@ -65,6 +65,6 @@ def perform(clones, candidates, lgr, **kwargs):
         with open("vyugu_2017_3.html", 'w', encoding='utf-8') as htmlfile:
             htmlfile.write(cohtml)
 
-    vyugu_2017_3()
+    # vyugu_2017_3()
 
     pass
