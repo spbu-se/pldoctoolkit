@@ -544,7 +544,7 @@ def combine_gruops():
     l.info("Near  dup groups: %d" % len(list(filter(lambda ve: len(ve.clone_groups) >  1, combinations))))
 
     util.write_variative_report(
-        clones, combinations, l,
+        clones, combinations,
         os.path.join("Output", subdir, "pyvarelements.html")
     )
 

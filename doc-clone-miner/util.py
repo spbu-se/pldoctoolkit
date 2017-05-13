@@ -23,12 +23,11 @@ def escapecode(s, allow_space_wrap=False):
     return s
 
 
-def write_variative_report(clones, candidates, lgr, report_file_name):
+def write_variative_report(clones, candidates, report_file_name):
     """
     Function to save extra reports
     :param clones: clones module VariativeElement
     :param candidates: list of clones.VariativeElement instances 
-    :param lgr: logger to log =)
     :param report_file_name: HTML file to save everything 
     :return: 
     """
