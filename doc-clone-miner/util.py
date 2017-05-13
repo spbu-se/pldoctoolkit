@@ -46,3 +46,14 @@ def write_variative_report(clones, candidates, report_file_name):
         os.path.join(target_dir, "jquery-2.0.3.min.js")
     )
 
+
+def transpose(a):
+    """
+    Thanks, http://stackoverflow.com/a/21444360/539470
+    :param a: list of lists (say, lines of a matrix)
+    :return: list of lists (say, lines of transposed matrix)
+    """
+    return [list(x) for x in zip(*a)]
+
+def setslice(arr, value, first, after_last):
+    arr[first:after_last] = [value] * (after_last - first)
