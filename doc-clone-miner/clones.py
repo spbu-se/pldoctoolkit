@@ -372,6 +372,10 @@ class CloneGroup(ABC):
         pass
 
     @property
+    def c_power(self):
+        return len(self.instances)
+
+    @property
     def textdescriptor(self):
         """
         :return: textual description in form of fileno:begin-end joined by "," ordered by fileno then by begin offset
@@ -1359,8 +1363,12 @@ class VariativeElement(object):
         return isinstance(self.clone_groups[0], FuzzyCloneGroup)
 
     @property
-    def power(self):
+    def g_power(self):
         return len(self.clone_groups)
+
+    @property
+    def c_power(self):
+        return len(self.clone_groups[0].instances)
 
     def getvariations(self, position):
         global inputfiles
@@ -1483,7 +1491,7 @@ class VariativeElement(object):
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
             idx=VariativeElement._html_idx,
             idesc=self.id_descriptor(),
-            eptsl="" if self.fuzzy else ('<td class ="fxd" >' + str(self.power - 1) + '</td>'),
+            eptsl="" if self.fuzzy else ('<td class ="fxd" >' + str(self.g_power - 1) + '</td>'),
             clgr=len(self.clone_groups[0].instances),
             desc=self.textdescriptor,
             text=vtext

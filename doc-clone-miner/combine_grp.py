@@ -128,7 +128,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             # on second and further iterations no new single groups
             # will be combined with each other, so only consider variative ones
             # TODO: test better
-            if iterations_passed and g1.power == 1:
+            if iterations_passed and g1.g_power == 1:
                 continue
 
             probable_g2_intervals = [
