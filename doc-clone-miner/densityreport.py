@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import clones
-import verbhtml
+import util
 import textwrap
 import itertools
 import xmllexer
@@ -152,7 +152,7 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
                 if k in {xmllexer.IntervalType.general, xmllexer.IntervalType.comment} and len(t) and not t.isspace()
                 ]
 
-            return verbhtml.escapecode(" ".join(hparts), allow_space_wrap=True)
+            return util.escapecode(" ".join(hparts), allow_space_wrap=True)
 
         def release_portion(o):
             nonlocal prev_offset, ccd, crd

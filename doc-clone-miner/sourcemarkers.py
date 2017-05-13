@@ -9,7 +9,7 @@ from abc import ABCMeta, abstractmethod
 import uuid
 import re
 import xmllexer
-import verbhtml
+import util
 import sys
 import logging
 
@@ -116,12 +116,12 @@ def source_text_to_html(src):
     result = ""
     curoff = 0
     for b, e, t in intervals:
-        result += verbhtml.escapen(src[curoff:b]) + \
+        result += util.escapen(src[curoff:b]) + \
             """<span style="color: grey;">""" + \
-            verbhtml.escapen(src[b:e]) + \
+                  util.escapen(src[b:e]) + \
             """</span>"""
         curoff = e
-    result += verbhtml.escapen(src[curoff:])
+    result += util.escapen(src[curoff:])
     return result
 
 if __name__ == '__main__':  # tests

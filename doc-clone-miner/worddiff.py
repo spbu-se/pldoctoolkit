@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import difflib
-import verbhtml
+import util
 
 def _diff_words(words1, words2):
-    words1 = [verbhtml.escape(w.strip()) for w in words1.split(' ') if w.strip() != ""]
+    words1 = [util.escape(w.strip()) for w in words1.split(' ') if w.strip() != ""]
     words2 = [w.strip() for w in words2.split(' ') if w.strip() != ""]
     # Timing: The basic Ratcliff-Obershelp algorithm is cubic time in the worst case and quadratic time in the expected case
     # https://docs.python.org/3/library/difflib.html#difflib.SequenceMatcher
@@ -31,7 +31,7 @@ def get_htmls(texts):
     :param texts: space-separated word strings
     :return: array of HTML fragmets for each of them with differences from first one
     """
-    result = [verbhtml.escape(texts[0])]
+    result = [util.escape(texts[0])]
     for text in texts[1:]:
         result.append(_diff_words(texts[0], text))
     return result

@@ -21,6 +21,7 @@ import shutil
 import time
 import errno
 import csv
+import util
 
 import intertree
 import clones
@@ -542,17 +543,9 @@ def combine_gruops():
     l.info("Exact dup groups: %d" % len(list(filter(lambda ve: len(ve.clone_groups) == 1, combinations))))
     l.info("Near  dup groups: %d" % len(list(filter(lambda ve: len(ve.clone_groups) >  1, combinations))))
 
-    cohtml = clones.VariativeElement.summaryhtml(combinations, clones.ReportMode.variative)
-    with open(os.path.join("Output", subdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:
-        htmlfile.write(cohtml)
-
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'interactivity.js'),
-        os.path.join("Output", subdir, "interactivity.js")
-    )
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'jquery-2.0.3.min.js'),
-        os.path.join("Output", subdir, "jquery-2.0.3.min.js")
+    util.write_variative_report(
+        clones, combinations, l,
+        os.path.join("Output", subdir, "pyvarelements.html")
     )
 
     return combinations

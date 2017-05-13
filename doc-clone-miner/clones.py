@@ -21,7 +21,7 @@ import math
 import numpy
 import hashlib
 
-import verbhtml
+import util
 import xmllexer
 import xmlfixup
 import semanticfilter
@@ -428,7 +428,7 @@ class FuzzyCloneGroup(CloneGroup):
                 )
             return os.linesep.join(resulttexts)
         else:
-            return "<code>" + verbhtml.escapecode(self.text(inst), allow_space_wrap) + "</code>"
+            return "<code>" + util.escapecode(self.text(inst), allow_space_wrap) + "</code>"
 
 
 class ExactCloneGroup(CloneGroup):
@@ -483,7 +483,7 @@ class ExactCloneGroup(CloneGroup):
 
         hparts = [
             "<code>" +
-            verbhtml.escapecode(
+            util.escapecode(
                 ExactCloneGroup.two_or_more_spaces_re.sub(" ", ExactCloneGroup.two_or_more_nlines_re.sub(" ", t)),
                 allow_space_wrap) +
             "</code>"
@@ -1387,7 +1387,7 @@ class VariativeElement(object):
             if len(s.strip()) == 0:
                 return """<span style="font-weight: bold; color: red;">&epsilon;</span>"""
             else:
-                return verbhtml.escapecode(s, allow_space_wrap=True)
+                return util.escapecode(s, allow_space_wrap=True)
 
         g1 = self.clone_groups[position]
         g2 = self.clone_groups[position + 1]
@@ -1663,6 +1663,6 @@ class VariativeElement(object):
         </body></html>""")
 
         global only_generate_for_ui
-        source = "** generated for standalone UI **" if only_generate_for_ui else verbhtml.escapecode(inputfiles[0].text)
+        source = "** generated for standalone UI **" if only_generate_for_ui else util.escapecode(inputfiles[0].text)
 
         return start + (os.linesep.join([e.html for e in elements])) + middle + source + finish
