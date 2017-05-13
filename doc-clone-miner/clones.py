@@ -1059,13 +1059,6 @@ class ReportMode(enum.IntEnum):
     fuzzyclones = 1
     fuzzymatches = 2
 
-def transpose(a):
-    """
-    Thanks, http://stackoverflow.com/a/21444360/539470
-    :param a: list of lists (say, lines of a matrix)
-    :return: list of lists (say, lines of transposed matrix)
-    """
-    return [list(x) for x in zip(*a)]
 
 class VariativeElement(object):
     count = 0
@@ -1204,7 +1197,7 @@ class VariativeElement(object):
         posvar = [self.getvariations(pos) for pos in range(len(self.clone_groups) - 1)]
 
         # Then [instance number, variation position]
-        varpos = transpose(posvar)
+        varpos = util.transpose(posvar)
 
         # summary variations length, by instance
         return [sum([len(v) for v in i]) for i in varpos]
@@ -1223,7 +1216,7 @@ class VariativeElement(object):
 
         beginngings = [inst[1] for inst in left_group.instances]
         endings = [inst[2] for inst in right_group.instances]
-        begends = transpose([beginngings, endings])
+        begends = util.transpose([beginngings, endings])
 
         if expanded:
             vls = self.variations_length_in_symbols()
