@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-def perform(clones, candidates, lgr, **kwargs):
+import util
+
+def perform(clones: 'module', candidates: 'list[clones.VariativeElement]', lgr: 'logging.Logger', **kwargs):
     """
     Function to construct extra reports
     :param clones: clones module VariativeElement
