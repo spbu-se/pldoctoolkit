@@ -1,7 +1,8 @@
+Winter 2017
+===========
+
 GIMP reference
-
 6949533 bytes in 580 HTML pages
-
 1183480 bytes of plain text
 
 22.7% of reuse
@@ -59,3 +60,12 @@ Report an error in Bugzilla
 
     6af5fdb4-5afa-41c3-a3ee-2058d8dcdbee
 When you click on the color swatch, you bring a dialog up where you can select the light source color.
+
+
+Spring 2017
+===========
+
+https://docs.gimp.org/ `--->` http://download.gimp.org/pub/gimp/help/gimp-help-2.8.2.tar.bz2 or `$ git clone git://git.gnome.org/gimp-help-2`
+or https://git.gnome.org/browse/gimp-help-2/tree/src
+
+And clean nearly with `puts STDIN.read.gsub(/<\?xml version=(.+?)-->/m, "-#-#-")`
