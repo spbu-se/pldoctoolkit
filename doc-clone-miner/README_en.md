@@ -44,7 +44,7 @@ Python
 * [Python 3.4.x](https://www.python.org/downloads/release/python-344/)
 * [PyQt5 5.5.x](https://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/)
 * [LXML](https://pypi.python.org/pypi/lxml/3.6.0)
-* PyContracts, pygments, NumPy, intervaltree, bottle — `pip install PyContracts pygments NumPy intervaltree bottle`
+* PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval — `pip install PyContracts pygments NumPy intervaltree bottle pyinterval`
 
 Package versions -- most recent ones compatible with Python 3.4.
 

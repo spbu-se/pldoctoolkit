@@ -538,7 +538,7 @@ def combine_gruops():
 
     combinations.sort(key=lambda ve: ve.size, reverse=True)
 
-    l = logging.getLogger("cloneminer.combine.n_ext_points")
+    l = logging.getLogger("cloneminer.combine.summary")
     l.info("After final filtering, having:")
     l.info("Exact dup groups: %d" % len(list(filter(lambda ve: len(ve.clone_groups) == 1, combinations))))
     l.info("Near  dup groups: %d" % len(list(filter(lambda ve: len(ve.clone_groups) >  1, combinations))))
@@ -644,7 +644,7 @@ def write_density_report():
         ))
 
 def log_reuse_amount(candidates: 'list[clones.VariativeElement]'):
-    l = logging.getLogger("cloneminer.combine.n_ext_points")
+    l = logging.getLogger("cloneminer.combine.summary")
     tot_length = 0
     reuse_length = 0
     for ifl in clones.inputfiles:
@@ -654,7 +654,20 @@ def log_reuse_amount(candidates: 'list[clones.VariativeElement]'):
             for f, b, e in g.instances:
                 reuse_length += e - b
 
-    l.info("Total: " + str(tot_length) + " Reusable: " + str(reuse_length) + " AMOUNT: " + str(reuse_length/tot_length))
+    l.info("------- Reuse Amounts -------")
+
+    l.info(
+        "Clone-based reuse amount: %d / %d = %0.2f%% = %f" % (
+            reuse_length, tot_length, reuse_length/tot_length*100.0, reuse_length/tot_length
+    ))
+
+    # Then coverage
+    cov = clones.coverage_in_all_words(candidates)
+    all = len(clones.InputFile.instances()[0].get_words())
+
+    l.info("Token-based coverage amount: %d / %d = %0.2f%% = %f" % (
+        cov, all, cov/all*100.0, cov/all
+    ))
 
 if __name__ == '__main__':  #
     if max_csv_group_tokens > 0 and min_csv_group_instances > 0:

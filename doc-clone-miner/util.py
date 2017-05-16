@@ -3,6 +3,7 @@
 
 import shutil
 import os
+import interval as itvl # https://pypi.python.org/pypi/pyinterval
 
 """Misc utilitary garbage"""
 
@@ -55,5 +56,5 @@ def transpose(a):
     """
     return [list(x) for x in zip(*a)]
 
-def setslice(arr, value, first, after_last):
-    arr[first:after_last] = [value] * (after_last - first)
+def connected_slices(i: 'itvl.interval') -> 'list[tuple[int, int]]':
+    return [(int(t[0][0]), int(t[0][1])) for t in i.components]

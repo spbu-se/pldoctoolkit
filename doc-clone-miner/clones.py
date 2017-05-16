@@ -26,6 +26,7 @@ import xmllexer
 import xmlfixup
 import semanticfilter
 import intervaltree
+import interval as itvl # https://pypi.python.org/pypi/pyinterval
 
 from abc import ABC, abstractmethod
 
@@ -180,6 +181,15 @@ def coefficient_of_variation(container):
     ve = sum([(e - a)**2 for e in container]) / (len(container) - 1)
     return math.sqrt(ve) / a
 
+def coverage_in_all_words(vi: 'list[VariativeElement]') -> 'int':
+    # One input file!!!
+    # TODO: unbind!
+    global inputfiles
+    ifn, _b, _e = vi[0].clone_groups[0].instances[0]
+    coverage_intervals = VariativeElement.get_coverage_intervals(vi)
+    connected_slices = util.connected_slices(coverage_intervals)
+    return sum([len(inputfiles[ifn].get_words_covered_with_interval(b, e)) for (b, e) in connected_slices])
+
 # TODO: this should be enum (requires py 3.4+) and should be robably removed and replaced with xmllexer
 class TextZone(object):
     UFO = 0
@@ -266,6 +276,8 @@ class XMLZoneMarker(xsh.ContentHandler):
 
 
 class InputFile(object):
+    wre = re.compile(r"\w+")
+
     def __init__(self, fileName):
         global write_reformatted_sources
 
@@ -308,6 +320,17 @@ class InputFile(object):
         # calculate tag coordinates using pygments lexer (hope correctly)
         self.lexintervals = xmllexer.lex(self.text)
 
+    def get_words_covered_with_interval(self, b: 'int', e: 'int') -> 'list[str]':
+        return InputFile.wre.findall(self[b:e])
+
+    def get_words(self) -> 'list[str]':
+        return InputFile.wre.findall(self.text)
+
+    @staticmethod
+    def instances() -> 'list[InputFile]':
+        global inputfiles
+        return inputfiles
+
     def __getitem__(self, stst):
         if isinstance(stst, slice): # correct slice
             return self.text[stst.start : stst.stop+1]
@@ -343,10 +366,7 @@ class InternalException(Exception):
 class InternalOkBreak(InternalException):
     pass
 
-
 class CloneGroup(ABC):
-    wre = re.compile(r"\w+")
-
     def __init__(self, id):
         self.id = id
         self.instances = None
@@ -365,7 +385,7 @@ class CloneGroup(ABC):
         :param inst: instance number
         :return: list of words
         """
-        return CloneGroup.wre.findall(self.text(inst=inst))
+        return InputFile.wre.findall(self.text(inst=inst))
 
     @abstractmethod
     def html(self, inst=0, allow_space_wrap=False):
@@ -414,7 +434,7 @@ class FuzzyCloneGroup(CloneGroup):
         return self.instancewords[0]
 
     def plain_text_words(self, inst=0):
-        return CloneGroup.wre.findall(self.instancewords[inst])
+        return InputFile.wre.findall(self.instancewords[inst])
 
 
     def html(self, inst=None, allow_space_wrap=False):
@@ -1060,7 +1080,7 @@ class ReportMode(enum.IntEnum):
     fuzzymatches = 2
 
 
-class VariativeElement(object):
+class VariativeElement:
     count = 0
 
     def __init__(self, clone_groups: 'list[CloneGroup]'):
@@ -1086,6 +1106,22 @@ class VariativeElement(object):
 
         self._consolidated_clonewise_intervals = None
         self._consolidated_expanded_clonewise_intervals = None
+
+    @staticmethod
+    def get_coverage_intervals(els: 'list[VariativeElement]') -> 'itvl.interval':
+        slices = [
+            s
+            for el in els
+            for s in util.connected_slices(el.get_instance_coverage_intervals())
+        ]
+        return itvl.interval(*slices)
+
+    def get_instance_coverage_intervals(self) -> 'itvl.interval':
+        return itvl.interval(*[
+            [b, e]
+            for g in self.clone_groups
+            for (f, b, e) in g.instances
+        ])
 
     def _plain_texts_from_intervals(self, instance_no=0):
         # detecting on instance[0]
