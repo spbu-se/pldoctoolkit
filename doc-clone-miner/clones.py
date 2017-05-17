@@ -185,6 +185,8 @@ def coverage_in_all_words(vi: 'list[VariativeElement]') -> 'int':
     # One input file!!!
     # TODO: unbind!
     global inputfiles
+    if not vi:  # Empty list. Happens.
+        return 0
     ifn, _b, _e = vi[0].clone_groups[0].instances[0]
     coverage_intervals = VariativeElement.get_coverage_intervals(vi)
     connected_slices = util.connected_slices(coverage_intervals)
