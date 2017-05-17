@@ -323,7 +323,7 @@ class InputFile(object):
     def get_words_covered_with_interval(self, b: 'int', e: 'int') -> 'list[str]':
         return InputFile.wre.findall(self[b:e])
 
-    def get_words(self) -> 'list[str]':
+    def get_all_words(self) -> 'list[str]':
         return InputFile.wre.findall(self.text)
 
     @staticmethod

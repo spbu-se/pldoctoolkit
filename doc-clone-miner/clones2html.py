@@ -663,7 +663,7 @@ def log_reuse_amount(candidates: 'list[clones.VariativeElement]'):
 
     # Then coverage
     cov = clones.coverage_in_all_words(candidates)
-    all = len(clones.InputFile.instances()[0].get_words())
+    all = len(clones.InputFile.instances()[0].get_all_words())
 
     l.info("Token-based coverage amount: %d / %d = %0.2f%% = %f" % (
         cov, all, cov/all*100.0, cov/all
