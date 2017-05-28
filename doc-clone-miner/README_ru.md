@@ -45,6 +45,11 @@ Python
 * [Python 3.4.x](https://www.python.org/downloads/release/python-344/)
 * [PyQt5 5.5.x](https://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/)
 * [LXML](https://pypi.python.org/pypi/lxml/3.6.0)
+* [Python-Levenshtein](http://www.lfd.uci.edu/~gohlke/pythonlibs/#python-levenshtein):
+  * Если работаете под Windows, обновите Pip: `python -m pip install --upgrade pip`
+  * Загрузите `python_Levenshtein-0.12.0-cp34-cp34m-win32.whl` или `python_Levenshtein-0.12.0-cp34-cp34m-win_amd64.whl`,
+    в зависимости от того, 32- или 64-разрадный у Вас интерпретатор Python
+  * `pip install <your_package>.whl`
 * PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval — `pip install PyContracts pygments NumPy intervaltree bottle pyinterval`
 
 Версии пакетов -- самые можно брать самые последние, совместимые с Python 3.4.
