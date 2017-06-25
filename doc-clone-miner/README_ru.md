@@ -50,7 +50,7 @@ Python
   * Загрузите `python_Levenshtein-0.12.0-cp34-cp34m-win32.whl` или `python_Levenshtein-0.12.0-cp34-cp34m-win_amd64.whl`,
     в зависимости от того, 32- или 64-разрадный у Вас интерпретатор Python
   * `pip install <your_package>.whl`
-* PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval — `pip install PyContracts pygments NumPy intervaltree bottle pyinterval`
+* PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc`
 
 Версии пакетов -- самые можно брать самые последние, совместимые с Python 3.4.
 
@@ -61,6 +61,7 @@ Python
 
 * Компьютер архитектуры `x86` или `x86_64` для запуска Clone Miner, Windows
   или UN*X
+* [Pandoc](http://pandoc.org/)
 * для Windows:
     * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) для запуска Fuzzy Finder
 * для UN*X-подобных систем:

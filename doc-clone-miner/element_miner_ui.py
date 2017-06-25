@@ -432,7 +432,10 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
             print("Wont find label for slider: " + slName)
 
     def dialog_ok(self):
+        import pandoc_importer
+
         infile = self.inFile.text()
+        infile = pandoc_importer.import_file(infile)
         pui = ElemMinerProgressUI()
 
         methodIdx = self.cbMethod.currentIndex()
