@@ -144,6 +144,7 @@ def report(logger):
     global args
     import clones
 
+    clones.FuzzyCloneGroup.reference_text = args.pattern
     fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
     cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzymatches)
 

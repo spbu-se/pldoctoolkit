@@ -26,15 +26,19 @@ def _diff_words(words1, words2):
     rw2 = map(dl2h, diff)
     return ' '.join(rw2)
 
-def get_htmls(texts):
+def get_htmls(texts, reference_text=None):
     """
+    :param reference_text: text to compare others to, first text otherwise
     :param texts: space-separated word strings
     :return: array of HTML fragmets for each of them with differences from first one
     """
-    result = [util.escape(texts[0])]
-    for text in texts[1:]:
-        result.append(_diff_words(texts[0], text))
-    return result
+    if reference_text:
+        return get_htmls([reference_text] + texts)[1:]
+    else:
+        result = [util.escape(texts[0])]
+        for text in texts[1:]:
+            result.append(_diff_words(texts[0], text))
+        return result
 
 if __name__ == '__main__':
     print("Testing")

@@ -442,7 +442,10 @@ class FuzzyCloneGroup(CloneGroup):
     def html(self, inst=None, allow_space_wrap=False):
         import worddiff
         if inst is None: # all
-            resultlist = worddiff.get_htmls(self.instancetexts)
+            resultlist = worddiff.get_htmls(
+                self.instancetexts,
+                FuzzyCloneGroup.reference_text if hasattr(FuzzyCloneGroup, 'reference_text') else None
+            )
             resulttexts = []
             for r in resultlist:
                 resulttexts.append(
