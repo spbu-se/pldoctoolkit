@@ -3,22 +3,22 @@
 
 # requires https://pypi.python.org/pypi/PyContracts
 
-import logging
 import argparse
+import logging
 import os
-import shutil
 import re
-import Levenshtein
-import sourcemarkers
+import shutil
+
 import intervaltree
 
+import sourcemarkers
+import util
 from xmllexer import IntervalType
 
 logging.basicConfig(filename='onefuzzyclone2html.log', level=logging.INFO)
 logger = logging
 
 def initargs():
-    global args
     argpar = argparse.ArgumentParser()
     argpar.add_argument("-ms", "--minimal-similarity", type=float, default=0.5, help="Minimal Levenstein similarity")
     argpar.add_argument("-id", "--input-document", help="Document to analyze", required=True)
@@ -26,11 +26,7 @@ def initargs():
     argpar.add_argument("-od", "--output-directory", help="Report output directory", required=True)
     argpar.add_argument("-oui", "--only-ui",
                         help="Only generate data needed by standalone [Qt] UI", default="yes")
-    args = argpar.parse_args()
-
-
-def lratio(s1, s2):
-    return 1 - Levenshtein.distance(s1, s2) / max(len(s1), len(s2), 1)
+    return argpar.parse_args()
 
 
 def tokens(text):
@@ -42,6 +38,8 @@ def tokens(text):
         r.append((s, e, text[s:e]))
     return r
 
+def ctokens(text):
+    return ' '.join(tokens(text))
 
 def find_like_pattern(inputfile, pattern, ms):
     # Support ignored/accepted ranges
@@ -80,7 +78,7 @@ def find_like_pattern(inputfile, pattern, ms):
 
     for o in range(len(inputfile_tokens) - len(pattern_tokens)):
         tp = jt(inputfile_token_texts[o:o+len(pattern_tokens)])
-        r = lratio(jp, tp)
+        r = util.lratio(jp, tp)
         if r >= ms:
             found.append((o + 1, r))  # TODO: why +1 makes better there?..
 
@@ -115,8 +113,7 @@ def find_like_pattern(inputfile, pattern, ms):
 
     return results
 
-def organize_search(logger):
-    global args
+def organize_search(logger, args):
     import clones
     import itertools
 
@@ -140,8 +137,7 @@ def organize_search(logger):
 
     clones.initdata([inputfile], fgrps)
 
-def report(logger):
-    global args
+def report(logger, args):
     import clones
 
     clones.FuzzyCloneGroup.reference_text = args.pattern
@@ -161,10 +157,33 @@ def report(logger):
         os.path.join(outdir, "jquery-2.0.3.min.js")
     )
 
+    return fuzzygroups
+
+
+# API
+def get_variative_elements(
+        minimal_similarity: float,  # 0.5
+        input_document: str,
+        pattern: str,
+        output_directory: str,
+        only_ui: str  # 'yes'
+):
+    import types
+    largs = types.SimpleNamespace()
+    largs.minimal_similarity = minimal_similarity
+    largs.input_document = input_document
+    largs.pattern = pattern
+    largs.output_directory = output_directory
+    largs.only_ui = only_ui
+
+    organize_search(logger, args)
+    return report(logger, args)
+
+# command line interface
 if __name__ == '__main__':
-    initargs()
+    args = initargs()
     if args.pattern is None:
         args.pattern = input("Please input what to search for > ")
         print("Ok, searching for: " + args.pattern)
-    organize_search(logger)
-    report(logger)
+    organize_search(logger, args)
+    report(logger, args)

@@ -3,6 +3,8 @@
 
 import shutil
 import os
+
+import Levenshtein
 import interval as itvl # https://pypi.python.org/pypi/pyinterval
 
 """Misc utilitary garbage"""
@@ -58,3 +60,7 @@ def transpose(a):
 
 def connected_slices(i: 'itvl.interval') -> 'list[tuple[int, int]]':
     return [(int(t[0][0]), int(t[0][1])) for t in i.components]
+
+
+def lratio(s1, s2):
+    return 1 - Levenshtein.distance(s1, s2) / max(len(s1), len(s2), 1)

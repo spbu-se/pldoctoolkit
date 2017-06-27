@@ -168,7 +168,39 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.newUUIDAction.triggered.connect(self.newUUID)
         self.saveSourceAction.triggered.connect(self.saveSource)
         self.cbHLDifferences.toggled.connect(self.cbHLDifferences_toggled)
-        # self.showClonesMarkup.toggled.connect(self.show_clones_markup_toggled)
+        self.pbSSL.clicked.connect(self.pbSSL_t)
+        self.pbSSR.clicked.connect(self.pbSSR_t)
+        self.pbSEL.clicked.connect(self.pbSEL_t)
+        self.pbSER.clicked.connect(self.pbSER_t)
+        self.tbSrcCode.selectionChanged.connect(self.srcCodeSelectionSchanged)
+
+    @QtCore.pyqtSlot()
+    def srcCodeSelectionSchanged(self):
+        cursor = self.tbSrcCode.textCursor()
+        ss = cursor.selectionStart()
+        se = cursor.selectionEnd() - 1
+
+    def move_src_selection(self, delta_s, delta_e):
+        cursor = self.tbSrcCode.textCursor()
+        ss = cursor.selectionStart()
+        se = cursor.selectionEnd() - 1
+        self.src_select(ss + delta_s, se + delta_e)
+
+    @QtCore.pyqtSlot()
+    def pbSSL_t(self):
+        self.move_src_selection(-1, 0)
+
+    @QtCore.pyqtSlot()
+    def pbSSR_t(self):
+        self.move_src_selection(1, 0)
+
+    @QtCore.pyqtSlot()
+    def pbSEL_t(self):
+        self.move_src_selection(0, -1)
+
+    @QtCore.pyqtSlot()
+    def pbSER_t(self):
+        self.move_src_selection(0, 1)
 
     @QtCore.pyqtSlot()
     def acceptRange(self):
@@ -319,7 +351,7 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
         if fuzzymatch:
             self.setWindowTitle("Near Duplicates")
 
-        ntab = ElemBrowserTab(self, uri, stats, text, fn, save_fn)
+        ntab = ElemBrowserTab(self, uri, stats, text, fn, save_fn, fuzzypattern_matches_shown=fuzzymatch)
         self.browserTabs.addTab(ntab, heading if heading else uri)
         self.browserTabs.tabBar().setVisible(self.browserTabs.count() > 1)
         self.show()
