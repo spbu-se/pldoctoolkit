@@ -69,14 +69,23 @@ def wrap_docbook_into_drl(filename: str):
     with open(filename, 'w', encoding='utf-8') as fh:
         print(docbook, file=fh)
 
-def import_file(input_file: str) -> str:
-    formats = {
-        '.docx': ('docx', 'plain', '.pxml'),
-        '.tex': ('latex', 'plain', '.pxml'),
-        '.html': ('html', 'plain', '.pxml'),
-        '.md': ('markdown', 'plain', '.pxml'),
-        '.xml': ('docbook', 'docbook', '.drl')
-    }
+def import_file(input_file: str, todrl: bool) -> str:
+    if todrl:
+        formats = {
+            '.docx': ('docx', 'docbook', '.drl'),
+            '.tex': ('latex', 'docbook', '.drl'),
+            '.html': ('html', 'docbook', '.drl'),
+            '.md': ('markdown', 'docbook', '.drl'),
+            '.xml': ('docbook', 'docbook', '.drl')
+        }
+    else:
+        formats = {
+            '.docx': ('docx', 'plain', '.pxml'),
+            '.tex': ('latex', 'plain', '.pxml'),
+            '.html': ('html', 'plain', '.pxml'),
+            '.md': ('markdown', 'plain', '.pxml'),
+            '.xml': ('docbook', 'plain', '.pxml')
+        }
 
     isuffix = None
     iformat = None
@@ -101,7 +110,7 @@ def import_file(input_file: str) -> str:
     else:
         shutil.copy(input_file, output_file)
 
-    if iformat in {'docbook'}:
+    if osuffix == '.drl' and oformat == 'docbook':
         wrap_docbook_into_drl(output_file)
     else:
         wrap_file_into_xml(output_file)

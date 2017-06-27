@@ -97,11 +97,14 @@ def ui_class(name):
     return uic.loadUiType(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'qtui', name))[0]
 
 class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
-    def __init__(self, parent, uri, stats, src="", fn="", save_fn=""):
+    def __init__(self, parent, uri, stats, src="", fn="", save_fn="", fuzzypattern_matches_shown=False):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
 
         self.additionalInfo.setHidden(True)
+
+        self.cbHLDifferences.setVisible(fuzzypattern_matches_shown)
+        self.fmAdjustSelection.setVisible(fuzzypattern_matches_shown)
 
         self.webView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.webView.customContextMenuRequested.connect(self.web_context_menu)
@@ -164,6 +167,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.ignoreRangeAction.triggered.connect(self.ignoreRange)
         self.newUUIDAction.triggered.connect(self.newUUID)
         self.saveSourceAction.triggered.connect(self.saveSource)
+        self.cbHLDifferences.toggled.connect(self.cbHLDifferences_toggled)
         # self.showClonesMarkup.toggled.connect(self.show_clones_markup_toggled)
 
     @QtCore.pyqtSlot()
@@ -207,6 +211,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     # @QtCore.pyqtSlot(bool)
     # def show_clones_markup_toggled(self, v):
     #     self.eval_js("window.toggleclonebrowsermarkup(%s);" % ('true' if v else 'false',))
+
+    @QtCore.pyqtSlot(bool)
+    def cbHLDifferences_toggled(self, v):
+        self.eval_js("window.toggleclonebrowserdiffs(%s);" % ('true' if v else 'false',))
 
     @QtCore.pyqtSlot(bool)
     def enable_dict(self, e):
@@ -433,12 +441,12 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
     def dialog_ok(self):
         import pandoc_importer
+        methodIdx = self.cbMethod.currentIndex()
 
         infile = self.inFile.text()
-        infile = pandoc_importer.import_file(infile)
+        infile = pandoc_importer.import_file(infile, methodIdx==0)
         pui = ElemMinerProgressUI()
 
-        methodIdx = self.cbMethod.currentIndex()
         if methodIdx == 0: # Clone Miner
             numparams = [int(self.lbClLen.text())]
         elif methodIdx == 1:  # Fuzzy Finder

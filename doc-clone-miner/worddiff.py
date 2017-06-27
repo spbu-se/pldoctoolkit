@@ -13,12 +13,12 @@ def _diff_words(words1, words2):
     diff = list(dr.compare(words1, words2))
     def dl2h(w):
         ww = w[2:]
-        if   w.startswith('- '):
-            return '<span style="background-color: LightSalmon;">%s</span>' % ww
-        elif w.startswith('+ '):
-            return '<span style="background-color: GreenYellow;">%s</span>' % ww
-        elif w.startswith('? '):
-            return '<span style="background-color: blue;">%s</span>' % ww
+        if   w.startswith('- '):  # disappeared
+            return '<span class="diffminus modeldiffminus">%s</span>' % ww
+        elif w.startswith('+ '):  # appeared
+            return '<span class="diffplus modeldiffplus">%s</span>' % ww
+        elif w.startswith('? '):  # not sure even what it means =)
+            return ww
         elif w.startswith('  '):
             return ww
         else:

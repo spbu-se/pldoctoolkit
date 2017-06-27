@@ -165,6 +165,11 @@ $(document).ready(function() {
             clonebrowsermarkup.hide();
     }
 
+    window.toggleclonebrowserdiffs = function(newval) {
+        $("span.modeldiffplus").toggleClass("diffplus");
+        $("span.modeldiffminus").toggle();
+    }
+
     $("#single2dict").click(single2dict);
     $("#single2elem").click(single2elem);
     $("#multiple2elem").click(multiple2elem);
