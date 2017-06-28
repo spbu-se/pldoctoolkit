@@ -425,12 +425,37 @@ class CloneGroup(ABC):
         return sum(ie - ib + 1 for fn, ib, ie in self.instances)
 
 class FuzzyCloneGroup(CloneGroup):
-    def __init__(self, id, clones, clonetexts, clonewords, ratio=None):
+    @property
+    def ratio(self):
+        """
+        How much clones are like to each other/pattern
+        """
+        if hasattr(FuzzyCloneGroup, 'reference_text'):
+            ref = util.ctokens(FuzzyCloneGroup.reference_text)
+            ratios = [util.lratio(ref, util.ctokens(itx)) for itx in self.instancetexts]
+            return min(ratios)
+        else:
+            return None
+
+    def __init__(self, id, clones, clonetexts=None, clonewords=None):
+        """
+        Fuzzy Clone Group
+        :param id: Just group id, nothing more
+        :param clones: Clone treples
+        :param clonetexts: Clone texts (or will be guessed from treples)
+        :param clonewords: Clone words (or will be guessed from texts)
+        """
         super().__init__(id)
         self.instances = clones
+
+        if clonetexts is None:
+            global inputfiles
+            clonetexts = [inputfiles[cfn][cb:ce] for cfn, cb, ce in clones]
+        if clonewords is None:
+            clonewords = [util.tokens(ct) for ct in clonetexts]
+
         self.instancetexts = clonetexts
         self.instancewords = clonewords
-        self.ratio = ratio # how much clones are like to each other/pattern
 
     def text(self, inst=0):
         return self.instancewords[0]
@@ -1523,7 +1548,7 @@ class VariativeElement:
 
         return templ.substitute(
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
-            idx=VariativeElement._html_idx,
+            idx=self.html_idx if hasattr(self, 'html_idx') else VariativeElement._html_idx,
             idesc=self.id_descriptor(),
             eptsl="" if self.fuzzy else ('<td class ="fxd" >' + str(self.g_power - 1) + '</td>'),
             clgr=len(self.clone_groups[0].instances),

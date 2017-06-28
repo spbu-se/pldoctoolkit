@@ -6,7 +6,6 @@
 import argparse
 import logging
 import os
-import re
 import shutil
 
 import intervaltree
@@ -31,18 +30,6 @@ def initargs():
     return argpar.parse_args()
 
 
-def tokens(text):
-    wre = re.compile("\w+", re.UNICODE)
-    r = []
-    for m in wre.finditer(text):
-        s = m.start()
-        e = m.end()
-        r.append((s, e, text[s:e]))
-    return r
-
-def ctokens(text):
-    return ' '.join(tokens(text))
-
 def find_like_pattern(inputfile, pattern, ms):
     # Support ignored/accepted ranges
     marked = sourcemarkers.find_marked_intervals(inputfile.text)
@@ -54,13 +41,13 @@ def find_like_pattern(inputfile, pattern, ms):
     # Tokenize both document and pattern
     textintervals = [i for i in inputfile.lexintervals if i.int_type == IntervalType.general]
 
-    pattern_tokens = tokens(pattern)
+    pattern_tokens = util.tokens(pattern)
     pattern_token_texts = [t[2] for t in pattern_tokens]
 
     inputfile_tokens = []
     for ti in textintervals:
         tit = inputfile.text[ti.offs:ti.end]
-        titt = tokens(tit)
+        titt = util.tokens(tit)
         ti_tokens = [
             (ti.offs + tittn[0], ti.offs + tittn[1], tittn[2])
             for tittn in titt
@@ -129,12 +116,12 @@ def organize_search(logger, args):
     fuzzyclonedata = find_like_pattern(inputfile, args.pattern, args.minimal_similarity)
 
     fgrps = []
+    clones.inputfiles = [inputfile] # to get texts and ratios properly
     for (cbeg, cend, clr, ctxt, cwrds), ctr in zip(fuzzyclonedata, itertools.count(1)):
         fgrps.append(clones.FuzzyCloneGroup(
-            str(ctr), [(0, cbeg, cend)],
-            [' '.join(cwrds)], # [ctxt], !! TODO: Don't hack, implement!
-            [cwrds],
-            ratio=clr
+            str(ctr), [(0, cbeg, cend)] #,
+            #[' '.join(cwrds)], # [ctxt], !! TODO: Don't hack, implement!
+            #[cwrds]
         ))
 
     clones.initdata([inputfile], fgrps)

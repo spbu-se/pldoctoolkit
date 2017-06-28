@@ -170,6 +170,11 @@ $(document).ready(function() {
         $("span.modeldiffminus").toggle();
     }
 
+    window.updatecandidatetr = function(data_idx, outer_html) {
+        var elt = $('tr[data-idx="' + data_idx +'"]');
+        elt.replaceWith(outer_html);
+    }
+
     $("#single2dict").click(single2dict);
     $("#single2elem").click(single2elem);
     $("#multiple2elem").click(multiple2elem);

@@ -109,7 +109,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.extra = extra
         self.candidate_idx = None
         if fuzzypattern_matches_shown:
-            self.variatives = self.extra
+            self.variatives = self.extra  # type: List[clones.VariativeElement]
 
 
         self.webView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
@@ -186,11 +186,38 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         ss = cursor.selectionStart()
         se = cursor.selectionEnd() - 1
 
+    def update_current_variative(self):
+        import clones
+        vs = self.variatives
+        ix = self.candidate_idx
+        if vs is None or ix is None:
+            return
+
+        cursor = self.tbSrcCode.textCursor()
+        ss = cursor.selectionStart()
+        se = cursor.selectionEnd() - 1
+        if se <= ss:
+            return
+
+        cv = vs[ix]  # type: clones.VariativeElement
+        oldgrp = cv.clone_groups[0]
+        cf, cb, ce = oldgrp.instances[0] # type: clones.FuzzyCloneGroup
+        newgrp = clones.FuzzyCloneGroup(oldgrp.id, [(cf, ss, se)])
+        cv.clone_groups[0] = newgrp
+        cv.html_idx = ix + 1
+
+        newhtml = cv.html.strip()  # type: str
+        upjs = 'window.updatecandidatetr(%d, "%s");' % (ix + 1, newhtml.replace('\r', '\\r').replace('\n', '\\n').replace('"', '\\"'))
+        # print("UPJS:")
+        # print(upjs)
+        self.eval_js(upjs)
+
     def move_src_selection(self, delta_s, delta_e):
         cursor = self.tbSrcCode.textCursor()
         ss = cursor.selectionStart()
         se = cursor.selectionEnd() - 1
         self.src_select(ss + delta_s, se + delta_e, None)
+        self.update_current_variative()
 
     @QtCore.pyqtSlot()
     def pbSSL_t(self):

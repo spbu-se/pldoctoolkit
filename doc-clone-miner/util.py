@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+import re
 import shutil
 import os
 
@@ -64,3 +64,17 @@ def connected_slices(i: 'itvl.interval') -> 'list[tuple[int, int]]':
 
 def lratio(s1, s2):
     return 1 - Levenshtein.distance(s1, s2) / max(len(s1), len(s2), 1)
+
+
+_wre = re.compile(r"\w+", re.UNICODE)
+def tokens(text):
+    r = []
+    for m in _wre.finditer(text):
+        s = m.start()
+        e = m.end()
+        r.append((s, e, text[s:e]))
+    return r
+
+
+def ctokens(text):
+    return ' '.join([s for b, e, s in tokens(text)])
