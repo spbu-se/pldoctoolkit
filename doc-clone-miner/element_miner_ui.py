@@ -136,6 +136,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.tbSrcCode.addAction(self.saveSourceAction)
 
         self.bindEvents()
+
+        if fuzzypattern_matches_shown:
+            self.bindSelShortcuts()
+
         self.textBrowser.setText(stats)
         self.editCoordinateCorrections = dict()
 
@@ -179,6 +183,21 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.pbSEL.clicked.connect(self.pbSEL_t)
         self.pbSER.clicked.connect(self.pbSER_t)
         self.tbSrcCode.selectionChanged.connect(self.srcCodeSelectionSchanged)
+
+    def bindSelShortcuts(self):
+        self.ssl_s = QtWidgets.QShortcut(
+            QtGui.QKeySequence(QtCore.Qt.Key_Control + QtCore.Qt.Key_Shift + QtCore.Qt.Key_B), self.fmAdjustSelection)
+        self.ssr_s = QtWidgets.QShortcut(
+            QtGui.QKeySequence(QtCore.Qt.Key_Control + QtCore.Qt.Key_B), self.fmAdjustSelection)
+        self.sel_s = QtWidgets.QShortcut(
+            QtGui.QKeySequence(QtCore.Qt.Key_Control + QtCore.Qt.Key_E), self.fmAdjustSelection)
+        self.ser_s = QtWidgets.QShortcut(
+            QtGui.QKeySequence(QtCore.Qt.Key_Control + QtCore.Qt.Key_Shift + QtCore.Qt.Key_E), self.fmAdjustSelection)
+
+        self.ssl_s.activated.connect(self.pbSSL_t)
+        self.ssr_s.activated.connect(self.pbSSR_t)
+        self.sel_s.activated.connect(self.pbSEL_t)
+        self.ser_s.activated.connect(self.pbSER_t)
 
     @QtCore.pyqtSlot()
     def srcCodeSelectionSchanged(self):
