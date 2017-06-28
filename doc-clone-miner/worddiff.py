@@ -18,7 +18,7 @@ def _diff_words(words1, words2):
         elif w.startswith('+ '):  # appeared
             return '<span class="diffplus modeldiffplus">%s</span>' % ww
         elif w.startswith('? '):  # not sure even what it means =)
-            return ww
+            return ""
         elif w.startswith('  '):
             return ww
         else:

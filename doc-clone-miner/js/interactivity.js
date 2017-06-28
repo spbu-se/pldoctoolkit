@@ -173,13 +173,15 @@ $(document).ready(function() {
     window.updatecandidatetr = function(data_idx, outer_html) {
         var elt = $('tr[data-idx="' + data_idx +'"]');
         elt.replaceWith(outer_html);
+        $('.variationclick').unbind('click');
+        $('.variationclick').click(window.vclicker);
     }
 
     $("#single2dict").click(single2dict);
     $("#single2elem").click(single2elem);
     $("#multiple2elem").click(multiple2elem);
 
-    $('.variationclick').click(function() {
+    window.vclicker = function() {
         $('.variationclick').removeClass('highlight');
         $(this).addClass('highlight');
 
@@ -222,7 +224,8 @@ $(document).ready(function() {
                     $(this).hide();
             });
         }
-    });
+    };
+    $('.variationclick').click(window.vclicker);
 
     window.source0 = $('div#source code').get(0).textContent; // unescapes
 
