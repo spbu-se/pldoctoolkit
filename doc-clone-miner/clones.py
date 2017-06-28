@@ -1473,7 +1473,7 @@ class VariativeElement:
         vvariations = [self.getvariationhtmls(i) for i in range(nextpoints)]
 
         templ = string.Template(textwrap.dedent("""
-            <tr class="${cssclass} variative" data-groups="${desc}">
+            <tr class="${cssclass} variative" data-groups="${desc}" data-idx="${idx}">
             <td class="fxd">${idx}</td><!-- IDESC: ${idesc} -->
             """ + ("""<td class="fxd">${clgr}</td>""" if len(startgrp.instances) > 1 else "") + """
             ${eptsl}

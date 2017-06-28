@@ -22,7 +22,7 @@ var replaceHtml = function (el, html) {
     oldEl.parentNode.replaceChild(newEl, oldEl);
 };
 
-$.fn.highlightRange = function(start, end) {
+$.fn.highlightRange = function(start, end, candidate_idx) {
     var e = $(this); //= document.getElementById($(this).attr('id')); // I don't know why... but $(this) don't want to work today :-/
     var offset = start;
     var length = end - start + 1;
@@ -59,11 +59,11 @@ $(document).ready(function() {
             console.log(msg);
     };
 
-    var highlightRange = function(hls, hle) {
+    var highlightRange = function(hls, hle, candidate_idx) {
         if (window.qtab) {
-            qtab.src_select(hls, hle);
+            qtab.src_select(hls, hle, candidate_idx);
         } else {
-            $('div#source code').highlightRange(hls, hle);
+            $('div#source code').highlightRange(hls, hle, candidate_idx);
         }
     };
 
@@ -184,9 +184,10 @@ $(document).ready(function() {
         var hlrange = $(this).attr("data-hlrange").split('-');
         var hls = +hlrange[0];
         var hle = +hlrange[1];
+        var candidate_idx = $(this).closest('tr').attr("data-idx");
         var src = $('div#source code');
         // lowlight();
-        highlightRange(hls, hle);
+        highlightRange(hls, hle, candidate_idx);
         src = $('div#source code');
 
         if (!window.qtab) {

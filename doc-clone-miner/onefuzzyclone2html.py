@@ -15,6 +15,8 @@ import sourcemarkers
 import util
 from xmllexer import IntervalType
 
+__all__ = ['get_variative_elements']
+
 logging.basicConfig(filename='onefuzzyclone2html.log', level=logging.INFO)
 logger = logging
 
@@ -162,11 +164,11 @@ def report(logger, args):
 
 # API
 def get_variative_elements(
-        minimal_similarity: float,  # 0.5
         input_document: str,
         pattern: str,
         output_directory: str,
-        only_ui: str  # 'yes'
+        minimal_similarity: float=0.5,
+        only_ui: str='yes'
 ):
     import types
     largs = types.SimpleNamespace()
@@ -176,8 +178,8 @@ def get_variative_elements(
     largs.output_directory = output_directory
     largs.only_ui = only_ui
 
-    organize_search(logger, args)
-    return report(logger, args)
+    organize_search(logger, largs)
+    return report(logger, largs)
 
 # command line interface
 if __name__ == '__main__':
