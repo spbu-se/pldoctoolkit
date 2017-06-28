@@ -420,7 +420,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
             self.setWindowTitle("Duplicate Finder")
             self.methodWidget.setHidden(True)
             self.fuzzyHeatSettings.setTitle("Settings")
-            self.cbMethod.setCurrentIndex(2)
+            self.cbMethod.setCurrentIndex(1)
 
         if clargs.input_file:
             ifn = os.path.realpath(clargs.input_file)
@@ -489,9 +489,9 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
         if methodIdx == 0: # Clone Miner
             numparams = [int(self.lbClLen.text())]
-        elif methodIdx == 1:  # Fuzzy Finder
+        elif methodIdx == 2:  # Fuzzy Finder
             numparams = [slider.value() for slider in [self.slFfClLen, self.slFfEd, self.slFfHd]]
-        elif methodIdx == 2: # Fuzzy Heat
+        elif methodIdx == 1: # Fuzzy Heat
             numparams = [slider.value() for slider in [self.slClLen_f]]
         else:
             raise NotImplementedError("Unknown method: " + methodIdx)
@@ -502,11 +502,11 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         wt = None
         if methodIdx == 0: # Clone Miner
             wt = self.launch_with_clone_miner(pui, infile, numparams)
-        elif methodIdx == 1:  # Fuzzy Finder
+        elif methodIdx == 2:  # Fuzzy Finder
             wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
-        elif methodIdx == 2 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
+        elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
             wt = self.launch_fuzzyheat_with_clone_miner(pui, infile, numparams)
-        elif methodIdx == 2 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
+        elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
             wt, ffworkfolder = self.launch_fuzzyheat_reporting(pui, infile)
         else:
             raise NotImplementedError("Unknown method: " + methodIdx)
@@ -525,9 +525,9 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
                 self.elbrui = ElemBrowserUI(path=os.path.split(infile)[0])  # preserve from GC... Again...
 
-                if methodIdx == 0 or methodIdx == 2: # Clone Miner or Fuzzy Heat
+                if methodIdx == 0 or methodIdx == 1: # Clone Miner or Fuzzy Heat
                     srcfn = infile + ".reformatted"
-                elif methodIdx == 1:  # Fuzzy Finder or Near Duplicates report
+                elif methodIdx == 2:  # Fuzzy Finder or Near Duplicates report
                     srcfn = os.path.join(ffworkfolder, os.path.split(infile + ".reformatted")[-1])
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
@@ -545,10 +545,10 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                         ht = path2url(
                             os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l, "pyvarelements.html"))
                         self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn, forced_save_fn, extra=None)
-                elif methodIdx == 1:  # Fuzzy Finder
+                elif methodIdx == 2:  # Fuzzy Finder
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
                     self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, extra=None)
-                elif methodIdx == 2 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
+                elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
                     ht = path2url(os.path.join(
                         os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0], "densitybrowser.html"
                     ))
@@ -556,7 +556,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                     serve(srcfn, self.elbrui, srctext)  # start server
                     webbrowser.open_new_tab(ht)
                     # then elbrui should wait until user selects fragment to search
-                elif methodIdx == 2 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Report
+                elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Report
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
                     self.elbrui.addbrTab(ht, str(numparams), "", srctext, srcfn, forced_save_fn, extra=None)
                 else:
@@ -779,11 +779,10 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
         savefilename = savefilename[:-12]
     else:
         print("WARNING! inputfilename", inputfilename, "does not end with .reformatted")
-    ui.variatives = variatives  # add dynamic attribute here
     ui.shouldAddTab.emit(
         path2url(os.path.join(outdir, "pyvarelements.html")),
         "Fuzzy Search results", "", srctext, inputfilename,
-        savefilename, extra=variatives
+        savefilename, variatives
     )
 
 
