@@ -105,7 +105,7 @@ def import_file(input_file: str, todrl: bool) -> str:
     if oformat != iformat:
         pypandoc.convert_file(
             input_file, oformat, format=iformat, outputfile=output_file,
-            extra_args=['standalone']
+            extra_args=['--standalone']
         )
     else:
         shutil.copy(input_file, output_file)
