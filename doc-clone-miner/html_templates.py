@@ -102,7 +102,8 @@ summaryhtml_start = textwrap.dedent(
     }
 
     span.diffplus {
-        color: 	#009933;
+        color: 	#009030;
+        font-weight: bold;
     }
     </style>
     <script src="jquery-2.0.3.min.js"></script>

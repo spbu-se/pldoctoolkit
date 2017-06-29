@@ -5,8 +5,11 @@ import difflib
 import util
 
 def _diff_words(words1, words2):
-    words1 = [util.escape(w.strip()) for w in words1.split(' ') if w.strip() != ""]
-    words2 = [w.strip() for w in words2.split(' ') if w.strip() != ""]
+    # words1 = [util.escape(w.strip()) for w in words1.split(' ') if w.strip() != ""]
+    # words2 = [w.strip() for w in words2.split(' ') if w.strip() != ""]
+    words1 = util.tokenst(words1)
+    words2 = util.tokenst(words2)
+
     # Timing: The basic Ratcliff-Obershelp algorithm is cubic time in the worst case and quadratic time in the expected case
     # https://docs.python.org/3/library/difflib.html#difflib.SequenceMatcher
     dr = difflib.Differ()

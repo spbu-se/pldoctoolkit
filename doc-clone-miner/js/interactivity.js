@@ -166,8 +166,13 @@ $(document).ready(function() {
     }
 
     window.toggleclonebrowserdiffs = function(newval) {
-        $("span.modeldiffplus").toggleClass("diffplus");
-        $("span.modeldiffminus").toggle();
+        if(newval) {
+            $("span.modeldiffplus").addClass("diffplus");
+            $("span.modeldiffminus").show();
+        } else {
+            $("span.modeldiffplus").removeClass("diffplus");
+            $("span.modeldiffminus").hide();
+        }
     }
 
     window.updatecandidatetr = function(data_idx, outer_html) {

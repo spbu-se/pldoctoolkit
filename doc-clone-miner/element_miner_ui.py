@@ -104,7 +104,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.additionalInfo.setHidden(True)
 
         self.cbHLDifferences.setVisible(fuzzypattern_matches_shown)
-        self.fmAdjustSelection.setVisible(fuzzypattern_matches_shown)
+        self.fmAdjustSelection.setVisible(fuzzypattern_matches_shown and extra is not None)
 
         self.extra = extra
         self.candidate_idx = None
@@ -269,6 +269,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     @QtCore.pyqtSlot()
     def ignoreRange(self):
+        upjs = 'window.updatecandidatetr(%d, "");' % (self.candidate_idx + 1,)
+        self.eval_js(upjs)
+
+    def ignoreRange_0(self):
         cursor = self.tbSrcCode.textCursor()
         se = cursor.selectionStart(), cursor.selectionEnd()
         sm = sourcemarkers.IgnoreRangeMarker(se[0], se[1])
@@ -395,13 +399,13 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
         # bindings
         self.bindEvents()
 
-    shouldAddTab = pyqtSignal(str, str, str, str, str, str, object, name='shouldAddTab')
+    shouldAddTab = pyqtSignal(str, str, str, str, str, str, bool, object, name='shouldAddTab')
 
-    @QtCore.pyqtSlot(str, str, str, str, str, str, object)
-    def addbrTab(self, uri, heading, stats, text = "", fn = "", save_fn = "", extra: object=None):
+    @QtCore.pyqtSlot(str, str, str, str, str, str, bool, object)
+    # def addbrTab(self, uri, heading, stats, text = "", fn = "", save_fn = "", fuzzymatch: bool, extra: object):
+    def addbrTab(self, uri, heading, stats, text, fn, save_fn, fuzzymatch: bool, extra: object):
         self.hide()
 
-        fuzzymatch = save_fn != ""
         if fuzzymatch:
             self.setWindowTitle("Near Duplicates")
 
@@ -590,10 +594,10 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                     for l, o in zip(numparams, wt.outs):
                         ht = path2url(
                             os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l, "pyvarelements.html"))
-                        self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn, forced_save_fn, extra=None)
+                        self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn, forced_save_fn, False, None)
                 elif methodIdx == 2:  # Fuzzy Finder
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
-                    self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, extra=None)
+                    self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, True, extra=None)
                 elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
                     ht = path2url(os.path.join(
                         os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0], "densitybrowser.html"
@@ -604,7 +608,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                     # then elbrui should wait until user selects fragment to search
                 elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Report
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
-                    self.elbrui.addbrTab(ht, str(numparams), "", srctext, srcfn, forced_save_fn, extra=None)
+                    self.elbrui.addbrTab(ht, str(numparams), "", srctext, srcfn, forced_save_fn, True, extra=None)
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -808,12 +812,13 @@ def do_fuzzy_pattern_search_CLI(inputfilename, ui, minsim, text, srctext):
     ui.shouldAddTab.emit(
         path2url(os.path.join(outdir, "pyvarelements.html")),
         "Fuzzy Search results", "", srctext, inputfilename,
-        savefilename, None
+        savefilename, True, None
     )
 
 
 def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
     import onefuzzyclone2html
+    import clones
     outdir = inputfilename + ".fuzzypattern"
     os.makedirs(outdir, exist_ok=True)
     variatives = onefuzzyclone2html.get_variative_elements(
@@ -825,12 +830,12 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
         savefilename = savefilename[:-12]
     else:
         print("WARNING! inputfilename", inputfilename, "does not end with .reformatted")
+    clones.VariativeElement._html_idx = 0
     ui.shouldAddTab.emit(
         path2url(os.path.join(outdir, "pyvarelements.html")),
         "Fuzzy Search results", "", srctext, inputfilename,
-        savefilename, variatives
+        savefilename, True, variatives
     )
-
 
 class StoppableThread(threading.Thread):
     """Thread class with a stop() method. The thread itself has to check
@@ -846,8 +851,8 @@ class StoppableThread(threading.Thread):
         self._stop.set()  # TODO: make this work...
 
     def stopped(self):
+        print("Is it stopped?..")
         return self._stop.isSet()
-
 
 def serve(inputfilename, ui, srctext):
     @bottle.route('/fuzzysearch')
@@ -859,6 +864,7 @@ def serve(inputfilename, ui, srctext):
             do_fuzzy_pattern_search_API(inputfilename, ui, msim, text, srctext)
             st.stop()
         sdt = threading.Thread(target=shut)
+        sdt.daemon = True
         sdt.start()
 
         return "Searching for text <<<%s>>> with min similarity %s..." % (util.escapen(text), msim)

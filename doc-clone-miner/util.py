@@ -75,6 +75,8 @@ def tokens(text):
         r.append((s, e, text[s:e]))
     return r
 
+def tokenst(text):
+    return [s for b, e, s in tokens(text)]
 
 def ctokens(text):
-    return ' '.join([s for b, e, s in tokens(text)])
+    return ' '.join(tokenst(text))
