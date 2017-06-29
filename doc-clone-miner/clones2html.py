@@ -601,7 +601,7 @@ def write_density_report():
           // alert([minsim, seltext]);
           var nloc = "http://127.0.0.1:49999/fuzzysearch?minsim=" + encodeURIComponent(minsim) +
             "&text=" + encodeURIComponent(seltext);
-          window.location = nloc;
+          document.getElementById("queryframe").src = nloc;
         }
         document.addEventListener("keypress", selctionfuzzysearch, false);
         </script>
@@ -609,6 +609,8 @@ def write_density_report():
         </head>
         <body style="overflow-x: hidden;">
         %s
+        <div><iframe style="border: 0px; width: 90%%; " id="queryframe" src="" ></iframe></div>
+        <a href="http://127.0.0.1:49999/shutdown" target="_blank" >X</a>
         </body>
         </html>""") % (dr[1],)
 

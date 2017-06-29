@@ -785,14 +785,6 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
     wt.start()
     return wt
 
-
-class Shutdownable(bottle.WSGIRefServer):
-    instance = None
-
-    def run(self, *args, **kw):
-        Shutdownable.instance = self
-        super(Shutdownable, self).run(*args, **kw)
-
 def do_fuzzy_pattern_search_CLI(inputfilename, ui, minsim, text, srctext):
     outdir = inputfilename + ".fuzzypattern"
     os.makedirs(outdir, exist_ok=True)
@@ -837,41 +829,26 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
         savefilename, True, variatives
     )
 
-class StoppableThread(threading.Thread):
-    """Thread class with a stop() method. The thread itself has to check
-    regularly for the stopped() condition.
-    http://stackoverflow.com/a/325528/539470
-    """
-
-    def __init__(self, **kwargs):
-        super(StoppableThread, self).__init__(**kwargs)
-        self._stop = threading.Event()
-
-    def stop(self):
-        self._stop.set()  # TODO: make this work...
-
-    def stopped(self):
-        print("Is it stopped?..")
-        return self._stop.isSet()
-
 def serve(inputfilename, ui, srctext):
     @bottle.route('/fuzzysearch')
     def fuzzysearch():
         msim = bottle.request.query.minsim
         text = bottle.request.query.text
-
-        def shut():
-            do_fuzzy_pattern_search_API(inputfilename, ui, msim, text, srctext)
-            st.stop()
-        sdt = threading.Thread(target=shut)
-        sdt.daemon = True
+        sdt = threading.Thread(target=lambda: do_fuzzy_pattern_search_API(inputfilename, ui, msim, text, srctext))
+        sdt.setDaemon(False)
         sdt.start()
 
         return "Searching for text <<<%s>>> with min similarity %s..." % (util.escapen(text), msim)
 
-    # some other thread:
-    st = StoppableThread(target=lambda: bottle.run(host='127.0.0.1', port=49999, server=Shutdownable))
-    st.daemon = True
+    @bottle.route('/shutdown')
+    def shutdown():
+        import os
+        import signal
+        os.kill(os.getpid(), signal.SIGTERM)
+
+    # Daemonize bottle so closing app window will also kill it
+    st = threading.Thread(target=lambda: bottle.run(host='127.0.0.1', port=49999))
+    st.setDaemon(True)
     st.start()
 
 class NearDuplicateWorkThread(QtCore.QThread):
