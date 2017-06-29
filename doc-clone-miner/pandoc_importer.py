@@ -76,6 +76,7 @@ def import_file(input_file: str, todrl: bool) -> str:
             '.tex': ('latex', 'docbook', '.drl'),
             '.html': ('html', 'docbook', '.drl'),
             '.md': ('markdown', 'docbook', '.drl'),
+            '.rst': ('rst', 'docbook', '.drl'),
             '.xml': ('docbook', 'docbook', '.drl'),
             '.docbook': ('docbook', 'docbook', '.drl'),
             '.tmpl': ('docbook', 'docbook', '.drl')
@@ -86,6 +87,7 @@ def import_file(input_file: str, todrl: bool) -> str:
             '.tex': ('latex', 'plain', '.pxml'),
             '.html': ('html', 'plain', '.pxml'),
             '.md': ('markdown', 'plain', '.pxml'),
+            '.rst': ('rst', 'plain', '.pxml'),
             '.xml': ('docbook', 'plain', '.pxml'),
             '.docbook': ('docbook', 'plain', '.pxml'),
             '.tmpl': ('docbook', 'plain', '.pxml')
