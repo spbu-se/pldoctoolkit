@@ -76,7 +76,9 @@ def import_file(input_file: str, todrl: bool) -> str:
             '.tex': ('latex', 'docbook', '.drl'),
             '.html': ('html', 'docbook', '.drl'),
             '.md': ('markdown', 'docbook', '.drl'),
-            '.xml': ('docbook', 'docbook', '.drl')
+            '.xml': ('docbook', 'docbook', '.drl'),
+            '.docbook': ('docbook', 'docbook', '.drl'),
+            '.tmpl': ('docbook', 'docbook', '.drl')
         }
     else:
         formats = {
@@ -84,7 +86,9 @@ def import_file(input_file: str, todrl: bool) -> str:
             '.tex': ('latex', 'plain', '.pxml'),
             '.html': ('html', 'plain', '.pxml'),
             '.md': ('markdown', 'plain', '.pxml'),
-            '.xml': ('docbook', 'plain', '.pxml')
+            '.xml': ('docbook', 'plain', '.pxml'),
+            '.docbook': ('docbook', 'plain', '.pxml'),
+            '.tmpl': ('docbook', 'plain', '.pxml')
         }
 
     isuffix = None
