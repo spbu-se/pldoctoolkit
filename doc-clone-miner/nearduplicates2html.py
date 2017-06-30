@@ -41,7 +41,7 @@ def extract_near_duplicates(src, logger):
             oe = ob + sourcemarkers.markerlen
             cb = ce - sourcemarkers.markerlen
             mi = sourcemarkers.open_marker_id(src[ob:ob + sourcemarkers.markerlen])
-            id2clones[mi].append((oe, cb - 1))
+            id2clones[mi].append((oe, cb))
 
     cnt = 0
     fgrps = []
