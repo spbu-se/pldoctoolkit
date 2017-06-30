@@ -10,6 +10,8 @@ import string
 import sourcemarkers
 
 def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: 'list(clones.InputFile)') -> 'str':
+    heatscale = 100
+
     repetition_densities = [[0] * len(ifl.text) for ifl in input_files]
     clone_densities = [[0] * len(ifl.text) for ifl in input_files]
     for cg in available_groups:
@@ -82,7 +84,6 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
             'crf': crf, 'cgf': cgf, 'cbf': cbf, 'tx': tx, 'cfd': cfd, 'rfd': rfd, 'co': begofs, 'n': str(fn)
         })
 
-        heatscale = 100
         divh = (endofs - begofs) // heatscale
         divt = begofs // heatscale
         divb = endofs // heatscale
@@ -162,6 +163,9 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
             reports_table.append(section[0])
             reports_map.append(section[1])
             reports_heat.append(section[2])
+
+        # Heatmap >= 500 px =>
+        heatscale = min(100, max(len(ifl.text) // 500, 2))
 
         for o in range(len(ifl.text)):
             if ccd != cd[o] or crd != rd[o]:
