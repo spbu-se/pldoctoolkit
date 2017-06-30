@@ -1507,6 +1507,7 @@ class VariativeElement:
 
         vtext = ""
         vnc = 0
+        fuzzyreport = self.fuzzy and len(startgrp.instances) > 1  # a kind of... TODO: fix properly
 
         vvtexts = [
             ('<span style="background-color: silver; color:red; font-weight:bold;">&#x25c0;%d&#x25c0;</span><wbr/>' % (vn,) +
@@ -1525,7 +1526,7 @@ class VariativeElement:
 
         vltexts = '<wbr/>'.join([
             """<span class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">%s</span>"""
-            % (cstart, cend, cstart, cend, clr, no)
+            % (cstart, cend, cstart, cend - (1 if fuzzyreport else 0), clr, no)
             for cstart, cend, clr, no in zip(starts, ends, self.htmlccolors, numberedlinks)
         ])
 
