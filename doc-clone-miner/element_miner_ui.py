@@ -402,14 +402,16 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
     shouldAddTab = pyqtSignal(str, str, str, str, str, str, bool, object, name='shouldAddTab')
 
     @QtCore.pyqtSlot(str, str, str, str, str, str, bool, object)
-    # def addbrTab(self, uri, heading, stats, text = "", fn = "", save_fn = "", fuzzymatch: bool, extra: object):
     def addbrTab(self, uri, heading, stats, text, fn, save_fn, fuzzymatch: bool, extra: object):
-        self.hide()
+        # self.hide()
 
         if fuzzymatch:
             self.setWindowTitle("Near Duplicates")
 
         ntab = ElemBrowserTab(self, uri, stats, text, fn, save_fn, fuzzypattern_matches_shown=fuzzymatch, extra=extra)
+        # Now let's only shw single tab
+        while self.browserTabs.count():
+            self.browserTabs.removeTab(0)
         self.browserTabs.addTab(ntab, heading if heading else uri)
         self.browserTabs.tabBar().setVisible(self.browserTabs.count() > 1)
         self.show()
@@ -550,30 +552,22 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         pui.show()
 
         wt = None
-        if methodIdx == 0: # Clone Miner
-            wt = self.launch_with_clone_miner(pui, infile, numparams)
-        elif methodIdx == 2:  # Fuzzy Finder
-            wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
-        elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
-            wt = self.launch_fuzzyheat_with_clone_miner(pui, infile, numparams)
-        elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
-            wt, ffworkfolder = self.launch_fuzzyheat_reporting(pui, infile)
-        else:
-            raise NotImplementedError("Unknown method: " + methodIdx)
 
         self.timer = QtCore.QTimer()  # preserve from GC
+        wait_with_timer = True
 
         def wait_for_result_show_results():
             import webbrowser
             global clargs
-            if wt.isFinished():
+            if wt.isFinished() or not wait_with_timer:
                 self.timer.stop()
                 pui.hide()
 
                 if wt.fatal_error:
                     raise Exception("Error in analysis tool!")
 
-                self.elbrui = ElemBrowserUI(path=os.path.split(infile)[0])  # preserve from GC... Again...
+                if not hasattr(self, 'elbrui'):
+                    self.elbrui = ElemBrowserUI(path=os.path.split(infile)[0])  # preserve from GC... Again...
 
                 if methodIdx == 0 or methodIdx == 1: # Clone Miner or Fuzzy Heat
                     srcfn = infile + ".reformatted"
@@ -612,8 +606,21 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
 
-        self.timer.timeout.connect(wait_for_result_show_results)
-        self.timer.start(500)
+        if methodIdx == 0: # Clone Miner
+            wt = self.launch_with_clone_miner(pui, infile, numparams)
+        elif methodIdx == 2:  # Fuzzy Finder
+            wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
+        elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
+            wt = self.launch_fuzzyheat_with_clone_miner(pui, infile, numparams)
+        elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat reporting
+            wait_with_timer = False # call multiple times, will use callbacks
+            wt, ffworkfolder = self.launch_fuzzyheat_reporting(pui, infile, wait_for_result_show_results)
+        else:
+            raise NotImplementedError("Unknown method: " + methodIdx)
+
+        if wait_with_timer:
+            self.timer.timeout.connect(wait_for_result_show_results)
+            self.timer.start(500)
 
     def launch_with_fuzzy_finder(self, pui, infile, numparams):
         global elbrui
@@ -630,8 +637,8 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         wt = run_fuzzy_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
 
-    def launch_fuzzyheat_reporting(self, pui, infile):
-        wt, ffworkfolder = run_nearduplicate_report_thread(pui, infile)
+    def launch_fuzzyheat_reporting(self, pui, infile, onready):
+        wt, ffworkfolder = run_nearduplicate_report_thread(pui, infile, onready)
         return wt, ffworkfolder
 
     def launch_fuzzyheat_with_clone_miner(self, pui, infile, numparams):
@@ -852,12 +859,35 @@ def serve(inputfilename, ui, srctext):
     st.start()
 
 class NearDuplicateWorkThread(QtCore.QThread):
-    def __init__(self, pui, inputfile, workfolder):
+    def __init__(self, pui, inputfile, workfolder, continuation=None):
         QtCore.QThread.__init__(self)
         self.pui = pui
         self.inputfile = inputfile
         self.workfolder = workfolder
         self.fatal_error = False
+        def nin():
+            print("No continuation initialized")
+        self.continuation = continuation if continuation else nin
+        self.setup_autoupdate()
+
+    @QtCore.pyqtSlot()
+    def timertick(self):
+        """
+        Check if input file changed and then renew our report
+        """
+        # print("Autoupdate timer...")
+        ninputfiletime = os.path.getmtime(self.inputfile)
+        if ninputfiletime > self.inputfiletime:
+            self.inputfiletime = ninputfiletime
+            self.start()
+
+    def setup_autoupdate(self):
+        self.inputfiletime = os.path.getmtime(self.inputfile)
+        app.near_duplicate_report_thread = self
+        app.near_duplicate_report_timer = QtCore.QTimer(app)
+        app.near_duplicate_report_timer.timeout.connect(self.timertick)
+        app.near_duplicate_report_timer.setInterval(3000)  # once per 5 seconds
+        app.near_duplicate_report_timer.start()
 
     def run(self):
         os.makedirs(self.workfolder, exist_ok=True)
@@ -880,6 +910,7 @@ class NearDuplicateWorkThread(QtCore.QThread):
 
         self.pui.progressChanged.emit(2, 2, "Done")
         app.processEvents()
+        app.enqueue(self.continuation)
 
 class CloneMinerWorkThread(QtCore.QThread):
     def __init__(self, pui, inputfile, lengths, options):
@@ -996,21 +1027,40 @@ def run_fuzzyheat_with_clone_miner_thread(pui, inputfile, options, numparams):
     wt.start()
     return wt
 
-def run_nearduplicate_report_thread(pui, infile):
+def run_nearduplicate_report_thread(pui, infile, onready):
     workfolder = infile + ".neardups"
 
     pui.progressChanged.emit(1, 0, "")
     app.processEvents()
 
-    wt = NearDuplicateWorkThread(pui, infile, workfolder)
+    wt = NearDuplicateWorkThread(pui, infile, workfolder, onready)
     wt.start()
     return wt, workfolder
+
+class EMUIApp(QtWidgets.QApplication):
+    _senqueue = pyqtSignal(object)
+
+    def __init__(self, args):
+        super(EMUIApp, self).__init__(args)
+        self._senqueue.connect(self._onEnqueue)
+
+    def enqueue(self, fn):
+        """
+        Enqueue code to be executed in app main thread
+        :param fn: function with code to execute
+        """
+        self._senqueue.emit(fn)
+
+    @QtCore.pyqtSlot(object)
+    def _onEnqueue(self, fn):
+        fn()
+
 
 if __name__ == '__main__':
     print("Script Dir = " + scriptdir)
     initargs()
     global app
-    app = QtWidgets.QApplication(sys.argv)
+    app = EMUIApp(sys.argv)
     app.setWindowIcon(QtGui.QIcon(QtGui.QPixmap(os.path.join(scriptdir, 'qtui', 'icon.png'))))
 
     d = SetupDialog()
