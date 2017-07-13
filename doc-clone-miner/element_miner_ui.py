@@ -298,6 +298,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     @QtCore.pyqtSlot()
     def saveSourceAndReheat(self):
+        self.newUUID()
         self.saveSource()
         util.save_reformatted_file(self.save_fn)
         if hasattr(app, 'reheat'):
