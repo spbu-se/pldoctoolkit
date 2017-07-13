@@ -80,3 +80,16 @@ def tokenst(text):
 
 def ctokens(text):
     return ' '.join(tokenst(text))
+
+def save_reformatted_file(fileName):
+    lines = []
+    with open(fileName, encoding='utf-8') as ifs:
+        for line in ifs:
+            # lst = line.rstrip() + '\n' # leave leading blanks + add separator (we do not need \r, so no os.linesep)
+            lst = line.replace('\r', '').replace('\n',
+                                                 '') + '\n'  # leave leading blanks + add separator (we do not need \r, so no os.linesep)
+            lst = lst.replace('\t', '    ')  # Clone Miner is very brave to consider TAB equal to 4 spaces
+            lines.append(lst)
+    text = "".join(lines)
+    with open(fileName + ".reformatted", 'w+', encoding='utf-8', newline='\n') as ofs:
+       ofs.write(text)

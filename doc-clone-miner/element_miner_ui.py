@@ -130,10 +130,12 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.ignoreRangeAction = QAction("&Ignore", self)
         self.newUUIDAction = QAction("&New UUID", self)
         self.saveSourceAction = QAction("&Save", self)
+        self.saveSourceAndReheatAction = QAction("&Save and Rebuild Reuse Map", self)
         self.tbSrcCode.addAction(self.acceptRangeAction)
         self.tbSrcCode.addAction(self.ignoreRangeAction)
         self.tbSrcCode.addAction(self.newUUIDAction)
         self.tbSrcCode.addAction(self.saveSourceAction)
+        self.tbSrcCode.addAction(self.saveSourceAndReheatAction)
 
         self.bindEvents()
 
@@ -177,6 +179,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.ignoreRangeAction.triggered.connect(self.ignoreRange)
         self.newUUIDAction.triggered.connect(self.newUUID)
         self.saveSourceAction.triggered.connect(self.saveSource)
+        self.saveSourceAndReheatAction.triggered.connect(self.saveSourceAndReheat)
         self.cbHLDifferences.toggled.connect(self.cbHLDifferences_toggled)
         self.pbSSL.clicked.connect(self.pbSSL_t)
         self.pbSSR.clicked.connect(self.pbSSR_t)
@@ -292,6 +295,13 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     def saveSource(self):
         with open(self.save_fn, "w", encoding='utf8') as sf:
             sf.write(self.tbSrcCode.toPlainText())
+
+    @QtCore.pyqtSlot()
+    def saveSourceAndReheat(self):
+        self.saveSource()
+        util.save_reformatted_file(self.save_fn)
+        if hasattr(app, 'reheat'):
+            app.enqueue(app.reheat)
 
     # No more option to show/hide markup in element browser, always hide it.
     # Markup should be highlighted in the source code.
@@ -559,6 +569,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         def wait_for_result_show_results():
             import webbrowser
             global clargs
+
             if wt.isFinished() or not wait_with_timer:
                 self.timer.stop()
                 pui.hide()
@@ -568,6 +579,8 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
 
                 if not hasattr(self, 'elbrui'):
                     self.elbrui = ElemBrowserUI(path=os.path.split(infile)[0])  # preserve from GC... Again...
+
+                self.elbrui.activateWindow()
 
                 if methodIdx == 0 or methodIdx == 1: # Clone Miner or Fuzzy Heat
                     srcfn = infile + ".reformatted"
@@ -592,13 +605,10 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                 elif methodIdx == 2:  # Fuzzy Finder
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
                     self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, True, extra=None)
-                elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
-                    ht = path2url(os.path.join(
-                        os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0], "densitybrowser.html"
-                    ))
-
-                    serve(srcfn, self.elbrui, srctext)  # start server
-                    webbrowser.open_new_tab(ht)
+                elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
+                    htp = os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0])
+                    serve(srcfn, self.elbrui, srctext, htp)  # start server
+                    webbrowser.open_new_tab("http://127.0.0.1:49999/")
                     # then elbrui should wait until user selects fragment to search
                 elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Report
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
@@ -606,13 +616,22 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
 
+        if hasattr(app, 'reheat'):
+            del app.reheat
+
         if methodIdx == 0: # Clone Miner
             wt = self.launch_with_clone_miner(pui, infile, numparams)
         elif methodIdx == 2:  # Fuzzy Finder
             wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
-        elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat
-            wt = self.launch_fuzzyheat_with_clone_miner(pui, infile, numparams)
-        elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat reporting
+        elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
+            def re_launch_fuzzyheat_with_clone_miner():
+                nonlocal wt
+                self.timer.start(500)
+                wt = self.launch_fuzzyheat_with_clone_miner(pui, infile, numparams)
+                wait_for_result_show_results()
+            app.reheat = re_launch_fuzzyheat_with_clone_miner
+            re_launch_fuzzyheat_with_clone_miner()
+        elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Report
             wait_with_timer = False # call multiple times, will use callbacks
             wt, ffworkfolder = self.launch_fuzzyheat_reporting(pui, infile, wait_for_result_show_results)
         else:
@@ -836,7 +855,10 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
         savefilename, True, variatives
     )
 
-def serve(inputfilename, ui, srctext):
+def serve(inputfilename, ui, srctext, htp):
+    import time
+    server_start_time = time.time()
+
     @bottle.route('/fuzzysearch')
     def fuzzysearch():
         msim = bottle.request.query.minsim
@@ -852,6 +874,36 @@ def serve(inputfilename, ui, srctext):
         import os
         import signal
         os.kill(os.getpid(), signal.SIGTERM)
+
+    @bottle.route('/')
+    def index():
+        import html_templates
+        import string
+        return string.Template(html_templates.densitybrowser_template).substitute({'abspath': '.', 'gentime' : server_start_time})
+
+    @bottle.route("/gentime")
+    def gentime():
+        return str(server_start_time)
+
+    @bottle.route("/<url:re:(.*\\.html)>")
+    def index(url):
+        """
+        Static generated files
+        """
+        with open(os.path.join(htp, url), encoding='utf-8') as ifile:
+            return ifile.read()
+
+    def shutwownanother():
+        """Shutdown existing server if needed"""
+        import urllib.request as r
+        try:
+            r.urlopen("http://127.0.0.1:49999/shutdown")
+            print("Shutting down existing server")
+        except Exception as e:
+            print("No server was running, also ok")
+
+    if not hasattr(app, 'reheat'):
+        shutwownanother()
 
     # Daemonize bottle so closing app window will also kill it
     st = threading.Thread(target=lambda: bottle.run(host='127.0.0.1', port=49999))
