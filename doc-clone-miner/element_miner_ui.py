@@ -120,9 +120,9 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
         self.menu = QtWidgets.QMenu()
         self.menu_create_ie = self.menu.addAction("Create information element")
-        self.menu_create_ie.triggered.connect(lambda: self.eval_js("window.some2elem();"))
+        self.menu_create_ie.triggered.connect(lambda: self.feval_js("window.some2elem();"))
         self.menu_create_di = self.menu.addAction("Add dictionary entry")
-        self.menu_create_di.triggered.connect(lambda: self.eval_js("window.single2dict();"))
+        self.menu_create_di.triggered.connect(lambda: self.feval_js("window.single2dict();"))
 
         if save_fn == "":  # NOT fuzzy pattern search scenario
             self.tbSrcCode.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
@@ -150,35 +150,35 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
         def loaded(ok: bool):
             async def loaded_co():
-                # u = self.webView.page().url()
-                # if u.scheme() == 'about':
-                #     return
-                print("URI loaded:", ok)
-                r = await self.aeval_js(util.qwcjs(
-                    """
-                    try {
-                        window.qwc = new QWebChannel(qt.webChannelTransport, function (channel) {
-                            try {
-                                window.qtab = channel.objects.qtab;
-                                window.adaptToQWebView();
-                            } catch (ie) {
-                                alert(window.qtab);
-                                alert(ie);
-                            }
-                        });
-                    } catch (e) {
-                        alert(e);
-                    }
-                    """
-                ))
-                print(2)
-                return r
+                u = self.webView.page().url()
+                if u.scheme() == 'about':
+                    return util.ready_future()
+                else:
+                    print("URI loaded:", ok, "with URL:", u)
+                    r = await self.aeval_js(util.qwcjs(
+                        """
+                        try {
+                            window.qwc = new QWebChannel(qt.webChannelTransport, function (channel) {
+                                try {
+                                    window.qtab = channel.objects.qtab;
+                                    window.adaptToQWebView();
+                                } catch (ie) {
+                                    alert(window.qtab);
+                                    alert(ie);
+                                }
+                            });
+                        } catch (e) {
+                            alert(e);
+                        }
+                        """
+                    ))
+                    return r
             try:
                 self.webChannel.registerObject("qtab", self)
                 fu = loaded_co()
                 util.asio_el.run_until_complete(fu)
             except Exception as e:
-                print(e, file=sys.stderr)
+                print("Exc:", e, file=sys.stderr)
 
         self.uri = uri
         # self.webView.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.CSSGridLayoutEnabled, True)
@@ -203,7 +203,6 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
         page.loadFinished.connect(loaded)
         page.load(QtCore.QUrl(uri))
-
 
     def close_tab(self):
         self.parent().removeWidget(self)
@@ -267,7 +266,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         upjs = 'window.updatecandidatetr(%d, "%s");' % (ix + 1, newhtml.replace('\r', '\\r').replace('\n', '\\n').replace('"', '\\"'))
         # print("UPJS:")
         # print(upjs)
-        self.eval_js(upjs)
+        self.feval_js(upjs)
 
     def move_src_selection(self, delta_s, delta_e):
         cursor = self.tbSrcCode.textCursor()
@@ -308,7 +307,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     @QtCore.pyqtSlot()
     def ignoreRange(self):
         upjs = 'window.updatecandidatetr(%d, "");' % (self.candidate_idx + 1,)
-        self.eval_js(upjs)
+        self.feval_js(upjs)
 
     def ignoreRange_0(self):
         cursor = self.tbSrcCode.textCursor()
@@ -356,8 +355,8 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     @QtCore.pyqtSlot(QtCore.QPoint)
     def web_context_menu(self, point):
-        self.eval_js("window.decide_enable_dict(%d, %d);" % (point.x(), point.y()))
         self.menu.popup(self.webView.mapToGlobal(point))
+        self.feval_js("window.decide_enable_dict(%d, %d);" % (point.x(), point.y()))
 
     @QtCore.pyqtSlot(str, str)
     def inf_dic_descs(self, infdesc, dicdesc):
@@ -437,6 +436,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     async def aeval_js(self, js):
         return await util.eval_p_js_co(self.webView.page(), js)
+
+    @QtCore.pyqtSlot(str)
+    def feval_js(self, js):
+        util.eval_p_js_faf(self.webView.page(), js)
 
 
 class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')):

@@ -103,12 +103,18 @@ def save_reformatted_file(fileName):
     with open(fileName + ".reformatted", 'w+', encoding='utf-8', newline='\n') as ofs:
        ofs.write(text)
 
+# asyncio stuff
 
 def qwcjs(plus = None):
     with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "js", "qwebchannel.js"), encoding='utf-8') as qwcjsf:
         return qwcjsf.read() + ('\n' + plus if plus else "")
 
 asio_el: asyncio.AbstractEventLoop = None
+
+def ready_future(result=None):
+    fut = asio_el.create_future()
+    fut.set_result(result)
+    return fut
 
 async def eval_p_js_co(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, js: str):
     fut = asio_el.create_future()
@@ -123,6 +129,8 @@ def eval_p_js_sync(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, js: str):
     r = asio_el.run_until_complete(eval_p_js_co(page, js))
     return r
 
+def eval_p_js_faf(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, js: str):
+    page.runJavaScript(js)
 
 async def load_p_url_co(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, u: PyQt5.Qt.QUrl):
     fut = asio_el.create_future()
