@@ -880,6 +880,7 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
     import clones
     outdir = inputfilename + ".fuzzypattern"
     os.makedirs(outdir, exist_ok=True)
+    clones.VariativeElement._html_idx = 0
     variatives = onefuzzyclone2html.get_variative_elements(
         inputfilename, pattern, outdir,
         minimal_similarity=float(minsim)
@@ -889,7 +890,6 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
         savefilename = savefilename[:-12]
     else:
         print("WARNING! inputfilename", inputfilename, "does not end with .reformatted")
-    clones.VariativeElement._html_idx = 0
     ui.shouldAddTab.emit(
         path2url(os.path.join(outdir, "pyvarelements.html")),
         "Fuzzy Search results", "", srctext, inputfilename,
