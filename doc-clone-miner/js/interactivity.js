@@ -285,16 +285,9 @@ window.doc_ready = function() {
 };
 
 $(document).ready(function() {
-    try { // Qt QWebChannel 5.7+
-        // window.qt is not available in 5.7 due to bug: https://bugreports.qt.io/browse/QTBUG-53411
-        new QWebChannel(qt.webChannelTransport, function (channel) {
-            window.qtab = channel.qtab;
-            alert(window.qtab);
-            window.doc_ready();
-        });
-    } catch (e) {
-        window.qtab = null;
-        alert(e);
+    try {
         window.doc_ready();
+    } catch(e) {
+        alert(e);
     }
 });

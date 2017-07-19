@@ -2,14 +2,19 @@
 # -*- coding: utf-8 -*-
 import re
 import shutil
-import os
+import sys
 
 import Levenshtein
-import interval as itvl # https://pypi.python.org/pypi/pyinterval
 
 import asyncio
 import PyQt5.Qt
 import os
+
+try:
+    import interval as itvl # https://pypi.python.org/pypi/pyinterval
+except Exception as e:
+    print("pyinterval not installed. No coverage reports will be available", file=sys.stderr)
+
 
 """Misc utilitary garbage"""
 
@@ -99,30 +104,32 @@ def save_reformatted_file(fileName):
        ofs.write(text)
 
 
-def qwcjs():
+def qwcjs(plus = None):
     with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "js", "qwebchannel.js"), encoding='utf-8') as qwcjsf:
-        return qwcjsf.read()
+        return qwcjsf.read() + ('\n' + plus if plus else "")
+
+asio_el: asyncio.AbstractEventLoop = None
 
 async def eval_p_js_co(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, js: str):
-    fut = asyncio.get_event_loop().create_future()
+    fut = asio_el.create_future()
     def ready(r):
-        asyncio.get_event_loop().call_soon_threadsafe(fut.set_result, r)
+        asio_el.call_soon_threadsafe(fut.set_result, r)
 
     page.runJavaScript(js, ready)
     return await fut
 
 
 def eval_p_js_sync(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, js: str):
-    r = asyncio.get_event_loop().run_until_complete(eval_p_js_co(page, js))
+    r = asio_el.run_until_complete(eval_p_js_co(page, js))
     return r
 
 
 async def load_p_url_co(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, u: PyQt5.Qt.QUrl):
-    fut = asyncio.get_event_loop().create_future()
+    fut = asio_el.create_future()
 
     def ready(ok: bool):
         page.loadFinished.disconnect()
-        asyncio.get_event_loop().call_soon_threadsafe(fut.set_result, ok)
+        asio_el.call_soon_threadsafe(fut.set_result, ok)
 
     page.loadFinished.connect(ready)
     page.load(u)
@@ -130,4 +137,9 @@ async def load_p_url_co(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, u: PyQt5.
 
 
 def load_p_url_sync(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, u: PyQt5.Qt.QUrl):
-    asyncio.get_event_loop().run_until_complete(load_p_url_co(page, u))
+    asio_el.run_until_complete(load_p_url_co(page, u))
+
+def set_asio_el(loop):
+    global asio_el
+    asio_el = loop
+    asyncio.set_event_loop(loop)

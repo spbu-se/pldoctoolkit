@@ -14,6 +14,7 @@ import bottle
 import threading
 import shutil
 import util
+from quamash import QEventLoop, QThreadExecutor
 
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets, uic
 from PyQt5.QtWebEngineWidgets import QWebEngineView
@@ -147,14 +148,37 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.textBrowser.setText(stats)
         self.editCoordinateCorrections = dict()
 
-        def loaded(ok):
-            u = self.webView.page().url()
-            if u.scheme() == 'about':
-                return
-            print("URI loaded: " + str(ok) + " > " + str(u))
-            self.webChannel.registerObject("qtab", self)
-            # self.eval_js("qtab.inf_dic_descs('123', '456');") test Python -> JS -> Python -- works ok, great!
-            self.eval_js("window.adaptToQWebView();")
+        def loaded(ok: bool):
+            async def loaded_co():
+                # u = self.webView.page().url()
+                # if u.scheme() == 'about':
+                #     return
+                print("URI loaded:", ok)
+                r = await self.aeval_js(util.qwcjs(
+                    """
+                    try {
+                        window.qwc = new QWebChannel(qt.webChannelTransport, function (channel) {
+                            try {
+                                window.qtab = channel.objects.qtab;
+                                window.adaptToQWebView();
+                            } catch (ie) {
+                                alert(window.qtab);
+                                alert(ie);
+                            }
+                        });
+                    } catch (e) {
+                        alert(e);
+                    }
+                    """
+                ))
+                print(2)
+                return r
+            try:
+                self.webChannel.registerObject("qtab", self)
+                fu = loaded_co()
+                util.asio_el.run_until_complete(fu)
+            except Exception as e:
+                print(e, file=sys.stderr)
 
         self.uri = uri
         # self.webView.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.CSSGridLayoutEnabled, True)
@@ -162,9 +186,6 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         page = self.webView.page() #.addToJavaScriptWindowObject("qtab", self)
         self.webChannel = QWebChannel(page)
         page.setWebChannel(self.webChannel)
-
-        self.webView.loadFinished.connect(loaded)
-        self.webView.load(QtCore.QUrl(uri)) # not available in 5.7 due to bug: https://bugreports.qt.io/browse/QTBUG-53411
 
         try:
             qf = QtGui.QFont("monospace")
@@ -179,6 +200,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
             self.tbSrcCode.setPlainText(src)
         else:  # Not implemented correctly yet...
             self.tbSrcCode.setHtml(sourcemarkers.source_text_to_html(src))
+
+        page.loadFinished.connect(loaded)
+        page.load(QtCore.QUrl(uri))
+
 
     def close_tab(self):
         self.parent().removeWidget(self)
@@ -408,7 +433,11 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     @QtCore.pyqtSlot(str)
     def eval_js(self, js):
-        self.webView.page().runJavaScript(js)
+        util.eval_p_js_sync(self.webView.page(), js)
+
+    async def aeval_js(self, js):
+        return await util.eval_p_js_co(self.webView.page(), js)
+
 
 class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')):
     def __init__(self, parent=None, path=None):
@@ -1121,7 +1150,10 @@ if __name__ == '__main__':
     print("Script Dir = " + scriptdir)
     initargs()
     global app
+
     app = EMUIApp(sys.argv)
+    util.set_asio_el(QEventLoop(app))
+
     app.setWindowIcon(QtGui.QIcon(QtGui.QPixmap(os.path.join(scriptdir, 'qtui', 'icon.png'))))
 
     d = SetupDialog()

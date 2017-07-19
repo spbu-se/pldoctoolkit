@@ -26,7 +26,11 @@ import xmllexer
 import xmlfixup
 import semanticfilter
 import intervaltree
-import interval as itvl # https://pypi.python.org/pypi/pyinterval
+
+try:
+    import interval as itvl # https://pypi.python.org/pypi/pyinterval
+except Exception as e:
+    print("pyinterval not installed. No coverage reports will be available", file=sys.stderr)
 
 from abc import ABC, abstractmethod
 

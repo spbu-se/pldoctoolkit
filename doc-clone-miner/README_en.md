@@ -47,9 +47,11 @@ Python
   * Download either `python_Levenshtein-0.12.0-cp36-cp36m-win32.whl` or `python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl`,
     which matches your Python
   * `pip install <your_package>.whl`
-* PyQt, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install pyqt5 lxml PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc`
+* PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install pyqt5 quamash lxml PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc`
 
-Package versions -- most recent ones compatible with Python 3.6.
+Notes:
+* Package versions -- most recent ones compatible with Python 3.6
+* pyintegval may take some efforts to install on Windows, as it requires MSYS2 to be installed, look [here](https://stackoverflow.com/a/30071634/539470)
 
 System
 ------

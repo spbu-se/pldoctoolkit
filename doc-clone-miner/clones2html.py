@@ -667,5 +667,8 @@ if __name__ == '__main__':  #
 
     write_density_report()
     combs = combine_gruops()
-    log_reuse_amount(combs)
+    try:
+        log_reuse_amount(combs)
+    except Exception as e:
+        print("Exception:", e, "when logging reuse amounts", file=sys.stderr)
     extra_report.perform(clones, combs, logging.getLogger("cloneminer.extra_report"))
