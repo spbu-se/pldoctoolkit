@@ -51,7 +51,8 @@ Python
 
 Notes:
 * Package versions -- most recent ones compatible with Python 3.6
-* pyintegval may take some efforts to install on Windows, as it requires MSYS2 to be installed, look [here](https://stackoverflow.com/a/30071634/539470)
+* On Windows, before installing `pyintegval`, you may need to install MinGW (either 32- or 64-bit depending on your Python), as described [here](https://stackoverflow.com/a/30071634/539470),
+  and put it at the beginning of the path, e.g. `set PATH=C:\msys64\mingw64\bin;%PATH%`. This allows building `pyinterval` dependencies properly.
 
 System
 ------
