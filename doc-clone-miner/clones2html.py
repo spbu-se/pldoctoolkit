@@ -21,9 +21,11 @@ import shutil
 import time
 import errno
 import csv
+import util
 
 import intertree
 import clones
+import extra_report
 
 clones.initdata()
 
@@ -45,7 +47,9 @@ def initargs():
     argpar.add_argument("-fint", "--filterintersections", help="Filter clone intersections")
     argpar.add_argument("-ph", "--printheader", help="Print header for stats line")
     argpar.add_argument("-mv", "--maximalvariance",
-                        help="Maximal variance of variative insertion sizes, defaults to 2000", default=2000)
+                        help = "DEPRECATED. Maximal variance of variative insertion sizes, defaults to 0, was 2000 before", default = 0)
+    argpar.add_argument("-mr", "--maximalrsd",
+                        help="Maximal coefficient of variation, %, of variative insertion sizes, defaults to 50.0", default="0")
     argpar.add_argument("-csp", "--check-semantics-presence", help="Filter clones without textual semantics (no, yes, nltk)",
                         default="no")
     argpar.add_argument("-ie", "--inclusive-end",
@@ -63,6 +67,14 @@ def initargs():
     argpar.add_argument("-gca", "--group-combining-algorithm",
                         choices=["interval-n-ext", "full-square"],
                         help="Group combining algorithm", type=str, default="interval-n-ext")
+    argpar.add_argument("-maxctl", "--max-clone-token-length", type=int, help="MAX clone length inn tokens",
+                        default=sys.maxsize)
+    argpar.add_argument("-mingpow", "--min-group-power", type=int, help="MIN clone group power in clones",
+                        default=2)
+    argpar.add_argument("-bvt", "--bassett-variativity-threshold", type=float,
+                        default=0.15, help="MAX variations/archetype in symbols for variational groups")
+    argpar.add_argument("-minal", "--minimal-archetype-length", type=int,
+                        default=5, help="MIN length of archetype for resulting (variative) elements")
 
     args = argpar.parse_args()
 
@@ -103,6 +115,9 @@ def initargs():
 
     global group_combining_algorithm_name
     group_combining_algorithm_name = args.group_combining_algorithm
+
+    global minimal_archetype_length
+    minimal_archetype_length = args.minimal_archetype_length
 
     clones.initoptions(args, logger)
 
@@ -287,7 +302,6 @@ if filterintersections:
     clones.clonegroups = [g for g in clones.clonegroups if len(g.instances) > 1]
 
     logging.info("after removing intersections having %d groups" % len(clones.clonegroups))
-
     # print("Total symbols in non-intersecting groups: %d" % (totalsymbolsingroups(clones.clonegroups),))
 
 
@@ -467,7 +481,7 @@ def log_short_repetitions(maxtokens, minrepetitions):
     numf = lambda num: (("%d" if type(num) is int else "%0.20f") % num).replace(',', '.')
     numl = lambda vl: list(map(numf, list(vl)))
 
-    with open(os.path.join("Output", subdir, "shortterms.csv"), 'w') as csvfile:
+    with open(os.path.join("Output", subdir, "shortterms.csv"), 'w', encoding='utf-8') as csvfile:
         fwtr = csv.writer(csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
 
         fwtr.writerow(['Total groups:', numf(len(clones.clonegroups))])
@@ -501,6 +515,13 @@ def combine_gruops():
 
     group_combinator = group_combinators[group_combining_algorithm_name]
 
+    if group_combining_algorithm_name == "full-square":
+        clones.VariativeElement.postfiltering = False
+    elif group_combining_algorithm_name == "interval-n-ext":
+        clones.VariativeElement.postfiltering = True
+    else:
+        raise Exception("WAT?..")
+
     if nearby:
         combinations, remaining_groups = group_combinator(available_groups)
     else:
@@ -509,23 +530,28 @@ def combine_gruops():
     # print("Offered clones -- total: %d, single: %d, variative: %d" % (len(remaining_groups) + len(combinations), len(remaining_groups), len(combinations)))
 
     combinations += [clones.VariativeElement([gr]) for gr in remaining_groups]
+
+    combinations = list(filter(
+        lambda ve: ve.passes_filter(),
+        combinations
+    ))
+
     combinations.sort(key=lambda ve: ve.size, reverse=True)
 
-    cohtml = clones.VariativeElement.summaryhtml(combinations, False)
-    with open(os.path.join("Output", subdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:
-        htmlfile.write(cohtml)
+    l = logging.getLogger("cloneminer.combine.summary")
+    l.info("After final filtering, having:")
+    l.info("Exact dup groups: %d" % len(list(filter(lambda ve: len(ve.clone_groups) == 1, combinations))))
+    l.info("Near  dup groups: %d" % len(list(filter(lambda ve: len(ve.clone_groups) >  1, combinations))))
 
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'interactivity.js'),
-        os.path.join("Output", subdir, "interactivity.js")
-    )
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'jquery-2.0.3.min.js'),
-        os.path.join("Output", subdir, "jquery-2.0.3.min.js")
+    util.write_variative_report(
+        clones, combinations,
+        os.path.join("Output", subdir, "pyvarelements.html")
     )
 
+    return combinations
 
 def write_density_report():
+    import html_templates
     with \
         open(os.path.join("Output", subdir, "densityreport.html"), 'w', encoding='utf-8') as density_table_file,\
         open(os.path.join("Output", subdir, "densitymap.html"), 'w', encoding='utf-8') as density_map_file,\
@@ -572,18 +598,20 @@ def write_density_report():
         <script>
         function selctionfuzzysearch(evt) {
           var seltext = window.getSelection().toString();
-          var minsim = window.prompt("Minimal similarity", "0.5");
+          var minsim = window.prompt("Similarity threshold", "0.5");
           // alert([minsim, seltext]);
           var nloc = "http://127.0.0.1:49999/fuzzysearch?minsim=" + encodeURIComponent(minsim) +
             "&text=" + encodeURIComponent(seltext);
-          window.location = nloc;
+          document.getElementById("queryframe").src = nloc;
         }
         document.addEventListener("keypress", selctionfuzzysearch, false);
         </script>
 
         </head>
-        <body>
+        <body style="overflow-x: hidden;">
         %s
+        <div><iframe style="border: 0px; width: 90%%; " id="queryframe" src="" ></iframe></div>
+        <a href="http://127.0.0.1:49999/shutdown" target="_blank" >X</a>
         </body>
         </html>""") % (dr[1],)
 
@@ -594,7 +622,7 @@ def write_density_report():
         <style type="text/css">
         </style>
         </head>
-        <body>
+        <body style="overflow-x: hidden;">
         %s
         </body>
         </html>""") % (dr[2],)
@@ -603,24 +631,41 @@ def write_density_report():
         density_map_file.write(h1)
         heat_map_file.write(h3)
 
-        density_browser_file.write(textwrap.dedent(
-            """<!DOCTYPE html>
-            <html lang="en">
-            <head>
-            <meta charset="utf-8">
-            <style type="text/css">
-            </style>
-            </head>
-            <body style="margin: 0px; padding: 0px;">
-            <iframe name="densitymap" src="densitymap.html" style="border: 0; position:absolute; height: 100%; width: calc(100% - 200px);"></iframe>
-            <iframe name="heatmap" src="heatmap.html" style="overflow-x: hidden; border: 0; position:absolute; height: 100%; left: calc(100% - 200px); width: 200px;"></iframe>
-            </body>
-            </html>"""
-        ))
+        density_browser_file.write(
+            string.Template(html_templates.densitybrowser_template).substitute({'abspath': '.', 'gentime' : time.time()})
+        )
+
+def log_reuse_amount(candidates: 'list[clones.VariativeElement]'):
+    l = logging.getLogger("cloneminer.combine.summary")
+    tot_length = 0
+    reuse_length = 0
+    for ifl in clones.inputfiles:
+        tot_length += len(ifl.text)
+    for vg in candidates:
+        for g in vg.clone_groups:
+            for f, b, e in g.instances:
+                reuse_length += e - b
+
+    l.info("------- Reuse Amounts -------")
+
+    l.info(
+        "Clone-based reuse amount: %d / %d = %0.2f%% = %f" % (
+            reuse_length, tot_length, reuse_length/tot_length*100.0, reuse_length/tot_length
+    ))
+
+    # Then coverage
+    cov = clones.coverage_in_all_words(candidates)
+    all = len(clones.InputFile.instances()[0].get_all_words())
+
+    l.info("Token-based coverage amount: %d / %d = %0.2f%% = %f" % (
+        cov, all, cov/all*100.0, cov/all
+    ))
 
 if __name__ == '__main__':  #
     if max_csv_group_tokens > 0 and min_csv_group_instances > 0:
         log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)
 
     write_density_report()
-    combine_gruops()
+    combs = combine_gruops()
+    log_reuse_amount(combs)
+    extra_report.perform(clones, combs, logging.getLogger("cloneminer.extra_report"))

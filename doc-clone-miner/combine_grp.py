@@ -8,11 +8,14 @@ def combine_gruops_par_20140819(available_groups):
     # pool = multiprocessing.Pool()
     import clones
     import sys
+    import time
 
     # participated_groups = set() not used
     combinations = []
 
     print("Combining groups, %d total..." % len(available_groups))
+    t1 = time.process_time()
+
     pcounter = 0
 
     available_groups = set(available_groups)
@@ -39,12 +42,15 @@ def combine_gruops_par_20140819(available_groups):
         pcounter += 1
         print("~ %d / %d = %03.1f%%" % (pcounter, ptotal, 100.0 * pcounter / ptotal), end=ttyn, flush=True)
 
+    t2 = time.process_time()
+
     # print stats
     def pstats():
         import logging
         logging.getLogger("cloneminer.combine.square").info("Source single groups: %d" %(len(available_groups),))
         logging.getLogger("cloneminer.combine.square").info("Single groups: %d" %(len(current_available_groups),))
         logging.getLogger("cloneminer.combine.square").info("Variative groups: %d" %(len(combinations),))
+        logging.getLogger("cloneminer.combine.square").info("Spent time: %f s." % (t2 - t1,))
     pstats()
 
     return combinations, current_available_groups
@@ -60,6 +66,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     1.1. during 2nd and further iterations only consider G1 of 2 and more groups above. Reason:
          all combinable single groups were combined during 1st iteration, so no new variative
          ones can appear, only existing can be extended
+    1.2. we only consider new VG as successful when
     2. each successful G1, G2 combination is:
     2.1. ACG -= [G1, G2]
     2.2. VG1 <- [G1, G2]
@@ -76,11 +83,13 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     import itertools
     import logging
     import clones
+    import time
     from intervaltree import IntervalTree
 
     ttyn = '\r' if sys.stdout.isatty() else '\n'
 
     print("Combining groups, %d total..." % len(available_groups))
+    t1 = time.process_time()
 
     # (0)
     avg = set([clones.VariativeElement([cg]) for cg in available_groups])
@@ -88,7 +97,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
     def build_interval_tree():
         vg_interval_list = []
         for ve in avg:
-            vg_interval_list += ve.get_tree_intervals(expanded=True)
+            vg_interval_list += ve.get_tree_intervals(expanded=True, archetype_consolidated=True)
         logging.debug("(re)building interval tree...")
         itree = IntervalTree(vg_interval_list)  # to search who intersects with clone_intervals[i.begin:i.end]
         logging.debug("(re)built interval tree of %d intervals." % (len(vg_interval_list),))
@@ -102,7 +111,6 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         print("~ %d / %d = %03.1f%%" % (tready, ptotal, 100.0 * tready / ptotal), end=ttyn, flush=True)
 
     # (1)
-    maxdist = clones.infty  # 2000
     cycle = True
     iterations_passed = 0
     while cycle:
@@ -120,44 +128,57 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
             # on second and further iterations no new single groups
             # will be combined with each other, so only consider variative ones
             # TODO: test better
-            if iterations_passed and g1.power == 1:
+            if iterations_passed and g1.g_power == 1:
                 continue
 
             probable_g2_intervals = [
                 vg_intervals.search(interval.begin, interval.end) for interval in
-                g1.get_tree_intervals(expanded=True)
+                g1.get_tree_intervals(expanded=True, archetype_consolidated=True)
             ]
             probable_g2s = [
                 clones.VariativeElement.from_tree_interval(i)
                 for i in itertools.chain.from_iterable(probable_g2_intervals)
             ]
-            probable_g2_dists = [clones.VariativeElement.distance(g1, g2) for g2 in probable_g2s]
+            probable_g2_dists = [
+                clones.VariativeElement.distance(g1, g2, expanded=False, archetype_consolidated=True)
+                for g2 in probable_g2s
+            ]
+            probable_g2_xdists = [
+                clones.VariativeElement.distance(g1, g2, expanded=True, archetype_consolidated=True)
+                for g2 in probable_g2s
+            ]
             g2sdists = [
                 (g, d)
-                for (g, d) in zip(probable_g2s, probable_g2_dists)
-                if 0 < d < maxdist and g not in skip
+                for g, d, xd in zip(probable_g2s, probable_g2_dists, probable_g2_xdists)
+                if 0 < d < clones.infty and xd == -clones.infty and g not in skip
+                # groups do not intersect, but expanded masks do intersect
+                # This condition is very important. It causes only combining with groups
+                # those are close enough to keep variative part less than 15% of archetype
             ]
             if len(g2sdists) > 0:
-                best_g2_d = min(g2sdists, key=lambda gd: gd[1])
-                tojoin.add((g1, best_g2_d[0]))
-                skip.add(g1)
-                skip.add(best_g2_d[0])
+                best_g2, best_d = min(g2sdists, key=lambda gd: gd[1])
+                g1_g2 = g1 + best_g2
+                # In fact, interval expansion is a bit more tolerant than it should be, let's correct it here
+                if g1_g2.obeys_basset_constraint():
+                    tojoin.add((g1, best_g2, g1_g2))
+                    skip.add(g1)
+                    skip.add(best_g2)
 
             if not g1i % 100:
                 pprogress(iterations_passed, g1i / len(avg))
 
         # (2)
-        for g1, g2 in tojoin:
+        for g1, g2, new_ve in tojoin:
+            logging.debug("AVG %d ->" % (len(avg),))
+
             cycle = True  # check for (3)
 
-            logging.debug("AVG %d ->" % (len(avg),))
             # (2.1)
             avg.remove(g1)
             avg.remove(g2)
-            # (2.2)
-            new_ve = g1 + g2
             # (2.3)
             avg.add(new_ve)
+
             logging.debug("AVG %d <-" % (len(avg),))
 
             # (2.4)
@@ -179,6 +200,8 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         else:
             uni_groups.append(ve.clone_groups[0])
 
+    t2 = time.process_time()
+
     # print stats
     def pstats():
         import collections
@@ -188,12 +211,18 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
         for vg in var_groups:
             vgs[len(vg.clone_groups)] += 1
         logging.getLogger("cloneminer.combine.n_ext_points").info("Variative groups:")
-        for gc in vgs.keys():
+        for gc in sorted(vgs.keys()):
             logging.getLogger("cloneminer.combine.n_ext_points").info(" - %d -> %d" % (gc, vgs[gc]))
+        if vgs.keys():
+            avg = sum([vgs[gc]*gc for gc in vgs.keys()]) / sum([vgs[gc] for gc in vgs.keys()])
+            logging.getLogger("cloneminer.combine.n_ext_points").info(" - AVG -> %f" % (avg,))
+        if vgs.values():
+            logging.getLogger("cloneminer.combine.n_ext_points").info(" - Total VGs -> %d" % (sum(vgs.values()),))
+        logging.getLogger("cloneminer.combine.n_ext_points").info("Spent time: %f s." % (t2 - t1,))
+
     pstats()
 
     return var_groups, uni_groups
-    # return combine_gruops_par_20140819(available_groups) # fallback then -- it is now fake, does noting =)
 
 if __name__ == '__main__':
     pass

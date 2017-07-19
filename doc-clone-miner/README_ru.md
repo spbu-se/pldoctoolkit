@@ -42,21 +42,22 @@ Documentation Refactoring Toolkit -- легковесный инструмент
 Python
 ------
 
-* [Python 3.4.x](https://www.python.org/downloads/release/python-344/)
-* [PyQt5 5.5.x](https://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/)
-* [LXML](https://pypi.python.org/pypi/lxml/3.6.0)
-* PyContracts -- `pip install PyContracts`
-* pygments -- `pip install pygments`
-* NumPy -- `pip install NumPy`
-* intervaltree -- `pip install intervaltree`
+* [Python 3.6.x](https://www.python.org/downloads/)
+* [Python-Levenshtein](http://www.lfd.uci.edu/~gohlke/pythonlibs/#python-levenshtein):
+  * Если работаете под Windows, обновите Pip: `python -m pip install --upgrade pip`
+  * Загрузите `python_Levenshtein-0.12.0-cp36-cp36m-win32.whl` или `python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl`,
+    в зависимости от того, 32- или 64-разрадный у Вас интерпретатор Python
+  * `pip install <your_package>.whl`
+* PyQt, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install pyqt5 lxml PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc`
 
-Версии пакетов -- любые актуальные, совместимые с Python 3.4
+Версии пакетов -- самые можно брать самые последние, совместимые с Python 3.6.
 
 Системные
 ---------
 
 * Компьютер архитектуры `x86` или `x86_64` для запуска Clone Miner, Windows
   или UN*X
+* [Pandoc](http://pandoc.org/)
 * для Windows:
     * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) для запуска Fuzzy Finder
 * для UN*X-подобных систем:

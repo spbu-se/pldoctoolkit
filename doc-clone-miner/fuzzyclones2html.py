@@ -56,7 +56,7 @@ def report(logger):
     import clones
 
     fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
-    cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, True)
+    cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
 
     outdir = args.output_directory
     with open(os.path.join(outdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:

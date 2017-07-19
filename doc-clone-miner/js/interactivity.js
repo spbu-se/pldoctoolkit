@@ -22,7 +22,7 @@ var replaceHtml = function (el, html) {
     oldEl.parentNode.replaceChild(newEl, oldEl);
 };
 
-$.fn.highlightRange = function(start, end) {
+$.fn.highlightRange = function(start, end, candidate_idx) {
     var e = $(this); //= document.getElementById($(this).attr('id')); // I don't know why... but $(this) don't want to work today :-/
     var offset = start;
     var length = end - start + 1;
@@ -59,11 +59,11 @@ window.doc_ready = function() {
             console.log(msg);
     };
 
-    var highlightRange = function(hls, hle) {
+    var highlightRange = function(hls, hle, candidate_idx) {
         if (window.qtab) {
-            qtab.src_select(hls, hle);
+            qtab.src_select(hls, hle, candidate_idx);
         } else {
-            $('div#source code').highlightRange(hls, hle);
+            $('div#source code').highlightRange(hls, hle, candidate_idx);
         }
     };
 
@@ -165,11 +165,28 @@ window.doc_ready = function() {
             clonebrowsermarkup.hide();
     }
 
+    window.toggleclonebrowserdiffs = function(newval) {
+        if(newval) {
+            $("span.modeldiffplus").addClass("diffplus");
+            $("span.modeldiffminus").show();
+        } else {
+            $("span.modeldiffplus").removeClass("diffplus");
+            $("span.modeldiffminus").hide();
+        }
+    }
+
+    window.updatecandidatetr = function(data_idx, outer_html) {
+        var elt = $('tr[data-idx="' + data_idx +'"]');
+        elt.replaceWith(outer_html);
+        $('.variationclick').unbind('click');
+        $('.variationclick').click(window.vclicker);
+    }
+
     $("#single2dict").click(single2dict);
     $("#single2elem").click(single2elem);
     $("#multiple2elem").click(multiple2elem);
 
-    $('.variationclick').click(function() {
+    window.vclicker = function() {
         $('.variationclick').removeClass('highlight');
         $(this).addClass('highlight');
 
@@ -179,9 +196,10 @@ window.doc_ready = function() {
         var hlrange = $(this).attr("data-hlrange").split('-');
         var hls = +hlrange[0];
         var hle = +hlrange[1];
+        var candidate_idx = $(this).closest('tr').attr("data-idx");
         var src = $('div#source code');
         // lowlight();
-        highlightRange(hls, hle);
+        highlightRange(hls, hle, candidate_idx);
         src = $('div#source code');
 
         if (!window.qtab) {
@@ -211,7 +229,8 @@ window.doc_ready = function() {
                     $(this).hide();
             });
         }
-    });
+    };
+    $('.variationclick').click(window.vclicker);
 
     window.source0 = $('div#source code').get(0).textContent; // unescapes
 

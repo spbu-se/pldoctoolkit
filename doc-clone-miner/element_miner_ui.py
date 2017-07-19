@@ -12,15 +12,19 @@ import subprocess
 import re
 import bottle
 import threading
-import time
 import shutil
+import util
 
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets, uic
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWebChannel import QWebChannel
 from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtWidgets import QAction
+
+import sourcemarkers
 
 scriptdir = os.path.dirname(os.path.realpath(__file__))
+scriptname = os.path.basename(os.path.realpath(__file__))
 
 def path2url(path):
     return QtCore.QUrl.fromLocalFile(path).toString()
@@ -83,6 +87,10 @@ def initargs():
     argpar.add_argument("-if", "--input-file", help="Input file to analyze")
     argpar.add_argument("-gca", "--group-combining-algorithm", help="Group combining algorithm for Clone Miner",
                         choices=["interval-n-ext", "full-square"], type=str, default="interval-n-ext")
+    argpar.add_argument("-faais", "--force-allow-acccept-ignore-save",
+                        help="Allow Accept/Ignore/Save in all modes",
+                        action='store_true'
+                        )
     global clargs
     clargs = argpar.parse_args()
 
@@ -91,11 +99,20 @@ def ui_class(name):
     return uic.loadUiType(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'qtui', name))[0]
 
 class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
-    def __init__(self, parent, uri, stats, src="", fn=""):
+    def __init__(self, parent, uri, stats, src="", fn="", save_fn="", fuzzypattern_matches_shown=False, extra: object=None):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
 
         self.additionalInfo.setHidden(True)
+
+        self.cbHLDifferences.setVisible(fuzzypattern_matches_shown)
+        self.fmAdjustSelection.setVisible(fuzzypattern_matches_shown and extra is not None)
+
+        self.extra = extra
+        self.candidate_idx = None
+        if fuzzypattern_matches_shown:
+            self.variatives = self.extra  # type: List[clones.VariativeElement]
+
 
         self.webView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.webView.customContextMenuRequested.connect(self.web_context_menu)
@@ -106,8 +123,29 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.menu_create_di = self.menu.addAction("Add dictionary entry")
         self.menu_create_di.triggered.connect(lambda: self.eval_js("window.single2dict();"))
 
+        if save_fn == "":  # NOT fuzzy pattern search scenario
+            self.tbSrcCode.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
+        else: # just fuzzy pattern search
+            self.lbTableName.setText("Matches found:")
+
+        self.acceptRangeAction = QAction("&Accept", self)
+        self.ignoreRangeAction = QAction("&Ignore", self)
+        self.newUUIDAction = QAction("&New UUID", self)
+        self.saveSourceAction = QAction("&Save", self)
+        self.saveSourceAndReheatAction = QAction("&Save and Rebuild Reuse Map", self)
+        self.tbSrcCode.addAction(self.acceptRangeAction)
+        self.tbSrcCode.addAction(self.ignoreRangeAction)
+        self.tbSrcCode.addAction(self.newUUIDAction)
+        self.tbSrcCode.addAction(self.saveSourceAction)
+        self.tbSrcCode.addAction(self.saveSourceAndReheatAction)
+
         self.bindEvents()
+
+        if fuzzypattern_matches_shown:
+            self.bindSelShortcuts()
+
         self.textBrowser.setText(stats)
+        self.editCoordinateCorrections = dict()
 
         def loaded(ok):
             u = self.webView.page().url()
@@ -136,14 +174,145 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
             print("Error setting font: " + str(e))
 
         self.fn = fn
-        self.tbSrcCode.setPlainText(src)
+        self.save_fn = save_fn
+        if True:  # save_fn == "":  # NOT fuzzy pattern search scenario
+            self.tbSrcCode.setPlainText(src)
+        else:  # Not implemented correctly yet...
+            self.tbSrcCode.setHtml(sourcemarkers.source_text_to_html(src))
 
     def close_tab(self):
         self.parent().removeWidget(self)
 
     def bindEvents(self):
         self.closeButton.clicked.connect(self.close_tab)
-        # self.showClonesMarkup.toggled.connect(self.show_clones_markup_toggled)
+        self.acceptRangeAction.triggered.connect(self.acceptRange)
+        self.ignoreRangeAction.triggered.connect(self.ignoreRange)
+        self.newUUIDAction.triggered.connect(self.newUUID)
+        self.saveSourceAction.triggered.connect(self.saveSource)
+        self.saveSourceAndReheatAction.triggered.connect(self.saveSourceAndReheat)
+        self.cbHLDifferences.toggled.connect(self.cbHLDifferences_toggled)
+        self.pbSSL.clicked.connect(self.pbSSL_t)
+        self.pbSSR.clicked.connect(self.pbSSR_t)
+        self.pbSEL.clicked.connect(self.pbSEL_t)
+        self.pbSER.clicked.connect(self.pbSER_t)
+        self.tbSrcCode.selectionChanged.connect(self.srcCodeSelectionSchanged)
+
+    def bindSelShortcuts(self):
+        self.ssl_s = QtWidgets.QShortcut(
+            QtGui.QKeySequence(QtCore.Qt.Key_Control + QtCore.Qt.Key_Shift + QtCore.Qt.Key_B), self.fmAdjustSelection)
+        self.ssr_s = QtWidgets.QShortcut(
+            QtGui.QKeySequence(QtCore.Qt.Key_Control + QtCore.Qt.Key_B), self.fmAdjustSelection)
+        self.sel_s = QtWidgets.QShortcut(
+            QtGui.QKeySequence(QtCore.Qt.Key_Control + QtCore.Qt.Key_E), self.fmAdjustSelection)
+        self.ser_s = QtWidgets.QShortcut(
+            QtGui.QKeySequence(QtCore.Qt.Key_Control + QtCore.Qt.Key_Shift + QtCore.Qt.Key_E), self.fmAdjustSelection)
+
+        self.ssl_s.activated.connect(self.pbSSL_t)
+        self.ssr_s.activated.connect(self.pbSSR_t)
+        self.sel_s.activated.connect(self.pbSEL_t)
+        self.ser_s.activated.connect(self.pbSER_t)
+
+    @QtCore.pyqtSlot()
+    def srcCodeSelectionSchanged(self):
+        cursor = self.tbSrcCode.textCursor()
+        ss = cursor.selectionStart()
+        se = cursor.selectionEnd() - 1
+
+    def update_current_variative(self):
+        import clones
+        vs = self.variatives
+        ix = self.candidate_idx
+        if vs is None or ix is None:
+            return
+
+        cursor = self.tbSrcCode.textCursor()
+        ss = cursor.selectionStart()
+        se = cursor.selectionEnd() - 1
+        if se <= ss:
+            return
+
+        cv = vs[ix]  # type: clones.VariativeElement
+        oldgrp = cv.clone_groups[0]
+        cf, cb, ce = oldgrp.instances[0] # type: clones.FuzzyCloneGroup
+        newgrp = clones.FuzzyCloneGroup(oldgrp.id, [(cf, ss, se)])
+        cv.clone_groups[0] = newgrp
+        cv.html_idx = ix + 1
+
+        newhtml = cv.html.strip()  # type: str
+        upjs = 'window.updatecandidatetr(%d, "%s");' % (ix + 1, newhtml.replace('\r', '\\r').replace('\n', '\\n').replace('"', '\\"'))
+        # print("UPJS:")
+        # print(upjs)
+        self.eval_js(upjs)
+
+    def move_src_selection(self, delta_s, delta_e):
+        cursor = self.tbSrcCode.textCursor()
+        ss = cursor.selectionStart()
+        se = cursor.selectionEnd() - 1
+        self.src_select(ss + delta_s, se + delta_e, None)
+        self.update_current_variative()
+
+    @QtCore.pyqtSlot()
+    def pbSSL_t(self):
+        self.move_src_selection(-1, 0)
+
+    @QtCore.pyqtSlot()
+    def pbSSR_t(self):
+        self.move_src_selection(1, 0)
+
+    @QtCore.pyqtSlot()
+    def pbSEL_t(self):
+        self.move_src_selection(0, -1)
+
+    @QtCore.pyqtSlot()
+    def pbSER_t(self):
+        self.move_src_selection(0, 1)
+
+    @QtCore.pyqtSlot()
+    def acceptRange(self):
+        cursor = self.tbSrcCode.textCursor()
+        se = cursor.selectionStart(), cursor.selectionEnd()
+        sm = sourcemarkers.AcceptRangeMarker(se[0], se[1])
+        pt = self.tbSrcCode.toPlainText()
+        l1 = len(pt)
+        pt = sm.apply(pt)
+        dl = len(pt) - l1
+        self.editCoordinateCorrections[se[0]] = dl
+        self.tbSrcCode.setPlainText(pt)
+        print("Accept range: " + repr(se))
+
+    @QtCore.pyqtSlot()
+    def ignoreRange(self):
+        upjs = 'window.updatecandidatetr(%d, "");' % (self.candidate_idx + 1,)
+        self.eval_js(upjs)
+
+    def ignoreRange_0(self):
+        cursor = self.tbSrcCode.textCursor()
+        se = cursor.selectionStart(), cursor.selectionEnd()
+        sm = sourcemarkers.IgnoreRangeMarker(se[0], se[1])
+        pt = self.tbSrcCode.toPlainText()
+        l1 = len(pt)
+        pt = sm.apply(pt)
+        dl = len(pt) - l1
+        self.editCoordinateCorrections[se[0]] = dl
+        self.tbSrcCode.setPlainText(pt)
+        print("Ignore range: " + repr(se))
+
+    @QtCore.pyqtSlot()
+    def newUUID(self):
+        sourcemarkers.RangeMarker.forceNewUUID()
+
+    @QtCore.pyqtSlot()
+    def saveSource(self):
+        with open(self.save_fn, "w", encoding='utf8') as sf:
+            sf.write(self.tbSrcCode.toPlainText())
+
+    @QtCore.pyqtSlot()
+    def saveSourceAndReheat(self):
+        self.newUUID()
+        self.saveSource()
+        util.save_reformatted_file(self.save_fn)
+        if hasattr(app, 'reheat'):
+            app.enqueue(app.reheat)
 
     # No more option to show/hide markup in element browser, always hide it.
     # Markup should be highlighted in the source code.
@@ -151,6 +320,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     # @QtCore.pyqtSlot(bool)
     # def show_clones_markup_toggled(self, v):
     #     self.eval_js("window.toggleclonebrowsermarkup(%s);" % ('true' if v else 'false',))
+
+    @QtCore.pyqtSlot(bool)
+    def cbHLDifferences_toggled(self, v):
+        self.eval_js("window.toggleclonebrowserdiffs(%s);" % ('true' if v else 'false',))
 
     @QtCore.pyqtSlot(bool)
     def enable_dict(self, e):
@@ -203,14 +376,27 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
             global app
             app.exit(rc)
 
-    @QtCore.pyqtSlot(int, int)
-    def src_select(self, start, finish):
+    def correct_coordinate(self, b, e):
+        db = 0
+        de = 0
+        for k, v in self.editCoordinateCorrections.items():
+            if b > k:
+                db += v
+            if e > k:
+                de += v
+        return b + db, e + de
+
+    @QtCore.pyqtSlot(int, int, str)
+    def src_select(self, start0, finish0, candidate_idx=None):
+        start, finish = self.correct_coordinate(start0, finish0)
         c = self.tbSrcCode.textCursor()
         c.setPosition(start)
         c.setPosition(finish + 1, QtGui.QTextCursor.KeepAnchor)
         self.tbSrcCode.setTextCursor(c)
         self.tbSrcCode.setFocus()
-        print("change selection", start, finish)
+        if candidate_idx:
+            self.candidate_idx = int(candidate_idx) - 1
+        print("change selection", start, finish, self.candidate_idx)
 
     @QtCore.pyqtSlot(str)
     def src_text(self, txt):
@@ -229,15 +415,25 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.path = path if path else os.path.curdir
+        # bindings
         self.bindEvents()
 
-    shouldAddTab = pyqtSignal(str, str, str, str, str, name='shouldAddTab')
+    shouldAddTab = pyqtSignal(str, str, str, str, str, str, bool, object, name='shouldAddTab')
 
-    @QtCore.pyqtSlot(str, str, str, str, str)
-    def addbrTab(self, uri, heading, stats, text = "", fn = ""):
-        ntab = ElemBrowserTab(self, uri, stats, text, fn)
+    @QtCore.pyqtSlot(str, str, str, str, str, str, bool, object)
+    def addbrTab(self, uri, heading, stats, text, fn, save_fn, fuzzymatch: bool, extra: object):
+        # self.hide()
+
+        if fuzzymatch:
+            self.setWindowTitle("Near Duplicates")
+
+        ntab = ElemBrowserTab(self, uri, stats, text, fn, save_fn, fuzzypattern_matches_shown=fuzzymatch, extra=extra)
+        # Now let's only shw single tab
+        while self.browserTabs.count():
+            self.browserTabs.removeTab(0)
         self.browserTabs.addTab(ntab, heading if heading else uri)
         self.browserTabs.tabBar().setVisible(self.browserTabs.count() > 1)
+        self.show()
 
     def bindEvents(self):
         self.actionE_xport.triggered.connect(self.exportReport)
@@ -289,6 +485,14 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         self.setupUi(self)
         self.setFixedSize(self.size())
         self.bindEvents()
+
+        # restricted UI customizations
+        if scriptname == 'duplicate-finder.py':
+            self.setWindowTitle("Duplicate Finder")
+            self.methodWidget.setHidden(True)
+            self.fuzzyHeatSettings.setTitle("Settings")
+            self.cbMethod.setCurrentIndex(1)
+
         if clargs.input_file:
             ifn = os.path.realpath(clargs.input_file)
             self.inFile.setText(ifn.replace("\\", "/"))
@@ -298,18 +502,40 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         self.buttonBox.rejected.connect(lambda: sys.exit(0))
         self.btSelectFolder.clicked.connect(self.select_file)
         self.cbMaxVar.stateChanged.connect(self.cbMaxVar_checked)
+        self.cbMaxVar_2.stateChanged.connect(self.cbMaxVar_2_checked)
         self.cbMethod.currentIndexChanged.connect(self.methodSelected)
+        self.cbOnlyShowNearDuplicates.stateChanged.connect(self.onlyShowNDchanged)
+        # self.swDevSettings.clicked.connect(self.showSwDevSettings)
+        self.btAdditionalSettings.clicked.connect(self.showAdditionalSettings)
 
-        for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd]:
+        for slider in [self.slClLen, self.slFfClLen, self.slFfEd, self.slFfHd,
+                       self.slClLen_f, self.slGrpMinPow, self.slArchLen]:
             slider.valueChanged.connect(self.slider_moved)
+
+        self.slClMaxLen_f.valueChanged.connect(self.slClMaxLenRotated)
+
+    # @QtCore.pyqtSlot(bool)
+    def onlyShowNDchanged(self, val):
+        for slider in [self.slClLen_f, self.slClMaxLen_f, self.slGrpMinPow]:
+            slider.setEnabled(not val)
+
+    @QtCore.pyqtSlot(int)
+    def slClMaxLenRotated(self, value):
+        self.lbClMaxLen_f.setText("\u221E" if value > 200 else str(value))
 
     @QtCore.pyqtSlot(int)
     def methodSelected(self, idx):
         # print("method: ", idx)
         self.analyzerOptions.setCurrentIndex(idx)
 
+    def showAdditionalSettings(self):
+        self.swDevSettings.setCurrentIndex(1)
+
     def cbMaxVar_checked(self, val):
         self.sbMaxVar.setEnabled(val)
+
+    def cbMaxVar_2_checked(self, val):
+        self.sbMaxVar_2.setEnabled(val)
 
     @QtCore.pyqtSlot(int)
     def slider_moved(self, val):
@@ -325,16 +551,19 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
             print("Wont find label for slider: " + slName)
 
     def dialog_ok(self):
+        import pandoc_importer
+        methodIdx = self.cbMethod.currentIndex()
+
         infile = self.inFile.text()
+        infile = pandoc_importer.import_file(infile, methodIdx==0)
         pui = ElemMinerProgressUI()
 
-        methodIdx = self.cbMethod.currentIndex()
         if methodIdx == 0: # Clone Miner
             numparams = [int(self.lbClLen.text())]
-        elif methodIdx == 1:  # Fuzzy Finder
+        elif methodIdx == 2:  # Fuzzy Finder
             numparams = [slider.value() for slider in [self.slFfClLen, self.slFfEd, self.slFfHd]]
-        elif methodIdx == 2: # Fuzzy Heat
-            numparams = []
+        elif methodIdx == 1: # Fuzzy Heat
+            numparams = [slider.value() for slider in [self.slClLen_f]]
         else:
             raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -342,32 +571,29 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         pui.show()
 
         wt = None
-        if methodIdx == 0: # Clone Miner
-            wt = self.launch_with_clone_miner(pui, infile, numparams)
-        elif methodIdx == 1:  # Fuzzy Finder
-            wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
-        elif methodIdx == 2:  # Fuzzy Heat
-            wt = self.launch_fuzzyheat_with_clone_miner(pui, infile)
-        else:
-            raise NotImplementedError("Unknown method: " + methodIdx)
 
         self.timer = QtCore.QTimer()  # preserve from GC
+        wait_with_timer = True
 
         def wait_for_result_show_results():
             import webbrowser
-            if wt.isFinished():
+            global clargs
+
+            if wt.isFinished() or not wait_with_timer:
                 self.timer.stop()
                 pui.hide()
 
                 if wt.fatal_error:
                     raise Exception("Error in analysis tool!")
 
-                self.elbrui = ElemBrowserUI(path=os.path.split(infile)[0])  # preserve from GC... Again...
-                self.elbrui.show()
+                if not hasattr(self, 'elbrui'):
+                    self.elbrui = ElemBrowserUI(path=os.path.split(infile)[0])  # preserve from GC... Again...
 
-                if methodIdx == 0 or methodIdx == 2: # Clone Miner or Fuzzy Heat
+                self.elbrui.activateWindow()
+
+                if methodIdx == 0 or methodIdx == 1: # Clone Miner or Fuzzy Heat
                     srcfn = infile + ".reformatted"
-                elif methodIdx == 1:  # Fuzzy Finder
+                elif methodIdx == 2:  # Fuzzy Finder or Near Duplicates report
                     srcfn = os.path.join(ffworkfolder, os.path.split(infile + ".reformatted")[-1])
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
@@ -377,28 +603,52 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                 with open(srcfn, encoding='utf-8') as ifh:
                     srctext = ifh.read()
 
+                forced_save_fn = infile if clargs.force_allow_acccept_ignore_save else ""
+
                 if methodIdx == 0: # Clone Miner
                     # something sensible later
                     for l, o in zip(numparams, wt.outs):
                         ht = path2url(
                             os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l, "pyvarelements.html"))
-                        self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn)
-                elif methodIdx == 1: # Fuzzy Finder
+                        self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn, forced_save_fn, False, None)
+                elif methodIdx == 2:  # Fuzzy Finder
                     ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
-                    self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn)
-                elif methodIdx == 2:  # Fuzzy Heat
-                    ht = path2url(os.path.join(
-                        os.path.dirname(clargs.clone_tool), "Output", "001", "densitybrowser.html"
-                    ))
-
-                    serve(srcfn, self.elbrui, srctext)  # start server
-                    webbrowser.open_new_tab(ht)
+                    self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, True, extra=None)
+                elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
+                    htp = os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0])
+                    serve(srcfn, self.elbrui, srctext, htp)  # start server
+                    webbrowser.open_new_tab("http://127.0.0.1:49999/")
                     # then elbrui should wait until user selects fragment to search
+                elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Report
+                    ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
+                    self.elbrui.addbrTab(ht, str(numparams), "", srctext, srcfn, forced_save_fn, True, extra=None)
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
 
-        self.timer.timeout.connect(wait_for_result_show_results)
-        self.timer.start(500)
+        if hasattr(app, 'reheat'):
+            del app.reheat
+
+        if methodIdx == 0: # Clone Miner
+            wt = self.launch_with_clone_miner(pui, infile, numparams)
+        elif methodIdx == 2:  # Fuzzy Finder
+            wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
+        elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
+            def re_launch_fuzzyheat_with_clone_miner():
+                nonlocal wt
+                self.timer.start(500)
+                wt = self.launch_fuzzyheat_with_clone_miner(pui, infile, numparams)
+                wait_for_result_show_results()
+            app.reheat = re_launch_fuzzyheat_with_clone_miner
+            re_launch_fuzzyheat_with_clone_miner()
+        elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Report
+            wait_with_timer = False # call multiple times, will use callbacks
+            wt, ffworkfolder = self.launch_fuzzyheat_reporting(pui, infile, wait_for_result_show_results)
+        else:
+            raise NotImplementedError("Unknown method: " + methodIdx)
+
+        if wait_with_timer:
+            self.timer.timeout.connect(wait_for_result_show_results)
+            self.timer.start(500)
 
     def launch_with_fuzzy_finder(self, pui, infile, numparams):
         global elbrui
@@ -415,23 +665,35 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         wt = run_fuzzy_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
 
-    def launch_fuzzyheat_with_clone_miner(self, pui, infile):
+    def launch_fuzzyheat_reporting(self, pui, infile, onready):
+        wt, ffworkfolder = run_nearduplicate_report_thread(pui, infile, onready)
+        return wt, ffworkfolder
+
+    def launch_fuzzyheat_with_clone_miner(self, pui, infile, numparams):
         options = [
             "-wv", "no",
             "-minl", "5",
             "-cmup", "no",
             "-fint", "no",
-            "-csp", "no"
+            "-csp", "no",
         ]
 
-        wt = run_fuzzyheat_with_clone_miner_thread(pui, infile, options)
+        if self.slClMaxLen_f.value() <= 200:
+            options += ['-maxctl', str(self.slClMaxLen_f.value())]
+
+        if self.slGrpMinPow.value() > 2:
+            options += ['-mingpow', str(self.slGrpMinPow.value())]
+
+        wt = run_fuzzyheat_with_clone_miner_thread(pui, infile, options, numparams)
         return wt
 
     def launch_with_clone_miner(self, pui, infile, lengths):
         # easter egg -- maxvar = 0 & unchecked maxvar should avoid it from
         # combining (only single clones, no variations in output)
         # needed for debugging...
-        dovariations = self.cbMaxVar.checkState() or self.sbMaxVar.value() != 0
+        # dovariations = self.cbMaxVar.checkState() or self.sbMaxVar.value() != 0
+
+        dovariations = self.cbCa.currentText() != "None"
 
         options = [
             # default settings
@@ -448,10 +710,22 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         options += ["-cmup", ["no", "yes", "shrink"][self.cbCheckMup.currentIndex()]]
         options += ["-fint", "no" if self.cbAllowInt.checkState() else "yes"]
         options += ["-csp", ["no", "yes", "nltk"][self.cbxCheckSemantics.currentIndex()]]
-        options += ["-gca", clargs.group_combining_algorithm]
+        # options += ["-gca", clargs.group_combining_algorithm]
 
-        if dovariations and self.cbMaxVar.checkState():
-            options += ["-mv", str(self.sbMaxVar.value())]
+        if dovariations:
+            if self.cbCa.currentText() == "NEXT16":
+                options += ["-gca", "interval-n-ext"]
+            else:  # 1EXT14
+                options += ["-gca", "full-square"]
+
+            if self.cbMaxVar.checkState():
+                options += ["-mr", str(self.sbMaxVar.value())]
+
+            if self.cbMaxVar_2.checkState():
+                options += ["-mv", str(self.sbMaxVar_2.value())]
+
+        options += ["-minal", self.lbArchLen.text()]
+        options += ["-bvt", str(self.sbMaxDeltaRatio.value() / 100.0)]
 
         wt = run_clone_miner_thread(pui, infile, lengths, options)
         return wt
@@ -546,15 +820,7 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
     wt.start()
     return wt
 
-
-class Shutdownable(bottle.WSGIRefServer):
-    instance = None
-
-    def run(self, *args, **kw):
-        Shutdownable.instance = self
-        super(Shutdownable, self).run(*args, **kw)
-
-def do_fuzzy_pattern_search(inputfilename, ui, minsim, text, srctext):
+def do_fuzzy_pattern_search_CLI(inputfilename, ui, minsim, text, srctext):
     outdir = inputfilename + ".fuzzypattern"
     os.makedirs(outdir, exist_ok=True)
     args = [
@@ -565,29 +831,147 @@ def do_fuzzy_pattern_search(inputfilename, ui, minsim, text, srctext):
         "-od", outdir
     ]
     subprocess.call(args)
+    savefilename = inputfilename
+    if savefilename.endswith(".reformatted"):
+        savefilename = savefilename[:-12]
+    else:
+        print("WARNING! inputfilename", inputfilename, "does not end with .reformatted")
     ui.shouldAddTab.emit(
         path2url(os.path.join(outdir, "pyvarelements.html")),
-        "Fuzzy Search results", "", srctext, inputfilename
+        "Fuzzy Search results", "", srctext, inputfilename,
+        savefilename, True, None
     )
 
-def serve(inputfilename, ui, srctext):
+
+def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
+    import onefuzzyclone2html
+    import clones
+    outdir = inputfilename + ".fuzzypattern"
+    os.makedirs(outdir, exist_ok=True)
+    variatives = onefuzzyclone2html.get_variative_elements(
+        inputfilename, pattern, outdir,
+        minimal_similarity=float(minsim)
+    )
+    savefilename = inputfilename
+    if savefilename.endswith(".reformatted"):
+        savefilename = savefilename[:-12]
+    else:
+        print("WARNING! inputfilename", inputfilename, "does not end with .reformatted")
+    clones.VariativeElement._html_idx = 0
+    ui.shouldAddTab.emit(
+        path2url(os.path.join(outdir, "pyvarelements.html")),
+        "Fuzzy Search results", "", srctext, inputfilename,
+        savefilename, True, variatives
+    )
+
+def serve(inputfilename, ui, srctext, htp):
+    import time
+    server_start_time = time.time()
+
     @bottle.route('/fuzzysearch')
     def fuzzysearch():
         msim = bottle.request.query.minsim
         text = bottle.request.query.text
-
-        def shut():
-            do_fuzzy_pattern_search(inputfilename, ui, msim, text, srctext)
-            # Shutdownable.instance.shutdown()  # TODO: make it work...
-        sdt = threading.Thread(target=shut)
+        sdt = threading.Thread(target=lambda: do_fuzzy_pattern_search_API(inputfilename, ui, msim, text, srctext))
+        sdt.setDaemon(False)
         sdt.start()
 
-        return "Searching for text <<<%s>>> with min similarity %s..." % (text, msim)
+        return "Searching for text <<<%s>>> with min similarity %s..." % (util.escapen(text), msim)
 
-    # some other thread:
-    st = threading.Thread(target=lambda: bottle.run(host='127.0.0.1', port=49999, server=Shutdownable))
-    st.daemon = True
+    @bottle.route('/shutdown')
+    def shutdown():
+        import os
+        import signal
+        os.kill(os.getpid(), signal.SIGTERM)
+
+    @bottle.route('/')
+    def index():
+        import html_templates
+        import string
+        return string.Template(html_templates.densitybrowser_template).substitute({'abspath': '.', 'gentime' : server_start_time})
+
+    @bottle.route("/gentime")
+    def gentime():
+        return str(server_start_time)
+
+    @bottle.route("/<url:re:(.*\\.html)>")
+    def index(url):
+        """
+        Static generated files
+        """
+        with open(os.path.join(htp, url), encoding='utf-8') as ifile:
+            return ifile.read()
+
+    def shutwownanother():
+        """Shutdown existing server if needed"""
+        import urllib.request as r
+        try:
+            r.urlopen("http://127.0.0.1:49999/shutdown")
+            print("Shutting down existing server")
+        except Exception as e:
+            print("No server was running, also ok")
+
+    if not hasattr(app, 'reheat'):
+        shutwownanother()
+
+    # Daemonize bottle so closing app window will also kill it
+    st = threading.Thread(target=lambda: bottle.run(host='127.0.0.1', port=49999))
+    st.setDaemon(True)
     st.start()
+
+class NearDuplicateWorkThread(QtCore.QThread):
+    def __init__(self, pui, inputfile, workfolder, continuation=None):
+        QtCore.QThread.__init__(self)
+        self.pui = pui
+        self.inputfile = inputfile
+        self.workfolder = workfolder
+        self.fatal_error = False
+        def nin():
+            print("No continuation initialized")
+        self.continuation = continuation if continuation else nin
+        self.setup_autoupdate()
+
+    @QtCore.pyqtSlot()
+    def timertick(self):
+        """
+        Check if input file changed and then renew our report
+        """
+        # print("Autoupdate timer...")
+        ninputfiletime = os.path.getmtime(self.inputfile)
+        if ninputfiletime > self.inputfiletime:
+            self.inputfiletime = ninputfiletime
+            self.start()
+
+    def setup_autoupdate(self):
+        self.inputfiletime = os.path.getmtime(self.inputfile)
+        app.near_duplicate_report_thread = self
+        app.near_duplicate_report_timer = QtCore.QTimer(app)
+        app.near_duplicate_report_timer.timeout.connect(self.timertick)
+        app.near_duplicate_report_timer.setInterval(3000)  # once per 5 seconds
+        app.near_duplicate_report_timer.start()
+
+    def run(self):
+        os.makedirs(self.workfolder, exist_ok=True)
+        # shutil.copy(self.inputfile, self.workfolder)
+        # ifb = os.path.basename(self.inputfile)
+
+        self.pui.progressChanged.emit(1, 2, "Reporting marked duplicates...")
+        app.processEvents()
+
+        popen_args = [
+                         sys.executable, optverb, os.path.join(scriptdir, "nearduplicates2html.py"),
+                         "-sx", self.inputfile,
+                         "-od", self.workfolder
+                     ]
+        print("Reporting with: " + ' '.join(popen_args))
+        reppr = subprocess.Popen(popen_args, stdout=subprocess.PIPE)
+
+        oe = reppr.communicate()
+        ffrc = reppr.returncode
+
+        self.pui.progressChanged.emit(2, 2, "Done")
+        app.processEvents()
+        app.enqueue(self.continuation)
 
 class CloneMinerWorkThread(QtCore.QThread):
     def __init__(self, pui, inputfile, lengths, options):
@@ -693,23 +1077,51 @@ def run_clone_miner_thread(pui, inputfile, lengths, options):
     return wt
 
 
-def run_fuzzyheat_with_clone_miner_thread(pui, inputfile, options):
+def run_fuzzyheat_with_clone_miner_thread(pui, inputfile, options, numparams):
     global clargs, app
     inputfile = inputfile.replace('/', os.sep)
 
     pui.progressChanged.emit(1, 0, "")
     app.processEvents()
 
-
-    wt = CloneMinerWorkThread(pui, inputfile, [1], options)
+    wt = CloneMinerWorkThread(pui, inputfile, numparams, options)
     wt.start()
     return wt
+
+def run_nearduplicate_report_thread(pui, infile, onready):
+    workfolder = infile + ".neardups"
+
+    pui.progressChanged.emit(1, 0, "")
+    app.processEvents()
+
+    wt = NearDuplicateWorkThread(pui, infile, workfolder, onready)
+    wt.start()
+    return wt, workfolder
+
+class EMUIApp(QtWidgets.QApplication):
+    _senqueue = pyqtSignal(object)
+
+    def __init__(self, args):
+        super(EMUIApp, self).__init__(args)
+        self._senqueue.connect(self._onEnqueue)
+
+    def enqueue(self, fn):
+        """
+        Enqueue code to be executed in app main thread
+        :param fn: function with code to execute
+        """
+        self._senqueue.emit(fn)
+
+    @QtCore.pyqtSlot(object)
+    def _onEnqueue(self, fn):
+        fn()
+
 
 if __name__ == '__main__':
     print("Script Dir = " + scriptdir)
     initargs()
     global app
-    app = QtWidgets.QApplication(sys.argv)
+    app = EMUIApp(sys.argv)
     app.setWindowIcon(QtGui.QIcon(QtGui.QPixmap(os.path.join(scriptdir, 'qtui', 'icon.png'))))
 
     d = SetupDialog()

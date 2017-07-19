@@ -41,20 +41,21 @@ Requirements
 Python
 ------
 
-* [Python 3.4.x](https://www.python.org/downloads/release/python-344/)
-* [PyQt5 5.5.x](https://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/)
-* [LXML](https://pypi.python.org/pypi/lxml/3.6.0)
-* PyContracts -- `pip install PyContracts`
-* pygments -- `pip install pygments`
-* NumPy -- `pip install NumPy`
-* intervaltree -- `pip install intervaltree`
+* [Python 3.6.x](https://www.python.org/downloads/)
+* [Python-Levenshtein](http://www.lfd.uci.edu/~gohlke/pythonlibs/#python-levenshtein):
+  * On Windows, update Pip: `python -m pip install --upgrade pip`
+  * Download either `python_Levenshtein-0.12.0-cp36-cp36m-win32.whl` or `python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl`,
+    which matches your Python
+  * `pip install <your_package>.whl`
+* PyQt, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install pyqt5 lxml PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc`
 
-Package versions -- most recent ones compatible with Python 3.4
+Package versions -- most recent ones compatible with Python 3.6.
 
 System
 ------
 
 * `x86` or `x86_64` architecture PC to run Clone Miner, Windows or UN*X
+* [Pandoc](http://pandoc.org/)
 * on Windows:
     * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) to run Fuzzy Finder
 * on UN*Xes:
