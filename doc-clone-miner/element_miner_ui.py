@@ -273,7 +273,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         ss = cursor.selectionStart()
         se = cursor.selectionEnd() - 1
         self.src_select(ss + delta_s, se + delta_e, None)
-        self.update_current_variative()
+        try:
+            self.update_current_variative()
+        except Exception as e:
+            print("Current variative update exception:", repr(e), file=sys.stderr)
 
     @QtCore.pyqtSlot()
     def pbSSL_t(self):
@@ -347,7 +350,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     @QtCore.pyqtSlot(bool)
     def cbHLDifferences_toggled(self, v):
-        self.eval_js("window.toggleclonebrowserdiffs(%s);" % ('true' if v else 'false',))
+        self.feval_js("window.toggleclonebrowserdiffs(%s);" % ('true' if v else 'false',))
 
     @QtCore.pyqtSlot(bool)
     def enable_dict(self, e):
@@ -432,14 +435,20 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     @QtCore.pyqtSlot(str)
     def eval_js(self, js):
-        util.eval_p_js_sync(self.webView.page(), js)
+        try:
+            util.eval_p_js_sync(self.webView.page(), js)
+        except Exception as e:
+            print("Exception in SYNC eval JS:", repr(e), file=sys.stderr)
 
     async def aeval_js(self, js):
         return await util.eval_p_js_co(self.webView.page(), js)
 
     @QtCore.pyqtSlot(str)
     def feval_js(self, js):
-        util.eval_p_js_faf(self.webView.page(), js)
+        try:
+            util.eval_p_js_faf(self.webView.page(), js)
+        except Exception as e:
+            print("Exception in FAF eval JS:", repr(e), file=sys.stderr)
 
 
 class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')):
