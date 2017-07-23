@@ -41,23 +41,20 @@ Requirements
 Python
 ------
 
-* [Python 3.6.x](https://www.python.org/downloads/)
-* [Python-Levenshtein](http://www.lfd.uci.edu/~gohlke/pythonlibs/#python-levenshtein):
-  * On Windows, update Pip: `python -m pip install --upgrade pip`
-  * Download either `python_Levenshtein-0.12.0-cp36-cp36m-win32.whl` or `python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl`,
-    which matches your Python
-  * `pip install <your_package>.whl`
+* 64 bit [Python 3.6.x](https://www.python.org/downloads/)
+* [Python-Levenshtein](http://www.lfd.uci.edu/~gohlke/pythonlibs/#python-levenshtein) and [CRlibm](https://pypi.python.org/pypi/crlibm):
+  * On Windows:
+    * Update Pip: `python -m pip install --upgrade pip`
+    * Download WHL archives: [this](python_whl/python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl) and [this](python_whl/crlibm-1.0.3-cp36-cp36m-win_amd64.whl)
+    * `pip install python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl crlibm-1.0.3-cp36-cp36m-win_amd64.whl`
+  * On Linux, when GCC is installed, it is easier to build them yourself:
+    * `pip install python_Levenshtein crlibm`
 * PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install pyqt5 quamash lxml PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc`
-
-Notes:
-* Package versions -- most recent ones compatible with Python 3.6
-* On Windows, before installing `pyintegval`, you may need to install MinGW (either 32- or 64-bit depending on your Python), as described [here](https://stackoverflow.com/a/30071634/539470),
-  and put it at the beginning of the path, e.g. `set PATH=C:\msys64\mingw64\bin;%PATH%`. This allows building `pyinterval` dependencies properly.
 
 System
 ------
 
-* `x86` or `x86_64` architecture PC to run Clone Miner, Windows or UN*X
+* `x86_64` architecture PC to run Clone Miner, Windows or UN*X
 * [Pandoc](http://pandoc.org/)
 * on Windows:
     * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) to run Fuzzy Finder

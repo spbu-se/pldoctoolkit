@@ -42,29 +42,21 @@ Documentation Refactoring Toolkit -- легковесный инструмент
 Python
 ------
 
-* [Python 3.6.x](https://www.python.org/downloads/)
-* [Python-Levenshtein](http://www.lfd.uci.edu/~gohlke/pythonlibs/#python-levenshtein):
-  * Если работаете под Windows, обновите Pip: `python -m pip install --upgrade pip`
-  * Загрузите `python_Levenshtein-0.12.0-cp36-cp36m-win32.whl` или `python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl`,
-    в зависимости от того, 32- или 64-разрадный у Вас интерпретатор Python
-  * `pip install <your_package>.whl`
+* 64 bit [Python 3.6.x](https://www.python.org/downloads/)
+* [Python-Levenshtein](http://www.lfd.uci.edu/~gohlke/pythonlibs/#python-levenshtein) и [CRlibm](https://pypi.python.org/pypi/crlibm):
+  * Для Windows:
+    * Обновите Pip: `python -m pip install --upgrade pip`
+    * Загрузите архивы WHL: [this](python_whl/python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl) and [this](python_whl/crlibm-1.0.3-cp36-cp36m-win_amd64.whl)
+    * `pip install python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl crlibm-1.0.3-cp36-cp36m-win_amd64.whl`
+  * Для Linux, если установлен GCC, проще эти два пакета собрать самостоятельно:
+    * `pip install python_Levenshtein crlibm`
 * PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install pyqt5 quamash lxml PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc`
-
-
-Замечания:
-* Версии пакетов можно брать самые последние, совместимые с Python 3.6.
-* Под Windows перед инсталляцией `pyintegval`, может также понадобиться инсталляция MinGW (32- или 64-битного, в зависимости от того, какой установлен Python),
-  как описано [здесь](https://stackoverflow.com/a/30071634/539470),
-  и помещение его в начало переменной пути, например так: `set PATH=C:\msys64\mingw64\bin;%PATH%`. Это еобходимо для правильной сборки зависимостей `pyinterval`.
-
-
 
 
 Системные
 ---------
 
-* Компьютер архитектуры `x86` или `x86_64` для запуска Clone Miner, Windows
-  или UN*X
+* Компьютер архитектуры `x86_64` для запуска Clone Miner, Windows или UN*X
 * [Pandoc](http://pandoc.org/)
 * для Windows:
     * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) для запуска Fuzzy Finder
