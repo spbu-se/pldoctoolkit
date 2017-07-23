@@ -46,7 +46,7 @@ Python
 * [Python-Levenshtein](http://www.lfd.uci.edu/~gohlke/pythonlibs/#python-levenshtein) и [CRlibm](https://pypi.python.org/pypi/crlibm):
   * Для Windows:
     * Обновите Pip: `python -m pip install --upgrade pip`
-    * Загрузите архивы WHL: [this](python_whl/python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl) and [this](python_whl/crlibm-1.0.3-cp36-cp36m-win_amd64.whl)
+    * Загрузите архивы WHL: [этот](python_whl/python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl) и [этот](python_whl/crlibm-1.0.3-cp36-cp36m-win_amd64.whl)
     * `pip install python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl crlibm-1.0.3-cp36-cp36m-win_amd64.whl`
   * Для Linux, если установлен GCC, проще эти два пакета собрать самостоятельно:
     * `pip install python_Levenshtein crlibm`
