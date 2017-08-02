@@ -4,78 +4,33 @@
 """
 Element miner UI. Licensed under GPL v3 after PyQt5 which is used here.
 """
-import locale
-import sys
-import os
 import argparse
-import subprocess
+import locale
+import os
 import re
-import bottle
-import threading
 import shutil
-import util
-from quamash import QEventLoop, QThreadExecutor
+import subprocess
+import sys
+import threading
 
-from PyQt5 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets, uic
-from PyQt5.QtWebEngineWidgets import QWebEngineView
-from PyQt5.QtWebChannel import QWebChannel
+import bottle
+from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtWebChannel import QWebChannel
 from PyQt5.QtWidgets import QAction
+from quamash import QEventLoop
 
 import sourcemarkers
+import util
+from pyqt_common import ui_class, _scriptdir
 
-scriptdir = os.path.dirname(os.path.realpath(__file__))
-scriptname = os.path.basename(os.path.realpath(__file__))
+import pyqt_common
 
-def path2url(path):
-    return QtCore.QUrl.fromLocalFile(path).toString()
-
-def url2path(url):
-    return QtCore.QUrl(url).toLocalFile()
-
-# inspired by https://gist.github.com/Tatsh/7131812 
-from os import chdir, getcwd
-from os.path import realpath
+_scriptdir = os.path.dirname(os.path.realpath(__file__))
+_scriptname = os.path.basename(os.path.realpath(__file__))
 
 # optverb = "-v"  # uncomment for debugging
 optverb = "-OO"   # uncomment for production
-
-class pushd_c:
-    cwd = None
-    original_dir = None
-
-    def __init__(self, dirname):
-        self.cwd = realpath(dirname)
-
-    def __enter__(self):
-        self.original_dir = getcwd()
-        chdir(self.cwd)
-        return self
-
-    def __exit__(self, type, value, tb):
-        chdir(self.original_dir)
-
-
-def adapt_path_2_win(path):
-    path = os.path.realpath(path)
-    if os.name == 'posix':
-        # running clone miner using wine
-        # assuming root is mounted to z:\
-        return "z:" + path.replace('/', '\\')
-    else:
-        return path
-
-
-def adapt_filename_enc_2_win():
-    import locale
-    loc2wincp = {
-        'en': 'ibm437',
-        'ru': 'windows-1251'
-    }
-    loc = locale.getlocale()
-    lng = loc[0][:2]
-    wincp = loc2wincp[lng]
-    return wincp
 
 
 def initargs():
@@ -83,8 +38,8 @@ def initargs():
     # Windows one...
     # TODO: run Clone Miner with Wine if needed =)
     # And it is hardcoded not only here (and here it is hardcoded optionally =)).
-    argpar.add_argument("-ct", "--clone-tool", help="Full path to clones.exe", default= os.path.join(scriptdir, "clone_miner", "clones.exe"))
-    argpar.add_argument("-fft", "--fuzzy-finder-tool", help="Full path to CloneFinder.exe", default= os.path.join(scriptdir, "fuzzy_finder", "CloneFinder.exe"))
+    argpar.add_argument("-ct", "--clone-tool", help="Full path to clones.exe", default= os.path.join(_scriptdir, "clone_miner", "clones.exe"))
+    argpar.add_argument("-fft", "--fuzzy-finder-tool", help="Full path to CloneFinder.exe", default= os.path.join(_scriptdir, "fuzzy_finder", "CloneFinder.exe"))
     argpar.add_argument("-if", "--input-file", help="Input file to analyze")
     argpar.add_argument("-gca", "--group-combining-algorithm", help="Group combining algorithm for Clone Miner",
                         choices=["interval-n-ext", "full-square"], type=str, default="interval-n-ext")
@@ -94,10 +49,6 @@ def initargs():
                         )
     global clargs
     clargs = argpar.parse_args()
-
-
-def ui_class(name):
-    return uic.loadUiType(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'qtui', name))[0]
 
 class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     def __init__(self, parent, uri, stats, src="", fn="", save_fn="", fuzzypattern_matches_shown=False, extra: object=None):
@@ -372,7 +323,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     @QtCore.pyqtSlot(str)
     def refactor_create_inf_elt(self, dicdesc):
         print("refactor_create_inf_elt", dicdesc)
-        parms = [sys.executable, optverb, os.path.join(scriptdir, "refactor.py"),
+        parms = [sys.executable, optverb, os.path.join(_scriptdir, "refactor.py"),
                  "-idf", self.fn,
                  "-odf", self.fn + ".refactored",
                  "--create-infelement", dicdesc
@@ -389,7 +340,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     @QtCore.pyqtSlot(str)
     def refactor_create_dic_entry(self, dicdesc):
         print("refactor_create_dic_entry", dicdesc)
-        parms = [sys.executable, optverb, os.path.join(scriptdir, "refactor.py"),
+        parms = [sys.executable, optverb, os.path.join(_scriptdir, "refactor.py"),
                  "-idf", self.fn,
                  "-odf", self.fn + ".refactored",
                  "--create-dictionary-entry", dicdesc
@@ -451,7 +402,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
             print("Exception in FAF eval JS:", repr(e), file=sys.stderr)
 
 
-class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')):
+class ElemBrowserUI(QtWidgets.QMainWindow, pyqt_common.ui_class('element_browser_window.ui')):
     def __init__(self, parent=None, path=None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
@@ -487,7 +438,7 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
         if sfn and isinstance(sfn, tuple) and len(sfn[0]):
             fn = sfn[0]
             tab = self.browserTabs.currentWidget() # type: ElemBrowserTab
-            htmlpath = url2path(tab.uri)
+            htmlpath = pyqt_common.url2path(tab.uri)
             with open(htmlpath, encoding='utf-8') as htmlsrc:
                 htmlcontent = htmlsrc.read()
 
@@ -504,7 +455,7 @@ class ElemBrowserUI(QtWidgets.QMainWindow, ui_class('element_browser_window.ui')
                 with open(fn, "w", encoding='utf-8') as ofl:
                     ofl.write(htmlcontent)
 
-class ElemMinerProgressUI(QtWidgets.QDialog, ui_class('element_miner_progress.ui')):
+class ElemMinerProgressUI(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_progress.ui')):
     progressChanged = QtCore.pyqtSignal(int, int, str)
 
     @QtCore.pyqtSlot(int, int, str)
@@ -520,7 +471,7 @@ class ElemMinerProgressUI(QtWidgets.QDialog, ui_class('element_miner_progress.ui
 
 
 
-class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
+class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_settings.ui')):
     def __init__(self, parent=None):
         QtWidgets.QDialog.__init__(self, parent)
         self.setupUi(self)
@@ -528,7 +479,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
         self.bindEvents()
 
         # restricted UI customizations
-        if scriptname == 'duplicate-finder.py':
+        if _scriptname == 'duplicate-finder.py':
             self.setWindowTitle("Duplicate Finder")
             self.methodWidget.setHidden(True)
             self.fuzzyHeatSettings.setTitle("Settings")
@@ -649,11 +600,11 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                 if methodIdx == 0: # Clone Miner
                     # something sensible later
                     for l, o in zip(numparams, wt.outs):
-                        ht = path2url(
+                        ht = pyqt_common.path2url(
                             os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l, "pyvarelements.html"))
                         self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn, forced_save_fn, False, None)
                 elif methodIdx == 2:  # Fuzzy Finder
-                    ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
+                    ht = pyqt_common.path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
                     self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, True, extra=None)
                 elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
                     htp = os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0])
@@ -661,7 +612,7 @@ class SetupDialog(QtWidgets.QDialog, ui_class('element_miner_settings.ui')):
                     webbrowser.open_new_tab("http://127.0.0.1:49999/")
                     # then elbrui should wait until user selects fragment to search
                 elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Report
-                    ht = path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
+                    ht = pyqt_common.path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
                     self.elbrui.addbrTab(ht, str(numparams), "", srctext, srcfn, forced_save_fn, True, extra=None)
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
@@ -812,10 +763,10 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
             app.processEvents()
 
             ffpr = subprocess.Popen(popen_args,
-                                    stdout=subprocess.PIPE,
-                                    stdin=subprocess.PIPE,
-                                    stderr=subprocess.PIPE,
-                                    cwd=workingfolder)
+                                                stdout=subprocess.PIPE,
+                                                stdin=subprocess.PIPE,
+                                                stderr=subprocess.PIPE,
+                                                cwd=workingfolder)
             oe = ffpr.communicate(input=b'\n')
             ffrc = ffpr.returncode
             ffstdout = oe[0].decode(outdec)
@@ -834,7 +785,7 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
             app.processEvents()
 
             popen_args = [
-                sys.executable, optverb, os.path.join(scriptdir, "fuzzyclones2html.py"),
+                sys.executable, optverb, os.path.join(_scriptdir, "fuzzyclones2html.py"),
                 '-oui', 'no', # gen for ui and export
                 '-sx', reformattedfilename,
                 '-fx', fuzzyclonesfilename,
@@ -842,10 +793,10 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
             print("Browsing fuzzy clones with: " + ' '.join(popen_args))
 
             cbpr = subprocess.Popen(popen_args,
-                                    stdout=subprocess.PIPE,
-                                    stdin=subprocess.PIPE,
-                                    stderr=subprocess.STDOUT,
-                                    cwd=workingfolder)
+                                                stdout=subprocess.PIPE,
+                                                stdin=subprocess.PIPE,
+                                                stderr=subprocess.STDOUT,
+                                                cwd=workingfolder)
 
             oe = cbpr.communicate(input=b'\n')
             cbrc = cbpr.returncode
@@ -865,7 +816,7 @@ def do_fuzzy_pattern_search_CLI(inputfilename, ui, minsim, text, srctext):
     outdir = inputfilename + ".fuzzypattern"
     os.makedirs(outdir, exist_ok=True)
     args = [
-        sys.executable, optverb, os.path.join(scriptdir, "onefuzzyclone2html.py"),
+        sys.executable, optverb, os.path.join(_scriptdir, "onefuzzyclone2html.py"),
         "-ms", minsim,
         "-pn", text,
         "-id", inputfilename,
@@ -878,7 +829,7 @@ def do_fuzzy_pattern_search_CLI(inputfilename, ui, minsim, text, srctext):
     else:
         print("WARNING! inputfilename", inputfilename, "does not end with .reformatted")
     ui.shouldAddTab.emit(
-        path2url(os.path.join(outdir, "pyvarelements.html")),
+        pyqt_common.path2url(os.path.join(outdir, "pyvarelements.html")),
         "Fuzzy Search results", "", srctext, inputfilename,
         savefilename, True, None
     )
@@ -900,7 +851,7 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
     else:
         print("WARNING! inputfilename", inputfilename, "does not end with .reformatted")
     ui.shouldAddTab.emit(
-        path2url(os.path.join(outdir, "pyvarelements.html")),
+        pyqt_common.path2url(os.path.join(outdir, "pyvarelements.html")),
         "Fuzzy Search results", "", srctext, inputfilename,
         savefilename, True, variatives
     )
@@ -1000,7 +951,7 @@ class NearDuplicateWorkThread(QtCore.QThread):
         app.processEvents()
 
         popen_args = [
-                         sys.executable, optverb, os.path.join(scriptdir, "nearduplicates2html.py"),
+                         sys.executable, pyqt_common.optverb, os.path.join(_scriptdir, "nearduplicates2html.py"),
                          "-sx", self.inputfile,
                          "-od", self.workfolder
                      ]
@@ -1028,7 +979,7 @@ class CloneMinerWorkThread(QtCore.QThread):
     def run(self):
         cnt = 0
         for l in self.lengths:
-            with pushd_c(os.path.dirname(clargs.clone_tool)):
+            with pyqt_common.pushd_c(os.path.dirname(clargs.clone_tool)):
                 def write_inputfiles_txt(posix2win):
                     if posix2win:
                         with open(os.path.join("Input", "InputFiles.txt"), 'wb+') as iftxt:
@@ -1036,11 +987,11 @@ class CloneMinerWorkThread(QtCore.QThread):
                             # under UN*X it it uses default encoding for specified
                             # language given to wine
                             iftxt.write(
-                                adapt_path_2_win(self.inputfile).encode(adapt_filename_enc_2_win())
+                                pyqt_common.adapt_path_2_win(self.inputfile).encode(pyqt_common.adapt_filename_enc_2_win())
                             )
                     else:
                         with open(os.path.join("Input", "InputFiles.txt"), 'w+') as iftxt:
-                            print(adapt_path_2_win(self.inputfile), end='', file=iftxt)
+                            print(pyqt_common.adapt_path_2_win(self.inputfile), end='', file=iftxt)
 
                 write_inputfiles_txt(os.name == 'posix')
 
@@ -1054,7 +1005,7 @@ class CloneMinerWorkThread(QtCore.QThread):
                 print("Mining clones with: " + ' '.join(popen_args))
 
                 cmpr = subprocess.Popen(popen_args, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
-                                        stderr=subprocess.STDOUT)
+                                                    stderr=subprocess.STDOUT)
                 cmpr.communicate(input=b'\n')
                 cmrc = cmpr.returncode
 
@@ -1070,7 +1021,7 @@ class CloneMinerWorkThread(QtCore.QThread):
                 # pyrcom="/cygdrive/d/Python3/python.exe D:/VCSWF/docs.git/myprogs/python/CloneVisualizer/clones2html.py"
                 # cline="nice -n 20 $pyrcom -nb 100 -mv 2000 -sd $t $bl -minl 5 -cmup yes -fint no -wv yes -ph $head"
                 popen_args = [
-                                 sys.executable, optverb, os.path.join(scriptdir, "clones2html.py"),
+                                 sys.executable, optverb, os.path.join(_scriptdir, "clones2html.py"),
                                  "-sd", str(l)
                              ] + self.options
                 print("Reporting with: " + ' '.join(popen_args))
@@ -1159,14 +1110,14 @@ class EMUIApp(QtWidgets.QApplication):
 
 
 if __name__ == '__main__':
-    print("Script Dir = " + scriptdir)
+    global clargs, app
+    print("Script Dir = " + _scriptdir)
     initargs()
-    global app
 
     app = EMUIApp(sys.argv)
     util.set_asio_el(QEventLoop(app))
 
-    app.setWindowIcon(QtGui.QIcon(QtGui.QPixmap(os.path.join(scriptdir, 'qtui', 'icon.png'))))
+    app.setWindowIcon(QtGui.QIcon(QtGui.QPixmap(os.path.join(_scriptdir, 'qtui', 'icon.png'))))
 
     d = SetupDialog()
     d.show()
