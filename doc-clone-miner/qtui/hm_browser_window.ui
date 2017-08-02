@@ -29,23 +29,11 @@
       <property name="handleWidth">
        <number>5</number>
       </property>
-      <widget class="QWebEngineView" name="heatMapWebView" native="true"/>
+      <widget class="QWebEngineView" name="wvHeatMap" native="true"/>
       <widget class="QWidget" name="verticalLayoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QTabWidget" name="nearDupTabs">
-          <property name="tabPosition">
-           <enum>QTabWidget::North</enum>
-          </property>
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="QWidget" name="tab">
-           <attribute name="title">
-            <string>Tab 1</string>
-           </attribute>
-          </widget>
-         </widget>
+         <widget class="QWebEngineView" name="wvFuzzyRepetitions" native="true"/>
         </item>
         <item>
          <widget class="QDialogButtonBox" name="buttonBox">
