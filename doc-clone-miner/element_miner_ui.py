@@ -24,8 +24,10 @@ from quamash import QEventLoop
 import sourcemarkers
 import util
 from pyqt_common import ui_class, _scriptdir
-
 import pyqt_common
+import hm_browser_complex
+
+hm_bc_i: hm_browser_complex.HMBrowserComplex = None
 
 _scriptdir = os.path.dirname(os.path.realpath(__file__))
 _scriptname = os.path.basename(os.path.realpath(__file__))
@@ -107,7 +109,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
                     return util.ready_future()
                 else:
                     print("URI loaded:", ok, "with URL:", u)
-                    r = await self.aeval_js(util.qwcjs(
+                    r = await self.aeval_js(pyqt_common.qwcjs(
                         """
                         try {
                             window.qwc = new QWebChannel(qt.webChannelTransport, function (channel) {
@@ -610,8 +612,24 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
                 elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
                     htp = os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0])
                     serve(srcfn, self.elbrui, srctext, htp)  # start server
-                    webbrowser.open_new_tab("http://127.0.0.1:49999/")
+
+                    # webbrowser.open_new_tab("http://127.0.0.1:49999/")
                     # then elbrui should wait until user selects fragment to search
+
+                    global hm_bc_i
+                    if not hm_bc_i:
+                        hm_bc_i = hm_browser_complex.HMBrowserComplex()
+
+                    hm_bc_i.show()
+                    try:
+                        # hm_bc_i.shouldLoadHeatMap.emit("http://127.0.0.1:49999/")
+                        # actually the same thread
+                        hm_bc_i.loadHeatMap("http://127.0.0.1:49999/")
+                        hm_bc_i.loadRepetitions(pyqt_common.path2url(htp) + "/pyvarelements.html")
+                        hm_bc_i.setup_autorefresh(os.path.join(htp, "pyvarelements.html"))
+                    except Exception as ee:
+                        print(repr(ee), file=sys.stderr)
+
                 elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Report
                     ht = pyqt_common.path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
                     self.elbrui.addbrTab(ht, str(numparams), "", srctext, srcfn, forced_save_fn, True, extra=None)

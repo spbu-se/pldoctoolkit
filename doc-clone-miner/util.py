@@ -103,10 +103,6 @@ def save_reformatted_file(fileName):
 
 # asyncio stuff
 
-def qwcjs(plus = None):
-    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "js", "qwebchannel.js"), encoding='utf-8') as qwcjsf:
-        return qwcjsf.read() + ('\n' + plus if plus else "")
-
 def ready_future(result=None):
     fut = asyncio.get_event_loop().create_future()
     fut.set_result(result)
