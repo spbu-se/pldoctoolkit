@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import asyncio
+import os
 import re
 import shutil
 import sys
 
 import Levenshtein
-
-import asyncio
-import PyQt5.Qt
-import os
 
 try:
     import interval as itvl # https://pypi.python.org/pypi/pyinterval
@@ -109,45 +107,10 @@ def qwcjs(plus = None):
     with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "js", "qwebchannel.js"), encoding='utf-8') as qwcjsf:
         return qwcjsf.read() + ('\n' + plus if plus else "")
 
-asio_el: asyncio.AbstractEventLoop = None
-
 def ready_future(result=None):
-    fut = asio_el.create_future()
+    fut = asyncio.get_event_loop().create_future()
     fut.set_result(result)
     return fut
 
-async def eval_p_js_co(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, js: str):
-    fut = asio_el.create_future()
-    def ready(r):
-        asio_el.call_soon_threadsafe(fut.set_result, r)
-
-    page.runJavaScript(js, ready)
-    return await fut
-
-
-def eval_p_js_sync(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, js: str):
-    r = asio_el.run_until_complete(eval_p_js_co(page, js))
-    return r
-
-def eval_p_js_faf(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, js: str):
-    page.runJavaScript(js)
-
-async def load_p_url_co(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, u: PyQt5.Qt.QUrl):
-    fut = asio_el.create_future()
-
-    def ready(ok: bool):
-        page.loadFinished.disconnect()
-        asio_el.call_soon_threadsafe(fut.set_result, ok)
-
-    page.loadFinished.connect(ready)
-    page.load(u)
-    return await fut
-
-
-def load_p_url_sync(page: PyQt5.QtWebEngineWidgets.QWebEnginePage, u: PyQt5.Qt.QUrl):
-    asio_el.run_until_complete(load_p_url_co(page, u))
-
 def set_asio_el(loop):
-    global asio_el
-    asio_el = loop
     asyncio.set_event_loop(loop)

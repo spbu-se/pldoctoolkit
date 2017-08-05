@@ -12,6 +12,7 @@ import shutil
 import subprocess
 import sys
 import threading
+import asyncio
 
 import bottle
 from PyQt5 import QtWidgets, QtCore, QtGui
@@ -127,7 +128,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
             try:
                 self.webChannel.registerObject("qtab", self)
                 fu = loaded_co()
-                util.asio_el.run_until_complete(fu)
+                asyncio.get_event_loop().run_until_complete(fu)
             except Exception as e:
                 print("Exc:", e, file=sys.stderr)
 
@@ -387,17 +388,17 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     @QtCore.pyqtSlot(str)
     def eval_js(self, js):
         try:
-            util.eval_p_js_sync(self.webView.page(), js)
+            pyqt_common.eval_p_js_sync(self.webView.page(), js)
         except Exception as e:
             print("Exception in SYNC eval JS:", repr(e), file=sys.stderr)
 
     async def aeval_js(self, js):
-        return await util.eval_p_js_co(self.webView.page(), js)
+        return await pyqt_common.eval_p_js_co(self.webView.page(), js)
 
     @QtCore.pyqtSlot(str)
     def feval_js(self, js):
         try:
-            util.eval_p_js_faf(self.webView.page(), js)
+            pyqt_common.eval_p_js_faf(self.webView.page(), js)
         except Exception as e:
             print("Exception in FAF eval JS:", repr(e), file=sys.stderr)
 

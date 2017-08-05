@@ -7,9 +7,9 @@ Misc pyqt functions
 import os
 from os import getcwd, chdir
 from os.path import realpath
+import asyncio
 
-from PyQt5 import QtCore, uic
-
+from PyQt5 import QtCore, uic, QtWebEngineWidgets, Qt
 
 def ui_class(name):
     return uic.loadUiType(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'qtui', name))[0]
@@ -64,3 +64,36 @@ def adapt_filename_enc_2_win():
     wincp = loc2wincp[lng]
     return wincp
 
+
+async def eval_p_js_co(page: QtWebEngineWidgets.QWebEnginePage, js: str):
+    fut = asyncio.get_event_loop().create_future()
+    def ready(r):
+        asyncio.get_event_loop().call_soon_threadsafe(fut.set_result, r)
+
+    page.runJavaScript(js, ready)
+    return await fut
+
+
+def eval_p_js_sync(page: QtWebEngineWidgets.QWebEnginePage, js: str):
+    r = asyncio.get_event_loop().run_until_complete(eval_p_js_co(page, js))
+    return r
+
+
+def eval_p_js_faf(page: QtWebEngineWidgets.QWebEnginePage, js: str):
+    page.runJavaScript(js)
+
+
+async def load_p_url_co(page: QtWebEngineWidgets.QWebEnginePage, u: Qt.QUrl):
+    fut = asyncio.get_event_loop().create_future()
+
+    def ready(ok: bool):
+        page.loadFinished.disconnect()
+        asyncio.get_event_loop().call_soon_threadsafe(fut.set_result, ok)
+
+    page.loadFinished.connect(ready)
+    page.load(u)
+    return await fut
+
+
+def load_p_url_sync(page: QtWebEngineWidgets.QWebEnginePage, u: Qt.QUrl):
+    asyncio.get_event_loop().run_until_complete(load_p_url_co(page, u))

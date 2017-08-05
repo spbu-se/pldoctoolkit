@@ -20,10 +20,15 @@ class HMBrowserComplex(QtWidgets.QWidget, ui_class('hm_browser_window.ui')):
     def __init__(self, parent):
         super(HMBrowserComplex, self).__init__(parent=parent)
 
-    shouldAddTab = pyqtSignal(str, str, str, str, str, str, bool, object, name='shouldAddTab')
+    shouldLoadRepetitions = pyqtSignal(str, name='shouldLoadRepetitions')
+    shouldLoadHeatMap = pyqtSignal(str, name='shouldLoadHeatMap')
 
-    @QtCore.pyqtSlot(str, str, str, str, str, str, bool, object)
-    def addbrTab(self, uri, heading, stats, text, fn, save_fn, fuzzymatch: bool, extra: object):
+    @QtCore.pyqtSlot(str)
+    def loadRepetitions(self, url):
+        pass
+
+    @QtCore.pyqtSlot(str)
+    def loadHeatMap(self, url):
         pass
 
     def bindEvents(self):
