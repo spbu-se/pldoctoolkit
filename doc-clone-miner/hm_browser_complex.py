@@ -42,7 +42,7 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
     @QtCore.pyqtSlot(int, int, str)
     def src_select(self, start0, finish0, candidate_idx=None):
         print("SRC selection <-", start0, finish0, candidate_idx)
-        self.hm_page.runJavaScript("alert([%d, %d]);" % (start0, finish0))
+        self.hm_page.runJavaScript("select_source(%d, %d);" % (start0, finish0))
 
     def loadRepetitions(self, url: str):
         """

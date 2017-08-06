@@ -51,8 +51,9 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
     )
 
     _old_div_b = 0
+    currently_in_selectable = False
     def format_crd_ccd_tx(crd, ccd, tx, fn, begofs, endofs):
-        nonlocal _old_div_b
+        nonlocal _old_div_b, currently_in_selectable
 
         rf = 255 - int(crd / maxrd * 255)
         cf = int(ccd / maxcd * 255)
@@ -81,8 +82,19 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
         })
 
         span = span_template.substitute({
-            'crf': crf, 'cgf': cgf, 'cbf': cbf, 'tx': tx, 'cfd': cfd, 'rfd': rfd, 'co': begofs, 'n': str(fn)
+            'crf': crf, 'cgf': cgf, 'cbf': cbf, 'tx': tx, 'cfd': cfd, 'rfd': rfd, 'co': begofs, 'n': str(fn),
         })
+
+        # In case when it is one of known near-duplicates, make it
+        # easily distinguishable and selactable to highlight it.
+        if ccd == -1 and not currently_in_selectable:
+            # entering selectable
+            currently_in_selectable = True
+            span = ('<!-- <<S --><span data-source-offs="%d">' % begofs) + span
+        if ccd != -1 and currently_in_selectable:
+            # leaving selectable
+            currently_in_selectable = False
+            span = '</span><!-- S>> -->' + span
 
         divh = (endofs - begofs) // heatscale
         divt = begofs // heatscale
@@ -97,6 +109,7 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
             heat = ""  # save space in heatmap file
 
         _old_div_b = divb
+
         return tr, span, heat
 
     for ifl, cd, rd, fileno in zip(input_files, clone_densities, repetition_densities, itertools.count(1)):

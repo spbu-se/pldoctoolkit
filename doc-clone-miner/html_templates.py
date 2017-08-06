@@ -188,6 +188,11 @@ densitybrowser_template = textwrap.dedent(
         xhr.send();
       };
       // setTimeout(outdated, 1500); // can't close, let's not use it for now
+      
+      window.select_source = function(b, e) {
+        var w = document.all.densitymap.contentWindow;
+        w.selectbyds('' + b);
+      }
     </script>
     </head>
     <body style="margin: 0px; padding: 0px;">
@@ -195,4 +200,45 @@ densitybrowser_template = textwrap.dedent(
     <iframe name="heatmap" src="${abspath}/heatmap.html" style="overflow-x: hidden; border: 0; position:absolute; height: 100%; left: calc(100% - 200px); width: 200px;"></iframe>
     </body>
     </html>"""
+)
+
+density_map_h1 = textwrap.dedent(
+    """<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        </style>
+        <script>
+        
+        function selectbyds(ds) {
+          var spn = document.querySelector('[data-source-offs="' + ds + '"]');
+          // place it in the center
+          window.scrollTo(0, spn.offsetTop - (window.innerHeight - spn.offsetHeight) / 2);
+          var r = document.createRange();
+          r.setStart(spn, 0)
+          r.setEndAfter(spn)
+          var ws = window.getSelection();
+          ws.removeAllRanges();
+          ws.addRange(r);
+        }
+        
+        function selctionfuzzysearch(evt) {
+          var seltext = window.getSelection().toString();
+          var minsim = window.prompt("Similarity threshold", "0.5");
+          // alert([minsim, seltext]);
+          var nloc = "http://127.0.0.1:49999/fuzzysearch?minsim=" + encodeURIComponent(minsim) +
+            "&text=" + encodeURIComponent(seltext);
+          document.getElementById("queryframe").src = nloc;
+        }
+        document.addEventListener("keypress", selctionfuzzysearch, false);
+        </script>
+
+        </head>
+        <body style="overflow-x: hidden; font-family: monospace;">
+        %s
+        <div><iframe style="border: 0px; width: 90%%; " id="queryframe" src="" ></iframe></div>
+        <a href="http://127.0.0.1:49999/shutdown" target="_blank" >X</a>
+        </body>
+        </html>"""
 )

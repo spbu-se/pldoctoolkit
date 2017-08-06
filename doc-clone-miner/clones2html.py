@@ -589,31 +589,7 @@ def write_density_report():
         </body>
         </html>""") % (dr[0],)
 
-        h1 = textwrap.dedent("""<!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="utf-8">
-        <style type="text/css">
-        </style>
-        <script>
-        function selctionfuzzysearch(evt) {
-          var seltext = window.getSelection().toString();
-          var minsim = window.prompt("Similarity threshold", "0.5");
-          // alert([minsim, seltext]);
-          var nloc = "http://127.0.0.1:49999/fuzzysearch?minsim=" + encodeURIComponent(minsim) +
-            "&text=" + encodeURIComponent(seltext);
-          document.getElementById("queryframe").src = nloc;
-        }
-        document.addEventListener("keypress", selctionfuzzysearch, false);
-        </script>
-
-        </head>
-        <body style="overflow-x: hidden;">
-        %s
-        <div><iframe style="border: 0px; width: 90%%; " id="queryframe" src="" ></iframe></div>
-        <a href="http://127.0.0.1:49999/shutdown" target="_blank" >X</a>
-        </body>
-        </html>""") % (dr[1],)
+        h1 = html_templates.density_map_h1 % (dr[1],)
 
         h3 = textwrap.dedent("""<!DOCTYPE html>
         <html lang="en">
