@@ -50,9 +50,8 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
                     print("Something went wrong")
                 else:  # loaded url, everything ok
                     self.rp_page.loadFinished.disconnect()
-                    # right now -- fire and forget
-                    self.hmbc = QWebChannel(self.rp_page)
                     self.hmbc.registerObject('qtab', self)
+                    # right now -- fire and forget
                     self.rp_page.runJavaScript(
                         pyqt_common.qwcjs("""
                         try {
@@ -73,6 +72,9 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
             except Exception as e:
                 print(repr(e))
                 traceback.print_stack()
+
+        self.hmbc = QWebChannel(self.rp_page)
+        self.rp_page.setWebChannel(self.hmbc)
 
         self.rp_page.loadFinished.connect(loaded)
         self.rp_page.load(Qt.QUrl(url))
