@@ -5,6 +5,7 @@
 Element miner UI. Licensed under GPL v3 after PyQt5 which is used here.
 """
 import argparse
+import asyncio
 import locale
 import os
 import re
@@ -12,7 +13,6 @@ import shutil
 import subprocess
 import sys
 import threading
-import asyncio
 
 import bottle
 from PyQt5 import QtWidgets, QtCore, QtGui
@@ -21,11 +21,11 @@ from PyQt5.QtWebChannel import QWebChannel
 from PyQt5.QtWidgets import QAction
 from quamash import QEventLoop
 
+import hm_browser_complex
+import pyqt_common
 import sourcemarkers
 import util
-from pyqt_common import ui_class, _scriptdir
-import pyqt_common
-import hm_browser_complex
+from pyqt_common import ui_class, _scriptdir, EMUIApp
 
 hm_bc_i: hm_browser_complex.HMBrowserComplex = None
 
@@ -292,8 +292,8 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.newUUID()
         self.saveSource()
         util.save_reformatted_file(self.save_fn)
-        if hasattr(app, 'reheat'):
-            app.enqueue(app.reheat)
+        if hasattr(app, 'hm_bc_i'):
+            app.enqueue(app.hm_bc_i.refresh)
 
     # No more option to show/hide markup in element browser, always hide it.
     # Markup should be highlighted in the source code.
@@ -571,7 +571,6 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         wait_with_timer = True
 
         def wait_for_result_show_results():
-            import webbrowser
             global clargs
 
             if wt.isFinished() or not wait_with_timer:
@@ -616,17 +615,14 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
                     # webbrowser.open_new_tab("http://127.0.0.1:49999/")
                     # then elbrui should wait until user selects fragment to search
 
-                    global hm_bc_i
-                    if not hm_bc_i:
-                        hm_bc_i = hm_browser_complex.HMBrowserComplex()
+                    if not hasattr(app, 'hm_bc_i'):
+                        app.hm_bc_i = hm_browser_complex.HMBrowserComplex(app=app)
 
-                    hm_bc_i.show()
+                    app.hm_bc_i.show()
                     try:
-                        # hm_bc_i.shouldLoadHeatMap.emit("http://127.0.0.1:49999/")
-                        # actually the same thread
-                        hm_bc_i.loadHeatMap("http://127.0.0.1:49999/")
-                        hm_bc_i.loadRepetitions(pyqt_common.path2url(htp) + "/pyvarelements.html")
-                        hm_bc_i.setup_autorefresh(os.path.join(htp, "pyvarelements.html"))
+                        app.hm_bc_i.loadHeatMap("http://127.0.0.1:49999/")
+                        app.hm_bc_i.loadND(infile, htp)
+                        # then app.hm_bc_i.refresh() will refresh this all when needed
                     except Exception as ee:
                         print(repr(ee), file=sys.stderr)
 
@@ -1108,25 +1104,6 @@ def run_nearduplicate_report_thread(pui, infile, onready):
     wt = NearDuplicateWorkThread(pui, infile, workfolder, onready)
     wt.start()
     return wt, workfolder
-
-class EMUIApp(QtWidgets.QApplication):
-    _senqueue = pyqtSignal(object)
-
-    def __init__(self, args):
-        super(EMUIApp, self).__init__(args)
-        self._senqueue.connect(self._onEnqueue)
-
-    def enqueue(self, fn):
-        """
-        Enqueue code to be executed in app main thread
-        :param fn: function with code to execute
-        """
-        self._senqueue.emit(fn)
-
-    @QtCore.pyqtSlot(object)
-    def _onEnqueue(self, fn):
-        fn()
-
 
 if __name__ == '__main__':
     global clargs, app
