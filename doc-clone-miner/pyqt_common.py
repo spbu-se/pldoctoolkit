@@ -108,6 +108,7 @@ async def load_p_url_then_run_js_co(page: QtWebEngineWidgets.QWebEnginePage, u: 
     def register_channel_objects():
         wc = QWebChannel(page)
         wc.registerObjects(wcobjects)
+        page.setWebChannel(wc)
 
     def ready(ok: bool):
         su = page.url()

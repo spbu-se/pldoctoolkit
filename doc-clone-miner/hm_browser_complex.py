@@ -35,6 +35,15 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
 
         self.bindEvents()
 
+    @QtCore.pyqtSlot(str)
+    def clog(self, txt):
+        print("JAVASCRIPT:", txt)
+
+    @QtCore.pyqtSlot(int, int, str)
+    def src_select(self, start0, finish0, candidate_idx=None):
+        print("SRC selection <-", start0, finish0, candidate_idx)
+        self.hm_page.runJavaScript("alert([%d, %d]);" % (start0, finish0))
+
     def loadRepetitions(self, url: str):
         """
         Failed to make it work with asyncio, lets try to do it by any means...
@@ -42,6 +51,7 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
         :param app: EMUIApp
         :return: Nothing
         """
+        # TODO: make use of pyqt_common.load_p_url_then_run_js_co !!!
         def loaded(ok: bool):
             try:
                 if self.rp_page.url() != Qt.QUrl(url):
