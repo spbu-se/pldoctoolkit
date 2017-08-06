@@ -8,6 +8,7 @@ import itertools
 import xmllexer
 import string
 import sourcemarkers
+import re
 
 def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: 'list(clones.InputFile)') -> 'str':
     heatscale = 100
@@ -192,4 +193,14 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
         reports_table.append("</table><br/>\n")
         reports_map.append("<br/>\n")
 
-    return "".join(reports_table), " ".join(reports_map), "\n".join(reports_heat)
+    # blind markers
+    marker_se = re.compile(
+        "("+
+        r"""(&lt;!-- [\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12} &lt;=&lt; (ACCEPT|IGNORE) --&gt;)""" +
+        "|" +
+        r"""(&lt;!-- (ACCEPT|IGNORE) &gt;=&gt; [\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12} --&gt;)""" +
+        ")"
+    )
+    jreports_map = marker_se.sub(r"""<span style="color: lightgray; font-size:x-small;">\1</span>""", " ".join(reports_map))
+
+    return "".join(reports_table), jreports_map, "\n".join(reports_heat)
