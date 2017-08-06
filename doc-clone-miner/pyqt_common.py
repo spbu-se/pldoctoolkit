@@ -5,6 +5,8 @@
 Misc pyqt functions
 """
 import os
+import sys
+import traceback
 from os import getcwd, chdir
 from os.path import realpath
 import asyncio
@@ -102,18 +104,25 @@ async def load_p_url_co(page: QtWebEngineWidgets.QWebEnginePage, u: Qt.QUrl):
 async def load_p_url_then_run_js_co(page: QtWebEngineWidgets.QWebEnginePage, u: Qt.QUrl, js: str, wcobjects: dict):
     fut = asyncio.get_event_loop().create_future()
 
+    def register_channel_objects():
+        wc = QWebChannel(page)
+        wc.registerObjects(wcobjects)
+
     def ready(ok: bool):
         su = page.url()
         if su == u:
             page.loadFinished.disconnect()
             def jsready():
                 asyncio.get_event_loop().call_soon_threadsafe(fut.set_result, ok)
-            wc = QWebChannel(page)
-            wc.registerObjects(wcobjects)
-            page.runJavaScript(js, jsready)
+            try:
+                page.runJavaScript(js, jsready)
+            except Exception as je:
+                print(repr(je), file=sys.stderr)
+                traceback.print_stack()
         # else we have about:blank or something like it, let it run more times
 
     page.loadFinished.connect(ready)
+    register_channel_objects()
     page.load(u)
     return await fut
 
