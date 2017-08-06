@@ -91,11 +91,8 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
 
     def loadHeatMap(self, url: str):
         self.hm_url = url
-
-        async def doit():
-            return await pyqt_common.load_p_url_co(self.hm_page, Qt.QUrl(url))
         try:
-            asyncio.get_event_loop().run_until_complete(doit())
+            self.hm_page.load(Qt.QUrl(url))  # fire and forget
         except Exception as e:
             print(repr(e))
             traceback.print_stack()
@@ -116,7 +113,7 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
 
         self.app.processEvents()
 
-    def loadND(self, inputfile, workfolder):
+    def buildAndLoadND(self, inputfile, workfolder):
         self.inputfile = inputfile
         self.workfolder = workfolder
 
@@ -124,9 +121,11 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
         pve = os.path.join(workfolder, "pyvarelements.html")
         self.loadRepetitions(pyqt_common.path2url(pve))
 
-    def refresh(self):
+    def refreshND(self):
+        self.buildAndLoadND(self.inputfile, self.workfolder)
+
+    def refreshHM(self):
         self.loadHeatMap(self.hm_url)
-        self.loadND(self.inputfile, self.workfolder)
 
     def bindEvents(self):
         # self.shouldLoadHeatMap.connect(self.loadHeatMap)

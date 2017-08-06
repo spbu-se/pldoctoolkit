@@ -13,10 +13,11 @@ import shutil
 import subprocess
 import sys
 import threading
+import traceback
 
 import bottle
 from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtCore import pyqtSignal, QThread, QTimer
 from PyQt5.QtWebChannel import QWebChannel
 from PyQt5.QtWidgets import QAction
 from quamash import QEventLoop
@@ -292,8 +293,30 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.newUUID()
         self.saveSource()
         util.save_reformatted_file(self.save_fn)
+        self.editCoordinateCorrections.clear()  # TODO: in fact each tab is used once. Why is this needed?..
         if hasattr(app, 'hm_bc_i'):
-            app.enqueue(app.hm_bc_i.refresh)
+            app.enqueue(app.hm_bc_i.refreshND)
+            def rebuildAndReloadHM():
+                wt : QThread = app.launch_fh_builder()
+                self.reheat_timer = QTimer()
+                self.reheat_timer.setInterval(500)
+                def iswtready():
+                    try:
+                        if not wt.isFinished():
+                            return
+                        self.reheat_timer.stop()
+                        del self.reheat_timer
+                        app.enqueue(app.hm_bc_i.refreshHM)
+                        win = self
+                        while win.parentWidget():
+                            win = win.parentWidget()
+                        win.close()
+                    except Exception as we:
+                        print(repr(we), file=sys.stderr)
+                        traceback.print_stack()
+                self.reheat_timer.timeout.connect(iswtready)
+                self.reheat_timer.start()
+            app.enqueue(rebuildAndReloadHM)
 
     # No more option to show/hide markup in element browser, always hide it.
     # Markup should be highlighted in the source code.
@@ -621,7 +644,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
                     app.hm_bc_i.show()
                     try:
                         app.hm_bc_i.loadHeatMap("http://127.0.0.1:49999/")
-                        app.hm_bc_i.loadND(infile, htp)
+                        app.hm_bc_i.buildAndLoadND(infile, htp)
                         # then app.hm_bc_i.refresh() will refresh this all when needed
                     except Exception as ee:
                         print(repr(ee), file=sys.stderr)
@@ -643,7 +666,8 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
             def re_launch_fuzzyheat_with_clone_miner():
                 nonlocal wt
                 self.timer.start(500)
-                wt = self.launch_fuzzyheat_with_clone_miner(pui, infile, numparams)
+                app.launch_fh_builder = lambda : self.launch_fuzzyheat_with_clone_miner(pui, infile, numparams)
+                wt = app.launch_fh_builder()
                 wait_for_result_show_results()
             app.reheat = re_launch_fuzzyheat_with_clone_miner
             re_launch_fuzzyheat_with_clone_miner()
