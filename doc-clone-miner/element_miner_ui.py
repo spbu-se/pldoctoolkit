@@ -295,6 +295,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         util.save_reformatted_file(self.save_fn)
         self.editCoordinateCorrections.clear()  # TODO: in fact each tab is used once. Why is this needed?..
         if hasattr(app, 'hm_bc_i'):
+            win = self
+            while win.parentWidget():
+                win = win.parentWidget()
+            win.hide()
             app.enqueue(app.hm_bc_i.refreshND)
             def rebuildAndReloadHM():
                 wt : QThread = app.launch_fh_builder()
@@ -307,10 +311,6 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
                         self.reheat_timer.stop()
                         del self.reheat_timer
                         app.enqueue(app.hm_bc_i.refreshHM)
-                        win = self
-                        while win.parentWidget():
-                            win = win.parentWidget()
-                        win.close()
                     except Exception as we:
                         print(repr(we), file=sys.stderr)
                         traceback.print_stack()
@@ -617,8 +617,11 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
 
                 # read input file
                 srctext = ""
-                with open(srcfn, encoding='utf-8') as ifh:
-                    srctext = ifh.read()
+                def read_input_file():
+                    nonlocal srctext
+                    with open(srcfn, encoding='utf-8') as ifh:
+                        srctext = ifh.read()
+                read_input_file()
 
                 forced_save_fn = infile if clargs.force_allow_acccept_ignore_save else ""
 
@@ -633,7 +636,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
                     self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, True, extra=None)
                 elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
                     htp = os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0])
-                    serve(srcfn, self.elbrui, srctext, htp)  # start server
+                    serve(srcfn, self.elbrui, htp)  # start server
 
                     # webbrowser.open_new_tab("http://127.0.0.1:49999/")
                     # then elbrui should wait until user selects fragment to search
@@ -895,7 +898,7 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
         savefilename, True, variatives
     )
 
-def serve(inputfilename, ui, srctext, htp):
+def serve(inputfilename, ui, htp):
     import time
     server_start_time = time.time()
 
@@ -903,6 +906,8 @@ def serve(inputfilename, ui, srctext, htp):
     def fuzzysearch():
         msim = bottle.request.query.minsim
         text = bottle.request.query.text
+        with open(inputfilename, encoding='utf-8') as inf:
+            srctext = inf.read()
         sdt = threading.Thread(target=lambda: do_fuzzy_pattern_search_API(inputfilename, ui, msim, text, srctext))
         sdt.setDaemon(False)
         sdt.start()
