@@ -92,6 +92,7 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
     def loadHeatMap(self, url: str):
         self.hm_url = url
         try:
+            self.hm_page.loadFinished.connect(lambda ok: self.unsetCursor())
             self.hm_page.load(Qt.QUrl(url))  # fire and forget
         except Exception as e:
             print(repr(e))

@@ -18,6 +18,7 @@ import traceback
 import bottle
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import pyqtSignal, QThread, QTimer
+from PyQt5.QtGui import QCursor
 from PyQt5.QtWebChannel import QWebChannel
 from PyQt5.QtWidgets import QAction
 from quamash import QEventLoop
@@ -293,8 +294,8 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.newUUID()
         self.saveSource()
         util.save_reformatted_file(self.save_fn)
-        self.editCoordinateCorrections.clear()  # TODO: in fact each tab is used once. Why is this needed?..
         if hasattr(app, 'hm_bc_i'):
+            app.hm_bc_i.setCursor(QtCore.Qt.WaitCursor)
             win = self
             while win.parentWidget():
                 win = win.parentWidget()
@@ -489,6 +490,10 @@ class ElemMinerProgressUI(QtWidgets.QDialog, pyqt_common.ui_class('element_miner
         self.progressBar.setMaximum(total)
         self.progressBar.setValue(current)
         self.details.setText(status)
+        if current == total:
+            self.hide()
+        else:
+            self.show()
 
     def __init__(self, parent=None):
         QtWidgets.QDialog.__init__(self, parent)
@@ -1010,8 +1015,11 @@ class NearDuplicateWorkThread(QtCore.QThread):
         app.enqueue(self.continuation)
 
 class CloneMinerWorkThread(QtCore.QThread):
-    def __init__(self, pui, inputfile, lengths, options):
-        QtCore.QThread.__init__(self)
+    do_not_run_anymore = False
+    current_run_is_last = False
+
+    def __init__(self, pui, inputfile, lengths, options, last=False):
+        super(CloneMinerWorkThread, self).__init__()
         self.pui = pui
         self.inputfile = inputfile
         self.lengths = lengths
@@ -1019,6 +1027,7 @@ class CloneMinerWorkThread(QtCore.QThread):
 
         self.outs = []
         self.fatal_error = False
+        CloneMinerWorkThread.current_run_is_last |= last
 
     def run(self):
         cnt = 0
@@ -1037,23 +1046,22 @@ class CloneMinerWorkThread(QtCore.QThread):
                         with open(os.path.join("Input", "InputFiles.txt"), 'w+') as iftxt:
                             print(pyqt_common.adapt_path_2_win(self.inputfile), end='', file=iftxt)
 
-                write_inputfiles_txt(os.name == 'posix')
-
                 cplus = 0
-                smsg = "Mining clones of >= %d tokens..." % l
-                self.pui.progressChanged.emit(len(self.lengths) * 150, cnt * 150 + cplus, smsg)
+                if not CloneMinerWorkThread.do_not_run_anymore:
+                    write_inputfiles_txt(os.name == 'posix')
 
-                # run clone miner
-                popen_args = [clargs.clone_tool, str(l), '0', '0']
-                if os.name == 'posix': popen_args = ["wine"] + popen_args
-                print("Mining clones with: " + ' '.join(popen_args))
+                    smsg = "Mining clones of >= %d tokens..." % l
+                    self.pui.progressChanged.emit(len(self.lengths) * 150, cnt * 150 + cplus, smsg)
 
-                cmpr = subprocess.Popen(popen_args, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
-                                                    stderr=subprocess.STDOUT)
-                cmpr.communicate(input=b'\n')
-                cmrc = cmpr.returncode
+                    # run clone miner
+                    popen_args = [clargs.clone_tool, str(l), '0', '0']
+                    if os.name == 'posix': popen_args = ["wine"] + popen_args
+                    print("Mining clones with: " + ' '.join(popen_args))
 
-                cplus = 25
+                    cmpr = subprocess.Popen(popen_args, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
+                                                        stderr=subprocess.STDOUT)
+                    cmpr.communicate(input=b'\n')
+                    cplus = 25
 
                 # rewrite InputFiles.txt again because ...
                 write_inputfiles_txt(False)  # ... because clones2html expects utf-8 there =)
@@ -1093,12 +1101,15 @@ class CloneMinerWorkThread(QtCore.QThread):
                         except Exception as e:
                             print("Error analyzing progress output: <<" + ln + ">> -- " + str(e))
                         self.pui.progressChanged.emit(len(self.lengths) * 150, cnt * 150 + pcn + cplus, smsg)
-                reprc = reppr.returncode
 
                 self.outs.append(repout)
 
                 cnt += 1
                 self.pui.progressChanged.emit(len(self.lengths) * 150, cnt * 150, "Done")
+
+        if CloneMinerWorkThread.current_run_is_last:
+            CloneMinerWorkThread.do_not_run_anymore = True
+
 
 def run_clone_miner_thread(pui, inputfile, lengths, options):
     global clargs, app
@@ -1120,7 +1131,7 @@ def run_fuzzyheat_with_clone_miner_thread(pui, inputfile, options, numparams):
     pui.progressChanged.emit(1, 0, "")
     app.processEvents()
 
-    wt = CloneMinerWorkThread(pui, inputfile, numparams, options)
+    wt = CloneMinerWorkThread(pui, inputfile, numparams, options, last=True)
     wt.start()
     return wt
 
