@@ -33,6 +33,8 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
         self.hm_page: QtWebEngineWidgets.QWebEnginePage = self.wvHeatMap.page()
         self.rp_page: QtWebEngineWidgets.QWebEnginePage = self.wvFuzzyRepetitions.page()
 
+        self.splitter.setSizes([400,250])
+
         self.bindEvents()
 
     @QtCore.pyqtSlot(str)
