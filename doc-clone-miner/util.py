@@ -82,6 +82,10 @@ def tokens(text):
         r.append((s, e, text[s:e]))
     return r
 
+def text_to_tokens_offsets(src: str) -> 'tuple[list[str], list[tuple[int, int]]]':
+    str_offs = [(src[fi.start():fi.end()], (fi.start(), fi.end())) for fi in _wre.finditer(src)]
+    return tuple([list(t) for t in zip(*str_offs)])
+
 def tokenst(text):
     return [s for b, e, s in tokens(text)]
 
