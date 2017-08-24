@@ -2,6 +2,10 @@ import clones
 import util
 from collections import defaultdict
 
+"""
+TODO: This module is not even close to readiness
+"""
+
 def mine_clones(infile: clones.InputFile) -> 'list[clones.FuzzyCloneGroup]':
     words, offsets = util.text_to_tokens_offsets(infile.text)
     groupcount = 0
