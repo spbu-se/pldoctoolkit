@@ -281,7 +281,8 @@ window.doc_ready = function() {
     $(window).resize(correct_sizes);
     correct_sizes();
 
-    window.adaptToQWebView();
+    if(window.qtab)
+        window.adaptToQWebView();
 };
 
 $(document).ready(function() {
