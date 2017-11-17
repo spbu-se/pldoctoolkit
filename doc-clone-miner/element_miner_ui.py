@@ -765,7 +765,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
 
         options += ["-minal", self.lbArchLen.text()]
         options += ["-bvt", str(self.sbMaxDeltaRatio.value() / 100.0)]
-        options += ["-pjf", str(self.cbPostJunkFilter.checked())]
+        options += ["-pjf", str(self.cbPostJunkFilter.checkState())]
 
         wt = run_clone_miner_thread(pui, infile, lengths, options)
         return wt

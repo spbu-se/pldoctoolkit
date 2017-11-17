@@ -32,7 +32,7 @@ clones.initdata()
 
 def initargs():
     def str2bool(v):
-        if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        if v.lower() in ('yes', 'true', 't', 'y', '1', '2'):
             return True
         elif v.lower() in ('no', 'false', 'f', 'n', '0'):
             return False
