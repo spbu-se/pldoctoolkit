@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Document Clone Miner</string>
+   <string>Duplicate Finder</string>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -723,6 +723,9 @@
            <widget class="QCheckBox" name="cbOnlyShowNearDuplicates">
             <property name="text">
              <string>Do not build reuse map, just show existing results</string>
+            </property>
+            <property name="visible">
+             <bool>false</bool>
             </property>
            </widget>
           </item>

@@ -26,7 +26,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Detecting Clones &amp; Elements</string>
+   <string>Duplicate Detection</string>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
