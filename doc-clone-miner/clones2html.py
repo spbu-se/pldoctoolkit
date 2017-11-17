@@ -652,14 +652,14 @@ if __name__ == '__main__':  #
     write_density_report()
     combs = combine_groups()
 
+    if post_junk_filter:
+        import post_junk_filter
+        combs = post_junk_filter.post_junk_filter(combs)
+
     util.write_variative_report(
         clones, combs,
         os.path.join("Output", subdir, "pyvarelements.html")
     )
-
-    if post_junk_filter:
-        import post_junk_filter
-        combs = post_junk_filter.post_junk_filter(combs)
 
     try:
         log_reuse_amount(combs)

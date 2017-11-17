@@ -45,21 +45,20 @@ def post_junk_filter(dgroups: 'list[clones.VariativeElement]') -> 'list[clones.V
             itr.search(interval.begin, interval.end) for interval in
             g1.get_tree_intervals(expanded=False, archetype_consolidated=True)
         ]
-        probable_g2s = [
+        probable_g2_intervals = itertools.chain.from_iterable(probable_g2_intervals)  # flatten
+        probable_g2s = set([
             clones.VariativeElement.from_tree_interval(i)
-            for i in itertools.chain.from_iterable(probable_g2_intervals)
-        ]
+            for i in probable_g2_intervals
+        ])
         for g2 in probable_g2s:
             if g2.g_power > 1 or g2 in todel:
                 continue
 
-            if g2.archetype_length_in_symbols() < g1.archetype_length_in_symbols():
-                todel.add(g2)
-            else:
+            if g1.archetype_length_in_symbols() <= g2.archetype_length_in_symbols():
                 todel.add(g1)
 
     for dg in todel:
-        dgroups.remove(todel)
+        dgroups.remove(dg)
 
     aftersize = len(dgroups)
     logger.info("Post-Junk-Filtering removed %d of %d groups." % (beforesize-aftersize, beforesize))
