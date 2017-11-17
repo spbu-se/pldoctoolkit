@@ -105,6 +105,23 @@ def save_reformatted_file(fileName):
     with open(fileName + ".reformatted", 'w+', encoding='utf-8', newline='\n') as ofs:
        ofs.write(text)
 
+def save_standalone_html(source_html, target_html):
+    with open(source_html, encoding='utf-8') as htmlsrc:
+        htmlcontent = htmlsrc.read()
+
+        def replace_ref_with_script(match):  # want normal lambdas here...
+            jsfilename = os.path.join(
+                os.path.dirname(source_html),  # html directory
+                match.group(1) + ".js"
+            )
+            with open(jsfilename) as jsfile:
+                js = jsfile.read()
+                return """<script>%s</script>""" % js
+
+        htmlcontent = re.sub("""<script src="(.*)\\.js"></script>""", replace_ref_with_script, htmlcontent)
+        with open(target_html, "w", encoding='utf-8') as ofl:
+            ofl.write(htmlcontent)
+
 # asyncio stuff
 
 def ready_future(result=None):

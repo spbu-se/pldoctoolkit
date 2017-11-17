@@ -12,12 +12,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSignal, pyqtSlot
 from PyQt5.QtWebChannel import QWebChannel
 from PyQt5.QtWidgets import QAction
+import util
 import pyqt_common
 
 from pyqt_common import *
 
 _scriptdir = os.path.dirname(os.path.realpath(__file__))
 _scriptname = os.path.basename(os.path.realpath(__file__))
+_accepted_dups_html = "acceptedduplicates.html"
 
 class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
     """
@@ -45,6 +47,15 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
     def src_select(self, start0, finish0, candidate_idx=None):
         print("SRC selection <-", start0, finish0, candidate_idx)
         self.hm_page.runJavaScript("select_source(%d, %d);" % (start0, finish0))
+
+    @QtCore.pyqtSlot()
+    def exportReport(self):
+        dlg = QtWidgets.QFileDialog(self)
+        sfn = dlg.getSaveFileName(self, 'Save Report to File', os.path.dirname(self.inputfile), 'HTML files (*.html)')
+        if sfn and isinstance(sfn, tuple) and len(sfn[0]):
+            fn = sfn[0]
+            htmlpath = os.path.join(self.workfolder, _accepted_dups_html)
+            util.save_standalone_html(htmlpath, fn)
 
     def loadRepetitions(self, url: str):
         """
@@ -121,7 +132,7 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
         self.workfolder = workfolder
 
         self.nd2html(inputfile, workfolder)
-        pve = os.path.join(workfolder, "pyvarelements.html")
+        pve = os.path.join(workfolder, _accepted_dups_html)
         self.loadRepetitions(pyqt_common.path2url(pve))
 
     def refreshND(self):
@@ -133,4 +144,5 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
     def bindEvents(self):
         # self.shouldLoadHeatMap.connect(self.loadHeatMap)
         # self.shouldLoadRepetitions.connect(self.loadRepetitions)
+        self.actionE_xport.triggered.connect(self.exportReport)
         pass

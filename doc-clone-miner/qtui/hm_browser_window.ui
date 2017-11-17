@@ -137,9 +137,15 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionE_xport"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
+  <action name="actionE_xport">
+   <property name="text">
+    <string>E&amp;xport</string>
+   </property>
+  </action>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>

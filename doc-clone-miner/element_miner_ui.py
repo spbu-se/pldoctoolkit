@@ -466,21 +466,8 @@ class ElemBrowserUI(QtWidgets.QMainWindow, pyqt_common.ui_class('element_browser
             fn = sfn[0]
             tab = self.browserTabs.currentWidget() # type: ElemBrowserTab
             htmlpath = pyqt_common.url2path(tab.uri)
-            with open(htmlpath, encoding='utf-8') as htmlsrc:
-                htmlcontent = htmlsrc.read()
+            util.save_standalone_html(htmlpath, fn)
 
-                def replace_ref_with_script(match): # want normal lambdas here...
-                    jsfilename = os.path.join(
-                        os.path.split(htmlpath)[0], # html dorectory
-                        match.group(1) + ".js"
-                    )
-                    with open(jsfilename) as jsfile:
-                        js = jsfile.read()
-                        return """<script>%s</script>""" % js
-
-                htmlcontent = re.sub("""<script src="(.*)\\.js"></script>""", replace_ref_with_script, htmlcontent)
-                with open(fn, "w", encoding='utf-8') as ofl:
-                    ofl.write(htmlcontent)
 
 class ElemMinerProgressUI(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_progress.ui')):
     progressChanged = QtCore.pyqtSignal(int, int, str)

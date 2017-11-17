@@ -85,7 +85,7 @@ def report(logger):
     cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
 
     outdir = args.output_directory
-    with open(os.path.join(outdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:
+    with open(os.path.join(outdir, "acceptedduplicates.html"), 'w', encoding='utf-8') as htmlfile:
         htmlfile.write(cohtml)
 
     shutil.copyfile(
