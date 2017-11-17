@@ -24,17 +24,13 @@ def post_junk_filter(dgroups: 'list[clones.VariativeElement]') -> 'list[clones.V
         logger.debug("(re)built interval tree of %d intervals." % (len(ndg_interval_list),))
         return itree
 
-    itr = build_interval_tree(dgroups)
-
-
     # 1. Remove small exact groups
-    for g in dgroups:
-        if g.g_power == 1:
-            alaw = g.archetype_length_in_all_words()
-            if alaw < 3 or alaw < 7 and g.g_power < 3:
-                dgroups.remove(g)
+    for g in list(dgroups):  # clone it
+        if g.g_power == 1 and g.c_power <= 2 and g.archetype_length_in_human_readable_words() <= 6:
+            dgroups.remove(g)
 
     # 2. Remove self-intersections of exact groups with all groups
+    itr = build_interval_tree(dgroups)
     edgroups = [g for g in dgroups if g.g_power == 1]
     todel = set()
     for g1 in edgroups:

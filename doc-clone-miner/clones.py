@@ -1492,7 +1492,6 @@ class VariativeElement:
 
     @property
     def html(self):
-
         VariativeElement._html_idx += 1
 
         nextpoints = len(self.clone_groups) - 1
