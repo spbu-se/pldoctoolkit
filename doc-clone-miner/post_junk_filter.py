@@ -51,7 +51,7 @@ def post_junk_filter(dgroups: 'list[clones.VariativeElement]') -> 'list[clones.V
             for i in probable_g2_intervals
         ])
         for g2 in probable_g2s:
-            if g2.g_power > 1 or g2 in todel:
+            if g2 == g1 or g2.g_power > 1 or g2 in todel:
                 continue
 
             if g1.archetype_length_in_symbols() <= g2.archetype_length_in_symbols():
