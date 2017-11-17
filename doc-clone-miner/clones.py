@@ -56,7 +56,6 @@ def initdata(inputfilesiv=[], clonegroupsiv=[]):
     inputfiles = inputfilesiv
     clonegroups = clonegroupsiv
 
-
 def initoptions(args, logger):
     global minlen
     minlen = 0
@@ -171,7 +170,6 @@ def initoptions(args, logger):
 
     global minimal_archetype_length
     minimal_archetype_length = args.minimal_archetype_length
-
 
 def average(container):
     return sum(container) / len(container)
@@ -427,6 +425,10 @@ class CloneGroup(ABC):
 
     def totalsymbols(self):
         return sum(ie - ib + 1 for fn, ib, ie in self.instances)
+
+
+    def __len__(self):
+        return self.totalsymbols()
 
 class FuzzyCloneGroup(CloneGroup):
     @property

@@ -31,6 +31,14 @@ clones.initdata()
 
 
 def initargs():
+    def str2bool(v):
+        if v.lower() in ('yes', 'true', 't', 'y', '1'):
+            return True
+        elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+            return False
+        else:
+            raise argparse.ArgumentTypeError('Boolean value expected.')
+
     argpar = argparse.ArgumentParser()
     argpar.add_argument("-nb", "--findnearby",
                         help="Find clones nearby each other, specify maximal distance (if clones theirselves are shorter)")
@@ -75,6 +83,8 @@ def initargs():
                         default=0.15, help="MAX variations/archetype in symbols for variational groups")
     argpar.add_argument("-minal", "--minimal-archetype-length", type=int,
                         default=5, help="MIN length of archetype for resulting (variative) elements")
+    argpar.add_argument("-pjf", "--post-junk-filter", type=str2bool,
+                        default=True, help="Post-filtering of junk exact duplicate groups")
 
     args = argpar.parse_args()
 
@@ -118,6 +128,9 @@ def initargs():
 
     global minimal_archetype_length
     minimal_archetype_length = args.minimal_archetype_length
+
+    global post_junk_filter
+    post_junk_filter = args.post_junk_filter
 
     clones.initoptions(args, logger)
 
@@ -499,7 +512,7 @@ def log_short_repetitions(maxtokens, minrepetitions):
                     cg.text().strip().replace('\r', '').replace('\n', ' ')
                 ])
 
-def combine_gruops():
+def combine_groups():
     import combine_grp
 
     # sort descending
@@ -542,11 +555,6 @@ def combine_gruops():
     l.info("After final filtering, having:")
     l.info("Exact dup groups: %d" % len(list(filter(lambda ve: len(ve.clone_groups) == 1, combinations))))
     l.info("Near  dup groups: %d" % len(list(filter(lambda ve: len(ve.clone_groups) >  1, combinations))))
-
-    util.write_variative_report(
-        clones, combinations,
-        os.path.join("Output", subdir, "pyvarelements.html")
-    )
 
     return combinations
 
@@ -642,7 +650,17 @@ if __name__ == '__main__':  #
         log_short_repetitions(max_csv_group_tokens, min_csv_group_instances)
 
     write_density_report()
-    combs = combine_gruops()
+    combs = combine_groups()
+
+    util.write_variative_report(
+        clones, combs,
+        os.path.join("Output", subdir, "pyvarelements.html")
+    )
+
+    if post_junk_filter:
+        import post_junk_filter
+        combs = post_junk_filter.post_junk_filter(combs)
+
     try:
         log_reuse_amount(combs)
     except Exception as e:
