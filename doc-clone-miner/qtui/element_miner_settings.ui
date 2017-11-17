@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>571</width>
-    <height>564</height>
+    <height>591</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -400,6 +400,16 @@
                </item>
               </layout>
              </item>
+             <item>
+              <widget class="QCheckBox" name="cbPostJunkFilter">
+               <property name="text">
+                <string>empirical junk duplicate filtering</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
             </layout>
            </widget>
           </item>
@@ -721,11 +731,11 @@
           </item>
           <item>
            <widget class="QCheckBox" name="cbOnlyShowNearDuplicates">
-            <property name="text">
-             <string>Do not build reuse map, just show existing results</string>
-            </property>
             <property name="visible">
              <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Do not build reuse map, just show existing results</string>
             </property>
            </widget>
           </item>
