@@ -25,6 +25,26 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
                     len(cg.instances)
                 )
 
+    # blind markers
+    marker_se = re.compile(
+        "("+
+        r"""(&lt;!-- [\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12} &lt;=&lt; (ACCEPT|IGNORE) --&gt;)""" +
+        "|" +
+        r"""(&lt;!-- (ACCEPT|IGNORE) &gt;=&gt; [\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12} --&gt;)""" +
+        ")"
+    )
+
+    # cleanup repetitions on markers
+    for ifl, ifn in zip(input_files, itertools.count()):
+        for m in marker_se.finditer(ifl.text):
+            l = len(m.groups()[0])
+            o = m.start()
+            e = o + l
+            z = [0] * l
+            clone_densities[ifn][o:e] = z
+            repetition_densities[ifn][o:e] = z
+
+
     reports_table = []
     reports_map = []
     reports_heat = []
@@ -193,14 +213,6 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
         reports_table.append("</table><br/>\n")
         reports_map.append("<br/>\n")
 
-    # blind markers
-    marker_se = re.compile(
-        "("+
-        r"""(&lt;!-- [\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12} &lt;=&lt; (ACCEPT|IGNORE) --&gt;)""" +
-        "|" +
-        r"""(&lt;!-- (ACCEPT|IGNORE) &gt;=&gt; [\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12} --&gt;)""" +
-        ")"
-    )
     jreports_map = marker_se.sub(r"""<span style="color: lightgray; font-size:x-small;">\1</span>""", " ".join(reports_map))
 
     return "".join(reports_table), jreports_map, "\n".join(reports_heat)
