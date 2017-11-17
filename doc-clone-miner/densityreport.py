@@ -26,17 +26,19 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
                 )
 
     # blind markers
-    marker_se = re.compile(
-        "("+
-        r"""(&lt;!-- [\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12} &lt;=&lt; (ACCEPT|IGNORE) --&gt;)""" +
-        "|" +
-        r"""(&lt;!-- (ACCEPT|IGNORE) &gt;=&gt; [\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12} --&gt;)""" +
+    marker_ss =\
+        "("+\
+        r"""(<!-- [\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12} <=< (ACCEPT|IGNORE) -->)""" +\
+        "|" +\
+        r"""(<!-- (ACCEPT|IGNORE) >=> [\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12} -->)""" +\
         ")"
-    )
+
+    marker_sr = re.compile(marker_ss)
+    marker_se = re.compile(util.escape(marker_ss))
 
     # cleanup repetitions on markers
     for ifl, ifn in zip(input_files, itertools.count()):
-        for m in marker_se.finditer(ifl.text):
+        for m in marker_sr.finditer(ifl.text):
             l = len(m.groups()[0])
             o = m.start()
             e = o + l
