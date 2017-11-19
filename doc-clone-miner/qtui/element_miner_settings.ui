@@ -85,6 +85,11 @@
           <string>Fuzzy Heat</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Ngram Detector</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>
@@ -236,14 +241,14 @@
              </item>
              <item>
               <widget class="QCheckBox" name="cbAllowInt">
+               <property name="visible">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>allow intersections</string>
                </property>
                <property name="checked">
                 <bool>true</bool>
-               </property>
-               <property name="visible">
-                <bool>false</bool>
                </property>
               </widget>
              </item>
