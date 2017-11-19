@@ -406,7 +406,7 @@
              <item>
               <widget class="QCheckBox" name="cbPostJunkFilter">
                <property name="text">
-                <string>empirical junk duplicate filtering</string>
+                <string>Strict small and overlapping duplicate filtering</string>
                </property>
                <property name="checked">
                 <bool>true</bool>
