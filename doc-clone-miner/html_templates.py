@@ -93,7 +93,7 @@ summaryhtml_start = textwrap.dedent(
     }
 
     tr.active  {
-        background-color: #ffff88;
+        background-color: #eaeaea;
     }
 
     span.diffminus {

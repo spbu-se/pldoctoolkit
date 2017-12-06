@@ -64,7 +64,7 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
     ))
 
     span_template = string.Template(textwrap.dedent(
-        """<span id="co-${n}-${co}" style="background-color: rgb(${crf}, ${cgf}, ${cbf});" title="Clones coverage: ${rfd}; GRP Power: ${cfd}">${tx}</span>"""
+        """<span id="co-${n}-${co}" style="background-color: rgb(${crf}, ${cgf}, ${cbf});" data-ignore-title="Clones coverage: ${rfd}; GRP Power: ${cfd}">${tx}</span>"""
     ))
 
     heat_template = string.Template(
