@@ -1518,7 +1518,7 @@ class VariativeElement:
             ('<span style="background-color: silver; color:red; font-weight:bold;">&#x25c0;%d&#x25c0;</span><wbr/>' % (vn,) +
                 '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">|</span><wbr/>'.join([
                 (
-                    """<code class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
+                    """<code class="variationclick" data-ignore-title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
                 ) % (hlstart, hlend, hlstart, hlend, clr, ' ' + t.strip() + ' ')
                 for (hlstart, hlend, clr, t) in zip(starts, ends, self.htmlvcolors, variations)
                 ]) +
@@ -1530,7 +1530,7 @@ class VariativeElement:
         numberedlinks = map(lambda n: "{%d}" % (n,), itertools.count(1)) if len(startgrp.instances) > 1 else ["&nbsp;&#x25b6;&nbsp;"]
 
         vltexts = '<wbr/>'.join([
-            """<span class="variationclick" title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">%s</span>"""
+            """<span class="variationclick" data-ignore-title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">%s</span>"""
             % (cstart, cend, cstart, cend - (1 if fuzzyreport else 0), clr, no)
             for cstart, cend, clr, no in zip(starts, ends, self.htmlccolors, numberedlinks)
         ])
