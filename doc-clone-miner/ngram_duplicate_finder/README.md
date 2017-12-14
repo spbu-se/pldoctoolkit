@@ -9,5 +9,5 @@ Russian language support
 
 When having troubles with `russian.pickle`, do `wget https://raw.githubusercontent.com/mhq/train_punkt/master/russian.pickle` in the following locations:
 
-* 'nltk_data/tokenizers/punkt/PY3/'
-* 'nltk_data/tokenizers/punkt/'
+* `nltk_data/tokenizers/punkt/PY3/`
+* `nltk_data/tokenizers/punkt/`
