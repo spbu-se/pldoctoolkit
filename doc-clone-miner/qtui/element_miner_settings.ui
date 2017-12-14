@@ -87,7 +87,7 @@
         </item>
         <item>
          <property name="text">
-          <string>Ngram Detector</string>
+          <string>Ngram Duplicate Finder</string>
          </property>
         </item>
        </widget>

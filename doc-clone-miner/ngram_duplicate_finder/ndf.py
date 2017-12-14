@@ -1,4 +1,4 @@
-from simpleAPI2 import *
+import simpleAPI2
 import json
 import sys
 
@@ -13,7 +13,7 @@ def intersect(sent1, sent2):
 
 
 def unite(sent1, sent2):
-    return Sentence(sent1.startIndex, sent2.endIndex, sent1.sent + " " + sent2.sent, sent1.start, sent2.end)
+    return simpleAPI2.Sentence(sent1.startIndex, sent2.endIndex, sent1.sent + " " + sent2.sent, sent1.start, sent2.end)
 
 
 def add_sent(group, sentence, use, idx):
@@ -40,7 +40,10 @@ def set_sent_bool(sentence, val, use):
 
 name = sys.argv[1]
 
-text = Text(name)
+if len(sys.argv) >= 3:  # language present
+    simpleAPI2.language = sys.argv[2].lower()
+
+text = simpleAPI2.Text(name)
 sents = text.sents
 classes = []
 was = [False for i in range(len(sents))]
@@ -85,7 +88,7 @@ for (i, curSent) in enumerate(sents):
 
 cur = 0
 jsonArr = []
-with open(name + " result.txt", "w", encoding=text.encoding) as file:
+with open(name + ".result.txt", "w", encoding=text.encoding) as file:
     for curClass in classes:
         # print("print")
         if len(curClass.sents) < 2:

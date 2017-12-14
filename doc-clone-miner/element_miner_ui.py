@@ -656,7 +656,8 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         if methodIdx == 0: # Clone Miner
             wt = self.launch_with_clone_miner(pui, infile, numparams)
         elif methodIdx == 2:  # Fuzzy Finder
-            wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
+            # wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
+            wt, ffworkfolder = self.launch_with_ngram_dup_finder(pui, infile, numparams)
         elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
             def re_launch_fuzzyheat_with_clone_miner():
                 nonlocal wt
@@ -689,6 +690,13 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         shutil.copy(infile, ffworkfolder)
 
         wt = run_fuzzy_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
+        return wt, ffworkfolder
+
+    def launch_with_ngram_dup_finder(self, pui, infile, numparams):
+        global elbrui
+
+        ffworkfolder = os.path.dirname(infile)
+        wt = run_ngram_dup_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
 
     def launch_fuzzyheat_reporting(self, pui, infile, onready):
@@ -844,6 +852,81 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
             app.processEvents()
 
     wt = FuzzyWorkThread()
+    wt.start()
+    return wt
+
+
+def run_ngram_dup_finder_thread(pui, inputfile, numparams, language, workingfolder):
+    global clargs, app
+    inputfile = inputfile.replace('/', os.sep)
+
+    pui.progressChanged.emit(2, 0, "Preparing...")
+    app.processEvents()
+
+    class NGramWorkThread(QtCore.QThread):
+        def __init__(self):
+            QtCore.QThread.__init__(self)
+            self.ffstdoutstderr = ""
+            self.fatal_error = False
+
+        def run(self):
+            outdec = locale.getpreferredencoding(False)
+            inputfilename = os.path.basename(inputfile)
+            ndf_py = os.path.join(_scriptdir, 'ngram_duplicate_finder', 'ndf.py')
+
+            reformattedfilename = inputfilename + '.reformatted'
+            util.save_reformatted_file(inputfilename)
+
+            outputfilename = inputfilename + ".reformatted.groups.json"
+
+            popen_args = [sys.executable, ndf_py, reformattedfilename, language.lower()]
+
+            pui.progressChanged.emit(2, 0, "Finding NGram near duplicates...")
+            app.processEvents()
+
+            ffpr = subprocess.Popen(popen_args,
+                                                stdout=subprocess.PIPE,
+                                                stdin=subprocess.PIPE,
+                                                stderr=subprocess.PIPE,
+                                                cwd=workingfolder)
+            oe = ffpr.communicate(input=b'\n')
+            ffrc = ffpr.returncode
+            ffstdout = oe[0].decode(outdec)
+            ffstderr = oe[1].decode(outdec)
+            self.ffstdoutstderr = ffstdout + os.linesep + ffstderr
+            if ffrc != 0 or "Exception was thrown:" in ffstderr:
+                self.fatal_error = True
+                print("Returned: " + str(ffrc))
+                print(self.ffstdoutstderr)
+                return
+
+            pui.progressChanged.emit(2, 1, "Preparing report...")
+            app.processEvents()
+
+            popen_args = [sys.executable, optverb, os.path.join(_scriptdir, "fuzzyclones2html.py"),
+                '-oui', 'no', # gen for ui and export
+                '-sx', reformattedfilename,
+                '-ndgj', outputfilename,
+                '-od', workingfolder]
+            print("Browsing NGram duplicates with: " + ' '.join(popen_args))
+
+            cbpr = subprocess.Popen(popen_args,
+                                                stdout=subprocess.PIPE,
+                                                stdin=subprocess.PIPE,
+                                                stderr=subprocess.STDOUT,
+                                                cwd=workingfolder)
+
+            oe = cbpr.communicate(input=b'\n')
+            cbrc = cbpr.returncode
+            if cbrc != 0:
+                self.fatal_error = True
+                print("Returned: " + str(cbrc))
+                print(oe[0].decode(outdec))
+
+            pui.progressChanged.emit(2, 2, "Done")
+            app.processEvents()
+
+    wt = NGramWorkThread()
     wt.start()
     return wt
 

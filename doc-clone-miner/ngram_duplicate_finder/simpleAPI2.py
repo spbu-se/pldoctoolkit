@@ -15,7 +15,6 @@ removeStops = True  # `= set()` for not removing stopwords
 puncts = set('.,!?')
 default_encodings = ["utf-8", "cp1251"]
 
-
 # language dispatch
 sent_tokenize = lambda text: nltk_sent_tokenize(text, language)
 word_tokenize = lambda text: nltk_word_tokenize(text, language)
