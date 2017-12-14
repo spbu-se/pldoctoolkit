@@ -54,6 +54,9 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
     maxrd = max([max(ifld) for ifld in repetition_densities])
     maxcd = max([max(ifld) for ifld in clone_densities])
 
+    maxrd = max(maxrd, 1)
+    maxcd = max(maxcd, 1)
+
     tr_template = string.Template(textwrap.dedent("""
         <tr>
         <td style="background-color: rgb(255, 255, ${rf});">${crd}</td>
