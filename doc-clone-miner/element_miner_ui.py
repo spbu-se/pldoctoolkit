@@ -875,7 +875,7 @@ def run_ngram_dup_finder_thread(pui, inputfile, numparams, language, workingfold
             ndf_py = os.path.join(_scriptdir, 'ngram_duplicate_finder', 'ndf.py')
 
             reformattedfilename = inputfilename + '.reformatted'
-            util.save_reformatted_file(inputfilename)
+            util.save_reformatted_file(inputfile)
 
             outputfilename = inputfilename + ".reformatted.groups.json"
 
