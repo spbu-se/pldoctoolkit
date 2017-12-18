@@ -103,10 +103,16 @@ def find_like_pattern_0(inputfile, pattern, ms):
     return results
 
 def find_like_pattern(inputfile, pattern, ms):
+    badchar = '\uFFFD'
     import pattern_near_duplicate_search
     # Support ignored/accepted ranges -- not yet implemented
 
     tx = inputfile.text
+
+    marked = sourcemarkers.find_marked_intervals(tx)
+    for ob, ce, mt in marked:
+        tx[ob:ce] = badchar * (ce-ob)
+
     ranges = pattern_near_duplicate_search.search(tx, pattern, ms)
 
     results = []
