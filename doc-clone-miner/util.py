@@ -72,6 +72,9 @@ def connected_slices(i: 'itvl.interval') -> 'list[tuple[int, int]]':
 def lratio(s1, s2):
     return 1 - Levenshtein.distance(s1, s2) / max(len(s1), len(s2), 1)
 
+def diratio(s1, s2):
+    import pattern_near_duplicate_search
+    return pattern_near_duplicate_search.di_similarity(s1, s2)
 
 _wre = re.compile(r"\w+", re.UNICODE)
 def tokens(text):

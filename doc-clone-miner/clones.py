@@ -438,7 +438,7 @@ class FuzzyCloneGroup(CloneGroup):
         """
         if hasattr(FuzzyCloneGroup, 'reference_text'):
             ref = util.ctokens(FuzzyCloneGroup.reference_text)
-            ratios = [util.lratio(ref, util.ctokens(itx)) for itx in self.instancetexts]
+            ratios = [util.diratio(ref, util.ctokens(itx)) for itx in self.instancetexts]
             return min(ratios)
         else:
             return None

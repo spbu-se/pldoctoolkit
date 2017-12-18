@@ -30,7 +30,7 @@ def initargs():
     return argpar.parse_args()
 
 
-def find_like_pattern(inputfile, pattern, ms):
+def find_like_pattern_0(inputfile, pattern, ms):
     # Support ignored/accepted ranges
     marked = sourcemarkers.find_marked_intervals(inputfile.text)
     marked_tree = intervaltree.IntervalTree([
@@ -101,6 +101,23 @@ def find_like_pattern(inputfile, pattern, ms):
             results.append((cb, ce - 1, clr, ctext, cwords))
 
     return results
+
+def find_like_pattern(inputfile, pattern, ms):
+    import pattern_near_duplicate_search
+    # Support ignored/accepted ranges -- not yet implemented
+
+    tx = inputfile.text
+    ranges = pattern_near_duplicate_search.search(tx, pattern, ms)
+
+    results = []
+    for cb, ce in ranges:
+
+        ctext = inputfile.text[cb:ce]
+        cwords = util.tokenst(ctext)
+        results.append((cb, ce - 1, util.diratio(ctext, pattern), ctext, cwords))
+
+    return results
+
 
 def organize_search(logger, args):
     import clones

@@ -225,7 +225,7 @@ density_map_h1 = textwrap.dedent(
         
         function selctionfuzzysearch(evt) {
           var seltext = window.getSelection().toString();
-          var minsim = window.prompt("Similarity threshold", "0.5");
+          var minsim = window.prompt("Similarity threshold", "0.77");
           // alert([minsim, seltext]);
           var nloc = "http://127.0.0.1:49999/fuzzysearch?minsim=" + encodeURIComponent(minsim) +
             "&text=" + encodeURIComponent(seltext);
