@@ -111,7 +111,7 @@ def find_like_pattern(inputfile, pattern, ms):
 
     marked = sourcemarkers.find_marked_intervals(tx)
     for ob, ce, mt in marked:
-        tx[ob:ce] = badchar * (ce-ob)
+        tx = tx[:ob] + badchar * (ce-ob) + tx[:ce]
 
     ranges = pattern_near_duplicate_search.search(tx, pattern, ms)
 
