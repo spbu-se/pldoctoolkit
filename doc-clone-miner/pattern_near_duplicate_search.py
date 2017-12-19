@@ -13,6 +13,7 @@ optimize_fit_cutoff = False  # Не доказано, и скорее всего
 optimize_distant_jump = True
 optimize_stage1_word_offsets = True
 optimize_stage2_by_words = True
+optimize_stage2_length_borders = False
 
 
 # Немного бинарного поиска
@@ -110,6 +111,18 @@ def get_fit_word_borders(document: 'str') -> 'list[tuple[int,int]]':
 def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidate: 'tuple[int,int]') -> 'tuple[int,int]':
     wbs, wes = get_fit_word_borders(document)
 
+    def sort_list_around_value(values: 'list[int]', center):
+        """
+        :param values: input values list
+        :param center: closer to what do we want to start
+        :return: sorted list
+
+        Example:
+        >>> sort_list_around_value([1,2,3,4,5,6,7,8,9,10], 5)
+        [5, 6, 4, 7, 3, 8, 2, 9, 1, 10]
+        """
+        values.sort(key=lambda v: abs(v - 0.125 - center))
+
 
     p0, p1 = candidate
     if optimize_stage2_by_words:
@@ -124,7 +137,17 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
     min_d_di = di_distance(pattern, document[p0:p1])
     min_peak = candidate
     curr_d_di = di_distance(pattern, document[p0: p1], cache=True)
-    for l in range(wl, min_l-1, -1):
+
+    lengths = list(range(wl, min_l-1, -1))
+    if optimize_stage2_length_borders:
+        sort_list_around_value(lengths, len(pattern))
+
+    skept = 0
+    for l in lengths:
+        if optimize_stage2_length_borders and (l < len(pattern) - curr_d_di or l > len(pattern) + curr_d_di):
+            skept += 1
+            continue
+
         time_to_give_up = True
         o = 0
         while o <= wl - l:
@@ -256,13 +279,13 @@ def search(document: str, pattern: str, similarity: float) -> 'list[tuple[int,in
 
 
 def main():
-    global optimize_fit_cutoff, optimize_distant_jump, optimize_stage1_word_offsets, optimize_stage2_by_words
+    global optimize_fit_cutoff, optimize_distant_jump, optimize_stage1_word_offsets, optimize_stage2_by_words, optimize_stage2_length_borders
     optimize_fit_cutoff = False
     optimize_stage1_word_offsets = False
 
     optimize_distant_jump = True
     optimize_stage2_by_words = True
-
+    optimize_stage2_length_borders = False  # Only gives only a bit
     bassett = 0.15
     apr = argparse.ArgumentParser()
     apr.add_argument('--document', type=str)
