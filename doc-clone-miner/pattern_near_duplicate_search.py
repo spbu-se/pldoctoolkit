@@ -106,6 +106,8 @@ def get_fit_word_borders(document: 'str') -> 'list[tuple[int,int]]':
     if not _word_begins:
         _fit_word_borders = [wm.span() for wm in  _nsre.finditer(document)]
         [_word_begins, _word_ends] = zip(*_fit_word_borders)
+        _word_begins = list(_word_begins)
+        _word_ends = list(_word_ends)
     return _word_begins, _word_ends
 
 def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidate: 'tuple[int,int]') -> 'tuple[int,int]':
@@ -284,7 +286,7 @@ def main():
     optimize_stage1_word_offsets = False
 
     optimize_distant_jump = True
-    optimize_stage2_by_words = True
+    optimize_stage2_by_words = False
     optimize_stage2_length_borders = False  # Only gives only a bit
     bassett = 0.15
     apr = argparse.ArgumentParser()
