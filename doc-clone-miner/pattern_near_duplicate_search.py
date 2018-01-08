@@ -11,7 +11,7 @@ import itertools
 # Различные оптимизации
 optimize_fit_cutoff = False  # Не доказано, и скорее всего вообще неправда, а ведь помогает =(
 optimize_distant_jump = True
-optimize_stage1_word_offsets = True
+optimize_stage1_by_words = True
 optimize_stage2_by_words = True
 optimize_stage2_length_borders = False
 
@@ -26,11 +26,18 @@ def find_closest_ge_index(a: 'list', b: 'int') -> 'int':
 
 
 def find_closest_le(a: 'list', b: 'int') -> 'int':
+    # try:
     return a[find_closest_le_index(a, b)]
-
+    # except Exception:
+    #     print(a, b)
+    #     return a[0]
 
 def find_closest_ge(a: 'list', b: 'int') -> 'int':
+    # try:
     return a[find_closest_ge_index(a, b)]
+    # except Exception:
+    #    print(a, b)
+    #    return a[-1]
 
 
 def max_d_di_ws(pattern: str, similarity: float) -> 'tuple[int,int]':
@@ -80,7 +87,7 @@ def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') 
     word_offsets = [wo for wo in word_offsets if wo < len(document) - len(pattern)]
 
     next_min_offset = 0
-    for offset in word_offsets if optimize_stage1_word_offsets else range(len(document) - len(pattern)):
+    for offset in word_offsets if optimize_stage1_by_words else range(len(document) - len(pattern)):
         if offset >= next_min_offset or not optimize_distant_jump:
             piece = document[offset:offset+win_size]
             # Если идти по словам, то тут как раз место для проверки по simhash. Но это если по словам.
@@ -93,12 +100,12 @@ def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') 
 
         cnt += 1
         if cnt % 1000 == 0:
-            print(cnt, '/', len(word_offsets) if optimize_stage1_word_offsets else len(document) - len(pattern))
+            print(cnt, '/', len(word_offsets) if optimize_stage1_by_words else len(document) - len(pattern))
     return offsets
 
 _word_begins: 'list[int]' = None
 _word_ends:   'list[int]' = None
-_nsre = re.compile(r'\S+')
+_nsre = re.compile(r"[\w']+", re.UNICODE | re.MULTILINE)
 # _s_ns_re = re.compile(r'\s\S')
 # _ns_s_re = re.compile(r'\S\s')
 def get_fit_word_borders(document: 'str') -> 'list[tuple[int,int]]':
@@ -109,6 +116,9 @@ def get_fit_word_borders(document: 'str') -> 'list[tuple[int,int]]':
         _word_begins = list(_word_begins)
         _word_ends = list(_word_ends)
     return _word_begins, _word_ends
+
+def _nsre_c_alnum(s: 'str') -> 'Bool':
+    return s.isalnum() or s == '_' or s == "'"
 
 def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidate: 'tuple[int,int]') -> 'tuple[int,int]':
     wbs, wes = get_fit_word_borders(document)
@@ -162,9 +172,12 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
             # Когда мы усушку делаем по словам, то для не-границ-слов просто пропускаем и ничего не считаем
             # А в противном случае зато считаем
             if not optimize_stage2_by_words or \
-                    (document[real_p0_o - 1].isspace() and not document[real_p0_o].isspace() and \
-                    not document[real_p0_o_l].isspace() and document[real_p0_o_l + 1].isspace()):
+                    (not _nsre_c_alnum(document[real_p0_o - 1]) and _nsre_c_alnum(document[real_p0_o]) and \
+                     _nsre_c_alnum(document[real_p0_o_l]) and not _nsre_c_alnum(document[real_p0_o_l + 1])):
                 curr_d_di = di_distance(pattern, document[real_p0_o: real_p0_o_l], cache=True)
+            else:
+                o += 1
+                continue
 
             if curr_d_di < min_d_di:
                 min_d_di = curr_d_di
@@ -181,7 +194,8 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
             # Не доказано, и очень возможно вообще неправда!!!
             break
 
-    return find_closest_le(wbs, min_peak[0]), find_closest_ge(wes, min_peak[1])
+    return min_peak
+    # return find_closest_le(wbs, min_peak[0]), find_closest_ge(wes, min_peak[1])
 
 
 def fit_candidates(document: 'str', pattern: 'str', similarity: 'float', candidates: 'list[tuple[int,int]]') -> 'list[tuple[int,int]]':
@@ -272,27 +286,38 @@ def join_overlapping_candidates(document: 'str', candidates: 'list[tuple[int,int
     return final_candidates
 
 
-def search(document: str, pattern: str, similarity: float) -> 'list[tuple[int,int]]':
+def search(document: str, pattern: str, similarity: float, optimize_size: bool = True) -> 'list[tuple[int,int]]':
+    global _word_begins, _word_ends
+    _word_begins = None
+    _word_ends = None
+
+    global optimize_stage2_by_words
+    if not optimize_size:
+        optimize_stage2_by_words = False
+
     w1 = get_fuzzy_match_areas(document, pattern, similarity)
     w2 = fit_candidates(document, pattern, similarity, w1)
     w3 = remove_redundant_candidates(w2)
-    w3j = join_overlapping_candidates(document, w3, similarity, pattern)
+    w3j = join_overlapping_candidates(document, w3, similarity, pattern) if optimize_size else w3
+
     return w3j
 
 
 def main():
-    global optimize_fit_cutoff, optimize_distant_jump, optimize_stage1_word_offsets, optimize_stage2_by_words, optimize_stage2_length_borders
+    global optimize_fit_cutoff, optimize_distant_jump, optimize_stage1_by_words, optimize_stage2_by_words, optimize_stage2_length_borders
     optimize_fit_cutoff = False
-    optimize_stage1_word_offsets = False
+    optimize_stage1_by_words = False
 
     optimize_distant_jump = True
-    optimize_stage2_by_words = False
+    optimize_stage2_by_words = True
     optimize_stage2_length_borders = False  # Only gives only a bit
     bassett = 0.15
     apr = argparse.ArgumentParser()
     apr.add_argument('--document', type=str)
     apr.add_argument('--pattern', type=str)
     apr.add_argument('--similarity', type=float, default=1/(1 + bassett))
+    apr.add_argument('--optimize-size', type=bool, default=True)
+    apr.add_argument('--unify-whitespaces', type=bool, default=True)
     args = apr.parse_args()
 
     with open(args.document, encoding='utf-8') as docfile:
@@ -301,7 +326,13 @@ def main():
     # candidatess = get_fuzzy_match_areas(doc_text, args.pattern, args.similarity)
     # fit = fit_candidates(doc_text, args.pattern, args.similarity, candidatess)
     # nipeaks = remove_redundant_candidates(fit)
-    nipeaks = search(doc_text, args.pattern, args.similarity)
+    pattern = args.pattern
+
+    if args.unify_whitespaces:
+        doc_text = re.sub('\s', ' ', doc_text)
+        pattern  = re.sub('\s', ' ', pattern)
+
+    nipeaks = search(doc_text, pattern, args.similarity, optimize_size=args.optimize_size)
 
     for peak in nipeaks:
         print(repr(peak), doc_text[peak[0]:peak[1]])
