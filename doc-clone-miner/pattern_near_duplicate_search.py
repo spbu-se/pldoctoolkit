@@ -7,6 +7,8 @@ import math
 import re
 import bisect
 import itertools
+import time
+import logging
 
 # Различные оптимизации
 optimize_fit_cutoff = False  # Не доказано, и скорее всего вообще неправда, а ведь помогает =(
@@ -15,6 +17,18 @@ optimize_stage1_by_words = True
 optimize_stage2_by_words = True
 optimize_stage2_length_borders = False
 
+_s_logger = None
+def glog():
+    global _s_logger
+    if not _s_logger:
+        _s_logger = logging.getLogger("pattern_search.provable")
+        ch = logging.StreamHandler()
+        fh = logging.FileHandler("pattern_search.provable.log")
+        ch.setLevel(logging.INFO)
+        fh.setLevel(logging.INFO)
+        _s_logger.addHandler(ch)
+        _s_logger.addHandler(fh)
+    return _s_logger
 
 # Немного бинарного поиска
 def find_closest_le_index(a: 'list', b: 'int') -> 'int':
@@ -216,10 +230,14 @@ def remove_redundant_candidates(candidates: 'list[tuple[int,int]]') -> 'list[tup
     print("Removing redundant...")
     speaks = set(candidates)  # at least filter out similar ones
     toremove = set()
+    cnt = 0
     for p1b, p1e in speaks:
         for p2b, p2e in speaks:
             if (p1b != p2b or p1e != p2e) and p1b <= p2b and p2e <= p1e:
                 toremove.add((p2b, p2e))
+        cnt += 1
+        if cnt % 10 == 0:
+            print(cnt, '/', len(speaks))
 
     speaks.difference_update(toremove)
     lspeaks = list(speaks)
@@ -286,10 +304,19 @@ def join_overlapping_candidates(document: 'str', candidates: 'list[tuple[int,int
     return final_candidates
 
 
-def search(document: str, pattern: str, similarity: float, optimize_size: bool = True) -> 'list[tuple[int,int]]':
+def search(document: str, pattern: str, similarity: float, optimize_size: bool=True, unify_whitespaces: bool=True) -> 'list[tuple[int,int]]':
+    glog().info("|D| = %d; |p| = %d; k = %f; p = '%s'" % (
+        len(document), len(pattern), similarity, pattern
+    ))
+    t1 = time.time()
+
     global _word_begins, _word_ends
     _word_begins = None
     _word_ends = None
+
+    if unify_whitespaces:
+        document = re.sub('\s', ' ', document)
+        pattern  = re.sub('\s', ' ', pattern)
 
     global optimize_stage1_by_words, optimize_stage2_by_words
     if not optimize_size:
@@ -300,6 +327,9 @@ def search(document: str, pattern: str, similarity: float, optimize_size: bool =
     w2 = fit_candidates(document, pattern, similarity, w1)
     w3 = remove_redundant_candidates(w2) if optimize_size else list(set(w2))
     w3j = join_overlapping_candidates(document, w3, similarity, pattern) if optimize_size else w3
+
+    t2 = time.time()
+    glog().info("Search took %d seconds and returned %d matches" % (int(t2-t1), len(w3j)))
 
     return w3j
 
@@ -327,13 +357,9 @@ def main():
     # candidatess = get_fuzzy_match_areas(doc_text, args.pattern, args.similarity)
     # fit = fit_candidates(doc_text, args.pattern, args.similarity, candidatess)
     # nipeaks = remove_redundant_candidates(fit)
-    pattern = args.pattern
 
-    if args.unify_whitespaces:
-        doc_text = re.sub('\s', ' ', doc_text)
-        pattern  = re.sub('\s', ' ', pattern)
-
-    nipeaks = search(doc_text, pattern, args.similarity, optimize_size=args.optimize_size)
+    glog().info("D = '%s'" % (args.document))
+    nipeaks = search(doc_text, args.pattern, args.similarity, optimize_size=args.optimize_size, unify_whitespaces=args.unify_whitespaces)
 
     for peak in nipeaks:
         print(repr(peak), doc_text[peak[0]:peak[1]])
