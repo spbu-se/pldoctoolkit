@@ -291,13 +291,14 @@ def search(document: str, pattern: str, similarity: float, optimize_size: bool =
     _word_begins = None
     _word_ends = None
 
-    global optimize_stage2_by_words
+    global optimize_stage1_by_words, optimize_stage2_by_words
     if not optimize_size:
+        optimize_stage1_by_words = False
         optimize_stage2_by_words = False
 
     w1 = get_fuzzy_match_areas(document, pattern, similarity)
     w2 = fit_candidates(document, pattern, similarity, w1)
-    w3 = remove_redundant_candidates(w2)
+    w3 = remove_redundant_candidates(w2) if optimize_size else list(set(w2))
     w3j = join_overlapping_candidates(document, w3, similarity, pattern) if optimize_size else w3
 
     return w3j
