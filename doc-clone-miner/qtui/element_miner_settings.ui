@@ -77,12 +77,12 @@
         </property>
         <item>
          <property name="text">
-          <string>Clone Miner</string>
+          <string>Automatic mode</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Fuzzy Heat</string>
+          <string>Interactive mode</string>
          </property>
         </item>
         <item>

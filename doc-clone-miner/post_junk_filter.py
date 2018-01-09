@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-
+import time
 import itertools
 from intervaltree import IntervalTree
 
@@ -24,6 +24,7 @@ def post_junk_filter(dgroups: 'list[clones.VariativeElement]') -> 'list[clones.V
         logger.debug("(re)built interval tree of %d intervals." % (len(ndg_interval_list),))
         return itree
 
+    t1 = time.time()
     # 1. Remove small exact groups
     for g in list(dgroups):  # clone it
         if g.g_power == 1 and g.c_power <= 2 and g.archetype_length_in_human_readable_words() <= 6:
@@ -56,7 +57,8 @@ def post_junk_filter(dgroups: 'list[clones.VariativeElement]') -> 'list[clones.V
     for dg in todel:
         dgroups.remove(dg)
 
+    t2 = time.time()
     aftersize = len(dgroups)
-    logger.info("Post-Junk-Filtering removed %d of %d groups." % (beforesize-aftersize, beforesize))
+    logger.info("Post-Junk-Filtering removed %d of %d groups in %0.2f sec." % (beforesize-aftersize, beforesize, t2-t1))
 
     return list(dgroups)
