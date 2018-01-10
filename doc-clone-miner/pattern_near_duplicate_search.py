@@ -15,7 +15,9 @@ optimize_fit_cutoff = False  # Не доказано, и скорее всего
 optimize_distant_jump = True
 optimize_stage1_by_words = True
 optimize_stage2_by_words = True
+
 optimize_stage2_length_borders = False
+optimize_smart_removal = False
 
 _s_logger = None
 def glog():
@@ -55,8 +57,8 @@ def find_closest_ge(a: 'list', b: 'int') -> 'int':
 
 
 def max_d_di_ws(pattern: str, similarity: float) -> 'tuple[int,int]':
-    max_d_di = int(math.floor(len(pattern) * (1 - similarity ** 2) * (1 + 1 / similarity)))  # WARNING!!! Округление вниз!!! Не доказано!!!
-    win_size = int(math.floor(len(pattern) / similarity))  # WARNING!!! Округление вниз!!! Не доказано!!!
+    max_d_di = int(math.ceil(len(pattern) * (1 - similarity ** 2) * (1 + 1 / similarity)))  # WARNING!!! Округление вверх!!! Не доказано!!!
+    win_size = int(math.ceil(len(pattern) / similarity))  # WARNING!!! Округление вверх!!! Не доказано!!!
     return max_d_di, win_size
 
 _wre = re.compile(r'\w+')
@@ -91,13 +93,13 @@ def di_similarity(s1: str, s2: str) -> float:
 
 def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') -> 'list[tuple[int,int]]':
     max_d_di, win_size = max_d_di_ws(pattern, similarity)
+    word_offsets, wes = get_fit_word_borders(document)
 
     offsets = []
 
     print("Searching...")
     cnt = 0
 
-    word_offsets = [wm.start(0) for wm in  _wre.finditer(document)]
     word_offsets = [wo for wo in word_offsets if wo < len(document) - len(pattern)]
 
     next_min_offset = 0
@@ -111,6 +113,7 @@ def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') 
                 offsets.append((offset, offset + win_size))
             else:
                 next_min_offset = offset + (ddi - max_d_di) // 2
+                next_min_offset = find_closest_le(word_offsets, next_min_offset)
 
         cnt += 1
         if cnt % 1000 == 0:
@@ -119,7 +122,7 @@ def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') 
 
 _word_begins: 'list[int]' = None
 _word_ends:   'list[int]' = None
-_nsre = re.compile(r"[\w']+", re.UNICODE | re.MULTILINE)
+_nsre = re.compile(r"[\S]+", re.UNICODE | re.MULTILINE)
 # _s_ns_re = re.compile(r'\s\S')
 # _ns_s_re = re.compile(r'\S\s')
 def get_fit_word_borders(document: 'str') -> 'list[tuple[int,int]]':
@@ -128,14 +131,17 @@ def get_fit_word_borders(document: 'str') -> 'list[tuple[int,int]]':
         _fit_word_borders = [wm.span() for wm in  _nsre.finditer(document)]
         [_word_begins, _word_ends] = zip(*_fit_word_borders)
         _word_begins = list(_word_begins)
-        _word_ends = list(_word_ends)
+        _word_ends = list(_word_ends)  # [we - 1 for we in _word_ends] ??
     return _word_begins, _word_ends
 
 def _nsre_c_alnum(s: 'str') -> 'Bool':
-    return s.isalnum() or s == '_' or s == "'"
+    return not s.isspace()
+    #return s.isalnum() or s == '_' or s == "'"
 
-def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidate: 'tuple[int,int]') -> 'tuple[int,int]':
+def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidate: 'tuple[int,int]', already_was: 'set[tuple[int, int]]') -> 'tuple[int,int]|NoneType':
     wbs, wes = get_fit_word_borders(document)
+    swbs = set(wbs)
+    swes = set(wes)
 
     def sort_list_around_value(values: 'list[int]', center):
         """
@@ -156,13 +162,21 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
         p1 = find_closest_ge(wes, p1)
         candidate = p0, p1
 
+    if candidate in already_was:
+        return None
+
+    already_was.add(candidate)
+
     wl = p1 - p0
 
-    min_l = int(math.ceil(len(pattern) * similarity))   #!!! Округление вверх!!! Не доказано!!!
+    min_l = int(math.floor(len(pattern) * similarity))   #!!! Округление вниз!!! Не доказано!!!
 
-    min_d_di = di_distance(pattern, document[p0:p1])
+    min_d_di = di_distance(pattern, document[p0:p1], cache=True)
     min_peak = candidate
-    curr_d_di = di_distance(pattern, document[p0: p1], cache=True)
+    curr_d_di = min_d_di
+
+    # s = document[p0:p1]
+    # print("--->", min_d_di, candidate, s)
 
     lengths = list(range(wl, min_l-1, -1))
     if optimize_stage2_length_borders:
@@ -185,13 +199,20 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
 
             # Когда мы усушку делаем по словам, то для не-границ-слов просто пропускаем и ничего не считаем
             # А в противном случае зато считаем
-            if not optimize_stage2_by_words or \
-                    (not _nsre_c_alnum(document[real_p0_o - 1]) and _nsre_c_alnum(document[real_p0_o]) and \
-                     _nsre_c_alnum(document[real_p0_o_l]) and not _nsre_c_alnum(document[real_p0_o_l + 1])):
-                curr_d_di = di_distance(pattern, document[real_p0_o: real_p0_o_l], cache=True)
-            else:
+            if False:
+                if not optimize_stage2_by_words or \
+                        (not _nsre_c_alnum(document[real_p0_o - 1]) and _nsre_c_alnum(document[real_p0_o]) and \
+                         _nsre_c_alnum(document[real_p0_o_l]) and not _nsre_c_alnum(document[real_p0_o_l + 1])):
+                    curr_d_di = di_distance(pattern, document[real_p0_o: real_p0_o_l], cache=True)
+                else:
+                    o += 1
+                    continue
+
+            if optimize_stage2_by_words and (not real_p0_o in swbs or not  real_p0_o_l in swes):
                 o += 1
                 continue
+            else:
+                curr_d_di = di_distance(pattern, document[real_p0_o: real_p0_o_l], cache=True)
 
             if curr_d_di < min_d_di:
                 min_d_di = curr_d_di
@@ -208,6 +229,9 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
             # Не доказано, и очень возможно вообще неправда!!!
             break
 
+    # s = document[min_peak[0]:min_peak[1]]
+    # print("<---", min_d_di, min_peak, s)
+
     return min_peak
     # return find_closest_le(wbs, min_peak[0]), find_closest_ge(wes, min_peak[1])
 
@@ -217,8 +241,11 @@ def fit_candidates(document: 'str', pattern: 'str', similarity: 'float', candida
     cnt = 0
     fit = []
 
+    already_was: 'set[tuple[int, int]]' = set()
     for c in candidates:
-        fit.append(fit_candidate(document, pattern, similarity, c))
+        better = fit_candidate(document, pattern, similarity, c, already_was)
+        if better:
+            fit.append(better)
         cnt += 1
         if cnt % 10 == 0:
             print(cnt, '/', len(candidates))
@@ -226,7 +253,8 @@ def fit_candidates(document: 'str', pattern: 'str', similarity: 'float', candida
     return fit
 
 
-def remove_redundant_candidates(candidates: 'list[tuple[int,int]]') -> 'list[tuple[int,int]]':
+def remove_redundant_candidates(candidates: 'list[tuple[int,int]]', document: str, pattern: str) -> 'list[tuple[int,int]]':
+    global optimize_smart_removal
     print("Removing redundant...")
     speaks = set(candidates)  # at least filter out similar ones
     toremove = set()
@@ -234,7 +262,18 @@ def remove_redundant_candidates(candidates: 'list[tuple[int,int]]') -> 'list[tup
     for p1b, p1e in speaks:
         for p2b, p2e in speaks:
             if (p1b != p2b or p1e != p2e) and p1b <= p2b and p2e <= p1e:
-                toremove.add((p2b, p2e))
+                if optimize_smart_removal:
+                    if (p1b, p1e) in toremove or (p2b, p2e) in toremove:
+                        continue
+                    d1 = di_distance(document[p1b:p1e], pattern, cache=True)
+                    d2 = di_distance(document[p2b:p2e], pattern, cache=True)
+                    if d1 <= d2:
+                        toremove.add((p2b, p2e))
+                    else:
+                        toremove.add((p1b, p1e))
+                else:
+                    toremove.add((p2b, p2e))
+
         cnt += 1
         if cnt % 10 == 0:
             print(cnt, '/', len(speaks))
@@ -296,7 +335,9 @@ def join_overlapping_candidates(document: 'str', candidates: 'list[tuple[int,int
             best_candidate = candidates[0]
             best_distance = di_distance(document[best_candidate[0]:best_candidate[1]], pattern, cache=True)
             for cb, ce in candidates:
-                if di_distance(document[cb:ce], pattern, cache=True) < best_distance:
+                new_distance = di_distance(document[cb:ce], pattern, cache=True)
+                if new_distance < best_distance:
+                    best_distance = new_distance
                     best_candidate = cb, ce
             final_candidates.append(best_candidate)
 
@@ -325,7 +366,7 @@ def search(document: str, pattern: str, similarity: float, optimize_size: bool=T
 
     w1 = get_fuzzy_match_areas(document, pattern, similarity)
     w2 = fit_candidates(document, pattern, similarity, w1)
-    w3 = remove_redundant_candidates(w2) if optimize_size else list(set(w2))
+    w3 = remove_redundant_candidates(w2, document, pattern) if optimize_size else list(set(w2))
     w3j = join_overlapping_candidates(document, w3, similarity, pattern) if optimize_size else w3
 
     t2 = time.time()

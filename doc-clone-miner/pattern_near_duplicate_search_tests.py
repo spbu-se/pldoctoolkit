@@ -29,10 +29,27 @@ class TestStringMethods(unittest.TestCase):
         self.p = self.p.strip()
         self.sim = 0.77
 
-    def test_1_smoke_search_spl(self):
+    def test_1_psql_fitting(self):
+        p = dedent(
+            """
+            To alter the owner, you
+            must also be a direct or indirect member of the new owning role, and
+            that role must have CREATE privilege on the table's schema. (These
+            restrictions enforce that altering the owner doesn't do anything you
+            couldn't do by dropping and recreating the table. However, a superuser
+            can alter ownership of any table anyway.)
+            """).strip()
+        with open("tests/documentation/Heat_Map/References/PostgreSQL_9.6.1_SQL_Reference/PostgreSQL_9.6.1_SQL_Reference.cxml", encoding='utf-8') as df: d = df.read()
+        fnds = pnds.search(d, p, 0.77, unify_whitespaces=True)
+        print(len(fnds))
+        for fb,fe in fnds:
+            print("<<<" + d[fb:fe] + ">>>")
+
+
+    def test_a_smoke_search_spl(self):
         d = "w1 w2 w3 w4 w5 \n A B C D E1 F G H I w6 w7 \n w8 w9 A B C \n D E2 F G H I \n w10 w11 w12 w13"
         p = "A B C D E1 F G H I"
-        fnds = pnds.search(d, p, self.sim, optimize_size=False)
+        fnds = pnds.search(d, p, self.sim)
         for fb,fe in fnds:
             print("<<<" + d[fb:fe] + ">>>")
 
