@@ -86,10 +86,12 @@ def di_distance(s1: str, s2: str, cache=False) -> int:
     else:
         return _sm_distance(s1, s2)
 
+
 def di_similarity(s1: str, s2: str) -> float:
     blocks = difflib.SequenceMatcher(a = s1, b = s2).get_matching_blocks()
     common = sum(size for (a, b, size) in blocks)
     return 2.0 * common / (len(s1) + len(s2))
+
 
 def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') -> 'list[tuple[int,int]]':
     max_d_di, win_size = max_d_di_ws(pattern, similarity)
@@ -113,7 +115,7 @@ def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') 
                 offsets.append((offset, offset + win_size))
             else:
                 next_min_offset = offset + (ddi - max_d_di) // 2
-                next_min_offset = find_closest_le(word_offsets, next_min_offset)
+                # next_min_offset = find_closest_le(word_offsets, next_min_offset)
 
         cnt += 1
         if cnt % 1000 == 0:

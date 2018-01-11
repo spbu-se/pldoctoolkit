@@ -29,6 +29,42 @@ class TestStringMethods(unittest.TestCase):
         self.p = self.p.strip()
         self.sim = 0.77
 
+    def test_1_bench_pattern_time(self):
+        import time
+        with open("tests/documentation/Heat_Map/References/PostgreSQL_9.6.1_SQL_Reference/PostgreSQL_9.6.1_SQL_Reference.cxml", encoding='utf-8') as df: d = df.read()
+        p = "you must also be a direct or indirect member of the new owning role, and that role must have CREATE privilege on the table's schema."
+        # k=0.57, t=31, |R|=17
+        # k=0.62, t=27, |R|=17
+        # k=0.67, t=27, |R|=17
+        # k=0.72, t=27, |R|=17
+        # k=0.77, t=27, |R|=17
+        # k=0.82, t=27, |R|=17
+        # k=0.87, t=28, |R|=17
+        # k=0.92, t=27, |R|=17
+        # k=0.97, t=27, |R|=17
+        # p = "you must also be a direct or indirect member of the new owning role"
+        # k=0.57, t=20, |R|=19
+        # k=0.62, t=20, |R|=19
+        # k=0.67, t=20, |R|=19
+        # k=0.72, t=20, |R|=19
+        # k=0.77, t=20, |R|=19
+        # k=0.82, t=20, |R|=19
+        # k=0.87, t=20, |R|=19
+        # k=0.92, t=20, |R|=19
+        # k=0.97, t=20, |R|=19
+
+        l = []
+        for kp in range(57, 101, 5):
+            k = kp / 100.0
+            t1 = time.time()
+            fnds = pnds.search(d, p, 0.77, unify_whitespaces=True)
+            t2 = time.time()
+            l.append("k=%0.2f, t=%d, |R|=%d " %(k, t2-t1, len(fnds)))
+
+        for e in l:
+            print(e)
+
+
     def test_1_psql_fitting(self):
         p = dedent(
             """
