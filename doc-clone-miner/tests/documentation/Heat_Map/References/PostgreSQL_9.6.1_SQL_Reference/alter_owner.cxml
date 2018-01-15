@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plainxml><![CDATA[
+
+---
+---
+
+
+To alter
+the owner, you must also be a direct or indirect member of the new
+owning role, and that role must have CREATE privilege on the sequence's
+schema. (These restrictions enforce that altering the owner doesn't do
+anything you couldn't do by dropping and recreating the sequence.
+However, a superuser can alter ownership of any sequence anyway.)
+
+---
+---
+
+To alter the owner,
+you must also be a direct or indirect member of the new owning role,
+and that role must have CREATE privilege on the view's schema. (These
+restrictions enforce that altering the owner doesn't do anything you
+couldn't do by dropping and recreating the view. However, a superuser
+can alter ownership of any view anyway.)
+
+---
+---
+
+To alter the owner, you must also be a
+direct or indirect member of the new owning role, and that role must
+have CREATE privilege on the materialized view's schema. (These
+restrictions enforce that altering the owner doesn't do anything you
+couldn't do by dropping and recreating the materialized view. However,
+a superuser can alter ownership of any view anyway.)
+
+---
+---
+
+To alter the owner,
+you must also be a direct or indirect member of the new owning role,
+and that role must have CREATE privilege on the operator's schema.
+(These restrictions enforce that altering the owner doesn't do anything
+you couldn't do by dropping and recreating the operator. However, a
+superuser can alter ownership of any operator anyway.)
+
+---
+---
+
+To alter
+the owner, you must also be a direct or indirect member of the new
+owning role, and that role must have CREATE privilege on the operator
+class's schema. (These restrictions enforce that altering the owner
+doesn't do anything you couldn't do by dropping and recreating the
+operator class. However, a superuser can alter ownership of any
+operator class anyway.)
+
+---
+---
+
+To alter the owner,
+you must also be a direct or indirect member of the new owning role,
+and that role must have CREATE privilege on the collation's schema.
+(These restrictions enforce that altering the owner doesn't do anything
+you couldn't do by dropping and recreating the collation. However, a
+superuser can alter ownership of any collation anyway.)
+
+---
+---
+
+To alter the owner, you must also be a
+direct or indirect member of the new owning role, and that role must
+have CREATE privilege on the aggregate function's schema. (These
+restrictions enforce that altering the owner doesn't do anything you
+couldn't do by dropping and recreating the aggregate function. However,
+a superuser can alter ownership of any aggregate function anyway.)
+
+---
+---
+
+To alter
+the owner, you must also be a direct or indirect member of the new
+owning role, and that role must have CREATE privilege on the function's
+schema. (These restrictions enforce that altering the owner doesn't do
+anything you couldn't do by dropping and recreating the function.
+However, a superuser can alter ownership of any function anyway.)
+
+---
+---
+
+To alter
+the owner, you must also be a direct or indirect member of the new
+owning role, and that role must have CREATE privilege on the domain's
+schema. (These restrictions enforce that altering the owner doesn't do
+anything you couldn't do by dropping and recreating the domain.
+However, a superuser can alter ownership of any domain anyway.)
+
+---
+---
+
+To alter the owner, you
+must also be a direct or indirect member of the new owning role, and
+that role must have CREATE privilege on the table's schema. (These
+restrictions enforce that altering the owner doesn't do anything you
+couldn't do by dropping and recreating the table. However, a superuser
+can alter ownership of any table anyway.)
+
+---
+---
+
+To alter
+the owner, you must also be a direct or indirect member of the new
+owning role, and that role must have CREATE privilege on the type's
+schema. (These restrictions enforce that altering the owner doesn't do
+anything you couldn't do by dropping and recreating the type. However,
+a superuser can alter ownership of any type anyway.)
+
+---
+---
+
+To alter the owner, you must also be a direct or indirect
+member of the new owning role, and that role must have CREATE privilege
+on the table's schema. (These restrictions enforce that altering the
+owner doesn't do anything you couldn't do by dropping and recreating
+the table. However, a superuser can alter ownership of any table
+anyway.)
+
+---
+---
+
+To alter the
+owner, you must also be a direct or indirect member of the new owning
+role, and that role must have CREATE privilege on the conversion's
+schema. (These restrictions enforce that altering the owner doesn't do
+anything you couldn't do by dropping and recreating the conversion.
+However, a superuser can alter ownership of any conversion anyway.)
+
+---
+---
+
+
+]]></plainxml>
