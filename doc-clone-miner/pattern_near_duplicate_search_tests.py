@@ -42,8 +42,10 @@ class TestStringMethods(unittest.TestCase):
             <li>ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the receiver</li>
             </ul>
             """).strip()
+        # k; t; |R|
+        # 0.55;3412;1229 --- 2809 =)
         l = []
-        for kp in range(55, 75, 5):
+        for kp in range(55, 101, 5):
             k = kp / 100.0
             t1 = time.time()
             fnds = pnds.search(d, p, k)

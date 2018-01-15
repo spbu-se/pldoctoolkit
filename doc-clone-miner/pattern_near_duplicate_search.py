@@ -16,6 +16,7 @@ optimize_fit_cutoff = False  # Не доказано, и скорее всего
 optimize_distant_jump = True
 optimize_stage1_by_words = True
 optimize_stage2_by_words = True
+optimize_stage2_similar_strings = True
 
 optimize_stage2_length_borders = False
 optimize_smart_removal = False
@@ -155,7 +156,11 @@ def _nsre_c_alnum(s: 'str') -> 'Bool':
     return not s.isspace()
     #return s.isalnum() or s == '_' or s == "'"
 
+
 def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidate: 'tuple[int,int]') -> 'tuple[int,int]|NoneType':
+    p0, p1 = candidate
+    wl = p1 - p0
+
     wbs, wes = get_fit_word_borders(document)
     swbs = set(wbs)
     swes = set(wes)
@@ -171,10 +176,6 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
         [5, 6, 4, 7, 3, 8, 2, 9, 1, 10]
         """
         values.sort(key=lambda v: abs(v - 0.125 - center))
-
-
-    p0, p1 = candidate
-    wl = p1 - p0
 
     min_l = int(math.floor(len(pattern) * similarity))   #!!! Округление вниз!!! Не доказано!!!
 
@@ -244,20 +245,35 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
 
 
 def fit_candidates(document: 'str', pattern: 'str', similarity: 'float', candidates: 'list[tuple[int,int]]') -> 'list[tuple[int,int]]':
+    _fit_results: 'dict[str,tuple[int,int]]' = {}
+
     print("Fitting...")
     cnt = 0
     fit = []
 
+
     if optimize_stage2_by_words:
         candidates = [widen_to_whole_words(document, candidate) for candidate in candidates]
 
+    helped = 0
+
     for c in candidates:
-        better = fit_candidate(document, pattern, similarity, c)
+        if optimize_stage2_similar_strings:
+            if document[c[0]:c[1]] in _fit_results:
+                o, l = _fit_results[document[c[0]:c[1]]]
+                better = c[0] + o, c[0] + o + l
+                helped += 1
+            else:
+                better = fit_candidate(document, pattern, similarity, c)
+                _fit_results[document[c[0]:c[1]]] = better[0] - c[0], better[1] - better[0]
+        else:
+            better = fit_candidate(document, pattern, similarity, c)
         if better:
             fit.append(better)
+
         cnt += 1
         if cnt % 10 == 0:
-            print(cnt, '/', len(candidates))
+            print(cnt, '/', len(candidates), helped, len(_fit_results))
 
     return fit
 
