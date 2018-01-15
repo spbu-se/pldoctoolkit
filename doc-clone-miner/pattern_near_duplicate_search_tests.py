@@ -29,7 +29,7 @@ class TestStringMethods(unittest.TestCase):
         self.p = self.p.strip()
         self.sim = 0.77
 
-    def test_01_bench_pattern_time(self):
+    def test_010_bench_pattern_time(self):
         import time
         with open("tests/documentation/Heat_Map/References/Eclipse_SWT/Eclipse.cxml", encoding='utf-8') as df: d = df.read()
         # p = "@exception SWTException" # opt: ? -> 1255
@@ -59,7 +59,7 @@ class TestStringMethods(unittest.TestCase):
 
 
 
-    def test_02_bench_pattern_time(self):
+    def test_020_bench_pattern_time(self):
         import time
         with open("tests/documentation/Heat_Map/References/PostgreSQL_9.6.1_SQL_Reference/PostgreSQL_9.6.1_SQL_Reference.cxml", encoding='utf-8') as df: d = df.read()
         p = "you must also be a direct or indirect member of the new owning role, and that role must have CREATE privilege on the table's schema."

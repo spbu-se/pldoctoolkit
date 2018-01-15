@@ -9,6 +9,7 @@ import bisect
 import itertools
 import time
 import logging
+from operator import itemgetter
 
 # Различные оптимизации
 optimize_fit_cutoff = False  # Не доказано, и скорее всего вообще неправда, а ведь помогает =(
@@ -86,6 +87,34 @@ def di_distance(s1: str, s2: str, cache=False) -> int:
     else:
         return _sm_distance(s1, s2)
 
+_word_begins: 'list[int]' = None
+_word_ends:   'list[int]' = None
+_nsre = re.compile(r"[\S]+", re.UNICODE | re.MULTILINE)
+# _s_ns_re = re.compile(r'\s\S')
+# _ns_s_re = re.compile(r'\S\s')
+def get_fit_word_borders(document: 'str') -> 'list[tuple[int,int]]':
+    global _word_begins, _word_ends
+    if not _word_begins or not _word_ends:
+        _fit_word_borders = [wm.span() for wm in  _nsre.finditer(document)]
+        [_word_begins, _word_ends] = zip(*_fit_word_borders)
+        _word_begins = list(_word_begins)
+        _word_ends = list(_word_ends)  # [we - 1 for we in _word_ends] ??
+
+        if _word_begins[0] != 0:
+            _word_begins = [0] + _word_begins
+            _word_ends = [1] + _word_ends
+        if _word_ends[-1] != len(document):
+            _word_begins = _word_begins + [len(document) - 1]
+            _word_ends = _word_ends + [len(document)]
+
+    return _word_begins, _word_ends
+
+
+def widen_to_whole_words(document: 'str', area: 'tuple[int,int]') -> 'tuple[int, int]':
+    wbs, wes = get_fit_word_borders(document)
+    p0, p1 = area
+    return  (find_closest_le(wbs, p0), find_closest_ge(wes, p1))
+
 
 def di_similarity(s1: str, s2: str) -> float:
     blocks = difflib.SequenceMatcher(a = s1, b = s2).get_matching_blocks()
@@ -102,10 +131,10 @@ def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') 
     print("Searching...")
     cnt = 0
 
-    word_offsets = [wo for wo in word_offsets if wo < len(document) - len(pattern)]
+    word_offsets = [wo for wo in word_offsets if wo < len(document) - win_size]
 
     next_min_offset = 0
-    for offset in word_offsets if optimize_stage1_by_words else range(len(document) - len(pattern)):
+    for offset in word_offsets if optimize_stage1_by_words else range(len(document) - win_size):
         if offset >= next_min_offset or not optimize_distant_jump:
             piece = document[offset:offset+win_size]
             # Если идти по словам, то тут как раз место для проверки по simhash. Но это если по словам.
@@ -122,25 +151,11 @@ def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') 
             print(cnt, '/', len(word_offsets) if optimize_stage1_by_words else len(document) - len(pattern))
     return offsets
 
-_word_begins: 'list[int]' = None
-_word_ends:   'list[int]' = None
-_nsre = re.compile(r"[\S]+", re.UNICODE | re.MULTILINE)
-# _s_ns_re = re.compile(r'\s\S')
-# _ns_s_re = re.compile(r'\S\s')
-def get_fit_word_borders(document: 'str') -> 'list[tuple[int,int]]':
-    global _word_begins, _word_ends
-    if not _word_begins:
-        _fit_word_borders = [wm.span() for wm in  _nsre.finditer(document)]
-        [_word_begins, _word_ends] = zip(*_fit_word_borders)
-        _word_begins = list(_word_begins)
-        _word_ends = list(_word_ends)  # [we - 1 for we in _word_ends] ??
-    return _word_begins, _word_ends
-
 def _nsre_c_alnum(s: 'str') -> 'Bool':
     return not s.isspace()
     #return s.isalnum() or s == '_' or s == "'"
 
-def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidate: 'tuple[int,int]', already_was: 'set[tuple[int, int]]') -> 'tuple[int,int]|NoneType':
+def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidate: 'tuple[int,int]') -> 'tuple[int,int]|NoneType':
     wbs, wes = get_fit_word_borders(document)
     swbs = set(wbs)
     swes = set(wes)
@@ -159,16 +174,6 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
 
 
     p0, p1 = candidate
-    if optimize_stage2_by_words:
-        p0 = find_closest_le(wbs, p0)
-        p1 = find_closest_ge(wes, p1)
-        candidate = p0, p1
-
-    if candidate in already_was:
-        return None
-
-    already_was.add(candidate)
-
     wl = p1 - p0
 
     min_l = int(math.floor(len(pattern) * similarity))   #!!! Округление вниз!!! Не доказано!!!
@@ -243,9 +248,11 @@ def fit_candidates(document: 'str', pattern: 'str', similarity: 'float', candida
     cnt = 0
     fit = []
 
-    already_was: 'set[tuple[int, int]]' = set()
+    if optimize_stage2_by_words:
+        candidates = [widen_to_whole_words(document, candidate) for candidate in candidates]
+
     for c in candidates:
-        better = fit_candidate(document, pattern, similarity, c, already_was)
+        better = fit_candidate(document, pattern, similarity, c)
         if better:
             fit.append(better)
         cnt += 1
