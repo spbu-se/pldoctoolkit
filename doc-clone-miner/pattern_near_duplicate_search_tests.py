@@ -29,7 +29,39 @@ class TestStringMethods(unittest.TestCase):
         self.p = self.p.strip()
         self.sim = 0.77
 
-    def test_010_bench_pattern_time(self):
+    def test_009_bench_pattern_time_Eclipse(self):
+        import time
+        with open("tests/documentation/Heat_Map/4_first/Linux_Kernel/Linux_Kernel_Documentation.cxml", encoding='utf-8') as df: d = df.read()
+        p = dedent(
+            """
+            This documentation is distributed in the hope that it will be
+            useful, but WITHOUT ANY WARRANTY; without even the implied
+            warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+            See the GNU General Public License for more details.
+            
+            You should have received a copy of the GNU General Public
+            License along with this documentation; if not, write to the Free
+            Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+            MA 02111-1307 USA
+            
+            For more details see the file COPYING in the source
+            distribution of Linux.
+            """).strip()
+        l = []
+        for kp in range(55, 101, 5):
+            k = kp / 100.0
+            t1 = time.time()
+            fnds = pnds.search(d, p, k)
+            t2 = time.time()
+            r = "%0.2f;%d;%d " %(k, t2-t1, len(fnds))
+            l.append(r)
+            print(r)
+
+        print("k;t;|R|")
+        for e in l:
+            print(e)
+
+    def test_010_bench_pattern_time_Eclipse(self):
         import time
         with open("tests/documentation/Heat_Map/References/Eclipse_SWT/Eclipse.cxml", encoding='utf-8') as df: d = df.read()
         # p = "@exception SWTException" # opt: ? -> 1255
