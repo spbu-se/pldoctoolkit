@@ -29,7 +29,7 @@ class TestStringMethods(unittest.TestCase):
         self.p = self.p.strip()
         self.sim = 0.77
 
-    def test_009_bench_pattern_time_Eclipse(self):
+    def test_009_bench_pattern_time_LKD(self):
         import time
         with open("tests/documentation/Heat_Map/4_first/Linux_Kernel/Linux_Kernel_Documentation.cxml", encoding='utf-8') as df: d = df.read()
         p = dedent(
