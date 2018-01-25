@@ -29,7 +29,29 @@ class TestStringMethods(unittest.TestCase):
         self.p = self.p.strip()
         self.sim = 0.77
 
+
+    def test_008_bench_pattern_time_Blender(self):
+        return
+        import time
+        with open("tests/documentation/Heat_Map/References/Blender_manual/blender_manual.pxml", encoding='utf-8') as df: d = df.read()
+        p = "Faces Reference Mode: Edit Mode  Menu: Mesh -- &amp; gt; Clean up -- &amp; gt;"
+        l = []
+        for kp in range(55, 101, 5):
+            k = kp / 100.0
+            t1 = time.time()
+            fnds = pnds.search(d, p, k)
+            t2 = time.time()
+            r = "%0.2f;%d;%d " %(k, t2-t1, len(fnds))
+            l.append(r)
+            print(r)
+
+        print("k;t;|R|")
+        for e in l:
+            print(e)
+
+
     def test_009_bench_pattern_time_LKD(self):
+        return
         import time
         with open("tests/documentation/Heat_Map/4_first/Linux_Kernel/Linux_Kernel_Documentation.cxml", encoding='utf-8') as df: d = df.read()
         p = dedent(
@@ -62,6 +84,7 @@ class TestStringMethods(unittest.TestCase):
             print(e)
 
     def test_010_bench_pattern_time_Eclipse(self):
+        return
         import time
         with open("tests/documentation/Heat_Map/References/Eclipse_SWT/Eclipse.cxml", encoding='utf-8') as df: d = df.read()
         # p = "@exception SWTException" # opt: ? -> 1255
@@ -94,6 +117,7 @@ class TestStringMethods(unittest.TestCase):
 
 
     def test_020_bench_pattern_time(self):
+        return
         import time
         with open("tests/documentation/Heat_Map/References/PostgreSQL_9.6.1_SQL_Reference/PostgreSQL_9.6.1_SQL_Reference.cxml", encoding='utf-8') as df: d = df.read()
         p = "you must also be a direct or indirect member of the new owning role, and that role must have CREATE privilege on the table's schema."
@@ -129,6 +153,7 @@ class TestStringMethods(unittest.TestCase):
             print(e)
 
     def test_1_eclipse_max(self):
+        return
         with open("tests/documentation/Heat_Map/References/Eclipse_SWT/Eclipse.cxml", encoding='utf-8') as df: d = df.read()
         # p = "@exception SWTException" # opt: ? -> 1255
         # p = "@exception SWTException <ul> <li>ERROR_WIDGET_DISPOSED - if the receiver has been"  # opt: 10685 -> 1094
@@ -139,6 +164,7 @@ class TestStringMethods(unittest.TestCase):
 
 
     def test_1_psql_fitting(self):
+        return
         p = dedent(
             """
             To alter the owner, you
@@ -156,6 +182,7 @@ class TestStringMethods(unittest.TestCase):
 
 
     def test_a_smoke_search_spl(self):
+        return
         d = "w1 w2 w3 w4 w5 \n A B C D E1 F G H I w6 w7 \n w8 w9 A B C \n D E2 F G H I \n w10 w11 w12 w13"
         p = "A B C D E1 F G H I"
         fnds = pnds.search(d, p, self.sim)
@@ -163,12 +190,15 @@ class TestStringMethods(unittest.TestCase):
             print("<<<" + d[fb:fe] + ">>>")
 
     def test_smoke_fit_word_borders(self):
+        return
         pnds.get_fit_word_borders(self.d)
 
     def test_smoke_non_opt_search(self):
+        return
         pnds.search(self.d, self.p, self.sim, optimize_size=False)
 
     def test_smoke_search_p(self):
+        return
         fnds = pnds.search(self.d, self.p, self.sim)
         for fb,fe in fnds:
             print("<<<" + self.d[fb:fe] + ">>>")
