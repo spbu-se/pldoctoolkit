@@ -17,6 +17,7 @@ optimize_distant_jump = True
 optimize_stage1_by_words = True
 optimize_stage2_by_words = True
 optimize_stage2_similar_strings = True
+optimize_stage2_by_left_border = False
 
 optimize_stage2_length_borders = False
 optimize_smart_removal = False
@@ -157,7 +158,11 @@ def _nsre_c_alnum(s: 'str') -> 'Bool':
     #return s.isalnum() or s == '_' or s == "'"
 
 
+_stage2_left_border: int = 0
+
 def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidate: 'tuple[int,int]') -> 'tuple[int,int]|NoneType':
+    global _stage2_left_border
+
     p0, p1 = candidate
     wl = p1 - p0
 
@@ -191,13 +196,19 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
         sort_list_around_value(lengths, len(pattern))
 
     skept = 0
+
     for l in lengths:
         if optimize_stage2_length_borders and (l < len(pattern) - curr_d_di or l > len(pattern) + curr_d_di):
             skept += 1
             continue
 
         time_to_give_up = True
-        o = 0
+
+        if not (optimize_stage2_by_left_border and not optimize_stage2_length_borders):
+            o = 0
+        else:
+            o = max(0, _stage2_left_border - p0 + wl - l + 1)
+
         while o <= wl - l:
             # if optimize_stage2_by_words:
             #    real_p0_o = find_closest_le(wbs, p0 + o)
@@ -216,7 +227,7 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
                     o += 1
                     continue
 
-            if optimize_stage2_by_words and (not real_p0_o in swbs or not  real_p0_o_l in swes):
+            if optimize_stage2_by_words and (not real_p0_o in swbs or not real_p0_o_l in swes):
                 o += 1
                 continue
             else:
@@ -240,11 +251,16 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
     # s = document[min_peak[0]:min_peak[1]]
     # print("<---", min_d_di, min_peak, s)
 
+    _stage2_left_border = p0
+
     return min_peak
     # return find_closest_le(wbs, min_peak[0]), find_closest_ge(wes, min_peak[1])
 
 
 def fit_candidates(document: 'str', pattern: 'str', similarity: 'float', candidates: 'list[tuple[int,int]]') -> 'list[tuple[int,int]]':
+    global _stage2_left_border
+    _stage2_left_border = 0
+
     _fit_results: 'dict[str,tuple[int,int]]' = {}
 
     print("Fitting...")
