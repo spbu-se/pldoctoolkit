@@ -12,6 +12,8 @@ import logging
 from operator import itemgetter
 
 # Различные оптимизации
+import sys
+
 optimize_fit_cutoff = False  # Не доказано, и скорее всего вообще неправда, а ведь помогает =(
 optimize_distant_jump = True
 optimize_stage1_by_words = True
@@ -294,96 +296,59 @@ def fit_candidates(document: 'str', pattern: 'str', similarity: 'float', candida
     return fit
 
 
-def remove_redundant_candidates(candidates: 'list[tuple[int,int]]', document: str, pattern: str) -> 'list[tuple[int,int]]':
-    global optimize_smart_removal
-    print("Removing redundant...")
-    speaks = set(candidates)  # at least filter out similar ones
-    toremove = set()
-    cnt = 0
-    for p1b, p1e in speaks:
-        for p2b, p2e in speaks:
-            if (p1b != p2b or p1e != p2e) and p1b <= p2b and p2e <= p1e:
-                if optimize_smart_removal:
-                    if (p1b, p1e) in toremove or (p2b, p2e) in toremove:
-                        continue
-                    d1 = di_distance(document[p1b:p1e], pattern, cache=True)
-                    d2 = di_distance(document[p2b:p2e], pattern, cache=True)
-                    if d1 <= d2:
-                        toremove.add((p2b, p2e))
-                    else:
-                        toremove.add((p1b, p1e))
-                else:
-                    toremove.add((p2b, p2e))
+def transit_intersections(intervals: 'list[tuple[int,int]]') -> 'list[list[tuple[int,int]]]':
+    # print("Transiting intersections...")
 
-        cnt += 1
-        if cnt % 10 == 0:
-            print(cnt, '/', len(speaks))
+    intervals = list(set(intervals))
+    intervals.sort()
 
-    speaks.difference_update(toremove)
-    lspeaks = list(speaks)
-    lspeaks.sort(key=lambda sp: sp[0])
-    return lspeaks
+    # 1. linear overlapping clustering
+    clusters: 'list[list[tuple[int,int]]]' = []
+    cluster_queue = []
+    cluster_e = -sys.maxsize
 
+    def release_cluster():
+        nonlocal cluster_queue
+        if len(cluster_queue):
+            clusters.append(cluster_queue)
+            cluster_queue = []
 
-def join_overlapping_candidates(document: 'str', candidates: 'list[tuple[int,int]]', similarity: 'float', pattern: 'str') -> 'list[tuple[int,int]]':
-    print("Joining overlapping...", end='')
-    maxlength =  2 * len(pattern) * similarity # Округление вниз
-    l0 = len(candidates)
-    def intersects(t1: 'tuple[int, int]', t2: 'tuple[int, int]') -> 'bool':
-        b1, e1 = t1
-        b2, e2 = t2
-        return b1 <= b2 <= e1 or b1 <= e2 <= e1
+    for b, e in intervals:
+        if b > cluster_e:  # new cluster
+            release_cluster()
+        cluster_e = max(e, cluster_e)
+        cluster_queue.append((b,e))
 
-    cluster_state = {}
-    for c in candidates:
-        cluster_state[c] = [c]
+    release_cluster()
 
-    something_changed = True
-    while something_changed:
-        something_changed = False
-        csk = list(cluster_state.keys())
-        for zone1, zone2 in itertools.product(csk, csk):
-            if zone1 != zone2 and intersects(zone1, zone2):
-                candidates = cluster_state[zone1] + cluster_state[zone2]
-                b = min(zone1[0], zone2[0])
-                e = max(zone1[1], zone2[1])
-                del cluster_state[zone1]
-                del cluster_state[zone2]
-                cluster_state[(b, e)] = candidates
-                something_changed = True
-                break  # for -> while
+    return clusters
 
-    final_candidates = []
+def select_best_of_overlapping(document: 'str', candidates: 'list[tuple[int,int]]', pattern: 'str', remove_insides: 'bool'=True) -> 'tuple[int,int]':
 
-    if False:  # we do not do so now
-        # then cancel too big zones
-        csk = list(cluster_state.keys())
-        for k in csk:
-            b, e = k
-            if e - b > maxlength:
-                final_candidates += cluster_state[k]
-                del cluster_state[k]
+    if remove_insides:
+        candidatess = set(candidates)
+        for (b1, e1), (b2, e2) in itertools.product(candidates, candidates):
+            if (b1, e1) != (b2, e2) and  b2 >= b1 and e2 <= e1:
+                candidatess.discard((b2, e2))
+        candidates = list(candidatess)
 
-        # and add joint candidates
-        for k in cluster_state.keys():
-            final_candidates.append(k)
+    best_c = None
+    best_d = sys.maxsize
+    for cb, ce in candidates:
+        new_d= di_distance(document[cb:ce], pattern, cache=True)
+        if new_d < best_d or (new_d == best_d and ce - cb > best_c[1] - best_c[0]):
+            best_d = new_d
+            best_c = cb, ce
 
+    return best_c
 
-    if True:  # 3rd phase from PhD -- only take one of overlapping
-        csk = list(cluster_state.keys())
-        for k in csk:
-            candidates = cluster_state[k]
-            best_candidate = candidates[0]
-            best_distance = di_distance(document[best_candidate[0]:best_candidate[1]], pattern, cache=True)
-            for cb, ce in candidates:
-                new_distance = di_distance(document[cb:ce], pattern, cache=True)
-                if new_distance < best_distance:
-                    best_distance = new_distance
-                    best_candidate = cb, ce
-            final_candidates.append(best_candidate)
+def last_cleanup_stage(document: 'str', candidates: 'list[tuple[int,int]]', pattern: 'str', remove_insides: 'bool'=True) -> 'list[tuple[int,int]]':
+    print("Joining overlapping and removing redundant")
 
-    print(" %d -> %d." %(l0, len(final_candidates)))
-    return final_candidates
+    clusters = transit_intersections(candidates)
+    result = [select_best_of_overlapping(document, cl, pattern, remove_insides=remove_insides) for cl in clusters]
+
+    return result
 
 
 def search(document: str, pattern: str, similarity: float, optimize_size: bool=True, unify_whitespaces: bool=True) -> 'list[tuple[int,int]]':
@@ -407,13 +372,15 @@ def search(document: str, pattern: str, similarity: float, optimize_size: bool=T
 
     w1 = get_fuzzy_match_areas(document, pattern, similarity)
     w2 = fit_candidates(document, pattern, similarity, w1)
-    w3 = remove_redundant_candidates(w2, document, pattern) if optimize_size else list(set(w2))
-    w3j = join_overlapping_candidates(document, w3, similarity, pattern) if optimize_size else w3
+    if optimize_size:
+        w3 = last_cleanup_stage(document, w2, pattern)
+    else:
+        w3 = w2
 
     t2 = time.time()
-    glog().info("Search took %d seconds and returned %d matches" % (int(t2-t1), len(w3j)))
+    glog().info("Search took %d seconds and returned %d matches" % (int(t2-t1), len(w3)))
 
-    return w3j
+    return w3
 
 
 def main():

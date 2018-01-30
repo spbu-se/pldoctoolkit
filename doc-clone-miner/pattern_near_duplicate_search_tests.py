@@ -30,6 +30,20 @@ class TestStringMethods(unittest.TestCase):
         self.sim = 0.77
 
 
+    def test_001_transitive_intersections(self):
+        import random
+        correct_intervals = [
+            [(0,10),(1,11),(3,13),(5,15)],
+            [(100, 110), (101, 111), (103, 113), (105, 115)]
+        ]
+
+        flattened_intervals = [i for l in correct_intervals for i in l]
+
+        for i in range(10):
+            random.shuffle(flattened_intervals)
+            r = pnds.transit_intersections(flattened_intervals)
+            self.assertEqual(r, correct_intervals)
+
     def test_008_bench_pattern_time_Blender(self):
         return
         import time
