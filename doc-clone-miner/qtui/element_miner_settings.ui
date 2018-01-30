@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>571</width>
-    <height>591</height>
+    <height>484</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -262,52 +262,6 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_5">
-               <item>
-                <widget class="QLabel" name="label">
-                 <property name="text">
-                  <string>Check semantic presence</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QComboBox" name="cbxCheckSemantics">
-                 <property name="currentText">
-                  <string>no</string>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string>no</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>filter common sentences</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>NLTK filter</string>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
               <layout class="QHBoxLayout" name="horizontalLayout_12">
                <property name="topMargin">
                 <number>0</number>
@@ -351,58 +305,6 @@
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_3">
-               <item>
-                <widget class="QLabel" name="label_14">
-                 <property name="text">
-                  <string>Maximal delta / archetype ratio</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QSpinBox" name="sbMaxDeltaRatio">
-                 <property name="minimumSize">
-                  <size>
-                   <width>75</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                 <property name="suffix">
-                  <string> %</string>
-                 </property>
-                 <property name="prefix">
-                  <string/>
-                 </property>
-                 <property name="minimum">
-                  <number>0</number>
-                 </property>
-                 <property name="maximum">
-                  <number>300</number>
-                 </property>
-                 <property name="value">
-                  <number>15</number>
                  </property>
                 </widget>
                </item>
@@ -553,8 +455,15 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
-               <spacer name="horizontalSpacer_9">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>Check semantic presence</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <spacer name="horizontalSpacer_3">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -565,6 +474,63 @@
                  </size>
                 </property>
                </spacer>
+              </item>
+              <item row="0" column="2">
+               <widget class="QComboBox" name="cbxCheckSemantics">
+                <property name="currentText">
+                 <string>no</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>no</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>filter common sentences</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>NLTK filter</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>Maximal delta / archetype ratio</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QSpinBox" name="sbMaxDeltaRatio">
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+                <property name="suffix">
+                 <string> %</string>
+                </property>
+                <property name="prefix">
+                 <string/>
+                </property>
+                <property name="minimum">
+                 <number>0</number>
+                </property>
+                <property name="maximum">
+                 <number>300</number>
+                </property>
+                <property name="value">
+                 <number>15</number>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
