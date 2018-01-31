@@ -33,12 +33,14 @@ class TestStringMethods(unittest.TestCase):
         self.sim = 0.77
 
     def setUp(self):
+        return
         """init each test"""
         self.pr = cProfile.Profile()
         self.pr.enable()
         print("\n<<<---")
 
     def tearDown(self):
+        return
         """finish any test"""
         p = Stats(self.pr)
         p.strip_dirs()

@@ -169,6 +169,10 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
     wl = p1 - p0
 
     wbs, wes = get_fit_word_borders(document)
+    # local sets are faster to check with
+    wbs = wbs[find_closest_le_index(wbs, p0):find_closest_ge_index(wbs, p1)]
+    wes = wes[find_closest_le_index(wes, p0):find_closest_ge_index(wes, p1)]
+    # make them sets
     swbs = set(wbs)
     swes = set(wes)
 
