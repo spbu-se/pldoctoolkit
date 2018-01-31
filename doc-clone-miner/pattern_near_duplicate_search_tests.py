@@ -5,6 +5,9 @@ import unittest
 from textwrap import dedent
 import pattern_near_duplicate_search as pnds
 
+import cProfile
+from pstats import Stats
+
 class TestStringMethods(unittest.TestCase):
     def __init__(self, t):
         super().__init__(t)  # what is t here? =)
@@ -28,6 +31,20 @@ class TestStringMethods(unittest.TestCase):
 
         self.p = self.p.strip()
         self.sim = 0.77
+
+    def setUp(self):
+        """init each test"""
+        self.pr = cProfile.Profile()
+        self.pr.enable()
+        print("\n<<<---")
+
+    def tearDown(self):
+        """finish any test"""
+        p = Stats(self.pr)
+        p.strip_dirs()
+        p.sort_stats('cumtime')
+        p.print_stats()
+        print("\n--->>>")
 
 
     def test_001_transitive_intersections(self):
@@ -83,6 +100,19 @@ class TestStringMethods(unittest.TestCase):
             For more details see the file COPYING in the source
             distribution of Linux.
             """).strip()
+        """
+        k;t;|R|
+        0.55;450;25 
+        0.60;98;25 
+        0.65;74;24 
+        0.70;55;24 
+        0.75;37;24 
+        0.80;25;24 
+        0.85;17;24 
+        0.90;10;22 
+        0.95;4;22 
+        1.00;1;2 
+        """
         l = []
         for kp in range(55, 101, 5):
             k = kp / 100.0
@@ -130,7 +160,7 @@ class TestStringMethods(unittest.TestCase):
 
 
 
-    def test_020_bench_pattern_time(self):
+    def test_020_bench_pattern_time_PostgreSQL(self):
         return
         import time
         with open("tests/documentation/Heat_Map/References/PostgreSQL_9.6.1_SQL_Reference/PostgreSQL_9.6.1_SQL_Reference.cxml", encoding='utf-8') as df: d = df.read()
