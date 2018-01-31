@@ -53,7 +53,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Refactoring candidates:</string>
+            <string>Near duplicate groups:</string>
            </property>
           </widget>
          </item>

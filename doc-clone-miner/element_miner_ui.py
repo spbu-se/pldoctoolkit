@@ -82,7 +82,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
         if save_fn == "":  # NOT fuzzy pattern search scenario
             self.tbSrcCode.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
-        else: # just fuzzy pattern search
+        elif fuzzypattern_matches_shown and extra is not None: # just fuzzy pattern search
             self.lbTableName.setText("Matches found:")
 
         self.acceptRangeAction = QAction("&Accept", self)
