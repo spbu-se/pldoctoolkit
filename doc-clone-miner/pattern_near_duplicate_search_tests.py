@@ -63,6 +63,14 @@ class TestStringMethods(unittest.TestCase):
             r = pnds.transit_intersections(flattened_intervals)
             self.assertEqual(r, correct_intervals)
 
+    def test_005_pattern_NDA_001(self):
+        return
+        with open("tests/gzp/gzp.pxml",  encoding='utf-8') as df: d = df.read()  # NDA, not shipped
+        p = "в появившемся окне"
+        fnds = pnds.search(d, p, 0.877)
+        for f in fnds:
+            print(f, d[f[0]:f[1]])
+
     def test_008_bench_pattern_time_Blender(self):
         return
         import time

@@ -21,7 +21,7 @@ logger = logging
 
 def initargs():
     argpar = argparse.ArgumentParser()
-    argpar.add_argument("-ms", "--minimal-similarity", type=float, default=0.5, help="Minimal Levenstein similarity")
+    argpar.add_argument("-ms", "--minimal-similarity", type=float, default=0.5, help="Minimal similarity coefficient")
     argpar.add_argument("-id", "--input-document", help="Document to analyze", required=True)
     argpar.add_argument("-pn", "--pattern", help="Pattern to search", required=False, default=None)
     argpar.add_argument("-od", "--output-directory", help="Report output directory", required=True)

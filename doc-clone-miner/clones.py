@@ -436,10 +436,19 @@ class FuzzyCloneGroup(CloneGroup):
         """
         How much clones are like to each other/pattern
         """
-        if hasattr(FuzzyCloneGroup, 'reference_text'):
-            ref = util.ctokens(FuzzyCloneGroup.reference_text)
+        if self.reference_clone_text:
+            ref = util.ctokens(self.reference_clone_text)
             ratios = [util.diratio(ref, util.ctokens(itx)) for itx in self.instancetexts]
             return min(ratios)
+        else:
+            return None
+
+    @property
+    def reference_clone_text(self):
+        if hasattr(FuzzyCloneGroup, 'reference_text'):
+            return FuzzyCloneGroup.reference_text
+        elif hasattr(self, 'reference_text'):
+            return self.reference_text
         else:
             return None
 
@@ -475,7 +484,7 @@ class FuzzyCloneGroup(CloneGroup):
         if inst is None: # all
             resultlist = worddiff.get_htmls(
                 self.instancetexts,
-                FuzzyCloneGroup.reference_text if hasattr(FuzzyCloneGroup, 'reference_text') else None
+                self.reference_clone_text
             )
             resulttexts = []
             for r in resultlist:

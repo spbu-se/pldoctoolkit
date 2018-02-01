@@ -355,7 +355,7 @@ def last_cleanup_stage(document: 'str', candidates: 'list[tuple[int,int]]', patt
     return result
 
 
-def search(document: str, pattern: str, similarity: float, optimize_size: bool=True, unify_whitespaces: bool=True) -> 'list[tuple[int,int]]':
+def search(document: str, pattern: str, similarity: float, optimize_size: bool=True, unify_whitespaces: bool=True, remove_insides: bool=True) -> 'list[tuple[int,int]]':
     glog().info("|D| = %d; |p| = %d; k = %f; p = '%s'" % (
         len(document), len(pattern), similarity, pattern
     ))
@@ -377,7 +377,7 @@ def search(document: str, pattern: str, similarity: float, optimize_size: bool=T
     w1 = get_fuzzy_match_areas(document, pattern, similarity)
     w2 = fit_candidates(document, pattern, similarity, w1)
     if optimize_size:
-        w3 = last_cleanup_stage(document, w2, pattern)
+        w3 = last_cleanup_stage(document, w2, pattern, remove_insides=remove_insides)
     else:
         w3 = w2
 
