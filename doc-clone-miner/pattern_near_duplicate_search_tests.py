@@ -218,7 +218,6 @@ class TestStringMethods(unittest.TestCase):
 
 
     def test_1_psql_fitting(self):
-        return
         p = dedent(
             """
             To alter the owner, you
@@ -232,7 +231,7 @@ class TestStringMethods(unittest.TestCase):
         fnds = pnds.search(d, p, 0.77, unify_whitespaces=True)
         print(len(fnds))
         for fb,fe in fnds:
-            print("<<<" + d[fb:fe] + ">>>")
+            print("<<<" + d[fb - 15:fb] + "[[[" + d[fb:fe] + "]]]" + d[fe:fe + 15] + ">>>")
 
 
     def test_a_smoke_search_spl(self):
