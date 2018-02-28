@@ -6,7 +6,7 @@ import re
 import shutil
 import sys
 
-import Levenshtein
+# import Levenshtein  # not used any more
 
 try:
     import interval as itvl # https://pypi.python.org/pypi/pyinterval
