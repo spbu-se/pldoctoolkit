@@ -286,13 +286,10 @@ def fit_candidates(document: 'str', pattern: 'str', similarity: 'float',
     if optimize_stage2_by_words:
         candidates = [widen_to_whole_words(document, candidate) for candidate in candidates]
 
-    pool = Pool(processes=4)
-    jobs = []
+    pool = Pool(processes=8)
     print("_________________")
-    for chunk in get_candidates_chunks(candidates, 4):
-        # chunk = candidates
-        jobs.append(pool.apply_async(process_chunk, (_fit_results, chunk, document, pattern, similarity)))
-
+    chunks = get_candidates_chunks(candidates, 8)
+    jobs = [pool.apply_async(process_chunk, (_fit_results, chunk, document, pattern, similarity)) for chunk in chunks]
     for job in jobs:
         for c in job.get():
             fit.append(c)
