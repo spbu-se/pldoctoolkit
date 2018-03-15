@@ -29,7 +29,6 @@ optimize_smart_removal = False
 optimize_stage3_union = True
 _s_logger = None
 
-
 def glog():
     global _s_logger
     if not _s_logger:
@@ -487,6 +486,8 @@ def search(document: str, pattern: str, similarity: float, optimize_size: bool =
             w3 = join_overlapping_candidates(document, similarity, pattern, w2, maxjountlength)
         else:
             w3 = last_cleanup_stage(document, w2, pattern, remove_insides=remove_insides)
+
+
     else:
         w3 = w2
 
@@ -496,61 +497,61 @@ def search(document: str, pattern: str, similarity: float, optimize_size: bool =
     return w3
 
 
-def main():
-    global optimize_fit_cutoff, optimize_distant_jump, optimize_stage1_by_words, optimize_stage2_by_words, optimize_stage2_length_borders, optimize_stage3_union
-    optimize_fit_cutoff = False
-    optimize_stage1_by_words = True
-
-    optimize_distant_jump = True
-    optimize_stage2_by_words = True
-    optimize_stage2_length_borders = False  # Only gives only a bit
-    optimize_stage3_union = True
-
-    bassett = 0.15
-    apr = argparse.ArgumentParser()
-    apr.add_argument('--document', type=str)
-    apr.add_argument('--pattern', type=str)
-    apr.add_argument('--similarity', type=float, default=1 / (1 + bassett))
-    apr.add_argument('--optimize-size', type=bool, default=True)
-    apr.add_argument('--unify-whitespaces', type=bool, default=True)
-    args = apr.parse_args()
-
-    with open(args.document, encoding='utf-8') as docfile:
-        doc_text = docfile.read()
-
-    # performance
-    similarity = str(args.similarity)
-    doc_name = str(args.document).split("\\")[-1].replace(".pxml", "")
-    doc_size = len(doc_text)
-    pattern_size = len(str(args.pattern))
-    filename = str(similarity.replace(".", ""))
-    t1 = time.time()
-
-    # candidatess = get_fuzzy_match_areas(doc_text, args.pattern, args.similarity)
-    # fit = fit_candidates(doc_text, args.pattern, args.similarity, candidatess)
-    # nipeaks = remove_redundant_candidates(fit)
-
-    glog().info("D = '%s'" % (args.document))
-    nipeaks = search(doc_text, args.pattern, args.similarity, optimize_size=args.optimize_size,
-                     unify_whitespaces=args.unify_whitespaces)
-
-    t2 = int(time.time() - t1)
-
-    for peak in nipeaks:
-        print(repr(peak), doc_text[peak[0]:peak[1]])
-
-    with open(file=filename + ".txt", mode='a', encoding='utf-8') as res:
-        res.write("\nPATTERN: " + str(args.pattern))
-        for peak in nipeaks:
-            res.write("\n" + str(repr(peak)) + " " + str(doc_text[peak[0]:peak[1]]))
-
-    with open(filename + ".csv", 'a', encoding='utf-8') as scsv:
-        wtr = csv.writer(scsv, lineterminator='\n')
-        wtr.writerow([doc_size, pattern_size, len(nipeaks), similarity, t2, doc_name])
-
-    for peak in nipeaks:
-        print(repr(peak), doc_text[peak[0]:peak[1]])
-
-
-if __name__ == '__main__':
-    main()
+# def main():
+#     global optimize_fit_cutoff, optimize_distant_jump, optimize_stage1_by_words, optimize_stage2_by_words, optimize_stage2_length_borders, optimize_stage3_union
+#     optimize_fit_cutoff = False
+#     optimize_stage1_by_words = True
+#
+#     optimize_distant_jump = True
+#     optimize_stage2_by_words = True
+#     optimize_stage2_length_borders = False  # Only gives only a bit
+#     optimize_stage3_union = True
+#
+#     bassett = 0.15
+#     apr = argparse.ArgumentParser()
+#     apr.add_argument('--document', type=str)
+#     apr.add_argument('--pattern', type=str)
+#     apr.add_argument('--similarity', type=float, default=1 / (1 + bassett))
+#     apr.add_argument('--optimize-size', type=bool, default=True)
+#     apr.add_argument('--unify-whitespaces', type=bool, default=True)
+#     args = apr.parse_args()
+#
+#     with open(args.document, encoding='utf-8') as docfile:
+#         doc_text = docfile.read()
+#
+#     # performance
+#     similarity = str(args.similarity)
+#     doc_name = str(args.document).split("\\")[-1].replace(".pxml", "")
+#     doc_size = len(doc_text)
+#     pattern_size = len(str(args.pattern))
+#     filename = str(similarity.replace(".", ""))
+#     t1 = time.time()
+#
+#     # candidatess = get_fuzzy_match_areas(doc_text, args.pattern, args.similarity)
+#     # fit = fit_candidates(doc_text, args.pattern, args.similarity, candidatess)
+#     # nipeaks = remove_redundant_candidates(fit)
+#
+#     glog().info("D = '%s'" % (args.document))
+#     nipeaks = search(doc_text, args.pattern, args.similarity, optimize_size=args.optimize_size,
+#                      unify_whitespaces=args.unify_whitespaces)
+#
+#     t2 = int(time.time() - t1)
+#
+#     for peak in nipeaks:
+#         print(repr(peak), doc_text[peak[0]:peak[1]])
+#
+#     with open(file=filename + ".txt", mode='a', encoding='utf-8') as res:
+#         res.write("\nPATTERN: " + str(args.pattern))
+#         for peak in nipeaks:
+#             res.write("\n" + str(repr(peak)) + " " + str(doc_text[peak[0]:peak[1]]))
+#
+#     with open(filename + ".csv", 'a', encoding='utf-8') as scsv:
+#         wtr = csv.writer(scsv, lineterminator='\n')
+#         wtr.writerow([doc_size, pattern_size, len(nipeaks), similarity, t2, doc_name])
+#
+#     for peak in nipeaks:
+#         print(repr(peak), doc_text[peak[0]:peak[1]])
+#
+#
+# if __name__ == '__main__':
+#     main()
