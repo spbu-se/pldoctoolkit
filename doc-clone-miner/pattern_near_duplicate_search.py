@@ -26,6 +26,7 @@ optimize_stage2_by_left_border = False
 optimize_stage2_length_borders = False
 optimize_smart_removal = False
 
+optimize_stage3_union = True
 _s_logger = None
 
 
@@ -286,9 +287,9 @@ def fit_candidates(document: 'str', pattern: 'str', similarity: 'float',
     if optimize_stage2_by_words:
         candidates = [widen_to_whole_words(document, candidate) for candidate in candidates]
 
-    pool = Pool(processes=8)
+    pool = Pool(processes=4)
     print("_________________")
-    chunks = get_candidates_chunks(candidates, 8)
+    chunks = get_candidates_chunks(candidates, 4)
     jobs = [pool.apply_async(process_chunk, (_fit_results, chunk, document, pattern, similarity)) for chunk in chunks]
     for job in jobs:
         for c in job.get():
@@ -322,12 +323,11 @@ def get_candidates_chunks(candidates: 'list[tuple[int,int]]', n: 'int') -> 'list
     chunk_size = int(cand_length / n)
     start, end = 0, chunk_size
     chunk_list = []
-    for i in range(sys.maxsize):
+    for i in range(n - 1):
         chunk_list.append(candidates[start:end])
-        start, end = end, min(end + chunk_size, cand_length)
-        if end == cand_length:
-            chunk_list.append(candidates[start:end])
-            break
+        start, end = end, end + chunk_size
+
+    chunk_list.append(candidates[start:cand_length])
     return chunk_list
 
 
@@ -378,7 +378,6 @@ def select_best_of_overlapping(document: 'str', candidates: 'list[tuple[int,int]
 
     return best_c
 
-
 def last_cleanup_stage(document: 'str', candidates: 'list[tuple[int,int]]', pattern: 'str',
                        remove_insides: 'bool' = True) -> 'list[tuple[int,int]]':
     print("Joining overlapping and removing redundant")
@@ -388,77 +387,77 @@ def last_cleanup_stage(document: 'str', candidates: 'list[tuple[int,int]]', patt
 
     return result
 
-# def has_disjoint_elements(candidates: 'list[tuple[int,int]]', b: 'int', e:'int') -> 'bool':
-#     min_right, max_left = e, b
-#     for candidate in candidates:
-#         max_left = max(max_left, candidate[0])
-#         min_right = min(min_right, candidate[1])
-#     return max_left > min_right
-#
-# def get_word_right_space(document: 'str', index: 'int') -> 'int':
-#     space = math.ceil(index)
-#     while space >= 0 and not re.match("\s", document[space]):
-#         space += 1
-#     return space
-#
-# def join_overlapping_candidates(document: 'str', similarity: 'float', pattern: 'str',
-#                                 candidates: 'list[tuple[int,int]]',
-#                                 maxlength: 'int') -> 'list[tuple[int,int]]':
-#     print("Joining overlapping...", end='')
-#     l0 = len(candidates)
-#
-#     def intersects(t1: 'tuple[int, int]', t2: 'tuple[int, int]') -> 'bool':
-#         b1, e1 = t1
-#         b2, e2 = t2
-#         return b1 <= b2 <= e1 or b1 <= e2 <= e1
-#
-#     cluster_state = {}
-#     for c in candidates:
-#         cluster_state[c] = [c]
-#
-#     something_changed = True
-#     # for i in range(sys.maxsize):
-#     while something_changed:
-#         something_changed = False
-#         csk = list(cluster_state.keys())
-#         for zone1, zone2 in itertools.product(csk, csk):
-#             if zone1 != zone2 and intersects(zone1, zone2):
-#                 candidates = cluster_state[zone1] + cluster_state[zone2]
-#                 b = min(zone1[0], zone2[0])
-#                 e = max(zone1[1], zone2[1])
-#                 del cluster_state[zone1]
-#                 del cluster_state[zone2]
-#                 cluster_state[(b, e)] = candidates
-#                 something_changed = True
-#                 break
-#         # if !something_changed:
-#         #     break
-#
-#     # then cancel too big zones
-#     final_candidates = []
-#     csk = list(cluster_state.keys())
-#
-#     for k in csk:
-#         b, e = k
-#         if e - b > maxlength:
-#             print(cluster_state[k])
-#             space = get_word_right_space(document, (e - b) / 2)
-#             if has_disjoint_elements(cluster_state[k], b, e):
-#                 f = fit_candidate(document, pattern, similarity, (b, b + space))
-#                 s = fit_candidate(document, pattern, similarity, (b + space + 1, e))
-#                 final_candidates.append(f)
-#                 final_candidates.append(s)
-#             else:
-#                 final_candidates.append(k)
-#
-#             del cluster_state[k]
-#
-#     # and add joint candidates
-#     for k in cluster_state.keys():
-#         final_candidates.append(k)
-#
-#     print(" %d -> %d." % (l0, len(final_candidates)))
-#     return final_candidates
+def has_disjoint_elements(candidates: 'list[tuple[int,int]]', b: 'int', e:'int') -> 'bool':
+    min_right, max_left = e, b
+    for candidate in candidates:
+        max_left = max(max_left, candidate[0])
+        min_right = min(min_right, candidate[1])
+    return max_left > min_right
+
+def get_word_right_space(document: 'str', index: 'int') -> 'int':
+    space = math.ceil(index)
+    while space >= 0 and not re.match("\s", document[space]):
+        space += 1
+    return space
+
+def join_overlapping_candidates(document: 'str', similarity: 'float', pattern: 'str',
+                                candidates: 'list[tuple[int,int]]',
+                                maxlength: 'int') -> 'list[tuple[int,int]]':
+    print("Joining overlapping...", end='')
+    l0 = len(candidates)
+
+    def intersects(t1: 'tuple[int, int]', t2: 'tuple[int, int]') -> 'bool':
+        b1, e1 = t1
+        b2, e2 = t2
+        return b1 <= b2 <= e1 or b1 <= e2 <= e1
+
+    cluster_state = {}
+    for c in candidates:
+        cluster_state[c] = [c]
+
+    something_changed = True
+    # for i in range(sys.maxsize):
+    while something_changed:
+        something_changed = False
+        csk = list(cluster_state.keys())
+        for zone1, zone2 in itertools.product(csk, csk):
+            if zone1 != zone2 and intersects(zone1, zone2):
+                candidates = cluster_state[zone1] + cluster_state[zone2]
+                b = min(zone1[0], zone2[0])
+                e = max(zone1[1], zone2[1])
+                del cluster_state[zone1]
+                del cluster_state[zone2]
+                cluster_state[(b, e)] = candidates
+                something_changed = True
+                break
+        # if !something_changed:
+        #     break
+
+    # then cancel too big zones
+    final_candidates = []
+    csk = list(cluster_state.keys())
+
+    for k in csk:
+        b, e = k
+        if e - b > maxlength:
+            print(cluster_state[k])
+            space = get_word_right_space(document, (e - b) / 2)
+            if has_disjoint_elements(cluster_state[k], b, e):
+                f = fit_candidate(document, pattern, similarity, (b, b + space))
+                s = fit_candidate(document, pattern, similarity, (b + space + 1, e))
+                final_candidates.append(f)
+                final_candidates.append(s)
+            else:
+                final_candidates.append(k)
+
+            del cluster_state[k]
+
+    # and add joint candidates
+    for k in cluster_state.keys():
+        final_candidates.append(k)
+
+    # print(" %d -> %d." % (l0, len(final_candidates)))
+    return final_candidates
 
 
 def search(document: str, pattern: str, similarity: float, optimize_size: bool = True, unify_whitespaces: bool = True,
@@ -484,9 +483,12 @@ def search(document: str, pattern: str, similarity: float, optimize_size: bool =
     w1 = get_fuzzy_match_areas(document, pattern, similarity)
     w2 = fit_candidates(document, pattern, similarity, w1)
     if optimize_size:
-        w3 = last_cleanup_stage(document, w2, pattern, remove_insides=remove_insides)
-        # maxjountlength = 2 * len(pattern) * similarity
-        # w3 = join_overlapping_candidates(document, similarity, pattern, w3, maxjountlength)
+        if optimize_stage3_union:
+            maxjountlength = 2 * len(pattern) * similarity
+            w3 = join_overlapping_candidates(document, similarity, pattern, w2, maxjountlength)
+        else:
+            w3 = last_cleanup_stage(document, w2, pattern, remove_insides=remove_insides)
+
 
     else:
         w3 = w2
@@ -500,11 +502,13 @@ def search(document: str, pattern: str, similarity: float, optimize_size: bool =
 def main():
     global optimize_fit_cutoff, optimize_distant_jump, optimize_stage1_by_words, optimize_stage2_by_words, optimize_stage2_length_borders
     optimize_fit_cutoff = False
-    optimize_stage1_by_words = False
+    optimize_stage1_by_words = True
 
     optimize_distant_jump = True
     optimize_stage2_by_words = True
     optimize_stage2_length_borders = False  # Only gives only a bit
+    optimize_stage3_union = True
+
     bassett = 0.15
     apr = argparse.ArgumentParser()
     apr.add_argument('--document', type=str)
@@ -524,7 +528,6 @@ def main():
     pattern_size = len(str(args.pattern))
     filename = str(similarity.replace(".", ""))
     t1 = time.time()
-
 
     # candidatess = get_fuzzy_match_areas(doc_text, args.pattern, args.similarity)
     # fit = fit_candidates(doc_text, args.pattern, args.similarity, candidatess)
