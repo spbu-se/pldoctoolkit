@@ -68,8 +68,10 @@ def find_closest_ge(a: 'list', b: 'int') -> 'int':
 
 
 def max_d_di_ws(pattern: str, similarity: float) -> 'tuple[int,int]':
+    cdef int max_d_di
     max_d_di = int(math.ceil(
         len(pattern) * (1 - similarity ** 2) * (1 + 1 / similarity)))  # WARNING!!! Округление вверх!!! Не доказано!!!
+    cdef int win_size
     win_size = int(math.ceil(len(pattern) / similarity))  # WARNING!!! Округление вверх!!! Не доказано!!!
     return max_d_di, win_size
 
@@ -82,7 +84,9 @@ _di_distance_cache: 'dict[tuple[str,str],int]' = dict()
 def _sm_distance(s1: str, s2: str) -> int:
     """A bit faster than Lowenstein =)"""
     blocks = difflib.SequenceMatcher(a=s1, b=s2).get_matching_blocks()
+    cdef int common
     common = sum(size for (a, b, size) in blocks)
+    cdef int dist
     dist = len(s1) + len(s2) - 2 * common
     return dist
 
@@ -128,27 +132,32 @@ def get_fit_word_borders(document: 'str') -> 'list[tuple[int,int]]':
 
 def widen_to_whole_words(document: 'str', area: 'tuple[int,int]') -> 'tuple[int, int]':
     wbs, wes = get_fit_word_borders(document)
+    cdef int p0, p1
     p0, p1 = area
     return (find_closest_le(wbs, p0), find_closest_ge(wes, p1))
 
 
 def di_similarity(s1: str, s2: str) -> float:
     blocks = difflib.SequenceMatcher(a=s1, b=s2).get_matching_blocks()
+    cdef int common
     common = sum(size for (a, b, size) in blocks)
     return 2.0 * common / (len(s1) + len(s2))
 
 
 def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') -> 'list[tuple[int,int]]':
+    cdef int max_d_di, win_size
     max_d_di, win_size = max_d_di_ws(pattern, similarity)
     word_offsets, wes = get_fit_word_borders(document)
 
     offsets = []
 
     print("Searching...")
+    cdef int cnt
     cnt = 0
 
     word_offsets = [wo for wo in word_offsets if wo < len(document) - win_size]
 
+    cdef int next_min_offset
     next_min_offset = 0
     for offset in word_offsets if optimize_stage1_by_words else range(len(document) - win_size):
         if offset >= next_min_offset or not optimize_distant_jump:
@@ -173,14 +182,16 @@ def _nsre_c_alnum(s: 'str') -> 'Bool':
     # return s.isalnum() or s == '_' or s == "'"
 
 
-_stage2_left_border: int = 0
+# _stage2_left_border: int = 0
 
 
 def fit_candidate(document: 'str', pattern: 'str', similarity: 'float',
                   candidate: 'tuple[int,int]') -> 'tuple[int,int]|NoneType':
     global _stage2_left_border
 
+    cdef int p0, p1
     p0, p1 = candidate
+    cdef int wl
     wl = p1 - p0
 
     wbs, wes = get_fit_word_borders(document)
@@ -203,10 +214,13 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float',
         """
         values.sort(key=lambda v: abs(v - 0.125 - center))
 
+    cdef int min_l
     min_l = int(math.floor(len(pattern) * similarity))  # !!! Округление вниз!!! Не доказано!!!
 
+    cdef int min_d_di
     min_d_di = di_distance(pattern, document[p0:p1], cache=True)
     min_peak = candidate
+    cdef int curr_d_di
     curr_d_di = min_d_di
 
     # s = document[p0:p1]
@@ -216,6 +230,7 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float',
     if optimize_stage2_length_borders:
         sort_list_around_value(lengths, len(pattern))
 
+    cdef int skept
     skept = 0
 
     for l in lengths:
@@ -318,10 +333,14 @@ def process_chunk(_fit_results: 'dict[str,tuple[int,int]]', candidates: 'list[tu
 
 
 def get_candidates_chunks(candidates: 'list[tuple[int,int]]', n: 'int') -> 'list[list[tuple[int,int]]]':
+    cdef int cand_length
     cand_length = len(candidates)
+    cdef int chunk_size
     chunk_size = int(cand_length / n)
+    cdef int start, end
     start, end = 0, chunk_size
     chunk_list = []
+    cdef int i
     for i in range(n - 1):
         chunk_list.append(candidates[start:end])
         start, end = end, end + chunk_size
@@ -394,6 +413,7 @@ def has_disjoint_elements(candidates: 'list[tuple[int,int]]', b: 'int', e:'int')
     return max_left > min_right
 
 def get_word_right_space(document: 'str', index: 'int') -> 'int':
+    cdef int space
     space = math.ceil(index)
     while space >= 0 and not re.match("\s", document[space]):
         space += 1
@@ -413,9 +433,9 @@ def join_overlapping_candidates(document: 'str', similarity: 'float', pattern: '
     for c in candidates:
         cluster_state[c] = [c]
 
-    something_changed = True
-    # for i in range(sys.maxsize):
-    while something_changed:
+    # something_changed = True
+    for i in range(sys.maxsize):
+    # while something_changed:
         something_changed = False
         csk = list(cluster_state.keys())
         for zone1, zone2 in itertools.product(csk, csk):
@@ -428,8 +448,8 @@ def join_overlapping_candidates(document: 'str', similarity: 'float', pattern: '
                 cluster_state[(b, e)] = candidates
                 something_changed = True
                 break
-        # if !something_changed:
-        #     break
+        if not something_changed:
+            break
 
     # then cancel too big zones
     final_candidates = []
