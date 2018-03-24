@@ -26,7 +26,7 @@ optimize_stage2_by_left_border = False
 optimize_stage2_length_borders = False
 optimize_smart_removal = False
 
-optimize_stage3_union = True
+optimize_stage3_union = False
 _s_logger = None
 
 def glog():
@@ -152,14 +152,26 @@ def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') 
     offsets = []
 
     print("Searching...")
-    cdef int cnt
-    cnt = 0
 
     word_offsets = [wo for wo in word_offsets if wo < len(document) - win_size]
 
+    pool = Pool(processes=8)
+    chunks = get_chunks(word_offsets, 8)
+    jobs = [pool.apply_async(process_offset, (document, pattern, chunk, max_d_di, win_size)) for chunk in chunks]
+    for job in jobs:
+        for c in job.get():
+            offsets.append(c)
+    pool.close()
+
+    return offsets
+
+def process_offset(document: 'str', pattern: 'str', words_offsets, max_d_di: int, win_size: int) -> 'list[tuple[int,int]]':
+    offsets = []
+    cdef int cnt
+    cnt = 0
     cdef int next_min_offset
     next_min_offset = 0
-    for offset in word_offsets if optimize_stage1_by_words else range(len(document) - win_size):
+    for offset in words_offsets if optimize_stage1_by_words else range(len(document) - win_size):
         if offset >= next_min_offset or not optimize_distant_jump:
             piece = document[offset:offset + win_size]
             # Если идти по словам, то тут как раз место для проверки по simhash. Но это если по словам.
@@ -169,13 +181,11 @@ def get_fuzzy_match_areas(document: 'str', pattern: 'str', similarity: 'float') 
                 offsets.append((offset, offset + win_size))
             else:
                 next_min_offset = offset + (ddi - max_d_di) // 2
-                # next_min_offset = find_closest_le(word_offsets, next_min_offset)
 
         cnt += 1
         if cnt % 1000 == 0:
-            print(cnt, '/', len(word_offsets) if optimize_stage1_by_words else len(document) - len(pattern))
+            print(cnt, '/', len(words_offsets) if optimize_stage1_by_words else len(document) - len(pattern))
     return offsets
-
 
 def _nsre_c_alnum(s: 'str') -> 'Bool':
     return not s.isspace()
@@ -301,9 +311,9 @@ def fit_candidates(document: 'str', pattern: 'str', similarity: 'float',
     if optimize_stage2_by_words:
         candidates = [widen_to_whole_words(document, candidate) for candidate in candidates]
 
-    pool = Pool(processes=4)
+    pool = Pool(processes=8)
     print("_________________")
-    chunks = get_candidates_chunks(candidates, 4)
+    chunks = get_chunks(candidates, 8)
     jobs = [pool.apply_async(process_chunk, (_fit_results, chunk, document, pattern, similarity)) for chunk in chunks]
     for job in jobs:
         for c in job.get():
@@ -332,7 +342,7 @@ def process_chunk(_fit_results: 'dict[str,tuple[int,int]]', candidates: 'list[tu
     return fit
 
 
-def get_candidates_chunks(candidates: 'list[tuple[int,int]]', n: 'int') -> 'list[list[tuple[int,int]]]':
+def get_chunks(candidates: 'list', n: 'int') -> 'list':
     cdef int cand_length
     cand_length = len(candidates)
     cdef int chunk_size
@@ -516,62 +526,39 @@ def search(document: str, pattern: str, similarity: float, optimize_size: bool =
 
     return w3
 
+def main():
+    global optimize_fit_cutoff, optimize_distant_jump, optimize_stage1_by_words, optimize_stage2_by_words, optimize_stage2_length_borders, optimize_stage3_union
+    optimize_fit_cutoff = False
+    optimize_stage1_by_words = True
 
-# def main():
-#     global optimize_fit_cutoff, optimize_distant_jump, optimize_stage1_by_words, optimize_stage2_by_words, optimize_stage2_length_borders, optimize_stage3_union
-#     optimize_fit_cutoff = False
-#     optimize_stage1_by_words = True
-#
-#     optimize_distant_jump = True
-#     optimize_stage2_by_words = True
-#     optimize_stage2_length_borders = False  # Only gives only a bit
-#     optimize_stage3_union = True
-#
-#     bassett = 0.15
-#     apr = argparse.ArgumentParser()
-#     apr.add_argument('--document', type=str)
-#     apr.add_argument('--pattern', type=str)
-#     apr.add_argument('--similarity', type=float, default=1 / (1 + bassett))
-#     apr.add_argument('--optimize-size', type=bool, default=True)
-#     apr.add_argument('--unify-whitespaces', type=bool, default=True)
-#     args = apr.parse_args()
-#
-#     with open(args.document, encoding='utf-8') as docfile:
-#         doc_text = docfile.read()
-#
-#     # performance
-#     similarity = str(args.similarity)
-#     doc_name = str(args.document).split("\\")[-1].replace(".pxml", "")
-#     doc_size = len(doc_text)
-#     pattern_size = len(str(args.pattern))
-#     filename = str(similarity.replace(".", ""))
-#     t1 = time.time()
-#
-#     # candidatess = get_fuzzy_match_areas(doc_text, args.pattern, args.similarity)
-#     # fit = fit_candidates(doc_text, args.pattern, args.similarity, candidatess)
-#     # nipeaks = remove_redundant_candidates(fit)
-#
-#     glog().info("D = '%s'" % (args.document))
-#     nipeaks = search(doc_text, args.pattern, args.similarity, optimize_size=args.optimize_size,
-#                      unify_whitespaces=args.unify_whitespaces)
-#
-#     t2 = int(time.time() - t1)
-#
-#     for peak in nipeaks:
-#         print(repr(peak), doc_text[peak[0]:peak[1]])
-#
-#     with open(file=filename + ".txt", mode='a', encoding='utf-8') as res:
-#         res.write("\nPATTERN: " + str(args.pattern))
-#         for peak in nipeaks:
-#             res.write("\n" + str(repr(peak)) + " " + str(doc_text[peak[0]:peak[1]]))
-#
-#     with open(filename + ".csv", 'a', encoding='utf-8') as scsv:
-#         wtr = csv.writer(scsv, lineterminator='\n')
-#         wtr.writerow([doc_size, pattern_size, len(nipeaks), similarity, t2, doc_name])
-#
-#     for peak in nipeaks:
-#         print(repr(peak), doc_text[peak[0]:peak[1]])
-#
-#
-# if __name__ == '__main__':
-#     main()
+    optimize_distant_jump = True
+    optimize_stage2_by_words = True
+    optimize_stage2_length_borders = False  # Only gives only a bit
+    optimize_stage3_union = False
+
+    bassett = 0.15
+    apr = argparse.ArgumentParser()
+    apr.add_argument('--document', type=str)
+    apr.add_argument('--pattern', type=str)
+    apr.add_argument('--similarity', type=float, default=1 / (1 + bassett))
+    apr.add_argument('--optimize-size', type=bool, default=True)
+    apr.add_argument('--unify-whitespaces', type=bool, default=True)
+    args = apr.parse_args()
+
+    with open(args.document, encoding='utf-8') as docfile:
+        doc_text = docfile.read()
+
+    # candidatess = get_fuzzy_match_areas(doc_text, args.pattern, args.similarity)
+    # fit = fit_candidates(doc_text, args.pattern, args.similarity, candidatess)
+    # nipeaks = remove_redundant_candidates(fit)
+
+    glog().info("D = '%s'" % (args.document))
+    nipeaks = search(doc_text, args.pattern, args.similarity, optimize_size=args.optimize_size,
+                     unify_whitespaces=args.unify_whitespaces)
+
+    for peak in nipeaks:
+        print(repr(peak), doc_text[peak[0]:peak[1]])
+
+
+if __name__ == '__main__':
+    main()
