@@ -218,7 +218,8 @@ class TestStringMethods(unittest.TestCase):
 
 
     def test_1_psql_fitting(self):
-        return
+        # return
+        import itertools
         p = dedent(
             """
             To alter the owner, you
@@ -231,8 +232,8 @@ class TestStringMethods(unittest.TestCase):
         with open("tests/documentation/Heat_Map/References/PostgreSQL_9.6.1_SQL_Reference/PostgreSQL_9.6.1_SQL_Reference.cxml", encoding='utf-8') as df: d = df.read()
         fnds = pnds.search(d, p, 0.77, unify_whitespaces=True)
         print(len(fnds))
-        for fb,fe in fnds:
-            print("<<<" + d[fb:fe] + ">>>")
+        for (fb,fe), n in zip(fnds, itertools.count(1)):
+            print(str(n) + " <<<" + d[fb - 25:fb] + "[[[\n" + d[fb:fe] + "\n]]]" + d[fe:fe + 25] + ">>>")
 
 
     def test_a_smoke_search_spl(self):

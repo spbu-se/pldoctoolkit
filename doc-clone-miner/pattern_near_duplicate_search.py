@@ -215,6 +215,8 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
         else:
             o = max(0, _stage2_left_border - p0 + wl - l + 1)
 
+        min_l_d_di = sys.maxsize
+        min_l_peak = None
         while o <= wl - l:
             # if optimize_stage2_by_words:
             #    real_p0_o = find_closest_le(wbs, p0 + o)
@@ -222,37 +224,30 @@ def fit_candidate(document: 'str', pattern: 'str', similarity: 'float', candidat
             # else:
             real_p0_o, real_p0_o_l = p0 + o, p0 + o + l
 
-            # Когда мы усушку делаем по словам, то для не-границ-слов просто пропускаем и ничего не считаем
-            # А в противном случае зато считаем
-            if False:
-                if not optimize_stage2_by_words or \
-                        (not _nsre_c_alnum(document[real_p0_o - 1]) and _nsre_c_alnum(document[real_p0_o]) and \
-                         _nsre_c_alnum(document[real_p0_o_l]) and not _nsre_c_alnum(document[real_p0_o_l + 1])):
-                    curr_d_di = di_distance(pattern, document[real_p0_o: real_p0_o_l], cache=True)
-                else:
-                    o += 1
-                    continue
-
             if optimize_stage2_by_words and (not real_p0_o in swbs or not real_p0_o_l in swes):
                 o += 1
                 continue
             else:
                 curr_d_di = di_distance(pattern, document[real_p0_o: real_p0_o_l], cache=True)
 
-            if curr_d_di < min_d_di:
-                min_d_di = curr_d_di
-                min_peak = real_p0_o, real_p0_o_l
+            if curr_d_di < min_l_d_di:
+                min_l_d_di = curr_d_di
+                min_l_peak = real_p0_o, real_p0_o_l
                 time_to_give_up = False
                 o += 1
-            elif curr_d_di <= min_d_di + 1 or not optimize_distant_jump:
+            elif curr_d_di <= min_l_d_di + 1 or not optimize_distant_jump:
                 o += 1
             else:
-                o += (curr_d_di - min_d_di) // 2
+                o += (curr_d_di - min_l_d_di) // 2
 
         if time_to_give_up and optimize_fit_cutoff:
             # !!! Если эта длина окна не дала эффекта, значит дальнейшее уменьшение бессмысленно.
             # Не доказано, и очень возможно вообще неправда!!!
             break
+
+        if min_l_d_di < min_d_di:
+            min_d_di = min_l_d_di
+            min_peak = min_l_peak
 
     # s = document[min_peak[0]:min_peak[1]]
     # print("<---", min_d_di, min_peak, s)
