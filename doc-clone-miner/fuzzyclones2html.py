@@ -5,7 +5,6 @@ import logging
 import argparse
 import os
 import sys
-
 import shutil
 
 logging.basicConfig(filename='fuzzyclones2html.log', level=logging.INFO)
@@ -16,21 +15,28 @@ def initargs():
     argpar = argparse.ArgumentParser()
     argpar.add_argument("-fx", "--fuzzy-xml", help="XML with fuzzy clones", type=str, default=None)
     argpar.add_argument("-ndgj", "--neardup-json", help="JSON with near dups", type=str, default=None)
+    argpar.add_argument("-jfrm", "--json-format", help="Input JSON type", type=str, default="autofound")
     argpar.add_argument("-sx", "--source-xml", help="Source XML")
     argpar.add_argument("-od", "--output-directory", help="Report output directory")
+    argpar.add_argument("-ob", "--open-browser", help="Open web browser", type=bool, default=False)
     argpar.add_argument("-oui", "--only-ui",
                         help="Only generate data needed by standalone [Qt] UI", default="yes")
     args = argpar.parse_args()
 
+    if args.open_browser:
+        args.only_ui = "no"
+
+only_generate_for_ui = None
+
 def load_fuzzy_groups_xml(logger):
     from lxml import etree
-    global args
+    global args, only_generate_for_ui
     import clones
 
     # default required settings for fuzzy groups
     clones.write_reformatted_sources = False
     clones.checkmarkup = False
-    clones.only_generate_for_ui = args.only_ui == "yes"
+    only_generate_for_ui = clones.only_generate_for_ui = args.only_ui == "yes"
 
     inputfile = clones.InputFile(args.source_xml)
 
@@ -50,6 +56,7 @@ def load_fuzzy_groups_xml(logger):
         fgrps.append(clones.FuzzyCloneGroup(fgrp.attrib['id'], fclns, fclntexts, fclnwords))
 
     clones.initdata([inputfile], fgrps)
+
 
 def load_near_duplicates_json(logger):
     global args
@@ -125,9 +132,49 @@ def load_near_duplicates_json(logger):
 
     clones.initdata([inputfile], fgrps)
 
-def report(logger):
+
+def load_dups_benchmark_json(logger):
     global args
     import clones
+    import util
+    import json
+
+    clones.write_reformatted_sources = False
+    clones.checkmarkup = False
+    clones.only_generate_for_ui = args.only_ui == "yes"
+
+    inputfile = clones.InputFile(args.source_xml)
+
+    with open(args.neardup_json, encoding='utf-8') as ndj:
+        fuzzyclonedata = json.load(ndj)
+
+    # Then the data... OMG...
+    # It is all wrong now...
+    fgrps = []
+    for fgrp in fuzzyclonedata['Benchmarks']:
+        # here is group
+        group_id = fgrp['name']
+        fclns = []
+        fclntexts = []
+        fclnwords = []
+        for fcln in fgrp['group_ids']:
+            [si, ei] = fcln['position']
+            # tx = fcln['name2'] # not everywhere filled
+            tx = inputfile.text[si:ei]
+            fclns.append((0, int(si), int(ei)))
+            fclntexts.append(tx)
+            fclnwords.append(util.ctokens(tx))
+
+        fgrps.append(clones.FuzzyCloneGroup(group_id, fclns, fclntexts, fclnwords))
+
+    clones.initdata([inputfile], fgrps)
+
+
+def report(logger):
+    global args
+    import webbrowser
+    import clones
+    import pathlib
 
     fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
     cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
@@ -145,12 +192,20 @@ def report(logger):
         os.path.join(outdir, "jquery-2.0.3.min.js")
     )
 
+    if args.open_browser:
+        report_url = pathlib.Path(os.path.join(os.path.abspath(outdir), "pyvarelements.html")).as_uri()
+        webbrowser.open(report_url)
+
 if __name__ == '__main__':
     initargs()
     if args.fuzzy_xml:
         load_fuzzy_groups_xml(logger)
     elif args.neardup_json:
-        load_near_duplicates_json(logger)
+        if args.json_format == "autofound":
+            load_near_duplicates_json(logger)
+        else:
+            load_dups_benchmark_json(logger)
     else:
         print("Neither JSON nor XML supplied", file=sys.stderr)
+
     report(logger)
