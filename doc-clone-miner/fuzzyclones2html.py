@@ -6,6 +6,7 @@ import argparse
 import os
 import sys
 import shutil
+import tempfile
 
 logging.basicConfig(filename='fuzzyclones2html.log', level=logging.INFO)
 logger = logging
@@ -22,6 +23,9 @@ def initargs():
     argpar.add_argument("-oui", "--only-ui",
                         help="Only generate data needed by standalone [Qt] UI", default="yes")
     args = argpar.parse_args()
+
+    if not args.output_directory:
+        args.output_directory = tempfile.mkdtemp(suffix='-dups-report')
 
     if args.open_browser:
         args.only_ui = "no"
