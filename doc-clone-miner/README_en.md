@@ -50,6 +50,7 @@ Python
   * On Linux, when GCC is installed, it is easier to build them yourself:
     * `pip install python_Levenshtein crlibm`
 * PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install pyqt5 quamash lxml PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc`
+* Optional: Cython — `pip install Cython`. If this library is not installed, then the near duplicate search will run slower.
 
 System
 ------

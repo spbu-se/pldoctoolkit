@@ -51,7 +51,7 @@ Python
   * Для Linux, если установлен GCC, проще эти два пакета собрать самостоятельно:
     * `pip install python_Levenshtein crlibm`
 * PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install pyqt5 quamash lxml PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc`
-
+* Опционально: Cython — `pip install Cython`. Если эта библиотека не установлена, то поиск по образцу будет работать медленнее.
 
 Системные
 ---------
