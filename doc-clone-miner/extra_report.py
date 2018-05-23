@@ -16,13 +16,14 @@ def perform(clones: 'module', candidates: 'list[clones.VariativeElement]', lgr: 
 
     pass
 
-def find_hottest_place(rep_dencities: 'list[int]', text: 'str'=None, lengths: 'list[int]' = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500], borders = None):
-    pass
+def find_hottest_place(rep_dencities: 'list[int]', text: 'str', ofn: 'str', nested=True, lengths: 'list[int]' = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500]):
+    return
+
     import logging
+    import yaml
     lgr = logging.getLogger("hottest_place")
 
-    if not borders:
-        borders = (0, len(rep_dencities))
+    b, e = 0, len(rep_dencities)
     if not text:
         text = '?' * len(rep_dencities)
 
@@ -30,20 +31,26 @@ def find_hottest_place(rep_dencities: 'list[int]', text: 'str'=None, lengths: 'l
 
     offsets: 'dict[int, int]' = dict()
 
-    b, e = borders
     for wl in lengths:
         csum = sum(rep_dencities[b:b + wl])
-        offsets[wl] = 0
+        bsum = csum
+        offsets[wl] = b
         for coff in range(b + 1, e - wl):
-            nsum = csum - rep_dencities[coff - 1] + rep_dencities[coff - 1 + wl]
-            if nsum > csum:
+            csum = csum - rep_dencities[coff - 1] + rep_dencities[coff - 1 + wl]
+            if csum > bsum:
+                bsum = csum
                 offsets[wl] = coff
-        # Questionable:
-        b = offsets[wl]
-        e = b + wl
+        if nested:
+            b = offsets[wl]
+            e = b + wl
 
-    for l in offsets:
+    patterns = []
+    for l in sorted(offsets.keys()):
         o = offsets[l]
-        p = text[o, o+l]
+        p = text[o:o+l]
+        patterns.append(p)
         lgr.info("%03d -> %s" % (l, p))
+
+    with open(ofn, 'w', encoding='utf-8') as yf:
+        yaml.dump({"?/?" : patterns}, yf, indent=2, allow_unicode=True, default_style='|')
 
