@@ -16,7 +16,7 @@ def perform(clones: 'module', candidates: 'list[clones.VariativeElement]', lgr: 
 
     pass
 
-def find_hottest_place(rep_dencities: 'list[int]', text: 'str', ofn: 'str', nested=True, lengths: 'list[int]' = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500]):
+def find_hottest_place(rep_dencities: 'list[int]', text: 'str', ofn: 'str', nesting="nest", lengths: 'list[int]' = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500]):
     return
 
     import logging
@@ -31,6 +31,9 @@ def find_hottest_place(rep_dencities: 'list[int]', text: 'str', ofn: 'str', nest
 
     offsets: 'dict[int, int]' = dict()
 
+    if nesting == 'spread':
+        rep_dencities = list(rep_dencities)  # clone
+
     for wl in lengths:
         csum = sum(rep_dencities[b:b + wl])
         bsum = csum
@@ -40,9 +43,13 @@ def find_hottest_place(rep_dencities: 'list[int]', text: 'str', ofn: 'str', nest
             if csum > bsum:
                 bsum = csum
                 offsets[wl] = coff
-        if nested:
+        if nesting == 'nest':
             b = offsets[wl]
             e = b + wl
+        elif nesting == 'spread':  # not yet ready, requires zeroing out all matching duplicates in the document...
+            rep_dencities[offsets[wl]:offsets[wl] + wl] = [0] *  wl
+        else:
+            pass
 
     patterns = []
     for l in sorted(offsets.keys()):
