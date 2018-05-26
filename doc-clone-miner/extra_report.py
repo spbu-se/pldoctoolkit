@@ -17,7 +17,7 @@ def perform(clones: 'module', candidates: 'list[clones.VariativeElement]', lgr: 
     pass
 
 def find_hottest_places(rep_dencities: 'list[int]', text: 'str', ifn: 'str', ofn: 'str', nesting="none",
-                        lengths: 'list[int]' = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 1000]):
+                        lengths: 'list[int]' = list(range(20, 100, 10)) + list(range(100, 1001, 100))):
     return
 
     # import logging
