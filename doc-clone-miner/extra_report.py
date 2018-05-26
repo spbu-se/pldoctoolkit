@@ -16,11 +16,15 @@ def perform(clones: 'module', candidates: 'list[clones.VariativeElement]', lgr: 
 
     pass
 
-def find_hottest_place(rep_dencities: 'list[int]', text: 'str', ofn: 'str', nesting="nest", lengths: 'list[int]' = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500]):
+def find_hottest_places(rep_dencities: 'list[int]', text: 'str', ifn: 'str', ofn: 'str', nesting="none", lengths: 'list[int]' = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500]):
     return
 
     import logging
     import yaml
+    import pattern_near_duplicate_search as pnds
+    # import os
+    # ifn = os.path.basename(ifn)
+
     lgr = logging.getLogger("hottest_place")
 
     b, e = 0, len(rep_dencities)
@@ -51,13 +55,38 @@ def find_hottest_place(rep_dencities: 'list[int]', text: 'str', ofn: 'str', nest
         else:
             pass
 
+    pnds._word_begins = pnds._word_ends = None
+    wb = pnds.get_fit_word_borders(text)
+
     patterns = []
+    wpatterns = []
     for l in sorted(offsets.keys()):
         o = offsets[l]
-        p = text[o:o+l]
-        patterns.append(p)
-        lgr.info("%03d -> %s" % (l, p))
+        pb = o
+        pe = o+l
 
-    with open(ofn, 'w', encoding='utf-8') as yf:
-        yaml.dump({"?/?" : patterns}, yf, indent=2, allow_unicode=True, default_style='|')
+        # trim
+        while(text[pb].isspace()): pb += 1
+        while(text[pe-1].isspace()): pe -= 1
 
+        patterns.append(text[pb:pe])
+        pb, pe = pnds.widen_to_whole_words(text, (pb, pe))
+        wpatterns.append(text[pb:pe])
+
+    def add_pts_to_file(yfn, pts):
+        data = dict()
+        try:
+            with open(yfn, 'r', encoding='utf-8') as yf:
+                ydata = yaml.load(yf)
+                if ydata and type(ydata) == dict:  # non-empty file
+                    data = ydata
+        except Exception as e:
+            print("Probably empty/no YAML:", repr(e))
+
+        data[ifn] = pts
+
+        with open(yfn, 'w', encoding='utf-8') as yf:
+            yaml.dump(data, yf, indent=2, allow_unicode=True, default_style='|')
+
+    add_pts_to_file(ofn, patterns)
+    add_pts_to_file("w." + ofn, wpatterns)

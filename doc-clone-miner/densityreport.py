@@ -219,9 +219,9 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
         reports_table.append("</table><br/>\n")
         reports_map.append("<br/>\n")
 
-        extra_report.find_hottest_place(repetition_densities[0], input_files[0].text, "patterns_nested.yml", nesting='nest')
-        extra_report.find_hottest_place(repetition_densities[0], input_files[0].text, "patterns_unnested.yml", nesting='none')
-        extra_report.find_hottest_place(repetition_densities[0], input_files[0].text, "patterns_spreaded.yml", nesting='spread')
+        extra_report.find_hottest_places(
+            rd, ifl.text, ifl.fileName, "patterns_unnested.yml"
+        )
 
     jreports_map = marker_se.sub(r"""<span style="color: lightgray; font-size:x-small;">\1</span>""", " ".join(reports_map))
 
