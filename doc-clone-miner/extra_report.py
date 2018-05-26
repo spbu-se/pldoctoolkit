@@ -16,16 +16,18 @@ def perform(clones: 'module', candidates: 'list[clones.VariativeElement]', lgr: 
 
     pass
 
-def find_hottest_places(rep_dencities: 'list[int]', text: 'str', ifn: 'str', ofn: 'str', nesting="none", lengths: 'list[int]' = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500]):
+def find_hottest_places(rep_dencities: 'list[int]', text: 'str', ifn: 'str', ofn: 'str', nesting="none",
+                        lengths: 'list[int]' = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 1000]):
     return
 
-    import logging
+    # import logging
+    # lgr = logging.getLogger("hottest_place")
+
     import yaml
     import pattern_near_duplicate_search as pnds
     # import os
     # ifn = os.path.basename(ifn)
 
-    lgr = logging.getLogger("hottest_place")
 
     b, e = 0, len(rep_dencities)
     if not text:
