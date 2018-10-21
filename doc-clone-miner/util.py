@@ -134,3 +134,11 @@ def ready_future(result=None):
 
 def set_asio_el(loop):
     asyncio.set_event_loop(loop)
+
+def fire_and_forget(task, *args, **kwargs):
+    """Start and forget async task as https://stackoverflow.com/a/37344956/539470 shows"""
+    loop = asyncio.get_event_loop()
+    if callable(task):
+        return loop.run_in_executor(None, task, *args, **kwargs)
+    else:
+        raise TypeError('Task must be a callable')

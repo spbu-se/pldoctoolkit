@@ -562,6 +562,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
 
     def dialog_ok(self):
         import pandoc_importer
+        import external_analysis_tools
         methodIdx = self.cbMethod.currentIndex()
 
         infile = self.inFile.text()
@@ -574,6 +575,8 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
             numparams = [slider.value() for slider in [self.slFfClLen, self.slFfEd, self.slFfHd]]
         elif methodIdx == 1: # Fuzzy Heat
             numparams = [slider.value() for slider in [self.slClLen_f]]
+        elif methodIdx == 3:  # Heuristic NGram Finder
+            numparams = []
         else:
             raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -602,7 +605,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
 
                 if methodIdx == 0 or methodIdx == 1: # Clone Miner or Fuzzy Heat
                     srcfn = infile + ".reformatted"
-                elif methodIdx == 2:  # Fuzzy Finder or Near Duplicates report
+                elif methodIdx == 2 or methodIdx == 3:  # Fuzzy Finder or Near Duplicates report or Heuristic
                     srcfn = os.path.join(ffworkfolder, os.path.split(infile + ".reformatted")[-1])
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
@@ -623,7 +626,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
                         ht = pyqt_common.path2url(
                             os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l, "pyvarelements.html"))
                         self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn, forced_save_fn, False, None)
-                elif methodIdx == 2:  # Fuzzy Finder
+                elif methodIdx == 2 or methodIdx == 3:  # Fuzzy Finder or Heuristic Finder
                     ht = pyqt_common.path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
                     self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, True, extra=None)
                 elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
@@ -658,6 +661,9 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         elif methodIdx == 2:  # Fuzzy Finder
             # wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
             wt, ffworkfolder = self.launch_with_ngram_dup_finder(pui, infile, numparams)
+        elif methodIdx == 3:  # Heuristic
+            # wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
+            wt, ffworkfolder = external_analysis_tools.run_heuristic_finder_and_report(pui, infile, app)
         elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
             def re_launch_fuzzyheat_with_clone_miner():
                 nonlocal wt
@@ -698,6 +704,16 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         ffworkfolder = os.path.dirname(infile)
         wt = run_ngram_dup_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
+
+
+    def launch_with_heuristic_ngram_dup_finder(self, pui, infile, numparams):
+        # !!! !!!
+        global elbrui
+
+        ffworkfolder = os.path.dirname(infile)
+        wt = run_ngram_dup_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
+        return wt, ffworkfolder
+
 
     def launch_fuzzyheat_reporting(self, pui, infile, onready):
         wt, ffworkfolder = run_nearduplicate_report_thread(pui, infile, onready)

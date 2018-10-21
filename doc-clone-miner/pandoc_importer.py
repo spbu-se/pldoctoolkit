@@ -79,7 +79,8 @@ def import_file(input_file: str, todrl: bool) -> str:
             '.rst': ('rst', 'docbook', '.drl'),
             '.xml': ('docbook', 'docbook', '.drl'),
             '.docbook': ('docbook', 'docbook', '.drl'),
-            '.tmpl': ('docbook', 'docbook', '.drl')
+            '.tmpl': ('docbook', 'docbook', '.drl'),
+            '.txt': ('plain', 'docbook', '.drl'),
         }
     else:
         formats = {
@@ -90,7 +91,8 @@ def import_file(input_file: str, todrl: bool) -> str:
             '.rst': ('rst', 'plain', '.pxml'),
             '.xml': ('docbook', 'plain', '.pxml'),
             '.docbook': ('docbook', 'plain', '.pxml'),
-            '.tmpl': ('docbook', 'plain', '.pxml')
+            '.tmpl': ('docbook', 'plain', '.pxml'),
+            '.txt': ('plain', 'plain', '.pxml')
         }
 
     isuffix = None
