@@ -124,7 +124,8 @@ def load_near_duplicates_json(logger):
         fclns = []
         fclntexts = []
         fclnwords = []
-        for fcln in fgrp['duplicates']:
+        duplicates_str = 'duplicates' if 'duplicates' in fgrp else 'dublicates'  # Russian English
+        for fcln in fgrp[duplicates_str]:
             si = fcln['start_index']
             ei = fcln['end_index']
             tx = fcln['text']

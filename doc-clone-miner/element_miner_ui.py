@@ -603,9 +603,9 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
 
                 self.elbrui.activateWindow()
 
-                if methodIdx == 0 or methodIdx == 1: # Clone Miner or Fuzzy Heat
+                if methodIdx == 0 or methodIdx == 1 or methodIdx == 3: # Clone Miner or Fuzzy Heat
                     srcfn = infile + ".reformatted"
-                elif methodIdx == 2 or methodIdx == 3:  # Fuzzy Finder or Near Duplicates report or Heuristic
+                elif methodIdx == 2:  # Fuzzy Finder or Near Duplicates report
                     srcfn = os.path.join(ffworkfolder, os.path.split(infile + ".reformatted")[-1])
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
@@ -626,7 +626,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
                         ht = pyqt_common.path2url(
                             os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l, "pyvarelements.html"))
                         self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn, forced_save_fn, False, None)
-                elif methodIdx == 2 or methodIdx == 3:  # Fuzzy Finder or Heuristic Finder
+                elif methodIdx == 2 or methodIdx == 3:  # Fuzzy Finder
                     ht = pyqt_common.path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
                     self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, True, extra=None)
                 elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building

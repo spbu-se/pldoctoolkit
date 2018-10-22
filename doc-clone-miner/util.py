@@ -5,6 +5,7 @@ import os
 import re
 import shutil
 import sys
+import functools
 
 # import Levenshtein  # not used any more
 
@@ -142,3 +143,26 @@ def fire_and_forget(task, *args, **kwargs):
         return loop.run_in_executor(None, task, *args, **kwargs)
     else:
         raise TypeError('Task must be a callable')
+
+
+def excprint(function):
+    """
+    A decorator that wraps the passed in function and logs
+    exceptions should one occur
+    """
+    @functools.wraps(function)
+    def wrapper(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except e:
+            # log the exception
+            print(
+                "There was an exception in",
+                function.__name__,
+                repr(e),
+                file=sys.stderr
+            )
+            # re-raise the exception
+            raise
+
+    return wrapper
