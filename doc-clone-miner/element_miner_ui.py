@@ -560,6 +560,8 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         else:
             print("Wont find label for slider: " + slName)
 
+    @QtCore.pyqtSlot()
+    @util.excprint
     def dialog_ok(self):
         import pandoc_importer
         import external_analysis_tools
@@ -799,6 +801,7 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
             self.ffstdoutstderr = ""
             self.fatal_error = False
 
+        @util.excprint
         def run(self):
             outdec = locale.getpreferredencoding(False)
 
@@ -885,6 +888,7 @@ def run_ngram_dup_finder_thread(pui, inputfile, numparams, language, workingfold
             self.ffstdoutstderr = ""
             self.fatal_error = False
 
+        @util.excprint
         def run(self):
             outdec = locale.getpreferredencoding(False)
             inputfilename = os.path.basename(inputfile)
@@ -1078,6 +1082,7 @@ class NearDuplicateWorkThread(QtCore.QThread):
         app.near_duplicate_report_timer.setInterval(3000)  # once per 5 seconds
         app.near_duplicate_report_timer.start()
 
+    @util.excprint
     def run(self):
         os.makedirs(self.workfolder, exist_ok=True)
         # shutil.copy(self.inputfile, self.workfolder)
@@ -1116,6 +1121,7 @@ class CloneMinerWorkThread(QtCore.QThread):
         self.fatal_error = False
         CloneMinerWorkThread.current_run_is_last |= last
 
+    @util.excprint
     def run(self):
         cnt = 0
         for l in self.lengths:

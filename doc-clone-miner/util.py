@@ -8,6 +8,7 @@ import sys
 import functools
 
 # import Levenshtein  # not used any more
+import traceback
 
 try:
     import interval as itvl # https://pypi.python.org/pypi/pyinterval
@@ -71,6 +72,9 @@ def connected_slices(i: 'itvl.interval') -> 'list[tuple[int, int]]':
 
 
 def lratio(s1, s2):
+    """Deprecated"""
+    import Levenshtein
+    raise DeprecationWarning("This function should not be used anymore")
     return 1 - Levenshtein.distance(s1, s2) / max(len(s1), len(s2), 1)
 
 def diratio(s1, s2):
@@ -154,15 +158,17 @@ def excprint(function):
     def wrapper(*args, **kwargs):
         try:
             return function(*args, **kwargs)
-        except e:
+        except Exception as e:
             # log the exception
+            exc_info = sys.exc_info()
+            fe = traceback.format_exception(*exc_info)
             print(
-                "There was an exception in",
-                function.__name__,
-                repr(e),
+                ("!!EXCEPTION in function <<%s>>, args: (%s), kwargs: (%s)" + os.linesep + "%s") % (
+                    function.__name__, str(args), str(kwargs), os.linesep.join(fe)
+                ),
                 file=sys.stderr
             )
             # re-raise the exception
-            raise
+            raise e
 
     return wrapper

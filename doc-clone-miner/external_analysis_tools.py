@@ -30,8 +30,8 @@ def run_heuristic_finder_and_report(pui: 'QtWidgets.QDialog', infile: 'str', app
             self.fatal_error = False
 
 
+        @util.excprint
         def run(self):
-
             def decodeoutput(bytes):
                 if bytes:
                     return bytes.decode(locale.getpreferredencoding())
