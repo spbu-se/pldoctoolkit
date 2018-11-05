@@ -56,6 +56,7 @@ System
 
 * `x86_64` architecture PC to run Clone Miner, Windows or UN*X
 * [Pandoc](http://pandoc.org/)
+* [JRE 10+](https://java.com/) to run Heuristic Finder
 * on Windows:
     * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) to run Fuzzy Finder
 * on UN*Xes:

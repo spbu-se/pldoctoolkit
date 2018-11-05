@@ -58,6 +58,7 @@ Python
 
 * Компьютер архитектуры `x86_64` для запуска Clone Miner, Windows или UN*X
 * [Pandoc](http://pandoc.org/)
+* [JRE 10+](https://java.com/) для запуска Heuristic Finder
 * для Windows:
     * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) для запуска Fuzzy Finder
 * для UN*X-подобных систем:
