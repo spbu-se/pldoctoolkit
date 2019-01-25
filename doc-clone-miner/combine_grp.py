@@ -132,7 +132,7 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
                 continue
 
             probable_g2_intervals = [
-                vg_intervals.search(interval.begin, interval.end) for interval in
+                vg_intervals.overlap(interval.begin, interval.end) for interval in
                 g1.get_tree_intervals(expanded=True, archetype_consolidated=True)
             ]
             probable_g2s = [

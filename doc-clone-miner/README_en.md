@@ -41,15 +41,9 @@ Requirements
 Python
 ------
 
-* 64 bit [Python 3.6.x](https://www.python.org/downloads/)
-* [Python-Levenshtein](http://www.lfd.uci.edu/~gohlke/pythonlibs/#python-levenshtein) and [CRlibm](https://pypi.python.org/pypi/crlibm):
-  * On Windows:
-    * Update Pip: `python -m pip install --upgrade pip`
-    * Download WHL archives: [this](python_whl/python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl) and [this](python_whl/crlibm-1.0.3-cp36-cp36m-win_amd64.whl)
-    * `pip install python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl crlibm-1.0.3-cp36-cp36m-win_amd64.whl`
-  * On Linux, when GCC is installed, it is easier to build them yourself:
-    * `pip install python_Levenshtein crlibm`
-* PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install pyqt5 quamash lxml PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc chardet`
+* 64 bit [Python 3.7.x](https://www.python.org/downloads/)
+* PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc, chardet — `pip install -r py_requirements.txt`
+* Optionally — pyinterval — `pip install  pyinterval`, it will probably require sideloading crlibm for Windows
 
 System
 ------
