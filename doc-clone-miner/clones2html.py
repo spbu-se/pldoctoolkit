@@ -13,7 +13,7 @@ logger = logging  # use it this way
 import textwrap
 import os
 import sys
-import cgi
+import html
 import string
 import collections
 import argparse
@@ -459,7 +459,7 @@ for g in clones.clonegroups:
         instancelengths.append(g.ntokens)
     # octx = "<br/>".join(["%d: %d" % (k, occurs[k]) for k in occurs])
     octx = str(occurs[0])
-    lt, ct, rt = tuple(map(lambda t: cgi.escape(t).replace('\r', '').replace('\n', '&#10;'), g.textwithcontext()))
+    lt, ct, rt = tuple(map(lambda t: html.escape(t).replace('\r', '').replace('\n', '&#10;'), g.textwithcontext()))
     trows.append(
         trt.substitute(id=g.id, nt=g.ntokens, occurs=octx,
                        ltext=lt, text=ct, rtext=rt,

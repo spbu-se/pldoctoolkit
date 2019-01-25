@@ -5,6 +5,7 @@ import logging
 import time
 import itertools
 from intervaltree import IntervalTree
+from typing import List
 
 __author__ = 'dluciv'
 
@@ -39,7 +40,7 @@ def post_junk_filter(dgroups: 'list[clones.VariativeElement]') -> 'list[clones.V
             continue
 
         probable_g2_intervals = [
-            itr.search(interval.begin, interval.end) for interval in
+            itr.overlap(interval.begin, interval.end) for interval in
             g1.get_tree_intervals(expanded=False, archetype_consolidated=True)
         ]
         probable_g2_intervals = itertools.chain.from_iterable(probable_g2_intervals)  # flatten

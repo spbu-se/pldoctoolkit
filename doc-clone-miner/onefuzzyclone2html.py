@@ -95,7 +95,7 @@ def find_like_pattern_0(inputfile, pattern, ms):
         cb = inputfile_tokens[bo][0]
         ce = inputfile_tokens[bo + len(pattern_tokens) - 1][1]
 
-        if not marked_tree.search(cb, ce):  # skip results intersecting with already marked
+        if not marked_tree.overlap(cb, ce):  # skip results intersecting with already marked
             cwords = inputfile_token_texts[bo:bo+len(pattern_tokens)]
             ctext = inputfile.text[cb:ce]
             results.append((cb, ce - 1, clr, ctext, cwords))
