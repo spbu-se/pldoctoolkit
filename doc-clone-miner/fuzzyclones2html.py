@@ -127,7 +127,7 @@ def load_near_duplicates_json(logger):
         for fcln in fgrp['duplicates']:
             si = fcln['start_index']
             ei = fcln['end_index']
-            tx = fcln['text']
+            tx = fcln['signature']
             fclns.append((0, int(si), int(ei)))
             fclntexts.append(tx)
             fclnwords.append(util.ctokens(tx))
@@ -184,6 +184,7 @@ def report(logger):
     cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
 
     outdir = args.output_directory
+
     with open(os.path.join(outdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:
         htmlfile.write(cohtml)
 

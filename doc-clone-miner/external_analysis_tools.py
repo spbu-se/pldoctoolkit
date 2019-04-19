@@ -17,9 +17,12 @@ def run_heuristic_finder_and_report(pui: 'QtWidgets.QDialog', infile: 'str', app
 
     infile = infile.replace('/', os.sep)
     infile = os.path.realpath(infile)
-    wf = os.path.dirname(infile)
-    infile_reformatted = infile + '.reformatted'
-    util.save_reformatted_file(infile)
+    wf = os.path.join(_scriptdir, 'heuristic_finder')
+    wf = wf.replace('/', os.sep)
+    infile_reformatted = os.path.join(_scriptdir, 'heuristic_finder', 'Comments.txt')
+    infile_reformatted = infile_reformatted.replace('/', os.sep)
+
+    # util.save_reformatted_file(infile_reformatted)
     outputfilename = os.path.join(_scriptdir, 'heuristic_finder', "out.json")
     report_dir = infile + '.neardups'
 
@@ -40,9 +43,9 @@ def run_heuristic_finder_and_report(pui: 'QtWidgets.QDialog', infile: 'str', app
 
             ffpr = subprocess.Popen([
                 'java', '-jar',
-                os.path.join(_scriptdir, 'heuristic_finder', 'NLPCloneDetector.jar'),
-                infile_reformatted
-            ], cwd=os.path.join(_scriptdir, 'heuristic_finder'))
+                os.path.join(_scriptdir, 'heuristic_finder', 'NLPLCSNGramDupFinder.jar'),
+                infile
+            ], cwd=wf)
             oe = ffpr.communicate(input=b'\n')
 
             self.ffstdoutstderr = '\n\n'.join(map(decodeoutput, oe))
@@ -59,15 +62,10 @@ def run_heuristic_finder_and_report(pui: 'QtWidgets.QDialog', infile: 'str', app
             popen_args = [sys.executable, '-OO', os.path.join(_scriptdir, "fuzzyclones2html.py"),
                 '-oui', 'no', # gen for ui and export
                 '-ndgj', outputfilename,
-                '-sx', infile_reformatted,
+                 '-sx', infile_reformatted,
                 '-od', report_dir]
             print("Browsing NGram duplicates with: " + ' '.join(popen_args))
-
-            cbpr = subprocess.Popen(popen_args,
-                                                stdout=subprocess.PIPE,
-                                                stdin=subprocess.PIPE,
-                                                stderr=subprocess.STDOUT,
-                                                cwd=wf)
+            cbpr = subprocess.Popen(popen_args, cwd=wf)
 
             oe = cbpr.communicate(input=b'\n')
 
@@ -80,6 +78,7 @@ def run_heuristic_finder_and_report(pui: 'QtWidgets.QDialog', infile: 'str', app
 
             pui.progressChanged.emit(2, 2, "Done")
             app.processEvents()
+
 
     wt = HeuristicWorkThread()
     wt.start()
