@@ -290,7 +290,7 @@ class InputFile(object):
         self.text = None
         self.offsets = []
         offset = 0
-        with open(fileName, encoding='utf-8') as ifs:
+        with open(fileName, encoding='cp1251') as ifs:
             self.lines = []
             for line in ifs:
                 self.offsets.append(offset)

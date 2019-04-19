@@ -4,6 +4,7 @@
 """
 Element miner UI. Licensed under GPL v3 after PyQt5 which is used here.
 """
+
 import argparse
 import asyncio
 import locale
@@ -28,7 +29,6 @@ import pyqt_common
 import sourcemarkers
 import util
 from pyqt_common import ui_class, _scriptdir, EMUIApp
-
 hm_bc_i: hm_browser_complex.HMBrowserComplex = None
 
 _scriptdir = os.path.dirname(os.path.realpath(__file__))
@@ -428,7 +428,6 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         except Exception as e:
             print("Exception in FAF eval JS:", repr(e), file=sys.stderr)
 
-
 class ElemBrowserUI(QtWidgets.QMainWindow, pyqt_common.ui_class('element_browser_window.ui')):
     def __init__(self, parent=None, path=None):
         QtWidgets.QMainWindow.__init__(self, parent)
@@ -468,7 +467,6 @@ class ElemBrowserUI(QtWidgets.QMainWindow, pyqt_common.ui_class('element_browser
             htmlpath = pyqt_common.url2path(tab.uri)
             util.save_standalone_html(htmlpath, fn)
 
-
 class ElemMinerProgressUI(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_progress.ui')):
     progressChanged = QtCore.pyqtSignal(int, int, str)
 
@@ -486,8 +484,6 @@ class ElemMinerProgressUI(QtWidgets.QDialog, pyqt_common.ui_class('element_miner
         QtWidgets.QDialog.__init__(self, parent)
         self.setupUi(self)
         self.progressChanged.connect(self._change_progress)
-
-
 
 class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_settings.ui')):
     def __init__(self, parent=None):
@@ -510,7 +506,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
     def bindEvents(self):
         self.buttonBox.accepted.connect(self.dialog_ok)
         self.buttonBox.rejected.connect(lambda: sys.exit(0))
-        self.btSelectFolder.clicked.connect(self.select_file)
+        self.btSelectFolder.clicked.connect(self.select_directory)
         self.cbMaxVar.stateChanged.connect(self.cbMaxVar_checked)
         self.cbMaxVar_2.stateChanged.connect(self.cbMaxVar_2_checked)
         self.cbMethod.currentIndexChanged.connect(self.methodSelected)
@@ -605,10 +601,14 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
 
                 self.elbrui.activateWindow()
 
-                if methodIdx == 0 or methodIdx == 1 or methodIdx == 3: # Clone Miner or Fuzzy Heat
+                if methodIdx == 0 or methodIdx == 1: # Clone Miner or Fuzzy Heat
                     srcfn = infile + ".reformatted"
                 elif methodIdx == 2:  # Fuzzy Finder or Near Duplicates report
                     srcfn = os.path.join(ffworkfolder, os.path.split(infile + ".reformatted")[-1])
+                elif methodIdx == 3:
+                    infile_reformatted = os.path.join(_scriptdir, 'heuristic_finder', "Comments.txt")
+                    infile_reformatted = infile_reformatted.replace('/', os.sep)
+                    srcfn = ffworkfolder
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -616,7 +616,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
                 srctext = ""
                 def read_input_file():
                     nonlocal srctext
-                    with open(srcfn, encoding='utf-8') as ifh:
+                    with open(infile_reformatted, encoding='cp1251') as ifh:
                         srctext = ifh.read()
                 read_input_file()
 
@@ -707,7 +707,6 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         wt = run_ngram_dup_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
 
-
     def launch_with_heuristic_ngram_dup_finder(self, pui, infile, numparams):
         # !!! !!!
         global elbrui
@@ -715,7 +714,6 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         ffworkfolder = os.path.dirname(infile)
         wt = run_ngram_dup_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
-
 
     def launch_fuzzyheat_reporting(self, pui, infile, onready):
         wt, ffworkfolder = run_nearduplicate_report_thread(pui, infile, onready)
@@ -786,6 +784,11 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
     def select_file(self):
         print("Selecting file...")
         infname = str(QtWidgets.QFileDialog.getOpenFileName(self, "Select File to Analyze")[0])
+        self.inFile.setText(infname)
+
+    def select_directory(self):
+        print("Selecting directory...")
+        infname = str(QtWidgets.QFileDialog.getExistingDirectory(self, "Select Directory to Analyze"))
         self.inFile.setText(infname)
 
 def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
@@ -873,7 +876,6 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
     wt = FuzzyWorkThread()
     wt.start()
     return wt
-
 
 def run_ngram_dup_finder_thread(pui, inputfile, numparams, language, workingfolder):
     global clargs, app
@@ -971,7 +973,6 @@ def do_fuzzy_pattern_search_CLI(inputfilename, ui, minsim, text, srctext):
         "Fuzzy Search results", "", srctext, inputfilename,
         savefilename, True, None
     )
-
 
 def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
     import onefuzzyclone2html
@@ -1203,7 +1204,6 @@ class CloneMinerWorkThread(QtCore.QThread):
         if CloneMinerWorkThread.current_run_is_last:
             CloneMinerWorkThread.do_not_run_anymore = True
 
-
 def run_clone_miner_thread(pui, inputfile, lengths, options):
     global clargs, app
     inputfile = inputfile.replace('/', os.sep)
@@ -1215,7 +1215,6 @@ def run_clone_miner_thread(pui, inputfile, lengths, options):
     wt = CloneMinerWorkThread(pui, inputfile, lengths, options)
     wt.start()
     return wt
-
 
 def run_fuzzyheat_with_clone_miner_thread(pui, inputfile, options, numparams):
     global clargs, app
