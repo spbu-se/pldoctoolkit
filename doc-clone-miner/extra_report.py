@@ -25,7 +25,14 @@ def find_hottest_places(rep_dencities: 'list[int]', text: 'str', ifn: 'str', ofn
     # lgr = logging.getLogger("hottest_place")
 
     import yaml
-    import pattern_near_duplicate_search as pnds
+
+    try:
+        import faster_pattern_near_duplicate_search as pnds
+    except (ImportError, ModuleNotFoundError):
+        import sys
+        print("Falling back to slower pattern search", file=sys.stderr)
+        import pattern_near_duplicate_search as pnds
+
     # import os
     # ifn = os.path.basename(ifn)
 

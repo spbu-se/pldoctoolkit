@@ -104,9 +104,12 @@ def find_like_pattern_0(inputfile, pattern, ms):
 
 def find_like_pattern(inputfile, pattern, ms):
     badchar = '\uFFFD'
+
     try:
         import faster_pattern_near_duplicate_search as pnds
     except (ImportError, ModuleNotFoundError):
+        import sys
+        print("Falling back to slower pattern search", file=sys.stderr)
         import pattern_near_duplicate_search as pnds
     # Support ignored/accepted ranges -- not yet implemented
 

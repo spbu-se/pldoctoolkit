@@ -7,6 +7,8 @@ from textwrap import dedent
 try:
     import faster_pattern_near_duplicate_search as pnds
 except (ImportError, ModuleNotFoundError):
+    import sys
+    print("Falling back to slower pattern search", file=sys.stderr)
     import pattern_near_duplicate_search as pnds
 
 import cProfile
