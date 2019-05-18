@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+__author__ = "Victor Dolotov, Dmitry Luciv"
+__copyright__ = "Copyright 2018+, The DocLine Project"
+__credits__ = ["Victor Dolotov", "Dmitry Luciv"]
+__license__ = "LGPL"
+__version__ = "1.0.1"
+__maintainer__ = "Dmitry Luciv"
+__email__ = "yogiman1996@gmail.com"  # Victor Dolotov
+__status__ = "Alpha"
+
 import difflib
 import itertools
 import re
@@ -219,3 +228,8 @@ def get_html(clones: 'module', group, archetype):
     var = clones.VariativeElement(CloneGroups)
     import util
     util.write_variative_report(clones, [var], r'Archetype\archetype.html')
+
+if __name__ == '__main__':
+    import sys
+    print("This in an internal library module and should not be invoked as a standalone application")
+    exit(-1)
