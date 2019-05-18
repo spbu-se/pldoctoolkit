@@ -3,7 +3,11 @@
 
 import unittest
 from textwrap import dedent
-import pattern_near_duplicate_search as pnds
+
+try:
+    import faster_pattern_near_duplicate_search as pnds
+except (ImportError, ModuleNotFoundError):
+    import pattern_near_duplicate_search as pnds
 
 import cProfile
 from pstats import Stats

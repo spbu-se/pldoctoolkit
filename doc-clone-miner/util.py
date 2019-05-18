@@ -78,8 +78,13 @@ def lratio(s1, s2):
     return 1 - Levenshtein.distance(s1, s2) / max(len(s1), len(s2), 1)
 
 def diratio(s1, s2):
-    import pattern_near_duplicate_search
-    return pattern_near_duplicate_search.di_similarity(s1, s2)
+    try:
+        import faster_pattern_near_duplicate_search
+        return faster_pattern_near_duplicate_search.di_similarity(s1, s2)
+    except (ImportError, ModuleNotFoundError):
+        import pattern_near_duplicate_search
+        return pattern_near_duplicate_search.di_similarity(s1, s2)
+
 
 _wre = re.compile(r"\w+", re.UNICODE)
 def tokens(text):
