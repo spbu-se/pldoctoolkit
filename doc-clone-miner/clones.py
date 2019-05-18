@@ -473,7 +473,7 @@ class FuzzyCloneGroup(CloneGroup):
         self.instancewords = clonewords
 
     def text(self, inst=0):
-        return self.instancewords[0]
+        return self.instancewords[inst]
 
     def plain_text_words(self, inst=0):
         return InputFile.wre.findall(self.instancewords[inst])

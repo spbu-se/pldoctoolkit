@@ -20,6 +20,9 @@ def initargs():
     argpar.add_argument("-sx", "--source-xml", help="Source XML")
     argpar.add_argument("-od", "--output-directory", help="Report output directory")
     argpar.add_argument("-ob", "--open-browser", help="Open web browser", type=bool, default=False)
+    argpar.add_argument("-uf", "--unfuzzy",
+                        help="Calculate archetype and make variative elements instead of fuzzy groups",
+                        default="no")
     argpar.add_argument("-oui", "--only-ui",
                         help="Only generate data needed by standalone [Qt] UI", default="yes")
     args = argpar.parse_args()
@@ -180,8 +183,17 @@ def report(logger):
     import clones
     import pathlib
 
-    fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
-    cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
+    if args.unfuzzy in ["yes", "True", "1"]:
+        import archetype_extraction
+        groups = clones.clonegroups.copy()
+        clones.clonegroups.clear()
+        clones.cm_inclusiveend = True
+        clones.clonegroups = [archetype_extraction.get_variative_element(clones, g) for g in groups]
+        clones.clonegroups = filter(None, clones.clonegroups)
+        cohtml = clones.VariativeElement.summaryhtml(clones.clonegroups, clones.ReportMode.variative)
+    else:
+        fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
+        cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
 
     outdir = args.output_directory
     with open(os.path.join(outdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:

@@ -644,7 +644,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
                     app.hm_bc_i.show()
                     try:
                         app.hm_bc_i.loadHeatMap("http://127.0.0.1:49999/")
-                        app.hm_bc_i.buildAndLoadND(infile, htp)
+                        app.hm_bc_i.buildAndLoadND(infile, htp, self.cbInteractiveCalculateArchetype.isChecked())
                         # then app.hm_bc_i.refresh() will refresh this all when needed
                     except Exception as ee:
                         print(repr(ee), file=sys.stderr)
@@ -665,7 +665,9 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
             wt, ffworkfolder = self.launch_with_ngram_dup_finder(pui, infile, numparams)
         elif methodIdx == 3:  # Heuristic
             # wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
-            wt, ffworkfolder = external_analysis_tools.run_heuristic_finder_and_report(pui, infile, app)
+            wt, ffworkfolder = external_analysis_tools.run_heuristic_finder_and_report(
+                pui, infile, self.cbHeuristicCalculateArchetype.isChecked(), app
+            )
         elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
             def re_launch_fuzzyheat_with_clone_miner():
                 nonlocal wt

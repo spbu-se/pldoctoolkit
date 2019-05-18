@@ -11,7 +11,7 @@ from PyQt5 import QtCore
 _scriptdir = os.path.dirname(os.path.realpath(__file__))
 _scriptname = os.path.basename(os.path.realpath(__file__))
 
-def run_heuristic_finder_and_report(pui: 'QtWidgets.QDialog', infile: 'str', app: 'EMUIApp') -> 'tuple[QtCore.QThread, str]':
+def run_heuristic_finder_and_report(pui: 'QtWidgets.QDialog', infile: 'str', unfuzzy: 'bool', app: 'EMUIApp') -> 'tuple[QtCore.QThread, str]':
     pui.progressChanged.emit(2, 0, "Preparing...")
     app.processEvents()
 
@@ -60,7 +60,9 @@ def run_heuristic_finder_and_report(pui: 'QtWidgets.QDialog', infile: 'str', app
                 '-oui', 'no', # gen for ui and export
                 '-ndgj', outputfilename,
                 '-sx', infile_reformatted,
-                '-od', report_dir]
+                '-od', report_dir,
+                '-uf', 'yes' if unfuzzy else 'no'
+            ]
             print("Browsing NGram duplicates with: " + ' '.join(popen_args))
 
             cbpr = subprocess.Popen(popen_args,

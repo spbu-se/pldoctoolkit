@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import functools
 
 __author__ = "Victor Dolotov, Dmitry Luciv"
 __copyright__ = "Copyright 2018+, The DocLine Project"
@@ -201,6 +202,28 @@ def diffalg(a, b):
                 string.append(a[ai + i])
     return string
 
+@functools.lru_cache(maxsize=None)
+def get_variative_element(clones: 'module', group: 'clones.FuzzyCloneGroup' ) -> 'clones.VariativeElement':
+    try:
+        archetype: 'list[list[tuple[int, int]]]' = archetype_search(group.instancetexts)
+        fuzzy_offsets = [b for n, b, e in group.instances]
+        group_archetypes = list(map(list, zip(*archetype)))  # transpose
+
+        groups = [
+            clones.ExactCloneGroup(0, 1, [
+                (
+                    0,  # file №
+                    o + b, o + e - 1 # -1 from Dolotov =)
+                )
+                for ((b, e), o) in zip(ginsts, fuzzy_offsets)
+            ]) for ginsts in group_archetypes
+        ]
+
+        return clones.VariativeElement(groups)
+    except Exception as e:
+        import sys
+        print(e, file=sys.stderr)
+        return None
 
 def get_html(clones: 'module', group, archetype):
     source = ''
@@ -230,6 +253,13 @@ def get_html(clones: 'module', group, archetype):
     util.write_variative_report(clones, [var], r'Archetype\archetype.html')
 
 if __name__ == '__main__':
-    import sys
-    print("This in an internal library module and should not be invoked as a standalone application")
-    exit(-1)
+    """
+    a = archetype_search([
+        "Я пошёл позавчера за хлебом",
+        "Я пошёл вчера за хлебом",
+        "Я пошёл сегодня за хлебом",
+        "Я пойду завтра за хлебом"
+    ])
+    print(a)
+    """
+    raise Exception("This is not an entry point")

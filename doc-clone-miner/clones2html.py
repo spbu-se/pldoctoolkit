@@ -523,6 +523,7 @@ def combine_groups():
     group_combinators = {
         "full-square": combine_grp.combine_gruops_par_20140819,
         "interval-n-ext": combine_grp.combine_groups_n_ext_with_int_tree, # default
+        "unfuzzy": combine_grp.unfuzzy_groups,
         # TODO: "interval-2-ext": findnearby201312 # first try, 2013 -- port or delete it
     }
 

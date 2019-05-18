@@ -224,5 +224,18 @@ def combine_groups_n_ext_with_int_tree(available_groups: "list[clones.CloneGroup
 
     return var_groups, uni_groups
 
+
+def unfuzzy_groups(groups: 'list[clones.FuzzyGroup]') -> 'tuple[list[clones.VariativeElement], list[clones.VariativeElement]]':
+    """
+    Calculate archetype of given fuzzy groups
+    :param groups: Groups
+    :return: list of VariativeElement with archetype instances
+    """
+
+    import clones
+    import archetype_extraction
+    return [archetype_extraction.get_variative_element(clones, group) for group in groups], []
+
+
 if __name__ == '__main__':
     pass

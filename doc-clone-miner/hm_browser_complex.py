@@ -111,13 +111,14 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
             print(repr(e))
             traceback.print_stack()
 
-    def nd2html(self, inputfile, workfolder):
+    def nd2html(self, inputfile, workfolder, unfuzzy):
         self.app.processEvents()
 
         popen_args = [
                          sys.executable, '-OO', os.path.join(_scriptdir, "nearduplicates2html.py"),
                          "-sx", inputfile,
-                         "-od", workfolder
+                         "-od", workfolder,
+                         "-uf", 'yes' if unfuzzy else 'no'
                      ]
         print("Reporting with: " + ' '.join(popen_args))
         reppr = subprocess.Popen(popen_args, stdout=subprocess.PIPE)
@@ -127,16 +128,17 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
 
         self.app.processEvents()
 
-    def buildAndLoadND(self, inputfile, workfolder):
+    def buildAndLoadND(self, inputfile, workfolder, unfuzzy):
+        self.unfuzzy = unfuzzy
         self.inputfile = inputfile
         self.workfolder = workfolder
 
-        self.nd2html(inputfile, workfolder)
+        self.nd2html(inputfile, workfolder, unfuzzy)
         pve = os.path.join(workfolder, _accepted_dups_html)
         self.loadRepetitions(pyqt_common.path2url(pve))
 
     def refreshND(self):
-        self.buildAndLoadND(self.inputfile, self.workfolder)
+        self.buildAndLoadND(self.inputfile, self.workfolder, self.unfuzzy)
 
     def refreshHM(self):
         self.loadHeatMap(self.hm_url)

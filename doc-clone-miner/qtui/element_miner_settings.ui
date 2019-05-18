@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>571</width>
-    <height>488</height>
+    <height>560</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -568,29 +568,52 @@
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
            <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_10">
+            <item row="1" column="2">
+             <widget class="QLabel" name="lbClMaxLen_f">
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
-               <string>Minimal clone length (number of tokens):</string>
+               <string>∞</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QSlider" name="slClLen_f">
+            <item row="2" column="2">
+             <widget class="QLabel" name="lbGrpMinPow">
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>2</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_11">
+              <property name="text">
+               <string>Minimal group power (number of clones):</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QSlider" name="slGrpMinPow">
               <property name="minimum">
-               <number>1</number>
+               <number>2</number>
               </property>
               <property name="maximum">
-               <number>20</number>
-              </property>
-              <property name="value">
-               <number>5</number>
-              </property>
-              <property name="tracking">
-               <bool>true</bool>
+               <number>10</number>
               </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -648,36 +671,29 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="2">
-             <widget class="QLabel" name="lbClMaxLen_f">
-              <property name="minimumSize">
-               <size>
-                <width>30</width>
-                <height>0</height>
-               </size>
-              </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_10">
               <property name="text">
-               <string>∞</string>
+               <string>Minimal clone length (number of tokens):</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
               </property>
              </widget>
             </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_11">
-              <property name="text">
-               <string>Minimal group power (number of clones):</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QSlider" name="slGrpMinPow">
+            <item row="0" column="1">
+             <widget class="QSlider" name="slClLen_f">
               <property name="minimum">
-               <number>2</number>
+               <number>1</number>
               </property>
               <property name="maximum">
-               <number>10</number>
+               <number>20</number>
+              </property>
+              <property name="value">
+               <number>5</number>
+              </property>
+              <property name="tracking">
+               <bool>true</bool>
               </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -690,19 +706,20 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="2">
-             <widget class="QLabel" name="lbGrpMinPow">
-              <property name="minimumSize">
-               <size>
-                <width>30</width>
-                <height>0</height>
-               </size>
-              </property>
+            <item row="3" column="1">
+             <widget class="QCheckBox" name="cbInteractiveCalculateArchetype">
               <property name="text">
-               <string>2</string>
+               <string>Calculate archetype</string>
               </property>
-              <property name="alignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_16">
+              <property name="text">
+               <string>Archetype calculation:</string>
               </property>
              </widget>
             </item>
@@ -1089,15 +1106,15 @@
          <property name="title">
           <string>Heuristic Duplicate Finder</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_15">
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QCheckBox" name="cbHeuristicCalculateArchetype">
             <property name="text">
-             <string>No settings here</string>
+             <string>Calculate archetype</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item>
            <spacer name="verticalSpacer">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -1106,19 +1123,6 @@
              <size>
               <width>20</width>
               <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="1">
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
              </size>
             </property>
            </spacer>

@@ -24,6 +24,9 @@ def initargs():
     argpar.add_argument("-od", "--output-directory", help="Report output directory")
     argpar.add_argument("-oui", "--only-ui",
                         help="Only generate data needed by standalone [Qt] UI", default="no")
+    argpar.add_argument("-uf", "--unfuzzy",
+                        help="Calculate archetype and make variative elements instead of fuzzy groups",
+                        default="no")
     args = argpar.parse_args()
 
 
@@ -81,8 +84,17 @@ def report(logger):
     global args
     import clones
 
-    fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
-    cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
+    if args.unfuzzy in ["yes", "True", "1"]:
+        import archetype_extraction
+        groups = clones.clonegroups.copy()
+        clones.clonegroups.clear()
+        # clones.initoptions(args, logger)  # fake, but let them
+        clones.cm_inclusiveend = True
+        clones.clonegroups = [archetype_extraction.get_variative_element(clones, g) for g in groups]
+        cohtml = clones.VariativeElement.summaryhtml(clones.clonegroups, clones.ReportMode.variative)
+    else:
+        fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
+        cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
 
     outdir = args.output_directory
     with open(os.path.join(outdir, "acceptedduplicates.html"), 'w', encoding='utf-8') as htmlfile:
