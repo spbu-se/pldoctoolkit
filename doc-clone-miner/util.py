@@ -5,8 +5,10 @@ import os
 import re
 import shutil
 import sys
+import functools
 
 # import Levenshtein  # not used any more
+import traceback
 
 try:
     import interval as itvl # https://pypi.python.org/pypi/pyinterval
@@ -70,6 +72,9 @@ def connected_slices(i: 'itvl.interval') -> 'list[tuple[int, int]]':
 
 
 def lratio(s1, s2):
+    """Deprecated"""
+    import Levenshtein
+    raise DeprecationWarning("This function should not be used anymore")
     return 1 - Levenshtein.distance(s1, s2) / max(len(s1), len(s2), 1)
 
 def diratio(s1, s2):
@@ -139,3 +144,36 @@ def ready_future(result=None):
 
 def set_asio_el(loop):
     asyncio.set_event_loop(loop)
+
+def fire_and_forget(task, *args, **kwargs):
+    """Start and forget async task as https://stackoverflow.com/a/37344956/539470 shows"""
+    loop = asyncio.get_event_loop()
+    if callable(task):
+        return loop.run_in_executor(None, task, *args, **kwargs)
+    else:
+        raise TypeError('Task must be a callable')
+
+
+def excprint(function):
+    """
+    A decorator that wraps the passed in function and logs
+    exceptions should one occur
+    """
+    @functools.wraps(function)
+    def wrapper(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except Exception as e:
+            # log the exception
+            exc_info = sys.exc_info()
+            fe = traceback.format_exception(*exc_info)
+            print(
+                ("!!EXCEPTION in function <<%s>>, args: (%s), kwargs: (%s)" + os.linesep + "%s") % (
+                    function.__name__, str(args), str(kwargs), os.linesep.join(fe)
+                ),
+                file=sys.stderr
+            )
+            # re-raise the exception
+            raise e
+
+    return wrapper

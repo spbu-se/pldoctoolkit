@@ -79,7 +79,8 @@ def import_file(input_file: str, todrl: bool) -> str:
             '.rst': ('rst', 'docbook', '.drl'),
             '.xml': ('docbook', 'docbook', '.drl'),
             '.docbook': ('docbook', 'docbook', '.drl'),
-            '.tmpl': ('docbook', 'docbook', '.drl')
+            '.tmpl': ('docbook', 'docbook', '.drl'),
+            '.txt': ('plain', 'docbook', '.drl'),
         }
     else:
         formats = {
@@ -90,7 +91,8 @@ def import_file(input_file: str, todrl: bool) -> str:
             '.rst': ('rst', 'plain', '.pxml'),
             '.xml': ('docbook', 'plain', '.pxml'),
             '.docbook': ('docbook', 'plain', '.pxml'),
-            '.tmpl': ('docbook', 'plain', '.pxml')
+            '.tmpl': ('docbook', 'plain', '.pxml'),
+            '.txt': ('plain', 'plain', '.pxml')
         }
 
     isuffix = None
@@ -108,13 +110,29 @@ def import_file(input_file: str, todrl: bool) -> str:
 
     output_file = input_file[:-len(isuffix)] + osuffix
 
+    def try_read_and_recode(filename: 'str')-> 'str':
+        import chardet
+        try:
+            with open(filename, 'r', encoding='utf-8') as ifl: text = ifl.read()
+            print("File", filename, "successfully decoded from utf-8")
+            return text
+        except UnicodeDecodeError as ude:
+            print("File", filename, "is not utf-8, detecting...")
+            with open(input_file, 'rb') as ifl: input_data = ifl.read()
+            enc = chardet.detect(input_data)
+            print("Input file encoding:", enc['encoding'], "confidence:", enc['confidence'])
+            input_text = input_data.decode(enc['encoding'])
+            return input_text
+
+
     if oformat != iformat:
         pypandoc.convert_file(
             input_file, oformat, format=iformat, outputfile=output_file,
             extra_args=['--standalone']
         )
     else:
-        shutil.copy(input_file, output_file)
+        #  Allow encoding autodetection
+        with open(output_file, 'w+', encoding='utf-8') as ofl: ofl.write(try_read_and_recode(input_file))
 
     if osuffix == '.drl' and oformat == 'docbook':
         wrap_docbook_into_drl(output_file)

@@ -42,22 +42,18 @@ Documentation Refactoring Toolkit -- легковесный инструмент
 Python
 ------
 
-* 64 bit [Python 3.6.x](https://www.python.org/downloads/)
-* [Python-Levenshtein](http://www.lfd.uci.edu/~gohlke/pythonlibs/#python-levenshtein) и [CRlibm](https://pypi.python.org/pypi/crlibm):
-  * Для Windows:
-    * Обновите Pip: `python -m pip install --upgrade pip`
-    * Загрузите архивы WHL: [этот](python_whl/python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl) и [этот](python_whl/crlibm-1.0.3-cp36-cp36m-win_amd64.whl)
-    * `pip install python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl crlibm-1.0.3-cp36-cp36m-win_amd64.whl`
-  * Для Linux, если установлен GCC, проще эти два пакета собрать самостоятельно:
-    * `pip install python_Levenshtein crlibm`
-* PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install pyqt5 quamash lxml PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc`
-* Опционально: Cython — `pip install Cython`. Если эта библиотека не установлена, то поиск по образцу будет работать медленнее.
+* 64 bit [Python 3.7.x](https://www.python.org/downloads/)
+* PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc, chardet — `pip install -r py_requirements.txt`
+* Опционально:
+    * PyInterval — `pip install  pyinterval`, возможно для Windows потребуется загрузить откуда-либо пакет crlibm
+    * Cython — `pip install Cython`. Если эта библиотека не установлена, то поиск по образцу будет работать медленнее.
 
 Системные
 ---------
 
 * Компьютер архитектуры `x86_64` для запуска Clone Miner, Windows или UN*X
 * [Pandoc](http://pandoc.org/)
+* [JRE 10+](https://java.com/) для запуска Heuristic Finder
 * для Windows:
     * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) для запуска Fuzzy Finder
 * для UN*X-подобных систем:

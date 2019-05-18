@@ -1,0 +1,10 @@
+pyqt5
+quamash
+lxml
+PyContracts
+pygments
+NumPy
+intervaltree
+bottle
+pypandoc
+chardet

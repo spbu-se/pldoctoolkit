@@ -41,22 +41,18 @@ Requirements
 Python
 ------
 
-* 64 bit [Python 3.6.x](https://www.python.org/downloads/)
-* [Python-Levenshtein](http://www.lfd.uci.edu/~gohlke/pythonlibs/#python-levenshtein) and [CRlibm](https://pypi.python.org/pypi/crlibm):
-  * On Windows:
-    * Update Pip: `python -m pip install --upgrade pip`
-    * Download WHL archives: [this](python_whl/python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl) and [this](python_whl/crlibm-1.0.3-cp36-cp36m-win_amd64.whl)
-    * `pip install python_Levenshtein-0.12.0-cp36-cp36m-win_amd64.whl crlibm-1.0.3-cp36-cp36m-win_amd64.whl`
-  * On Linux, when GCC is installed, it is easier to build them yourself:
-    * `pip install python_Levenshtein crlibm`
-* PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc — `pip install pyqt5 quamash lxml PyContracts pygments NumPy intervaltree bottle pyinterval pypandoc`
-* Optional: Cython — `pip install Cython`. If this library is not installed, then the near duplicate search will run slower.
-
+* 64 bit [Python 3.7.x](https://www.python.org/downloads/)
+* PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc, chardet — `pip install -r py_requirements.txt`
+* Optional:
+    * Cython — `pip install Cython`. If this library is not installed, then the near duplicate search will run slower
+    * PyInterval — `pip install  pyinterval`, it will probably require sideloading crlibm for Windows
+    
 System
 ------
 
 * `x86_64` architecture PC to run Clone Miner, Windows or UN*X
 * [Pandoc](http://pandoc.org/)
+* [JRE 10+](https://java.com/) to run Heuristic Finder
 * on Windows:
     * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) to run Fuzzy Finder
 * on UN*Xes:
