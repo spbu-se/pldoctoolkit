@@ -351,6 +351,8 @@ def last_cleanup_stage(document: 'str', candidates: 'list[tuple[int,int]]', patt
 
 
 def search(document: str, pattern: str, similarity: float, optimize_size: bool=True, unify_whitespaces: bool=True, remove_insides: bool=True) -> 'list[tuple[int,int]]':
+
+    glog().info("Starting pattern near duplicate search using usual Python module...")
     glog().info("|D| = %d; |p| = %d; k = %f; p = '%s'" % (
         len(document), len(pattern), similarity, pattern
     ))

@@ -490,9 +490,12 @@ def join_overlapping_candidates(document: 'str', similarity: 'float', pattern: '
 
 def search(document: str, pattern: str, similarity: float, optimize_size: bool = True, unify_whitespaces: bool = True,
            remove_insides: bool = True) -> 'list[tuple[int,int]]':
+
+    glog().info("Starting pattern near duplicate search using Cython module...")
     glog().info("|D| = %d; |p| = %d; k = %f; p = '%s'" % (
         len(document), len(pattern), similarity, pattern
     ))
+
     t1 = time.time()
 
     global _word_begins, _word_ends
