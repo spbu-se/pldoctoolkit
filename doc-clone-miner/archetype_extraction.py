@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import functools
+import difflib
+import re
+import itertools
+
+# testing
+import unittest
+from textwrap import dedent
+import cProfile
+from pstats import Stats
 
 __author__ = "Victor Dolotov, Dmitry Luciv"
 __copyright__ = "Copyright 2018+, The DocLine Project"
@@ -10,10 +19,6 @@ __version__ = "1.0.1"
 __maintainer__ = "Dmitry Luciv"
 __email__ = "yogiman1996@gmail.com"  # Victor Dolotov
 __status__ = "Alpha"
-
-import difflib
-import itertools
-import re
 
 
 def archetype_search(group):
@@ -202,6 +207,43 @@ def diffalg(a, b):
                 string.append(a[ai + i])
     return string
 
+
+def permutations_first_volatile(rank: 'int', n_cover: 'int' = 3):
+    """
+    Generate subset of all possible permutations with first values changing more frequently
+    :param rank: Permutations are tuples of [0, ..., rank)
+    :param n_cover: number of first permutation elements to take all possible values
+    :return: iterable of permutations
+    """
+    initial = list(reversed(range(rank)))
+    initial_s = set(initial)
+
+    for c in itertools.combinations(initial, n_cover):
+        pf = tuple(reversed(c))
+        yield pf + tuple(initial_s.difference(pf))
+
+@functools.lru_cache(maxsize=None)
+def two_tuples_lcs(w1: 'tuple[str]', w2: 'tuple[str]') -> 'tuple[str]':
+    sm = difflib.SequenceMatcher(None, w1, w2, False)
+    matches = sm.get_matching_blocks()
+    return tuple(itertools.chain(*[ w1[match.a: match.a + match.size] for match in matches ]))
+
+
+@functools.lru_cache(maxsize=None)
+def possible_n_tuples_lcs(ws: 'iterable[tuple[str]]') -> 'tuple[str]':
+    # operator.reduce is a kind of foldl
+    return functools.reduce(two_tuples_lcs, ws)
+
+@functools.lru_cache(maxsize=None)
+def best_n_tuples_lcs(strings: 'list[tuple[str]]') -> 'tuple[str]':
+    best_archetype = ()
+    for p in permutations_first_volatile(len(strings)):
+        permuted_strings = tuple(strings[i] for i in p)
+        archetype = possible_n_tuples_lcs(permuted_strings)
+        if len(archetype) > len(best_archetype):
+            best_archetype = archetype
+    return best_archetype
+
 @functools.lru_cache(maxsize=None)
 def get_variative_element(clones: 'module', group: 'clones.FuzzyCloneGroup' ) -> 'clones.VariativeElement':
     try:
@@ -252,14 +294,77 @@ def get_html(clones: 'module', group, archetype):
     import util
     util.write_variative_report(clones, [var], r'Archetype\archetype.html')
 
+
+
+class TestStringMethods(unittest.TestCase):
+    def __init__(self, t):
+        super().__init__(t)  # what is t here? =)
+
+    def setUp(self):
+        return
+        """init each test"""
+        self.pr = cProfile.Profile()
+        self.pr.enable()
+        print("\n<<<---")
+
+    def tearDown(self):
+        return
+        """finish any test"""
+        p = Stats(self.pr)
+        p.strip_dirs()
+        p.sort_stats('cumtime')
+        p.print_stats()
+        print("\n--->>>")
+
+    def test_001_small_common(self):
+        a = archetype_search([
+            "Я пошёл позавчера за хлебом",
+            "Я пошёл вчера за хлебом",
+            "Я пошёл сегодня за хлебом",
+            "Я пойду завтра за хлебом"
+        ])
+        print(a)
+        self.assertEqual(
+            a,
+            [[(0, 4), (7, 8), (17, 27)], [(0, 4), (7, 8), (13, 23)], [(0, 4), (7, 8), (15, 25)], [(0, 4), (7, 8), (14, 24)]],
+            "Small common failed"
+        )
+
+    def test_002_small_common_lists(self):
+        return
+        a = archetype_search([
+            ["Я", "пошёл", "позавчера", "за", "хлебом"],
+            ["Я", "пошёл", "вчера", "за", "хлебом"],
+            ["Я", "пошёл", "сегодня", "за", "хлебом"],
+            ["Я", "пойду", "завтра", "за", "хлебом"]
+        ])
+        print(a)
+
+    def test_003_perm_order(self):
+        self.assertEqual(
+            [(2, 3, 4, 0, 1), (1, 3, 4, 0, 2), (0, 3, 4, 1, 2), (1, 2, 4, 0, 3), (0, 2, 4, 1, 3), (0, 1, 4, 2, 3),
+             (1, 2, 3, 0, 4), (0, 2, 3, 1, 4), (0, 1, 3, 2, 4), (0, 1, 2, 3, 4)],
+            list(permutations_first_volatile(5))
+        )
+
+    def test_004_two_tuples_lcs(self):
+        w1 = ("ab", "xx", "cd",       "ee", "ff", "gh", "ij", "kl")
+        w2 = ("ab",       "34", "yy", "ee", "ff", "78", "ij", "kl")
+        self.assertEqual(
+            two_tuples_lcs(w1, w2),
+            ('ab', 'ee', 'ff', 'ij', 'kl')
+        )
+
+    def test_004_best_n_tuples_lcs(self):
+        w1 = ("ab", "xx", "cd",       "ee", "ff", "gh", "ij", "kl")
+        w2 = ("ab",       "34", "yy", "ee", "ff", "78", "ij", "kl")
+        w3 = ("ab", "xx", "34", "yy", "ee", "**", "78", "ij", "kl")
+        self.assertEqual(
+            best_n_tuples_lcs((w1, w2, w3)),
+            ('ab', 'ee', 'ij', 'kl')
+        )
+
+
 if __name__ == '__main__':
-    """
-    a = archetype_search([
-        "Я пошёл позавчера за хлебом",
-        "Я пошёл вчера за хлебом",
-        "Я пошёл сегодня за хлебом",
-        "Я пойду завтра за хлебом"
-    ])
-    print(a)
-    """
-    raise Exception("This is not an entry point")
+    unittest.main()
+    # raise Exception("This is not an entry point")
