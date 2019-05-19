@@ -260,75 +260,86 @@ def calculate_archetype_occurrences(fuzzy_clone_texts: 'iterable[str]') -> 'list
 
     itoken_lists = [itokens(text) for text in fuzzy_clone_texts]
     token_text_tuples = tuple(tuple(s for n, b, e, s in token_list) for token_list in itoken_lists)
+    token_text_lists = [ [t for t in ttu] for ttu in token_text_tuples]
 
     # Get archetype tokens
     archetype_tokens = best_n_tuples_lcs(token_text_tuples)
 
-    # Match those tokens to texts
-    occurrences = []
-    for itl, fct in zip(itoken_lists, fuzzy_clone_texts):
+    need_fake_before = False
+    need_fake_after  = False
+    for itl in itoken_lists:
+        n, b, e, s = itl[0]
+        if s != archetype_tokens[0]:
+            need_fake_before = True
+        n, b, e, s = itl[-1]
+        if s != archetype_tokens[-1]:
+            need_fake_after = True
 
-        # 1. Get itokens occurring in archetype, i.e. by-token occurence
-        by_token_occurrence_indices = []
-        itokens_i = iter(itl)
-        try:
-            for arch_str in archetype_tokens:
-                text_str = None
-                while text_str != arch_str:
-                    n, b, e, text_str = itoken = next(itokens_i)
-                # if it ends (hopefully without error), add itoken to occurence
-                by_token_occurrence_indices.append(n)
-        except StopIteration as se:
-            print(
-                f"StopIteration Error in calculate_archetype_occurrences {se}"
-                f"when searching for {archetype_tokens} in {fct}",
-                file=sys.stderr
-            )
-            raise se
+    # group_indices = []
+    group_offsets = []
+    cur_indices_vector = [0] * len(fuzzy_clone_texts)
+    cur_begin = [-1] * len(fuzzy_clone_texts)
 
-        # 2. Optimize the occurence, e.g.
-        # [1, 2, 3, 5, 8, 9, 10, 11, 12] -> [[1,3], [5,5], [8,12]]
-        ranged_occurence_indices = [[by_token_occurrence_indices[0], by_token_occurrence_indices[0]]]
-        for o in by_token_occurrence_indices[1:]:
-            if ranged_occurence_indices[-1][1] == o - 1:  # contignous
-                ranged_occurence_indices[-1][1] = o
-            else:
-                ranged_occurence_indices.append([o, o])
+    def start_group():
+        nonlocal cur_begin
+        cur_begin = next_indices_vector
 
-        # 3. tuple it
-        occurrences.append([
-            (itl[b][1], itl[e][2]) # from beginning of first token to end of last one
-            for [b, e] in ranged_occurence_indices
+    def release_group():
+        group_offsets.append([
+            (itl[b][1], itl[e][2])
+            for b, e, itl in zip(cur_begin, cur_indices_vector, itoken_lists)
         ])
 
-    return occurrences
+    # Идём фронтом по всем строкам
+
+    for ar_tok, tok_i in zip(archetype_tokens, itertools.count()):
+        next_indices_vector = [
+            ttl.index(ar_tok, cti) for ttl, cti in zip(token_text_lists, cur_indices_vector)
+        ]
+
+        if tok_i == 0:
+            start_group()
+
+        skip = max(n - c for n, c in zip(next_indices_vector, cur_indices_vector)) > 1
+
+        if skip:
+            release_group()
+            start_group()
+
+        if tok_i < len(archetype_tokens) - 1:
+            cur_indices_vector = [n + 1 for n in next_indices_vector]
+
+    release_group()
+
+    return group_offsets, need_fake_before, need_fake_after
 
 def get_variative_element(clones: 'module', group: 'clones.FuzzyCloneGroup' ) -> 'clones.VariativeElement':
     try:
-        archetype: 'list[list[tuple[int, int]]]' = archetype_search(group.instancetexts)
+        # archetype: 'list[list[tuple[int, int]]]' = archetype_search(group.instancetexts)
 
         # not ready yet =(
-        # archetype: 'list[list[tuple[int, int]]]' = calculate_archetype_occurrences(group.instancetexts)
+        group_archetypes, need_fake_before, need_fake_after = \
+            calculate_archetype_occurrences(group.instancetexts)
 
         fuzzy_offsets = [b for n, b, e in group.instances]
         fuzzy_ends = [e for n, b, e in group.instances]
-        group_archetypes = list(map(list, zip(*archetype)))  # transpose
 
+        # group_archetypes = list(map(list, zip(*archetype)))  # transpose
         # Add fake groups in beginngings and ends if archetype does not touch frontiers
-        need_fake_before = False
-        need_fake_after = False
-        for bb, be in group_archetypes[0]:
-            if bb != 0:
-                need_fake_before = True
-        for (eb, ee), fb, fe in zip(group_archetypes[-1], fuzzy_offsets, fuzzy_ends):
-            if ee != fe - fb:
-                need_fake_after = True
+        # need_fake_before = False
+        # need_fake_after = False
+        # for bb, be in group_archetypes[0]:
+        #     if bb != 0:
+        #         need_fake_before = True
+        # for (eb, ee), fb, fe in zip(group_archetypes[-1], fuzzy_offsets, fuzzy_ends):
+        #     if ee != fe - fb:
+        #         need_fake_after = True
 
         groups = [
             clones.ExactCloneGroup(0, 1, [
                 (
                     0,  # file №
-                    o + b, o + e # -1 from Dolotov =)
+                    o + b, o + e -1 # from Dolotov =)
                 )
                 for ((b, e), o) in zip(ginsts, fuzzy_offsets)
             ]) for ginsts in group_archetypes
@@ -338,14 +349,14 @@ def get_variative_element(clones: 'module', group: 'clones.FuzzyCloneGroup' ) ->
             groups.insert(
                 0,
                 clones.ExactCloneGroup(0, 1, [
-                    (0, o, o) for o in fuzzy_offsets
+                    (0, o, o - 1) for o in fuzzy_offsets
                 ])
             )
 
         if need_fake_after:
             groups.append(
                 clones.ExactCloneGroup(0, 1, [
-                    (0, e, e) for e in fuzzy_ends
+                    (0, e + 1, e) for e in fuzzy_ends
                 ])
             )
 
@@ -455,11 +466,10 @@ class TestStringMethods(unittest.TestCase):
         w1 = " ".join(self.w1)
         w2 = " ".join(self.w2)
         w3 = " ".join(self.w3)
+        # print(calculate_archetype_occurrences([w1, w2, w3]))
         self.assertEqual(
             calculate_archetype_occurrences([w1, w2, w3]),
-            [[(0, 2), (9, 11), (18, 23)],
-             [(0, 2), (9, 11), (18, 23)],
-             [(0, 2), (12, 14), (21, 26)]]
+            ([[(0, 5), (0, 5), (0, 5)], [(9, 14), (9, 14), (12, 17)], [(18, 23), (18, 23), (21, 26)]], False, False)
         )
 
     def test_006_archetype_from_LKD_2013(self):
