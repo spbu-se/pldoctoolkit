@@ -452,6 +452,15 @@ class FuzzyCloneGroup(CloneGroup):
         else:
             return None
 
+    def _init_texts_words(self, clones, clonetexts, clonewords):
+        if clonetexts is None:
+            global inputfiles
+            clonetexts = [inputfiles[cfn][cb:ce] for cfn, cb, ce in clones]
+        if clonewords is None:
+            clonewords = [util.tokens(ct) for ct in clonetexts]
+        self.instancetexts = clonetexts
+        self.instancewords = clonewords
+
     def __init__(self, id, clones, clonetexts=None, clonewords=None):
         """
         Fuzzy Clone Group
@@ -463,21 +472,13 @@ class FuzzyCloneGroup(CloneGroup):
         super().__init__(id)
         self.instances = clones
 
-        if clonetexts is None:
-            global inputfiles
-            clonetexts = [inputfiles[cfn][cb:ce] for cfn, cb, ce in clones]
-        if clonewords is None:
-            clonewords = [util.tokens(ct) for ct in clonetexts]
-
-        self.instancetexts = clonetexts
-        self.instancewords = clonewords
+        self._init_texts_words(clones, clonetexts, clonewords)
 
     def text(self, inst=0):
         return self.instancewords[inst]
 
     def plain_text_words(self, inst=0):
         return InputFile.wre.findall(self.instancewords[inst])
-
 
     def html(self, inst=None, allow_space_wrap=False):
         import worddiff

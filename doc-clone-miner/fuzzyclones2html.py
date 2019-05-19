@@ -116,6 +116,7 @@ def load_near_duplicates_json(logger):
     clones.only_generate_for_ui = args.only_ui == "yes"
 
     inputfile = clones.InputFile(args.source_xml)
+    clones.initdata([inputfile], [])
 
     with open(args.neardup_json, encoding='utf-8') as ndj:
         fuzzyclonedata = json.load(ndj)
@@ -135,7 +136,9 @@ def load_near_duplicates_json(logger):
             fclntexts.append(tx)
             fclnwords.append(util.ctokens(tx))
 
-        fgrps.append(clones.FuzzyCloneGroup(group_id, fclns, fclntexts, fclnwords))
+        fgrps.append(clones.FuzzyCloneGroup(
+            group_id, fclns #, fclntexts, fclnwords
+        ))
 
     clones.initdata([inputfile], fgrps)
 

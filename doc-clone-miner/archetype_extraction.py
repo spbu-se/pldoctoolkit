@@ -249,6 +249,8 @@ def best_n_tuples_lcs(strings: 'tuple[tuple[str]]') -> 'tuple[str]':
 
 
 def calculate_archetype_occurrences(fuzzy_clone_texts: 'iterable[str]') -> 'list[list[tuple[int, int]]]':
+    """It is wrong... totally wrong..."""
+
     def itokens(text):
         return tuple(
             (n, b, e, s)
@@ -303,20 +305,49 @@ def calculate_archetype_occurrences(fuzzy_clone_texts: 'iterable[str]') -> 'list
 
 def get_variative_element(clones: 'module', group: 'clones.FuzzyCloneGroup' ) -> 'clones.VariativeElement':
     try:
-        # archetype: 'list[list[tuple[int, int]]]' = archetype_search(group.instancetexts)
-        archetype: 'list[list[tuple[int, int]]]' = calculate_archetype_occurrences(group.instancetexts)
+        archetype: 'list[list[tuple[int, int]]]' = archetype_search(group.instancetexts)
+
+        # not ready yet =(
+        # archetype: 'list[list[tuple[int, int]]]' = calculate_archetype_occurrences(group.instancetexts)
+
         fuzzy_offsets = [b for n, b, e in group.instances]
+        fuzzy_ends = [e for n, b, e in group.instances]
         group_archetypes = list(map(list, zip(*archetype)))  # transpose
+
+        # Add fake groups in beginngings and ends if archetype does not touch frontiers
+        need_fake_before = False
+        need_fake_after = False
+        for bb, be in group_archetypes[0]:
+            if bb != 0:
+                need_fake_before = True
+        for (eb, ee), fb, fe in zip(group_archetypes[-1], fuzzy_offsets, fuzzy_ends):
+            if ee != fe - fb:
+                need_fake_after = True
 
         groups = [
             clones.ExactCloneGroup(0, 1, [
                 (
                     0,  # file №
-                    o + b, o + e # - 1 # -1 from Dolotov =)
+                    o + b, o + e # -1 from Dolotov =)
                 )
                 for ((b, e), o) in zip(ginsts, fuzzy_offsets)
             ]) for ginsts in group_archetypes
         ]
+
+        if need_fake_before:
+            groups.insert(
+                0,
+                clones.ExactCloneGroup(0, 1, [
+                    (0, o, o) for o in fuzzy_offsets
+                ])
+            )
+
+        if need_fake_after:
+            groups.append(
+                clones.ExactCloneGroup(0, 1, [
+                    (0, e, e) for e in fuzzy_ends
+                ])
+            )
 
         return clones.VariativeElement(groups)
     except Exception as e:
