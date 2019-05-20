@@ -9,6 +9,7 @@ import os
 import shutil
 from collections import defaultdict
 import re
+import sys
 
 import clones
 import sourcemarkers
@@ -86,12 +87,10 @@ def report(logger):
 
     if args.unfuzzy in ["yes", "True", "1"]:
         import archetype_extraction
-        groups = clones.clonegroups.copy()
-        clones.clonegroups.clear()
-        # clones.initoptions(args, logger)  # fake, but let them
         clones.cm_inclusiveend = True
-        clones.clonegroups = [archetype_extraction.get_variative_element(clones, g) for g in groups]
-        cohtml = clones.VariativeElement.summaryhtml(clones.clonegroups, clones.ReportMode.variative)
+        ves = [archetype_extraction.get_variative_element(clones, g) for g in clones.clonegroups]
+        ves = filter(None, ves)
+        cohtml = clones.VariativeElement.summaryhtml(ves, clones.ReportMode.variative)
     else:
         fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
         cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
@@ -110,6 +109,7 @@ def report(logger):
     )
 
 if __name__ == '__main__':
+    logger.info(f"nearduplicates2html: {' '.join(sys.argv)}")
     initargs()
     loadfuzzyinputs(logger)
     report(logger)

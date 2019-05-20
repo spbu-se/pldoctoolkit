@@ -188,12 +188,10 @@ def report(logger):
 
     if args.unfuzzy in ["yes", "True", "1"]:
         import archetype_extraction
-        groups = clones.clonegroups.copy()
-        clones.clonegroups.clear()
         clones.cm_inclusiveend = True
-        clones.clonegroups = [archetype_extraction.get_variative_element(clones, g) for g in groups]
-        clones.clonegroups = filter(None, clones.clonegroups)
-        cohtml = clones.VariativeElement.summaryhtml(clones.clonegroups, clones.ReportMode.variative)
+        ves = [archetype_extraction.get_variative_element(clones, g) for g in clones.clonegroups]
+        ves = filter(None, ves)
+        cohtml = clones.VariativeElement.summaryhtml(ves, clones.ReportMode.variative)
     else:
         fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
         cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
@@ -216,6 +214,7 @@ def report(logger):
         webbrowser.open(report_url)
 
 if __name__ == '__main__':
+    logger.info(f"fuzzyclones2html: {' '.join(sys.argv)}")
     initargs()
     if args.fuzzy_xml:
         load_fuzzy_groups_xml(logger)
