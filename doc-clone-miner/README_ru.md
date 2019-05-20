@@ -43,7 +43,7 @@ Python
 ------
 
 * 64 bit [Python 3.7.x](https://www.python.org/downloads/)
-* PyQt, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc, chardet — `pip install -r py_requirements.txt`
+* PyQt, PyQtWebEngine, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc, chardet — `pip install -r py_requirements.txt`
 * Опционально:
     * PyInterval — `pip install  pyinterval`, возможно для Windows потребуется загрузить откуда-либо пакет crlibm
     * Cython — `pip install Cython`. Если эта библиотека не установлена, то поиск по образцу будет работать медленнее.
