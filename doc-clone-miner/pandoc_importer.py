@@ -14,11 +14,18 @@ def wrap_file_into_smth(filename: str, escape: bool, format: str):
     re_nt = re.compile("\n[\t ]+", re.MULTILINE)
     re_lf = re.compile("\n\n(\n)+", re.MULTILINE)
 
-    def strip(s):
+    _lfre = re.compile('(\r\n|\n\r)', re.M)
+    _slfre = re.compile('( |\t)+\n', re.M)
+
+    def strip0(s):
         crlfr = s.replace("\r\n", "\n").replace("\r", "\n")
         crlfr = re_nt.sub("\n", crlfr)
         crlfr = re_lf.sub("\n\n", crlfr)
         return crlfr
+
+    def strip(s):
+        s = _slfre.sub('\n', s)
+        return s
 
     with open(filename, 'r', encoding='utf-8') as fh:
         plaintext = fh.read()
@@ -29,8 +36,9 @@ def wrap_file_into_smth(filename: str, escape: bool, format: str):
         escaped = strip(plaintext)
     wrapped = format % (escaped,)
 
-    with open(filename, 'w', encoding='utf-8') as fh:
-        print(wrapped, file=fh)
+    with open(filename, 'wb') as fh:
+        fh.write(wrapped.encode('utf-8'))
+        # print(wrapped, file=fh)
 
 def wrap_file_into_xml(filename: str):
     wrap_file_into_smth(
@@ -132,7 +140,7 @@ def import_file(input_file: str, todrl: bool) -> str:
         )
     else:
         #  Allow encoding autodetection
-        with open(output_file, 'w+', encoding='utf-8') as ofl: ofl.write(try_read_and_recode(input_file))
+        with open(output_file, 'wb+') as ofl: ofl.write(try_read_and_recode(input_file).encode('utf-8'))
 
     if osuffix == '.drl' and oformat == 'docbook':
         wrap_docbook_into_drl(output_file)
