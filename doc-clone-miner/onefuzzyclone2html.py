@@ -114,6 +114,9 @@ def smear_text(text: str, ranges: 'list[tuple[int,int]]', smear_char = '\x06'):
     """
 
     # Mutable string could help here for sure...
+    if len(ranges) == 0:
+        return text
+
     ranges = sorted(ranges)
     result = [text[:ranges[0][0]]]
 
