@@ -102,9 +102,32 @@ def find_like_pattern_0(inputfile, pattern, ms):
 
     return results
 
-def find_like_pattern(inputfile, pattern, ms):
-    badchar = '\uFFFD'
 
+def smear_text(text: str, ranges: 'list[tuple[int,int]]', smear_char = '\x06'):
+    """
+    Fills given ranges in the text with a given char.
+    :param text: text to smear intervals in
+    :param ranges: ranges to smear
+    :param smear_char: character to smear with. Default char is 1965--now
+        ASCII Acknowledgement https://en.wikipedia.org/wiki/Acknowledge_character
+    :return: text with smeared intervals
+    """
+
+    # Mutable string could help here for sure...
+    ranges = sorted(ranges)
+    result = [text[:ranges[0][0]]]
+
+    for (pb, pe), (nb, ne) in zip(ranges, ranges[1:]):
+        result.append(smear_char * (pe - pb))
+        result.append(text[pe:nb])
+
+    result.append(smear_char * (ranges[-1][1] - ranges[-1][0]))
+    result.append(text[ranges[-1][1]:])
+
+    return ''.join(result)
+
+
+def find_like_pattern(inputfile, pattern, ms):
     try:
         import faster_pattern_near_duplicate_search as pnds
     except (ImportError, ModuleNotFoundError):
@@ -115,9 +138,8 @@ def find_like_pattern(inputfile, pattern, ms):
 
     tx = inputfile.text
 
-    marked = sourcemarkers.find_marked_intervals(tx)
-    for ob, ce, mt in marked:
-        tx = tx[:ob] + badchar * (ce-ob) + tx[:ce]
+    marked = [(ob, ce) for ob, ce, mt in sourcemarkers.find_marked_intervals(tx)]
+    tx = smear_text(tx, marked)
 
     ranges = pnds.search(tx, pattern, ms)
 
