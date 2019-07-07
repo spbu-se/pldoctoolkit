@@ -485,7 +485,8 @@ class FuzzyCloneGroup(CloneGroup):
         if inst is None: # all
             resultlist = worddiff.get_htmls(
                 self.instancetexts,
-                self.reference_clone_text
+                reference_text=self.reference_clone_text,
+                from_archetype=self.reference_clone_text is None
             )
             resulttexts = []
             for r in resultlist:

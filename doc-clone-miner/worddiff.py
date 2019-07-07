@@ -3,8 +3,9 @@
 
 import difflib
 import util
+import archetype_extraction
 
-def _diff_words(words1, words2):
+def _diff_words(words1, words2, diffplus_style='diffplus'):
     # words1 = [util.escape(w.strip()) for w in words1.split(' ') if w.strip() != ""]
     # words2 = [w.strip() for w in words2.split(' ') if w.strip() != ""]
     words1 = util.tokenst(words1)
@@ -17,9 +18,9 @@ def _diff_words(words1, words2):
     def dl2h(w):
         ww = w[2:]
         if   w.startswith('- '):  # disappeared
-            return '<span class="diffminus modeldiffminus">%s</span>' % ww
+            return f'<span class="diffminus modeldiffminus">{ww}</span>'
         elif w.startswith('+ '):  # appeared
-            return '<span class="diffplus modeldiffplus">%s</span>' % ww
+            return f'<span class="{diffplus_style} modeldiffplus">{ww}</span>'
         elif w.startswith('? '):  # not sure even what it means =)
             return ""
         elif w.startswith('  '):
@@ -29,19 +30,25 @@ def _diff_words(words1, words2):
     rw2 = map(dl2h, diff)
     return ' '.join(rw2)
 
-def get_htmls(texts, reference_text=None):
+def get_htmls(texts, reference_text=None, from_archetype=False):
     """
     :param reference_text: text to compare others to, first text otherwise
     :param texts: space-separated word strings
+    :param from_archetype: calculate archetype and diff from it, not from first text
     :return: array of HTML fragmets for each of them with differences from first one
     """
-    if reference_text:
-        return get_htmls([reference_text] + texts)[1:]
-    else:
-        result = [util.escape(texts[0])]
-        for text in texts[1:]:
-            result.append(_diff_words(texts[0], text))
-        return result
+    if from_archetype:
+        reference_text = ' '.join(archetype_extraction.best_n_tuples_lcs((tuple(util.tokenst(s)) for s in texts)))
+    elif reference_text is None:
+        reference_text = texts[0]
+
+    result = []
+    for text in texts:
+        result.append(_diff_words(
+            reference_text, text,
+            diffplus_style='nonarchetypical' if from_archetype else 'diffplus'
+        ))
+    return result
 
 if __name__ == '__main__':
     print("Testing")

@@ -105,6 +105,12 @@ summaryhtml_start = textwrap.dedent(
         color: 	#009030;
         font-weight: bold;
     }
+
+    span.nonarchetypical {
+        color: 	blue;
+        font-weight: bold;
+    }
+
     </style>
     <script src="jquery-2.0.3.min.js"></script>
     <!-- script src="https://raw.githubusercontent.com/jcubic/jquery.splitter/master/js/jquery.splitter-0.14.0.js"></script -->
