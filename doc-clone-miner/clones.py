@@ -487,6 +487,12 @@ class FuzzyCloneGroup(CloneGroup):
     def html(self, inst=None, allow_space_wrap=False):
         import worddiff
         if inst is None: # all
+            logging.info(
+                f"\tGroup:"
+                f"\t{self.group_uuid}"
+                f"\tPower:"
+                f"\t{len(self.instances)}"
+            )
             resultlist = worddiff.get_htmls(
                 self.instancetexts,
                 reference_text=self.reference_clone_text,

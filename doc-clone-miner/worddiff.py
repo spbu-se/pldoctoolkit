@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import difflib
+import logging
+import sys
 import util
 import archetype_extraction
 
@@ -37,10 +39,20 @@ def get_htmls(texts, reference_text=None, from_archetype=False):
     :param from_archetype: calculate archetype and diff from it, not from first text
     :return: array of HTML fragmets for each of them with differences from first one
     """
+
     if from_archetype:
-        reference_text = ' '.join(archetype_extraction.best_n_tuples_lcs((tuple(util.tokenst(s)) for s in texts)))
+        texts_tokens = tuple(tuple(util.tokenst(s)) for s in texts)
+        archetype_tokens = archetype_extraction.best_n_tuples_lcs(texts_tokens)
+        logging.info(
+            f"\tTotal instance tokens:"
+            f"\t{sum(len(tt) for tt in texts_tokens)}"
+            f"\tArchetype length:"
+            f"\t{len(archetype_tokens)}"
+        )
+        reference_text = ' '.join(archetype_tokens)
     elif reference_text is None:
         reference_text = texts[0]
+
 
     result = []
     for text in texts:
@@ -51,10 +63,18 @@ def get_htmls(texts, reference_text=None, from_archetype=False):
     return result
 
 if __name__ == '__main__':
-    print("Testing")
-    texts = [
-        "One two three four six seven eight ten eleven thirteen",
-        "One two three five six seven eight nine ten eleven twelve thirteen",
-        "One two three five he seven me she nine ten eleven twelve thirteen"
-    ]
-    print(get_htmls(texts))
+    if len(sys.argv) > 1:
+        print(
+            "Okay, assuming you gave me a file and I will tokenize it, and calculate how many tokens does it contain:"
+        )
+        with open(sys.argv[1], "r", encoding='utf-8') as ifl:
+            txt = ifl.read()
+            print(len(util.tokens(txt)))
+    else:
+        print("Testing")
+        texts = [
+            "One two three four six seven eight ten eleven thirteen",
+            "One two three five six seven eight nine ten eleven twelve thirteen",
+            "One two three five he seven me she nine ten eleven twelve thirteen"
+        ]
+        print(get_htmls(texts))
