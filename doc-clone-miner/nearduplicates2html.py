@@ -7,6 +7,7 @@ import logging
 import argparse
 import os
 import shutil
+import uuid
 from collections import defaultdict
 import re
 import sys
@@ -44,12 +45,13 @@ def extract_near_duplicates(src, logger):
         if mt == 'ACCEPT':
             oe = ob + sourcemarkers.markerlen
             cb = ce - sourcemarkers.markerlen
-            mi = sourcemarkers.open_marker_id(src[ob:ob + sourcemarkers.markerlen])
+            mi = uuid.UUID(sourcemarkers.open_marker_id(src[ob:ob + sourcemarkers.markerlen]))
             id2clones[mi].append((oe, cb))
 
     cnt = 0
     fgrps = []
-    for ndi in id2clones.keys():
+    # In order of appearance
+    for ndi in sorted(id2clones.keys(), key=lambda ui: ui.time):
         cnt += 1
         fclns = []
         fclntexts = []
@@ -60,7 +62,7 @@ def extract_near_duplicates(src, logger):
             fclns.append((0, b, e))
             fclntexts.append(src[b:e])
             fclnwords.append(words(src[b:e]))
-        fgrps.append(clones.FuzzyCloneGroup(str(cnt), fclns, fclntexts, fclnwords))
+        fgrps.append(clones.FuzzyCloneGroup(str(cnt), fclns, fclntexts, fclnwords, group_uuid=ndi))
 
     return fgrps
 

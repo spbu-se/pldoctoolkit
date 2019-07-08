@@ -20,6 +20,7 @@ import enum
 import math
 import numpy
 import hashlib
+import uuid
 
 import util
 import xmllexer
@@ -371,8 +372,11 @@ class InternalOkBreak(InternalException):
     pass
 
 class CloneGroup(ABC):
-    def __init__(self, id):
+    def __init__(self, id, group_uuid=None):
         self.id = id
+        if not group_uuid:
+            group_uuid = uuid.uuid4()
+        self.group_uuid = group_uuid
         self.instances = None
 
     @abstractmethod
@@ -461,7 +465,7 @@ class FuzzyCloneGroup(CloneGroup):
         self.instancetexts = clonetexts
         self.instancewords = clonewords
 
-    def __init__(self, id, clones, clonetexts=None, clonewords=None):
+    def __init__(self, id, clones, clonetexts=None, clonewords=None, group_uuid=None):
         """
         Fuzzy Clone Group
         :param id: Just group id, nothing more
@@ -469,7 +473,7 @@ class FuzzyCloneGroup(CloneGroup):
         :param clonetexts: Clone texts (or will be guessed from treples)
         :param clonewords: Clone words (or will be guessed from texts)
         """
-        super().__init__(id)
+        super().__init__(id, group_uuid=group_uuid)
         self.instances = clones
 
         self._init_texts_words(clones, clonetexts, clonewords)
@@ -503,7 +507,7 @@ class FuzzyCloneGroup(CloneGroup):
 
 
 class ExactCloneGroup(CloneGroup):
-    def __init__(self, id, ntokens, instances):
+    def __init__(self, id, ntokens, instances, group_uuid=None):
         """
         instances -- [ (filenum, (sl, sc), (el, ec)) ]
         self.instances -- [ (filenum, off1, off2) ]
@@ -512,7 +516,7 @@ class ExactCloneGroup(CloneGroup):
         global clonegroups
         global cm_inclusiveend
 
-        super().__init__(id)
+        super().__init__(id, group_uuid=group_uuid)
 
         if ntokens == 0 or len(instances) == 0:
             raise Exception("bad args")

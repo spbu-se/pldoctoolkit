@@ -16,19 +16,31 @@ import logging
 class RangeMarker(metaclass=ABCMeta):
     id = None
 
+    @staticmethod
+    def newUUID():
+        """
+        New group UUID
+        :return: Monotone growing UUID of type UUID1. MAC is fixed to make it transferable between computers
+        """
+        # invalid MAC: 33:34:45:79:34:54 https://superuser.com/q/1210887
+        node = 0x_33_34_45_79_34_54
+        # return group_uuid.uuid4() -- was used before
+        return uuid.uuid1(node=node)
+
     def __init__(self, begin, end):
         self.begin = begin
         self.end = end
         if not RangeMarker.id:
-            RangeMarker.id = uuid.uuid4()
+            RangeMarker.id = RangeMarker.newUUID()
 
     @abstractmethod
     def marker_type(self):
         pass
 
+    @staticmethod
     def forceNewUUID():
         oid = RangeMarker.id
-        RangeMarker.id = uuid.uuid4()
+        RangeMarker.id = RangeMarker.newUUID()
         print("UUID: %s -> %s" % (str(oid), str(RangeMarker.id)), file=sys.stderr)
 
     def apply(self, text, qtCursor=None):
