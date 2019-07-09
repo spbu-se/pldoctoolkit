@@ -89,6 +89,8 @@ if __name__ == '__main__':
     with open(sys.argv[1], 'r', encoding='utf-8') as inf: content = inf.read()
 
     while True:
+        print("Hint: you may try to open http://127.0.0.1:49999/ in browser while running DupFinder interactively")
+        print()
         print("Options:")
         print("1. Delete group")
         print("2. Generate new id")
