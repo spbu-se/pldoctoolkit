@@ -9,3 +9,5 @@ intervaltree
 bottle
 pypandoc
 chardet
+networkx
+jinja2

@@ -8,8 +8,11 @@ import sys
 import shutil
 import tempfile
 
+from external_tool_unifier import  save_clones_as_json
+
 logging.basicConfig(filename='fuzzyclones2html.log', level=logging.INFO)
 logger = logging
+
 
 def initargs():
     global args
@@ -190,11 +193,15 @@ def report(logger):
         import archetype_extraction
         clones.cm_inclusiveend = True
         ves = [archetype_extraction.get_variative_element(clones, g) for g in clones.clonegroups]
+        special = [archetype_extraction.get_variative_element(clones, g) for g in clones.clonegroups]
+        # TODO why?
         ves = filter(None, ves)
+        save_clones_as_json(args.output_directory, special, True)
         cohtml = clones.VariativeElement.summaryhtml(ves, clones.ReportMode.variative)
     else:
         fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
         cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
+        save_clones_as_json(args.output_directory, fuzzygroups, False)
 
     outdir = args.output_directory
     with open(os.path.join(outdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:

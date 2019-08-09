@@ -5,6 +5,8 @@
 
 import logging
 
+from external_tool_unifier import save_clones_as_json
+
 logging.basicConfig(filename='clones2html.log', level=logging.INFO)
 global logger
 # logger = logging.Logger('clones.reporter')
@@ -661,6 +663,18 @@ if __name__ == '__main__':  #
         clones, combs,
         os.path.join("Output", subdir, "pyvarelements.html")
     )
+    # convert clones tp json and saved it for further usages
+    relative_working_directory = os.path.join('Output', subdir)
+    save_clones_as_json(relative_working_directory, combs)
+
+
+
+
+
+
+
+
+
 
     try:
         log_reuse_amount(combs)
