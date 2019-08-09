@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/subpage_style.css">
+</head>
+
+<script src="jquery-3.4.1.min.js"></script>
+<script src="d3.v4.min.js"></script>
+<script src="viz.js"></script>
+<script src="d3-graphviz.min.js"></script>
+<script src="subpage_functions.js"></script>
+<body>
+
+<div id="tooltip" class="zoom resizable draggable" style="display: none;position: absolute; font-size: 0.7rem"></div>
+
+
+<div id="graph" class="graph"></div>
+
+{% for node in nodes %}
+    <!--hl_range example: "4-500" -->
+    <code style="display: none" hl_range_node_{{ node['id'] }}="{{ node['hl_range'] }}">
+        <!--{{ node['html'] }}-->
+    </code>
+{% endfor %}
+
+<div id="block_code" style="display: none">
+
+    {% for edge in edges %}
+        <div id="diff_edge_{{ edge['from'] }}_{{ edge['to'] }}">
+            <div class="tooltip_diff_edges">
+                <h2>From:</h2>
+                <p> {{ edge['html_from'] }}</p>
+                <h2>To:</h2>
+                <p> {{ edge['html_to'] }}</p>
+                <h2>Diff between</h2>
+                <p>{{ edge['html_diff'] }}</p>
+
+            </div>
+        </div>
+    {% endfor %}
+
+    {% for diff_node in nodes %}
+        <div class="tooltip_diff_node" id="diff_node_{{ diff_node['id'] }}">
+            <h2>Archetype:</h2>
+            <!-- No need for pre since we ignore spaces when seach for archetype-->
+            <p> {{ diff_node['archetype'] }}</p>
+            <h2>Difference:</h2>
+            <p> {{ diff_node['html_diff'] }}</p>
+        </div>
+    {% endfor %}
+</div>
+<div id="data_groups" style="display: none" data_groups="{{ data_groups }}" type="{{ type }}"></div>
+</body>
+
+
+<script>
+
+    let dotSrc = `digraph G {
+        rankdir="LR";
+
+        {% for node in nodes %}
+            node_{{ node['id'] }}
+            [
+                shape="ellipse",
+                id="node_{{ node['id'] }}",
+                label="{{ node['label'] }}",
+                fontsize="7"
+            ];
+
+        {% endfor %}
+
+        {% for edge in edges %}
+            node_{{edge['from']}} -> node_{{edge['to']  }}
+            [
+                id="edge_{{edge['from']}}_{{edge['to']}}" ,
+                label="see diff",
+                fontsize="7.0"
+            ];
+        {% endfor %}
+
+
+        }`;
+
+
+    //https://github.com/magjac/d3-graphviz/issues/101
+    $(document).ready(() => {
+        let graphviz = d3.select("#graph").graphviz({fit: true});
+        graphviz.dot(dotSrc).render(onFinishRendering);
+    });
+
+    function onFinishRendering() {
+        let graph_svg = $("#graph svg");
+        let aspect = graph_svg.width() / graph_svg.height();
+        let container = graph_svg.parent();
+
+        //resize whenever browser window resized
+        $(window).on("resize", function () {
+            console.log("resize" + graph_svg.width() + ' ' + graph_svg.height());
+            let parentWidth = container.width();
+            graph_svg.attr("width", parentWidth);
+            graph_svg.attr("height", Math.round(parentWidth / aspect));
+            //viewport?
+        }).trigger("resize");
+
+        // now we have rendered svg
+        let nodes = d3.select("#graph svg g").selectAll("g [id^='node']");
+        let edges = d3.select("#graph svg g").selectAll("g [id^='edge']");
+        //remove custom titles
+        $("g title").remove();
+        // make ellipse also clickabale not just text inside
+        $("ellipse").css({'pointer-events': 'all'});
+
+        let tooltip = $("#tooltip");
+
+        bindOnNodeClicked(nodes);
+        bindOnMouseEnterNodes(nodes, tooltip);
+        bindOnMouseLeaveNodes(nodes, tooltip);
+        bindOnMouseLeaveTooltipNode(tooltip);
+        bindOnMouseEnterTooltipNode(tooltip);
+
+        bindOnMouseEnterEdges(edges, tooltip);
+        bindOnMouseLeaveEdges(edges, tooltip);
+        bindOnMouseEnterTooltipEdge(tooltip);
+        bindOnMouseLeaveTooltipEdge(tooltip);
+
+        makeElementDraggable(tooltip);
+        makeResizableDiv(tooltip);
+
+
+        //Listens for all context menu event and send to parent window data-group of current page
+        $(window).on('contextmenu', function () {
+            let message = {
+                'type': 'contextMenuDataGroups',
+                'data': {
+                    'data-groups': $('#data_groups').attr('data_groups'),
+                    'type':$('#data_groups').attr('type')
+                }
+            };
+            window.parent.postMessage(message, "*");
+        })
+    }
+
+
+</script>
+</html>

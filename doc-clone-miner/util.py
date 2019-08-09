@@ -35,6 +35,29 @@ def escapecode(s, allow_space_wrap=False):
     return s
 
 
+def copytree(src, dst, exclude=None):
+    """
+    Recursive copy
+    :param src:
+    :param dst:
+    :param exclude:
+    :return:
+    """
+
+    if not os.path.exists(dst):
+        os.makedirs(dst)
+    for item in os.listdir(src):
+        s = os.path.join(src, item)
+        d = os.path.join(dst, item)
+        if exclude is not None and item in exclude:
+            continue
+        if os.path.isdir(s):
+            copytree(s, d)
+        else:
+            if not os.path.exists(d) or os.stat(s).st_mtime - os.stat(d).st_mtime > 1:
+                shutil.copy2(s, d)
+
+
 def write_variative_report(clones, candidates, report_file_name):
     """
     Function to save extra reports

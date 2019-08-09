@@ -27,6 +27,7 @@ import hm_browser_complex
 import pyqt_common
 import sourcemarkers
 import util
+from clone_graph_visualization.clone_visualization import html_report_graph_auto_mode
 from pyqt_common import ui_class, _scriptdir, EMUIApp
 
 hm_bc_i: hm_browser_complex.HMBrowserComplex = None
@@ -55,8 +56,42 @@ def initargs():
     global clargs
     clargs = argpar.parse_args()
 
+
 class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
-    def __init__(self, parent, uri, stats, src="", fn="", save_fn="", fuzzypattern_matches_shown=False, extra: object=None):
+    _js_to_evaluate_text_mode = """
+                        try {
+                            window.qwc = new QWebChannel(qt.webChannelTransport, function (channel) {
+                                try {
+                                    window.qtab = channel.objects.qtab;
+                                    window.adaptToQWebView();
+                                } catch (ie) {
+                                    alert(window.qtab);
+                                    alert(ie);
+                                }
+                            });
+                        } catch (e) {
+                            alert(e);
+                        }
+                        """
+
+    _js_to_eval_graph_mode = """
+                       try {
+                            window.qwc = new QWebChannel(qt.webChannelTransport, function (channel) {
+                                try {
+                                    window.qtab = channel.objects.qtab;
+                                } catch (ie) {
+                                    alert(window.qtab);
+                                    alert(ie);
+                                }
+                            });
+                        } catch (e) {
+                            alert(e);
+                        }
+    
+    """
+
+    def __init__(self, parent, uri, stats, src="", fn="",
+                 save_fn="", fuzzypattern_matches_shown=False, graph_mode_uri='', extra: object = None):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
 
@@ -70,7 +105,6 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         if fuzzypattern_matches_shown:
             self.variatives = self.extra  # type: List[clones.VariativeElement]
 
-
         self.webView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.webView.customContextMenuRequested.connect(self.web_context_menu)
 
@@ -80,9 +114,12 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.menu_create_di = self.menu.addAction("Add dictionary entry")
         self.menu_create_di.triggered.connect(lambda: self.feval_js("window.single2dict();"))
 
+        self.menu_view_mode = self.menu.addAction("View groups as graph")
+        self.menu_view_mode.triggered.connect(self.switch_to_graph_mode)
+
         if save_fn == "":  # NOT fuzzy pattern search scenario
             self.tbSrcCode.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
-        elif fuzzypattern_matches_shown and extra is not None: # just fuzzy pattern search
+        elif fuzzypattern_matches_shown and extra is not None:  # just fuzzy pattern search
             self.lbTableName.setText("Matches found:")
 
         self.acceptRangeAction = QAction("&Accept", self)
@@ -111,25 +148,13 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
                     return util.ready_future()
                 else:
                     print("URI loaded:", ok, "with URL:", u)
-                    r = await self.aeval_js(pyqt_common.qwcjs(
-                        """
-                        try {
-                            window.qwc = new QWebChannel(qt.webChannelTransport, function (channel) {
-                                try {
-                                    window.qtab = channel.objects.qtab;
-                                    window.adaptToQWebView();
-                                } catch (ie) {
-                                    alert(window.qtab);
-                                    alert(ie);
-                                }
-                            });
-                        } catch (e) {
-                            alert(e);
-                        }
-                        """
-                    ))
+                    r = await self.aeval_js(pyqt_common.qwcjs(self._js_to_evaluate_text_mode))
+                    self.webView.page().loadFinished.disconnect()
                     return r
+
             try:
+
+                # warning not sure about garbage collector for qt side
                 self.webChannel.registerObject("qtab", self)
                 fu = loaded_co()
                 asyncio.get_event_loop().run_until_complete(fu)
@@ -142,6 +167,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         page = self.webView.page() #.addToJavaScriptWindowObject("qtab", self)
         self.webChannel = QWebChannel(page)
         page.setWebChannel(self.webChannel)
+        self.webView.show()
 
         try:
             qf = QtGui.QFont("monospace")
@@ -159,6 +185,55 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
         page.loadFinished.connect(loaded)
         page.load(QtCore.QUrl(uri))
+
+        self.current_url = uri
+        self.graph_mode_uri = QtCore.QUrl.fromLocalFile(graph_mode_uri)
+        self.text_mode_uri = uri
+
+    # TODO need discussion, topic = wrapped C/C++ object of type .... has been deleted and
+    #  \QCoreApplication::exec: The event loop is already running... with exception
+
+    @QtCore.pyqtSlot()
+    def switch_to_text_mode(self):
+        def loaded(ok: bool):
+            try:
+                self.webView.page().loadFinished.disconnect()
+                print("URI loaded:", ok, "with URL:", self.webView.page().url())
+                self.eval_js(pyqt_common.qwcjs(self._js_to_evaluate_text_mode))
+                self.menu_view_mode.setEnabled(True)
+                self.enable_inf_element(True)
+            except Exception as e:
+                print("Exc:", e, file=sys.stderr)
+
+        self.current_url = self.text_mode_uri
+        self.webView.page().loadFinished.connect(loaded)
+        self.webView.page().load(QtCore.QUrl(self.current_url))
+        self.menu_view_mode.setText("View groups as graph")
+        self.menu_view_mode.triggered.disconnect()
+        self.menu_view_mode.triggered.connect(self.switch_to_graph_mode)
+
+        self.menu_view_mode.setEnabled(False)
+
+    @QtCore.pyqtSlot()
+    def switch_to_graph_mode(self):
+        def loaded(ok: bool):
+            try:
+                self.eval_js(pyqt_common.qwcjs(self._js_to_eval_graph_mode))
+                self.menu_view_mode.setEnabled(True)
+            except Exception as e:
+                print(e)
+            self.webView.page().loadFinished.disconnect()
+
+        self.current_url = self.graph_mode_uri
+        self.webView.page().load(QtCore.QUrl(self.current_url))
+        self.menu_view_mode.setText("View groups as text")
+        self.menu_view_mode.triggered.disconnect()
+        self.menu_view_mode.triggered.connect(self.switch_to_text_mode)
+        self.webView.page().loadFinished.connect(loaded)
+
+        self.menu_view_mode.setEnabled(False)
+        self.enable_dict(False)
+        self.enable_inf_element(False)
 
     def close_tab(self):
         self.parent().removeWidget(self)
@@ -332,7 +407,19 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     @QtCore.pyqtSlot(bool)
     def enable_dict(self, e):
+        """
+            Enable or disable context menu item 'Create dictionary entry'
+            :param e: Bool
+        """
         self.menu_create_di.setEnabled(e)
+
+    @QtCore.pyqtSlot(bool)
+    def enable_inf_element(self, e):
+        """
+        Enable or disable context menu item 'Create information element'
+        :param e: Bool
+        """
+        self.menu_create_ie.setEnabled(e)
 
     @QtCore.pyqtSlot(QtCore.QPoint)
     def web_context_menu(self, point):
@@ -430,6 +517,8 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
 
 class ElemBrowserUI(QtWidgets.QMainWindow, pyqt_common.ui_class('element_browser_window.ui')):
+    shouldAddTab = pyqtSignal(str, str, str, str, str, str, bool, str, object, name='shouldAddTab')
+
     def __init__(self, parent=None, path=None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
@@ -437,16 +526,15 @@ class ElemBrowserUI(QtWidgets.QMainWindow, pyqt_common.ui_class('element_browser
         # bindings
         self.bindEvents()
 
-    shouldAddTab = pyqtSignal(str, str, str, str, str, str, bool, object, name='shouldAddTab')
-
-    @QtCore.pyqtSlot(str, str, str, str, str, str, bool, object)
-    def addbrTab(self, uri, heading, stats, text, fn, save_fn, fuzzymatch: bool, extra: object):
+    @QtCore.pyqtSlot(str, str, str, str, str, str, bool, str, object)
+    def addbrTab(self, uri, heading, stats, text, fn, save_fn, fuzzymatch: bool, graph_mode_uri, extra: object):
         # self.hide()
 
         if fuzzymatch:
             self.setWindowTitle("Near Duplicates")
 
-        ntab = ElemBrowserTab(self, uri, stats, text, fn, save_fn, fuzzypattern_matches_shown=fuzzymatch, extra=extra)
+        ntab = ElemBrowserTab(self, uri, stats, text, fn, save_fn, fuzzypattern_matches_shown=fuzzymatch,
+                              graph_mode_uri=graph_mode_uri, extra=extra)
         # Now let's only shw single tab
         while self.browserTabs.count():
             self.browserTabs.removeTab(0)
@@ -622,16 +710,31 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
 
                 forced_save_fn = infile if clargs.force_allow_acccept_ignore_save else ""
 
-                if methodIdx == 0: # Clone Miner
+                if methodIdx == 0:  # Clone Miner
                     # something sensible later
+
+                    # graph_mode_url = html_report_graph_auto_mode(ffworkfolder)
                     for l, o in zip(numparams, wt.outs):
+                        working_directory = os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l)
                         ht = pyqt_common.path2url(
-                            os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l, "pyvarelements.html"))
-                        self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn, forced_save_fn, False, None)
+                            os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % l,
+                                         "pyvarelements.html"))
+                        graph_mode_url = html_report_graph_auto_mode(working_directory, srctext)
+                        self.elbrui.addbrTab(ht, str(l), o, srctext, srcfn, forced_save_fn, False,
+                                             graph_mode_url, None)
+
                 elif methodIdx == 2 or methodIdx == 3:  # Fuzzy Finder
+                    # make html for graph mode
+                    graph_mode_url = html_report_graph_auto_mode(ffworkfolder, srctext)
                     ht = pyqt_common.path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
-                    self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, True, extra=None)
+                    self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, True,
+                                         graph_mode_url, extra=None)
+
                 elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
+                    # make html for graph mode
+                    print("fee")
+                    # TODO not sure about graph  presentation for this mode
+                    #graph_mode_url = html_report_graph_auto_mode(ffworkfolder, srctext)
                     htp = os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0])
                     serve(srcfn, self.elbrui, htp)  # start server
 
@@ -650,8 +753,11 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
                         print(repr(ee), file=sys.stderr)
 
                 elif methodIdx == 1 and self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Report
+                    # make html for graph mode just for clones
+                    graph_mode_url = html_report_graph_auto_mode(ffworkfolder)
                     ht = pyqt_common.path2url(os.path.join(ffworkfolder, "pyvarelements.html"))
-                    self.elbrui.addbrTab(ht, str(numparams), "", srctext, srcfn, forced_save_fn, True, extra=None)
+                    self.elbrui.addbrTab(ht, str(numparams), "", srctext, srcfn, forced_save_fn, True,
+                                         graph_mode_url, extra=None)
                 else:
                     raise NotImplementedError("Unknown method: " + methodIdx)
 
@@ -688,6 +794,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
             self.timer.start(500)
 
     def launch_with_fuzzy_finder(self, pui, infile, numparams):
+        # TODO not called/ DEPRECATED?
         global elbrui
 
         ffworkfolder = os.path.join(
@@ -709,7 +816,6 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         wt = run_ngram_dup_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
 
-
     def launch_with_heuristic_ngram_dup_finder(self, pui, infile, numparams):
         # !!! !!!
         global elbrui
@@ -717,7 +823,6 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         ffworkfolder = os.path.dirname(infile)
         wt = run_ngram_dup_finder_thread(pui, infile, numparams, self.cbSrcLang.currentText(), ffworkfolder)
         return wt, ffworkfolder
-
 
     def launch_fuzzyheat_reporting(self, pui, infile, onready):
         wt, ffworkfolder = run_nearduplicate_report_thread(pui, infile, onready)
@@ -989,11 +1094,12 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
     if savefilename.endswith(".reformatted"):
         savefilename = savefilename[:-12]
     else:
+        #TODO what better presentation for one seacrh
         print("WARNING! inputfilename", inputfilename, "does not end with .reformatted")
     ui.shouldAddTab.emit(
         pyqt_common.path2url(os.path.join(outdir, "pyvarelements.html")),
         "Fuzzy Search results", "", srctext, inputfilename,
-        savefilename, True, variatives
+        savefilename, True, 'CHANGEMEEEEE', variatives
     )
 
 def serve(inputfilename, ui, htp):
@@ -1107,6 +1213,7 @@ class NearDuplicateWorkThread(QtCore.QThread):
         self.pui.progressChanged.emit(2, 2, "Done")
         app.processEvents()
         app.enqueue(self.continuation)
+
 
 class CloneMinerWorkThread(QtCore.QThread):
     do_not_run_anymore = False
