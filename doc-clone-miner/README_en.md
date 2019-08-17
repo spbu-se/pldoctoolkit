@@ -42,7 +42,7 @@ Python
 ------
 
 * 64 bit [Python 3.7.x](https://www.python.org/downloads/)
-* PyQt, PyQtWebEngine, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc, chardet — `pip install -r py_requirements.txt`
+* PyQt, PyQtWebEngine, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc, chardet — `pip install -r requirements.txt`
 * Optional:
     * Cython — `pip install Cython`. If this library is not installed, then the near duplicate search will run slower
     * PyInterval — `pip install  pyinterval`, it will probably require sideloading crlibm for Windows
@@ -54,6 +54,7 @@ System
 * [Pandoc](http://pandoc.org/)
 * [JRE 10+](https://java.com/) to run Heuristic Finder
 * on Windows:
+    * ASCII computer network name (bottle package problem)
     * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) to run Fuzzy Finder
 * on UN*Xes:
     * [Wine](https://www.winehq.org/) to run Clone Miner

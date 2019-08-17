@@ -43,7 +43,7 @@ Python
 ------
 
 * 64 bit [Python 3.7.x](https://www.python.org/downloads/)
-* PyQt, PyQtWebEngine, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc, chardet — `pip install -r py_requirements.txt`
+* PyQt, PyQtWebEngine, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc, chardet — `pip install -r 2requirements.txt`
 * Опционально:
     * PyInterval — `pip install  pyinterval`, возможно для Windows потребуется загрузить откуда-либо пакет crlibm
     * Cython — `pip install Cython`. Если эта библиотека не установлена, то поиск по образцу будет работать медленнее.
@@ -55,6 +55,7 @@ Python
 * [Pandoc](http://pandoc.org/)
 * [JRE 10+](https://java.com/) для запуска Heuristic Finder
 * для Windows:
+    * Имя компьютера в сети только из ASCII (проблема пакета bottle)
     * [.NET Framework 4.5](https://www.microsoft.com/ru-ru/download/details.aspx?id=30653) для запуска Fuzzy Finder
 * для UN*X-подобных систем:
     * [Wine](https://www.winehq.org/) для запуска Clone Miner
