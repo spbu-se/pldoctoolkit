@@ -14,7 +14,7 @@ import sys
 
 import clones
 import sourcemarkers
-
+from util import copy_required_libs_to, copy_required_files_to
 
 logging.basicConfig(filename='nearduplicates2html.log', level=logging.INFO)
 logger = logging
@@ -101,14 +101,9 @@ def report(logger):
     with open(os.path.join(outdir, "acceptedduplicates.html"), 'w', encoding='utf-8') as htmlfile:
         htmlfile.write(cohtml)
 
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'interactivity.js'),
-        os.path.join(outdir, "interactivity.js")
-    )
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'jquery-2.0.3.min.js'),
-        os.path.join(outdir, "jquery-2.0.3.min.js")
-    )
+    copy_required_libs_to(outdir)
+    copy_required_files_to(outdir)
+
 
 if __name__ == '__main__':
     logger.info(f"nearduplicates2html: {' '.join(sys.argv)}")

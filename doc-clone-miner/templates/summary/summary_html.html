@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <title>Variative elements</title>
+    <!-- Bootstrap CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet"/>
+    <!-- Custom styles -->
+     <link href="summary_html.css" rel="stylesheet">
+
+    <!-- Jquery-->
+    <script src="jquery-3.4.1.min.js"></script>
+    <!-- Popper-->
+    <script src="popper.js"></script>
+    <!-- Bootstrap js-->
+    <script src="bootstrap.min.js"></script>
+    <!-- Here goes customs -->
+    <script src="interactivity.js"></script>
+    <script src="row_actions.js"></script>
+
+</head>
+
+<body>
+
+
+<!-- change mode -->
+<ul class="nav nav-tabs justify-content-end">
+    <li class="active" style="margin-right: 7px"><a data-toggle="tab" href="#panel1">Табличный мод</a></li>
+    <li><a data-toggle="tab" href="#panel2" style="margin-right: 7px">Графовый мод</a></li>
+</ul>
+
+
+<div class="tab-content">
+    <div id="panel1" class="tab-pane fade in active">
+        <!-- Here goes table mode -->
+        <div id="content">
+            <div id="table" class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th class="col-auto" scope="col">  {{ first_col_name }}</th>
+                        {% if  second_col_name |length %}
+                            <th class="col-auto" scope="col">  {{ second_col_name }}</th>
+                        {% endif %}
+
+                        {% if  third_col_name |length %}
+                            <th class="col-auto" scope="col">  {{ third_col_name }}</th>
+                        {% endif %}
+
+                        {% if  fourth_col_name |length %}
+                            <th class="col-auto" scope="col">  {{ fourth_col_name }}</th>
+                        {% endif %}
+                        <th class="col-auto" id="edit_header" scope="col"> Edit</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <!-- table rows-->
+                    {% for row in rows %}
+                        {{ row }}
+                    {% endfor %}
+                    <!-- end table rows -->
+                    </tbody>
+                </table>
+
+                <div id="blgd">
+                    Blacklisted group descriptors:
+                    <textarea style="width:100%; height:100px;" id="black_descriptor_list"></textarea>
+                    2dict group descriptors:
+                    <textarea style="width:100%; height:100px;" id="todict_descriptor_list"></textarea>
+                    2elem group descriptors:
+                    <textarea style="width:100%; height:100px;" id="toelem_descriptor_list"></textarea>
+                </div>
+            </div>
+
+            <span id="srclabel" style="height: 30px; vertical-align: bottom;">Source code:</span>
+            <div id="source">
+                <code>
+                    {{ source_text }}
+                </code>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="panel2" class="tab-pane fade ">
+        <!-- Here goes graph mode -->
+        <!-- Will be injected further -->
+
+
+    </div>
+
+
+</div>
+
+</body>
+
+
+</html>
+
+

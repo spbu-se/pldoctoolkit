@@ -34,6 +34,7 @@ except Exception as e:
     print("pyinterval not installed. No coverage reports will be available", file=sys.stderr)
 
 from abc import ABC, abstractmethod
+from settings import template_env
 
 # seems reasonable
 # http://stackoverflow.com/questions/3269434/whats-the-most-efficient-way-to-test-two-integer-ranges-for-overlap
@@ -1528,23 +1529,26 @@ class VariativeElement:
             <td class="fxd">${idx}</td><!-- IDESC: ${idesc} -->
             """ + ("""<td class="fxd">${clgr}</td>""" if len(startgrp.instances) > 1 else "") + """
             ${eptsl}
-            <td class="tka"><tt>${text}</tt></td>
-            </tr>"""))
+            <td class="tka"><tt>${text}</tt></td>""" +
+                                                """<td class="fxd"><span>rem</span></td>""" +
+                                                """</tr>"""))
 
         vtext = ""
         vnc = 0
         fuzzyreport = self.fuzzy and len(startgrp.instances) > 1  # a kind of... TODO: fix properly
 
         vvtexts = [
-            ('<span style="background-color: silver; color:red; font-weight:bold;">&#x25c0;%d&#x25c0;</span><wbr/>' % (vn,) +
-                '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">|</span><wbr/>'.join([
-                (
-                    """<code class="variationclick" data-ignore-title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
-                ) % (hlstart, hlend, hlstart, hlend, clr, ' ' + t.strip() + ' ')
-                for (hlstart, hlend, clr, t) in zip(starts, ends, self.htmlvcolors, variations)
-                ]) +
-                '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">&#x25b6;%d&#x25b6;</span>' % (vn,)
-            )
+            ('<span style="background-color: silver; color:red; font-weight:bold;">&#x25c0;%d&#x25c0;</span><wbr/>' % (
+                vn,) +
+             '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">|</span><wbr/>'.join([
+                 (
+                     """<code class="variationclick" data-ignore-title="%d-%d" data-hlrange="%d-%d" style="background-color: %s; cursor: pointer;">%s</code>"""
+                 ) % (hlstart, hlend, hlstart, hlend, clr, ' ' + t.strip() + ' ')
+                 for (hlstart, hlend, clr, t) in zip(starts, ends, self.htmlvcolors, variations)
+             ]) +
+             '<wbr/><span style="background-color: silver; color:red; font-weight:bold;">&#x25b6;%d&#x25b6;</span>' % (
+                 vn,)
+             )
             for variations, vn in zip(vvariations, itertools.count(1))
         ]
 
@@ -1560,7 +1564,7 @@ class VariativeElement:
 
         vtext = self.clone_groups[0].html(allow_space_wrap=True)
         for n in range(len(self.clone_groups) - 1):
-            vtext += vvtexts[n] + self.clone_groups[n+1].html(allow_space_wrap=True)
+            vtext += vvtexts[n] + self.clone_groups[n + 1].html(allow_space_wrap=True)
 
         vtext += '<wbr/>' + vltexts
 
@@ -1573,12 +1577,12 @@ class VariativeElement:
         if len(gratios) != 0:
             vtext += " %0.3f" % min(gratios)
 
-        return templ.substitute(
-            cssclass="multiple" if len(self.clone_groups) > 1 else "single",
+        return template_env.get_template('summary/row_template.html').render(
+            cssclass='multiple' if len(self.clone_groups) > 1 else 'single',
             idx=self.html_idx if hasattr(self, 'html_idx') else VariativeElement._html_idx,
-            idesc=self.id_descriptor(),
-            eptsl="" if self.fuzzy else ('<td class ="fxd" >' + str(self.g_power - 1) + '</td>'),
-            clgr=len(self.clone_groups[0].instances),
+            idesc=str(self.id_descriptor()),
+            eptsl='' if self.fuzzy else str(self.g_power - 1),
+            clgr=str(len(self.clone_groups[0].instances)) if len(startgrp.instances) > 1 else '',
             desc=self.textdescriptor,
             text=vtext
         )
@@ -1606,21 +1610,18 @@ class VariativeElement:
 
     @staticmethod
     def summaryhtml(elements: 'list(VariativeElement)', mode: 'ReportMode'):
-        import html_templates
 
         fuzzy = mode in [ReportMode.fuzzyclones, ReportMode.fuzzymatches]
         clgrp = mode != ReportMode.fuzzymatches
-        summaryhtml_start = string.Template(html_templates.summaryhtml_start).substitute(**(
-            {
-                'colh0': "№",
-                'colh1': """<th class="fxd">Clns/Grp</th>""" if clgrp else "",
-                'epts': "" if fuzzy else '<th class="fxd">Ext.pts</th>',
-                'catexth': """<th class="tka">""" + ("Matched text" if fuzzy else "Candidate text") + """</th>"""
-            }
-        ))
-
 
         global only_generate_for_ui
         source = "** generated for standalone UI **" if only_generate_for_ui else util.escapecode(inputfiles[0].text)
 
-        return summaryhtml_start + (os.linesep.join([e.html for e in elements])) + html_templates.summaryhtml_middle + source + html_templates.summaryhtml_finish
+        return template_env.get_template('summary/summary_html.html').render(
+            first_col_name='№',
+            second_col_name='Clns/Grp' if clgrp else '',
+            third_col_name='' if fuzzy else 'Ext.pts',
+            fourth_col_name='Matched text' if fuzzy else 'Candidate text',
+            rows=[e.html for e in elements],
+            source_text=source
+        )

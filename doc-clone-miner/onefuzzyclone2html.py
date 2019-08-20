@@ -191,14 +191,8 @@ def report(logger, args):
     with open(os.path.join(outdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:
         htmlfile.write(cohtml)
 
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'interactivity.js'),
-        os.path.join(outdir, "interactivity.js")
-    )
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'jquery-2.0.3.min.js'),
-        os.path.join(outdir, "jquery-2.0.3.min.js")
-    )
+    util.copy_required_libs_to(outdir)
+    util.copy_required_files_to(outdir)
 
     return fuzzygroups
 
@@ -221,6 +215,7 @@ def get_variative_elements(
 
     organize_search(logger, largs)
     return report(logger, largs)
+
 
 # command line interface
 if __name__ == '__main__':

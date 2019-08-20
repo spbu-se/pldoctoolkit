@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        </style>
+        <script>
+        
+        function selectbyds(ds) {
+          var spn = document.querySelector('[data-source-offs="' + ds + '"]');
+          // place it in the center
+          window.scrollTo(0, spn.offsetTop - (window.innerHeight - spn.offsetHeight) / 2);
+          var r = document.createRange();
+          r.setStart(spn, 0)
+          r.setEndAfter(spn)
+          var ws = window.getSelection();
+          ws.removeAllRanges();
+          ws.addRange(r);
+        }
+        
+        function selctionfuzzysearch(evt) {
+          var seltext = window.getSelection().toString();
+          var minsim = window.prompt("Similarity threshold", "0.77");
+          // alert([minsim, seltext]);
+          var nloc = "http://127.0.0.1:49999/fuzzysearch?minsim=" + encodeURIComponent(minsim) +
+            "&text=" + encodeURIComponent(seltext);
+          document.getElementById("queryframe").src = nloc;
+        }
+        document.addEventListener("keypress", selctionfuzzysearch, false);
+        </script>
+
+        </head>
+        <body style="overflow-x: hidden; font-family: monospace;">
+        {{ data }}
+        <div><iframe style="border: 0px; width: 90%; " id="queryframe" src="" ></iframe></div>
+        <a href="http://127.0.0.1:49999/shutdown" target="_blank" >X</a>
+        </body>
+        </html>

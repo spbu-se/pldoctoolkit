@@ -285,7 +285,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         se = cursor.selectionEnd() - 1
         if se <= ss:
             return
-
+#TODO do not completely understand
         cv = vs[ix]  # type: clones.VariativeElement
         oldgrp = cv.clone_groups[0]
         cf, cb, ce = oldgrp.instances[0] # type: clones.FuzzyCloneGroup
@@ -1108,6 +1108,7 @@ def serve(inputfilename, ui, htp):
 
     @bottle.route('/fuzzysearch')
     def fuzzysearch():
+        #TODO here search starts
         msim = bottle.request.query.minsim
         text = bottle.request.query.text
         with open(inputfilename, encoding='utf-8') as inf:
@@ -1126,9 +1127,11 @@ def serve(inputfilename, ui, htp):
 
     @bottle.route('/')
     def index():
-        import html_templates
-        import string
-        return string.Template(html_templates.densitybrowser_template).substitute({'abspath': '.', 'gentime' : server_start_time})
+        import settings
+        return settings.template_env.get_template('densitybrowser/densitybrowser.html').render(
+            abspath='.',
+            gentime=server_start_time
+        )
 
     @bottle.route("/gentime")
     def gentime():

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    </style>
+    <script>
+        window.generationTime = {{gentime}};
+
+        var outdated = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/gentime', true);
+            xhr.onreadystatechange = function () { // (3)
+                if (xhr.readyState != 4) return;
+                if (xhr.status != 200) {
+                    alert(xhr.status + ': ' + xhr.statusText);
+                } else {
+                    var r = xhr.responseText;
+                    if (parseFloat(r) > window.generationTime) // outdated file
+                        window.close();
+                    else
+                        setTimeout(outdated, 1500);
+                }
+
+            };
+            xhr.send();
+        };
+        // setTimeout(outdated, 1500); // can't close, let's not use it for now
+
+        window.select_source = function (b, e) {
+            var w = document.all.densitymap.contentWindow;
+            w.selectbyds('' + b);
+        }
+    </script>
+</head>
+<body style="margin: 0px; padding: 0px;">
+<iframe name="densitymap" src="{{ abspath }}/densitymap.html"
+        style="border: 0; position:absolute; height: 100%; width: calc(100% - 200px);"></iframe>
+<iframe name="heatmap" src="{{ abspath }}/heatmap.html"
+        style="overflow-x: hidden; border: 0; position:absolute; height: 100%; left: calc(100% - 200px); width: 200px;"></iframe>
+</body>
+</html>

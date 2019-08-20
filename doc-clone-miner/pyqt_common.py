@@ -134,7 +134,8 @@ def load_p_url_sync(page: QtWebEngineWidgets.QWebEnginePage, u: Qt.QUrl):
 
 
 def qwcjs(plus = None):
-    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "js", "qwebchannel.js"), encoding='utf-8') as qwcjsf:
+    import settings
+    with open(os.path.join(settings.DIST_DIR, "qwebchannel", "qwebchannel.js"), encoding='utf-8') as qwcjsf:
         return qwcjsf.read() + ('\n' + plus if plus else "")
 
 

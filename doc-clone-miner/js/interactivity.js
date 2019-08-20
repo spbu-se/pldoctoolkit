@@ -250,13 +250,8 @@ window.doc_ready = function() {
     }
 
     var correct_sizes = function() {
-        var tb = $("tbody")[0];
-        var scrollbarw = tb.offsetWidth - tb.clientWidth;
-        // alert(scrollbarw);
-        var fxd = 65
-        var wh = window.innerHeight;
-        var ww = window.innerWidth;
 
+        var wh = window.innerHeight;
         var thh = $('div#table thead').height();
 
         if (window.qtab) {
@@ -268,14 +263,6 @@ window.doc_ready = function() {
             $("div#source").height((wh-sh) * 0.4);
         }
         $("tbody").height($("div#table").height() - thh);
-
-        $("th.fxd, td.fxd").width(fxd);
-
-        var thl = $("th.tka").offset().left;
-        var sbs = scrollbarw * 1; // impirically...
-
-        $("th.tka").width(ww - thl);
-        $("td.tka").width(ww - sbs - thl);
     };
 
     $(window).resize(correct_sizes);

@@ -9,6 +9,7 @@ import shutil
 import tempfile
 
 from external_tool_unifier import  save_clones_as_json
+from util import copy_required_files_to, copy_required_libs_to
 
 logging.basicConfig(filename='fuzzyclones2html.log', level=logging.INFO)
 logger = logging
@@ -207,18 +208,13 @@ def report(logger):
     with open(os.path.join(outdir, "pyvarelements.html"), 'w', encoding='utf-8') as htmlfile:
         htmlfile.write(cohtml)
 
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'interactivity.js'),
-        os.path.join(outdir, "interactivity.js")
-    )
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'jquery-2.0.3.min.js'),
-        os.path.join(outdir, "jquery-2.0.3.min.js")
-    )
+    copy_required_libs_to(outdir)
+    copy_required_files_to(outdir)
 
     if args.open_browser:
         report_url = pathlib.Path(os.path.join(os.path.abspath(outdir), "pyvarelements.html")).as_uri()
         webbrowser.open(report_url)
+
 
 if __name__ == '__main__':
     logger.info(f"fuzzyclones2html: {' '.join(sys.argv)}")

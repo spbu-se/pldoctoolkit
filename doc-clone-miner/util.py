@@ -11,9 +11,60 @@ import functools
 import traceback
 
 try:
-    import interval as itvl # https://pypi.python.org/pypi/pyinterval
+    import interval as itvl  # https://pypi.python.org/pypi/pyinterval
 except Exception as e:
     print("pyinterval not installed. No coverage reports will be available", file=sys.stderr)
+
+
+def copy_required_libs_to(outdir):
+    import settings
+    """
+     Copies all required common js scripts and css files (libs) to specified output directory 
+    :param outdir: where to copy files
+    :return:
+    """
+    shutil.copyfile(
+        os.path.join(settings.DIST_DIR, 'jquery', 'jquery-3.4.1.min.js'),
+        os.path.join(outdir, "jquery-3.4.1.min.js")
+    )
+    shutil.copyfile(
+        os.path.join(settings.DIST_DIR, 'popper', 'popper.js'),
+        os.path.join(outdir, 'popper.js')
+    )
+    shutil.copyfile(
+        os.path.join(settings.DIST_DIR, 'bootstrap', 'js', 'bootstrap.min.js'),
+        os.path.join(outdir, 'bootstrap.min.js')
+    )
+    shutil.copyfile(
+        os.path.join(settings.DIST_DIR, 'bootstrap', 'css', 'bootstrap.min.css'),
+        os.path.join(outdir, 'bootstrap.min.css')
+    )
+
+
+def copy_required_files_to(outdir):
+    import settings
+    """
+    Copies all required js scripts and css files to specified output directory 
+    :param outdir: where to copy files
+    :return:
+    """
+    shutil.copyfile(
+        os.path.join(settings.JS_DIR, 'interactivity.js'),
+        os.path.join(outdir, "interactivity.js")
+    )
+
+    shutil.copyfile(
+        os.path.join(settings.JS_DIR, 'row_actions.js'),
+        os.path.join(outdir, "row_actions.js")
+    )
+    shutil.copyfile(
+        os.path.join(settings.TEMPLATE_DIR, 'summary', 'summary_html.css'),
+        os.path.join(outdir, 'summary_html.css')
+    )
+    # shutil.copyfile(
+    #     os.path.join(settings.JS_DIR, 'sortable'),
+    #     os.path.join(outdir, 'popper.js')
+    # )
 
 
 """Misc utilitary garbage"""
@@ -22,9 +73,11 @@ except Exception as e:
 def escape(s):
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')  # html.escape(s)
 
+
 def escapen(s):
     # not os.linesep to be more precise on length
     return escape(s).replace('\n', '<br/>\n')
+
 
 def escapecode(s, allow_space_wrap=False):
     s = escapen(s)
@@ -72,14 +125,8 @@ def write_variative_report(clones, candidates, report_file_name):
     with open(report_file_name, 'w', encoding='utf-8') as htmlfile:
         htmlfile.write(cohtml)
 
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'interactivity.js'),
-        os.path.join(target_dir, "interactivity.js")
-    )
-    shutil.copyfile(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'js', 'jquery-2.0.3.min.js'),
-        os.path.join(target_dir, "jquery-2.0.3.min.js")
-    )
+    copy_required_files_to(target_dir)
+    copy_required_libs_to(target_dir)
 
 
 def transpose(a):
@@ -89,6 +136,7 @@ def transpose(a):
     :return: list of lists (say, lines of transposed matrix)
     """
     return [list(x) for x in zip(*a)]
+
 
 def connected_slices(i: 'itvl.interval') -> 'list[tuple[int, int]]':
     return [(int(t[0][0]), int(t[0][1])) for t in i.components]
@@ -100,6 +148,7 @@ def lratio(s1, s2):
     raise DeprecationWarning("This function should not be used anymore")
     return 1 - Levenshtein.distance(s1, s2) / max(len(s1), len(s2), 1)
 
+
 def diratio(s1, s2):
     try:
         import faster_pattern_near_duplicate_search
@@ -110,6 +159,8 @@ def diratio(s1, s2):
 
 
 _wre = re.compile(r"\w+", re.UNICODE)
+
+
 def tokens(text):
     r = []
     for m in _wre.finditer(text):
@@ -118,15 +169,19 @@ def tokens(text):
         r.append((s, e, text[s:e]))
     return r
 
+
 def text_to_tokens_offsets(src: str) -> 'tuple[list[str], list[tuple[int, int]]]':
     str_offs = [(src[fi.start():fi.end()], (fi.start(), fi.end())) for fi in _wre.finditer(src)]
     return tuple([list(t) for t in zip(*str_offs)])
 
+
 def tokenst(text):
     return [s for b, e, s in tokens(text)]
 
+
 def ctokens(text):
     return ' '.join(tokenst(text))
+
 
 def save_reformatted_file(fileName):
     lines = []
@@ -139,7 +194,8 @@ def save_reformatted_file(fileName):
             lines.append(lst)
     text = "".join(lines)
     with open(fileName + ".reformatted", 'w+', encoding='utf-8', newline='\n') as ofs:
-       ofs.write(text)
+        ofs.write(text)
+
 
 def save_standalone_html(source_html, target_html):
     with open(source_html, encoding='utf-8') as htmlsrc:
@@ -158,6 +214,7 @@ def save_standalone_html(source_html, target_html):
         with open(target_html, "w", encoding='utf-8') as ofl:
             ofl.write(htmlcontent)
 
+
 # asyncio stuff
 
 def ready_future(result=None):
@@ -165,8 +222,10 @@ def ready_future(result=None):
     fut.set_result(result)
     return fut
 
+
 def set_asio_el(loop):
     asyncio.set_event_loop(loop)
+
 
 def fire_and_forget(task, *args, **kwargs):
     """Start and forget async task as https://stackoverflow.com/a/37344956/539470 shows"""
@@ -182,6 +241,7 @@ def excprint(function):
     A decorator that wraps the passed in function and logs
     exceptions should one occur
     """
+
     @functools.wraps(function)
     def wrapper(*args, **kwargs):
         try:

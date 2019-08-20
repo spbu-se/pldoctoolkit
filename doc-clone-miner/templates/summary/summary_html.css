@@ -1,0 +1,87 @@
+menu {
+    display: none;
+}
+
+body {
+    background-color: #dddddd;
+    margin: 0px;
+    overflow: hidden;
+}
+
+table {
+    border-width: 1px 1px 0 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-style: solid;
+}
+
+
+
+
+
+tbody {
+    background-color: #ffffff;
+    overflow-y: scroll;
+    /* height: calc(50vh - 30px); handle it with JS =( */
+}
+
+
+
+th {
+    text-align: center;
+    vertical-align: bottom;
+}
+
+td {
+    vertical-align: top;
+}
+
+
+div #source {
+    overflow-y: scroll;
+    background-color: #ffffff;
+    border: 1px solid black;
+}
+
+div #table {
+
+}
+
+div #blgd {
+    display: none;
+}
+
+code.xmlmarkup {
+    color: grey;
+}
+
+code.highlight, span.highlight {
+    background-color: blue !important;
+    color: white !important;
+}
+
+tr.multiple input[data-rel="create_dic"] {
+    display: none;
+}
+
+tr.active {
+    background-color: #eaeaea;
+}
+
+span.diffminus {
+    color: red;
+    text-decoration: line-through;
+}
+
+span.diffplus {
+    color: #009030;
+    font-weight: bold;
+}
+
+span.nonarchetypical {
+    color: blue;
+    font-weight: bold;
+}
+code {
+    color: black;
+}

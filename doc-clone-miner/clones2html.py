@@ -363,7 +363,7 @@ td, th
 }
 </style>
 </head>
-<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <body>
 <p>
 Files:<br/>
@@ -562,65 +562,30 @@ def combine_groups():
     return combinations
 
 def write_density_report():
-    import html_templates
+    import settings
     with \
-        open(os.path.join("Output", subdir, "densityreport.html"), 'w', encoding='utf-8') as density_table_file,\
-        open(os.path.join("Output", subdir, "densitymap.html"), 'w', encoding='utf-8') as density_map_file,\
-        open(os.path.join("Output", subdir, "heatmap.html"), 'w', encoding='utf-8') as heat_map_file,\
-        open(os.path.join("Output", subdir, "densitybrowser.html"), 'w', encoding='utf-8') as density_browser_file:
-
+            open(os.path.join("Output", subdir, "densityreport.html"), 'w', encoding='utf-8') as density_table_file, \
+            open(os.path.join("Output", subdir, "densitymap.html"), 'w', encoding='utf-8') as density_map_file, \
+            open(os.path.join("Output", subdir, "heatmap.html"), 'w', encoding='utf-8') as heat_map_file, \
+            open(os.path.join("Output", subdir, "densitybrowser.html"), 'w', encoding='utf-8') as density_browser_file:
         import densityreport
         dr = densityreport.report_densities(clones.clonegroups, clones.inputfiles)
-        h0 = textwrap.dedent("""<!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="utf-8">
-        <style type="text/css">
-        table
-        {
-            border-color: grey;
-            border-width: 1px 1px 0 0;
-            border-spacing: 0;
-            border-collapse: collapse;
-            border-style: solid;
-        }
-        td, th
-        {
-            border-color: grey;
-            margin: 0;
-            padding: 4px;
-            border-width: 0 0 1px 1px;
-            border-style: solid;
-            font-family: sans-serif;
-        }
-        </style>
-        </head>
-        <body>
-        %s
-        </body>
-        </html>""") % (dr[0],)
-
-        h1 = html_templates.density_map_h1 % (dr[1],)
-
-        h3 = textwrap.dedent("""<!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="utf-8">
-        <style type="text/css">
-        </style>
-        </head>
-        <body style="overflow-x: hidden;">
-        %s
-        </body>
-        </html>""") % (dr[2],)
-
-        density_table_file.write(h0)
-        density_map_file.write(h1)
-        heat_map_file.write(h3)
-
-        density_browser_file.write(
-            string.Template(html_templates.densitybrowser_template).substitute({'abspath': '.', 'gentime' : time.time()})
+        density_table_file.write(
+            settings.template_env.get_template('densitybrowser/density_map_h0.html').render(data=dr[0])
         )
+        density_map_file.write(
+            settings.template_env.get_template('densitybrowser/density_map_h1.html').render(data=dr[1])
+        )
+        heat_map_file.write(
+            settings.template_env.get_template('densitybrowser/density_map_h3.html').render(data=dr[2])
+        )
+        density_browser_file.write(
+            settings.template_env.get_template('densitybrowser/densitybrowser.html').render(
+                abspath='.',
+                gentime=time.time()
+            )
+        )
+
 
 def log_reuse_amount(candidates: 'list[clones.VariativeElement]'):
     l = logging.getLogger("cloneminer.combine.summary")
@@ -657,6 +622,7 @@ if __name__ == '__main__':  #
 
     if post_junk_filter:
         import post_junk_filter
+
         combs = post_junk_filter.post_junk_filter(combs)
 
     util.write_variative_report(
@@ -666,15 +632,6 @@ if __name__ == '__main__':  #
     # convert clones tp json and saved it for further usages
     relative_working_directory = os.path.join('Output', subdir)
     save_clones_as_json(relative_working_directory, combs)
-
-
-
-
-
-
-
-
-
 
     try:
         log_reuse_amount(combs)
