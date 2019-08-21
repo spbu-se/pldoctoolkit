@@ -113,6 +113,10 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
         self.menu_create_ie.triggered.connect(lambda: self.feval_js("window.some2elem();"))
         self.menu_create_di = self.menu.addAction("Add dictionary entry")
         self.menu_create_di.triggered.connect(lambda: self.feval_js("window.single2dict();"))
+        self.menu_create_selected_ie = self.menu.addAction("Create information element for selection")
+        self.menu_create_selected_ie.triggered.connect(lambda: self.feval_js("window.saveAsInfElemsSelected()"))
+        self.menu_create_selected_di = self.menu.addAction("Add dictionary entry for selection")
+        self.menu_create_selected_di.triggered.connect(lambda: self.feval_js("window.saveAsDictSelected()"))
 
         self.menu_view_mode = self.menu.addAction("View groups as graph")
         self.menu_view_mode.triggered.connect(self.switch_to_graph_mode)
@@ -412,6 +416,22 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
             :param e: Bool
         """
         self.menu_create_di.setEnabled(e)
+
+    @QtCore.pyqtSlot(bool)
+    def decide_enable_dict_selected(self, e):
+        """
+            Enable or disable context menu item 'Add dictionary entry for selection'
+            :param e: Bool
+        """
+        self.menu_create_selected_di.setEnabled(e)
+
+    @QtCore.pyqtSlot(bool)
+    def decide_enable_inf_selected(self, e):
+        """
+            Enable or disable context menu item 'Create information element for selection'
+            :param e: Bool
+        """
+        self.menu_create_selected_ie.setEnabled(e)
 
     @QtCore.pyqtSlot(bool)
     def enable_inf_element(self, e):

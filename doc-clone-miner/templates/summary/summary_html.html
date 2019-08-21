@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link href="bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom styles -->
-     <link href="summary_html.css" rel="stylesheet">
+    <link href="summary_html.css" rel="stylesheet">
 
     <!-- Jquery-->
     <script src="jquery-3.4.1.min.js"></script>
@@ -17,8 +17,10 @@
     <script src="bootstrap.min.js"></script>
     <!-- Here goes customs -->
     <script src="interactivity.js"></script>
-    <script src="row_actions.js"></script>
 
+    {% for script in applied_js_files %}
+        <script src="{{ script }}"></script>
+    {% endfor %}
 </head>
 
 <body>

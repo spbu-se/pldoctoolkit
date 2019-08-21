@@ -48,23 +48,11 @@ def copy_required_files_to(outdir):
     :param outdir: where to copy files
     :return:
     """
-    shutil.copyfile(
-        os.path.join(settings.JS_DIR, 'interactivity.js'),
-        os.path.join(outdir, "interactivity.js")
-    )
-
-    shutil.copyfile(
-        os.path.join(settings.JS_DIR, 'row_actions.js'),
-        os.path.join(outdir, "row_actions.js")
-    )
+    copytree(settings.JS_DIR, outdir)
     shutil.copyfile(
         os.path.join(settings.TEMPLATE_DIR, 'summary', 'summary_html.css'),
         os.path.join(outdir, 'summary_html.css')
     )
-    # shutil.copyfile(
-    #     os.path.join(settings.JS_DIR, 'sortable'),
-    #     os.path.join(outdir, 'popper.js')
-    # )
 
 
 """Misc utilitary garbage"""

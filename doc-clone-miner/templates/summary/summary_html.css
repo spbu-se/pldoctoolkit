@@ -18,13 +18,11 @@ table {
 
 
 
-
 tbody {
     background-color: #ffffff;
     overflow-y: scroll;
     /* height: calc(50vh - 30px); handle it with JS =( */
 }
-
 
 
 th {
@@ -82,6 +80,19 @@ span.nonarchetypical {
     color: blue;
     font-weight: bold;
 }
+
 code {
     color: black;
+}
+
+span.selectableClone {
+    color: #333333 !important;
+    background: rgba(65, 54, 17, 0.72) !important;
+    opacity: 0.9 !important;
+}
+
+tr.selectableRow {
+    color: #333333 !important;
+    background: rgba(65, 54, 17, 0.72) !important;
+    opacity: 0.9 !important;
 }

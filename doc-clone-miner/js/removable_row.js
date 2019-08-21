@@ -1,4 +1,6 @@
-// set of fuuciton
+/**
+ * Allows remove row in a table by click on X in row
+ **/
 
 $(window).ready(function () {
     //  Remove table row by click on specified icon X
@@ -6,4 +8,3 @@ $(window).ready(function () {
         $(this).closest('tr').remove();
     });
 });
-

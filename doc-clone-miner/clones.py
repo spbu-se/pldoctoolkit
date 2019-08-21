@@ -29,7 +29,7 @@ import semanticfilter
 import intervaltree
 
 try:
-    import interval as itvl # https://pypi.python.org/pypi/pyinterval
+    import interval as itvl  # https://pypi.python.org/pypi/pyinterval
 except Exception as e:
     print("pyinterval not installed. No coverage reports will be available", file=sys.stderr)
 
@@ -41,8 +41,9 @@ from settings import template_env
 import operator
 
 infty = sys.maxsize
-clonegroups = [] # type: List[CloneGroup]
+clonegroups = []  # type: List[CloneGroup]
 allow2offset = True
+
 
 def is_overlapping(x1, x2, y1, y2):
     return max(x1, y1) <= min(x2, y2)
@@ -57,6 +58,7 @@ def initdata(inputfilesiv=[], clonegroupsiv=[]):
 
     inputfiles = inputfilesiv
     clonegroups = clonegroupsiv
+
 
 def initoptions(args, logger):
     global minlen
@@ -88,7 +90,7 @@ def initoptions(args, logger):
     maximalvariance = int(args.maximalvariance)
 
     global maximalrsd
-    maximalrsd = float(args.maximalrsd)/100.0
+    maximalrsd = float(args.maximalrsd) / 100.0
 
     global maxvariantdistance
     maxvariantdistance = 100
@@ -173,17 +175,21 @@ def initoptions(args, logger):
     global minimal_archetype_length
     minimal_archetype_length = args.minimal_archetype_length
 
+
 def average(container):
     return sum(container) / len(container)
 
+
 def variance(container):
     a = average(container)
-    return sum([(e - a)**2 for e in container]) / (len(container) - 1)
+    return sum([(e - a) ** 2 for e in container]) / (len(container) - 1)
+
 
 def coefficient_of_variation(container):
     a = average(container)
-    ve = sum([(e - a)**2 for e in container]) / (len(container) - 1)
+    ve = sum([(e - a) ** 2 for e in container]) / (len(container) - 1)
     return math.sqrt(ve) / a
+
 
 def coverage_in_all_words(vi: 'list[VariativeElement]') -> 'int':
     # One input file!!!
@@ -195,6 +201,7 @@ def coverage_in_all_words(vi: 'list[VariativeElement]') -> 'int':
     coverage_intervals = VariativeElement.get_coverage_intervals(vi)
     connected_slices = util.connected_slices(coverage_intervals)
     return sum([len(inputfiles[ifn].get_words_covered_with_interval(b, e)) for (b, e) in connected_slices])
+
 
 # TODO: this should be enum (requires py 3.4+) and should be robably removed and replaced with xmllexer
 class TextZone(object):
@@ -322,7 +329,6 @@ class InputFile(object):
             marker.discoverURLs()
         self.urlzones = marker.urlzones
 
-
         # calculate tag coordinates using pygments lexer (hope correctly)
         self.lexintervals = xmllexer.lex(self.text)
 
@@ -338,8 +344,8 @@ class InputFile(object):
         return inputfiles
 
     def __getitem__(self, stst):
-        if isinstance(stst, slice): # correct slice
-            return self.text[stst.start : stst.stop+1]
+        if isinstance(stst, slice):  # correct slice
+            return self.text[stst.start: stst.stop + 1]
         else:
             return self.text[stst]
 
@@ -371,6 +377,7 @@ class InternalException(Exception):
 
 class InternalOkBreak(InternalException):
     pass
+
 
 class CloneGroup(ABC):
     def __init__(self, id, group_uuid=None):
@@ -419,21 +426,18 @@ class CloneGroup(ABC):
     def __hash__(self):  # to add to set
         return hash(self.id) ^ 445051238233  # fast, but not very safe, better to only add CloneGroups to sets
 
-
     def __eq__(self, other):
         return type(self) == type(other) and self.id == other.id
-
 
     def __ne__(self, other):
         return type(self) != type(other) or self.id != other.id
 
-
     def totalsymbols(self):
         return sum(ie - ib + 1 for fn, ib, ie in self.instances)
 
-
     def __len__(self):
         return self.totalsymbols()
+
 
 class FuzzyCloneGroup(CloneGroup):
     @property
@@ -487,7 +491,7 @@ class FuzzyCloneGroup(CloneGroup):
 
     def html(self, inst=None, allow_space_wrap=False):
         import worddiff
-        if inst is None: # all
+        if inst is None:  # all
             logging.info(
                 f"\tGroup:"
                 f"\t{self.group_uuid}"
@@ -549,7 +553,7 @@ class ExactCloneGroup(CloneGroup):
             self.instances.append((ifilen, s, e))
             self.significances.append(int(len(instances) * (e - s + 1) ** 2))  # from Kopin diploma
 
-        self.instances.sort(key=operator.itemgetter(0,1))
+        self.instances.sort(key=operator.itemgetter(0, 1))
         # now instances are sorted by file then by appearance
 
     two_or_more_spaces_re = re.compile(" {2,}")
@@ -593,7 +597,7 @@ class ExactCloneGroup(CloneGroup):
             return infty  # 0+1j # LOL
 
         if (start1 <= start2 < end1 or start1 < end2 <= end1 or
-                        start2 <= start1 < end2 or start2 < end1 <= end2):  # within
+                start2 <= start1 < end2 or start2 < end1 <= end2):  # within
             return -1
         else:
             return start2 - end1 if start2 >= end1 else start1 - end2
@@ -630,7 +634,7 @@ class ExactCloneGroup(CloneGroup):
             if d > borderdist:
                 return infty
 
-            newsignum = c2o - c1o # no need for sgn here... ExactCloneGroup.sgn(c2o - c1o)  # criteria for file only!!!
+            newsignum = c2o - c1o  # no need for sgn here... ExactCloneGroup.sgn(c2o - c1o)  # criteria for file only!!!
             if newsignum * signum < 0:
                 return infty  # different order
             else:
@@ -934,7 +938,7 @@ class ExactCloneGroup(CloneGroup):
             lastsyms = [inputfiles[fn][last + tryexp + 1] for (fn, first, last) in self.instances]
 
             sls = set(lastsyms)
-            if len(sls) == 1: # all are identical
+            if len(sls) == 1:  # all are identical
                 slsn = lastsyms[0]
                 tryexp += 1
                 expandedwith += slsn
@@ -1043,7 +1047,6 @@ def loadinputs(logger):
 
         return correctedinsts
 
-
     if os.path.exists(os.path.join("Output", "black_descriptor_list.txt")):
         with open(os.path.join("Output", "black_descriptor_list.txt")) as blst:
             global black_descriptor_list
@@ -1071,7 +1074,8 @@ def loadinputs(logger):
         for line in clotx:
             counter += 1
             if not counter % onceper:
-                print("~ %d / %d = %03.1f%%" % (counter, len(clotx), 100.0 * counter / len(clotx)), end=ttyn, flush=True)
+                print("~ %d / %d = %03.1f%%" % (counter, len(clotx), 100.0 * counter / len(clotx)), end=ttyn,
+                      flush=True)
 
             sl = line.strip()
             if sl == '':  # empty line => group end
@@ -1183,7 +1187,7 @@ class VariativeElement:
 
     def _plain_texts_from_intervals(self, instance_no=0):
         # detecting on instance[0]
-        l_ifilen, l_so, l_e = self.clone_groups[ 0].instances[instance_no]
+        l_ifilen, l_so, l_e = self.clone_groups[0].instances[instance_no]
         r_ifilen, r_so, r_e = self.clone_groups[-1].instances[instance_no]
         sl = r_e - l_so + 1
         assert l_ifilen == r_ifilen
@@ -1213,7 +1217,7 @@ class VariativeElement:
         return interval.data[0]
 
     def __repr__(self):
-        return "[" + str(len(self.clone_groups[0].instances)) + "] " +\
+        return "[" + str(len(self.clone_groups[0].instances)) + "] " + \
                "... ".join([cg.text().strip() for cg in self.clone_groups])
 
     def get_tree_intervals(self, expanded=True, archetype_consolidated=True) -> 'list[intervaltree.Interval]':
@@ -1316,7 +1320,7 @@ class VariativeElement:
             vls = self.variations_length_in_symbols()
             als = self.archetype_length_in_symbols()
             expandings = [
-                1 + # So they can intersect
+                1 +  # So they can intersect
                 als * bassett_variativity_threshold - v
                 for v in vls
             ]
@@ -1338,7 +1342,7 @@ class VariativeElement:
         def mask_g_c(group_no, clone_no):
             f, b, e = self.clone_groups[group_no].instances[clone_no]
             expansion = em * max(
-                (e - b), # * bassett_variativity_threshold,
+                (e - b),  # * bassett_variativity_threshold,
                 maxvariantdistance
             )
             return b - expansion, e + expansion
@@ -1350,7 +1354,7 @@ class VariativeElement:
             [mask_g_c(gi, ci)[0] for gi in range(tot_grp)]
         ) for ci in range(grp_cln)]
 
-        mendings   = [max(
+        mendings = [max(
             [mask_g_c(gi, ci)[1] for gi in range(tot_grp)]
         ) for ci in range(grp_cln)]
 
@@ -1504,7 +1508,7 @@ class VariativeElement:
             hparts = [
                 ExactCloneGroup.two_or_more_spaces_re.sub(" ", ExactCloneGroup.two_or_more_nlines_re.sub(" ", t))
                 for t, k in parts if k == xmllexer.IntervalType.general and len(t) and not t.isspace()
-                ]
+            ]
 
             result.append(" " + esceps(" ".join(hparts)) + " ")
 
@@ -1552,7 +1556,8 @@ class VariativeElement:
             for variations, vn in zip(vvariations, itertools.count(1))
         ]
 
-        numberedlinks = map(lambda n: "{%d}" % (n,), itertools.count(1)) if len(startgrp.instances) > 1 else ["&nbsp;&#x25b6;&nbsp;"]
+        numberedlinks = map(lambda n: "{%d}" % (n,), itertools.count(1)) if len(startgrp.instances) > 1 else [
+            "&nbsp;&#x25b6;&nbsp;"]
 
         vltexts = '<wbr/>'.join([
             """<span class="variationclick" data-ignore-title="%d-%d" data-hlrange="%d-%d" style="font-weight: bold; background-color: %s; cursor: pointer;">%s</span>"""
@@ -1588,6 +1593,7 @@ class VariativeElement:
         )
 
     postfiltering = False
+
     def passes_filter(self):
         if VariativeElement.postfiltering:
             return self.archetype_length_in_all_words() >= minimal_archetype_length and not self.contains_no_words()
@@ -1610,12 +1616,17 @@ class VariativeElement:
 
     @staticmethod
     def summaryhtml(elements: 'list(VariativeElement)', mode: 'ReportMode'):
-
         fuzzy = mode in [ReportMode.fuzzyclones, ReportMode.fuzzymatches]
         clgrp = mode != ReportMode.fuzzymatches
 
         global only_generate_for_ui
         source = "** generated for standalone UI **" if only_generate_for_ui else util.escapecode(inputfiles[0].text)
+
+        js_files = ['select_clones_multiple.js' if mode != ReportMode.fuzzymatches else 'select_clones_rows.js']
+        if mode != ReportMode.fuzzymatches:
+            js_files.append('removable_clones.js')
+        js_files.append('removable_row.js')
+        js_files.append('sortable_table.js')
 
         return template_env.get_template('summary/summary_html.html').render(
             first_col_name='№',
@@ -1623,5 +1634,6 @@ class VariativeElement:
             third_col_name='' if fuzzy else 'Ext.pts',
             fourth_col_name='Matched text' if fuzzy else 'Candidate text',
             rows=[e.html for e in elements],
-            source_text=source
+            source_text=source,
+            applied_js_files=js_files
         )
