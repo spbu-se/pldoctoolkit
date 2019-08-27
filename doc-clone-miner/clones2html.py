@@ -85,6 +85,8 @@ def initargs():
                         default=5, help="MIN length of archetype for resulting (variative) elements")
     argpar.add_argument("-pjf", "--post-junk-filter", type=str2bool,
                         default=True, help="Post-filtering of junk exact duplicate groups")
+    argpar.add_argument("-evr", "--editable-variative-report", type=str2bool,
+                        default=False, help="Add controls to delete group or duplicate")
 
     args = argpar.parse_args()
 
@@ -131,6 +133,9 @@ def initargs():
 
     global post_junk_filter
     post_junk_filter = args.post_junk_filter
+
+    global editable_variative_report
+    editable_variative_report = args.editable_variative_report
 
     clones.initoptions(args, logger)
 
@@ -657,9 +662,13 @@ if __name__ == '__main__':  #
         import post_junk_filter
         combs = post_junk_filter.post_junk_filter(combs)
 
+    if editable_variative_report:
+        for c in combs:
+            c.edit_controls = True
+
     util.write_variative_report(
         clones, combs,
-        os.path.join("Output", subdir, "pyvarelements.html")
+        os.path.join("Output", subdir, "pyvarelements.html"),
     )
 
     try:

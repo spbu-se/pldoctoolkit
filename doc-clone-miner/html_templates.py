@@ -95,7 +95,18 @@ summaryhtml_start = textwrap.dedent(
     tr.active  {
         background-color: #eaeaea;
     }
-
+    
+    tr span.edit_controls {
+        display: none;
+        cursor: pointer;
+        color: red;
+        font-weight: bold;
+    }
+    
+    tr.active span.edit_controls {
+        display: initial;
+    }
+    
     span.diffminus {
         color: red;
         text-decoration: line-through;
@@ -138,6 +149,7 @@ summaryhtml_start = textwrap.dedent(
     ${catexth}
     </tr>
     </thead>
+    <iframe style="display: none;" id="queryframe" src="" ></iframe>
     <tbody>
     """
 )

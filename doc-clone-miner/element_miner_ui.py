@@ -1028,6 +1028,19 @@ def serve(inputfilename, ui, htp):
     def gentime():
         return str(server_start_time)
 
+    @bottle.route("/edit/delete_group")
+    def del_group():
+        grp_id = bottle.request.query.grp_id
+        print(f"Deleting group <{grp_id}>...")
+        app.enqueue(app.hm_bc_i.refreshND)
+
+    @bottle.route("/edit/delete_duplicate")
+    def del_duplicate():
+        grp_id = bottle.request.query.grp_id
+        dup_index = bottle.request.query.dup_ind
+        print(f"Deleting group <{grp_id}>[{dup_index}]...")
+        app.enqueue(app.hm_bc_i.refreshND)
+
     @bottle.route("/<url:re:(.*\\.html)>")
     def index(url):
         """

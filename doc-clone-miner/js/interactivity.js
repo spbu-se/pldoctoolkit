@@ -232,6 +232,24 @@ window.doc_ready = function() {
     };
     $('.variationclick').click(window.vclicker);
 
+    window.variation_delete = function (){
+        /*if (!window.qtab) {
+            alert("Interactive only!"); return;
+        }*/
+    };
+
+    window.group_delete = function (){
+        /*if (!window.qtab) {
+            alert("Interactive only!"); return;
+        }*/
+
+        var group_id = $(this).attr('data-grp-id');
+        $('#queryframe')[0].src = "http://127.0.0.1:49999/edit/delete_group?grp_id=" + encodeURIComponent(group_id);
+    };
+
+    $('.variation_delete').click(window.variation_delete);
+    $('.group_delete').click(window.group_delete);
+
     window.source0 = $('div#source code').get(0).textContent; // unescapes
 
     window.adaptToQWebView = function() {

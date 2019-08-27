@@ -33,19 +33,24 @@ def close_marker(gid):
     return f"<!-- {gid} <=< ACCEPT -->"
 
 
-def delete_grp():
+def delete_grp(text: str, grp_id: str):
+    return text.replace(open_marker(grp_id), '').replace(close_marker(grp_id), '')
+
+def interactive_delete_grp():
     global content
     grp_id = input_uid("Group ID > ")
-    content = content.replace(open_marker(grp_id), '').replace(close_marker(grp_id), '')
+    content = delete_grp(content, grp_id)
 
+def rename_grp(text: str, old_id: str, new_id: str):
+    return text \
+        .replace(open_marker(old_id), open_marker(new_id)) \
+        .replace(close_marker(old_id), close_marker(new_id))
 
-def rename_grp():
+def interactive_rename_grp():
     global content
     egrp_id = input_uid("Existing group ID > ")
     ngrp_id = input_uid("New group ID > ")
-    content = content\
-        .replace( open_marker(egrp_id),  open_marker(ngrp_id))\
-        .replace(close_marker(egrp_id), close_marker(ngrp_id))
+    content = rename_grp(content, egrp_id, ngrp_id)
 
 
 _uuid_re_text = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
@@ -73,9 +78,9 @@ def goodbye():
 
 menu = [
     goodbye,  # 0
-    delete_grp,  # 1
+    interactive_delete_grp,  # 1
     new_uid, # 2
-    rename_grp, # 3
+    interactive_rename_grp, # 3
     list_ids,  # 4
     wtf,  # 5
     wtf,  # 6

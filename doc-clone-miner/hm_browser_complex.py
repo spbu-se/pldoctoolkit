@@ -118,7 +118,8 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
                          sys.executable, '-OO', os.path.join(_scriptdir, "nearduplicates2html.py"),
                          "-sx", inputfile,
                          "-od", workfolder,
-                         "-uf", 'yes' if unfuzzy else 'no'
+                         "-uf", 'yes' if unfuzzy else 'no',
+                         "-evr", 'yes'
                      ]
         print("Reporting with: " + ' '.join(popen_args))
         reppr = subprocess.Popen(popen_args, stdout=subprocess.PIPE)

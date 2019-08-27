@@ -29,6 +29,8 @@ def initargs():
     argpar.add_argument("-uf", "--unfuzzy",
                         help="Calculate archetype and make variative elements instead of fuzzy groups",
                         default="no")
+    argpar.add_argument("-evr", "--editable-variative-report",
+                        default="no", help="Add controls to delete group or duplicate")
     args = argpar.parse_args()
 
 
@@ -87,15 +89,23 @@ def report(logger):
     global args
     import clones
 
+
     if args.unfuzzy in ["yes", "True", "1"]:
         import archetype_extraction
         clones.cm_inclusiveend = True
         ves = [archetype_extraction.get_variative_element(clones, g) for g in clones.clonegroups]
         ves = filter(None, ves)
+        if args.editable_variative_report == 'yes':
+            for ve in ves:
+                ve.edit_controls = True
         cohtml = clones.VariativeElement.summaryhtml(ves, clones.ReportMode.variative)
     else:
         fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
+        if args.editable_variative_report == 'yes':
+            for ve in fuzzygroups:
+                ve.edit_controls = True
         cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzyclones)
+
 
     outdir = args.output_directory
     with open(os.path.join(outdir, "acceptedduplicates.html"), 'w', encoding='utf-8') as htmlfile:

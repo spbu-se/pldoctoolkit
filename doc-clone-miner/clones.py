@@ -1163,6 +1163,7 @@ class VariativeElement:
 
         self._consolidated_clonewise_intervals = None
         self._consolidated_expanded_clonewise_intervals = None
+        self.edit_controls = False
 
     @staticmethod
     def get_coverage_intervals(els: 'list[VariativeElement]') -> 'itvl.interval':
@@ -1525,7 +1526,7 @@ class VariativeElement:
 
         templ = string.Template(textwrap.dedent("""
             <tr class="${cssclass} variative" data-groups="${desc}" data-idx="${idx}">
-            <td class="fxd">${idx}</td><!-- IDESC: ${idesc} -->
+            <td class="fxd">${idx} ${delgrp}</td><!-- IDESC: ${idesc} -->
             """ + ("""<td class="fxd">${clgr}</td>""" if len(startgrp.instances) > 1 else "") + """
             ${eptsl}
             <td class="tka"><tt>${text}</tt></td>
@@ -1580,7 +1581,10 @@ class VariativeElement:
             eptsl="" if self.fuzzy else ('<td class ="fxd" >' + str(self.g_power - 1) + '</td>'),
             clgr=len(self.clone_groups[0].instances),
             desc=self.textdescriptor,
-            text=vtext
+            text=vtext,
+            delgrp= (f"""<span class="edit_controls group_delete" data-grp-id="{self.clone_groups[0].group_uuid}">[X]</span>&nbsp;"""
+                     f"""<span class="edit_controls variation_delete" >[x]</span>""")
+                if self.edit_controls else ""
         )
 
     postfiltering = False
