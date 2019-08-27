@@ -8,7 +8,7 @@ import argparse
 import asyncio
 import locale
 import os
-import re
+import ndgmgr
 import shutil
 import subprocess
 import sys
@@ -633,7 +633,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
                     self.elbrui.addbrTab(ht, str(numparams), wt.ffstdoutstderr, srctext, srcfn, forced_save_fn, True, extra=None)
                 elif methodIdx == 1 and not self.cbOnlyShowNearDuplicates.checkState():  # Fuzzy Heat Building
                     htp = os.path.join(os.path.dirname(clargs.clone_tool), "Output", "%03d" % numparams[0])
-                    serve(srcfn, self.elbrui, htp)  # start server
+                    serve(infile, srcfn, self.elbrui, htp)  # start server
 
                     # webbrowser.open_new_tab("http://127.0.0.1:49999/")
                     # then elbrui should wait until user selects fragment to search
@@ -996,7 +996,7 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
         savefilename, True, variatives
     )
 
-def serve(inputfilename, ui, htp):
+def serve(input_filename, reformatted_filename, ui, htp):
     import time
     server_start_time = time.time()
 
@@ -1004,9 +1004,9 @@ def serve(inputfilename, ui, htp):
     def fuzzysearch():
         msim = bottle.request.query.minsim
         text = bottle.request.query.text
-        with open(inputfilename, encoding='utf-8') as inf:
+        with open(reformatted_filename, encoding='utf-8') as inf:
             srctext = inf.read()
-        sdt = threading.Thread(target=lambda: do_fuzzy_pattern_search_API(inputfilename, ui, msim, text, srctext))
+        sdt = threading.Thread(target=lambda: do_fuzzy_pattern_search_API(reformatted_filename, ui, msim, text, srctext))
         sdt.setDaemon(False)
         sdt.start()
 
@@ -1032,13 +1032,15 @@ def serve(inputfilename, ui, htp):
     def del_group():
         grp_id = bottle.request.query.grp_id
         print(f"Deleting group <{grp_id}>...")
+        ndgmgr.p_delete_group(input_filename, grp_id)
         app.enqueue(app.hm_bc_i.refreshND)
 
     @bottle.route("/edit/delete_duplicate")
     def del_duplicate():
         grp_id = bottle.request.query.grp_id
         dup_index = bottle.request.query.dup_ind
-        print(f"Deleting group <{grp_id}>[{dup_index}]...")
+        print(f"Deleting dup <{grp_id}>[{dup_index}]...")
+        ndgmgr.p_delete_dup(input_filename, grp_id, int(dup_index))
         app.enqueue(app.hm_bc_i.refreshND)
 
     @bottle.route("/<url:re:(.*\\.html)>")

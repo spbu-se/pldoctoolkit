@@ -134,15 +134,18 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
         self.inputfile = inputfile
         self.workfolder = workfolder
 
-        self.nd2html(inputfile, workfolder, unfuzzy)
-        pve = os.path.join(workfolder, _accepted_dups_html)
-        self.loadRepetitions(pyqt_common.path2url(pve))
+        with util.QHourGlass():
+            self.nd2html(inputfile, workfolder, unfuzzy)
+            pve = os.path.join(workfolder, _accepted_dups_html)
+            self.loadRepetitions(pyqt_common.path2url(pve))
 
     def refreshND(self):
-        self.buildAndLoadND(self.inputfile, self.workfolder, self.unfuzzy)
+        with util.QHourGlass():
+            self.buildAndLoadND(self.inputfile, self.workfolder, self.unfuzzy)
 
     def refreshHM(self):
-        self.loadHeatMap(self.hm_url)
+        with util.QHourGlass():
+            self.loadHeatMap(self.hm_url)
 
     def bindEvents(self):
         # self.shouldLoadHeatMap.connect(self.loadHeatMap)

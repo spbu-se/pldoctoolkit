@@ -1525,7 +1525,7 @@ class VariativeElement:
         vvariations = [self.getvariationhtmls(i) for i in range(nextpoints)]
 
         templ = string.Template(textwrap.dedent("""
-            <tr class="${cssclass} variative" data-groups="${desc}" data-idx="${idx}">
+            <tr class="${cssclass} variative" data-groups="${desc}" data-idx="${idx}" data-grp-id="${grpuid}">
             <td class="fxd">${idx} ${delgrp}</td><!-- IDESC: ${idesc} -->
             """ + ("""<td class="fxd">${clgr}</td>""" if len(startgrp.instances) > 1 else "") + """
             ${eptsl}
@@ -1582,8 +1582,9 @@ class VariativeElement:
             clgr=len(self.clone_groups[0].instances),
             desc=self.textdescriptor,
             text=vtext,
-            delgrp= (f"""<span class="edit_controls group_delete" data-grp-id="{self.clone_groups[0].group_uuid}">[X]</span>&nbsp;"""
-                     f"""<span class="edit_controls variation_delete" >[x]</span>""")
+            grpuid=self.clone_groups[0].group_uuid,
+            delgrp= ("""<span class="edit_controls group_delete" ">[X]</span>&nbsp;"""
+                     """<span class="edit_controls variation_delete" >[x]</span>""")
                 if self.edit_controls else ""
         )
 

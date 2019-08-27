@@ -28,6 +28,16 @@ def input_uid(prompt):
 def open_marker(gid):
     return f"<!-- ACCEPT >=> {gid} -->"
 
+def replace_nth(text: str, existing: str, desired: str, n: int):
+    where = text.find(existing)
+    if where < 0:
+        return text
+    for _ in range(n):
+        where = text.find(existing, where + 1)
+        if where < 0:
+            return text
+
+    return text[:where] + desired + text[where + len(existing):]
 
 def close_marker(gid):
     return f"<!-- {gid} <=< ACCEPT -->"
@@ -35,6 +45,11 @@ def close_marker(gid):
 
 def delete_grp(text: str, grp_id: str):
     return text.replace(open_marker(grp_id), '').replace(close_marker(grp_id), '')
+
+def delete_dup(text: str, grp_id: str, index: int):
+    text = replace_nth(text, open_marker(grp_id),  '', index)
+    text = replace_nth(text, close_marker(grp_id), '', index)
+    return text
 
 def interactive_delete_grp():
     global content
@@ -60,12 +75,18 @@ def list_ids():
     for opn in opens:
         print(opn)
 
+def _p_load_file(filename: str):
+    global content
+    with open(filename, 'r', encoding='utf-8') as inf: content = inf.read()
+
+def _p_save_file(filename: str):
+    global content
+    with open(filename, 'w', encoding='utf-8') as ouf: ouf.write(content)
 
 def save_file():
     global content
     shutil.copyfile(sys.argv[1], sys.argv[1] + '.bak')
-    with open(sys.argv[1], 'w', encoding='utf-8') as ouf: ouf.write(content)
-
+    _p_save_file(sys.argv[1])
 
 def wtf():
     print("Invalid choice")
@@ -89,9 +110,20 @@ menu = [
     save_file, # 9
 ]
 
+def p_delete_group(filename: str, group_id: str):
+    global content
+    _p_load_file(filename)
+    content = delete_grp(content, group_id)
+    _p_save_file(filename)
+
+def p_delete_dup(filename: str, group_id: str, index: int):
+    global content
+    _p_load_file(filename)
+    content = delete_dup(content, group_id, index)
+    _p_save_file(filename)
 
 if __name__ == '__main__':
-    with open(sys.argv[1], 'r', encoding='utf-8') as inf: content = inf.read()
+    _p_load_file(sys.argv[1])
 
     while True:
         print("Hint: you may try to open http://127.0.0.1:49999/ in browser while running DupFinder interactively")

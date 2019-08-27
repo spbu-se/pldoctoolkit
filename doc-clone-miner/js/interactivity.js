@@ -228,22 +228,22 @@ window.doc_ready = function() {
                 else
                     $(this).hide();
             });
+            window.variation_idx = idx;
         }
     };
     $('.variationclick').click(window.vclicker);
 
     window.variation_delete = function (){
-        /*if (!window.qtab) {
-            alert("Interactive only!"); return;
-        }*/
+        var group_id = $(this).parent().parent().attr('data-grp-id');
+        var dup_ind = window.variation_idx;
+        $('#queryframe')[0].src = "";
+        $('#queryframe')[0].src = "http://127.0.0.1:49999/edit/delete_duplicate?grp_id=" +
+            encodeURIComponent(group_id) + "&dup_ind=" + encodeURIComponent(dup_ind);
     };
 
     window.group_delete = function (){
-        /*if (!window.qtab) {
-            alert("Interactive only!"); return;
-        }*/
-
-        var group_id = $(this).attr('data-grp-id');
+        var group_id = $(this).parent().parent().attr('data-grp-id');
+        $('#queryframe')[0].src = "";
         $('#queryframe')[0].src = "http://127.0.0.1:49999/edit/delete_group?grp_id=" + encodeURIComponent(group_id);
     };
 
