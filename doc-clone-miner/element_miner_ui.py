@@ -55,6 +55,30 @@ def initargs():
     global clargs
     clargs = argpar.parse_args()
 
+_reheat_timer = QTimer()
+
+def rebuildAndReloadHM():
+    global _reheat_timer
+    wt: QThread = app.launch_fh_builder()
+    _reheat_timer = QTimer()
+    _reheat_timer.setInterval(500)
+
+    def iswtready():
+        global _reheat_timer
+        try:
+            if not wt.isFinished():
+                return
+            _reheat_timer.stop()
+            _reheat_timer = QTimer()
+            app.enqueue(app.hm_bc_i.refreshHM)
+        except Exception as we:
+            print(repr(we), file=sys.stderr)
+            traceback.print_stack()
+
+    _reheat_timer.timeout.connect(iswtready)
+    _reheat_timer.start()
+
+
 class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
     def __init__(self, parent, uri, stats, src="", fn="", save_fn="", fuzzypattern_matches_shown=False, extra: object=None):
         QtWidgets.QWidget.__init__(self, parent)
@@ -301,22 +325,6 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
                 win = win.parentWidget()
             win.hide()
             app.enqueue(app.hm_bc_i.refreshND)
-            def rebuildAndReloadHM():
-                wt : QThread = app.launch_fh_builder()
-                self.reheat_timer = QTimer()
-                self.reheat_timer.setInterval(500)
-                def iswtready():
-                    try:
-                        if not wt.isFinished():
-                            return
-                        self.reheat_timer.stop()
-                        del self.reheat_timer
-                        app.enqueue(app.hm_bc_i.refreshHM)
-                    except Exception as we:
-                        print(repr(we), file=sys.stderr)
-                        traceback.print_stack()
-                self.reheat_timer.timeout.connect(iswtready)
-                self.reheat_timer.start()
             app.enqueue(rebuildAndReloadHM)
 
     # No more option to show/hide markup in element browser, always hide it.
@@ -981,10 +989,11 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
     outdir = inputfilename + ".fuzzypattern"
     os.makedirs(outdir, exist_ok=True)
     clones.VariativeElement._html_idx = 0
-    variatives = onefuzzyclone2html.get_variative_elements(
-        inputfilename, pattern, outdir,
-        minimal_similarity=float(minsim)
-    )
+    with util.QHourGlass():
+        variatives = onefuzzyclone2html.get_variative_elements(
+            inputfilename, pattern, outdir,
+            minimal_similarity=float(minsim)
+        )
     savefilename = inputfilename
     if savefilename.endswith(".reformatted"):
         savefilename = savefilename[:-12]
@@ -1033,6 +1042,7 @@ def serve(input_filename, reformatted_filename, ui, htp):
         grp_id = bottle.request.query.grp_id
         print(f"Deleting group <{grp_id}>...")
         ndgmgr.p_delete_group(input_filename, grp_id)
+        app.enqueue(rebuildAndReloadHM)
         app.enqueue(app.hm_bc_i.refreshND)
 
     @bottle.route("/edit/delete_duplicate")
@@ -1041,6 +1051,7 @@ def serve(input_filename, reformatted_filename, ui, htp):
         dup_index = bottle.request.query.dup_ind
         print(f"Deleting dup <{grp_id}>[{dup_index}]...")
         ndgmgr.p_delete_dup(input_filename, grp_id, int(dup_index))
+        app.enqueue(rebuildAndReloadHM)
         app.enqueue(app.hm_bc_i.refreshND)
 
     @bottle.route("/<url:re:(.*\\.html)>")
