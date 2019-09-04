@@ -189,6 +189,7 @@ class ElemBrowserTab(QtWidgets.QWidget, ui_class('element_browser_tab.ui')):
 
     def bindEvents(self):
         self.closeButton.clicked.connect(self.close_tab)
+        self.btCancelAll.clicked.connect(self.parent().close)
         self.acceptRangeAction.triggered.connect(self.acceptRange)
         self.ignoreRangeAction.triggered.connect(self.ignoreRange)
         self.newUUIDAction.triggered.connect(self.newUUID)

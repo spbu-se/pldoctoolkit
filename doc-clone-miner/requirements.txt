@@ -9,3 +9,4 @@ intervaltree
 bottle
 pypandoc
 chardet
+psutil

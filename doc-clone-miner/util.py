@@ -7,6 +7,7 @@ import shutil
 import sys
 import functools
 import contextlib
+import psutil
 
 # import Levenshtein  # not used any more
 import traceback
@@ -196,20 +197,36 @@ def excprint(function):
 
     return wrapper
 
-class QHourGlass(contextlib.AbstractContextManager):
+class QHourGlass(contextlib.AbstractContextManager, contextlib.AbstractAsyncContextManager):
+    def __init__(self, lower_priority = True):
+        super(contextlib.AbstractContextManager, self).__init__()
+        super(contextlib.AbstractAsyncContextManager, self).__init__()
+        self._p = psutil.Process()
+        self._n = self._p.nice().value
+
+    def _lower_p(self):
+        self._n = self._p.nice().value
+        self._p.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
+
+    def _normal_p(self):
+        self._p.nice(self._n)
+
     def __enter__(self):
+        self._lower_p()
         QApplication.setOverrideCursor(PyQt5.QtCore.Qt.WaitCursor)
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         if exc_type:
             print("Exception while houglass:", exc_type, exc_val)
         QApplication.restoreOverrideCursor()
+        self._normal_p()
 
-class QAHourGlass(contextlib.AbstractAsyncContextManager):
     def __aenter__(self):
+        self._lower_p()
         QApplication.setOverrideCursor(PyQt5.QtCore.Qt.WaitCursor)
 
     def __aexit__(self, exc_type, exc_val, exc_tb):
         if exc_type:
             print("Exception while houglass:", exc_type, exc_val)
         QApplication.restoreOverrideCursor()
+        self._normal_p()
