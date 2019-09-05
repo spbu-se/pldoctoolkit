@@ -990,11 +990,15 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
     outdir = inputfilename + ".fuzzypattern"
     os.makedirs(outdir, exist_ok=True)
     clones.VariativeElement._html_idx = 0
+    # pui = ElemMinerProgressUI()
+    # pui.show()
+    # pui.progressChanged.emit(1, 3, "Searching for near duplicates...")
     with util.QHourGlass():
         variatives = onefuzzyclone2html.get_variative_elements(
             inputfilename, pattern, outdir,
             minimal_similarity=float(minsim)
         )
+    # pui.progressChanged.emit(2, 3, "Creating report...")
     savefilename = inputfilename
     if savefilename.endswith(".reformatted"):
         savefilename = savefilename[:-12]
@@ -1005,6 +1009,8 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
         "Fuzzy Search results", "", srctext, inputfilename,
         savefilename, True, variatives
     )
+    # pui.hide()
+    # del pui
 
 def serve(input_filename, reformatted_filename, ui, htp):
     import time
