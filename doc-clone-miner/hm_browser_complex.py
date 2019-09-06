@@ -129,6 +129,7 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
 
         self.app.processEvents()
 
+    @util.excprint
     def buildAndLoadND(self, inputfile, workfolder, unfuzzy):
         self.unfuzzy = unfuzzy
         self.inputfile = inputfile
@@ -139,6 +140,7 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
             pve = os.path.join(workfolder, _accepted_dups_html)
             self.loadRepetitions(pyqt_common.path2url(pve))
 
+    @util.excprint
     def refreshND(self):
         with util.QHourGlass():
             self.buildAndLoadND(self.inputfile, self.workfolder, self.unfuzzy)

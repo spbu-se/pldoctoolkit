@@ -57,6 +57,7 @@ def initargs():
 
 _reheat_timer = QTimer()
 
+@util.excprint
 def rebuildAndReloadHM():
     global _reheat_timer
     wt: QThread = app.launch_fh_builder()
@@ -1045,6 +1046,7 @@ def serve(input_filename, reformatted_filename, ui, htp):
         return str(server_start_time)
 
     @bottle.route("/edit/delete_group")
+    @util.excprint
     def del_group():
         grp_id = bottle.request.query.grp_id
         print(f"Deleting group <{grp_id}>...")
@@ -1053,12 +1055,13 @@ def serve(input_filename, reformatted_filename, ui, htp):
         app.enqueue(app.hm_bc_i.refreshND)
 
     @bottle.route("/edit/delete_duplicate")
+    @util.excprint
     def del_duplicate():
         grp_id = bottle.request.query.grp_id
         dup_index = bottle.request.query.dup_ind
         print(f"Deleting dup <{grp_id}>[{dup_index}]...")
         ndgmgr.p_delete_dup(input_filename, grp_id, int(dup_index))
-        app.enqueue(rebuildAndReloadHM)
+        # app.enqueue(rebuildAndReloadHM) # too slow =)
         app.enqueue(app.hm_bc_i.refreshND)
 
     @bottle.route("/<url:re:(.*\\.html)>")

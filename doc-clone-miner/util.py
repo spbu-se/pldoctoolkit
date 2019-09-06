@@ -202,11 +202,11 @@ class QHourGlass(contextlib.AbstractContextManager, contextlib.AbstractAsyncCont
         super(contextlib.AbstractContextManager, self).__init__()
         super(contextlib.AbstractAsyncContextManager, self).__init__()
         self._p = psutil.Process()
-        self._n = self._p.nice().value
 
     def _lower_p(self):
-        self._n = self._p.nice().value
-        self._p.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
+        n = self._p.nice()
+        self._n = n if type(n) == int else n.value  # Very unclear behaviour on Unix vs Windows
+        self._p.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS if psutil.WINDOWS else 19)
 
     def _normal_p(self):
         self._p.nice(self._n)
