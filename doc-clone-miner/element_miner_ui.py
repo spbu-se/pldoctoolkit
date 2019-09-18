@@ -481,6 +481,8 @@ class ElemBrowserUI(QtWidgets.QMainWindow, pyqt_common.ui_class('element_browser
 
 class ElemMinerProgressUI(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_progress.ui')):
     progressChanged = QtCore.pyqtSignal(int, int, str)
+    showWindow = QtCore.pyqtSignal()
+    hideWindow = QtCore.pyqtSignal()
 
     @QtCore.pyqtSlot(int, int, str)
     def _change_progress(self, total, current, status):
@@ -491,11 +493,14 @@ class ElemMinerProgressUI(QtWidgets.QDialog, pyqt_common.ui_class('element_miner
             self.hide()
         else:
             self.show()
+        self.update()
 
     def __init__(self, parent=None):
         QtWidgets.QDialog.__init__(self, parent)
         self.setupUi(self)
         self.progressChanged.connect(self._change_progress)
+        self.showWindow.connect(self.show)
+        self.hideWindow.connect(self.hide)
 
 
 
@@ -985,33 +990,33 @@ def do_fuzzy_pattern_search_CLI(inputfilename, ui, minsim, text, srctext):
     )
 
 
-def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
+def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext, pui):
     import onefuzzyclone2html
     import clones
     outdir = inputfilename + ".fuzzypattern"
     os.makedirs(outdir, exist_ok=True)
     clones.VariativeElement._html_idx = 0
-    # pui = ElemMinerProgressUI()
-    # pui.show()
-    # pui.progressChanged.emit(1, 3, "Searching for near duplicates...")
-    with util.QHourGlass():
-        variatives = onefuzzyclone2html.get_variative_elements(
-            inputfilename, pattern, outdir,
-            minimal_similarity=float(minsim)
-        )
-    # pui.progressChanged.emit(2, 3, "Creating report...")
+
+    # pui.progressChanged.emit(3, 1, "Searching for near duplicates...")
+
+    variatives = onefuzzyclone2html.get_variative_elements(
+        inputfilename, pattern, outdir,
+        minimal_similarity=float(minsim)
+    )
+
+    # pui.progressChanged.emit(3, 3, "Done.")
+
     savefilename = inputfilename
     if savefilename.endswith(".reformatted"):
         savefilename = savefilename[:-12]
     else:
         print("WARNING! inputfilename", inputfilename, "does not end with .reformatted")
+
     ui.shouldAddTab.emit(
         pyqt_common.path2url(os.path.join(outdir, "pyvarelements.html")),
         "Fuzzy Search results", "", srctext, inputfilename,
         savefilename, True, variatives
     )
-    # pui.hide()
-    # del pui
 
 def serve(input_filename, reformatted_filename, ui, htp):
     import time
@@ -1023,8 +1028,13 @@ def serve(input_filename, reformatted_filename, ui, htp):
         text = bottle.request.query.text
         with open(reformatted_filename, encoding='utf-8') as inf:
             srctext = inf.read()
-        sdt = threading.Thread(target=lambda: do_fuzzy_pattern_search_API(reformatted_filename, ui, msim, text, srctext))
-        sdt.setDaemon(False)
+
+        pui = ElemMinerProgressUI()
+        # pui.progressChanged.emit(3, 0, "Searching for near duplicates...")
+        pui.progressChanged.emit(3, 0, "Searching for near duplicates...")
+        # sdt = threading.Thread(target=lambda: do_fuzzy_pattern_search_API(reformatted_filename, ui, msim, text, srctext, pui))
+        # sdt.setDaemon(False)
+        sdt = SimpleWorkThread(lambda: do_fuzzy_pattern_search_API(reformatted_filename, ui, msim, text, srctext, pui))
         sdt.start()
 
         return "Searching for text <<<%s>>> with min similarity %s..." % (util.escapen(text), msim)
@@ -1085,9 +1095,31 @@ def serve(input_filename, reformatted_filename, ui, htp):
         shutwownanother()
 
     # Daemonize bottle so closing app window will also kill it
-    st = threading.Thread(target=lambda: bottle.run(host='127.0.0.1', port=49999))
-    st.setDaemon(True)
+    # st = threading.Thread(target=lambda: bottle.run(host='127.0.0.1', port=49999))
+    # st.setDaemon(True)
+    st = SimpleWorkThread(lambda: bottle.run(host='127.0.0.1', port=49999))
     st.start()
+
+class SimpleWorkThread_0(QtCore.QThread):
+    def __init__(self, fn):
+        super().__init__()
+        self.setPriority(QtCore.QThread.LowestPriority)
+        self.fn = fn
+
+    @util.excprint
+    def run(self):
+        with util.QHourGlass(lower_priority = False):
+            self.fn()
+
+class SimpleWorkThread(threading.Thread):
+    def __init__(self, fn):
+        super().__init__()
+        self.fn = fn
+
+    @util.excprint
+    def run(self):
+        with util.QHourGlass(lower_priority = False):
+            self.fn()
 
 class NearDuplicateWorkThread(QtCore.QThread):
     def __init__(self, pui, inputfile, workfolder, continuation=None):

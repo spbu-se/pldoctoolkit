@@ -201,15 +201,31 @@ class QHourGlass(contextlib.AbstractContextManager, contextlib.AbstractAsyncCont
     def __init__(self, lower_priority = True):
         super(contextlib.AbstractContextManager, self).__init__()
         super(contextlib.AbstractAsyncContextManager, self).__init__()
-        self._p = psutil.Process()
+        self._lower_priority = lower_priority
+        if self._lower_priority:
+            try:
+                pass
+                # self._p = psutil.Process()
+            except Exception as e:
+                print(e, file=sys.stderr)
 
     def _lower_p(self):
-        n = self._p.nice()
-        self._n = n if type(n) == int else n.value  # Very unclear behaviour on Unix vs Windows
-        self._p.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS if psutil.WINDOWS else 19)
+        if self._lower_priority:
+            try:
+                pass
+                # n = self._p.nice()
+                # self._n = n if type(n) == int else n.value  # Very unclear behaviour on Unix vs Windows
+                # self._p.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS if psutil.WINDOWS else 19)
+            except Exception as e:
+                print(e, file=sys.stderr)
 
     def _normal_p(self):
-        self._p.nice(self._n)
+        if self._lower_priority:
+            try:
+                pass
+                # self._p.nice(self._n)
+            except Exception as e:
+                print(e, file=sys.stderr)
 
     def __enter__(self):
         self._lower_p()
