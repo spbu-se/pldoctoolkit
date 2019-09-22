@@ -7,6 +7,7 @@ import difflib
 import re
 import itertools
 import util
+import warnings
 
 # testing
 import unittest
@@ -24,6 +25,8 @@ __status__ = "Alpha"
 
 
 def archetype_search(group):
+    warnings.warn("Unverified", category=DeprecationWarning, stacklevel=15)
+
     # Форматирование повторов
     work_group = group.copy()
     for i in range(len(work_group)):
@@ -159,6 +162,8 @@ def archetype_search(group):
 
 
 def alg(duplicate_a, duplicate_b):
+    warnings.warn("Unverified", category=DeprecationWarning, stacklevel=15)
+
     mulct = -1
     num_words = max(len(duplicate_a), len(duplicate_b))
 
@@ -286,7 +291,7 @@ def calculate_archetype_occurrences(fuzzy_clone_texts: 'iterable[str]') -> 'list
 
     # group_indices = []
     group_offsets = []
-    cur_indices_vector = [0] * len(fuzzy_clone_texts)
+    cur_end = [0] * len(fuzzy_clone_texts)
     cur_begin = [-1] * len(fuzzy_clone_texts)
 
     def start_group():
@@ -296,28 +301,29 @@ def calculate_archetype_occurrences(fuzzy_clone_texts: 'iterable[str]') -> 'list
     def release_group():
         group_offsets.append([
             (itl[b][1], itl[e][2])
-            for b, e, itl in zip(cur_begin, cur_indices_vector, itoken_lists)
+            for b, e, itl in zip(cur_begin, cur_end, itoken_lists)
         ])
 
     # Идём фронтом по всем строкам
 
-    for ar_tok, tok_i in zip(archetype_tokens, itertools.count()):
+    next_indices_vector = [
+        ttl.index(archetype_tokens[0], cti) for ttl, cti in zip(token_text_lists, cur_end)
+    ]
+    start_group()
+
+    for ar_tok, tok_i in zip(archetype_tokens[1:], itertools.count()):
+
+        cur_end = next_indices_vector
         next_indices_vector = [
-            ttl.index(ar_tok, cti) for ttl, cti in zip(token_text_lists, cur_indices_vector)
+            ttl.index(ar_tok, cti) for ttl, cti in zip(token_text_lists, cur_end)
         ]
-
-        if tok_i == 0:
-            start_group()
-
-        skip = max(n - c for n, c in zip(next_indices_vector, cur_indices_vector)) > 1
+        skip = max(n - c for n, c in zip(next_indices_vector, cur_end)) > 1
 
         if skip:
             release_group()
             start_group()
 
-        if tok_i < len(archetype_tokens) - 1:
-            cur_indices_vector = [n + 1 for n in next_indices_vector]
-
+    cur_end = next_indices_vector
     release_group()
 
     return group_offsets, need_fake_before, need_fake_after
@@ -426,7 +432,7 @@ class TestStringMethods(unittest.TestCase):
         p.print_stats()
         print("\n--->>>")
 
-    def z_test_001_small_common(self):
+    def test_001_small_common(self):
         a = archetype_search([
             "Я пошёл позавчера за хлебом",
             "Я пошёл вчера за хлебом",
@@ -436,19 +442,21 @@ class TestStringMethods(unittest.TestCase):
         print(a)
         self.assertEqual(
             a,
-            [[(0, 4), (7, 8), (17, 27)], [(0, 4), (7, 8), (13, 23)], [(0, 4), (7, 8), (15, 25)], [(0, 4), (7, 8), (14, 24)]],
+            [[(0, 1), (18, 27)], [(0, 1), (14, 23)], [(0, 1), (16, 25)], [(0, 1), (15, 24)]],
             "Small common failed"
         )
 
-    def z_test_002_small_common_lists(self):
-        return
+    def test_002_small_common_lists(self):
         a = archetype_search([
-            ["Я", "пошёл", "позавчера", "за", "хлебом"],
-            ["Я", "пошёл", "вчера", "за", "хлебом"],
-            ["Я", "пошёл", "сегодня", "за", "хлебом"],
-            ["Я", "пойду", "завтра", "за", "хлебом"]
+            " ".join(["Я", "пошёл", "позавчера", "за", "хлебом"]),
+            " ".join(["Я", "пошёл", "вчера", "за", "хлебом"]),
+            " ".join(["Я", "пошёл", "сегодня", "за", "хлебом"]),
+            " ".join(["Я", "пойду", "завтра", "за", "хлебом"])
         ])
-        print(a)
+        self.assertEqual(
+            a,
+            ([[(0, 60), (0, 56), (0, 58)], [(52, 110), (48, 106), (50, 108)]], False, False)
+        )
 
     def test_003_perm_order(self):
         self.assertEqual(
@@ -457,19 +465,19 @@ class TestStringMethods(unittest.TestCase):
             list(permutations_first_volatile(5))
         )
 
-    def z_test_004_two_tuples_lcs(self):
+    def test_004_two_tuples_lcs(self):
         self.assertEqual(
             two_tuples_lcs(self.w1, self.w2),
             ('ab', 'ee', 'ff', 'ij', 'kl')
         )
 
-    def z_test_004_best_n_tuples_lcs(self):
+    def test_004_best_n_tuples_lcs(self):
         self.assertEqual(
             best_n_tuples_lcs((self.w1, self.w2, self.w3)),
             ('ab', 'ee', 'ij', 'kl')
         )
 
-    def z_test_005_calculate_archetype_occurences(self):
+    def test_005_calculate_archetype_occurences(self):
         w1 = " ".join(self.w1)
         w2 = " ".join(self.w2)
         w3 = " ".join(self.w3)
@@ -479,7 +487,7 @@ class TestStringMethods(unittest.TestCase):
             ([[(0, 5), (0, 5), (0, 5)], [(9, 14), (9, 14), (12, 17)], [(18, 23), (18, 23), (21, 26)]], False, False)
         )
 
-    def z_test_006_archetype_from_LKD_2013(self):
+    def test_006_archetype_from_LKD_2013(self):
         s1 = """This function is called whenever the initialization function of a real
 object is called.
 
@@ -493,6 +501,17 @@ object is called.
 
 When the real object"""
         print(calculate_archetype_occurrences([s1, s2, s3]))
+
+    def test_007_archetype_from_JUnit_4(self):
+        testdata = [
+            'Verify that your code throws an exception that is an\ninstance of specific type.',
+            'Verify that your code throws an exception whose message contains\na specific text.',
+            'The ExpectedException rule allows you to verify that your code\nthrows a specific exception.'
+        ]
+        d, b, e = calculate_archetype_occurrences(testdata)
+        self.assertTrue(b)
+        self.assertTrue(e)
+
 
 if __name__ == '__main__':
     unittest.main()
