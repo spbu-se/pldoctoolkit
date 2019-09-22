@@ -1574,7 +1574,7 @@ class VariativeElement:
         if len(gratios) != 0:
             vtext += " %0.3f" % min(gratios)
 
-        return templ.substitute(
+        var_el_html =  templ.substitute(
             cssclass="multiple" if len(self.clone_groups) > 1 else "single",
             idx=self.html_idx if hasattr(self, 'html_idx') else VariativeElement._html_idx,
             idesc=self.id_descriptor(),
@@ -1588,6 +1588,8 @@ class VariativeElement:
             delcln = ("""<span class="edit_controls variation_delete" style="font-size: smaller;">[d]</span>""")
                 if self.edit_controls else ""
         )
+
+        return var_el_html
 
     postfiltering = False
     def passes_filter(self):
@@ -1629,4 +1631,8 @@ class VariativeElement:
         global only_generate_for_ui
         source = "** generated for standalone UI **" if only_generate_for_ui else util.escapecode(inputfiles[0].text)
 
-        return summaryhtml_start + (os.linesep.join([e.html for e in elements])) + html_templates.summaryhtml_middle + source + html_templates.summaryhtml_finish
+        whole_html = \
+            summaryhtml_start + (os.linesep.join([e.html for e in elements])) +\
+            html_templates.summaryhtml_middle + source + html_templates.summaryhtml_finish
+
+        return whole_html

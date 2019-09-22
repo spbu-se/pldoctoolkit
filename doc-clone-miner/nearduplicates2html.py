@@ -94,7 +94,7 @@ def report(logger):
         import archetype_extraction
         clones.cm_inclusiveend = True
         ves = [archetype_extraction.get_variative_element(clones, g) for g in clones.clonegroups]
-        ves = filter(None, ves)
+        ves = list(filter(None, ves))
         if args.editable_variative_report == 'yes':
             for ve in ves:
                 ve.edit_controls = True
