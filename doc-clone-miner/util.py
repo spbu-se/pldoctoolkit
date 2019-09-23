@@ -94,7 +94,8 @@ def diratio(s1, s2):
         return pattern_near_duplicate_search.di_similarity(s1, s2)
 
 
-_wre = re.compile(r"\w+", re.UNICODE)
+# _wre = re.compile(r"\w+", re.UNICODE)
+_wre = re.compile(r"\S+", re.UNICODE)
 
 
 def tokens(text):
