@@ -87,6 +87,13 @@ window.doc_ready = function() {
         $('tr.variative').removeClass("active");
         curtr.addClass("active");
         window.upd_variation_idx();
+
+        var clickspan = $( curtr.find("span.variationclick")[variation_idx] );
+        var hlrange = clickspan.attr("data-hlrange").split('-');
+        var hls = +hlrange[0];
+        var hle = +hlrange[1];
+        var cidx = parseInt(curtr.attr("data-idx"));
+        highlightRange(hls, hle, cidx);
     });
 
     var commoncontext = function(ctr) {
