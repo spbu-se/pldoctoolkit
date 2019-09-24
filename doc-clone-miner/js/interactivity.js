@@ -213,9 +213,10 @@ window.doc_ready = function() {
 
         // fuzzy tricks
         var tt = $(this).parent();
-        var codes = $(tt).find("code");
+        var acodes = $(tt).find("code");
+        var codes = $(tt).find("code.fuzzycode");
         var ct = $(this).text();
-        if(codes.length > 0) {
+        if(codes.length > 0 || acodes.length > 0) {
             var links = $(tt).find("span.variationclick");
             var idx = -1;
             links.each(function(nidx){
