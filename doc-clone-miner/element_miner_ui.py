@@ -1061,7 +1061,7 @@ def serve(input_filename, reformatted_filename, ui, htp):
         dup_index = bottle.request.query.dup_ind
         print(f"Deleting dup <{grp_id}>[{dup_index}]...")
         ndgmgr.p_delete_dup(input_filename, grp_id, int(dup_index))
-        # app.enqueue(rebuildAndReloadHM) # too slow =)
+        app.enqueue(rebuildAndReloadHM) # too slow =)
         app.enqueue(app.hm_bc_i.refreshND)
 
     @bottle.route("/<url:re:(.*\\.html)>")

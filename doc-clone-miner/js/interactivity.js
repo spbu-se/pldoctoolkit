@@ -213,7 +213,7 @@ window.doc_ready = function() {
 
         // fuzzy tricks
         var tt = $(this).parent();
-        var codes = $(tt).find("code.fuzzycode");
+        var codes = $(tt).find("code");
         var ct = $(this).text();
         if(codes.length > 0) {
             var links = $(tt).find("span.variationclick");
