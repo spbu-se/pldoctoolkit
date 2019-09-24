@@ -82,6 +82,12 @@ window.doc_ready = function() {
 
     $('.multiple').attr('contextmenu', 'multiplemenu');
     $('.single').attr('contextmenu', 'singlemenu');
+    $('tr.variative').click(function () {
+        curtr = $(this);
+        $('tr.variative').removeClass("active");
+        curtr.addClass("active");
+        window.upd_variation_idx();
+    });
 
     var commoncontext = function(ctr) {
         ctr.css("background-color", "lightgrey").removeAttr('contextmenu');
@@ -101,11 +107,21 @@ window.doc_ready = function() {
         }
     }
 
+    window.switch_to_tr = function(x, y) {
+        var elt = document.elementFromPoint(x, y);
+        curtr = $(elt).closest('tr.variative');
+
+        $('tr.variative').removeClass("active");
+        curtr.addClass("active");
+
+        window.upd_variation_idx();
+
+        return tr;
+    }
+
     window.decide_enable_dict = function(x, y) {
         clog("Context menu on: (" + x + "," + y + ")")
-        var elt = document.elementFromPoint(x, y);
-        var tr = $(elt).closest('tr.variative');
-        curtr = tr;
+        var tr = window.switch_to_tr(x, y);
         if(tr.hasClass("single")) {
             clog("... single...");
             qtab.enable_dict(true);
@@ -186,6 +202,21 @@ window.doc_ready = function() {
     $("#single2elem").click(single2elem);
     $("#multiple2elem").click(multiple2elem);
 
+    var variation_idx = null;
+
+    window.upd_variation_idx = function(){
+        try {
+            var wht = curtr.find("span.variationclick.highlight").text();
+            if (wht === "") {
+                variation_idx = 0;
+            } else {
+                variation_idx = parseInt(wht.replace("{", "").replace("}", "")) - 1;
+            }
+        } catch (e) {
+            variation_idx = 0;
+        }
+    }
+
     window.vclicker = function() {
         $('.variationclick').removeClass('highlight');
         $(this).addClass('highlight');
@@ -196,8 +227,8 @@ window.doc_ready = function() {
         var hlrange = $(this).attr("data-hlrange").split('-');
         var hls = +hlrange[0];
         var hle = +hlrange[1];
-        var candidate_idx = $(this).closest('tr').attr("data-idx");
-        window.group_uuid = $(this).closest('tr').attr("data-grp-id");
+        curtr = $(this).closest('tr');
+        var candidate_idx = curtr.attr("data-idx");
         var src = $('div#source code');
         // lowlight();
         highlightRange(hls, hle, candidate_idx);
@@ -230,21 +261,21 @@ window.doc_ready = function() {
                 else
                     $(this).hide();
             });
-            window.variation_idx = idx;
+            variation_idx = idx;
         }
     };
     $('.variationclick').click(window.vclicker);
 
     window.variation_delete = function (){
-        var group_id = window.group_uuid;
-        var dup_ind = window.variation_idx;
+        var group_id = curtr.attr("data-grp-id");
+        var dup_ind = variation_idx;
         $('#queryframe')[0].src = "";
         $('#queryframe')[0].src = "http://127.0.0.1:49999/edit/delete_duplicate?grp_id=" +
             encodeURIComponent(group_id) + "&dup_ind=" + encodeURIComponent(dup_ind);
     };
 
     window.group_delete = function (){
-        var group_id = window.group_uuid;
+        var group_id = curtr.attr("data-grp-id");
         $('#queryframe')[0].src = "";
         $('#queryframe')[0].src = "http://127.0.0.1:49999/edit/delete_group?grp_id=" + encodeURIComponent(group_id);
     };

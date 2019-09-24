@@ -1584,10 +1584,11 @@ class VariativeElement:
             desc=self.textdescriptor,
             text=vtext,
             grpuid=self.ve_uuid if self.ve_uuid is not None else self.clone_groups[0].group_uuid,
-            delgrp= ("""<span class="edit_controls group_delete" style="font-size: smaller;">[D]</span>""")  # &#x274E;
-                if self.edit_controls else "",
-            delcln = ("""<span class="edit_controls variation_delete" style="font-size: smaller;">[d]</span>""")
-                if self.edit_controls else ""
+            # delgrp= ("""<span class="edit_controls group_delete" style="font-size: smaller;">[D]</span>""")  # &#x274E;
+            #     if self.edit_controls else "",
+            # delcln = ("""<span class="edit_controls variation_delete" style="font-size: smaller;">[d]</span>""")
+            #     if self.edit_controls else ""
+            delgrp="", delcln=""
         )
 
         return var_el_html

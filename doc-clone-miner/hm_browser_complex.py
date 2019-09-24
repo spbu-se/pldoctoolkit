@@ -56,7 +56,7 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
     @QtCore.pyqtSlot(QtCore.QPoint)
     def web_context_menu(self, point):
         self.rp_menu.popup(self.rp_page.view().mapToGlobal(point))
-        self.rp_page.runJavaScript("window.decide_enable_dict(%d, %d);" % (point.x(), point.y()))
+        self.rp_page.runJavaScript(f"window.switch_to_tr({point.x()}, {point.y()});")
 
     @QtCore.pyqtSlot(str)
     def clog(self, txt):
