@@ -37,7 +37,26 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
 
         self.splitter.setSizes([400,250])
 
+        # ---- RP menu ----
+        try:
+            self.rp_page.view().setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+            self.rp_page.view().customContextMenuRequested.connect(self.web_context_menu)
+
+            self.rp_menu = QtWidgets.QMenu()
+            self.rp_menu_del_grp = self.rp_menu.addAction("Delete group")
+            self.rp_menu_del_grp.triggered.connect(lambda: self.rp_page.runJavaScript("window.group_delete();"))
+            self.rp_menu_del_dup = self.rp_menu.addAction("Delete duplicate")
+            self.rp_menu_del_dup.triggered.connect(lambda: self.rp_page.runJavaScript("window.variation_delete();"))
+        except Exception as e:
+            print(e, file=sys.stderr)
+        # ---- RP menu ----
+
         self.bindEvents()
+
+    @QtCore.pyqtSlot(QtCore.QPoint)
+    def web_context_menu(self, point):
+        self.rp_menu.popup(self.rp_page.view().mapToGlobal(point))
+        self.rp_page.runJavaScript("window.decide_enable_dict(%d, %d);" % (point.x(), point.y()))
 
     @QtCore.pyqtSlot(str)
     def clog(self, txt):

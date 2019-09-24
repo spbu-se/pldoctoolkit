@@ -197,6 +197,7 @@ window.doc_ready = function() {
         var hls = +hlrange[0];
         var hle = +hlrange[1];
         var candidate_idx = $(this).closest('tr').attr("data-idx");
+        window.group_uuid = $(this).closest('tr').attr("data-grp-id");
         var src = $('div#source code');
         // lowlight();
         highlightRange(hls, hle, candidate_idx);
@@ -235,7 +236,7 @@ window.doc_ready = function() {
     $('.variationclick').click(window.vclicker);
 
     window.variation_delete = function (){
-        var group_id = $(this).parent().parent().attr('data-grp-id');
+        var group_id = window.group_uuid;
         var dup_ind = window.variation_idx;
         $('#queryframe')[0].src = "";
         $('#queryframe')[0].src = "http://127.0.0.1:49999/edit/delete_duplicate?grp_id=" +
@@ -243,7 +244,7 @@ window.doc_ready = function() {
     };
 
     window.group_delete = function (){
-        var group_id = $(this).parent().parent().attr('data-grp-id');
+        var group_id = window.group_uuid;
         $('#queryframe')[0].src = "";
         $('#queryframe')[0].src = "http://127.0.0.1:49999/edit/delete_group?grp_id=" + encodeURIComponent(group_id);
     };

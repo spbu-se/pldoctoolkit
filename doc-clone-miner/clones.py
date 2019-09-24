@@ -1140,10 +1140,11 @@ class ReportMode(enum.IntEnum):
 class VariativeElement:
     count = 0
 
-    def __init__(self, clone_groups: 'list[CloneGroup]'):
+    def __init__(self, clone_groups: 'list[CloneGroup]', ve_uuid: 'uuid.UUID' = None):
         global inputfiles
 
         self.idx = self.__class__.count
+        self.ve_uuid = ve_uuid
         self.__class__.count += 1
 
         group_powers = set([len(g.instances) for g in clone_groups])
@@ -1582,7 +1583,7 @@ class VariativeElement:
             clgr=len(self.clone_groups[0].instances),
             desc=self.textdescriptor,
             text=vtext,
-            grpuid=self.clone_groups[0].group_uuid,
+            grpuid=self.ve_uuid if self.ve_uuid is not None else self.clone_groups[0].group_uuid,
             delgrp= ("""<span class="edit_controls group_delete" style="font-size: smaller;">[D]</span>""")  # &#x274E;
                 if self.edit_controls else "",
             delcln = ("""<span class="edit_controls variation_delete" style="font-size: smaller;">[d]</span>""")

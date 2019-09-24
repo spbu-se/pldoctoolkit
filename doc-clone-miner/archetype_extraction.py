@@ -374,7 +374,7 @@ def get_variative_element(clones: 'module', group: 'clones.FuzzyCloneGroup' ) ->
                 ])
             )
 
-        return clones.VariativeElement(groups)
+        return clones.VariativeElement(groups, group.group_uuid)
     except Exception as e:
         import sys
         print(f"ADE: {e}", file=sys.stderr)
