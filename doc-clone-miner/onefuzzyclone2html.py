@@ -10,6 +10,7 @@ import shutil
 
 import intervaltree
 
+import archetype_extraction
 import sourcemarkers
 import util
 from xmllexer import IntervalType
@@ -180,10 +181,16 @@ def organize_search(logger, args):
 
     clones.initdata([inputfile], fgrps)
 
-def report(logger, args):
+def report(logger, args, diff_against_pattern = True):
     import clones
 
-    clones.FuzzyCloneGroup.reference_text = args.pattern
+    if diff_against_pattern:
+        clones.FuzzyCloneGroup.reference_text = args.pattern
+    else:
+        texts_tokens = tuple(tuple(util.tokenst(cg.instancetexts[0])) for cg in clones.clonegroups)
+        archetype_tokens = archetype_extraction.best_n_tuples_lcs(texts_tokens)
+        clones.FuzzyCloneGroup.reference_text = ' '.join(archetype_tokens)
+
     fuzzygroups = [clones.VariativeElement([cg]) for cg in clones.clonegroups]
     cohtml = clones.VariativeElement.summaryhtml(fuzzygroups, clones.ReportMode.fuzzymatches)
 
@@ -209,7 +216,8 @@ def get_variative_elements(
         pattern: str,
         output_directory: str,
         minimal_similarity: float=0.5,
-        only_ui: str='yes'
+        only_ui: str='yes',
+        diff_against_pattern = True
 ):
     import types
     largs = types.SimpleNamespace()
@@ -220,7 +228,7 @@ def get_variative_elements(
     largs.only_ui = only_ui
 
     organize_search(logger, largs)
-    return report(logger, largs)
+    return report(logger, largs, diff_against_pattern)
 
 # command line interface
 if __name__ == '__main__':

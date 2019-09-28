@@ -997,7 +997,8 @@ def do_fuzzy_pattern_search_API(inputfilename, ui, minsim, pattern, srctext):
     with util.QHourGlass():
         variatives = onefuzzyclone2html.get_variative_elements(
             inputfilename, pattern, outdir,
-            minimal_similarity=float(minsim)
+            minimal_similarity=float(minsim),
+            diff_against_pattern=False
         )
     # pui.progressChanged.emit(2, 3, "Creating report...")
     savefilename = inputfilename

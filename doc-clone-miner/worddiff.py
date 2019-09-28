@@ -32,7 +32,7 @@ def _diff_words(words1, words2, diffplus_style='diffplus'):
     rw2 = map(dl2h, diff)
     return ' '.join(rw2)
 
-def get_htmls(texts, reference_text=None, from_archetype=False):
+def get_htmls(texts, reference_text=None, from_archetype=False, blue_delta=False):
     """
     :param reference_text: text to compare others to, first text otherwise
     :param texts: space-separated word strings
@@ -58,7 +58,7 @@ def get_htmls(texts, reference_text=None, from_archetype=False):
     for text in texts:
         result.append(_diff_words(
             reference_text, text,
-            diffplus_style='nonarchetypical' if from_archetype else 'diffplus'
+            diffplus_style='nonarchetypical' if from_archetype or blue_delta else 'diffplus'
         ))
     return result
 

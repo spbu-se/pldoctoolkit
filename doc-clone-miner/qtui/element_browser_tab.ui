@@ -73,7 +73,7 @@
          <item>
           <widget class="QCheckBox" name="cbHLDifferences">
            <property name="text">
-            <string>Highlight differences</string>
+            <string>Highlight delta</string>
            </property>
            <property name="checked">
             <bool>true</bool>

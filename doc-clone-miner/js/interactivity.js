@@ -191,9 +191,11 @@ window.doc_ready = function() {
     window.toggleclonebrowserdiffs = function(newval) {
         if(newval) {
             $("span.modeldiffplus").addClass("diffplus");
+            $("span.modeldiffplus").addClass("nonarchetypical");
             $("span.modeldiffminus").show();
         } else {
             $("span.modeldiffplus").removeClass("diffplus");
+            $("span.modeldiffplus").removeClass("nonarchetypical");
             $("span.modeldiffminus").hide();
         }
     }

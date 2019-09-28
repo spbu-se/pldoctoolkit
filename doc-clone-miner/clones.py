@@ -484,7 +484,7 @@ class FuzzyCloneGroup(CloneGroup):
     def plain_text_words(self, inst=0):
         return InputFile.wre.findall(self.instancewords[inst])
 
-    def html(self, inst=None, allow_space_wrap=False):
+    def html(self, inst=None, allow_space_wrap=False, force_from_archetype = False):
         import worddiff
         if inst is None: # all
             logging.info(
@@ -496,7 +496,8 @@ class FuzzyCloneGroup(CloneGroup):
             resultlist = worddiff.get_htmls(
                 self.instancetexts,
                 reference_text=self.reference_clone_text,
-                from_archetype=self.reference_clone_text is None
+                from_archetype=self.reference_clone_text is None,
+                blue_delta=force_from_archetype
             )
             resulttexts = []
             for r in resultlist:
@@ -1515,6 +1516,9 @@ class VariativeElement:
 
     @property
     def html(self):
+        return self._get_html()
+
+    def _get_html(self, report_mode: 'clones.ReportMode' = None):
         VariativeElement._html_idx += 1
 
         nextpoints = len(self.clone_groups) - 1
@@ -1560,9 +1564,15 @@ class VariativeElement:
 
         # vnc = max([numpy.var([len(v) for v in variations]) for variations in vvariations])
 
-        vtext = self.clone_groups[0].html(allow_space_wrap=True)
+        def o_html(g: 'CloneGroup'):
+            if report_mode == ReportMode.fuzzymatches and isinstance(g, FuzzyCloneGroup):
+                return g.html(allow_space_wrap=True, force_from_archetype=True)
+            else:
+                return g.html(allow_space_wrap=True)
+
+        vtext = o_html(self.clone_groups[0])
         for n in range(len(self.clone_groups) - 1):
-            vtext += vvtexts[n] + self.clone_groups[n+1].html(allow_space_wrap=True)
+            vtext += vvtexts[n] + o_html(self.clone_groups[n+1])
 
         vtext += '<wbr/>' + vltexts
 
@@ -1634,7 +1644,7 @@ class VariativeElement:
         source = "** generated for standalone UI **" if only_generate_for_ui else util.escapecode(inputfiles[0].text)
 
         whole_html = \
-            summaryhtml_start + (os.linesep.join([e.html for e in elements])) +\
+            summaryhtml_start + (os.linesep.join([e._get_html(report_mode=ReportMode.fuzzymatches) for e in elements])) +\
             html_templates.summaryhtml_middle + source + html_templates.summaryhtml_finish
 
         return whole_html
