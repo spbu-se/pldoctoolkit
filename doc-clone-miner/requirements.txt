@@ -10,3 +10,4 @@ bottle
 pypandoc
 chardet
 psutil
+PyYAML

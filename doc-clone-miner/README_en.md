@@ -42,7 +42,7 @@ Python
 ------
 
 * 64 bit [Python 3.7.x](https://www.python.org/downloads/)
-* PyQt, PyQtWebEngine, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc, chardet, psutil — `pip install -r requirements.txt`
+* PyQt, PyQtWebEngine, QuaMash, LXML, PyContracts, pygments, NumPy, intervaltree, bottle, pyinterval, pypandoc, chardet, psutil, PyYAML — `pip install -r requirements.txt`
 * Optional:
     * Cython — `pip install Cython`. If this library is not installed, then the near duplicate search will run slower
     * PyInterval — `pip install  pyinterval`, it will probably require sideloading crlibm for Windows
