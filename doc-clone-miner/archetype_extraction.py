@@ -244,7 +244,12 @@ def two_tuples_lcs(w1: 'tuple[str]', w2: 'tuple[str]') -> 'tuple[str]':
 @functools.lru_cache(maxsize=None)
 def possible_n_tuples_lcs(ws: 'iterable[tuple[str]]') -> 'tuple[str]':
     # operator.reduce is a kind of foldl
-    return functools.reduce(two_tuples_lcs, ws)
+    if len(ws) >= 2:
+        return functools.reduce(two_tuples_lcs, ws)
+    elif len(ws) == 1:
+        return ws[1]
+    else:
+        return ()
 
 @functools.lru_cache(maxsize=None)
 def best_n_tuples_lcs(strings: 'tuple[tuple[str]]') -> 'tuple[str]':
