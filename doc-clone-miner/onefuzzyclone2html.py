@@ -187,7 +187,7 @@ def report(logger, args, diff_against_pattern = True):
     if diff_against_pattern:
         clones.FuzzyCloneGroup.reference_text = args.pattern
     else:
-        texts_tokens = tuple(tuple(util.tokenst(cg.instancetexts[0])) for cg in clones.clonegroups)
+        texts_tokens = tuple(tuple(util.tokenst(cg.instancetexts[0], punctsep=True)) for cg in clones.clonegroups)
         archetype_tokens = archetype_extraction.best_n_tuples_lcs(texts_tokens)
         clones.FuzzyCloneGroup.reference_text = ' '.join(archetype_tokens)
 

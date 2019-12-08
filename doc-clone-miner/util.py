@@ -8,6 +8,7 @@ import sys
 import functools
 import contextlib
 import psutil
+import string
 
 # import Levenshtein  # not used any more
 import traceback
@@ -97,10 +98,15 @@ def diratio(s1, s2):
 # _wre = re.compile(r"\w+", re.UNICODE)
 _wre = re.compile(r"\S+", re.UNICODE)
 
+_s_punctuation = string.punctuation.replace('@', '')
+_pre = "".join("\\" + c for c in _s_punctuation)
+_r_pre = re.compile(r"[" + _pre + r"]+")
+_npre = "".join("^\\" + c for c in _s_punctuation)
+_wpre = re.compile(r"([" + _pre + r"])|([" + _npre + r"^\s]+)", re.UNICODE)
 
-def tokens(text):
+def tokens(text, punctsep=False):
     r = []
-    for m in _wre.finditer(text):
+    for m in (_wpre if punctsep else _wre).finditer(text):
         s = m.start()
         e = m.end()
         r.append((s, e, text[s:e]))
@@ -112,12 +118,12 @@ def text_to_tokens_offsets(src: str) -> 'tuple[list[str], list[tuple[int, int]]]
     return tuple([list(t) for t in zip(*str_offs)])
 
 
-def tokenst(text):
-    return [s for b, e, s in tokens(text)]
+def tokenst(text, punctsep=False):
+    return [s for b, e, s in tokens(text, punctsep)]
 
 
-def ctokens(text):
-    return ' '.join(tokenst(text))
+def ctokens(text, punctsep=False):
+    return ' '.join(tokenst(text, punctsep))
 
 
 def save_reformatted_file(fileName):
@@ -132,7 +138,6 @@ def save_reformatted_file(fileName):
     text = "".join(lines)
     with open(fileName + ".reformatted", 'w+', encoding='utf-8', newline='\n') as ofs:
         ofs.write(text)
-
 
 def save_standalone_html(source_html, target_html):
     with open(source_html, encoding='utf-8') as htmlsrc:

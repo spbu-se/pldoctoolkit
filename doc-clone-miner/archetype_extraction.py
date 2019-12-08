@@ -204,6 +204,8 @@ def alg(duplicate_a, duplicate_b):
 
 
 def diffalg(a, b):
+    warnings.warn("Unverified", category=DeprecationWarning, stacklevel=15)
+
     seq = difflib.SequenceMatcher()
     seq.set_seqs(a, b)
     string = []
@@ -266,7 +268,7 @@ def calculate_archetype_occurrences(fuzzy_clone_texts: 'iterable[str]') -> 'list
         return tuple(
             (n, b, e, s)
             for n, (b, e, s)
-            in zip(itertools.count(), util.tokens(text))
+            in zip(itertools.count(), util.tokens(text, punctsep=True))
         )
 
     itoken_lists = [itokens(text) for text in fuzzy_clone_texts]
@@ -381,7 +383,35 @@ def get_variative_element(clones: 'module', group: 'clones.FuzzyCloneGroup' ) ->
         return clones.VariativeElement([group])  # fallback if archetype not detected
 
 
+def _html_deltize(t):
+    return f"""<span class="nonarchetypical modeldiffplus">{util.escape(t)}</span>"""
+
+def _html_archetypize(t):
+    return util.escape(t)
+
+def get_fuzzy_htmls(texts: 'List[str]', deltize=_html_deltize, archetypize=_html_archetypize):
+    go, nb, na = calculate_archetype_occurrences(texts)
+    tgo = list(map(list, zip(*go)))  # transpose to make it by string from by group
+
+    result = []
+    for t, ta in zip(texts, tgo):
+        r = ""
+        print(t, ta)
+
+        ta = [(0, 0)] + ta + [(len(t), len(t))]
+
+        for tal, tar in zip(ta, ta[1:]):
+            r += archetypize(t[tal[0]:tal[1]])  # piece of archetype
+            r += deltize(t[tal[1]:tar[0]]) # piece of delta
+
+        result.append(r)
+
+    return result
+
+
 def get_html(clones: 'module', group, archetype):
+    warnings.warn("Unverified", category=DeprecationWarning, stacklevel=15)
+
     source = ''
     delimiter = '\n\n' + '-' * 200 + '\n\n'
     for dup in group:
