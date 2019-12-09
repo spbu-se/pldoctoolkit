@@ -247,7 +247,7 @@ def possible_n_tuples_lcs(ws: 'iterable[tuple[str]]') -> 'tuple[str]':
     if len(ws) >= 2:
         return functools.reduce(two_tuples_lcs, ws)
     elif len(ws) == 1:
-        return ws[1]
+        return ws[0]
     else:
         return ()
 
