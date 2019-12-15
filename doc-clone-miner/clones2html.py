@@ -204,7 +204,7 @@ allcglen = len(clones.clonegroups)
 
 # how many of them are unbalanced
 def countunbalanced():
-    import xmllexer
+    import input_lexer
     import xmlfixup
 
     unbalancedcg = 0
@@ -214,10 +214,10 @@ def countunbalanced():
         (ifn, ib, ie) = cg.instances[0]
         ifl = clones.inputfiles[ifn]
         il = ie - ib + 1
-        covint, bf, bl = xmllexer.find_covered_intervals(ib, il, ifl.lexintervals)
+        covint, bf, bl = input_lexer.find_covered_intervals(ib, il, ifl.lexintervals)
 
-        if bf and covint[0].int_type != xmllexer.IntervalType.general \
-                or bl and covint[-1].int_type != xmllexer.IntervalType.general:
+        if bf and covint[0].int_type != input_lexer.IntervalType.general \
+                or bl and covint[-1].int_type != input_lexer.IntervalType.general:
             brokenmarkup += 1
             bmp = True
 

@@ -25,7 +25,7 @@ import hashlib
 import uuid
 
 import util
-import xmllexer
+import input_lexer
 import xmlfixup
 import semanticfilter
 import intervaltree
@@ -283,15 +283,15 @@ class XMLZoneMarker(xsh.ContentHandler):
 class InputFile(ABC):
     wre = re.compile(r"\w+")
 
-    def __init__(self, fileName):
+    def __init__(self, file_name):
         global write_reformatted_sources
 
         self.elementZones = []
-        self.fileName = fileName
+        self.fileName = file_name
         self.text = None
         self.offsets = []
         offset = 0
-        with open(fileName, encoding='utf-8') as ifs:
+        with open(file_name, encoding='utf-8') as ifs:
             self.lines = []
             for line in ifs:
                 self.offsets.append(offset)
@@ -304,26 +304,12 @@ class InputFile(ABC):
             self.offsets.append(offset)
             self.text = "".join(self.lines)
         if write_reformatted_sources:
-            with open(fileName + ".reformatted", 'w+', encoding='utf-8', newline='\n') as ofs:
+            with open(file_name + ".reformatted", 'w+', encoding='utf-8', newline='\n') as ofs:
                 ofs.write(self.text)
 
-        # then calculate XML zones
-        marker = XMLZoneMarker(self)
-
-        global checkmarkup
-        if checkmarkup:  # -cmup no and -cmup shrink do not need this
-            marker.discover()
-            self.zones, self.rzones = marker.zones, marker.rzones
-            self.textzoneoffsets = marker.textzoneoffsets
-            self.textzoneends = marker.textzoneends
-            self.textzones = marker.textzones
-        else:
-            marker.discoverURLs()
-        self.urlzones = marker.urlzones
-
-
         # calculate tag coordinates using pygments lexer (hope correctly)
-        self.lexintervals = xmllexer.lex(self.text)
+        self.lexintervals = input_lexer.lex_generic(self.text)
+
 
     def get_words_covered_with_interval(self, b: 'int', e: 'int') -> 'list[str]':
         return InputFile.wre.findall(self[b:e])
@@ -365,7 +351,34 @@ class InputFile(ABC):
 
 
 class XMLInputFile(InputFile):
-    pass
+    def __init__(self, file_name):
+        super().__init__(file_name)
+
+        # then calculate XML zones
+        marker = XMLZoneMarker(self)
+
+        global checkmarkup
+        if checkmarkup:  # -cmup no and -cmup shrink do not need this
+            marker.discover()
+            self.zones, self.rzones = marker.zones, marker.rzones
+            self.textzoneoffsets = marker.textzoneoffsets
+            self.textzoneends = marker.textzoneends
+            self.textzones = marker.textzones
+        else:
+            marker.discoverURLs()
+        self.urlzones = marker.urlzones
+
+        # calculate tag coordinates using pygments lexer (hope correctly)
+        self.lexintervals = input_lexer.lex_xml(self.text)
+
+def create_input_file_by_suffix(filename: 'str')-> 'InputFile':
+    xml_suffices = ["drl", "xml", "pxml"]
+
+    for su in xml_suffices:
+        if filename.endswith(f".{su}") or filename.endswith(f".{su}.reformatted"):
+            return XMLInputFile(filename)
+
+    return InputFile(filename)
 
 class InternalException(Exception):
     pass
@@ -564,7 +577,7 @@ class ExactCloneGroup(CloneGroup):
 
         ifilen, so, e = self.instances[instance_no]
         sl = e - so + 1
-        parts = xmllexer.get_texts_and_markups(so, sl, inputfiles[ifilen].lexintervals)
+        parts = input_lexer.get_texts_and_markups(so, sl, inputfiles[ifilen].lexintervals)
 
         hparts = [
             "<code>" +
@@ -572,7 +585,7 @@ class ExactCloneGroup(CloneGroup):
                 ExactCloneGroup.two_or_more_spaces_re.sub(" ", ExactCloneGroup.two_or_more_nlines_re.sub(" ", t)),
                 allow_space_wrap) +
             "</code>"
-            for t, k in parts if k == xmllexer.IntervalType.general and len(t) and not t.isspace()
+            for t, k in parts if k == input_lexer.IntervalType.general and len(t) and not t.isspace()
         ]
 
         return "<wbr/>".join(hparts)  # can break line here
@@ -675,10 +688,12 @@ class ExactCloneGroup(CloneGroup):
             raise InternalException("What to do with integers here?..")
 
     def _plain_texts_from_intervals(self, instance_no=0):
+        global inputfiles
         # detecting on instance[0]
         ifilen, so, e = self.instances[instance_no]
+        ifile = inputfiles[ifilen]
         sl = e - so + 1
-        return xmllexer.get_plain_texts(so, sl, inputfiles[ifilen].lexintervals)
+        return input_lexer.get_plain_texts(so, sl, ifile.lexintervals)
 
     def text(self, inst=0):
         global inputfiles
@@ -776,7 +791,11 @@ class ExactCloneGroup(CloneGroup):
         except AttributeError:
             self._breaksURL = False
             # TODO: bisect!
-            _, s, e = self.instances[0]
+            ifileno, s, e = self.instances[0]
+
+            if not isinstance(inputfiles[ifileno], XMLInputFile):
+                return False  # TODO: this is not correct !!
+
             ifile0 = inputfiles[0]
             urlse = [z for z in ifile0.urlzones if z.mode == TextZone.URL]
             for u in urlse:
@@ -990,7 +1009,7 @@ def loadinputs(logger):
                 # and posix root was marked as z:\
                 sl = sl.replace("z:\\", "/").replace("\\", "/")
             if len(sl):
-                inputfiles.append(InputFile(sl))
+                inputfiles.append(create_input_file_by_suffix(sl))
 
     def correct_utf8_instances(insts):
         """
@@ -1192,7 +1211,7 @@ class VariativeElement:
         r_ifilen, r_so, r_e = self.clone_groups[-1].instances[instance_no]
         sl = r_e - l_so + 1
         assert l_ifilen == r_ifilen
-        return xmllexer.get_plain_texts(l_so, sl, inputfiles[l_ifilen].lexintervals)
+        return input_lexer.get_plain_texts(l_so, sl, inputfiles[l_ifilen].lexintervals)
 
     def _plain_text(self, instance_no=0):
         return ' '.join(self._plain_texts_from_intervals(instance_no))
@@ -1504,11 +1523,11 @@ class VariativeElement:
             s = g1end + 1
             e = g2start - 1  # non-inclusive
             l = e - s  # non-inclusive above
-            parts = xmllexer.get_texts_and_markups(s, l, inputfiles[g1file].lexintervals)
+            parts = input_lexer.get_texts_and_markups(s, l, inputfiles[g1file].lexintervals)
 
             hparts = [
                 ExactCloneGroup.two_or_more_spaces_re.sub(" ", ExactCloneGroup.two_or_more_nlines_re.sub(" ", t))
-                for t, k in parts if k == xmllexer.IntervalType.general and len(t) and not t.isspace()
+                for t, k in parts if k == input_lexer.IntervalType.general and len(t) and not t.isspace()
                 ]
 
             result.append(" " + esceps(" ".join(hparts)) + " ")

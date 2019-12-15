@@ -8,7 +8,7 @@ Refactoring tool for Document Clone Miner.
 from contracts import contract
 
 import argparse
-import xmllexer
+import input_lexer
 import xmlfixup
 import os
 import uuid
@@ -143,14 +143,14 @@ def create_reuse_entry(tinput: 'str', clone_desc: 'str', drl_elt_type: 'str') ->
     whole_instances = cd.get_whole_instances(tinput)
     # outer balancing using outer instance #0
     outer_def_prepend, outer_def_append, outer_ref_prepend, outer_ref_append = \
-        xmlfixup.balance_unbalanced_text(xmllexer.lex(whole_instances[0]))
+        xmlfixup.balance_unbalanced_text(input_lexer.lex_xml(whole_instances[0]))
 
     # prepend and appends for extension points
     vps_pa = []
     vps = cd.get_variative_parts(tinput)
     for vp in vps:
         # balancing using variative part #0
-        vps_pa.append(xmlfixup.balance_unbalanced_text(xmllexer.lex(vp[0])))
+        vps_pa.append(xmlfixup.balance_unbalanced_text(input_lexer.lex_xml(vp[0])))
 
     # definition
     vardefs = []
@@ -200,28 +200,28 @@ def create_reuse_entry(tinput: 'str', clone_desc: 'str', drl_elt_type: 'str') ->
     return restext, complete_def
 
 def insert_inf_elt(src, defn):
-    elts = xmllexer.lex(src)
+    elts = input_lexer.lex_xml(src)
     li = len(elts) - 1
-    while li > 0 and elts[li].int_type != xmllexer.IntervalType.closetag:
+    while li > 0 and elts[li].int_type != input_lexer.IntervalType.closetag:
         li -= 1
     offs = elts[li].offs
     return src[:offs] + os.linesep + defn + os.linesep + src[offs:]
 
 def insert_dict_entry(src, defn):
-    elts = xmllexer.lex(src)
+    elts = input_lexer.lex_xml(src)
 
     dopentag = os.linesep + """<d:Dictionary id="doc_clone_finder">""" + os.linesep
     dclosetag = os.linesep + "</d:Dictionary>" + os.linesep
 
     offs = -1
     for e in reversed(elts):
-        if e.int_type == xmllexer.IntervalType.opentag and e.srepr == dopentag:
+        if e.int_type == input_lexer.IntervalType.opentag and e.srepr == dopentag:
             offs = e.end
             break
 
     if offs == -1:
         li = len(elts) - 1
-        while li > 0 and elts[li].int_type != xmllexer.IntervalType.closetag:
+        while li > 0 and elts[li].int_type != input_lexer.IntervalType.closetag:
             li -= 1
         offs = elts[li].offs
 

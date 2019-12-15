@@ -578,7 +578,7 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         methodIdx = self.cbMethod.currentIndex()
 
         infile = self.inFile.text()
-        infile = pandoc_importer.import_file(infile, methodIdx==0)
+        infile = pandoc_importer.import_file(infile, self.cbToDRL.isChecked())
         pui = ElemMinerProgressUI()
 
         if methodIdx == 0: # Clone Miner

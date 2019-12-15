@@ -5,7 +5,7 @@ import clones
 import util
 import textwrap
 import itertools
-import xmllexer
+import input_lexer
 import string
 import sourcemarkers
 import re
@@ -158,7 +158,7 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
         ccd = cd[0]
         crd = rd[0]
 
-        separated_intervals = list(xmllexer.separate_comments(ifl.lexintervals))
+        separated_intervals = list(input_lexer.separate_comments(ifl.lexintervals))
 
         def set_clone_density_to(xmlinterval, value):
             be = xmlinterval.offs
@@ -167,7 +167,7 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
 
         current_ignore_mode = None
         for si in separated_intervals:
-            if si.int_type == xmllexer.IntervalType.comment:
+            if si.int_type == input_lexer.IntervalType.comment:
                 omt = sourcemarkers.open_marker_type(si)
                 cmt = sourcemarkers.close_marker_type(si)
                 if omt or cmt:
@@ -185,12 +185,12 @@ def report_densities(available_groups: 'list(clones.CloneGroup)', input_files: '
         def get_without_markup(b, e):
             l = e - b  # non-inclusive above
 
-            parts = xmllexer.get_texts_and_markups(b, l, separated_intervals)
+            parts = input_lexer.get_texts_and_markups(b, l, separated_intervals)
 
             hparts = [
                 clones.ExactCloneGroup.two_or_more_spaces_re.sub(" ", clones.ExactCloneGroup.two_or_more_nlines_re.sub("\n", t))
                 for t, k in parts
-                if k in {xmllexer.IntervalType.general, xmllexer.IntervalType.comment} and len(t) and not t.isspace()
+                if k in {input_lexer.IntervalType.general, input_lexer.IntervalType.comment} and len(t) and not t.isspace()
                 ]
 
             return util.escapecode(" ".join(hparts), allow_space_wrap=True)

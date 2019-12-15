@@ -47,6 +47,16 @@ def wrap_file_into_xml(filename: str):
         "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<plainxml>%s\n</plainxml>"
     )
 
+def wrap_file_into_txt(filename: str):
+    """
+    ACtually just leaves txt as txt
+    """
+    wrap_file_into_smth(
+        filename,
+        False,
+        "%s"
+    )
+
 def wrap_file_into_drl(filename: str):
     wrap_file_into_smth(
         filename,
@@ -92,15 +102,15 @@ def import_file(input_file: str, todrl: bool) -> str:
         }
     else:
         formats = {
-            '.docx': ('docx', 'plain', '.pxml'),
-            '.tex': ('latex', 'plain', '.pxml'),
-            '.html': ('html', 'plain', '.pxml'),
-            '.md': ('markdown', 'plain', '.pxml'),
-            '.rst': ('rst', 'plain', '.pxml'),
-            '.xml': ('docbook', 'plain', '.pxml'),
-            '.docbook': ('docbook', 'plain', '.pxml'),
-            '.tmpl': ('docbook', 'plain', '.pxml'),
-            '.txt': ('plain', 'plain', '.pxml')
+            '.docx': ('docx', 'plain', '.txt'),
+            '.tex': ('latex', 'plain', '.txt'),
+            '.html': ('html', 'plain', '.txt'),
+            '.md': ('markdown', 'plain', '.txt'),
+            '.rst': ('rst', 'plain', '.txt'),
+            '.xml': ('docbook', 'plain', '.txt'),
+            '.docbook': ('docbook', 'plain', '.txt'),
+            '.tmpl': ('docbook', 'plain', '.txt'),
+            '.txt': ('plain', 'plain', '.txt')
         }
 
     isuffix = None
@@ -140,11 +150,12 @@ def import_file(input_file: str, todrl: bool) -> str:
         )
     else:
         #  Allow encoding autodetection
-        with open(output_file, 'wb+') as ofl: ofl.write(try_read_and_recode(input_file).encode('utf-8'))
+        input_data = try_read_and_recode(input_file)
+        with open(output_file, 'wb+') as ofl: ofl.write(input_data.encode('utf-8'))
 
     if osuffix == '.drl' and oformat == 'docbook':
         wrap_docbook_into_drl(output_file)
     else:
-        wrap_file_into_xml(output_file)
+        wrap_file_into_txt(output_file)
 
     return output_file

@@ -77,7 +77,7 @@ def loadfuzzyinputs(logger):
     clones.checkmarkup = False
     clones.only_generate_for_ui = args.only_ui == "yes"
 
-    inputfile = clones.InputFile(args.source_xml)
+    inputfile = clones.create_input_file_by_suffix(args.source_xml)
     with open(args.source_xml + ".reformatted", "w", encoding='utf-8') as rf:
         rf.write(inputfile.text)
 

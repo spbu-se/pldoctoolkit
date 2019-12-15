@@ -47,7 +47,7 @@ def load_fuzzy_groups_xml(logger):
     clones.checkmarkup = False
     only_generate_for_ui = clones.only_generate_for_ui = args.only_ui == "yes"
 
-    inputfile = clones.InputFile(args.source_xml)
+    inputfile = clones.create_input_file_by_suffix(args.source_xml)
 
     fuzzyclonedata = etree.parse(args.fuzzy_xml) # type: ElementTree
 
@@ -117,7 +117,7 @@ def load_near_duplicates_json(logger):
     clones.checkmarkup = False
     clones.only_generate_for_ui = args.only_ui == "yes"
 
-    inputfile = clones.InputFile(args.source_xml)
+    inputfile = clones.create_input_file_by_suffix(args.source_xml)
     clones.initdata([inputfile], [])
 
     with open(args.neardup_json, encoding='utf-8') as ndj:
@@ -155,7 +155,7 @@ def load_dups_benchmark_json(logger):
     clones.checkmarkup = False
     clones.only_generate_for_ui = args.only_ui == "yes"
 
-    inputfile = clones.InputFile(args.source_xml)
+    inputfile = clones.create_input_file_by_suffix(args.source_xml)
 
     with open(args.neardup_json, encoding='utf-8') as ndj:
         fuzzyclonedata = json.load(ndj)

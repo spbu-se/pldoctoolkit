@@ -13,7 +13,7 @@ import intervaltree
 import archetype_extraction
 import sourcemarkers
 import util
-from xmllexer import IntervalType
+from input_lexer import IntervalType
 
 __all__ = ['get_variative_elements']
 
@@ -166,7 +166,7 @@ def organize_search(logger, args):
     clones.checkmarkup = False
     clones.only_generate_for_ui = args.only_ui == "yes"
 
-    inputfile = clones.InputFile(args.input_document)
+    inputfile = clones.create_input_file_by_suffix(args.input_document)
 
     fuzzyclonedata = find_like_pattern(inputfile, args.pattern, args.minimal_similarity)
 

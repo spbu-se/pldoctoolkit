@@ -8,7 +8,7 @@ Range markers for DRL source code
 from abc import ABCMeta, abstractmethod
 import uuid
 import re
-import xmllexer
+import input_lexer
 import util
 import sys
 import logging
@@ -83,27 +83,35 @@ uuidlen = 36
 markerlen = 56
 
 def open_marker_id(str_or_xi):
-    text = str_or_xi.srepr if isinstance(str_or_xi, xmllexer.XmlInterval) else str_or_xi
+    text = str_or_xi.srepr if isinstance(str_or_xi, input_lexer.XmlInterval) else str_or_xi
     id = text[5:5+36]
     return id
 
 def open_marker_type(str_or_xi):
-    text = str_or_xi.srepr if isinstance(str_or_xi, xmllexer.XmlInterval) else str_or_xi
+    text = str_or_xi.srepr if isinstance(str_or_xi, input_lexer.XmlInterval) else str_or_xi
     if _open_marker_re.match(text):
         for m in _open_marker_re.finditer(text):
             return m.groups(1)[0]  # ACCEPT|IGNORE
     return None
 
 def close_marker_type(str_or_xi):
-    text = str_or_xi.srepr if isinstance(str_or_xi, xmllexer.XmlInterval) else str_or_xi
+    text = str_or_xi.srepr if isinstance(str_or_xi, input_lexer.XmlInterval) else str_or_xi
     if _close_marker_re.match(text):
         for m in _close_marker_re.finditer(text):
             return m.groups(1)[0]  # ACCEPT|IGNORE
     return None
 
+
+def open_markers_matches(src: 'str') -> 'List[Tuple[int, int]]':
+    return [m.span() for m in _open_marker_re.finditer(src)]
+
+
+def close_markers_matches(src: 'str') -> 'List[Tuple[int, int]]':
+    return [m.span() for m in _close_marker_re.finditer(src)]
+
 def find_marked_intervals(src):
-    obes = [m.span() for m in  _open_marker_re.finditer(src)]
-    cbes = [m.span() for m in  _close_marker_re.finditer(src)]
+    obes = open_markers_matches(src)
+    cbes = close_markers_matches(src)
 
     if len(obes) != len(cbes):
         print(
@@ -137,7 +145,7 @@ def source_text_to_html(src):
     return result
 
 if __name__ == '__main__':  # tests
-    xi = xmllexer.XmlInterval(xmllexer.IntervalType.comment, 100,
+    xi = input_lexer.XmlInterval(input_lexer.IntervalType.comment, 100,
                               "<!-- 11111111-2222-3333-4444-555555555555 <=< ACCEPT -->",
-                              None)
+                                 None)
     print(open_marker_type(xi))

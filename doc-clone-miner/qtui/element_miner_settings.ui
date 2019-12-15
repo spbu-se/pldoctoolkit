@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>571</width>
-    <height>560</height>
+    <height>566</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -217,6 +217,13 @@
              <string>Filtering</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <widget class="QCheckBox" name="cbToDRL">
+               <property name="text">
+                <string>Convert to DRL</string>
+               </property>
+              </widget>
+             </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_12">
                <property name="topMargin">

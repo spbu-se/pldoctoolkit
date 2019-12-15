@@ -5,22 +5,22 @@
 Simple ad-hoc XML fixed
 """
 
-import xmllexer
+import input_lexer
 
 
 def shrink_broken_markup_interval(offset, length, all_intervals):
-    covered, broken_1st, broken_last = xmllexer.find_covered_intervals(offset, length, all_intervals)
+    covered, broken_1st, broken_last = input_lexer.find_covered_intervals(offset, length, all_intervals)
     end = offset + length
 
     if broken_1st:
-        if covered[0].int_type != xmllexer.IntervalType.general:
+        if covered[0].int_type != input_lexer.IntervalType.general:
             # general text can be broken
             if len(covered) < 2:
                 return None
             else:
                 offset = covered[1].offs
     if broken_last:
-        if covered[-1].int_type != xmllexer.IntervalType.general:
+        if covered[-1].int_type != input_lexer.IntervalType.general:
             # general text can be broken
             if len(covered) < 2:
                 return None
@@ -47,9 +47,9 @@ def balance_unbalanced_text(covered_intervals):
     # going right
     stack = []
     for i in covered_intervals:
-        if i.int_type == xmllexer.IntervalType.opentag:
+        if i.int_type == input_lexer.IntervalType.opentag:
             stack.append(i)
-        elif i.int_type == xmllexer.IntervalType.closetag and len(stack):
+        elif i.int_type == input_lexer.IntervalType.closetag and len(stack):
             stack.pop()
 
     for i in stack:
@@ -61,9 +61,9 @@ def balance_unbalanced_text(covered_intervals):
     back_intervals = list(covered_intervals)
     back_intervals.reverse()
     for i in back_intervals:
-        if i.int_type == xmllexer.IntervalType.closetag:
+        if i.int_type == input_lexer.IntervalType.closetag:
             stack.append(i)
-        elif i.int_type == xmllexer.IntervalType.opentag and len(stack):
+        elif i.int_type == input_lexer.IntervalType.opentag and len(stack):
             stack.pop()
 
     for i in stack:
@@ -75,7 +75,7 @@ def balance_unbalanced_text(covered_intervals):
 # just a test
 if __name__ == '__main__':
     src = """t0</a>t1</b>t2<c>t3<d>t4"""
-    ints = xmllexer.lex(src)
+    ints = input_lexer.lex_xml(src)
     p, a, rp, ra = balance_unbalanced_text(ints)
     print("".join([pi.srepr for pi in p]))
     print(src)

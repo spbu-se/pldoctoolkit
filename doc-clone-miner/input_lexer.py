@@ -4,12 +4,15 @@
 """
 Simple ad-hoc XML lexer based on pygments lexer.
 """
+from __future__ import annotations
+from abc import ABC, abstractmethod
 
 import enum
 import bisect
 import logging
 import pygments.token as ptok
-from pygments.lexers import XmlLexer
+from pygments.lexers.html import XmlLexer
+import sourcemarkers
 
 #  TODO change this to Python 3.5+ enum when porting to PyQt 5.7+
 @enum.unique
@@ -21,9 +24,9 @@ class IntervalType(enum.IntEnum):
     comment = 4  # only achieved with additional analysis
 
 
-class XmlInterval:
-    def __init__(self, int_type, offs, srepr, name=None, srcindex=None):
-        self.int_type = int_type
+class GenericInterval(ABC):
+    def __init__(self, offs, srepr, name=None, srcindex=None):
+        self.int_type = IntervalType.general
         self.offs = offs
         self.srepr = srepr
         self.srcindex = srcindex # 0-based index among all intervals of source file to find what is before and after
@@ -37,6 +40,11 @@ class XmlInterval:
         return "#%s [%d-%d): %s `%s' %s" % (
             str(self.srcindex) if self.srcindex is not None else '?',
             self.offs, self.end, str(self.int_type), self.name if self.name else '', repr(self.srepr))
+
+class XmlInterval(GenericInterval):
+    def __init__(self, int_type, offs, srepr, name=None, srcindex=None):
+        super().__init__(offs, srepr, name, srcindex)
+        self.int_type = int_type
 
     def create_opposite_tag(self):
         'Returns "opposite" tag, assuming CDATA markers being tags too'
@@ -54,7 +62,6 @@ class XmlInterval:
 
 class LexException(Exception):
     pass
-
 
 class _RejoinError(Exception):
     pass
@@ -123,7 +130,30 @@ def _rejoin(lexemes):
                 yield XmlInterval(IntervalType.general, offset, srepr, None, nextic())
 
 
-def lex(xmlstring):
+def lex_generic(source):
+    """
+    Dummy Lexer for any imput string
+    :param string: source
+    :return: Lexeme intervals of near duplicate markers and text between them
+    """
+
+    marked_spans = sorted(
+        sourcemarkers.open_markers_matches(source) +
+        sourcemarkers.close_markers_matches(source)
+    )
+
+    if not len(marked_spans):
+        return [GenericInterval(0, source)]
+    else:
+        result = []
+        a_marked_spans = [(0, 0)] + marked_spans + [(len(source), len(source))]
+        for (b1, e1), (b2, e2) in zip(a_marked_spans[:-1], a_marked_spans[1:]):
+            result.append(GenericInterval(e1, source[e1:b2]))
+            if b2 != len(source):
+                result.append(XmlInterval(IntervalType.comment, b2, source[b2:e2]))
+        return result
+
+def lex_xml(xmlstring):
     """
     LEXs XML string.
     Allows broken CDATA (pygments does not)
@@ -144,10 +174,10 @@ def lex(xmlstring):
 
         if lc >= 0 and (lo == -1 or lo > lc):
             # missing open CDATA
-            return lex("<![CDATA[" + xmlstring)[1:]
+            return lex_xml("<![CDATA[" + xmlstring)[1:]
         elif ro >= 0 and (rc == -1 or rc < ro):
             # missing close CDATA
-            return lex(xmlstring + "]]>")[:-1]
+            return lex_xml(xmlstring + "]]>")[:-1]
     except Exception as e:
         logging.fatal("XML lexing:" + repr(e))
 
@@ -194,7 +224,7 @@ def get_texts_and_markups(offset, length, all_intervals):
 def get_plain_texts(offset, length, all_intervals):
     return [rpr for rpr, typ in get_texts_and_markups(offset, length, all_intervals) if typ == IntervalType.general]
 
-def separate_comments(intervals):
+def separate_comments(intervals: 'Iterable[GenericInterval]'):
     inside_comment = False
     current_comment = ""
     current_comment_offs = 0
@@ -218,6 +248,7 @@ def separate_comments(intervals):
             else:
                 current_comment += i.srepr
 
+
 # just for testing purposes, TODO: remove it completely
 if __name__ == '__main__':
     lexer = XmlLexer()
@@ -232,7 +263,7 @@ if __name__ == '__main__':
     <property name="messageConverter">
         <bean class="org.springframework.amqp.support.'''
 
-    ints = lex(s)
+    ints = lex_xml(s)
 
     with open("out.txt", 'w+', encoding='utf-8') as outf:
         for t in ints:
@@ -247,7 +278,7 @@ if __name__ == '__main__':
     s = """<xml> <t>  </t><!-- comment1 -->
     <!-- comment2 <t></t> -->
     </xml>"""
-    ints = lex(s)
+    ints = lex_xml(s)
     for i in ints:
         print(repr(i))
     ints = separate_comments(ints)
