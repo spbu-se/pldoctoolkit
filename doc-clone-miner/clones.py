@@ -4,6 +4,8 @@
 # requires:
 # - https://pypi.python.org/pypi/PyContracts -- pip install pycontracts
 # - numpy
+from __future__ import annotations
+from abc import ABC, abstractmethod, abstractstaticmethod, abstractclassmethod
 
 import logging
 import os
@@ -32,8 +34,6 @@ try:
     import interval as itvl # https://pypi.python.org/pypi/pyinterval
 except Exception as e:
     print("pyinterval not installed. No coverage reports will be available", file=sys.stderr)
-
-from abc import ABC, abstractmethod
 
 # seems reasonable
 # http://stackoverflow.com/questions/3269434/whats-the-most-efficient-way-to-test-two-integer-ranges-for-overlap
@@ -196,7 +196,7 @@ def coverage_in_all_words(vi: 'list[VariativeElement]') -> 'int':
     return sum([len(inputfiles[ifn].get_words_covered_with_interval(b, e)) for (b, e) in connected_slices])
 
 # TODO: this should be enum (requires py 3.4+) and should be robably removed and replaced with xmllexer
-class TextZone(object):
+class TextZone(ABC):
     UFO = 0
     ELEM = 1
     TEXT = 2
@@ -280,7 +280,7 @@ class XMLZoneMarker(xsh.ContentHandler):
         self.discoverURLs()
 
 
-class InputFile(object):
+class InputFile(ABC):
     wre = re.compile(r"\w+")
 
     def __init__(self, fileName):
@@ -363,6 +363,9 @@ class InputFile(object):
         assert allow2offset
         return self._linecol2offset(coord) if isinstance(coord, tuple) else coord
 
+
+class XMLInputFile(InputFile):
+    pass
 
 class InternalException(Exception):
     pass

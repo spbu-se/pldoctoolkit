@@ -12,7 +12,7 @@ import contracts
 contracts.disable_all()
 
 
-class IntervalTree(object):
+class IntervalTree:
     def center(intervals):
         if len(intervals):
             bs = 0.0

@@ -31,7 +31,7 @@ def initargs():
 
     args = argpar.parse_args()
 
-class CandidateDescriptor(object):
+class CandidateDescriptor:
     def __init__(self, description_string):
         group_descriptors = description_string.split(';')
         self.groups = []

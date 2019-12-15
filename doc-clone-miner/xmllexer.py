@@ -21,7 +21,7 @@ class IntervalType(enum.IntEnum):
     comment = 4  # only achieved with additional analysis
 
 
-class XmlInterval(object):
+class XmlInterval:
     def __init__(self, int_type, offs, srepr, name=None, srcindex=None):
         self.int_type = int_type
         self.offs = offs
