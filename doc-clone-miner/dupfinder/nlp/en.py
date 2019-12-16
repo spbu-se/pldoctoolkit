@@ -12,7 +12,7 @@ def normalize(w: 'str')-> 'str':
 
         wl = lemminflect.getLemma(wa.lower(), None)
 
-        return wl[0]
+        return (wl[0]).lower()
     except Exception as e:
-        print(f"When normalizing: {w}, got error {e}", file=sys.stderr)
+        # print(f"When normalizing: {w}, got error {e}", file=sys.stderr)
         return w

@@ -248,3 +248,12 @@ def cfg()-> 'Union[Dict[Hashable, Any], List, None]':
     """Readonly config"""
     with open(os.path.join(_scriptdir, "settings.yml"), 'r', encoding='utf-8') as ys:
         return yaml.load(ys)
+
+def import_by_name(name: 'str')-> 'Any':
+    pkct = name.split('.')
+    m = __import__('.'.join(pkct[:-1]))
+
+    for n in pkct[1:]:
+        m = m.__dict__[n]
+
+    return m

@@ -237,24 +237,15 @@ def permutations_first_volatile(rank: 'int', n_cover: 'int' = 3):
 @functools.lru_cache()
 def get_normalizer() -> 'Function[str, str]':
     try:
-        nz = util.cfg()['archetype_recovery']['normalizer']
-        pkc: str = nz['function']
-
-        pkct = pkc.split('.')
-        m = __import__('.'.join(pkct[:-1]))
-
-        for n in pkct[1:]:
-            m = m.__dict__[n]
-
-        return m
+        return util.import_by_name(util.cfg()['archetype_recovery']['normalizer']['function'])
     except Exception as e:
         print(f"Archetype recovery failed to get NLP normalizer with error {e}", file=sys.stderr)
         return (lambda s: s)  # identity
 
 @functools.lru_cache(maxsize=None)
 def two_tuples_lcs(w1: 'tuple[str]', w2: 'tuple[str]') -> 'tuple[str]':
-    w1n = tuple(map(get_normalizer(), w1))
-    w2n = tuple(map(get_normalizer(), w2))
+    w1n = w1  # tuple(map(get_normalizer(), w1))
+    w2n = w2  # tuple(map(get_normalizer(), w2))
     sm = difflib.SequenceMatcher(None, w1n, w2n, False)
     matches = sm.get_matching_blocks()
     return tuple(itertools.chain(*[ w1n[match.a: match.a + match.size] for match in matches ]))
@@ -285,8 +276,10 @@ def best_n_tuples_lcs(strings: 'tuple[tuple[str]]') -> 'tuple[str]':
     return best_archetype
 
 
-def calculate_archetype_occurrences(fuzzy_clone_texts: 'iterable[str]') -> 'list[list[tuple[int, int]]]':
+def calculate_archetype_occurrences(fuzzy_clone_texts: 'iterable[str]', normalize: 'bool' = True) -> 'list[list[tuple[int, int]]]':
     """It is wrong... totally wrong..."""
+
+    nrr = get_normalizer() if normalize else (lambda s: s)
 
     def itokens(text):
         return tuple(
@@ -298,21 +291,29 @@ def calculate_archetype_occurrences(fuzzy_clone_texts: 'iterable[str]') -> 'list
     itoken_lists = [itokens(text) for text in fuzzy_clone_texts]
     token_text_tuples = tuple(tuple(s for n, b, e, s in token_list) for token_list in itoken_lists)
     token_text_lists = [ [t for t in ttu] for ttu in token_text_tuples]
+    token_normalized_text_lists = [
+        [nrr(t) for t in tt]
+        for tt in token_text_tuples
+    ]
+    token_normalized_text_tuples = tuple(
+        tuple(t for t in tt)
+        for tt in token_normalized_text_lists
+    )
 
     # Get archetype tokens
-    archetype_tokens = best_n_tuples_lcs(token_text_tuples)
+    archetype_normalized_tokens = best_n_tuples_lcs(token_normalized_text_tuples)
 
-    if len(archetype_tokens) == 0:  # No archetype detected!
+    if len(archetype_normalized_tokens) == 0:  # No archetype detected!
         return [], True, True
 
     need_fake_before = False
     need_fake_after  = False
     for itl in itoken_lists:
         n, b, e, s = itl[0]
-        if s != archetype_tokens[0]:
+        if nrr(s) != archetype_normalized_tokens[0]:
             need_fake_before = True
         n, b, e, s = itl[-1]
-        if s != archetype_tokens[-1]:
+        if nrr(s) != archetype_normalized_tokens[-1]:
             need_fake_after = True
 
     # group_indices = []
@@ -333,15 +334,15 @@ def calculate_archetype_occurrences(fuzzy_clone_texts: 'iterable[str]') -> 'list
     # Идём фронтом по всем строкам
 
     next_indices_vector = [
-        ttl.index(archetype_tokens[0], cti) for ttl, cti in zip(token_text_lists, cur_end)
+        ttl.index(archetype_normalized_tokens[0], cti) for ttl, cti in zip(token_normalized_text_lists, cur_end)
     ]
     start_group()
 
-    for ar_tok, tok_i in zip(archetype_tokens[1:], itertools.count()):
+    for ar_tok, tok_i in zip(archetype_normalized_tokens[1:], itertools.count()):
 
         cur_end = next_indices_vector
         next_indices_vector = [
-            ttl.index(ar_tok, cti) for ttl, cti in zip(token_text_lists, cur_end)
+            ttl.index(ar_tok, cti) for ttl, cti in zip(token_normalized_text_lists, cur_end)
         ]
         skip = max(n - c for n, c in zip(next_indices_vector, cur_end)) > 1
 
