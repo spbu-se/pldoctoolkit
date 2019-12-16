@@ -238,18 +238,15 @@ def permutations_first_volatile(rank: 'int', n_cover: 'int' = 3):
 def get_normalizer() -> 'Function[str, str]':
     try:
         nz = util.cfg()['archetype_recovery']['normalizer']
-        pkc: str = nz['package']
-        fn = nz['function']
+        pkc: str = nz['function']
 
-        rm = __import__(pkc)
         pkct = pkc.split('.')
+        m = __import__('.'.join(pkct[:-1]))
 
-        m = rm
         for n in pkct[1:]:
-            m = rm.__dict__[n]
-        f = m.__dict__[fn]
+            m = m.__dict__[n]
 
-        return f
+        return m
     except Exception as e:
         print(f"Archetype recovery failed to get NLP normalizer with error {e}", file=sys.stderr)
         return (lambda s: s)  # identity
