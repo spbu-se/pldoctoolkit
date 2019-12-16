@@ -248,6 +248,7 @@ def get_normalizer() -> 'Function[str, str]':
         for n in pkct[1:]:
             m = rm.__dict__[n]
         f = m.__dict__[fn]
+
         return f
     except Exception as e:
         print(f"Archetype recovery failed to get NLP normalizer with error {e}", file=sys.stderr)
