@@ -1,3 +1,6 @@
 archetype_recovery:
   normalizer:
     function: "dupfinder.nlp.en.normalize"
+hooks:
+  report:
+    class:    "dupfinder.hooks.javadoc.JavaDocHook"
