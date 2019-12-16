@@ -1,0 +1,4 @@
+archetype_recovery:
+  normalizer:
+    package: "dupfinder_nlp.en"
+    function: "normalize"

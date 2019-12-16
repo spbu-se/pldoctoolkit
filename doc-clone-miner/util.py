@@ -9,12 +9,17 @@ import functools
 import contextlib
 import psutil
 import string
+import yaml
 
 # import Levenshtein  # not used any more
 import traceback
 
 import PyQt5.QtCore
 from PyQt5.QtWidgets import QApplication
+
+_scriptdir = os.path.dirname(os.path.realpath(__file__))
+_scriptname = os.path.basename(os.path.realpath(__file__))
+
 
 try:
     import interval as itvl  # https://pypi.python.org/pypi/pyinterval
@@ -236,3 +241,10 @@ class QHourGlass(contextlib.AbstractContextManager, contextlib.AbstractAsyncCont
             print("Exception while houglass:", exc_type, exc_val)
         QApplication.restoreOverrideCursor()
         self._normal_p()
+
+
+@functools.lru_cache()
+def cfg()-> 'Union[Dict[Hashable, Any], List, None]':
+    """Readonly config"""
+    with open(os.path.join(_scriptdir, "settings.yml"), 'r', encoding='utf-8') as ys:
+        return yaml.load(ys)

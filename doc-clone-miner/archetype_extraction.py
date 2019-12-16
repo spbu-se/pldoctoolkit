@@ -234,11 +234,32 @@ def permutations_first_volatile(rank: 'int', n_cover: 'int' = 3):
         pf = tuple(reversed(c))
         yield pf + tuple(initial_s.difference(pf))
 
+@functools.lru_cache()
+def get_normalizer() -> 'Function[str, str]':
+    try:
+        nz = util.cfg()['archetype_recovery']['normalizer']
+        pkc: str = nz['package']
+        fn = nz['function']
+
+        rm = __import__(pkc)
+        pkct = pkc.split('.')
+
+        m = rm
+        for n in pkct[1:]:
+            m = rm.__dict__[n]
+        f = m.__dict__[fn]
+        return f
+    except Exception as e:
+        print(f"Archetype recovery failed to get NLP normalizer with error {e}", file=sys.stderr)
+        return (lambda s: s)  # identity
+
 @functools.lru_cache(maxsize=None)
 def two_tuples_lcs(w1: 'tuple[str]', w2: 'tuple[str]') -> 'tuple[str]':
-    sm = difflib.SequenceMatcher(None, w1, w2, False)
+    w1n = tuple(map(get_normalizer(), w1))
+    w2n = tuple(map(get_normalizer(), w2))
+    sm = difflib.SequenceMatcher(None, w1n, w2n, False)
     matches = sm.get_matching_blocks()
-    return tuple(itertools.chain(*[ w1[match.a: match.a + match.size] for match in matches ]))
+    return tuple(itertools.chain(*[ w1n[match.a: match.a + match.size] for match in matches ]))
 
 
 @functools.lru_cache(maxsize=None)
