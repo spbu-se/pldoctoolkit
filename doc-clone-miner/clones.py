@@ -502,6 +502,14 @@ class FuzzyCloneGroup(CloneGroup):
 
     def html(self, inst=None, allow_space_wrap=False, force_from_archetype = False):
         import worddiff
+
+        try:
+            cl = util.import_by_name(util.cfg()['hooks']['report']['class'])
+            fn = cl.transform_nearduplicate_html
+        except Exception as e:
+            print(f"Failed to import report hook, got {e}")
+            fn = lambda s: s
+
         if inst is None: # all
             logging.info(
                 f"\tGroup:"
@@ -518,10 +526,12 @@ class FuzzyCloneGroup(CloneGroup):
             resulttexts = []
             for r in resultlist:
                 resulttexts.append(
-                    """<code id="%s" class="fuzzycode" style="display: %s;">%s</code>""" % (
-                        "g" + str(self.id) + "-c" + str(len(resulttexts)),
-                        "inline" if len(resulttexts) == 0 else "none",
-                        r
+                    fn(
+                        """<code id="%s" class="fuzzycode" style="display: %s;">%s</code>""" % (
+                            "g" + str(self.id) + "-c" + str(len(resulttexts)),
+                            "inline" if len(resulttexts) == 0 else "none",
+                            r
+                        )
                     )
                 )
             return os.linesep.join(resulttexts)
