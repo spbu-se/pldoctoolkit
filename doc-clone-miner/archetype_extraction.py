@@ -421,7 +421,7 @@ def get_fuzzy_htmls(texts: 'List[str]', deltize=_html_deltize, archetypize=_html
     result = []
     for t, ta in zip(texts, tgo):
         r = ""
-        print(t, ta)
+        # print(t, ta)
 
         ta = [(0, 0)] + ta + [(len(t), len(t))]
 
