@@ -7,9 +7,13 @@ import shutil
 import sys
 import functools
 import contextlib
-import psutil
 import string
 import yaml
+
+try:
+  import psutil
+except:
+  print("No psutil installed", file=sys.stderr)
 
 # import Levenshtein  # not used any more
 import traceback
@@ -212,15 +216,20 @@ class QHourGlass(contextlib.AbstractContextManager, contextlib.AbstractAsyncCont
     def __init__(self, lower_priority = True):
         super(contextlib.AbstractContextManager, self).__init__()
         super(contextlib.AbstractAsyncContextManager, self).__init__()
-        self._p = psutil.Process()
+        try:
+            self._p = psutil.Process()
+        except:  # likely no psutil
+            self._p = None
 
     def _lower_p(self):
-        n = self._p.nice()
-        self._n = n if type(n) == int else n.value  # Very unclear behaviour on Unix vs Windows
-        self._p.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS if psutil.WINDOWS else 19)
+        if self._p:
+            n = self._p.nice()
+            self._n = n if type(n) == int else n.value  # Very unclear behaviour on Unix vs Windows
+            self._p.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS if psutil.WINDOWS else 19)
 
     def _normal_p(self):
-        self._p.nice(self._n)
+        if self._p:
+            self._p.nice(self._n)
 
     def __enter__(self):
         self._lower_p()
