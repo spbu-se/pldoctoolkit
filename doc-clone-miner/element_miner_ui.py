@@ -671,8 +671,8 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         if methodIdx == 0: # Clone Miner
             wt = self.launch_with_clone_miner(pui, infile, numparams)
         elif methodIdx == 2:  # Fuzzy Finder
-            # wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
-            wt, ffworkfolder = self.launch_with_ngram_dup_finder(pui, infile, numparams)
+            wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
+            # wt, ffworkfolder = self.launch_with_ngram_dup_finder(pui, infile, numparams)
         elif methodIdx == 3:  # Heuristic
             # wt, ffworkfolder = self.launch_with_fuzzy_finder(pui, infile, numparams)
             wt, ffworkfolder = external_analysis_tools.run_heuristic_finder_and_report(
@@ -800,167 +800,6 @@ class SetupDialog(QtWidgets.QDialog, pyqt_common.ui_class('element_miner_setting
         infname = str(QtWidgets.QFileDialog.getOpenFileName(self, "Select File to Analyze")[0])
         self.inFile.setText(infname)
 
-def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
-    global clargs, app
-    inputfile = inputfile.replace('/', os.sep)
-
-    pui.progressChanged.emit(2, 0, "Preparing...")
-    app.processEvents()
-
-    class FuzzyWorkThread(QtCore.QThread):
-        def __init__(self):
-            QtCore.QThread.__init__(self)
-            self.ffstdoutstderr = ""
-            self.fatal_error = False
-
-        @util.excprint
-        def run(self):
-            outdec = locale.getpreferredencoding(False)
-
-            [frgamentsize, maxeditdist, maxhashdist] = numparams
-            threads = 1
-            inputfilename = os.path.split(inputfile)[-1]
-
-            popen_args = [clargs.fuzzy_finder_tool] + [
-                "-document", inputfilename,
-                "-frgamentsize", str(frgamentsize),
-                "-maxeditdist", str(maxeditdist),
-                "-maxhashdist", str(maxhashdist),
-                "-threads", str(threads),
-                "-language", language
-            ]
-
-            if os.name == 'posix': popen_args = ["mono"] + popen_args
-            print("Finding fuzzy clones with: " + ' '.join(popen_args))
-
-            pui.progressChanged.emit(2, 0, "Finding fuzzy clones...")
-            app.processEvents()
-
-            ffpr = subprocess.Popen(popen_args,
-                                                stdout=subprocess.PIPE,
-                                                stdin=subprocess.PIPE,
-                                                stderr=subprocess.PIPE,
-                                                cwd=workingfolder)
-            oe = ffpr.communicate(input=b'\n')
-            ffrc = ffpr.returncode
-            ffstdout = oe[0].decode(outdec)
-            ffstderr = oe[1].decode(outdec)
-            self.ffstdoutstderr = ffstdout + os.linesep + ffstderr
-            if ffrc != 0 or "Exception was thrown:" in ffstderr:
-                self.fatal_error = True
-                print("Returned: " + str(ffrc))
-                print(self.ffstdoutstderr)
-                return
-
-            reformattedfilename = inputfilename + '.reformatted'
-            fuzzyclonesfilename = inputfilename + '.fuzzyclones.xml'
-
-            pui.progressChanged.emit(2, 1, "Preparing report...")
-            app.processEvents()
-
-            popen_args = [
-                sys.executable, optverb, os.path.join(_scriptdir, "fuzzyclones2html.py"),
-                '-oui', 'no', # gen for ui and export
-                '-sx', reformattedfilename,
-                '-fx', fuzzyclonesfilename,
-                '-od', workingfolder]
-            print("Browsing fuzzy clones with: " + ' '.join(popen_args))
-
-            cbpr = subprocess.Popen(popen_args,
-                                                stdout=subprocess.PIPE,
-                                                stdin=subprocess.PIPE,
-                                                stderr=subprocess.STDOUT,
-                                                cwd=workingfolder)
-
-            oe = cbpr.communicate(input=b'\n')
-            cbrc = cbpr.returncode
-            if cbrc != 0:
-                self.fatal_error = True
-                print("Returned: " + str(cbrc))
-                print(oe[0].decode(outdec))
-
-            pui.progressChanged.emit(2, 2, "Done")
-            app.processEvents()
-
-    wt = FuzzyWorkThread()
-    wt.start()
-    return wt
-
-
-def run_ngram_dup_finder_thread(pui, inputfile, numparams, language, workingfolder):
-    global clargs, app
-    inputfile = inputfile.replace('/', os.sep)
-
-    pui.progressChanged.emit(2, 0, "Preparing...")
-    app.processEvents()
-
-    class NGramWorkThread(QtCore.QThread):
-        def __init__(self):
-            QtCore.QThread.__init__(self)
-            self.ffstdoutstderr = ""
-            self.fatal_error = False
-
-        @util.excprint
-        def run(self):
-            outdec = locale.getpreferredencoding(False)
-            inputfilename = os.path.basename(inputfile)
-            ndf_py = os.path.join(_scriptdir, 'ngram_duplicate_finder', 'ndf.py')
-
-            reformattedfilename = inputfilename + '.reformatted'
-            util.save_reformatted_file(inputfile)
-
-            outputfilename = inputfilename + ".reformatted.groups.json"
-
-            popen_args = [sys.executable, ndf_py, reformattedfilename, language.lower()]
-
-            pui.progressChanged.emit(2, 0, "Finding NGram near duplicates...")
-            app.processEvents()
-
-            ffpr = subprocess.Popen(popen_args,
-                                                stdout=subprocess.PIPE,
-                                                stdin=subprocess.PIPE,
-                                                stderr=subprocess.PIPE,
-                                                cwd=workingfolder)
-            oe = ffpr.communicate(input=b'\n')
-            ffrc = ffpr.returncode
-            ffstdout = oe[0].decode(outdec)
-            ffstderr = oe[1].decode(outdec)
-            self.ffstdoutstderr = ffstdout + os.linesep + ffstderr
-            if ffrc != 0 or "Exception was thrown:" in ffstderr:
-                self.fatal_error = True
-                print("Returned: " + str(ffrc))
-                print(self.ffstdoutstderr)
-                return
-
-            pui.progressChanged.emit(2, 1, "Preparing report...")
-            app.processEvents()
-
-            popen_args = [sys.executable, optverb, os.path.join(_scriptdir, "fuzzyclones2html.py"),
-                '-oui', 'no', # gen for ui and export
-                '-sx', reformattedfilename,
-                '-ndgj', outputfilename,
-                '-od', workingfolder]
-            print("Browsing NGram duplicates with: " + ' '.join(popen_args))
-
-            cbpr = subprocess.Popen(popen_args,
-                                                stdout=subprocess.PIPE,
-                                                stdin=subprocess.PIPE,
-                                                stderr=subprocess.STDOUT,
-                                                cwd=workingfolder)
-
-            oe = cbpr.communicate(input=b'\n')
-            cbrc = cbpr.returncode
-            if cbrc != 0:
-                self.fatal_error = True
-                print("Returned: " + str(cbrc))
-                print(oe[0].decode(outdec))
-
-            pui.progressChanged.emit(2, 2, "Done")
-            app.processEvents()
-
-    wt = NGramWorkThread()
-    wt.start()
-    return wt
 
 def do_fuzzy_pattern_search_CLI(inputfilename, ui, minsim, text, srctext):
     outdir = inputfilename + ".fuzzypattern"
@@ -1276,6 +1115,174 @@ def run_nearduplicate_report_thread(pui, infile, onready):
     wt = NearDuplicateWorkThread(pui, infile, workfolder, onready)
     wt.start()
     return wt, workfolder
+
+def run_ngram_dup_finder_thread(pui, inputfile, numparams, language, workingfolder):
+    global clargs, app
+    inputfile = inputfile.replace('/', os.sep)
+
+    pui.progressChanged.emit(2, 0, "Preparing...")
+    app.processEvents()
+
+    class NGramWorkThread(QtCore.QThread):
+        def __init__(self):
+            QtCore.QThread.__init__(self)
+            self.ffstdoutstderr = ""
+            self.fatal_error = False
+
+        @util.excprint
+        def run(self):
+            outdec = locale.getpreferredencoding(False)
+            inputfilename = os.path.basename(inputfile)
+            # ndf_py = os.path.join(_scriptdir, 'ngram_duplicate_finder', 'ndf.py')
+
+            reformattedfilename = inputfilename + '.reformatted'
+            util.save_reformatted_file(inputfile)
+
+            # # outputfilename = inputfilename + ".reformatted.groups.json"
+            #
+            # popen_args = [sys.executable, ndf_py, reformattedfilename, language.lower()]
+            #
+            # pui.progressChanged.emit(2, 0, "Finding NGram near duplicates...")
+            # app.processEvents()
+            #
+            # ffpr = subprocess.Popen(popen_args,
+            #                                     stdout=subprocess.PIPE,
+            #                                     stdin=subprocess.PIPE,
+            #                                     stderr=subprocess.PIPE,
+            #                                     cwd=workingfolder)
+            # oe = ffpr.communicate(input=b'\n')
+            # ffrc = ffpr.returncode
+            # ffstdout = oe[0].decode(outdec)
+            # ffstderr = oe[1].decode(outdec)
+            # self.ffstdoutstderr = ffstdout + os.linesep + ffstderr
+            # if ffrc != 0 or "Exception was thrown:" in ffstderr:
+            #     self.fatal_error = True
+            #     print("Returned: " + str(ffrc))
+            #     print(self.ffstdoutstderr)
+            #     return
+
+            pui.progressChanged.emit(2, 1, "Preparing report...")
+            app.processEvents()
+
+            popen_args = [sys.executable, optverb, os.path.join(_scriptdir, "fuzzyclones2html.py"),
+                '-oui', 'no', # gen for ui and export
+                '-sx', reformattedfilename,
+                '-od', workingfolder]
+            print("Browsing NGram duplicates with: " + ' '.join(popen_args))
+
+            cbpr = subprocess.Popen(popen_args,
+                                                stdout=subprocess.PIPE,
+                                                stdin=subprocess.PIPE,
+                                                stderr=subprocess.STDOUT,
+                                                cwd=workingfolder)
+
+            oe = cbpr.communicate(input=b'\n')
+            cbrc = cbpr.returncode
+            if cbrc != 0:
+                self.fatal_error = True
+                print("Returned: " + str(cbrc))
+                print(oe[0].decode(outdec))
+
+            pui.progressChanged.emit(2, 2, "Done")
+            app.processEvents()
+
+    wt = NGramWorkThread()
+    wt.start()
+    return wt
+
+def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
+    global clargs, app
+    inputfile = inputfile.replace('/', os.sep)
+
+    pui.progressChanged.emit(2, 0, "Preparing...")
+    app.processEvents()
+
+    class FuzzyWorkThread(QtCore.QThread):
+        def __init__(self):
+            QtCore.QThread.__init__(self)
+            self.ffstdoutstderr = ""
+            self.fatal_error = False
+
+        @util.excprint
+        def run(self):
+            outdec = locale.getpreferredencoding(False)
+
+            [frgamentsize, maxeditdist, maxhashdist] = numparams
+            threads = 1
+            inputfilename = os.path.basename(inputfile)
+            util.save_reformatted_file(os.path.join(workingfolder, inputfilename))
+            reformattedfilename = inputfilename + '.reformatted'
+
+            # util.save_reformatted_file(inputfile)
+            #
+            # popen_args = [clargs.fuzzy_finder_tool] + [
+            #     "-document", inputfilename,
+            #     "-frgamentsize", str(frgamentsize),
+            #     "-maxeditdist", str(maxeditdist),
+            #     "-maxhashdist", str(maxhashdist),
+            #     "-threads", str(threads),
+            #     "-language", language
+            # ]
+            #
+            # if os.name == 'posix': popen_args = ["mono"] + popen_args
+            # print("Finding fuzzy clones with: " + ' '.join(popen_args))
+            #
+            # pui.progressChanged.emit(2, 0, "Finding fuzzy clones...")
+            # app.processEvents()
+            #
+            # ffpr = subprocess.Popen(popen_args,
+            #                                     stdout=subprocess.PIPE,
+            #                                     stdin=subprocess.PIPE,
+            #                                     stderr=subprocess.PIPE,
+            #                                     cwd=workingfolder)
+            # oe = ffpr.communicate(input=b'\n')
+            # ffrc = ffpr.returncode
+            # ffstdout = oe[0].decode(outdec)
+            # ffstderr = oe[1].decode(outdec)
+            # self.ffstdoutstderr = ffstdout + os.linesep + ffstderr
+            # if ffrc != 0 or "Exception was thrown:" in ffstderr:
+            #     self.fatal_error = True
+            #     print("Returned: " + str(ffrc))
+            #     print(self.ffstdoutstderr)
+            #     return
+            #
+            # reformattedfilename = inputfilename + '.reformatted'
+            # fuzzyclonesfilename = inputfilename + '.fuzzyclones.xml'
+
+            pui.progressChanged.emit(2, 1, "Preparing report...")
+            app.processEvents()
+
+            popen_args = [
+                sys.executable, optverb, os.path.join(_scriptdir, "fuzzyclones2html.py"),
+                '-oui', 'no', # gen for ui and export
+                '-fx', 'fuzzy',
+                '-sx', reformattedfilename,
+                '-od', workingfolder,
+                '-num', str(frgamentsize),
+                '-ed', str(maxeditdist),
+                '-hd', str(maxhashdist)]
+            print("Browsing fuzzy clones with: " + ' '.join([str(arg) for arg in popen_args]))
+
+            cbpr = subprocess.Popen(popen_args,
+                                                stdout=subprocess.PIPE,
+                                                stdin=subprocess.PIPE,
+                                                stderr=subprocess.STDOUT,
+                                                cwd=workingfolder)
+
+            oe = cbpr.communicate(input=b'\n')
+            cbrc = cbpr.returncode
+            if cbrc != 0:
+                self.fatal_error = True
+                print("Returned: " + str(cbrc))
+                print(oe[0].decode(outdec))
+
+            pui.progressChanged.emit(2, 2, "Done")
+            app.processEvents()
+
+    wt = FuzzyWorkThread()
+    wt.start()
+    return wt
+
 
 if __name__ == '__main__':
     global clargs, app

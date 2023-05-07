@@ -88,7 +88,7 @@ def eval_p_js_faf(page: QtWebEngineWidgets.QWebEnginePage, js: str):
     page.runJavaScript(js)
 
 
-async def load_p_url_co(page: QtWebEngineWidgets.QWebEnginePage, u: Qt.QUrl):
+async def load_p_url_co(page: QtWebEngineWidgets.QWebEnginePage, u: QtCore.QUrl):
     fut = asyncio.get_event_loop().create_future()
 
     def ready(ok: bool):
@@ -102,7 +102,7 @@ async def load_p_url_co(page: QtWebEngineWidgets.QWebEnginePage, u: Qt.QUrl):
     page.load(u)
     return await fut
 
-async def load_p_url_then_run_js_co(page: QtWebEngineWidgets.QWebEnginePage, u: Qt.QUrl, js: str, wcobjects: dict):
+async def load_p_url_then_run_js_co(page: QtWebEngineWidgets.QWebEnginePage, u: QtCore.QUrl, js: str, wcobjects: dict):
     fut = asyncio.get_event_loop().create_future()
 
     def register_channel_objects():
@@ -129,7 +129,7 @@ async def load_p_url_then_run_js_co(page: QtWebEngineWidgets.QWebEnginePage, u: 
     return await fut
 
 
-def load_p_url_sync(page: QtWebEngineWidgets.QWebEnginePage, u: Qt.QUrl):
+def load_p_url_sync(page: QtWebEngineWidgets.QWebEnginePage, u: QtCore.QUrl):
     asyncio.get_event_loop().run_until_complete(load_p_url_co(page, u))
 
 
