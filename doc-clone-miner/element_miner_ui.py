@@ -29,6 +29,8 @@ import sourcemarkers
 import util
 from pyqt_common import ui_class, _scriptdir, EMUIApp
 
+import TextDuplicateSearch as tds
+
 hm_bc_i: hm_browser_complex.HMBrowserComplex = None
 
 _scriptdir = os.path.dirname(os.path.realpath(__file__))
@@ -1024,14 +1026,13 @@ class CloneMinerWorkThread(QtCore.QThread):
                     smsg = "Mining clones of >= %d tokens..." % l
                     self.pui.progressChanged.emit(len(self.lengths) * 150, cnt * 150 + cplus, smsg)
 
-                    # run clone miner
-                    popen_args = [clargs.clone_tool, str(l), '0', '0']
-                    if os.name == 'posix': popen_args = ["wine"] + popen_args
-                    print("Mining clones with: " + ' '.join(popen_args))
+                    config = tds.create_config()
+                    config.input_file = self.inputfile
+                    config.output_file = os.path.join(os.path.dirname(clargs.clone_tool), "Output", "Clones.txt")
+                    config.min_dup_length = l
 
-                    cmpr = subprocess.Popen(popen_args, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
-                                                        stderr=subprocess.STDOUT)
-                    cmpr.communicate(input=b'\n')
+                    tds.strict_search(config)
+
                     cplus = 25
 
                 # rewrite InputFiles.txt again because ...
@@ -1133,33 +1134,9 @@ def run_ngram_dup_finder_thread(pui, inputfile, numparams, language, workingfold
         def run(self):
             outdec = locale.getpreferredencoding(False)
             inputfilename = os.path.basename(inputfile)
-            # ndf_py = os.path.join(_scriptdir, 'ngram_duplicate_finder', 'ndf.py')
 
             reformattedfilename = inputfilename + '.reformatted'
             util.save_reformatted_file(inputfile)
-
-            # # outputfilename = inputfilename + ".reformatted.groups.json"
-            #
-            # popen_args = [sys.executable, ndf_py, reformattedfilename, language.lower()]
-            #
-            # pui.progressChanged.emit(2, 0, "Finding NGram near duplicates...")
-            # app.processEvents()
-            #
-            # ffpr = subprocess.Popen(popen_args,
-            #                                     stdout=subprocess.PIPE,
-            #                                     stdin=subprocess.PIPE,
-            #                                     stderr=subprocess.PIPE,
-            #                                     cwd=workingfolder)
-            # oe = ffpr.communicate(input=b'\n')
-            # ffrc = ffpr.returncode
-            # ffstdout = oe[0].decode(outdec)
-            # ffstderr = oe[1].decode(outdec)
-            # self.ffstdoutstderr = ffstdout + os.linesep + ffstderr
-            # if ffrc != 0 or "Exception was thrown:" in ffstderr:
-            #     self.fatal_error = True
-            #     print("Returned: " + str(ffrc))
-            #     print(self.ffstdoutstderr)
-            #     return
 
             pui.progressChanged.emit(2, 1, "Preparing report...")
             app.processEvents()
@@ -1208,46 +1185,10 @@ def run_fuzzy_finder_thread(pui, inputfile, numparams, language, workingfolder):
             outdec = locale.getpreferredencoding(False)
 
             [frgamentsize, maxeditdist, maxhashdist] = numparams
-            threads = 1
+
             inputfilename = os.path.basename(inputfile)
             util.save_reformatted_file(os.path.join(workingfolder, inputfilename))
             reformattedfilename = inputfilename + '.reformatted'
-
-            # util.save_reformatted_file(inputfile)
-            #
-            # popen_args = [clargs.fuzzy_finder_tool] + [
-            #     "-document", inputfilename,
-            #     "-frgamentsize", str(frgamentsize),
-            #     "-maxeditdist", str(maxeditdist),
-            #     "-maxhashdist", str(maxhashdist),
-            #     "-threads", str(threads),
-            #     "-language", language
-            # ]
-            #
-            # if os.name == 'posix': popen_args = ["mono"] + popen_args
-            # print("Finding fuzzy clones with: " + ' '.join(popen_args))
-            #
-            # pui.progressChanged.emit(2, 0, "Finding fuzzy clones...")
-            # app.processEvents()
-            #
-            # ffpr = subprocess.Popen(popen_args,
-            #                                     stdout=subprocess.PIPE,
-            #                                     stdin=subprocess.PIPE,
-            #                                     stderr=subprocess.PIPE,
-            #                                     cwd=workingfolder)
-            # oe = ffpr.communicate(input=b'\n')
-            # ffrc = ffpr.returncode
-            # ffstdout = oe[0].decode(outdec)
-            # ffstderr = oe[1].decode(outdec)
-            # self.ffstdoutstderr = ffstdout + os.linesep + ffstderr
-            # if ffrc != 0 or "Exception was thrown:" in ffstderr:
-            #     self.fatal_error = True
-            #     print("Returned: " + str(ffrc))
-            #     print(self.ffstdoutstderr)
-            #     return
-            #
-            # reformattedfilename = inputfilename + '.reformatted'
-            # fuzzyclonesfilename = inputfilename + '.fuzzyclones.xml'
 
             pui.progressChanged.emit(2, 1, "Preparing report...")
             app.processEvents()

@@ -42,35 +42,6 @@ def initargs():
 
 only_generate_for_ui = None
 
-# def load_fuzzy_groups_xml(logger):
-#     from lxml import etree
-#     global args, only_generate_for_ui
-#     import clones
-#
-#     # default required settings for fuzzy groups
-#     clones.write_reformatted_sources = False
-#     clones.checkmarkup = False
-#     only_generate_for_ui = clones.only_generate_for_ui = args.only_ui == "yes"
-#
-#     inputfile = clones.create_input_file_by_suffix(args.source_xml)
-#
-#     fuzzyclonedata = etree.parse(args.fuzzy_xml) # type: ElementTree
-#
-#     fgrps = []
-#     for fgrp in fuzzyclonedata.xpath('/fuzzygroups/fuzzygroup'):
-#         # here is group
-#         fclns = []
-#         fclntexts = []
-#         fclnwords = []
-#         for fcln in fgrp.xpath('./fuzzyclone'):
-#             fclns.append((0, int(fcln.attrib['offset']), int(fcln.attrib['length']) + int(fcln.attrib['offset'])))
-#             fclntexts.append(fcln.xpath('./sourcetext')[0].text)
-#             fclnwords.append(fcln.xpath('./sourcewords')[0].text)
-#
-#         fgrps.append(clones.FuzzyCloneGroup(fgrp.attrib['id'], fclns, fclntexts, fclnwords))
-#
-#     clones.initdata([inputfile], fgrps)
-
 
 def load_near_duplicates_json(logger):
     global args
@@ -125,12 +96,50 @@ def load_near_duplicates_json(logger):
     inputfile = clones.create_input_file_by_suffix(args.source_xml)
     clones.initdata([inputfile], [])
 
+    with open(args.neardup_json, encoding='utf-8') as ndj:
+        fuzzyclonedata = json.load(ndj)
+
+    fgrps = []
+    for fgrp in fuzzyclonedata['groups']:
+        # here is group
+        group_id = fgrp['group_id']
+        fclns = []
+        fclntexts = []
+        fclnwords = []
+        for fcln in fgrp['duplicates']:
+            si = fcln['start_index']
+            ei = fcln['end_index']
+            tx = fcln['text']
+            fclns.append((0, int(si), int(ei)))
+            fclntexts.append(tx)
+            fclnwords.append(util.ctokens(tx))
+
+        fgrps.append(clones.FuzzyCloneGroup(
+            group_id, fclns #, fclntexts, fclnwords
+        ))
+
+    clones.initdata([inputfile], fgrps)
+
+
+def load_near_duplicates(logger):
+    global args
+    import clones
+    import util
+
+    # default required settings for fuzzy groups
+    clones.write_reformatted_sources = False
+    clones.checkmarkup = False
+    clones.only_generate_for_ui = args.only_ui == "yes"
+
+    inputfile = clones.create_input_file_by_suffix(args.source_xml)
+    clones.initdata([inputfile], [])
+
     config = tds.create_config()
     config.input_file = args.source_xml
     if args.fuzzy_xml:
-        config.searcher_type = 0   # fuzzy
+        config.searcher_type = 0  # fuzzy
     else:
-        config.searcher_type = 1   # ngram
+        config.searcher_type = 1  # ngram
     config.fragment_size = args.number
     config.max_hashing_diff = args.hash_dist
     config.max_edit_distance = args.edit_dist
@@ -240,7 +249,10 @@ if __name__ == '__main__':
     initargs()
 
     if args.json_format == "autofound":
-        load_near_duplicates_json(logger)
+        if args.neardup_json:
+            load_near_duplicates_json(logger)
+        else:
+            load_near_duplicates(logger)
     else:
         load_dups_benchmark_json(logger)
 
