@@ -86,7 +86,7 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
         # TODO: make use of pyqt_common.load_p_url_then_run_js_co !!!
         def loaded(ok: bool):
             try:
-                if self.rp_page.url() != Qt.QUrl(url):
+                if self.rp_page.url() != QtCore.QUrl(url):
                     print("Blank")
                 elif not ok:
                     print("Something went wrong")
@@ -119,13 +119,13 @@ class HMBrowserComplex(QtWidgets.QMainWindow, ui_class('hm_browser_window.ui')):
         self.rp_page.setWebChannel(self.hmbc)
 
         self.rp_page.loadFinished.connect(loaded)
-        self.rp_page.load(Qt.QUrl(url))
+        self.rp_page.load(QtCore.QUrl(url))
 
     def loadHeatMap(self, url: str):
         self.hm_url = url
         try:
             self.hm_page.loadFinished.connect(lambda ok: self.unsetCursor())
-            self.hm_page.load(Qt.QUrl(url))  # fire and forget
+            self.hm_page.load(QtCore.QUrl(url))  # fire and forget
         except Exception as e:
             print(repr(e))
             traceback.print_stack()
